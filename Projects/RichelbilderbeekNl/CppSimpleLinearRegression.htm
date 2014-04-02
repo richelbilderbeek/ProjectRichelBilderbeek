@@ -90,13 +90,13 @@ T GetZero() { <b><a href="CppReturn.htm">return</a></b> T{}; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;decltype(ys[0]/xs[0]),Y&gt;;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain Anscombe's Quartet its x values, <b><a href="CppFor.htm">for</a></b> index 1 to (and including) 4<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetAnscombesQuartetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetAnscombesQuartetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain Anscombe's Quartet its y values, <b><a href="CppFor.htm">for</a></b> index 1 to (and including) 4<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetAnscombesQuartetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetAnscombesQuartetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 <br/>
@@ -245,8 +245,7 @@ T SimpleLinearRegression::CalculateMean(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mean_of_squares <a href="CppOperatorMinus.htm">-</a> (mean * mean);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index)<br/>
 &nbsp;&nbsp;{<br/>
@@ -270,7 +269,7 @@ T SimpleLinearRegression::CalculateMean(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index)<br/>
@@ -297,12 +296,12 @@ T SimpleLinearRegression::CalculateMean(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-08-27: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>, as <a href="ToolTestSimpleLinearRegression.htm">ToolTestSimpleLinearRegression</a>MainDialog",<br/>

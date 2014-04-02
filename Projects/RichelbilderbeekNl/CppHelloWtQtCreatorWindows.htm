@@ -45,7 +45,6 @@
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.4 (32 bit)</li>
   <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
@@ -57,22 +56,14 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppHelloWtQtCreatorWindows/CppHelloWtQtCreatorWindows.pro" border = "1"><tr><td><code>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<br/>
-win32 {<br/>
-&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/wt/src<br/>
-&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
-&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/wt/src<br/>
-}<br/>
+include(../../WebApplication.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/BoostAll.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Wt.pri)<br/>
 <br/>
 !win32 {<br/>
 &nbsp;&nbsp;error(Must be native Windows)<br/>
 }<br/>
 <br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
-<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->

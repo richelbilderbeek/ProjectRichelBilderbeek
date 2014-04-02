@@ -73,7 +73,6 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 # }<br/>
 <br/>
 include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment the code below<br/>
-<br/>
 # win32 {<br/>
 #&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
@@ -94,6 +93,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment th
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -107,12 +107,24 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment th
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a> automatically deletes its element when it<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/goes out of <a href="CppScope.htm">scope</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&gt; p { <b><a href="CppNew.htm">new</a></b> <a href="CppGossip.htm">Gossip</a> };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppGossip.htm">Gossip</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>s are preferable created by <a href="CppBoostMake_shared.htm">boost::make_shared</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&gt; p<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;<a href="CppGossip.htm">Gossip</a>&gt;();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppBoostMake_shared.htm">boost::make_shared</a> also allows <b><a href="CppFor.htm">for</a></b> creation with <b><a href="CppAuto.htm">auto</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;<a href="CppGossip.htm">Gossip</a>&gt;();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read the element type of a <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&gt; Type;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Type p { <b><a href="CppNew.htm">new</a></b> <a href="CppGossip.htm">Gossip</a> };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Type p <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;<a href="CppGossip.htm">Gossip</a>&gt;();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppStdIs_same.htm">std::is_same</a>&lt;Type::element_type,<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&gt;(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Use element_type to read the type the <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a> contains");<br/>
@@ -141,10 +153,31 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Custom deleter <b><a href="CppFor.htm">for</a></b> <a href="CppGossip.htm">Gossip</a>, <b><a href="CppUsing.htm">using</a></b> <a href="CppBoostMake_shared.htm">boost::make_shared</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No idea yet, send me an email <b><a href="CppIf.htm">if</a></b> you know how to <b><a href="CppDo.htm">do</a></b> <b><a href="CppThis.htm">this</a></b><br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> SHOW_INTERNAL_COMPILER_ERROR<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppGossip.htm">Gossip</a>&gt; p <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGossip.htm">Gossip</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a> * <b><a href="CppConst.htm">const</a></b> gossip)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Deleting <a href="CppGossip.htm">Gossip</a> with custom deleter\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> gossip;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Deleted <a href="CppGossip.htm">Gossip</a> with custom deleter\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Screen output:<br/>
 <br/>
+<a href="CppGossip.htm">Gossip</a> <a href="CppDestructor.htm">destructor</a><br/>
+<a href="CppGossip.htm">Gossip</a> <a href="CppDestructor.htm">destructor</a><br/>
 <a href="CppGossip.htm">Gossip</a> <a href="CppDestructor.htm">destructor</a><br/>
 <a href="CppGossip.htm">Gossip</a> <a href="CppDestructor.htm">destructor</a><br/>
 <a href="CppGossip.htm">Gossip</a> <a href="CppDestructor.htm">destructor</a><br/>

@@ -67,11 +67,11 @@ Out Copy_if(In first, In last, Out res, Pred Pr)<br/>
 <br/>
 struct Copy_if_version<br/>
 {<br/>
-&nbsp;&nbsp;static const std::string GetVersion() noexcept<br/>
+&nbsp;&nbsp;static std::string GetVersion() noexcept<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;return "2.1";<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept<br/>
+&nbsp;&nbsp;static std::vector&lt;std::string&gt; GetVersionHistory() noexcept<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;return {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"2011-xx-xx: Version 1.0: initial version",<br/>

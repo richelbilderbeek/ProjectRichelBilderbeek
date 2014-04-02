@@ -759,11 +759,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 struct Trace<br/>
 {<br/>
-&nbsp;&nbsp;static const std::string GetVersion()<br/>
+&nbsp;&nbsp;static std::string GetVersion()<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;return "2.6";<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory()<br/>
+&nbsp;&nbsp;static std::vector&lt;std::string&gt; GetVersionHistory()<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;return {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"2010-xx-xx: Version 1.0: initial version, write trace to std::cout",<br/>

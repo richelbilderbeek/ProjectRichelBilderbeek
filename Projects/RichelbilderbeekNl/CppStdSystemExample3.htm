@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>StdSystemExample3</title>
+  <meta name="description" content="C++ StdSystemExample3"/>
+  <meta name="keywords" content="C++ StdSystemExample3 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStdSystemExample3.htm">StdSystemExample3</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppStdSystemExample3-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppStdSystemExample3/CppStdSystemExample3.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStdSystemExample3/CppStdSystemExample3.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppStdSystemExample3/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStdSystemExample3/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> cmd;<br/>
+&nbsp;&nbsp;cmd<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat "WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Changing to drive D is important...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> D: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> ...although <b><a href="CppThis.htm">this</a></b> also indicates the drive<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> R"( <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> cd D:\<a href="Projects.htm">Projects</a>\Test\<a href="Tools.htm">Tool</a>OpenFoamErrorOpenCellsFoundCorrected)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " &amp; checkMesh"<br/>
+&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "cmd: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> cmd.str() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppStdSystem.htm">std::system</a>(cmd.str().c_str());<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> SCREEN_OUTPUT <a href="CppComment.htm">//</a>Screen output:<br/>
+<br/>
+cmd: C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat "WM_COMPILER=min<br/>
+gw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> D:&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> cd D:\<a href="Projects.htm">Projects</a>\Test\Too<br/>
+lOpenFoamErrorOpenCellsFoundCorrected &amp; checkMesh<br/>
+<a href="CppComment.htm">/*</a>---------------------------------------------------------------------------*\<br/>
+| <a href="CppOperatorEqual.htm">==</a><a href="CppOperatorEqual.htm">==</a><a href="CppOperatorEqual.htm">==</a>=<a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+| \\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;F ield&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | OpenFOAM: The Open Source CFD <a href="Tools.htm">Tool</a>box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp;\\&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp; O peration&nbsp;&nbsp;&nbsp;&nbsp; | <a href="CppVersion.htm">Version</a>:&nbsp;&nbsp;2.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp; \\&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;&nbsp;&nbsp;A nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Web:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;www.OpenFOAM.org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+|&nbsp;&nbsp;&nbsp;&nbsp;\\<a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;&nbsp;&nbsp; M anipulation&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+\*---------------------------------------------------------------------------<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">/*</a>&nbsp;&nbsp; <a href="CppWindows.htm">Windows</a> 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt&nbsp;&nbsp; *\<br/>
+|&nbsp;&nbsp;Based on <a href="CppWindows.htm">Windows</a> porting (2.0.x v4) by Symscape: http://www.symscape.com&nbsp;&nbsp; |<br/>
+\*---------------------------------------------------------------------------<a href="CppComment.htm">*/</a><br/>
+Build&nbsp;&nbsp;: 2.1-88b2f2ae3a0b<br/>
+Exec&nbsp;&nbsp; : checkMesh<br/>
+Date&nbsp;&nbsp; : Mar 21 2014<br/>
+<a href="CppTime.htm">Time</a>&nbsp;&nbsp; : 08:51:31<br/>
+Host&nbsp;&nbsp; : "AIRBEAR-W7-I5"<br/>
+PID&nbsp;&nbsp;&nbsp;&nbsp;: 4064<br/>
+Case&nbsp;&nbsp; : D:/<a href="Projects.htm">Projects</a>/Test/<a href="Tools.htm">Tool</a>OpenFoamErrorOpenCellsFoundCorrected<br/>
+nProcs : 1<br/>
+SigFpe : Enabling floating <a href="CppPointer.htm">point</a> <a href="CppException.htm">exception</a> trapping (FOAM_SIGFPE).<br/>
+fileModificationChecking : Monitoring <a href="CppRunTime.htm">run-time</a> modified files <b><a href="CppUsing.htm">using</a></b> <a href="CppTime.htm">time</a>StampMas<br/>
+ter<br/>
+allowSystemOperations : Allowing user-supplied system call operations<br/>
+<br/>
+<a href="CppComment.htm">//</a> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * <a href="CppComment.htm">//</a><br/>
+Create <a href="CppTime.htm">time</a><br/>
+<br/>
+Create polyMesh <b><a href="CppFor.htm">for</a></b> <a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> 0<br/>
+<br/>
+<a href="CppTime.htm">Time</a> <a href="CppOperatorAssign.htm">=</a> 0<br/>
+<br/>
+Mesh stats<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;internal <a href="CppPointer.htm">point</a>s:&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;faces:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;internal faces:&nbsp;&nbsp; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cells:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boundary patches: 6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a> zones:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;face zones:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cell zones:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br/>
+<br/>
+Overall number of cells of each type:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hexahedra:&nbsp;&nbsp;&nbsp;&nbsp; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;prisms:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wedges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pyramids:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tet wedges:&nbsp;&nbsp;&nbsp;&nbsp;1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tetrahedra:&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;polyhedra:&nbsp;&nbsp;&nbsp;&nbsp; 0<br/>
+<br/>
+Checking topology...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Boundary <a href="CppDefinition.htm">definition</a> OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Cell to face <a href="CppAddress.htm">address</a>ing OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a> usage OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Upper triangular ordering OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Face vertices OK.<br/>
+&nbsp;&nbsp; *Number of regions: 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;The mesh has multiple regions which are not connected by <a href="CppAny.htm">any</a> face.<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>Writing region information to "0/cellToRegion"<br/>
+<br/>
+Checking patch topology <b><a href="CppFor.htm">for</a></b> multiply connected surfaces ...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Patch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Faces&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>s&nbsp;&nbsp; Surface topology<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;back&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bottom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;front&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;left&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;right&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;top&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+<br/>
+Checking <a href="CppGeometry.htm">geometry</a>...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Overall domain bounding box (-1 <a href="CppOperatorMinus.htm">-</a>1 0) (1 1 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mesh (non-empty, non-wedge) directions (1 1 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mesh (non-empty) directions (1 1 1)<br/>
+ ***Boundary openness (0 0.171573 0) possible hole in boundary description.<br/>
+ ***Open cells found, max cell openness: 1, number of open cells 1<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>Writing 1 non closed cells to set nonClosedCells<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Minimum face area <a href="CppOperatorAssign.htm">=</a> 1. Maximum face area <a href="CppOperatorAssign.htm">=</a> 2.&nbsp;&nbsp;Face area magnitudes OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Min volume <a href="CppOperatorAssign.htm">=</a> 0.722222. Max volume <a href="CppOperatorAssign.htm">=</a> 1.&nbsp;&nbsp;Total volume <a href="CppOperatorAssign.htm">=</a> 1.72222.&nbsp;&nbsp;Cell volume<br/>
+s OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Non-orthogonality check OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Face pyramids OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Max skewness <a href="CppOperatorAssign.htm">=</a> 0.421474 OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Coupled <a href="CppPointer.htm">point</a> location match (average 0) OK.<br/>
+<br/>
+Failed 2 mesh checks.<br/>
+<br/>
+<a href="CppTime.htm">Time</a> <a href="CppOperatorAssign.htm">=</a> 1<br/>
+<br/>
+Mesh stats<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;internal <a href="CppPointer.htm">point</a>s:&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;faces:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;internal faces:&nbsp;&nbsp; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cells:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boundary patches: 6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a> zones:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;face zones:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cell zones:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br/>
+<br/>
+Overall number of cells of each type:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;hexahedra:&nbsp;&nbsp;&nbsp;&nbsp; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;prisms:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wedges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pyramids:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tet wedges:&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tetrahedra:&nbsp;&nbsp;&nbsp;&nbsp;0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;polyhedra:&nbsp;&nbsp;&nbsp;&nbsp; 2<br/>
+<br/>
+Checking topology...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Boundary <a href="CppDefinition.htm">definition</a> OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Cell to face <a href="CppAddress.htm">address</a>ing OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a> usage OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Upper triangular ordering OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Face vertices OK.<br/>
+&nbsp;&nbsp; *Number of regions: 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;The mesh has multiple regions which are not connected by <a href="CppAny.htm">any</a> face.<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>Writing region information to "1/cellToRegion"<br/>
+<br/>
+Checking patch topology <b><a href="CppFor.htm">for</a></b> multiply connected surfaces ...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Patch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Faces&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>s&nbsp;&nbsp; Surface topology<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;back&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bottom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;front&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;left&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;right&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;top&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok (non-closed singly connected)<br/>
+<br/>
+Checking <a href="CppGeometry.htm">geometry</a>...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Overall domain bounding box (-1 <a href="CppOperatorMinus.htm">-</a>1 0) (1 1 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mesh (non-empty, non-wedge) directions (1 1 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mesh (non-empty) directions (1 1 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Boundary openness (-2.28837e-018 <a href="CppOperatorMinus.htm">-</a>1.83069e-017 0) OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Max cell openness <a href="CppOperatorAssign.htm">=</a> 5.55112e-017 OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Max aspect ratio <a href="CppOperatorAssign.htm">=</a> 2 OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Minimum face area <a href="CppOperatorAssign.htm">=</a> 1. Maximum face area <a href="CppOperatorAssign.htm">=</a> 2.23607.&nbsp;&nbsp;Face area magnitudes OK<br/>
+.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Min volume <a href="CppOperatorAssign.htm">=</a> 0.731939. Max volume <a href="CppOperatorAssign.htm">=</a> 0.731939.&nbsp;&nbsp;Total volume <a href="CppOperatorAssign.htm">=</a> 1.46388.&nbsp;&nbsp;Cell<br/>
+ volumes OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Non-orthogonality check OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Face pyramids OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Max skewness <a href="CppOperatorAssign.htm">=</a> 0.34936 OK.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Coupled <a href="CppPointer.htm">point</a> location match (average 0) OK.<br/>
+<br/>
+Mesh OK.<br/>
+<br/>
+End<br/>
+<br/>
+Press &lt;RETURN&gt; to close <b><a href="CppThis.htm">this</a></b> window...<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
