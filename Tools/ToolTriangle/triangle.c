@@ -208,6 +208,16 @@
 /*   recommend double precision unless you want to generate a mesh for which */
 /*   you do not have enough memory.                                          */
 
+#pragma GCC diagnostic push //RJCB
+#pragma GCC diagnostic ignored "-Wsign-compare" //RJCB
+#pragma GCC diagnostic ignored "-Wunused-parameter" //RJCB
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter" //RJCB
+#ifdef __cplusplus //RJCB
+extern "C" { //RJCB
+#endif //ifdef __cplusplus //RJCB
+#include "triangle.h"
+#define ANSI_DECLARATORS //RJCB
+
 /* #define SINGLE */
 
 #ifdef SINGLE
@@ -15679,7 +15689,8 @@ struct triangulateio *vorout;
 #else /* not TRILIBRARY */
 
 #ifdef ANSI_DECLARATORS
-int main(int argc, char **argv)
+//int main(int argc, char **argv)
+int triangle_main(int argc, char **argv)
 #else /* not ANSI_DECLARATORS */
 int main(argc, argv)
 int argc;
@@ -15687,7 +15698,6 @@ char **argv;
 #endif /* not ANSI_DECLARATORS */
 
 #endif /* not TRILIBRARY */
-
 {
   struct mesh m;
   struct behavior b;
@@ -16004,3 +16014,10 @@ char **argv;
   return 0;
 #endif /* not TRILIBRARY */
 }
+
+#ifdef __cplusplus //RJCB
+} //~extern "C" //RJCB
+#endif //~ifdef __cplusplus //RJCB
+
+#pragma GCC diagnostic pop //RJCB
+
