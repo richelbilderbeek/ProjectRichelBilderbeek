@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-ribi::CaesarCipherMainDialog::CaesarCipherMainDialog(const int key) noexcept
+ribi::CodeBreakerMainDialog::CodeBreakerMainDialog(const int key) noexcept
   : m_caesarcipher(new CaesarCipher(key)),
     m_encrypted_text{},
     m_key(key),
@@ -33,33 +33,33 @@ ribi::CaesarCipherMainDialog::CaesarCipherMainDialog(const int key) noexcept
   #endif
 }
 
-void ribi::CaesarCipherMainDialog::Deencrypt() noexcept
+void ribi::CodeBreakerMainDialog::Deencrypt() noexcept
 {
   m_plain_text = m_caesarcipher->Deencrypt(m_encrypted_text);
 }
 
-void ribi::CaesarCipherMainDialog::Encrypt() noexcept
+void ribi::CodeBreakerMainDialog::Encrypt() noexcept
 {
   m_encrypted_text = m_caesarcipher->Encrypt(m_plain_text);
 }
 
-void ribi::CaesarCipherMainDialog::SetEncryptedText(const std::string& s) noexcept
+void ribi::CodeBreakerMainDialog::SetEncryptedText(const std::string& s) noexcept
 {
   m_encrypted_text = s;
 }
 
-void ribi::CaesarCipherMainDialog::SetKey(const int i) noexcept
+void ribi::CodeBreakerMainDialog::SetKey(const int i) noexcept
 {
   m_caesarcipher.reset(new CaesarCipher(i));
 }
 
-void ribi::CaesarCipherMainDialog::SetPlainText(const std::string& s) noexcept
+void ribi::CodeBreakerMainDialog::SetPlainText(const std::string& s) noexcept
 {
   m_plain_text = s;
 }
 
 #ifndef NDEBUG
-void ribi::CaesarCipherMainDialog::Test() noexcept
+void ribi::CodeBreakerMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -68,7 +68,7 @@ void ribi::CaesarCipherMainDialog::Test() noexcept
   }
   TRACE("Starting ribi::CaesarCipherMainDialog::Test");
   {
-    CaesarCipherMainDialog d;
+    CodeBreakerMainDialog d;
     const std::string s = "HELLOWORLD";
     d.SetKey(123);
     d.SetPlainText(s);

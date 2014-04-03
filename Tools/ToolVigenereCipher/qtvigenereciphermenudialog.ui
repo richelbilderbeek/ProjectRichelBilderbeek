@@ -19,8 +19,8 @@
    <string>VigenereCipher</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/CaesarCipherArrowUp16x16.png</normaloff>:/images/CaesarCipherArrowUp16x16.png</iconset>
+   <iconset resource="ToolVigenereCipher.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -67,6 +67,8 @@ QPushButton { font: 48px  }</string>
   <tabstop>button_start</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="ToolVigenereCipher.qrc"/>
+ </resources>
  <connections/>
 </ui>

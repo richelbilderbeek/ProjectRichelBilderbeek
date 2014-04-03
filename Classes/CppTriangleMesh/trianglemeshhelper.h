@@ -25,6 +25,7 @@ namespace trim {
 
 struct Helper
 {
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
   typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
@@ -32,6 +33,8 @@ struct Helper
   Helper();
 
   Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept;
+
+  std::vector<Coordinat2D> CalcProjection(const std::vector<boost::shared_ptr<const Point>>& v) const;
 
   ///Find out the Winding of the edges
   ///knowing that all edges are in the same XY plane

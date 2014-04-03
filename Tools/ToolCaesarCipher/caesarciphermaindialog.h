@@ -29,9 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-struct CaesarCipherMainDialog
+struct CodeBreakerMainDialog
 {
-  CaesarCipherMainDialog(const int key = 0) noexcept;
+  CodeBreakerMainDialog(const int key = 0) noexcept;
   void Deencrypt() noexcept;
   void Encrypt() noexcept;
 

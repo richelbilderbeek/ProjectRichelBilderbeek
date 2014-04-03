@@ -1,11 +1,17 @@
 #ifndef QTCODEBREAKERMAINDIALOG_H
 #define QTCODEBREAKERMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtCodeBreakerMainDialog;
 }
+
+namespace ribi {
 
 class QtCodeBreakerMainDialog : public QDialog
 {
@@ -13,13 +19,14 @@ class QtCodeBreakerMainDialog : public QDialog
   
 public:
   explicit QtCodeBreakerMainDialog(QWidget *parent = 0);
+  QtCodeBreakerMainDialog(const QtCodeBreakerMainDialog&) = delete;
+  QtCodeBreakerMainDialog& operator=(const QtCodeBreakerMainDialog&) = delete;
   ~QtCodeBreakerMainDialog();
   
-private slots:
-  void on_lineEdit_2_textEdited(const QString &arg1);
-
 private:
   Ui::QtCodeBreakerMainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTCODEBREAKERMAINDIALOG_H

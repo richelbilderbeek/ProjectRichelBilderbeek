@@ -61,7 +61,12 @@ void ribi::QtVigenereCipherMainDialog::on_button_encrypt_clicked() noexcept
   m_dialog->SetPlainText(text);
   m_dialog->SetKey(key);
   m_dialog->Encrypt();
-  ui->edit_encrypted_text->setText(m_dialog->GetEncryptedText().c_str());
+
+  const std::string result = m_dialog->GetEncryptedText();
+  if (ui->edit_encrypted_text->text().toStdString() != result)
+  {
+    ui->edit_encrypted_text->setText(result.c_str());
+  }
 }
 
 void ribi::QtVigenereCipherMainDialog::on_button_deencrypt_clicked() noexcept
@@ -73,7 +78,22 @@ void ribi::QtVigenereCipherMainDialog::on_button_deencrypt_clicked() noexcept
   m_dialog->SetEncryptedText(text);
   m_dialog->SetKey(key);
   m_dialog->Deencrypt();
-  ui->edit_plaintext->setText(m_dialog->GetPlainText().c_str());
+
+  const std::string result = m_dialog->GetPlainText();
+  if (ui->edit_plaintext->text().toStdString() != result)
+  {
+    ui->edit_plaintext->setText(result.c_str());
+  }
+}
+
+void ribi::QtVigenereCipherMainDialog::on_edit_plaintext_textChanged(const QString &)
+{
+  on_button_encrypt_clicked();
+}
+
+void ribi::QtVigenereCipherMainDialog::on_edit_encrypted_text_textChanged(const QString &)
+{
+  on_button_deencrypt_clicked();
 }
 
 #ifndef NDEBUG
@@ -88,3 +108,4 @@ void ribi::QtVigenereCipherMainDialog::Test() noexcept
   TRACE("Finished ribi::QtVigenereCipherMainDialog::Test successfully");
 }
 #endif
+

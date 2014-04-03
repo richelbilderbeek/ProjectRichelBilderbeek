@@ -11,11 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>CaesarCipher</string>
+   <string>VigenereCipher</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/CaesarCipherArrowDown16x16.png</normaloff>:/images/CaesarCipherArrowDown16x16.png</iconset>
+   <iconset resource="ToolVigenereCipher.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="5">
@@ -24,7 +24,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolVigenereCipher.qrc">:/images/ToolVigenereCipherArrowDown34x34.png</pixmap>
+      <pixmap resource="ToolVigenereCipher.qrc">:/images/ToolVigenereCipherArrowUp34x34.png</pixmap>
      </property>
     </widget>
    </item>
@@ -48,7 +48,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolVigenereCipher.qrc">:/images/ToolVigenereCipherArrowUp34x34.png</pixmap>
+      <pixmap resource="ToolVigenereCipher.qrc">:/images/ToolVigenereCipherArrowDown34x34.png</pixmap>
      </property>
     </widget>
    </item>

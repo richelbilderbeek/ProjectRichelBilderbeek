@@ -79,7 +79,7 @@ int ribi::CaesarCipherMenuDialog::ExecuteSpecific(const std::vector<std::string>
     if (argv[i] == "-t" || argv[i] == "--text")
     {
       const std::string plaintext = argv[i + 1];
-      CaesarCipherMainDialog d;
+      CodeBreakerMainDialog d;
       d.SetKey(key);
       d.SetPlainText(plaintext);
       d.Encrypt();
@@ -93,7 +93,7 @@ int ribi::CaesarCipherMenuDialog::ExecuteSpecific(const std::vector<std::string>
     if (argv[i] == "-c" || argv[i] == "--cipher")
     {
       const std::string ciphertext = argv[i + 1];
-      CaesarCipherMainDialog d;
+      CodeBreakerMainDialog d;
       d.SetKey(key);
       d.SetEncryptedText(ciphertext);
       d.Deencrypt();

@@ -59,20 +59,17 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   const bool verbose = true;
 
   if (verbose) { TRACE("Create points"); }
-  const std::vector<boost::shared_ptr<Point>> all_points {
-    CreatePoints(t,n_layers,layer_height)
-  };
+  const std::vector<boost::shared_ptr<Point>> all_points
+    = CreatePoints(t,n_layers,layer_height);
 
   if (verbose) { TRACE("Create horizontal faces"); }
-  const std::vector<boost::shared_ptr<Face>> hor_faces {
-    CreateHorizontalFaces(t,all_points,n_layers)
-  };
+  const std::vector<boost::shared_ptr<Face>> hor_faces
+    = CreateHorizontalFaces(t,all_points,n_layers);
 
   if (verbose) { TRACE("Create vertical faces"); }
   //ver_faces usused: cause of issue 168?
-  std::vector<boost::shared_ptr<Face>> ver_faces(
-    CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy)
-  );
+  const std::vector<boost::shared_ptr<Face>> ver_faces
+    = CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy);
   assert(!ver_faces.empty()); //168 : perhaps ver_faces is removed by compiler?
   assert(ver_faces.size() > hor_faces.size()); //168 : perhaps ver_faces is removed by compiler?
   #ifndef NDEBUG
@@ -167,7 +164,6 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   }
 
   CheckCells(cells);
-  ver_faces.clear();
   return cells;
 }
 
@@ -262,7 +258,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreator::Cre
 
 std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::CreateVerticalFaces(
   const boost::shared_ptr<const Template> t,
-  const std::vector<boost::shared_ptr<Point>>& all_points,
+  const std::vector<boost::shared_ptr<Point>> all_points,
   const int n_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const CreateVerticalFacesStrategy strategy

@@ -51,6 +51,12 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
   return sum / n;
 }
 
+std::vector<ribi::trim::Helper::Coordinat2D> ribi::trim::Helper::CalcProjection(
+  const std::vector<boost::shared_ptr<const ribi::trim::Point>>& v) const
+{
+  return Geometry().CalcProjection(PointsToCoordinats3D(v));
+}
+
 ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
   const std::vector<boost::shared_ptr<const Point>>& points
 ) const noexcept
@@ -404,19 +410,33 @@ void ribi::trim::Helper::MakeConvex(
     for (int i=0; i!=26; ++i)
     {
       std::next_permutation(v.begin(),v.end(),Helper().OrderByX());
-      std::stringstream s;
-      assert(v.size() == 4);
-      s << Helper().IsConvex(v) << ": "
-        << Geometry().ToStr(v[0]->GetCoordinat3D()) << "->"<< v[0]->GetIndex() << ","
-        << Geometry().ToStr(v[1]->GetCoordinat3D()) << "->"<< v[1]->GetIndex() << ","
-        << Geometry().ToStr(v[2]->GetCoordinat3D()) << "->"<< v[2]->GetIndex() << ","
-        << Geometry().ToStr(v[3]->GetCoordinat3D()) << "->"<< v[3]->GetIndex()
-      ;
-      TRACE(s.str());
+      {
+        std::stringstream s;
+        assert(v.size() == 4);
+        s << Helper().IsConvex(v) << ": "
+          << Geometry().ToStr(v[0]->GetCoordinat3D()) << "->"<< v[0]->GetIndex() << ","
+          << Geometry().ToStr(v[1]->GetCoordinat3D()) << "->"<< v[1]->GetIndex() << ","
+          << Geometry().ToStr(v[2]->GetCoordinat3D()) << "->"<< v[2]->GetIndex() << ","
+          << Geometry().ToStr(v[3]->GetCoordinat3D()) << "->"<< v[3]->GetIndex() << '\n'
+        ;
+        TRACE(s.str());
+      }
+      {
+        std::stringstream t;
+        const auto w(Helper().CalcProjection(AddConst(v)));
+        assert(w.size() == 4);
+        t << Geometry().IsConvex(w) << ": "
+          << Geometry().ToStr(w[0]) << ","
+          << Geometry().ToStr(w[1]) << ","
+          << Geometry().ToStr(w[2]) << ","
+          << Geometry().ToStr(w[3])
+        ;
+        TRACE(t.str());
+      }
     }
     //assert(!"BREAK");
 
-    for (auto p: v) { TRACE(p); TRACE(*p); }
+    //for (auto p: v) { TRACE(p); TRACE(*p); }
 
     #ifdef FIX_ISSUE_168
     assert(Helper().IsConvex(v));
@@ -603,7 +623,47 @@ void ribi::trim::Helper::Test() noexcept
   //IsClockwiseHorizontal 1
   //IsClockwiseHorizontal 2
   //IsClockwiseVertical
-  if (verbose) { TRACE("IsConvex, from error"); }
+  if (verbose) { TRACE("IsConvex, 2D, from error"); }
+  {
+
+    std::vector<boost::shared_ptr<const Coordinat2D>> coordinats2d;
+    {
+      const auto coordinat
+        = boost::make_shared<Coordinat2D>(9.2885,29.5639);
+      assert(coordinat);
+      coordinats2d.push_back(coordinat);
+    }
+    {
+      const auto coordinat
+        = boost::make_shared<Coordinat2D>(9.2885,40.6764);
+      assert(coordinat);
+      coordinats2d.push_back(coordinat);
+    }
+    {
+      const auto coordinat
+        = boost::make_shared<Coordinat2D>(17.497,44.4009);
+      assert(coordinat);
+      coordinats2d.push_back(coordinat);
+    }
+    {
+      const auto coordinat
+        = boost::make_shared<Coordinat2D>(17.497,33.0765);
+      assert(coordinat);
+      coordinats2d.push_back(coordinat);
+    }
+    std::vector<boost::shared_ptr<Point>> points;
+    for (const auto coordinat2d: coordinats2d)
+    {
+      const auto point(PointFactory().Create(coordinat2d));
+      assert(point);
+      point->SetZ(0.0 * boost::units::si::meter);
+      points.push_back(point);
+    }
+    assert(coordinats2d.size() == points.size());
+    assert(h.IsConvex(points));
+    assert(h.IsConvex(AddConst(points)));
+  }
+  if (verbose) { TRACE("IsConvex, 3D, from error"); }
   {
 
     std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
@@ -641,6 +701,7 @@ void ribi::trim::Helper::Test() noexcept
     }
     assert(points.size() == coordinats3d.size());
     assert(h.IsConvex(points));
+    assert(h.IsConvex(AddConst(points)));
   }
 
   //SetWindingHorizontal
@@ -686,6 +747,12 @@ void ribi::trim::Helper::Test() noexcept
     assert(points.size() == coordinats3d.size());
 
     h.MakeConvex(points);
+    #ifndef NDEBUG
+    if(!h.IsConvex(points))
+    {
+      TRACE("ERROR");
+    }
+    #endif
     assert(h.IsConvex(points));
   }
   TRACE("Finished ribi::trim::Helper::Point::Test successfully");

@@ -82,13 +82,12 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
         1.0 * boost::units::si::meter
       );
 
-      const boost::shared_ptr<ribi::trim::CellsCreator> c(
-        ribi::trim::CellsCreatorFactory().Create(
+      const boost::shared_ptr<ribi::trim::CellsCreator> c
+        = ribi::trim::CellsCreatorFactory().Create(
           t,
           n_layers,
           layer_height,
           strategy
-        )
       );
       assert(c);
       cells = c->GetCells();
@@ -99,10 +98,10 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     }
     //Remove some random cells
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
-    //std::random_shuffle(cells.begin(),cells.end());
-    //std::reverse(cells.begin(),cells.end());
-    //std::random_shuffle(cells.begin(),cells.end());
-    //cells.resize(cells.size() * 3 / 4);
+    std::random_shuffle(cells.begin(),cells.end());
+    std::reverse(cells.begin(),cells.end());
+    std::random_shuffle(cells.begin(),cells.end());
+    cells.resize(cells.size() * 3 / 4);
 
     std::clog << "Number of cells after sculpting: " << cells.size() << std::endl;
 
@@ -199,6 +198,21 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
 
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
+  }
+  //Check the cells
+  {
+    for (const auto cell: cells)
+    {
+      assert(cell);
+      for (const auto face: cell->GetFaces())
+      {
+        assert(face);
+        for (const auto point: face->GetPoints())
+        {
+          assert(point);
+        }
+      }
+    }
   }
 
   {

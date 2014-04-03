@@ -32,7 +32,7 @@ namespace Ui {
 
 namespace ribi {
 
-struct CaesarCipherMainDialog;
+struct CodeBreakerMainDialog;
 
 class QtCaesarCipherMainDialog : public QtHideAndShowDialog
 {
@@ -50,7 +50,7 @@ private:
   Ui::QtCaesarCipherMainDialog *ui;
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
-  CaesarCipherMainDialog * const m_dialog;
+  CodeBreakerMainDialog * const m_dialog;
 
 private slots:
   void on_button_deencrypt_clicked() noexcept;
@@ -59,6 +59,8 @@ private slots:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+  void on_edit_plaintext_textChanged(const QString &arg1);
+  void on_edit_encrypted_text_textChanged(const QString &arg1);
 };
 
 } //~namespace ribi

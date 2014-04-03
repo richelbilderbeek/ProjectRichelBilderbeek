@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtCaesarCipherMainDialog::QtCaesarCipherMainDialog(QWidget *parent) noexcept
  :  QtHideAndShowDialog(parent),
     ui(new Ui::QtCaesarCipherMainDialog),
-    m_dialog(new CaesarCipherMainDialog)
+    m_dialog(new CodeBreakerMainDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -54,21 +54,37 @@ ribi::QtCaesarCipherMainDialog::~QtCaesarCipherMainDialog() noexcept
 
 void ribi::QtCaesarCipherMainDialog::on_button_encrypt_clicked() noexcept
 {
+  const std::string text = ui->edit_plaintext->text().toStdString();
+  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
+
   const int key = ui->box_key->value();
   assert(key >= 0);
-  m_dialog->SetPlainText(ui->edit_plaintext->text().toStdString());
+
+  m_dialog->SetPlainText(text);
   m_dialog->SetKey(key);
   m_dialog->Encrypt();
-  ui->edit_encrypted_text->setText(m_dialog->GetEncryptedText().c_str());
+  const std::string result = m_dialog->GetEncryptedText();
+  if (ui->edit_encrypted_text->text().toStdString() != result)
+  {
+    ui->edit_encrypted_text->setText(result.c_str());
+  }
 }
 
 void ribi::QtCaesarCipherMainDialog::on_button_deencrypt_clicked() noexcept
 {
+  const std::string text = ui->edit_encrypted_text->text().toStdString();
+  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
+
   const int key = ui->box_key->value();
-  m_dialog->SetEncryptedText(ui->edit_encrypted_text->text().toStdString());
+  m_dialog->SetEncryptedText(text);
   m_dialog->SetKey(key);
   m_dialog->Deencrypt();
-  ui->edit_plaintext->setText(m_dialog->GetPlainText().c_str());
+
+  const std::string result = m_dialog->GetPlainText();
+  if (ui->edit_plaintext->text().toStdString() != result)
+  {
+    ui->edit_plaintext->setText(result.c_str());
+  }
 }
 
 #ifndef NDEBUG
@@ -83,3 +99,13 @@ void ribi::QtCaesarCipherMainDialog::Test() noexcept
   TRACE("Finished ribi::QtCaesarCipherMainDialog::Test successfully");
 }
 #endif
+
+void ribi::QtCaesarCipherMainDialog::on_edit_plaintext_textChanged(const QString&)
+{
+  on_button_encrypt_clicked();
+}
+
+void ribi::QtCaesarCipherMainDialog::on_edit_encrypted_text_textChanged(const QString&)
+{
+  on_button_deencrypt_clicked();
+}

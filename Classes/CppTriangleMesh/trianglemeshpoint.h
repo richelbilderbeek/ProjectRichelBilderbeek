@@ -15,6 +15,11 @@
 #include <boost/units/systems/si/length.hpp>
 #include <boost/make_shared.hpp>
 #include "trianglemeshfwd.h"
+
+#ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
+#include <boost/signals2.hpp>
+#endif //#ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
+
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -46,10 +51,14 @@ struct Point
   std::string ToStr() const noexcept;
   std::string ToXml() const noexcept;
 
+  #ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
+  boost::signals2::signal<void(const Point*)> m_signal_destroyed;
+  #endif //#ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
+
   private:
   Point(const Point&) = delete;
   Point& operator=(const Point&) = delete;
-  ~Point() noexcept {}
+  ~Point() noexcept;
   friend void boost::checked_delete<>(      Point* x);
   friend void boost::checked_delete<>(const Point* x);
   friend class boost::detail::sp_ms_deleter<      Point>;

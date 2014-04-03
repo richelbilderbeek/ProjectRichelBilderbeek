@@ -1025,19 +1025,13 @@ void ribi::Geometry::Test() noexcept
         {9.28854,40.6764},
         {17.4971,44.4009}
       };
-
-      Polygon polygon;
-      boost::geometry::append(polygon, points);
-      assert(g.IsConvex(polygon));
+      assert(g.IsConvex(points));
     }
   }
   if (verbose) TRACE("Convex shape, 2D, from error #2");
   {
     //From 3D points:
     /*
-
-
-
     // (2.35114,3.23607,5) (index: 644)'
     // (1.17557,2.35781,5) (index: 658)'
     // (2.35114,3.23607,6) (index: 668)'
@@ -1061,13 +1055,60 @@ void ribi::Geometry::Test() noexcept
         {17.497 ,44.4009},
         { 9.2885,40.6764}
       };
-
-      Polygon polygon;
-      boost::geometry::append(polygon, points);
-      assert(!g.IsConvex(polygon));
+      assert(!g.IsConvex(points));
     }
   }
 
+
+  if (verbose) TRACE("Convex shape, 2D, from error #3, point 0");
+  {
+    /*
+        __--2
+     1--    |
+     |      |
+     |      |
+     |      |
+     |      |
+     |      3
+     0
+
+    */
+    {
+      const std::vector<Coordinat2D> points {
+        { 9.2885,29.5636},
+        { 9.2885,40.6764},
+        {17.497 ,44.4009},
+        {17.497 ,33.0765}
+      };
+
+      assert(g.IsConvex(points));
+    }
+  }
+
+  if (verbose) TRACE("Convex shape, 2D, from error #3, point 5");
+  {
+    /*
+            3
+     0      |
+     |      |
+     |      |
+     |      |
+     |      |
+     |  __--2
+     1--
+
+    */
+    {
+      const std::vector<Coordinat2D> points {
+        { 9.2885,40.6764},
+        { 9.2885,29.5636},
+        {17.497 ,33.0765},
+        {17.497 ,44.4009}
+      };
+
+      assert(g.IsConvex(points));
+    }
+  }
   if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane");
   {
     {

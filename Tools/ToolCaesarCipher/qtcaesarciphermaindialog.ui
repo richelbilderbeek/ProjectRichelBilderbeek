@@ -24,7 +24,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolCaesarCipher.qrc">:/images/ToolCaesarCipherArrowDown34x34.png</pixmap>
+      <pixmap resource="ToolCaesarCipher.qrc">:/images/ToolCaesarCipherArrowUp34x34.png</pixmap>
      </property>
     </widget>
    </item>
@@ -58,7 +58,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolCaesarCipher.qrc">:/images/ToolCaesarCipherArrowUp34x34.png</pixmap>
+      <pixmap resource="ToolCaesarCipher.qrc">:/images/ToolCaesarCipherArrowDown34x34.png</pixmap>
      </property>
     </widget>
    </item>

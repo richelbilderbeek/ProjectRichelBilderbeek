@@ -30,6 +30,13 @@ ribi::trim::Point::Point(
   assert(!std::isnan(get<1>(*m_coordinat)));
 }
 
+ribi::trim::Point::~Point() noexcept
+{
+  #ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
+  m_signal_destroyed(this);
+  #endif //#ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
+}
+
 void ribi::trim::Point::AddConnected(const boost::weak_ptr<Face>& face)
 {
   assert(face.lock().get() != nullptr);
