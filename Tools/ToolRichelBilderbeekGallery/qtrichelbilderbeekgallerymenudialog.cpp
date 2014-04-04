@@ -95,7 +95,22 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
     std::ofstream f("CppClassGallery.md");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
-  /*
+
+  {
+    const std::vector<std::string> v = GalleryMenuDialog().CreateMarkdownGameGallery();
+    std::ofstream f("GameGallery.md");
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+  }
+  {
+    const std::vector<std::string> v = GalleryMenuDialog().CreateMarkdownProjectGallery();
+    std::ofstream f("ProjectGallery.md");
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+  }
+  {
+    const std::vector<std::string> v = GalleryMenuDialog().CreateMarkdownToolGallery();
+    std::ofstream f("ToolGallery.md");
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+  }
   {
     const std::vector<std::string> v = GalleryMenuDialog().CreateHtmlClassGallery();
     std::ofstream f("CppClassGallery.htm");
@@ -121,6 +136,9 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
     std::ofstream f("CppRichelBilderbeekStatus.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
+  this->ui->button_create_html->setText("DONE!");
+  this->ui->button_create_html->setEnabled(false);
+  /*
   QMessageBox box;
   box.setWindowIcon(this->windowIcon());
   box.setStyleSheet(this->styleSheet());

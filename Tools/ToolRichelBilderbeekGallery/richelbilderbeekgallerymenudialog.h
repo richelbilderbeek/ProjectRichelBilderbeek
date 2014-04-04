@@ -33,33 +33,24 @@ struct GalleryMenuDialog : public MenuDialog
 
   ///Create the page CppClassGallery.htm
   std::vector<std::string> CreateHtmlClassGallery() const noexcept;
-
-  ///Create the page CppClassGallery.md
-  std::vector<std::string> CreateMarkdownClassGallery() const noexcept;
-
   ///Create the page GameGallery.htm
   std::vector<std::string> CreateHtmlGameGallery() const noexcept;
-
-  ///Create the page GameGallery.md
-  std::vector<std::string> CreateMarkdownGameGallery() const noexcept;
-
   ///Create the page ProjectGallery.htm
   std::vector<std::string> CreateHtmlProjectGallery() const noexcept;
-
-  ///Create the page ProjectGallery.md
-  std::vector<std::string> CreateMarkdownProjectGallery() const noexcept;
-
   ///Create the page CppRichelBilderbeekStatus.htm
   std::vector<std::string> CreateHtmlStatus() const noexcept;
-
-  ///Create the page CppRichelBilderbeekStatus.md
-  std::vector<std::string> CreateMarkdownStatus() const noexcept;
-
   ///Create the page ToolGallery.htm
   std::vector<std::string> CreateHtmlToolGallery() const noexcept;
 
+  ///Create the page CppClassGallery.md
+  std::vector<std::string> CreateMarkdownClassGallery() const noexcept;
+  ///Create the page GameGallery.md
+  std::vector<std::string> CreateMarkdownGameGallery() const noexcept;
+  ///Create the page ProjectGallery.md
+  std::vector<std::string> CreateMarkdownProjectGallery() const noexcept;
   ///Create the page ToolGallery.md
   std::vector<std::string> CreateMarkdownToolGallery() const noexcept;
+
 
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;

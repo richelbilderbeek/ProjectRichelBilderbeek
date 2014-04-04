@@ -413,6 +413,7 @@ void ribi::trim::Helper::MakeConvex(
       {
         std::stringstream s;
         assert(v.size() == 4);
+        assert(v[0]); assert(v[1]); assert(v[2]); assert(v[3]);
         s << (Helper().IsConvex(v) ? "Convex" : "Not convex")
           << ": "
           << Geometry().ToStr(v[0]->GetCoordinat3D()) << "->"<< v[0]->GetIndex() << ","
@@ -427,7 +428,7 @@ void ribi::trim::Helper::MakeConvex(
         const auto w(Helper().CalcProjection(AddConst(v)));
         assert(w.size() == 4);
         t << (Helper().IsConvex(v) ? "Convex" : "Not convex")
-           << ": "
+          << ": "
           << Geometry().ToStr(w[0]) << ","
           << Geometry().ToStr(w[1]) << ","
           << Geometry().ToStr(w[2]) << ","

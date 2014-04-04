@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 #include <boost/scoped_ptr.hpp>
+#include <boost/algorithm/string/replace.hpp>
 
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
@@ -95,42 +96,7 @@ std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery() const
   return v;
 }
 
-std::vector<std::string> ribi::GalleryMenuDialog::CreateMarkdownClassGallery() const noexcept
-{
-  std::vector<std::string> v;
 
-  //Add header
-  {
-    v = c2h::Header::ToMarkdown(c2h::HeaderType::cpp,"CppClassGallery.md");
-  }
-
-  v.push_back("My class gallery shows the classes I've made.");
-  v.push_back(
-    "I also have a [game gallery](http://richelbilderbeek.nl/GameGallery.htm), "
-    "[project gallery](http://richelbilderbeek.nl/ProjectGallery.htm) "
-    "and [tool gallery](http://richelbilderbeek.nl/ToolGallery.htm)"
-  );
-  v.push_back(" ");
-
-  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
-
-  for (const boost::shared_ptr<Program> p: ps)
-  {
-    if (dynamic_cast<ProgramClass*>(p.get()))
-    {
-      //Add HTML
-      std::vector<std::string> w = ToMarkdown(*p.get());
-      std::copy(w.begin(),w.end(),std::back_inserter(v));
-    }
-  }
-
-  //Add footer
-  {
-    const std::vector<std::string> w { c2h::Footer::ToMarkdown(c2h::FooterType::cpp) };
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  return v;
-}
 
 std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() const noexcept
 {
@@ -171,6 +137,8 @@ std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() const 
   }
   return v;
 }
+
+
 
 std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery() const noexcept
 {
@@ -324,6 +292,154 @@ std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery() const 
   return v;
 }
 
+std::vector<std::string> ribi::GalleryMenuDialog::CreateMarkdownClassGallery() const noexcept
+{
+  std::vector<std::string> v;
+
+  //Add header
+  {
+    v = c2h::Header::ToMarkdown(c2h::HeaderType::cpp,"CppClassGallery.md");
+  }
+
+  v.push_back("My class gallery shows the classes I've made.");
+  v.push_back(
+    "I also have a [game gallery](http://richelbilderbeek.nl/GameGallery.htm), "
+    "[project gallery](http://richelbilderbeek.nl/ProjectGallery.htm) "
+    "and [tool gallery](http://richelbilderbeek.nl/ToolGallery.htm)"
+  );
+  v.push_back(" ");
+
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
+
+  for (const boost::shared_ptr<Program> p: ps)
+  {
+    if (dynamic_cast<ProgramClass*>(p.get()))
+    {
+      //Add HTML
+      std::vector<std::string> w = ToMarkdown(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+  }
+
+  //Add footer
+  {
+    const std::vector<std::string> w { c2h::Footer::ToMarkdown(c2h::FooterType::cpp) };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  return v;
+}
+
+std::vector<std::string> ribi::GalleryMenuDialog::CreateMarkdownGameGallery() const noexcept
+{
+  std::vector<std::string> v;
+
+  //Add header
+  {
+    v = c2h::Header::ToMarkdown(c2h::HeaderType::cpp,"GameGallery.md");
+  }
+
+  v.push_back("My game gallery shows the games I've made.");
+  v.push_back(
+    "I also have a [class gallery](http://richelbilderbeek.nl/CppClassGallery.htm), "
+    "[project gallery](http://richelbilderbeek.nl/ProjectGallery.htm) "
+    "and [tool gallery](http://richelbilderbeek.nl/ToolGallery.htm)"
+  );
+  v.push_back(" ");
+
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
+
+  for (const boost::shared_ptr<Program> p: ps)
+  {
+    if (dynamic_cast<ProgramGame*>(p.get()))
+    {
+      //Add HTML
+      std::vector<std::string> w = ToMarkdown(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+  }
+
+  //Add footer
+  {
+    const std::vector<std::string> w { c2h::Footer::ToMarkdown(c2h::FooterType::cpp) };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  return v;
+}
+
+std::vector<std::string> ribi::GalleryMenuDialog::CreateMarkdownProjectGallery() const noexcept
+{
+  std::vector<std::string> v;
+
+  //Add header
+  {
+    v = c2h::Header::ToMarkdown(c2h::HeaderType::cpp,"ProjectGallery.md");
+  }
+
+  v.push_back("My project gallery shows the projects I've made.");
+  v.push_back(
+    "I also have a [class gallery](http://richelbilderbeek.nl/CppClassGallery.htm), "
+    "[game gallery](http://richelbilderbeek.nl/GameGallery.htm) "
+    "and [tool gallery](http://richelbilderbeek.nl/ToolGallery.htm)"
+  );
+  v.push_back(" ");
+
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
+
+  for (const boost::shared_ptr<Program> p: ps)
+  {
+    if (dynamic_cast<ProgramProject*>(p.get()))
+    {
+      //Add HTML
+      std::vector<std::string> w = ToMarkdown(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+  }
+
+  //Add footer
+  {
+    const std::vector<std::string> w { c2h::Footer::ToMarkdown(c2h::FooterType::cpp) };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  return v;
+}
+
+std::vector<std::string> ribi::GalleryMenuDialog::CreateMarkdownToolGallery() const noexcept
+{
+  std::vector<std::string> v;
+
+  //Add header
+  {
+    v = c2h::Header::ToMarkdown(c2h::HeaderType::cpp,"ToolGallery.md");
+  }
+
+  v.push_back("My tool gallery shows the tools I've made.");
+  v.push_back(
+    "I also have a [class gallery](http://richelbilderbeek.nl/CppClassGallery.htm), "
+    "[game gallery](http://richelbilderbeek.nl/GameGallery.htm) "
+    "and [project gallery](http://richelbilderbeek.nl/ProjectGallery.htm)"
+  );
+  v.push_back(" ");
+
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
+
+  for (const boost::shared_ptr<Program> p: ps)
+  {
+    if (dynamic_cast<ProgramProject*>(p.get()))
+    {
+      //Add HTML
+      std::vector<std::string> w = ToMarkdown(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+  }
+
+  //Add footer
+  {
+    const std::vector<std::string> w { c2h::Footer::ToMarkdown(c2h::FooterType::cpp) };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  return v;
+}
+
 ribi::About ribi::GalleryMenuDialog::GetAbout() const noexcept
 {
   About a(
@@ -456,7 +572,7 @@ std::vector<std::string> ribi::GalleryMenuDialog::ToMarkdown(const Program& p) c
 {
   std::vector<std::string> v;
   {
-    const std::string s = "[" + p.GetUrl() + "](" + p.GetScreenName() + ")";
+    const std::string s = p.GetScreenName();
     v.push_back(s);
     v.push_back(std::string(s.size(),'-'));
     v.push_back(" ");
