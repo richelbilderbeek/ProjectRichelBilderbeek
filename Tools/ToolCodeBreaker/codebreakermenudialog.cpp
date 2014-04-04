@@ -69,8 +69,7 @@ int ribi::CodeBreakerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
       return 0;
     }
   }
-
-
+  return 0;
 }
 
 ribi::About ribi::CodeBreakerMenuDialog::GetAbout() const noexcept

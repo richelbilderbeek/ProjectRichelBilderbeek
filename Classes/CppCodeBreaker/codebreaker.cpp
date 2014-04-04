@@ -28,8 +28,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/math/distributions/chi_squared.hpp>
+
 #include "trace.h"
 #include "loopreader.h"
+#pragma GCC diagnostic pop
 
 ribi::CodeBreaker::CodeBreaker()
 {
@@ -51,15 +57,19 @@ double ribi::CodeBreaker::CalculateChiSquared(
     tally_measured.push_back(
       frequency_measured.count(c) == 0
       ? 0.0
-      : frequency_measured[c]
+      : frequency_measured.find(c)->second
     );
     tally_expected.push_back(
       frequency_expected.count(c) == 0
       ? 0.0
-      : frequency_expected[c]
+      : frequency_expected.find(c)->second
     );
   }
   const std::vector<double> rel_error = CalculateRelativeError(tally_measured,tally_expected);
+  const int n_categories = 26;
+  assert(n_categories == static_cast<int>(tally_measured.size()));
+  assert(n_categories == static_cast<int>(tally_expected.size()));
+  assert(n_categories == static_cast<int>(rel_error.size()));
   for (std::size_t i=0; i!=n_categories; ++i)
   {
     std::cout
@@ -71,12 +81,19 @@ double ribi::CodeBreaker::CalculateChiSquared(
   const double significance_level = 0.05;
   const double chi_squared_value
     = std::accumulate(rel_error.begin(),rel_error.end(),0.0);
+
+  const double degrees_of_freedom
+    = static_cast<double>(n_categories)
+    - 1.0 //We need to calculate the mean ourselves
+    - 1.0 //We need to calculate the standard deviation ourselves
+    - 1.0; //We need to calculate the sample size ourselves
+
   boost::math::chi_squared_distribution<double> distribution(degrees_of_freedom);
   const double critical_value
     = boost::math::quantile(boost::math::complement(distribution, significance_level));
   std::cout
-    << "Mean size: " << mean
-    << "\nStdDev size: " << stdDev
+    //<< "Mean size: " << mean
+    //<< "\nStdDev size: " << stdDev
     << "\nSUM observer: "
       << std::accumulate(tally_measured.begin(),tally_measured.end(), 0)
     << "\nSUM expected: "
@@ -97,6 +114,7 @@ double ribi::CodeBreaker::CalculateChiSquared(
       << "Reject null hypothesis that the measured values "
          "do follow a normal distribution" << std::endl;
   }
+  return chi_squared_value;
 }
 
 std::vector<double> ribi::CodeBreaker::CalculateRelativeError(
@@ -262,3 +280,4 @@ void ribi::CodeBreaker::Test() noexcept
   TRACE("Finished ribi::CodeBreaker::Test successfully");
 }
 #endif
+
