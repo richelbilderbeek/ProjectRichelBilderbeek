@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-CodeBreaker, code breaking tool
-Copyright (C) 2014-2014 Richel Bilderbeek
+CodeBreaker, code breaking class
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -10,51 +10,60 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolCodeBreaker.htm
+// From http://www.richelbilderbeek.nl/CppCodeBreaker.htm
 //---------------------------------------------------------------------------
-#include "codebreakermaindialog.h"
+#include "codebreaker.h"
 
+#include <algorithm>
 #include <cassert>
+#include <functional>
+#include <iostream>
+#include <stdexcept>
+#include <numeric>
+#include <vector>
 
 #include "trace.h"
+#include "loopreader.h"
 
-ribi::CodeBreakerMainDialog::CodeBreakerMainDialog() noexcept
-  : m_codebreaker(new CodeBreaker),
-    m_encrypted_text{}
+ribi::CodeBreaker::CodeBreaker()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-void ribi::CodeBreakerMainDialog::Deencrypt() noexcept
+std::string ribi::CodeBreaker::Deencrypt(std::string s) const noexcept
 {
-
+  return s;
 }
 
-void ribi::CodeBreakerMainDialog::SetEncryptedText(const std::string& s) noexcept
+std::string ribi::CodeBreaker::GetVersion() noexcept
 {
-  m_encrypted_text = s;
+  return "1.0";
+}
+
+std::vector<std::string> ribi::CodeBreaker::GetVersionHistory() noexcept
+{
+  return {
+    "2014-04-04: version 1.0: initial version"
+  };
 }
 
 #ifndef NDEBUG
-void ribi::CodeBreakerMainDialog::Test() noexcept
+void ribi::CodeBreaker::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CodeBreakerMainDialog::Test");
-  {
-    CodeBreakerMainDialog d;
-  }
-  TRACE("Finished ribi::CodeBreakerMainDialog::Test successfully");
+  TRACE("Starting ribi::CodeBreaker::Test");
+  TRACE("Finished ribi::CodeBreaker::Test successfully");
 }
 #endif

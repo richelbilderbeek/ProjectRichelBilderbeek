@@ -37,6 +37,7 @@ namespace c2h {
 struct Footer
 {
   static std::vector<std::string> ToHtml(const FooterType page_type) noexcept;
+  static std::vector<std::string> ToMarkdown(const FooterType page_type) noexcept;
 
   //private:
   //~Footer() noexcept {}

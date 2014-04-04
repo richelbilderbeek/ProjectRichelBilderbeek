@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtCaesarCipherMainDialog::QtCaesarCipherMainDialog(QWidget *parent) noexcept
  :  QtHideAndShowDialog(parent),
     ui(new Ui::QtCaesarCipherMainDialog),
-    m_dialog(new CodeBreakerMainDialog)
+    m_dialog(new CaesarCipherMainDialog)
 {
   #ifndef NDEBUG
   Test();

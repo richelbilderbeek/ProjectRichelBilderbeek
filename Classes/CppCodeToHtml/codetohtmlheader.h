@@ -44,6 +44,11 @@ struct Header
     const std::string& filename
     ) noexcept;
 
+  static std::vector<std::string> ToMarkdown(
+    const HeaderType header_type,
+    const std::string& filename
+    ) noexcept;
+
   ///Obtain the HTML page its filename
   //const std::string& GetFilename() const { return m_filename; }
 

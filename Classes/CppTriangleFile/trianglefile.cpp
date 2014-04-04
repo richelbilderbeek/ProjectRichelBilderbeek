@@ -10,6 +10,11 @@
 
 #include "fileio.h"
 #include "trace.h"
+
+#ifndef _WIN32
+#include "triangle.h"
+#endif
+
 #pragma GCC diagnostic pop
 
 ribi::TriangleFile::TriangleFile(
@@ -33,6 +38,22 @@ int ribi::TriangleFile::CountVertices() const noexcept
     sum += boost::geometry::num_points(shape);
   }
   return sum;
+}
+
+std::pair<int,char **> ribi::TriangleFile::CreateArgv(const std::vector<std::string>& v) noexcept
+{
+  typedef char* String;
+  typedef String* Strings;
+  const int argc = static_cast<int>(v.size());
+  Strings argv = new String[argc];
+  for (int i=0; i!=argc; ++i)
+  {
+    argv[i] = new char[v[i].size() + 1];
+    std::strcpy(argv[i],&v[i][0]);
+    TRACE(argv[i]);
+  }
+  std::pair<int,char **> p = std::make_pair(argc,argv);
+  return p;
 }
 
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHeart(const double scale) noexcept
@@ -101,6 +122,16 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ri
   return v;
 }
 
+void ribi::TriangleFile::DeleteArgv(const std::pair<int,char **>& p) noexcept
+{
+  const int argc = p.first;
+  for(int i = 0; i != argc; ++i)
+  {
+    delete[] p.second[i];
+  }
+  delete[] p.second;
+}
+
 void ribi::TriangleFile::ExecuteTriangle(
   std::string& node_filename,
   std::string& ele_filename,
@@ -118,9 +149,11 @@ void ribi::TriangleFile::ExecuteTriangle(
     std::ofstream f(filename.c_str());
     f << this->ToStr();
   }
-  assert(fileio::FileIo().IsRegularFile(filename));
 
+  assert(fileio::FileIo().IsRegularFile(filename));
   const std::string exe_filename { "triangle.exe" };
+
+  #ifdef USE_TRIANGLE_EXE
   if (!fileio::FileIo().IsRegularFile(exe_filename))
   {
     QFile file( (":/trianglefile/files/" + exe_filename).c_str() );
@@ -144,6 +177,27 @@ void ribi::TriangleFile::ExecuteTriangle(
     fileio::FileIo().DeleteFile(filename);
     throw std::runtime_error(s.str().c_str());
   }
+  #else
+  std::vector<std::string> cmd {
+    exe_filename,
+    "-j",
+    "-z",
+    "-q",
+    boost::lexical_cast<std::string>(quality),
+    "-a",
+    boost::lexical_cast<std::string>(area),
+    filename
+  };
+  if (!verbose)
+  {
+    cmd.push_back("-Q");
+    std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
+  }
+  const auto p = CreateArgv(cmd);
+  triangle_main(p.first,p.second);
+  DeleteArgv(p);
+  assert(!"Yes, this works! Yay!");
+  #endif
 
   const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
   node_filename = filename_base + ".1.node";
@@ -157,13 +211,14 @@ void ribi::TriangleFile::ExecuteTriangle(
 
 std::string ribi::TriangleFile::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
 {
   return {
-    "2014-02-07: Version 1.0: initial version"
+    "2014-02-07: Version 1.0: initial version",
+    "2014-04-04: Version 1.1: allow non-Windows versions to call Triangle its code directly"
   };
 }
 
@@ -191,7 +246,9 @@ void ribi::TriangleFile::Test() noexcept
   std::string filename_node;
   std::string filename_ele;
   std::string filename_poly;
+  TRACE_FUNC();
   f.ExecuteTriangle(filename_node,filename_ele,filename_poly);
+  TRACE_FUNC();
   assert(fileio::FileIo().IsRegularFile(filename_node));
   assert(fileio::FileIo().IsRegularFile(filename_ele));
   assert(fileio::FileIo().IsRegularFile(filename_poly));

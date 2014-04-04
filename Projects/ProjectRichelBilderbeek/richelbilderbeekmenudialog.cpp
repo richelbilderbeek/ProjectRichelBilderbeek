@@ -41,6 +41,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "chessboardwidget.h"
 #include "chessgame.h"
 #include "chesswidget.h"
+#include "codebreakermenudialog.h"
 #include "codetohtmlmenudialog.h"
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
@@ -665,6 +666,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
+      case ProgramType::codeBreaker: p.reset(new CodeBreakerMenuDialog); break;
       case ProgramType::codeToHtml: p.reset(new c2h::CodeToHtmlMenuDialog); break;
       case ProgramType::connectThree: p.reset(new con3::ConnectThreeMenuDialog); break;
       case ProgramType::corridor:

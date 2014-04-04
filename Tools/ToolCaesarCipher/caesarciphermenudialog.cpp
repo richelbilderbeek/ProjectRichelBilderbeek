@@ -79,7 +79,7 @@ int ribi::CaesarCipherMenuDialog::ExecuteSpecific(const std::vector<std::string>
     if (argv[i] == "-t" || argv[i] == "--text")
     {
       const std::string plaintext = argv[i + 1];
-      CodeBreakerMainDialog d;
+      CaesarCipherMainDialog d;
       d.SetKey(key);
       d.SetPlainText(plaintext);
       d.Encrypt();
@@ -87,13 +87,14 @@ int ribi::CaesarCipherMenuDialog::ExecuteSpecific(const std::vector<std::string>
       return 0;
     }
   }
+
   //Determine if cipertext is supplied, if yes: execute
   for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
   {
     if (argv[i] == "-c" || argv[i] == "--cipher")
     {
       const std::string ciphertext = argv[i + 1];
-      CodeBreakerMainDialog d;
+      CaesarCipherMainDialog d;
       d.SetKey(key);
       d.SetEncryptedText(ciphertext);
       d.Deencrypt();

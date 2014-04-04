@@ -51,6 +51,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::bristol: p.reset(new ProgramBristol); break;
     case ProgramType::caesarCipher: p.reset(new ProgramCaesarCipher); break;
     case ProgramType::chrisWiley: p.reset(new ProgramChrisWiley); break;
+    case ProgramType::codeBreaker: p.reset(new ProgramCodeBreaker); break;
     case ProgramType::codeToHtml: p.reset(new ProgramCodeToHtml); break;
     case ProgramType::connectThree: p.reset(new ProgramConnectThree); break;
     case ProgramType::corridor: p.reset(new ProgramCorridor); break;

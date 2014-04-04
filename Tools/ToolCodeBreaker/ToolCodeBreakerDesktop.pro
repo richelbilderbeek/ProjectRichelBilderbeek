@@ -4,6 +4,7 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
 include(../../Classes/CppCaesarCipher/CppCaesarCipher.pri)
+include(../../Classes/CppCodeBreaker/CppCodeBreaker.pri)
 include(../../Classes/CppLoopReader/CppLoopReader.pri)
 include(../../Classes/CppVigenereCipher/CppVigenereCipher.pri)
 

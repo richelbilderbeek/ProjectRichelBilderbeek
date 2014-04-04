@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-CodeBreaker, cipher tool
+CodeBreaker, code breaking tool
 Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -18,38 +18,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeBreaker.htm
 //---------------------------------------------------------------------------
-#ifndef CAESARCIPHERMAINDIALOG_H
-#define CAESARCIPHERMAINDIALOG_H
+#ifndef CODEBREAKERMAINDIALOG_H
+#define CODEBREAKERMAINDIALOG_H
 
 #include <string>
 #include <vector>
 #include <boost/scoped_ptr.hpp>
 #include "about.h"
-#include "caesarcipher.h"
+#include "codebreaker.h"
 
 namespace ribi {
 
 struct CodeBreakerMainDialog
 {
-  CodeBreakerMainDialog(const int key = 0) noexcept;
+  CodeBreakerMainDialog() noexcept;
   void Deencrypt() noexcept;
-  void Encrypt() noexcept;
 
   const std::string& GetEncryptedText() const noexcept { return m_encrypted_text; }
 
-  int GetKey() const noexcept { return m_key; }
-
-  const std::string& GetPlainText() const noexcept { return m_plain_text; }
-
   void SetEncryptedText(const std::string& s) noexcept;
-  void SetKey(const int i) noexcept;
-  void SetPlainText(const std::string& s) noexcept;
 
   private:
-  boost::scoped_ptr<CaesarCipher> m_caesarcipher;
+  boost::scoped_ptr<CodeBreaker> m_codebreaker;
   std::string m_encrypted_text;
-  int m_key;
-  std::string m_plain_text;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -58,4 +49,4 @@ struct CodeBreakerMainDialog
 
 } //~namespace ribi
 
-#endif // CAESARCIPHERMAINDIALOG_H
+#endif // CODEBREAKERMAINDIALOG_H

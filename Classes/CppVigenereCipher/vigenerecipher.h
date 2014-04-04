@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppVigenereCipher.htm
 //---------------------------------------------------------------------------
-#ifndef CAESARCIPHER_H
-#define CAESARCIPHER_H
+#ifndef VIGENERECIPHER_H
+#define VIGENERECIPHER_H
 
 #include <string>
 #include <vector>
@@ -51,4 +51,4 @@ struct VigenereCipher
 
 } //~namespace ribi
 
-#endif // CAESARCIPHER_H
+#endif // VIGENERECIPHER_H

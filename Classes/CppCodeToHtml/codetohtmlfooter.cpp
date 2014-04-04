@@ -45,3 +45,12 @@ std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) n
   v.push_back("</html>");
   return v;
 }
+
+std::vector<std::string> ribi::c2h::Footer::ToMarkdown(const FooterType /*page_type*/) noexcept
+{
+  #ifndef NDEBUG
+  //Test();
+  #endif
+  std::vector<std::string> v;
+  return v;
+}

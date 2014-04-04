@@ -351,6 +351,21 @@ struct ProgramChrisWiley : public ProgramProject
   std::string GetUrl() const noexcept { return "ProjectChrisWiley.htm"; }
 };
 
+struct ProgramCodeBreaker : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "CodeBreaker"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::codeBreaker; }
+  std::string GetUrl() const noexcept { return "ToolCodeBreaker.htm"; }
+};
+
 struct ProgramCodeToHtml : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }

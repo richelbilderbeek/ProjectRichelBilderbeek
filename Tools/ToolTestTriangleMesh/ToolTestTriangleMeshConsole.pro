@@ -59,6 +59,8 @@ include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)
 include(../../Tools/ToolTestTriangleMesh/ToolTestTriangleMeshConsole.pri)
 
+unix {
+  include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
+}
 
 SOURCES += main.cpp
-

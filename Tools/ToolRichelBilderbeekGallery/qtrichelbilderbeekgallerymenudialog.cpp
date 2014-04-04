@@ -91,6 +91,12 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_start_clicked()
 void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
 {
   {
+    const std::vector<std::string> v = GalleryMenuDialog().CreateMarkdownClassGallery();
+    std::ofstream f("CppClassGallery.md");
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+  }
+  /*
+  {
     const std::vector<std::string> v = GalleryMenuDialog().CreateHtmlClassGallery();
     std::ofstream f("CppClassGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
@@ -122,6 +128,7 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
   box.setWindowTitle( this->windowTitle() );
   box.setText( ("HTML pages have been created in folder " + s).c_str());
   box.exec();
+  */
 }
 
 #ifndef NDEBUG

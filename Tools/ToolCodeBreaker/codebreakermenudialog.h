@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-CaesarCipher, Caesar cipher tool
+CodeBreaker, code breaking tool
 Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolCaesarCipher.htm
+//From http://www.richelbilderbeek.nl/ToolCodeBreaker.htm
 //---------------------------------------------------------------------------
-#ifndef CAESARCIPHERMENUDIALOG_H
-#define CAESARCIPHERMENUDIALOG_H
+#ifndef CODEBREAKERMENUDIALOG_H
+#define CODEBREAKERMENUDIALOG_H
 
 #include <string>
 #include <vector>
@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-struct CaesarCipherMenuDialog : public MenuDialog
+struct CodeBreakerMenuDialog : public MenuDialog
 {
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;
@@ -48,4 +48,4 @@ struct CaesarCipherMenuDialog : public MenuDialog
 
 } //~namespace ribi
 
-#endif // CAESARCIPHERMENUDIALOG_H
+#endif // CODEBREAKERMENUDIALOG_H

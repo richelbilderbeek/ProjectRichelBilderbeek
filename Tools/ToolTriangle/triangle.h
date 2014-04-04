@@ -248,11 +248,11 @@
 /*                                                                           */
 /*****************************************************************************/
 
-#ifdef __cplusplus //RJCB
-extern "C" { //RJCB
-#endif //RJCB
+#ifdef __cplusplus   //RJCB
+extern "C" {         //RJCB
+#endif               //RJCB
 typedef double REAL; //RJCB
-typedef int VOID; //RJCB
+typedef int VOID;    //RJCB
 int triangle_main(int argc, char** argv); //RJCB
 #define ANSI_DECLARATORS //RJCB
 

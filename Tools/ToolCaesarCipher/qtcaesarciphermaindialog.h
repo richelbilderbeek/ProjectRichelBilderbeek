@@ -32,7 +32,7 @@ namespace Ui {
 
 namespace ribi {
 
-struct CodeBreakerMainDialog;
+struct CaesarCipherMainDialog;
 
 class QtCaesarCipherMainDialog : public QtHideAndShowDialog
 {
@@ -50,7 +50,7 @@ private:
   Ui::QtCaesarCipherMainDialog *ui;
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
-  CodeBreakerMainDialog * const m_dialog;
+  CaesarCipherMainDialog * const m_dialog;
 
 private slots:
   void on_button_deencrypt_clicked() noexcept;

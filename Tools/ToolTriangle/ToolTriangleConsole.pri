@@ -1,5 +1,3 @@
-#DEFINES += TRILIBRARY
-
 INCLUDEPATH += \
     ../../Tools/ToolTriangle
 

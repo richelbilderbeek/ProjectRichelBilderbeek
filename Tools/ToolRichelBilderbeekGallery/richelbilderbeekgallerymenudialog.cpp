@@ -95,6 +95,43 @@ std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery() const
   return v;
 }
 
+std::vector<std::string> ribi::GalleryMenuDialog::CreateMarkdownClassGallery() const noexcept
+{
+  std::vector<std::string> v;
+
+  //Add header
+  {
+    v = c2h::Header::ToMarkdown(c2h::HeaderType::cpp,"CppClassGallery.md");
+  }
+
+  v.push_back("My class gallery shows the classes I've made.");
+  v.push_back(
+    "I also have a [game gallery](http://richelbilderbeek.nl/GameGallery.htm), "
+    "[project gallery](http://richelbilderbeek.nl/ProjectGallery.htm) "
+    "and [tool gallery](http://richelbilderbeek.nl/ToolGallery.htm)"
+  );
+  v.push_back(" ");
+
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
+
+  for (const boost::shared_ptr<Program> p: ps)
+  {
+    if (dynamic_cast<ProgramClass*>(p.get()))
+    {
+      //Add HTML
+      std::vector<std::string> w = ToMarkdown(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+  }
+
+  //Add footer
+  {
+    const std::vector<std::string> w { c2h::Footer::ToMarkdown(c2h::FooterType::cpp) };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  return v;
+}
+
 std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() const noexcept
 {
   std::vector<std::string> v;
@@ -309,10 +346,11 @@ ribi::Help ribi::GalleryMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-
+      Help::Option('g',"gallery","creates the Richel Bilderbeek's gallery web pages")
     },
     {
-
+      "GalleryConsole -g",
+      "GalleryConsole --gallery"
     }
   );
 }
@@ -353,6 +391,11 @@ void ribi::GalleryMenuDialog::Test() noexcept
     GalleryMenuDialog().CreateHtmlProjectGallery();
     GalleryMenuDialog().CreateHtmlStatus();
     GalleryMenuDialog().CreateHtmlToolGallery();
+    GalleryMenuDialog().CreateMarkdownClassGallery();
+    //GalleryMenuDialog().CreateMarkdownGameGallery();
+    //GalleryMenuDialog().CreateMarkdownProjectGallery();
+    //GalleryMenuDialog().CreateMarkdownStatus();
+    //GalleryMenuDialog().CreateMarkdownToolGallery();
   }
 }
 #endif
@@ -406,5 +449,35 @@ std::vector<std::string> ribi::GalleryMenuDialog::ToHtml(const Program& p) const
     v.push_back(s);
   }
   for (int i=0; i!=5; ++i) v.push_back("<p>&nbsp;</p>");
+  return v;
+}
+
+std::vector<std::string> ribi::GalleryMenuDialog::ToMarkdown(const Program& p) const noexcept
+{
+  std::vector<std::string> v;
+  {
+    const std::string s = "[" + p.GetUrl() + "](" + p.GetScreenName() + ")";
+    v.push_back(s);
+    v.push_back(std::string(s.size(),'-'));
+    v.push_back(" ");
+  }
+  if (!p.GetFilenameDesktopWindowsOnly().empty())
+  {
+    const std::string s = "![" + p.GetScreenName() + "](" + p.GetFilenameDesktopWindowsOnly() + ")";
+    v.push_back(s);
+    v.push_back(" ");
+  }
+  if (!p.GetFilenameDesktop().empty())
+  {
+    const std::string s = "![" + p.GetScreenName() + "](" + p.GetFilenameDesktop() + ")";
+    v.push_back(s);
+    v.push_back(" ");
+  }
+  if (!p.GetFilenameWeb().empty())
+  {
+    const std::string s = "![" + p.GetScreenName() + "](" + p.GetFilenameWeb() + ")";
+    v.push_back(s);
+    v.push_back(" ");
+  }
   return v;
 }

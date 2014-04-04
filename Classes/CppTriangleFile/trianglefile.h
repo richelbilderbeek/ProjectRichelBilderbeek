@@ -52,6 +52,9 @@ struct TriangleFile
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>> m_holes;
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>> m_shapes;
 
+  static std::pair<int,char **> CreateArgv(const std::vector<std::string>& v) noexcept;
+  static void DeleteArgv(const std::pair<int,char **>& p) noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

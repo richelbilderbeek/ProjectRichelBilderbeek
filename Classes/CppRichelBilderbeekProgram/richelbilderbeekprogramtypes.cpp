@@ -36,6 +36,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::bristol,"bristol"));
   m.insert(Pair(ProgramType::caesarCipher,"caesarCipher"));
   m.insert(Pair(ProgramType::chrisWiley,"chrisWiley"));
+  m.insert(Pair(ProgramType::codeBreaker,"codeBreaker"));
   m.insert(Pair(ProgramType::codeToHtml,"codeToHtml"));
   m.insert(Pair(ProgramType::connectThree,"connectThree"));
   m.insert(Pair(ProgramType::corridor,"corridor"));
@@ -252,6 +253,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::bristol,"Bristol"));
   m.insert(Pair(ProgramType::caesarCipher,"CaesarCipher"));
   m.insert(Pair(ProgramType::chrisWiley,"Chris Wiley"));
+  m.insert(Pair(ProgramType::codeBreaker,"CodeBreaker"));
   m.insert(Pair(ProgramType::codeToHtml,"CodeToHtml"));
   m.insert(Pair(ProgramType::connectThree,"ConnectThree"));
   m.insert(Pair(ProgramType::corridor,"Corridor"));
