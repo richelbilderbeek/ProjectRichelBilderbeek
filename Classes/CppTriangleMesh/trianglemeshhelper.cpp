@@ -668,23 +668,19 @@ void ribi::trim::Helper::Test() noexcept
   }
   if (verbose) { TRACE("IsConvex, 3D, from error"); }
   {
-
     std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
     {
-      const auto coordinat
-        = boost::make_shared<Coordinat3D>(0.0,2.0,1.0);
+      const auto coordinat = boost::make_shared<Coordinat3D>(0.0,2.0,1.0);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const auto coordinat
-        = boost::make_shared<Coordinat3D>(0.0,2.0,2.0);
+      const auto coordinat = boost::make_shared<Coordinat3D>(0.0,2.0,2.0);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const auto coordinat
-        = boost::make_shared<Coordinat3D>(1.0,1.0,2.0);
+      const auto coordinat = boost::make_shared<Coordinat3D>(1.0,1.0,2.0);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
@@ -712,23 +708,22 @@ void ribi::trim::Helper::Test() noexcept
   {
     std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
     {
-      const auto coordinat
-        = boost::make_shared<Coordinat3D>(2.23114,3.23607,6);
+      const auto coordinat = boost::make_shared<Coordinat3D>(2.23114,3.23607,6);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const boost::shared_ptr<const Coordinat3D> coordinat(new Coordinat3D(2.23114,3.23607,5));
+      const auto coordinat = boost::make_shared<Coordinat3D>(2.23114,3.23607,5);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const boost::shared_ptr<const Coordinat3D> coordinat(new Coordinat3D(1.17557,2.35781,6));
+      const auto coordinat = boost::make_shared<Coordinat3D>(1.17557,2.35781,6);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const boost::shared_ptr<const Coordinat3D> coordinat(new Coordinat3D(1.17557,2.35781,5));
+      const auto coordinat = boost::make_shared<Coordinat3D>(1.17557,2.35781,5);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }

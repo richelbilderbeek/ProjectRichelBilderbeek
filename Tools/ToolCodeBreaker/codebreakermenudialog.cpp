@@ -57,25 +57,6 @@ int ribi::CodeBreakerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
     }
   }
 
-  //Determine key, if supplied as an argument
-  //int key = 0;
-  for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
-  {
-    if (argv[i] == "-k" || argv[i] == "--key")
-    {
-      const std::string s = argv[i+1];
-      try
-      {
-        //key = boost::lexical_cast<int>(s);
-        //Can key be negative? Yes, it is used only be std::srand
-      }
-      catch (boost::bad_lexical_cast&)
-      {
-        std::cout << "Key must be an integer number\n";
-        return 1;
-      }
-    }
-  }
   //Determine if plaintext is supplied, if yes: execute
   for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
   {
@@ -83,23 +64,13 @@ int ribi::CodeBreakerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
     {
       const std::string plaintext = argv[i + 1];
       CodeBreakerMainDialog d;
-      if (!is_silent) { std::cout << d.GetEncryptedText() << '\n'; }
+      d.SetEncryptedText(plaintext);
+      if (!is_silent) { std::cout << d.GetAdvice() << '\n'; }
       return 0;
     }
   }
-  //Determine if cipertext is supplied, if yes: execute
-  for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
-  {
-    if (argv[i] == "-c" || argv[i] == "--cipher")
-    {
-      //const std::string ciphertext = argv[i + 1];
-      CodeBreakerMainDialog d;
-      //if (!is_silent) { std::cout << d.GetPlainText() << '\n'; }
-      return 0;
-    }
-  }
-  std::cout << GetHelp() << '\n';
-  return 1;
+
+
 }
 
 ribi::About ribi::CodeBreakerMenuDialog::GetAbout() const noexcept

@@ -13,6 +13,7 @@
 
 int main()
 {
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   /* Polygon used:
 
     3-
@@ -31,7 +32,7 @@ int main()
 
   */
 
-  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+  const std::vector<Coordinat2D> points {
     {0.5, 2.0}, //0
     {1.0, 1.0}, //1
     {1.0, 0.0}, //2
@@ -39,10 +40,10 @@ int main()
     {0.0, 1.0}  //4
   };
 
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> house;
+  boost::geometry::model::polygon<Coordinat2D> house;
   boost::geometry::append(house, points);
 
-  boost::geometry::model::ring<boost::geometry::model::d2::point_xy<double>> points_again;
+  boost::geometry::model::ring<Coordinat2D> points_again;
   boost::geometry::convert(house,points_again);
 
   //Instead of using this syntax:
@@ -52,20 +53,16 @@ int main()
     std::equal(
       points.begin(),points.end(),
       points_again.begin(),
-      [](const boost::geometry::model::d2::point_xy<double>& a,
-         const boost::geometry::model::d2::point_xy<double>& b
-      )
+      [](const Coordinat2D& a,const Coordinat2D& b)
       {
-        return
-             a.x() == b.x()
-          && a.y() == b.y()
-        ;
+        return boost::geometry::equals(a,b);
       }
     )
   );
 
-  assert( boost::geometry::within(boost::geometry::model::d2::point_xy<double>(0.5, 0.5), house));
-  assert(!boost::geometry::within(boost::geometry::model::d2::point_xy<double>(1.0, 2.0), house));
+
+  assert( boost::geometry::within(Coordinat2D(0.5, 0.5), house));
+  assert(!boost::geometry::within(Coordinat2D(1.0, 2.0), house));
 
   const double area = boost::geometry::area(house);
   std::cout << "Area: " << area << std::endl;

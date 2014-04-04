@@ -16,7 +16,7 @@ include(../../ConsoleApplication.pri) #Or use the code below
 include(../../Libraries/Boost.pri) #Or use the code below
 # win32 {
 #   INCLUDEPATH += \
-#     ../../Libraries/boost_1_54_0
+#     ../../Libraries/boost_1_55_0
 # }
 
 SOURCES += main.cpp

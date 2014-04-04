@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtbeerwantermenudialog.h"
 #include "qtboenkenmenudialog.h"
 #include "qtcaesarciphermenudialog.h"
+//#include "qtcodebreakermenudialog.h"
 #include "qtcodetohtmlmenudialog.h"
 #include "qtconnectthreemenudialog.h"
 #include "qtcreateglossarymenudialog.h"
@@ -142,6 +143,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::bristol: break;
     case ProgramType::caesarCipher: p = new QtCaesarCipherMenuDialog; break;
     case ProgramType::chrisWiley: break;
+    case ProgramType::codeBreaker: break; //p = new QtCodeBreakerMenuDialog; break;
     case ProgramType::codeToHtml: p = new c2h::QtCodeToHtmlMenuDialog; break;
     case ProgramType::connectThree: p = new con3::QtConnectThreeMenuDialog; break;
     case ProgramType::corridor: break;

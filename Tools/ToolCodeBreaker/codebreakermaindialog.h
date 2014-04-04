@@ -32,10 +32,10 @@ namespace ribi {
 struct CodeBreakerMainDialog
 {
   CodeBreakerMainDialog() noexcept;
-  void Deencrypt() noexcept;
+
+  std::string GetAdvice() const noexcept;
 
   const std::string& GetEncryptedText() const noexcept { return m_encrypted_text; }
-
   void SetEncryptedText(const std::string& s) noexcept;
 
   private:

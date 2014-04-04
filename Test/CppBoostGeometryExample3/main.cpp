@@ -19,6 +19,7 @@ bool IsConvex(boost::geometry::model::polygon<boost::geometry::model::d2::point_
 
 int main()
 {
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   /* Polygons used:
 
   0123456789012    0123456789012
@@ -36,7 +37,7 @@ int main()
 
   //Convex shape
   {
-    const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+    const std::vector<Coordinat2D> points {
       { 2.0, 2.0}, //A
       {12.0, 2.0}, //B
       { 9.0, 5.0}, //C
@@ -44,13 +45,13 @@ int main()
       { 2.0, 3.0}  //E
     };
 
-    boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+    boost::geometry::model::polygon<Coordinat2D> polygon;
     boost::geometry::append(polygon, points);
     assert(IsConvex(polygon));
   }
   //Concave shape
   {
-    const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+    const std::vector<Coordinat2D> points {
       { 2.0, 2.0}, //A
       {12.0, 2.0}, //B
       { 9.0, 5.0}, //C
@@ -58,7 +59,7 @@ int main()
       { 5.0, 5.0}  //E
     };
 
-    boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+    boost::geometry::model::polygon<Coordinat2D> polygon;
     boost::geometry::append(polygon, points);
     assert(!IsConvex(polygon));
   }

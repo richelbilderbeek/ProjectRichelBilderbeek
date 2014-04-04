@@ -33,9 +33,13 @@ ribi::CodeBreakerMainDialog::CodeBreakerMainDialog() noexcept
   #endif
 }
 
-void ribi::CodeBreakerMainDialog::Deencrypt() noexcept
+std::string ribi::CodeBreakerMainDialog::GetAdvice() const noexcept
 {
+  std::stringstream s;
 
+
+
+  return s.str();
 }
 
 void ribi::CodeBreakerMainDialog::SetEncryptedText(const std::string& s) noexcept
@@ -53,7 +57,9 @@ void ribi::CodeBreakerMainDialog::Test() noexcept
   }
   TRACE("Starting ribi::CodeBreakerMainDialog::Test");
   {
+    CodeBreaker b;
     CodeBreakerMainDialog d;
+    d.SetEncryptedText(b.GetExampleEnglish());
   }
   TRACE("Finished ribi::CodeBreakerMainDialog::Test successfully");
 }
