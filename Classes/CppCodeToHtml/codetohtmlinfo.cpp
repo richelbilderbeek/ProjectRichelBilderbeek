@@ -4684,6 +4684,79 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     }
   );
 
+
+
+
+
+  m.push_back(
+    { "CppMxeExample1",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMxeExample1.htm\">MXE example 1: Hello World</a> is an",
+        "  <a href=\"CppMxe.htm\">MXE</a> <a href=\"CppExample.htm\">example</a> to",
+        "  <a href=\"CppCrossCompile.htm\">cross-compile</a> a",
+        "  <a href=\"CppHelloWorld.htm\">Hello World</a> program from",
+        "  <a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppMxeExample1.zip\">Download the Qt Creator project 'CppMxeExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppMxeExample2",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMxeExample2.htm\">MXE example 2: Hello World C++11</a> is an",
+        "  <a href=\"CppMxe.htm\">MXE</a> <a href=\"CppExample.htm\">example</a>",
+        "  to <a href=\"CppCrossCompile.htm\">cross-compile</a> a",
+        "  <a href=\"CppHelloWorldCpp11.htm\">Hello World C++11</a> program from",
+        "  <a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppMxeExample2.zip\">Download the Qt Creator project 'CppMxeExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppMxeExample3",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMxeExample3.htm\">MXE example 3: Hello Qt</a> is an",
+        "  <a href=\"CppMxe.htm\">MXE</a> <a href=\"CppExample.htm\">example</a>",
+        "  to <a href=\"CppCrossCompile.htm\">cross-compile</a> a",
+        "  <a href=\"CppHelloQt.htm\">Hello Qt</a> program from",
+        "  <a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.",
+        "</p>
+
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppMxeExample3.zip\">Download the Qt Creator project 'CppMxeExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+
+
+
+
+
+
+
   m.push_back(
     { "CppMxeExample4",
       {
