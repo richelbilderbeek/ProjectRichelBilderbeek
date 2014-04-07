@@ -69,10 +69,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   {
     const boost::shared_ptr<const ribi::trim::Template> t
       = boost::make_shared<ribi::trim::Template>(
-      //new ribi::trim::Template(
         filename_node,
         filename_ele
-      //)
     );
     assert(t);
 
@@ -82,6 +80,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
         1.0 * boost::units::si::meter
       );
 
+      assert(t);
       const boost::shared_ptr<ribi::trim::CellsCreator> c
         = ribi::trim::CellsCreatorFactory().Create(
           t,

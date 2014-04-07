@@ -56,8 +56,12 @@ struct CodeBreaker
   ///Tally the characters in text
   std::map<char,int> GetCharTally(const std::string& text) const noexcept;
 
+  ///Score the characters frequencies in text
+  std::vector<std::map<char,double>> GetCharFrequency(const std::string& text, const int period) const noexcept;
+
   ///Tally the characters in text for a certain period
   std::vector<std::map<char,int>> GetCharTally(const std::string& text, const int period) const noexcept;
+
 
   std::string GetExampleDutch() const noexcept
   {
@@ -108,6 +112,8 @@ struct CodeBreaker
     const std::string& secret_text,
     const std::map<char,double>& expected_char_frequency = GetLetterFrequencyEnglish()
     ) const noexcept;
+
+  int GuessVigenereCipherKeyLength(const std::string& secret_text) const noexcept;
 
   private:
   std::vector<double> CalculateRelativeError(

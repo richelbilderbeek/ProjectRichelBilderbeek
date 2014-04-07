@@ -1,4 +1,4 @@
-DEFINES += FIX_ISSUE_168
+#DEFINES += FIX_ISSUE_168
 
 exists(../../ConsoleApplication.pri) {
   include(../../ConsoleApplication.pri)
@@ -70,9 +70,6 @@ include(../../Classes/CppTriangleFile/CppTriangleFile.pri)
 include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)
 include(../../Tools/ToolTestTriangleMesh/ToolTestTriangleMeshConsole.pri)
-
-#unix {
-  include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
-#}
+include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
 
 SOURCES += main.cpp

@@ -26,10 +26,7 @@ struct Move
   ///Obtain the Move in the notational form it was contructed with
   const std::string& GetStr() const { return m_str; }
 
-  ///Obtain the version of this class
   static std::string GetVersion();
-
-  ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory();
 
   ///Obtain whether this move is a capture

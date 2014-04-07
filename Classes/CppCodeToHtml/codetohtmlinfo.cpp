@@ -11468,9 +11468,21 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     }
   );
   m.push_back(
+    { "ToolCaesarCipher",
+      {
+        "<p>",
+        "  <a href=\"ToolCaesarCipher.htm\">CaesarCipher</a> is a <a href=\"Tools.htm\">tool</a> to",
+        "  do Caesar cipher encryption and decryption",
+        "</p>"
+      }
+    }
+  );
+  m.push_back(
     { "ToolCnd",
       {
-        "<p><a href=\"ToolCnd.htm\">Color Number Determinator</a> is one of my first self-written tool. It shows the color of a certain red, green and blue value.</p>",
+        "<p>",
+        "  <a href=\"ToolCnd.htm\">Color Number Determinator</a> is one of my first self-written <a href=\"Tools.htm\">tools</a>. It shows the color of a certain red, green and blue value.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolCndScreenshot.png\">View a screenshot of 'Color Number Determinator' (png)</a></li>",
@@ -11480,6 +11492,18 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "ToolCodeBreaker",
+      {
+        "<p>",
+        "  <a href=\"ToolCodeBreaker.htm\">CodeBreaker</a> is a <a href=\"Tools.htm\">tool</a> to",
+        "  do code breaking",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolCodeToHtml",
       {
@@ -15474,6 +15498,17 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"ToolValentineCardDecrypter.htm\">ValentineCardDecrypter</a> is a <a href=\"Tools.htm\">tool</a>",
         "  I used to decrypt the cipher on a Valentine card I received.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolVigenereCipher",
+      {
+        "<p>",
+        "  <a href=\"ToolVigenereCipher.htm\">VigenereCipher</a> is a <a href=\"Tools.htm\">tool</a> to",
+        "  do Vigenere cipher encryption and decryption",
         "</p>"
       }
     }

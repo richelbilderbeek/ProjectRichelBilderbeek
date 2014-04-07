@@ -161,6 +161,31 @@ std::map<char,int> ribi::CodeBreaker::GetCharTally(const std::string& text) cons
   return m;
 }
 
+std::vector<std::map<char,double>> ribi::CodeBreaker::GetCharFrequency(const std::string& text, const int period) const noexcept
+{
+  assert(period > 0);
+  std::vector<std::map<char,int>> v(GetCharTally(text,period));
+  std::vector<std::map<char,double>> w;
+  for (int i=0; i!=period; ++i)
+  {
+    const std::map<char,int>& m = v[i];
+    const int sum = std::accumulate(m.begin(),m.end(),0,
+      [](const int init, const std::pair<char,int>& p)
+      {
+        return init + p.second;
+      }
+    );
+    assert(sum > 0);
+    std::map<char,double> n;
+    for (const auto p: m)
+    {
+      n.insert(std::make_pair(p.first, static_cast<double>(p.second) / static_cast<double>(sum)));
+    }
+    w.push_back(n);
+  }
+  return w;
+}
+
 std::vector<std::map<char,int>> ribi::CodeBreaker::GetCharTally(const std::string& text, const int period) const noexcept
 {
   assert(period > 0);
@@ -286,6 +311,12 @@ int ribi::CodeBreaker::GuessCaesarCipherKey(
   return std::distance(v.begin(),std::min_element(v.begin(),v.end()));
 }
 
+int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_text) const noexcept
+{
+  assert(secret_text.size() > 0);
+  return 0;
+}
+
 #ifndef NDEBUG
 void ribi::CodeBreaker::Test() noexcept
 {
@@ -385,6 +416,18 @@ void ribi::CodeBreaker::Test() noexcept
     const std::string secret_text = c.Encrypt(text);
     assert(b.GuessCaesarCipherKey(secret_text) == key);
   }
+  //Guess the Vigenere cipher key length
+  #ifdef FIXING_ISSUE_175
+  for (int length=1; length!=5; ++length)
+  {
+    std::string key(length,'a');
+    for (int i=0; i!=length; ++i) { key[i] = 'a' + (std::rand() % 26); }
+    VigenereCipher c(key);
+    const std::string text = VigenereCipher::Clean(b.GetExampleEnglish());
+    const std::string secret_text = c.Encrypt(text);
+    assert(b.GuessVigenereCipherKeyLength(secret_text) == length);
+  }
+  #endif //#ifdef FIXING_ISSUE_175
   TRACE("Finished ribi::CodeBreaker::Test successfully");
 }
 #endif

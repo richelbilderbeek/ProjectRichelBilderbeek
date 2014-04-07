@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "caesarcipher.h"
 #include "caesarciphermenudialog.h"
+#include "codebreaker.h"
 #include "codebreakermaindialog.h"
 #include "loopreader.h"
 #include "trace.h"
@@ -85,6 +86,7 @@ ribi::About ribi::CodeBreakerMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("CaesarCipher (class) version: " + CaesarCipher::GetVersion());
   a.AddLibrary("CaesarCipher (tool) version: " + CaesarCipherMenuDialog().GetVersion());
+  a.AddLibrary("CodeBreaker (class) version: " + CodeBreaker::GetVersion());
   a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
   a.AddLibrary("VigenereCipher (class) version: " + VigenereCipher::GetVersion());
   a.AddLibrary("VigenereCipher (tool) version: " + VigenereCipherMenuDialog().GetVersion());
@@ -103,8 +105,8 @@ ribi::Help ribi::CodeBreakerMenuDialog::GetHelp() const noexcept
       Help::Option('s',"silent","silence output, used for debugging")
     },
     {
-      "CodeBreaker -k 123 --text \"HELLOWORLD\"",
-      "CodeBreaker -k 123 --cipher \"HELLOWORLD\""
+      "CodeBreaker -k 123 --text \"helloworld\"",
+      "CodeBreaker -k 123 --cipher \"helloworld\""
     }
   );
 }
@@ -140,10 +142,10 @@ void ribi::CodeBreakerMenuDialog::Test() noexcept
   TRACE("Starting ribi::ToolCodeBreakerMenuDialog::Test");
   {
     CodeBreakerMenuDialog d;
-    d.Execute( {"CodeBreaker", "-k", "0", "--text", "HELLOWORLD", "-s" } );
-    d.Execute( {"CodeBreaker", "-k", "1", "--text", "HELLOWORLD", "-s" } );
-    d.Execute( {"CodeBreaker", "-k", "2", "--text", "HELLOWORLD", "-s" } );
-    d.Execute( {"CodeBreaker", "-k", "123", "--cipher", "HELLOWORLD", "-s" } );
+    d.Execute( {"CodeBreaker", "-k", "0", "--text", "helloworld", "-s" } );
+    d.Execute( {"CodeBreaker", "-k", "1", "--text", "helloworld", "-s" } );
+    d.Execute( {"CodeBreaker", "-k", "2", "--text", "helloworld", "-s" } );
+    d.Execute( {"CodeBreaker", "-k", "123", "--cipher", "helloworld", "-s" } );
   }
   TRACE("Finished ribi::ToolCodeBreakerMenuDialog::Test successfully");
 }

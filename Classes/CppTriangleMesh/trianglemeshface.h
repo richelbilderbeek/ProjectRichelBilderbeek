@@ -11,7 +11,7 @@
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
+#include <boost/signals2.hpp>
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
@@ -69,17 +69,22 @@ struct Face
   ///   the cell with the heighest index
   void SetCorrectWinding() noexcept;
 
+  boost::signals2::signal<void(const Face* const)> m_signal_destroyed;
+
   private:
-  ~Face() noexcept {}
+  ~Face() noexcept;
   friend void boost::checked_delete<>(Face* x);
   friend void boost::checked_delete<>(const Face* x);
 
   ///Cells this Face belongs to
-  mutable std::vector<boost::weak_ptr<const Cell>> m_belongs_to;
+  mutable std::vector<boost::shared_ptr<const Cell>> m_belongs_to;
 
   ///m_coordinats is used to speed up 'FaceExists', which compares a new Face
   ///with one already present, by comparing their sorted coordinats
   mutable Coordinat3dSet m_coordinats;
+
+  ///Track the creation and deletion of faces
+  static std::map<int,const Face*> sm_faces;
 
   ///The index of this Face in an TriangleMeshBuilder vector. It is determined at the end
   mutable int m_index;
@@ -103,8 +108,10 @@ struct Face
     const FaceFactory& lock
   );
 
+  void OnCellDestroyed(const Cell* const cell) noexcept;
+
   friend class CellFactory;
-  void AddBelongsTo(boost::weak_ptr<const Cell> cell) const;
+  void AddBelongsTo(boost::shared_ptr<const Cell> cell);
 
   ///Determined in the end
   friend class TriangleMeshBuilder;

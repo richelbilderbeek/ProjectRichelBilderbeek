@@ -2,7 +2,7 @@
 #define TRIANGLEMESHPOINT_H
 
 #include <iosfwd>
-#include <set>
+#include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -11,14 +11,11 @@
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/si/length.hpp>
 #include <boost/make_shared.hpp>
 #include "trianglemeshfwd.h"
-
-#ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
-#include <boost/signals2.hpp>
-#endif //#ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
 
 #pragma GCC diagnostic pop
 
@@ -30,14 +27,14 @@ struct Point
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
-  typedef std::set<boost::weak_ptr<Face>,std::function<bool(boost::weak_ptr<const Face>,boost::weak_ptr<const Face>)>> WeakFaceSet;
+  typedef std::vector<boost::shared_ptr<Face>> Faces;
 
   const boost::shared_ptr<const Coordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
   Coordinat3D GetCoordinat3D() const noexcept;
 
   bool CanGetZ() const noexcept;
 
-  const WeakFaceSet& GetConnected() const noexcept { return m_connected; }
+  const Faces& GetConnected() const noexcept { return m_connected; }
 
   int GetIndex() const noexcept { return m_index; }
 
@@ -51,9 +48,7 @@ struct Point
   std::string ToStr() const noexcept;
   std::string ToXml() const noexcept;
 
-  #ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
   boost::signals2::signal<void(const Point*)> m_signal_destroyed;
-  #endif //#ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
 
   private:
   Point(const Point&) = delete;
@@ -74,7 +69,7 @@ struct Point
   /// m_connected must be mutable, because of the interdependent creation of
   /// Point and Face: a Point needs to know the Face it is connected to,
   /// a Face consists of Point objects
-  WeakFaceSet m_connected;
+  Faces m_connected;
 
   const boost::shared_ptr<const Coordinat2D> m_coordinat;
 
@@ -85,13 +80,14 @@ struct Point
 
   friend class FaceFactory;
   ///Points are connected to Faces in the Faces' construction
-  void AddConnected(const boost::weak_ptr<Face>& face);
+  void AddConnected(const boost::shared_ptr<Face>& face);
 
+  void OnFaceDestroyed(const ribi::trim::Face * const face) noexcept;
 
   std::function<
     bool(
-      const boost::weak_ptr<const ribi::trim::Face>& lhs,
-      const boost::weak_ptr<const ribi::trim::Face>& rhs
+      const boost::shared_ptr<const ribi::trim::Face>& lhs,
+      const boost::shared_ptr<const ribi::trim::Face>& rhs
     )
   >
   OrderByIndex() const noexcept;

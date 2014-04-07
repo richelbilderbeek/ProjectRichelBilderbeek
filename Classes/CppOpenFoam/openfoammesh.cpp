@@ -110,7 +110,10 @@ ribi::foam::Mesh::Mesh(
       const boost::shared_ptr<Cell> owner { face->GetOwner() };
       assert(owner);
       //if (!owner) continue;
-      if (m.find(owner) == m.end()) { m.insert(std::make_pair(owner, std::vector<boost::shared_ptr<Face>>() ) ); }
+      if (m.find(owner) == m.end())
+      {
+        m.insert(std::make_pair(owner, std::vector<boost::shared_ptr<Face>>() ) );
+      }
       assert(m.find(owner) != m.end());
       (*m.find(owner)).second.push_back(face);
     }

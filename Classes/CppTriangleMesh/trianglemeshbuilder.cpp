@@ -159,10 +159,12 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
         assert(face->GetIndex() <  static_cast<int>(m_faces.size()));
         //All Faces must have a Cell that owns them with an existing index
         assert(face->GetOwner()->GetIndex() >= 0);
-        assert(face->GetOwner()->GetIndex() <  static_cast<int>(m_cells.size()));
+        //assert(face->GetOwner()->GetIndex() <  static_cast<int>(m_cells.size())
+        // && "Index actually might be bigger than the size");
         //All Faces must have either no Neighbout or a Neighbour with an existing index
         assert(!face->GetNeighbour() || face->GetNeighbour()->GetIndex() >= 0);
-        assert(!face->GetNeighbour() || face->GetNeighbour()->GetIndex() <  static_cast<int>(m_cells.size()));
+        //assert(!face->GetNeighbour() || face->GetNeighbour()->GetIndex() <  static_cast<int>(m_cells.size())
+        // && "Index actually might be bigger than the size");
         for (const auto point: face->GetPoints())
         {
           assert(point);

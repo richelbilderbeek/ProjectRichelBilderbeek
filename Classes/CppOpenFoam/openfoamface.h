@@ -66,6 +66,11 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> CalcCente
 
 std::ostream& operator<<(std::ostream& os, const Face& face) noexcept;
 
+//bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
+
 } //~namespace foam
 } //~namespace ribi
 

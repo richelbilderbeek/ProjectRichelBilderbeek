@@ -43,7 +43,7 @@ ribi::VigenereCipher::VigenereCipher(const std::string& s)
   }
 }
 
-std::string ribi::VigenereCipher::Clean(const std::string& s) const noexcept
+std::string ribi::VigenereCipher::Clean(const std::string& s) noexcept
 {
   std::string t;
   std::copy_if(s.begin(),s.end(),std::back_inserter(t),
@@ -142,10 +142,18 @@ char ribi::VigenereCipher::Encrypt(const char c, const int d) const noexcept
 
 std::string ribi::VigenereCipher::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-bool ribi::VigenereCipher::IsClean(const std::string& s) const noexcept
+std::vector<std::string> ribi::VigenereCipher::GetVersionHistory() noexcept
+{
+  return {
+    "2014-04-01: version 1.0: initial version",
+    "2014-04-07: version 1.1: use lowercase characters, added Clean and IsClean member functions"
+  };
+}
+
+bool ribi::VigenereCipher::IsClean(const std::string& s) noexcept
 {
   for (const auto c:s) { if (c < 'a' || c > 'z') return false; }
   return true;
@@ -168,14 +176,6 @@ std::vector<int> ribi::VigenereCipher::StrToKey(const std::string& s) noexcept
     v.push_back(i);
   }
   return v;
-}
-
-std::vector<std::string> ribi::VigenereCipher::GetVersionHistory() noexcept
-{
-  return {
-    "2014-04-01: version 1.0: initial version",
-    "2014-04-07: version 1.1: use lowercase characters, added Clean and IsClean member functions"
-  };
 }
 
 #ifndef NDEBUG
@@ -206,7 +206,7 @@ void ribi::VigenereCipher::Test() noexcept
       {
 
         const VigenereCipher e(key);
-        const std::string clean_text = e.Clean(s);
+        const std::string clean_text = VigenereCipher::Clean(s);
         assert(e.Deencrypt(e.Encrypt(clean_text)) == clean_text);
         //Test encryption with real, decryption with faker
         const VigenereCipher faker(key + "x");
@@ -218,7 +218,7 @@ void ribi::VigenereCipher::Test() noexcept
     const std::string key = "key";
     const std::string secret = "TSZNQHUWYJHRSCRPMIMMRYEMULIEHYTBKJQSOQKIRQXMIYHKLIRPDQAMVJQ";
     const VigenereCipher e(key);
-    const std::string clean_text = e.Clean(secret);
+    const std::string clean_text = VigenereCipher::Clean(secret);
     TRACE(e.Deencrypt(e.Encrypt(clean_text)));
   }
   TRACE("Finished ribi::VigenereCipher::Test successfully");

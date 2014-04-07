@@ -10,6 +10,7 @@
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
 
@@ -34,9 +35,11 @@ struct Cell
 
   void SetIndex(const int index) noexcept { m_index = index; }
 
+  mutable boost::signals2::signal<void(const Cell* const)> m_signal_destroyed;
+
   private:
-  ~Cell() noexcept {}
-  friend void boost::checked_delete<>(Cell* x);
+  ~Cell() noexcept;
+  friend void boost::checked_delete<>(      Cell* x);
   friend void boost::checked_delete<>(const Cell* x);
 
   std::vector<boost::shared_ptr<Face>> m_faces;

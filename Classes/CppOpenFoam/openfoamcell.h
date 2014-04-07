@@ -34,8 +34,8 @@ struct Cell
   void AssignOwnedFaces(const std::vector<boost::shared_ptr<Face>>& owned_faces);
 
   //const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
-        std::vector<boost::shared_ptr<const Face> >  GetOwnedFaces() const noexcept;
-  const std::vector<boost::shared_ptr<      Face> >& GetOwnedFaces()       noexcept { return m_owned_faces; }
+        std::vector<boost::shared_ptr<const Face>>  GetOwnedFaces() const noexcept;
+  const std::vector<boost::shared_ptr<      Face>>& GetOwnedFaces()       noexcept { return m_owned_faces; }
 
   bool HasFace(const boost::shared_ptr<const Face> face) const noexcept;
   bool OwnsFace(const boost::shared_ptr<const Face> face) const noexcept;
@@ -52,6 +52,11 @@ struct Cell
 };
 
 std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
+
+//bool operator<(const boost::shared_ptr<const Cell>& lhs, const boost::shared_ptr<      Cell>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<const Cell>& lhs, const boost::shared_ptr<const Cell>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<      Cell>& lhs, const boost::shared_ptr<      Cell>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<      Cell>& lhs, const boost::shared_ptr<const Cell>& rhs) = delete;
 
 } //namespace foam
 } //namespace ribi

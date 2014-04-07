@@ -7,6 +7,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/lambda/bind.hpp>
+#include <boost/lambda/lambda.hpp>
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
 
@@ -25,13 +27,16 @@
 #include "xml.h"
 #pragma GCC diagnostic pop
 
+std::map<int,const ribi::trim::Face*> ribi::trim::Face::sm_faces;
+
 ribi::trim::Face::Face(
   const std::vector<boost::shared_ptr<Point>>& any_points,
   const FaceOrientation any_orientation,
   const int index,
   const FaceFactory&
   )
-  : m_belongs_to{},
+  : m_signal_destroyed{},
+    m_belongs_to{},
     m_coordinats{},
     m_index{index},
     m_orientation{any_orientation},
@@ -51,6 +56,8 @@ ribi::trim::Face::Face(
     TRACE("ERROR");
     for (auto point: m_points) TRACE(point->ToStr());
   }
+  assert(sm_faces.count(m_index) == 0);
+  sm_faces.insert(std::make_pair(m_index,this));
 
   #ifndef FIX_ISSUE_168
   assert(Helper().IsConvex(m_points));
@@ -77,14 +84,32 @@ ribi::trim::Face::Face(
   #endif
 }
 
-void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell) const
+ribi::trim::Face::~Face() noexcept
 {
-  assert(cell.lock());
+  #ifndef NDEBUG
+  if(!sm_faces.count(m_index) == 1)
+  {
+    TRACE(sm_faces.count(m_index));
+    TRACE("ERROR");
+  }
+  #endif
+  assert(sm_faces.count(m_index) == 1);
+  assert(sm_faces.find(m_index)->second);
+  sm_faces.find(m_index)->second = nullptr;
+  m_signal_destroyed(this);
+}
+
+void ribi::trim::Face::AddBelongsTo(boost::shared_ptr<const Cell> cell)
+{
+  assert(cell);
   m_belongs_to.push_back(cell);
   assert(m_belongs_to.size() <= 2);
   assert(
        (m_belongs_to.size() == 1)
-    || (m_belongs_to.size() == 2 && m_belongs_to[0].lock() != m_belongs_to[1].lock())
+    || (m_belongs_to.size() == 2 && m_belongs_to[0] != m_belongs_to[1])
+  );
+  cell->m_signal_destroyed.connect(
+    boost::bind(&ribi::trim::Face::OnCellDestroyed,this,boost::lambda::_1)
   );
 }
 
@@ -156,9 +181,9 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const
   m_belongs_to.erase(
     std::remove_if(
       m_belongs_to.begin(),m_belongs_to.end(),
-      [](const boost::weak_ptr<const Cell> cell)
+      [](const boost::shared_ptr<const Cell> cell)
       {
-        return !cell.lock();
+        return !cell;
       }
     ),
     m_belongs_to.end()
@@ -166,9 +191,9 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const
   boost::shared_ptr<const Cell> p;
   if (m_belongs_to.size() < 2) return p;
 
-  assert(m_belongs_to[0].lock() != m_belongs_to[1].lock());
+  assert(m_belongs_to[0] != m_belongs_to[1]);
 
-  p = m_belongs_to[1].lock();
+  p = m_belongs_to[1];
   assert(p);
   return p;
 }
@@ -180,9 +205,9 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() const noe
   m_belongs_to.erase(
     std::remove_if(
       m_belongs_to.begin(),m_belongs_to.end(),
-      [](const boost::weak_ptr<const Cell> cell)
+      [](const boost::shared_ptr<const Cell> cell)
       {
-        return !cell.lock();
+        return !cell;
       }
     ),
     m_belongs_to.end()
@@ -193,7 +218,7 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() const noe
   }
   assert(!m_belongs_to.empty());
   boost::shared_ptr<const Cell> p {
-    m_belongs_to[0].lock()
+    m_belongs_to[0]
   };
   assert(p);
   return p;
@@ -206,6 +231,15 @@ boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int 
   assert(index >= 0);
   assert(index < static_cast<int>(GetPoints().size()));
   return GetPoints()[index];
+}
+
+void ribi::trim::Face::OnCellDestroyed(const Cell* const cell) noexcept
+{
+  assert(1==2);
+  const auto new_end = std::remove_if(m_belongs_to.begin(),m_belongs_to.end(),
+    [cell](const boost::shared_ptr<const Cell>& belongs_to) { return belongs_to.get() == cell; }
+  );
+  m_belongs_to.erase(new_end,m_belongs_to.end());
 }
 
 void ribi::trim::Face::SetCorrectWinding() noexcept

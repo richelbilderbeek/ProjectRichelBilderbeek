@@ -1,5 +1,3 @@
-#DEFINES += TRIANGLEMESH_USE_BOOST_SIGNALS2
-
 INCLUDEPATH += \
     ../../Classes/CppTriangleMesh
 

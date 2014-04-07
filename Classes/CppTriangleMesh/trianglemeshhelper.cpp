@@ -349,17 +349,19 @@ bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) noexcept
 }
 
 void ribi::trim::Helper::MakeConvex(
-  std::vector<boost::shared_ptr<ribi::trim::Point>>& v
+  std::vector<boost::shared_ptr<ribi::trim::Point>>& points
 ) const noexcept
 {
   #ifndef NDEBUG
   const bool verbose = true;
-  for (auto p: v) { assert(p); }
-  assert(!v.empty());
-  assert(v.size() == 4);
+  for (auto p: points) { assert(p); }
+  assert(!points.empty());
+  assert(points.size() == 4);
   #endif
+  const Helper helper;
+  const Geometry geometry;
 
-  if (Helper().IsConvex(v)) return;
+  if (helper.IsConvex(points)) return;
 
   #ifndef NDEBUG
   static int cnt = 0;
@@ -369,27 +371,27 @@ void ribi::trim::Helper::MakeConvex(
   ++call_cnt;
   #endif
 
-  std::sort(v.begin(),v.end(),Helper().OrderByX());
+  std::sort(points.begin(),points.end(),helper.OrderByX());
 
   while (1)
   {
-    if (Helper().IsConvex(v))
+    if (helper.IsConvex(points))
     {
       break;
     }
     #ifndef NDEBUG
-    const std::vector<boost::shared_ptr<ribi::trim::Point>> before(v);
+    const std::vector<boost::shared_ptr<Point>> before(points);
     #endif
 
-    std::next_permutation(v.begin(),v.end(),Helper().OrderByX());
+    std::next_permutation(points.begin(),points.end(),helper.OrderByX());
 
     #ifndef NDEBUG
-    const std::vector<boost::shared_ptr<ribi::trim::Point>> after(v);
+    const std::vector<boost::shared_ptr<Point>> after(points);
     assert(before != after);
     if (verbose)
     {
       #ifndef FIX_ISSUE_168
-      TRACE(ToStr(AddConst(v)));
+      TRACE(ToStr(AddConst(points)));
       #endif //#ifndef FIX_ISSUE_168
       ++cnt;
       //assert(cnt != (4 * 3 * 2 * 1) + 2);
@@ -398,62 +400,62 @@ void ribi::trim::Helper::MakeConvex(
     #endif
   }
 
-  if (Helper().IsConvex(v)) return;
+  if (helper.IsConvex(points)) return;
 
   #ifndef NDEBUG
-  if(!Helper().IsConvex(v))
+  if(!helper.IsConvex(points))
   {
     TRACE("ERROR");
     TRACE(call_cnt);
     TRACE("TRY AGAIN");
-    std::sort(v.begin(),v.end(),Helper().OrderByX());
+    std::sort(points.begin(),points.end(),helper.OrderByX());
     for (int i=0; i!=26; ++i)
     {
-      std::next_permutation(v.begin(),v.end(),Helper().OrderByX());
+      std::next_permutation(points.begin(),points.end(),helper.OrderByX());
       {
         std::stringstream s;
-        assert(v.size() == 4);
-        assert(v[0]); assert(v[1]); assert(v[2]); assert(v[3]);
-        s << (Helper().IsConvex(v) ? "Convex" : "Not convex")
+        assert(points.size() == 4);
+        assert(points[0]); assert(points[1]); assert(points[2]); assert(points[3]);
+        s << (helper.IsConvex(points) ? "Convex" : "Not convex")
           << ": "
-          << Geometry().ToStr(v[0]->GetCoordinat3D()) << "->"<< v[0]->GetIndex() << ","
-          << Geometry().ToStr(v[1]->GetCoordinat3D()) << "->"<< v[1]->GetIndex() << ","
-          << Geometry().ToStr(v[2]->GetCoordinat3D()) << "->"<< v[2]->GetIndex() << ","
-          << Geometry().ToStr(v[3]->GetCoordinat3D()) << "->"<< v[3]->GetIndex() << '\n'
+          << geometry.ToStr(points[0]->GetCoordinat3D()) << "->"<< points[0]->GetIndex() << ","
+          << geometry.ToStr(points[1]->GetCoordinat3D()) << "->"<< points[1]->GetIndex() << ","
+          << geometry.ToStr(points[2]->GetCoordinat3D()) << "->"<< points[2]->GetIndex() << ","
+          << geometry.ToStr(points[3]->GetCoordinat3D()) << "->"<< points[3]->GetIndex() << '\n'
         ;
         TRACE(s.str());
       }
       {
         std::stringstream t;
-        const auto w(Helper().CalcProjection(AddConst(v)));
-        assert(w.size() == 4);
-        t << (Helper().IsConvex(v) ? "Convex" : "Not convex")
+        const std::vector<Coordinat2D> projected_points(helper.CalcProjection(AddConst(points)));
+        assert(projected_points.size() == 4);
+        t << (helper.IsConvex(points) ? "Convex" : "Not convex")
           << ": "
-          << Geometry().ToStr(w[0]) << ","
-          << Geometry().ToStr(w[1]) << ","
-          << Geometry().ToStr(w[2]) << ","
-          << Geometry().ToStr(w[3])
+          << geometry.ToStr(projected_points[0]) << ","
+          << geometry.ToStr(projected_points[1]) << ","
+          << geometry.ToStr(projected_points[2]) << ","
+          << geometry.ToStr(projected_points[3])
         ;
         TRACE(t.str());
       }
     }
     //assert(!"BREAK");
 
-    //for (auto p: v) { TRACE(p); TRACE(*p); }
+    for (auto p: points) { TRACE(p); TRACE(*p); }
 
+    return; //TODO: FIX THIS BUG
     #ifdef FIX_ISSUE_168
-    assert(Helper().IsConvex(v));
-    //std::exit(0);
-    //return; //TODO: FIX THIS BUG
+    assert(helper.IsConvex(points));
+    TRACE("TODO: FIX ISSUE 168")
     #endif //ifdef FIX_ISSUE_168
-    assert(!"Should not get here");
   }
   #endif
 
   #ifdef FIX_ISSUE_168
-  return; //TODO: FIX THIS BUG
+  assert(helper.IsConvex(points));
   #endif //#ifdef FIX_ISSUE_168
-  assert(Helper().IsConvex(v));
+
+  return;
 }
 
 std::function<

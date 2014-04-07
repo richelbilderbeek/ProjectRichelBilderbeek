@@ -33,7 +33,7 @@ struct VigenereCipher
 
   ///Creates a clean string, which is a
   ///lowercasenospaces string
-  std::string Clean(const std::string& s) const noexcept;
+  static std::string Clean(const std::string& s) noexcept;
 
   std::string Deencrypt(std::string s) const noexcept;
 
@@ -44,7 +44,7 @@ struct VigenereCipher
 
   ///Checks if string is clean, which is a
   ///lowercasenospaces string. Use Clean to make it so.
-  bool IsClean(const std::string& s) const noexcept;
+  static bool IsClean(const std::string& s) noexcept;
 
   private:
   const std::vector<int> m_key;

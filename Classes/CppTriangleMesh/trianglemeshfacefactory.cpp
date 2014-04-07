@@ -150,11 +150,11 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   assert(a);
   assert(b);
   assert(c);
-  bottom->SetIndex(1);
-  top->SetIndex(2);
-  a->SetIndex(3);
-  b->SetIndex(4);
-  c->SetIndex(5);
+  //bottom->SetIndex(1);
+  //top->SetIndex(2);
+  //a->SetIndex(3);
+  //b->SetIndex(4);
+  //c->SetIndex(5);
   const std::vector<boost::shared_ptr<Face>> prism {
     top,bottom,a,b,c
   };
@@ -200,14 +200,14 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   assert(d);
   assert(e);
   assert(f);
-  bottom->SetIndex(1);
-  top->SetIndex(2);
-  a->SetIndex(3);
-  b->SetIndex(4);
-  c->SetIndex(5);
-  d->SetIndex(6);
-  e->SetIndex(7);
-  f->SetIndex(8);
+  //bottom->SetIndex(1);
+  //top->SetIndex(2);
+  //a->SetIndex(3);
+  //b->SetIndex(4);
+  //c->SetIndex(5);
+  //d->SetIndex(6);
+  //e->SetIndex(7);
+  //f->SetIndex(8);
   const std::vector<boost::shared_ptr<Face>> prism {
     top,bottom,a,b,c,d,e,f
   };
@@ -229,7 +229,7 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::CreateTestSquare(co
       FaceOrientation::horizontal)
   };
   assert(square);
-  square->SetIndex(1);
+  //square->SetIndex(1);
   return square;
 }
 

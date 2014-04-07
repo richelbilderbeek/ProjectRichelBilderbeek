@@ -6,6 +6,7 @@
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
+#include "trianglemeshhelper.h"
 #include "trianglemeshtemplate.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"

@@ -12,6 +12,7 @@
 #include "geometry.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcellfactory.h"
+#include "trianglemeshcellscreator.h"
 #include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
@@ -265,12 +266,12 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 ) noexcept
 {
   PROFILE_FUNC();
+  assert(t);
   #ifndef NDEBUG
   const bool verbose = true;
+  for (const auto point: all_points) { assert(point); }
   if (verbose) { TRACE("Get edges"); }
   #endif
-
-
   const std::vector<std::pair<int,int>> edges {
     t->GetEdges()
   };
@@ -282,6 +283,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
     ? 1 * n_edges
     : 2 * n_edges //For every horizontal edge, two triangles are used instead
   };
+  const Helper helper;
 
   std::vector<boost::shared_ptr<Face> > v;
   v.reserve(n_ver_faces * (n_layers - 1));
@@ -323,12 +325,18 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           all_points[points_offset + edge.first  + n_points_per_layer],
           all_points[points_offset + edge.second + n_points_per_layer]
         };
+        assert(face_points[0] != face_points[1]);
+        assert(face_points[0] != face_points[2]);
+        assert(face_points[0] != face_points[3]);
+        assert(face_points[1] != face_points[2]);
+        assert(face_points[1] != face_points[3]);
+        assert(face_points[2] != face_points[3]);
         face_points[0]->SetZ(z_here);
         face_points[1]->SetZ(z_here);
         face_points[2]->SetZ(z_above);
         face_points[3]->SetZ(z_above);
         #ifndef NDEBUG
-        if (verbose && !Helper().IsConvex(face_points))
+        if (verbose && !helper.IsConvex(face_points))
         {
           #ifndef FIX_ISSUE_168
           TRACE("NOT CONVEX");
@@ -338,10 +346,13 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         #endif
 
         //Order face_points
-        if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
+        if (!helper.IsConvex(face_points))
+        {
+          helper.MakeConvex(face_points);
+        }
 
         #ifndef NDEBUG
-        if (!Helper().IsConvex(face_points))
+        if (!helper.IsConvex(face_points))
         {
           #ifndef FIX_ISSUE_168
           TRACE("NOT CONVEX");
@@ -374,6 +385,10 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           all_points[points_offset + edge.second],
           all_points[points_offset + edge.first + n_points_per_layer]
         };
+        assert(face_points_1[0] != face_points_1[1]);
+        assert(face_points_1[0] != face_points_1[2]);
+        assert(face_points_1[1] != face_points_1[2]);
+
         face_points_1[0]->SetZ(z_here);
         face_points_1[1]->SetZ(z_here);
         face_points_1[2]->SetZ(z_above);
@@ -400,12 +415,16 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           all_points[points_offset + edge.second + n_points_per_layer],
           all_points[points_offset + edge.first  + n_points_per_layer]
         };
+        assert(face_points_2[0] != face_points_2[1]);
+        assert(face_points_2[0] != face_points_2[2]);
+        assert(face_points_2[1] != face_points_2[2]);
+
         face_points_2[0]->SetZ(z_here );
         face_points_2[1]->SetZ(z_above);
         face_points_2[2]->SetZ(z_above);
 
         #ifndef NDEBUG
-        if (!Helper().IsConvex(face_points_2))
+        if (!helper.IsConvex(face_points_2))
         {
           TRACE("ERROR");
           for (auto point:face_points_2) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
@@ -452,11 +471,11 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   assert(std::count(points.begin(),points.end(),nullptr) == 0);
 
   //Collect the candidates
-  std::vector<boost::weak_ptr<Face>> weak_candidates;
-  for (auto p: a->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
-  for (auto p: b->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
   std::vector<boost::shared_ptr<Face>> candidates;
-  for (auto p: weak_candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
+  for (auto p: a->GetPoints()) { for (auto q: p->GetConnected()) { assert(q); candidates.push_back(q); } }
+  for (auto p: b->GetPoints()) { for (auto q: p->GetConnected()) { assert(q); candidates.push_back(q); } }
+  //std::vector<boost::shared_ptr<Face>> candidates;
+  //for (auto p: candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
   std::sort(candidates.begin(),candidates.end(),Helper().OrderByIndex());
   candidates.erase(std::unique(candidates.begin(),candidates.end()),candidates.end());
   assert(std::count(candidates.begin(),candidates.end(),nullptr) == 0);

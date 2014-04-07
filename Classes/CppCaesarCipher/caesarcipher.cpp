@@ -125,7 +125,7 @@ char ribi::CaesarCipher::Encrypt(const char c, const int d) const noexcept
 
 std::string ribi::CaesarCipher::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::CaesarCipher::GetVersionHistory() noexcept

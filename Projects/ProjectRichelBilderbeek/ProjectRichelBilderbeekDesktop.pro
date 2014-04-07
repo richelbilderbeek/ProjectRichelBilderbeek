@@ -234,6 +234,7 @@ include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonDesktop.pri)
 include(../../Tools/ToolTestTriangleMesh/ToolTestTriangleMeshDesktop.pri)
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
 include(../../Tools/ToolThresholdFilterer/ToolThresholdFiltererDesktop.pri)
+include(../../Tools/ToolTriangle/ToolTriangleConsole.pri) #NOTE: Console application
 include(../../Tools/ToolValentineCardDecrypter/ToolValentineCardDecrypterDesktop.pri)
 include(../../Tools/ToolVigenereCipher/ToolVigenereCipherDesktop.pri)
 include(../../Tools/ToolVisualAbc/ToolVisualAbcDesktop.pri)

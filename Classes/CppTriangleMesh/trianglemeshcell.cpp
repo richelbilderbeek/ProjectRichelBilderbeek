@@ -17,13 +17,19 @@ ribi::trim::Cell::Cell(
   const std::vector<boost::shared_ptr<Face>>& faces,
   const int index,
   const CellFactory&)
-  : m_faces(faces),
+  : m_signal_destroyed{},
+    m_faces(faces),
     m_index{index}
 {
   #ifndef NDEBUG
   Test();
   #endif
   assert(faces.size() == 5 || faces.size() == 8);
+}
+
+ribi::trim::Cell::~Cell()
+{
+  m_signal_destroyed(this);
 }
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Cell::CalculateCenter() const noexcept

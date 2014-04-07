@@ -1,5 +1,12 @@
 #include "trianglemeshpoint.h"
+
 #include <iostream>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/lambda/bind.hpp>
+#include <boost/lambda/lambda.hpp>
 
 #include "Shiny.h"
 
@@ -8,13 +15,14 @@
 #include "trianglemeshhelper.h"
 #include "trace.h"
 #include "xml.h"
+#pragma GCC diagnostic pop
 
 ribi::trim::Point::Point(
   const boost::shared_ptr<const Coordinat2D> coordinat,
   const int index,
   const PointFactory&
-)
-  : m_connected{OrderByIndex()},
+) : m_signal_destroyed{},
+    m_connected{},
     m_coordinat(coordinat),
     m_index{index},
     m_z{}
@@ -24,30 +32,25 @@ ribi::trim::Point::Point(
   #endif
   using boost::geometry::get;
   assert(m_coordinat);
-  assert(m_coordinat == coordinat
-    && "A shallow copy please");
+  assert(m_coordinat == coordinat && "A shallow copy please");
   assert(!std::isnan(get<0>(*m_coordinat)));
   assert(!std::isnan(get<1>(*m_coordinat)));
 }
 
 ribi::trim::Point::~Point() noexcept
 {
-  #ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
   m_signal_destroyed(this);
-  #endif //#ifdef TRIANGLEMESH_USE_BOOST_SIGNALS2
 }
 
-void ribi::trim::Point::AddConnected(const boost::weak_ptr<Face>& face)
+void ribi::trim::Point::AddConnected(const boost::shared_ptr<Face>& face)
 {
-  assert(face.lock().get() != nullptr);
-  #ifndef NDEBUG
-  const auto prev_sz = m_connected.size();
-  #endif
-  m_connected.insert(face);
-  #ifndef NDEBUG
-  const auto new_sz = m_connected.size();
-  assert(new_sz == prev_sz + 1);
-  #endif
+  //assert(face.lock().get() != nullptr);
+  assert(face);
+  m_connected.push_back(face);
+
+  face->m_signal_destroyed.connect(
+    boost::bind(&ribi::trim::Point::OnFaceDestroyed,this,boost::lambda::_1)
+  );
 }
 
 ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcept
@@ -79,21 +82,29 @@ const boost::units::quantity<boost::units::si::length> ribi::trim::Point::GetZ()
   return *m_z;
 }
 
+void ribi::trim::Point::OnFaceDestroyed(const ribi::trim::Face * const face) noexcept
+{
+  assert(1==2);
+  const auto new_end = std::remove_if(m_connected.begin(),m_connected.end(),
+    [face](const boost::shared_ptr<Face>& connected) { return connected.get() == face; }
+  );
+  m_connected.erase(new_end,m_connected.end());
+}
 
 std::function<
     bool(
-      const boost::weak_ptr<const ribi::trim::Face>& lhs,
-      const boost::weak_ptr<const ribi::trim::Face>& rhs
+      const boost::shared_ptr<const ribi::trim::Face>& lhs,
+      const boost::shared_ptr<const ribi::trim::Face>& rhs
     )
   >
   ribi::trim::Point::OrderByIndex() const noexcept
 {
-  return [](const boost::weak_ptr<const Face>& lhs, const boost::weak_ptr<const Face>& rhs)
+  return [](const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs)
   {
-    assert(lhs.lock());
-    assert(rhs.lock());
-    assert(lhs.lock()->GetIndex() != rhs.lock()->GetIndex());
-    return lhs.lock()->GetIndex() < rhs.lock()->GetIndex();
+    assert(lhs);
+    assert(rhs);
+    assert(lhs->GetIndex() != rhs->GetIndex());
+    return lhs->GetIndex() < rhs->GetIndex();
   };
 }
 
@@ -116,8 +127,10 @@ void ribi::trim::Point::SetZ(const boost::units::quantity<boost::units::si::leng
   if (GetConnected().empty()) return;
   for (auto face: GetConnected())
   {
-    assert(face.lock());
-    face.lock()->CheckOrientation();
+    assert(face);
+    face->CheckOrientation();
+    //assert(face.lock());
+    //face.lock()->CheckOrientation();
   }
   #endif
 }
