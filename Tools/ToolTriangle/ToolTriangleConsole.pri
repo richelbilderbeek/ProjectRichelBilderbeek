@@ -1,3 +1,6 @@
+DEFINES += SELF_CHECK
+DEFINES += ANSI_DECLARATORS
+
 INCLUDEPATH += \
     ../../Tools/ToolTriangle
 

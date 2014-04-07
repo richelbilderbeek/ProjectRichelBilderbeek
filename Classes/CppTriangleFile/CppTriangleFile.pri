@@ -1,6 +1,6 @@
-win32 {
-  DEFINES += USE_TRIANGLE_EXE
-}
+#win32 {
+#  DEFINES += USE_TRIANGLE_EXE
+#}
 
 INCLUDEPATH += \
     ../../Classes/CppTriangleFile

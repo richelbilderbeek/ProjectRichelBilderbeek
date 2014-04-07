@@ -253,8 +253,10 @@ extern "C" {         //RJCB
 #endif               //RJCB
 typedef double REAL; //RJCB
 typedef int VOID;    //RJCB
-int triangle_main(int argc, char** argv); //RJCB
-#define ANSI_DECLARATORS //RJCB
+int triangle_main(   //RJCB
+  int argc,          //RJCB
+  char** argv        //RJCB
+);                   //RJCB
 
 struct triangulateio {
   REAL *pointlist;                                               /* In / out */
@@ -297,6 +299,6 @@ void trifree();
 #endif /* not ANSI_DECLARATORS */
 
 #undef ANSI_DECLARATORS //RJCB
-#ifdef __cplusplus //RJCB
-} //RJCB
-#endif //RJCB
+#ifdef __cplusplus      //RJCB
+}                       //RJCB
+#endif                  //RJCB

@@ -32,7 +32,20 @@ struct CodeBreaker
 {
   CodeBreaker();
 
-  double CalculateChiSquared(
+  ///Returns chi_squared_value and critical_value
+  ///if (chi_squared_value < critical_value)
+  ///{
+  ///  std::cout
+  ///    << "Cannot reject null hypothesis that the measured values "
+  ///        "do follow the expected frequencies" << std::endl;
+  ///}
+  ///else
+  ///{
+  ///  std::cout
+  ///    << "Reject null hypothesis that the measured values "
+  ///       "do follow the expected frequencies" << std::endl;
+  ///}
+  std::pair<double,double> CalculateChiSquared(
     const std::map<char,double>& frequency_measured,
     const std::map<char,double>& frequency_expected
   ) const noexcept;
@@ -45,6 +58,26 @@ struct CodeBreaker
 
   ///Tally the characters in text for a certain period
   std::vector<std::map<char,int>> GetCharTally(const std::string& text, const int period) const noexcept;
+
+  std::string GetExampleDutch() const noexcept
+  {
+    return
+      "In de kansrekening speelt het begrip kansverdeling, waarschijnlijkheidsverdeling "
+      "of -distributie (niet te verwarren met het gelijknamige begrip distributie in de "
+      "analyse) een centrale rol. Bij een experiment waarin het toeval een rol speelt, "
+      "geeft de kansverdeling aan hoe de kansen verdeeld zijn. In de theorie wordt hier "
+      "een zeer specifieke betekenis aan gegeven, maar meer algemeen duidt men met "
+      "kansverdeling wel het geheel van mogelijke uitkomsten en bijbehorende kansen aan."
+      "Zo wordt bij een worp met een zuivere dobbelsteen de kansverdeling van het geworpen "
+      "ogenaantal wel beschreven als gelijk aan 1/6 voor elke uitkomst. Strikt genomen is "
+      "dit echter de kansfunctie, waarmee overigens de kansverdeling wel vastgelegd wordt. "
+      "Het formele begrip kansverdeling is voornamelijk van theoretisch belang en zelfs daar "
+      "zal vaker met de verdelingsfunctie, die geheel bepalend is voor de kansverdeling, "
+      "gewerkt worden. Bij discrete kansverdelingen wordt de verdelingsfunctie op zijn "
+      "beurt weer geheel bepaald door een kansfunctie en bij continue veranderlijken "
+      "(absoluut continue verdelingsfunctie) door een kansdichtheid."
+    ;
+  }
 
   std::string GetExampleEnglish() const noexcept
   {
@@ -66,10 +99,15 @@ struct CodeBreaker
   }
 
   std::map<char,double> GetLetterFrequencyDutch() const noexcept;
-  std::map<char,double> GetLetterFrequencyEnglish() const noexcept;
+  static std::map<char,double> GetLetterFrequencyEnglish() noexcept;
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
+
+  int GuessCaesarCipherKey(
+    const std::string& secret_text,
+    const std::map<char,double>& expected_char_frequency = GetLetterFrequencyEnglish()
+    ) const noexcept;
 
   private:
   std::vector<double> CalculateRelativeError(

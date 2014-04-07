@@ -30,11 +30,23 @@ namespace ribi {
 struct CaesarCipher
 {
   CaesarCipher(const int key);
+
+  ///Creates a clean string, which is a
+  ///lowercasenospaces string
+  static std::string Clean(const std::string& s) noexcept;
+
+  ///Assumes IsClean, use Clean to make it so
   std::string Encrypt(std::string s) const noexcept;
+
+  ///Assumes IsClean, use Clean to make it so
   std::string Deencrypt(std::string s) const noexcept;
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///Checks if string is clean, which is a
+  ///lowercasenospaces string. Use Clean to make it so.
+  static bool IsClean(const std::string& s) noexcept;
 
   private:
   const int m_key;

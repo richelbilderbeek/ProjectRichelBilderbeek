@@ -11,9 +11,9 @@
 #include "fileio.h"
 #include "trace.h"
 
-#ifndef _WIN32
+//#ifndef _WIN32
 #include "triangle.h"
-#endif
+//#endif
 
 #pragma GCC diagnostic pop
 
@@ -193,12 +193,10 @@ void ribi::TriangleFile::ExecuteTriangle(
     cmd.push_back("-Q");
     std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
   }
-  const auto p = CreateArgv(cmd);
+  const std::pair<int,char **> p = CreateArgv(cmd);
+  #endif
   triangle_main(p.first,p.second);
   DeleteArgv(p);
-  assert(!"Yes, this works! Yay!");
-  #endif
-
   const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
   node_filename = filename_base + ".1.node";
   ele_filename = filename_base + ".1.ele";

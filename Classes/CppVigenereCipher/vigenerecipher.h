@@ -30,11 +30,21 @@ namespace ribi {
 struct VigenereCipher
 {
   VigenereCipher(const std::string& s);
-  std::string Encrypt(std::string s) const;
+
+  ///Creates a clean string, which is a
+  ///lowercasenospaces string
+  std::string Clean(const std::string& s) const noexcept;
+
   std::string Deencrypt(std::string s) const noexcept;
+
+  std::string Encrypt(std::string s) const;
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///Checks if string is clean, which is a
+  ///lowercasenospaces string. Use Clean to make it so.
+  bool IsClean(const std::string& s) const noexcept;
 
   private:
   const std::vector<int> m_key;

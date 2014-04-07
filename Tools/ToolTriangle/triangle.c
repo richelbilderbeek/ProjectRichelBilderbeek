@@ -212,11 +212,14 @@
 #pragma GCC diagnostic ignored "-Wsign-compare" //RJCB
 #pragma GCC diagnostic ignored "-Wunused-parameter" //RJCB
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter" //RJCB
-#ifdef __cplusplus //RJCB
-extern "C" { //RJCB
+#ifdef __cplusplus         //RJCB
+extern "C" {               //RJCB
 #endif //ifdef __cplusplus //RJCB
+#include <assert.h>        //RJCB
+//#define _STDIO_S_DEFINED   //RJCB
+#include <stdio.h>         //RJCB
+
 #include "triangle.h"
-#define ANSI_DECLARATORS //RJCB
 
 /* #define SINGLE */
 
@@ -3499,6 +3502,7 @@ struct behavior *b;
       }
 #ifndef TRILIBRARY
     } else {
+      assert(i < argc); //RJCB
       strncpy(b->innodefilename, argv[i], FILENAMESIZE - 1);
       b->innodefilename[FILENAMESIZE - 1] = '\0';
     }
@@ -13819,14 +13823,26 @@ char *infilename;
 #endif /* not ANSI_DECLARATORS */
 
 {
-  char *result;
+  char *result = NULL;
 
   /* Search for something that looks like a number. */
   do {
+    //printf("String: <begin>"); //RJCB
+    //printf(string);            //RJCB
+    //printf("<end>\n");         //RJCB
+
     result = fgets(string, INPUTLINESIZE, infile);
-    if (result == (char *) NULL) {
-      printf("  Error:  Unexpected end of file in %s.\n", infilename);
-      triexit(1);
+
+    printf("Result: <begin>"); //RJCB
+    printf(result);            //RJCB
+    printf("<end>\n");         //RJCB
+
+
+    //if (result == (char *) NULL) {
+    if (!result) { //RJCB
+      return 0;
+      //printf("Error:  Unexpected end of file in %s.\n", infilename);
+      //triexit(1);
     }
     /* Skip anything that doesn't look like a number, a comment, */
     /*   or the end of a line.                                   */
@@ -14233,6 +14249,10 @@ int *regions;
   if ((b->regionattrib || b->vararea) && !b->refine) {
     /* Read the area constraints. */
     stringptr = readline(inputline, polyfile, polyfilename);
+
+    if (stringptr == 0) goto my_end; //RJCB
+
+
     *regions = (int) strtol(stringptr, &stringptr, 0);
     if (*regions > 0) {
       regionlist = (REAL *) trimalloc(4 * *regions * (int) sizeof(REAL));
@@ -14274,6 +14294,9 @@ int *regions;
         index++;
       }
     }
+
+    my_end: ;//RJCB
+
   } else {
     /* Set `*regions' to zero to avoid an accidental free() later. */
     *regions = 0;
@@ -15692,7 +15715,7 @@ struct triangulateio *vorout;
 //int main(int argc, char **argv)
 int triangle_main(int argc, char **argv)
 #else /* not ANSI_DECLARATORS */
-int main(argc, argv)
+int triangle_main(argc, argv)
 int argc;
 char **argv;
 #endif /* not ANSI_DECLARATORS */

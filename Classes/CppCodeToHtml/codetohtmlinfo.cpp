@@ -4684,10 +4684,6 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     }
   );
 
-
-
-
-
   m.push_back(
     { "CppMxeExample1",
       {
@@ -4739,8 +4735,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  to <a href=\"CppCrossCompile.htm\">cross-compile</a> a",
         "  <a href=\"CppHelloQt.htm\">Hello Qt</a> program from",
         "  <a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.",
-        "</p>
-
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppMxeExample3.zip\">Download the Qt Creator project 'CppMxeExample3' (zip)</a></li>",
@@ -4748,14 +4743,6 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
-
-
-
-
-
-
-
-
 
   m.push_back(
     { "CppMxeExample4",

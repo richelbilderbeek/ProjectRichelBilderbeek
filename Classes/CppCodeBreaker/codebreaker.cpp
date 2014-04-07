@@ -33,8 +33,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/distributions/chi_squared.hpp>
 
+#include "caesarcipher.h"
 #include "trace.h"
 #include "loopreader.h"
+#include "vigenerecipher.h"
 #pragma GCC diagnostic pop
 
 ribi::CodeBreaker::CodeBreaker()
@@ -44,11 +46,12 @@ ribi::CodeBreaker::CodeBreaker()
   #endif
 }
 
-double ribi::CodeBreaker::CalculateChiSquared(
+std::pair<double,double> ribi::CodeBreaker::CalculateChiSquared(
   const std::map<char,double>& frequency_measured,
   const std::map<char,double>& frequency_expected
 ) const noexcept
 {
+  const bool verbose = false;
   std::vector<double> tally_expected;
   std::vector<double> tally_measured;
 
@@ -70,12 +73,15 @@ double ribi::CodeBreaker::CalculateChiSquared(
   assert(n_categories == static_cast<int>(tally_measured.size()));
   assert(n_categories == static_cast<int>(tally_expected.size()));
   assert(n_categories == static_cast<int>(rel_error.size()));
-  for (std::size_t i=0; i!=n_categories; ++i)
+  if (verbose)
   {
-    std::cout
-      << tally_measured[i] << "\t"
-      << tally_expected[i] << "\t"
-      << rel_error[i] << "\n";
+    for (std::size_t i=0; i!=n_categories; ++i)
+    {
+      std::cout
+        << tally_measured[i] << "\t"
+        << tally_expected[i] << "\t"
+        << rel_error[i] << "\n";
+    }
   }
 
   const double significance_level = 0.05;
@@ -91,30 +97,21 @@ double ribi::CodeBreaker::CalculateChiSquared(
   boost::math::chi_squared_distribution<double> distribution(degrees_of_freedom);
   const double critical_value
     = boost::math::quantile(boost::math::complement(distribution, significance_level));
-  std::cout
-    //<< "Mean size: " << mean
-    //<< "\nStdDev size: " << stdDev
-    << "\nSUM observer: "
-      << std::accumulate(tally_measured.begin(),tally_measured.end(), 0)
-    << "\nSUM expected: "
-      << std::accumulate(tally_expected.begin(),tally_expected.end(),0.0)
-    << "\nChi-square value: " << chi_squared_value
-    << "\nSignificance level: " << significance_level
-    << "\nDegrees of freedom: " << degrees_of_freedom
-    << "\nCritical value: " << critical_value << '\n';
-  if (chi_squared_value < critical_value)
+  if (verbose)
   {
     std::cout
-      << "Cannot reject null hypothesis that the measured values "
-         "do follow a normal distribution" << std::endl;
+      //<< "Mean size: " << mean
+      //<< "\nStdDev size: " << stdDev
+      << "\nSUM observer: "
+        << std::accumulate(tally_measured.begin(),tally_measured.end(), 0)
+      << "\nSUM expected: "
+        << std::accumulate(tally_expected.begin(),tally_expected.end(),0.0)
+      << "\nChi-square value: " << chi_squared_value
+      << "\nSignificance level: " << significance_level
+      << "\nDegrees of freedom: " << degrees_of_freedom
+      << "\nCritical value: " << critical_value << '\n';
   }
-  else
-  {
-    std::cout
-      << "Reject null hypothesis that the measured values "
-         "do follow a normal distribution" << std::endl;
-  }
-  return chi_squared_value;
+  return std::make_pair(chi_squared_value,critical_value);
 }
 
 std::vector<double> ribi::CodeBreaker::CalculateRelativeError(
@@ -214,7 +211,7 @@ std::map<char,double> ribi::CodeBreaker::GetLetterFrequencyDutch() const noexcep
   return m;
 }
 
-std::map<char,double> ribi::CodeBreaker::GetLetterFrequencyEnglish() const noexcept
+std::map<char,double> ribi::CodeBreaker::GetLetterFrequencyEnglish() noexcept
 {
   std::map<char,double> m;
   m.insert(std::make_pair('a',0.08167));
@@ -258,6 +255,37 @@ std::vector<std::string> ribi::CodeBreaker::GetVersionHistory() noexcept
   };
 }
 
+int ribi::CodeBreaker::GuessCaesarCipherKey(
+  const std::string& secret_text,
+  const std::map<char,double>& expected_char_frequency
+  ) const noexcept
+{
+  const bool verbose = false;
+  std::vector<double> v;
+
+  for (int key=0; key!=26; ++key)
+  {
+    CaesarCipher c(key);
+    const std::string plain_text = c.Deencrypt(secret_text);
+    const auto p(
+      CalculateChiSquared(
+        GetCharFrequency(plain_text),
+        expected_char_frequency
+      )
+    );
+    v.push_back(p.first);
+  }
+  if (verbose)
+  {
+    for (int i=0; i!=26; ++i)
+    {
+      std::cout << i << ": " << v[i] << '\n';
+    }
+  }
+  //The lower the value the better
+  return std::distance(v.begin(),std::min_element(v.begin(),v.end()));
+}
+
 #ifndef NDEBUG
 void ribi::CodeBreaker::Test() noexcept
 {
@@ -267,16 +295,96 @@ void ribi::CodeBreaker::Test() noexcept
     is_tested = true;
   }
   const CodeBreaker b;
+  //const bool verbose = false;
   TRACE("Starting ribi::CodeBreaker::Test");
   {
-    const std::string s = b.GetExampleEnglish();
-    const auto ps(b.GetCharFrequency(s));
-    for (const auto p: ps)
-    {
-      std::clog << p.first << ": " << p.second << '\n';
-    }
+    const auto p(
+      b.CalculateChiSquared(
+        b.GetCharFrequency(b.GetExampleEnglish()),
+        b.GetLetterFrequencyEnglish()
+      )
+    );
+    const double chi_squared_value = p.first;
+    const double critical_value = p.second;
+    assert(chi_squared_value < critical_value
+      && "Cannot reject null hypothesis that the measured values "
+         "do follow the expected frequencies"
+    );
   }
-  assert(1==2);
+  {
+    const auto p(
+      b.CalculateChiSquared(
+        b.GetCharFrequency(b.GetExampleDutch()),
+        b.GetLetterFrequencyDutch()
+      )
+    );
+    const double chi_squared_value = p.first;
+    const double critical_value = p.second;
+    assert(chi_squared_value < critical_value
+      && "Cannot reject null hypothesis that the measured values "
+         "do follow the expected frequencies"
+    );
+  }
+  //Check that encrypted text has significantly different frequencies
+  //which fails for Caesar cipher
+  for (int i=0; i!=26; ++i)
+  {
+    CaesarCipher c(i);
+    const std::string text = c.Clean(b.GetExampleEnglish());
+    const std::string encrypted = c.Encrypt(text);
+    //TRACE(encrypted);
+
+    const auto p(
+      b.CalculateChiSquared(
+        b.GetCharFrequency(encrypted),
+        b.GetLetterFrequencyEnglish()
+      )
+    );
+    const double chi_squared_value = p.first;
+    const double critical_value = p.second;
+    assert(chi_squared_value < critical_value
+      && "Cannot reject null hypothesis that the measured values "
+         "do follow the expected frequencies"
+         "(as a Ceasar cipher on a short text is not conclusive enough)"
+    );
+  }
+  //Check that encrypted text has significantly different frequencies
+  //which fails for Vigenere cipher
+  for (int i=0; i!=26; ++i)
+  {
+    const int key_length = 1 + (i * i);
+    std::string key;
+    for (int j=0; j!=key_length; ++j)
+    {
+      key += 'a' +( std::rand() % 26);
+    }
+    VigenereCipher c(key);
+    const std::string text = c.Clean(b.GetExampleEnglish());
+    const std::string encrypted = c.Encrypt(text);
+    //TRACE(encrypted);
+
+    const auto p(
+      b.CalculateChiSquared(
+        b.GetCharFrequency(encrypted),
+        b.GetLetterFrequencyEnglish()
+      )
+    );
+    const double chi_squared_value = p.first;
+    const double critical_value = p.second;
+    assert(chi_squared_value < critical_value
+      && "Cannot reject null hypothesis that the measured values "
+         "do follow the expected frequencies"
+         "(as a Vigenere cipher on a short text is not conclusive enough)"
+    );
+  }
+  //Guess the Ceasar cipher key
+  for (int key=0; key!=26; ++key)
+  {
+    CaesarCipher c(key);
+    const std::string text = CaesarCipher::Clean(b.GetExampleEnglish());
+    const std::string secret_text = c.Encrypt(text);
+    assert(b.GuessCaesarCipherKey(secret_text) == key);
+  }
   TRACE("Finished ribi::CodeBreaker::Test successfully");
 }
 #endif
