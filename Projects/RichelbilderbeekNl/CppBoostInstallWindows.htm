@@ -32,7 +32,7 @@ default locations.</p>
 Then, from the command line, in the Boost folder (for me, this was: 'E:/Projects/Libraries/boost_1_54_0'), type:</p>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="cmd.exe commands" border = "1"><tr><td><code>
 bootstrap gcc<br/>
 b2<br/>
 bjam --toolset=gcc</br>
@@ -40,6 +40,23 @@ bjam --toolset=gcc</br>
 <!-- end of the code -->
 <p>&nbsp;</p>
 <p>The 'gcc' toolset comes with <a href="CppQtCreator.htm">Qt Creator</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="Git Bash commands" border = "1"><tr><td><code>
+RBilderbeek@AIRBEAR-W7-I5 /D/Projects/Libraries (develop)</br>
+$ cd boost_1_55_0</br>
+</br>
+RBilderbeek@AIRBEAR-W7-I5 /D/Projects/Libraries/boost_1_55_0 (develop)</br>
+$ ./bootstrap.bat</br>
+</br>
+RBilderbeek@AIRBEAR-W7-I5 /D/Projects/Libraries/boost_1_55_0 (develop)</br>
+$ ./bjam.exe toolset=gcc link=static threading=multi --layout=versioned --prefix=c:/Boost --without-context install</br>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

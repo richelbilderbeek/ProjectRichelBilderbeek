@@ -110,7 +110,6 @@ ribi::foam::Files::Files(const Files& other)
 
 void ribi::foam::Files::CheckMe() const
 {
-  TRACE_FUNC();
   assert(m_faces);
   assert(m_points);
   const FaceIndex n_faces { FaceIndex(static_cast<int>(this->m_faces->GetItems().size())) };

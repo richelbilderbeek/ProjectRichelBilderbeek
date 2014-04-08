@@ -44,6 +44,9 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
 ) : m_ticks(0)
 {
   PROFILE_FUNC();
+  #ifndef NDEBUG
+  Test();
+  #endif
 
   const auto filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"));
 
@@ -416,3 +419,17 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     if (error) std::cout << "WARNING: cannot display mesh" << '\n';
   }
 }
+
+#ifndef NDEBUG
+void ribi::TestTriangleMeshMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestTriangleMeshMainDialog::Test");
+  ribi::trim::CellsCreatorFactory();
+  TRACE("Finished ribi::TestTriangleMeshMainDialog::Test successfully");
+}
+#endif

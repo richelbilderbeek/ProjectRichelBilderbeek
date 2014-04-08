@@ -1,13 +1,33 @@
-unix {
-  INCLUDEPATH += \
-    ../../Libraries/wt/src
-}
-
 win32 {
+  # Windows only
+  message("Wt, built for Windows")
   INCLUDEPATH += \
-    ../../Libraries/wt-3.3.1/src
-}
-
-unix {
+    ../../Libraries/wt/src \
+    ../../Libraries/wt/build
   LIBS += -lwt -lwthttp
 }
+
+macx {
+  # Mac only
+  message("Wt, built for Mac")
+  INCLUDEPATH += \
+    ../../Libraries/wt/src
+  LIBS += -lwt -lwthttp
+}
+
+unix:!macx{
+  # Linux only
+  message("Wt, built for Linux")
+  INCLUDEPATH += \
+    ../../Libraries/wt/src
+  LIBS += -lwt -lwthttp
+}
+
+cross_compile {
+  # Crosscompile only
+  message("Wt, cross-compiling from Linux to Windows")
+  INCLUDEPATH += \
+    ../../Libraries/wt/src
+  LIBS += -lwt -lwthttp
+}
+

@@ -41,7 +41,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   #ifndef NDEBUG
   Test();
   #endif
-  TRACE_FUNC();
   PROFILE_FUNC();
 
   for (const std::string& folder: GetAllFolders())

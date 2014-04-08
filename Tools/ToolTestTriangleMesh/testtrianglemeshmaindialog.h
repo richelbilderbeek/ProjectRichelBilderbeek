@@ -30,6 +30,10 @@ struct TestTriangleMeshMainDialog
 
   //Something to store
   int m_ticks;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

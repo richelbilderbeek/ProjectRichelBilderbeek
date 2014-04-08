@@ -12,9 +12,10 @@
 #include "plane.h"
 #include "testtrianglemeshmaindialog.h"
 #include "trace.h"
+#include "trianglefile.h"
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshcellscreatorfactory.h"
-#include "trianglefile.h"
+#include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
 #pragma GCC diagnostic pop
 

@@ -244,9 +244,7 @@ void ribi::TriangleFile::Test() noexcept
   std::string filename_node;
   std::string filename_ele;
   std::string filename_poly;
-  TRACE_FUNC();
   f.ExecuteTriangle(filename_node,filename_ele,filename_poly);
-  TRACE_FUNC();
   assert(fileio::FileIo().IsRegularFile(filename_node));
   assert(fileio::FileIo().IsRegularFile(filename_ele));
   assert(fileio::FileIo().IsRegularFile(filename_poly));

@@ -201,7 +201,10 @@ bool ribi::trim::Helper::IsClockwiseHorizontal(
 
 bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points) const noexcept
 {
-  return Geometry().IsConvex(PointsToCoordinats3D(points));
+  const Geometry geometry;
+  const std::vector<Coordinat3D> coordinats3d
+    = PointsToCoordinats3D(points);
+  return geometry.IsConvex(coordinats3d);
 }
 
 bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept
@@ -245,12 +248,14 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim
   #ifndef NDEBUG
   for (auto point: const_points) { assert(point); }
   #endif
-
+  return IsConvex(const_points);
+  /*
   const auto coordinats(PointsToCoordinats3D(const_points));
 
   assert(const_points.size() == coordinats.size());
 
   return Geometry().IsConvex(coordinats);
+  */
 }
 
 bool ribi::trim::Helper::IsCounterClockwise(
@@ -358,10 +363,9 @@ void ribi::trim::Helper::MakeConvex(
   assert(!points.empty());
   assert(points.size() == 4);
   #endif
-  const Helper helper;
   const Geometry geometry;
 
-  if (helper.IsConvex(points)) return;
+  if (IsConvex(points)) return;
 
   #ifndef NDEBUG
   static int cnt = 0;
@@ -371,11 +375,11 @@ void ribi::trim::Helper::MakeConvex(
   ++call_cnt;
   #endif
 
-  std::sort(points.begin(),points.end(),helper.OrderByX());
+  std::sort(points.begin(),points.end(),OrderByX());
 
   while (1)
   {
-    if (helper.IsConvex(points))
+    if (IsConvex(points))
     {
       break;
     }
@@ -383,11 +387,13 @@ void ribi::trim::Helper::MakeConvex(
     const std::vector<boost::shared_ptr<Point>> before(points);
     #endif
 
-    std::next_permutation(points.begin(),points.end(),helper.OrderByX());
+    std::next_permutation(points.begin(),points.end(),OrderByX());
 
     #ifndef NDEBUG
     const std::vector<boost::shared_ptr<Point>> after(points);
     assert(before != after);
+    assert(points != before);
+    assert(points == after);
     if (verbose)
     {
       #ifndef FIX_ISSUE_168
@@ -395,28 +401,28 @@ void ribi::trim::Helper::MakeConvex(
       #endif //#ifndef FIX_ISSUE_168
       ++cnt;
       //assert(cnt != (4 * 3 * 2 * 1) + 2);
-      if (cnt == 26) break;
+      if (cnt == 27) break;
     }
     #endif
   }
 
-  if (helper.IsConvex(points)) return;
+  if (IsConvex(points)) return;
 
   #ifndef NDEBUG
-  if(!helper.IsConvex(points))
+  if(!IsConvex(points))
   {
     TRACE("ERROR");
     TRACE(call_cnt);
     TRACE("TRY AGAIN");
-    std::sort(points.begin(),points.end(),helper.OrderByX());
+    std::sort(points.begin(),points.end(),OrderByX());
     for (int i=0; i!=26; ++i)
     {
-      std::next_permutation(points.begin(),points.end(),helper.OrderByX());
+      std::next_permutation(points.begin(),points.end(),OrderByX());
       {
         std::stringstream s;
         assert(points.size() == 4);
         assert(points[0]); assert(points[1]); assert(points[2]); assert(points[3]);
-        s << (helper.IsConvex(points) ? "Convex" : "Not convex")
+        s << (IsConvex(points) ? "Convex" : "Not convex")
           << ": "
           << geometry.ToStr(points[0]->GetCoordinat3D()) << "->"<< points[0]->GetIndex() << ","
           << geometry.ToStr(points[1]->GetCoordinat3D()) << "->"<< points[1]->GetIndex() << ","
@@ -427,9 +433,9 @@ void ribi::trim::Helper::MakeConvex(
       }
       {
         std::stringstream t;
-        const std::vector<Coordinat2D> projected_points(helper.CalcProjection(AddConst(points)));
+        const std::vector<Coordinat2D> projected_points(CalcProjection(AddConst(points)));
         assert(projected_points.size() == 4);
-        t << (helper.IsConvex(points) ? "Convex" : "Not convex")
+        t << (IsConvex(points) ? "Convex" : "Not convex")
           << ": "
           << geometry.ToStr(projected_points[0]) << ","
           << geometry.ToStr(projected_points[1]) << ","

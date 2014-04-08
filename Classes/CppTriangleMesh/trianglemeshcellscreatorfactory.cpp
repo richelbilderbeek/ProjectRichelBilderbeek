@@ -69,25 +69,28 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
   const CreateVerticalFacesStrategy strategy
 ) const noexcept
 {
-  const boost::shared_ptr<Template> my_template {
-    Template::CreateTest(0)
-  };
+  const CellsCreatorFactory cells_creator_factory;
+  const boost::shared_ptr<Template> my_template
+   = Template::CreateTest(0);
+  assert(my_template);
   assert(my_template->CountFaces() == 1);
   const int n_layers = 2;
-  const boost::shared_ptr<CellsCreator> cells_creator {
-    CellsCreatorFactory().Create(
+  const boost::shared_ptr<CellsCreator> cells_creator
+    = cells_creator_factory.Create(
       my_template,
       n_layers,
       1.0 * boost::units::si::meter,
       strategy
-    )
-  };
+  );
+  assert(cells_creator);
   #ifndef NDEBUG
-  const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
+  const std::vector<boost::shared_ptr<Cell>> cells
+    = cells_creator->GetCells();
   assert(cells.size() == 1 && "A prism consists out of 1 prisms");
   for (int i=0; i!=1; ++i)
   {
-    const std::vector<boost::shared_ptr<Face>> faces { cells[i]->GetFaces() };
+    const std::vector<boost::shared_ptr<Face>> faces
+      = cells[i]->GetFaces();
     for (const auto face: faces)
     {
       assert(face);
@@ -106,25 +109,31 @@ void ribi::trim::CellsCreatorFactory::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::CellsCreatorFactory::Test");
+  const CellsCreatorFactory cells_creator;
+  const CreateVerticalFacesStrategies create_vertical_faces_strategies;
   //Create prism
-  for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
+  for (CreateVerticalFacesStrategy strategy: create_vertical_faces_strategies.GetAll())
   {
-    const boost::shared_ptr<CellsCreator> prism {
-      CellsCreatorFactory().CreateTestPrism(strategy)
-    };
-    const std::vector<boost::shared_ptr<Cell>> cells { prism->GetCells() };
+    const boost::shared_ptr<CellsCreator> prism
+      = cells_creator.CreateTestPrism(strategy);
+    assert(prism);
+    const std::vector<boost::shared_ptr<Cell>> cells
+      = prism->GetCells();
     TRACE(cells.size());
     assert(cells.size() == 1 && "A prism consists of 1 prisms");
+    assert(cells[0]);
   }
   //Create cube
-  for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
+  for (CreateVerticalFacesStrategy strategy: create_vertical_faces_strategies.GetAll())
   {
-    boost::shared_ptr<CellsCreator> cube {
-      CellsCreatorFactory().CreateTestCube(strategy)
-    };
-    const std::vector<boost::shared_ptr<ribi::trim::Cell>> cells { cube->GetCells() };
+    boost::shared_ptr<CellsCreator> cube
+      = cells_creator.CreateTestCube(strategy);
+    assert(cube);
+    const std::vector<boost::shared_ptr<ribi::trim::Cell>> cells
+      = cube->GetCells();
     assert(cells.size() == 2 && "A cube consists of 2 prisms");
-
+    assert(cells[0]);
+    assert(cells[1]);
   }
   TRACE("Finished ribi::trim::CellsCreatorFactory::Test successfully");
 }
