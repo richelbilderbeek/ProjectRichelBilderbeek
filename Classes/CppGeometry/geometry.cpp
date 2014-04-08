@@ -478,8 +478,37 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
 
   #endif
   //Use the first three points for a Plane
+  for (const std::vector<int> v:
+    {
+      std::vector<int>( {0,1,2} ),
+      std::vector<int>( {0,1,3} ),
+      std::vector<int>( {0,2,1} ),
+      std::vector<int>( {0,2,3} ),
+      std::vector<int>( {0,3,1} ),
+      std::vector<int>( {0,3,2} ),
+      std::vector<int>( {1,0,2} ),
+      std::vector<int>( {1,0,3} ),
+      std::vector<int>( {1,2,0} ),
+      std::vector<int>( {1,2,3} ),
+      std::vector<int>( {1,3,0} ),
+      std::vector<int>( {1,3,2} ),
+      std::vector<int>( {2,0,1} ),
+      std::vector<int>( {2,0,3} ),
+      std::vector<int>( {2,1,0} ),
+      std::vector<int>( {2,1,3} ),
+      std::vector<int>( {2,3,0} ),
+      std::vector<int>( {2,3,1} ),
+      std::vector<int>( {3,0,1} ),
+      std::vector<int>( {3,0,2} ),
+      std::vector<int>( {3,1,0} ),
+      std::vector<int>( {3,1,2} ),
+      std::vector<int>( {3,2,0} ),
+      std::vector<int>( {3,2,1} )
+    }
+  )
   {
-    const boost::shared_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
+
+    const boost::shared_ptr<Plane> plane(new Plane(points[v[0]],points[v[1]],points[v[2]]));
     assert(plane);
 
     #ifndef NDEBUG
@@ -512,46 +541,6 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
 
     if (IsConvex(coordinats2d)) return true;
   }
-  //Try again with three different points to determine the plane. Should not give different results though
-  #define FIX_ISSUE_168_TO_ADD_TO_VIEW_CHANGE
-  #ifdef  FIX_ISSUE_168_TO_ADD_TO_VIEW_CHANGE
-  {
-    const boost::shared_ptr<Plane> plane(new Plane(points[1],points[2],points[3]));
-    assert(plane);
-
-    #ifndef NDEBUG
-    if (verbose)
-    {
-      try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}
-      try { TRACE(plane->ToFunctionY()); } catch (std::exception&) {}
-      try { TRACE(plane->ToFunctionZ()); } catch (std::exception&) {}
-    }
-    #endif
-
-    const std::vector<boost::geometry::model::d2::point_xy<double>> coordinats2d(
-      plane->CalcProjection(points)
-    );
-
-    #ifndef NDEBUG
-    if (verbose)
-    {
-      std::stringstream s;
-      s << "{";
-      for (auto coordinat2d: coordinats2d)
-      {
-        s << Geometry().ToStr(coordinat2d) << ",";
-      }
-      std::string co_str(s.str());
-      co_str[co_str.size() - 1] = '}';
-      TRACE(co_str);
-    }
-    #endif
-
-    //SHOULD BE AS FALSE AS THE PREVIOUS 'if (IsConvex(coordinats2d)) return true;'
-    if (IsConvex(coordinats2d)) return true;
-  }
-  #endif
-
   return false;
 }
 
