@@ -532,7 +532,8 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   }
   TRACE("n_face, non-unique:");
   TRACE(v.size());
-  std::sort(v.begin(),v.end(),Helper().OrderByIndex());
+  const Helper helper;
+  std::sort(v.begin(),v.end(),helper.OrderByIndex());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
@@ -558,8 +559,8 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilde
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
   }
-
-  std::sort(v.begin(),v.end(),Helper().OrderByX());
+  const Helper helper;
+  std::sort(v.begin(),v.end(),helper.OrderByX());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);

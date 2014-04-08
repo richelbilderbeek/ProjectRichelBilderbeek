@@ -313,6 +313,13 @@ int ribi::CodeBreaker::GuessCaesarCipherKey(
 
 int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_text) const noexcept
 {
+  const int length = static_cast<int>(secret_text.size());
+  std::vector<double> chi_squareds(length,0.0);
+  for (int i=1; i!=length; ++i)
+  {
+    const std::vector<std::map<char,double>> m = GetCharFrequency(secret_text,i);
+    CalculateChiSquared(
+  }
   assert(secret_text.size() > 0);
   return 0;
 }
@@ -417,7 +424,8 @@ void ribi::CodeBreaker::Test() noexcept
     assert(b.GuessCaesarCipherKey(secret_text) == key);
   }
   //Guess the Vigenere cipher key length
-  #ifdef FIXING_ISSUE_175
+  #define FIXING_ISSUE_175
+  #ifdef  FIXING_ISSUE_175
   for (int length=1; length!=5; ++length)
   {
     std::string key(length,'a');

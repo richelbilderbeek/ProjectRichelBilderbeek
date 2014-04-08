@@ -22,7 +22,7 @@
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-ribi::trim::Helper::Helper::Helper()
+ribi::trim::Helper::Helper::Helper() noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -104,7 +104,7 @@ std::set<
 >
   ribi::trim::Helper::ExtractCoordinats(
   const std::vector<boost::shared_ptr<const Point>>& points
-)
+) const noexcept
 {
   PROFILE_FUNC();
   using boost::geometry::get;
@@ -130,7 +130,7 @@ std::set<
   return s;
 }
 
-ribi::trim::Helper::Coordinat3dSet ribi::trim::Helper::ExtractCoordinats(const ribi::trim::Face& face)
+ribi::trim::Helper::Coordinat3dSet ribi::trim::Helper::ExtractCoordinats(const ribi::trim::Face& face) const noexcept
 {
   face.DoExtractCoordinats();
   return face.GetCoordinats();
@@ -274,7 +274,7 @@ bool ribi::trim::Helper::IsCounterClockwise(
   return Geometry().IsCounterClockwise(PointsToCoordinats3D(AddConst(points)),observer);
 }
 
-bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) noexcept
+bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) const noexcept
 {
   using boost::geometry::get;
   const bool answer_1 = face.GetOrientation() == FaceOrientation::horizontal;
@@ -343,7 +343,7 @@ bool ribi::trim::Helper::IsPlane(
   return Geometry().IsPlane(PointsToCoordinats3D(AddConst(points)));
 }
 
-bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) noexcept
+bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) const noexcept
 {
   const bool answer_1 = face.GetOrientation() == FaceOrientation::vertical;
   #ifndef NDEBUG
@@ -414,7 +414,7 @@ void ribi::trim::Helper::MakeConvex(
     TRACE("ERROR");
     TRACE(call_cnt);
     TRACE("TRY AGAIN");
-    std::sort(points.begin(),points.end(),OrderByX());
+    //std::sort(points.begin(),points.end(),OrderByX());
     for (int i=0; i!=26; ++i)
     {
       std::next_permutation(points.begin(),points.end(),OrderByX());

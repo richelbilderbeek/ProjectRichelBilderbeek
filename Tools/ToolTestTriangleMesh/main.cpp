@@ -66,7 +66,7 @@ int main(int, char* argv[])
     ribi::TestTriangleMeshMainDialog d(
       shapes,
       show_mesh,
-      100,
+      30,
       strategy,
       renumberMesh_command
     );
@@ -105,3 +105,7 @@ int main(int, char* argv[])
     return 1;
   }
 }
+
+//NEVER:
+//
+//- Never use 'Helper().DoSomething();', use 'const Helper helper; helper.DoSomething();'

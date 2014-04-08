@@ -4,7 +4,9 @@ win32 {
   INCLUDEPATH += \
     ../../Libraries/wt/src \
     ../../Libraries/wt/build
-  LIBS += -lwt -lwthttp
+  LIBS += \
+    -L/../../Libraries/wt/src \
+    -lwt -lwthttp
 }
 
 macx {

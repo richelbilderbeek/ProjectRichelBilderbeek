@@ -30,7 +30,7 @@ struct Helper
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
   typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
 
-  Helper();
+  Helper() noexcept;
 
   Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept;
 
@@ -43,8 +43,8 @@ struct Helper
 
   FaceSet CreateEmptyFaceSet() const noexcept;
 
-  Coordinat3dSet ExtractCoordinats(const Face& face);
-  std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> ExtractCoordinats(const std::vector<boost::shared_ptr<const Point>>& points);
+  Coordinat3dSet ExtractCoordinats(const Face& face) const noexcept;
+  std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> ExtractCoordinats(const std::vector<boost::shared_ptr<const Point>>& points) const noexcept;
 
   ///Obtain the angle in radians between two deltas
   ///12 o'clock is 0.0 * pi
@@ -114,7 +114,7 @@ struct Helper
     const Coordinat3D& observer
   ) const noexcept;
 
-  bool IsHorizontal(const Face& face) noexcept;
+  bool IsHorizontal(const Face& face) const noexcept;
 
   bool IsPlane(
     const std::vector<boost::shared_ptr<const Point>>& points
@@ -124,7 +124,7 @@ struct Helper
     const std::vector<boost::shared_ptr<Point>>& points
   ) const noexcept;
 
-  bool IsVertical(const Face& face) noexcept;
+  bool IsVertical(const Face& face) const noexcept;
 
   ///Order the points so that these are convex
   void MakeConvex(std::vector<boost::shared_ptr<Point>>& points) const noexcept;
@@ -152,7 +152,7 @@ struct Helper
 ///Help adding constness a bit
 template <class T>
 std::vector<boost::shared_ptr<const T>> AddConst(
-  const std::vector<boost::shared_ptr<T>> v)
+  const std::vector<boost::shared_ptr<T>> v) noexcept
 {
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
   const std::vector<boost::shared_ptr<const T>> w(v.begin(),v.end());
@@ -162,7 +162,7 @@ std::vector<boost::shared_ptr<const T>> AddConst(
 
 //From http://www.richelbilderbeek.nl/CppCanLexicalCast.htm
 template <class TargetType>
-bool CanLexicalCast(const std::string& from)
+bool CanLexicalCast(const std::string& from) noexcept
 {
   try
   {

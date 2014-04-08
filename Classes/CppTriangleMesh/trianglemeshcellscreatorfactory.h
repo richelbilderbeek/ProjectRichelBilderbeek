@@ -22,7 +22,7 @@ namespace trim {
 ///The only class to use Cell its constructor
 struct CellsCreatorFactory
 {
-  CellsCreatorFactory();
+  CellsCreatorFactory() noexcept;
 
   boost::shared_ptr<CellsCreator> Create(
     const boost::shared_ptr<const Template> t,

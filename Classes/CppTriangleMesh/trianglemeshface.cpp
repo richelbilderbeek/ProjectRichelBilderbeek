@@ -50,8 +50,9 @@ ribi::trim::Face::Face(
   assert(!m_points.empty());
   assert(  m_points[0].use_count() >= 2);
   assert(any_points[0].use_count() >= 2);
-  assert(Helper().IsPlane(m_points));
-  if (!Helper().IsConvex(m_points))
+  const Helper helper;
+  assert(helper.IsPlane(m_points));
+  if (!helper.IsConvex(m_points))
   {
     TRACE("ERROR");
     for (auto point: m_points) TRACE(point->ToStr());
@@ -60,7 +61,7 @@ ribi::trim::Face::Face(
   sm_faces.insert(std::make_pair(m_index,this));
 
   #ifndef FIX_ISSUE_168
-  assert(Helper().IsConvex(m_points));
+  assert(helper.IsConvex(m_points));
   #endif //#ifndef FIX_ISSUE_168
 
   if (m_orientation == FaceOrientation::horizontal)
@@ -171,7 +172,8 @@ void ribi::trim::Face::DoExtractCoordinats() const
   PROFILE_FUNC();
   assert(CanExtractCoordinats());
   //assert(m_coordinats.empty()); //This is done multiple times in debugging
-  m_coordinats = Helper().ExtractCoordinats(AddConst(m_points));
+  const Helper helper;
+  m_coordinats = helper.ExtractCoordinats(AddConst(m_points));
 }
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
@@ -245,14 +247,15 @@ void ribi::trim::Face::OnCellDestroyed(const Cell* const cell) noexcept
 void ribi::trim::Face::SetCorrectWinding() noexcept
 {
   PROFILE_FUNC();
+  const Helper helper;
   assert(m_points.size() == 3 || m_points.size() == 4);
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
     && "A Face its winding can only be set if it belongs to a cell"
   );
-  assert(Helper().IsPlane(m_points));
+  assert(helper.IsPlane(m_points));
 
   #ifndef FIX_ISSUE_168
-  assert(Helper().IsConvex(m_points));
+  assert(helper.IsConvex(m_points));
   #endif //#ifndef FIX_ISSUE_168
 
 
@@ -262,18 +265,18 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     : GetOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetOwner() : GetNeighbour()
   );
   assert(observer);
-  assert(Helper().IsPlane(m_points));
+  assert(helper.IsPlane(m_points));
 
-  if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
+  if (!helper.IsCounterClockwise(m_points,observer->CalculateCenter()))
   {
-    std::sort(m_points.begin(),m_points.end(),Helper().OrderByX()); //For std::next_permutation
+    std::sort(m_points.begin(),m_points.end(),helper.OrderByX()); //For std::next_permutation
     //Must be ordered counter-clockwise (although the documentation says otherwise?)
-    while (std::next_permutation(m_points.begin(),m_points.end(),Helper().OrderByX()))
+    while (std::next_permutation(m_points.begin(),m_points.end(),helper.OrderByX()))
     {
       assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
       if (
-        Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
-        && Helper().IsConvex(m_points)
+        helper.IsCounterClockwise(m_points,observer->CalculateCenter())
+        && helper.IsConvex(m_points)
       )
       {
         assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
@@ -283,7 +286,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   }
 
   #ifndef NDEBUG
-  if (!Helper().IsCounterClockwise(AddConst(m_points),observer->CalculateCenter()))
+  if (!helper.IsCounterClockwise(AddConst(m_points),observer->CalculateCenter()))
   {
     TRACE(m_points.size());
     for (const auto point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
@@ -292,11 +295,11 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   #endif
 
   #ifndef FIX_ISSUE_168
-  assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
+  assert(helper.IsCounterClockwise(m_points,observer->CalculateCenter()));
   #endif //#ifndef FIX_ISSUE_168
-  assert(Helper().IsPlane(m_points));
+  assert(helper.IsPlane(m_points));
   #ifndef FIX_ISSUE_168
-  assert(Helper().IsConvex(m_points));
+  assert(helper.IsConvex(m_points));
   #endif //#ifndef FIX_ISSUE_168
 }
 
@@ -328,8 +331,9 @@ void ribi::trim::Face::Test() noexcept
     const std::vector<boost::shared_ptr<Point>> points {
       PointFactory().CreateTestSquare(winding)
     };
+    const Helper helper;
     assert(points.size() == 4);
-    assert(Helper().IsConvex(points)
+    assert(helper.IsConvex(points)
       == (winding == Winding::clockwise || winding == Winding::counter_clockwise)
     );
   }

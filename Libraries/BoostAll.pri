@@ -4,6 +4,7 @@ win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_55_0
   LIBS += \
+    -L/../../Libraries/boost_1_55_0/bin.v2/libs \
     -lboost_date_time \
     -lboost_filesystem \
     -lboost_program_options \

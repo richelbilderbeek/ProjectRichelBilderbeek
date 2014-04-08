@@ -32,7 +32,7 @@ ribi::trim::Template::Template(
   Test();
   #endif
   PROFILE_FUNC();
-
+  const Helper helper;
   TRACE("Load the points and faces created by Triangle");
   {
     const std::vector<std::string> v {
@@ -74,9 +74,8 @@ ribi::trim::Template::Template(
 
   TRACE("Load and translate faces");
   {
-    const std::vector<std::string> v {
-      ribi::fileio::FileIo().FileToVector(filename_ele)
-    };
+    const std::vector<std::string> v
+      = ribi::fileio::FileIo().FileToVector(filename_ele);
     const int sz = v.size();
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
@@ -120,13 +119,13 @@ ribi::trim::Template::Template(
         m_points[point2-1],
         m_points[point3-1]
       };
-      if (!Helper().IsClockwiseHorizontal(face_points))
+      if (!helper.IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      assert(Helper().IsClockwiseHorizontal(face_points));
-      if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
-      assert(Helper().IsConvex(face_points) && "FaceFacory only accepts convex ordered points");
+      assert(helper.IsClockwiseHorizontal(face_points));
+      if (!helper.IsConvex(face_points)) { helper.MakeConvex(face_points); }
+      assert(helper.IsConvex(face_points) && "FaceFacory only accepts convex ordered points");
 
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
@@ -268,11 +267,12 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
         points[ v[1] ],
         points[ v[2] ]
       };
-      if (!Helper().IsClockwiseHorizontal(face_points))
+      const Helper helper;
+      if (!helper.IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      assert(Helper().IsClockwiseHorizontal(face_points));
+      assert(helper.IsClockwiseHorizontal(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -391,12 +391,13 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
         points[ v[1] ],
         points[ v[2] ]
       };
-      if (!Helper().IsClockwiseHorizontal(face_points))
+      const Helper helper;
+      if (!helper.IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
       #ifndef NDEBUG
-      if (!Helper().IsClockwiseHorizontal(face_points))
+      if (!helper.IsClockwiseHorizontal(face_points))
       {
         TRACE("ERROR");
         TRACE(*face_points[0]);
@@ -405,7 +406,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
         TRACE("BREAK");
       }
       #endif
-      assert(Helper().IsClockwiseHorizontal(face_points));
+      assert(helper.IsClockwiseHorizontal(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -539,11 +540,12 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
         points[point2],
         points[point3]
       };
-      if (!Helper().IsClockwiseHorizontal(face_points))
+      const Helper helper;
+      if (!helper.IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      assert(Helper().IsClockwiseHorizontal(face_points));
+      assert(helper.IsClockwiseHorizontal(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -689,11 +691,12 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
         points[point2],
         points[point3]
       };
-      if (!Helper().IsClockwiseHorizontal(face_points))
+      const Helper helper;
+      if (!helper.IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      assert(Helper().IsClockwiseHorizontal(face_points));
+      assert(helper.IsClockwiseHorizontal(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -768,6 +771,7 @@ void ribi::trim::Template::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Template::Test");
+  const Helper helper;
   //IsClockWise
   {
     {
@@ -791,9 +795,9 @@ void ribi::trim::Template::Test() noexcept
       points[0]->SetZ(1.0 * boost::units::si::meter);
       points[1]->SetZ(1.0 * boost::units::si::meter);
       points[2]->SetZ(1.0 * boost::units::si::meter);
-      assert(Helper().IsClockwiseHorizontal(points));
+      assert(helper.IsClockwiseHorizontal(points));
       std::reverse(points.begin(),points.end());
-      assert(!Helper().IsClockwiseHorizontal(points));
+      assert(!helper.IsClockwiseHorizontal(points));
     }
     {
       //12 o'clock
@@ -816,9 +820,9 @@ void ribi::trim::Template::Test() noexcept
       points[0]->SetZ(1.0 * boost::units::si::meter);
       points[1]->SetZ(1.0 * boost::units::si::meter);
       points[2]->SetZ(1.0 * boost::units::si::meter);
-      assert(!Helper().IsClockwiseHorizontal(points));
+      assert(!helper.IsClockwiseHorizontal(points));
       std::reverse(points.begin(),points.end());
-      assert(Helper().IsClockwiseHorizontal(points));
+      assert(helper.IsClockwiseHorizontal(points));
     }
   }
   for (int i=0; i!=4; ++i)
@@ -829,11 +833,11 @@ void ribi::trim::Template::Test() noexcept
     assert(my_template);
     for (auto face: my_template->GetFaces())
     {
-      if (!Helper().IsClockwiseHorizontal(face->GetPoints()))
+      if (!helper.IsClockwiseHorizontal(face->GetPoints()))
       {
         TRACE("BREAK");
       }
-      assert(Helper().IsClockwiseHorizontal(face->GetPoints()));
+      assert(helper.IsClockwiseHorizontal(face->GetPoints()));
     }
   }
   TRACE("Finished ribi::trim::Template::Test successfully");

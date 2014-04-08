@@ -153,7 +153,8 @@ void ribi::TriangleFile::ExecuteTriangle(
   assert(fileio::FileIo().IsRegularFile(filename));
   const std::string exe_filename { "triangle.exe" };
 
-  #ifdef USE_TRIANGLE_EXE
+  //#define USE_TRIANGLE_EXE
+  #ifdef  USE_TRIANGLE_EXE
   if (!fileio::FileIo().IsRegularFile(exe_filename))
   {
     QFile file( (":/trianglefile/files/" + exe_filename).c_str() );
@@ -194,9 +195,9 @@ void ribi::TriangleFile::ExecuteTriangle(
     std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
   }
   const std::pair<int,char **> p = CreateArgv(cmd);
-  #endif
   triangle_main(p.first,p.second);
   DeleteArgv(p);
+  #endif
   const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
   node_filename = filename_base + ".1.node";
   ele_filename = filename_base + ".1.ele";
@@ -216,7 +217,7 @@ std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
 {
   return {
     "2014-02-07: Version 1.0: initial version",
-    "2014-04-04: Version 1.1: allow non-Windows versions to call Triangle its code directly"
+    "2014-04-04: Version 1.1: allow to call Triangle its code directly"
   };
 }
 

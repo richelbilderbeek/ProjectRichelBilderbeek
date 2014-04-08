@@ -7305,6 +7305,30 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppWtAutoRun",
+      {
+        "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppWtAutoRun.htm\">WtAutoRun</a> is a bare-bone <a href=\"CppWt.htm\">Wt</a> program that",
+        "  starts the application without the need of a user giving command-line parameters. It is a",
+        "  fine starting point for a <a href=\"CppWt.htm\">Wt</a> application.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppWtAutoRun.zip\">Download the 'WtAutoRun' source code (zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The <a href=\"CppClass.htm\">class</a> <a href=\"CppWtAutoConfig.htm\">WtAutoConfig</a> embodies",
+        "  this functionality as a stand-alone <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppWtBroadcastServer",
       {
@@ -7371,6 +7395,26 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+
+  m.push_back(
+    { "CppWtGetIpAddress",
+      {
+        "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppWtFaq.htm\">Wt FAQ</a> on how to obtain the client's (that is:",
+        "  any person that browser your Wt website from any place in the world) IP address.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppWtGetIpAddress.png\">View a screenshot of 'CppWtGetIpAddress' (png)</a></li>",
+        "  <li><a href=\"CppWtGetIpAddress.zip\">Download the source code of 'CppWtGetIpAddress' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppWtGroupWidget",
       {

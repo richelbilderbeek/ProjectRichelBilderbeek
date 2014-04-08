@@ -11,7 +11,7 @@
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"
 
-ribi::trim::CellsCreatorFactory::CellsCreatorFactory()
+ribi::trim::CellsCreatorFactory::CellsCreatorFactory() noexcept
 {
   #ifndef NDEBUG
   Test();

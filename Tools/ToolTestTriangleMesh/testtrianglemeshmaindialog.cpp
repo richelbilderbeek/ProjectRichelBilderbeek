@@ -82,10 +82,10 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       const boost::units::quantity<boost::units::si::length> layer_height(
         1.0 * boost::units::si::meter
       );
-
+      const ribi::trim::CellsCreatorFactory cells_creator_factory;
       assert(t);
       const boost::shared_ptr<ribi::trim::CellsCreator> c
-        = ribi::trim::CellsCreatorFactory().Create(
+        = cells_creator_factory.Create(
           t,
           n_layers,
           layer_height,
@@ -130,7 +130,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       );
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       std::clog << "Number of strong faces: " << faces.size() << std::endl;
-      std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
+      const ribi::trim::Helper helper;
+      std::sort(faces.begin(),faces.end(),helper.OrderByIndex());
       const auto new_end = std::unique(faces.begin(),faces.end());
       faces.erase(new_end,faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);

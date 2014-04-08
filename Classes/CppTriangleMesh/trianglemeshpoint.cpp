@@ -162,10 +162,11 @@ std::string ribi::trim::Point::ToStr() const noexcept
 
 std::string ribi::trim::Point::ToXml() const noexcept
 {
+  const Helper helper;
   std::stringstream s;
   s
     << ribi::xml::ToXml("point_index",GetIndex())
-    << Helper().ToXml(*GetCoordinat())
+    << helper.ToXml(*GetCoordinat())
     << ribi::xml::ToXml("z", CanGetZ()
     ?  boost::lexical_cast<std::string>(GetZ().value())
     : ""
