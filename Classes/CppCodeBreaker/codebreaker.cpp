@@ -114,6 +114,39 @@ std::pair<double,double> ribi::CodeBreaker::CalculateChiSquared(
   return std::make_pair(chi_squared_value,critical_value);
 }
 
+double ribi::CodeBreaker::CalculateDistanceSquared(
+  const std::map<char,double>& frequency_left,
+  const std::map<char,double>& frequency_right
+) const noexcept
+{
+  std::vector<double> tally_left;
+  std::vector<double> tally_right;
+
+  for (char c = 'a'; c<='z'; ++c)
+  {
+    tally_left.push_back(
+      frequency_left.count(c) == 0
+      ? 0.0
+      : frequency_left.find(c)->second
+    );
+    tally_right.push_back(
+      frequency_right.count(c) == 0
+      ? 0.0
+      : frequency_right.find(c)->second
+    );
+  }
+  assert(tally_left.size() == tally_right.size());
+  const int size = static_cast<int>(tally_left.size());
+  double sum_squared = 0.0;
+  for (int i=0; i!=size; ++i)
+  {
+    const double d = tally_left[i] - tally_right[i];
+    const double d_squared = d * d;
+    sum_squared += d_squared;
+  }
+  return sum_squared;
+}
+
 std::vector<double> ribi::CodeBreaker::CalculateRelativeError(
   const std::vector<double>& frequency_measured,
   const std::vector<double>& frequency_expected
@@ -126,6 +159,12 @@ std::vector<double> ribi::CodeBreaker::CalculateRelativeError(
   {
     const double obs = frequency_measured[i];
     const double exp = frequency_expected[i];
+    #ifndef NDEBUG
+    if (exp == 0.0)
+    {
+      TRACE("ERROR");
+    }
+    #endif
     assert(exp!=0.0);
     v[i] = ((obs-exp)*(obs-exp))/exp;
   }
@@ -313,15 +352,57 @@ int ribi::CodeBreaker::GuessCaesarCipherKey(
 
 int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_text) const noexcept
 {
+  assert(secret_text.size() > 1);
   const int length = static_cast<int>(secret_text.size());
-  std::vector<double> chi_squareds(length,0.0);
-  for (int i=1; i!=length; ++i)
+  TRACE(length);
+  std::vector<double> chi_squareds;
+  for (int i=2; i!=length; ++i)
   {
+    //TRACE(i);
+    assert(i < length);
+    std::vector<double> chi_squared;
     const std::vector<std::map<char,double>> m = GetCharFrequency(secret_text,i);
-    CalculateChiSquared(
+    const int m_size = static_cast<int>(m.size());
+
+    for (int j=0; j!=m_size-1; ++j)
+    {
+      //TRACE(j);
+      assert(j >= 0);
+      assert(j < static_cast<int>(m.size()));
+      const std::map<char,double>& m_left = m[j];
+      //for (int k=j+1; k!=m_size; ++k)
+      const int k = j+1;
+      {
+        //TRACE(k);
+        assert(k >= 0);
+        assert(k < static_cast<int>(m.size()));
+        const std::map<char,double>& m_right = m[k];
+        chi_squared.push_back(CalculateDistanceSquared(m_left,m_right));
+      }
+    }
+    assert(!chi_squared.empty());
+    const double average
+      = std::accumulate(chi_squared.begin(),chi_squared.end(),0.0)
+      / static_cast<double>(chi_squared.size());
+    chi_squareds.push_back(average);
   }
-  assert(secret_text.size() > 0);
-  return 0;
+  #ifndef NDEBUG
+  assert(length - 2 == static_cast<int>(chi_squareds.size()));
+  for (int i=2; i!=length; ++i)
+  {
+    assert(i - 2 >= 0);
+    assert(i - 2 < static_cast<int>(chi_squareds.size()));
+    TRACE(chi_squareds[i-2]);
+  }
+  const int index = std::distance(
+    chi_squareds.begin(),
+    std::min_element(chi_squareds.begin(),chi_squareds.end())
+  );
+  const int key_length = index + 2;
+  TRACE(index);
+  TRACE(key_length);
+  #endif
+  return key_length;
 }
 
 #ifndef NDEBUG
@@ -426,14 +507,15 @@ void ribi::CodeBreaker::Test() noexcept
   //Guess the Vigenere cipher key length
   #define FIXING_ISSUE_175
   #ifdef  FIXING_ISSUE_175
-  for (int length=1; length!=5; ++length)
+  for (int length=2; length!=5; ++length)
   {
     std::string key(length,'a');
     for (int i=0; i!=length; ++i) { key[i] = 'a' + (std::rand() % 26); }
     VigenereCipher c(key);
     const std::string text = VigenereCipher::Clean(b.GetExampleEnglish());
     const std::string secret_text = c.Encrypt(text);
-    assert(b.GuessVigenereCipherKeyLength(secret_text) == length);
+    const int guess_length = b.GuessVigenereCipherKeyLength(secret_text);
+    assert(guess_length == length);
   }
   #endif //#ifdef FIXING_ISSUE_175
   TRACE("Finished ribi::CodeBreaker::Test successfully");

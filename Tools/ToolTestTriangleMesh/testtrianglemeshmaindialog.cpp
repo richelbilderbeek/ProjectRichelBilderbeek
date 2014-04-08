@@ -100,10 +100,15 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     }
     //Remove some random cells
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
+    #define TRIANGLE_MESH_DO_SCULPTING
+    #ifdef  TRIANGLE_MESH_DO_SCULPTING
     std::random_shuffle(cells.begin(),cells.end());
     std::reverse(cells.begin(),cells.end());
     std::random_shuffle(cells.begin(),cells.end());
     cells.resize(cells.size() * 3 / 4);
+    #else
+    TRACE("TRIANGLE_MESH_DO_SCULPTING");
+    #endif //~TRIANGLE_MESH_DO_SCULPTING
 
     std::clog << "Number of cells after sculpting: " << cells.size() << std::endl;
 
@@ -408,7 +413,12 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   std::clog << std::endl;
   std::cout << std::endl;
 
+  #define TESTTRIANGLEMESH_DO_RENUMBERMESH
+  #ifdef  TESTTRIANGLEMESH_DO_RENUMBERMESH
   std::system(renumberMesh_command.c_str());
+  #else
+  TRACE("TESTTRIANGLEMESH_DO_RENUMBERMESH");
+  #endif //~TESTTRIANGLEMESH_DO_RENUMBERMESH
 
   if (show_mesh)
   {

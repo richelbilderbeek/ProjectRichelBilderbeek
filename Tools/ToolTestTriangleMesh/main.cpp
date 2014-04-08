@@ -43,7 +43,7 @@ int main(int, char* argv[])
   try
   {
     const double pi { boost::math::constants::pi<double>() };
-    const bool show_mesh { false };
+    const bool show_mesh { true };
     const std::string renumberMesh_command(
       std::string(
         R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
@@ -55,18 +55,18 @@ int main(int, char* argv[])
       + " && cd .. && dir && renumberMesh"
     );
     const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes {
-      //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
-      ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,0.5), //? cube
+      ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
+      //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,0.5), //? cube
       //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,1.0) //1 prism
-      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,2.0), //3 prisms
-      ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0,4.0)
+      //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,2.0), //3 prisms
+      //ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0,4.0)
     };
 
 
-    ribi::TestTriangleMeshMainDialog d(
+    const ribi::TestTriangleMeshMainDialog d(
       shapes,
       show_mesh,
-      30,
+      3,
       strategy,
       renumberMesh_command
     );

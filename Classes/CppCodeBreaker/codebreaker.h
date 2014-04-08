@@ -50,6 +50,14 @@ struct CodeBreaker
     const std::map<char,double>& frequency_expected
   ) const noexcept;
 
+  ///Same as CalculateChiSquared, but now simple
+  ///returns a measure of the distance between these
+  ///frequencies
+  double CalculateDistanceSquared(
+    const std::map<char,double>& frequency_measured,
+    const std::map<char,double>& frequency_expected
+  ) const noexcept;
+
   ///Score the characters frequencies in text
   std::map<char,double> GetCharFrequency(const std::string& text) const noexcept;
 

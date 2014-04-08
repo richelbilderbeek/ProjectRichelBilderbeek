@@ -35,7 +35,9 @@ struct Cell
 
   void SetIndex(const int index) noexcept { m_index = index; }
 
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
   mutable boost::signals2::signal<void(const Cell* const)> m_signal_destroyed;
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   private:
   ~Cell() noexcept;

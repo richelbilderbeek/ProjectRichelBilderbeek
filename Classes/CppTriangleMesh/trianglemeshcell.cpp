@@ -17,7 +17,10 @@ ribi::trim::Cell::Cell(
   const std::vector<boost::shared_ptr<Face>>& faces,
   const int index,
   const CellFactory&)
-  : m_signal_destroyed{},
+  :
+    #ifdef TRIANGLEMESH_USE_SIGNALS2
+    m_signal_destroyed{},
+    #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
     m_faces(faces),
     m_index{index}
 {
@@ -29,7 +32,9 @@ ribi::trim::Cell::Cell(
 
 ribi::trim::Cell::~Cell()
 {
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
   m_signal_destroyed(this);
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 }
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Cell::CalculateCenter() const noexcept

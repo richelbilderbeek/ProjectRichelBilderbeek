@@ -69,7 +69,9 @@ struct Face
   ///   the cell with the heighest index
   void SetCorrectWinding() noexcept;
 
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
   boost::signals2::signal<void(const Face* const)> m_signal_destroyed;
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   private:
   ~Face() noexcept;
@@ -77,7 +79,12 @@ struct Face
   friend void boost::checked_delete<>(const Face* x);
 
   ///Cells this Face belongs to
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
   mutable std::vector<boost::shared_ptr<const Cell>> m_belongs_to;
+  #else
+  mutable std::vector<boost::weak_ptr<const Cell>> m_belongs_to;
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
+
 
   ///m_coordinats is used to speed up 'FaceExists', which compares a new Face
   ///with one already present, by comparing their sorted coordinats
@@ -111,7 +118,11 @@ struct Face
   void OnCellDestroyed(const Cell* const cell) noexcept;
 
   friend class CellFactory;
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
   void AddBelongsTo(boost::shared_ptr<const Cell> cell);
+  #else
+  void AddBelongsTo(boost::weak_ptr<const Cell> cell);
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   ///Determined in the end
   friend class TriangleMeshBuilder;

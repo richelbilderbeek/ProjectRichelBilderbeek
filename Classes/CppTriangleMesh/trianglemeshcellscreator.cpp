@@ -223,9 +223,9 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 
       if(!helper.IsConvex(face_points)) { helper.MakeConvex(face_points); }
       assert(helper.IsConvex(face_points));
-
+      const FaceFactory face_factory;
       const boost::shared_ptr<Face> face {
-        FaceFactory().Create(
+        face_factory.Create(
           face_points,
           FaceOrientation::horizontal
         )
@@ -251,7 +251,8 @@ std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreator::Cre
   {
     for (const boost::shared_ptr<const Point> point: t->GetPoints())
     {
-      const auto new_point(PointFactory().Create(point->GetCoordinat()));
+      const PointFactory point_factory;
+      const auto new_point(point_factory.Create(point->GetCoordinat()));
       new_point->SetZ(static_cast<double>(i) * layer_height );
       v.push_back(new_point);
     }
@@ -278,8 +279,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   for (const auto point: all_points) { assert(point); }
   if (verbose) { TRACE("Get edges"); }
   #endif
-  const std::vector<std::pair<int,int>> edges
-    = t->GetEdges();
+  const std::vector<std::pair<int,int>> edges = t->GetEdges();
   assert(!edges.empty());
   const int n_edges = static_cast<int>(edges.size());
   const int n_points_per_layer = static_cast<int>(t->GetPoints().size());
@@ -478,9 +478,17 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   assert(std::count(points.begin(),points.end(),nullptr) == 0);
 
   //Collect the candidates
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
   std::vector<boost::shared_ptr<Face>> candidates;
   for (auto p: a->GetPoints()) { for (auto q: p->GetConnected()) { assert(q); candidates.push_back(q); } }
   for (auto p: b->GetPoints()) { for (auto q: p->GetConnected()) { assert(q); candidates.push_back(q); } }
+  #else
+  std::vector<boost::weak_ptr<Face>> weak_candidates;
+  for (auto p: a->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
+  for (auto p: b->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
+  std::vector<boost::shared_ptr<Face>> candidates;
+  for (auto p: weak_candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
+  #endif
   //std::vector<boost::shared_ptr<Face>> candidates;
   //for (auto p: candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
   std::sort(candidates.begin(),candidates.end(),helper.OrderByIndex());
