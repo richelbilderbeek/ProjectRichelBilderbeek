@@ -353,13 +353,14 @@ int ribi::CodeBreaker::GuessCaesarCipherKey(
 int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_text) const noexcept
 {
   assert(secret_text.size() > 1);
-  const int length = static_cast<int>(secret_text.size());
-  TRACE(length);
+  const int text_length = static_cast<int>(secret_text.size());
+  TRACE(text_length);
   std::vector<double> chi_squareds;
-  for (int i=2; i!=length; ++i)
+  const int shortest_guess = 1;
+  for (int i=shortest_guess; i!=text_length; ++i)
   {
     //TRACE(i);
-    assert(i < length);
+    assert(i < text_length);
     std::vector<double> chi_squared;
     const std::vector<std::map<char,double>> m = GetCharFrequency(secret_text,i);
     const int m_size = static_cast<int>(m.size());
@@ -387,18 +388,18 @@ int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_te
     chi_squareds.push_back(average);
   }
   #ifndef NDEBUG
-  assert(length - 2 == static_cast<int>(chi_squareds.size()));
-  for (int i=2; i!=length; ++i)
+  assert(text_length - shortest_guess == static_cast<int>(chi_squareds.size()));
+  for (int i=shortest_guess; i!=text_length; ++i)
   {
-    assert(i - 2 >= 0);
-    assert(i - 2 < static_cast<int>(chi_squareds.size()));
-    TRACE(chi_squareds[i-2]);
+    assert(i - shortest_guess >= 0);
+    assert(i - shortest_guess < static_cast<int>(chi_squareds.size()));
+    TRACE(chi_squareds[i-shortest_guess]);
   }
   const int index = std::distance(
     chi_squareds.begin(),
     std::min_element(chi_squareds.begin(),chi_squareds.end())
   );
-  const int key_length = index + 2;
+  const int key_length = index + shortest_guess;
   TRACE(index);
   TRACE(key_length);
   #endif
