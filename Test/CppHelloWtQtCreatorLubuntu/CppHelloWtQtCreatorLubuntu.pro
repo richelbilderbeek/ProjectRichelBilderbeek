@@ -1,11 +1,5 @@
-QT       += core
-QT       -= gui
-LIBS += -lwt -lwthttp -lboost_signals
+include(../../WebApplication.pri)
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
 
-#Needed for older Wt versions
-#QMAKE_CXXFLAGS += -DNDEBUG
-
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
 SOURCES += main.cpp

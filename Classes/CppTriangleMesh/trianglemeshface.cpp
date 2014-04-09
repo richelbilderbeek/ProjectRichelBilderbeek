@@ -62,6 +62,8 @@ ribi::trim::Face::Face(
   }
   assert(sm_faces.count(m_index) == 0);
   sm_faces.insert(std::make_pair(m_index,this));
+  assert(sm_faces.count(m_index) == 1 && "Constructor postcondition, destructor precondition");
+  assert(sm_faces.find(m_index)->second && "Constructor postcondition, destructor precondition");
 
   #ifndef FIX_ISSUE_168
   assert(helper.IsConvex(m_points));
@@ -96,9 +98,15 @@ ribi::trim::Face::~Face() noexcept
     TRACE(sm_faces.count(m_index));
     TRACE("ERROR");
   }
+  if(!sm_faces.find(m_index)->second)
+  {
+    TRACE(m_index);
+    TRACE(sm_faces.find(m_index)->second);
+    TRACE("ERROR");
+  }
   #endif
-  assert(sm_faces.count(m_index) == 1);
-  assert(sm_faces.find(m_index)->second);
+  assert(sm_faces.count(m_index) == 1 && "Constructor postcondition, destructor precondition");
+  assert(sm_faces.find(m_index)->second && "Constructor postcondition, destructor precondition");
   sm_faces.find(m_index)->second = nullptr;
 
   #ifdef TRIANGLEMESH_USE_SIGNALS2

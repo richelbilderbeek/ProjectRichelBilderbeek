@@ -248,15 +248,20 @@
 /*                                                                           */
 /*****************************************************************************/
 
-#ifdef __cplusplus   //RJCB
-extern "C" {         //RJCB
-#endif               //RJCB
-typedef double REAL; //RJCB
-typedef int VOID;    //RJCB
-int triangle_main(   //RJCB
-  int argc,          //RJCB
-  char** argv        //RJCB
-);                   //RJCB
+#ifdef __cplusplus       //RJCB
+extern "C" {             //RJCB
+#endif                   //RJCB
+typedef double REAL;     //RJCB
+typedef int VOID;        //RJCB
+int triangle_main(       //RJCB
+  int argc,              //RJCB
+  char** argv            //RJCB
+);                       //RJCB
+#define ANSI_DECLARATORS //RJCB
+#ifndef ANSI_DECLARATORS
+#pragma error
+I_WILL_NOT_COMPILE
+#endif
 
 struct triangulateio {
   REAL *pointlist;                                               /* In / out */

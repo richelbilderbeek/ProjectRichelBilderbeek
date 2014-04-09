@@ -1,4 +1,5 @@
 #DEFINES += FIX_ISSUE_168
+#DEFINES += ANSI_DECLARATORS
 
 exists(../../ConsoleApplication.pri) {
   include(../../ConsoleApplication.pri)

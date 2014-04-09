@@ -1,3 +1,5 @@
+#DEFINES += ANSI_DECLARATORS
+
 INCLUDEPATH += \
     ../../Tools/ToolTriangle
 

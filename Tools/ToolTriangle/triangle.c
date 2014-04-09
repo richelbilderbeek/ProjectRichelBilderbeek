@@ -216,8 +216,13 @@
 extern "C" {               //RJCB
 #endif //ifdef __cplusplus //RJCB
 #include <assert.h>        //RJCB
-//#define _STDIO_S_DEFINED   //RJCB
+//#define _STDIO_S_DEFINED //RJCB
 #include <stdio.h>         //RJCB
+#define ANSI_DECLARATORS
+#ifndef ANSI_DECLARATORS
+#pragma error
+I_WILL_NOT_COMPILE
+#endif                     //RJCB
 
 #include "triangle.h"
 
@@ -3674,8 +3679,8 @@ struct behavior *b;
 /*  highest level of verbosity (`-VVV') is specified.                        */
 /*                                                                           */
 /*****************************************************************************/
-
-#ifdef ANSI_DECLARATORS
+#define ANSI_DECLARATORS
+#ifdef  ANSI_DECLARATORS
 void printtriangle(struct mesh *m, struct behavior *b, struct otri *t)
 #else /* not ANSI_DECLARATORS */
 void printtriangle(m, b, t)
@@ -11718,7 +11723,7 @@ vertex endpoint2;
   vertex leftvertex, rightvertex;
   vertex newvertex;
   enum insertvertexresult success;
-  enum finddirectionresult collinear;
+  //enum finddirectionresult collinear;
   REAL ex, ey;
   REAL tx, ty;
   REAL etx, ety;
@@ -11787,7 +11792,7 @@ vertex endpoint2;
 
   /* Inserting the vertex may have caused edge flips.  We wish to rediscover */
   /*   the edge connecting endpoint1 to the new intersection vertex.         */
-  collinear = finddirection(m, b, splittri, endpoint1);
+  /* enum finddirectionresult collinear = */finddirection(m, b, splittri, endpoint1);
   dest(*splittri, rightvertex);
   apex(*splittri, leftvertex);
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1])) {
@@ -12452,7 +12457,7 @@ char *polyfilename;
   int index;
 #else /* not TRILIBRARY */
   char inputline[INPUTLINESIZE];
-  char *stringptr;
+  //char *stringptr = 0; //RJCB
 #endif /* not TRILIBRARY */
   vertex endpoint1, endpoint2;
   int segmentmarkers;
@@ -12472,7 +12477,7 @@ char *polyfilename;
 #else /* not TRILIBRARY */
     /* Read the segments from a .poly file. */
     /* Read number of segments and number of boundary markers. */
-    stringptr = readline(inputline, polyfile, polyfilename);
+    char * stringptr = readline(inputline, polyfile, polyfilename); //RJCB
     m->insegments = (int) strtol(stringptr, &stringptr, 0);
     stringptr = findfield(stringptr);
     if (*stringptr == '\0') {
@@ -12991,6 +12996,7 @@ REAL area;
 /*                                                                           */
 /*****************************************************************************/
 
+#define ANSI_DECLARATORS
 #ifdef ANSI_DECLARATORS
 void carveholes(struct mesh *m, struct behavior *b, REAL *holelist, int holes,
                 REAL *regionlist, int regions)
@@ -13195,14 +13201,14 @@ struct behavior *b;
 
 {
   struct osub subsegloop;
-  int dummy;
+  //int dummy;
 
   traversalinit(&m->subsegs);
   subsegloop.ssorient = 0;
   subsegloop.ss = subsegtraverse(m);
   while (subsegloop.ss != (subseg *) NULL) {
     /* If the segment is encroached, add it to the list. */
-    dummy = checkseg4encroach(m, b, &subsegloop);
+    /*dummy = */checkseg4encroach(m, b, &subsegloop);
     subsegloop.ss = subsegtraverse(m);
   }
 }
@@ -13268,7 +13274,7 @@ int triflaws;
   REAL split;
   REAL multiplier, divisor;
   int acuteorg, acuteorg2, acutedest, acutedest2;
-  int dummy;
+  //int dummy;
   int i;
   triangle ptr;                     /* Temporary variable used by stpivot(). */
   subseg sptr;                        /* Temporary variable used by snext(). */
@@ -13437,9 +13443,9 @@ int triflaws;
           m->steinerleft--;
         }
         /* Check the two new subsegments to see if they're encroached. */
-        dummy = checkseg4encroach(m, b, &currentenc);
+        /*dummy = */checkseg4encroach(m, b, &currentenc);
         snextself(currentenc);
-        dummy = checkseg4encroach(m, b, &currentenc);
+        /*dummy = */checkseg4encroach(m, b, &currentenc);
       }
 
       badsubsegdealloc(m, encloop);
@@ -13827,15 +13833,12 @@ char *infilename;
 
   /* Search for something that looks like a number. */
   do {
-    //printf("String: <begin>"); //RJCB
-    //printf(string);            //RJCB
-    //printf("<end>\n");         //RJCB
+
+    printf("Result: <begin>%s<end>\n",string); //RJCB
 
     result = fgets(string, INPUTLINESIZE, infile);
 
-    printf("Result: <begin>"); //RJCB
-    printf(result);            //RJCB
-    printf("<end>\n");         //RJCB
+    printf("Result: <begin>%s<end>\n",result); //RJCB
 
 
     //if (result == (char *) NULL) {
@@ -13910,6 +13913,8 @@ char *string;
 
 #ifndef TRILIBRARY
 
+#define ANSI_DECLARATORS //RJCB
+
 #ifdef ANSI_DECLARATORS
 void readnodes(struct mesh *m, struct behavior *b, char *nodefilename,
                char *polyfilename, FILE **polyfile)
@@ -13926,7 +13931,7 @@ FILE **polyfile;
   FILE *infile;
   vertex vertexloop;
   char inputline[INPUTLINESIZE];
-  char *stringptr;
+  //char *stringptr = 0; //RJCB
   char *infilename;
   REAL x, y;
   int firstnode;
@@ -13946,7 +13951,7 @@ FILE **polyfile;
     }
     /* Read number of vertices, number of dimensions, number of vertex */
     /*   attributes, and number of boundary markers.                   */
-    stringptr = readline(inputline, *polyfile, polyfilename);
+    char * stringptr = readline(inputline, *polyfile, polyfilename); //RJCB
     m->invertices = (int) strtol(stringptr, &stringptr, 0);
     stringptr = findfield(stringptr);
     if (*stringptr == '\0') {
@@ -13994,7 +13999,7 @@ FILE **polyfile;
     }
     /* Read number of vertices, number of dimensions, number of vertex */
     /*   attributes, and number of boundary markers.                   */
-    stringptr = readline(inputline, infile, nodefilename);
+    char * stringptr = readline(inputline, infile, nodefilename); //RJCB
     m->invertices = (int) strtol(stringptr, &stringptr, 0);
     stringptr = findfield(stringptr);
     if (*stringptr == '\0') {
@@ -14033,7 +14038,7 @@ FILE **polyfile;
   /* Read the vertices. */
   for (i = 0; i < m->invertices; i++) {
     vertexloop = (vertex) poolalloc(&m->vertices);
-    stringptr = readline(inputline, infile, infilename);
+    char * stringptr = readline(inputline, infile, infilename); //RJCB
     if (i == 0) {
       firstnode = (int) strtol(stringptr, &stringptr, 0);
       if ((firstnode == 0) || (firstnode == 1)) {
@@ -14212,12 +14217,12 @@ int *regions;
   REAL *holelist;
   REAL *regionlist;
   char inputline[INPUTLINESIZE];
-  char *stringptr;
+  //char *stringptr = 0; //RJCB
   int index;
   int i;
 
   /* Read the holes. */
-  stringptr = readline(inputline, polyfile, polyfilename);
+  char * stringptr = readline(inputline, polyfile, polyfilename); //RJCB
   *holes = (int) strtol(stringptr, &stringptr, 0);
   if (*holes > 0) {
     holelist = (REAL *) trimalloc(2 * *holes * (int) sizeof(REAL));
@@ -15723,6 +15728,7 @@ char **argv;
 #endif /* not TRILIBRARY */
 {
   struct mesh m;
+  m.regions = 0; //RJCB
   struct behavior b;
   REAL *holearray;                                        /* Array of holes. */
   REAL *regionarray;   /* Array of regional attributes and area constraints. */

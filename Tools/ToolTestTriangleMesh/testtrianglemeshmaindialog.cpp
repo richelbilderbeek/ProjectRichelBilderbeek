@@ -68,6 +68,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   //Read data from Triangle.exe output
+  TRACE("TODO");
+  return;
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
     const boost::shared_ptr<const ribi::trim::Template> t

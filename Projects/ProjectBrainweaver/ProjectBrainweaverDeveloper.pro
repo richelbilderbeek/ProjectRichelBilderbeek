@@ -7,7 +7,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += printsupport
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
-
+#Specific, console
 include(../../Classes/CppCoordinat/CppCoordinat.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
