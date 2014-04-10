@@ -109,7 +109,6 @@ void ribi::trim::CellFactory::Test() noexcept
   }
   TRACE("Starting ribi::trim::CellFactory::Test");
   //Create prism
-  #ifdef ISSUE_168
   for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const boost::shared_ptr<Cell> prism {
@@ -122,7 +121,6 @@ void ribi::trim::CellFactory::Test() noexcept
       face->SetCorrectWinding();
     }
   }
-  #endif //~#ifdef ISSUE_168
   //Create cube
   for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
   {
