@@ -60,7 +60,7 @@ struct Template
 
   //Split a string
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input) noexcept;
 
   #ifndef NDEBUG

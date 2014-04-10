@@ -91,7 +91,7 @@ struct Face
   mutable Coordinat3dSet m_coordinats;
 
   ///Track the creation and deletion of faces
-  static std::map<int,const Face*> sm_faces;
+  static std::set<const Face*> sm_faces;
 
   ///The index of this Face in an TriangleMeshBuilder vector. It is determined at the end
   mutable int m_index;

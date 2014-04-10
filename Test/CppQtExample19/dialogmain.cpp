@@ -1,15 +1,20 @@
+#include "dialogmain.h"
+
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QDesktopWidget>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QTimer>
 
-#include "dialogmain.h"
 #include "ui_dialogmain.h"
+#pragma GCC diagnostic pop
 
 DialogMain::DialogMain(QWidget *parent) :
   QDialog(parent),
@@ -59,18 +64,6 @@ DialogMain::~DialogMain()
   delete m_sprite;
 }
 
-void DialogMain::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 //Sets the scale of the maze
 void DialogMain::resizeEvent(QResizeEvent*)
 {
@@ -109,9 +102,13 @@ void DialogMain::onTick()
 void DialogMain::onCheck()
 {
   if (ui->check_auto_rotate->isChecked())
+  {
     m_timer->start();
+  }
   else
+  {
     m_timer->stop();
+  }
 
 }
 

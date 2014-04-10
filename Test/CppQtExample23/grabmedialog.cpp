@@ -1,31 +1,23 @@
-//---------------------------------------------------------------------------
 #include "grabmedialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "ui_grabmedialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 GrabMeDialog::GrabMeDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GrabMeDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 GrabMeDialog::~GrabMeDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void GrabMeDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
+
 void GrabMeDialog::on_button_grab_clicked()
 {
   ui->label_image->setPixmap(
@@ -36,4 +28,4 @@ void GrabMeDialog::on_button_grab_clicked()
   //copy.save("temp.png");
   //ui->label_image->setPixmap(QPixmap("temp.png"));
 }
-//---------------------------------------------------------------------------
+

@@ -744,7 +744,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
 
 
 
-const std::vector<std::string> ribi::trim::Template::SeperateString(
+std::vector<std::string> ribi::trim::Template::SeperateString(
   const std::string& input_original) noexcept
 {
   PROFILE_FUNC();

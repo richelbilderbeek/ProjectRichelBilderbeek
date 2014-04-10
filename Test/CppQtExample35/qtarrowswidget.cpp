@@ -1,8 +1,14 @@
 #include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/math/constants/constants.hpp>
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include "qtarrowitem.h"
 #include "qtarrowswidget.h"
+#pragma GCC diagnostic pop
 
 QtArrowsWidget::QtArrowsWidget()
   : m_scene(new QGraphicsScene(this))
@@ -12,8 +18,8 @@ QtArrowsWidget::QtArrowsWidget()
   const int n_arrows = 16;
   for (int i=0; i!=n_arrows; ++i)
   {
-    const double angle = 2.0 * M_PI * (static_cast<double>(i) / static_cast<double>(n_arrows));
-    const double d_angle = (2.0 * M_PI) / 32.0;
+    const double angle = 2.0 * boost::math::constants::pi<double>() * (static_cast<double>(i) / static_cast<double>(n_arrows));
+    const double d_angle = (2.0 * boost::math::constants::pi<double>()) / 32.0;
     const double tail_x =  std::sin(angle) * 100.0;
     const double tail_y = -std::cos(angle) * 100.0;
     const bool tail = (std::rand() >> 4) % 2;

@@ -216,7 +216,7 @@
 extern "C" {               //RJCB
 #endif //ifdef __cplusplus //RJCB
 #include <assert.h>        //RJCB
-//#define _STDIO_S_DEFINED   //RJCB
+//#define _STDIO_S_DEFINED //RJCB
 #include <stdio.h>         //RJCB
 
 #include "triangle.h"
@@ -11718,7 +11718,7 @@ vertex endpoint2;
   vertex leftvertex, rightvertex;
   vertex newvertex;
   enum insertvertexresult success;
-  enum finddirectionresult collinear;
+  //enum finddirectionresult collinear;
   REAL ex, ey;
   REAL tx, ty;
   REAL etx, ety;
@@ -11787,7 +11787,7 @@ vertex endpoint2;
 
   /* Inserting the vertex may have caused edge flips.  We wish to rediscover */
   /*   the edge connecting endpoint1 to the new intersection vertex.         */
-  collinear = finddirection(m, b, splittri, endpoint1);
+  /*collinear = */finddirection(m, b, splittri, endpoint1);
   dest(*splittri, rightvertex);
   apex(*splittri, leftvertex);
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1])) {
@@ -11841,10 +11841,10 @@ int newmark;
   struct otri crosstri;
   struct osub crosssubseg;
   vertex leftvertex, rightvertex;
-  enum finddirectionresult collinear;
+  //enum finddirectionresult collinear;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
-  collinear = finddirection(m, b, searchtri, endpoint2);
+  enum finddirectionresult collinear = finddirection(m, b, searchtri, endpoint2);
   dest(*searchtri, rightvertex);
   apex(*searchtri, leftvertex);
   if (((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) ||
@@ -13195,14 +13195,14 @@ struct behavior *b;
 
 {
   struct osub subsegloop;
-  int dummy;
+  //int dummy;
 
   traversalinit(&m->subsegs);
   subsegloop.ssorient = 0;
   subsegloop.ss = subsegtraverse(m);
   while (subsegloop.ss != (subseg *) NULL) {
     /* If the segment is encroached, add it to the list. */
-    dummy = checkseg4encroach(m, b, &subsegloop);
+    /*dummy = */checkseg4encroach(m, b, &subsegloop);
     subsegloop.ss = subsegtraverse(m);
   }
 }
@@ -13268,7 +13268,7 @@ int triflaws;
   REAL split;
   REAL multiplier, divisor;
   int acuteorg, acuteorg2, acutedest, acutedest2;
-  int dummy;
+  //int dummy;
   int i;
   triangle ptr;                     /* Temporary variable used by stpivot(). */
   subseg sptr;                        /* Temporary variable used by snext(). */
@@ -13437,9 +13437,9 @@ int triflaws;
           m->steinerleft--;
         }
         /* Check the two new subsegments to see if they're encroached. */
-        dummy = checkseg4encroach(m, b, &currentenc);
+        /*dummy = */checkseg4encroach(m, b, &currentenc);
         snextself(currentenc);
-        dummy = checkseg4encroach(m, b, &currentenc);
+        /*dummy = */checkseg4encroach(m, b, &currentenc);
       }
 
       badsubsegdealloc(m, encloop);
@@ -13833,9 +13833,7 @@ char *infilename;
 
     result = fgets(string, INPUTLINESIZE, infile);
 
-    printf("Result: <begin>"); //RJCB
-    printf(result);            //RJCB
-    printf("<end>\n");         //RJCB
+    printf("Result: <begin>%s<end>\n",result); //RJCB
 
 
     //if (result == (char *) NULL) {

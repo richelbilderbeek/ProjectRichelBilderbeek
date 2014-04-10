@@ -27,7 +27,7 @@
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-std::map<int,const ribi::trim::Face*> ribi::trim::Face::sm_faces;
+std::set<const ribi::trim::Face*> ribi::trim::Face::sm_faces;
 
 ribi::trim::Face::Face(
   const std::vector<boost::shared_ptr<Point>>& any_points,
@@ -60,8 +60,8 @@ ribi::trim::Face::Face(
     TRACE("ERROR");
     for (auto point: m_points) TRACE(point->ToStr());
   }
-  assert(sm_faces.count(m_index) == 0);
-  sm_faces.insert(std::make_pair(m_index,this));
+  assert(sm_faces.count(this) == 0);
+  sm_faces.insert(this);
 
   #ifndef FIX_ISSUE_168
   assert(helper.IsConvex(m_points));
@@ -91,15 +91,15 @@ ribi::trim::Face::Face(
 ribi::trim::Face::~Face() noexcept
 {
   #ifndef NDEBUG
-  if(!sm_faces.count(m_index) == 1)
+  if(sm_faces.count(this) != 1)
   {
-    TRACE(sm_faces.count(m_index));
+    TRACE(*this);
     TRACE("ERROR");
   }
   #endif
-  assert(sm_faces.count(m_index) == 1);
-  assert(sm_faces.find(m_index)->second);
-  sm_faces.find(m_index)->second = nullptr;
+  assert(sm_faces.count(this) == 1);
+  sm_faces.erase(this);
+  assert(sm_faces.count(this) == 0);
 
   #ifdef TRIANGLEMESH_USE_SIGNALS2
   m_signal_destroyed(this);
@@ -279,6 +279,7 @@ void ribi::trim::Face::OnCellDestroyed(const Cell* const cell) noexcept
 
 void ribi::trim::Face::SetCorrectWinding() noexcept
 {
+  assert(!"Does SetCorrectWinding cause error?");
   PROFILE_FUNC();
   const Helper helper;
   assert(m_points.size() == 3 || m_points.size() == 4);

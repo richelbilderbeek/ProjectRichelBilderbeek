@@ -1,10 +1,15 @@
 #include <cassert>
 #include <iostream>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QCursor>
 #include <QFont>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include "qttextpositionitem.h"
+#pragma GCC diagnostic pop
 
 QtTextPositionItem::QtTextPositionItem(
   const std::string& text,
@@ -29,7 +34,11 @@ QRectF QtTextPositionItem::boundingRect() const
   return m_rect;
 }
 
-void QtTextPositionItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void QtTextPositionItem::paint(
+  QPainter *painter,
+  const QStyleOptionGraphicsItem * /*option*/,
+  QWidget * /*widget*/
+)
 {
   QFont font;
   font.setFamily("monospace");

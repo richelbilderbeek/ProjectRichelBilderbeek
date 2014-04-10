@@ -1,13 +1,18 @@
+#include "image.h"
+
 #include <cassert>
 #include <iostream>
 
-#include "image.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
 #include <QBitmap>
 #include <QColor>
 #include <QImage>
 #include <QPixmap>
 #include <QMouseEvent>
+#pragma GCC diagnostic pop
 
 Image::Image(const QString& filename)
 {

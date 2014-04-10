@@ -1,7 +1,11 @@
 #ifndef DIALOGMAIN_H
 #define DIALOGMAIN_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 struct QGraphicsPixmapItem;
@@ -16,10 +20,9 @@ class DialogMain : public QDialog
 
 public:
   explicit DialogMain(QWidget *parent = 0);
+  DialogMain(const DialogMain&) = delete;
+  DialogMain& operator=(const DialogMain&) = delete;
   ~DialogMain();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::DialogMain *ui;

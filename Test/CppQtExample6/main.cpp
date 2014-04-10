@@ -1,6 +1,9 @@
 #include <cmath>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/static_assert.hpp>
 
@@ -10,6 +13,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
+#pragma GCC diagnostic pop
 
 BOOST_STATIC_ASSERT(sizeof(qreal)==sizeof(double)
   && "Assume use of double is equivalent of qreal");

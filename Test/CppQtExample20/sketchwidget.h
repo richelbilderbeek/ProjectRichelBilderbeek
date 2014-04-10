@@ -1,10 +1,14 @@
 #ifndef SKETCHWIDGET_H
 #define SKETCHWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 class SketchWidget : public QWidget
 {
   Q_OBJECT
@@ -18,12 +22,7 @@ protected:
   void paintEvent(QPaintEvent *);
 
 private:
-  std::vector<std::vector<QPoint> > m_points;
-
-signals:
-
-public slots:
-
+  std::vector<std::vector<QPoint>> m_points;
 };
-//---------------------------------------------------------------------------
+
 #endif // SKETCHWIDGET_H

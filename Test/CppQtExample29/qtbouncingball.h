@@ -1,7 +1,11 @@
 #ifndef QTBOUNCINGBALL_H
 #define QTBOUNCINGBALL_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QGraphicsItem>
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 

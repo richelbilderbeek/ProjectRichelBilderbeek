@@ -1,4 +1,6 @@
 #DEFINES += FIX_ISSUE_168
+QMAKE_CXXFLAGS += -Werror
+
 
 exists(../../ConsoleApplication.pri) {
   include(../../ConsoleApplication.pri)

@@ -2,8 +2,13 @@
 #define MYDIALOG_H
 
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 struct QPushButton;
 struct QHBoxLayout;
@@ -19,8 +24,8 @@ public:
 private:
   boost::shared_ptr<QPushButton> m_button1;
   boost::shared_ptr<QPushButton> m_button2;
-  boost::shared_ptr<QHBoxLayout> m_layout;
   std::vector<boost::shared_ptr<MyDialog> > m_children;
+  boost::shared_ptr<QHBoxLayout> m_layout;
 
 private slots:
   void button1clicked();

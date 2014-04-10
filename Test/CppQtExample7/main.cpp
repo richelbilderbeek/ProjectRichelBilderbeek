@@ -3,16 +3,13 @@
 #include <cmath>
 #include <iostream>
 
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/static_assert.hpp>
 
-#ifdef __STRICT_ANSI__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
-#endif
 
 #include <QApplication>
 #include <QBitmap>
@@ -20,6 +17,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
+#pragma GCC diagnostic pop
 
 BOOST_STATIC_ASSERT(sizeof(qreal)==sizeof(double)
   && "Assume use of double is equivalent of qreal");
@@ -32,11 +30,7 @@ BOOST_STATIC_ASSERT(sizeof(qreal)==sizeof(double)
 //From www.richelbilderbeek.nl/CppGetAngle.htm
 double GetAngle(const double dx, const double dy)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   return pi - (std::atan2(dx,dy));
 }
 
@@ -48,11 +42,7 @@ void DoPerfectElasticCollision(
   double& angle2,
   double& speed2)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   //The length of the impulse of player 1 (assumes both players have equal mass!)
   const double A = speed1;
   //The length of the impulse of player 2 (assumes both players have equal mass!)
@@ -143,13 +133,7 @@ struct TransparentSprite : public QGraphicsPixmapItem
     const int r = 255,
     const int g = 255,
     const int b = 255)
-    : angle(GetRandomUniform() * 2.0
-      #ifdef __STRICT_ANSI__
-      * boost::math::constants::pi<double>()
-      #else
-      * M_PI
-      #endif
-    ), //Random direction
+    : angle(GetRandomUniform() * 2.0 * boost::math::constants::pi<double>()), //Random direction
       speed(2.0),
       maxx(0),
       maxy(0)
@@ -178,7 +162,8 @@ struct TransparentSprite : public QGraphicsPixmapItem
           const QColor c(
             (1.0 - (dist / ray)) * r_real,
             (1.0 - (dist / ray)) * g_real,
-            (1.0 - (dist / ray)) * b_real);
+            (1.0 - (dist / ray)) * b_real
+          );
           i.setPixel(x,y,c.rgb());
         }
         else
@@ -231,7 +216,8 @@ struct TransparentSprite : public QGraphicsPixmapItem
           this_angle,
           this_speed,
           other_angle,
-          other_speed);
+          other_speed
+        );
 
         this->angle = this_angle;
         this->speed = this_speed;
@@ -249,12 +235,7 @@ struct TransparentSprite : public QGraphicsPixmapItem
     {
       while (1)
       {
-        #ifdef __STRICT_ANSI__
         const double pi = boost::math::constants::pi<double>();
-        #else
-        const double pi = M_PI;
-        #endif
-
         setX(x() + (std::sin(angle) * speed));
         setY(y() - (std::cos(angle) * speed));
         if (x() <  0.0) { setX(x()+1); angle = (0.0*pi) + ((0.0*pi) - angle); continue; }
@@ -290,11 +271,7 @@ int main(int argc, char *argv[])
   std::vector<boost::shared_ptr<TransparentSprite> > sprites;
   //Add multiple sprites
   {
-    #ifdef __STRICT_ANSI__
     const double pi = boost::math::constants::pi<double>();
-    #else
-    const double pi = M_PI;
-    #endif
     const int n_sprites = 10;
     const double midx = background.pixmap().width() / 2.0;
     const double midy = background.pixmap().height() / 2.0;
@@ -304,13 +281,15 @@ int main(int argc, char *argv[])
     for (int i=0; i!=n_sprites; ++i)
     {
       boost::shared_ptr<TransparentSprite> sprite(
-          new TransparentSprite(
-              32,
-              32,
-              128 + (std::rand() % 128),
-              128 + (std::rand() % 128),
-              128 + (std::rand() % 128)));
-      const double x = midx + (std::sin(angle) * ray) - (sprite->pixmap().width() / 2);
+        new TransparentSprite(
+          32,
+          32,
+          128 + (std::rand() % 128),
+          128 + (std::rand() % 128),
+          128 + (std::rand() % 128)
+        )
+      );
+      const double x = midx + (std::sin(angle) * ray) - (sprite->pixmap().width()  / 2);
       const double y = midy - (std::cos(angle) * ray) - (sprite->pixmap().height() / 2);
       sprite->setX(x);
       sprite->setY(y);
