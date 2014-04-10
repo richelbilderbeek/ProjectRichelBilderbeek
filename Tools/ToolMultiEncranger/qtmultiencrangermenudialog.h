@@ -12,15 +12,15 @@ namespace Ui {
 
 namespace ribi {
 
-class QtToolMultiEncrangerMenuDialog : public QtHideAndShowDialog
+class QtMultiEncrangerMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtToolMultiEncrangerMenuDialog(QWidget *parent = 0) noexcept;
-  QtToolMultiEncrangerMenuDialog(const QtToolMultiEncrangerMenuDialog&) = delete;
-  QtToolMultiEncrangerMenuDialog& operator=(const QtToolMultiEncrangerMenuDialog&) = delete;
-  ~QtToolMultiEncrangerMenuDialog() noexcept;
+  explicit QtMultiEncrangerMenuDialog(QWidget *parent = 0) noexcept;
+  QtMultiEncrangerMenuDialog(const QtMultiEncrangerMenuDialog&) = delete;
+  QtMultiEncrangerMenuDialog& operator=(const QtMultiEncrangerMenuDialog&) = delete;
+  ~QtMultiEncrangerMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent * event) noexcept;

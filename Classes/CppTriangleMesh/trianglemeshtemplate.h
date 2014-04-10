@@ -45,6 +45,10 @@ struct Template
     std::vector<std::vector<int>> face_point_indices,
     std::vector<boost::shared_ptr<Point>> points
   );
+  Template(const Template& ) = delete;
+  Template(      Template&&) = delete;
+  Template& operator=(const Template& ) = delete;
+  Template& operator=(      Template&&) = delete;
   ~Template() noexcept {}
 
   ///ints are m_points indices

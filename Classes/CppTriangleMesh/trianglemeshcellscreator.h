@@ -26,7 +26,9 @@ namespace trim {
 struct CellsCreator
 {
   CellsCreator(const CellsCreator&) = delete;
+  CellsCreator(CellsCreator&&) = delete;
   CellsCreator& operator=(const CellsCreator&) = delete;
+  CellsCreator& operator=(const CellsCreator&&) = delete;
 
   void Clear() noexcept { m_cells.clear(); }
 

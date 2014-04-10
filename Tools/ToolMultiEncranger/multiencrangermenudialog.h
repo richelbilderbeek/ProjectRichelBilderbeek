@@ -8,7 +8,7 @@
 
 namespace ribi {
 
-struct ToolMultiEncrangerMenuDialog : public MenuDialog
+struct MultiEncrangerMenuDialog : public MenuDialog
 {
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;

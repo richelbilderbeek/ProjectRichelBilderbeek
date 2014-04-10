@@ -57,8 +57,10 @@ struct Point
   #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   private:
-  Point(const Point&) = delete;
-  Point& operator=(const Point&) = delete;
+  Point(const Point& ) = delete;
+  Point(      Point&&) = delete;
+  Point& operator=(const Point& ) = delete;
+  Point& operator=(      Point&&) = delete;
   ~Point() noexcept;
   friend void boost::checked_delete<>(      Point* x);
   friend void boost::checked_delete<>(const Point* x);

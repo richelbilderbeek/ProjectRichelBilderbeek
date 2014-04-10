@@ -56,7 +56,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   std::string filename_poly;
   {
     ribi::TriangleFile f(shapes);
-    const double quality = 50.0;
+    const double quality = 5.0;
     const double area = 2.0;
     f.ExecuteTriangle(
       filename_node,

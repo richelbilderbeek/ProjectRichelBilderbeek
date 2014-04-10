@@ -22,7 +22,7 @@ void SaveContainer(const Container& c, const std::string& filename)
   std::copy(c.begin(),c.end(),std::ostream_iterator<typename Container::value_type>(f,"\n"));
 }
 
-int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::MultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -125,7 +125,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
   return 0;
 }
 
-ribi::About ribi::ToolMultiEncrangerMenuDialog::GetAbout() const noexcept
+ribi::About ribi::MultiEncrangerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -141,7 +141,7 @@ ribi::About ribi::ToolMultiEncrangerMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-ribi::Help ribi::ToolMultiEncrangerMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::MultiEncrangerMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -161,19 +161,19 @@ ribi::Help ribi::ToolMultiEncrangerMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::ToolMultiEncrangerMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::MultiEncrangerMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramMultiEncranger);
   assert(p);
   return p;
 }
 
-std::string ribi::ToolMultiEncrangerMenuDialog::GetVersion() const noexcept
+std::string ribi::MultiEncrangerMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-std::vector<std::string> ribi::ToolMultiEncrangerMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::MultiEncrangerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "20xx-xx-xx: Version 1.0: initial version programmed in C++ Builder",
@@ -183,7 +183,7 @@ std::vector<std::string> ribi::ToolMultiEncrangerMenuDialog::GetVersionHistory()
 }
 
 #ifndef NDEBUG
-void ribi::ToolMultiEncrangerMenuDialog::Test() noexcept
+void ribi::MultiEncrangerMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

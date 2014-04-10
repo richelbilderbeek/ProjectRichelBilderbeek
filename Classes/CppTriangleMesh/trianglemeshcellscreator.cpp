@@ -31,7 +31,7 @@ ribi::trim::CellsCreator::CellsCreator(
   const CreateVerticalFacesStrategy strategy,
   const CellsCreatorFactory&
 ) : m_cells(CreateCells(t,n_layers,layer_height,strategy)),
-    m_strategy{strategy}
+    m_strategy(strategy)
 {
   #ifndef NDEBUG
   Test();
@@ -364,6 +364,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           //for (auto  p: face_points) { TRACE(*p); }
           assert(!helper.IsConvex(face_points));
           TRACE("ERROR");
+          std::exit(0);
         }
         #endif
         #endif

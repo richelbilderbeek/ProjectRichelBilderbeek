@@ -26,8 +26,10 @@ struct Face
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
   //typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
 
-  Face(const Face&) = delete;
-  Face& operator=(const Face&) = delete;
+  Face(const Face& ) = delete;
+  Face(      Face&&) = delete;
+  Face& operator=(const Face& ) = delete;
+  Face& operator=(      Face&&) = delete;
 
   Coordinat3D CalcCenter() const noexcept;
 
