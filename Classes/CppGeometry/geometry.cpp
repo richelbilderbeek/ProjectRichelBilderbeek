@@ -437,27 +437,14 @@ bool ribi::Geometry::IsConvex(Polygon polygon
 {
   assert(boost::geometry::num_points(polygon) == points.size()
     && "Points and polygon have the same number of points");
-  //From http://www.boost.org/doc/libs/1_55_0/libs/geometry/doc/html/geometry/reference/algorithms/correct.html :
-  // Corrects a geometry: all rings which are wrongly oriented with respect to their
-  // expected orientation are reversed. To all rings which do not have a closing point
-  // and are typed as they should have one, the first point is appended.
-  // Also boxes can be corrected.
-  boost::geometry::correct(polygon); //CAUSES ISSUE_168
-  #ifndef NDEBUG
-  if(boost::geometry::num_points(polygon) != points.size())
-  {
-    TRACE(boost::geometry::num_points(polygon));
-    TRACE(points.size());
-    TRACE("ERROR");
-  }
-  #endif
-  //assert(boost::geometry::num_points(polygon) == points.size()
-  //  && "BUG: ISSUE_168: points and polygon do not have the same number of points anymore"
-  //);
+  boost::geometry::correct(polygon);
   Polygon hull;
   boost::geometry::convex_hull(polygon, hull);
-  const bool is_convex = boost::geometry::equals(polygon,hull);
-  return is_convex;
+  const bool is_convex_first = boost::geometry::equals(polygon,hull);
+  if (is_convex_first) return true;
+  const bool is_convex_second = false;
+  //Correct for bug https://svn.boost.org/trac/boost/ticket/9873
+  return is_convex_second;
 }
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
