@@ -13,6 +13,8 @@
 //Method: if the convex_hull equals that points, it is convex
 //
 //Bug: convex_hull does make a convex polygon look concave for certain values
+//
+//Bug report is posted at https://svn.boost.org/trac/boost/ticket/9873
 int main()
 {
   using namespace boost::geometry;
