@@ -105,6 +105,7 @@ struct Geometry
   ) const noexcept;
 
   ///Functor for X-Y-Z ordering
+  std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)> Equals2d() const noexcept;
   std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> Equals() const noexcept;
 
   ///Obtain the angle in radians between two deltas
@@ -317,10 +318,14 @@ struct Geometry
   bool IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& v) const noexcept;
   bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& v) const noexcept;
 
+  bool IsEqual2d(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs) const noexcept { return Equals2d()(lhs,rhs); }
   bool IsEqual(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs) const noexcept { return Equals()(lhs,rhs); }
 
   ///Determines if these coordinats are in a plane
   bool IsPlane(const std::vector<Coordinat3D>& v) const noexcept;
+
+  ///Functor for X-Y ordering
+  std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)> Order2dByX() const noexcept;
 
   ///Functor for X-Y-Z ordering
   std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> OrderByX() const noexcept;

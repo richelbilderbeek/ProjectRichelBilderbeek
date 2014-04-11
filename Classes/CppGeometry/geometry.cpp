@@ -435,15 +435,56 @@ bool ribi::Geometry::IsConvex(Polygon polygon
   #endif
   ) const noexcept
 {
+  TRACE_FUNC();
   assert(boost::geometry::num_points(polygon) == points.size()
     && "Points and polygon have the same number of points");
+  const bool verbose = true;
   boost::geometry::correct(polygon);
   Polygon hull;
   boost::geometry::convex_hull(polygon, hull);
   const bool is_convex_first = boost::geometry::equals(polygon,hull);
-  if (is_convex_first) return true;
-  const bool is_convex_second = false;
+  if (verbose) { TRACE(is_convex_first); }
+  if (is_convex_first)
+  {
+    return true;
+  }
   //Correct for bug https://svn.boost.org/trac/boost/ticket/9873
+  std::vector<Coordinat2D> v = polygon.outer();
+  std::vector<Coordinat2D> w = hull.outer();
+  //std::sort(v.begin(),v.end(),Order2dByX());
+  //std::sort(w.begin(),w.end(),Order2dByX());
+  v.erase(std::unique(v.begin(),v.end(),Equals2d()),v.end());
+  w.erase(std::unique(w.begin(),w.end(),Equals2d()),w.end());
+  if (verbose) { TRACE(v.size() == w.size()); }
+  if (v.size() != w.size())
+  {
+    return false;
+  }
+
+  bool is_convex_second = false;
+  const int n = static_cast<int>(v.size());
+  for (int i=0; i!=n; ++i)
+  {
+    TRACE(i);
+    TRACE(v.size());
+    for (int j=0; j!=n; ++j)
+    {
+      std::stringstream s;
+      s << j << ": " << ToStr(v[j]) << " " << ToStr(w[j]) << '\n';
+      TRACE(s.str());
+    }
+    if (std::equal(v.begin(),v.end(),w.begin(),Equals2d()))
+    {
+      TRACE("Found match");
+      is_convex_second = true;
+      break;
+    }
+    TRACE("Different, rotate again");
+    std::rotate(v.begin(),v.begin() + 1, v.end());
+  }
+  #ifndef NDEBUG
+  TRACE(is_convex_second);
+  #endif
   return is_convex_second;
 }
 
@@ -672,6 +713,19 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geome
 }
 */
 
+std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)>
+  ribi::Geometry::Equals2d() const noexcept
+{
+  return [](const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)
+  {
+    using boost::geometry::get;
+    return
+      get<0>(lhs) == get<0>(rhs)
+      && get<1>(lhs) == get<1>(rhs)
+    ;
+  };
+}
+
 std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)>
   ribi::Geometry::Equals() const noexcept
 {
@@ -700,6 +754,18 @@ bool ribi::Geometry::IsPlane(const std::vector<ribi::Geometry::Coordinat3D>& v) 
   const std::unique_ptr<Plane> plane(new Plane(v[0],v[1],v[2]));
   assert(plane);
   return plane->IsInPlane(v[3]);
+}
+
+std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)>
+  ribi::Geometry::Order2dByX() const noexcept
+{
+  return [](const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)
+  {
+    using boost::geometry::get;
+    if (get<0>(lhs) < get<0>(rhs)) return true;
+    if (get<0>(lhs) > get<0>(rhs)) return false;
+    return get<1>(lhs) < get<1>(rhs);
+  };
 }
 
 std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)>
@@ -1177,7 +1243,7 @@ void ribi::Geometry::Test() noexcept
 
       assert(g.IsConvex(points));
     }
-    assert(1==2);
+    assert(1==2 && "Yay, error is fixed!");
   }
 
 
