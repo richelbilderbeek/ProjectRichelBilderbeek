@@ -7,6 +7,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/math/constants/constants.hpp>
+
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include "qttextitem.h"
@@ -18,7 +20,10 @@ QtWidget::QtWidget(QWidget *parent)
   const int n_items = 16;
   for (int i=0; i!=n_items; ++i)
   {
-    const double angle = 2.0 * M_PI * (static_cast<double>(i+0) / static_cast<double>(n_items));
+
+    const double angle
+      = boost::math::constants::two_pi<double>()
+      * (static_cast<double>(i+0) / static_cast<double>(n_items));
     const double ray = 150.0;
     const double x =  std::sin(angle) * ray;
     const double y = -std::cos(angle) * ray;

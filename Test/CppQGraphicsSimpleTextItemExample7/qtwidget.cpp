@@ -7,8 +7,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/math/constants/constants.hpp>
-
 
 #include <QGraphicsScene>
 #include <QKeyEvent>

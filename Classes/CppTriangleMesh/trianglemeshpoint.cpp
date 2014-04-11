@@ -71,7 +71,8 @@ ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcep
   assert(!std::isnan(boost::geometry::get<0>(*GetCoordinat())));
   assert(!std::isnan(boost::geometry::get<1>(*GetCoordinat())));
   assert(!CanGetZ() || !std::isnan(GetZ().value()));
-  return Geometry().CreatePoint(
+  const Geometry geometry;
+  return geometry.CreatePoint(
     boost::geometry::get<0>(*GetCoordinat()),
     boost::geometry::get<1>(*GetCoordinat()),
     CanGetZ() ? GetZ().value() : 0.0
@@ -172,9 +173,10 @@ void ribi::trim::Point::Test() noexcept
 
 std::string ribi::trim::Point::ToStr() const noexcept
 {
+  const Geometry geometry;
   std::stringstream s;
   s
-    << Geometry().ToStr(GetCoordinat3D())
+    << geometry.ToStr(GetCoordinat3D())
     << " (index: "
     << GetIndex()
     << ")";

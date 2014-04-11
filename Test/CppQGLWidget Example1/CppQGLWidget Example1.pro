@@ -35,11 +35,6 @@ exists(../../Libraries/Boost.pri) {
     ../../Libraries/boost_1_55_0
 }
 
-SOURCES += \
-    qtmain.cpp \
-    qtwidget.cpp \
-    qttextitem.cpp
+QT += opengl
 
-HEADERS += \
-    qtwidget.h \
-    qttextitem.h
+SOURCES += main.cpp

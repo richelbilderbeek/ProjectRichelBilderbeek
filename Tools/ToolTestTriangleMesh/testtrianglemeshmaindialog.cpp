@@ -33,6 +33,7 @@
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshtemplate.h"
+#include "trianglemeshcreateverticalfacesstrategies.h"
 #pragma GCC diagnostic pop
 
 ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
@@ -40,6 +41,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const bool show_mesh,
   const int n_layers,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
+  const double quality,
   const std::string& renumberMesh_command
 ) : m_ticks(0)
 {
@@ -56,7 +58,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   std::string filename_poly;
   {
     ribi::TriangleFile f(shapes);
-    const double quality = 5.0;
+    //const double quality = 5.0;
     const double area = 2.0;
     f.ExecuteTriangle(
       filename_node,
@@ -440,7 +442,42 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestTriangleMeshMainDialog::Test");
+  typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
   ribi::trim::CellsCreatorFactory();
+
+  //Create a simple mesh
+  for (::ribi::trim::CreateVerticalFacesStrategy strategy: ribi::trim::CreateVerticalFacesStrategies().GetAll())
+  {
+    try
+    {
+      const double pi { boost::math::constants::pi<double>() };
+      const bool show_mesh = false;
+      const std::string renumberMesh_command  = "";
+      const std::vector<Coordinat2D> shapes {
+        ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
+      };
+      const double quality = 5.0;
+      const ribi::TestTriangleMeshMainDialog d(
+        shapes,
+        show_mesh,
+        3,
+        strategy,
+        quality,
+        renumberMesh_command
+      );
+      std::cout << d.GetTicks() << std::endl;
+      PROFILER_UPDATE();
+      PROFILER_OUTPUT("shiny_output.txt");
+    }
+    catch (std::exception& e)
+    {
+      assert(!"Should not get here");
+    }
+    catch (...)
+    {
+      assert(!"Should not get here");
+    }
+  }
   TRACE("Finished ribi::TestTriangleMeshMainDialog::Test successfully");
 }
 #endif

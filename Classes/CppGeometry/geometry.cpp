@@ -351,9 +351,9 @@ bool ribi::Geometry::IsClockwise(
     //#ifndef NDEBUG
     //if (!is_clockwise)
     //{
-    //  TRACE(Geometry().ToStr(a));
-    //  TRACE(Geometry().ToStr(b));
-    //  TRACE(Geometry().ToStr(c));
+    //  TRACE(geometry.ToStr(a));
+    //  TRACE(geometry.ToStr(b));
+    //  TRACE(geometry.ToStr(c));
     //}
     //#endif
     return is_clockwise;
@@ -363,12 +363,13 @@ bool ribi::Geometry::IsClockwise(
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
     #ifndef NDEBUG
-    if(!Geometry().IsPlane(points))
+    const Geometry geometry;
+    if(!geometry.IsPlane(points))
     {
       TRACE("ERROR");
     }
     #endif
-    assert(Geometry().IsPlane(points));
+    assert(geometry.IsPlane(points));
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
     const auto v(
@@ -531,7 +532,8 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
       s << "{";
       for (auto coordinat2d: coordinats2d)
       {
-        s << Geometry().ToStr(coordinat2d) << ",";
+        const Geometry geometry;
+        s << geometry.ToStr(coordinat2d) << ",";
       }
       std::string co_str(s.str());
       co_str[co_str.size() - 1] = '}';
@@ -580,7 +582,8 @@ bool ribi::Geometry::IsCounterClockwise(
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
-    assert(Geometry().IsPlane(points));
+    const Geometry geometry;
+    assert(geometry.IsPlane(points));
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
     const auto v(

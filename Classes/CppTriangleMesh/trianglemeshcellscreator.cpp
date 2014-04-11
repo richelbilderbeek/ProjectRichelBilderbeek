@@ -71,8 +71,25 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 
   if (verbose) { TRACE("Create vertical faces"); }
   //ver_faces usused: cause of issue 168?
+  #ifndef FIX_ISSUE_168
+  static int ver_faces_cnt = 0;
+  TRACE(ver_faces_cnt);
+  ++ver_faces_cnt;
+  if (ver_faces_cnt >= 22)
+  {
+    TRACE("BREAK");
+  }
+  #endif
   const std::vector<boost::shared_ptr<Face>> ver_faces
     = CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy);
+  #ifndef FIX_ISSUE_168
+  if (ver_faces_cnt >= 22)
+  {
+    TRACE("BREAK");
+  }
+  #endif
+
+
   assert(!ver_faces.empty()); //168 : perhaps ver_faces is removed by compiler?
   assert(ver_faces.size() > hor_faces.size()); //168 : perhaps ver_faces is removed by compiler?
   #ifndef NDEBUG
@@ -435,7 +452,8 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         if (!helper.IsConvex(face_points_2))
         {
           TRACE("ERROR");
-          for (auto point:face_points_2) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+          const Geometry geometry;
+          for (auto point:face_points_2) { TRACE(geometry.ToStr(point->GetCoordinat3D())); }
         }
         #endif
 

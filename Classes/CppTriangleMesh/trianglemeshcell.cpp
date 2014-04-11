@@ -186,11 +186,12 @@ void ribi::trim::Cell::Test() noexcept
   for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const auto center(CellFactory().CreateTestPrism(strategy)->CalculateCenter());
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    const Geometry geometry;
+    assert(geometry.IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(geometry.IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(geometry.IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(geometry.IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(geometry.IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
   }
 
   TRACE("Finished ribi::trim::Cell::Test successfully");

@@ -44,9 +44,10 @@ ribi::Plane::Plane(
 {
   #ifndef NDEBUG
   Test();
-  assert(Geometry().IsEqual(m_points[0],p1));
-  assert(Geometry().IsEqual(m_points[1],p2));
-  assert(Geometry().IsEqual(m_points[2],p3));
+  const Geometry geometry;
+  assert(geometry.IsEqual(m_points[0],p1));
+  assert(geometry.IsEqual(m_points[1],p2));
+  assert(geometry.IsEqual(m_points[2],p3));
   #endif
 }
 
@@ -473,5 +474,3 @@ std::string ribi::Plane::ToFunctionZ() const
     throw std::logic_error("Plane::ToFunctionZ: plane cannot be expressed as Z = A*X + B*Y");
   }
 }
-
-

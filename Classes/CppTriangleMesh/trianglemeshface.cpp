@@ -137,9 +137,10 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
 {
   assert(!m_points.empty());
   using boost::geometry::get;
+  const Geometry geometry;
   const Coordinat3D sum(
     std::accumulate(m_points.begin(),m_points.end(),
-      Geometry().CreatePoint(0.0,0.0,0.0),
+      geometry.CreatePoint(0.0,0.0,0.0),
       [](const Coordinat3D& init, const boost::shared_ptr<const Point>& point)
       {
         assert(point);
@@ -279,7 +280,6 @@ void ribi::trim::Face::OnCellDestroyed(const Cell* const cell) noexcept
 
 void ribi::trim::Face::SetCorrectWinding() noexcept
 {
-  assert(!"Does SetCorrectWinding cause error?");
   PROFILE_FUNC();
   const Helper helper;
   assert(m_points.size() == 3 || m_points.size() == 4);
@@ -323,8 +323,9 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   if (!helper.IsCounterClockwise(AddConst(m_points),observer->CalculateCenter()))
   {
     TRACE(m_points.size());
-    for (const auto point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
-    TRACE(Geometry().ToStr(observer->CalculateCenter()));
+    const Geometry geometry;
+    for (const auto point: m_points) TRACE(geometry.ToStr(point->GetCoordinat3D()));
+    TRACE(geometry.ToStr(observer->CalculateCenter()));
   }
   #endif
 

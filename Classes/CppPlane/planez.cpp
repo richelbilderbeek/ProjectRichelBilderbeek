@@ -50,7 +50,8 @@ std::vector<double> ribi::PlaneZ::CalcPlaneZ(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
 ) noexcept
 {
-  const auto v(Geometry().CalcPlane(p1,p2,p3));
+  const Geometry geometry;
+  const auto v(geometry.CalcPlane(p1,p2,p3));
   assert(v.size() == 4);
   return v;
 }
