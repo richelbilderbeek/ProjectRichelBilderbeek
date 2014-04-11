@@ -429,11 +429,29 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::mo
   return IsClockwise(angles);
 }
 
-bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
+bool ribi::Geometry::IsConvex(Polygon polygon
+  #ifndef NDEBUG
+  ,const std::vector<Coordinat2D>& points
+  #endif
+  ) const noexcept
 {
-  boost::geometry::correct(polygon);
+  assert(boost::geometry::num_points(polygon) == points.size()
+    && "Points and polygon have the same number of points");
+  boost::geometry::correct(polygon); //CAUSES ISSUE_168
+  #ifndef NDEBUG
+  if(boost::geometry::num_points(polygon) != points.size())
+  {
+    TRACE(boost::geometry::num_points(polygon));
+    TRACE(points.size());
+    TRACE("ERROR");
+  }
+  #endif
+  assert(boost::geometry::num_points(polygon) == points.size()
+    && "BUG: ISSUE_168: points and polygon do not have the same number of points anymore"
+  );
   Polygon hull;
   boost::geometry::convex_hull(polygon, hull);
+  assert(boost::geometry::num_points(polygon) == points.size());
   const bool is_convex = boost::geometry::equals(polygon,hull);
   return is_convex;
 }
@@ -446,7 +464,11 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
     //TRACE(ToStr(point));
     boost::geometry::append(polygon,point);
   };
-  return IsConvex(polygon);
+  assert(boost::geometry::num_points(polygon) == points.size());
+  TRACE(points.size());
+  TRACE(boost::geometry::num_points(polygon));
+  const bool is_convex = IsConvex(polygon,points);
+  return is_convex;
 }
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
@@ -1021,7 +1043,7 @@ void ribi::Geometry::Test() noexcept
 
       Polygon polygon;
       boost::geometry::append(polygon, points);
-      assert(g.IsConvex(polygon));
+      assert(g.IsConvex(polygon,points));
     }
     //Concave shape
     {
@@ -1035,7 +1057,7 @@ void ribi::Geometry::Test() noexcept
 
       Polygon polygon;
       boost::geometry::append(polygon, points);
-      assert(!g.IsConvex(polygon));
+      assert(!g.IsConvex(polygon,points));
     }
   }
   if (verbose) TRACE("Convex shape, 2D, from error #1");
@@ -1144,6 +1166,30 @@ void ribi::Geometry::Test() noexcept
       assert(g.IsConvex(points));
     }
   }
+
+  if (verbose) TRACE("Convex shape, 2D, from error #3, point 5");
+  {
+    /*
+
+    2-3
+    |
+    1-0
+
+    */
+    {
+      const std::vector<Coordinat2D> points {
+        {15.9835,631.923},
+        {8.24075,628.579},
+        {8.24075,679.58 },
+        {15.9835,682.926}
+      };
+
+      assert(g.IsConvex(points));
+    }
+    assert(1==2);
+  }
+
+
   if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane");
   {
     {

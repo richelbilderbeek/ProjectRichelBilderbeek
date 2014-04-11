@@ -20,14 +20,13 @@ protected:
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glEnable(GL_DEPTH_TEST);
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);     // Clear The Screen And The Depth Buffer
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
   }
   void resizeGL(int width, int height )
   {
-    // setup viewport, projection etc.:
-    glViewport(0, 0, (GLint)width, (GLint)height);
-    //glFrustum(...);
+    glViewport(0, 0,width,height);
+    glFrustum(-1.0,1.0,-1.0,1.0,-1.0,1.0);
   }
   void paintGL()
   {

@@ -214,11 +214,15 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<const ribi
 
 bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept
 {
-  if (points.size() == 3) return true;
+  const bool verbose = true;
+  if (points.size() == 3)
+  {
+    if (verbose) { TRACE("Three points are always convex"); }
+    return true;
+  }
 
   #ifndef NDEBUG
   assert(points.size() == 4);
-  const bool verbose = false;
   if (verbose)
   {
     std::stringstream s;
@@ -374,7 +378,11 @@ void ribi::trim::Helper::MakeConvex(
   #endif
   const Geometry geometry;
 
-  if (IsConvex(points)) return;
+  if (IsConvex(points))
+  {
+    if (verbose) { TRACE("MakeConvex: points were convex at start"); }
+    return;
+  }
 
   #ifndef NDEBUG
   static int cnt = 0;
@@ -415,7 +423,17 @@ void ribi::trim::Helper::MakeConvex(
     #endif
   }
 
-  if (IsConvex(points)) return;
+  if (IsConvex(points))
+  {
+    if (verbose) { TRACE("MakeConvex: points were convex after making them convex"); }
+    return;
+  }
+
+  if (!IsConvex(points))
+  {
+    TRACE(IsConvex(points));
+    if (verbose) { TRACE("MakeConvex: FAILED"); }
+  }
 
   #ifndef NDEBUG
   if(!IsConvex(points))

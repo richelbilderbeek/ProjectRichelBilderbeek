@@ -302,7 +302,12 @@ struct Geometry
      Convex           Concave
 
   */
-  bool IsConvex(boost::geometry::model::polygon<Coordinat2D> polygon) const noexcept;
+  bool IsConvex(
+    boost::geometry::model::polygon<Coordinat2D> polygon
+    #ifndef NDEBUG
+    ,const std::vector<Coordinat2D>& points
+    #endif
+  ) const noexcept;
   bool IsConvex(const std::vector<Coordinat2D>& points) const noexcept;
   bool IsConvex(const std::vector<Coordinat3D>& points) const noexcept;
 
