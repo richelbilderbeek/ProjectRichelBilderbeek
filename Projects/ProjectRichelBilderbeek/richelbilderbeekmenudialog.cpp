@@ -1467,7 +1467,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break; //
-      case ProgramType::multiEncranger: p.reset(new ToolMultiEncrangerMenuDialog); break;
+      case ProgramType::multiEncranger: p.reset(new MultiEncrangerMenuDialog); break;
       case ProgramType::multiEncrangerVcl:
       {
         const std::string version = "x.x";

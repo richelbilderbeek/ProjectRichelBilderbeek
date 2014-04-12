@@ -616,7 +616,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <a href=\"CppBoostSignals2Example1.htm\">Boost.Signals2 example 1: comparing Boost and Qt</a>",
         "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example that shows",
         "  both the use of <a href=\"CppBoostSignals2.htm\">Boost.Signals2 signals</a> and",
-        "  <a href=\"CppQtSignal.htm\">Qt signals</a>.</p>",
+        "  <a href=\"CppQtSignal.htm\">Qt signals</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
@@ -1922,8 +1922,8 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <a href=\"CppGetTime.htm\">GetTime</a> can depend on two different <a href=\"CppLibrary.htm\">libraries</a>:",
         "</p>",
         "<ul>",
-        "  <li><img src=\"PicBoost.png\" alt=\"Boost\"> <a href=\"CppBoost.htm\">Boost</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
-        "  <li><img src=\"PicStl.png\" alt=\"STL\"> <a href=\"CppStl.htm\">STL</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
+        "  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"CppBoost.htm\">Boost</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
+        "  <li><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppStl.htm\">STL</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
         "</ul>"
       }
     }
@@ -4828,10 +4828,11 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<a href=\"CppArtificialIntelligence.htm\">Artificial Intelligence</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
-        "how to implement a Learner class that has to optimize its"
-        "reward from an N-armed bandit. As one would expect, the Learner class knows nothing"
-        "about the N-Armed Bandit class' internals.",
+        "<p>",
+        "  <a href=\"CppArtificialIntelligence.htm\">Artificial Intelligence</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  how to implement a Learner class that has to optimize its"
+        "  reward from an N-armed bandit. As one would expect, the Learner class knows nothing"
+        "  about the N-Armed Bandit class' internals.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",

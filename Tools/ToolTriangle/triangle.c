@@ -11792,11 +11792,7 @@ vertex endpoint2;
 
   /* Inserting the vertex may have caused edge flips.  We wish to rediscover */
   /*   the edge connecting endpoint1 to the new intersection vertex.         */
-<<<<<<< HEAD
   /* enum finddirectionresult collinear = */finddirection(m, b, splittri, endpoint1);
-=======
-  /*collinear = */finddirection(m, b, splittri, endpoint1);
->>>>>>> 4cff13d32f92c497957cd39b33da4efa76b3bb33
   dest(*splittri, rightvertex);
   apex(*splittri, leftvertex);
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1])) {

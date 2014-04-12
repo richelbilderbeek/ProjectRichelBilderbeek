@@ -43,27 +43,54 @@ int ribi::CreateQtProjectZipFile::MenuDialog::ExecuteSpecific(const std::vector<
 {
   const int argc = static_cast<int>(argv.size());
   assert(argc > 0);
-  if (argc != 3 || (argv[1] != "-f" && argv[1] != "--folder"))
+  if (argc == 1)
   {
     std::cout << this->GetHelp() << '\n';
     return 1;
   }
-  const std::string folder { argv[2] };
+
+  std::string folder;
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (argv[i] == "-f" || argv[i] == "--folder")
+    {
+      folder = argv[i+1];
+      break;
+    }
+  }
+  bool silent = false;
+  for (int i=0; i!=argc; ++i)
+  {
+    if (argv[i] == "-s" || argv[i] == "--silent")
+    {
+      silent = true;
+      break;
+    }
+  }
+
   if (!fileio::FileIo().IsFolder(folder))
   {
-    std::cout
-      << "Invalid folder '" << folder << "'\n"
-      << "Please supply a valid folder name\n";
+    if (!silent)
+    {
+      std::cout
+        << "Invalid folder '" << folder << "'\n"
+        << "Please supply a valid folder name\n";
+    }
     return 1;
   }
   if (folder.substr(0,6) != "../../")
   {
-    std::cout
-      << "Folder must start with '../../'\n"
-      << "Please supply a folder name starting with '/../..'\n";
+    if (!silent)
+    {
+      std::cout
+        << "Folder must start with '../../'\n"
+        << "Please supply a folder name starting with '/../..'\n";
+    }
     return 1;
   }
-  std::cout << CreateQtProjectZipFileMainDialog(folder).GetScript() << '\n';
+  const std::string script = CreateQtProjectZipFileMainDialog(folder).GetScript();
+  assert(!script.empty());
+  if (!silent) { std::cout << script << '\n'; }
   return 0;
 }
 
@@ -113,7 +140,7 @@ boost::shared_ptr<const ribi::Program> ribi::CreateQtProjectZipFile::MenuDialog:
 
 std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
 std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory() const noexcept
@@ -125,6 +152,7 @@ std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHis
     "2012-06-10: version 1.3: added Path class for cleaner code",
     "2013-05-19: version 2.0: support for any depth of folder tree",
     "2014-01-27: version 2.1: also copies the included .pri files' content",
+    "2014-04-12: version 2.2: added 'silent' flag",
   };
 }
 
@@ -137,6 +165,9 @@ void ribi::CreateQtProjectZipFile::MenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::CreateQtProjectZipFile::MenuDialog::Test()");
+  MenuDialog d;
+  d.Execute( { "CreateQtProjectZipFile", "-f", "../../Tools/ToolCreateQtProjectZipFile", "-s" } );
+  assert(1==2);
   TRACE("Finished ribi::CreateQtProjectZipFile::MenuDialog::Test() successfully");
 }
 #endif
