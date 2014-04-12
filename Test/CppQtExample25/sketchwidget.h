@@ -1,10 +1,14 @@
 #ifndef SKETCHWIDGET_H
 #define SKETCHWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 class SketchWidget : public QWidget
 {
   Q_OBJECT
@@ -26,5 +30,5 @@ signals:
 public slots:
 
 };
-//---------------------------------------------------------------------------
+
 #endif // SKETCHWIDGET_H

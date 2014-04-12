@@ -1,9 +1,17 @@
 #include <cassert>
 #include <cmath>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/math/constants/constants.hpp>
+
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
+
 #include "qtarrowitem.h"
+#pragma GCC diagnostic pop
 
 const double QtArrowItem::m_click_easy_width = 10.0;
 
@@ -27,7 +35,7 @@ QtArrowItem::QtArrowItem(
 
 double QtArrowItem::GetAngle(const double dx, const double dy)
 {
-  return M_PI - (std::atan(dx/dy));
+  return boost::math::constants::pi<double>() - (std::atan(dx/dy));
 }
 
 QRectF QtArrowItem::boundingRect() const
@@ -106,19 +114,19 @@ void QtArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
 
   //The angle from tail to head
   double angle = GetAngle(line().dx(),line().dy());
-  if (line().dy() >= 0.0) angle = (1.0 * M_PI) + angle;
+  if (line().dy() >= 0.0) angle = (1.0 * boost::math::constants::pi<double>()) + angle;
   const double sz = 10.0; //pixels
   if (m_tail)
   {
     const QPointF p0 = this->line().p1();
     const QPointF p1
       = p0 + QPointF(
-         std::sin(angle + M_PI + (M_PI * 0.1)) * sz,
-        -std::cos(angle + M_PI + (M_PI * 0.1)) * sz);
+         std::sin(angle + boost::math::constants::pi<double>() + (boost::math::constants::pi<double>() * 0.1)) * sz,
+        -std::cos(angle + boost::math::constants::pi<double>() + (boost::math::constants::pi<double>() * 0.1)) * sz);
     const QPointF p2
       = p0 + QPointF(
-         std::sin(angle + M_PI - (M_PI * 0.1)) * sz,
-        -std::cos(angle + M_PI - (M_PI * 0.1)) * sz);
+         std::sin(angle + boost::math::constants::pi<double>() - (boost::math::constants::pi<double>() * 0.1)) * sz,
+        -std::cos(angle + boost::math::constants::pi<double>() - (boost::math::constants::pi<double>() * 0.1)) * sz);
     painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
   }
   if (m_head)
@@ -127,12 +135,12 @@ void QtArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
 
     const QPointF p1
       = p0 + QPointF(
-         std::sin(angle +  0.0 + (M_PI * 0.1)) * sz,
-        -std::cos(angle +  0.0 + (M_PI * 0.1)) * sz);
+         std::sin(angle +  0.0 + (boost::math::constants::pi<double>() * 0.1)) * sz,
+        -std::cos(angle +  0.0 + (boost::math::constants::pi<double>() * 0.1)) * sz);
     const QPointF p2
       = p0 + QPointF(
-         std::sin(angle +  0.0 - (M_PI * 0.1)) * sz,
-        -std::cos(angle +  0.0 - (M_PI * 0.1)) * sz);
+         std::sin(angle +  0.0 - (boost::math::constants::pi<double>() * 0.1)) * sz,
+        -std::cos(angle +  0.0 - (boost::math::constants::pi<double>() * 0.1)) * sz);
 
     painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
   }

@@ -1624,6 +1624,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "ptr_array","<a href=\"C$ppP$tr_a$rr$ay.htm\">p$tr_a$rr$ay</a>" },
     { "ptr_deque","<a href=\"C$ppP$tr_d$eq$ue.htm\">p$tr_d$eq$ue</a>" },
     { "QDirModel","<a href=\"C$ppQ$D$irM$odel.htm\">Q$D$irM$odel</a>" },
+    { "QGLWidget","<a href=\"C$ppQ$G$L$W$idg$et.htm\">Q$G$L$W$idg$et</a>" },
     { "QKeyEvent","<a href=\"C$ppQ$K$eyE$vent.htm\">Q$K$eyE$vent</a>" },
     { "QLineEdit","<a href=\"C$ppQ$L$ineE$dit.htm\">Q$L$ineE$dit</a>" },
     { "QListView","<a href=\"C$ppQ$L$istV$iew.htm\">Q$L$istV$iew</a>" },

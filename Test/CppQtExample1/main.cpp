@@ -1,5 +1,8 @@
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 
 #include <QApplication>
@@ -9,10 +12,11 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
+#pragma GCC diagnostic pop
 
 struct Background : public QGraphicsPixmapItem
 {
-  Background(const std::string& filename)
+  explicit Background(const std::string& filename)
   {
     QPixmap m(filename.c_str());
     this->setPixmap(m);
@@ -21,7 +25,7 @@ struct Background : public QGraphicsPixmapItem
 
 struct TransparentSprite : public QGraphicsPixmapItem
 {
-  TransparentSprite(
+  explicit TransparentSprite(
     const std::string& filename,
     const QColor& transparency_color = QColor(0,255,0)) //Lime green
     : dx(1), dy(1), maxx(320), maxy(200)
@@ -61,7 +65,7 @@ int main(int argc, char *argv[])
   QGraphicsView v(&s);
 
   //Original image from http://commons.wikimedia.org/wiki/File:Bubblegum_2.png
-  //by Marendo Müller 10.05.2013, resized to 15%
+  //by Marendo Mueller 10.05.2013, resized to 15%
   Background background(":/images/Bubblegum_2.png");
   s.addItem(&background);
 

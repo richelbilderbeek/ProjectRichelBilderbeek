@@ -1,8 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QDesktopWidget>
 #include <QPainter>
 #include <QPixmap>
 #include "transparentsketchdialog.h"
 #include "ui_transparentsketchdialog.h"
+#pragma GCC diagnostic pop
 
 TransparentSketchDialog::TransparentSketchDialog(QWidget *parent)
   : QDialog(parent),
@@ -17,25 +21,14 @@ TransparentSketchDialog::~TransparentSketchDialog()
   delete ui;
 }
 
-void TransparentSketchDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 void TransparentSketchDialog::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   painter.drawPixmap(
     this->rect(),
     m_pixmap,
-    this->geometry());
+    this->geometry()
+  );
 }
 
 

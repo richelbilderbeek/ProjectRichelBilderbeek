@@ -36,6 +36,10 @@ struct TriangleMeshBuilder
   int CountFaces() const noexcept { return static_cast<int>(m_faces.size()); }
 
   private:
+  TriangleMeshBuilder(const TriangleMeshBuilder& ) = delete;
+  TriangleMeshBuilder(      TriangleMeshBuilder&&) = delete;
+  TriangleMeshBuilder& operator=(const TriangleMeshBuilder& ) = delete;
+  TriangleMeshBuilder& operator=(      TriangleMeshBuilder&&) = delete;
   ~TriangleMeshBuilder() noexcept {}
   std::vector<boost::shared_ptr<Cell>> m_cells;
   std::vector<boost::shared_ptr<Face>> m_faces;

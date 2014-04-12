@@ -45,6 +45,10 @@ struct Template
     std::vector<std::vector<int>> face_point_indices,
     std::vector<boost::shared_ptr<Point>> points
   );
+  Template(const Template& ) = delete;
+  Template(      Template&&) = delete;
+  Template& operator=(const Template& ) = delete;
+  Template& operator=(      Template&&) = delete;
   ~Template() noexcept {}
 
   ///ints are m_points indices
@@ -60,7 +64,7 @@ struct Template
 
   //Split a string
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input) noexcept;
 
   #ifndef NDEBUG

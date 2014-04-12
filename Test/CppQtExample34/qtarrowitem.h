@@ -1,7 +1,11 @@
 #ifndef QTARROWITEM_H
 #define QTARROWITEM_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QGraphicsLineItem>
+#pragma GCC diagnostic pop
 
 struct QtArrowItem : public QGraphicsLineItem
 {

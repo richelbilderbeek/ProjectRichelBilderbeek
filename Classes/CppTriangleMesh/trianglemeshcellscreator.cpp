@@ -31,7 +31,7 @@ ribi::trim::CellsCreator::CellsCreator(
   const CreateVerticalFacesStrategy strategy,
   const CellsCreatorFactory&
 ) : m_cells(CreateCells(t,n_layers,layer_height,strategy)),
-    m_strategy{strategy}
+    m_strategy(strategy)
 {
   #ifndef NDEBUG
   Test();
@@ -71,8 +71,25 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 
   if (verbose) { TRACE("Create vertical faces"); }
   //ver_faces usused: cause of issue 168?
+  #ifndef FIX_ISSUE_168
+  static int ver_faces_cnt = 0;
+  TRACE(ver_faces_cnt);
+  ++ver_faces_cnt;
+  if (ver_faces_cnt >= 22)
+  {
+    TRACE("BREAK");
+  }
+  #endif
   const std::vector<boost::shared_ptr<Face>> ver_faces
     = CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy);
+  #ifndef FIX_ISSUE_168
+  if (ver_faces_cnt >= 22)
+  {
+    TRACE("BREAK");
+  }
+  #endif
+
+
   assert(!ver_faces.empty()); //168 : perhaps ver_faces is removed by compiler?
   assert(ver_faces.size() > hor_faces.size()); //168 : perhaps ver_faces is removed by compiler?
   #ifndef NDEBUG
@@ -291,6 +308,9 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   ;
 
   std::vector<boost::shared_ptr<Face>> v;
+  const int n_reserve = n_ver_faces * (n_layers - 1);
+  assert(n_reserve > 0);
+  assert(n_reserve < static_cast<int>(v.max_size()));
   v.reserve(n_ver_faces * (n_layers - 1));
 
   assert(n_layers > 0);
@@ -364,6 +384,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           //for (auto  p: face_points) { TRACE(*p); }
           assert(!helper.IsConvex(face_points));
           TRACE("ERROR");
+          std::exit(0);
         }
         #endif
         #endif
@@ -434,7 +455,8 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         if (!helper.IsConvex(face_points_2))
         {
           TRACE("ERROR");
-          for (auto point:face_points_2) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+          const Geometry geometry;
+          for (auto point:face_points_2) { TRACE(geometry.ToStr(point->GetCoordinat3D())); }
         }
         #endif
 

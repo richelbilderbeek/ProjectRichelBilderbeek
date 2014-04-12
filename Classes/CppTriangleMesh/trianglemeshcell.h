@@ -54,6 +54,10 @@ struct Cell
     const int index,
     const CellFactory& lock
   );
+  Cell(const Cell&) = delete;
+  Cell(      Cell&&) = delete;
+  Cell& operator=(const Cell& ) = delete;
+  Cell& operator=(      Cell&&) = delete;
 
   #ifndef NDEBUG
   static void Test() noexcept;

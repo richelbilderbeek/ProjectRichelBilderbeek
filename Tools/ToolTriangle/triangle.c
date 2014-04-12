@@ -11792,7 +11792,11 @@ vertex endpoint2;
 
   /* Inserting the vertex may have caused edge flips.  We wish to rediscover */
   /*   the edge connecting endpoint1 to the new intersection vertex.         */
+<<<<<<< HEAD
   /* enum finddirectionresult collinear = */finddirection(m, b, splittri, endpoint1);
+=======
+  /*collinear = */finddirection(m, b, splittri, endpoint1);
+>>>>>>> 4cff13d32f92c497957cd39b33da4efa76b3bb33
   dest(*splittri, rightvertex);
   apex(*splittri, leftvertex);
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1])) {
@@ -11846,10 +11850,10 @@ int newmark;
   struct otri crosstri;
   struct osub crosssubseg;
   vertex leftvertex, rightvertex;
-  enum finddirectionresult collinear;
+  //enum finddirectionresult collinear;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
-  collinear = finddirection(m, b, searchtri, endpoint2);
+  enum finddirectionresult collinear = finddirection(m, b, searchtri, endpoint2);
   dest(*searchtri, rightvertex);
   apex(*searchtri, leftvertex);
   if (((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) ||

@@ -1,8 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <QApplication>
 #include <QDialog>
 #include <QPushButton>
 #include <QVBoxLayout>
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {

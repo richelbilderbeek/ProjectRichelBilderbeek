@@ -22,6 +22,7 @@ struct TestTriangleMeshMainDialog
     const bool show_mesh,
     const int n_layers,
     const ::ribi::trim::CreateVerticalFacesStrategy strategy,
+    const double quality,
     const std::string& renumberMesh_command
   );
   int GetTicks() const noexcept { return m_ticks; }

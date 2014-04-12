@@ -1,12 +1,39 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+exists(../../DesktopApplication.pri) {
+  include(../../DesktopApplication.pri)
+}
+!exists(../../DesktopApplication.pri) {
+  QT += core gui
+  greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+  TEMPLATE = app
 
-TEMPLATE = app
+  CONFIG(debug, debug|release) {
+    message(Debug mode)
+  }
 
+  CONFIG(release, debug|release) {
+    message(Release mode)
+    DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+  }
 
-SOURCES += main.cpp\
-        dialog.cpp
+  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
-HEADERS  += dialog.h
+  unix {
+    QMAKE_CXXFLAGS += -Werror
+  }
+}
 
-FORMS    += dialog.ui
+exists(../../Libraries/Boost.pri) {
+  include(../../Libraries/Boost.pri)
+}
+!exists(../../Libraries/Boost.pri) {
+  win32 {
+    INCLUDEPATH += \
+      ../../../Projects/Libraries/boost_1_55_0
+  }
+}
+
+SOURCES += main.cpp
+
+SOURCES += dialog.cpp
+HEADERS += dialog.h
+FORMS   += dialog.ui

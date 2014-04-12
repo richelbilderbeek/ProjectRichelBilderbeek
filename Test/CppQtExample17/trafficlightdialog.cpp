@@ -1,9 +1,14 @@
+#include "trafficlightdialog.h"
+
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QVBoxLayout>
-#include "trafficlightdialog.h"
 #include "ui_trafficlightdialog.h"
 #include "image.h"
+#pragma GCC diagnostic pop
 
 TrafficLightDialog::TrafficLightDialog(QWidget *parent) :
     QDialog(parent),
@@ -42,18 +47,6 @@ TrafficLightDialog::TrafficLightDialog(QWidget *parent) :
 TrafficLightDialog::~TrafficLightDialog()
 {
   delete ui;
-}
-
-void TrafficLightDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
 }
 
 void TrafficLightDialog::onRedClicked()

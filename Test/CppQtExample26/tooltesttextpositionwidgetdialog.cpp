@@ -1,6 +1,10 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttextpositionwidget.h"
 #include "tooltesttextpositionwidgetdialog.h"
 #include "ui_tooltesttextpositionwidgetdialog.h"
+#pragma GCC diagnostic pop
 
 ToolTestTextPositionWidgetDialog::ToolTestTextPositionWidgetDialog(QWidget *parent) :
     QDialog(parent),

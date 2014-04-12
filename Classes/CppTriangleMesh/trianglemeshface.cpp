@@ -27,7 +27,7 @@
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-std::map<int,const ribi::trim::Face*> ribi::trim::Face::sm_faces;
+std::set<const ribi::trim::Face*> ribi::trim::Face::sm_faces;
 
 ribi::trim::Face::Face(
   const std::vector<boost::shared_ptr<Point>>& any_points,
@@ -60,10 +60,15 @@ ribi::trim::Face::Face(
     TRACE("ERROR");
     for (auto point: m_points) TRACE(point->ToStr());
   }
+<<<<<<< HEAD
   assert(sm_faces.count(m_index) == 0);
   sm_faces.insert(std::make_pair(m_index,this));
   assert(sm_faces.count(m_index) == 1 && "Constructor postcondition, destructor precondition");
   assert(sm_faces.find(m_index)->second && "Constructor postcondition, destructor precondition");
+=======
+  assert(sm_faces.count(this) == 0);
+  sm_faces.insert(this);
+>>>>>>> 4cff13d32f92c497957cd39b33da4efa76b3bb33
 
   #ifndef FIX_ISSUE_168
   assert(helper.IsConvex(m_points));
@@ -93,9 +98,9 @@ ribi::trim::Face::Face(
 ribi::trim::Face::~Face() noexcept
 {
   #ifndef NDEBUG
-  if(!sm_faces.count(m_index) == 1)
+  if(sm_faces.count(this) != 1)
   {
-    TRACE(sm_faces.count(m_index));
+    TRACE(*this);
     TRACE("ERROR");
   }
   if(!sm_faces.find(m_index)->second)
@@ -105,9 +110,15 @@ ribi::trim::Face::~Face() noexcept
     TRACE("ERROR");
   }
   #endif
+<<<<<<< HEAD
   assert(sm_faces.count(m_index) == 1 && "Constructor postcondition, destructor precondition");
   assert(sm_faces.find(m_index)->second && "Constructor postcondition, destructor precondition");
   sm_faces.find(m_index)->second = nullptr;
+=======
+  assert(sm_faces.count(this) == 1);
+  sm_faces.erase(this);
+  assert(sm_faces.count(this) == 0);
+>>>>>>> 4cff13d32f92c497957cd39b33da4efa76b3bb33
 
   #ifdef TRIANGLEMESH_USE_SIGNALS2
   m_signal_destroyed(this);
@@ -145,9 +156,10 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
 {
   assert(!m_points.empty());
   using boost::geometry::get;
+  const Geometry geometry;
   const Coordinat3D sum(
     std::accumulate(m_points.begin(),m_points.end(),
-      Geometry().CreatePoint(0.0,0.0,0.0),
+      geometry.CreatePoint(0.0,0.0,0.0),
       [](const Coordinat3D& init, const boost::shared_ptr<const Point>& point)
       {
         assert(point);
@@ -330,8 +342,9 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   if (!helper.IsCounterClockwise(AddConst(m_points),observer->CalculateCenter()))
   {
     TRACE(m_points.size());
-    for (const auto point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
-    TRACE(Geometry().ToStr(observer->CalculateCenter()));
+    const Geometry geometry;
+    for (const auto point: m_points) TRACE(geometry.ToStr(point->GetCoordinat3D()));
+    TRACE(geometry.ToStr(observer->CalculateCenter()));
   }
   #endif
 

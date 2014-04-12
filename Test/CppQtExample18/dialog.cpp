@@ -1,11 +1,16 @@
 #include "dialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "ui_dialog.h"
 
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
+#pragma GCC diagnostic pop
 
-Dialog::Dialog(QWidget *parent) :
-    QDialog(parent),
+Dialog::Dialog(QWidget *parent)
+  : QDialog(parent),
     ui(new Ui::Dialog),
     m_scene(new QGraphicsScene),
     m_background(new QGraphicsPixmapItem)
@@ -23,16 +28,4 @@ Dialog::Dialog(QWidget *parent) :
 Dialog::~Dialog()
 {
   delete ui;
-}
-
-void Dialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
 }

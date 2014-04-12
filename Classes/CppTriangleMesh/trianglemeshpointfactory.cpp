@@ -77,10 +77,10 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
   b->SetZ(1.0 * boost::units::si::meter);
   c->SetZ(0.0 * boost::units::si::meter);
   d->SetZ(1.0 * boost::units::si::meter);
-  a->SetIndex(1);
-  b->SetIndex(2);
-  c->SetIndex(3);
-  d->SetIndex(4);
+  //a->SetIndex(1);
+  //b->SetIndex(2);
+  //c->SetIndex(3);
+  //d->SetIndex(4);
   const std::vector<boost::shared_ptr<Point>> square { a,b,c,d };
   return square;
 }
@@ -106,12 +106,12 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::PointFactory::Crea
   d->SetZ(1.0 * boost::units::si::meter);
   e->SetZ(1.0 * boost::units::si::meter);
   f->SetZ(1.0 * boost::units::si::meter);
-  a->SetIndex(1);
-  b->SetIndex(2);
-  c->SetIndex(3);
-  d->SetIndex(4);
-  e->SetIndex(5);
-  f->SetIndex(6);
+  //a->SetIndex(1);
+  //b->SetIndex(2);
+  //c->SetIndex(3);
+  //d->SetIndex(4);
+  //e->SetIndex(5);
+  //f->SetIndex(6);
   const std::vector<boost::shared_ptr<Point>> prism {
     a,b,c,d,e,f
   };
@@ -189,10 +189,10 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
   const boost::shared_ptr<Point> c { PointFactory().Create(co_c) };
   const boost::shared_ptr<Point> d { PointFactory().Create(co_d) };
 
-  a->SetIndex(1);
-  b->SetIndex(2);
-  c->SetIndex(3);
-  d->SetIndex(3);
+  //a->SetIndex(1);
+  //b->SetIndex(2);
+  //c->SetIndex(3);
+  //d->SetIndex(3); //ERROR ISSUE_168 HERE?
   a->SetZ(1.0 * boost::units::si::meter);
   b->SetZ(1.0 * boost::units::si::meter);
   c->SetZ(1.0 * boost::units::si::meter);
@@ -271,9 +271,9 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
     PointFactory().Create(co_c)
   };
 
-  a->SetIndex(1);
-  b->SetIndex(2);
-  c->SetIndex(3);
+  //a->SetIndex(1);
+  //b->SetIndex(2);
+  //c->SetIndex(3);
   a->SetZ(1.0 * boost::units::si::meter);
   b->SetZ(1.0 * boost::units::si::meter);
   c->SetZ(1.0 * boost::units::si::meter);

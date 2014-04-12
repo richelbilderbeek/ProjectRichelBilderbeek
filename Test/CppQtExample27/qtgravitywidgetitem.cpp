@@ -1,7 +1,12 @@
 #include <cmath>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QGraphicsScene>
 #include <QPainter>
 #include "qtgravitywidgetitem.h"
+#pragma GCC diagnostic pop
 
 QtGravityWidgetItem::QtGravityWidgetItem(
   QGraphicsItem * parent,
