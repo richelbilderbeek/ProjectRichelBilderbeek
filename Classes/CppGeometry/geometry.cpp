@@ -254,6 +254,14 @@ double ribi::Geometry::GetDistance(const double dx, const double dy) const noexc
   return std::sqrt( (dx * dx) + (dy * dy) );
 }
 
+double ribi::Geometry::GetDistance(
+  const boost::geometry::model::d2::point_xy<double>& a,
+  const boost::geometry::model::d2::point_xy<double>& b
+  ) const noexcept
+{
+  return GetDistance(a.x() - b.x(),a.y() - b.y());
+}
+
 std::string ribi::Geometry::GetVersion() const noexcept
 {
   return "1.2";
@@ -431,14 +439,14 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::mo
 
 bool ribi::Geometry::IsConvex(Polygon polygon
   #ifndef NDEBUG
-  ,const std::vector<Coordinat2D>& points
+  ,const std::vector<Coordinat2D>& /* points  */ //Keep it temporarily for debugging
   #endif
   ) const noexcept
 {
-  TRACE_FUNC();
-  assert(boost::geometry::num_points(polygon) == points.size()
-    && "Points and polygon have the same number of points");
-  const bool verbose = true;
+  //TRACE_FUNC();
+  //assert(boost::geometry::num_points(polygon) == points.size()
+  //  && "Points and polygon have the same number of points");
+  const bool verbose = false;
   boost::geometry::correct(polygon);
   Polygon hull;
   boost::geometry::convex_hull(polygon, hull);
@@ -449,6 +457,28 @@ bool ribi::Geometry::IsConvex(Polygon polygon
     return true;
   }
   //Correct for bug https://svn.boost.org/trac/boost/ticket/9873
+  //A polygon is convex when it does not use the edge with the possibly longest distance
+  std::vector<Coordinat2D> v = polygon.outer();
+  //Find longest distance
+  double max_dist = 0.0;
+  const int sz = static_cast<int>(v.size());
+  for (int i=0; i!=sz; ++i)
+  {
+    for (int j=i+1; j!=sz; ++j)
+    {
+      const double dist = GetDistance(v[i],v[j]);
+      if (dist > max_dist) { max_dist = dist; }
+    }
+  }
+
+  for (int i=1; i!=sz; ++i)
+  {
+    const double dist = GetDistance(v[i-1],v[i]);
+    if (dist == max_dist) return false;
+  }
+  return true;
+
+  #ifdef ISCONVEX_STD_REVERSE_APPROACH
   std::vector<Coordinat2D> v = polygon.outer();
   std::vector<Coordinat2D> w = hull.outer();
   //std::sort(v.begin(),v.end(),Order2dByX());
@@ -486,6 +516,7 @@ bool ribi::Geometry::IsConvex(Polygon polygon
   TRACE(is_convex_second);
   #endif
   return is_convex_second;
+  #endif
 }
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
@@ -497,8 +528,8 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
     boost::geometry::append(polygon,point);
   };
   assert(boost::geometry::num_points(polygon) == points.size());
-  TRACE(points.size());
-  TRACE(boost::geometry::num_points(polygon));
+  //TRACE(points.size());
+  //TRACE(boost::geometry::num_points(polygon));
   const bool is_convex = IsConvex(polygon,points);
   return is_convex;
 }
@@ -1243,7 +1274,7 @@ void ribi::Geometry::Test() noexcept
 
       assert(g.IsConvex(points));
     }
-    assert(1==2 && "Yay, error is fixed!");
+    //assert(1==2 && "Yay, error is fixed!");
   }
 
 

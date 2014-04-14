@@ -1,10 +1,6 @@
 #DEFINES += FIX_ISSUE_168
-<<<<<<< HEAD
 #DEFINES += ANSI_DECLARATORS
-=======
 QMAKE_CXXFLAGS += -Werror
-
->>>>>>> 4cff13d32f92c497957cd39b33da4efa76b3bb33
 
 exists(../../ConsoleApplication.pri) {
   include(../../ConsoleApplication.pri)
