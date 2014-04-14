@@ -41,7 +41,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   #ifndef NDEBUG
   Test();
   #endif
-  PROFILE_FUNC();
+
 
   for (const std::string& folder: GetAllFolders())
   {
@@ -150,8 +150,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       for (const auto& face: cell->GetFaces())
       {
         assert(face);
-        //TRACE(face_usecount);
-        //TRACE(face.use_count());
         //assert(std::abs(face_usecount - face.use_count()) <= 1 && "Face are used once or twice");
         //All Cells must exist of Faces with an existing index
         assert(face->GetIndex() >= 0);
@@ -248,7 +246,7 @@ std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
   ) const noexcept
 {
-  PROFILE_FUNC();
+
   //Tally all boundary names
   std::map<std::string,int> sorted_tally;
 
@@ -281,32 +279,8 @@ std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
         boundary_to_patch_field_type_function(lhs.first),
         boundary_to_patch_field_type_function(rhs.first)
       );
-      /*
-      if (boundary_to_patch_field_type_function(lhs.first) == ribi::foam::PatchFieldType::no_patch_field)
-      {
-        if (boundary_to_patch_field_type_function(rhs.first) == ribi::foam::PatchFieldType::no_patch_field)
-        {
-          return lhs.first > rhs.first;
-        }
-        else
-        {
-          return true;
-        }
-      }
-      if (boundary_to_patch_field_type_function(rhs.first) == ribi::foam::PatchFieldType::no_patch_field)
-      {
-        return false;
-      }
-      return lhs.first > rhs.first;
-      */
     }
   );
-
-  for (auto p: tally)
-  {
-    TRACE(p.first);
-    TRACE(p.second);
-  }
 
   //Create the items
   std::vector<ribi::foam::BoundaryFileItem> items;
@@ -337,8 +311,6 @@ std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
 
 std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::CreateCells() const noexcept
 {
-  PROFILE_FUNC();
-
   std::stringstream out_owner;
   out_owner
     << static_cast<int>(m_faces.size())
@@ -373,12 +345,8 @@ std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::CreateCells(
 
 std::string ribi::trim::TriangleMeshBuilder::CreateFaces() const noexcept
 {
-  PROFILE_FUNC();
-
   std::stringstream s;
   s << std::setprecision(17);
-  TRACE(m_faces.size());
-
   for (auto face: m_faces)
   {
     s << face->GetPoints().size();
@@ -387,7 +355,6 @@ std::string ribi::trim::TriangleMeshBuilder::CreateFaces() const noexcept
 
     for (const boost::shared_ptr<const Point> point: face->GetPoints())
     {
-
       s << " " << point->GetIndex();
     }
     s << "\n";
@@ -399,7 +366,6 @@ std::string ribi::trim::TriangleMeshBuilder::CreateFaces() const noexcept
 
 std::string ribi::trim::TriangleMeshBuilder::CreateHeader() const noexcept
 {
-  PROFILE_FUNC();
   std::stringstream s;
   s << ""
     << "ply\n"
@@ -416,7 +382,6 @@ std::string ribi::trim::TriangleMeshBuilder::CreateHeader() const noexcept
 
 std::string ribi::trim::TriangleMeshBuilder::CreateNodes() const noexcept
 {
-  PROFILE_FUNC();
   using boost::geometry::get;
 
   std::string text;
@@ -447,8 +412,6 @@ std::string ribi::trim::TriangleMeshBuilder::CreateNodes() const noexcept
 
 std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamFaces() const noexcept
 {
-  PROFILE_FUNC();
-
   std::stringstream s;
   s
     << std::setprecision(17)
@@ -481,7 +444,6 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamHeader(
   const std::string& location,
   const std::string& note) const noexcept
 {
-  PROFILE_FUNC();
   std::stringstream s;
   s << "FoamFile\n{\tversion\t2.0;\n\tformat\tascii;\n\tclass\t" << class_name << ";";
 
@@ -496,7 +458,7 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamHeader(
 
 std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamNodes() const noexcept
 {
-  PROFILE_FUNC();
+
   using boost::geometry::get;
   std::stringstream s;
   s
@@ -523,7 +485,6 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   const std::vector<boost::shared_ptr<Cell>>& cells
 ) noexcept
 {
-  PROFILE_FUNC();
   std::vector<boost::shared_ptr<Face>> v;
   for (const boost::shared_ptr<Cell>& cell: cells)
   {
@@ -532,8 +493,8 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   }
   TRACE("n_face, non-unique:");
   TRACE(v.size());
-  const Helper helper;
-  std::sort(v.begin(),v.end(),helper.OrderByIndex());
+  
+  std::sort(v.begin(),v.end(),Helper().OrderByIndex());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
@@ -549,7 +510,6 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilde
   const std::vector<boost::shared_ptr<Cell>>& cells
 ) noexcept
 {
-  PROFILE_FUNC();
   std::vector<boost::shared_ptr<Point>> v;
   for (const boost::shared_ptr<Cell>& cell: cells)
   {
@@ -559,8 +519,8 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilde
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
   }
-  const Helper helper;
-  std::sort(v.begin(),v.end(),helper.OrderByX());
+  
+  std::sort(v.begin(),v.end(),Helper().OrderByX());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
@@ -583,7 +543,6 @@ std::string ribi::trim::TriangleMeshBuilder::Implode(
   const std::string& seperator,
   const std::vector<ribi::foam::PointIndex>& v) noexcept
 {
-  PROFILE_FUNC();
   std::stringstream s;
   s << std::setprecision(17);
 
@@ -601,7 +560,6 @@ std::string ribi::trim::TriangleMeshBuilder::Implode(
   const std::string& seperator,
   const std::vector<int>& v) noexcept
 {
-  PROFILE_FUNC();
   std::stringstream s;
   s << std::setprecision(17);
 
@@ -643,7 +601,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
 ) noexcept
 {
-  PROFILE_FUNC();
+
 
   std::sort(std::begin(faces),std::end(faces),
     [boundary_to_patch_field_type_function](const boost::shared_ptr<const Face> lhs, const boost::shared_ptr<const Face> rhs)

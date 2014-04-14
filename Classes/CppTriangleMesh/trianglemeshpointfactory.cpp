@@ -199,19 +199,19 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
   d->SetZ(1.0 * boost::units::si::meter);
   const std::vector<boost::shared_ptr<Point>> square { a,b,c,d };
   #ifndef NDEBUG
-  const Helper helper;
-  if(helper.CalcWindingHorizontal(AddConst(square)) != winding)
+  
+  if(Helper().CalcWindingHorizontal(AddConst(square)) != winding)
   {
     TRACE("ERROR");
     TRACE(*a);
     TRACE(*b);
     TRACE(*c);
     TRACE(Windings().ToStr(winding));
-    TRACE(helper.IsClockwiseHorizontal(square));
+    TRACE(Helper().IsClockwiseHorizontal(square));
     TRACE("BREAK");
   }
   #endif
-  assert(helper.CalcWindingHorizontal(AddConst(square)) == winding);
+  assert(Helper().CalcWindingHorizontal(AddConst(square)) == winding);
   return square;
 }
 
@@ -279,19 +279,19 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
   c->SetZ(1.0 * boost::units::si::meter);
   const std::vector<boost::shared_ptr<Point>> triangle { a,b,c };
   #ifndef NDEBUG
-  const Helper helper;
-  if (!(helper.IsClockwiseHorizontal(triangle)   == (winding == Winding::clockwise)))
+  
+  if (!(Helper().IsClockwiseHorizontal(triangle)   == (winding == Winding::clockwise)))
   {
     TRACE("ERROR");
     TRACE(*a);
     TRACE(*b);
     TRACE(*c);
     TRACE(Windings().ToStr(winding));
-    TRACE(helper.IsClockwiseHorizontal(triangle));
+    TRACE(Helper().IsClockwiseHorizontal(triangle));
     TRACE("BREAK");
   }
   #endif
-  assert(helper.IsClockwiseHorizontal(triangle)   == (winding == Winding::clockwise));
+  assert(Helper().IsClockwiseHorizontal(triangle)   == (winding == Winding::clockwise));
   return triangle;
 }
 
@@ -312,9 +312,9 @@ void ribi::trim::PointFactory::Test() noexcept
   }
   for (Winding winding: { Winding::clockwise, Winding::counter_clockwise } )
   {
-    const Helper helper;
+    
     assert(
-      helper.CalcWindingHorizontal(
+      Helper().CalcWindingHorizontal(
         AddConst(PointFactory().CreateTestTriangle(winding))
       ) == winding
     );

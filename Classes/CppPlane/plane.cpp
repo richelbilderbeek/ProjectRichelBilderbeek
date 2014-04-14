@@ -33,9 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::Plane::Plane(
-  const Coordinat3D& p1, //= Coordinat3D(0.0,0.0,0.0),
-  const Coordinat3D& p2, //= Coordinat3D(0.0,1.0,0.0),
-  const Coordinat3D& p3  //= Coordinat3D(1.0,0.0,0.0)
+  const Coordinat3D& p1,
+  const Coordinat3D& p2,
+  const Coordinat3D& p3
 ) noexcept
 : m_plane_x(CreatePlaneX(p1,p2,p3)),
   m_plane_y(CreatePlaneY(p1,p2,p3)),
@@ -44,10 +44,10 @@ ribi::Plane::Plane(
 {
   #ifndef NDEBUG
   Test();
-  const Geometry geometry;
-  assert(geometry.IsEqual(m_points[0],p1));
-  assert(geometry.IsEqual(m_points[1],p2));
-  assert(geometry.IsEqual(m_points[2],p3));
+  
+  assert(Geometry().IsEqual(m_points[0],p1));
+  assert(Geometry().IsEqual(m_points[1],p2));
+  assert(Geometry().IsEqual(m_points[2],p3));
   #endif
 }
 
@@ -273,7 +273,7 @@ void ribi::Plane::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Plane::Test");
-  const bool verbose { true };
+  const bool verbose { false };
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
   using boost::geometry::get;
 

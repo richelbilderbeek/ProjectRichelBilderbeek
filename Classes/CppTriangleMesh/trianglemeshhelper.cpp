@@ -54,8 +54,8 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
 std::vector<ribi::trim::Helper::Coordinat2D> ribi::trim::Helper::CalcProjection(
   const std::vector<boost::shared_ptr<const ribi::trim::Point>>& v) const
 {
-  const Geometry geometry;
-  return geometry.CalcProjection(PointsToCoordinats3D(v));
+  
+  return Geometry().CalcProjection(PointsToCoordinats3D(v));
 }
 
 ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
@@ -63,7 +63,7 @@ ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
 ) const noexcept
 {
   using boost::geometry::get;
-  const Geometry geometry;
+  
 
   const int n_points { static_cast<int>(points.size()) };
 
@@ -76,14 +76,13 @@ ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
       get<1>(*points[i]->GetCoordinat()),
       points[i]->GetZ().value()
     );
-    //TRACE(co);
     coordinats.push_back(co);
   }
 
   assert(coordinats.size() == coordinats.size());
 
-  const bool a { geometry.IsClockwiseHorizontal(coordinats) };
-  const bool b { geometry.IsCounterClockwiseHorizontal(coordinats) };
+  const bool a { Geometry().IsClockwiseHorizontal(coordinats) };
+  const bool b { Geometry().IsCounterClockwiseHorizontal(coordinats) };
   if ( a && !b) return Winding::clockwise;
   if (!a &&  b) return Winding::counter_clockwise;
   return Winding::indeterminate;
@@ -140,8 +139,8 @@ ribi::trim::Helper::Coordinat3dSet ribi::trim::Helper::ExtractCoordinats(const r
 
 double ribi::trim::Helper::GetAngle(const boost::shared_ptr<const Point> point) const noexcept
 {
-  const Geometry geometry;
-  return geometry.GetAngle(
+  
+  return Geometry().GetAngle(
     boost::geometry::get<0>(*point->GetCoordinat()),
     boost::geometry::get<1>(*point->GetCoordinat())
   );
@@ -151,16 +150,15 @@ bool ribi::trim::Helper::IsClockwise(
   const std::vector<boost::shared_ptr<const Point>>& points,
   const Coordinat3D& observer) const noexcept
 {
-  //using boost::geometry::get;
-  const Geometry geometry;
+  
   std::vector<Coordinat3D> coordinats;
   for (auto point: points)
   {
     assert(point);
     coordinats.push_back(point->GetCoordinat3D());
   }
-  assert(geometry.IsPlane(coordinats));
-  return geometry.IsClockwise(coordinats,observer);
+  assert(Geometry().IsPlane(coordinats));
+  return Geometry().IsClockwise(coordinats,observer);
 }
 
 bool ribi::trim::Helper::IsClockwiseHorizontal(
@@ -168,7 +166,7 @@ bool ribi::trim::Helper::IsClockwiseHorizontal(
 ) const noexcept
 {
   using boost::geometry::get;
-  const Geometry geometry;
+  
   assert(points.size() == 3);
   assert(points[0]);
   assert(points[1]);
@@ -182,34 +180,32 @@ bool ribi::trim::Helper::IsClockwiseHorizontal(
   assert(!std::isnan(center_x));
   assert(!std::isnan(center_y));
 
-  //const double pi  = boost::math::constants::pi<double>();
-  //const double tau = boost::math::constants::two_pi<double>();
   const std::vector<double> angles {
-    geometry.GetAngle(
+    Geometry().GetAngle(
       get<0>(*points[0]->GetCoordinat()) - center_x,
       get<1>(*points[0]->GetCoordinat()) - center_y
     ),
-    geometry.GetAngle(
+    Geometry().GetAngle(
       get<0>(*points[1]->GetCoordinat()) - center_x,
       get<1>(*points[1]->GetCoordinat()) - center_y
     ),
-    geometry.GetAngle(
+    Geometry().GetAngle(
       get<0>(*points[2]->GetCoordinat()) - center_x,
       get<1>(*points[2]->GetCoordinat()) - center_y
     )
   };
-  const bool a = geometry.IsClockwise(angles[0],angles[1]);
-  const bool b = geometry.IsClockwise(angles[1],angles[2]);
+  const bool a = Geometry().IsClockwise(angles[0],angles[1]);
+  const bool b = Geometry().IsClockwise(angles[1],angles[2]);
   const bool is_clockwise { a && b };
   return is_clockwise;
 }
 
 bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points) const noexcept
 {
-  const Geometry geometry;
+  
   const std::vector<Coordinat3D> coordinats3d
     = PointsToCoordinats3D(points);
-  return geometry.IsConvex(coordinats3d);
+  return Geometry().IsConvex(coordinats3d);
 }
 
 bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept
@@ -258,31 +254,24 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim
   for (auto point: const_points) { assert(point); }
   #endif
   return IsConvex(const_points);
-  /*
-  const auto coordinats(PointsToCoordinats3D(const_points));
-
-  assert(const_points.size() == coordinats.size());
-
-  return geometry.IsConvex(coordinats);
-  */
 }
 
 bool ribi::trim::Helper::IsCounterClockwise(
   const std::vector<boost::shared_ptr<const Point>>& points,
   const Coordinat3D& observer) const noexcept
 {
-  const Geometry geometry;
-  assert(geometry.IsPlane(PointsToCoordinats3D(points)));
-  return geometry.IsCounterClockwise(PointsToCoordinats3D(points),observer);
+  
+  assert(Geometry().IsPlane(PointsToCoordinats3D(points)));
+  return Geometry().IsCounterClockwise(PointsToCoordinats3D(points),observer);
 }
 
 bool ribi::trim::Helper::IsCounterClockwise(
   const std::vector<boost::shared_ptr<Point>>& points,
   const Coordinat3D& observer) const noexcept
 {
-  const Geometry geometry;
-  assert(geometry.IsPlane(PointsToCoordinats3D(AddConst(points))));
-  return geometry.IsCounterClockwise(PointsToCoordinats3D(AddConst(points)),observer);
+  
+  assert(Geometry().IsPlane(PointsToCoordinats3D(AddConst(points))));
+  return Geometry().IsCounterClockwise(PointsToCoordinats3D(AddConst(points)),observer);
 }
 
 bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) const noexcept
@@ -344,16 +333,16 @@ bool ribi::trim::Helper::IsPlane(
   const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
 ) const noexcept
 {
-  const Geometry geometry;
-  return geometry.IsPlane(PointsToCoordinats3D(points));
+  
+  return Geometry().IsPlane(PointsToCoordinats3D(points));
 }
 
 bool ribi::trim::Helper::IsPlane(
   const std::vector<boost::shared_ptr<ribi::trim::Point>>& points
 ) const noexcept
 {
-  const Geometry geometry;
-  return geometry.IsPlane(PointsToCoordinats3D(AddConst(points)));
+  
+  return Geometry().IsPlane(PointsToCoordinats3D(AddConst(points)));
 }
 
 bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) const noexcept
@@ -376,22 +365,14 @@ void ribi::trim::Helper::MakeConvex(
   assert(!points.empty());
   assert(points.size() == 4);
   #endif
-  const Geometry geometry;
-  const Helper helper;
+  
+  
 
   if (IsConvex(points))
   {
     if (verbose) { TRACE("MakeConvex: points were convex at start"); }
     return;
   }
-
-  #ifndef NDEBUG
-  static int cnt = 0;
-  cnt = 0;
-
-  static int call_cnt = -1;
-  ++call_cnt;
-  #endif
 
   std::sort(points.begin(),points.end(),OrderByX());
 
@@ -401,45 +382,13 @@ void ribi::trim::Helper::MakeConvex(
     {
       break;
     }
-    #ifndef NDEBUG
-    const std::vector<boost::shared_ptr<Point>> before(points);
-    #endif
-
     std::next_permutation(points.begin(),points.end(),OrderByX());
-
-    #ifndef NDEBUG
-    const std::vector<boost::shared_ptr<Point>> after(points);
-    assert(before != after);
-    assert(points != before);
-    assert(points == after);
-    if (verbose)
-    {
-      ++cnt;
-      //assert(cnt != (4 * 3 * 2 * 1) + 2);
-      if (cnt == 27) break;
-    }
-    #endif
-  }
-
-  if (IsConvex(points))
-  {
-    if (verbose) { TRACE("MakeConvex: points were convex after making them convex"); }
-    return;
-  }
-
-  if (!IsConvex(points))
-  {
-    TRACE(IsConvex(points));
-    if (verbose) { TRACE("MakeConvex: FAILED"); }
   }
 
   #ifndef NDEBUG
   if(!IsConvex(points))
   {
     TRACE("ERROR");
-    TRACE(call_cnt);
-    TRACE("TRY AGAIN");
-    //std::sort(points.begin(),points.end(),OrderByX());
     for (int i=0; i!=26; ++i)
     {
       std::next_permutation(points.begin(),points.end(),OrderByX());
@@ -449,10 +398,10 @@ void ribi::trim::Helper::MakeConvex(
         assert(points[0]); assert(points[1]); assert(points[2]); assert(points[3]);
         s << (IsConvex(points) ? "Convex" : "Not convex")
           << ": "
-          << geometry.ToStr(points[0]->GetCoordinat3D()) << "->"<< points[0]->GetIndex() << ","
-          << geometry.ToStr(points[1]->GetCoordinat3D()) << "->"<< points[1]->GetIndex() << ","
-          << geometry.ToStr(points[2]->GetCoordinat3D()) << "->"<< points[2]->GetIndex() << ","
-          << geometry.ToStr(points[3]->GetCoordinat3D()) << "->"<< points[3]->GetIndex() << '\n'
+          << Geometry().ToStr(points[0]->GetCoordinat3D()) << "->"<< points[0]->GetIndex() << ","
+          << Geometry().ToStr(points[1]->GetCoordinat3D()) << "->"<< points[1]->GetIndex() << ","
+          << Geometry().ToStr(points[2]->GetCoordinat3D()) << "->"<< points[2]->GetIndex() << ","
+          << Geometry().ToStr(points[3]->GetCoordinat3D()) << "->"<< points[3]->GetIndex() << '\n'
         ;
         TRACE(s.str());
       }
@@ -462,22 +411,18 @@ void ribi::trim::Helper::MakeConvex(
         assert(projected_points.size() == 4);
         t << (IsConvex(points) ? "Convex" : "Not convex")
           << ": "
-          << geometry.ToStr(projected_points[0]) << ","
-          << geometry.ToStr(projected_points[1]) << ","
-          << geometry.ToStr(projected_points[2]) << ","
-          << geometry.ToStr(projected_points[3])
+          << Geometry().ToStr(projected_points[0]) << ","
+          << Geometry().ToStr(projected_points[1]) << ","
+          << Geometry().ToStr(projected_points[2]) << ","
+          << Geometry().ToStr(projected_points[3])
         ;
         TRACE(t.str());
       }
     }
-    for (auto p: points) { TRACE(p); TRACE(*p); }
-
-    assert(helper.IsConvex(points));
-    return;
   }
   #endif
 
-  assert(helper.IsConvex(points));
+  assert(Helper().IsConvex(points));
   return;
 }
 
@@ -551,7 +496,7 @@ void ribi::trim::Helper::Test() noexcept
   TRACE("Starting ribi::trim::Helper::Point::Test");
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   using boost::geometry::get;
-  const bool verbose = true;
+  const bool verbose = false;
 
   //CalcCenter
   //CalcWindingHorizontal

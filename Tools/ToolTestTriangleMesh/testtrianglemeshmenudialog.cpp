@@ -31,7 +31,7 @@ int ribi::TestTriangleMeshMenuDialog::ExecuteSpecific(const std::vector<std::str
 
 ribi::About ribi::TestTriangleMeshMenuDialog::GetAbout() const noexcept
 {
-  const Geometry geometry;
+  
   About a(
     "Richel Bilderbeek",
     "TestTriangleMesh",
@@ -42,7 +42,7 @@ ribi::About ribi::TestTriangleMeshMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
-  a.AddLibrary("Geometry version: " + geometry.GetVersion());
+  a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   const std::unique_ptr<Plane> plane(
     new Plane(
       Plane::Coordinat3D(0.0,0.0,0.0),

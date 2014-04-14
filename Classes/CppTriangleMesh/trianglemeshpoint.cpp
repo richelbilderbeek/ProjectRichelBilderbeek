@@ -71,8 +71,8 @@ ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcep
   assert(!std::isnan(boost::geometry::get<0>(*GetCoordinat())));
   assert(!std::isnan(boost::geometry::get<1>(*GetCoordinat())));
   assert(!CanGetZ() || !std::isnan(GetZ().value()));
-  const Geometry geometry;
-  return geometry.CreatePoint(
+  
+  return Geometry().CreatePoint(
     boost::geometry::get<0>(*GetCoordinat()),
     boost::geometry::get<1>(*GetCoordinat()),
     CanGetZ() ? GetZ().value() : 0.0
@@ -173,10 +173,10 @@ void ribi::trim::Point::Test() noexcept
 
 std::string ribi::trim::Point::ToStr() const noexcept
 {
-  const Geometry geometry;
+  
   std::stringstream s;
   s
-    << geometry.ToStr(GetCoordinat3D())
+    << Geometry().ToStr(GetCoordinat3D())
     << " (index: "
     << GetIndex()
     << ")";
@@ -186,15 +186,16 @@ std::string ribi::trim::Point::ToStr() const noexcept
 
 std::string ribi::trim::Point::ToXml() const noexcept
 {
-  const Helper helper;
+  
   std::stringstream s;
   s
     << ribi::xml::ToXml("point_index",GetIndex())
-    << helper.ToXml(*GetCoordinat())
+    << Helper().ToXml(*GetCoordinat())
     << ribi::xml::ToXml("z", CanGetZ()
-    ?  boost::lexical_cast<std::string>(GetZ().value())
-    : ""
-    );
+      ?  boost::lexical_cast<std::string>(GetZ().value())
+      : ""
+      )
+  ;
   return s.str();
 }
 

@@ -50,7 +50,6 @@ std::pair<int,char **> ribi::TriangleFile::CreateArgv(const std::vector<std::str
   {
     argv[i] = new char[v[i].size() + 1];
     std::strcpy(argv[i],&v[i][0]);
-    TRACE(argv[i]);
   }
   std::pair<int,char **> p = std::make_pair(argc,argv);
   return p;

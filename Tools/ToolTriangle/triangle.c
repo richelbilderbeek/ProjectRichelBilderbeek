@@ -13834,11 +13834,9 @@ char *infilename;
   /* Search for something that looks like a number. */
   do {
 
-    printf("Result: <begin>%s<end>\n",string); //RJCB
-
+    //printf("Result: <begin>%s<end>\n",string); //RJCB
     result = fgets(string, INPUTLINESIZE, infile);
-
-    printf("Result: <begin>%s<end>\n",result); //RJCB
+    //printf("Result: <begin>%s<end>\n",result); //RJCB
 
 
     //if (result == (char *) NULL) {

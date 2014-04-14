@@ -371,13 +371,13 @@ bool ribi::Geometry::IsClockwise(
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
     #ifndef NDEBUG
-    const Geometry geometry;
-    if(!geometry.IsPlane(points))
+    
+    if(!Geometry().IsPlane(points))
     {
       TRACE("ERROR");
     }
     #endif
-    assert(geometry.IsPlane(points));
+    assert(Geometry().IsPlane(points));
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
     const auto v(
@@ -443,7 +443,6 @@ bool ribi::Geometry::IsConvex(Polygon polygon
   #endif
   ) const noexcept
 {
-  //TRACE_FUNC();
   //assert(boost::geometry::num_points(polygon) == points.size()
   //  && "Points and polygon have the same number of points");
   const bool verbose = false;
@@ -458,7 +457,7 @@ bool ribi::Geometry::IsConvex(Polygon polygon
   }
   //Correct for bug https://svn.boost.org/trac/boost/ticket/9873
   //A polygon is convex when it does not use the edge with the possibly longest distance
-  std::vector<Coordinat2D> v = polygon.outer();
+  const std::vector<Coordinat2D> v = polygon.outer();
   //Find longest distance
   double max_dist = 0.0;
   const int sz = static_cast<int>(v.size());
@@ -617,8 +616,8 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
       s << "{";
       for (auto coordinat2d: coordinats2d)
       {
-        const Geometry geometry;
-        s << geometry.ToStr(coordinat2d) << ",";
+        
+        s << Geometry().ToStr(coordinat2d) << ",";
       }
       std::string co_str(s.str());
       co_str[co_str.size() - 1] = '}';
@@ -667,8 +666,8 @@ bool ribi::Geometry::IsCounterClockwise(
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
-    const Geometry geometry;
-    assert(geometry.IsPlane(points));
+    
+    assert(Geometry().IsPlane(points));
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
     const auto v(
@@ -836,7 +835,7 @@ void ribi::Geometry::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Geometry::Test");
-  const bool verbose { true };
+  const bool verbose = false;
   const double pi { boost::math::constants::pi<double>() };
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   const Geometry g;

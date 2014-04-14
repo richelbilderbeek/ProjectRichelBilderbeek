@@ -124,7 +124,7 @@ std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::string& sou
   }
 
   //Create the scripts by merging QtCreatorProFiles
-  std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> > scripts;
+  std::vector<boost::shared_ptr<const QtCreatorProFileZipScript>> scripts;
 
   for (const std::string& pro_filename: pro_filenames)
   {

@@ -42,84 +42,83 @@ int main(int, char* argv[])
     //::ribi::trim::CreateVerticalFacesStrategy::two_faces_per_square
   };
 
+  const bool verbose = false;
+
+  const std::string renumberMesh_command(
+    std::string(
+      R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
+    + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"
+      // Changing to drive D is important...
+    + "&& D: "
+      // ...although this also indicates the drive
+    + "&& cd " + ribi::fileio::FileIo().GetPath(argv[0]) + " "
+    + "&& cd .. "
+    + (verbose ? "&& dir " : "")
+    + "&& renumberMesh"
+  );
+
+  const std::string checkMesh_command(
+    std::string(
+      R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
+    + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"
+      // Changing to drive D is important...
+    + "&& D: "
+      // ...although this also indicates the drive
+    + "&& cd " + ribi::fileio::FileIo().GetPath(argv[0]) + " "
+    + "&& cd .. "
+    + (verbose ? "&& dir " : "")
+    + "&& checkMesh"
+  );
+
   //Test
   #ifndef NDEBUG
-  try
+  const bool test_smaller_mesh = false;
+  if (test_smaller_mesh)
   {
-    const double pi = boost::math::constants::pi<double>();
-    const bool show_mesh = false;
-    const std::string renumberMesh_command(
-      std::string(
-        R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
-      + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
-        // Changing to drive D is important...
-      + " && D: "
-        // ...although this also indicates the drive
-      + " && cd " + ribi::fileio::FileIo().GetPath(argv[0])
-      + " && cd .. && dir && renumberMesh"
-    );
-    const std::vector<Coordinat2D> shapes {
-      ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
-    };
-    const int n_layers = 3;
-    const double quality = 5.0;
-    const ribi::TestTriangleMeshMainDialog d(
-      shapes,
-      show_mesh,
-      n_layers,
-      strategy,
-      quality,
-      renumberMesh_command
-    );
-    std::cout << d.GetTicks() << std::endl;
-    //checkMesh
+    try
     {
-      std::stringstream cmd;
-      cmd
-        << R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )"
-        << R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
-        // Changing to drive D is important...
-        << " && D: "
-        // ...although this also indicates the drive
-        << " && cd " << ribi::fileio::FileIo().GetPath(argv[0])
-        << " && cd .. && dir && checkMesh"
-      ;
-      TRACE(cmd.str());
-      std::system(cmd.str().c_str());
+      const double pi = boost::math::constants::pi<double>();
+      const bool show_mesh = false;
+      const std::vector<Coordinat2D> shapes {
+        ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
+      };
+      const int n_layers = 3;
+      const double quality = 5.0;
+      const ribi::TestTriangleMeshMainDialog d(
+        shapes,
+        show_mesh,
+        n_layers,
+        strategy,
+        quality,
+        checkMesh_command,
+        renumberMesh_command
+      );
+      TRACE(checkMesh_command);
+      std::system(checkMesh_command.c_str());
     }
-  }
-  catch (std::exception& e)
-  {
-    assert(!"Should not get here");
-  }
-  catch (...)
-  {
-    assert(!"Should not get here");
+    catch (std::exception& e)
+    {
+      assert(!"Should not get here");
+    }
+    catch (...)
+    {
+      assert(!"Should not get here");
+    }
   }
   #endif
 
   try
   {
     const double pi = boost::math::constants::pi<double>();
-    const bool show_mesh = false;
-    const std::string renumberMesh_command(
-      std::string(
-        R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
-      + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
-        // Changing to drive D is important...
-      + " && D: "
-        // ...although this also indicates the drive
-      + " && cd " + ribi::fileio::FileIo().GetPath(argv[0])
-      + " && cd .. && dir && renumberMesh"
-    );
+    const bool show_mesh = true;
     const std::vector<Coordinat2D> shapes {
-      //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
-      ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,0.5), //? cube
-      //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,1.0) //1 prism
-      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,2.0), //3 prisms
-      ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0,4.0)
+      //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 1.0) //1 cube
+      //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 0.5), //? cube
+      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 1.0), //1 prism
+      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 2.0) //3 prisms
+      //ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0, 4.0)
     };
-    const int n_layers = 27;
+    const int n_layers = 2;
     const double quality = 5.0;
 
     const ribi::TestTriangleMeshMainDialog d(
@@ -128,26 +127,14 @@ int main(int, char* argv[])
       n_layers,
       strategy,
       quality,
+      checkMesh_command,
       renumberMesh_command
     );
-    std::cout << d.GetTicks() << std::endl;
+    assert(1==2);
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
-    //checkMesh
-    {
-      std::stringstream cmd;
-      cmd
-        << R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )"
-        << R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
-        // Changing to drive D is important...
-        << " && D: "
-        // ...although this also indicates the drive
-        << " && cd " << ribi::fileio::FileIo().GetPath(argv[0])
-        << " && cd .. && dir && checkMesh"
-      ;
-      TRACE(cmd.str());
-      std::system(cmd.str().c_str());
-    }
+    TRACE(checkMesh_command);
+    std::system(checkMesh_command.c_str());
     return 0;
   }
   catch (std::exception& e)
