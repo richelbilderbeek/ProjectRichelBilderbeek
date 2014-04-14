@@ -42,14 +42,15 @@ struct CommandLoseFocus : public Command
   CommandLoseFocus& operator=(const CommandLoseFocus&) = delete;
   ~CommandLoseFocus() noexcept {}
 
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  void DoCommandSpecific(Widget * const widget) noexcept;
-  std::string ToStr() const noexcept { return "lose focus"; }
-  void UndoSpecific() noexcept;
+  std::string ToStr() const noexcept final { return "lose focus"; }
 
   private:
   boost::shared_ptr<Node> m_old_focus;
   Widget * m_widget;
+
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;
+  void DoCommandSpecific(Widget * const widget) noexcept final;
+  void UndoSpecific() noexcept final;
 };
 
 } //~namespace cmap

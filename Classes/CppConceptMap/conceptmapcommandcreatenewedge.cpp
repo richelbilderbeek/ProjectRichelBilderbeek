@@ -31,7 +31,7 @@ bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const Widget * const
   assert(widget);
   return widget->GetConceptMap().get()
    && widget->GetFocus()
-   && widget->GetSelected().size() == 1;
+   && widget->GetSelected().size() == 2;
 }
 
 void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) noexcept

@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include "conceptmapcommandaddfocusrandom.h"
+#include "conceptmapcommandaddselectedrandom.h"
 #include "conceptmapcommandcreatenewconceptmap.h"
 #include "conceptmapcommandcreatenewedge.h"
 #include "conceptmapcommandcreatenewnode.h"
@@ -36,15 +36,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFactory::CreateTestCommands() noexcept
 {
   std::vector<boost::shared_ptr<Command> > v;
-  /*
+
   {
     const boost::shared_ptr<Command> p {
-      new CommandAddFocusRandom
+      new CommandAddSelectedRandom
     };
     assert(p);
     v.push_back(p);
   }
-  */
   /*
   {
     const boost::shared_ptr<Command> p {

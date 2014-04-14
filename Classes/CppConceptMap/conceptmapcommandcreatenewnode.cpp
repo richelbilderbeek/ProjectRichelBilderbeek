@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include "conceptmapwidget.h"
+#include "conceptmapnode.h"
 
 bool ribi::cmap::CommandCreateNewNode::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {

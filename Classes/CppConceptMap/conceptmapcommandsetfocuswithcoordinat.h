@@ -44,10 +44,7 @@ struct CommandSetFocusWithCoordinat : public Command
   CommandSetFocusWithCoordinat& operator=(const CommandSetFocusWithCoordinat&) = delete;
   ~CommandSetFocusWithCoordinat() noexcept {}
 
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  void DoCommandSpecific(Widget * const widget) noexcept;
-  std::string ToStr() const noexcept { return "set focus with coordinat"; }
-  void UndoSpecific() noexcept;
+  std::string ToStr() const noexcept final { return "set focus with coordinat"; }
 
   private:
   boost::shared_ptr<Node> m_old_focus;
@@ -55,6 +52,10 @@ struct CommandSetFocusWithCoordinat : public Command
 
   const int m_x;
   const int m_y;
+
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;
+  void DoCommandSpecific(Widget * const widget) noexcept final;
+  void UndoSpecific() noexcept final;
 };
 
 } //~namespace cmap

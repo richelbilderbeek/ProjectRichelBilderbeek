@@ -350,13 +350,18 @@ void ribi::cmap::QtConceptMapWidget::OnLoseSelected(const std::vector<boost::sha
 
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNodes(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
 {
-  for (const auto node: nodes) { OnSetFocusNode(node); }
+  for (const auto node: nodes)
+  {
+    assert(node);
+    OnSetFocusNode(node);
+  }
 }
 
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept
 {
   //TRACE_FUNC();
   assert(node);
+  assert(m_qtconceptmap);
   assert(m_qtconceptmap->FindQtNode(node.get()));
   //if(m_qtconceptmap->FindQtNode(node))
   {
@@ -507,7 +512,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     w->DoCommand(cmd_delete_node);
     assert(m->GetNodes().size()   == 0 && "After deleting the new node, the concept map must be empty");
     assert(c->GetQtNodes().size() == 0 && "After deleting the new node, the QtConceptMap must be empty");
-    cmd_delete_node->UndoSpecific();
+    cmd_delete_node->Undo();
     assert(m->GetNodes().size()   == 1 && "After undoing the deletion of the only node, the previously empty concept map must have a node");
     assert(c->GetQtNodes().size() == 1 && "After undoing the deletion of the only node, the previously empty QtConceptMap must have a node");
   }
@@ -546,7 +551,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
       assert(static_cast<int>(m->GetNodes().size()  ) + 1 == n_nodes_before  );
       assert(static_cast<int>(c->GetQtNodes().size()) + 1 == n_qtnodes_before);
 
-      cmd->UndoSpecific();
+      cmd->Undo();
 
       assert(static_cast<int>(m->GetNodes().size()) == n_nodes_before);
       assert(static_cast<int>(c->GetQtNodes().size()) == n_qtnodes_before);

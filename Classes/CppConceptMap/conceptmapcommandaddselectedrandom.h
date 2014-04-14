@@ -18,10 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-#ifndef CONCEPTMAPCOMMANDDELETECONCEPTMAP_H
-#define CONCEPTMAPCOMMANDDELETECONCEPTMAP_H
-
-/*
+#ifndef CONCEPTMAPCOMMANDADDSELECTEDRANDOM_H
+#define CONCEPTMAPCOMMANDADDSELECTEDRANDOM_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -33,19 +31,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace cmap {
 
-///Delete a concept map
-///-Can be used only when there is an existing concept map
-struct CommandDeleteConceptMap : public Command
+///Add another item to the selected pool
+struct CommandAddSelectedRandom : public Command
 {
-  CommandDeleteConceptMap() : m_deleted_concept_map{}, m_widget{} {}
-  CommandDeleteConceptMap(const CommandDeleteConceptMap&) = delete;
-  CommandDeleteConceptMap& operator=(const CommandDeleteConceptMap&) = delete;
-  ~CommandDeleteConceptMap() noexcept {}
-  std::string ToStr() const noexcept { return "delete concept map"; }
+  CommandAddSelectedRandom() : m_old_selected{}, m_widget{} {}
+  CommandAddSelectedRandom(const CommandAddSelectedRandom&) = delete;
+  CommandAddSelectedRandom& operator=(const CommandAddSelectedRandom&) = delete;
+  ~CommandAddSelectedRandom() noexcept {}
+
+  std::string ToStr() const noexcept final { return "add selected random"; }
+  void Undo() noexcept;
 
   private:
-  boost::shared_ptr<ConceptMap> m_deleted_concept_map;
+  std::vector<boost::shared_ptr<Node>> m_old_selected;
   Widget * m_widget;
+
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;
   void DoCommandSpecific(Widget * const widget) noexcept final;
   void UndoSpecific() noexcept final;
@@ -54,6 +54,5 @@ struct CommandDeleteConceptMap : public Command
 } //~namespace cmap
 } //~namespace ribi
 
-*/
 
-#endif // CONCEPTMAPCOMMANDDELETECONCEPTMAP_H
+#endif // CONCEPTMAPCOMMANDADDSELECTEDRANDOM_H

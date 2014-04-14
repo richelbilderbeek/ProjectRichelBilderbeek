@@ -40,15 +40,16 @@ struct CommandCreateNewEdge : public Command
   CommandCreateNewEdge& operator=(const CommandCreateNewEdge&) = delete;
   ~CommandCreateNewEdge() noexcept {}
 
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  void DoCommandSpecific(Widget * const widget) noexcept;
-  std::string ToStr() const noexcept { return "create new edge"; }
-  void UndoSpecific() noexcept;
+  std::string ToStr() const noexcept final { return "create new edge"; }
 
   private:
   boost::shared_ptr<Edge> m_edge;
   std::vector<boost::shared_ptr<Node>> m_nodes;
   Widget * m_widget;
+
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;
+  void DoCommandSpecific(Widget * const widget) noexcept final;
+  void UndoSpecific() noexcept final;
 };
 
 } //~namespace cmap

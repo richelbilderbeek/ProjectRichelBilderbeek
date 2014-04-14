@@ -41,14 +41,15 @@ struct CommandSetFocusRandom : public Command
   CommandSetFocusRandom& operator=(const CommandSetFocusRandom&) = delete;
   ~CommandSetFocusRandom() noexcept {}
 
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  void DoCommandSpecific(Widget * const widget) noexcept;
-  std::string ToStr() const noexcept { return "set focus random"; }
-  void UndoSpecific() noexcept;
+  std::string ToStr() const noexcept final { return "set focus random"; }
 
   private:
   boost::shared_ptr<Node> m_old_focus;
   Widget * m_widget;
+
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;
+  void DoCommandSpecific(Widget * const widget) noexcept final;
+  void UndoSpecific() noexcept final;
 };
 
 } //~namespace cmap

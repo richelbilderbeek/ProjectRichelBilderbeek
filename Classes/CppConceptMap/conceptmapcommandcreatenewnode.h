@@ -40,15 +40,15 @@ struct CommandCreateNewNode : public Command
   CommandCreateNewNode& operator=(const CommandCreateNewNode&) = delete;
   ~CommandCreateNewNode() noexcept {}
 
-  std::string ToStr() const noexcept { return "create new node"; }
+  std::string ToStr() const noexcept final { return "create new node"; }
 
   private:
   boost::shared_ptr<Node> m_node;
   Widget * m_widget;
 
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  void DoCommandSpecific(Widget * const widget) noexcept;
-  void UndoSpecific() noexcept;
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept final;
+  void DoCommandSpecific(Widget * const widget) noexcept final;
+  void UndoSpecific() noexcept final;
 };
 
 } //~namespace cmap

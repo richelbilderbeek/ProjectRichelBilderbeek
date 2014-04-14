@@ -204,8 +204,11 @@ struct Widget
   static void Test() noexcept;
   #endif
 
+  ///Unselect the node, assumes it is selected
+  void Unselect(const boost::shared_ptr<Node>& node) noexcept;
+
   //friend class Command;
-  friend class CommandAddFocusRandom;
+  friend class CommandAddSelectedRandom;
   friend class CommandCreateNewConceptMap;
   friend class CommandCreateNewEdge;
   friend class CommandCreateNewNode;
