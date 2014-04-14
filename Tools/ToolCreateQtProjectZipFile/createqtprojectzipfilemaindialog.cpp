@@ -31,11 +31,17 @@ void ribi::CreateQtProjectZipFileMainDialog::Test() noexcept
   }
   TRACE("Starting ribi::CreateQtProjectZipFileMainDialog::Test");
   CreateQtProjectZipFileMainDialog d("../../Tools/ToolCreateQtProjectZipFile");
-  const std::string n = "mkdir Projects/Tools/ToolCreateQtProjectZipFile/../..";
   const std::string s = d.GetScript();
-  const auto p = boost::algorithm::find(s,n);
-  assert(p.first == p.second);
-  assert(1==2);
+  {
+    const std::string t = "mkdir Projects";
+    assert(!boost::algorithm::find_first(s,t).empty() && "Valid string should be present");
+  }
+  {
+    const std::string t = "mkdir Projects/Tools/ToolCreateQtProjectZipFile/../..";
+    assert( boost::algorithm::find_first(s,t).empty() && "False string should be absent");
+  }
+
+  assert(1==2 && "Yay, fixed issue 177");
   TRACE("Finished ribi::CreateQtProjectZipFileMainDialog::Test successfully");
 }
 #endif

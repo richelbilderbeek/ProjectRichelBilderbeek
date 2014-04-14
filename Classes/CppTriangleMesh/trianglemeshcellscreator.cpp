@@ -76,17 +76,6 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 
   assert(!ver_faces.empty());
   #ifndef NDEBUG
-  if (ver_faces.size() <= hor_faces.size())
-  {
-    TRACE("ERROR");
-    TRACE(ver_faces.size());
-    TRACE(hor_faces.size());
-    TRACE(Helper().ToStr(AddConst(all_points)));
-    TRACE("BREAK");
-  }
-  #endif
-  assert(ver_faces.size() > hor_faces.size());
-  #ifndef NDEBUG
   for(auto f:ver_faces) { assert(f); }
   #endif
 
