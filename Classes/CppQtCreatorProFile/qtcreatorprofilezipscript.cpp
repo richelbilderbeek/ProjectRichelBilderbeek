@@ -431,6 +431,11 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
     while (!s.empty())
     {
       const std::size_t old_len = s.size();
+      assert(s[ s.size() - 1] != '.');
+      assert(s[ s.size() - 2] != '.');
+      assert(s[ s.size() - 3] != '.');
+      assert(s[ s.size() - 4] != '.');
+
       folder_names.insert(s);
       s = ribi::fileio::FileIo().GetPath(s);
       const std::size_t new_len = s.size();
