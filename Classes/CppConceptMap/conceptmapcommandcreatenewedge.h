@@ -43,7 +43,7 @@ struct CommandCreateNewEdge : public Command
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
   std::string ToStr() const noexcept { return "create new edge"; }
-  void Undo() noexcept;
+  void UndoSpecific() noexcept;
 
   private:
   boost::shared_ptr<Edge> m_edge;

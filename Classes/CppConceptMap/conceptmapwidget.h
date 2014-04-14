@@ -57,6 +57,7 @@ struct Widget
   Widget& operator=(const Widget& rhs) = delete;
 
   bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
+  bool CanUndo() const noexcept { return !m_undo.empty(); }
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;
 
   boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_conceptmap; }
@@ -185,6 +186,10 @@ struct Widget
   ///left (as all are excluded) or the concept map does not have any nodes
   std::vector<boost::shared_ptr<Node>> GetRandomNodes(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
   boost::shared_ptr<Node> GetRandomNode(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
+
+  ///Called by m_undo its top command when it calles Undo itself,
+  ///by which the Command indicates that it must be removed from that m_undo vector
+  void OnUndo(const Command * const command_to_remove) noexcept;
 
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;

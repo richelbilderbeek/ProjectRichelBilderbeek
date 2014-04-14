@@ -75,6 +75,12 @@ ribi::cmap::QtTestConceptMapWidgetDialog::~QtTestConceptMapWidgetDialog() noexce
   delete ui;
 }
 
+bool ribi::cmap::QtTestConceptMapWidgetDialog::CanUndo() const noexcept
+{
+  return m_qtwidget->CanUndo();
+}
+
+
 const boost::shared_ptr<ribi::cmap::QtConceptMapWidget>
   ribi::cmap::QtTestConceptMapWidgetDialog::CreateWidget() noexcept
 {
@@ -151,6 +157,14 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
   }
 }
 
+
+void ribi::cmap::QtTestConceptMapWidgetDialog::DoUndo() noexcept
+{
+  assert(m_qtwidget);
+  assert(m_qtwidget->CanUndo());
+  m_qtwidget->Undo();
+}
+
 void ribi::cmap::QtTestConceptMapWidgetDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Escape) { close(); return; }
@@ -211,6 +225,8 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
     {
       QtTestConceptMapWidgetDialog d;
       //d.show();
+      d.DoClick(i);
+      if (d.CanUndo()) { d.DoUndo(); }
       d.DoClick(i);
     }
   }

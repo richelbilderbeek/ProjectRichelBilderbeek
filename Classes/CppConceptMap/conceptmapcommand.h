@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
 
 #include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
@@ -42,6 +43,7 @@ namespace cmap {
 ///
 struct Command
 {
+  Command() noexcept;
   virtual ~Command() noexcept {}
   bool CanDoCommand(const Widget * const widget) const noexcept;
   bool CanDoCommand(const boost::shared_ptr<const Widget> widget) const noexcept { return CanDoCommand(widget.get()); }
@@ -49,14 +51,20 @@ struct Command
   void DoCommand(const boost::shared_ptr<Widget> widget) noexcept { DoCommand(widget.get()); }
 
   virtual std::string ToStr() const noexcept = 0;
-  virtual void Undo() noexcept = 0;
+  void Undo() noexcept;
+
+  boost::signals2::signal<void(const Command*)> m_signal_undo;
 
   private:
-  ///Hook
+  ///Hook, should be private in derived classes as well, use the general form
   virtual bool CanDoCommandSpecific(const Widget * const widget) const noexcept = 0;
 
-  ///Hook
+  ///Hook, should be private in derived classes as well, use the general form
   virtual void DoCommandSpecific(Widget * const widget) noexcept = 0;
+
+  ///Hook, should be private in derived classes as well, use the general form
+  virtual void UndoSpecific() noexcept = 0;
+
 };
 
 } //~namespace cmap

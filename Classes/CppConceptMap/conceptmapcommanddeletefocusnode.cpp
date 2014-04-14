@@ -44,7 +44,7 @@ void ribi::cmap::CommandDeleteFocusNode::DoCommandSpecific(Widget * const widget
   assert(m_widget);
 }
 
-void ribi::cmap::CommandDeleteFocusNode::Undo() noexcept
+void ribi::cmap::CommandDeleteFocusNode::UndoSpecific() noexcept
 {
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());

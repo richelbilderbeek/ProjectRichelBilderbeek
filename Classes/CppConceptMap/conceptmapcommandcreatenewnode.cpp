@@ -44,7 +44,7 @@ void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(Widget * const widget) 
   assert(m_node);
 }
 
-void ribi::cmap::CommandCreateNewNode::Undo() noexcept
+void ribi::cmap::CommandCreateNewNode::UndoSpecific() noexcept
 {
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());

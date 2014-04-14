@@ -32,6 +32,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapwidget.h"
 #include "trace.h"
 
+ribi::cmap::Command::Command() noexcept
+  : m_signal_undo{}
+{
+
+}
+
 bool ribi::cmap::Command::CanDoCommand(const Widget * const widget) const noexcept
 {
   assert(widget);
@@ -52,4 +58,10 @@ void ribi::cmap::Command::DoCommand(Widget * const widget) noexcept
   }
   #endif
   */
+}
+
+void ribi::cmap::Command::Undo() noexcept
+{
+  UndoSpecific();
+  m_signal_undo(this);
 }

@@ -50,7 +50,7 @@ void ribi::cmap::CommandLoseFocus::DoCommandSpecific(Widget * const widget) noex
   assert(!widget->m_focus);
 }
 
-void ribi::cmap::CommandLoseFocus::Undo() noexcept
+void ribi::cmap::CommandLoseFocus::UndoSpecific() noexcept
 {
   assert( m_widget);
   assert( m_old_focus);

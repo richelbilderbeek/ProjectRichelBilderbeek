@@ -60,7 +60,7 @@ void ribi::cmap::CommandSetFocusRandom::DoCommandSpecific(Widget * const widget)
   assert(  widget);
 }
 
-void ribi::cmap::CommandSetFocusRandom::Undo() noexcept
+void ribi::cmap::CommandSetFocusRandom::UndoSpecific() noexcept
 {
   assert(m_widget);
   //Put back the old focus, or lose the focus

@@ -49,7 +49,9 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ~QtConceptMapWidget() noexcept {}
 
   bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
+  bool CanUndo() const noexcept;
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;
+  void Undo() noexcept;
 
   ///QtConceptMapWidget intercepts all user interactions and converts these
   ///to commands for Widget

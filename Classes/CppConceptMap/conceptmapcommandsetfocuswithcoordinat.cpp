@@ -51,7 +51,7 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
   assert(widget);
 }
 
-void ribi::cmap::CommandSetFocusWithCoordinat::Undo() noexcept
+void ribi::cmap::CommandSetFocusWithCoordinat::UndoSpecific() noexcept
 {
   assert(m_widget);
   assert(m_widget->m_focus);

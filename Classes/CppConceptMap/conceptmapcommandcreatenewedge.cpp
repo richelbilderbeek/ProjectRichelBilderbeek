@@ -56,7 +56,7 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) 
   assert(m_edge);
 }
 
-void ribi::cmap::CommandCreateNewEdge::Undo() noexcept
+void ribi::cmap::CommandCreateNewEdge::UndoSpecific() noexcept
 {
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());

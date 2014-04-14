@@ -24,6 +24,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/lambda/bind.hpp>
+#include <boost/lambda/lambda.hpp>
+
 #include "conceptmap.h"
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
@@ -251,11 +254,17 @@ void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noe
   assert(CanDoCommand(command));
   //TRACE(command->ToStr());
 
+  command->m_signal_undo.connect(
+    boost::bind(&ribi::cmap::Widget::OnUndo,this,boost::lambda::_1)
+  );
+
   //Undo
   m_undo.push_back(command);
 
   //Actually do the move
   command->DoCommand(this);
+
+  assert(CanUndo());
 }
 
 boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(
@@ -368,6 +377,15 @@ void ribi::cmap::Widget::LoseFocus() noexcept
   m_focus = boost::shared_ptr<Node>() ;
 
   assert(!m_focus);
+}
+
+void ribi::cmap::Widget::OnUndo(const Command * const command_to_remove) noexcept
+{
+  assert(command_to_remove);
+  assert(!m_undo.empty());
+  assert(m_undo.back().get() == command_to_remove
+    && "Assume the last command signals to be removed from the undo stack");
+  m_undo.pop_back();
 }
 
 void ribi::cmap::Widget::SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept
@@ -507,7 +525,8 @@ void ribi::cmap::Widget::Test() noexcept
     widget->DoCommand(command);
     assert(widget->GetConceptMap()->GetNodes().size() == 1
       && "Concept map must have one node added now");
-    command->Undo();
+    assert(widget->CanUndo());
+    command->UndoSpecific();
     assert(widget->GetConceptMap()->GetNodes().empty()
       && "Concept map must be empty again now");
   }
@@ -548,6 +567,8 @@ void ribi::cmap::Widget::Test() noexcept
             if (widget->CanDoCommand(cmd))
             {
               widget->DoCommand(cmd);
+              widget->Undo();
+              widget->DoCommand(cmd);
             }
           }
         }
@@ -560,10 +581,21 @@ void ribi::cmap::Widget::Test() noexcept
 
 void ribi::cmap::Widget::Undo() noexcept
 {
+  assert(CanUndo());
   assert(!m_undo.empty());
   assert(m_undo.back());
+  #ifndef NEBUG
+  const std::size_t sz_before = m_undo.size();
+  #endif
   m_undo.back()->Undo();
-  m_undo.pop_back();
+  #ifndef NEBUG
+  const std::size_t sz_after = m_undo.size();
+  assert(sz_after < sz_before
+    && "The undo Command calls DoUndo itself;"
+       "DoUndo shortens the m_undo stack"
+  );
+  //m_undo.pop_back(); //DON'T, DoUndo does this
+  #endif
 }
 
 bool ribi::cmap::operator==(const Widget& lhs, const Widget& rhs) noexcept

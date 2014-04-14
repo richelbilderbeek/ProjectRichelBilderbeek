@@ -50,7 +50,7 @@ void ribi::cmap::CommandDeleteNode::DoCommandSpecific(Widget * const widget) noe
   assert(m_node);
 }
 
-void ribi::cmap::CommandDeleteNode::Undo() noexcept
+void ribi::cmap::CommandDeleteNode::UndoSpecific() noexcept
 {
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());

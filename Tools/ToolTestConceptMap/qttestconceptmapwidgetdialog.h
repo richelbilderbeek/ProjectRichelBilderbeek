@@ -29,6 +29,8 @@ public:
   QtTestConceptMapWidgetDialog& operator=(const QtTestConceptMapWidgetDialog&) = delete;
   ~QtTestConceptMapWidgetDialog() noexcept;
 
+  bool CanUndo() const noexcept;
+  void DoUndo() noexcept;
   int GetNumberOfButtons() const noexcept { return static_cast<int>(m_buttons.size()); }
 
 protected:

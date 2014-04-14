@@ -45,7 +45,7 @@ struct CommandLoseFocus : public Command
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
   std::string ToStr() const noexcept { return "lose focus"; }
-  void Undo() noexcept;
+  void UndoSpecific() noexcept;
 
   private:
   boost::shared_ptr<Node> m_old_focus;

@@ -42,7 +42,7 @@ struct CommandDeleteNode : public Command
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
   std::string ToStr() const noexcept { return "delete node"; }
-  void Undo() noexcept;
+  void UndoSpecific() noexcept;
 
   private:
   boost::shared_ptr<Node> m_node;
