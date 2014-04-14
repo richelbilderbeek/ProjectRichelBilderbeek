@@ -59,7 +59,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 {
   PROFILE_FUNC();
   assert(t);
-  const bool verbose = true;
+  const bool verbose = false;
 
   if (verbose) { TRACE("Create points"); }
   const std::vector<boost::shared_ptr<Point>> all_points
@@ -70,28 +70,12 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
     = CreateHorizontalFaces(t,all_points,n_layers);
 
   if (verbose) { TRACE("Create vertical faces"); }
-  //ver_faces usused: cause of issue 168?
-  #ifndef FIX_ISSUE_168
-  static int ver_faces_cnt = 0;
-  TRACE(ver_faces_cnt);
-  ++ver_faces_cnt;
-  if (ver_faces_cnt >= 22)
-  {
-    TRACE("BREAK");
-  }
-  #endif
+
   const std::vector<boost::shared_ptr<Face>> ver_faces
     = CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy);
-  #ifndef FIX_ISSUE_168
-  if (ver_faces_cnt >= 22)
-  {
-    TRACE("BREAK");
-  }
-  #endif
 
-
-  assert(!ver_faces.empty()); //168 : perhaps ver_faces is removed by compiler?
-  assert(ver_faces.size() > hor_faces.size()); //168 : perhaps ver_faces is removed by compiler?
+  assert(!ver_faces.empty());
+  assert(ver_faces.size() > hor_faces.size());
   #ifndef NDEBUG
   for(auto f:ver_faces) { assert(f); }
   #endif
@@ -359,15 +343,6 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         face_points[1]->SetZ(z_here);
         face_points[2]->SetZ(z_above);
         face_points[3]->SetZ(z_above);
-        #ifndef NDEBUG
-        if (verbose && !helper.IsConvex(face_points))
-        {
-          #ifndef FIX_ISSUE_168
-          TRACE("NOT CONVEX");
-          for (auto p: face_points) { assert(p); TRACE(*p); }
-          #endif //#ifndef FIX_ISSUE_168
-        }
-        #endif
 
         //Order face_points
         if (!helper.IsConvex(face_points))
@@ -375,23 +350,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           helper.MakeConvex(face_points);
         }
 
-        #ifndef NDEBUG
-        #ifndef FIX_ISSUE_168
-        if (!helper.IsConvex(face_points))
-        {
-          TRACE("NOT CONVEX, CHECK AGAIN");
-          helper.MakeConvex(face_points);
-          //for (auto  p: face_points) { TRACE(*p); }
-          assert(!helper.IsConvex(face_points));
-          TRACE("ERROR");
-          std::exit(0);
-        }
-        #endif
-        #endif
-
-        #ifndef FIX_ISSUE_168
         assert(helper.IsConvex(face_points));
-        #endif //#ifndef FIX_ISSUE_168
 
         //Cannot order face winding yet, need Cells for this
         const boost::shared_ptr<Face> face {

@@ -371,12 +371,13 @@ void ribi::trim::Helper::MakeConvex(
 ) const noexcept
 {
   #ifndef NDEBUG
-  const bool verbose = true;
+  const bool verbose = false;
   for (auto p: points) { assert(p); }
   assert(!points.empty());
   assert(points.size() == 4);
   #endif
   const Geometry geometry;
+  const Helper helper;
 
   if (IsConvex(points))
   {
@@ -413,9 +414,6 @@ void ribi::trim::Helper::MakeConvex(
     assert(points == after);
     if (verbose)
     {
-      #ifndef FIX_ISSUE_168
-      TRACE(ToStr(AddConst(points)));
-      #endif //#ifndef FIX_ISSUE_168
       ++cnt;
       //assert(cnt != (4 * 3 * 2 * 1) + 2);
       if (cnt == 27) break;
@@ -472,22 +470,14 @@ void ribi::trim::Helper::MakeConvex(
         TRACE(t.str());
       }
     }
-    //assert(!"BREAK");
-
     for (auto p: points) { TRACE(p); TRACE(*p); }
 
-    return; //TODO: FIX THIS BUG
-    #ifdef FIX_ISSUE_168
     assert(helper.IsConvex(points));
-    TRACE("TODO: FIX ISSUE 168")
-    #endif //ifdef FIX_ISSUE_168
+    return;
   }
   #endif
 
-  #ifdef FIX_ISSUE_168
   assert(helper.IsConvex(points));
-  #endif //#ifdef FIX_ISSUE_168
-
   return;
 }
 

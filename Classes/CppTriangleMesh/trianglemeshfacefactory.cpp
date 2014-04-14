@@ -56,13 +56,9 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
     TRACE("ERROR");
   }
 
-  #ifndef FIX_ISSUE_168
   assert(helper.IsConvex(points)
     && "FaceFactory must be called by a sorted and convex collection of points"
-    //&& "That way, the incorrect caller can be found"
-    //Just use helper.MakeConvex
   );
-  #endif
   /*
   if (!helper.IsConvex(points))
   {

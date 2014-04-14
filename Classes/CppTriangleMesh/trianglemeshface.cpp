@@ -63,9 +63,7 @@ ribi::trim::Face::Face(
   assert(sm_faces.count(this) == 0);
   sm_faces.insert(this);
 
-  #ifndef FIX_ISSUE_168
   assert(helper.IsConvex(m_points));
-  #endif //#ifndef FIX_ISSUE_168
 
   if (m_orientation == FaceOrientation::horizontal)
   {
@@ -280,11 +278,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     && "A Face its winding can only be set if it belongs to a cell"
   );
   assert(helper.IsPlane(m_points));
-
-  #ifndef FIX_ISSUE_168
   assert(helper.IsConvex(m_points));
-  #endif //#ifndef FIX_ISSUE_168
-
 
   const boost::shared_ptr<const Cell> observer(
     !GetNeighbour()
@@ -321,14 +315,9 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     TRACE(geometry.ToStr(observer->CalculateCenter()));
   }
   #endif
-
-  #ifndef FIX_ISSUE_168
   assert(helper.IsCounterClockwise(m_points,observer->CalculateCenter()));
-  #endif //#ifndef FIX_ISSUE_168
   assert(helper.IsPlane(m_points));
-  #ifndef FIX_ISSUE_168
   assert(helper.IsConvex(m_points));
-  #endif //#ifndef FIX_ISSUE_168
 }
 
 #ifndef NDEBUG
