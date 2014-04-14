@@ -444,6 +444,14 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
     if (s.size() > 6 && s.substr(0,6) == "../../")
     {
       const std::string folder = s.substr(6,s.size() - 6);
+      if ( folder[ folder.size() - 1] == '.'
+        || folder[ folder.size() - 2] == '.'
+      )
+      {
+        TRACE("ERROR");
+        TRACE(folder);
+        TRACE("BREAK");
+      }
       assert(folder[ folder.size() - 1] != '.');
       assert(folder[ folder.size() - 2] != '.');
       assert(folder[ folder.size() - 3] != '.');

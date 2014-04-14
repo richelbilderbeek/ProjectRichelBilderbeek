@@ -106,7 +106,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     //std::random_shuffle(cells.begin(),cells.end());
     std::reverse(cells.begin(),cells.end());
     //std::random_shuffle(cells.begin(),cells.end());
-    cells.resize(cells.size() * 3 / 4);
+    cells.resize(cells.size() * 1 / 2);
     #else
     TRACE("TRIANGLE_MESH_DO_SCULPTING");
     #endif //~TRIANGLE_MESH_DO_SCULPTING

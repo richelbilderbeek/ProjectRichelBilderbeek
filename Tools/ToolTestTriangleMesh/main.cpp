@@ -112,13 +112,13 @@ int main(int, char* argv[])
     const double pi = boost::math::constants::pi<double>();
     const bool show_mesh = true;
     const std::vector<Coordinat2D> shapes {
-      //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 1.0) //1 cube
+      ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 1.0) //1 cube
       //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 0.5), //? cube
-      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 1.0), //1 prism
-      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 2.0) //3 prisms
+      //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 1.0), //1 prism
+      //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 2.0) //3 prisms
       //ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0, 4.0)
     };
-    const int n_layers = 2;
+    const int n_layers = 3;
     const double quality = 5.0;
 
     const ribi::TestTriangleMeshMainDialog d(
