@@ -22,9 +22,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <memory>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "chessbitboard.h"
 #include "chessboard.h"
 #include "chesscolor.h"
@@ -32,8 +35,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chesspiece.h"
 #include "chessscore.h"
 #include "chesssquare.h"
+#include "testchessmenudialog.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ///TODO
 ///- Add variant 'Juggernaut Chess': every turn a player receives 5 movement points.
 ///  Moving a piece costs as muchg movement points at that piece its value:
@@ -45,23 +50,22 @@ int main()
 {
   START_TRACE();
   TRACE("Testing Score");
-  Chess::Score::Test();
+  ribi::Chess::Score::Test();
 
   TRACE("Testing Square");
-  Chess::Square::Test();
+  ribi::Chess::Square::Test();
 
   TRACE("Testing BitBoard");
-  Chess::BitBoard::Test();
+  ribi::Chess::BitBoard::Test();
 
   TRACE("Testing Move");
-  Chess::Move::Test();
+  ribi::Chess::Move::Test();
 
   TRACE("Testing Piece");
-  Chess::Piece::Test();
+  ribi::Chess::Piece::Test();
 
-  TRACE("Testing Board");
-  Chess::Board::Test();
 
   TRACE("ALL TESTS SUCCEEDED");
+  ribi::TestChessMenuDialog d;
 }
-//---------------------------------------------------------------------------
+

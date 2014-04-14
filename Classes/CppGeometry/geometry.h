@@ -167,6 +167,7 @@ struct Geometry
 
   //From www.richelbilderbeek.nl/CppGetDistance.htm
   double GetDistance(const double dx, const double dy) const noexcept;
+  double GetDistance(const Coordinat2D& a, const Coordinat2D& b) const noexcept;
 
   template <class T>
   T GetHeight(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept

@@ -34,7 +34,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace CreateQtProjectZipFile {
 
 struct MenuDialog : public ::ribi::MenuDialog
@@ -57,7 +56,6 @@ struct MenuDialog : public ::ribi::MenuDialog
 };
 
 } //~namespace CreateQtProjectZipFile
-
 } //~namespace ribi
 
 #endif // CREATEQTPROJECTZIPFILEMENUDIALOG_H

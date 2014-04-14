@@ -23,15 +23,10 @@ struct TestTriangleMeshMainDialog
     const int n_layers,
     const ::ribi::trim::CreateVerticalFacesStrategy strategy,
     const double quality,
+    const std::string& checkMesh_command,
     const std::string& renumberMesh_command
   );
-  int GetTicks() const noexcept { return m_ticks; }
-
   private:
-
-  //Something to store
-  int m_ticks;
-
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

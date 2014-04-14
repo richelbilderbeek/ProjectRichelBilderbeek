@@ -63,6 +63,7 @@ ribi::QtCreatorProFileZipScript::QtCreatorProFileZipScript(
   ribi::QtCreatorProFileZipScript::Test();
   #endif
   assert(pro_file);
+  for (auto s: m_filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
 }
 
 ribi::QtCreatorProFileZipScript::QtCreatorProFileZipScript(
@@ -124,7 +125,7 @@ std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::string& sou
   }
 
   //Create the scripts by merging QtCreatorProFiles
-  std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> > scripts;
+  std::vector<boost::shared_ptr<const QtCreatorProFileZipScript>> scripts;
 
   for (const std::string& pro_filename: pro_filenames)
   {
@@ -212,12 +213,14 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
   //Add paths if needed
   std::set<std::string> filenames;
   assert(pro_file);
+  assert(ribi::fileio::FileIo().IsRegularFile(pro_file->GetQtCreatorProFilename()));
   filenames.insert(pro_file->GetQtCreatorProFilename());
   for (const std::string filename: v)
   {
     if (!filename.empty() && (filename[0] == '/' || filename[0] == '.'))
     {
       //TRACE(filename);
+      assert(ribi::fileio::FileIo().IsRegularFile(filename));
       filenames.insert(filename);
     }
     else if (!filename.empty() && filename[0] != '/' && filename[0] != '.')
@@ -229,10 +232,11 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
       assert(s.size() > 6);
       const std::string t = s + "/" + filename;
       //TRACE(t);
+      assert(ribi::fileio::FileIo().IsRegularFile(t));
       filenames.insert(t);
     }
   }
-
+  for (auto s: m_filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
   return filenames;
 }
 
@@ -413,17 +417,25 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
   os << "mkdir Projects" << '\n';
 
   //file names with full path
+  const auto file_names_vector = script.GetFilenames();
   const std::set<std::string,PathOrdering> file_names(
-    script.GetFilenames().begin(),script.GetFilenames().end());
+    file_names_vector.begin(),file_names_vector.end()
+  );
 
   std::set<std::string,PathOrdering> folder_names;
   //Add the folders added by the .pro file
   for (const std::string filename: file_names)
   {
+    assert(ribi::fileio::FileIo().IsRegularFile(filename));
     std::string s = ribi::fileio::FileIo().GetPath(filename);
     while (!s.empty())
     {
       const std::size_t old_len = s.size();
+      assert(s[ s.size() - 1] != '.');
+      assert(s[ s.size() - 2] != '.');
+      assert(s[ s.size() - 3] != '.');
+      assert(s[ s.size() - 4] != '.');
+
       folder_names.insert(s);
       s = ribi::fileio::FileIo().GetPath(s);
       const std::size_t new_len = s.size();
@@ -436,7 +448,20 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
   {
     if (s.size() > 6 && s.substr(0,6) == "../../")
     {
-      os << "mkdir Projects/" <<  s.substr(6,s.size() - 6) << '\n';
+      const std::string folder = s.substr(6,s.size() - 6);
+      if ( folder[ folder.size() - 1] == '.'
+        || folder[ folder.size() - 2] == '.'
+      )
+      {
+        TRACE("ERROR");
+        TRACE(folder);
+        TRACE("BREAK");
+      }
+      assert(folder[ folder.size() - 1] != '.');
+      assert(folder[ folder.size() - 2] != '.');
+      assert(folder[ folder.size() - 3] != '.');
+      assert(folder[ folder.size() - 4] != '.');
+      os << "mkdir Projects/" << folder << '\n';
     }
   }
 

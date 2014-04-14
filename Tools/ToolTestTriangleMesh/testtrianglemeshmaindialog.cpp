@@ -42,8 +42,9 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const int n_layers,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
   const double quality,
+  const std::string& checkMesh_command,
   const std::string& renumberMesh_command
-) : m_ticks(0)
+)
 {
   PROFILE_FUNC();
   #ifndef NDEBUG
@@ -58,7 +59,6 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   std::string filename_poly;
   {
     ribi::TriangleFile f(shapes);
-    //const double quality = 5.0;
     const double area = 2.0;
     f.ExecuteTriangle(
       filename_node,
@@ -70,8 +70,6 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   //Read data from Triangle.exe output
-  TRACE("TODO");
-  return;
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
     const boost::shared_ptr<const ribi::trim::Template> t
@@ -100,16 +98,15 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       #ifndef NDEBUG
       for (auto cell:cells) { assert(cell); }
       #endif
-      m_ticks += static_cast<int>(cells.size());
     }
     //Remove some random cells
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
     #define TRIANGLE_MESH_DO_SCULPTING
     #ifdef  TRIANGLE_MESH_DO_SCULPTING
-    std::random_shuffle(cells.begin(),cells.end());
+    //std::random_shuffle(cells.begin(),cells.end());
     std::reverse(cells.begin(),cells.end());
-    std::random_shuffle(cells.begin(),cells.end());
-    cells.resize(cells.size() * 3 / 4);
+    //std::random_shuffle(cells.begin(),cells.end());
+    cells.resize(cells.size() * 1 / 2);
     #else
     TRACE("TRIANGLE_MESH_DO_SCULPTING");
     #endif //~TRIANGLE_MESH_DO_SCULPTING
@@ -205,7 +202,6 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       }
       std::clog << "internal faces: " << n_internal << std::endl;
       std::clog << "external faces: " << n_external << std::endl;
-      m_ticks += n_external;
     }
 
     PROFILER_UPDATE();
@@ -253,10 +249,6 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       )
     );
     assert(builder);
-    TRACE(builder->CountCells());
-    TRACE(builder->CountFaces());
-    m_ticks += builder->CountCells();
-    m_ticks += builder->CountFaces();
   }
 
   {
@@ -417,12 +409,11 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   std::clog << std::endl;
   std::cout << std::endl;
 
-  #define TESTTRIANGLEMESH_DO_RENUMBERMESH
-  #ifdef  TESTTRIANGLEMESH_DO_RENUMBERMESH
+  TRACE("BEFORE renumberMesh_command");
+  std::system(checkMesh_command.c_str());
   std::system(renumberMesh_command.c_str());
-  #else
-  TRACE("TESTTRIANGLEMESH_DO_RENUMBERMESH");
-  #endif //~TESTTRIANGLEMESH_DO_RENUMBERMESH
+  std::system(checkMesh_command.c_str());
+  TRACE("AFTER renumberMesh_command");
 
   if (show_mesh)
   {
@@ -454,6 +445,7 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
     {
       const double pi { boost::math::constants::pi<double>() };
       const bool show_mesh = false;
+      const std::string checkMesh_command  = "";
       const std::string renumberMesh_command  = "";
       const std::vector<Coordinat2D> shapes {
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
@@ -465,9 +457,9 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
         3,
         strategy,
         quality,
+        checkMesh_command,
         renumberMesh_command
       );
-      std::cout << d.GetTicks() << std::endl;
       PROFILER_UPDATE();
       PROFILER_OUTPUT("shiny_output.txt");
     }
