@@ -101,11 +101,11 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     }
     //Remove some random cells
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
-    //#define TRIANGLE_MESH_DO_SCULPTING
+    #define TRIANGLE_MESH_DO_SCULPTING
     #ifdef  TRIANGLE_MESH_DO_SCULPTING
-    std::random_shuffle(cells.begin(),cells.end());
+    //std::random_shuffle(cells.begin(),cells.end());
     std::reverse(cells.begin(),cells.end());
-    std::random_shuffle(cells.begin(),cells.end());
+    //std::random_shuffle(cells.begin(),cells.end());
     cells.resize(cells.size() * 3 / 4);
     #else
     TRACE("TRIANGLE_MESH_DO_SCULPTING");

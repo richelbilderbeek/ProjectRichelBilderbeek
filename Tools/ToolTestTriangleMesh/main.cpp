@@ -130,7 +130,6 @@ int main(int, char* argv[])
       checkMesh_command,
       renumberMesh_command
     );
-    assert(1==2);
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
     TRACE(checkMesh_command);
