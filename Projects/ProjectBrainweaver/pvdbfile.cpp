@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/xpressive/xpressive.hpp>
+#include <boost/algorithm/string/trim.hpp>
 
 #include <QFile>
 #include <QRegExp>
@@ -176,6 +177,9 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string 
 {
   assert(s.size() >= 13);
   assert(s.substr(0,6) == "<file>");
+  TRACE(s);
+  TRACE(s.size());
+  TRACE(s.substr(s.size()-7,7));
   assert(s.substr(s.size() - 7,7) == "</file>");
 
   boost::shared_ptr<pvdb::File> f(new File);
@@ -345,6 +349,8 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::string &fi
       xml = ConvertFrom_0_3(xml);
     }
   }
+
+  boost::algorithm::trim(xml);
 
   const boost::shared_ptr<pvdb::File> file = ribi::pvdb::File::FromXml(xml);
   assert(file);

@@ -548,7 +548,7 @@ void ribi::cmap::Widget::Test() noexcept
       assert(widget->CanDoCommand(command));
       widget->DoCommand(command);
     }
-    assert(widget->GetConceptMap()->GetNodes().size() == n_nodes
+    assert(static_cast<int>(widget->GetConceptMap()->GetNodes().size()) == n_nodes
       && "Concept map must have two nodes");
     assert(static_cast<int>(widget->GetSelected().size()) == 2
       && "Freshly created nodes are selected");
