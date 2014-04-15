@@ -199,7 +199,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::metZnDrieenVcl: break;
     case ProgramType::midiLessonCreator: break;
     case ProgramType::morpher: break;
-    case ProgramType::multiEncranger: p = new QtToolMultiEncrangerMenuDialog; break;
+    case ProgramType::multiEncranger: p = new QtMultiEncrangerMenuDialog; break;
     case ProgramType::multiEncrangerVcl: break;
     case ProgramType::muscaDomestica: break;
     case ProgramType::musicTheory: p = new QtMusicTheoryMenuDialog; break;

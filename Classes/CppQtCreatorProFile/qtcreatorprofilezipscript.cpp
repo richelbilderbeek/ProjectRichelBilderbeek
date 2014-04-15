@@ -428,9 +428,11 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
   {
     assert(ribi::fileio::FileIo().IsRegularFile(filename));
     std::string s = ribi::fileio::FileIo().GetPath(filename);
+    TRACE(s);
     while (!s.empty())
     {
       const std::size_t old_len = s.size();
+      /*
       if (s[ s.size() - 1] == '.')
       {
         TRACE(s);
@@ -441,7 +443,7 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
       assert(s[ s.size() - 2] != '.');
       assert(s[ s.size() - 3] != '.');
       assert(s[ s.size() - 4] != '.');
-
+      */
       folder_names.insert(s);
       s = ribi::fileio::FileIo().GetPath(s);
       const std::size_t new_len = s.size();

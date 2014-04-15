@@ -157,9 +157,12 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
           assert(face->GetOwner());
           assert(!face->GetNeighbour());
           ++n_external;
+          //If Owner its center has a higher Z coordinat, this is a bottom face
           if (face->GetOrientation() == ribi::trim::FaceOrientation::horizontal)
           {
-            if (face->GetPoint(0)->GetZ() < 0.5 * boost::units::si::meter)
+            const double owner_z = boost::geometry::get<2>(face->GetOwner()->CalculateCenter());
+            const double face_z = face->GetPoint(0)->GetZ().value();
+            if (face_z < owner_z)
             {
               face->SetBoundaryType("bottom");
             }
