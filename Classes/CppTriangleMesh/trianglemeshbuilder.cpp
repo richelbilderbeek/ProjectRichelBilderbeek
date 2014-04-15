@@ -111,18 +111,49 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     m_cells.end()
   );
 
-  //Set all Cell indices
+  //Unset all Face indices
+  const int face_no_index = -1;
   {
-    const int n_cells = static_cast<int>(m_cells.size());
-    for (int i=0; i!=n_cells; ++i)
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
     {
-      m_cells[i]->SetIndex(i);
+      m_faces[i]->SetIndex(face_no_index);
     }
   }
-  for (auto cell: m_cells) { cell->SetCorrectOrder(); }
+  //Set all Cell and Face indices
+  {
+    const int n_cells = static_cast<int>(m_cells.size());
+    for (int cell_index=0; cell_index!=n_cells; ++cell_index)
+    {
+      auto cell = m_cells[cell_index];
+      cell->SetIndex(n_cells - 1 - cell_index);
+    }
+  }
+
+  //Order the Faces: nonsense?
+  //for (auto cell: m_cells) { cell->SetCorrectOrder(); }
+
+  //Set all Face indices
+  {
+    int face_index = 0;
+    const int n_cells = static_cast<int>(m_cells.size());
+    for (int cell_index=0; cell_index!=n_cells; ++cell_index)
+    {
+      auto cell = m_cells[cell_index];
+      for (auto face: cell->GetFaces())
+      {
+        if (face->GetIndex() == face_no_index)
+        {
+          face->SetIndex(face_index);
+          ++face_index;
+        }
+      }
+    }
+  }
 
   //The Faces within a boundary must be ordered by Owner
   //Use a bubble sort to order them
+  /*
   {
     while (1)
     {
@@ -138,18 +169,22 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
           std::swap(m_faces[i],m_faces[i+1]);
           do_break = false;
         }
+        if (a->GetOwner()->GetIndex() == b->GetOwner()->GetIndex()
+          && a->GetNeighbour() && b->GetNeighbour()
+          && a->GetNeighbour()->GetIndex() > b->GetNeighbour()->GetIndex()
+        )
+        {
+          std::swap(m_faces[i],m_faces[i+1]);
+          do_break = false;
+        }
       }
       if (do_break) break;
     }
   }
+  */
 
-  //Set all Face and Point indices
+  //Set all Point indices
   {
-    const int n_faces = static_cast<int>(m_faces.size());
-    for (int i=0; i!=n_faces; ++i)
-    {
-      m_faces[i]->SetIndex(i);
-    }
     const int n_points = static_cast<int>(m_points.size());
     for (int i=0; i!=n_points; ++i)
     {
@@ -170,7 +205,19 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     for (int i=0; i!=n_faces; ++i)
     {
       std::stringstream s;
-      s << i << ": " << m_faces[i]->GetBoundaryType() << ": " << m_faces[i]->GetOwner()->GetIndex();
+      s << "#" << i << ": boundary type: "
+        << m_faces[i]->GetBoundaryType() << ", owner index: "
+        << m_faces[i]->GetOwner()->GetIndex()
+        << ", neighbour index: ";
+      if (m_faces[i]->GetNeighbour())
+      {
+        s << m_faces[i]->GetNeighbour()->GetIndex();
+      }
+      else
+      {
+        s << "[no neighbour]";
+      }
+
       TRACE(s.str());
     }
   }
