@@ -149,8 +149,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       m_faces[i]->SetIndex(face_no_index);
     }
   }
-  //Order the Faces: nonsense?
-  //for (auto cell: m_cells) { cell->SetCorrectOrder(); }
   //Set all Face indices
   {
     int face_index = 0;
@@ -169,38 +167,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     }
   }
 
-  //The Faces within a boundary must be ordered by Owner
-  //Use a bubble sort to order them
-  /*
-  {
-    while (1)
-    {
-      bool do_break = true;
-      const int n_faces = static_cast<int>(m_faces.size());
-      for (int i=0; i!=n_faces-1; ++i)
-      {
-        const auto a = m_faces[i  ];
-        const auto b = m_faces[i+1];
-        if (a->GetBoundaryType() != b->GetBoundaryType()) continue;
-        if (a->GetOwner()->GetIndex() > b->GetOwner()->GetIndex())
-        {
-          std::swap(m_faces[i],m_faces[i+1]);
-          do_break = false;
-        }
-        if (a->GetOwner()->GetIndex() == b->GetOwner()->GetIndex()
-          && a->GetNeighbour() && b->GetNeighbour()
-          && a->GetNeighbour()->GetIndex() > b->GetNeighbour()->GetIndex()
-        )
-        {
-          std::swap(m_faces[i],m_faces[i+1]);
-          do_break = false;
-        }
-      }
-      if (do_break) break;
-    }
-  }
-  */
-
   //Set all Point indices
   {
     const int n_points = static_cast<int>(m_points.size());
@@ -215,31 +181,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     face->SetCorrectWinding();
   }
 
-
-  #define TODO_ISSUE_181
-  #ifdef  TODO_ISSUE_181
-  {
-    const int n_faces = static_cast<int>(m_faces.size());
-    for (int i=0; i!=n_faces; ++i)
-    {
-      std::stringstream s;
-      s << "#" << i << ": boundary type: "
-        << m_faces[i]->GetBoundaryType() << ", owner index: "
-        << m_faces[i]->GetConstOwner()->GetIndex()
-        << ", neighbour index: ";
-      if (m_faces[i]->GetNeighbour())
-      {
-        s << m_faces[i]->GetNeighbour()->GetIndex();
-      }
-      else
-      {
-        s << "[no neighbour]";
-      }
-
-      TRACE(s.str());
-    }
-  }
-  #endif //~#ifdef TODO_ISSUE_181
 
   //Check
   #ifndef NDEBUG

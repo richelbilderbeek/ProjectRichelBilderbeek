@@ -44,24 +44,6 @@ int main(int, char* argv[])
 
   const bool verbose = false;
 
-  /*
-  const std::string renumberMesh_command(
-    std::string(
-      R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
-    + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"
-      // Changing to drive D is important...
-    + "&& D: "
-      // ...although this also indicates the drive
-    + "&& cd " + ribi::fileio::FileIo().GetPath(argv[0]) + " "
-    + "&& cd .. "
-    + (verbose ? "&& dir " : "")
-    + "&& renumberMesh"
-    //+ " -constant -overwrite"
-  );
-  */
-
-  const std::string renumberMesh_command = "";
-
   const std::string checkMesh_command(
     std::string(
       R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
@@ -94,9 +76,7 @@ int main(int, char* argv[])
         show_mesh,
         n_layers,
         strategy,
-        quality,
-        checkMesh_command,
-        renumberMesh_command
+        quality
       );
       TRACE(checkMesh_command);
       std::system(checkMesh_command.c_str());
@@ -117,11 +97,11 @@ int main(int, char* argv[])
     const double pi = boost::math::constants::pi<double>();
     const bool show_mesh = true;
     const std::vector<Coordinat2D> shapes {
-      ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 1.0) //1 cube
+      //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 1.0) //1 cube
       //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 0.5), //? cube
-      //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 1.0), //1 prism
-      //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 2.0) //3 prisms
-      //ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0, 4.0)
+      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 1.0), //1 prism
+      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 2.0), //3 prisms
+      ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0, 4.0)
     };
     const int n_layers = 3;
     const double quality = 5.0;
@@ -131,9 +111,7 @@ int main(int, char* argv[])
       show_mesh,
       n_layers,
       strategy,
-      quality,
-      checkMesh_command,
-      renumberMesh_command
+      quality
     );
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");

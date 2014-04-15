@@ -41,9 +41,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const bool show_mesh,
   const int n_layers,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
-  const double quality,
-  const std::string& /*checkMesh_command*/,
-  const std::string& renumberMesh_command
+  const double quality
 )
 {
   PROFILE_FUNC();
@@ -412,8 +410,6 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   std::clog << std::endl;
   std::cout << std::endl;
 
-  std::system(renumberMesh_command.c_str());
-
   if (show_mesh)
   {
     std::stringstream s;
@@ -444,8 +440,6 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
     {
       const double pi { boost::math::constants::pi<double>() };
       const bool show_mesh = false;
-      const std::string checkMesh_command  = "";
-      const std::string renumberMesh_command  = "";
       const std::vector<Coordinat2D> shapes {
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
@@ -455,9 +449,7 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
         show_mesh,
         3,
         strategy,
-        quality,
-        checkMesh_command,
-        renumberMesh_command
+        quality
       );
       PROFILER_UPDATE();
       PROFILER_OUTPUT("shiny_output.txt");
