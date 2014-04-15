@@ -218,6 +218,7 @@ struct Widget
   friend class CommandLoseFocus;
   friend class CommandSetFocusRandom;
   friend class CommandSetFocusWithCoordinat;
+  friend class CommandUnselectRandom;
   friend bool operator==(const Widget& lhs, const Widget& rhs) noexcept;
 
 };

@@ -431,6 +431,12 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
     while (!s.empty())
     {
       const std::size_t old_len = s.size();
+      if (s[ s.size() - 1] == '.')
+      {
+        TRACE(s);
+        TRACE(filename);
+        TRACE("ERROR");
+      }
       assert(s[ s.size() - 1] != '.');
       assert(s[ s.size() - 2] != '.');
       assert(s[ s.size() - 3] != '.');

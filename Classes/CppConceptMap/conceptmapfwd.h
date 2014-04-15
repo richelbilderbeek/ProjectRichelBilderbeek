@@ -33,6 +33,7 @@ struct CenterNodeFactory;
 struct Command;
 struct CommandAddSelectedRandom;
 struct CommandDeleteFocusNode;
+struct CommandUnselectRandom;
 struct Concept;
 struct ConceptFactory;
 struct ConceptMap;

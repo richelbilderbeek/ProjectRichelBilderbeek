@@ -36,12 +36,14 @@ void ribi::cmap::CommandUnselectRandom::DoCommandSpecific(Widget * const widget)
   //Get a random selected node
   auto all_selected = widget->GetSelected();
   assert(std::count(all_selected.begin(),all_selected.end(),nullptr) == 0);
-  std::random_shuffle(all_selected.begin(),all_selected.end());
-  all_selected.resize(1);
-  m_old_selected = all_selected[0];
+  const int i = std::rand() % static_cast<int>(all_selected.size());
+  m_old_selected = all_selected[i];
 
   //Unselect it
-  m_widget->Unselect(m_old_selected);
+  std::swap(all_selected[i],all_selected[ all_selected.size() - 1]);
+  all_selected.pop_back();
+  m_widget->SetSelected(all_selected);
+
   //m_widget->m_signal_set_focus_node();
   //m_widget->m_signal_concept_map_changed();
 

@@ -550,10 +550,10 @@ void ribi::cmap::Widget::Test() noexcept
     }
     assert(widget->GetConceptMap()->GetNodes().size() == n_nodes
       && "Concept map must have two nodes");
-    //Unselect both
     assert(static_cast<int>(widget->GetSelected().size()) == 2
       && "Freshly created nodes are selected");
 
+    //Unselect both
     for (int i=0; i!=n_nodes; ++i)
     {
       assert(static_cast<int>(widget->GetSelected().size()) == 2 - i);
@@ -564,6 +564,8 @@ void ribi::cmap::Widget::Test() noexcept
       widget->DoCommand(command);
       assert(static_cast<int>(widget->GetSelected().size()) == 1 - i);
     }
+    assert(static_cast<int>(widget->GetSelected().size()) == 0);
+
     //Select both again
     assert(static_cast<int>(widget->GetSelected().size()) == 0);
     for (int i=0; i!=n_nodes; ++i)
@@ -576,19 +578,22 @@ void ribi::cmap::Widget::Test() noexcept
       widget->DoCommand(command);
       assert(static_cast<int>(widget->GetSelected().size()) == i + 1);
     }
+    assert(static_cast<int>(widget->GetSelected().size()) == 2);
+
     //Undo selection
     for (int i=0; i!=n_nodes; ++i)
     {
-      assert(static_cast<int>(widget->GetSelected().size()) == i + 1);
-      const boost::shared_ptr<CommandAddSelectedRandom> command {
-        new CommandAddSelectedRandom
+      assert(static_cast<int>(widget->GetSelected().size()) == 2 - i);
+      const boost::shared_ptr<CommandUnselectRandom> command {
+        new CommandUnselectRandom
       };
       assert(widget->CanDoCommand(command));
       widget->Undo();
-      assert(static_cast<int>(widget->GetSelected().size()) == i);
+      assert(static_cast<int>(widget->GetSelected().size()) == 1 - i);
     }
-    assert(1==2 && "Yay, AddSelected works");
+    assert(static_cast<int>(widget->GetSelected().size()) == 0);
   }
+
   //Do all do and undo of a single command
   const int n_commands { static_cast<int>(CommandFactory::CreateTestCommands().size()) };
   for (int i=0; i!=n_commands; ++i)
