@@ -316,8 +316,20 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::string &fi
     const std::vector<std::string> v = pvdb::SafeFileToVector(filename);
     //FileToVector allowed an empty line after text, due to difference in line ending
     //SafeFileToVector should remove this line
-    assert(v.size() == 1);
-    xml = v[0];
+
+    for (const auto s: v) { xml+=s; }
+
+    xml.erase(std::remove(xml.begin(),xml.end(),'\r'),xml.end());
+    xml.erase(std::remove(xml.begin(),xml.end(),'\t'),xml.end());
+    xml.erase(std::remove(xml.begin(),xml.end(),'\n'),xml.end());
+    xml.erase(std::remove(xml.begin(),xml.end(),'\b'),xml.end());
+
+    assert(std::count(xml.begin(),xml.end(),'\n')==0);
+    assert(std::count(xml.begin(),xml.end(),'\t')==0);
+    assert(std::count(xml.begin(),xml.end(),'\r')==0);
+    assert(std::count(xml.begin(),xml.end(),'\b')==0);
+    //assert(v.size() == 1);
+    //xml = v[0];
   }
   //Backwards compatiblity with file format version 0.1
   {

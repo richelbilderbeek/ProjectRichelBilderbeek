@@ -52,7 +52,7 @@ struct ExampleFactory
   //static const std::vector<boost::shared_ptr<cmap::Example> > CreateExamples(const std::vector<std::string>& v);
 
   ///Create an example from XML
-  static const boost::shared_ptr<cmap::Example> FromXml(const std::string& s);
+  static boost::shared_ptr<Example> FromXml(const std::string& s);
 
   int GetNumberOfTests() const noexcept { return static_cast<int>(GetTests().size()); }
   const boost::shared_ptr<Example> GetTest(const int i) const noexcept;
