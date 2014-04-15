@@ -181,6 +181,28 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     face->SetCorrectWinding();
   }
 
+  //Show the faces
+  {
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      std::stringstream s;
+      s << i << ": " << m_faces[i]->GetBoundaryType() << ": " << m_faces[i]->GetConstOwner()->GetIndex();
+      s << "#" << i << ": boundary type: "
+      << m_faces[i]->GetBoundaryType() << ", owner index: "
+      << m_faces[i]->GetConstOwner()->GetIndex()
+      << ", neighbour index: ";
+      if (m_faces[i]->GetNeighbour())
+      {
+        s << m_faces[i]->GetNeighbour()->GetIndex();
+      }
+      else
+      {
+        s << "[no neighbour]";
+      }
+      TRACE(s.str());
+    }
+  }
 
   //Check
   #ifndef NDEBUG
