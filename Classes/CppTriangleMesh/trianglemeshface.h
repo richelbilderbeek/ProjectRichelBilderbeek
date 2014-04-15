@@ -55,7 +55,7 @@ struct Face
   FaceOrientation GetOrientation() const noexcept { return m_orientation; }
 
   ///nullptr if no owner, a Volume::m_cellindex type
-  boost::shared_ptr<const Cell> GetOwner() const noexcept;
+  boost::shared_ptr<const Cell> GetConstOwner() const noexcept;
 
   boost::shared_ptr<const Point> GetPoint(const int index) const noexcept;
 
@@ -129,6 +129,7 @@ struct Face
   ///Determined in the end
   friend class TriangleMeshBuilder;
   std::string GetBoundaryType() const noexcept { return m_type; }
+  boost::shared_ptr<Cell> GetNonConstOwner() noexcept;
   void SetIndex(const int index) const noexcept { m_index = index; }
 
   #ifndef NDEBUG

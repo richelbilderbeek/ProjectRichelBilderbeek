@@ -147,8 +147,8 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
 
 int ribi::trim::Face::CalcPriority() const noexcept
 {
-  assert(GetOwner());
-  return GetOwner()->GetIndex();
+  assert(GetConstOwner());
+  return GetConstOwner()->GetIndex();
   //return std::max(
   //  GetOwner()->GetIndex(),
   //  GetNeighbour() ? GetNeighbour()->GetIndex() : -1
@@ -219,7 +219,7 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const
   #endif //#ifdef TRIANGLEMESH_USE_SIGNALS2
 }
 
-boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() const noexcept
+boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetConstOwner() const noexcept
 {
   PROFILE_FUNC();
   assert(m_belongs_to.size() <= 2);
@@ -246,6 +246,12 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() const noe
   return p;
 }
 
+boost::shared_ptr<ribi::trim::Cell> ribi::trim::Face::GetNonConstOwner() noexcept
+{
+  const boost::shared_ptr<const ribi::trim::Cell> const_cell
+    = const_cast<const ribi::trim::Face*>(this)->GetConstOwner();
+  return boost::const_pointer_cast<Cell>(const_cell);
+}
 
 boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int index) const noexcept
 {
@@ -283,8 +289,8 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
 
   const boost::shared_ptr<const Cell> observer(
     !GetNeighbour()
-    ? GetOwner()
-    : GetOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetOwner() : GetNeighbour()
+    ? GetConstOwner()
+    : GetConstOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetConstOwner() : GetNeighbour()
   );
   assert(observer);
   assert(Helper().IsPlane(m_points));
@@ -338,7 +344,7 @@ void ribi::trim::Face::Test() noexcept
     };
     for (auto face: faces)
     {
-      assert(!(face->GetOwner().get()) && "Faces obtain an owner when being added to a Cell");
+      assert(!(face->GetConstOwner().get()) && "Faces obtain an owner when being added to a Cell");
       assert(!(face->GetNeighbour().get()) && "Faces obtain a neighbour when beging added to a Cell twice");
       //face->SetCorrectWinding(); //Cannot! A Face must belong to a Cell for this to work
     }

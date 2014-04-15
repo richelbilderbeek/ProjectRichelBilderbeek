@@ -104,7 +104,7 @@ void ribi::trim::Cell::Test() noexcept
         [](const boost::shared_ptr<Face> face)
         {
           assert(face);
-          assert(face->GetOwner());
+          assert(face->GetConstOwner());
           return face->GetNeighbour().get();
         }
       ) == 0
@@ -171,7 +171,7 @@ void ribi::trim::Cell::Test() noexcept
         [](const boost::shared_ptr<Face> face)
         {
           assert(face);
-          assert(face->GetOwner());
+          assert(face->GetConstOwner());
           return face->GetNeighbour().get();
         }
       )

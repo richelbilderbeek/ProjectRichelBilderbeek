@@ -129,7 +129,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
         std::remove_if(faces.begin(),faces.end(),
           [](const boost::shared_ptr<const ribi::trim::Face> face)
           {
-            return !face->GetOwner();
+            return !face->GetConstOwner();
           }
         ),
         faces.end()
@@ -147,20 +147,20 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       {
         if (face->GetNeighbour())
         {
-          assert(face->GetOwner());
+          assert(face->GetConstOwner());
           face->SetBoundaryType("inside");
           ++n_internal;
           continue;
         }
         else
         {
-          assert(face->GetOwner());
+          assert(face->GetConstOwner());
           assert(!face->GetNeighbour());
           ++n_external;
           //If Owner its center has a higher Z coordinat, this is a bottom face
           if (face->GetOrientation() == ribi::trim::FaceOrientation::horizontal)
           {
-            const double owner_z = boost::geometry::get<2>(face->GetOwner()->CalculateCenter());
+            const double owner_z = boost::geometry::get<2>(face->GetConstOwner()->CalculateCenter());
             const double face_z = face->GetPoint(0)->GetZ().value();
             if (face_z < owner_z)
             {

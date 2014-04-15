@@ -66,8 +66,8 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
           [](const boost::shared_ptr<Face> face)
           {
             assert(face);
-            assert(face->GetOwner());
-            return face->GetOwner();
+            assert(face->GetConstOwner());
+            return face->GetConstOwner();
           }
         ) < n_faces_expected;
       }
@@ -81,7 +81,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     std::remove_if(m_faces.begin(),m_faces.end(),
       [](const boost::shared_ptr<const Face> face)
       {
-        return !face->GetOwner();
+        return !face->GetConstOwner();
       }
     ),
     m_faces.end()
@@ -102,14 +102,43 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
           [](const boost::shared_ptr<Face> face)
           {
             assert(face);
-            assert(face->GetOwner());
-            return face->GetOwner();
+            assert(face->GetConstOwner());
+            return face->GetConstOwner();
           }
         ) < n_faces_expected;
       }
     ),
     m_cells.end()
   );
+
+
+  //Unset all Cell indices
+  const int cell_no_index = -1;
+  {
+    const int n_cells = static_cast<int>(m_cells.size());
+    for (int i=0; i!=n_cells; ++i)
+    {
+      m_cells[i]->SetIndex(cell_no_index);
+    }
+  }
+  //Set all Cell indices, following the Face order:
+  //The faces are ordered correctly, by the boundary.
+  //The faces' owners must be an increasing value, to prevent
+  //'upper triangular order' errors
+  {
+    int cell_index = 0;
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      auto owner = m_faces[i]->GetNonConstOwner();
+      assert(owner);
+      if (owner->GetIndex() == cell_no_index)
+      {
+        owner->SetIndex(cell_index);
+        ++cell_index;
+      }
+    }
+  }
 
   //Unset all Face indices
   const int face_no_index = -1;
@@ -120,19 +149,8 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       m_faces[i]->SetIndex(face_no_index);
     }
   }
-  //Set all Cell and Face indices
-  {
-    const int n_cells = static_cast<int>(m_cells.size());
-    for (int cell_index=0; cell_index!=n_cells; ++cell_index)
-    {
-      auto cell = m_cells[cell_index];
-      cell->SetIndex(n_cells - 1 - cell_index);
-    }
-  }
-
   //Order the Faces: nonsense?
   //for (auto cell: m_cells) { cell->SetCorrectOrder(); }
-
   //Set all Face indices
   {
     int face_index = 0;
@@ -207,7 +225,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       std::stringstream s;
       s << "#" << i << ": boundary type: "
         << m_faces[i]->GetBoundaryType() << ", owner index: "
-        << m_faces[i]->GetOwner()->GetIndex()
+        << m_faces[i]->GetConstOwner()->GetIndex()
         << ", neighbour index: ";
       if (m_faces[i]->GetNeighbour())
       {
@@ -245,7 +263,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
         assert(face->GetIndex() >= 0);
         assert(face->GetIndex() <  static_cast<int>(m_faces.size()));
         //All Faces must have a Cell that owns them with an existing index
-        assert(face->GetOwner()->GetIndex() >= 0);
+        assert(face->GetConstOwner()->GetIndex() >= 0);
         //assert(face->GetOwner()->GetIndex() <  static_cast<int>(m_cells.size())
         // && "Index actually might be bigger than the size");
         //All Faces must have either no Neighbout or a Neighbour with an existing index
@@ -415,8 +433,8 @@ std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::CreateCells(
   for (auto face: m_faces)
   {
     assert(face);
-    assert(face->GetOwner());
-    out_owner << face->GetOwner()->GetIndex() << "\n";
+    assert(face->GetConstOwner());
+    out_owner << face->GetConstOwner()->GetIndex() << "\n";
     if(!face->GetNeighbour())
     {
       out_neighbour << "-1\n";
