@@ -659,7 +659,10 @@ void ribi::cmap::QtEditConceptMap::OnToolsClicked()
   {
     const QPointF cursor_pos_approx(
       m_tools->GetBuddyItem()->pos().x(),
-      m_tools->GetBuddyItem()->pos().y() - 32.0 //TODO_COEN: the QGraphicsItem needs to emit that it is clicked, with itself as the argument, so that the QtTool knows the height the of the square to be above
+      m_tools->GetBuddyItem()->pos().y() - 32.0
+      - m_tools->GetBuddyItem()->GetRadiusY()
+      //TODO_COEN ISSUE_101 the QGraphicsItem needs to emit that it is clicked,
+      //with itself as the argument, so that the QtTool knows the height the of the square to be above
     );
     m_arrow = new QtNewArrow(
       m_tools->GetBuddyItem(),cursor_pos_approx

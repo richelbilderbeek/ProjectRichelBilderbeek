@@ -55,7 +55,7 @@ const boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::Create(
   return example;
 }
 
-const boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::FromXml(const std::string& s)
+boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::FromXml(const std::string& s)
 {
   assert(s.size() >= 17);
   assert(s.substr(0,9) == "<example>");
