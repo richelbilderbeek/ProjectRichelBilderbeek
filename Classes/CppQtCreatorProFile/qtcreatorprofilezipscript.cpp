@@ -428,11 +428,13 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
   {
     assert(ribi::fileio::FileIo().IsRegularFile(filename));
     std::string s = ribi::fileio::FileIo().GetPath(filename);
+    #ifdef TODO_ISSUE_177
     TRACE(s);
+    #endif //#ifdef TODO_ISSUE_177
     while (!s.empty())
     {
       const std::size_t old_len = s.size();
-      /*
+      #ifdef TODO_ISSUE_177
       if (s[ s.size() - 1] == '.')
       {
         TRACE(s);
@@ -443,8 +445,9 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
       assert(s[ s.size() - 2] != '.');
       assert(s[ s.size() - 3] != '.');
       assert(s[ s.size() - 4] != '.');
-      */
-      folder_names.insert(s);
+      #endif //#ifdef TODO_ISSUE_177
+      const std::string t = fileio::FileIo().SimplifyPath(s);
+      folder_names.insert(t);
       s = ribi::fileio::FileIo().GetPath(s);
       const std::size_t new_len = s.size();
       if (new_len == old_len) { s = ""; }
@@ -457,6 +460,7 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
     if (s.size() > 6 && s.substr(0,6) == "../../")
     {
       const std::string folder = s.substr(6,s.size() - 6);
+      #ifdef TODO_ISSUE_177
       if ( folder[ folder.size() - 1] == '.'
         || folder[ folder.size() - 2] == '.'
       )
@@ -469,6 +473,7 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
       assert(folder[ folder.size() - 2] != '.');
       assert(folder[ folder.size() - 3] != '.');
       assert(folder[ folder.size() - 4] != '.');
+      #endif //~#ifdef TODO_ISSUE_177
       os << "mkdir Projects/" << folder << '\n';
     }
   }

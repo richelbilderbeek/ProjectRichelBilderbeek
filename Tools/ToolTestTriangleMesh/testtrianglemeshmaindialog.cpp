@@ -42,7 +42,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const int n_layers,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
   const double quality,
-  const std::string& checkMesh_command,
+  const std::string& /*checkMesh_command*/,
   const std::string& renumberMesh_command
 )
 {
@@ -412,11 +412,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   std::clog << std::endl;
   std::cout << std::endl;
 
-  TRACE("BEFORE renumberMesh_command");
-  std::system(checkMesh_command.c_str());
   std::system(renumberMesh_command.c_str());
-  std::system(checkMesh_command.c_str());
-  TRACE("AFTER renumberMesh_command");
 
   if (show_mesh)
   {

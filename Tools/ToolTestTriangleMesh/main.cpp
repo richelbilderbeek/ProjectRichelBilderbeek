@@ -44,6 +44,7 @@ int main(int, char* argv[])
 
   const bool verbose = false;
 
+  /*
   const std::string renumberMesh_command(
     std::string(
       R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
@@ -55,7 +56,11 @@ int main(int, char* argv[])
     + "&& cd .. "
     + (verbose ? "&& dir " : "")
     + "&& renumberMesh"
+    //+ " -constant -overwrite"
   );
+  */
+
+  const std::string renumberMesh_command = "";
 
   const std::string checkMesh_command(
     std::string(

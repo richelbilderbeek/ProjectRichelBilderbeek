@@ -169,6 +169,16 @@ struct FileIo
     const RenameMode rename_mode = RenameMode::prevent_overwrite
   ) const;
 
+
+  ///Simplify a path
+  ///For example,
+  /// /home/richel/Projects/Tools/ToolTestProFile/../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+  ///is converted to
+  /// /home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui
+  //From http://www.richelbilderbeek.nl/CppSimplifyPath.htm
+  std::string SimplifyPath(const std::string& s) const noexcept;
+
+
   ///Convert a std::vector to a file
   void VectorToFile(
     const std::vector<std::string>& v,

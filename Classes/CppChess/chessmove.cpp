@@ -181,13 +181,13 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiece(const 
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParsePiece exception: move must not be empty");
   //BUG: ADDING THE COMMENTED OUT LINE, RESULTS IN A RECURSIVE FUNCTION CALL
-  #define FIXING_ISSUE_176
-  #ifdef FIXING_ISSUE_176
+  //#define TODO_ISSUE_176
+  #ifdef TODO_ISSUE_176
   const boost::shared_ptr<Chess::Piece> p = PieceFactory().CreateFromMove(Color::indeterminate,s);
+  assert(p);
   #else
   const boost::shared_ptr<Chess::Piece> p;
-  #endif
-  assert(p);
+  #endif //~#ifdef TODO_ISSUE_176
   return p;
 }
 

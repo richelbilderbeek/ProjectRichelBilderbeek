@@ -167,7 +167,6 @@ void ribi::CreateQtProjectZipFile::MenuDialog::Test() noexcept
   TRACE("Starting ribi::CreateQtProjectZipFile::MenuDialog::Test()");
   MenuDialog d;
   d.Execute( { "CreateQtProjectZipFile", "-f", "../../Tools/ToolCreateQtProjectZipFile", "-s" } );
-  assert(1==2);
   TRACE("Finished ribi::CreateQtProjectZipFile::MenuDialog::Test() successfully");
 }
 #endif

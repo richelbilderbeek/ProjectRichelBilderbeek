@@ -69,17 +69,15 @@ void ribi::trim::Cell::SetCorrectOrder() noexcept
     {
       const int priority_lhs { lhs->CalcPriority() };
       const int priority_rhs { rhs->CalcPriority() };
-      if (priority_lhs < priority_rhs) return true;
-      if (priority_lhs > priority_rhs) return false;
+      assert((priority_lhs != priority_rhs || priority_lhs == priority_rhs)
+        && "Priorities can be equal");
+      if (priority_lhs > priority_rhs) return true;
+      if (priority_lhs < priority_rhs) return false;
       //Sort on Face indices
       assert(lhs->GetIndex() != rhs->GetIndex());
       return lhs->GetIndex() < rhs->GetIndex();
     }
   );
-
-  #ifndef NDEBUG
-  //for (const auto face: m_faces) TRACE(face->CalcPriority());
-  #endif
 }
 
 #ifndef NDEBUG

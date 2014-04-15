@@ -148,10 +148,11 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
 int ribi::trim::Face::CalcPriority() const noexcept
 {
   assert(GetOwner());
-  return std::max(
-    GetOwner()->GetIndex(),
-    GetNeighbour() ? GetNeighbour()->GetIndex() : -1
-  );
+  return GetOwner()->GetIndex();
+  //return std::max(
+  //  GetOwner()->GetIndex(),
+  //  GetNeighbour() ? GetNeighbour()->GetIndex() : -1
+  //);
 }
 
 bool ribi::trim::Face::CanExtractCoordinats() const noexcept

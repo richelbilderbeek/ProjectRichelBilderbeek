@@ -111,13 +111,40 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     m_cells.end()
   );
 
-  //Set all indices
+  //Set all Cell indices
   {
     const int n_cells = static_cast<int>(m_cells.size());
     for (int i=0; i!=n_cells; ++i)
     {
       m_cells[i]->SetIndex(i);
     }
+  }
+  for (auto cell: m_cells) { cell->SetCorrectOrder(); }
+
+  //The Faces within a boundary must be ordered by Owner
+  //Use a bubble sort to order them
+  {
+    while (1)
+    {
+      bool do_break = true;
+      const int n_faces = static_cast<int>(m_faces.size());
+      for (int i=0; i!=n_faces-1; ++i)
+      {
+        const auto a = m_faces[i  ];
+        const auto b = m_faces[i+1];
+        if (a->GetBoundaryType() != b->GetBoundaryType()) continue;
+        if (a->GetOwner()->GetIndex() > b->GetOwner()->GetIndex())
+        {
+          std::swap(m_faces[i],m_faces[i+1]);
+          do_break = false;
+        }
+      }
+      if (do_break) break;
+    }
+  }
+
+  //Set all Face and Point indices
+  {
     const int n_faces = static_cast<int>(m_faces.size());
     for (int i=0; i!=n_faces; ++i)
     {
@@ -130,8 +157,24 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     }
   }
 
-  for (auto cell: m_cells) { cell->SetCorrectOrder(); }
-  for (auto face: m_faces) { face->SetCorrectWinding(); }
+  for (auto face: m_faces)
+  {
+    face->SetCorrectWinding();
+  }
+
+
+  #define TODO_ISSUE_181
+  #ifdef  TODO_ISSUE_181
+  {
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      std::stringstream s;
+      s << i << ": " << m_faces[i]->GetBoundaryType() << ": " << m_faces[i]->GetOwner()->GetIndex();
+      TRACE(s.str());
+    }
+  }
+  #endif //~#ifdef TODO_ISSUE_181
 
   //Check
   #ifndef NDEBUG

@@ -1273,7 +1273,6 @@ void ribi::Geometry::Test() noexcept
 
       assert(g.IsConvex(points));
     }
-    //assert(1==2 && "Yay, error is fixed!");
   }
 
 

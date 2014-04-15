@@ -70,6 +70,11 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
   const boost::shared_ptr<Move> move {
     MoveFactory::Create(s)
   };
+  #ifdef TODO_ISSUE_176
+  assert(move);
+  #else
+  if (!move) throw std::logic_error("ribi::Chess::PieceFactory().CreateFromMove exception: move empty");
+  #endif
   boost::shared_ptr<const Square> square {
     move->To()
   };

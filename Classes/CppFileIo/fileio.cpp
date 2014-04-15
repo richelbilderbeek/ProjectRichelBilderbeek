@@ -584,6 +584,41 @@ void ribi::fileio::FileIo::RenameFile(
   }
 }
 
+std::string ribi::fileio::FileIo::SimplifyPath(const std::string& s) const noexcept
+{
+  std::string t = s;
+  while (1)
+  {
+    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile("(/\\w*/../)");
+
+    //const std::string new_t = boost::regex_replace(t,boost::regex("/\\w*/../"),"/");
+    const std::string new_t = boost::xpressive::regex_replace(
+      t,
+      regex,
+      "/"
+    );
+    if (t == new_t) break;
+    t = new_t;
+  }
+  #ifdef UDNEFINFE467830786530475
+  while (1)
+  {
+    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile("((/|_b)\\w*/..(/|_b))");
+
+    //const std::string new_t = boost::regex_replace(t,boost::regex("/\\w*/../"),"/");
+    const std::string new_t = boost::xpressive::regex_replace(
+      t,
+      regex,
+      ""
+    );
+    if (t == new_t) break;
+    t = new_t;
+  }
+  #endif
+  return t;
+}
+
+
 #ifndef NDEBUG
 void ribi::fileio::FileIo::Test() noexcept
 {
@@ -996,6 +1031,18 @@ void ribi::fileio::FileIo::Test() noexcept
     //Clean up
     DeleteFile(filename_to);
     assert(!IsRegularFile(filename_to) && "Temporary file must be cleaned up");
+  }
+  //SimplifyPath
+  {
+    assert(SimplifyPath("/home/richel/Projects/Tools/ToolTestProFile/../../Classes/CppQtAboutDialog/qtaboutdialog.ui")
+      == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    assert(SimplifyPath("/home/richel/Projects/Tools/../Classes/CppQtAboutDialog/qtaboutdialog.ui")
+      == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    assert(SimplifyPath("/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui")
+      == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    #ifdef TODO_FIX_ISSUE_182
+    assert(SimplifyPath("Tools/..") == "");
+    #endif
   }
   TRACE("Finished ribi::fileio::FileIo::Test successfully");
 }
