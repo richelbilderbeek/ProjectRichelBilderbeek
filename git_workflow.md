@@ -24,10 +24,21 @@ Clone your fork:
 git clone https://github.com/your_name/ProjectRichelBilderbeek.git
 ```
 
-Assign the name 'upstream' to the integration GitHub:
+Enter the freshly cloned repository:
 
 ```
 cd ProjectRichelBilderbeek
+```
+
+If you are a developer: switch to develop branch:
+
+```
+git checkout develop
+```
+
+Assign the name 'upstream' to the integration GitHub:
+
+```
 git remote add upstream https://github.com/richelbilderbeek/ProjectRichelBilderbeek.git
 ```
 
