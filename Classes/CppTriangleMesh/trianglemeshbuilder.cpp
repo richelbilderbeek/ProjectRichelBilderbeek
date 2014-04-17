@@ -35,6 +35,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   const CreateVerticalFacesStrategy strategy
   )
   : m_cells(cells),
+    //#1: Partition faces in boundaries
     m_faces(SortByBoundary(ExtractFaces(cells),boundary_to_patch_field_type_function)),
     m_points(ExtractPoints(cells))
 {
@@ -121,6 +122,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       m_cells[i]->SetIndex(cell_no_index);
     }
   }
+  //#2: For each face, find its owner (a cell), and assign these increasing cell indices
   //Set all Cell indices, following the Face order:
   //The faces are ordered correctly, by the boundary.
   //The faces' owners must be an increasing value, to prevent
@@ -149,22 +151,82 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       m_faces[i]->SetIndex(face_no_index);
     }
   }
-  //Set all Face indices
+  //#3: Go though all cells by increasing index. For each cell,
+  //find the faces it owns, assign an increasing face index
   {
     int face_index = 0;
-    const int n_cells = static_cast<int>(m_cells.size());
-    for (int cell_index=0; cell_index!=n_cells; ++cell_index)
-    {
-      auto cell = m_cells[cell_index];
-      for (auto face: cell->GetFaces())
+    const int max_cell_index
+      = (*std::max_element(m_cells.begin(),m_cells.end(),
+      [](const boost::shared_ptr<Cell>& a, const boost::shared_ptr<Cell>& b)
       {
-        if (face->GetIndex() == face_no_index)
+        return a->GetIndex() < b->GetIndex();
+      }
+    ))->GetIndex() + 1;
+
+    for (int cell_index=0; cell_index!=max_cell_index; ++cell_index)
+    {
+      for (auto cell: m_cells)
+      {
+        if (cell->GetIndex() != cell_index) continue;
+        for (auto face: cell->GetFaces())
         {
-          face->SetIndex(face_index);
-          ++face_index;
+          if (face->GetIndex() == face_no_index)
+          {
+            face->SetIndex(face_index);
+            ++face_index;
+          }
         }
       }
     }
+  }
+  //#4: Within each boundary, sort the faces by owner index
+  //Use a bubble sort to order them
+  {
+    while (1)
+    {
+      bool do_break = true;
+      const int n_faces = static_cast<int>(m_faces.size());
+      for (int i=0; i!=n_faces-1; ++i)
+      {
+        const auto a = m_faces[i  ];
+        const auto b = m_faces[i+1];
+        if (a->GetBoundaryType() != b->GetBoundaryType()) continue;
+        if (a->GetConstOwner()->GetIndex() > b->GetConstOwner()->GetIndex())
+        {
+          std::swap(m_faces[i],m_faces[i+1]);
+          do_break = false;
+        }
+        if (a->GetConstOwner()->GetIndex() == b->GetConstOwner()->GetIndex()
+          && a->GetNeighbour() && b->GetNeighbour()
+          && a->GetNeighbour()->GetIndex() > b->GetNeighbour()->GetIndex()
+        )
+        {
+          std::swap(m_faces[i],m_faces[i+1]);
+          do_break = false;
+        }
+      }
+      if (do_break) break;
+    }
+  }
+
+
+
+
+
+
+  //#5: Set the Faces' indices equal to their position in the vector
+  {
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      m_faces[i]->SetIndex(i);
+    }
+  }
+
+  //Set the Points in the correct order
+  for (auto face: m_faces)
+  {
+    face->SetCorrectWinding();
   }
 
   //Set all Point indices
@@ -176,22 +238,20 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     }
   }
 
-  for (auto face: m_faces)
-  {
-    face->SetCorrectWinding();
-  }
 
   //Show the faces
   {
     const int n_faces = static_cast<int>(m_faces.size());
+    TRACE(n_faces);
     for (int i=0; i!=n_faces; ++i)
     {
       std::stringstream s;
-      s << i << ": " << m_faces[i]->GetBoundaryType() << ": " << m_faces[i]->GetConstOwner()->GetIndex();
-      s << "#" << i << ": boundary type: "
-      << m_faces[i]->GetBoundaryType() << ", owner index: "
-      << m_faces[i]->GetConstOwner()->GetIndex()
-      << ", neighbour index: ";
+      s
+        << "#" << i << ": boundary type: "
+        << m_faces[i]->GetBoundaryType() << ", owner index: "
+        << m_faces[i]->GetConstOwner()->GetIndex()
+        << ", neighbour index: "
+      ;
       if (m_faces[i]->GetNeighbour())
       {
         s << m_faces[i]->GetNeighbour()->GetIndex();
