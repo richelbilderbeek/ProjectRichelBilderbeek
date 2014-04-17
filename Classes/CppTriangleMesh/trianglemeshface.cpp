@@ -365,6 +365,12 @@ void ribi::trim::Face::Test() noexcept
 }
 #endif
 
+void ribi::trim::Face::TransferOwnership() noexcept
+{
+  assert(m_belongs_to.size() == 2);
+  std::swap(m_belongs_to[0],m_belongs_to[1]);
+}
+
 bool ribi::trim::operator==(const ribi::trim::Face& lhs, const ribi::trim::Face& rhs) noexcept
 {
   return

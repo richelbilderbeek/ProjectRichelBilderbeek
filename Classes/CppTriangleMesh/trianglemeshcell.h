@@ -33,7 +33,7 @@ struct Cell
   ///Sets the Faces of a Cell by their index
   void SetCorrectOrder() noexcept;
 
-  void SetIndex(const int index) noexcept { m_index = index; }
+  void SetIndex(const int index) noexcept;
 
   #ifdef TRIANGLEMESH_USE_SIGNALS2
   mutable boost::signals2::signal<void(const Cell* const)> m_signal_destroyed;

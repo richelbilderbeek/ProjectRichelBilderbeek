@@ -112,6 +112,8 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     m_cells.end()
   );
 
+  //Start setting the indices
+
 
   //Unset all Cell indices
   const int cell_no_index = -1;
@@ -132,22 +134,156 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     const int n_faces = static_cast<int>(m_faces.size());
     for (int i=0; i!=n_faces; ++i)
     {
-      auto owner = m_faces[i]->GetNonConstOwner();
-      assert(owner);
-      if (owner->GetIndex() == cell_no_index)
+      if (m_faces[i]->GetNeighbour())
       {
-        owner->SetIndex(cell_index);
+        //| 1 | 2 | Action
+        //| Y | N | No action
+        //| Y | Y | No action
+        //| N | Y | Transfer Face ownership from Neighbour to owner, assign index to new owner
+        //| N | N | Assign index to owner
+        // *1) Assigned owner yes/no?
+        // *2) Assigned neighbour yes/no?
+        const int owner_index = m_faces[i]->GetNonConstOwner()->GetIndex();
+        if (owner_index != cell_no_index) continue;
+        //const int neighbour_index = m_faces[i]->GetNeighbour()->GetIndex();
+        assert(
+          //No neighbour
+             !m_faces[i]->GetNeighbour()
+          //Neighbour not assigned an index yet
+          || m_faces[i]->GetNeighbour()->GetIndex() == cell_no_index
+          //Owner and neighbour correctly sorted
+          || m_faces[i]->GetNonConstOwner()->GetIndex() < m_faces[i]->GetNeighbour()->GetIndex()
+        );
+        /*
+        if (neighbour_index != cell_no_index && owner_index > neighbour_index)
+        {
+          assert(!"Will never get here");
+          m_faces[i]->TransferOwnership();
+          assert(m_faces[i]->GetNonConstOwner()->GetIndex()
+            < m_faces[i]->GetNeighbour()->GetIndex());
+          TRACE("BREAK");
+        }
+        */
+        m_faces[i]->GetNonConstOwner()->SetIndex(cell_index);
         ++cell_index;
+      }
+      else
+      {
+        auto owner = m_faces[i]->GetNonConstOwner();
+        assert(owner);
+        if (owner->GetIndex() == cell_no_index)
+        {
+          owner->SetIndex(cell_index);
+          ++cell_index;
+        }
       }
     }
   }
 
-  //Unset all Face indices
+  //Order all cells by their index
+  {
+    const int n_cells = static_cast<int>(m_cells.size());
+    for (int i=0; i!=n_cells; ++i)
+    {
+      while (1)
+      {
+        const int this_index = m_cells[i]->GetIndex();
+        if (i == this_index) break;
+        std::swap(m_cells[i],m_cells[this_index]);
+      }
+    }
+  }
+
+  #ifdef BELIEVE_THIS_IS_A_GOOD_WAY_20130417
+  //Transfer face ownership
   const int face_no_index = -1;
   {
     const int n_faces = static_cast<int>(m_faces.size());
     for (int i=0; i!=n_faces; ++i)
     {
+      if (m_faces[i]->GetNeighbour() && m_faces[i]->GetNonConstOwner()->GetIndex() < m_faces[i]->GetNeighbour()->GetIndex())
+      {
+        m_faces[i]->TransferOwnership();
+      }
+    }
+  }
+
+  //Again, #2: For each face, find its owner (a cell), and assign these increasing cell indices
+  //Set all Cell indices, following the Face order:
+  //The faces are ordered correctly, by the boundary.
+  //The faces' owners must be an increasing value, to prevent
+  //'upper triangular order' errors
+  {
+    int cell_index = 0;
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      if (m_faces[i]->GetNeighbour())
+      {
+        //| 1 | 2 | Action
+        //| Y | N | No action
+        //| Y | Y | No action
+        //| N | Y | Transfer Face ownership from Neighbour to owner, assign index to new owner
+        //| N | N | Assign index to owner
+        // *1) Assigned owner yes/no?
+        // *2) Assigned neighbour yes/no?
+        const int owner_index = m_faces[i]->GetNonConstOwner()->GetIndex();
+        if (owner_index != cell_no_index) continue;
+        //const int neighbour_index = m_faces[i]->GetNeighbour()->GetIndex();
+        assert(m_faces[i]->GetNonConstOwner()->GetIndex() < m_faces[i]->GetNeighbour()->GetIndex());
+        /*
+        if (neighbour_index != cell_no_index && owner_index > neighbour_index)
+        {
+          assert(!"Will never get here");
+          m_faces[i]->TransferOwnership();
+          assert(m_faces[i]->GetNonConstOwner()->GetIndex()
+            < m_faces[i]->GetNeighbour()->GetIndex());
+          TRACE("BREAK");
+        }
+        */
+        m_faces[i]->GetNonConstOwner()->SetIndex(cell_index);
+        ++cell_index;
+      }
+      else
+      {
+        auto owner = m_faces[i]->GetNonConstOwner();
+        assert(owner);
+        if (owner->GetIndex() == cell_no_index)
+        {
+          owner->SetIndex(cell_index);
+          ++cell_index;
+        }
+      }
+    }
+  }
+
+  //Again, order all cells by their index
+  {
+    const int n_cells = static_cast<int>(m_cells.size());
+    for (int i=0; i!=n_cells; ++i)
+    {
+      while (1)
+      {
+        const int this_index = m_cells[i]->GetIndex();
+        if (i == this_index) break;
+        std::swap(m_cells[i],m_cells[this_index]);
+      }
+    }
+  }
+  #endif
+
+  //Unset all Face indices
+  {
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      //Faces have either
+      // - no neighbour
+      // - owner index less then neighbour index
+      if (m_faces[i]->GetNeighbour() && m_faces[i]->GetNonConstOwner()->GetIndex() < m_faces[i]->GetNeighbour()->GetIndex())
+      {
+        m_faces[i]->TransferOwnership();
+      }
       m_faces[i]->SetIndex(face_no_index);
     }
   }
@@ -222,6 +358,21 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       m_faces[i]->SetIndex(i);
     }
   }
+  //Order all faces by their index
+  /*
+  {
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      while (1)
+      {
+        const int this_index = m_faces[i]->GetIndex();
+        if (i == this_index) break;
+        std::swap(m_faces[i],m_faces[this_index]);
+      }
+    }
+  }
+  */
 
   //Set the Points in the correct order
   for (auto face: m_faces)

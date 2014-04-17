@@ -72,12 +72,12 @@ bool ribi::foam::operator!=(const BoundaryFileItem& lhs, const BoundaryFileItem&
 std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFileItem& item) noexcept
 {
   os
-    << "  " << item.GetName() << '\n'
-    << "  {" << '\n'
-    << "    type " << item.GetType() << ";\n"
-    << "    nFaces " << item.GetNfaces() << ";\n"
-    << "    startFace " << item.GetStartFace() << ";\n"
-    << "  }" << '\n';
+    << "    " << item.GetName() << '\n'
+    << "    {" << '\n'
+    << "        type " << item.GetType() << ";\n"
+    << "        nFaces " << item.GetNfaces() << ";\n"
+    << "        startFace " << item.GetStartFace() << ";\n"
+    << "    }" << '\n';
   return os;
 }
 

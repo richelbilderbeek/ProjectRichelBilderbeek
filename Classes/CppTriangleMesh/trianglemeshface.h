@@ -71,6 +71,10 @@ struct Face
   ///   the cell with the heighest index
   void SetCorrectWinding() noexcept;
 
+  ///If a Face has both an owner Cell and a Neighbour Cell, transfer
+  ///ownership to the neighbour
+  void TransferOwnership() noexcept;
+
   #ifdef TRIANGLEMESH_USE_SIGNALS2
   boost::signals2::signal<void(const Face* const)> m_signal_destroyed;
   #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2

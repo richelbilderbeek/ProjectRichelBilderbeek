@@ -80,6 +80,15 @@ void ribi::trim::Cell::SetCorrectOrder() noexcept
   );
 }
 
+void ribi::trim::Cell::SetIndex(const int index) noexcept
+{
+  m_index = index;
+
+  assert(!"TODO");
+  //If there is a Face that has this cell as its neighbour, yet that neighbour
+  //does not have an index yet, transfer the Face its ownership from neighbour to owner
+}
+
 #ifndef NDEBUG
 void ribi::trim::Cell::Test() noexcept
 {
