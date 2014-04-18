@@ -11,6 +11,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/xpressive/xpressive.hpp>
+#include <boost/algorithm/string/trim.hpp>
 
 #include <QFile>
 #include <QRegExp>
@@ -281,8 +282,20 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
     const std::vector<std::string> v = pvdb::SafeFileToVector(filename);
     //FileToVector allowed an empty line after text, due to difference in line ending
     //SafeFileToVector should remove this line
-    assert(v.size() == 1);
-    xml = v[0];
+    //assert(v.size() == 1);
+    //xml = v[0];
+
+    for (const auto s: v) { xml+=s; }
+
+    xml.erase(std::remove(xml.begin(),xml.end(),'\r'),xml.end());
+    xml.erase(std::remove(xml.begin(),xml.end(),'\t'),xml.end());
+    xml.erase(std::remove(xml.begin(),xml.end(),'\n'),xml.end());
+    xml.erase(std::remove(xml.begin(),xml.end(),'\b'),xml.end());
+
+    assert(std::count(xml.begin(),xml.end(),'\n')==0);
+    assert(std::count(xml.begin(),xml.end(),'\t')==0);
+    assert(std::count(xml.begin(),xml.end(),'\r')==0);
+    assert(std::count(xml.begin(),xml.end(),'\b')==0);
   }
   //Backwards compatiblity with file format version 0.1
   {
@@ -314,6 +327,8 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
       xml = ConvertFrom_0_3(xml);
     }
   }
+
+  boost::algorithm::trim(xml);
 
   const boost::shared_ptr<pvdb::File> file = ribi::pvdb::File::FromXml(xml);
   assert(file);
