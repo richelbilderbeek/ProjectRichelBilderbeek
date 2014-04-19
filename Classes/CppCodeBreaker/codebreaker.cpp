@@ -402,6 +402,8 @@ int ribi::CodeBreaker::GuessVigenereCipherKeyLength(const std::string& secret_te
   const int key_length = index + shortest_guess;
   TRACE(index);
   TRACE(key_length);
+  #else
+  const int key_length = 1; //For now
   #endif
   return key_length;
 }
