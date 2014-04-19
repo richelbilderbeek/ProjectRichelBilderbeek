@@ -2,7 +2,9 @@
 #Script to check the status of compiles
 #Copies executables (both Linux and Win32) executables to ~/bin (overwrites older)
 set -u
-#set -x verbose #echo on
+set -x verbose #echo on
+
+#echo $PATH
 
 for superfolder in `ls`
 do
@@ -40,7 +42,7 @@ do
       #For every .pro file, 
       # 0: compile
       # 1: crosscompile using Qt5
-      for type in {0,1,2}
+      for type in {0,1}
       do
         myqmake=""
         mytypestr=""
@@ -58,10 +60,11 @@ do
         rm *_plugin_import.cpp
 
         case $type in
-        0) myqmake="../../../Qt/5.1.1/gcc/bin/qmake" mytypestr="Lubuntu" ;;
-        1) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32.static/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;;
-        2) myqmake="qmake" mytypestr="LubuntuLaptop" ;;
+        0) myqmake="i686-pc-mingw32.static-qmake-qt5" mytypestr="Qt5LubuntuToWindows" ;;
+        1) myqmake="qmake" mytypestr="LubuntuLaptop" ;;
         esac
+
+        echo "Creating makefile"
 
         $myqmake $myprofile
 
@@ -70,6 +73,8 @@ do
           echo "FAIL:"$myqmake", "$myprofile", "$mytypestr": FAIL (Makefile not found)"
           continue
         fi
+
+        echo "Starting make"
 
         make
 

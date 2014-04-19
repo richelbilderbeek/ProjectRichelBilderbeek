@@ -1,39 +1,69 @@
 #!/bin/sh
 #From http://richelbilderbeek.nl/CppMxe.htm
-myqmake="../../Libraries/mxe/usr/i686-pc-mingw32.static/qt5/bin/qmake"
-#myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
-myprofile="CppMxeExample1.pro"
-mybasename=`echo $myprofile | sed "s/\.pro//"`
 
-echo "Cross compiling to Windows"
+#myqmake="i686-pc-mingw32.static-qmake-qt4"
+myqmake="i686-pc-mingw32.static-qmake-qt5"
 
-if [ ! -e $myqmake ]
-then
-  echo "FAIL:"$myqmake", "": FAIL (qmake not found)"
-fi
+echo "Displaying cross compiler version (if it is not found, set the path to YourFolder/mxe/usr/bin"
+$myqmake -v
 
-echo "Remove previous makefile"
-if [ -e Makefile ]
-then
+for myprofile in `ls | egrep ".pro\>"`
+do
+  #echo $myprofile
+  mybasename=`echo $myprofile | sed "s/\.pro//"`
+
+  #echo "mybasename: "$mybasename
+
+  echo "Cleaning up"
   rm Makefile
-fi
+  rm Makefile.*
+  rm -r release
+  rm -r debug
+  rm ui_*.h
+  rm qrc_*.cpp
+  rm moc_*.cpp
+  rm object_script*.*
+  rm *.o
+  rm *_plugin_import.cpp
+  rm *.exe #Also clean up the executable
 
-echo "Creating Windows makefile"
-$myqmake $myprofile
+  echo "Creating makefile"
 
-if [ ! -e Makefile ]
-then
-  echo "FAIL:"$myqmake", "$myprofile", "": FAIL (Makefile not found)"
-  exit
-fi
+  $myqmake $myprofile
 
-echo "2/2: making makefile"
+  if [ ! -e Makefile ]
+  then
+    echo "FAIL:"$myqmake", "$myprofile": FAIL (Makefile not found)"
+    continue
+  fi
 
-make
+  echo "Start make"
 
-if [ -e $mybasename ] || [ -e ./release/$mybasename".exe" ]
-then
-  echo $myprofile": SUCCESS"
-else
-  echo $myprofile": FAIL (executable not found)"
-fi
+  make
+
+
+  if [ -e ./release/$mybasename".exe" ]
+  then
+    echo $myprofile", : SUCCESS"
+    if [ -e ./release/$mybasename".exe" ]
+    then
+      cp ./release/$mybasename".exe" .
+    fi
+  else
+    echo $myprofile", "$mytypestr": FAIL (executable not found)"
+  fi
+
+  #Cleaning up
+  rm Makefile
+  rm Makefile.*
+  rm -r release
+  rm -r debug
+  rm ui_*.h
+  rm qrc_*.cpp
+  rm moc_*.cpp
+  rm object_script*.*
+  rm *.o
+  rm *_plugin_import.cpp
+  #rm *.exe #Keep the executable
+
+done #next myprofile
