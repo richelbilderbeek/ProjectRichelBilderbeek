@@ -384,7 +384,11 @@ void ribi::cmap::Widget::LoseFocus() noexcept
   assert(!m_focus);
 }
 
-void ribi::cmap::Widget::OnUndo(const Command * const command_to_remove) noexcept
+void ribi::cmap::Widget::OnUndo(const Command * const
+  #ifndef NDEBUG
+  command_to_remove
+  #endif
+) noexcept
 {
   assert(command_to_remove);
   assert(!m_undo.empty());
@@ -648,11 +652,11 @@ void ribi::cmap::Widget::Undo() noexcept
   assert(CanUndo());
   assert(!m_undo.empty());
   assert(m_undo.back());
-  #ifndef NEBUG
+  #ifndef NDEBUG
   const std::size_t sz_before = m_undo.size();
   #endif
   m_undo.back()->Undo();
-  #ifndef NEBUG
+  #ifndef NDEBUG
   const std::size_t sz_after = m_undo.size();
   assert(sz_after < sz_before
     && "The undo Command calls DoUndo itself;"

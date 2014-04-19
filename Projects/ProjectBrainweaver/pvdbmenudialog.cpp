@@ -88,7 +88,7 @@ boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() cons
 
 std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
 {
-  return "0.45";
+  return "0.47";
 }
 
 std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
@@ -136,6 +136,8 @@ std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexc
     "2013-10-03: Version 0.40: minor changes, added wordwrap in some more player",
     "2013-12-29: Version 0.43: bugfixes, renaming, refactoring, preparing for undo functionality",
     "2013-12-31: Version 0.44: when tallying the relevancies of a concept its connected examples, the node names connected to the edges are displayed",
-    "2013-12-31: Version 0.45: sub concept map creation bug fixes"
+    "2013-12-31: Version 0.45: sub concept map creation bug fixes",
+    "2013-xx-xx: Version 0.46: misc",
+    "2014-04-19: Version 0.47: hotfix"
   };
 }

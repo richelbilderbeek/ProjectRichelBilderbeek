@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
   ribi::pvdb::TestHelperFunctions();
   //ribi::pvdb::QtPvdbMenuDialog::Test(); //Tests all
   #else
-  std::clog << "REL5EASE mode" << std::endl;
+  std::clog << "RELEASE mode" << std::endl;
   assert(1==2 && "Assume debugging is really disabled");
   #endif
 

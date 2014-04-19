@@ -529,7 +529,11 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
   assert(boost::geometry::num_points(polygon) == points.size());
   //TRACE(points.size());
   //TRACE(boost::geometry::num_points(polygon));
-  const bool is_convex = IsConvex(polygon,points);
+  const bool is_convex = IsConvex(polygon
+  #ifndef NDEBUG
+    ,points
+  #endif
+  );
   return is_convex;
 }
 
