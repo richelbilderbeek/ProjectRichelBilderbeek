@@ -33,8 +33,9 @@ boost::shared_ptr<ribi::aaf::Molecule> ribi::aaf::MoleculeFactory::CreateGlycine
 
   const double pi { boost::math::constants::pi<double>() };
   const int n_atoms { 10 };
+  #ifndef NDEBUG
   const int n_bonds {  9 };
-
+  #endif
   /*
 
   H   H   O

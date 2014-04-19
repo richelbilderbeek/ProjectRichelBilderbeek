@@ -359,8 +359,8 @@ void ribi::trim::Helper::MakeConvex(
   std::vector<boost::shared_ptr<ribi::trim::Point>>& points
 ) const noexcept
 {
-  #ifndef NDEBUG
   const bool verbose = false;
+  #ifndef NDEBUG
   for (auto p: points) { assert(p); }
   assert(!points.empty());
   assert(points.size() == 4);

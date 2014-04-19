@@ -39,9 +39,11 @@ int ribi::ToolTestApproximatorMenuDialog::ExecuteSpecific(const std::vector<std:
     Approximator<Time,Velocity> a;
     a.Add(0.0 * boost::units::si::second,0.0 * boost::units::si::meters_per_second);
     a.Add(2.0 * boost::units::si::second,2.0 * boost::units::si::meters_per_second);
+    #ifndef NDEBUG
     const Velocity v = a.Approximate(1.0 * boost::units::si::second);
     assert(v >= 0.99 * boost::units::si::meters_per_second
         && v <= 1.01 * boost::units::si::meters_per_second);
+    #endif
   }
 
   typedef Approximator<double,int> Approximator_t;

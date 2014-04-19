@@ -288,7 +288,9 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   ;
 
   std::vector<boost::shared_ptr<Face>> v;
+  #ifndef NDEBUG
   const int n_reserve = n_ver_faces * (n_layers - 1);
+  #endif
   assert(n_reserve > 0);
   assert(n_reserve < static_cast<int>(v.max_size()));
   v.reserve(n_ver_faces * (n_layers - 1));
@@ -350,7 +352,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 
         //Cannot order face winding yet, need Cells for this
         const boost::shared_ptr<Face> face {
-          face_factory.Create(
+          FaceFactory().Create(
             face_points,
             FaceOrientation::vertical
           )
@@ -381,7 +383,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 
         //Cannot order face winding yet, need Cells for this
         const boost::shared_ptr<Face> face_1 {
-          face_factory.Create(
+          FaceFactory().Create(
             face_points_1,
             FaceOrientation::vertical
           )
@@ -419,7 +421,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           && "FaceFactory expects convex ordered points");
 
         const boost::shared_ptr<Face> face_2 {
-          face_factory.Create(
+          FaceFactory().Create(
             face_points_2,
             FaceOrientation::vertical
           )

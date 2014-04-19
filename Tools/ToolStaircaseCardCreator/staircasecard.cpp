@@ -301,8 +301,10 @@ boost::shared_ptr<ribi::TextCanvas> ribi::scc::StaircaseCard::ToTextCanvas() con
         }
         else
         {
+          #ifndef NDEBUG
           const int col { (y - 1) / 2 };
           const int row { (x - 1) / 2 };
+          #endif
           assert(col >= 0);
           assert(col < static_cast<int>(m_v.size()));
           assert(row >= 0);

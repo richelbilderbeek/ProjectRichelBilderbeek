@@ -194,9 +194,10 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     }
   }
 
+  const int face_no_index = -1;
+
   #ifdef BELIEVE_THIS_IS_A_GOOD_WAY_20130417
   //Transfer face ownership
-  const int face_no_index = -1;
   {
     const int n_faces = static_cast<int>(m_faces.size());
     for (int i=0; i!=n_faces; ++i)
