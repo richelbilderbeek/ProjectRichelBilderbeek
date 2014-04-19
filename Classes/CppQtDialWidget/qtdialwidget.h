@@ -58,7 +58,7 @@ public:
   ///Draw a dial from a DialWidget
   static void DrawDial(
     QPainter& painter,
-    const DialWidget * const widget);
+    const boost::shared_ptr<const DialWidget> widget);
 
   DialWidget * GetWidget() { return m_widget.get(); }
   const DialWidget * GetWidget() const { return m_widget.get(); }
@@ -69,8 +69,8 @@ private:
   void OnDialChanged();
 
 public:
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

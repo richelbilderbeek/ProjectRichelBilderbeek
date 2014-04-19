@@ -20,6 +20,7 @@
 #include "chesssquareselector.h"
 #include "chessmovefactory.h"
 #include "chesswidget.h"
+#include "geometry.h"
 #include "rectangle.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -151,15 +152,20 @@ void ribi::Chess::BoardWidget::Test() noexcept
     {
       {
 
-        const boost::shared_ptr<Chess::Board> board { BoardFactory::Create() };
-        boost::shared_ptr<Chess::ChessWidget> w(new BoardWidget(board,Rect(0,0,100,100)));
+        const auto board(BoardFactory::Create());
+        //boost::shared_ptr<Chess::BoardWidget> w
+        //  = boost::make_shared<Chess::BoardWidget>(board,Geometry().CreateRect(0.0,0.0,100.0,100.0));
+        auto w(boost::make_shared<Chess::BoardWidget>(board,Geometry().CreateRect(0.0,0.0,100.0,100.0)));
         w->ClickPixel(-1,-1);
         w->ClickPixel(1000,1000);
       }
       {
-        const Rect geometry(0,0,100,100);
-       const boost::shared_ptr<Chess::Board> board { BoardFactory::Create() };
-        boost::shared_ptr<Chess::BoardWidget> widget(new Chess::BoardWidget(board,geometry));
+        const Rect geometry(Geometry().CreateRect(0,0,100,100));
+        const auto board(BoardFactory::Create());
+        //boost::shared_ptr<Chess::BoardWidget> widget
+        //  = boost::make_shared<Chess::BoardWidget>(board,geometry);
+        auto widget(boost::make_shared<Chess::BoardWidget>(board,geometry));
+
         //assert(widget->GetSelector()->GetCursor() == Chess::SquareSelector::GetInitialSquare());
         assert(widget->GetSelector()->GetCursor()->GetFile() == Chess::SquareSelector::GetInitialSquare()->GetFile());
         assert(widget->GetSelector()->GetCursor()->GetRank() == Chess::SquareSelector::GetInitialSquare()->GetRank());

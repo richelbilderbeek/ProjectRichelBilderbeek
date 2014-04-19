@@ -9,9 +9,9 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
-#include "coordinat3d.h"
+#include <boost/signals2.hpp>
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
@@ -22,46 +22,82 @@ namespace trim {
 ///Sure, its points can change...
 struct Face
 {
-  Face(const Face&) = delete;
-  Face& operator=(const Face&) = delete;
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
+  //typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
+
+  Face(const Face& ) = delete;
+  Face(      Face&&) = delete;
+  Face& operator=(const Face& ) = delete;
+  Face& operator=(      Face&&) = delete;
+
+  Coordinat3D CalcCenter() const noexcept;
+
+  int CalcPriority() const noexcept;
 
   ///When the Face its points know their Layers, call DoExtractCoordinats
   bool CanExtractCoordinats() const noexcept;
 
+  ///Throws is the face its m_orientation and Points orientationare mismatch
+  ///This function is called by the Faces' Points, after they received a Z value
+  void CheckOrientation() const;
+
   ///When the Face its points know their Layers, call this member function
   void DoExtractCoordinats() const;
 
-  const std::set<ribi::Coordinat3D> GetCoordinats() const noexcept { return m_coordinats; }
+  Coordinat3dSet GetCoordinats() const noexcept { return m_coordinats; }
 
   int GetIndex() const noexcept { return m_index; }
 
   ///nullptr if no neighbour
-  const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
+  boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
 
   FaceOrientation GetOrientation() const noexcept { return m_orientation; }
 
-  ///nullptr if no owner, a Volume:m_cellindex type
-  const boost::shared_ptr<const Cell> GetOwner() const noexcept;
+  ///nullptr if no owner, a Volume::m_cellindex type
+  boost::shared_ptr<const Cell> GetConstOwner() const noexcept;
 
-  const boost::shared_ptr<const Point> GetPoint(const int index) const noexcept;
+  boost::shared_ptr<const Point> GetPoint(const int index) const noexcept;
 
   const std::vector<boost::shared_ptr<Point>>& GetPoints() const noexcept { return m_points; }
 
-  //void ReversePoints() noexcept;
-
   void SetBoundaryType(const std::string type) const noexcept { m_type = type; }
 
+  ///Before saving a Face to OpenFOAM, its Points' winding needs to be set to the correct order:
+  /// - if the Face is a boundary face, the normal needs to point outwards;
+  ///   going away from the mesh; its points needs to be ordered clockwise
+  ///   when viewed from its cell's center
+  /// - if the Face is an internal face, the normal needs to point inside
+  ///   the cell with the heighest index
+  void SetCorrectWinding() noexcept;
+
+  ///If a Face has both an owner Cell and a Neighbour Cell, transfer
+  ///ownership to the neighbour
+  void TransferOwnership() noexcept;
+
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
+  boost::signals2::signal<void(const Face* const)> m_signal_destroyed;
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
+
   private:
-  ~Face() noexcept {}
+  ~Face() noexcept;
   friend void boost::checked_delete<>(Face* x);
   friend void boost::checked_delete<>(const Face* x);
 
   ///Cells this Face belongs to
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
+  mutable std::vector<boost::shared_ptr<const Cell>> m_belongs_to;
+  #else
   mutable std::vector<boost::weak_ptr<const Cell>> m_belongs_to;
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
+
 
   ///m_coordinats is used to speed up 'FaceExists', which compares a new Face
   ///with one already present, by comparing their sorted coordinats
-  mutable std::set<ribi::Coordinat3D> m_coordinats;
+  mutable Coordinat3dSet m_coordinats;
+
+  ///Track the creation and deletion of faces
+  static std::set<const Face*> sm_faces;
 
   ///The index of this Face in an TriangleMeshBuilder vector. It is determined at the end
   mutable int m_index;
@@ -85,12 +121,19 @@ struct Face
     const FaceFactory& lock
   );
 
+  void OnCellDestroyed(const Cell* const cell) noexcept;
+
   friend class CellFactory;
-  void AddBelongsTo(boost::weak_ptr<const Cell> cell) const;
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
+  void AddBelongsTo(boost::shared_ptr<const Cell> cell);
+  #else
+  void AddBelongsTo(boost::weak_ptr<const Cell> cell);
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   ///Determined in the end
   friend class TriangleMeshBuilder;
   std::string GetBoundaryType() const noexcept { return m_type; }
+  boost::shared_ptr<Cell> GetNonConstOwner() noexcept;
   void SetIndex(const int index) const noexcept { m_index = index; }
 
   #ifndef NDEBUG
@@ -100,13 +143,15 @@ struct Face
   friend std::ostream& operator<<(std::ostream& os, const Face& f);
 };
 
-const std::set<ribi::Coordinat3D> ExtractCoordinats(const Face& face);
-bool IsHorizontal(const Face& face) noexcept;
-bool IsVertical(const Face& face) noexcept;
-
-bool operator==(const Face& lhs, const Face& rhs);
-bool operator!=(const Face& lhs, const Face& rhs);
+bool operator==(const Face& lhs, const Face& rhs) noexcept;
+bool operator!=(const Face& lhs, const Face& rhs) noexcept;
 std::ostream& operator<<(std::ostream& os, const Face& f);
+
+bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
+
 
 } //~namespace trim
 } //~namespace ribi

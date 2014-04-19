@@ -52,9 +52,9 @@ struct BinaryNewickVector
   const std::vector<BinaryNewickVector> GetSimplerNewicks() const;
   const std::pair<BinaryNewickVector,BinaryNewickVector> GetRootBranches() const;
   bool IsSimple() const;
-  const std::string ToStr() const noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  std::string ToStr() const noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
   int Size() const noexcept;
 
 

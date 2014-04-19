@@ -1,4 +1,6 @@
 #!/bin/bash
+set -u
+
 cd Classes
 ./CodeToHtml.sh
 mv *.htm ../Projects/RichelbilderbeekNl

@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QtGui/QImage>
 
 #include "about.h"
-#include "asciiarter.h"
+//#include "asciiarter.h"
 #include "asciiartermaindialog.h"
 #include "asciiartermenudialog.h"
 #include "fileio.h"

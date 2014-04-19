@@ -67,7 +67,7 @@ bool ribi::Chess::Board::CanDoCastling(const Castling castling, const Player pla
   if (IsCheck(player)) return false;
   //Check King
   {
-    const boost::shared_ptr<const Square> king_square { SquareFactory::Create(player == Player::white ? std::string("e1") : std::string("e8")) } ;
+    const boost::shared_ptr<const Square> king_square { SquareFactory::Create(player == Player::white ? "e1" : "e8") } ;
     assert(king_square);
     const ConstPiecePtr king = GetPiece(king_square);
     //Is there a King at the king's square?
@@ -80,8 +80,8 @@ bool ribi::Chess::Board::CanDoCastling(const Castling castling, const Player pla
     const boost::shared_ptr<Square> rook_square {
       SquareFactory::Create(
         player == Player::white
-          ? (castling == Castling::kingside ? std::string("h1") : std::string("a1"))
-          : (castling == Castling::kingside ? std::string("h8") : std::string("a8"))
+          ? (castling == Castling::kingside ? "h1" : "a1")
+          : (castling == Castling::kingside ? "h8" : "a8")
       )
     };
     assert(rook_square);
@@ -396,7 +396,7 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
   return true;
 }
 
-const std::vector<boost::shared_ptr<const ribi::Chess::Move> >
+std::vector<boost::shared_ptr<const ribi::Chess::Move> >
   ribi::Chess::Board::CompleteMove(
     const boost::shared_ptr<const Move> move,
     const Player player) const
@@ -436,7 +436,7 @@ const std::vector<boost::shared_ptr<const ribi::Chess::Move> >
 }
 
 
-const std::vector<boost::shared_ptr<ribi::Chess::Square > > ribi::Chess::Board::CreateSquaresBetweenKingAndRook(
+std::vector<boost::shared_ptr<ribi::Chess::Square > > ribi::Chess::Board::CreateSquaresBetweenKingAndRook(
   const Player player,const Castling castling)
 {
   std::vector<boost::shared_ptr<Square > > v;
@@ -520,7 +520,7 @@ void ribi::Chess::Board::DoCastling(const Castling castling, const Player player
   //Get King
   {
     const boost::shared_ptr<const Square> king_from_square
-      = SquareFactory::Create(player == Player::white ? std::string("e1") : std::string("e8"));
+      = SquareFactory::Create(player == Player::white ? "e1" : "e8");
     assert(king_from_square);
     //const Square king_to_square = (player == Player::white
     //  ? (castling == Castling::kingside ? Square("g1") : Square("c1"))
@@ -536,8 +536,9 @@ void ribi::Chess::Board::DoCastling(const Castling castling, const Player player
   {
     const boost::shared_ptr<Square> rook_square
       = SquareFactory::Create(player == Player::white
-      ? (castling == Castling::kingside ? std::string("h1") : std::string("a1"))
-      : (castling == Castling::kingside ? std::string("h8") : std::string("a8")) );
+      ? (castling == Castling::kingside ? "h1" : "a1")
+      : (castling == Castling::kingside ? "h8" : "a8")
+    );
     assert(rook_square);
     const PiecePtr rook = GetPiece(rook_square);
     assert(rook);
@@ -622,7 +623,7 @@ bool ribi::Chess::Board::EmptyBetween(
 //  return (m_moves.size() % 2 ? Color::black : Color::white);
 //}
 
-const ribi::Chess::Board::PiecePtr
+ribi::Chess::Board::PiecePtr
   ribi::Chess::Board::GetPiece(const boost::shared_ptr<const Square> square)
 {
   const auto i = std::find_if(m_pieces.begin(),m_pieces.end(),
@@ -636,7 +637,7 @@ const ribi::Chess::Board::PiecePtr
   else { assert(*i); return *i; }
 }
 
-const ribi::Chess::Board::ConstPiecePtr
+ribi::Chess::Board::ConstPiecePtr
   ribi::Chess::Board::GetPiece(const boost::shared_ptr<const Square> square) const
 {
   const auto i = std::find_if(m_pieces.begin(),m_pieces.end(),
@@ -658,7 +659,7 @@ const ribi::Chess::Board::ConstPiecePtr
   }
 }
 
-const ribi::Chess::Board::ConstPieces ribi::Chess::Board::GetPieces() const
+ribi::Chess::Board::ConstPieces ribi::Chess::Board::GetPieces() const
 {
   return AddConst(this->GetPieces());
   /*
@@ -676,7 +677,7 @@ const ribi::Chess::Board::ConstPieces ribi::Chess::Board::GetPieces() const
   */
 }
 
-const ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
+ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
 {
   ribi::Chess::Board::Pieces v;
   const auto colors { Color::black, Color::white };
@@ -690,7 +691,7 @@ const ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File(i),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('.',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('.',color,s);
           assert(p);
           v.insert(p);
         }
@@ -701,56 +702,56 @@ const ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("a"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('R',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('R',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("b"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('N',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('N',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("c"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('B',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('B',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("d"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('Q',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('Q',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("e"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('K',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('K',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("f"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('B',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('B',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("g"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('N',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('N',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("h"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('R',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('R',color,s);
           assert(p);
           v.insert(p);
         }
@@ -760,7 +761,7 @@ const ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
   return v;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::GetMoves(const Player player) const
+std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::GetMoves(const Player player) const
 {
   std::vector<boost::shared_ptr<Move> > v;
 
@@ -782,7 +783,7 @@ const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::Get
   return v;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::GetMoves(
+std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::GetMoves(
   const boost::shared_ptr<const Square> square) const
 {
   const ConstPiecePtr piece = GetPiece(square);
@@ -804,19 +805,19 @@ const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::Get
   return moves;
 }
 
-const std::string ribi::Chess::Board::GetVersion()
+std::string ribi::Chess::Board::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Board::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Board::GetVersionHistory()
 {
   return {
     "2012-01-25: version 1.0: initial version"
   };
 }
 
-const ribi::Chess::BitBoard ribi::Chess::Board::GetVisibleSquares(const Player player) const
+ribi::Chess::BitBoard ribi::Chess::Board::GetVisibleSquares(const Player player) const
 {
   //Collect the Pieces we want to know their sights of
   std::vector<PiecePtr> pieces;
@@ -1045,7 +1046,7 @@ std::ostream& ribi::Chess::operator<<(std::ostream& os, const Board& board)
       const int x = piece->GetSquare()->GetFile().ToInt();
       const int y = piece->GetSquare()->GetRank().ToInt();
       const std::string s
-        = std::string(piece->GetColor() == Color::white ? "w" : "b")
+        = piece->GetColor() == Color::white ? "w" : "b"
         + boost::lexical_cast<std::string>(piece->GetNameChar());
       v[x][y] = s;
     }

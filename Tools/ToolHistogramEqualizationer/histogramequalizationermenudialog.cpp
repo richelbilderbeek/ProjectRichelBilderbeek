@@ -26,7 +26,7 @@ int ribi::HistogramEqualizationerMenuDialog::ExecuteSpecific(const std::vector<s
     return 1;
   }
   const std::string filename { argv[2] };
-  if (!fileio::IsRegularFile(filename))
+  if (!fileio::FileIo().IsRegularFile(filename))
   {
     std::cout << "Please give the filename of an existing file" << std::endl;
     return 0;
@@ -37,21 +37,21 @@ int ribi::HistogramEqualizationerMenuDialog::ExecuteSpecific(const std::vector<s
     HistogramEqualizationerMainDialog::DoHistogramEqualization(source)
   };
   assert(!result.isNull());
-  const std::string result_filename { fileio::GetTempFileName(".png") };
+  const std::string result_filename { fileio::FileIo().GetTempFileName(".png") };
   result.save(result_filename.c_str());
-  assert(fileio::IsRegularFile(result_filename));
+  assert(fileio::FileIo().IsRegularFile(result_filename));
 
   const boost::shared_ptr<ImageCanvas> canvas {
     new ImageCanvas(result_filename,78)
   };
   std::cout << (*canvas) << std::endl;
 
-  assert(fileio::IsRegularFile(result_filename));
-  fileio::DeleteFile(result_filename);
+  assert(fileio::FileIo().IsRegularFile(result_filename));
+  fileio::FileIo().DeleteFile(result_filename);
   return 0;
 }
 
-const ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noexcept
+ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -68,7 +68,7 @@ const ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noex
   return a;
 }
 
-const ribi::Help ribi::HistogramEqualizationerMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::HistogramEqualizationerMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -83,7 +83,7 @@ const ribi::Help ribi::HistogramEqualizationerMenuDialog::GetHelp() const noexce
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::HistogramEqualizationerMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::HistogramEqualizationerMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramHistogramEqualizationer
@@ -92,12 +92,12 @@ const boost::shared_ptr<const ribi::Program> ribi::HistogramEqualizationerMenuDi
   return p;
 }
 
-const std::string ribi::HistogramEqualizationerMenuDialog::GetVersion() const noexcept
+std::string ribi::HistogramEqualizationerMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::HistogramEqualizationerMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::HistogramEqualizationerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2008-07-11: version 1.0: initial Windows-only version",
@@ -116,11 +116,11 @@ void ribi::HistogramEqualizationerMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::HistogramEqualizationerMenuDialog::Test");
   HistogramEqualizationerMenuDialog d;
-  const std::string filename { fileio::GetTempFileName(".png") };
+  const std::string filename { fileio::FileIo().GetTempFileName(".png") };
   QFile file(":/histogramequalizationer/images/ToolHistogramEqualizationerMenu.png");
   file.copy(filename.c_str());
   d.Execute( { "HistogramEqualizationerMenuDialog", "-f", filename } );
-  fileio::DeleteFile(filename);
+  fileio::FileIo().DeleteFile(filename);
   TRACE("Finished ribi::HistogramEqualizationerMenuDialog::Test successfully");
 }
 #endif

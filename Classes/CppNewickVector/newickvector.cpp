@@ -163,9 +163,9 @@ double ribi::NewickVector::CalculateProbabilityInternal(
           coefficients.push_back( (f_d*(f_d-1.0)) / d);
         }
         #ifdef DEBUG_NEWICKVECTOR_CALCULATEPROBABILITYINTERNAL
-        TRACE(std::string("NewickVector ")
+        TRACE("NewickVector "
           + Newick::NewickToString(p.first)
-          + std::string(" has coefficient ")
+          + " has coefficient "
           + boost::lexical_cast<std::string>(coefficients.back()));
         #endif
       }
@@ -236,12 +236,12 @@ const std::pair<ribi::NewickVector,ribi::NewickVector> ribi::NewickVector::GetRo
   return p;
 }
 
-const std::string ribi::NewickVector::GetVersion() noexcept
+std::string ribi::NewickVector::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::NewickVector::GetVersionHistory() noexcept
+std::vector<std::string> ribi::NewickVector::GetVersionHistory() noexcept
 {
   return {
     "2009-06-01: Version 1.0: Initial version",
@@ -599,7 +599,7 @@ void ribi::NewickVector::Test() noexcept
     const std::vector<std::string> v = Newick::CreateValidNewicks();
     for(const std::string& s: v)
     {
-      TRACE(std::string("I must be accepted: ") + s);
+      TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
@@ -680,7 +680,7 @@ void ribi::NewickVector::Test() noexcept
     const std::vector<std::string> v = Newick::CreateInvalidNewicks();
     for(const std::string& s: v)
     {
-      TRACE(std::string("I must be rejected: ") + s);
+      TRACE("I must be rejected: " + s);
       assert(!Newick::IsNewick(s));
     }
   }
@@ -690,7 +690,7 @@ void ribi::NewickVector::Test() noexcept
     const std::vector<std::string> v = Newick::CreateValidNewicks();
     for(const std::string& s: v)
     {
-      TRACE(std::string("I must be accepted: ") + s);
+      TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
@@ -836,7 +836,7 @@ void ribi::NewickVector::Test() noexcept
 }
 #endif
 
-const std::string ribi::NewickVector::ToStr() const
+std::string ribi::NewickVector::ToStr() const
 {
   assert(Newick::IsNewick(m_v));
   return Newick::NewickToString(m_v);

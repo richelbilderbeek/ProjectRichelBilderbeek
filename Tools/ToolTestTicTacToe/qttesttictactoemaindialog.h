@@ -23,8 +23,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
-
+#include "tictactoefwd.h"
+#pragma GCC diagnostic pop
 
 struct QTableWidget;
 
@@ -33,16 +39,18 @@ namespace Ui {
 }
 
 namespace ribi {
-
-struct QtCanvas;
-struct QtTicTacToeWidget;
+namespace tictactoe {
 
 class QtTestTicTacToeMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestTicTacToeMainDialog(QWidget *parent = 0);
+  explicit QtTestTicTacToeMainDialog(
+    const boost::shared_ptr<Ai>& player1,
+    const boost::shared_ptr<Ai>& player2,
+    QWidget *parent = 0
+  );
   QtTestTicTacToeMainDialog(const QtTestTicTacToeMainDialog&) = delete;
   QtTestTicTacToeMainDialog& operator=(const QtTestTicTacToeMainDialog&) = delete;
   ~QtTestTicTacToeMainDialog() noexcept;
@@ -67,6 +75,7 @@ private slots:
 };
 
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTESTTICTACTOEMAINDIALOG_H

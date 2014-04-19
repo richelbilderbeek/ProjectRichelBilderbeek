@@ -1,0 +1,13 @@
+FoamFile
+{
+  version  2.0;
+  format   ascii;
+  class    dictionary;
+  location "constant";
+  object   thermophysicalProperties;
+}
+
+
+
+thermoType ePsiThermo<pureMixture<sutherlandTransport<specieThermo<eConstThermo<perfectGas>>>>>;
+mixture air 1 28.9 717 0 1.458e-6 110.4;

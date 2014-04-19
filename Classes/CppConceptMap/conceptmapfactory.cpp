@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -108,9 +128,11 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::D
     assert(from);
     assert(to);
     assert(from != to);
-    const boost::shared_ptr<ribi::cmap::Edge> new_edge = cmap::EdgeFactory::DeepCopy(edge,from,to);
+    const boost::shared_ptr<ribi::cmap::Edge> new_edge {
+      cmap::EdgeFactory().DeepCopy(edge,from,to)
+    };
     assert(new_edge);
-    assert(operator==(*new_edge,*edge));
+    assert(*new_edge == *edge);
     new_edges.push_back(new_edge);
   }
 
@@ -127,8 +149,8 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::D
 const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml(const std::string &s)
 {
   assert(s.size() >= 27);
-  assert(s.substr(0,13) == std::string("<concept_map>"));
-  assert(s.substr(s.size() - 14,14) == std::string("</concept_map>"));
+  assert(s.substr(0,13) == "<concept_map>");
+  assert(s.substr(s.size() - 14,14) == "</concept_map>");
 
 
   //Obtain the <concept_map> ... </concept_map> string
@@ -146,6 +168,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::F
     assert(w.size() == 1);
     //Strip the <nodes> tags
     const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
+
     //CenterNode
     {
       const std::vector<std::string> x
@@ -205,7 +228,9 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::F
       = GetRegexMatches(nodes_str,QRegExp("(<edge>.*</edge>)"));
     for (const std::string& s: x)
     {
-      const boost::shared_ptr<Edge> edge = EdgeFactory::FromXml(s,nodes);
+      const boost::shared_ptr<Edge> edge {
+        EdgeFactory().FromXml(s,nodes)
+      };
       assert(edge);
       edges.push_back(edge);
     }
@@ -352,7 +377,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(1),false,nodes.at(2),true)
+        cmap::EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(1),false,nodes.at(2),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map
@@ -375,7 +400,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(2),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(2),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map
@@ -399,7 +424,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(1),false,nodes.at(2),true)
+        cmap::EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(1),false,nodes.at(2),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map
@@ -422,7 +447,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(2),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(2),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map
@@ -466,7 +491,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create());
-    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true));
 
 
     const Edges edges
@@ -492,7 +517,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create());
-    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(3),true));
+    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(3),true));
 
     const Edges edges
       =
@@ -522,8 +547,8 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(3),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(3),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map
@@ -549,9 +574,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(2),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(3),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(2),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(3),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map
@@ -578,9 +603,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(1),false,nodes.at(3),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(1),false,nodes.at(3),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -606,9 +631,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(2),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(3),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(2),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(3),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -635,9 +660,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(1),false,nodes.at(3),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(1),false,nodes.at(3),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -673,11 +698,11 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
-        cmap::EdgeFactory::Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
+        cmap::EdgeFactory().Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -714,11 +739,11 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
-        cmap::EdgeFactory::Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
+        cmap::EdgeFactory().Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -779,11 +804,11 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
-        cmap::EdgeFactory::Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
+        cmap::EdgeFactory().Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -885,11 +910,11 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
-        cmap::EdgeFactory::Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
+        cmap::EdgeFactory().Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -933,14 +958,14 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true ),
-        cmap::EdgeFactory::Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true ),
-        cmap::EdgeFactory::Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true ),
-        cmap::EdgeFactory::Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true ),
-        cmap::EdgeFactory::Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true ),
-        cmap::EdgeFactory::Create(concept_k,6.7,8.9,nodes.at(0),false,nodes.at(2),false),
-        cmap::EdgeFactory::Create(concept_l,7.8,9.0,nodes.at(0),false,nodes.at(3),true ),
-        cmap::EdgeFactory::Create(concept_m,8.9,0.1,nodes.at(0),true ,nodes.at(4),false)
+        cmap::EdgeFactory().Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true ),
+        cmap::EdgeFactory().Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true ),
+        cmap::EdgeFactory().Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true ),
+        cmap::EdgeFactory().Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true ),
+        cmap::EdgeFactory().Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true ),
+        cmap::EdgeFactory().Create(concept_k,6.7,8.9,nodes.at(0),false,nodes.at(2),false),
+        cmap::EdgeFactory().Create(concept_l,7.8,9.0,nodes.at(0),false,nodes.at(3),true ),
+        cmap::EdgeFactory().Create(concept_m,8.9,0.1,nodes.at(0),true ,nodes.at(4),false)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1012,9 +1037,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(2),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(3),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(2),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(3),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1041,9 +1066,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(2),false,nodes.at(1),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(1),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(2),false,nodes.at(1),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1069,9 +1094,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(1),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(3),false,nodes.at(2),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(1),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(3),false,nodes.at(2),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1097,9 +1122,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(3),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(1),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(2),false,nodes.at(3),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(3),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(1),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(2),false,nodes.at(3),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1126,9 +1151,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(3),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(3),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(1),false,nodes.at(2),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(2),false,nodes.at(3),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(3),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(1),false,nodes.at(2),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1155,9 +1180,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(3),false,nodes.at(2),true),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(2),false,nodes.at(1),true),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(1),false,nodes.at(3),true)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(3),false,nodes.at(2),true),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(2),false,nodes.at(1),true),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(1),false,nodes.at(3),true)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1184,9 +1209,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(2),true,nodes.at(1),false),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(3),true,nodes.at(2),false),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(1),true,nodes.at(3),false)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(2),true,nodes.at(1),false),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(3),true,nodes.at(2),false),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(1),true,nodes.at(3),false)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1213,9 +1238,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(3),true,nodes.at(1),false),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(2),true,nodes.at(3),false),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(1),true,nodes.at(2),false)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(3),true,nodes.at(1),false),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(2),true,nodes.at(3),false),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(1),true,nodes.at(2),false)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1249,9 +1274,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(1),true,nodes.at(2),false),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(3),true,nodes.at(1),false),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(2),true,nodes.at(3),false)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(1),true,nodes.at(2),false),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(3),true,nodes.at(1),false),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(2),true,nodes.at(3),false)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1285,9 +1310,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(1),true,nodes.at(3),false),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(2),true,nodes.at(1),false),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(3),true,nodes.at(2),false)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(1),true,nodes.at(3),false),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(2),true,nodes.at(1),false),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(3),true,nodes.at(2),false)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1313,9 +1338,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(3),true,nodes.at(2),false),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(1),true,nodes.at(3),false),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(2),true,nodes.at(1),false)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(3),true,nodes.at(2),false),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(1),true,nodes.at(3),false),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(2),true,nodes.at(1),false)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
@@ -1342,9 +1367,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Edges edges
       =
       {
-        cmap::EdgeFactory::Create(concept_e,1.2,3.4,nodes.at(2),true,nodes.at(3),false),
-        cmap::EdgeFactory::Create(concept_f,2.3,4.5,nodes.at(1),true,nodes.at(2),false),
-        cmap::EdgeFactory::Create(concept_g,3.4,5.6,nodes.at(3),true,nodes.at(1),false)
+        cmap::EdgeFactory().Create(concept_e,1.2,3.4,nodes.at(2),true,nodes.at(3),false),
+        cmap::EdgeFactory().Create(concept_f,2.3,4.5,nodes.at(1),true,nodes.at(2),false),
+        cmap::EdgeFactory().Create(concept_g,3.4,5.6,nodes.at(3),true,nodes.at(1),false)
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(

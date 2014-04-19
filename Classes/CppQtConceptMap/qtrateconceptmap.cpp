@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -66,7 +86,7 @@ ribi::cmap::QtRateConceptMap::QtRateConceptMap(
   //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
-void ribi::cmap::QtRateConceptMap::AddEdge(
+ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
@@ -142,6 +162,7 @@ void ribi::cmap::QtRateConceptMap::AddEdge(
   #endif
   assert(std::abs(qtedge->pos().x() - edge->GetX()) < epsilon);
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
+  return qtedge;
 }
 
 ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_ptr<Node> node)
@@ -273,7 +294,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::Cr
     nodes.push_back(other_node);
     assert(qtedge);
     assert(qtedge->GetEdge());
-    const boost::shared_ptr<Edge> edge(cmap::EdgeFactory::Create(
+    const boost::shared_ptr<Edge> edge(EdgeFactory().Create(
       qtedge->GetEdge()->GetConcept(),
       qtedge->GetEdge()->GetX(),
       qtedge->GetEdge()->GetY(),

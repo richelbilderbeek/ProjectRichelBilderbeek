@@ -80,7 +80,7 @@ ribi::c2h::Replacements::Replacements(
       for (auto j=m_replacements.begin();j!=end;++j)
       {
         if (i==j) continue;
-        if ((*i).first == std::string("$")) continue;
+        if ((*i).first == "$") continue;
         if ((*i).first == (*j).first)
         {
           TRACE("ERROR: duplicate in replacements");
@@ -132,7 +132,7 @@ ribi::c2h::Replacements::Replacements(
   #endif
 }
 
-const std::vector<std::pair<std::string,std::string> >
+std::vector<std::pair<std::string,std::string>>
   ribi::c2h::Replacements::CreateAllReplacements(
     const std::vector<std::pair<std::string,std::string> >& replacements)
 {
@@ -176,7 +176,7 @@ const std::vector<std::pair<std::string,std::string> >
   return v;
 }
 
-const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateEndReplacements()
+std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateEndReplacements()
 {
   return
   {
@@ -192,7 +192,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::
   };
 }
 
-const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateInitialReplacements()
+std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateInitialReplacements()
 {
   return
   {

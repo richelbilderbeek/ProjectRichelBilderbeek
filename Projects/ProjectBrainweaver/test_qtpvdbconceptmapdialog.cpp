@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -156,9 +176,9 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
 
     const Nodes nodes = { node_a, node_b, node_c };
 
-    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<Edge> edge_b(cmap::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<Edge> edge_c(cmap::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<Edge> edge_b(cmap::EdgeFactory().Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<Edge> edge_c(cmap::EdgeFactory().Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
       ribi::cmap::ConceptMapFactory::Create(
@@ -213,9 +233,9 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
 
     const Nodes nodes = { node_a, node_b, node_c };
 
-    const boost::shared_ptr<Edge> edge_a(EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<Edge> edge_b(EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<Edge> edge_c(EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<Edge> edge_a(EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<Edge> edge_b(EdgeFactory().Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
       ribi::cmap::ConceptMapFactory::Create(
@@ -273,9 +293,9 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
 
     const Nodes nodes = { node_a, node_b, node_c };
 
-    const boost::shared_ptr<Edge> edge_a(EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<Edge> edge_b(EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<Edge> edge_c(EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<Edge> edge_a(EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<Edge> edge_b(EdgeFactory().Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<Edge> edge_c(EdgeFactory().Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
       ribi::cmap::ConceptMapFactory::Create(

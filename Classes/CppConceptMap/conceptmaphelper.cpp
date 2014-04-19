@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -32,9 +52,10 @@ double ribi::cmap::GetDistance(const double x1, const double y1, const double x2
   return GetDistance(x1-x2,y1-y2);
 }
 
-const std::vector<std::string> ribi::cmap::GetRegexMatches(
+std::vector<std::string> ribi::cmap::GetRegexMatches(
   const std::string& s,
-  const QRegExp& r_original)
+  const QRegExp& r_original
+) noexcept
 {
   #ifndef NDEBUG
   cmap::TestHelperFunctions();
@@ -54,15 +75,15 @@ const std::vector<std::string> ribi::cmap::GetRegexMatches(
   return v;
 }
 
-const std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filename)
+std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filename) noexcept
 {
-  std::vector<std::string> v = ribi::fileio::FileToVector(filename);
+  std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
   if (!v.empty() && v.back().empty()) v.pop_back();
   return v;
 }
 
 /*
-const std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
+std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
 {
   #ifndef NDEBUG
   cmap::TestHelperFunctions();
@@ -90,7 +111,7 @@ const std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
 */
 
 #ifndef NDEBUG
-void ribi::cmap::TestHelperFunctions()
+void ribi::cmap::TestHelperFunctions() noexcept
 {
   {
     static bool is_tested = false;
@@ -304,8 +325,7 @@ void ribi::cmap::TestHelperFunctions()
 }
 #endif
 
-const std::string ribi::cmap::Unwordwrap(
-  const std::vector<std::string>& v) noexcept
+std::string ribi::cmap::Unwordwrap(const std::vector<std::string>& v) noexcept
 {
   //Simply concatenate
   std::string t;
@@ -313,7 +333,7 @@ const std::string ribi::cmap::Unwordwrap(
   return t;
 }
 
-const std::vector<std::string> ribi::cmap::Wordwrap(
+std::vector<std::string> ribi::cmap::Wordwrap(
   const std::string& s_original, const std::size_t max_len) noexcept
 {
   if (max_len == 0)
@@ -438,7 +458,7 @@ const std::vector<std::string> ribi::cmap::Wordwrap(
 }
 
 /*
-const std::vector<std::string> ribi::cmap::XmlToPretty(const std::string& s)
+std::vector<std::string> ribi::cmap::XmlToPretty(const std::string& s)
 {
   #ifndef NDEBUG
   cmap::TestHelperFunctions();

@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 
+#include "geometry.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -199,7 +200,8 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
     m_tail(tail),
     m_to(to)
 {
-  assert(from); assert(to); assert(mid);
+  assert(from); assert(to);
+  assert((mid || !mid) && "No mid results in a straight arrow");
   assert(from != to); assert(from != mid); assert(mid != to);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
@@ -212,7 +214,7 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
   this->setAcceptHoverEvents(true);
 
   //Put this arrow item under the rect
-  this->setZValue(mid->zValue() - 1.0);
+  if (mid) { setZValue(mid->zValue() - 1.0); }
 }
 
 QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
@@ -220,28 +222,22 @@ QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
   return shape().boundingRect();
 }
 
-double ribi::QtQuadBezierArrowItem::GetAngle(const double dx, const double dy)
-{
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan(dx/dy));
-}
-
-const QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const
+QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const noexcept
 {
   const QPointF center = GetCenter();
-  const double dx_mid_center = m_mid->pos().x() - center.x();
-  const double dy_mid_center = m_mid->pos().y() - center.y();
+  const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - center.x()) : 0.0;
+  const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - center.y()) : 0.0;
   const QPointF beyond(center.x() + dx_mid_center + dx_mid_center, center.y() + dy_mid_center + dy_mid_center);
   return beyond;
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetCenter() const
+QPointF ribi::QtQuadBezierArrowItem::GetCenter() const noexcept
 {
   const QPointF center((m_from->pos() + m_to->pos()) / 2.0);
   return center;
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetHead() const
+QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
 {
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Line;
@@ -297,7 +293,7 @@ const QPointF ribi::QtQuadBezierArrowItem::GetHead() const
   }
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetTail() const
+QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
 {
 
   typedef boost::geometry::model::d2::point_xy<double> Point;
@@ -353,19 +349,20 @@ const QPointF ribi::QtQuadBezierArrowItem::GetTail() const
   }
 }
 
-const std::string ribi::QtQuadBezierArrowItem::GetVersion() noexcept
+std::string ribi::QtQuadBezierArrowItem::GetVersion() noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
-const std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory() noexcept
 {
   return {
     "2012-12-07: version 1.0: initial version",
     "2012-12-13: version 1.1: respond to focus",
     "2012-12-29: version 1.2: fixed bug in GetHead and GetTail that occurs when GetLineRectIntersections returns two points",
     "2013-01-01: version 1.3: added QGraphicsItem getters",
-    "2013-07-10: version 1.4: setting arrow heads emits a notification signal"
+    "2013-07-10: version 1.4: setting arrow heads emits a notification signal",
+    "2014-03-18: version 1.5: allow arrow to be straight"
   };
 }
 
@@ -424,7 +421,8 @@ void ribi::QtQuadBezierArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *even
 void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
   painter->setRenderHint(QPainter::Antialiasing);
-  painter->drawEllipse(this->GetMidItem()->pos(),1,1);
+
+  if (GetMidItem()) painter->drawEllipse(GetMidItem()->pos(),1,1);
 
   if (this->isSelected() || this->hasFocus())
   {
@@ -438,6 +436,7 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
   //Solution:
   // - define point 'center' as the middle between from and to
   // - define point 'beyond' as the mirror point of 'center', using mid_pos as a mirror
+
   const QPointF beyond = GetBeyond();
   const QPointF p_tail_end = GetTail();
   const QPointF p_head_end = GetHead();
@@ -456,17 +455,19 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       const double pi = boost::math::constants::pi<double>();
       const double dx = beyond.x() - m_from->pos().x();
       const double dy = beyond.y() - m_from->pos().y();
-      double angle = GetAngle(dx,dy);
-      if (dy >= 0.0) angle = (1.0 * pi) + angle;
+      const double arrowangle = 0.1*pi;
+      double angle1 = 0.5*pi + arrowangle - Geometry().GetAngle(-dx,-dy);
+      double angle2 = 0.5*pi + arrowangle - Geometry().GetAngle(-dx,-dy);
+
       const QPointF p0(p_tail_end.x(),p_tail_end.y());
       const QPointF p1
         = p0 + QPointF(
-           std::sin(angle + pi + (pi * 0.1)) * sz,
-          -std::cos(angle + pi + (pi * 0.1)) * sz);
+           std::cos(angle1) * sz,
+           -std::sin(angle1) * sz);
       const QPointF p2
         = p0 + QPointF(
-           std::sin(angle + pi - (pi * 0.1)) * sz,
-          -std::cos(angle + pi - (pi * 0.1)) * sz);
+           std::cos(angle2) * sz,
+           -std::sin(angle2) * sz);
       painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
     }
     if (m_head)
@@ -475,26 +476,26 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
       const double pi = boost::math::constants::pi<double>();
       const double dx = m_to->pos().x() - beyond.x();
-      const double dy = m_to->pos().y() - beyond.y();
-      double angle = GetAngle(dx,dy);
-      if (dy >= 0.0) angle = (1.0 * pi) + angle;
+      const double dy = (m_to->pos().y() - beyond.y());
+      double angle1 = 0.6*pi - Geometry().GetAngle(-dx,-dy);
+      double angle2 = 0.4*pi - Geometry().GetAngle(-dx,-dy);
 
       const QPointF p0(p_head_end.x(),p_head_end.y());
       const QPointF p1
-        = p0 + QPointF(
-           std::sin(angle +  0.0 + (pi * 0.1)) * sz,
-          -std::cos(angle +  0.0 + (pi * 0.1)) * sz);
+        = p0 + QPointF( 
+           std::cos(angle1) * sz,
+           -std::sin(angle1) * sz);
       const QPointF p2
         = p0 + QPointF(
-           std::sin(angle +  0.0 - (pi * 0.1)) * sz,
-          -std::cos(angle +  0.0 - (pi * 0.1)) * sz);
+           std::cos(angle2) * sz,
+           -std::sin(angle2) * sz);
 
       painter->drawPolygon(QPolygonF() << p0 << p1 << p2);
     }
   }
 }
 
-void ribi::QtQuadBezierArrowItem::SetHasHead(const bool has_head)
+void ribi::QtQuadBezierArrowItem::SetHasHead(const bool has_head) noexcept
 {
 
   if (m_head != has_head)
@@ -505,7 +506,7 @@ void ribi::QtQuadBezierArrowItem::SetHasHead(const bool has_head)
   }
 }
 
-void ribi::QtQuadBezierArrowItem::SetHasTail(const bool has_tail)
+void ribi::QtQuadBezierArrowItem::SetHasTail(const bool has_tail) noexcept
 {
   if (m_tail != has_tail)
   {

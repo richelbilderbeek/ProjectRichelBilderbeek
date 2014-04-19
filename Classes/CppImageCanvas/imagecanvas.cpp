@@ -56,9 +56,10 @@ ribi::ImageCanvas::ImageCanvas(
   #endif
 }
 
-const std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
+std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
   const std::vector<std::vector<double> >& image,
-  const int width) //How many chars the ASCII image will be wide
+  const int width //How many chars the ASCII image will be wide
+) noexcept
 {
   //If the number of chars is below 5,
   //the calculation would be more complicated due to a too trivial value of charWidth
@@ -130,8 +131,8 @@ const std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
   return v;
 }
 
-const std::vector<std::vector<double> >
-  ribi::ImageCanvas::ConvertToGreyYx(const QImage * const i)
+std::vector<std::vector<double>>
+  ribi::ImageCanvas::ConvertToGreyYx(const QImage * const i) noexcept
 {
   const int maxy = i->height();
   const int maxx = i->width();
@@ -165,8 +166,8 @@ const std::vector<std::vector<double> >
   return v;
 }
 
-const std::vector<std::vector<double> >
-  ribi::ImageCanvas::ConvertToGreyYx(const std::string& filename)
+std::vector<std::vector<double> >
+  ribi::ImageCanvas::ConvertToGreyYx(const std::string& filename) noexcept
 {
   const boost::scoped_ptr<QImage> qimage{
     new QImage(filename.c_str())
@@ -293,12 +294,12 @@ int ribi::ImageCanvas::GetHeight() const noexcept
   return static_cast<int>(m_canvas.size());
 }
 
-const std::string ribi::ImageCanvas::GetVersion() noexcept
+std::string ribi::ImageCanvas::GetVersion() noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::ImageCanvas::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ImageCanvas::GetVersionHistory() noexcept
 {
   return {
     "2011-03-23: Version 1.0: initial version, then called AsciiArter",
@@ -334,19 +335,19 @@ void ribi::ImageCanvas::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ImageCanvas::Test");
-  const std::string temp_filename { fileio::GetTempFileName() };
+  const std::string temp_filename { fileio::FileIo().GetTempFileName() };
   {
     const std::string resource_filename { ":/CppImageCanvas/images/R.png" };
     QFile qfile(resource_filename.c_str());
     qfile.copy(temp_filename.c_str());
-    if (!fileio::IsRegularFile(temp_filename))
+    if (!fileio::FileIo().IsRegularFile(temp_filename))
     {
       TRACE("ERROR");
       TRACE(resource_filename);
       TRACE("Resource filename must exist");
     }
   }
-  assert(fileio::IsRegularFile(temp_filename));
+  assert(fileio::FileIo().IsRegularFile(temp_filename));
   const int n
     = static_cast<int>(CanvasColorSystems::GetAll().size())
     * static_cast<int>(CanvasCoordinatSystems::GetAll().size());
@@ -364,13 +365,13 @@ void ribi::ImageCanvas::Test() noexcept
     assert(!s.str().empty());
     //TRACE(c);
   }
-  fileio::DeleteFile(temp_filename);
+  fileio::FileIo().DeleteFile(temp_filename);
   TRACE("Finished ribi::ImageCanvas::Test successfully");
 }
 #endif
 
 
-const std::vector<std::string> ribi::ImageCanvas::ToStrings() const noexcept
+std::vector<std::string> ribi::ImageCanvas::ToStrings() const noexcept
 {
   std::vector<std::vector<double>> canvas { m_canvas };
   if (m_color_system == CanvasColorSystem::invert)
@@ -393,7 +394,7 @@ const std::vector<std::string> ribi::ImageCanvas::ToStrings() const noexcept
   return text;
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const ImageCanvas& canvas)
+std::ostream& ribi::operator<<(std::ostream& os, const ImageCanvas& canvas) noexcept
 {
   const auto v = canvas.ToStrings();
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"));

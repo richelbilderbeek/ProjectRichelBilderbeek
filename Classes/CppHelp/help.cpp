@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Help, class for a program its help information
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppHelp.htm
+//---------------------------------------------------------------------------
 #include "help.h"
 
 #include <algorithm>
@@ -35,8 +55,9 @@ ribi::Help::Help(
     m_program_description(program_description),
     m_program_name(program_name)
 {
-
   #ifndef NDEBUG
+  Test();
+
   //checks if there are no short or long option occurring twice
   const std::size_t sz = m_options.size();
   for (std::size_t i=0; i!=sz-1; ++i)
@@ -131,7 +152,31 @@ const std::vector<ribi::Help::Option> ribi::Help::AddDefaultOptions(const std::v
   return w;
 }
 
+std::string ribi::Help::GetVersion() noexcept
+{
+  return "1.1";
+}
 
+std::vector<std::string> ribi::Help::GetVersionHistory() noexcept
+{
+  return {
+    "201x-xx-xx: Version 1.0: initial version",
+    "2014-02-27: Version 1.1: started versioning"
+  };
+}
+
+#ifndef NDEBUG
+void ribi::Help::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Help::Test");
+  TRACE("Finished ribi::Help::Test successfully");
+}
+#endif
 
 std::ostream& ribi::operator<<(std::ostream& os, const Help& help)
 {

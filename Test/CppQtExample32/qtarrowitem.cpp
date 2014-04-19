@@ -1,9 +1,14 @@
 #include <iostream>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QCursor>
 #include <QFont>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include "qtarrowitem.h"
+#pragma GCC diagnostic pop
 
 QtArrowItem::QtArrowItem(
   const double x1,

@@ -107,44 +107,46 @@ void ribi::QtToggleButtonWidget::DrawToggleButton(
 
 void ribi::QtToggleButtonWidget::DrawToggleButton(
   QPainter& painter,
-  const ToggleButtonWidget * const widget)
+  const boost::shared_ptr<const ToggleButtonWidget> widget)
 {
   DrawToggleButton(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetToggleButton());
+    widget->GetLeft(),
+    widget->GetTop(),
+    widget->GetWidth(),
+    widget->GetHeight(),
+    widget->GetToggleButton()
+  );
 }
 
-const std::string ribi::QtToggleButtonWidget::GetVersion() noexcept
+std::string ribi::QtToggleButtonWidget::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-const std::vector<std::string> ribi::QtToggleButtonWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtToggleButtonWidget::GetVersionHistory() noexcept
 {
   return {
-    "2011-06-16: version 1.0: initial version"
+    "2011-06-16: version 1.0: initial version",
+    "2014-03-28: Version 1.1: replaced custom Rect class by Boost.Geometry"
   };
 }
 
 void ribi::QtToggleButtonWidget::mousePressEvent(QMouseEvent * e)
 {
-  //m_widget its observers for a repaint
+  //m_widget signals its observers for a repaint
   m_widget->Click(e->x(),e->y());
 }
 
 void ribi::QtToggleButtonWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
-  DrawToggleButton(painter,m_widget.get());
+  DrawToggleButton(painter,m_widget);
 }
 
 void ribi::QtToggleButtonWidget::resizeEvent(QResizeEvent *)
 {
-  this->m_widget->SetGeometry(Rect(0,0,this->width(),this->height()));
+  this->m_widget->SetGeometry(0,0,this->width(),this->height());
   repaint();
 }
 

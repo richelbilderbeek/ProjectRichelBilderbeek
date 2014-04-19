@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef CONCEPTMAPCONCEPT_H
 #define CONCEPTMAPCONCEPT_H
 
@@ -27,35 +47,35 @@ struct Concept
   Concept& operator=(const Concept& other) = delete;
 
   ///Get the examples of the concept, e.g. 'Plato', 'Aristotle'
-  const boost::shared_ptr<const Examples> GetExamples() const;
-  const boost::shared_ptr<Examples>& GetExamples() { return m_examples; }
+  boost::shared_ptr<const Examples> GetExamples() const noexcept;
+  boost::shared_ptr<Examples>& GetExamples() noexcept { return m_examples; }
 
   ///Has an assessor rated the name of this concept as being an addition to the complexity?
   ///This is something different than m_rating_complexity:
   ///m_is_complex can be used to help the assessor determine a m_rating_complexity,
   ///but m_rating_complexity is the final and complete rating
-  bool GetIsComplex() const { return m_is_complex; }
+  bool GetIsComplex() const noexcept { return m_is_complex; }
 
   ///Get the name of the concept, e.g. 'Philosphy'
-  const std::string& GetName() const { return m_name; }
+  const std::string& GetName() const noexcept { return m_name; }
 
   ///Get the rating of this Concept for complexity
   ///-1: not rated, 0: lowest, 2: highest
-  int GetRatingComplexity() const { return m_rating_complexity; }
+  int GetRatingComplexity() const noexcept { return m_rating_complexity; }
 
   ///Get the rating of this Concept for concreteness
   ///-1: not rated, 0: lowest, 2: highest
-  int GetRatingConcreteness() const { return m_rating_concreteness; }
+  int GetRatingConcreteness() const noexcept { return m_rating_concreteness; }
 
   ///Get the rating of this Concept for specificity
   ///-1: not rated, 0: lowest, 2: highest
-  int GetRatingSpecificity() const { return m_rating_specificity; }
+  int GetRatingSpecificity() const noexcept { return m_rating_specificity; }
 
   ///Has an assessor rated the name of this concept as being an addition to the complexity?
   ///This is something different than m_rating_complexity:
   ///m_is_complex can be used to help the assessor determine a m_rating_complexity,
   ///but m_rating_complexity is the final and complete rating
-  void SetIsComplex(const bool is_complex) { m_is_complex = is_complex; }
+  void SetIsComplex(const bool is_complex) noexcept { m_is_complex = is_complex; }
 
   ///Emitted when the examples are changed
   mutable boost::signals2::signal<void(const Concept*)> m_signal_examples_changed;
@@ -73,7 +93,7 @@ struct Concept
   mutable boost::signals2::signal<void(const Concept*)> m_signal_rating_specificity_changed;
 
   ///Convert Concept to a std::string to write to file
-  const std::string ToXml() const noexcept;
+  std::string ToXml() const noexcept;
 
   private:
 
@@ -93,22 +113,22 @@ struct Concept
   friend class QtTestNodeItemDialog;
 
   ///Set the examples
-  void SetExamples(const boost::shared_ptr<Examples>& examples);
+  void SetExamples(const boost::shared_ptr<Examples>& examples) noexcept;
 
   ///Set the name
-  void SetName(const std::string& name);
+  void SetName(const std::string& name) noexcept;
 
   ///Set the rating of this Concept for complexity
   ///-1: not rated, 0: lowest, 2: highest
-  void SetRatingComplexity(const int rating_complexity);
+  void SetRatingComplexity(const int rating_complexity) noexcept;
 
   ///Set the rating of this Concept for concreteness
   ///-1: not rated, 0: lowest, 2: highest
-  void SetRatingConcreteness(const int rating_concreteness);
+  void SetRatingConcreteness(const int rating_concreteness) noexcept;
 
   ///Set the rating of this Concept for specificity
   ///-1: not rated, 0: lowest, 2: highest
-  void SetRatingSpecificity(const int rating_specificity);
+  void SetRatingSpecificity(const int rating_specificity) noexcept;
 
   private:
 

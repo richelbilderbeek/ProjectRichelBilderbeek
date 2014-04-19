@@ -40,7 +40,7 @@ int ribi::RegexTesterMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 1;
 }
 
-const ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -54,7 +54,7 @@ const ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::RegexTesterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::RegexTesterMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -68,7 +68,7 @@ const ribi::Help ribi::RegexTesterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::RegexTesterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::RegexTesterMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramRegexTester
@@ -77,12 +77,12 @@ const boost::shared_ptr<const ribi::Program> ribi::RegexTesterMenuDialog::GetPro
   return p;
 }
 
-const std::string ribi::RegexTesterMenuDialog::GetVersion() const noexcept
+std::string ribi::RegexTesterMenuDialog::GetVersion() const noexcept
 {
   return "1.7";
 }
 
-const std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-08-19: Version 1.3: Qt GUI application",

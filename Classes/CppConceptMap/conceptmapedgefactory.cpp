@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -11,9 +31,42 @@
 #include "conceptmapedge.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmaphelper.h"
+#include "conceptmapnode.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
+
+const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
+  const boost::shared_ptr<ribi::cmap::Node> from,
+  const boost::shared_ptr<ribi::cmap::Node> to
+) const noexcept
+{
+  assert(from);
+  assert(to);
+  assert(from != to);
+  const double concept_x { (from->GetX() + to->GetX()) / 2 };
+  const double concept_y { (from->GetY() + to->GetY()) / 2 };
+  const bool tail_arrow = false;
+  const bool head_arrow = true;
+  const boost::shared_ptr<ribi::cmap::Concept> concept {
+    ConceptFactory().Create()
+  };
+  assert(concept);
+  assert(concept->GetExamples());
+  const boost::shared_ptr<Edge> p {
+    new Edge(
+      concept,
+      concept_x,
+      concept_y,
+      from,
+      tail_arrow,
+      to,
+      head_arrow
+    )
+  };
+  assert(p);
+  return p;
+}
 
 const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   const boost::shared_ptr<ribi::cmap::Concept>& concept,
@@ -22,7 +75,8 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   const boost::shared_ptr<ribi::cmap::Node> from,
   const bool tail_arrow,
   const boost::shared_ptr<ribi::cmap::Node> to,
-  const bool head_arrow)
+  const bool head_arrow
+) const noexcept
 {
   assert(concept);
   assert(concept->GetExamples());
@@ -38,7 +92,8 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
 const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
   const boost::shared_ptr<const cmap::Edge> edge,
   const boost::shared_ptr<ribi::cmap::Node> from,
-  const boost::shared_ptr<ribi::cmap::Node> to)
+  const boost::shared_ptr<ribi::cmap::Node> to
+) const noexcept
 {
   assert(edge);
   assert(edge->GetConcept());
@@ -67,11 +122,12 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
 
 const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   const std::string& s,
-  const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes)
+  const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes
+) const noexcept
 {
   assert(s.size() >= 13);
-  assert(s.substr(0,6) == std::string("<edge>"));
-  assert(s.substr(s.size() - 7,7) == std::string("</edge>"));
+  assert(s.substr(0,6) == "<edge>");
+  assert(s.substr(s.size() - 7,7) == "</edge>");
   //m_concept
   boost::shared_ptr<Concept> concept;
   {
@@ -131,14 +187,15 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
 }
 
 const std::vector<boost::shared_ptr<ribi::cmap::Edge> > ribi::cmap::EdgeFactory::GetTests(
-    const boost::shared_ptr<ribi::cmap::Node> from,
-    const boost::shared_ptr<ribi::cmap::Node> to)
+  const boost::shared_ptr<ribi::cmap::Node> from,
+  const boost::shared_ptr<ribi::cmap::Node> to
+) const noexcept
 {
   assert(from);
   assert(to);
   const auto test_concepts = ConceptFactory().GetTests();
 
-  std::vector<boost::shared_ptr<ribi::cmap::Edge> > result;
+  std::vector<boost::shared_ptr<Edge> > result;
 
   for(const boost::shared_ptr<Concept> concept: test_concepts)
   {

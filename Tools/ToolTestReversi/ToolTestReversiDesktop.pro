@@ -1,27 +1,17 @@
 include(../../DesktopApplication.pri)
-
-#Libs
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
-
-#Console
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
-
-#Desktop
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
 #Specific for this application
 #Console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppReversi/CppReversi.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 
 #Desktop
 include(../../Tools/ToolTestReversi/ToolTestReversiDesktop.pri)
 
-SOURCES +=  \
-    qtmain.cpp
+SOURCES += qtmain.cpp

@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ProjectRichelBilderbeekProgramStatus.htm
+//From http://www.richelbilderbeek.nl/CppProjectRichelBilderbeekProgramStatus.htm
 //---------------------------------------------------------------------------
 #include "richelbilderbeekprogramstatus.h"
 
@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
-const std::string ribi::ProgramStatusToStr(const ProgramStatus c)
+std::string ribi::ProgramStatusToStr(const ProgramStatus c)
 {
   switch (c)
   {
@@ -40,12 +40,12 @@ const std::string ribi::ProgramStatusToStr(const ProgramStatus c)
   throw std::logic_error("RichelBilderbeek::ProgramStatusToStr");
 }
 
-const std::string ribi::ProgramStatusVersion::GetVersion() noexcept
+std::string ribi::ProgramStatusVersion::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::ProgramStatusVersion::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ProgramStatusVersion::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version"

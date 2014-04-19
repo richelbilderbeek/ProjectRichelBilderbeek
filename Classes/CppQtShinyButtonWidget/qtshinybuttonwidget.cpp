@@ -61,7 +61,7 @@ ribi::QtShinyButtonWidget::QtShinyButtonWidget(
   const double color,
   const double gradient,
   const std::string& text,
-  const Rect rect,
+  const Widget::Rect rect,
   QWidget *parent)
   : QWidget(parent),
     m_signal_changed{},
@@ -78,7 +78,7 @@ ribi::QtShinyButtonWidget::QtShinyButtonWidget(
       &ribi::QtShinyButtonWidget::DoRepaint,
       this));
 
-  resize(rect.GetWidth(),rect.GetHeight());
+  resize(m_widget->GetWidth(),m_widget->GetHeight());
 }
 
 void ribi::QtShinyButtonWidget::DrawShinyButton(
@@ -123,11 +123,12 @@ void ribi::QtShinyButtonWidget::DrawShinyButton(
 {
   DrawShinyButton(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetShinyButton());
+    widget->GetLeft(),
+    widget->GetTop(),
+    widget->GetWidth(),
+    widget->GetHeight(),
+    widget->GetShinyButton()
+  );
 }
 
 void ribi::QtShinyButtonWidget::DoRepaint()
@@ -136,18 +137,18 @@ void ribi::QtShinyButtonWidget::DoRepaint()
   m_signal_changed();
 }
 
-const std::string ribi::QtShinyButtonWidget::GetVersion() noexcept
+std::string ribi::QtShinyButtonWidget::GetVersion() noexcept
 {
-  return "1.0";
+  return "2.1";
 }
 
-const std::vector<std::string> ribi::QtShinyButtonWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtShinyButtonWidget::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-07-04: version 1.0: initial version");
-  v.push_back("2011-09-15: version 2.0: made QtShinyButtonWidget same as WtShinyButtonWidget");
-  return v;
+  return {
+    "2011-07-04: version 1.0: initial version",
+    "2011-09-15: version 2.0: made QtShinyButtonWidget same as WtShinyButtonWidget",
+    "2014-03-28: version 2.1: replaced Rect by Boost.Geometry its box class"
+  };
 }
 
 void ribi::QtShinyButtonWidget::mousePressEvent(QMouseEvent *)
@@ -163,6 +164,6 @@ void ribi::QtShinyButtonWidget::paintEvent(QPaintEvent *)
 
 void ribi::QtShinyButtonWidget::resizeEvent(QResizeEvent *)
 {
-  m_widget->SetGeometry(Rect(0,0,width(),height()));
+  m_widget->SetGeometry(0,0,width(),height());
 }
 

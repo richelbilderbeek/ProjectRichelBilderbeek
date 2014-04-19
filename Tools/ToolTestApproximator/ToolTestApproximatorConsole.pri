@@ -2,10 +2,10 @@ INCLUDEPATH += \
     ../../Tools/ToolTestApproximator
 
 SOURCES += \
-    ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.cpp
+    ../../Tools/ToolTestApproximator/testapproximatormenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.h
+    ../../Tools/ToolTestApproximator/testapproximatormenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolTestApproximator/Licence.txt

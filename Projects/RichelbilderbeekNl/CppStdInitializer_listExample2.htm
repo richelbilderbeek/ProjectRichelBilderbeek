@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>StdInitializer_listExample2</title>
+  <meta name="description" content="C++ StdInitializer_listExample2"/>
+  <meta name="keywords" content="C++ StdInitializer_listExample2 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStdInitializer_listExample2.htm">StdInitializer_listExample2</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppStdInitializer_listExample2-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppStdInitializer_listExample2/CppStdInitializer_listExample2.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStdInitializer_listExample2/CppStdInitializer_listExample2.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppStdInitializer_listExample2/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStdInitializer_listExample2/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppArrayH.htm">array</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppInitialize.htm">initialize</a>r_list&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppTupleH.htm">tuple</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> My<a href="CppArray.htm">Array</a><br/>
+{<br/>
+&nbsp;&nbsp;My<a href="CppArray.htm">Array</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::<a href="CppInitialize.htm">initialize</a>r_list&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_v(To<a href="CppArray.htm">Array</a>(v))<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,4&gt; To<a href="CppArray.htm">Array</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::<a href="CppInitialize.htm">initialize</a>r_list&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.size() <a href="CppOperatorNotEqual.htm">!=</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdLogic_error.htm">std::logic_error</a>("My<a href="CppArray.htm">Array</a> must be <a href="CppInitialize.htm">initialize</a>d with <a href="CppStd.htm">std</a>::<a href="CppInitialize.htm">initialize</a>r_list with size 4");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,4&gt; a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(<a href="CppStdBegin.htm">std::begin</a>(v),<a href="CppStdEnd.htm">std::end</a>(v),<a href="CppStdBegin.htm">std::begin</a>(a));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,4&gt; m_v;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyTuple<br/>
+{<br/>
+&nbsp;&nbsp;MyTuple(<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::<a href="CppInitialize.htm">initialize</a>r_list&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_v{ToTuple(v)} {}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppInt.htm">int</a></b> I&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Get() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdGet.htm">std::get</a>&lt;I&gt;(m_v);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; ToTuple(<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::<a href="CppInitialize.htm">initialize</a>r_list&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.size() <a href="CppOperatorNotEqual.htm">!=</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdLogic_error.htm">std::logic_error</a>("MyTuple must be <a href="CppInitialize.htm">initialize</a>d with <a href="CppStd.htm">std</a>::<a href="CppInitialize.htm">initialize</a>r_list with size 4");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*(v.begin()+0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*(v.begin()+1),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*(v.begin()+2),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*(v.begin()+3)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m_v;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyVector<br/>
+{<br/>
+&nbsp;&nbsp;MyVector(<b><a href="CppConst.htm">const</a></b> <a href="CppStd.htm">std</a>::<a href="CppInitialize.htm">initialize</a>r_list&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v) : m_v{v} {}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; m_v;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> My<a href="CppArray.htm">Array</a> a( {1,2,3,4} );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a.m_v[0] <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a.m_v[1] <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a.m_v[2] <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a.m_v[3] <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> MyTuple t( {1,2,3,4} );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.Get&lt;0&gt;() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.Get&lt;1&gt;() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.Get&lt;2&gt;() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.Get&lt;3&gt;() <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(t.Get&lt;4&gt;() <a href="CppOperatorEqual.htm">==</a> 4); <a href="CppComment.htm">//</a>Won't <a href="CppCompile.htm">compile</a><br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> MyVector v( {1,2,3,4} );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.m_v[0] <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.m_v[1] <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.m_v[2] <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.m_v[3] <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

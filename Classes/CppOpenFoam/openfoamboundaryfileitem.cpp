@@ -9,7 +9,6 @@
 ribi::foam::BoundaryFileItem::BoundaryFileItem(
   const std::string& name,
   const PatchFieldType patch_field_type,
-  //const std::string& type,
   const int n_faces,
   const FaceIndex n_start_face
   )
@@ -26,7 +25,7 @@ ribi::foam::BoundaryFileItem::BoundaryFileItem(
   assert(m_start_face.Get() >= 0);
 }
 
-const ribi::foam::FaceIndex ribi::foam::BoundaryFileItem::GetEndFace() const noexcept
+ribi::foam::FaceIndex ribi::foam::BoundaryFileItem::GetEndFace() const noexcept
 {
   return m_start_face + FaceIndex(m_n_faces);
 }
@@ -55,7 +54,7 @@ void ribi::foam::BoundaryFileItem::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs)
+bool ribi::foam::operator==(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs) noexcept
 {
   return
        lhs.GetName() == rhs.GetName()
@@ -65,20 +64,20 @@ bool ribi::foam::operator==(const BoundaryFileItem& lhs, const BoundaryFileItem&
   ;
 }
 
-bool ribi::foam::operator!=(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs)
+bool ribi::foam::operator!=(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFileItem& item)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFileItem& item) noexcept
 {
   os
-    << "  " << item.GetName() << '\n'
-    << "  {" << '\n'
-    << "    type " << item.GetType() << ";\n"
-    << "    nFaces " << item.GetNfaces() << ";\n"
-    << "    startFace " << item.GetStartFace() << ";\n"
-    << "  }" << '\n';
+    << "    " << item.GetName() << '\n'
+    << "    {" << '\n'
+    << "        type " << item.GetType() << ";\n"
+    << "        nFaces " << item.GetNfaces() << ";\n"
+    << "        startFace " << item.GetStartFace() << ";\n"
+    << "    }" << '\n';
   return os;
 }
 
@@ -92,13 +91,13 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
     std::string bracket_open;
     is >> bracket_open;
     assert(is);
-    assert(bracket_open == std::string("{"));
+    assert(bracket_open == "{");
   }
   {
     std::string type_text;
     is >> type_text;
     assert(is);
-    assert(type_text == std::string("type"));
+    assert(type_text == "type");
   }
   {
     std::string type_str;
@@ -113,7 +112,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
     std::string n_faces_text;
     is >> n_faces_text;
     assert(is);
-    assert(n_faces_text == std::string("nFaces"));
+    assert(n_faces_text == "nFaces");
   }
   {
     is >> f.m_n_faces;
@@ -123,24 +122,24 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
     is >> semicolon;
     assert(is);
     #ifndef NDEBUG
-    if (semicolon != std::string(";"))
+    if (semicolon != ";")
     {
       TRACE(semicolon);
     }
     #endif
-    assert(semicolon == std::string(";"));
+    assert(semicolon == ";");
   }
   {
     std::string start_face_text;
     is >> start_face_text;
     assert(is);
     #ifndef NDEBUG
-    if (start_face_text != std::string("startFace"))
+    if (start_face_text != "startFace")
     {
       TRACE(start_face_text);
     }
     #endif
-    assert(start_face_text == std::string("startFace"));
+    assert(start_face_text == "startFace");
   }
   {
     is >> f.m_start_face;
@@ -150,13 +149,13 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
     std::string semicolon;
     is >> semicolon;
     assert(is);
-    assert(semicolon == std::string(";"));
+    assert(semicolon == ";");
   }
   {
     std::string bracket_close;
     is >> bracket_close;
     assert(is);
-    assert(bracket_close == std::string("}"));
+    assert(bracket_close == "}");
   }
   return is;
 }

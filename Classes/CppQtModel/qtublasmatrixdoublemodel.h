@@ -40,10 +40,10 @@ struct QtUblasMatrixDoubleModel : public QAbstractTableModel
   const boost::numeric::ublas::matrix<double>& GetRawData() const  noexcept{ return m_data; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Write the raw data
   void SetRawData(const boost::numeric::ublas::matrix<double>& data);

@@ -68,12 +68,12 @@ const QPixmap& ribi::pylos::QtSprites::Get(
   throw std::logic_error("ribi::pylos::QtSprites::Get");
 }
 
-const std::string ribi::pylos::QtSprites::GetVersion() noexcept
+std::string ribi::pylos::QtSprites::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::pylos::QtSprites::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::QtSprites::GetVersionHistory() noexcept
 {
   return {
     "2012-05-28: version 2.0: initial release version",

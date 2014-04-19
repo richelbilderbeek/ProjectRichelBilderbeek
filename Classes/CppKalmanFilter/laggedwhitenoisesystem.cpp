@@ -44,12 +44,12 @@ ribi::kalman::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   assert(lag == boost::numeric_cast<int>(m_measuments.size()));
 }
 
-const std::string ribi::kalman::LaggedWhiteNoiseSystem::GetVersion() noexcept
+std::string ribi::kalman::LaggedWhiteNoiseSystem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::LaggedWhiteNoiseSystem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::kalman::LaggedWhiteNoiseSystem::GetVersionHistory() noexcept
 {
   return {
     "2013-05-03: version 1.0: initial version"

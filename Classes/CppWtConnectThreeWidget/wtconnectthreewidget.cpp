@@ -81,7 +81,9 @@ void ribi::con3::WtConnectThreeWidget::DoComputerTurn()
   //Check for draw
 
   if (!move) return;
-  m_widget->DoMove(move->GetX(),move->GetY());
+  assert(m_widget->CanSelect(move->GetX(),move->GetY()));
+  m_widget->Select(move->GetX(),move->GetY());
+  m_widget->DoMove();
   this->update();
 }
 
@@ -137,7 +139,9 @@ void ribi::con3::WtConnectThreeWidget::OnClick(const Wt::WMouseEvent& e)
   const int y = mouse_y / sprite_height;
   if (m_widget->GetGame()->CanDoMove(x,y))
   {
-    m_widget->DoMove(x,y);
+    assert(m_widget->CanSelect(x,y));
+    m_widget->Select(x,y);
+    m_widget->DoMove();
     this->update();
     m_signal_valid_move();
   }

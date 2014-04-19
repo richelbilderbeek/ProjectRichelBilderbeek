@@ -41,11 +41,11 @@ Out Copy_if(In first, In last, Out res, Pred Pr)
 
 struct Copy_if_version
 {
-  static const std::string GetVersion() noexcept
+  static std::string GetVersion() noexcept
   {
     return "2.1";
   }
-  static const std::vector<std::string> GetVersionHistory() noexcept
+  static std::vector<std::string> GetVersionHistory() noexcept
   {
     return {
       "2011-xx-xx: Version 1.0: initial version",

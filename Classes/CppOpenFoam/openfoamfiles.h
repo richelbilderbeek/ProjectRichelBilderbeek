@@ -53,13 +53,13 @@ struct Files
   ///1: Cube
   ///2: 1x2 cubes
   ///3: 2x2 cubes
-  static const std::vector<boost::shared_ptr<Files>> CreateTestFiles() noexcept;
+  static std::vector<boost::shared_ptr<Files>> CreateTestFiles() noexcept;
 
-  const boost::shared_ptr<const BoundaryFile> GetBoundary() const noexcept { return m_boundary; }
-  const boost::shared_ptr<const FacesFile> GetFaces() const noexcept { return m_faces; }
-  const boost::shared_ptr<const NeighbourFile> GetNeighbour() const noexcept { return m_neighbour; }
-  const boost::shared_ptr<const OwnerFile> GetOwner() const noexcept { return m_owner; }
-  const boost::shared_ptr<const PointsFile> GetPoints() const noexcept { return m_points; }
+  boost::shared_ptr<const BoundaryFile> GetBoundary() const noexcept { return m_boundary; }
+  boost::shared_ptr<const FacesFile> GetFaces() const noexcept { return m_faces; }
+  boost::shared_ptr<const NeighbourFile> GetNeighbour() const noexcept { return m_neighbour; }
+  boost::shared_ptr<const OwnerFile> GetOwner() const noexcept { return m_owner; }
+  boost::shared_ptr<const PointsFile> GetPoints() const noexcept { return m_points; }
 
   void Swap(const FaceIndex& lhs, const FaceIndex& rhs);
 
@@ -74,21 +74,21 @@ struct Files
   ///Throws std::logic_error if there are incorrectnesses
   void CheckMe() const;
 
-  static const boost::shared_ptr<BoundaryFile> CreateBoundary(const std::string& folder_name);
-  static const boost::shared_ptr<BoundaryFile> CreateDefaultBoundary() noexcept;
-  static const boost::shared_ptr<FacesFile> CreateDefaultFaces() noexcept;
-  static const boost::shared_ptr<NeighbourFile> CreateDefaultNeighbour() noexcept;
-  static const boost::shared_ptr<OwnerFile> CreateDefaultOwner() noexcept;
-  static const boost::shared_ptr<PointsFile> CreateDefaultPoints() noexcept;
-  static const boost::shared_ptr<FacesFile> CreateFaces(const std::string& folder_name);
+  static boost::shared_ptr<BoundaryFile> CreateBoundary(const std::string& folder_name);
+  static boost::shared_ptr<BoundaryFile> CreateDefaultBoundary() noexcept;
+  static boost::shared_ptr<FacesFile> CreateDefaultFaces() noexcept;
+  static boost::shared_ptr<NeighbourFile> CreateDefaultNeighbour() noexcept;
+  static boost::shared_ptr<OwnerFile> CreateDefaultOwner() noexcept;
+  static boost::shared_ptr<PointsFile> CreateDefaultPoints() noexcept;
+  static boost::shared_ptr<FacesFile> CreateFaces(const std::string& folder_name);
 
   ///Creates the folder structure needed by OpenFOAM
   static void CreateFolders(const std::string& folder_name);
 
-  static const boost::shared_ptr<Filenames> CreateFilenames() noexcept;
-  static const boost::shared_ptr<NeighbourFile> CreateNeighbour(const std::string& folder_name);
-  static const boost::shared_ptr<OwnerFile> CreateOwner(const std::string& folder_name);
-  static const boost::shared_ptr<PointsFile> CreatePoints(const std::string& folder_name);
+  static boost::shared_ptr<Filenames> CreateFilenames() noexcept;
+  static boost::shared_ptr<NeighbourFile> CreateNeighbour(const std::string& folder_name);
+  static boost::shared_ptr<OwnerFile> CreateOwner(const std::string& folder_name);
+  static boost::shared_ptr<PointsFile> CreatePoints(const std::string& folder_name);
 
 
   #ifndef NDEBUG
@@ -98,10 +98,10 @@ struct Files
 
 ///Write all info to a single stream. Use CreateCopy to write all info
 ///to an OpenFOAM folder structure with multiple files
-std::ostream& operator<<(std::ostream& os, const Files& files);
+std::ostream& operator<<(std::ostream& os, const Files& files) noexcept;
 
-bool operator==(const Files& lhs, const Files& rhs);
-bool operator!=(const Files& lhs, const Files& rhs);
+bool operator==(const Files& lhs, const Files& rhs) noexcept;
+bool operator!=(const Files& lhs, const Files& rhs) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

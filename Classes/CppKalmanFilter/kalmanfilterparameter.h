@@ -17,22 +17,22 @@ namespace kalman {
 struct KalmanFilterParameter
 {
   ///Obtain all KalmanFilterParameterType values, except n_parameters
-  static const std::vector<KalmanFilterParameterType> GetAll();
+  static std::vector<KalmanFilterParameterType> GetAll() noexcept;
 
   ///Is the type a matrix?
-  static bool IsMatrix(const KalmanFilterParameterType type);
+  static bool IsMatrix(const KalmanFilterParameterType type) noexcept;
 
   ///Is the type a vector?
-  static bool IsVector(const KalmanFilterParameterType type);
+  static bool IsVector(const KalmanFilterParameterType type) noexcept;
 
   ///Obtain the full name of a type, e.g. 'Matrix to capture the physics of the system'
-  static const std::string ToDescription(const KalmanFilterParameterType type);
+  static std::string ToDescription(const KalmanFilterParameterType type) noexcept;
 
   ///Obtain the full name of a type, e.g. 'State transition'
-  static const std::string ToName(const KalmanFilterParameterType type);
+  static std::string ToName(const KalmanFilterParameterType type) noexcept;
 
   ///Obtain the symbol of a type, e.g. 'A'
-  static const std::string ToSymbol(const KalmanFilterParameterType type);
+  static std::string ToSymbol(const KalmanFilterParameterType type) noexcept;
 };
 
 } //~namespace kalman

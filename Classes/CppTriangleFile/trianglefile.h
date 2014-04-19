@@ -10,6 +10,7 @@
 #pragma GCC diagnostic ignored "-Wunused-variable"
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/geometry/geometries/polygon.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -27,10 +28,10 @@ struct TriangleFile
   int CountShapes() const noexcept { return static_cast<int>(m_shapes.size()); }
   int CountVertices() const noexcept;
 
-  static const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeHeart(const double scale = 1.0) noexcept;
-  static const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeHouse(const double scale = 1.0) noexcept;
-  static const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) noexcept;
-  static const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeTriangle(const double scale = 1.0) noexcept;
+  static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeHeart(const double scale = 1.0) noexcept;
+  static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeHouse(const double scale = 1.0) noexcept;
+  static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) noexcept;
+  static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeTriangle(const double scale = 1.0) noexcept;
 
   ///Executes Triangle.exe from a Windows command line
   void ExecuteTriangle(
@@ -42,14 +43,17 @@ struct TriangleFile
     const bool verbose = false) const noexcept;
 
   ///Convert the file to a string in a format usable by Triangle.exe
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>> m_holes;
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>> m_shapes;
+
+  static std::pair<int,char **> CreateArgv(const std::vector<std::string>& v) noexcept;
+  static void DeleteArgv(const std::pair<int,char **>& p) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

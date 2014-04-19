@@ -33,7 +33,7 @@ int ribi::TestTextCanvasMenuDialog::ExecuteSpecific(const std::vector<std::strin
     {
       const int x = -maxx + (std::rand() % (2 * maxx));
       const int y = -maxy + (std::rand() % (2 * maxy));
-      const std::string s = fileio::GetTempFileName();
+      const std::string s = fileio::FileIo().GetTempFileName();
       c.PutText(x,y,s);
     }
     std::cout << c;
@@ -43,7 +43,7 @@ int ribi::TestTextCanvasMenuDialog::ExecuteSpecific(const std::vector<std::strin
   return 0;
 }
 
-const ribi::About ribi::TestTextCanvasMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestTextCanvasMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -59,7 +59,7 @@ const ribi::About ribi::TestTextCanvasMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestTextCanvasMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestTextCanvasMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -73,7 +73,7 @@ const ribi::Help ribi::TestTextCanvasMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestTextCanvasMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestTextCanvasMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestTextCanvas
@@ -82,12 +82,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestTextCanvasMenuDialog::Get
   return p;
 }
 
-const std::string ribi::TestTextCanvasMenuDialog::GetVersion() const noexcept
+std::string ribi::TestTextCanvasMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestTextCanvasMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestTextCanvasMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2014-01-09: version 1.0: initial version"

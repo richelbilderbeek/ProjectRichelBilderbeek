@@ -203,7 +203,7 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
       catch (std::exception& e)
       {
         //Should not get here
-        text += std::string(e.what()) + std::string("\n");
+        text += std::string(e.what()) + "\n";
       }
     }
     if (simpler.empty()) text+=" [none]\n";
@@ -223,7 +223,7 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
     try
     {
       Newick::CheckNewick(b.first);
-      text+=std::string("  ") + Newick::NewickToString(b.first);
+      text+="  " + Newick::NewickToString(b.first);
     }
     catch (std::exception& e)
     {
@@ -233,7 +233,7 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
     try
     {
       Newick::CheckNewick(b.second);
-      text+=std::string("  ") + Newick::NewickToString(b.second);
+      text+="  " + Newick::NewickToString(b.second);
     }
     catch (std::exception& e)
     {

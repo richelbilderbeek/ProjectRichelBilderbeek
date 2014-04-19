@@ -1,10 +1,14 @@
-//---------------------------------------------------------------------------
+#include "transparentdialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QPainter>
-#include "transparentdialog.h"
 #include "ui_transparentdialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 TransparentDialog::TransparentDialog(QWidget *parent)
   : QDialog(parent),
     ui(new Ui::TransparentDialog),
@@ -12,24 +16,12 @@ TransparentDialog::TransparentDialog(QWidget *parent)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 TransparentDialog::~TransparentDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void TransparentDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
+
 void TransparentDialog::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -38,4 +30,4 @@ void TransparentDialog::paintEvent(QPaintEvent *)
     m_pixmap,
     this->geometry());
 }
-//---------------------------------------------------------------------------
+

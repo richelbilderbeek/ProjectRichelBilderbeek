@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPNODEITEM_H
 #define QTCONCEPTMAPNODEITEM_H
 
@@ -34,24 +54,24 @@ struct QtNode : public QtConceptMapElement
   void DisableAll();
   void EnableAll();
 
-  const boost::shared_ptr<const Concept>  GetConcept() const;
-  const boost::shared_ptr<      Concept>  GetConcept()      ;
+  boost::shared_ptr<const Concept>  GetConcept() const noexcept;
+  boost::shared_ptr<      Concept>  GetConcept()       noexcept;
 
-  const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const final { return m_display_strategy; }
-  const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       final { return m_display_strategy; }
+  boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
+  boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
 
-  const boost::shared_ptr<const cmap::Node>  GetNode() const { return m_node; }
-  const boost::shared_ptr<      cmap::Node>& GetNode()       { return m_node; }
+        boost::shared_ptr<const cmap::Node>  GetNode() const noexcept { return m_node; }
+  const boost::shared_ptr<      cmap::Node>& GetNode()       noexcept { return m_node; }
 
   void SetConcept(const boost::shared_ptr<Concept> concept);
 
-  void SetName(const std::string& name);
+  void SetName(const std::string& name) noexcept;
 
   ///Set the X coordinat of the central concept
-  void SetX(const double x);
+  void SetX(const double x) noexcept;
 
   ///Set the Y coordinat of the central concept
-  void SetY(const double y);
+  void SetY(const double y) noexcept;
 
   ///m_signal_request_rate_node is emitted due to a m_signal_request_rate_node
   ///of the Node its QtRateConceptItem

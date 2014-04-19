@@ -18,7 +18,7 @@ int ribi::XeNonZeroMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 1;
 }
 
-const ribi::About ribi::XeNonZeroMenuDialog::GetAbout() const noexcept
+ribi::About ribi::XeNonZeroMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -33,7 +33,7 @@ const ribi::About ribi::XeNonZeroMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::XeNonZeroMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::XeNonZeroMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -47,7 +47,7 @@ const ribi::Help ribi::XeNonZeroMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::XeNonZeroMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::XeNonZeroMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramXeNonZero
@@ -56,12 +56,12 @@ const boost::shared_ptr<const ribi::Program> ribi::XeNonZeroMenuDialog::GetProgr
   return p;
 }
 
-const std::string ribi::XeNonZeroMenuDialog::GetVersion() const noexcept
+std::string ribi::XeNonZeroMenuDialog::GetVersion() const noexcept
 {
   return "0.1";
 }
 
-const std::vector<std::string> ribi::XeNonZeroMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::XeNonZeroMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07: version 0.1: conformized to ProjectRichelBilderbeekConsole"

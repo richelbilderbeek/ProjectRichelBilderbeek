@@ -60,18 +60,23 @@ ribi::QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog() noexcept
 void ribi::QtTestToggleButtonMainDialog::DisplayToggleButtonValue()
 {
   ui->label_is_pressed->setText(
-    (std::string("Is pressed: ")
-    + (ui->toggle_button->GetWidget()->GetToggleButton()->IsPressed()
-      ? std::string("yes")
-      : std::string("no"))).c_str());
+    (
+      std::string("Is pressed: ")
+      + (
+        ui->toggle_button->GetWidget()->GetToggleButton()->IsPressed()
+        ? "yes"
+        : "no"
+        )
+    ).c_str()
+  );
   ui->label_color->setText(
-    (std::string("Color: (")
+    ("Color: ("
     + boost::lexical_cast<std::string>(static_cast<int>(ui->toggle_button->GetWidget()->GetToggleButton()->GetRed()))
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(static_cast<int>(ui->toggle_button->GetWidget()->GetToggleButton()->GetGreen()))
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(static_cast<int>(ui->toggle_button->GetWidget()->GetToggleButton()->GetBlue()))
-    + std::string(") (RGB)")).c_str());
+    + ") (RGB)").c_str());
 
   std::string text;
   for (const std::string& s: ui->toggle_button->GetWidget()->ToDrawCanvas(30,10)->ToStrings())

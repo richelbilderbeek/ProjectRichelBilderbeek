@@ -129,12 +129,12 @@ int ribi::TwoDigitNewick::GetSumTermsAboveZero() const
   return m_sum_terms_above_zero;
 }
 
-const std::string ribi::TwoDigitNewick::GetVersion() noexcept
+std::string ribi::TwoDigitNewick::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::TwoDigitNewick::GetVersionHistory() noexcept
+std::vector<std::string> ribi::TwoDigitNewick::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-08-22: version 1.0: initial version");

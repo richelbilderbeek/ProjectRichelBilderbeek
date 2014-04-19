@@ -37,7 +37,10 @@ SOURCES += \
     ../../Classes/CppOpenFoam/openfoamepsilonfile.cpp \
     ../../Classes/CppOpenFoam/openfoamfvschemesfile.cpp \
     ../../Classes/CppOpenFoam/openfoamfvsolutionfile.cpp \
-    ../../Classes/CppOpenFoam/openfoamkfile.cpp
+    ../../Classes/CppOpenFoam/openfoamkfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamvelocityfieldfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamraspropertiesfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamtemperaturefile.cpp
 
 HEADERS  += \
     ../../Classes/CppOpenFoam/openfoamfiles.h \
@@ -76,7 +79,10 @@ HEADERS  += \
     ../../Classes/CppOpenFoam/openfoamepsilonfile.h \
     ../../Classes/CppOpenFoam/openfoamfvschemesfile.h \
     ../../Classes/CppOpenFoam/openfoamfvsolutionfile.h \
-    ../../Classes/CppOpenFoam/openfoamkfile.h
+    ../../Classes/CppOpenFoam/openfoamkfile.h \
+    ../../Classes/CppOpenFoam/openfoamvelocityfieldfile.h \
+    ../../Classes/CppOpenFoam/openfoamraspropertiesfile.h \
+    ../../Classes/CppOpenFoam/openfoamtemperaturefile.h
 
 OTHER_FILES += \
     ../../Classes/CppOpenFoam/Licence.txt

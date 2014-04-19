@@ -9,6 +9,7 @@
 #include <boost/cast.hpp>
 #include <boost/shared_ptr.hpp>
 
+#include <QColor>
 #include "tronworldtype.h"
 #pragma GCC diagnostic pop
 
@@ -18,22 +19,17 @@ namespace tron {
 struct Player
 {
   Player(
-    const unsigned char r,
-    const unsigned char g,
-    const unsigned char b)
-  : m_r(r), m_g(g), m_b(b), m_dead(false)
+    const QColor& color)
+  : m_color{color}
   {
 
   }
+  const QColor& GetColor() const noexcept { return m_color; }
 
-  const unsigned char m_r;
-  const unsigned char m_g;
-  const unsigned char m_b;
-  bool m_dead;
-
+  const QColor m_color;
   static boost::shared_ptr<WorldType> m_world;
 
-  bool IsDead() const { return m_dead; }
+  //bool IsDead() const { return m_dead; }
   virtual int GetX() const = 0;
   virtual int GetY() const = 0;
   virtual void Advance() = 0;
@@ -50,10 +46,8 @@ struct ClassicPlayer : public Player
     const int x,
     const int y,
     const int direction,
-    const unsigned char r,
-    const unsigned char g,
-    const unsigned char b)
-    : Player(r,g,b),
+    const QColor& color)
+    : Player(color),
       m_x(x), m_y(y),
       m_direction(direction)
   {
@@ -73,7 +67,9 @@ struct ClassicPlayer : public Player
     }
     double dx = boost::numeric_cast<double>(m_x);
     double dy = boost::numeric_cast<double>(m_y);
+    #ifdef TODO_RJCB
     this->m_world->RespondToPlayer(dx,dy,m_dead);
+    #endif
     m_x = boost::numeric_cast<int>(dx);
     m_y = boost::numeric_cast<int>(dy);
   }

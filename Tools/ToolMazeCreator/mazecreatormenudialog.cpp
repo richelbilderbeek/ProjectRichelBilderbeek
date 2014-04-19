@@ -43,7 +43,7 @@ int ribi::MazeCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 1;
 }
 
-const ribi::About ribi::MazeCreatorMenuDialog::GetAbout() const noexcept
+ribi::About ribi::MazeCreatorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -58,7 +58,7 @@ const ribi::About ribi::MazeCreatorMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::MazeCreatorMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::MazeCreatorMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -72,7 +72,7 @@ const ribi::Help ribi::MazeCreatorMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::MazeCreatorMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::MazeCreatorMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramMazeCreator
@@ -81,12 +81,12 @@ const boost::shared_ptr<const ribi::Program> ribi::MazeCreatorMenuDialog::GetPro
   return p;
 }
 
-const std::string ribi::MazeCreatorMenuDialog::GetVersion() const noexcept
+std::string ribi::MazeCreatorMenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MazeCreatorMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::MazeCreatorMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-xx-xx: version 1.0: initial version.",

@@ -6,6 +6,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
@@ -19,6 +21,8 @@ namespace trim {
 ///The next step will be to create a multiple layers of Cells by CellsCreator
 struct Template
 {
+  typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
+
   Template(
     const std::string& filename_node,
     const std::string& filename_ele
@@ -41,6 +45,11 @@ struct Template
     std::vector<std::vector<int>> face_point_indices,
     std::vector<boost::shared_ptr<Point>> points
   );
+  Template(const Template& ) = delete;
+  Template(      Template&&) = delete;
+  Template& operator=(const Template& ) = delete;
+  Template& operator=(      Template&&) = delete;
+  ~Template() noexcept {}
 
   ///ints are m_points indices
   std::vector<std::pair<int,int>> m_edges;
@@ -55,12 +64,17 @@ struct Template
 
   //Split a string
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      Template* x);
+  friend void boost::checked_delete<>(const Template* x);
+  friend class boost::detail::sp_ms_deleter<      Template>;
+  friend class boost::detail::sp_ms_deleter<const Template>;
 };
 
 } //~namespace trim

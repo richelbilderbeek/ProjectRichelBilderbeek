@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -75,6 +95,9 @@ ribi::pvdb::QtPvdbClusterWidget::QtPvdbClusterWidget(
     SIGNAL(itemChanged(QTreeWidgetItem*,int)),
     this,
     SLOT(RemoveEmptyItem(QTreeWidgetItem*,int)));
+
+  // Allow word-wrapping
+  this->setWordWrap(true);
 }
 
 void ribi::pvdb::QtPvdbClusterWidget::Add(const std::string& text)
@@ -83,6 +106,7 @@ void ribi::pvdb::QtPvdbClusterWidget::Add(const std::string& text)
     cmap::Competency::uninitialized,true,-1,-1,-1);
   item->setText(0,text.c_str());
   this->addTopLevelItem(item);
+  SetCorrectFlags();
 }
 
 void ribi::pvdb::QtPvdbClusterWidget::DoRandomStuff()
@@ -167,37 +191,40 @@ void ribi::pvdb::QtPvdbClusterWidget::dropEvent(QDropEvent *event)
     }
   }
   #endif
-  //Process all items
+  SetCorrectFlags();
+}
+
+//Process all items
+void ribi::pvdb::QtPvdbClusterWidget::SetCorrectFlags() noexcept
+{
+  const int n_top = this->topLevelItemCount();
+  for (int i=0; i!=n_top; ++i)
   {
-    const int n_top = this->topLevelItemCount();
-    for (int i=0; i!=n_top; ++i)
+    QTreeWidgetItem * const top = this->topLevelItem(i); //FIX
+    //QtPvdbTreeWidgetItem * const top = dynamic_cast<QtPvdbTreeWidgetItem *>(this->topLevelItem(i)); //BUG 2012-12-30
+    assert(top);
+
+    //Let all top items auto-expand
+    top->setExpanded(true);
+
+    //Allow dropping on top-level items
+    top->setFlags(
+          Qt::ItemIsSelectable
+        | Qt::ItemIsEnabled
+        | Qt::ItemIsEditable
+        | Qt::ItemIsDragEnabled
+        | Qt::ItemIsDropEnabled);
+    assert(GetDepth(top)==0);
+    const int n_child = top->childCount();
+    for (int j=0; j!=n_child; ++j)
     {
-      QTreeWidgetItem * const top = this->topLevelItem(i); //FIX
-      //QtPvdbTreeWidgetItem * const top = dynamic_cast<QtPvdbTreeWidgetItem *>(this->topLevelItem(i)); //BUG 2012-12-30
-      assert(top);
-
-      //Let all top items auto-expand
-      top->setExpanded(true);
-
-      //Allow dropping on top-level items
-      top->setFlags(
-            Qt::ItemIsSelectable
+        assert(GetDepth(top->child(j))==1);
+        //Disallow dropping on non-top-level items
+        top->child(j)->setFlags(
+              Qt::ItemIsSelectable
           | Qt::ItemIsEnabled
           | Qt::ItemIsEditable
-          | Qt::ItemIsDragEnabled
-          | Qt::ItemIsDropEnabled);
-      assert(GetDepth(top)==0);
-      const int n_child = top->childCount();
-      for (int j=0; j!=n_child; ++j)
-      {
-          assert(GetDepth(top->child(j))==1);
-          //Disallow dropping on non-top-level items
-          top->child(j)->setFlags(
-                Qt::ItemIsSelectable
-            | Qt::ItemIsEnabled
-            | Qt::ItemIsEditable
-            | Qt::ItemIsDragEnabled);
-      }
+          | Qt::ItemIsDragEnabled);
     }
   }
 }

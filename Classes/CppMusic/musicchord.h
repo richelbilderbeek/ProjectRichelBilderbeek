@@ -39,23 +39,23 @@ struct Chord
 
   ///Obtain the Chord its name
   ///For example, 'C' (for C major) or 'D#m'
-  virtual const std::string GetName() const noexcept = 0;
+  virtual std::string GetName() const noexcept = 0;
 
   ///Obtain a Chord its Notes
   ///For example, the chord C major will returnn {C,E,G}
   const std::vector<Note> GetNotes() const noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Test this class
   static void Test() noexcept;
 
   ///Return the Chord as a music notation string
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
 
@@ -76,7 +76,7 @@ struct ChordAug : public Chord
   ChordAug(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "aug"; }
+  std::string GetName() const noexcept { return "aug"; }
 };
 
 ///The dim chord
@@ -87,7 +87,7 @@ struct ChordDim : public Chord
   ChordDim(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "dim"; }
+  std::string GetName() const noexcept { return "dim"; }
 };
 
 ///The major chord
@@ -98,7 +98,7 @@ struct ChordMajor : public Chord
   ChordMajor(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "major"; }
+  std::string GetName() const noexcept { return "major"; }
 };
 
 ///The minor chord
@@ -109,7 +109,7 @@ struct ChordMinor : public Chord
   ChordMinor(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "minor"; }
+  std::string GetName() const noexcept { return "minor"; }
 };
 
 ///The 6 chord
@@ -120,7 +120,7 @@ struct Chord6 : public Chord
   Chord6(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "6"; }
+  std::string GetName() const noexcept { return "6"; }
 };
 
 ///The minor 6 chord
@@ -131,7 +131,7 @@ struct ChordMinor6 : public Chord
   ChordMinor6(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "m6"; }
+  std::string GetName() const noexcept { return "m6"; }
 };
 
 ///The 7 chord
@@ -142,7 +142,7 @@ struct Chord7 : public Chord
   Chord7(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "7"; }
+  std::string GetName() const noexcept { return "7"; }
 };
 
 ///The minor 7 chord
@@ -153,7 +153,7 @@ struct ChordMinor7 : public Chord
   ChordMinor7(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "m7"; }
+  std::string GetName() const noexcept { return "m7"; }
 };
 
 } //~namespace Music

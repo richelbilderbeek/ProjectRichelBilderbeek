@@ -11,34 +11,18 @@
 
 int main()
 {
-  using namespace boost::geometry;
+  typedef boost::geometry::model::d2::point_xy<int> Coordinat2D;
+  Coordinat2D p(0,0);
 
+  const Coordinat2D p1(1,1);
+  const Coordinat2D p2(4,8);
 
-  /* Polygon used:
+  boost::geometry::assign_point(p,p1);
 
-    3-
-     |
-    2-    4 #
-     |   / \
-    1-  2   3
-     |  | * |
-    0-  0---1
-     |
-     +--|---|---|
-        0   1   2
+  assert(boost::geometry::equals(p,p1));
 
-  *: point that is tested to be within the polygon
-  #: point that is tested to be outside of the polygon
+  boost::geometry::add_point(p,p2);
+  boost::geometry::subtract_point(p,p2);
 
-  */
-
-  const std::vector<model::d2::point_xy<double>> points {
-    {0.0, 0.0}, {1.0, 0.0}, {0.0, 2.0}, {1.0, 2.0}, {0.5, 2.0}
-  };
-
-  model::polygon<model::d2::point_xy<double> > house;
-  append(house, points);
-
-  assert( within(model::d2::point_xy<double>(0.5, 0.5), house));
-  assert(!within(model::d2::point_xy<double>(1.0, 2.0), house));
+  assert(boost::geometry::equals(p,p1));
 }

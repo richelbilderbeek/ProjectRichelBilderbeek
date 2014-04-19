@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -48,7 +68,7 @@ ribi::cmap::Concept::Concept(
 }
 
 
-const boost::shared_ptr<const ribi::cmap::Examples> ribi::cmap::Concept::GetExamples() const
+boost::shared_ptr<const ribi::cmap::Examples> ribi::cmap::Concept::GetExamples() const noexcept
 {
   assert(m_examples);
   const boost::shared_ptr<const Examples> p(m_examples);
@@ -56,7 +76,7 @@ const boost::shared_ptr<const ribi::cmap::Examples> ribi::cmap::Concept::GetExam
   return p;
 }
 
-void ribi::cmap::Concept::SetExamples(const boost::shared_ptr<ribi::cmap::Examples>& examples)
+void ribi::cmap::Concept::SetExamples(const boost::shared_ptr<ribi::cmap::Examples>& examples) noexcept
 {
   if (examples != m_examples)
   {
@@ -65,7 +85,7 @@ void ribi::cmap::Concept::SetExamples(const boost::shared_ptr<ribi::cmap::Exampl
   }
 }
 
-void ribi::cmap::Concept::SetName(const std::string& name)
+void ribi::cmap::Concept::SetName(const std::string& name) noexcept
 {
   assert(this);
   assert(this->GetExamples());
@@ -76,7 +96,7 @@ void ribi::cmap::Concept::SetName(const std::string& name)
   }
 }
 
-void ribi::cmap::Concept::SetRatingComplexity(const int rating_complexity)
+void ribi::cmap::Concept::SetRatingComplexity(const int rating_complexity) noexcept
 {
   assert(rating_complexity >= -1);
   assert(rating_complexity <=  2);
@@ -90,7 +110,7 @@ void ribi::cmap::Concept::SetRatingComplexity(const int rating_complexity)
   }
 }
 
-void ribi::cmap::Concept::SetRatingConcreteness(const int rating_concreteness)
+void ribi::cmap::Concept::SetRatingConcreteness(const int rating_concreteness) noexcept
 {
   if (m_rating_concreteness != rating_concreteness)
   {
@@ -101,7 +121,7 @@ void ribi::cmap::Concept::SetRatingConcreteness(const int rating_concreteness)
   }
 }
 
-void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity)
+void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity) noexcept
 {
   if (m_rating_specificity != rating_specificity)
   {
@@ -112,7 +132,7 @@ void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity)
   }
 }
 
-const std::string ribi::cmap::Concept::ToXml() const noexcept
+std::string ribi::cmap::Concept::ToXml() const noexcept
 {
   std::stringstream s;
   s
@@ -138,8 +158,8 @@ const std::string ribi::cmap::Concept::ToXml() const noexcept
   const std::string r = s.str();
 
   assert(r.size() >= 19);
-  assert(r.substr(0,9) == std::string("<concept>"));
-  assert(r.substr(r.size() - 10,10) == std::string("</concept>"));
+  assert(r.substr(0,9) == "<concept>");
+  assert(r.substr(r.size() - 10,10) == "</concept>");
   return r;
 }
 

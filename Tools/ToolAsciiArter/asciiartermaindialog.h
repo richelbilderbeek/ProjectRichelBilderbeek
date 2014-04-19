@@ -49,7 +49,7 @@ struct AsciiArterMainDialog
     const int n_cols
   );
 
-  const std::vector<std::string> GetAsciiArt() const noexcept; // { return CreateAsciiArt(m_filename,m_n_cols); }
+  std::vector<std::string> GetAsciiArt() const noexcept; // { return CreateAsciiArt(m_filename,m_n_cols); }
   const boost::shared_ptr<ImageCanvas> GetImageCanvas() const noexcept;
 
   private:

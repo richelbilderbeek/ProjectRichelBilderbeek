@@ -1,8 +1,12 @@
 #include "qtautoresizelistwidget.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QObject>
 #include <QScrollBar>
 #include <QTimer>
+#pragma GCC diagnostic pop
 
 QtAutoResizeListWidget::QtAutoResizeListWidget(QWidget *parent)
   : QListWidget(parent),

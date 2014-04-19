@@ -44,14 +44,14 @@ struct HtmlPage
   const std::string& GetTitle() const noexcept { return m_title; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Replace all occurrences of a string within a string
   ///From http://www.richelbilderbeek.nl/CppReplaceAll.htm
-  static const std::string ReplaceAll(
+  static std::string ReplaceAll(
     std::string s,
     const std::string& replaceWhat,
     const std::string& replaceWithWhat) noexcept;
@@ -69,7 +69,7 @@ struct HtmlPage
   const std::string m_title;
 
   ///Find the <title> in an HTML document
-  static const std::string FindTitle(const std::string& filename);
+  static std::string FindTitle(const std::string& filename) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

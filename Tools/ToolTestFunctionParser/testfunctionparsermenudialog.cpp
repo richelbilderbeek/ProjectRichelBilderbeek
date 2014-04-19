@@ -40,7 +40,7 @@ int ribi::TestFunctionParserMenuDialog::ExecuteSpecific(const std::vector<std::s
   return 1;
 }
 
-const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -59,7 +59,7 @@ const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestFunctionParserMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestFunctionParserMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -73,7 +73,7 @@ const ribi::Help ribi::TestFunctionParserMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestFunctionParserMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestFunctionParserMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestFunctionParser
@@ -81,12 +81,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestFunctionParserMenuDialog:
   assert(p);
   return p;
 }
-const std::string ribi::TestFunctionParserMenuDialog::GetVersion() const noexcept
+std::string ribi::TestFunctionParserMenuDialog::GetVersion() const noexcept
 {
   return "2.4";
 }
 
-const std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-02-02: Version 1.0: initial C++ Builder desktop version",

@@ -32,25 +32,31 @@ struct GalleryMenuDialog : public MenuDialog
   GalleryMenuDialog();
 
   ///Create the page CppClassGallery.htm
-  const std::vector<std::string> CreateHtmlClassGallery() const noexcept;
-
+  std::vector<std::string> CreateHtmlClassGallery() const noexcept;
   ///Create the page GameGallery.htm
-  const std::vector<std::string> CreateHtmlGameGallery() const noexcept;
-
+  std::vector<std::string> CreateHtmlGameGallery() const noexcept;
   ///Create the page ProjectGallery.htm
-  const std::vector<std::string> CreateHtmlProjectGallery() const noexcept;
-
+  std::vector<std::string> CreateHtmlProjectGallery() const noexcept;
   ///Create the page CppRichelBilderbeekStatus.htm
-  const std::vector<std::string> CreateHtmlStatus() const noexcept;
-
+  std::vector<std::string> CreateHtmlStatus() const noexcept;
   ///Create the page ToolGallery.htm
-  const std::vector<std::string> CreateHtmlToolGallery() const noexcept;
+  std::vector<std::string> CreateHtmlToolGallery() const noexcept;
 
-  const About GetAbout() const noexcept;
-  const Help GetHelp() const noexcept;
-  const boost::shared_ptr<const Program> GetProgram() const noexcept;
-  const std::string GetVersion() const noexcept;
-  const std::vector<std::string> GetVersionHistory() const noexcept;
+  ///Create the page CppClassGallery.md
+  std::vector<std::string> CreateMarkdownClassGallery() const noexcept;
+  ///Create the page GameGallery.md
+  std::vector<std::string> CreateMarkdownGameGallery() const noexcept;
+  ///Create the page ProjectGallery.md
+  std::vector<std::string> CreateMarkdownProjectGallery() const noexcept;
+  ///Create the page ToolGallery.md
+  std::vector<std::string> CreateMarkdownToolGallery() const noexcept;
+
+
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
 
   private:
@@ -66,7 +72,8 @@ struct GalleryMenuDialog : public MenuDialog
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
-  const std::vector<std::string> ToHtml(const Program& p) const noexcept;
+  std::vector<std::string> ToHtml(const Program& p) const noexcept;
+  std::vector<std::string> ToMarkdown(const Program& p) const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

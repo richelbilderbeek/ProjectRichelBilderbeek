@@ -28,6 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lexical_cast.hpp>
 
+#include "trace.h"
+
 #pragma GCC diagnostic pop
 
 ribi::Led::Led(
@@ -42,18 +44,22 @@ ribi::Led::Led(
     m_green(green),
     m_blue(blue)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   assert(intensity >= 0.0
     && "An LED intensity must be a positive value");
   assert(intensity <= 1.0
     && "An LED intensity must be equal or lower than 1.0 (that is, 100%)");
 }
 
-const std::string ribi::Led::GetVersion() noexcept
+std::string ribi::Led::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::Led::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Led::GetVersionHistory() noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version",
@@ -112,6 +118,19 @@ void ribi::Led::SetRed(const unsigned char red)
     m_signal_color_changed();
   }
 }
+
+#ifndef NDEBUG
+void ribi::Led::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Led::Test");
+  TRACE("Finished ribi::Led::Test successfully");
+}
+#endif
 
 std::ostream& ribi::operator<<(std::ostream& os, const Led& led)
 {

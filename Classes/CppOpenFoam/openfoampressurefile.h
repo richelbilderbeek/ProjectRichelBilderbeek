@@ -10,14 +10,14 @@
 namespace ribi {
 namespace foam {
 
-///Reads and writes an OpenFOAM pressure file
+///Reads and writes an OpenFOAM pressure file, which has 'P' as its default name
 struct PressureFile
 {
   explicit PressureFile(
     const Header header = GetDefaultHeader()
   );
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
         Header& GetHeader()       noexcept { return m_header; }
 
@@ -38,10 +38,10 @@ struct PressureFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const PressureFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const PressureFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const PressureFile& f);
+std::ostream& operator<<(std::ostream& os, const PressureFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

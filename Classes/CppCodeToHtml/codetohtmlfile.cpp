@@ -59,12 +59,12 @@ ribi::c2h::File::File(
   #endif
 }
 
-const std::vector<std::string> ribi::c2h::File::CreateHtml(
+std::vector<std::string> ribi::c2h::File::CreateHtml(
   const std::string& m_filename,
   const FileType file_type
   ) noexcept
 {
-  assert(fileio::IsRegularFile(m_filename));
+  assert(fileio::FileIo().IsRegularFile(m_filename));
 
   std::vector<std::string> v;
   if (m_filename == "Licence.txt" || m_filename == "License.txt") return v;
@@ -73,20 +73,20 @@ const std::vector<std::string> ribi::c2h::File::CreateHtml(
   switch(file_type)
   {
     case FileType::cpp:
-      v.push_back(std::string("<h2>") + m_filename + std::string("</h2>"));
+      v.push_back("<h2>" + m_filename + "</h2>");
     break;
     case FileType::pro:
       v.push_back(
-        std::string("<h2><a href=\"CppQtProjectFile.htm\">Qt project file</a>: ")
-        + m_filename + std::string("</h2>"));
+        "<h2><a href=\"CppQtProjectFile.htm\">Qt project file</a>: "
+        + m_filename + "</h2>");
     break;
     case FileType::pri:
-      v.push_back(std::string("<h2>") + m_filename + std::string("</h2>"));
+      v.push_back("<h2>" + m_filename + "</h2>");
     break;
     case FileType::py:
     case FileType::sh:
     case FileType::txt:
-      v.push_back(std::string("<h2>") + m_filename + std::string("</h2>"));
+      v.push_back("<h2>" + m_filename + "</h2>");
     break;
     case FileType::license_txt:
       assert(!"Should not HTML-ify FileType::license_txt");
@@ -103,14 +103,14 @@ const std::vector<std::string> ribi::c2h::File::CreateHtml(
 
   //Add the HTMLified content
   {
-    assert(fileio::IsRegularFile(m_filename));
+    assert(fileio::FileIo().IsRegularFile(m_filename));
     const std::vector<std::string> w {
-      Replacer::ToHtml(fileio::FileToVector(m_filename),file_type)
+      Replacer::ToHtml(fileio::FileIo().FileToVector(m_filename),file_type)
     };
     std::transform(w.begin(),w.end(),std::back_inserter(v),
       [](const std::string& s)
       {
-        return s + std::string("<br/>");
+        return s + "<br/>";
       }
     );
   }

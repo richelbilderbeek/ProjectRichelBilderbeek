@@ -21,177 +21,69 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppStk.htm">STK</a></h1>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>The <a href="CppStk.htm">STK</a> (abbreviation for 'Systhesis ToolKit') is a free <a href="Cpp.htm">C++</a> <a href="CppAudio.htm">audio</a> <a href="CppLibrary.htm">library</a>.</p>
+<p>
+  The <a href="CppStk.htm">STK</a> (abbreviation for 'Systhesis ToolKit') is a free 
+  <a href="Cpp.htm">C++</a> <a href="CppAudio.htm">audio</a> <a href="CppLibrary.htm">library</a>.
+</p>
 <p>&nbsp;</p>
-<p>Under Ubuntu, the <a href="CppStk.htm">STK</a> can be installed from Ubuntu's Software Center.</p>
 <p>&nbsp;</p>
-<p>In <a href="CppQtCreator.htm">Qt Creator</a>, to be able to include the <a href="CppStk.htm">STK</a> <a href="CppHeaderFile.htm">header files</a>, add the following line to your <a href="CppQtProjectFile.htm">project file</a>:</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicUbuntu.png" alt="Ubuntu"/> 
+  Installing the <a href="CppStk.htm">STK</a>
+</h2>
+<p>&nbsp;</p>
+<p>
+  Under <a href="CppUbuntu.htm">Ubuntu</a> and <a href="CppLubuntu.htm">Lubuntu</a>, 
+  the <a href="CppStk.htm">STK</a> can be installed from Ubuntu's Software Center:
+</p>
 <p>&nbsp;</p>
 <!-- The code of -->
-<table border="1"><tbody><tr><td><code>
-INCLUDEPATH += /usr/include/stk <br/>
+<table summary="Install STK from command line interface" border="1"><tbody><tr><td><code>
+sudo apt-get install libstk0-dev<br/>
 </code></td></tr></tbody></table>
 <!-- End of the code-->
 <p>&nbsp;</p>
-<p>In <a href="CppQtCreator.htm">Qt Creator</a>, to load the <a href="CppStk.htm">STK</a> <a href="CppLibrary.htm">library</a>, add the following line to your <a href="CppQtProjectFile.htm">project file</a>:</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>
+  <img src="PicQtCreator.png" alt="Qt Creator"/>
+  Adding <a href="CppStk.htm">STK</a> to the <a href="CppQtProjectFile.htm">project file</a>
+</h2>
+<p>&nbsp;</p>
+<p>
+  In <a href="CppQtCreator.htm">Qt Creator</a>, to be able to use the <a href="CppStk.htm">STK</a>,
+  add the following lines to your <a href="CppQtProjectFile.htm">project file</a>:
+</p>
 <p>&nbsp;</p>
 <!-- The code of -->
-<table border="1"><tbody><tr><td><code>
-LIBS += -L/usr/lib -lstk
+<table summary="STK in Qt Creator project file" border="1"><tbody><tr><td><code>
+INCLUDEPATH += /usr/include/stk<br/>
+LIBS += -L/usr/lib -lstk -lrtaudio<br/>
 </code></td></tr></tbody></table>
 <!-- End of the code-->
 <p>&nbsp;</p>
-<p>After having done the above, I got the code below to work: it successfully generated a beep. The code was copied from <a href="https://ccrma.stanford.edu/software/stk/crealtime.html">https://ccrma.stanford.edu/software/stk/crealtime.html</a>.<br/></p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a> crtsine.cpp STK tutorial program<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "SineWave.h"<br/>
-<a href="CppInclude.htm">#include</a> "RtAudio.h"<br/>
-<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> stk;<br/>
-<br/>
-<a href="CppComment.htm">//</a> This tick() function handles sample computation only.  It will be<br/>
-<a href="CppComment.htm">//</a> called automatically when the system needs a <b><a href="CppNew.htm">new</a></b> buffer of audio<br/>
-<a href="CppComment.htm">//</a> samples.<br/>
-<b><a href="CppInt.htm">int</a></b> tick( <b><a href="CppVoid.htm">void</a></b> *outputBuffer, <b><a href="CppVoid.htm">void</a></b> *inputBuffer, <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nBufferFrames,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> streamTime, RtAudioStreamStatus status, <b><a href="CppVoid.htm">void</a></b> *dataPointer )<br/>
-{<br/>
-&nbsp;&nbsp;SineWave *sine <a href="CppOperatorAssign.htm">=</a> (SineWave *) dataPointer;<br/>
-&nbsp;&nbsp;<b><a href="CppRegister.htm">register</a></b> StkFloat *samples <a href="CppOperatorAssign.htm">=</a> (StkFloat *) outputBuffer;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nBufferFrames; i<a href="CppOperatorIncrement.htm">++</a> )<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;*samples<a href="CppOperatorIncrement.htm">++</a> <a href="CppOperatorAssign.htm">=</a> sine-&gt;tick();<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
-}<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> Set the global sample rate before creating <b><a href="CppClass.htm">class</a></b> <a href="CppInstance.htm">instances</a>.<br/>
-&nbsp;&nbsp;Stk::setSampleRate( 44100.0 );<br/>
-<br/>
-&nbsp;&nbsp;SineWave sine;<br/>
-&nbsp;&nbsp;RtAudio dac;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> Figure out how many bytes in an StkFloat and setup the RtAudio stream.<br/>
-&nbsp;&nbsp;RtAudio::StreamParameters parameters;<br/>
-&nbsp;&nbsp;parameters.deviceId <a href="CppOperatorAssign.htm">=</a> dac.getDefaultOutputDevice();<br/>
-&nbsp;&nbsp;parameters.nChannels <a href="CppOperatorAssign.htm">=</a> 1;<br/>
-&nbsp;&nbsp;RtAudioFormat format <a href="CppOperatorAssign.htm">=</a> ( <b><a href="CppSizeof.htm">sizeof</a></b>(StkFloat) <a href="CppOperatorEqual.htm">==</a> 8 ) <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;? RTAUDIO_FLOAT64 : RTAUDIO_FLOAT32;<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> bufferFrames <a href="CppOperatorAssign.htm">=</a> RT_BUFFER_SIZE;<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dac.openStream( &amp;parameters, <a href="CppNULL.htm">NULL</a>, format, <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>)Stk::sampleRate(), <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;bufferFrames, &amp;tick, (<b><a href="CppVoid.htm">void</a></b> *)&amp;sine );<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> ( RtError &amp;error ) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;error.printMessage();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppGoto.htm">goto</a></b> cleanup;<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;sine.setFrequency(440.0);<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dac.startStream();<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> ( RtError &amp;error ) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;error.printMessage();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppGoto.htm">goto</a></b> cleanup;<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> Block waiting here.<br/>
-&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> keyhit;<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nPlaying ... press &lt;enter&gt; to quit.\n";<br/>
-&nbsp;&nbsp;<a href="CppCin.htm">std::cin</a>.get( keyhit );<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> Shut <b><a href="CppDo.htm">do</a></b>wn the output stream.<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dac.closeStream();<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> ( RtError &amp;error ) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;error.printMessage();<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;cleanup:<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Note that this copy-pasted code resulted in 12 <a href="CppCompileWarning.htm">compile warnings</a> and that the <a href="CppLibrary.htm">library</a> style, design and example code look far from elegant.</p>
+<p>
+  Thanks to Michael Jenkinson for his '-lrtaudio' suggestion in the <a href="CppQtProjectFile.htm">project file</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Random beeper code</h2>
 <p>&nbsp;</p>
-<p>The code below (adapted from the code above) generates random beeps infinitely (you cannot stop the program).</p>
+<h2>
+  <img src="PicQtCreator.png" alt="Qt Creator"/>
+  <a href="CppStk.htm">STK</a> examples
+</h2>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppStk.htm<br/>
-<a href="CppComment.htm">//</a>Modified from crtsine.cpp STK tutorial program<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/static_assert.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/timer.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "SineWave.h"<br/>
-<a href="CppInclude.htm">#include</a> "RtAudio.h"<br/>
-<br/>
-<a href="CppComment.htm">//</a> This tick() function handles sample computation only.  It will be<br/>
-<a href="CppComment.htm">//</a> called automatically when the system needs a <b><a href="CppNew.htm">new</a></b> buffer of audio<br/>
-<a href="CppComment.htm">//</a> samples.<br/>
-<b><a href="CppInt.htm">int</a></b> tick(<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> *outputBuffer, <b><a href="CppVoid.htm">void</a></b> *inputBuffer,<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nBufferFrames,<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> streamTime, RtAudioStreamStatus status,<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> *dataPointer)<br/>
-{<br/>
-&nbsp;&nbsp;stk::SineWave * <b><a href="CppConst.htm">const</a></b> sine <a href="CppOperatorAssign.htm">=</a> (stk::SineWave *) dataPointer;<br/>
-&nbsp;&nbsp;stk::StkFloat * samples <a href="CppOperatorAssign.htm">=</a> (stk::StkFloat *) outputBuffer;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>nBufferFrames; <a href="CppOperatorIncrement.htm">++</a>i )<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;*samples<a href="CppOperatorIncrement.htm">++</a> <a href="CppOperatorAssign.htm">=</a> sine-&gt;tick();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
-}<br/>
-<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> Set the global sample rate before creating <b><a href="CppClass.htm">class</a></b> <a href="CppInstance.htm">instances</a>.<br/>
-&nbsp;&nbsp;stk::Stk::setSampleRate( 44100.0 );<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> Setup the RtAudio stream.<br/>
-&nbsp;&nbsp;RtAudio dac;<br/>
-&nbsp;&nbsp;RtAudio::StreamParameters parameters;<br/>
-&nbsp;&nbsp;parameters.deviceId <a href="CppOperatorAssign.htm">=</a> dac.getDefaultOutputDevice();<br/>
-&nbsp;&nbsp;parameters.nChannels <a href="CppOperatorAssign.htm">=</a> 1;<br/>
-&nbsp;&nbsp;<a href="CppBOOST_STATIC_ASSERT.htm">BOOST_STATIC_ASSERT</a>(<b><a href="CppSizeof.htm">sizeof</a></b>(stk::StkFloat) <a href="CppOperatorEqual.htm">==</a> 8);<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> bufferFrames <a href="CppOperatorAssign.htm">=</a> stk::RT_BUFFER_SIZE;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Choose a ran<b><a href="CppDo.htm">do</a></b>m beep frequency<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;stk::SineWave sine;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dac.openStream(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;parameters, <a href="CppNULL.htm">NULL</a>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTAUDIO_FLOAT64,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>)stk::Stk::sampleRate(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;bufferFrames, &amp;tick,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppVoid.htm">void</a></b> *)&amp;sine );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;sine.setFrequency(100.0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>()%1000));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dac.startStream();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let it beep <b><a href="CppFor.htm">for</a></b> 0.2 seconds<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::timer t;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (t.elapsed() &lt; 0.2 ) {}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Prepare <b><a href="CppFor.htm">for</a></b> next beep<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dac.closeStream();<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <li><a href="CppStkExample1.htm">STK example 1: beep</a></li>
+  <li><a href="CppStkExample2.htm">STK example 2: random beeps</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

@@ -35,11 +35,11 @@ struct Stopwatch
   {
     return std::difftime(std::time(0),m_time_start);
   }
-  static const std::string GetVersion() noexcept
+  static std::string GetVersion() noexcept
   {
     return "1.1";
   }
-  static const std::vector<std::string> GetVersionHistory() noexcept
+  static std::vector<std::string> GetVersionHistory() noexcept
   {
     return {
       "2010-10-08: version 1.0: initial version",

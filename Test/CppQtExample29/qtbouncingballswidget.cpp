@@ -1,8 +1,11 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QTimer>
 #include <QGraphicsScene>
 #include "qtbouncingball.h"
 #include "qtbouncingballswidget.h"
-
+#pragma GCC diagnostic pop
 
 QtBouncingRectsWidget::QtBouncingRectsWidget(QWidget *parent)
   : QGraphicsView(parent),

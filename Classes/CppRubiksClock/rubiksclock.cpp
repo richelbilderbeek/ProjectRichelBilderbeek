@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dial.h"
 #include "dialwidget.h"
+#include "geometry.h"
 #include "rubiksclockdial.h"
 #include "rubiksclockdialwidget.h"
 #include "rubiksclockpegs.h"
@@ -53,10 +54,10 @@ ribi::ruco::Clock::Clock() noexcept
 
 void ribi::ruco::Clock::SetGeometry(const Rect& r) noexcept
 {
-  const int left = r.GetX();
-  const int top = r.GetY();
-  const int width = r.GetWidth();
-  const int height = r.GetHeight();
+  const int left   = Geometry().GetLeft(r);
+  const int top    = Geometry().GetTop(r);
+  const int width  = Geometry().GetWidth(r);
+  const int height = Geometry().GetHeight(r);
 
   const double w3 = boost::numeric_cast<double>(width) / 3.0;
   const double h3 = boost::numeric_cast<double>(height) / 3.0;
@@ -67,17 +68,17 @@ void ribi::ruco::Clock::SetGeometry(const Rect& r) noexcept
     {
       const double y_d = boost::numeric_cast<double>(y);
       m_back->times[x][y]->SetGeometry(
-        Rect(
-          left + (x_d*w3),
-          top + (y_d*h3),
-          w3,
-          h3));
+        left + (x_d*w3),
+        top + (y_d*h3),
+        w3,
+        h3
+      );
       m_front->times[x][y]->SetGeometry(
-        Rect(
-          left + (x_d*w3),
-          top + (y_d*h3),
-          w3,
-          h3));
+        left + (x_d*w3),
+        top + (y_d*h3),
+        w3,
+        h3
+      );
     }
   }
   for (int x=0; x!=2; ++x)
@@ -87,11 +88,11 @@ void ribi::ruco::Clock::SetGeometry(const Rect& r) noexcept
     {
       const double y_d = boost::numeric_cast<double>(y);
       m_pegs->m_pegs[x][y]->SetGeometry(
-        Rect(
-          left + ((0.9+x_d)*w3),
-          top + ((0.9+y_d)*h3),
-          w3*0.2,
-          h3*0.2));
+        left + ((0.9+x_d)*w3),
+        top + ((0.9+y_d)*h3),
+        w3*0.2,
+        h3*0.2
+      );
     }
   }
 
@@ -109,9 +110,9 @@ void ribi::ruco::Clock::TurnWheel(const Side side, const int nSteps) noexcept
 {
   switch (side)
   {
-    case Side::topLeft: TurnWheelTopLeft(nSteps); break;
-    case Side::topRight: TurnWheelTopRight(nSteps); break;
-    case Side::bottomLeft: TurnWheelBottomLeft(nSteps); break;
+    case Side::topLeft    : TurnWheelTopLeft(nSteps);     break;
+    case Side::topRight   : TurnWheelTopRight(nSteps);    break;
+    case Side::bottomLeft : TurnWheelBottomLeft(nSteps);  break;
     case Side::bottomRight: TurnWheelBottomRight(nSteps); break;
   }
   if (nSteps % 12 != 0)
@@ -440,20 +441,21 @@ const boost::shared_ptr<ribi::ruco::Pegs> ribi::ruco::Clock::CreatePegsFromIndex
   return pegs;
 }
 
-const std::string ribi::ruco::Clock::GetVersion() noexcept
+std::string ribi::ruco::Clock::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
-const std::vector<std::string> ribi::ruco::Clock::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ruco::Clock::GetVersionHistory() noexcept
 {
   return {
     "2011-09-08: Version 1.0: initial version",
-    "2014-01-23: Version 2.0: put into namespace ruco, forward declarations, use of smart pointers, use of multiple files"
+    "2014-01-23: Version 2.0: put into namespace ruco, forward declarations, use of smart pointers, use of multiple files",
+    "2014-03-28: version 2.1: replaced Rect by Boost.Geometry its box class"
   };
 }
 
-const std::string ribi::ruco::Clock::ToXml() const noexcept
+std::string ribi::ruco::Clock::ToXml() const noexcept
 {
   std::stringstream s;
   s

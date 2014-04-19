@@ -23,7 +23,7 @@ struct Times
 {
   Times(const bool is_front) noexcept;
   boost::shared_ptr<ClockDialWidget> times[3][3];
-  const std::string ToXml() const noexcept;
+  std::string ToXml() const noexcept;
 
   private:
   ~Times() noexcept {}

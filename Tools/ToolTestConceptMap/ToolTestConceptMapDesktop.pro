@@ -3,25 +3,18 @@ include(../../DesktopApplication.pri)
 #Libs
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
-#Console
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
-
-#Desktop
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
-
-#Specific for this application
-#Console
+#Specific, console
+include(../../Classes/CppCoordinat/CppCoordinat.pri)
 include(../../Classes/CppConceptMap/CppConceptMap.pri)
-include(../../Classes/CppXml/CppXml.pri)
-#Desktop
+include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppXml/CppXml.pri)
+
+#Specific, desktop
 include(../../Classes/CppQtArrowItem/CppQtArrowItem.pri)
 include(../../Classes/CppQtConceptMap/CppQtConceptMap.pri)
 include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)

@@ -39,7 +39,12 @@ namespace c2h {
 struct Header
 {
   ///Convert this header to HTML
-  static const std::vector<std::string> ToHtml(
+  static std::vector<std::string> ToHtml(
+    const HeaderType header_type,
+    const std::string& filename
+    ) noexcept;
+
+  static std::vector<std::string> ToMarkdown(
     const HeaderType header_type,
     const std::string& filename
     ) noexcept;
@@ -56,11 +61,11 @@ struct Header
   //friend void boost::checked_delete<>(Header*);
   //friend void boost::checked_delete<>(const Header*);
 
-  static const std::string CreateFilename(
+  static std::string CreateFilename(
     const HeaderType page_type,
     const std::string& filename);
 
-  static const std::string CreateTitle(
+  static std::string CreateTitle(
     const HeaderType page_type,
     const std::string& filename);
 };

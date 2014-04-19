@@ -69,7 +69,7 @@ void ribi::QtTestChessGameDialog::OnChessboardChanged()
   );
 
   ui->edit_status->clear();
-  const std::string s = std::string("Active player: ") +
+  const std::string s = "Active player: " +
     Chess::ColorToStr(ui->chessgame_widget->GetWidget()->GetBoard()->GetActivePlayer());
   ui->edit_status->appendPlainText(s.c_str());
   #endif
@@ -79,7 +79,7 @@ void ribi::QtTestChessGameDialog::on_list_moves_doubleClicked(const QModelIndex 
 {
   const std::string move_str = ui->list_moves->item(index.row())->text().toStdString();
   const std::string s
-    = std::string("Doing move ") + move_str;
+    = "Doing move " + move_str;
   ui->edit_status->appendPlainText(s.c_str());
   #ifndef NO_QTGAMEWIDGET_YET
   ui->chessgame_widget->GetWidget()->DoMove(move_str);

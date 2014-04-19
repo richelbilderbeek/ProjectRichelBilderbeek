@@ -1,3 +1,25 @@
+win32 {
+  # Windows only
+  message("Console application, built for Windows")
+}
+
+macx {
+  # Mac only
+  message("Console application, built for Mac")
+}
+
+unix:!macx{
+  # Linux only
+  message("Console application, built for Linux")
+  QMAKE_CXXFLAGS += -Werror
+}
+
+cross_compile {
+  # Crosscompile only
+  message("Console application, cross-compiling from Linux to Windows")
+}
+
+
 # Go ahead and use Qt.Core: it is about as platform-independent as
 # the STL and Boost
 QT += core
@@ -25,7 +47,3 @@ CONFIG(release, debug|release) {
 }
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}

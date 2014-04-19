@@ -23,7 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "regextestermaindialog.h"
 #pragma GCC diagnostic pop
 
-const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes() noexcept
+std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes() noexcept
 {
   return
   {
@@ -32,10 +32,11 @@ const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes() noe
     "\\",
     "{d}2",
     ""
+    //"(\\2)" //Results in crash
   };
 }
 
-const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestStrings() noexcept
+std::vector<std::string> ribi::RegexTesterMainDialog::GetTestStrings() noexcept
 {
   return
   {

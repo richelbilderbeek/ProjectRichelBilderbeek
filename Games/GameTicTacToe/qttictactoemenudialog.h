@@ -31,6 +31,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace tictactoe {
 
 class QtTicTacToeMenuDialog : public QtHideAndShowDialog
 {
@@ -56,6 +57,7 @@ private slots:
     void on_button_start_old_school_clicked();
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEMENUDIALOG_H

@@ -1,7 +1,11 @@
 #ifndef QTBOUNCINGRECT_H
 #define QTBOUNCINGRECT_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QGraphicsItem>
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 
@@ -17,7 +21,6 @@ struct QtBouncingRect : public QGraphicsItem
 
   ///Thanks compiler for reminding me to add this method!
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
 
   private:
   ///Use simplified physics in this example

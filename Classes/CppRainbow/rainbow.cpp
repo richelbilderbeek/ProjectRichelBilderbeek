@@ -54,12 +54,12 @@ void ribi::Rainbow::GetRgb(
   b = f_b / max;
 }
 
-const std::string ribi::Rainbow::GetVersion() noexcept
+std::string ribi::Rainbow::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Rainbow::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Rainbow::GetVersionHistory() noexcept
 {
   return {
     "2011-08-31: Version 1.0: initial version",

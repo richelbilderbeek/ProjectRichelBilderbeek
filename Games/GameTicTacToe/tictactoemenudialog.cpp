@@ -26,42 +26,62 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "textcanvas.h"
-#include "tictactoe.h"
+#include "tictactoeai.h"
+#include "tictactoeais.h"
+#include "tictactoeboard.h"
+#include "tictactoegame.h"
+#include "tictactoewidget.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::TicTacToeMenuDialog::TicTacToeMenuDialog()
+ribi::tictactoe::TicTacToeMenuDialog::TicTacToeMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-int ribi::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
-  const int argc = static_cast<int>(argv.size());
-  if (argc != 1)
+  boost::shared_ptr<Ai> p1;
+  boost::shared_ptr<Ai> p2;
+  for (const auto arg: argv)
   {
-    std::cout << GetHelp() << '\n';
-    return 1;
+    if (arg == "-e" || arg == "--1e") p1.reset(new AiEnforceDraw);
+    if (arg == "-m" || arg == "--1m") p1.reset(new AiPlayRandom);
+    if (arg == "-h" || arg == "--1h") p1.reset(new AiEnforceWin);
+    if (arg == "-E" || arg == "--2e") p2.reset(new AiEnforceDraw);
+    if (arg == "-M" || arg == "--2m") p2.reset(new AiPlayRandom);
+    if (arg == "-H" || arg == "--2h") p2.reset(new AiEnforceWin);
   }
 
-  TicTacToe t;
-  std::cout << (*t.ToTextCanvas()) << std::endl;
-  while (t.GetWinner() == TicTacToe::no_winner)
+  tictactoe::Game t;
+
+  while (1)
   {
-    const int x = (std::rand() >> 4) % 3;
-    const int y = (std::rand() >> 4) % 3;
-    if (t.CanDoMove(x,y))
+    std::cout << (*t.ToTextCanvas()) << std::endl;
+
+    if (t.GetWinner() != tictactoe::Winner::no_winner) break;
+
+
+    auto ai = t.GetCurrentPlayer() == Player::player1 ? p1 : p2;
+    if (ai)
     {
-      t.DoMove(x,y);
-      std::cout << (*t.ToTextCanvas()) << std::endl;
+      const auto move(ai->SuggestMove(t));
+      t.DoMove(move.first,move.second);
+    }
+    else
+    {
+      int x = 0;
+      int y = 0;
+      std::cin >> x >> y;
+      if (t.CanDoMove(x,y)) t.DoMove(x,y);
     }
   }
   return 0;
 }
 
-const ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
+ribi::About ribi::tictactoe::TicTacToeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -72,25 +92,35 @@ const ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/GameTicTacToe.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("TicTacToe version: " + TicTacToe::GetVersion());
+  a.AddLibrary("tictactoe::Board version: " + tictactoe::Board::GetVersion());
+  a.AddLibrary("tictactoe::Game version: " + tictactoe::Game::GetVersion());
+  a.AddLibrary("tictactoe::Widget version: " + tictactoe::Widget::GetVersion());
   return a;
 }
 
-const ribi::Help ribi::TicTacToeMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::tictactoe::TicTacToeMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-
+      Help::Option('e',"1e","Player 1: easy"),
+      Help::Option('m',"1m","Player 1: medium"),
+      Help::Option('h',"1h","Player 1: hard"),
+      Help::Option('E',"2e","Player 2: easy"),
+      Help::Option('M',"2m","Player 2: medium"),
+      Help::Option('H',"2h","Player 2: hard")
     },
     {
-
+      GetAbout().GetFileTitle(),
+      GetAbout().GetFileTitle() + " -e",
+      GetAbout().GetFileTitle() + " --1e -E",
+      GetAbout().GetFileTitle() + " --1h -2h"
     }
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TicTacToeMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::tictactoe::TicTacToeMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramTicTacToe
@@ -99,12 +129,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TicTacToeMenuDialog::GetProgr
   return p;
 }
 
-const std::string ribi::TicTacToeMenuDialog::GetVersion() const noexcept
+std::string ribi::tictactoe::TicTacToeMenuDialog::GetVersion() const noexcept
 {
   return "1.6";
 }
 
-const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-24: Version 1.0: initial version",
@@ -119,14 +149,17 @@ const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() co
 
 
 #ifndef NDEBUG
-void ribi::TicTacToeMenuDialog::Test() noexcept
+void ribi::tictactoe::TicTacToeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TicTacToeMenuDialog::Test");
-  TRACE("Finished ribi::TicTacToeMenuDialog::Test successfully");
+  TRACE("Starting ribi::tictactoe::TicTacToeMenuDialog::Test");
+  {
+    TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog" } );
+  }
+  TRACE("Finished ribi::tictactoe::TicTacToeMenuDialog::Test successfully");
 }
 #endif

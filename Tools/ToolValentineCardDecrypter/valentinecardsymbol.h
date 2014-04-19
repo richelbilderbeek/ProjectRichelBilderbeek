@@ -46,8 +46,8 @@ struct ValentineCardSymbol
   int CalcValue() const noexcept;
   CenterSymbol GetCenterSymbol() const noexcept { return m_center_symbol; }
   const std::array<bool,4>& GetLines() const noexcept { return m_lines; }
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   const boost::shared_ptr<QImage> ToImage() const noexcept;
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;

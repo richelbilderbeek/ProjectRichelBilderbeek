@@ -1,5 +1,29 @@
+//---------------------------------------------------------------------------
+/*
+Coordinat, coordinat classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppCoordinat.htm
+//---------------------------------------------------------------------------
 #ifndef CONSTCOORDINAT2D_H
 #define CONSTCOORDINAT2D_H
+
+//typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
+
+#ifdef USE_CUSTOM_RIBI_CONSTCOORDINAT2D
 
 #include <array>
 #include <iosfwd>
@@ -26,12 +50,6 @@ struct ConstCoordinat2D
   double GetX() const noexcept { return m_co[0]; }
   double GetY() const noexcept { return m_co[1]; }
 
-  //void SetX(const double x) noexcept { m_co[0] = x; }
-  //void SetY(const double y) noexcept { m_co[1] = y; }
-
-  //ConstCoordinat2D& operator+=(const ConstCoordinat2D& rhs) noexcept;
-  //ConstCoordinat2D& operator-=(const ConstCoordinat2D& rhs) noexcept;
-
   private:
   ConstCoordinat2D(const ConstCoordinat2D&) = delete;
   ConstCoordinat2D& operator=(const ConstCoordinat2D&) = delete;
@@ -56,7 +74,7 @@ double DotProduct(
 ///Distance to origin
 double Length(const boost::shared_ptr<const ConstCoordinat2D> v) noexcept;
 
-const boost::shared_ptr<const ConstCoordinat2D> Scale(
+boost::shared_ptr<const ConstCoordinat2D> Scale(
   const double scalar,
   const boost::shared_ptr<const ConstCoordinat2D> v
 ) noexcept;
@@ -66,16 +84,19 @@ bool operator<(const ConstCoordinat2D& lhs, const ConstCoordinat2D& rhs) noexcep
 std::ostream& operator<<(std::ostream& os, const ConstCoordinat2D& n) noexcept;
 
 
-const boost::shared_ptr<const ConstCoordinat2D> operator+(
+boost::shared_ptr<const ConstCoordinat2D> operator+(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2
 ) noexcept;
 
-const boost::shared_ptr<const ConstCoordinat2D> operator-(
+boost::shared_ptr<const ConstCoordinat2D> operator-(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2
 ) noexcept;
 
 } //~namespace ribi
 
+#endif
+
 #endif // CONSTCOORDINAT2D_H
+

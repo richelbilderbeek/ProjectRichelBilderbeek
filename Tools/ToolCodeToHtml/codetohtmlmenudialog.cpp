@@ -53,8 +53,8 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
   const int argc = static_cast<int>(argv.size());
   #ifndef NDEBUG
   assert(argc > 0);
-  assert(ribi::fileio::IsRegularFile(argv[0]));
-  assert(ribi::fileio::IsFolder(ribi::fileio::GetPath(argv[0])));
+  assert(ribi::fileio::FileIo().IsRegularFile(argv[0]));
+  assert(ribi::fileio::FileIo().IsFolder(ribi::fileio::FileIo().GetPath(argv[0])));
   #ifndef _WIN32
   assert(c2h::IsTidyInstalled());
   #endif
@@ -88,17 +88,17 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
   const std::string source = argv[1];
   std::cout << "Source: '" << source << "'" << std::endl;
 
-  if (!ribi::fileio::IsFolder(source) && !ribi::fileio::IsRegularFile(source))
+  if (!ribi::fileio::FileIo().IsFolder(source) && !ribi::fileio::FileIo().IsRegularFile(source))
   {
     std::cout << "Source exists: no\n";
     std::cout << "Specify an existing file or folder\n";
     return 1;
   }
-  assert(ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source));
+  assert(ribi::fileio::FileIo().IsFolder(source) || ribi::fileio::FileIo().IsRegularFile(source));
 
   std::cout << "Source exists: yes" << std::endl;
 
-  if (ribi::fileio::GetFileBasename(source).empty())
+  if (ribi::fileio::FileIo().GetFileBasename(source).empty())
   {
     std::cout
       << "Source its basename has length zero (which can be due to chosing '.' or '..')\n"
@@ -106,29 +106,29 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
     return 1;
   }
 
-  assert( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))
+  assert( (ribi::fileio::FileIo().IsFolder(source) || ribi::fileio::FileIo().IsRegularFile(source))
     && "Source can be either a file or a path");
 
 
-  if (ribi::fileio::IsFolder(source))
+  if (ribi::fileio::FileIo().IsFolder(source))
   {
     std::cout << "Source is directory: yes" << std::endl;
   }
   else
   {
-    assert(ribi::fileio::IsRegularFile(source));
+    assert(ribi::fileio::FileIo().IsRegularFile(source));
     std::cout << "Source is directory: no" << std::endl;
   }
 
   const std::function<const std::vector<std::string>(const std::string&)> f {
-    ribi::fileio::IsRegularFile(source) ? &Dialog::FileToHtml : &Dialog::FolderToHtml
+    ribi::fileio::FileIo().IsRegularFile(source) ? &Dialog::FileToHtml : &Dialog::FolderToHtml
   };
 
   try
   {
     const std::vector<std::string> v = f(source);
-    const std::string output_filename = ribi::fileio::GetFileBasename(source) + ".htm";
-    assert(output_filename != std::string(".htm"));
+    const std::string output_filename = ribi::fileio::FileIo().GetFileBasename(source) + ".htm";
+    assert(output_filename != ".htm");
     std::cout << "Output written to '" << output_filename << "'" << std::endl;
     std::ofstream f(output_filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
@@ -147,7 +147,7 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
   }
 }
 
-const ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
+ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
 {
   ribi::About a {
     "Richel Bilderbeek",
@@ -159,7 +159,7 @@ const ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   };
-  a.AddLibrary("FileIo version: " + fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
@@ -167,7 +167,7 @@ const ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
 }
 
 
-const ribi::Help ribi::c2h::CodeToHtmlMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::c2h::CodeToHtmlMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -180,19 +180,19 @@ const ribi::Help ribi::c2h::CodeToHtmlMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramCodeToHtml);
   assert(p);
   return p;
 }
 
-const std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
+std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
 {
   const std::vector<std::string> v {
     "2010-03-14: version 1.0: programmed initial console version of CodeToHtml. Due to my switch from Windows to Ubuntu, I had to abandon MS Word as my favorite HTML editor. Then I had to write my webpages in plain HTML, but adding links to all my code snippets was tiresome. CodeToHtml automated this for me",
@@ -263,7 +263,7 @@ void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
       [](const boost::shared_ptr<Program> program)
       {
         const std::string s = program->GetUrl();
-        assert(s.substr(s.size() - 4, 4) == std::string(".htm"));
+        assert(s.substr(s.size() - 4, 4) == ".htm");
         const std::string t = s.substr(0,s.size() - 4);
         return t;
       }

@@ -26,11 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 struct Trace
 {
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "2.6";
   }
-  static const std::vector<std::string> GetVersionHistory()
+  static std::vector<std::string> GetVersionHistory()
   {
     return {
       "2010-xx-xx: Version 1.0: initial version, write trace to std::cout",

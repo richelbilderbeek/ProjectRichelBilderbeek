@@ -41,20 +41,20 @@ namespace c2h {
   #endif
 
   ///Convert a code snippet
-  const std::vector<std::string> ConvertCodeSnippet(
+  std::vector<std::string> ConvertCodeSnippet(
     const std::vector<std::string>& code,
     const SnippetType snippet_type);
 
   ///Convert a file
-  const std::vector<std::string> ConvertFile(
+  std::vector<std::string> ConvertFile(
     const std::string& filename,
     const FileType file_type);
 
   ///Convert a .pro file
-  const std::vector<std::string> ConvertProject(const std::string& filename);
+  std::vector<std::string> ConvertProject(const std::string& filename);
 
   ///Filter files: only let .pro, .h, .hpp, . cpp, .c and .sh files pass
-  const std::vector<std::string> FilterFiles(const std::vector<std::string>& files);
+  std::vector<std::string> FilterFiles(const std::vector<std::string>& files);
 
   #ifndef _WIN32
   ///Tests if the HTML is clean, this will be checked by the tool 'tidy'
@@ -69,10 +69,10 @@ namespace c2h {
   #endif
 
   ///Sort files: .pro files first, then X.h, X.cpp, then .sh files
-  const std::vector<std::string> SortFiles(std::vector<std::string> files);
+  std::vector<std::string> SortFiles(std::vector<std::string> files);
 
   ///Obtain the sorted files in a folder
-  const std::vector<std::string> GetSortedFilesInFolder(const std::string& folder);
+  std::vector<std::string> GetSortedFilesInFolder(const std::string& folder);
 
 } //~namespace c2h
 } //~namespace ribi

@@ -32,13 +32,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #include "rubiksclockfwd.h"
 #include "rubiksclockside.h"
+#include "widget.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 namespace ruco {
 
 ///Clock is a Rubik's Clock
-struct Clock
+struct Clock : public Widget
 {
   Clock() noexcept;
 
@@ -78,16 +79,16 @@ struct Clock
   //Pegs& GetFrontPegs() noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Convert to a Canvas
   const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;
 
   ///Convert to XML
-  const std::string ToXml() const noexcept;
+  std::string ToXml() const noexcept;
 
   ///Respond to a change in the clock
   mutable boost::signals2::signal<void ()> m_signal_clock_changed;

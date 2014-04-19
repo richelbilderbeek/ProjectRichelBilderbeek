@@ -29,7 +29,7 @@ int ribi::TestImageCanvasMenuDialog::ExecuteSpecific(const std::vector<std::stri
   }
   {
     const std::string s { argv[1] };
-    if (!fileio::IsRegularFile(s))
+    if (!fileio::FileIo().IsRegularFile(s))
     {
       std::cout
         << "Error: '" << s << "' is not found.\n"
@@ -69,7 +69,7 @@ int ribi::TestImageCanvasMenuDialog::ExecuteSpecific(const std::vector<std::stri
 
   assert(argc >= 3);
   const std::string from_name { argv[1] };
-  const std::string to_name { argv[2] };
+  std::string to_name { argv[2] };
   const int n_cols = (argc == 4 ? boost::lexical_cast<int>(argv[3]) : 78);
 
   const boost::shared_ptr<const ImageCanvas> d {
@@ -82,7 +82,7 @@ int ribi::TestImageCanvasMenuDialog::ExecuteSpecific(const std::vector<std::stri
   return 0;
 }
 
-const ribi::About ribi::TestImageCanvasMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestImageCanvasMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -99,7 +99,7 @@ const ribi::About ribi::TestImageCanvasMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestImageCanvasMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestImageCanvasMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -113,7 +113,7 @@ const ribi::Help ribi::TestImageCanvasMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestImageCanvasMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestImageCanvasMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestImageCanvas
@@ -122,12 +122,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestImageCanvasMenuDialog::Ge
   return p;
 }
 
-const std::string ribi::TestImageCanvasMenuDialog::GetVersion() const noexcept
+std::string ribi::TestImageCanvasMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestImageCanvasMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestImageCanvasMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2014-01-09: version 1.0: initial version"
@@ -144,19 +144,19 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::TooTestImageCanvasMenuDialog::Test");
   {
-    const std::string temp_filename { fileio::GetTempFileName() };
+    const std::string temp_filename { fileio::FileIo().GetTempFileName() };
     {
       const std::string resource_filename { ":/CppImageCanvas/images/R.png" };
       QFile qfile(resource_filename.c_str());
       qfile.copy(temp_filename.c_str());
-      if (!fileio::IsRegularFile(temp_filename))
+      if (!fileio::FileIo().IsRegularFile(temp_filename))
       {
         TRACE("ERROR");
         TRACE(resource_filename);
         TRACE("Resource filename must exist");
       }
     }
-    assert(fileio::IsRegularFile(temp_filename));
+    assert(fileio::FileIo().IsRegularFile(temp_filename));
     for (int i=0; i!=4; ++i)
     {
       const CanvasColorSystem color_system
@@ -171,7 +171,7 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
       TRACE(s.str());
       assert(!s.str().empty());
     }
-    fileio::DeleteFile(temp_filename);
+    fileio::FileIo().DeleteFile(temp_filename);
   }
   TRACE("Finished ribi::TooTestImageCanvasMenuDialog::Test successfully");
 }

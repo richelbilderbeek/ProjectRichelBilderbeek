@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -72,12 +92,12 @@ void ribi::cmap::Examples::Add(const boost::shared_ptr<cmap::Example>& example)
 */
 
 
-const std::vector<boost::shared_ptr<const ribi::cmap::Example> > ribi::cmap::Examples::Get() const
+std::vector<boost::shared_ptr<const ribi::cmap::Example> > ribi::cmap::Examples::Get() const noexcept
 {
   return AddConst(m_v);
 }
 
-void ribi::cmap::Examples::OnExampleChanged()
+void ribi::cmap::Examples::OnExampleChanged() noexcept
 {
   m_signal_examples_changed(this);
 }
@@ -184,7 +204,7 @@ void ribi::cmap::Examples::Test() noexcept
   TRACE("Examples::Test finished successfully");
 }
 
-const std::string ribi::cmap::Examples::ToXml() const noexcept
+std::string ribi::cmap::Examples::ToXml() const noexcept
 {
   std::stringstream s;
   s << "<examples>";
@@ -201,8 +221,8 @@ const std::string ribi::cmap::Examples::ToXml() const noexcept
 
   const std::string r = s.str();
   assert(r.size() >= 20);
-  assert(r.substr(0,10) == std::string("<examples>"));
-  assert(r.substr(r.size() - 11,11) == std::string("</examples>"));
+  assert(r.substr(0,10) == "<examples>");
+  assert(r.substr(r.size() - 11,11) == "</examples>");
   return r;
 }
 
@@ -236,8 +256,8 @@ bool ribi::cmap::operator<(const cmap::Examples& lhs, const cmap::Examples& rhs)
   const int sz = lhs.Get().size();
   for (int i = 0; i!=sz; ++i)
   {
-    if (lhs.Get()[i] < rhs.Get()[i]) return true;
-    if (lhs.Get()[i] > rhs.Get()[i]) return false;
+    if (*lhs.Get()[i] < *rhs.Get()[i]) return true;
+    if (*lhs.Get()[i] > *rhs.Get()[i]) return false;
   }
   return false;
 }

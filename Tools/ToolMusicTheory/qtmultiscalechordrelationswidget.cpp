@@ -44,12 +44,12 @@ ribi::QtMultiScaleChordRelationsWidget::QtMultiScaleChordRelationsWidget(QWidget
   this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
-const std::string ribi::QtMultiScaleChordRelationsWidget::GetVersion() noexcept
+std::string ribi::QtMultiScaleChordRelationsWidget::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtMultiScaleChordRelationsWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtMultiScaleChordRelationsWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-08-17: version 1.0: initial version");

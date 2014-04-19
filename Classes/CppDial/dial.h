@@ -63,10 +63,10 @@ struct Dial
   unsigned char GetRed() const noexcept { return m_red; }
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the blue the Dial
   void SetBlue(const int b) noexcept;
@@ -101,18 +101,6 @@ struct Dial
   unsigned char m_red;
 
   friend std::ostream& operator<<(std::ostream& os, const Dial& dial);
-
-  public:
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy) noexcept;
-
-  //From www.richelbilderbeek.nl/CppGetDistance.htm
-  static double GetDistance(const double dX, const double dY) noexcept;
 
   #ifndef NDEBUG
   ///Test this class

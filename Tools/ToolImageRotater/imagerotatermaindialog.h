@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-imagerotater, tool to perform a histogram equalization
+ImageRotater, tool to perform a histogram equalization
 Copyright (C) 2008-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/Toolimagerotater.htm
+//From http://www.richelbilderbeek.nl/ToolImageRotater.htm
 //---------------------------------------------------------------------------
 #ifndef IMAGEROTATERMAINDIALOG_H
 #define IMAGEROTATERMAINDIALOG_H

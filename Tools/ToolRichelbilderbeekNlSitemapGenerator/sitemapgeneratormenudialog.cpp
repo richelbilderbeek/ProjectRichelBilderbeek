@@ -45,7 +45,7 @@ ribi::SitemapGeneratorMenuDialog::SitemapGeneratorMenuDialog()
   #endif
 }
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::AddHeader(const std::vector<std::string>& files) noexcept
+std::vector<std::string> ribi::SitemapGeneratorMenuDialog::AddHeader(const std::vector<std::string>& files) noexcept
 {
   std::vector<std::string> v;
   v.push_back("# To add a list of URLs, make a space-delimited text file. The first");
@@ -67,7 +67,7 @@ const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::AddHeader(const
   return v;
 }
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::CreateConfigXml(
+std::vector<std::string> ribi::SitemapGeneratorMenuDialog::CreateConfigXml(
   const std::string& local_website_path,
   const std::string& urllist_path) noexcept
 {
@@ -242,18 +242,18 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
 
   ///Find page location
   std::string page_location;
-  if (std::count(argv.begin(),argv.end(),std::string("--page")))
+  if (std::count(argv.begin(),argv.end(),"--page"))
   {
     const int index
-      = std::distance(argv.begin(),std::find(argv.begin(),argv.end(),std::string("--page")));
+      = std::distance(argv.begin(),std::find(argv.begin(),argv.end(),"--page"));
     assert(index < static_cast<int>(argv.size()));
     if (index == static_cast<int>(argv.size() - 1))
     {
       m_signal_log(
-          std::string("Please supply an argument after --page.\n")
-        + std::string("\n")
-        + std::string("For example:")
-        + std::string("  RichelbilderbeekNlSitemapGenerator --page myhome/myhomepagefolder --exe myhome/mybin\n")
+          "Please supply an argument after --page.\n"
+          "\n"
+          "For example:\n"
+          "  RichelbilderbeekNlSitemapGenerator --page myhome/myhomepagefolder --exe myhome/mybin"
       );
       return 1;
     }
@@ -262,18 +262,18 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
 
   ///Find page location
   std::string sitemapgen_location;
-  if (std::count(argv.begin(),argv.end(),std::string("--exe")))
+  if (std::count(argv.begin(),argv.end(),"--exe"))
   {
     const int index
-      = std::distance(argv.begin(),std::find(argv.begin(),argv.end(),std::string("--exe")));
+      = std::distance(argv.begin(),std::find(argv.begin(),argv.end(),"--exe"));
     assert(index < static_cast<int>(argv.size()));
     if (index == static_cast<int>(argv.size() - 1))
     {
       m_signal_log(
-          std::string("Please supply an argument after --exe.\n")
-        + std::string("\n")
-        + std::string("For example:")
-        + std::string("  RichelbilderbeekNlSitemapGenerator --page myhome/myhomepagefolder --exe myhome/mybin\n")
+          "Please supply an argument after --exe.\n"
+          "\n"
+          "For example:\n"
+          "  RichelbilderbeekNlSitemapGenerator --page myhome/myhomepagefolder --exe myhome/mybin\n"
       );
       return 1;
     }
@@ -281,15 +281,15 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   }
 
   m_signal_log(
-      std::string("* This application runs in the folder \'")
+      "* This application runs in the folder \'"
     + sitemapgen_location
-    + std::string("'")
+    + "'"
   );
 
   m_signal_log(
-      std::string("* Searching for HTML files found in folder '")
+      "* Searching for HTML files found in folder '"
     + std::string(page_location)
-    + std::string("\'")
+    + "\'"
   );
 
   const std::vector<std::string> files_raw = GetHtmlFilesInFolder(page_location);
@@ -298,9 +298,9 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   if (files_raw.empty())
   {
     m_signal_log(
-        std::string("* No HTML files found in folder '")
+        "* No HTML files found in folder '"
       + std::string(page_location.c_str())
-      + std::string("\'")
+      + "\'"
     );
     m_signal_log(
       "* Please select the correct folder with the websites' HTML files"
@@ -309,11 +309,11 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   }
 
   m_signal_log(
-      std::string("* ")
+      "* "
     + boost::lexical_cast<std::string>(files_raw.size())
-    + std::string(" HTML files found in folder '")
+    + " HTML files found in folder '"
     + page_location
-    + std::string("\'")
+    + "\'"
   );
 
   //Save config.xml to file CreateConfigXml()
@@ -322,17 +322,17 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
     //const std::string config_filename = GetCurrentFolder() + "/config.xml";
 
     m_signal_log(
-        std::string("* Creating '")
+        "* Creating '"
       + config_filename
-      + std::string("' in this app's folder")
+      + "' in this app's folder"
     );
     std::ofstream file(config_filename);
     std::vector<std::string> config_file(CreateConfigXml(page_location,sitemapgen_location));
     std::copy(config_file.begin(),config_file.end(),std::ostream_iterator<std::string>(file,"\n"));
     m_signal_log(
-        std::string("'")
+        "'"
       + config_filename
-      + std::string("' created successfully")
+      + "' created successfully"
     );
   }
 
@@ -356,7 +356,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   {
     m_signal_log("* Check for sitemap_gen.py in this app's folder");
     const std::string sitemap_file
-      = sitemapgen_location + std::string("/sitemap_gen.py");
+      = sitemapgen_location + "/sitemap_gen.py";
     if (QFile::exists(sitemap_file.c_str()))
     {
       m_signal_log("* sitemap_gen.py present");
@@ -368,7 +368,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
       f_in.copy(sitemap_file.c_str());
 
       //Assume file does exist now
-      assert(ribi::fileio::IsRegularFile(sitemap_file));
+      assert(ribi::fileio::FileIo().IsRegularFile(sitemap_file));
       m_signal_log("* sitemap_py created successfully");
     }
   }
@@ -390,7 +390,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   #else
   const int system_return_code = std::system(python_command.c_str());
   m_signal_log(
-      std::string("* System command finished with return code ")
+      "* System command finished with return code "
     + boost::lexical_cast<std::string>(system_return_code)
   );
   #endif
@@ -398,10 +398,10 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   m_signal_log("* Program finished");
 
   {
-    const std::vector<std::string> output(ribi::fileio::FileToVector("output.txt"));
+    const std::vector<std::string> output(ribi::fileio::FileIo().FileToVector("output.txt"));
     for(const std::string& s: output)
     {
-      m_signal_log(std::string(" ") + s);
+      m_signal_log(" " + s);
     }
   }
 
@@ -409,7 +409,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   return 0;
 }
 
-const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
+ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -424,7 +424,7 @@ const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
+std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
 {
   const std::time_t t = std::time(0);
   const std::tm * const now = std::localtime( &t );
@@ -440,7 +440,7 @@ const std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
     std::stringstream s;
     s << (now->tm_mon + 1);
     month = s.str();
-    if (month.size() == 1) month = std::string("0") + month;
+    if (month.size() == 1) month = "0" + month;
   }
   assert(month.size() == 2);
   std::string day;
@@ -448,13 +448,13 @@ const std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
     std::stringstream s;
     s << (now->tm_mday);
     day = s.str();
-    if (day.size() == 1) day = std::string("0") + month;
+    if (day.size() == 1) day = "0" + month;
   }
   assert(day.size() == 2);
   return year + "-" + month + "-" + day;
 }
 
-const ribi::Help ribi::SitemapGeneratorMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::SitemapGeneratorMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -471,11 +471,11 @@ const ribi::Help ribi::SitemapGeneratorMenuDialog::GetHelp() const noexcept
 
 
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetHtmlFilesInFolder(
+std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetHtmlFilesInFolder(
   const std::string& folder) noexcept
 {
   //Get all filenames
-  const std::vector<std::string> v = ribi::fileio::GetFilesInFolder(folder);
+  const std::vector<std::string> v = ribi::fileio::FileIo().GetFilesInFolder(folder);
 
   //Create the regex for a correct HTML filename
   const boost::xpressive::sregex cpp_file_regex
@@ -492,7 +492,7 @@ const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetHtmlFilesInF
   return w;
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::SitemapGeneratorMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::SitemapGeneratorMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramRichelBilderbeekNlSitemapGenerator
@@ -501,12 +501,12 @@ const boost::shared_ptr<const ribi::Program> ribi::SitemapGeneratorMenuDialog::G
   return p;
 }
 
-const std::string ribi::SitemapGeneratorMenuDialog::GetVersion() const noexcept
+std::string ribi::SitemapGeneratorMenuDialog::GetVersion() const noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-08-08: version 1.0: initial version",

@@ -26,21 +26,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
 namespace ToolRasper {
 
 ///The GUI independent part of the menu
 struct MenuDialog
 {
   ///Get this class its version
-  static const std::string GetVersion();
+  std::string GetVersion() const noexcept;
 
   ///Get this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///Get this class its About
-  static const About GetAbout();
+  About GetAbout() const noexcept;
 };
 
 } //~namespace ToolRasper
+} //~namespace ribi
 
 #endif // RASPERMENUDIALOG_H

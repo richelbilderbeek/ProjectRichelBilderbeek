@@ -42,17 +42,17 @@ ribi::HtmlPage::HtmlPage(const std::string& filename)
   #ifndef NDEBUG
   Test();
   #endif
-  assert(ribi::fileio::IsRegularFile(filename));
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
 
 }
 
-const std::string ribi::HtmlPage::FindTitle(const std::string& filename)
+std::string ribi::HtmlPage::FindTitle(const std::string& filename) noexcept
 {
   const boost::xpressive::sregex title_regex
     = boost::xpressive::sregex::compile("<title>.*</title>");
 
   //Copy all filenames matching the regex in the resulting std::vector
-  const std::vector<std::string> v = ribi::fileio::FileToVector(filename);
+  const std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
   for (const std::string s: v)
   {
     if (boost::xpressive::regex_search(s,title_regex))
@@ -73,12 +73,12 @@ const std::string ribi::HtmlPage::FindTitle(const std::string& filename)
   return {};
 }
 
-const std::string ribi::HtmlPage::GetVersion() noexcept
+std::string ribi::HtmlPage::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::HtmlPage::GetVersionHistory() noexcept
+std::vector<std::string> ribi::HtmlPage::GetVersionHistory() noexcept
 {
   return {
     "2011-xx-xx: version 1.0: initial version",
@@ -87,7 +87,7 @@ const std::vector<std::string> ribi::HtmlPage::GetVersionHistory() noexcept
   };
 }
 
-const std::string ribi::HtmlPage::ReplaceAll(
+std::string ribi::HtmlPage::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
   const std::string& replaceWithWhat) noexcept

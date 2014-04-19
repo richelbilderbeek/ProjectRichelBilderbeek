@@ -54,10 +54,12 @@ void ribi::tron::QtTronGameDialog::OnTimer()
     player->Advance();
 
     //Draw players
+    #ifdef TODO_RJCB
     m_image->setPixel(
       player->GetX(),player->GetY(),
-      qRgb(player->m_r,player->m_g,player->m_b)
+      player->GetColor()
     );
+    #endif
   }
   ui->label->setPixmap(QPixmap::fromImage(*m_image));
 }
@@ -66,11 +68,11 @@ const std::vector<boost::shared_ptr<ribi::tron::Player> > ribi::tron::QtTronGame
 {
   std::vector<boost::shared_ptr<Player> > v;
   {
-    boost::shared_ptr<Player> p(new ClassicPlayer(159,100,3,255,0,0));
+    boost::shared_ptr<Player> p(new ClassicPlayer(159,100,3,qRgb(255,0,0)));
     v.push_back(p);
   }
   {
-    boost::shared_ptr<Player> p(new ClassicPlayer(161,100,1,0,255,0));
+    boost::shared_ptr<Player> p(new ClassicPlayer(161,100,1,qRgb(0,255,0)));
     v.push_back(p);
   }
   return v;

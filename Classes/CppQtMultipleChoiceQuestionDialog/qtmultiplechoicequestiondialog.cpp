@@ -76,7 +76,7 @@ ribi::QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
   };
   assert(question);
 
-  if (fileio::IsRegularFile(question->GetFilename().c_str()))
+  if (fileio::FileIo().IsRegularFile(question->GetFilename().c_str()))
   {
     ui->image->setPixmap(QPixmap(question->GetFilename().c_str()));
   }
@@ -117,12 +117,12 @@ const boost::shared_ptr<const ribi::QuestionDialog> ribi::QtMultipleChoiceQuesti
   return m_dialog;
 }
 
-const std::string ribi::QtMultipleChoiceQuestionDialog::GetVersion() noexcept
+std::string ribi::QtMultipleChoiceQuestionDialog::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtMultipleChoiceQuestionDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtMultipleChoiceQuestionDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-28: version 1.0: initial version"

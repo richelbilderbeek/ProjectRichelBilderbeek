@@ -69,8 +69,8 @@ ribi::c2h::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) noexc
   {
     assert(!QApplication::instance()->arguments().empty());
     const std::string argv0 { QApplication::instance()->arguments()[0].toStdString() };
-    const std::string path = ribi::fileio::GetPath(argv0);
-    assert(ribi::fileio::IsFolder(path));
+    const std::string path = ribi::fileio::FileIo().GetPath(argv0);
+    assert(ribi::fileio::FileIo().IsFolder(path));
     this->ui->edit_source->setText(path.c_str());
   }
   on_tab_source_currentChanged(0);
@@ -81,7 +81,7 @@ ribi::c2h::QtCodeToHtmlMainDialog::~QtCodeToHtmlMainDialog() noexcept
   delete ui;
 }
 
-const std::vector<std::string> ribi::c2h::QtCodeToHtmlMainDialog::EditToVector(
+std::vector<std::string> ribi::c2h::QtCodeToHtmlMainDialog::EditToVector(
   const QPlainTextEdit * const edit) noexcept
 {
   std::vector<std::string> v;
@@ -124,21 +124,21 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
   {
     //Convert file or folder
     const std::string source = ui->edit_source->text().toStdString();
-    if (!ribi::fileio::IsFolder(source)
-      && !ribi::fileio::IsRegularFile(source))
+    if (!ribi::fileio::FileIo().IsFolder(source)
+      && !ribi::fileio::FileIo().IsRegularFile(source))
     {
       ui->button_convert->setText("Source (file or folder) does not exist");
       ui->button_convert->setEnabled(false);
       return;
     }
-    if (ribi::fileio::IsRegularFile(source))
+    if (ribi::fileio::FileIo().IsRegularFile(source))
     {
       const std::vector<std::string> v { Dialog::FileToHtml(source) };
       Display(v);
     }
     else
     {
-      assert(ribi::fileio::IsFolder(source));
+      assert(ribi::fileio::FileIo().IsFolder(source));
       const std::vector<std::string> v {
         Dialog::FolderToHtml(source)
       };
@@ -198,24 +198,24 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString ) noe
     return;
   }
 
-  if (!ribi::fileio::IsRegularFile(source))
+  if (!ribi::fileio::FileIo().IsRegularFile(source))
   {
     //source is a folder
     const std::vector<std::string> v
       = c2h::SortFiles(
           c2h::FilterFiles(
-            ribi::fileio::GetFilesInFolder(source)));
+            ribi::fileio::FileIo().GetFilesInFolder(source)));
     const std::string s
-      = std::string("Convert (source type: folder, ")
+      = "Convert (source type: folder, "
       + boost::lexical_cast<std::string>(v.size())
-      + std::string(" files)");
+      + " files)";
 
     ui->button_convert->setText(s.c_str());
     ui->button_convert->setEnabled(true);
   }
   else
   {
-    assert(ribi::fileio::IsRegularFile(source.c_str()));
+    assert(ribi::fileio::FileIo().IsRegularFile(source.c_str()));
     ui->button_convert->setText("Convert (source type: file)");
     ui->button_convert->setEnabled(true);
   }
@@ -232,7 +232,7 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
   TRACE("Starting QtCodeToHtmlMainDialog::Test");
   //IsRegularFile
   {
-    assert(!ribi::fileio::IsRegularFile("../ToolCodeToHtml"));
+    assert(!ribi::fileio::FileIo().IsRegularFile("../ToolCodeToHtml"));
   }
   {
     QtCodeToHtmlMainDialog d;

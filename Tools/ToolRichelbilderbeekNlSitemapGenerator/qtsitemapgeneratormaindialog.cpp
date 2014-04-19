@@ -64,12 +64,12 @@ void ribi::QtSitemapGeneratorMainDialog::keyPressEvent(QKeyEvent * e)
 
 
 
-const std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder(const std::string& s)
+std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder(const std::string& s)
 {
-  return ribi::fileio::GetPath(s);
+  return ribi::fileio::FileIo().GetPath(s);
 }
 
-const std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder()
+std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder()
 {
   QString s = QApplication::applicationDirPath();
   return s.toStdString();
@@ -93,7 +93,7 @@ void ribi::QtSitemapGeneratorMainDialog::on_button_start_clicked()
   );
   const int result = d.Execute(args);
   const std::string text {
-    std::string("SitemapGeneratorMenuDialog returned with error code ")
+    "SitemapGeneratorMenuDialog returned with error code "
     + boost::lexical_cast<std::string>(result)
   };
   ui->text_output->appendPlainText(text.c_str());

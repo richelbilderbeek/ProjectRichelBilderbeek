@@ -42,10 +42,10 @@ struct Coordinat
   int GetLayer() const noexcept { return m_layer; }
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain this coordinat its X coordinat
   ///0: Left
@@ -63,7 +63,7 @@ struct Coordinat
 
   ///ToStr() converts the coordinat to a std::string
   ///of the form '(layer,x,y)'.
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
   int m_layer;

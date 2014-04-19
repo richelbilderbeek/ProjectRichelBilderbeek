@@ -45,17 +45,17 @@ struct Dialog
 {
   ///Convert a file to an HTML page
   ///The file type will be deduced from the file name
-  static const std::vector<std::string> FileToHtml(
+  static std::vector<std::string> FileToHtml(
     const std::string& file_name) noexcept;
 
   ///Convert a folder to an HTML page
   ///The project type will be deduced from the folder its content
-  static const std::vector<std::string> FolderToHtml(
+  static std::vector<std::string> FolderToHtml(
     const std::string& folder_name
     ) noexcept;
 
   ///Convert a snippet to an HTML page
-  static const std::vector<std::string> SnippetToHtml(
+  static std::vector<std::string> SnippetToHtml(
     const std::vector<std::string>& code,
     const SnippetType snippet_type
   ) noexcept;
@@ -69,20 +69,20 @@ struct Dialog
   ///Extract the page name, from, for example
   /// '/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml'
   /// to 'ToolCodeToHtml'
-  static const std::string ExtractPageName(const std::string& s) noexcept;
+  static std::string ExtractPageName(const std::string& s) noexcept;
 
-  static const std::vector<std::string> FoamFolderToHtml(
+  static std::vector<std::string> FoamFolderToHtml(
     const std::string& folder_name
     ) noexcept;
 
-  static const std::vector<std::string> GetProFilesInFolder(
+  static std::vector<std::string> GetProFilesInFolder(
     const std::string& folder);
 
-  static const std::vector<std::string> ProFolderToHtml(
+  static std::vector<std::string> ProFolderToHtml(
     const std::string& folder_name
     ) noexcept;
 
-  static const std::vector<std::string> TextFolderToHtml(
+  static std::vector<std::string> TextFolderToHtml(
     const std::string& folder_name
     ) noexcept;
 

@@ -28,10 +28,10 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
   WhiteNoiseSystemType GetType() const noexcept { return WhiteNoiseSystemType::lagged; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Update reality, that is, let the real system (i.e. reality) go to its next state
   void GoToNextState(const boost::numeric::ublas::vector<double>& input);

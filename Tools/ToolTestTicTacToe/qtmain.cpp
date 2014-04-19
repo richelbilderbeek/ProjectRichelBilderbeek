@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::QtTestTicTacToeMenuDialog w;
+  ribi::tictactoe::QtTestTicTacToeMenuDialog w;
   w.show();
   return a.exec();
 }

@@ -51,9 +51,9 @@ ribi::CreateQtProjectZipFile::Path::Path(const std::string& main_folder,const st
   #endif
 }
 
-const std::string ribi::CreateQtProjectZipFile::Path::ExtractFilename(const std::string& filename)
+std::string ribi::CreateQtProjectZipFile::Path::ExtractFilename(const std::string& filename)
 {
-  const char seperator = fileio::GetPathSeperator()[0];
+  const char seperator = fileio::FileIo().GetPathSeperator()[0];
   std::vector<std::string> v;
   boost::algorithm::split(v,filename,
     std::bind2nd(std::equal_to<char>(),seperator),
@@ -62,9 +62,9 @@ const std::string ribi::CreateQtProjectZipFile::Path::ExtractFilename(const std:
   else return std::string();
 }
 
-const std::string ribi::CreateQtProjectZipFile::Path::ExtractMainFolder(const std::string& filename)
+std::string ribi::CreateQtProjectZipFile::Path::ExtractMainFolder(const std::string& filename)
 {
-  const char seperator = fileio::GetPathSeperator()[0];
+  const char seperator = fileio::FileIo().GetPathSeperator()[0];
   std::vector<std::string> v;
   boost::algorithm::split(v,filename,
     std::bind2nd(std::equal_to<char>(),seperator),
@@ -75,13 +75,13 @@ const std::string ribi::CreateQtProjectZipFile::Path::ExtractMainFolder(const st
   assert(t!="r");
   #endif
   if (t=="..") t = std::string();
-  if (t=="fparser4.5.1") return "Libraries" + fileio::GetPathSeperator() +"fparser4.5.1";
+  if (t=="fparser4.5.1") return "Libraries" + fileio::FileIo().GetPathSeperator() +"fparser4.5.1";
   return t;
 }
 
-const std::string ribi::CreateQtProjectZipFile::Path::ExtractSubFolder(const std::string& filename)
+std::string ribi::CreateQtProjectZipFile::Path::ExtractSubFolder(const std::string& filename)
 {
-  const char seperator = fileio::GetPathSeperator()[0];
+  const char seperator = fileio::FileIo().GetPathSeperator()[0];
   std::vector<std::string> v;
   boost::algorithm::split(v,filename,
     std::bind2nd(std::equal_to<char>(),seperator),
@@ -105,13 +105,13 @@ bool ribi::CreateQtProjectZipFile::Path::IsComplete() const
 bool ribi::CreateQtProjectZipFile::Path::IsPresent() const
 {
   const std::string path
-    = std::string("..")
-    + ribi::fileio::GetPathSeperator()
+    = ".."
+    + ribi::fileio::FileIo().GetPathSeperator()
     + ".."
-    + ribi::fileio::GetPathSeperator()
+    + ribi::fileio::FileIo().GetPathSeperator()
     + ToStr();
   //TRACE(path);
-  return ribi::fileio::IsRegularFile(path);
+  return ribi::fileio::FileIo().IsRegularFile(path);
 }
 
 void ribi::CreateQtProjectZipFile::Path::SetMainFolder(const std::string& s)
@@ -149,7 +149,7 @@ void ribi::CreateQtProjectZipFile::Path::Test() noexcept
   TRACE("Finished ribi::CreateQtProjectZipFile::Path::Test() successfully");
 }
 
-const std::string ribi::CreateQtProjectZipFile::Path::ToStr() const
+std::string ribi::CreateQtProjectZipFile::Path::ToStr() const
 {
-  return m_main_folder + fileio::GetPathSeperator() + m_sub_folder + fileio::GetPathSeperator() + m_filename;
+  return m_main_folder + fileio::FileIo().GetPathSeperator() + m_sub_folder + fileio::FileIo().GetPathSeperator() + m_filename;
 }

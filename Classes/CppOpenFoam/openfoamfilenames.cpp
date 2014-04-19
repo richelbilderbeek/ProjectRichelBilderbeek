@@ -8,7 +8,7 @@
 #include "fileio.h"
 #include "xml.h"
 
-const std::vector<ribi::fileio::Filename> ribi::foam::Filenames::GetAll() const noexcept
+const std::vector<std::string> ribi::foam::Filenames::GetAll() const noexcept
 {
   return {
     this->GetBoundary(),
@@ -20,149 +20,158 @@ const std::vector<ribi::fileio::Filename> ribi::foam::Filenames::GetAll() const 
   };
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetAlphat() const noexcept
+std::string ribi::foam::Filenames::GetAlphat() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "0"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "alphat"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetBoundary() const noexcept
+std::string ribi::foam::Filenames::GetBoundary() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "boundary"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetFaces() const noexcept
+std::string ribi::foam::Filenames::GetFaces() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "faces"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetNeighbour() const noexcept
+std::string ribi::foam::Filenames::GetNeighbour() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "neighbour"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetCase() const noexcept
+std::string ribi::foam::Filenames::GetCase() const noexcept
 {
-  return ribi::fileio::Filename("case.foam");
+  return std::string("case.foam");
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetControlDict() const noexcept
+std::string ribi::foam::Filenames::GetControlDict() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "system"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "controlDict"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetFvSchemes() const noexcept
+std::string ribi::foam::Filenames::GetFvSchemes() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "system"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "fvSchemes"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetFvSolution() const noexcept
+std::string ribi::foam::Filenames::GetFvSolution() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "system"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "fvSolution"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetOwner() const noexcept
+std::string ribi::foam::Filenames::GetOwner() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "owner"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetPoints() const noexcept
+std::string ribi::foam::Filenames::GetPoints() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "points"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetPressureField() const noexcept
+std::string ribi::foam::Filenames::GetPressureField() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "0"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "p"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetThermophysicalProperties() const noexcept
+std::string ribi::foam::Filenames::GetTemperatureField() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
+      "0"
+    + fileio::FileIo().GetPathSeperator()
+    + "T"
+  );
+}
+
+std::string ribi::foam::Filenames::GetThermophysicalProperties() const noexcept
+{
+  return std::string(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "thermophysicalProperties"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetTransportProperties() const noexcept
+std::string ribi::foam::Filenames::GetTransportProperties() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "transportProperties"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetTurbulenceProperties() const noexcept
+std::string ribi::foam::Filenames::GetTurbulenceProperties() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "turbulenceProperties"
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetVelocityField() const noexcept
+std::string ribi::foam::Filenames::GetVelocityField() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "0"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "U"
   );
 }
 
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Filenames& filenames)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Filenames& filenames) noexcept
 {
   std::stringstream s;
   s

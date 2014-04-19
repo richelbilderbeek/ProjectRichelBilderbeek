@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbmenudialog.h"
@@ -24,12 +44,12 @@ int ribi::pvdb::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
   return 1;
 }
 
-const ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
     "Brainweaver",
-    "program to create and assess concept maps",
+    "tool to create and assess concept maps",
     "the 31st of December 2013",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
@@ -37,13 +57,13 @@ const ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
     GetVersionHistory());
 
   a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
-  a.AddLibrary("FileIo version: " + ribi::fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
   a.AddLibrary("fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
-const ribi::Help ribi::pvdb::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::pvdb::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -57,7 +77,7 @@ const ribi::Help ribi::pvdb::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramBrainweaver
@@ -66,12 +86,12 @@ const boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram(
   return p;
 }
 
-const std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
+std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
 {
-  return "0.45";
+  return "0.47";
 }
 
-const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-06-17: Version 0.01: concept version of ProjectVanDenBogaart, using 'IronHide' style",
@@ -116,6 +136,8 @@ const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const
     "2013-10-03: Version 0.40: minor changes, added wordwrap in some more player",
     "2013-12-29: Version 0.43: bugfixes, renaming, refactoring, preparing for undo functionality",
     "2013-12-31: Version 0.44: when tallying the relevancies of a concept its connected examples, the node names connected to the edges are displayed",
-    "2013-12-31: Version 0.45: sub concept map creation bug fixes"
+    "2013-12-31: Version 0.45: sub concept map creation bug fixes",
+    "2013-xx-xx: Version 0.46: misc",
+    "2014-04-19: Version 0.47: hotfix"
   };
 }

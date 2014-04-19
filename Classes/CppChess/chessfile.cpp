@@ -46,12 +46,12 @@ ribi::Chess::File::File(const int x)
   #endif
 }
 
-const std::string ribi::Chess::File::GetVersion()
+std::string ribi::Chess::File::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::File::GetVersionHistory()
+std::vector<std::string> ribi::Chess::File::GetVersionHistory()
 {
   return {
     "2012-01-25: version 1.0: initial version"
@@ -165,22 +165,6 @@ int ribi::Chess::File::ToInt() const
   assert(value < 8);
   return value;
 }
-
-/*
-File& ribi::Chess::File::operator++()
-{
-  assert(m_s != std::string("h"));
-  m_s = IntToCharToStr(++this->ToInt());
-  return *this;
-}
-
-File& ribi::Chess::File::operator--()
-{
-  assert(m_s != std::string("a"));
-  m_s = IntToCharToStr(--this->ToInt());
-  return *this;
-}
-*/
 
 bool ribi::Chess::operator==(const File& lhs, const File& rhs)
 {

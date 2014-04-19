@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -63,7 +83,7 @@ void ribi::cmap::Edge::EmitSignalEdgeChanged()
   m_signal_edge_changed(this);
 }
 
-void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from)
+void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from) noexcept
 {
   assert(from);
   if (m_from != from)
@@ -73,7 +93,7 @@ void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from)
   }
 }
 
-void ribi::cmap::Edge::SetHeadArrow(const bool has_head_arrow)
+void ribi::cmap::Edge::SetHeadArrow(const bool has_head_arrow) noexcept
 {
   if (m_head_arrow != has_head_arrow)
   {
@@ -82,7 +102,7 @@ void ribi::cmap::Edge::SetHeadArrow(const bool has_head_arrow)
   }
 }
 
-void ribi::cmap::Edge::SetTailArrow(const bool has_tail_arrow)
+void ribi::cmap::Edge::SetTailArrow(const bool has_tail_arrow) noexcept
 {
   if (m_tail_arrow != has_tail_arrow)
   {
@@ -91,7 +111,7 @@ void ribi::cmap::Edge::SetTailArrow(const bool has_tail_arrow)
   }
 }
 
-void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to)
+void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to) noexcept
 {
   assert(to);
   if (m_to != to)
@@ -102,7 +122,7 @@ void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to)
   }
 }
 
-void ribi::cmap::Edge::SetX(const double x)
+void ribi::cmap::Edge::SetX(const double x) noexcept
 {
   if (m_x != x)
   {
@@ -111,7 +131,7 @@ void ribi::cmap::Edge::SetX(const double x)
   }
 }
 
-void ribi::cmap::Edge::SetY(const double y)
+void ribi::cmap::Edge::SetY(const double y) noexcept
 {
   if (m_y != y)
   {
@@ -135,11 +155,11 @@ void ribi::cmap::Edge::Test() noexcept
     assert(nodes.size() >= 2);
     const auto node_from = nodes[0];
     const auto node_to   = nodes[1];
-    for (const boost::shared_ptr<const cmap::Edge>& edge: EdgeFactory::GetTests(node_from,node_to))
+    for (const boost::shared_ptr<const cmap::Edge>& edge: EdgeFactory().GetTests(node_from,node_to))
     {
       //Test copy constructor
       assert(edge);
-      const boost::shared_ptr<const cmap::Edge> c = cmap::EdgeFactory::DeepCopy(edge,node_from,node_to);
+      const boost::shared_ptr<const cmap::Edge> c = cmap::EdgeFactory().DeepCopy(edge,node_from,node_to);
       assert(c);
       assert(*edge == *c);
       assert(*c == *edge);
@@ -148,7 +168,7 @@ void ribi::cmap::Edge::Test() noexcept
       assert(*c->GetTo() == *node_to);
       assert(*c->GetTo() == *nodes[1]);
       const std::string s = ToXml(c,AddConst(nodes));
-      const boost::shared_ptr<ribi::cmap::Edge> d = cmap::EdgeFactory::FromXml(s,nodes);
+      const boost::shared_ptr<ribi::cmap::Edge> d = cmap::EdgeFactory().FromXml(s,nodes);
       assert(d);
       if (*c != *d)
       {
@@ -163,9 +183,10 @@ void ribi::cmap::Edge::Test() noexcept
 }
 #endif
 
-const std::string ribi::cmap::Edge::ToXml(
+std::string ribi::cmap::Edge::ToXml(
   const boost::shared_ptr<const cmap::Edge>& edge,
-  const std::vector<boost::shared_ptr<const cmap::Node> >& nodes)
+  const std::vector<boost::shared_ptr<const cmap::Node> >& nodes
+) noexcept
 {
   std::stringstream s;
   s << "<edge>";
@@ -193,8 +214,8 @@ const std::string ribi::cmap::Edge::ToXml(
 
   const std::string r = s.str();
   assert(r.size() >= 13);
-  assert(r.substr(0,6) == std::string("<edge>"));
-  assert(r.substr(r.size() - 7,7) == std::string("</edge>"));
+  assert(r.substr(0,6) == "<edge>");
+  assert(r.substr(r.size() - 7,7) == "</edge>");
 
   return r;
 }

@@ -17,7 +17,7 @@ namespace Chess {
 
 enum class Castling { kingside, queenside };
 
-const std::string CastlingToStr(const Castling castling);
+std::string CastlingToStr(const Castling castling);
 bool CanStrToCastling(const std::string& s);
 const boost::xpressive::sregex GetCastlingRegex();
 //const Square GetCastlingKingSquare(const Castling castling, const Player player);

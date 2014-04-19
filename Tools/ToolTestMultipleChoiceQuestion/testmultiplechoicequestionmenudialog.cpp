@@ -45,17 +45,17 @@ ribi::TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog
   for(const std::string& filename: files)
   {
 
-    if (!fileio::IsRegularFile(filename))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
-      QFile f( (std::string(":/images/") + filename).c_str() );
+      QFile f( (":/images/" + filename).c_str() );
         f.copy(filename.c_str());
     }
-    if (!fileio::IsRegularFile(filename))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       const std::string s = "TestMultipleChoiceQuestionMenuDialog: file not found: " + filename;
       throw std::logic_error(s.c_str());
     }
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
   }
 }
 
@@ -71,7 +71,7 @@ int ribi::TestMultipleChoiceQuestionMenuDialog::ExecuteSpecific(const std::vecto
   return 1;
 }
 
-const ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -88,7 +88,7 @@ const ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const n
   return a;
 }
 
-const ribi::Help ribi::TestMultipleChoiceQuestionMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestMultipleChoiceQuestionMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -102,7 +102,7 @@ const ribi::Help ribi::TestMultipleChoiceQuestionMenuDialog::GetHelp() const noe
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestMultipleChoiceQuestionMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestMultipleChoiceQuestionMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestMultipleChoiceQuestion
@@ -110,12 +110,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestMultipleChoiceQuestionMen
   assert(p);
   return p;
 }
-const std::string ribi::TestMultipleChoiceQuestionMenuDialog::GetVersion() const noexcept
+std::string ribi::TestMultipleChoiceQuestionMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestMultipleChoiceQuestionMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestMultipleChoiceQuestionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-08-20: Version 1.0: initial version"

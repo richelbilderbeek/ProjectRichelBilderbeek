@@ -16,7 +16,7 @@ struct EpsilonFile
     const Header header = GetDefaultHeader()
   );
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
 
   private:
@@ -28,10 +28,10 @@ struct EpsilonFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const EpsilonFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const EpsilonFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const EpsilonFile& f);
+std::ostream& operator<<(std::ostream& os, const EpsilonFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

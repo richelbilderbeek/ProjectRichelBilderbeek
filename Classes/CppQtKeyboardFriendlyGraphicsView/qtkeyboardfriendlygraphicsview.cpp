@@ -71,7 +71,7 @@ double ribi::QtKeyboardFriendlyGraphicsView::GetDistance(const QPointF& a, const
   return std::sqrt((dx * dx) + (dy * dy));
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsAbove(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsAbove(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -103,7 +103,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsBelow(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsBelow(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -135,7 +135,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsLeft(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsLeft(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -166,7 +166,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsRight(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsRight(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -197,12 +197,12 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::string ribi::QtKeyboardFriendlyGraphicsView::GetVersion() noexcept
+std::string ribi::QtKeyboardFriendlyGraphicsView::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtKeyboardFriendlyGraphicsView::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtKeyboardFriendlyGraphicsView::GetVersionHistory() noexcept
 {
   return {
     "2012-12-13: version 1.0: initial version",

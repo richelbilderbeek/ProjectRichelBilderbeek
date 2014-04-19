@@ -20,7 +20,7 @@ int ribi::PixelatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 0;
 }
 
-const ribi::About ribi::PixelatorMenuDialog::GetAbout() const noexcept
+ribi::About ribi::PixelatorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -35,7 +35,7 @@ const ribi::About ribi::PixelatorMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::PixelatorMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::PixelatorMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -49,7 +49,7 @@ const ribi::Help ribi::PixelatorMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::PixelatorMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::PixelatorMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramPixelator
@@ -58,12 +58,12 @@ const boost::shared_ptr<const ribi::Program> ribi::PixelatorMenuDialog::GetProgr
   return p;
 }
 
-const std::string ribi::PixelatorMenuDialog::GetVersion() const noexcept
+std::string ribi::PixelatorMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::PixelatorMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::PixelatorMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2008-03-01: version 1.0: initial Windows-only version",

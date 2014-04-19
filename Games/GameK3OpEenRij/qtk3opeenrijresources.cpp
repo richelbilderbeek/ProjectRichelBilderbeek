@@ -31,7 +31,7 @@ ribi::QtK3OpEenRijResources::QtK3OpEenRijResources(
 
 }
 
-const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerNames(const Tribool is_player3_kathleen)
+std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerNames(const Tribool is_player3_kathleen)
 {
   if (is_player3_kathleen == Tribool::True)
   {
@@ -64,7 +64,7 @@ const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerNames(co
   }
 }
 
-const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerGreyNames(const Tribool is_player3_kathleen)
+std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerGreyNames(const Tribool is_player3_kathleen)
 {
   if (is_player3_kathleen == Tribool::True)
   {

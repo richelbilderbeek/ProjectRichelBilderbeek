@@ -42,13 +42,13 @@ ribi::QtTestImageCanvasMainDialog::~QtTestImageCanvasMainDialog() noexcept
 const boost::shared_ptr<ribi::ImageCanvas> ribi::QtTestImageCanvasMainDialog::CreateCanvas()
 {
   const int n_cols = 40;
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   QFile file(":/ToolTestImageCanvas/images/R.png");
   file.copy(filename.c_str());
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   boost::shared_ptr<ImageCanvas> canvas(new ImageCanvas(filename,n_cols));
-  fileio::DeleteFile(filename);
-  assert(!fileio::IsRegularFile(filename));
+  fileio::FileIo().DeleteFile(filename);
+  assert(!fileio::FileIo().IsRegularFile(filename));
   return canvas;
 }
 
@@ -105,9 +105,9 @@ void ribi::QtTestImageCanvasMainDialog::Test() noexcept
 void ribi::QtTestImageCanvasMainDialog::on_button_image_clicked()
 {
   QFile qfile(":/ToolTestImageCanvas/images/R.png");
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   qfile.copy(filename.c_str());
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   m_canvas.reset(
     new ImageCanvas(
       filename,
@@ -120,8 +120,8 @@ void ribi::QtTestImageCanvasMainDialog::on_button_image_clicked()
   m_qtcanvas = new QtCanvas(m_canvas);
   ui->verticalLayout->addWidget(m_qtcanvas);
 
-  fileio::DeleteFile(filename);
-  assert(!fileio::IsRegularFile(filename));
+  fileio::FileIo().DeleteFile(filename);
+  assert(!fileio::FileIo().IsRegularFile(filename));
 }
 
 void ribi::QtTestImageCanvasMainDialog::on_box_n_cols_valueChanged(int)

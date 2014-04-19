@@ -45,31 +45,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #pragma GCC diagnostic pop
 
-const std::string ribi::c2h::Version::GetBoostVersion()
+std::string ribi::c2h::Version::GetBoostVersion() noexcept
 {
   std::string s = BOOST_LIB_VERSION;
   std::replace(s.begin(),s.end(),'_','.');
   return s;
 }
 
-const std::string ribi::c2h::Version::GetGccVersion()
+std::string ribi::c2h::Version::GetGccVersion() noexcept
 {
   return
       boost::lexical_cast<std::string>(__GNUC__)
-    + std::string(".")
+    + "."
     + boost::lexical_cast<std::string>(__GNUC_MINOR__)
-    + std::string(".")
+    + "."
     + boost::lexical_cast<std::string>(__GNUC_PATCHLEVEL__);
 }
 
 #ifndef _WIN32
-const std::string ribi::c2h::Version::GetLubuntuVersion()
+std::string ribi::c2h::Version::GetLubuntuVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
-      = std::string("cat /etc/*-release > ")
+      = "cat /etc/*-release > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -92,7 +92,7 @@ const std::string ribi::c2h::Version::GetLubuntuVersion()
       && s.substr(0,15)=="DISTRIB_RELEASE")
     {
       const int i = s.find_last_of("=");
-      fileio::DeleteFile(filename);
+      fileio::FileIo().DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -101,13 +101,13 @@ const std::string ribi::c2h::Version::GetLubuntuVersion()
 #endif
 
 #ifndef _WIN32
-const std::string ribi::c2h::Version::GetLubuntuVersionCodename()
+std::string ribi::c2h::Version::GetLubuntuVersionCodename() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
-      = std::string("cat /etc/*-release > ")
+      = "cat /etc/*-release > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -130,7 +130,7 @@ const std::string ribi::c2h::Version::GetLubuntuVersionCodename()
       && s.substr(0,16)=="DISTRIB_CODENAME")
     {
       const int i = s.find_last_of("=");
-      fileio::DeleteFile(filename);
+      fileio::FileIo().DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -138,15 +138,15 @@ const std::string ribi::c2h::Version::GetLubuntuVersionCodename()
 }
 #endif
 
-const std::string ribi::c2h::Version::GetQtVersion()
+std::string ribi::c2h::Version::GetQtVersion() noexcept
 {
   return QT_VERSION_STR;
 }
 
 #ifndef _WIN32
-const std::string ribi::c2h::Version::GetQtCreatorVersion()
+std::string ribi::c2h::Version::GetQtCreatorVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   const std::string cmd { "qtcreator -version 2> " + filename };
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
   const int error = std::system(cmd.c_str());
@@ -155,16 +155,16 @@ const std::string ribi::c2h::Version::GetQtCreatorVersion()
     return "unknown";
   }
   assert(error == 0);
-  const std::vector<std::string> v { ribi::fileio::FileToVector(filename) };
+  const std::vector<std::string> v { ribi::fileio::FileIo().FileToVector(filename) };
 
-  fileio::DeleteFile(filename);
+  fileio::FileIo().DeleteFile(filename);
 
   const std::size_t sz = v.size();
   assert(sz > 1);
   for (std::size_t i=0; i!=sz; ++i)
   {
     const std::string& s = v[i];
-    if (s.substr(0,11) == std::string("Qt Creator "))
+    if (s.substr(0,11) == "Qt Creator ")
     {
       return s.substr(11,5);
     }
@@ -173,19 +173,19 @@ const std::string ribi::c2h::Version::GetQtCreatorVersion()
 }
 #endif
 
-const std::string ribi::c2h::Version::GetStlVersion()
+std::string ribi::c2h::Version::GetStlVersion() noexcept
 {
   return __VERSION__;
 }
 
 #ifndef _WIN32
-const std::string ribi::c2h::Version::GetUbuntuVersion()
+std::string ribi::c2h::Version::GetUbuntuVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
-      = std::string("cat /etc/*-release > ")
+      = "cat /etc/*-release > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -208,7 +208,7 @@ const std::string ribi::c2h::Version::GetUbuntuVersion()
       && s.substr(0,15)=="DISTRIB_RELEASE")
     {
       const int i = s.find_last_of("=");
-      fileio::DeleteFile(filename);
+      fileio::FileIo().DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -217,9 +217,9 @@ const std::string ribi::c2h::Version::GetUbuntuVersion()
 #endif
 
 #ifndef _WIN32
-const std::string ribi::c2h::Version::GetUbuntuVersionCodename()
+std::string ribi::c2h::Version::GetUbuntuVersionCodename() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd = "cat /etc/*-release > " + filename;
@@ -244,7 +244,7 @@ const std::string ribi::c2h::Version::GetUbuntuVersionCodename()
       && s.substr(0,16)=="DISTRIB_CODENAME")
     {
       const int i = s.find_last_of("=");
-      fileio::DeleteFile(filename);
+      fileio::FileIo().DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -252,13 +252,13 @@ const std::string ribi::c2h::Version::GetUbuntuVersionCodename()
 }
 #endif
 
-const std::string ribi::c2h::Version::GetVirtualBoxVersion()
+std::string ribi::c2h::Version::GetVirtualBoxVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary file
   {
     const std::string cmd
-      = std::string("vboxmanage --version > ")
+      = "vboxmanage --version > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -268,19 +268,19 @@ const std::string ribi::c2h::Version::GetVirtualBoxVersion()
     std::string version;
     f >> version;
     //Delete temporary file
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
     return version;
   }
   return "unknown";
 }
 
-const std::string ribi::c2h::Version::GetWineVersion()
+std::string ribi::c2h::Version::GetWineVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary file
   {
     const std::string cmd
-      = std::string("wine --version > ")
+      = "wine --version > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -293,13 +293,13 @@ const std::string ribi::c2h::Version::GetWineVersion()
     //Remove 'wine-' prefix
     version = version.substr(5,version.size() - 5);
     //Delete temporary file
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
     return version;
   }
   return "unknown";
 }
 
-const std::string ribi::c2h::Version::GetWtVersion()
+std::string ribi::c2h::Version::GetWtVersion() noexcept
 {
   #ifndef _WIN32
   return WT_VERSION_STR;

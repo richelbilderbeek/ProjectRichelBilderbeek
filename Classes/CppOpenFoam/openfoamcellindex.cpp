@@ -55,7 +55,7 @@ void ribi::foam::CellIndex::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const CellIndex& cell_index)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const CellIndex& cell_index) noexcept
 {
   os << cell_index.Get();
   return os;

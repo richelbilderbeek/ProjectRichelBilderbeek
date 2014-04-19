@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -27,12 +47,14 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question)
   #ifndef NDEBUG
   Test();
   assert(ConceptMap::CanConstruct(m_nodes,m_edges));
-  assert(this->GetQuestion() == question);
-
   assert(FindCenterNode()
     && "Assume a CenterNode at the center of ConceptMap");
   assert(IsCenterNode(FindCenterNode())
-    && "Assume a CenterNode at the center of ConceptMap");
+    && "The CenterNode found must really be a CenterNode");
+  assert(FindCenterNode()->GetConcept()
+    && "The CenterNode must have an initialized Concept to display the focus");
+  assert(FindCenterNode()->GetConcept()->GetName() == question
+    && "The CenterNode must display the focus");
   #endif
 }
 
@@ -58,12 +80,10 @@ ribi::cmap::ConceptMap::ConceptMap(
     {
       const auto edge = edges[i];
       const auto const_nodes = AddConst(nodes);
-      #ifndef NDEBUG
       const auto from_iter = std::find(nodes.begin(),nodes.end(),edge->GetFrom());
       const auto to_iter = std::find(nodes.begin(),nodes.end(),edge->GetTo());
       assert(from_iter != nodes.end());
       assert(to_iter != nodes.end());
-      #endif
       std::cout << i << ": " << Edge::ToXml(edge,const_nodes) << '\n';
     }
   }
@@ -100,10 +120,19 @@ ribi::cmap::ConceptMap::ConceptMap(
 void ribi::cmap::ConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
+  #define TODO_RICHEL
+  #ifdef  TODO_RICHEL
+  if (std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 0)
+  {
+    TRACE("ERROR");
+  }
+  assert(HasNode(edge->GetFrom()));
+  assert(HasNode(edge->GetTo()));
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 1
-    && "First enter the node this edge originates from");
+    && "First enter the node this edge originates from"); //TODO RJCB
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
     && "First enter the node this edge targets to");
+  #endif
   m_edges.push_back(edge);
 }
 
@@ -295,7 +324,9 @@ void ribi::cmap::ConceptMap::DeleteNode(const boost::shared_ptr<Node> node)
 
 bool ribi::cmap::ConceptMap::Empty() const
 {
-  return m_nodes.empty() && m_edges.empty();
+  assert(!(m_nodes.empty() && !m_edges.empty())
+    && "If there are no nodes, there cannot be edges");
+  return m_nodes.empty(); // && m_edges.empty();
 }
 
 const boost::shared_ptr<const ribi::cmap::CenterNode> ribi::cmap::ConceptMap::FindCenterNode() const noexcept
@@ -341,7 +372,7 @@ const std::vector<boost::shared_ptr<const ribi::cmap::Edge> > ribi::cmap::Concep
 
 const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::ConceptMap::GetFocalNode() const noexcept
 {
-  if (m_nodes.empty()) return nullptr;
+  if (m_nodes.empty()) return boost::shared_ptr<const Node>();
   return m_nodes[0];
 }
 
@@ -365,7 +396,8 @@ const std::vector<boost::shared_ptr<const ribi::cmap::Node> > ribi::cmap::Concep
   return AddConst(m_nodes);
 }
 
-const std::string ribi::cmap::ConceptMap::GetQuestion() const noexcept
+/*
+std::string ribi::cmap::ConceptMap::GetQuestion() const noexcept
 {
   const boost::shared_ptr<const CenterNode> center_node(FindCenterNode());
   if (center_node)
@@ -375,13 +407,14 @@ const std::string ribi::cmap::ConceptMap::GetQuestion() const noexcept
   }
   else return "";
 }
+*/
 
-const std::string ribi::cmap::ConceptMap::GetVersion() noexcept
+std::string ribi::cmap::ConceptMap::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
+std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
 {
   return {
     "2013-xx-xx: Version 1.0: initial version",
@@ -390,16 +423,17 @@ const std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexc
   };
 }
 
+bool ribi::cmap::ConceptMap::HasNode(const boost::shared_ptr<const Node>& node) const noexcept
+{
+  return std::count(m_nodes.begin(),m_nodes.end(),node);
+}
+
 bool ribi::cmap::ConceptMap::HasSameContent(
   const ribi::cmap::ConceptMap& lhs,
   const ribi::cmap::ConceptMap& rhs)
 {
   const bool trace_verbose = false;
-  if (lhs.GetQuestion() != rhs.GetQuestion())
-  {
-    if (trace_verbose) { TRACE("Questions differ"); }
-    return false;
-  }
+
   if (lhs.GetEdges().size() != rhs.GetEdges().size())
   {
     if (trace_verbose) { TRACE("Number of edges differ"); }
@@ -641,7 +675,7 @@ bool ribi::cmap::ConceptMap::IsValid() const
 }
 #endif
 
-const std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ribi::cmap::ConceptMap> map)
+std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ribi::cmap::ConceptMap> map) noexcept
 {
   std::stringstream s;
   s << "<concept_map>";
@@ -663,8 +697,8 @@ const std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ri
 
   const std::string r = s.str();
   assert(r.size() >= 27);
-  assert(r.substr(0,13) == std::string("<concept_map>"));
-  assert(r.substr(r.size() - 14,14) == std::string("</concept_map>"));
+  assert(r.substr(0,13) == "<concept_map>");
+  assert(r.substr(r.size() - 14,14) == "</concept_map>");
 
   return r;
 }
@@ -697,7 +731,7 @@ int ribi::cmap::CountCenterNodeEdges(const boost::shared_ptr<const ConceptMap> c
   return cnt;
 }
 
-bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs)
+bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs) noexcept
 {
   //Compare nodes
   {
@@ -745,7 +779,7 @@ bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap:
 
 }
 
-bool ribi::cmap::operator!=(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs)
+bool ribi::cmap::operator!=(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs) noexcept
 {
   return !(lhs == rhs);
 }

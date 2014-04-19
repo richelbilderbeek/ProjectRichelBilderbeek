@@ -18,7 +18,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamheader.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -34,7 +34,7 @@ ribi::foam::EpsilonFile::EpsilonFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::EpsilonFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::EpsilonFile::GetDefaultHeader() noexcept
 {
   return Header("volScalarField","0","","epsilon");
 }
@@ -52,7 +52,7 @@ void ribi::foam::EpsilonFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const EpsilonFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const EpsilonFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

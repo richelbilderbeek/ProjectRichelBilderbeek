@@ -39,6 +39,7 @@ ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
     (from->pos().x() + to->pos().x()) * 0.49,
     (from->pos().y() + to->pos().y()) * 0.49
   );
+  assert(m_arrow->GetMidItem());
   assert(m_arrow->GetMidItem()->pos() == this->pos());
   assert(m_arrow->GetFromItem()->pos() == from->pos());
   assert(m_arrow->GetToItem()->pos() == to->pos());
@@ -50,12 +51,12 @@ QRectF ribi::QtLabeledQuadBezierArrowItem::boundingRect() const
     .united(m_arrow->boundingRect().translated(-this->pos()));
 }
 
-const std::string ribi::QtLabeledQuadBezierArrowItem::GetVersion() noexcept
+std::string ribi::QtLabeledQuadBezierArrowItem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtLabeledQuadBezierArrowItem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtLabeledQuadBezierArrowItem::GetVersionHistory() noexcept
 {
   return {
     "2013-01-01: version 1.0: initial version"
@@ -70,6 +71,7 @@ void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
 
 void ribi::QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
+  assert(m_arrow->GetMidItem());
   assert(this->pos() == m_arrow->GetMidItem()->pos());
   painter->translate(-this->pos());
   m_arrow->paint(painter,option,widget);

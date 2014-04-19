@@ -1,13 +1,13 @@
 include(../../Tools/ToolPrimeExpert/ToolPrimeExpertConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.cpp \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.cpp
+    ../../Tools/ToolPrimeExpert/qtprimeexpertmenudialog.cpp \
+    ../../Tools/ToolPrimeExpert/qtprimeexpertmaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.h \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.h
+    ../../Tools/ToolPrimeExpert/qtprimeexpertmenudialog.h \
+    ../../Tools/ToolPrimeExpert/qtprimeexpertmaindialog.h
 
 FORMS += \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.ui \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.ui
+    ../../Tools/ToolPrimeExpert/qtprimeexpertmenudialog.ui \
+    ../../Tools/ToolPrimeExpert/qtprimeexpertmaindialog.ui

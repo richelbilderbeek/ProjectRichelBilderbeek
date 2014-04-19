@@ -31,6 +31,6 @@ int main(int, char * argv[])
   ribi::CreateGlossaryMainDialog();
 
   std::cout << "Successfully created glossaries in folder "
-    << ribi::fileio::GetPath(argv[0]) << "\n";
+    << ribi::fileio::FileIo().GetPath(argv[0]) << "\n";
 }
 

@@ -83,20 +83,20 @@ void ribi::QtTestDialMainDialog::DisplayDialColor() noexcept
   const unsigned char b = ui->dial->GetWidget()->GetDial()->GetBlue();
 
   const std::string text
-    = std::string("Color: (")
+    = "Color: ("
     + boost::lexical_cast<std::string>(boost::numeric_cast<int>(r))
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(boost::numeric_cast<int>(g))
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(boost::numeric_cast<int>(b))
-    + std::string(") (RGB)");
+    + ") (RGB)";
   ui->label_color->setText(text.c_str());
 }
 
 void ribi::QtTestDialMainDialog::DisplayDialValue() noexcept
 {
   const std::string s
-    = std::string("Dial angle: ")
+    = "Dial angle: "
     + boost::lexical_cast<std::string>(ui->dial->GetWidget()->GetDial()->GetPosition());
   ui->label_angle->setText(s.c_str());
   DisplayDialAsText();

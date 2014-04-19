@@ -38,7 +38,7 @@ bool ribi::c2h::SnippetTypes::CanStrToSnippetType(const std::string& s)
   }
 }
 
-const std::string ribi::c2h::SnippetTypes::SnippetTypeToStr(const SnippetType t)
+std::string ribi::c2h::SnippetTypes::SnippetTypeToStr(const SnippetType t) noexcept
 {
   switch (t)
   {
@@ -52,7 +52,7 @@ const std::string ribi::c2h::SnippetTypes::SnippetTypeToStr(const SnippetType t)
   throw std::logic_error("c2h::SnippetTypeToStr");
 }
 
-const std::vector<ribi::c2h::SnippetType> ribi::c2h::SnippetTypes::GetAllSnippetTypes()
+std::vector<ribi::c2h::SnippetType> ribi::c2h::SnippetTypes::GetAllSnippetTypes() noexcept
 {
   const std::vector<SnippetType> v {
     SnippetType::cpp,

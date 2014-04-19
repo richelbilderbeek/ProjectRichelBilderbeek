@@ -38,7 +38,7 @@ ribi::RegexTesterBoostXpressiveMainDialog::RegexTesterBoostXpressiveMainDialog()
 }
 
 
-const boost::shared_ptr<ribi::RegexTesterMainDialog>
+boost::shared_ptr<ribi::RegexTesterMainDialog>
   ribi::RegexTesterBoostXpressiveMainDialog::Clone() const noexcept
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
@@ -46,7 +46,7 @@ const boost::shared_ptr<ribi::RegexTesterMainDialog>
   return d;
 }
 
-const std::vector<std::string>
+std::vector<std::string>
   ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
@@ -57,7 +57,7 @@ const std::vector<std::string>
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string>
+std::vector<std::string>
   ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatches(
   const std::string& s,
   const boost::xpressive::sregex& r)
@@ -92,7 +92,7 @@ bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatchLine(
   return boost::xpressive::regex_match(line,r);
 }
 
-const std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
+std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
   const std::string& str,
   const std::string& regex_str,
   const std::string& format_str) const

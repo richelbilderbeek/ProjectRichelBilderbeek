@@ -50,10 +50,10 @@ struct QtExercise : public QtHideAndShowDialog
   const Exercise * GetExercise() const;
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the questions, read from a file
   ///Throws std::logic_error if file does not exist

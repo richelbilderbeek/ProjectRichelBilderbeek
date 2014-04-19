@@ -77,7 +77,7 @@ void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QSt
 
   if (!QFile::exists(source_folder.c_str()))
   {
-    const std::string text = "Folder '" + source_folder + std::string("' does not exist.");
+    const std::string text = "Folder '" + source_folder + "' does not exist.";
     ui->text->setPlainText(text.c_str());
     return;
   }
@@ -105,7 +105,7 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
   const int n_tests = std::count_if(
     pro_filenames.begin(), pro_filenames.end(),
       [](const std::string& filename)
-      { return fileio::IsRegularFile(filename); }
+      { return fileio::FileIo().IsRegularFile(filename); }
     );
   const std::string s = "Testing "
     + boost::lexical_cast<std::string>(n_tests)
@@ -115,19 +115,19 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
 
   for (const std::string& pro_filename: pro_filenames)
   {
-    if (!fileio::IsRegularFile(pro_filename)) continue;
-    if (!fileio::IsFolder(pro_filename)) continue;
+    if (!fileio::FileIo().IsRegularFile(pro_filename)) continue;
+    if (!fileio::FileIo().IsFolder(pro_filename)) continue;
     const CreateQtProjectZipFileMainDialog d(pro_filename);
     assert(!d.GetScript().empty());
   }
 
   for (const std::string& pro_filename: pro_filenames)
   {
-    if (!fileio::IsRegularFile(pro_filename)) continue;
+    if (!fileio::FileIo().IsRegularFile(pro_filename)) continue;
     const boost::shared_ptr<const QtCreatorProFile> pro_file(
       new QtCreatorProFile(pro_filename));
     assert(pro_file);
-    assert(fileio::IsRegularFile(pro_filename));
+    assert(fileio::FileIo().IsRegularFile(pro_filename));
     const boost::shared_ptr<const QtCreatorProFileZipScript> script(
       new QtCreatorProFileZipScript(pro_file));
     assert(script);

@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -164,6 +184,10 @@ ribi::pvdb::QtPvdbClusterWidget * ribi::pvdb::QtPvdbClusterDialog::GetWidget()
 
 void ribi::pvdb::QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
 {
+  if (!m_widget)
+  {
+    return;
+  }
   if (e->key()  == Qt::Key_Escape)
   {
     close();
@@ -224,7 +248,7 @@ void ribi::pvdb::QtPvdbClusterDialog::on_button_add_clicked()
 {
   assert(m_widget && "This button can only be clicked when there is a widget");
 
-  assert(boost::algorithm::trim_all_copy(std::string(" \t x \t ")) == std::string("x"));
+  assert(boost::algorithm::trim_all_copy(std::string(" \t x \t ")) == "x");
   const std::string text = boost::algorithm::trim_all_copy(ui->edit->text().toStdString());
   if (text.empty()) return;
   //QStringList v;
@@ -443,9 +467,9 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
     const boost::shared_ptr<Node> node_b(cmap::NodeFactory().GetTest(index_1));
     const boost::shared_ptr<Node> node_c(cmap::NodeFactory().GetTest(index_2));
     const Nodes nodes = { node_a, node_b, node_c };
-    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<Edge> edge_b(cmap::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<Edge> edge_c(cmap::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<Edge> edge_b(cmap::EdgeFactory().Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<Edge> edge_c(cmap::EdgeFactory().Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
     const Edges edges = { edge_a, edge_b, edge_c };
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
@@ -481,7 +505,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Save()
   const std::string filename
     =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
       || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
-     ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
+     ? filename_raw + "." + pvdb::File::GetFilenameExtension()
      : filename_raw);
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()

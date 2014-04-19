@@ -112,12 +112,12 @@ ribi::pylos::Move::Move(const std::string& s)
   assert(s.size() == 34);
 }
 
-const std::string ribi::pylos::Move::GetVersion() noexcept
+std::string ribi::pylos::Move::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::pylos::Move::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::Move::GetVersionHistory() noexcept
 {
   return {
     "2012-05-05: version 2.0: initial release version"
@@ -180,7 +180,7 @@ void ribi::pylos::Move::Test() noexcept
 }
 #endif
 
-const std::string ribi::pylos::Move::ToStr() const noexcept
+std::string ribi::pylos::Move::ToStr() const noexcept
 {
   #ifndef NDEBUG
   if (!(m_move.size() == 1 || m_move.size() == 2)) TRACE(m_move.size());

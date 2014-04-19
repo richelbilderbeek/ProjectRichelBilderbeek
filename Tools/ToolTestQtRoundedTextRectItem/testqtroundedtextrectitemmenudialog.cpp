@@ -43,7 +43,7 @@ int ribi::TestQtRoundedTextRectItemMenuDialog::ExecuteSpecific(const std::vector
   return 1;
 }
 
-const ribi::About ribi::TestQtRoundedTextRectItemMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestQtRoundedTextRectItemMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -59,7 +59,7 @@ const ribi::About ribi::TestQtRoundedTextRectItemMenuDialog::GetAbout() const no
   return a;
 }
 
-const ribi::Help ribi::TestQtRoundedTextRectItemMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestQtRoundedTextRectItemMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -73,7 +73,7 @@ const ribi::Help ribi::TestQtRoundedTextRectItemMenuDialog::GetHelp() const noex
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestQtRoundedTextRectItemMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestQtRoundedTextRectItemMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestQtRoundedTextRectItem
@@ -82,12 +82,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestQtRoundedTextRectItemMenu
   return p;
 }
 
-const std::string ribi::TestQtRoundedTextRectItemMenuDialog::GetVersion() const noexcept
+std::string ribi::TestQtRoundedTextRectItemMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::TestQtRoundedTextRectItemMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestQtRoundedTextRectItemMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-12-21: version 1.0: initial version",

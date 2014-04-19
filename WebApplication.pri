@@ -1,3 +1,24 @@
+win32 {
+  # Windows only
+  message("Web application, built for Windows")
+}
+
+macx {
+  # Mac only
+  message("Web application, built for Mac")
+}
+
+unix:!macx{
+  # Linux only
+  message("Web application, built for Linux")
+  QMAKE_CXXFLAGS += -Werror
+}
+
+cross_compile {
+  # Crosscompile only
+  message("Web application, cross-compiling from Linux to Windows")
+}
+
 # Go ahead and use Qt.Core: it is about as platform-independent as
 # the STL and Boost
 QT += core
@@ -23,8 +44,5 @@ CONFIG(release, debug|release) {
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+QMAKE_CXXFLAGS += -std=c++1y -Wall -Wextra -Weffc++
 
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}

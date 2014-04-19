@@ -50,12 +50,12 @@ struct LoopReader
     if (m_cur == m_end) m_cur = m_begin;
   }
 
-  static const std::string GetVersion() noexcept
+  static std::string GetVersion() noexcept
   {
     return "1.2";
   }
 
-  static const std::vector<std::string> GetVersionHistory() noexcept
+  static std::vector<std::string> GetVersionHistory() noexcept
   {
     return {
       "2009-08-26: Version 1.0: initial version",

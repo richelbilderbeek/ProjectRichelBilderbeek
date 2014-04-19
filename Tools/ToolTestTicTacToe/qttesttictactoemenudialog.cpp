@@ -5,6 +5,7 @@
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
+#include "tictactoeais.h"
 #include "testtictactoemenudialog.h"
 #include "qtaboutdialog.h"
 #include "qttesttictactoemaindialog.h"
@@ -13,7 +14,7 @@
 #include "ui_qttesttictactoemenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestTicTacToeMenuDialog::QtTestTicTacToeMenuDialog(QWidget *parent) :
+ribi::tictactoe::QtTestTicTacToeMenuDialog::QtTestTicTacToeMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestTicTacToeMenuDialog)
 {
@@ -24,17 +25,17 @@ ribi::QtTestTicTacToeMenuDialog::QtTestTicTacToeMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTestTicTacToeMenuDialog::~QtTestTicTacToeMenuDialog() noexcept
+ribi::tictactoe::QtTestTicTacToeMenuDialog::~QtTestTicTacToeMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestTicTacToeMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::tictactoe::QtTestTicTacToeMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtTestTicTacToeMenuDialog::on_button_about_clicked()
+void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_about_clicked()
 {
   About a = TestTicTacToeMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -44,29 +45,32 @@ void ribi::QtTestTicTacToeMenuDialog::on_button_about_clicked()
   this->ShowChild(&d);
 }
 
-void ribi::QtTestTicTacToeMenuDialog::on_button_quit_clicked()
+void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void ribi::QtTestTicTacToeMenuDialog::on_button_start_clicked()
+void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_start_clicked()
 {
-  QtTestTicTacToeMainDialog d;
+  QtTestTicTacToeMainDialog d(nullptr,nullptr);
   d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void ribi::QtTestTicTacToeMenuDialog::Test() noexcept
+void ribi::tictactoe::QtTestTicTacToeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestTicTacToeMenuDialog::Test");
-  QtTestTicTacToeMainDialog();
-  //assert(1==2); //TEMP
-  TRACE("Finished ribi::QtTestTicTacToeMenuDialog::Test successfully");
+  TRACE("Starting ribi::tictactoe::QtTestTicTacToeMenuDialog::Test");
+  for (auto ai: Ais().GetAll())
+  {
+    QtTestTicTacToeMainDialog(nullptr,ai);
+  }
+  assert(TestTicTacToeMenuDialog().GetVersion().empty());
+  TRACE("Finished ribi::tictactoe::QtTestTicTacToeMenuDialog::Test successfully");
 }
 #endif

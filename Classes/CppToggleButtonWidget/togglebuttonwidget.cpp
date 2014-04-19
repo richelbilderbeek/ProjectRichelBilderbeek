@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include "drawcanvas.h"
+#include "textcanvas.h"
 #include "togglebutton.h"
 #include "trace.h"
 
@@ -49,18 +50,19 @@ void ribi::ToggleButtonWidget::Click(const int, const int)
   m_button->Toggle();
 }
 
-const std::string ribi::ToggleButtonWidget::GetVersion() noexcept
+std::string ribi::ToggleButtonWidget::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
-const std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: version 1.0: initial version",
     "2011-08-20: Version 1.1: added operator<<",
     "2011-08-31: Version 1.2: added setting the color of a ToggleButton",
-    "2014-01-21: Version 1.3: added ToDrawCanvas"
+    "2014-01-21: Version 1.3: added ToDrawCanvas",
+    "2014-03-28: Version 1.4: replaced custom Rect class by Boost.Geometry"
   };
 }
 
@@ -147,12 +149,40 @@ const boost::shared_ptr<ribi::DrawCanvas> ribi::ToggleButtonWidget::ToDrawCanvas
   return canvas;
 }
 
+const boost::shared_ptr<ribi::TextCanvas> ribi::ToggleButtonWidget::ToTextCanvas(
+  const int width, const int height
+) const noexcept
+{
+  const boost::shared_ptr<TextCanvas> canvas {
+    new TextCanvas(width,height)
+  };
+  assert(width  == 6 && "For now");
+  assert(height == 4 && "For now");
+
+
+  if (GetToggleButton()->IsPressed())
+  {
+    canvas->PutText(0,0," ____ ");
+    canvas->PutText(0,1,"|    |");
+    canvas->PutText(0,2,"|____|");
+  }
+  else
+  {
+    canvas->PutText(0,0," ____ ");
+    canvas->PutText(0,1,"|    |");
+    canvas->PutText(0,2,"|____|");
+    canvas->PutText(0,3,"|____|");
+  }
+  return canvas;
+}
+
+
 std::ostream& ribi::operator<<(std::ostream& os, const ToggleButtonWidget& button)
 {
   os
     << "<ToggleButtonWidget>"
     << *button.m_button
-    << button.GetGeometry()
+    //<< button.GetGeometry()
     << "</ToggleButtonWidget>";
   return os;
 }

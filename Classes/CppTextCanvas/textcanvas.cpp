@@ -66,7 +66,7 @@ char ribi::TextCanvas::GetChar(const int x, const int y) const noexcept
   return m_canvas[y][x];
 }
 
-bool ribi::TextCanvas::IsInRange(const int x, const int y) const
+bool ribi::TextCanvas::IsInRange(const int x, const int y) const noexcept
 {
   if (   x < 0
       || y < 0
@@ -77,16 +77,32 @@ bool ribi::TextCanvas::IsInRange(const int x, const int y) const
   return true;
 }
 
-const std::string ribi::TextCanvas::GetVersion() noexcept
+std::string ribi::TextCanvas::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TextCanvas::GetVersionHistory() noexcept
+std::vector<std::string> ribi::TextCanvas::GetVersionHistory() noexcept
 {
   return {
     "2014-01-09: version 1.0: initial version"
   };
+}
+
+void ribi::TextCanvas::PutCanvas(
+  const int left, const int top,
+  const boost::shared_ptr<const TextCanvas>& canvas
+) noexcept
+{
+  const int height { canvas->GetHeight() };
+  const int width { canvas->GetWidth() };
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      PutChar(left + x, top + y,canvas->GetChar(x,y));
+    }
+  }
 }
 
 void ribi::TextCanvas::PutChar(const int x, const int y, const char c) noexcept
@@ -172,7 +188,7 @@ void ribi::TextCanvas::Test() noexcept
 }
 #endif
 
-const std::string ribi::TextCanvas::ToString() const noexcept
+std::string ribi::TextCanvas::ToString() const noexcept
 {
   const std::vector<std::string> v { ToStrings() };
   std::string s;
@@ -190,7 +206,7 @@ const std::string ribi::TextCanvas::ToString() const noexcept
 }
 
 
-const std::vector<std::string> ribi::TextCanvas::ToStrings() const noexcept
+std::vector<std::string> ribi::TextCanvas::ToStrings() const noexcept
 {
   if (m_coordinat_system == CanvasCoordinatSystem::screen)
   {

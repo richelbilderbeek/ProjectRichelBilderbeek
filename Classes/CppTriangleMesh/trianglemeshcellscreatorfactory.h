@@ -13,6 +13,7 @@
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/quantity.hpp>
 #include "trianglemeshfwd.h"
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -21,43 +22,44 @@ namespace trim {
 ///The only class to use Cell its constructor
 struct CellsCreatorFactory
 {
-  CellsCreatorFactory();
+  CellsCreatorFactory() noexcept;
 
-  const boost::shared_ptr<CellsCreator> Create(
+  boost::shared_ptr<CellsCreator> Create(
     const boost::shared_ptr<const Template> t,
     const int n_layers,
-    const boost::units::quantity<boost::units::si::length> layer_height
+    const boost::units::quantity<boost::units::si::length> layer_height,
+    const CreateVerticalFacesStrategy strategy
   ) const noexcept;
 
 
   ///Create a cell in the shape of a prism
   /*
-
-      +
-     /|\
-    +---+
-    | | |
-    | + |
-    |/ \|
-    +---+
-
+        +
+       /|\
+      +---+
+      | | |
+      | + |
+      |/ \|
+      +---+
   */
-  const boost::shared_ptr<CellsCreator> CreateTestPrism() const noexcept;
+  boost::shared_ptr<CellsCreator> CreateTestPrism(
+    const CreateVerticalFacesStrategy strategy
+  ) const noexcept;
 
 
-  const boost::shared_ptr<CellsCreator> CreateTestCube() const noexcept;
   ///Create two prisms-shaped cell to form a cube
   /*
-
+        +---+
+       /|\ /|
+      +---+ |
+      | | | |
+      | +-|-+
+      |/ \|/
       +---+
-     /|\ /|
-    +---+ |
-    | | | |
-    | +-|-+
-    |/ \|/
-    +---+
-
   */
+  boost::shared_ptr<CellsCreator> CreateTestCube(
+    const CreateVerticalFacesStrategy strategy
+  ) const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

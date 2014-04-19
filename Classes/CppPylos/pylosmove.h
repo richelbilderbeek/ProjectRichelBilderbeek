@@ -50,15 +50,15 @@ struct Move
   Move(const std::string& s);
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Test if this Move is valid
   bool IsValid() const noexcept;
 
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   ///What m_move is, depends on its size:
   ///m_move.size() == 1: placement at m_move[0]

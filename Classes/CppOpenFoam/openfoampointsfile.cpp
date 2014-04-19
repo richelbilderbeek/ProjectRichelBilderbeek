@@ -16,7 +16,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamheader.h"
 #include "openfoampointsfileitem.h"
 #include "trace.h"
@@ -34,12 +34,12 @@ ribi::foam::PointsFile::PointsFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::PointsFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::PointsFile::GetDefaultHeader() noexcept
 {
   return Header("vectorField","constant/polyMesh","","points");
 }
 
-const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
+ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
 {
   PointsFile b;
   is >> b;
@@ -47,15 +47,15 @@ const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
   return b;
 }
 
-const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(const std::string& filename)
+ribi::foam::PointsFile ribi::foam::PointsFile::Parse(const std::string& filename)
 {
-  const std::string tmp_filename { fileio::GetTempFileName() };
-  fileio::CopyFile(filename,tmp_filename);
+  const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
+  fileio::FileIo().CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
   ribi::foam::PointsFile file { Parse(f) };
   f.close();
-  fileio::DeleteFile(tmp_filename);
+  fileio::FileIo().DeleteFile(tmp_filename);
   return file;
 }
 
@@ -68,6 +68,8 @@ void ribi::foam::PointsFile::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::PointsFile::Test");
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   //Some initial data
   const Header header("some_name","some_location","some_object");
   std::vector<PointsFileItem> items;
@@ -153,12 +155,12 @@ void ribi::foam::PointsFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         TRACE("ERROR");
         TRACE(filename);
       }
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       PointsFile b(filename);
       if (b.GetItems().empty())
       {
@@ -171,7 +173,7 @@ void ribi::foam::PointsFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const PointsFile& lhs,const PointsFile& rhs)
+bool ribi::foam::operator==(const PointsFile& lhs,const PointsFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -186,7 +188,7 @@ bool ribi::foam::operator==(const PointsFile& lhs,const PointsFile& rhs)
   return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
 }
 
-bool ribi::foam::operator!=(const PointsFile& lhs,const PointsFile& rhs)
+bool ribi::foam::operator!=(const PointsFile& lhs,const PointsFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -270,7 +272,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

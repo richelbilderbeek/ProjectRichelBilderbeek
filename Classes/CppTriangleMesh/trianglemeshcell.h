@@ -8,8 +8,9 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
-#include "coordinat3d.h"
+#include <boost/signals2.hpp>
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
 
@@ -20,22 +21,30 @@ namespace trim {
 ///Sure, the Faces can change...
 struct Cell
 {
-  const std::vector<boost::shared_ptr<const Face>> GetFaces() const noexcept;
-  const std::vector<boost::shared_ptr<      Face>> GetFaces()       noexcept { return m_faces; }
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
-  const ribi::Coordinat3D CalculateCenter() const noexcept;
+  std::vector<boost::shared_ptr<const Face>> GetFaces() const noexcept;
+  std::vector<boost::shared_ptr<      Face>> GetFaces()       noexcept { return m_faces; }
 
+  Coordinat3D CalculateCenter() const noexcept;
 
-  ///Can be used later
   int GetIndex() const noexcept { return m_index; }
-  void SetIndex(const int index) noexcept { m_index = index; }
+
+  ///Sets the Faces of a Cell by their index
+  void SetCorrectOrder() noexcept;
+
+  void SetIndex(const int index) noexcept;
+
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
+  mutable boost::signals2::signal<void(const Cell* const)> m_signal_destroyed;
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   private:
-  ~Cell() noexcept {}
-  friend void boost::checked_delete<>(Cell* x);
+  ~Cell() noexcept;
+  friend void boost::checked_delete<>(      Cell* x);
   friend void boost::checked_delete<>(const Cell* x);
 
-  const std::vector<boost::shared_ptr<Face>> m_faces;
+  std::vector<boost::shared_ptr<Face>> m_faces;
   int m_index;
 
   friend class CellFactory;
@@ -43,16 +52,26 @@ struct Cell
   Cell(
     const std::vector<boost::shared_ptr<Face>>& faces,
     const int index,
-    const CellFactory& lock);
+    const CellFactory& lock
+  );
+  Cell(const Cell&) = delete;
+  Cell(      Cell&&) = delete;
+  Cell& operator=(const Cell& ) = delete;
+  Cell& operator=(      Cell&&) = delete;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 };
 
-bool operator==(const Cell& lhs, const Cell& rhs);
-bool operator!=(const Cell& lhs, const Cell& rhs);
-std::ostream& operator<<(std::ostream& os, const Cell& cell);
+bool operator==(const Cell& lhs, const Cell& rhs) noexcept;
+bool operator!=(const Cell& lhs, const Cell& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
+
+bool operator<(const boost::shared_ptr<const Cell>& lhs, const boost::shared_ptr<      Cell>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Cell>& lhs, const boost::shared_ptr<const Cell>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Cell>& lhs, const boost::shared_ptr<      Cell>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Cell>& lhs, const boost::shared_ptr<const Cell>& rhs) = delete;
 
 } //~namespace trim
 } //~namespace ribi

@@ -15,88 +15,88 @@ struct Moves
   //All moves in the
   //'Kasparov against the world match'
   //http://en.wikipedia.org/wiki/Kasparov_versus_the_World
-  static const std::vector<std::string> GetGameKasparovVersusTheWorld();
+  static std::vector<std::string> GetGameKasparovVersusTheWorld() noexcept;
 
   //Game in which white wins by checkmate in three moves
-  static const std::vector<std::string> GetGameShephardsMate();
+  static std::vector<std::string> GetGameShephardsMate() noexcept;
 
   ///Obtain invalid moves that can be performed by a bishop
-  static const std::vector<std::string> GetInvalidBishopMoves();
+  static std::vector<std::string> GetInvalidBishopMoves() noexcept;
 
   ///Obtain invalid moves that involve a capture
-  static const std::vector<std::string> GetInvalidCaptureMoves();
+  static std::vector<std::string> GetInvalidCaptureMoves() noexcept;
 
   ///Obtain invalid castling moves
-  static const std::vector<std::string> GetInvalidCastlingMoves();
+  static std::vector<std::string> GetInvalidCastlingMoves() noexcept;
 
   ///Obtain invalid moves that result in check
-  static const std::vector<std::string> GetInvalidCheckMoves();
+  static std::vector<std::string> GetInvalidCheckMoves() noexcept;
 
   ///Obtain invalid moves that result in checkmate
-  static const std::vector<std::string> GetInvalidCheckmateMoves();
+  static std::vector<std::string> GetInvalidCheckmateMoves() noexcept;
 
   ///Obtain invalid en passant moves
-  static const std::vector<std::string> GetInvalidEnPassantMoves();
+  static std::vector<std::string> GetInvalidEnPassantMoves() noexcept;
 
   ///Obtain invalid moves that can be performed by a king
-  static const std::vector<std::string> GetInvalidKingMoves();
+  static std::vector<std::string> GetInvalidKingMoves() noexcept;
 
   ///Obtain invalid moves that can be performed by a knight
-  static const std::vector<std::string> GetInvalidKnightMoves();
+  static std::vector<std::string> GetInvalidKnightMoves() noexcept;
 
   ///Obtain invalid moves that can be performed by a pawn
-  static const std::vector<std::string> GetInvalidPawnMoves(const Chess::Color& color);
+  static std::vector<std::string> GetInvalidPawnMoves(const Chess::Color& color) noexcept;
 
   ///Obtain invalid moves that end in a promotion
-  static const std::vector<std::string> GetInvalidPromotionMoves();
+  static std::vector<std::string> GetInvalidPromotionMoves() noexcept;
 
   ///Obtain invalid moves that can be performed by a queen
-  static const std::vector<std::string> GetInvalidQueenMoves();
+  static std::vector<std::string> GetInvalidQueenMoves() noexcept;
 
   ///Obtain invalid moves that can be performed by a rook
-  static const std::vector<std::string> GetInvalidRookMoves();
+  static std::vector<std::string> GetInvalidRookMoves() noexcept;
 
   ///Obtain all moves that can be performed by a bishop
-  static const std::vector<std::string> GetValidBishopMoves();
+  static std::vector<std::string> GetValidBishopMoves() noexcept;
 
   ///Obtain moves that involve a capture
-  static const std::vector<std::string> GetValidCaptureMoves();
+  static std::vector<std::string> GetValidCaptureMoves() noexcept;
 
   ///Obtain all castling moves
-  static const std::vector<std::string> GetValidCastlingMoves();
+  static std::vector<std::string> GetValidCastlingMoves() noexcept;
 
   ///Obtain valid moves that result in check
-  static const std::vector<std::string> GetValidCheckMoves();
+  static std::vector<std::string> GetValidCheckMoves() noexcept;
 
   ///Obtain valid moves that result in checkmate
-  static const std::vector<std::string> GetValidCheckmateMoves();
+  static std::vector<std::string> GetValidCheckmateMoves() noexcept;
 
   ///Obtain en passant moves
-  static const std::vector<std::string> GetValidEnPassantMoves();
+  static std::vector<std::string> GetValidEnPassantMoves() noexcept;
 
   ///Obtain all moves that can be performed by a king
-  static const std::vector<std::string> GetValidKingMoves();
+  static std::vector<std::string> GetValidKingMoves() noexcept;
 
   ///Obtain all moves that can be performed by a knight
-  static const std::vector<std::string> GetValidKnightMoves();
+  static std::vector<std::string> GetValidKnightMoves() noexcept;
 
   ///Obtain all moves that can be performed by a pawn
-  static const std::vector<std::string> GetValidPawnMoves(const Chess::Color& color);
+  static std::vector<std::string> GetValidPawnMoves(const Chess::Color& color) noexcept;
 
   ///Obtain moves that end in a promotion
-  static const std::vector<std::string> GetValidPromotionMoves();
+  static std::vector<std::string> GetValidPromotionMoves() noexcept;
 
   ///Obtain all moves that can be performed by a queen
-  static const std::vector<std::string> GetValidQueenMoves();
+  static std::vector<std::string> GetValidQueenMoves() noexcept;
 
   ///Obtain all moves that can be performed by a rook
-  static const std::vector<std::string> GetValidRookMoves();
+  static std::vector<std::string> GetValidRookMoves() noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace Chess

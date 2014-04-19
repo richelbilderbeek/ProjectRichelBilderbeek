@@ -4,10 +4,12 @@
 
 #include "Shiny.h"
 
+#include "geometry.h"
 #include "trianglemeshcellfactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"
 #include "xml.h"
 
@@ -15,31 +17,38 @@ ribi::trim::Cell::Cell(
   const std::vector<boost::shared_ptr<Face>>& faces,
   const int index,
   const CellFactory&)
-  : m_faces(faces),
+  :
+    #ifdef TRIANGLEMESH_USE_SIGNALS2
+    m_signal_destroyed{},
+    #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
+    m_faces(faces),
     m_index{index}
 {
   #ifndef NDEBUG
   Test();
   #endif
-  assert(faces.size() == 8);
+  assert(faces.size() == 5 || faces.size() == 8);
 }
 
-const ribi::Coordinat3D ribi::trim::Cell::CalculateCenter() const noexcept
+ribi::trim::Cell::~Cell()
+{
+  #ifdef TRIANGLEMESH_USE_SIGNALS2
+  m_signal_destroyed(this);
+  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
+}
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Cell::CalculateCenter() const noexcept
 {
   PROFILE_FUNC();
-  ribi::Coordinat3D center;
+  Coordinat3D center(0.0,0.0,0.0);
   int cnt = 0;
-  for(boost::shared_ptr<const Face> face: m_faces)
+  for(const boost::shared_ptr<const Face> face: m_faces)
   {
-
-    for(auto point: face->GetPoints())
+    assert(face);
+    for(const auto point: face->GetPoints())
     {
-      const ribi::Coordinat3D coordinat(
-        point->GetCoordinat()->GetX(),
-        point->GetCoordinat()->GetY(),
-        point->GetZ().value()
-      );
-      center += coordinat;
+      assert(point);
+      center += point->GetCoordinat3D();
       ++cnt;
     }
   }
@@ -48,9 +57,36 @@ const ribi::Coordinat3D ribi::trim::Cell::CalculateCenter() const noexcept
 }
 
 
-const std::vector<boost::shared_ptr<const ribi::trim::Face>> ribi::trim::Cell::GetFaces() const noexcept
+std::vector<boost::shared_ptr<const ribi::trim::Face>> ribi::trim::Cell::GetFaces() const noexcept
 {
   return AddConst(m_faces);
+}
+
+void ribi::trim::Cell::SetCorrectOrder() noexcept
+{
+  std::sort(m_faces.begin(), m_faces.end(),
+    [](const boost::shared_ptr<Face>& lhs, const boost::shared_ptr<Face>& rhs)
+    {
+      const int priority_lhs { lhs->CalcPriority() };
+      const int priority_rhs { rhs->CalcPriority() };
+      assert((priority_lhs != priority_rhs || priority_lhs == priority_rhs)
+        && "Priorities can be equal");
+      if (priority_lhs > priority_rhs) return true;
+      if (priority_lhs < priority_rhs) return false;
+      //Sort on Face indices
+      assert(lhs->GetIndex() != rhs->GetIndex());
+      return lhs->GetIndex() < rhs->GetIndex();
+    }
+  );
+}
+
+void ribi::trim::Cell::SetIndex(const int index) noexcept
+{
+  m_index = index;
+
+  assert(!"TODO");
+  //If there is a Face that has this cell as its neighbour, yet that neighbour
+  //does not have an index yet, transfer the Face its ownership from neighbour to owner
 }
 
 #ifndef NDEBUG
@@ -62,15 +98,13 @@ void ribi::trim::Cell::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Cell::Test");
-  //Do not use the Cell its contructor! Use CellFactory::Create instead!
-
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
+  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const boost::shared_ptr<Cell> prism {
-      CellFactory().CreateTestPrism()
+      CellFactory().CreateTestPrism(strategy)
     };
     assert(prism);
-    assert(prism->GetFaces().size() == 8);
     const std::vector<boost::shared_ptr<Face>> faces {
       prism->GetFaces()
     };
@@ -79,20 +113,19 @@ void ribi::trim::Cell::Test() noexcept
         [](const boost::shared_ptr<Face> face)
         {
           assert(face);
-          assert(face->GetOwner());
+          assert(face->GetConstOwner());
           return face->GetNeighbour().get();
         }
       ) == 0
     );
   }
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
+  for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Cell>> cube {
-      CellFactory().CreateTestCube()
+      CellFactory().CreateTestCube(strategy)
     };
     assert(cube.size() == 2 && "A cube consists out of two prisms");
-    assert(cube[0]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
-    assert(cube[1]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
     //Concatenate the faces
     std::vector<boost::shared_ptr<Face>> faces {
       cube[0]->GetFaces()
@@ -101,71 +134,88 @@ void ribi::trim::Cell::Test() noexcept
     std::copy(std::begin(other_faces),std::end(other_faces),
       std::back_inserter(faces)
     );
-    std::sort(faces.begin(),faces.end());
-    assert(faces.size() == 16);
-    /*
-    for (auto face: faces)
-    {
-      std::stringstream all_face_str;
-      if (face)
-      {
-        all_face_str << face->GetIndex() << " -> " << (face->GetNeighbour() ? face->GetNeighbour()->GetIndex() : -1);
-      }
-      else
-      {
-        all_face_str << "No face";
-      }
-      TRACE(all_face_str.str());
-    }
-    */
-    assert(std::count(std::begin(faces),std::end(faces),nullptr) == 0);
-    assert(std::unique(faces.begin(),faces.end()) != faces.end() && "Two faces must be present twice");
-    faces.erase(std::unique(std::begin(faces),std::end(faces)),faces.end());
-    faces.erase(std::remove(std::begin(faces),std::end(faces),nullptr),faces.end()); //OBLIGATORY! std::unique creates nullptrs!
-    /*
+    
+    std::sort(faces.begin(),faces.end(),Helper().OrderByIndex());
     TRACE(faces.size());
-    TRACE(std::count(std::begin(faces),std::end(faces),nullptr));
-    for (auto face: faces)
-    {
-      std::stringstream face_str;
-      if (face)
-      {
-        face_str << face->GetIndex() << " -> " << (face->GetNeighbour() ? face->GetNeighbour()->GetIndex() : -1);
-      }
-      else
-      {
-        face_str << "No face";
-      }
-      TRACE(face_str.str());
-    }
-    */
-    assert(faces.size() == 14 && "Two faces were in both Cells, and are now present only once");
+    assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
     assert(
+      (
+           (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() == 10)
+        || (strategy == CreateVerticalFacesStrategy::two_faces_per_square && faces.size() == 16)
+      )
+      && "One or two faces are in both Cells, and must be made unique"
+    );
+    assert(std::count(std::begin(faces),std::end(faces),nullptr) == 0);
+    assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
+    faces.erase(std::unique(std::begin(faces),std::end(faces)),faces.end());
+    assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
+    faces.erase(std::remove(std::begin(faces),std::end(faces),nullptr),faces.end()); //OBLIGATORY! std::unique creates nullptrs!
+    assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
+    if (!
+      (
+        (
+             (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() ==  9)
+          || (strategy == CreateVerticalFacesStrategy::two_faces_per_square && faces.size() == 14)
+        )
+        && "One or two faces were in both Cells, and are now present only once"
+      )
+    )
+    {
+      TRACE("ERROR");
+      TRACE(faces.size());
+      TRACE(CreateVerticalFacesStrategies().ToStr(strategy));
+      TRACE("BREAK");
+    }
+
+    assert(
+      (
+           (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() ==  9)
+        || (strategy == CreateVerticalFacesStrategy::two_faces_per_square && faces.size() == 14)
+      )
+      && "One or two faces were in both Cells, and are now present only once"
+    );
+
+    const int n_faces_with_neighbours {
       std::count_if(faces.begin(),faces.end(),
         [](const boost::shared_ptr<Face> face)
         {
           assert(face);
-          assert(face->GetOwner());
+          assert(face->GetConstOwner());
           return face->GetNeighbour().get();
         }
-      ) == 2
-    );
+      )
+    };
+    assert(n_faces_with_neighbours == 1 || n_faces_with_neighbours == 2);
   }
+
+  //Test that CalcCenter returns the same value each time
+  //Failed once...
+  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
+  {
+    const auto center(CellFactory().CreateTestPrism(strategy)->CalculateCenter());
+    
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+  }
+
   TRACE("Finished ribi::trim::Cell::Test successfully");
 }
 #endif
 
-bool ribi::trim::operator==(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs)
+bool ribi::trim::operator==(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs) noexcept
 {
   return lhs.GetFaces() == rhs.GetFaces();
 }
 
-bool ribi::trim::operator!=(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs)
+bool ribi::trim::operator!=(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Cell& cell)
+std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Cell& cell) noexcept
 {
   const auto faces = cell.GetFaces();
   std::stringstream s;

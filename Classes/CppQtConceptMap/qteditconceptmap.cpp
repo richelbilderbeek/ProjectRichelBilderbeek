@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -103,7 +123,7 @@ ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
   }
 }
 
-void ribi::cmap::QtEditConceptMap::AddEdge(
+ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
@@ -157,9 +177,11 @@ void ribi::cmap::QtEditConceptMap::AddEdge(
   #endif
   assert(std::abs(qtedge->pos().x() - edge->GetX()) < epsilon);
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
+
+  return qtedge;
 }
 
-void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const qt_to)
+ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const qt_to)
 {
   assert(qt_from);
   assert(qt_to);
@@ -187,7 +209,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
       if (qtedge->GetArrow()->GetToItem()   == qt_to && !qtedge->GetArrow()->HasHead()) { qtedge->SetHasHeadArrow(true); }
       if (qtedge->GetArrow()->GetFromItem() == qt_to && !qtedge->GetArrow()->HasTail()) { qtedge->SetHasTailArrow(true); }
       this->scene()->update();
-      return;
+      return qtedge;
     }
   }
 
@@ -203,14 +225,16 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
   assert(to);
   assert(from != to);
   const boost::shared_ptr<Edge> edge(
-    cmap::EdgeFactory::Create(
+    EdgeFactory().Create(
       concept,
       (qt_from->pos().x() + qt_to->pos().x()) / 2.0,
       (qt_from->pos().y() + qt_to->pos().y()) / 2.0,
       from,
       tail_arrow,
       to,
-      head_arrow));
+      head_arrow
+    )
+  );
 
   //Step 1: Create an Edge concept
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
@@ -249,6 +273,8 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
     && "GUI and non-GUI concept map must match");
 
   this->scene()->update();
+
+  return qtedge;
 }
 
 ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_ptr<Node> node)
@@ -633,9 +659,14 @@ void ribi::cmap::QtEditConceptMap::OnToolsClicked()
   {
     const QPointF cursor_pos_approx(
       m_tools->GetBuddyItem()->pos().x(),
-      m_tools->GetBuddyItem()->pos().y() - 32.0);
+      m_tools->GetBuddyItem()->pos().y() - 32.0
+      - m_tools->GetBuddyItem()->GetRadiusY()
+      //TODO_COEN ISSUE_101 the QGraphicsItem needs to emit that it is clicked,
+      //with itself as the argument, so that the QtTool knows the height the of the square to be above
+    );
     m_arrow = new QtNewArrow(
-      m_tools->GetBuddyItem(),cursor_pos_approx);
+      m_tools->GetBuddyItem(),cursor_pos_approx
+    );
     assert(!m_arrow->scene());
     this->scene()->addItem(m_arrow);
     m_arrow->update();

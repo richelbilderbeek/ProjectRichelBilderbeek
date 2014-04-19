@@ -48,8 +48,7 @@ double ribi::SimpleLinearRegression::CalculateVariance(
   return mean_of_squares - (mean * mean);
 }
 
-const std::vector<double>
-  ribi::SimpleLinearRegression::GetAnscombesQuartetX(const int index)
+std::vector<double> ribi::SimpleLinearRegression::GetAnscombesQuartetX(const int index)
 {
   switch (index)
   {
@@ -73,7 +72,7 @@ const std::vector<double>
   }
 }
 
-const std::vector<double>
+std::vector<double>
   ribi::SimpleLinearRegression::GetAnscombesQuartetY(const int index)
 {
   switch (index)
@@ -100,12 +99,12 @@ const std::vector<double>
   }
 }
 
-const std::string ribi::SimpleLinearRegression::GetVersion()
+std::string ribi::SimpleLinearRegression::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::SimpleLinearRegression::GetVersionHistory()
+std::vector<std::string> ribi::SimpleLinearRegression::GetVersionHistory() noexcept
 {
   std::vector<std::string> v {
     "2013-08-27: version 1.0: initial version, as ToolTestSimpleLinearRegressionMainDialog",

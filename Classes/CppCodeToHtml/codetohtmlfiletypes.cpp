@@ -91,7 +91,7 @@ ribi::c2h::FileType ribi::c2h::FileTypes::DeduceFileType(const std::string& file
   return FileType::txt;
 }
 
-const std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t)
+std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t) noexcept
 {
   switch (t)
   {
@@ -110,7 +110,7 @@ const std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t)
   throw std::logic_error("c2h::FileTypeToStr");
 }
 
-const std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() noexcept
+std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() noexcept
 {
   const std::vector<FileType> v {
     FileType::cpp,

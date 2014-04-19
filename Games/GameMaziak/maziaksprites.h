@@ -26,7 +26,7 @@ struct Sprites
   private:
   const std::map<Sprite,boost::shared_ptr<const QPixmap>> m_sprites;
 
-  static const std::string CamelCasify(const std::string& s) noexcept;
+  static std::string CamelCasify(const std::string& s) noexcept;
   const std::map<Sprite,boost::shared_ptr<const QPixmap>> CreateSprites();
   static const std::vector<Sprite> GetAllSprites() noexcept;
 
@@ -34,7 +34,7 @@ struct Sprites
   static void Test() noexcept;
   #endif
 
-  static const std::string ToStr(const Sprite) noexcept;
+  static std::string ToStr(const Sprite) noexcept;
 };
 
 } //~namespace maziak

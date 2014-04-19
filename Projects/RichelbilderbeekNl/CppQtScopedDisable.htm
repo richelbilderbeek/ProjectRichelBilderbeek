@@ -774,13 +774,13 @@ struct QtScopedDisable<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the version of this class<br/>
-&nbsp;&nbsp;static const std::string GetVersion()<br/>
+&nbsp;&nbsp;static std::string GetVersion()<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;return "1.2";<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the version history of this class<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory()<br/>
+&nbsp;&nbsp;static std::vector&lt;std::string&gt; GetVersionHistory()<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;std::string&gt; v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("2012-11-22: version 1.0: initial version");<br/>

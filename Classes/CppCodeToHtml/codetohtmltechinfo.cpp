@@ -46,7 +46,7 @@ ribi::c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
     std::back_inserter(profiles),
     [](const std::string& s)
     {
-      assert(ribi::fileio::IsRegularFile(s));
+      assert(ribi::fileio::FileIo().IsRegularFile(s));
       boost::shared_ptr<const ribi::QtCreatorProFile> p(new ribi::QtCreatorProFile(s));
       return p;
     }
@@ -121,7 +121,7 @@ ribi::c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
 
 }
 
-const std::vector<std::string> ribi::c2h::TechInfo::ToHtml() const
+std::vector<std::string> ribi::c2h::TechInfo::ToHtml() const
 {
   std::vector<std::string> v;
   v.push_back("<h2>Technical facts</h2>");

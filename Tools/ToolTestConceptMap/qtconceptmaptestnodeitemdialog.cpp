@@ -44,7 +44,6 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
 
   //Node is used in: m_node
   assert(m_node.use_count() == 1);
-  assert(m_node->GetConceptUseCount() == 1);
   assert(m_node->GetConcept().use_count() == 1);
 
   {
@@ -62,7 +61,7 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   assert(m_node.get() == m_display_node->GetNode().get());
   assert(m_node->GetConcept().get() == m_display_node->GetNode()->GetConcept().get());
   assert(m_node->GetConcept().use_count() == 2);
-  assert(m_node->GetConceptUseCount() == 2);
+  //assert(m_node->GetConceptUseCount() == 2);
 
   {
     const boost::shared_ptr<QtEditStrategy> item(new QtEditStrategy(m_node->GetConcept()));
@@ -74,7 +73,7 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   }
 
   assert(m_node.use_count() == 3);
-  assert(m_node->GetConceptUseCount() == 3);
+  //assert(m_node->GetConceptUseCount() == 3);
   assert(m_node->GetConcept().use_count() == 3);
 
   {
@@ -87,7 +86,7 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   }
 
   assert(m_node.use_count() == 4);
-  assert(m_node->GetConceptUseCount() == 4);
+  //assert(m_node->GetConceptUseCount() == 4);
   assert(m_node->GetConcept().use_count() == 4);
 
   assert(m_display_node->GetNode().get() == m_node.get());

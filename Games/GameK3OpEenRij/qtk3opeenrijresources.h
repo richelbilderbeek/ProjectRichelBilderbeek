@@ -19,8 +19,8 @@ struct QtK3OpEenRijResources
   QtK3OpEenRijResources(const Tribool is_player3_kathleen = Tribool::Indeterminate);
 
   private:
-  const std::vector<std::string> CreatePlayerNames(const Tribool is_player3_kathleen);
-  const std::vector<std::string> CreatePlayerGreyNames(const Tribool is_player3_kathleen);
+  std::vector<std::string> CreatePlayerNames(const Tribool is_player3_kathleen);
+  std::vector<std::string> CreatePlayerGreyNames(const Tribool is_player3_kathleen);
 };
 
 } //~namespace ribi

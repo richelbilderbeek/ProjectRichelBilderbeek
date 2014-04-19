@@ -89,7 +89,7 @@ int ribi::TestDialMenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
   return 0;
 }
 
-const ribi::About ribi::TestDialMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestDialMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -107,7 +107,7 @@ const ribi::About ribi::TestDialMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestDialMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestDialMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -121,7 +121,7 @@ const ribi::Help ribi::TestDialMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestDialMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestDialMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestDial
@@ -130,12 +130,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestDialMenuDialog::GetProgra
   return p;
 }
 
-const std::string ribi::TestDialMenuDialog::GetVersion() const noexcept
+std::string ribi::TestDialMenuDialog::GetVersion() const noexcept
 {
   return "2.3";
 }
 
-const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-04-11: Version 1.0: initial version, web version not yet working",

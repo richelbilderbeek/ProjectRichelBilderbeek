@@ -33,7 +33,7 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   std::string text = "";
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == std::string("-t") || argv[i] == std::string("--text"))
+    if (argv[i] == "-t" || argv[i] == "--text")
     {
       text = argv[i + 1];
       break;
@@ -50,7 +50,7 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   int spacing = 1;
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == std::string("-s") || argv[i] == std::string("--spacing"))
+    if (argv[i] == "-s" || argv[i] == "--spacing")
     {
       const std::string s = argv[i + 1];
       try
@@ -73,7 +73,7 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   std::string filename = "";
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == std::string("-f") || argv[i] == std::string("--filename"))
+    if (argv[i] == "-f" || argv[i] == "--filename")
     {
       filename = argv[i + 1];
       break;
@@ -94,7 +94,7 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 0;
 }
 
-const ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
+ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -110,7 +110,7 @@ const ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::DotMatrixMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::DotMatrixMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -129,19 +129,19 @@ const ribi::Help ribi::DotMatrixMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::DotMatrixMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::DotMatrixMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramDotMatrix);
   assert(p);
   return p;
 }
 
-const std::string ribi::DotMatrixMenuDialog::GetVersion() const noexcept
+std::string ribi::DotMatrixMenuDialog::GetVersion() const noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::DotMatrixMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::DotMatrixMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-xx-xx: version 1.0: initial VCL desktop version",
@@ -164,21 +164,21 @@ void ribi::DotMatrixMenuDialog::Test() noexcept
   //Command line tests
   {
     DotMatrixMenuDialog d;
-    const std::string filename { fileio::GetTempFileName(".png") };
+    const std::string filename { fileio::FileIo().GetTempFileName(".png") };
     d.Execute( { "DotMatrix", "-t", "\"Hello world\"" } );
     d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-s", "0" } );
 
-    assert(!fileio::IsRegularFile(filename));
+    assert(!fileio::FileIo().IsRegularFile(filename));
     d.Execute( { "DotMatrix", "-t", "\"Hello world\"", "-f", filename } );
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
 
-    assert(!fileio::IsRegularFile(filename));
+    assert(!fileio::FileIo().IsRegularFile(filename));
     d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-f", filename, "--spacing", "1" } );
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
   }
   TRACE("Finished ribi::ToolDotMatrixMenuDialog::Test successfully");
 }

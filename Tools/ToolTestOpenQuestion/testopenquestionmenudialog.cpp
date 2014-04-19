@@ -43,13 +43,13 @@ ribi::TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
   const std::vector<std::string> files = { "Question.png" };
   for(const std::string& filename: files)
   {
-    if (!fileio::IsRegularFile(filename))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
-      QFile f( (std::string(":/images/") + filename).c_str() );
+      QFile f( (":/images/" + filename).c_str() );
       f.copy(filename.c_str());
     }
-    assert(fileio::IsRegularFile(filename));
-    if (!fileio::IsRegularFile(filename))
+    assert(fileio::FileIo().IsRegularFile(filename));
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       const std::string s = "TestOpenQuestionMenuDialog: file not found: " + filename;
       throw std::logic_error(s.c_str());
@@ -69,7 +69,7 @@ int ribi::TestOpenQuestionMenuDialog::ExecuteSpecific(const std::vector<std::str
   return 1;
 }
 
-const ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -86,7 +86,7 @@ const ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestOpenQuestionMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestOpenQuestionMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -100,7 +100,7 @@ const ribi::Help ribi::TestOpenQuestionMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestOpenQuestionMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestOpenQuestionMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestOpenQuestion
@@ -108,12 +108,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestOpenQuestionMenuDialog::G
   assert(p);
   return p;
 }
-const std::string ribi::TestOpenQuestionMenuDialog::GetVersion() const noexcept
+std::string ribi::TestOpenQuestionMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestOpenQuestionMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestOpenQuestionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-08-20: Version 1.0: initial version"

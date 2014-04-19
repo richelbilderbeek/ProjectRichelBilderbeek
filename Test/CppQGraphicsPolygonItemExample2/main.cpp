@@ -47,7 +47,11 @@ struct TriangleGraphicsItem : public QGraphicsItem
   {
     return CreatePolygon().boundingRect();
   }
-  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+  void paint(
+    QPainter *painter,
+    const QStyleOptionGraphicsItem * /*option*/,
+    QWidget * /*widget*/
+  )
   {
     painter->setBrush(m_brush);
     painter->drawPolygon(CreatePolygon());

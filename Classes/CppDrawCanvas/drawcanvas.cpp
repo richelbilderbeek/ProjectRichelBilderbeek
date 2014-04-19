@@ -83,15 +83,15 @@ ribi::DrawCanvas::DrawCanvas(const std::string& filename)
     m_color_system{},
     m_coordinat_system{}
 {
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   std::string s;
   {
     std::ifstream f(filename.c_str());
     f >> s;
   }
   assert(s.size() >= 17);
-  assert(s.substr(0,8) == std::string("<canvas>"));
-  assert(s.substr(s.size() - 9,9) == std::string("</canvas>"));
+  assert(s.substr(0,8) == "<canvas>");
+  assert(s.substr(s.size() - 9,9) == "</canvas>");
   {
     const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<color_system>.*</color_system>)")) };
     assert(v.size() == 1);
@@ -254,6 +254,14 @@ void ribi::DrawCanvas::DrawEllipse(const double left, const double top, const do
   m_signal_changed(this);
 }
 
+void ribi::DrawCanvas::DrawSurface(const std::vector<std::vector<double> >& v)
+{
+  if (m_canvas != v)
+  {
+    m_canvas = v;
+    m_signal_changed(this);
+  }
+}
 
 void ribi::DrawCanvas::DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept
 {
@@ -298,7 +306,7 @@ void ribi::DrawCanvas::DrawText(const double top, const double left, const std::
   }
 }
 
-const std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
+std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -316,12 +324,12 @@ const std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
 
   return v;
 }
-const std::string ribi::DrawCanvas::GetVersion() noexcept
+std::string ribi::DrawCanvas::GetVersion() noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::DrawCanvas::GetVersionHistory() noexcept
+std::vector<std::string> ribi::DrawCanvas::GetVersionHistory() noexcept
 {
   return {
     "2008-xx-xx: version 1.0: initial C++ Builder version, initially called Canvas",
@@ -503,7 +511,7 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
   #endif
 }
 
-const std::vector<std::string> ribi::DrawCanvas::SeperateString(
+std::vector<std::string> ribi::DrawCanvas::SeperateString(
   const std::string& input,
   const char seperator) noexcept
 {
@@ -646,7 +654,7 @@ void ribi::DrawCanvas::Test() noexcept
     assert( old_canvas !=  canvas);
     assert(*old_canvas == *canvas);
 
-    const std::string temp_filename { fileio::GetTempFileName() };
+    const std::string temp_filename { fileio::FileIo().GetTempFileName() };
     canvas->Save(temp_filename);
     canvas->Clear();
 
@@ -663,7 +671,7 @@ void ribi::DrawCanvas::Test() noexcept
 }
 #endif
 
-const std::vector<std::string> ribi::DrawCanvas::ToStrings() const noexcept
+std::vector<std::string> ribi::DrawCanvas::ToStrings() const noexcept
 {
   std::stringstream s;
   s << (*this);

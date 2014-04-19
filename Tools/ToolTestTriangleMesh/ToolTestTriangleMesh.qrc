@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>ToolTestPlaneMenuImage.png</file>
+        <file>ToolTestPlaneR.png</file>
+    </qresource>
+</RCC>

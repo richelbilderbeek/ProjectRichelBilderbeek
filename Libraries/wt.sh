@@ -33,4 +33,12 @@ echo "set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)" >> $filename
 echo "set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)" >> $filename
 echo "set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)" >> $filename
 
+
+echo "" >> $filename
+echo "# Try to add Boost" >> $filename
+echo "set(CMAKE_BOOST_ROOT D:/Projects/Libraries/boost_1_55_0)" >> $filename
+echo "set(BOOST_ROOT D:/Projects/Libraries/boost_1_55_0)" >> $filename
+echo "set(CMAKE_BOOST_INCLUDEDIR D:/Projects/Libraries/boost_1_55_0/boost)" >> $filename
+echo "set(BOOST_INCLUDEDIR D:/Projects/Libraries/boost_1_55_0/boost)" >> $filename
+
 cmake -DCMAKE_TOOLCHAIN_FILE=$filename -DCMAKE_INSTALL_PREFIX=C:/Qt/5.1.1/mingw48_32/bin . 

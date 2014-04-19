@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtRoundedTextRectItem, rectangular-shaped multi-line QGraphicsItem
+Copyright (C) 2012-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtRoundedTextRectItem.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -69,12 +89,12 @@ const QRectF ribi::QtRoundedTextRectItem::GetTextRect() const
   #endif
 }
 
-const std::string ribi::QtRoundedTextRectItem::GetVersion() noexcept
+std::string ribi::QtRoundedTextRectItem::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::QtRoundedTextRectItem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtRoundedTextRectItem::GetVersionHistory() noexcept
 {
   return {
     "2012-12-19: version 1.0: initial version",
@@ -116,7 +136,7 @@ void ribi::QtRoundedTextRectItem::paint(QPainter* painter, const QStyleOptionGra
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void ribi::QtRoundedTextRectItem::SetFont(const QFont& font)
+void ribi::QtRoundedTextRectItem::SetFont(const QFont& font) noexcept
 {
   if (m_font != font)
   {
@@ -128,7 +148,7 @@ void ribi::QtRoundedTextRectItem::SetFont(const QFont& font)
 }
 #pragma GCC diagnostic pop
 
-void ribi::QtRoundedTextRectItem::SetPadding(const Padding& padding)
+void ribi::QtRoundedTextRectItem::SetPadding(const Padding& padding) noexcept
 {
   if ( padding.bottom != m_padding.bottom
     || padding.left   != m_padding.left
@@ -153,7 +173,7 @@ void ribi::QtRoundedTextRectItem::SetPadding(const Padding& padding)
   }
 }
 
-void ribi::QtRoundedTextRectItem::SetText(const std::string& text)
+void ribi::QtRoundedTextRectItem::SetText(const std::string& text) noexcept
 {
   if (text != m_text)
   {
@@ -174,7 +194,7 @@ void ribi::QtRoundedTextRectItem::SetText(const std::string& text)
   }
 }
 
-void ribi::QtRoundedTextRectItem::SetTextPen(const QPen& pen)
+void ribi::QtRoundedTextRectItem::SetTextPen(const QPen& pen) noexcept
 {
   if (m_text_pen != pen)
   {

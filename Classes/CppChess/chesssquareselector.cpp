@@ -104,13 +104,13 @@ void ribi::Chess::SquareSelector::DoSelect()
   }
 }
 
-boost::shared_ptr<ribi::Chess::Square> ribi::Chess::SquareSelector::GetInitialSquare()
+boost::shared_ptr<ribi::Chess::Square> ribi::Chess::SquareSelector::GetInitialSquare() noexcept
 {
   const std::string s { "c3" };
   return SquareFactory::Create(s);
 }
 
-const std::string ribi::Chess::SquareSelector::GetVersion() noexcept
+std::string ribi::Chess::SquareSelector::GetVersion() noexcept
 {
   return "1.0";
 }
@@ -120,14 +120,14 @@ const boost::shared_ptr<const ribi::Chess::Square> ribi::Chess::SquareSelector::
   return m_selected;
 }
 
-const std::vector<std::string> ribi::Chess::SquareSelector::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Chess::SquareSelector::GetVersionHistory() noexcept
 {
   return {
     "2012-01-25: version 1.0: initial version"
   };
 }
 
-void ribi::Chess::SquareSelector::MoveDown()
+void ribi::Chess::SquareSelector::MoveDown() noexcept
 {
   assert(m_cursor);
   if (m_cursor->GetRank().ToInt() != 7)
@@ -144,7 +144,7 @@ void ribi::Chess::SquareSelector::MoveDown()
   }
 }
 
-void ribi::Chess::SquareSelector::MoveLeft()
+void ribi::Chess::SquareSelector::MoveLeft() noexcept
 {
   assert(m_cursor);
   if (m_cursor->GetFile().ToInt() != 0)
@@ -160,7 +160,7 @@ void ribi::Chess::SquareSelector::MoveLeft()
   }
 }
 
-void ribi::Chess::SquareSelector::MoveRight()
+void ribi::Chess::SquareSelector::MoveRight() noexcept
 {
   assert(m_cursor);
   if (m_cursor->GetFile().ToInt() != 7)
@@ -177,7 +177,7 @@ void ribi::Chess::SquareSelector::MoveRight()
 }
 
 
-void ribi::Chess::SquareSelector::MoveUp()
+void ribi::Chess::SquareSelector::MoveUp() noexcept
 {
   assert(m_cursor);
   if (m_cursor->GetRank().ToInt() != 0)
@@ -193,7 +193,7 @@ void ribi::Chess::SquareSelector::MoveUp()
   }
 }
 
-const std::string ribi::Chess::SquareSelector::ToStr() const
+std::string ribi::Chess::SquareSelector::ToStr() const noexcept
 {
   assert(m_cursor);
   std::string s = "Cursor: " + m_cursor->ToStr();

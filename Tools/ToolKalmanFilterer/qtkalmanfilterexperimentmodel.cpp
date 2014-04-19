@@ -928,9 +928,15 @@ void ribi::kalman::QtKalmanFilterExperimentModel::OnStateNamesChanged()
 
 void ribi::kalman::QtKalmanFilterExperimentModel::ReadContext(const std::vector<std::string>& v)
 {
+<<<<<<< HEAD
   const auto begin = std::find(v.begin(),v.end(),std::string("<html>"));
   if (begin == v.end()) return;
   auto end = std::find(v.begin(),v.end(),std::string("</html>"));
+=======
+  const auto begin = std::find(v.begin(),v.end(),"<html>");
+  if (begin == v.end()) return;
+  auto end = std::find(v.begin(),v.end(),"</html>");
+>>>>>>> develop
   assert(end != v.end());
   std::string new_context;
 
@@ -971,7 +977,11 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Read(
   const int sz = boost::numeric_cast<int>(text.size());
 
   //Find begin
+<<<<<<< HEAD
   const std::string header = std::string("^ ") + name;
+=======
+  const std::string header = "^ " + name;
+>>>>>>> develop
   int begin_tmp = -1;
   for (int i=0; i!=sz; ++i)
   {
@@ -1107,7 +1117,11 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Read(const std::string& line,c
 {
   if (line.find(sub) != std::string::npos)
   {
+<<<<<<< HEAD
     if (line.substr(line.size() - 5,5) == std::string("</li>"))
+=======
+    if (line.substr(line.size() - 5,5) == "</li>")
+>>>>>>> develop
     {
       Read(line.substr(0,line.size() - 5),sub,value_to_change);
       return;
@@ -1149,7 +1163,11 @@ void ribi::kalman::QtKalmanFilterExperimentModel::ReadWhiteNoiseSystemType(const
 }
 
 
+<<<<<<< HEAD
 const std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateString(
+=======
+std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateString(
+>>>>>>> develop
   const std::string& input,
   const char seperator)
 {
@@ -1373,7 +1391,11 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Test() noexcept
 }
 #endif
 
+<<<<<<< HEAD
 const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const
+=======
+std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const
+>>>>>>> develop
 {
   if (m_version != m_version_current)
   {
@@ -1411,20 +1433,36 @@ const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() cons
 
       assert(n_cols >= 0);
       assert(n_rows >= 0);
+<<<<<<< HEAD
       assert(std::string(0,'^') == std::string(""));
       s << std::string("^ ") << name << " " << std::string(n_cols,'^') << "^ \n";
       for (int row = 0; row!=n_rows; ++row)
       {
         s  << std::string("^ ") << model->headerData(row,Qt::Vertical).toString().toStdString() << std::string(" | ");
+=======
+      assert(std::string(0,'^') == "");
+      s << "^ " << name << " " << std::string(n_cols,'^') << "^ \n";
+      for (int row = 0; row!=n_rows; ++row)
+      {
+        s  << "^ " << model->headerData(row,Qt::Vertical).toString().toStdString() << " | ";
+>>>>>>> develop
         for (int col = 0; col!=n_cols; ++col)
         {
           const QModelIndex index = model->index(row,col);
           const QString q = model->data(index).toString();
+<<<<<<< HEAD
           s << q.toStdString() << std::string(" | ");
         }
         s << std::string("\n");
       }
       s << std::string(" \n"); //Empty line after every table, space is really needed
+=======
+          s << q.toStdString() << " | ";
+        }
+        s << "\n";
+      }
+      s << " \n"; //Empty line after every table, space is really needed
+>>>>>>> develop
     }
   }
   const std::string text = s.str();
@@ -1432,7 +1470,11 @@ const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() cons
 }
 
 
+<<<<<<< HEAD
 const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const
+=======
+std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const
+>>>>>>> develop
 {
   std::string s =
 

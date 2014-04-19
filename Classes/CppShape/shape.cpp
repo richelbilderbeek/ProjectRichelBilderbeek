@@ -28,7 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/math/constants/constants.hpp>
 
-//#include "trace.h"
+#include "geometry.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -50,12 +51,12 @@ ribi::Shape::Shape(
   #endif
 }
 
-const std::string ribi::Shape::GetVersion() noexcept
+std::string ribi::Shape::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::Shape::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Shape::GetVersionHistory() noexcept
 {
   return {
     "2011-07-13: Version 1.0: initial version",
@@ -81,8 +82,9 @@ void ribi::Shape::SetRotation(const double rotation) noexcept
 
 double ribi::Shape::GetAngle(const double dx, const double dy) noexcept
 {
-  const double pi = boost::math::constants::pi<double>();
-  return pi - std::atan2(dx,dy);
+  return Geometry().GetAngle(dx,dy);
+  //const double pi = boost::math::constants::pi<double>();
+  //return pi - std::atan2(dx,dy);
 }
 
 double ribi::Shape::GetDistance(const double dX, const double dY) noexcept

@@ -21,6 +21,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
+#ifdef REALLY_USE_RECTANGLE
+//Use, for example, this code instead:
+//
+//#include <boost/geometry/geometries/box.hpp>
+//#include <boost/geometry/geometries/point_xy.hpp>
+//
+//  typedef boost::geometry::model::d2::point_xy<double> Point;
+//  typedef boost::geometry::model::box<Point> Rect;
+
+
 #include <string>
 #include <vector>
 
@@ -107,10 +117,10 @@ struct Rect
   int GetHeight() const noexcept { return m_h; }
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   int GetLeft() const noexcept { return GetX(); }
 
@@ -137,6 +147,10 @@ struct Rect
   int m_w;
   int m_h;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   friend bool operator==(const Rect& lhs, const Rect& rhs) noexcept;
   friend std::ostream& operator<<(std::ostream& os,const Rect& rect) noexcept;
 };
@@ -148,3 +162,5 @@ bool operator!=(const Rect& lhs, const Rect& rhs) noexcept;
 } //~namespace ribi
 
 #endif // RECTANGLE_H
+
+#endif //#ifdef REALLY_USE_RECTANGLE

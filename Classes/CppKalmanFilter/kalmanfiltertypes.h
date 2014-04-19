@@ -19,13 +19,13 @@ namespace kalman {
 ///Class to work on one or more KalmanFilterType instances
 struct KalmanFilterTypes
 {
-  static const std::vector<KalmanFilterType> GetAllTypes();
-  static const std::string ToStr(const KalmanFilterType type);
+  static std::vector<KalmanFilterType> GetAllTypes() noexcept;
+  static std::string ToStr(const KalmanFilterType type) noexcept;
   static KalmanFilterType ToType(const std::string& s);
 
   private:
   static boost::bimap<KalmanFilterType,std::string> m_map;
-  static const boost::bimap<KalmanFilterType,std::string> CreateMap();
+  static boost::bimap<KalmanFilterType,std::string> CreateMap() noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

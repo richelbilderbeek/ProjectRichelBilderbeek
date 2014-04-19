@@ -334,12 +334,12 @@ struct LoopReader<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (m_cur == m_end) m_cur = m_begin;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;static const std::string GetVersion() noexcept<br/>
+&nbsp;&nbsp;static std::string GetVersion() noexcept<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;return "1.2";<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept<br/>
+&nbsp;&nbsp;static std::vector&lt;std::string&gt; GetVersionHistory() noexcept<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;return {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"2009-08-26: Version 1.0: initial version",<br/>

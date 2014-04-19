@@ -96,33 +96,35 @@ void ribi::QtGaborFilterWidget::DrawGaborFilter(
 {
   DrawGaborFilter(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
+    widget->GetLeft(),
+    widget->GetTop(),
+    widget->GetWidth(),
+    widget->GetHeight(),
     widget->GetGaborFilter());
 }
 
-const std::string ribi::QtGaborFilterWidget::GetVersion() noexcept
+std::string ribi::QtGaborFilterWidget::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-const std::vector<std::string> ribi::QtGaborFilterWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtGaborFilterWidget::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-07-07: Version 1.0: initial version");
-  return v;
+  return {
+    "2012-07-07: Version 1.0: initial version",
+    "2014-03-28: Version 1.1: replaced custom Rect class by Boost.Geometry"
+  };
 }
 
 ///OnResize is calgaborfilter when the geometry of the GaborFilterWidget is changed
 void ribi::QtGaborFilterWidget::OnResize()
 {
   this->setGeometry(
-    this->GetWidget()->GetGeometry().GetX(),
-    this->GetWidget()->GetGeometry().GetY(),
-    this->GetWidget()->GetGeometry().GetWidth(),
-    this->GetWidget()->GetGeometry().GetHeight());
+    this->GetWidget()->GetLeft(),
+    this->GetWidget()->GetTop(),
+    this->GetWidget()->GetWidth(),
+    this->GetWidget()->GetHeight()
+  );
   this->repaint();
 }
 
@@ -135,6 +137,6 @@ void ribi::QtGaborFilterWidget::paintEvent(QPaintEvent *)
 void ribi::QtGaborFilterWidget::resizeEvent(QResizeEvent *)
 {
   QRect r = this->geometry();
-  this->GetWidget()->SetGeometry(Rect(r.x(),r.y(),r.width(),r.height()));
+  this->GetWidget()->SetGeometry(r.x(),r.y(),r.width(),r.height());
 }
 

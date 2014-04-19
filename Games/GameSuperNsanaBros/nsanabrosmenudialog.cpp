@@ -34,7 +34,7 @@ ribi::NsanaBrosMenuDialog::~NsanaBrosMenuDialog() noexcept
 
 }
 
-const ribi::About ribi::NsanaBrosMenuDialog::GetAbout() const noexcept
+ribi::About ribi::NsanaBrosMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -48,7 +48,7 @@ const ribi::About ribi::NsanaBrosMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::NsanaBrosMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::NsanaBrosMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -62,7 +62,7 @@ const ribi::Help ribi::NsanaBrosMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::NsanaBrosMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::NsanaBrosMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramSuperNsanaBros
@@ -76,12 +76,12 @@ const ribi::NsanaBrosOptionsDialog * ribi::NsanaBrosMenuDialog::GetOptionsDialog
   return m_options.get();
 }
 
-const std::string ribi::NsanaBrosMenuDialog::GetVersion() const noexcept
+std::string ribi::NsanaBrosMenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::NsanaBrosMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::NsanaBrosMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-03-xx: Version 1.0: initial version"

@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttictactoemenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
+ribi::tictactoe::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeMenuDialog)
 {
@@ -49,44 +49,62 @@ ribi::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog() noexcept
+ribi::tictactoe::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTicTacToeMenuDialog::on_button_start_clicked()
+void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_start_clicked()
 {
-  QtTicTacToeGameDialog d;
+  const boost::shared_ptr<Ai> player1;
+  const boost::shared_ptr<Ai> player2;
+  QtTicTacToeGameDialog d(player1,player2);
   this->ShowChild(&d);
 }
 
-void ribi::QtTicTacToeMenuDialog::on_button_about_clicked()
+void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_about_clicked()
 {
   About a = TicTacToeMenuDialog().GetAbout();
-  a.AddLibrary("QtTicTacToeWidget version: " + QtTicTacToeWidget::GetVersion());
+  a.AddLibrary("QtTicTacToeWidget version: " + tictactoe::QtTicTacToeWidget::GetVersion());
   QtAboutDialog d(a);
   this->ShowChild(&d);
 }
 
-void ribi::QtTicTacToeMenuDialog::on_button_quit_clicked()
+void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::QtTicTacToeMenuDialog::Test() noexcept
+void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTicTacToeMenuDialog::Test");
-  TRACE("Finished ribi::QtTicTacToeMenuDialog::Test successfully");
+  TRACE("Starting ribi::tictactoe::QtTicTacToeMenuDialog::Test");
+  {
+    const boost::shared_ptr<Ai> player1;
+    const boost::shared_ptr<Ai> player2;
+    QtTicTacToeGameDialog d(player1,player2);
+    assert(!d.GetVersion().empty());
+  }
+  {
+    QtCanvas * const qtcanvas {
+      new QtTicTacToeCanvas
+    };
+    boost::scoped_ptr<QtCanvasDialog> d {
+      new QtCanvasDialog(qtcanvas)
+    };
+    assert(d);
+  }
+
+  TRACE("Finished ribi::tictactoe::QtTicTacToeMenuDialog::Test successfully");
 }
 #endif
 
-void ribi::QtTicTacToeMenuDialog::on_button_start_old_school_clicked()
+void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_start_old_school_clicked()
 {
   QtCanvas * const qtcanvas {
     new QtTicTacToeCanvas

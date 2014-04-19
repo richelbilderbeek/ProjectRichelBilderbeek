@@ -67,12 +67,12 @@ double ribi::GaborFilter::GaborFunction(const double x, const double y) const
   return GaborFunction(x,y,m_angle,m_frequency,m_sigma);
 }
 
-const std::string ribi::GaborFilter::GetVersion() noexcept
+std::string ribi::GaborFilter::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::GaborFilter::GetVersionHistory() noexcept
+std::vector<std::string> ribi::GaborFilter::GetVersionHistory() noexcept
 {
   return {
     "2012-07-08: version 1.0: initial version"

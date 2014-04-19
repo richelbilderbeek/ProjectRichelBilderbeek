@@ -18,7 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimplifyNewick.htm
 //---------------------------------------------------------------------------
-#include "toolsimplifynewickmaindialog.h"
+#include "simplifynewickmaindialog.h"
 
 #include <iostream>
 
@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 /*
 
-const std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::GetBadlyFormedNewicks()
+std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::GetBadlyFormedNewicks()
 {
   std::vector<std::string> v;
   v.push_back("1,(2,3))");
@@ -43,7 +43,7 @@ const std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::GetBadlyForme
   return v;
 }
 
-const std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::GetWellFormedNewicks()
+std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::GetWellFormedNewicks()
 {
   std::vector<std::string> v;
   v.push_back("(1,(2,3))");
@@ -181,7 +181,7 @@ void ribi::ToolSimplifyNewickMainDialog::TestNewicksManually()
   }
 }
 */
-const std::string ribi::ToolSimplifyNewickMainDialog::SimplifyNewick(
+std::string ribi::ToolSimplifyNewickMainDialog::SimplifyNewick(
   const std::string& s,
   const BigInteger& max_complexity)
 {

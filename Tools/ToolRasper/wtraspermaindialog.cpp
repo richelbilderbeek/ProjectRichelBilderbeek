@@ -41,10 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtaboutdialog.h"
 #include "wtraspermaindialog.h"
 
-namespace ToolRasper {
-
-
-const std::vector<rpi::gpio::Pin> WtMainDialog::CreatePins()
+const std::vector<rpi::gpio::Pin> ribi::ToolRasper::WtMainDialog::CreatePins()
 {
   std::vector<rpi::gpio::Pin> v;
   for (int pin: rpi::gpio::Pin::CreatePinNumbers())
@@ -54,7 +51,7 @@ const std::vector<rpi::gpio::Pin> WtMainDialog::CreatePins()
   return v;
 }
 
-WtMainDialog::Ui::Ui()
+ribi::ToolRasper::WtMainDialog::Ui::Ui()
 {
   for (int i=0; i!=rpi::gpio::GetMaxPinNumber(); ++i)
   {
@@ -65,7 +62,7 @@ WtMainDialog::Ui::Ui()
   }
 }
 
-WtMainDialog::WtMainDialog()
+ribi::ToolRasper::WtMainDialog::WtMainDialog()
   : m_pins(CreatePins())
 {
   this->setContentAlignment(Wt::AlignCenter);
@@ -75,65 +72,65 @@ WtMainDialog::WtMainDialog()
 
   ui.m_buttons[ 1-1]->setText("3v3");
   //ui.m_buttons[ 1-1]->setText("1");
-  //ui.m_buttons[ 1-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick1);
+  //ui.m_buttons[ 1-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick1);
   ui.m_buttons[ 2-1]->setText("5 V");
   //ui.m_buttons[ 2-1]->setText("2");
-  //ui.m_buttons[ 2-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick2);
+  //ui.m_buttons[ 2-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick2);
   ui.m_buttons[ 3-1]->setText("3");
-  ui.m_buttons[ 3-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick3);
+  ui.m_buttons[ 3-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick3);
   ui.m_buttons[ 4-1]->setText("DNC");
   //ui.m_buttons[ 4-1]->setText("4");
-  //ui.m_buttons[ 4-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick4);
+  //ui.m_buttons[ 4-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick4);
   ui.m_buttons[ 5-1]->setText("5");
-  ui.m_buttons[ 5-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick5);
+  ui.m_buttons[ 5-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick5);
   ui.m_buttons[ 6-1]->setText("GND");
   //ui.m_buttons[ 6-1]->setText("6");
-  //ui.m_buttons[ 6-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick6);
+  //ui.m_buttons[ 6-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick6);
   ui.m_buttons[ 7-1]->setText("7");
-  ui.m_buttons[ 7-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick7);
+  ui.m_buttons[ 7-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick7);
   ui.m_buttons[ 8-1]->setText("8");
-  ui.m_buttons[ 8-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick8);
+  ui.m_buttons[ 8-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick8);
   ui.m_buttons[ 9-1]->setText("DNC");
   //ui.m_buttons[ 9-1]->setText("9");
-  //ui.m_buttons[ 9-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick9);
+  //ui.m_buttons[ 9-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick9);
   ui.m_buttons[10-1]->setText("10");
-  ui.m_buttons[10-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick10);
+  ui.m_buttons[10-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick10);
   ui.m_buttons[11-1]->setText("11");
-  ui.m_buttons[11-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick11);
+  ui.m_buttons[11-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick11);
   ui.m_buttons[12-1]->setText("12");
-  ui.m_buttons[12-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick12);
+  ui.m_buttons[12-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick12);
   ui.m_buttons[13-1]->setText("13");
-  ui.m_buttons[13-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick13);
+  ui.m_buttons[13-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick13);
   ui.m_buttons[14-1]->setText("DNC");
   //ui.m_buttons[14-1]->setText("14");
-  //ui.m_buttons[14-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick14);
+  //ui.m_buttons[14-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick14);
   ui.m_buttons[15-1]->setText("15");
-  ui.m_buttons[15-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick15);
+  ui.m_buttons[15-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick15);
   ui.m_buttons[16-1]->setText("16");
-  ui.m_buttons[16-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick16);
+  ui.m_buttons[16-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick16);
   ui.m_buttons[17-1]->setText("DNC");
   //ui.m_buttons[17-1]->setText("17");
-  //ui.m_buttons[17-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick17);
+  //ui.m_buttons[17-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick17);
   ui.m_buttons[18-1]->setText("18");
-  ui.m_buttons[18-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick18);
+  ui.m_buttons[18-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick18);
   ui.m_buttons[19-1]->setText("19");
-  ui.m_buttons[19-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick19);
+  ui.m_buttons[19-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick19);
   ui.m_buttons[20-1]->setText("DNC");
   //ui.m_buttons[20-1]->setText("20");
-  //ui.m_buttons[20-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick20);
+  //ui.m_buttons[20-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick20);
   ui.m_buttons[21-1]->setText("21");
-  ui.m_buttons[21-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick21);
+  ui.m_buttons[21-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick21);
   ui.m_buttons[22-1]->setText("22");
-  ui.m_buttons[22-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick22);
+  ui.m_buttons[22-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick22);
   ui.m_buttons[23-1]->setText("23");
-  ui.m_buttons[23-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick23);
+  ui.m_buttons[23-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick23);
   ui.m_buttons[24-1]->setText("24");
-  ui.m_buttons[24-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick24);
+  ui.m_buttons[24-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick24);
   ui.m_buttons[25-1]->setText("DNC");
   //ui.m_buttons[25-1]->setText("25");
-  //ui.m_buttons[25-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick25);
+  //ui.m_buttons[25-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick25);
   ui.m_buttons[26-1]->setText("26");
-  ui.m_buttons[26-1]->clicked().connect(this,&ToolRasper::WtMainDialog::OnClick26);
+  ui.m_buttons[26-1]->clicked().connect(this,&ribi::ToolRasper::WtMainDialog::OnClick26);
 
   //Add buttons
   {
@@ -171,7 +168,7 @@ WtMainDialog::WtMainDialog()
   }
 }
 
-void WtMainDialog::OnClick(const int pin_number)
+void ribi::ToolRasper::WtMainDialog::OnClick(const int pin_number)
 {
   std::vector<rpi::gpio::Pin>::iterator iter = std::find_if(m_pins.begin(),m_pins.end(),
     [pin_number](const rpi::gpio::Pin& pin)
@@ -185,6 +182,3 @@ void WtMainDialog::OnClick(const int pin_number)
     (*iter).Toggle();
   }
 }
-
-} //namespace ToolRasper
-

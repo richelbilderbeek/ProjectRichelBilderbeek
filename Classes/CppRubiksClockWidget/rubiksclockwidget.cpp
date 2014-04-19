@@ -60,7 +60,7 @@ ribi::ruco::ClockWidget::ClockWidget(
       &ribi::ruco::ClockWidget::OnResize,
       this));
 
-  this->SetGeometry(Rect(x,y,width,height));
+  SetGeometry(x,y,width,height);
 }
 
 void ribi::ruco::ClockWidget::Click(const int x,const int y,const bool button_left) noexcept
@@ -91,7 +91,7 @@ void ribi::ruco::ClockWidget::Click(const int x,const int y,const bool button_le
             button_left ? 1 : -1);
         }
       }
-      else if (pegs->m_pegs[i][j]->GetGeometry().IsIn(x,y))
+      else if (pegs->m_pegs[i][j]->IsIn(x,y))
       {
         m_clock->TogglePeg(
           i
@@ -108,18 +108,19 @@ void ribi::ruco::ClockWidget::Flip() noexcept
   m_signal_widget_flipped();
 }
 
-const std::string ribi::ruco::ClockWidget::GetVersion() noexcept
+std::string ribi::ruco::ClockWidget::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
-const std::vector<std::string> ribi::ruco::ClockWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ruco::ClockWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-09-01: Version 1.0: initial version",
     "2011-09-09: Version 1.1: use of geometries",
     "2011-09-15: Version 1.2: allow flipping the clock",
-    "2014-01-16: Version 1.3: added noexcept and enum class"
+    "2014-01-16: Version 1.3: added noexcept and enum class",
+    "2014-03-28: version 1.4: replaced Rect by Boost.Geometry its box class"
   };
 }
 
@@ -228,7 +229,7 @@ std::ostream& ribi::ruco::operator<<(std::ostream& os, const ribi::ruco::ClockWi
   os
     << "<RubiksClockWidget>"
     << *widget.m_clock
-    << widget.GetGeometry()
+    //<< widget.GetGeometry()
     << "</RubiksClockWidget>";
   return os;
 }

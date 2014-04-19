@@ -30,13 +30,13 @@ namespace ribi {
 
 struct RandomCode
 {
-  static const std::vector<std::string> CreateRandomCode() noexcept;
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> CreateRandomCode() noexcept;
+  static About GetAbout() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
   private:
-  static const std::string CreateRandomLine(const unsigned int length) noexcept;
-  static const std::string CreateRandomString() noexcept;
+  static std::string CreateRandomLine(const unsigned int length) noexcept;
+  static std::string CreateRandomString() noexcept;
 };
 
 } //~namespace ribi

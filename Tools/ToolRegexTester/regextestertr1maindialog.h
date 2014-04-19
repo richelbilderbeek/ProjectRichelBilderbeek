@@ -41,14 +41,14 @@ struct RegexTesterTr1MainDialog : public RegexTesterMainDialog
   const boost::shared_ptr<RegexTesterMainDialog> Clone() const;
 
   ///Get an example format used to replace regex matches
-  const std::string GetExampleFormat() const { return "$0"; }
+  std::string GetExampleFormat() const { return "$0"; }
 
   ///Get an example regex
-  const std::string GetExampleRegex() const { return "(\\d{4} [A-Z]{2})"; }
+  std::string GetExampleRegex() const { return "(\\d{4} [A-Z]{2})"; }
 
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  const std::vector<std::string> GetRegexMatches(
+  std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const std::string& r) const;
 
@@ -59,12 +59,12 @@ struct RegexTesterTr1MainDialog : public RegexTesterMainDialog
   bool GetRegexValid(const std::string &regex_str) const;
 
   ///Obtain a description of the used implementation
-  const std::string GetUsedImplementation() const { return "TR1"; }
+  std::string GetUsedImplementation() const { return "TR1"; }
 
   private:
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static const std::vector<std::string> GetRegexMatches(
+  static std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const std::tr1::regex& r);
 };

@@ -29,53 +29,55 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include <QWidget>
+
+#include "tictactoefwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
-struct TicTacToe;
+namespace tictactoe {
 
 class QtTicTacToeWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit QtTicTacToeWidget(QWidget *parent = 0);
-  const boost::shared_ptr<const TicTacToe> GetTicTacToe() const { return m_tictactoe; }
+  explicit QtTicTacToeWidget(
+    const boost::shared_ptr<Ai>& player1,
+    const boost::shared_ptr<Ai>& player2,
+    QWidget *parent = 0);
+  boost::shared_ptr<const Widget> GetWidget() const { return m_widget; }
 
-  //const TicTacToe * GetTicTacToe() const { return m_tictactoe.get(); } //Why did I once use this form?
-
-  void Restart();
+  ///Called every second, makes the AI do a move
+  void OnTimer() noexcept;
+  void Restart() noexcept;
 
   ///mousePressEvent must be public for TicTacToeTest's
   ///virtual mouse clicks
   void mousePressEvent(QMouseEvent *);
 
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_changed;
   boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_has_winner;
 
 protected:
-  void paintEvent(QPaintEvent *);
-  void resizeEvent(QResizeEvent *);
+  void paintEvent(QPaintEvent *) noexcept;
+  void resizeEvent(QResizeEvent *) noexcept;
 
 private:
-  boost::shared_ptr<TicTacToe> m_tictactoe;
+  const boost::shared_ptr<Ai> m_player1;
+  const boost::shared_ptr<Ai> m_player2;
 
-  void OnChanged(const TicTacToe * const);
+  boost::shared_ptr<Widget> m_widget;
+
+  void OnChanged();
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-
-//signals:
-//  void hasWinner();
-//  void stateChanged();
-//public slots:
-
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEWIDGET_H

@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -309,8 +329,8 @@ void ribi::cmap::QtConceptMap::DeleteNode(QtNode * const qtnode)
   #endif
 }
 
-const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
-  const QtNode* const from) const
+std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
+  const QtNode* const from) const noexcept
 {
   assert(from);
   const std::vector<QtEdge*> v = Collect<QtEdge>(scene());
@@ -324,9 +344,56 @@ const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
   return w;
 }
 
-const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
+const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
+  const boost::shared_ptr<const Edge> edge) const noexcept
+{
+  const auto v(GetQtEdges());
+  for (const auto e:v)
+  {
+    if (e->GetEdge() == edge) return e;
+  }
+  return nullptr;
+}
+
+ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
+  const boost::shared_ptr<Edge> edge) noexcept
+{
+  //Calls the const version of this member function
+  //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
+  QtEdge * const qtedge(
+    const_cast<QtEdge *>(
+      dynamic_cast<const QtConceptMap*>(this)->FindQtEdgeConst(edge)
+    )
+  );
+  return qtedge;
+}
+
+ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
+  const QtEdge* const edge) noexcept
+{
+  //Calls the const version of this member function
+  //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
+  QtEdge * const qtedge(
+    const_cast<QtEdge *>(
+      dynamic_cast<const QtConceptMap*>(this)->FindQtEdgeConst(edge)
+    )
+  );
+  return qtedge;
+}
+
+const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
+  const QtEdge* const edge) const noexcept
+{
+  return FindQtEdgeConst(edge->GetFrom(),edge->GetTo());
+}
+
+const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
   const QtNode* const from,
-  const QtNode* const to) const
+  const QtNode* const to) const noexcept
 {
 
   assert(from);
@@ -345,8 +412,15 @@ const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
   return * iter;
 }
 
+/*
+ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(Node * const node) noexcept
+{
+  return const_cast<QtNode *>(FindQtNodeConst(node));
+}
+*/
 
-ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(ribi::cmap::Node * const node) const
+const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNodeConst(
+  const ribi::cmap::Node * const node) const noexcept
 {
   assert(node);
   const std::vector<QtNode *> qtnodes = Collect<QtNode>(scene());
@@ -357,7 +431,23 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(ribi::cmap::Node * con
   return nullptr;
 }
 
-const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const
+ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(
+  ribi::cmap::Node * const node) noexcept
+{
+  assert(node);
+  //Calls the const version of this member function
+  //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
+  QtNode * const qtnode(
+    const_cast<QtNode *>(
+      dynamic_cast<const QtConceptMap*>(this)->FindQtNodeConst(node)
+    )
+  );
+  return qtnode;
+}
+
+const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const noexcept
 {
 
   assert(scene());
@@ -417,7 +507,7 @@ ribi::cmap::QtNode* ribi::cmap::QtConceptMap::GetItemBelowCursor(const QPointF& 
   return nullptr;
 }
 
-const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges() const
+std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges() const
 {
   const std::vector<const QtEdge *> qtedges
     = Collect<const QtEdge>(this->scene());
@@ -426,7 +516,7 @@ const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdg
   return qtedges;
 }
 
-const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges()
+std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges()
 {
   const std::vector<QtEdge *> qtedges
     = Collect<QtEdge>(this->scene());
@@ -436,13 +526,13 @@ const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges()
   return qtedges;
 }
 
-const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes() const
+std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes() const
 {
   const std::vector<const QtNode *> qtnodes
     = Collect<const QtNode>(this->scene());
   if (qtnodes.size() != GetConceptMap()->GetNodes().size())
   {
-    TRACE("Warning: GUI and non-GUI contain an unequal amount of nodes");
+    //TRACE("Warning: GUI and non-GUI contain an unequal amount of nodes");
   }
 
   //assert(qtnodes.size() == GetConceptMap()->GetNodes().size()
@@ -450,21 +540,21 @@ const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNod
   return qtnodes;
 }
 
-QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const
+QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const noexcept
 {
 
-  return this->scene();
+  return scene();
 }
 
-const std::string ribi::cmap::QtConceptMap::GetVersion() noexcept
+std::string ribi::cmap::QtConceptMap::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::cmap::QtConceptMap::GetVersionHistory() noexcept
+std::vector<std::string> ribi::cmap::QtConceptMap::GetVersionHistory() noexcept
 {
   return {
-    "201x-xx-xx: version 1.0: initial version"
+    "2012-xx-xx: version 1.0: initial version"
     "2013-12-03: version 1.1: start of versioning"
   };
 }
@@ -658,7 +748,7 @@ void ribi::cmap::QtConceptMap::SetExamplesItem(QtExamplesItem * const item)
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMap::Shuffle()
+void ribi::cmap::QtConceptMap::Shuffle() noexcept
 {
   const std::vector<QtNode*> nodes = Collect<QtNode>(scene());
   std::for_each(nodes.begin(),nodes.end(),

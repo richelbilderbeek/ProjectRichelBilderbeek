@@ -98,10 +98,10 @@ struct GaborFilter
 
   public:
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 std::ostream& operator<<(std::ostream& os, const GaborFilter& g) noexcept;

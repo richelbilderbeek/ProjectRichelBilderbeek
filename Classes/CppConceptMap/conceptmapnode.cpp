@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -31,7 +51,7 @@ ribi::cmap::Node::Node(
 }
 
 
-const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTests()
+std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTests() noexcept
 {
   const auto test_concepts = ConceptFactory().GetTests();
   std::vector<boost::shared_ptr<Node> > result;
@@ -47,14 +67,14 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTes
   return result;
 }
 
-bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const cmap::Node>& lhs, const boost::shared_ptr<const cmap::Node>& rhs)
+bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const cmap::Node>& lhs, const boost::shared_ptr<const cmap::Node>& rhs) noexcept
 {
   assert(lhs);
   assert(rhs);
   return *lhs->GetConcept() == *rhs->GetConcept();
 }
 
-void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept)
+void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept) noexcept
 {
   if (m_concept != concept)
   {
@@ -63,7 +83,7 @@ void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept)
   }
 }
 
-void ribi::cmap::Node::SetX(const double x)
+void ribi::cmap::Node::SetX(const double x) noexcept
 {
   if (m_x != x)
   {
@@ -72,7 +92,7 @@ void ribi::cmap::Node::SetX(const double x)
   }
 }
 
-void ribi::cmap::Node::SetY(const double y)
+void ribi::cmap::Node::SetY(const double y) noexcept
 {
   if (m_y != y)
   {
@@ -102,7 +122,6 @@ void ribi::cmap::Node::Test() noexcept
         assert(*node == *c);
         const std::string s = c->ToXml();
         const boost::shared_ptr<Node> d = NodeFactory().FromXml(s);
-        TRACE(s); //TEMP
         assert(d);
         assert(*c == *d);
       }
@@ -224,7 +243,7 @@ void ribi::cmap::Node::Test() noexcept
 }
 #endif
 
-const std::string ribi::cmap::Node::ToXml() const noexcept
+std::string ribi::cmap::Node::ToXml() const noexcept
 {
   std::stringstream s;
   s << "<node>";
@@ -235,13 +254,13 @@ const std::string ribi::cmap::Node::ToXml() const noexcept
 
   const std::string r = s.str();
   assert(r.size() >= 13);
-  assert(r.substr(0,6) == std::string("<node>"));
-  assert(r.substr(r.size() - 7,7) == std::string("</node>"));
+  assert(r.substr(0,6) == "<node>");
+  assert(r.substr(r.size() - 7,7) == "</node>");
 
   return r;
 }
 
-bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs)
+bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs) noexcept
 {
   assert(lhs.GetConcept());
   assert(rhs.GetConcept());
@@ -251,7 +270,7 @@ bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs)
     && lhs.GetY() == rhs.GetY();
 }
 
-bool ribi::cmap::operator!=(const cmap::Node& lhs, const cmap::Node& rhs)
+bool ribi::cmap::operator!=(const cmap::Node& lhs, const cmap::Node& rhs) noexcept
 {
   return !(lhs == rhs);
 }

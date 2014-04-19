@@ -18,16 +18,15 @@
 
 #include "canvascolorsystems.h"
 #include "canvascoordinatsystems.h"
-//#include "dotmatrixstring.h"
 #include "fileio.h"
 #include "trace.h"
-//#include "xml.h"
 
 #pragma GCC diagnostic pop
 
 ribi::MultiCanvas::MultiCanvas(
   const std::vector<boost::shared_ptr<Canvas>>& canvases
-) : m_canvases(canvases)
+) noexcept
+: m_canvases(canvases)
 {
 
 }
@@ -40,12 +39,12 @@ int ribi::MultiCanvas::GetHeight() const noexcept
   return h;
 }
 
-const std::string ribi::MultiCanvas::GetVersion() noexcept
+std::string ribi::MultiCanvas::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::MultiCanvas::GetVersionHistory() noexcept
+std::vector<std::string> ribi::MultiCanvas::GetVersionHistory() noexcept
 {
   return {
     "2014-01-13: version 1.0: initial version"
@@ -60,7 +59,7 @@ int ribi::MultiCanvas::GetWidth() const noexcept
   return w;
 }
 
-const std::vector<std::string> ribi::MultiCanvas::ToStrings() const noexcept
+std::vector<std::string> ribi::MultiCanvas::ToStrings() const noexcept
 {
   const int maxy = GetHeight();
   const int maxx = GetWidth();
@@ -94,7 +93,7 @@ const std::vector<std::string> ribi::MultiCanvas::ToStrings() const noexcept
   return w;
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const MultiCanvas& c)
+std::ostream& ribi::operator<<(std::ostream& os, const MultiCanvas& c) noexcept
 {
   const auto text = c.ToStrings();
   std::copy(text.begin(),text.end(),

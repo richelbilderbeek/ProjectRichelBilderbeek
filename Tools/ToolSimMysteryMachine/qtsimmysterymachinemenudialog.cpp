@@ -26,9 +26,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"
 #include "ledwidget.h"
 #include "qtaboutdialog.h"
+#include "qtcanvasdialog.h"
 #include "qtdialwidget.h"
 #include "qtledwidget.h"
-
+#include "qtmysterymachinecanvas.h"
 #include "qtmysterymachinewidget.h"
 #include "qtsimmysterymachineinstructionsdialog.h"
 #include "qtsimmysterymachinemaindialog.h"
@@ -63,8 +64,17 @@ ribi::QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog() noexcept
 
 void ribi::QtSimMysteryMachineMenuDialog::on_button_start_clicked() noexcept
 {
-  QtSimMysteryMachineMainDialog d;
-  this->ShowChild(&d);
+  const boost::shared_ptr<QtMysteryMachineCanvas> canvas {
+    new QtMysteryMachineCanvas
+  };
+  assert(canvas);
+  const boost::shared_ptr<QtCanvasDialog> dialog {
+    new QtCanvasDialog(canvas.get())
+  };
+  ShowChild(dialog.get());
+
+  //QtSimMysteryMachineMainDialog d;
+  //ShowChild(&d);
 }
 
 void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked() noexcept
@@ -106,6 +116,21 @@ void ribi::QtSimMysteryMachineMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtSimMysteryMachineMenuDialog::Test");
+  QtMysteryMachineWidget();
+  const boost::shared_ptr<MysteryMachineWidget> p { new MysteryMachineWidget };
+  /*
+  {
+    const boost::shared_ptr<QtMysteryMachineCanvas> canvas {
+      new QtMysteryMachineCanvas
+    };
+    assert(canvas);
+    const boost::shared_ptr<QtCanvasDialog> dialog {
+      new QtCanvasDialog(canvas.get())
+    };
+    assert(dialog);
+  }
+  */
+  assert(p);
   TRACE("Finished ribi::QtSimMysteryMachineMenuDialog::Test successfully");
 }
 #endif

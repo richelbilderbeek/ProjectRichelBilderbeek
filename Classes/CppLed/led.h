@@ -94,14 +94,18 @@ struct Led
   ///The Led its blueness
   unsigned char m_blue;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   friend std::ostream& operator<<(std::ostream& os, const Led& led);
 
   public:
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 std::ostream& operator<<(std::ostream& os, const Led& led);

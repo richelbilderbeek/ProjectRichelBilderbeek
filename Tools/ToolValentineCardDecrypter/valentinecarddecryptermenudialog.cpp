@@ -72,7 +72,7 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
   }
 }
 
-const ribi::About ribi::ValentineCardDecrypterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ValentineCardDecrypterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -89,7 +89,7 @@ const ribi::About ribi::ValentineCardDecrypterMenuDialog::GetAbout() const noexc
   return a;
 }
 
-const ribi::Help ribi::ValentineCardDecrypterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ValentineCardDecrypterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -106,7 +106,7 @@ const ribi::Help ribi::ValentineCardDecrypterMenuDialog::GetHelp() const noexcep
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ValentineCardDecrypterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ValentineCardDecrypterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramValentineCardDecrypter
@@ -115,12 +115,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ValentineCardDecrypterMenuDia
   return p;
 }
 
-const std::string ribi::ValentineCardDecrypterMenuDialog::GetVersion() const noexcept
+std::string ribi::ValentineCardDecrypterMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ValentineCardDecrypterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ValentineCardDecrypterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2014-02-18: version 1.0: initial command-line version, displaying the alphabet",
@@ -141,20 +141,20 @@ void ribi::ValentineCardDecrypterMenuDialog::Test() noexcept
   d.Execute( {"ValentineCardDecrypter"} );
   d.Execute( {"ValentineCardDecrypter", "--text", "Hello world"} );
   {
-    const std::string filename { fileio::GetTempFileName(".png") };
-    assert(!fileio::IsRegularFile(filename));
+    const std::string filename { fileio::FileIo().GetTempFileName(".png") };
+    assert(!fileio::FileIo().IsRegularFile(filename));
     d.Execute( {"ValentineCardDecrypter", "-t", "Test", "-f", filename} );
-    assert(fileio::IsRegularFile(filename));
-    fileio::DeleteFile(filename);
-    assert(!fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
+    fileio::FileIo().DeleteFile(filename);
+    assert(!fileio::FileIo().IsRegularFile(filename));
   }
   {
-    const std::string filename { fileio::GetTempFileName(".png") };
-    assert(!fileio::IsRegularFile(filename));
+    const std::string filename { fileio::FileIo().GetTempFileName(".png") };
+    assert(!fileio::FileIo().IsRegularFile(filename));
     d.Execute( {"ValentineCardDecrypter", "--file", filename} );
-    assert(fileio::IsRegularFile(filename));
-    fileio::DeleteFile(filename);
-    assert(!fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
+    fileio::FileIo().DeleteFile(filename);
+    assert(!fileio::FileIo().IsRegularFile(filename));
   }
   TRACE("Finished ribi::ValentineCardDecrypterMenuDialog::Test successfully");
 }

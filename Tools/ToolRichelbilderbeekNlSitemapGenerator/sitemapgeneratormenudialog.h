@@ -36,19 +36,19 @@ struct SitemapGeneratorMenuDialog : public MenuDialog
   SitemapGeneratorMenuDialog();
   ~SitemapGeneratorMenuDialog() noexcept {}
 
-  const About GetAbout() const noexcept;
-  const Help GetHelp() const noexcept;
-  const boost::shared_ptr<const Program> GetProgram() const noexcept;
-  const std::string GetVersion() const noexcept;
-  const std::vector<std::string> GetVersionHistory() const noexcept;
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   boost::signals2::signal<void(const std::string)> m_signal_log;
 
   private:
 
-  static const std::vector<std::string> AddHeader(const std::vector<std::string>& files) noexcept;
+  static std::vector<std::string> AddHeader(const std::vector<std::string>& files) noexcept;
 
-  static const std::vector<std::string> CreateConfigXml(
+  static std::vector<std::string> CreateConfigXml(
     const std::string& local_website_path,
     const std::string& urllist_path) noexcept;
 
@@ -56,9 +56,9 @@ struct SitemapGeneratorMenuDialog : public MenuDialog
 
   //Returns date in YYYY-MM-DD format
   //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
-  static const std::string GetDateIso8601() noexcept;
+  static std::string GetDateIso8601() noexcept;
 
-  static const std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder) noexcept;
+  static std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

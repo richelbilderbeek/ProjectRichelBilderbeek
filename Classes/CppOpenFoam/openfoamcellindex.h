@@ -23,7 +23,7 @@ struct CellIndex
   #endif
 };
 
-std::ostream& operator<<(std::ostream& os, const CellIndex& cell_index);
+std::ostream& operator<<(std::ostream& os, const CellIndex& cell_index) noexcept;
 std::istream& operator>>(std::istream& is, CellIndex& cell_index);
 
 bool operator==(const CellIndex& lhs, const CellIndex& rhs) noexcept;

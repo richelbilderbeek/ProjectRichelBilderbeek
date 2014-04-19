@@ -1,6 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #pragma GCC diagnostic pop
 
@@ -17,7 +18,8 @@ bool operator==(const MyClass& lhs, const MyClass& rhs)
 
 int main()
 {
-  const boost::shared_ptr<MyClass> p(new MyClass(42));
+  const boost::shared_ptr<MyClass> p
+    = boost::make_shared<MyClass>(42);
   const boost::shared_ptr<MyClass> q(p);
   assert( p ==  q);
   assert(*p == *q);

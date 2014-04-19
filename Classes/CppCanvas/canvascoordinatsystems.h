@@ -17,13 +17,13 @@ namespace ribi {
 
 struct CanvasCoordinatSystems
 {
-  static const std::vector<CanvasCoordinatSystem> GetAll() noexcept;
-  static const std::string ToStr(const CanvasCoordinatSystem s) noexcept;
+  static std::vector<CanvasCoordinatSystem> GetAll() noexcept;
+  static std::string ToStr(const CanvasCoordinatSystem s) noexcept;
   static CanvasCoordinatSystem ToType(const std::string& s);
 
   private:
   static boost::bimap<CanvasCoordinatSystem,std::string> m_map;
-  static const boost::bimap<CanvasCoordinatSystem,std::string> CreateMap();
+  static boost::bimap<CanvasCoordinatSystem,std::string> CreateMap();
 
   #ifndef NDEBUG
   static void Test() noexcept;

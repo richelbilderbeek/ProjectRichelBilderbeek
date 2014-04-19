@@ -1,0 +1,44 @@
+Dr. Memory version 1.6.1 build 2 built on Dec 14 2013 12:27:10
+Dr. Memory results for pid 5440: "ToolDrMemoryExample3.exe"
+Application cmdline: "ToolDrMemoryExample3.exe"
+Recorded 99 suppression(s) from default C:\Program Files\DrMemory\bin\suppress-default.txt
+
+Error #1: INVALID HEAP ARGUMENT: allocated with operator new[], freed with operator delete
+# 0 replace_operator_delete               [d:\drmemory_package\common\alloc_replace.c:2496]
+# 1 Bad()                                 [../ToolDrMemoryExample3/main.cpp:10]
+# 2 main                                  [../ToolDrMemoryExample3/main.cpp:16]
+Note: @0:00:00.346 in thread 5808
+Note: memory was allocated here:
+Note: # 0 replace_operator_new_array               [d:\drmemory_package\common\alloc_replace.c:2450]
+Note: # 1 Bad()                                    [../ToolDrMemoryExample3/main.cpp:9]
+Note: # 2 main                                     [../ToolDrMemoryExample3/main.cpp:16]
+
+Error #2: INVALID HEAP ARGUMENT: allocated with operator new[], freed with operator delete
+# 0 replace_operator_delete               [d:\drmemory_package\common\alloc_replace.c:2496]
+# 1 Bad()                                 [../ToolDrMemoryExample3/main.cpp:10]
+# 2 main                                  [../ToolDrMemoryExample3/main.cpp:18]
+Note: @0:00:00.347 in thread 5808
+Note: memory was allocated here:
+Note: # 0 replace_operator_new_array               [d:\drmemory_package\common\alloc_replace.c:2450]
+Note: # 1 Bad()                                    [../ToolDrMemoryExample3/main.cpp:9]
+Note: # 2 main                                     [../ToolDrMemoryExample3/main.cpp:18]
+
+===========================================================================
+FINAL SUMMARY:
+
+DUPLICATE ERROR COUNTS:
+
+SUPPRESSIONS USED:
+
+ERRORS FOUND:
+      0 unique,     0 total unaddressable access(es)
+      0 unique,     0 total uninitialized access(es)
+      2 unique,     2 total invalid heap argument(s)
+      0 unique,     0 total GDI usage error(s)
+      0 unique,     0 total warning(s)
+      0 unique,     0 total,      0 byte(s) of leak(s)
+      0 unique,     0 total,      0 byte(s) of possible leak(s)
+ERRORS IGNORED:
+      2 unique,     2 total,     33 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+Details: C:\Users\rbilderbeek\AppData\Roaming\Dr. Memory\DrMemory-ToolDrMemoryExample3.exe.5440.000\results.txt

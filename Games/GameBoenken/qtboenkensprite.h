@@ -66,10 +66,10 @@ struct Sprite
   virtual void Draw(QPainter& painter) const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Sets the arena size,
   ///that is Sprite::m_maxx and Sprite::m_maxy.

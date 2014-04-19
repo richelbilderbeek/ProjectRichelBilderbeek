@@ -14,7 +14,7 @@
 
 boost::bimap<ribi::foam::PatchFieldType,std::string> ribi::foam::PatchFieldTypes::m_map;
 
-const boost::bimap<ribi::foam::PatchFieldType,std::string> ribi::foam::PatchFieldTypes::CreateMap()
+boost::bimap<ribi::foam::PatchFieldType,std::string> ribi::foam::PatchFieldTypes::CreateMap()
 {
   #ifndef NDEBUG
   Test();
@@ -78,6 +78,7 @@ const boost::bimap<ribi::foam::PatchFieldType,std::string> ribi::foam::PatchFiel
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::mutUWallFunction,"mutUWallFunction"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::mutkRoughWallFunction,"mutkRoughWallFunction"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::mutkWallFunction,"mutkWallFunction"));
+  m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::no_patch_field,"no_patch_field"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::nonuniformTransformCyclic,"nonuniformTransformCyclic"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::oscillatingFixedValue,"oscillatingFixedValue"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::outletInlet,"outletInlet"));
@@ -109,7 +110,7 @@ const boost::bimap<ribi::foam::PatchFieldType,std::string> ribi::foam::PatchFiel
   return m;
 }
 
-const std::vector<ribi::foam::PatchFieldType> ribi::foam::PatchFieldTypes::GetAllTypes()
+std::vector<ribi::foam::PatchFieldType> ribi::foam::PatchFieldTypes::GetAllTypes()
 {
   const std::vector<PatchFieldType> v {
     PatchFieldType::advective,
@@ -169,6 +170,7 @@ const std::vector<ribi::foam::PatchFieldType> ribi::foam::PatchFieldTypes::GetAl
     PatchFieldType::mutUWallFunction,
     PatchFieldType::mutkRoughWallFunction,
     PatchFieldType::mutkWallFunction,
+    PatchFieldType::no_patch_field,
     PatchFieldType::nonuniformTransformCyclic,
     PatchFieldType::oscillatingFixedValue,
     PatchFieldType::outletInlet,
@@ -224,7 +226,7 @@ void ribi::foam::PatchFieldTypes::Test() noexcept
 }
 #endif
 
-const std::string ribi::foam::PatchFieldTypes::ToStr(const PatchFieldType type)
+std::string ribi::foam::PatchFieldTypes::ToStr(const PatchFieldType type)
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());
@@ -251,7 +253,7 @@ ribi::foam::PatchFieldType ribi::foam::PatchFieldTypes::ToType(const std::string
   return t;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const PatchFieldType patch_field)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const PatchFieldType patch_field) noexcept
 {
   os << PatchFieldTypes::ToStr(patch_field);
   return os;

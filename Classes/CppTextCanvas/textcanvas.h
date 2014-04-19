@@ -54,16 +54,22 @@ struct TextCanvas : public Canvas
   ///Obtain the height of the canvas is characters
   int GetHeight() const noexcept { return m_canvas.size(); }
 
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters
   int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
 
   ///Check if a coordinat is in the range of the Canvas
-  bool IsInRange(const int x, const int y) const;
+  bool IsInRange(const int x, const int y) const noexcept;
 
-  void Load(const std::vector<std::string>& v) { m_canvas = v; }
+  void Load(const std::vector<std::string>& v) noexcept { m_canvas = v; }
+
+  ///Put a canvas on the canvas
+  void PutCanvas(
+    const int left, const int top,
+    const boost::shared_ptr<const TextCanvas>& canvas
+  ) noexcept;
 
   ///Put a character on the Canvas
   ///If the character is not in range, nothing happens
@@ -83,10 +89,10 @@ struct TextCanvas : public Canvas
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinatSystem) noexcept;
 
   ///Convert to a single string, lines seperated with '\n'
-  const std::string ToString() const noexcept;
+  std::string ToString() const noexcept;
 
   ///Convert to a collection of strings
-  const std::vector<std::string> ToStrings() const noexcept;
+  std::vector<std::string> ToStrings() const noexcept;
 
   private:
   ///The Canvas its internal data

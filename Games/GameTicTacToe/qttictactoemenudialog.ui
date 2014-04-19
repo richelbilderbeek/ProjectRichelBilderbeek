@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>360</width>
-    <height>444</height>
+    <width>309</width>
+    <height>548</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -29,23 +29,45 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, 
 }
 QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
-QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
+QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }
+QLabel { color: rgb(0,0,0); }
+QLabel { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QFormLayout" name="formLayout">
+   <item row="7" column="1">
+    <widget class="QPushButton" name="button_about">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;About</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QPushButton" name="button_quit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;Quit</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QLabel" name="label">
-     <property name="minimumSize">
-      <size>
-       <width>102</width>
-       <height>102</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>102</width>
-       <height>102</height>
-      </size>
-     </property>
      <property name="text">
       <string/>
      </property>
@@ -54,25 +76,9 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QPushButton" name="button_start">
-     <property name="text">
-      <string>&amp;Start</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_2">
+   <item row="9" column="0">
+    <widget class="QLabel" name="label_4">
      <property name="minimumSize">
-      <size>
-       <width>102</width>
-       <height>102</height>
-      </size>
-     </property>
-     <property name="maximumSize">
       <size>
        <width>102</width>
        <height>102</height>
@@ -82,29 +88,16 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/GameTicTacToeRetro.png</pixmap>
+      <pixmap resource="GameTicTacToe.qrc">:/images/GameTicTacToeX.png</pixmap>
      </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="button_start_old_school">
-     <property name="text">
-      <string>S&amp;tart</string>
-     </property>
-     <property name="flat">
+     <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="7" column="0">
     <widget class="QLabel" name="label_3">
      <property name="minimumSize">
-      <size>
-       <width>102</width>
-       <height>102</height>
-      </size>
-     </property>
-     <property name="maximumSize">
       <size>
        <width>102</width>
        <height>102</height>
@@ -121,45 +114,133 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="button_about">
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>&amp;About</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="GameTicTacToe.qrc">:/images/GameTicTacToeRetro.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="GameTicTacToe.qrc">:/images/GameTicTacToeHuman.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="GameTicTacToe.qrc">:/images/GameTicTacToeComputer.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_start">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;Start</string>
+     </property>
+     <property name="default">
+      <bool>true</bool>
      </property>
      <property name="flat">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="minimumSize">
-      <size>
-       <width>102</width>
-       <height>102</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>102</width>
-       <height>102</height>
-      </size>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/X.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item row="3" column="1">
-    <widget class="QPushButton" name="button_quit">
+    <widget class="QPushButton" name="button_start_old_school">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
-      <string>&amp;Quit</string>
+      <string>S&amp;tart</string>
+     </property>
+     <property name="default">
+      <bool>false</bool>
      </property>
      <property name="flat">
       <bool>true</bool>

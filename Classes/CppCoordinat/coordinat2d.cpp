@@ -1,3 +1,25 @@
+//---------------------------------------------------------------------------
+/*
+Coordinat, coordinat classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppCoordinat.htm
+//---------------------------------------------------------------------------
+#ifdef USE_CUSTOM_RIBI_COORDINAT3D
+
 #include "coordinat2d.h"
 
 #include <array>
@@ -49,6 +71,21 @@ double ribi::operator*(const Coordinat2D& v1,const Coordinat2D& v2) noexcept
   ;
 }
 
+ribi::Coordinat2D ribi::CalcCenter(const std::vector<ribi::Coordinat2D>& points) noexcept
+{
+  Coordinat2D sum;
+  for (const auto& point: points)
+  {
+    sum += point;
+  }
+  const double n { static_cast<double>(points.size()) };
+  const Coordinat2D center(
+    sum.GetX() / n,
+    sum.GetY() / n
+  );
+  return center;
+}
+
 double ribi::Distance(const Coordinat2D& lhs,const Coordinat2D& rhs) noexcept
 {
   const double dx = lhs.GetX() - rhs.GetX();
@@ -64,7 +101,7 @@ double ribi::Length(const Coordinat2D& v) noexcept
   return std::sqrt( (v.GetX() * v.GetX()) + (v.GetY() * v.GetY()));
 }
 
-const ribi::Coordinat2D ribi::Scale(
+ribi::Coordinat2D ribi::Scale(
   const double scalar,
   const ribi::Coordinat2D& v
 ) noexcept
@@ -90,7 +127,7 @@ void ribi::Coordinat2D::Test() noexcept
 }
 #endif
 
-const ribi::Coordinat2D ribi::operator-(
+ribi::Coordinat2D ribi::operator-(
   const Coordinat2D& v1,
   const Coordinat2D& v2) noexcept
 {
@@ -101,7 +138,7 @@ const ribi::Coordinat2D ribi::operator-(
 
 }
 
-const ribi::Coordinat2D ribi::operator+(
+ribi::Coordinat2D ribi::operator+(
   const Coordinat2D& v1,
   const Coordinat2D& v2) noexcept
 {
@@ -111,7 +148,7 @@ const ribi::Coordinat2D ribi::operator+(
   };
 }
 
-const ribi::Coordinat2D ribi::operator*(
+ribi::Coordinat2D ribi::operator*(
   const double scalar,
   const Coordinat2D& v) noexcept
 {
@@ -147,3 +184,5 @@ std::ostream& ribi::operator<<(std::ostream& os, const Coordinat2D& n) noexcept
   os << ribi::xml::ToXml("coordinat2d",s.str());
   return os;
 }
+
+#endif

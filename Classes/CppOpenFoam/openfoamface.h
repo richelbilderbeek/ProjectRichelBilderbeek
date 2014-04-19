@@ -5,9 +5,13 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/geometry.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
+#ifndef _WIN32
+#include <boost/geometry/geometries/polygon.hpp>
+#endif
 #include "openfoamfwd.h"
-//#include "openfoamcellindex.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -20,10 +24,12 @@ namespace foam {
 ///- has a/no cell owning this face
 struct Face
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   Face(
     const boost::shared_ptr<Cell> neighbour,
     const boost::shared_ptr<Cell> owner,
-    const std::vector<boost::shared_ptr<ribi::Coordinat3D> >& points
+    const std::vector<boost::shared_ptr<Coordinat3D>>& points
   );
 
   Face(const Face&) = delete;
@@ -35,14 +41,13 @@ struct Face
   ///Can only assign once
   void AssignOwner(const boost::shared_ptr<Cell> owner) noexcept;
 
-  const boost::shared_ptr<const Cell> GetNeighbour() const noexcept { return m_neighbour; }
+  boost::shared_ptr<const Cell> GetNeighbour() const noexcept { return m_neighbour; }
 
-  const boost::shared_ptr<const Cell> GetOwner() const noexcept { return m_owner; }
-  const boost::shared_ptr<      Cell> GetOwner()       noexcept;
+  boost::shared_ptr<const Cell> GetOwner() const noexcept { return m_owner; }
+  boost::shared_ptr<      Cell> GetOwner()       noexcept;
 
-  const std::vector<boost::shared_ptr<const ribi::Coordinat3D> > GetPoints() const noexcept;
-  const std::vector<boost::shared_ptr<      ribi::Coordinat3D> >&GetPoints()       noexcept { return m_points; }
-
+        std::vector<boost::shared_ptr<const Coordinat3D> > GetPoints() const noexcept;
+  const std::vector<boost::shared_ptr<      Coordinat3D> >&GetPoints()       noexcept { return m_points; }
   private:
   ///If this Face has no Neighbour, this is nullptr
   boost::shared_ptr<Cell> m_neighbour;
@@ -51,15 +56,20 @@ struct Face
   boost::shared_ptr<Cell> m_owner;
 
   ///The points/vertices/coordinats this face consists of
-  const std::vector<boost::shared_ptr<ribi::Coordinat3D> > m_points;
+  const std::vector<boost::shared_ptr<Coordinat3D>> m_points;
 
-  friend std::ostream& operator<<(std::ostream& os, const Face& face);
+  friend std::ostream& operator<<(std::ostream& os, const Face& face) noexcept;
 };
 
 ///Calculate the center of the Face
-ribi::Coordinat3D CalcCenter(const Face& face) noexcept;
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> CalcCenter(const Face& face) noexcept;
 
-std::ostream& operator<<(std::ostream& os, const Face& face);
+std::ostream& operator<<(std::ostream& os, const Face& face) noexcept;
+
+//bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
+//bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
 
 } //~namespace foam
 } //~namespace ribi

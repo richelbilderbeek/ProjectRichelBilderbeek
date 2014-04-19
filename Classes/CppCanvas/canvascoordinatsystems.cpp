@@ -1,21 +1,25 @@
 #include "canvascoordinatsystems.h"
 
+#include <cassert>
+
+#include "trace.h"
+
 boost::bimap<ribi::CanvasCoordinatSystem,std::string> ribi::CanvasCoordinatSystems::m_map;
 
-const boost::bimap<ribi::CanvasCoordinatSystem,std::string> ribi::CanvasCoordinatSystems::CreateMap()
+boost::bimap<ribi::CanvasCoordinatSystem,std::string> ribi::CanvasCoordinatSystems::CreateMap()
 {
   #ifndef NDEBUG
   Test();
   #endif
   boost::bimap<CanvasCoordinatSystem,std::string> m;
   m.insert(boost::bimap<CanvasCoordinatSystem,std::string>::value_type(
-    CanvasCoordinatSystem::graph,std::string("graph")));
+    CanvasCoordinatSystem::graph,"graph"));
   m.insert(boost::bimap<CanvasCoordinatSystem,std::string>::value_type(
-    CanvasCoordinatSystem::screen,std::string("screen")));
+    CanvasCoordinatSystem::screen,"screen"));
   return m;
 }
 
-const std::vector<ribi::CanvasCoordinatSystem> ribi::CanvasCoordinatSystems::GetAll() noexcept
+std::vector<ribi::CanvasCoordinatSystem> ribi::CanvasCoordinatSystems::GetAll() noexcept
 {
   const std::vector<CanvasCoordinatSystem> v {
     CanvasCoordinatSystem::graph,
@@ -33,6 +37,7 @@ void ribi::CanvasCoordinatSystems::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::CanvasCoordinatSystems::Test");
   const std::vector<CanvasCoordinatSystem> v = GetAll();
   const std::size_t sz = v.size();
   for (std::size_t i=0; i!=sz; ++i)
@@ -44,10 +49,12 @@ void ribi::CanvasCoordinatSystems::Test() noexcept
     const CanvasCoordinatSystem u = ToType(s);
     assert(u == t);
   }
+  TRACE("Finished ribi::CanvasCoordinatSystems::Test successfully");
 }
 #endif
 
-const std::string ribi::CanvasCoordinatSystems::ToStr(const CanvasCoordinatSystem type) noexcept
+
+std::string ribi::CanvasCoordinatSystems::ToStr(const CanvasCoordinatSystem type) noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());

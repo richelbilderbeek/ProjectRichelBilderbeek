@@ -35,7 +35,7 @@ int ribi::ImageRotaterMenuDialog::ExecuteSpecific(const std::vector<std::string>
   std::string filename;
   if (argv[1] == "-f" || argv[1] == "--filename") filename = argv[2];
   if (argv[3] == "-f" || argv[3] == "--filename") filename = argv[4];
-  if (!fileio::IsRegularFile(filename))
+  if (!fileio::FileIo().IsRegularFile(filename))
   {
     std::cout << "Please supply the filename of an existing file" << std::endl;
     return 1;
@@ -62,7 +62,7 @@ int ribi::ImageRotaterMenuDialog::ExecuteSpecific(const std::vector<std::string>
 
   ImageRotaterMainDialog::Rotate(source,target,pi * angle / 180.0);
 
-  const std::string target_filename = fileio::GetTempFileName(".png");
+  const std::string target_filename = fileio::FileIo().GetTempFileName(".png");
   target.save(target_filename.c_str());
 
   const boost::shared_ptr<ImageCanvas> canvas {
@@ -72,7 +72,7 @@ int ribi::ImageRotaterMenuDialog::ExecuteSpecific(const std::vector<std::string>
   return 0;
 }
 
-const ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -88,7 +88,7 @@ const ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ImageRotaterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ImageRotaterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -104,7 +104,7 @@ const ribi::Help ribi::ImageRotaterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ImageRotaterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ImageRotaterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramImageRotater
@@ -113,12 +113,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ImageRotaterMenuDialog::GetPr
   return p;
 }
 
-const std::string ribi::ImageRotaterMenuDialog::GetVersion() const noexcept
+std::string ribi::ImageRotaterMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::ImageRotaterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ImageRotaterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-xx-xx: version 1.0: initial Windows-only version",
@@ -137,11 +137,11 @@ void ribi::ImageRotaterMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::ImageRotaterMenuDialog::Test");
   ImageRotaterMenuDialog d;
-  const std::string filename { fileio::GetTempFileName(".png") };
+  const std::string filename { fileio::FileIo().GetTempFileName(".png") };
   QFile file(":/imagerotater/images/R.png");
   file.copy(filename.c_str());
   d.Execute( { "ImageRotaterMenuDialog", "-f", filename, "-r", "30.0" } );
-  fileio::DeleteFile(filename);
+  fileio::FileIo().DeleteFile(filename);
   TRACE("Finished ribi::ImageRotaterMenuDialog::Test successfully");
 }
 #endif

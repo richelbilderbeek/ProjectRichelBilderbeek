@@ -21,11 +21,11 @@ ribi::Chess::QtResources::QtResources()
   std::for_each(v.begin(),v.end(),
     [](const std::string& s)
     {
-      if (!fileio::IsRegularFile(s))
+      if (!fileio::FileIo().IsRegularFile(s))
       {
-        QFile f( (std::string(":/images/") + s).c_str() );
+        QFile f( (":/images/" + s).c_str() );
         f.copy(s.c_str());
-        if (!fileio::IsRegularFile(s))
+        if (!fileio::FileIo().IsRegularFile(s))
         {
           const std::string error = "File not found: " + s;
           std::cerr << error << '\n';
@@ -33,7 +33,7 @@ ribi::Chess::QtResources::QtResources()
           std::cout << error << '\n';
         }
       }
-      assert(fileio::IsRegularFile(s));
+      assert(fileio::FileIo().IsRegularFile(s));
     }
   );
 
@@ -42,12 +42,12 @@ ribi::Chess::QtResources::QtResources()
   #endif
 }
 
-const std::string ribi::Chess::QtResources::GetVersion()
+std::string ribi::Chess::QtResources::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::QtResources::GetVersionHistory()
+std::vector<std::string> ribi::Chess::QtResources::GetVersionHistory()
 {
   return {
     "2012-01-27: version 1.0: initial version"

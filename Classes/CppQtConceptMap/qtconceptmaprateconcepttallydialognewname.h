@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPRATECONCEPTTALLYDIALOG_H
 #define QTCONCEPTMAPRATECONCEPTTALLYDIALOG_H
 
@@ -63,11 +83,11 @@ private:
   ///The name of this concept, for example 'my own development'
   const std::string m_focus_name;
 
-  static const std::vector<Row>
+  static std::vector<Row>
     CreateData(const boost::shared_ptr</* const */ ConceptMap> map);
 
-  static const std::string
-    GetFocusName(const boost::shared_ptr<const ConceptMap> sub_concept_map);
+  static std::string
+    GetFocusName(const boost::shared_ptr<const ConceptMap> sub_concept_map) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -56,7 +56,7 @@ int ribi::AsciiArterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   }
   {
     const std::string s { argv[1] };
-    if (!fileio::IsRegularFile(s))
+    if (!fileio::FileIo().IsRegularFile(s))
     {
       std::cout
         << "Error: '" << s << "' is not found.\n"
@@ -90,7 +90,7 @@ int ribi::AsciiArterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
 
   assert(argc >= 3);
   const std::string from_name { argv[1] };
-  const std::string to_name { argv[2] };
+  std::string to_name { argv[2] };
   const int n_cols = (argc == 4 ? boost::lexical_cast<int>(argv[3]) : 78);
 
   AsciiArterMainDialog d(from_name,n_cols);
@@ -100,7 +100,7 @@ int ribi::AsciiArterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   return 0;
 }
 
-const ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -116,19 +116,19 @@ const ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::AsciiArterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::AsciiArterMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramAsciiArter);
   assert(p);
   return p;
 }
 
-const std::string ribi::AsciiArterMenuDialog::GetVersion() const noexcept
+std::string ribi::AsciiArterMenuDialog::GetVersion() const noexcept
 {
   return "6.0";
 }
 
-const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2006-12-13: Version 1.0: initial C++ Builder version, called 'AsciiArter'",
@@ -146,7 +146,7 @@ const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() c
   };
 }
 
-const ribi::Help ribi::AsciiArterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::AsciiArterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     "AsciiArter",
@@ -174,20 +174,20 @@ void ribi::AsciiArterMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::AsciiArterMenuDialog::Test()");
-  const std::string temp_filename = fileio::GetTempFileName();
-  assert(!fileio::IsRegularFile(temp_filename));
+  const std::string temp_filename = fileio::FileIo().GetTempFileName();
+  assert(!fileio::FileIo().IsRegularFile(temp_filename));
   {
     QFile qfile(":/ToolAsciiArter/images/R.png");
     qfile.copy(temp_filename.c_str());
   }
-  assert(fileio::IsRegularFile(temp_filename)
+  assert(fileio::FileIo().IsRegularFile(temp_filename)
     && "Resource file must exist");
 
   const AsciiArterMainDialog d(temp_filename,20);
   assert(!d.GetAsciiArt().empty());
 
-  fileio::DeleteFile(temp_filename);
-  assert(!fileio::IsRegularFile(temp_filename));
+  fileio::FileIo().DeleteFile(temp_filename);
+  assert(!fileio::FileIo().IsRegularFile(temp_filename));
   TRACE("Finished ribi::AsciiArterMenuDialog::Test()");
 }
 #endif

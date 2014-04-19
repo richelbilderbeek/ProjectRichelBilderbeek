@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPRATECONCEPTMAP_H
 #define QTCONCEPTMAPRATECONCEPTMAP_H
 
@@ -31,8 +51,8 @@ struct QtRateConceptMap : public QtConceptMap
   void DoRandomStuff();
   #endif
 
-  const std::string GetVersion() const noexcept;
-  const std::vector<std::string> GetVersionHistory() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///If the user wants to rate the focal concept of the already generated sub concept map
   ///the dialog using this widget must display the tally dialog
@@ -41,8 +61,7 @@ struct QtRateConceptMap : public QtConceptMap
 private:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  void AddEdge(
-    const boost::shared_ptr<Edge> edge);
+  QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///For rating and editing, the node must be non-cost

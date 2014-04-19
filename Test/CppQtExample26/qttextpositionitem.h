@@ -1,14 +1,22 @@
 #ifndef QTTEXTPOSITIONITEM_H
 #define QTTEXTPOSITIONITEM_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QGraphicsItem>
+#pragma GCC diagnostic pop
 
 struct QtTextPositionItem : public QGraphicsItem
 {
   ///Constructor of QtTextPositionItem
   QtTextPositionItem(
     const std::string& text,
-    QGraphicsItem *parent = 0);
+    QGraphicsItem *parent = 0
+  );
+  QtTextPositionItem(const QtTextPositionItem&) = delete;
+  QtTextPositionItem& operator=(const QtTextPositionItem&) = delete;
+  ~QtTextPositionItem() noexcept {}
 
   protected:
   ///Paint a QtTextPositionItem

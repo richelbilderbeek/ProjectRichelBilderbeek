@@ -45,10 +45,10 @@ struct QtUblasVectorIntModel: public QAbstractTableModel
   const boost::numeric::ublas::vector<int>& GetRawData() const  noexcept{ return m_data; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the range the values must remain in
   ///The range includes from, excludes to

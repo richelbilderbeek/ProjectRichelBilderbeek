@@ -18,27 +18,27 @@ ribi::athl::QtAthleticLandResources::QtAthleticLandResources()
   //No need to check for member variables, as all pixmaps are checked here
   for (const std::string& filename: GetAllFilenames())
   {
-    if (!fileio::IsRegularFile(filename))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       const std::string qtfilename {
         GetQtResourcesBasename()
-        + std::string("/")
+        + "/"
         + filename
       };
       TRACE(qtfilename);
       QFile file(qtfilename.c_str());
       file.copy(filename.c_str());
     }
-    if (!fileio::IsRegularFile(filename))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       TRACE("ERROR");
       TRACE(filename);
     }
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
   }
 }
 
-const std::vector<std::string> ribi::athl::QtAthleticLandResources::GetAllFilenames() const noexcept
+std::vector<std::string> ribi::athl::QtAthleticLandResources::GetAllFilenames() const noexcept
 {
   return {
     GetBackgroundFilename(),

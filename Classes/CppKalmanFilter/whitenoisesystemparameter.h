@@ -18,22 +18,22 @@ namespace kalman {
 struct WhiteNoiseSystemParameter
 {
   ///Obtain all WhiteNoiseSystemParameterType values, except n_parameters
-  static const std::vector<WhiteNoiseSystemParameterType> GetAll();
+  static std::vector<WhiteNoiseSystemParameterType> GetAll() noexcept;
 
   ///Is the type a matrix?
-  static bool IsMatrix(const WhiteNoiseSystemParameterType type);
+  static bool IsMatrix(const WhiteNoiseSystemParameterType type) noexcept;
 
   ///Is the type a vector?
-  static bool IsVector(const WhiteNoiseSystemParameterType type);
+  static bool IsVector(const WhiteNoiseSystemParameterType type) noexcept;
 
   ///Obtain the full name of a type, e.g. 'Matrix to capture the physics of the system'
-  static const std::string ToDescription(const WhiteNoiseSystemParameterType type);
+  static std::string ToDescription(const WhiteNoiseSystemParameterType type) noexcept;
 
   ///Obtain the full name of a type, e.g. 'State transition'
-  static const std::string ToName(const WhiteNoiseSystemParameterType type);
+  static std::string ToName(const WhiteNoiseSystemParameterType type) noexcept;
 
   ///Obtain the symbol of a type, e.g. 'A'
-  static const std::string ToSymbol(const WhiteNoiseSystemParameterType type);
+  static std::string ToSymbol(const WhiteNoiseSystemParameterType type) noexcept;
 };
 
 } //~namespace kalman

@@ -40,7 +40,7 @@ ribi::QuadraticSolverMainDialog::QuadraticSolverMainDialog()
   #endif
 }
 
-const std::string ribi::QuadraticSolverMainDialog::AskUserForString() noexcept
+std::string ribi::QuadraticSolverMainDialog::AskUserForString() noexcept
 {
   std::string s;
   std::getline(std::cin,s);

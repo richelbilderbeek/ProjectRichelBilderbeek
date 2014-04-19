@@ -17,13 +17,13 @@ namespace kalman {
 
 struct WhiteNoiseSystemTypes
 {
-  static const std::vector<WhiteNoiseSystemType> GetAllTypes();
-  static const std::string ToStr(const WhiteNoiseSystemType type);
+  static std::vector<WhiteNoiseSystemType> GetAllTypes() noexcept;
+  static std::string ToStr(const WhiteNoiseSystemType type) noexcept;
   static WhiteNoiseSystemType ToType(const std::string& s);
 
   private:
   static boost::bimap<WhiteNoiseSystemType,std::string> m_map;
-  static const boost::bimap<WhiteNoiseSystemType,std::string> CreateMap();
+  static boost::bimap<WhiteNoiseSystemType,std::string> CreateMap() noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

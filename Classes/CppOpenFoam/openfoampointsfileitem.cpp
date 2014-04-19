@@ -52,23 +52,33 @@ void ribi::foam::PointsFileItem::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const PointsFileItem& lhs, const PointsFileItem& rhs)
+bool ribi::foam::operator==(const PointsFileItem& lhs, const PointsFileItem& rhs) noexcept
 {
   const double abs_tolerance = 0.001;
+  #ifdef USE_CUSTOM_RIBI_COORDINAT3D
   return
         fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat().GetX(),rhs.GetCoordinat().GetX())
      && fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat().GetY(),rhs.GetCoordinat().GetY())
      && fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat().GetZ(),rhs.GetCoordinat().GetZ())
   ;
+  #else
+  using boost::geometry::get;
+  return
+        fuzzy_equal_to_abs(abs_tolerance)(get<0>(lhs.GetCoordinat()),get<0>(rhs.GetCoordinat()))
+     && fuzzy_equal_to_abs(abs_tolerance)(get<1>(lhs.GetCoordinat()),get<1>(rhs.GetCoordinat()))
+     && fuzzy_equal_to_abs(abs_tolerance)(get<2>(lhs.GetCoordinat()),get<2>(rhs.GetCoordinat()))
+  ;
+  #endif
 }
 
-bool ribi::foam::operator!=(const PointsFileItem& lhs, const PointsFileItem& rhs)
+bool ribi::foam::operator!=(const PointsFileItem& lhs, const PointsFileItem& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFileItem& item)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFileItem& item) noexcept
 {
+  #ifdef USE_CUSTOM_RIBI_COORDINAT3D
   os
     << "("
     << item.GetCoordinat().GetX() << " "
@@ -76,7 +86,16 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFileItem& ite
     << item.GetCoordinat().GetZ()
     << ")"
   ;
-
+  #else
+  using boost::geometry::get;
+  os
+    << "("
+    << get<0>(item.GetCoordinat()) << " "
+    << get<1>(item.GetCoordinat()) << " "
+    << get<2>(item.GetCoordinat())
+    << ")"
+  ;
+  #endif
   return os;
 }
 
@@ -89,22 +108,22 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFileItem& f)
     assert(bracket_open == '(');
   }
   {
-    double d = 0.0;
-    is >> d;
-    assert(is);
-    f.m_coordinat.SetX(d);
-  }
-  {
-    double d = 0.0;
-    is >> d;
-    assert(is);
-    f.m_coordinat.SetY(d);
-  }
-  {
-    double d = 0.0;
-    is >> d;
-    assert(is);
-    f.m_coordinat.SetZ(d);
+    double x = 0.0;
+    {
+      is >> x;
+      assert(is);
+    }
+    double y = 0.0;
+    {
+      is >> y;
+      assert(is);
+    }
+    double z = 0.0;
+    {
+      is >> z;
+      assert(is);
+    }
+    f.m_coordinat = decltype(f.m_coordinat)(x,y,z);
   }
   {
     char bracket_close;

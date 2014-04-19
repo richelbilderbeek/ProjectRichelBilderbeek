@@ -2,16 +2,18 @@
 #define TRIANGLEMESHFACEFACTORY_H
 
 #include <iosfwd>
-//#include <set>
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
+#include "trianglemeshwinding.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -19,96 +21,70 @@ namespace trim {
 
 struct FaceFactory
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   FaceFactory();
 
-  const boost::shared_ptr<Face> Create(
-    const std::vector<boost::shared_ptr<Edge>>& edges,
+  boost::shared_ptr<Face> Create(
+    std::vector<boost::shared_ptr<Point>> points,
     const FaceOrientation any_orientation
   ) const noexcept;
-
-  const boost::shared_ptr<Face> Create(
-    const std::vector<boost::shared_ptr<Point>>& points,
-    const FaceOrientation any_orientation
-  ) const noexcept;
-
-  ///Create the faces of a testing prism from edges
-  /*
-  Edge indices are:
-
-      +
-     /|\
-    6 | 5
-   /  |  \
-  +---4---+    +---4---+---5---+---6---+
-  |   |   |    |      /|      /|      /|
-  |   B   |    |     / |     / |     / |
-  |   |   |    |    /  |    /  |    /  |
-  7   +   9    7   8   9   A   B   C   7 <--- here, A,B,C denote 10,11,12
-  |  / \  |    |  /    |  /    |  /    |
-  | 3   2 |    | /     | /     | /     |
-  |/     \|    |/      |/      |/      |
-  +---1---+    +---1---+---2---+---3---+
-
-  Folded out, with the bottom (marked #) at the center
-
-          f
-         /|\
-        B | 5
-       /  |  \
-  f-B-c   A   e
-  |  /|\  |  /
-  6 C 3#2 | 9
-  |/  |##\|/
-  d-7-a-1-b
-      |\  |
-      7 8 9
-      |  \|
-      d-4-e
-
-  The front plane exists of the edges 1,4,7,9
-
-  */
-  const std::vector<boost::shared_ptr<Face>> CreateTestPrism() const noexcept;
 
   ///Create the faces of a testing prism from points
   ///The indices are { top, bottom, a,b,c }
   /*
-           top
-            v
 
-            F
+            5
            /|\
-          D---E
+          3---4
           | | |
-    c ->  | C | <- b
+          | 2 |
           |/ \|
-          A---B
-
-            ^
-           bottom
+          0---1
 
   Folder out, with the bottom (marked #) at the center
 
-          +
-         /|\
-        / | \
-       /  |  \
-  +---C c | d +
-  |f /|\  |  /
-  | / |#\ | /
-  |/ e|##\|/
-  +---A---B
-      |\ a|
+          +---+
+         /|\ 1|
+        / | \ |
+       /  |  \|
+  +---+ 4 | 5 +
+  |7 /|\  |  /
+  | / | \ | /
+  |/ 6|0 \|/
+  +---+---+
+      |\ 2|
       | \ |
-      |b \|
+      |3 \|
       +---+
+
+          +---+
+         / \ 1|
+        /   \ |
+       /     \|
+  +---+   3   +
+  |   |\     /
+  | 4 | \   /
+  |   |0 \ /
+  +---+---+
+      |   |
+      | 2 |
+      |   |
+      +---+
+
 
   The front planes are 'a' and 'b', where 'a' has two nodes at the base
 
   */
-  const std::vector<boost::shared_ptr<Face>> CreateTestPrismFromPoints() const noexcept;
+  std::vector<boost::shared_ptr<Face>> CreateTestPrism(const CreateVerticalFacesStrategy strategy) const noexcept;
+
+  boost::shared_ptr<Face> CreateTestSquare(const Winding winding) const noexcept;
 
   private:
+
+  std::vector<boost::shared_ptr<Face>> CreateTestPrismOneFacePerVerticalFace() const noexcept;
+  std::vector<boost::shared_ptr<Face>> CreateTestPrismTwoFacesPerVerticalFace() const noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

@@ -54,7 +54,7 @@ ribi::Chess::QtChessBoardWidget::QtChessBoardWidget(QWidget *parent)
   : QWidget(parent),
     m_signal_changed{},
     m_resources(new Chess::QtResources),
-    m_widget(new BoardWidget(BoardFactory::Create(),Rect(0,0,400,400)))
+    m_widget(new BoardWidget(BoardFactory::Create(),Widget::CreateRect(0,0,400,400)))
 {
   #ifndef NDEBUG
   Test();
@@ -81,7 +81,7 @@ ribi::Chess::QtChessBoardWidget::QtChessBoardWidget(
     m_signal_changed{},
     m_resources(new Chess::QtResources),
     m_widget(new Chess::BoardWidget(
-      BoardFactory::Create(),Rect(0,0,width,height)))
+      BoardFactory::Create(),Widget::CreateRect(0,0,width,height)))
 {
   assert(m_widget);
 
@@ -108,14 +108,14 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
   QPainter& painter,
   const Chess::BoardWidget * const widget)
 {
-  const int w = widget->GetGeometry().GetWidth();
-  const int h = widget->GetGeometry().GetHeight();
+  const int w = widget->GetWidth();
+  const int h = widget->GetHeight();
 
   //Draw the plain chessboard
   DrawChessBoard(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
+    widget->GetLeft(),
+    widget->GetTop(),
     w,
     h,
     widget->GetBoard().get());
@@ -138,7 +138,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
         Chess::SquareSelector::m_selected_color,
         true);
       TRACE(filename);
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }
@@ -161,7 +161,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
           const std::string filename = Chess::Resources::Find(
             widget->GetBoard()->GetPiece(move->To()),
             Chess::SquareSelector::m_moves_color);
-          assert(fileio::IsRegularFile(filename));
+          assert(fileio::FileIo().IsRegularFile(filename));
           const QPixmap p(filename.c_str());
           painter.drawPixmap(x_co,y_co,square_w,square_h,p);
         }
@@ -174,7 +174,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
             = Chess::Resources::Find(
               square,
               Chess::SquareSelector::m_moves_color);
-          assert(fileio::IsRegularFile(filename));
+          assert(fileio::FileIo().IsRegularFile(filename));
           const QPixmap p(filename.c_str());
           painter.drawPixmap(x_co,y_co,square_w,square_h,p);
         }
@@ -192,7 +192,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
       const std::string filename = Chess::Resources::Find(widget->GetBoard()->GetPiece(cursor),
         Chess::SquareSelector::m_cursor_color,
         selected && *selected == *cursor );
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }
@@ -202,7 +202,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
         = Chess::Resources::Find(
           cursor,
           Chess::SquareSelector::m_cursor_color);
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }
@@ -241,12 +241,12 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
   }
 }
 
-const std::string ribi::Chess::QtChessBoardWidget::GetVersion()
+std::string ribi::Chess::QtChessBoardWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::QtChessBoardWidget::GetVersionHistory()
+std::vector<std::string> ribi::Chess::QtChessBoardWidget::GetVersionHistory()
 {
   return {
     "2012-01-26: version 1.0: initial version"
@@ -280,7 +280,7 @@ void ribi::Chess::QtChessBoardWidget::paintEvent(QPaintEvent *)
 
 void ribi::Chess::QtChessBoardWidget::resizeEvent(QResizeEvent *)
 {
-  m_widget->SetGeometry(Rect(0,0,width(),height()));
+  m_widget->SetGeometry(0,0,width(),height());
 }
 
 

@@ -29,7 +29,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -93,14 +93,14 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/make_shared.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; x {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::make_shared&lt;<a href="CppStdString.htm">std::string</a>&gt;("<a href="CppHelloWorld.htm">Hello world</a>")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;("<a href="CppHelloWorld.htm">Hello world</a>")<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*x) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 }<br/>

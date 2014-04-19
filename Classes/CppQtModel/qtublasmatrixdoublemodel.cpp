@@ -78,12 +78,12 @@ Qt::ItemFlags ribi::QtUblasMatrixDoubleModel::flags(const QModelIndex &) const n
   | Qt::ItemIsEnabled;
 }
 
-const std::string ribi::QtUblasMatrixDoubleModel::GetVersion() noexcept
+std::string ribi::QtUblasMatrixDoubleModel::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::QtUblasMatrixDoubleModel::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtUblasMatrixDoubleModel::GetVersionHistory() noexcept
 {
   return {
     "2013-05-15: version 1.0: initial version",

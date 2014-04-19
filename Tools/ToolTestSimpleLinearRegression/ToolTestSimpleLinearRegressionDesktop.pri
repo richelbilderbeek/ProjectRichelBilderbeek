@@ -1,16 +1,16 @@
 include(../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegressionConsole.pri)
 
 HEADERS += \
-    ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmenudialog.h \
-    ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmaindialog.h
+    ../../Tools/ToolTestSimpleLinearRegression/qttestsimplelinearregressionmaindialog.h \
+    ../../Tools/ToolTestSimpleLinearRegression/qttestsimplelinearregressionmenudialog.h
 
 SOURCES += \
-    ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmenudialog.cpp \
-    ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmaindialog.cpp
+    ../../Tools/ToolTestSimpleLinearRegression/qttestsimplelinearregressionmaindialog.cpp \
+    ../../Tools/ToolTestSimpleLinearRegression/qttestsimplelinearregressionmenudialog.cpp
 
 FORMS += \
-    ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmenudialog.ui \
-    ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmaindialog.ui
+    ../../Tools/ToolTestSimpleLinearRegression/qttestsimplelinearregressionmaindialog.ui \
+    ../../Tools/ToolTestSimpleLinearRegression/qttestsimplelinearregressionmenudialog.ui
 
 RESOURCES += \
     ../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegression.qrc

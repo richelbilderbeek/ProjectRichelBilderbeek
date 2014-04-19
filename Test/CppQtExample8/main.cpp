@@ -3,16 +3,13 @@
 #include <cmath>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/timer.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/static_assert.hpp>
-
-#ifdef __STRICT_ANSI__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
-#endif
 
 #include <QApplication>
 #include <QBitmap>
@@ -20,6 +17,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
+#pragma GCC diagnostic pop
 
 BOOST_STATIC_ASSERT(sizeof(qreal)==sizeof(double)
   && "Assume use of double is equivalent of qreal");
@@ -32,11 +30,7 @@ BOOST_STATIC_ASSERT(sizeof(qreal)==sizeof(double)
 //From www.richelbilderbeek.nl/CppGetAngle.htm
 double GetAngle(const double dx, const double dy)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   return pi - (std::atan2(dx,dy));
 }
 
@@ -48,11 +42,7 @@ void DoPerfectElasticCollision(
   double& angle2,
   double& speed2)
 {
-  #ifdef __STRICT_ANSI__
   const double pi = boost::math::constants::pi<double>();
-  #else
-  const double pi = M_PI;
-  #endif
   //The length of the impulse of player 1 (assumes both players have equal mass!)
   const double A = speed1;
   //The length of the impulse of player 2 (assumes both players have equal mass!)
@@ -140,13 +130,7 @@ struct SirSprite : public QGraphicsPixmapItem
 {
   enum State { susceptible, infected, resistant };
   SirSprite(const int width, const int height, const bool is_infected = false)
-    : angle(GetRandomUniform() * 2.0
-        #ifdef __STRICT_ANSI__
-        * boost::math::constants::pi<double>()
-        #else
-        * M_PI
-        #endif
-      ), //Random direction
+    : angle(GetRandomUniform() * 2.0 * boost::math::constants::pi<double>()), //Random direction
       speed(5.0),
       state(is_infected ? infected : susceptible),
       maxx(0),
@@ -217,11 +201,7 @@ struct SirSprite : public QGraphicsPixmapItem
     {
       while (1)
       {
-        #ifdef __STRICT_ANSI__
         const double pi = boost::math::constants::pi<double>();
-        #else
-        const double pi = M_PI;
-        #endif
         setX(x() + (std::sin(angle) * speed));
         setY(y() - (std::cos(angle) * speed));
         if (x() < 0.0) { setX(x()+1); angle = (0.0*pi) + ((0.0*pi) - angle); continue; }
@@ -319,11 +299,7 @@ int main(int argc, char *argv[])
     const double midx = background.pixmap().width() / 2.0;
     const double midy = background.pixmap().height() / 2.0;
     const double ray = std::min(midx,midy) * 0.8;
-    #ifdef __STRICT_ANSI__
     const double pi = boost::math::constants::pi<double>();
-    #else
-    const double pi = M_PI;
-    #endif
     const double d_angle = 2.0 * pi / static_cast<double>(n_sprites);
     double angle = 0.0;
     for (int i=0; i!=n_sprites; ++i)

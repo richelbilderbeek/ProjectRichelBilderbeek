@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -24,32 +44,43 @@
 #include "qtconceptmapnode.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
+
+#include "qtconceptmapcenternode.h"
+
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtEdge::QtEdge(
     const boost::shared_ptr<Edge> edge,
-    const boost::shared_ptr<QtItemDisplayStrategy> concept_item,
+    const boost::shared_ptr<QtItemDisplayStrategy> display_strategy,
     QtNode* const from,
     QtNode* const to)
   : m_arrow{},
-    m_concept_item(concept_item),
+    m_display_strategy{display_strategy},
     m_contour_pen(QPen(QColor(255,255,255))),
-    m_focus_pen(concept_item->GetFocusPen()),
-      m_edge(edge), //m_edge must be initialized before m_arrow
+    m_focus_pen(display_strategy->GetFocusPen()),
+    m_edge(edge), //m_edge must be initialized before m_arrow
     m_from(from),
     m_to(to)
 {
   #ifndef NDEBUG
   Test();
   #endif
-  assert(m_concept_item);
+  assert(m_display_strategy);
   assert(m_edge);
   assert(m_from);
   assert(m_to);
   assert(from != to);
   assert(m_from != m_to);
   //m_edge must be initialized before m_arrow
-  m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
+  //if 'from' or 'to' are CenterNodes, then no item must be put at the center
+  if (dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to))
+  {
+    m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),nullptr,edge->HasHeadArrow(),to));
+  }
+  else
+  {
+    m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
+  }
   assert(m_arrow);
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -61,9 +92,9 @@ ribi::cmap::QtEdge::QtEdge(
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
 
-  m_concept_item->SetMainBrush(QtBrushFactory::CreateBlueGradientBrush());
-  m_concept_item->SetContourPen(QPen(QColor(255,255,255)));
-  m_concept_item->SetTextPen(QPen(QColor(0,0,0)));
+  m_display_strategy->SetMainBrush(QtBrushFactory::CreateBlueGradientBrush());
+  m_display_strategy->SetContourPen(QPen(QColor(255,255,255)));
+  m_display_strategy->SetTextPen(QPen(QColor(0,0,0)));
 
   //Name
   this->SetName(edge->GetConcept()->GetName());
@@ -86,11 +117,11 @@ ribi::cmap::QtEdge::QtEdge(
   #endif
 
   //Bounding rectangle
-  this->setRect(m_concept_item->boundingRect()); //NEW
+  this->setRect(m_display_strategy->boundingRect()); //NEW
   this->update();
 
-  assert( ( m_concept_item->boundingRect() == QtConceptMapElement::boundingRect()
-    || m_concept_item->boundingRect() != QtConceptMapElement::boundingRect() )
+  assert( ( m_display_strategy->boundingRect() == QtConceptMapElement::boundingRect()
+    || m_display_strategy->boundingRect() != QtConceptMapElement::boundingRect() )
     && "Bounding rects of edge and concept item might differ");
 
   //Qt things
@@ -105,19 +136,19 @@ ribi::cmap::QtEdge::QtEdge(
     boost::bind(
       &ribi::cmap::QtEdge::OnEdgeChanged,this,boost::lambda::_1));
 
-  m_concept_item->m_signal_item_has_updated.connect(
+  m_display_strategy->m_signal_item_has_updated.connect(
     boost::bind(
       &ribi::cmap::QtEdge::OnItemHasUpdated,this));
 
-  m_concept_item->m_signal_request_scene_update.connect(
+  m_display_strategy->m_signal_request_scene_update.connect(
     boost::bind(
       &ribi::cmap::QtEdge::OnRequestSceneUpdate,this));
 
-  m_concept_item->m_signal_position_changed.connect(
+  m_display_strategy->m_signal_position_changed.connect(
     boost::bind(
       &ribi::cmap::QtEdge::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
-  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(concept_item.get()))
+  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(display_strategy.get()))
   {
     edit_concept->m_signal_request_edit.connect(
       boost::bind(
@@ -127,14 +158,14 @@ ribi::cmap::QtEdge::QtEdge(
     );
   }
   assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
-  assert(this->m_concept_item->acceptHoverEvents());
+  assert(this->m_display_strategy->acceptHoverEvents());
   assert(this->m_arrow->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
 
 QRectF ribi::cmap::QtEdge::boundingRect() const
 {
-  assert((m_concept_item->boundingRect() == QtConceptMapElement::boundingRect()
-      || m_concept_item->boundingRect() != QtConceptMapElement::boundingRect())
+  assert((m_display_strategy->boundingRect() == QtConceptMapElement::boundingRect()
+      || m_display_strategy->boundingRect() != QtConceptMapElement::boundingRect())
     && "Bounding rects should be synced, but this member function is used to sync them,"
     && "so this must be checked on a higher level");
 
@@ -148,8 +179,8 @@ void ribi::cmap::QtEdge::DisableAll()
 {
   this->setEnabled(false);
   this->setVisible(false);
-  this->m_concept_item->setEnabled(false);
-  this->m_concept_item->setVisible(false);
+  this->m_display_strategy->setEnabled(false);
+  this->m_display_strategy->setVisible(false);
   this->m_arrow->setEnabled(false);
   this->m_arrow->setVisible(false);
 }
@@ -158,27 +189,27 @@ void ribi::cmap::QtEdge::EnableAll()
 {
   this->setEnabled(true);
   this->setVisible(true);
-  this->m_concept_item->setEnabled(true);
-  this->m_concept_item->setVisible(true);
+  this->m_display_strategy->setEnabled(true);
+  this->m_display_strategy->setVisible(true);
   this->m_arrow->setEnabled(true);
   this->m_arrow->setVisible(true);
 }
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() const
+boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() const noexcept
 {
   const boost::shared_ptr<const ribi::cmap::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept()
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() noexcept
 {
   const boost::shared_ptr<ribi::cmap::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
 }
 
-const std::string ribi::cmap::QtEdge::GetName() const
+std::string ribi::cmap::QtEdge::GetName() const noexcept
 {
   return m_edge->GetConcept()->GetName();
 }
@@ -187,22 +218,22 @@ void ribi::cmap::QtEdge::focusInEvent(QFocusEvent*)
 {
   //Lose focus of arrow
   m_arrow->SetPen(QPen(QColor(0,0,0)));
-  m_concept_item->SetContourPen(m_focus_pen); //Updates itself
-  assert(!m_concept_item->hasFocus());
+  m_display_strategy->SetContourPen(m_focus_pen); //Updates itself
+  assert(!m_display_strategy->hasFocus());
 }
 
 void ribi::cmap::QtEdge::focusOutEvent(QFocusEvent*)
 {
   m_arrow->SetPen(QPen(QColor(0,0,0)));
-  m_concept_item->SetContourPen(m_contour_pen); //Updates itself
-  assert(!m_concept_item->hasFocus());
+  m_display_strategy->SetContourPen(m_contour_pen); //Updates itself
+  assert(!m_display_strategy->hasFocus());
 }
 
 void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event)
 {
   assert(m_arrow);
   assert(m_edge);
-  m_concept_item->keyPressEvent(event);
+  m_display_strategy->keyPressEvent(event);
   switch (event->key())
   {
     case Qt::Key_F1:
@@ -275,7 +306,7 @@ void ribi::cmap::QtEdge::OnEdgeChanged(const cmap::Edge * const edge)
   m_arrow->SetHasTail(edge->HasTailArrow());
   assert( m_arrow->HasTail() == GetEdge()->HasTailArrow() );
   assert( m_arrow->HasHead() == GetEdge()->HasHeadArrow() );
-  m_concept_item->SetName(edge->GetConcept()->GetName());
+  m_display_strategy->SetName(edge->GetConcept()->GetName());
   this->GetEdge()->SetX(edge->GetX());
   this->GetEdge()->SetY(edge->GetY());
 
@@ -291,26 +322,26 @@ void ribi::cmap::QtEdge::OnEdgeChanged(const cmap::Edge * const edge)
   //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
   //    && "Names/texts must be in sync after");
 
-  this->setRect(m_concept_item->boundingRect());
+  this->setRect(m_display_strategy->boundingRect());
 
-  assert( ( m_concept_item->boundingRect() == QtConceptMapElement::boundingRect()
-    || m_concept_item->boundingRect() != QtConceptMapElement::boundingRect() )
+  assert( ( m_display_strategy->boundingRect() == QtConceptMapElement::boundingRect()
+    || m_display_strategy->boundingRect() != QtConceptMapElement::boundingRect() )
     && "Bounding rects of edge and concept item might differ");
 
 }
 
 void ribi::cmap::QtEdge::OnItemHasUpdated()
 {
-  this->SetName(m_concept_item->GetName());
+  this->SetName(m_display_strategy->GetName());
 
   assert(m_edge->GetConcept()->GetName() == GetName()
-      && m_edge->GetConcept()->GetName() == m_concept_item->GetName()
+      && m_edge->GetConcept()->GetName() == m_display_strategy->GetName()
       && "Names/texts must be in sync after");
 
   //this->setRect(QtConceptMapItem::boundingRect());
-  this->setRect(m_concept_item->boundingRect());
-  assert( ( m_concept_item->boundingRect() == QtConceptMapElement::boundingRect()
-    || m_concept_item->boundingRect() != QtConceptMapElement::boundingRect() )
+  this->setRect(m_display_strategy->boundingRect());
+  assert( ( m_display_strategy->boundingRect() == QtConceptMapElement::boundingRect()
+    || m_display_strategy->boundingRect() != QtConceptMapElement::boundingRect() )
     && "Bounding rects might differ between edge and concept item");
 
   this->update();
@@ -325,41 +356,41 @@ void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 
 void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-  m_concept_item->SetName(this->GetConcept()->GetName());
+  m_display_strategy->SetName(this->GetConcept()->GetName());
 
   //Only QtEditStrategy actually modifies the position of the concept items
-  if (dynamic_cast<QtEditStrategy*>(m_concept_item.get()))
+  if (dynamic_cast<QtEditStrategy*>(m_display_strategy.get()))
   {
     //Notifies the GUI-independent collaborators
-    this->m_concept_item->SetPos(x(),y());
+    this->m_display_strategy->SetPos(x(),y());
   }
-
-  assert(this->pos() == m_arrow->GetMidItem()->pos());
+  assert(m_arrow);
+  assert(!m_arrow->GetMidItem() || this->pos() == m_arrow->GetMidItem()->pos());
   painter->translate(-this->pos());
   m_arrow->paint(painter,option,widget);
   painter->translate(this->pos());
 
-  assert(m_concept_item);
+  assert(m_display_strategy);
   if (this->hasFocus() || this->isSelected())
   {
     //Does the arrow or the concept have focus?
     if (m_arrow->GetPen() != m_arrow->GetFocusPen())
     {
-      m_concept_item->SetContourPen(m_focus_pen);
+      m_display_strategy->SetContourPen(m_focus_pen);
     }
     else
     {
-      m_concept_item->SetContourPen(m_contour_pen);
+      m_display_strategy->SetContourPen(m_contour_pen);
     }
   }
   else
   {
-    m_concept_item->SetContourPen(m_contour_pen);
+    m_display_strategy->SetContourPen(m_contour_pen);
   }
-  if (m_concept_item->isVisible())
+  if (m_display_strategy->isVisible())
   {
     //Edges connect to the center node do not display their concept item
-    m_concept_item->paint(painter,option,widget);
+    m_display_strategy->paint(painter,option,widget);
   }
 }
 
@@ -368,7 +399,7 @@ void ribi::cmap::QtEdge::SetConcept(const boost::shared_ptr<Concept> concept) //
   this->m_edge->SetConcept(concept);
 }
 
-void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow)
+void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow) noexcept
 {
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -380,7 +411,7 @@ void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow)
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 }
 
-void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow)
+void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
 {
   assert(m_arrow);
   assert(m_edge);
@@ -394,12 +425,12 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow)
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 }
 
-void ribi::cmap::QtEdge::SetName(const std::string& name)
+void ribi::cmap::QtEdge::SetName(const std::string& name) noexcept
 {
   m_edge->GetConcept()->SetName(name);
 }
 
-void ribi::cmap::QtEdge::SetX(const double x)
+void ribi::cmap::QtEdge::SetX(const double x) noexcept
 {
   if ( x != this->pos().x()
     || x != this->GetEdge()->GetX()
@@ -423,7 +454,7 @@ void ribi::cmap::QtEdge::SetX(const double x)
   assert(std::abs(x - this->GetDisplayStrategy()->pos().x()) < 0.000001);
 }
 
-void ribi::cmap::QtEdge::SetY(const double y)
+void ribi::cmap::QtEdge::SetY(const double y) noexcept
 {
   if ( y != this->pos().y()
     || y != this->GetEdge()->GetY()
@@ -444,7 +475,7 @@ void ribi::cmap::QtEdge::SetY(const double y)
 
 QPainterPath ribi::cmap::QtEdge::shape() const
 {
-  return m_concept_item->shape()
+  return m_display_strategy->shape()
     .united(m_arrow->shape().translated(-this->pos()));
 }
 
@@ -464,10 +495,10 @@ void ribi::cmap::QtEdge::Test() noexcept
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
     const boost::shared_ptr<QtNode> qtnode_to(new QtNode(node_to,qtconcept_item_to));
-    const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
+    const std::size_t n_edges = cmap::EdgeFactory().GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
-      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
+      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory().GetTests(node_from,node_to);
       boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));
@@ -587,10 +618,10 @@ void ribi::cmap::QtEdge::Test() noexcept
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
     const boost::shared_ptr<QtNode> qtnode_to(new QtNode(node_to,qtconcept_item_to));
-    const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
+    const std::size_t n_edges = cmap::EdgeFactory().GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
-      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
+      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory().GetTests(node_from,node_to);
       boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));
@@ -681,10 +712,10 @@ void ribi::cmap::QtEdge::Test() noexcept
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
     const boost::shared_ptr<QtNode> qtnode_to(new QtNode(node_to,qtconcept_item_to));
-    const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
+    const std::size_t n_edges = cmap::EdgeFactory().GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
-      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
+      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = EdgeFactory().GetTests(node_from,node_to);
       boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));

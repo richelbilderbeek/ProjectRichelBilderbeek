@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+XML functions
+Copyright (C) 2014-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppXml.htm
+//---------------------------------------------------------------------------
 #include "xml.h"
 
 #include <string>
@@ -8,6 +28,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -32,7 +53,20 @@ bool CanLexicalCast(const SourceType& from)
   return true;
 }
 
-const std::vector<std::string> ribi::xml::SplitXml(const std::string& s)
+std::string ribi::xml::GetVersion() noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::xml::GetVersionHistory() noexcept
+{
+  return {
+    "201x-xx-xx: Version 1.0: initial version",
+    "2014-02-27: Version 1.1: started versioning"
+  };
+}
+
+std::vector<std::string> ribi::xml::SplitXml(const std::string& s)
 {
   std::vector<std::string> v;
   std::string::const_iterator i = s.begin();
@@ -55,7 +89,7 @@ const std::vector<std::string> ribi::xml::SplitXml(const std::string& s)
   return v;
 }
 
-const std::string ribi::xml::StripXmlTag(const std::string& s)
+std::string ribi::xml::StripXmlTag(const std::string& s)
 {
   if (s.empty()) return "";
   if (s[0]!='<') return "";
@@ -218,9 +252,14 @@ void ribi::xml::Test() noexcept
       typedef boost::shared_ptr<const std::string> ValueType;
       const TagType tag_name { "integers again" };
       std::map<KeyType,ValueType> m;
-      m.insert( std::make_pair(1,boost::shared_ptr<const std::string>(new std::string("one" )) ));
-      m.insert( std::make_pair(4,boost::shared_ptr<const std::string>(new std::string("four")) ));
-      m.insert( std::make_pair(9,boost::shared_ptr<const std::string>(new std::string("nine")) ));
+      m.insert(
+        std::make_pair(
+          1,
+          boost::make_shared<const std::string>("one" )
+        )
+      );
+      m.insert( std::make_pair(4,boost::make_shared<const std::string>("four")) );
+      m.insert( std::make_pair(9,boost::make_shared<const std::string>("nine")) );
 
       //Convert map to XML
       const std::function<std::string(const TagType&)> tag_to_str_function {
@@ -264,7 +303,7 @@ void ribi::xml::Test() noexcept
       const std::function<ValueType(const std::string&)>& str_to_value_function {
         [](const std::string& s)
         {
-          return boost::shared_ptr<const std::string>(new std::string(s));
+          return boost::make_shared<const std::string>(s);
         }
       };
       const std::pair<std::string,std::map<KeyType,ValueType>> p {
@@ -349,7 +388,7 @@ void ribi::xml::Test() noexcept
       typedef std::string TagType;
       typedef boost::shared_ptr<const std::string> ContentType;
       const TagType     tag_name { "name" };
-      const ContentType content  { boost::shared_ptr<const std::string>(new std::string("Kitty")) };
+      const ContentType content  { boost::make_shared<const std::string>("Kitty") };
 
       //Convert tag and content to XML
       const std::function<std::string(const TagType&)> tag_to_str_function {
@@ -369,7 +408,7 @@ void ribi::xml::Test() noexcept
         [](const std::string& s) { return s; }
       };
       const std::function<ContentType(const std::string&)> str_to_content_function {
-        [](const std::string& s) { return boost::shared_ptr<const std::string>(new std::string(s)); }
+        [](const std::string& s) { return boost::make_shared<const std::string>(s); }
       };
 
       //Check both conversion functions
@@ -397,7 +436,7 @@ void ribi::xml::Test() noexcept
       typedef int TagType;
       typedef boost::shared_ptr<const std::string> ContentType;
       const TagType     tag_name { 123 };
-      const ContentType content  { boost::shared_ptr<const std::string>(new std::string("one-two-three")) };
+      const ContentType content  { boost::make_shared<const std::string>("one-two-three") };
 
       //Convert tag and content to XML
       const std::function<std::string(const TagType&)> tag_to_str_function {
@@ -425,7 +464,7 @@ void ribi::xml::Test() noexcept
         }
       };
       const std::function<ContentType(const std::string&)> str_to_content_function {
-        [](const std::string& s) { return boost::shared_ptr<const std::string>(new std::string(s)); }
+        [](const std::string& s) { return boost::make_shared<const std::string>(s); }
       };
 
       //Check both conversion functions
@@ -590,7 +629,7 @@ void ribi::xml::Test() noexcept
 #endif
 
 
-const std::vector<std::string> ribi::xml::XmlToPretty(const std::string& s)
+std::vector<std::string> ribi::xml::XmlToPretty(const std::string& s) noexcept
 {
   std::vector<std::string> v = SplitXml(s);
   int n = -2;
@@ -630,7 +669,7 @@ const std::pair<std::string,std::string> ribi::xml::XmlToStr(const std::string& 
 }
 */
 
-const std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
+std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
   const std::string& s)
 {
   assert(!s.empty());

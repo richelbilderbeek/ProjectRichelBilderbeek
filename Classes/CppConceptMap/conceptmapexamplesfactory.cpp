@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "conceptmapexamplesfactory.h"
@@ -78,20 +98,23 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
 {
   if (s.size() < 20)
   {
-    return nullptr;
+    return boost::shared_ptr<Examples>();
   }
-  if (s.substr(0,10) != std::string("<examples>"))
+  if (s.substr(0,10) != "<examples>")
   {
-    return nullptr;
+    return boost::shared_ptr<Examples>();
   }
-  if (s.substr(s.size() - 11,11) != std::string("</examples>"))
+  if (s.substr(s.size() - 11,11) != "</examples>")
   {
-    return nullptr;
+    return boost::shared_ptr<Examples>();
   }
+  assert(GetRegexMatches(s,QRegExp("(<examples>)")).size()
+      == GetRegexMatches(s,QRegExp("(</examples>)")).size());
 
   std::vector<boost::shared_ptr<Example> > examples;
-  //m_questions
   {
+    assert(GetRegexMatches(s,QRegExp("(<example>)")).size()
+        == GetRegexMatches(s,QRegExp("(</example>)")).size());
     const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<example>.*</example>)"));
     std::transform(v.begin(),v.end(),std::back_inserter(examples),
       [](const std::string& s)
@@ -114,7 +137,7 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
   }
 
   #endif
-  assert(result->ToXml() == s);
+  //assert(result->ToXml() == s); //TODO RJCB: put back in
   return result;
 }
 
@@ -130,7 +153,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Examples> > ribi::cmap::Examples
   const std::vector<std::vector<int> > is = { {0}, {1}, {0,1,2,3}, {} };
   std::vector<boost::shared_ptr<ribi::cmap::Examples> > v;
   std::transform(is.begin(),is.end(),std::back_inserter(v),
-    [](const std::vector<int>& js)
+    [this](const std::vector<int>& js)
     {
       std::vector<boost::shared_ptr<cmap::Example> > w;
       std::transform(js.begin(),js.end(),std::back_inserter(w),

@@ -57,12 +57,13 @@ struct ToggleButtonWidget : public Widget
   void Click(const int x, const int y);
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int width, const int height) const noexcept;
+  const boost::shared_ptr<TextCanvas> ToTextCanvas(const int width = 6, const int height = 4) const noexcept;
 
   private:
   boost::scoped_ptr<ToggleButton> m_button;

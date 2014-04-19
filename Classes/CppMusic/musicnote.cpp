@@ -103,12 +103,12 @@ const std::vector<ribi::Music::Note> ribi::Music::Note::GetAllNotes() noexcept
   return v;
 }
 
-const std::string ribi::Music::Note::GetVersion() noexcept
+std::string ribi::Music::Note::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Music::Note::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Music::Note::GetVersionHistory() noexcept
 {
   return {
     "2012-08-10: version 1.0: initial version"
@@ -158,7 +158,7 @@ int ribi::Music::Note::ToInt() const noexcept
   return x;
 }
 
-const std::string ribi::Music::Note::ToStr() const noexcept
+std::string ribi::Music::Note::ToStr() const noexcept
 {
   std::string s;
   switch (m_letter)

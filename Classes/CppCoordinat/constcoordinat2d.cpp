@@ -1,3 +1,25 @@
+//---------------------------------------------------------------------------
+/*
+Coordinat, coordinat classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppCoordinat.htm
+//---------------------------------------------------------------------------
+#ifdef USE_CUSTOM_RIBI_CONSTCOORDINAT2D
+
 #include "constcoordinat2d.h"
 
 #include <array>
@@ -6,7 +28,7 @@
 #include "trace.h"
 #include "xml.h"
 
-ribi::ConstCoordinat2D::ConstCoordinat2D(const double x, const double y) noexcept
+ConstCoordinat2D::ConstCoordinat2D(const double x, const double y) noexcept
   : m_co{ { x,y } }
 {
   #ifndef NDEBUG
@@ -42,7 +64,7 @@ double ribi::Length(const boost::shared_ptr<const ConstCoordinat2D> v) noexcept
   return std::sqrt((dx*dx)+(dy*dy));
 }
 
-const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::Scale(
+boost::shared_ptr<const ConstCoordinat2D> ribi::Scale(
   const double scalar,
   const boost::shared_ptr<const ConstCoordinat2D> v) noexcept
 {
@@ -57,19 +79,19 @@ const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::Scale(
 }
 
 #ifndef NDEBUG
-void ribi::ConstCoordinat2D::Test() noexcept
+void ConstCoordinat2D::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ConstCoordinat2D::Test");
-  TRACE("Finished ribi::ConstCoordinat2D::Test successfully");
+  TRACE("Starting ConstCoordinat2D::Test");
+  TRACE("Finished ConstCoordinat2D::Test successfully");
 }
 #endif
 
-const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator-(
+boost::shared_ptr<const ConstCoordinat2D> ribi::operator-(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2) noexcept
 {
@@ -83,7 +105,7 @@ const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator-(
   return p;
 }
 
-const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator+(
+boost::shared_ptr<const ConstCoordinat2D> ribi::operator+(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2) noexcept
 {
@@ -124,3 +146,5 @@ std::ostream& ribi::operator<<(std::ostream& os, const ConstCoordinat2D& n) noex
   os << ribi::xml::ToXml("coordinat2d",s.str());
   return os;
 }
+
+#endif

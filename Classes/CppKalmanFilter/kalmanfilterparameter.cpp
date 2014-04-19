@@ -7,7 +7,7 @@
 #include <boost/numeric/conversion/cast.hpp>
 #pragma GCC diagnostic pop
 
-const std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::KalmanFilterParameter::GetAll()
+std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::KalmanFilterParameter::GetAll() noexcept
 {
   const std::vector<KalmanFilterParameterType> v {
     KalmanFilterParameterType::control,
@@ -25,36 +25,36 @@ const std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::KalmanF
   return v;
 }
 
-bool ribi::kalman::KalmanFilterParameter::IsMatrix(const KalmanFilterParameterType type)
+bool ribi::kalman::KalmanFilterParameter::IsMatrix(const KalmanFilterParameterType type) noexcept
 {
   return !ribi::kalman::KalmanFilterParameter::IsVector(type);
 }
 
-bool ribi::kalman::KalmanFilterParameter::IsVector(const KalmanFilterParameterType type)
+bool ribi::kalman::KalmanFilterParameter::IsVector(const KalmanFilterParameterType type) noexcept
 {
   return type == KalmanFilterParameterType::initial_state_estimate;
 }
 
-const std::string ribi::kalman::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type)
+std::string ribi::kalman::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type) noexcept
 {
   switch (type)
   {
     case KalmanFilterParameterType::control:
-      return std::string("Matrix for converting input to state change");
+      return "Matrix for converting input to state change";
     case KalmanFilterParameterType::estimated_measurement_noise:
-      return std::string("Matrix that has an estimated measurement noise covariance");
+      return "Matrix that has an estimated measurement noise covariance";
     case KalmanFilterParameterType::estimated_optimal_kalman_gain:
-      return std::string("Matrix with the estimated optimal Kalman gain");
+      return "Matrix with the estimated optimal Kalman gain";
     case KalmanFilterParameterType::estimated_process_noise_covariance:
-      return std::string("Matrix with the estimated process noise covariance");
+      return "Matrix with the estimated process noise covariance";
     case KalmanFilterParameterType::initial_covariance_estimate:
-      return std::string("Matrix with the initial covariance estimate");
+      return "Matrix with the initial covariance estimate";
     case KalmanFilterParameterType::initial_state_estimate:
-      return std::string("Vector with the initial state estimate");
+      return "Vector with the initial state estimate";
     case KalmanFilterParameterType::observation:
-      return std::string("Matrix that with effect of a measurement on a state change");
+      return "Matrix that with effect of a measurement on a state change";
     case KalmanFilterParameterType::state_transition:
-      return std::string("Matrix that contains the internal physics of the system; the effect of current state on the next state");
+      return "Matrix that contains the internal physics of the system; the effect of current state on the next state";
     case KalmanFilterParameterType::n_parameters:
       assert(!"Unimplemented type of KalmanFilterParameterType");
       throw std::logic_error(__func__);
@@ -63,26 +63,26 @@ const std::string ribi::kalman::KalmanFilterParameter::ToDescription(const Kalma
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilterParameterType type)
+std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilterParameterType type) noexcept
 {
   switch (type)
   {
     case KalmanFilterParameterType::control:
-      return std::string("Control");
+      return "Control";
     case KalmanFilterParameterType::estimated_measurement_noise:
-      return std::string("Estimated measurement error covariance");
+      return "Estimated measurement error covariance";
     case KalmanFilterParameterType::estimated_optimal_kalman_gain:
-      return std::string("Estimated optimal Kalman gain");
+      return "Estimated optimal Kalman gain";
     case KalmanFilterParameterType::estimated_process_noise_covariance:
-      return std::string("Estimated process noise covariance");
+      return "Estimated process noise covariance";
     case KalmanFilterParameterType::initial_covariance_estimate:
-      return std::string("Initial covariance estimate");
+      return "Initial covariance estimate";
     case KalmanFilterParameterType::initial_state_estimate:
-      return std::string("Initial state estimate");
+      return "Initial state estimate";
     case KalmanFilterParameterType::observation:
-      return std::string("Observation");
+      return "Observation";
     case KalmanFilterParameterType::state_transition:
-      return std::string("State transition");
+      return "State transition";
     case KalmanFilterParameterType::n_parameters:
       assert(!"Unimplemented type of KalmanFilterParameterType");
       throw std::logic_error(__func__);
@@ -91,26 +91,26 @@ const std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilter
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::kalman::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type)
+std::string ribi::kalman::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type) noexcept
 {
   switch (type)
   {
     case KalmanFilterParameterType::control:
-      return std::string("B");
+      return "B";
     case KalmanFilterParameterType::estimated_measurement_noise:
-      return std::string("R");
+      return "R";
     case KalmanFilterParameterType::estimated_optimal_kalman_gain:
-      return std::string("K");
+      return "K";
     case KalmanFilterParameterType::estimated_process_noise_covariance:
-      return std::string("Q");
+      return "Q";
     case KalmanFilterParameterType::initial_covariance_estimate:
-      return std::string("P");
+      return "P";
     case KalmanFilterParameterType::initial_state_estimate:
-      return std::string("x");
+      return "x";
     case KalmanFilterParameterType::observation:
-      return std::string("H");
+      return "H";
     case KalmanFilterParameterType::state_transition:
-      return std::string("A");
+      return "A";
     case KalmanFilterParameterType::n_parameters:
       assert(!"Unimplemented type of KalmanFilterParameterType");
       throw std::logic_error(__func__);

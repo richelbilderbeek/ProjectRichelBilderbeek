@@ -2,14 +2,13 @@
 #define TRIANGLEMESHFWD_H
 
 namespace ribi {
+
 namespace trim {
 
 struct Cell;
 struct CellFactory;
 struct CellsCreator;
 struct CellsCreatorFactory;
-struct Edge;
-struct EdgeFactory;
 struct Face;
 struct FaceFactory;
 struct Point;

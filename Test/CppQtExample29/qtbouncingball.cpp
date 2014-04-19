@@ -1,10 +1,15 @@
 #include <cassert>
 #include <cmath>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QGraphicsItem>
 #include <QGraphicsScene>
 #include <QList>
 #include <QPainter>
 #include "qtbouncingball.h"
+#pragma GCC diagnostic pop
 
 QtBouncingRect::QtBouncingRect(QGraphicsItem *parent, QGraphicsScene *scene)
  : QGraphicsItem(parent),

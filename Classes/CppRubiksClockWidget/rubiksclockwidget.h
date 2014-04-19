@@ -45,7 +45,8 @@ struct ClockWidget : public Widget
     const int x = 0,
     const int y = 0,
     const int width = 192,
-    const int height = 192) noexcept;
+    const int height = 192
+  ) noexcept;
 
   ///Click on the RubiksClock by the left mouse button or another
   void Click(const int x, const int y,const bool button_left) noexcept;
@@ -56,19 +57,11 @@ struct ClockWidget : public Widget
   ///Does the widget display the front side?
   bool GetDisplayFront() const noexcept { return m_display_front; }
 
-  ///Obtain a read-and-write pointert to the RubiksClock
-  Clock * GetRubiksClock() noexcept { return m_clock.get(); }
-
-  ///Obtain a read-only pointert to the RubiksClock
+        Clock * GetRubiksClock()       noexcept { return m_clock.get(); }
   const Clock * GetRubiksClock() const noexcept { return m_clock.get(); }
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
-
-  //const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int size) const noexcept;
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   ///Respond to a change in the clock

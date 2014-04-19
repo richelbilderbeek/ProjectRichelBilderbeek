@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -43,8 +63,9 @@ bool ribi::pvdb::Cluster::Empty() const
 const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::Cluster::FromXml(const std::string &s)
 {
   assert(s.size() >= 19);
-  assert(s.substr(0,9) == std::string("<cluster>"));
-  assert(s.substr(s.size() - 10,10) == std::string("</cluster>"));
+  assert(s.substr(0,9) == "<cluster>");
+  TRACE(s);
+  assert(s.substr(s.size() - 10,10) == "</cluster>");
 
   std::vector<boost::shared_ptr<ribi::cmap::Concept> > concepts;
 
@@ -76,7 +97,7 @@ const std::vector<boost::shared_ptr<const ribi::cmap::Concept> > ribi::pvdb::Clu
   return std::vector<boost::shared_ptr<const ribi::cmap::Concept> >(m_v.begin(),m_v.end());
 }
 
-const std::string ribi::pvdb::Cluster::ToXml(const boost::shared_ptr<const pvdb::Cluster>& cluster)
+std::string ribi::pvdb::Cluster::ToXml(const boost::shared_ptr<const pvdb::Cluster>& cluster) noexcept
 {
   std::stringstream s;
   s << "<cluster>";
@@ -93,8 +114,8 @@ const std::string ribi::pvdb::Cluster::ToXml(const boost::shared_ptr<const pvdb:
 
   const std::string r = s.str();
   assert(r.size() >= 19);
-  assert(r.substr(0,9) == std::string("<cluster>"));
-  assert(r.substr(r.size() - 10,10) == std::string("</cluster>"));
+  assert(r.substr(0,9) == "<cluster>");
+  assert(r.substr(r.size() - 10,10) == "</cluster>");
 
   return r;
 }

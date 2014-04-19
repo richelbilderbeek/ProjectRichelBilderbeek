@@ -3,6 +3,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 
 #include <QImage>
 
@@ -22,8 +23,8 @@ ribi::DotMatrixString::DotMatrixString(const std::string& s,
   assert(GetString() == s);
 }
 
-const std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
-  ribi::DotMatrixString::CreateDotMatrixChars(const std::string& s)
+std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
+  ribi::DotMatrixString::CreateDotMatrixChars(const std::string& s) noexcept
 {
   std::vector<boost::shared_ptr<const DotMatrixChar> > v;
   for (const char c: s)
@@ -37,7 +38,7 @@ const std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
   return v;
 }
 
-const boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexcept
+boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexcept
 {
   const int height = GetMatrixHeight();
   const int width  = GetMatrixWidth();
@@ -58,14 +59,14 @@ const boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexc
 }
 
 
-const std::string ribi::DotMatrixString::GetString() const noexcept
+std::string ribi::DotMatrixString::GetString() const noexcept
 {
   std::string s;
   for (const auto c: m_v) { s += c->GetChar(); }
   return s;
 }
 
-bool ribi::DotMatrixString::GetMatrix(const int x, const int y) const
+bool ribi::DotMatrixString::GetMatrix(const int x, const int y) const noexcept
 {
   assert(x >= 0);
   assert(x < GetMatrixWidth());
@@ -108,6 +109,18 @@ int ribi::DotMatrixString::GetMatrixWidth() const noexcept
   return n_chars * char_width;
 }
 
+std::string ribi::DotMatrixString::GetVersion() noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::DotMatrixString::GetVersionHistory() noexcept
+{
+  return {
+    "201x-xx-xx: Version 1.0: initial version",
+    "2014-02-27: Version 1.1: started versioning"
+  };
+}
 
 #ifndef NDEBUG
 void ribi::DotMatrixString::Test() noexcept
@@ -130,7 +143,7 @@ void ribi::DotMatrixString::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::operator<<(std::ostream& os, const DotMatrixString& m)
+std::ostream& ribi::operator<<(std::ostream& os, const DotMatrixString& m) noexcept
 {
   const int height  = m.GetMatrixHeight();
   const int width   = m.GetMatrixWidth();

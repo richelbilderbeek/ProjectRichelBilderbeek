@@ -49,10 +49,10 @@ private slots:
   void on_button_start_clicked();
 
   //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
-  static const std::string GetCurrentFolder();
+  static std::string GetCurrentFolder();
 
   //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
-  static const std::string GetCurrentFolder(const std::string& s);
+  static std::string GetCurrentFolder(const std::string& s);
 
   void OnLogMessage(const std::string& msg) noexcept;
 

@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -37,7 +57,7 @@ ribi::cmap::Example::Example(
   #endif
 }
 
-const std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competency)
+std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competency) noexcept
 {
   switch (competency)
   {
@@ -55,7 +75,7 @@ const std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency co
 }
 
 
-void ribi::cmap::Example::SetCompetency(const cmap::Competency competency)
+void ribi::cmap::Example::SetCompetency(const cmap::Competency competency) noexcept
 {
   if (m_competency != competency)
   {
@@ -64,7 +84,7 @@ void ribi::cmap::Example::SetCompetency(const cmap::Competency competency)
   }
 }
 
-void ribi::cmap::Example::SetText(const std::string& text)
+void ribi::cmap::Example::SetText(const std::string& text) noexcept
 {
   if (m_text != text)
   {
@@ -102,31 +122,31 @@ void ribi::cmap::Example::Test() noexcept
     {
       boost::shared_ptr<const cmap::Example> a = ExampleFactory().GetTest(i);
       boost::shared_ptr<      Example> b = ExampleFactory().GetTest(i);
-      assert(operator==(*a,*a));
-      assert(operator==(*a,*b));
-      assert(operator==(*b,*a));
-      assert(operator==(*b,*b));
+      assert(*a == *a);
+      assert(*a == *b);
+      assert(*b == *a);
+      assert(*b == *b);
       for (int j=0; j!=sz; ++j)
       {
         boost::shared_ptr<const cmap::Example> c = cmap::ExampleFactory().GetTest(j);
         boost::shared_ptr<      Example> d = cmap::ExampleFactory().GetTest(j);
-        assert(operator==(*c,*c));
-        assert(operator==(*c,*d));
-        assert(operator==(*d,*c));
-        assert(operator==(*d,*d));
+        assert(*c == *c);
+        assert(*c == *d);
+        assert(*d == *c);
+        assert(*d == *d);
         if (i==j)
         {
-          assert(operator==(*a,*c)); assert(operator==(*a,*d));
-          assert(operator==(*b,*c)); assert(operator==(*b,*d));
-          assert(operator==(*c,*a)); assert(operator==(*c,*b));
-          assert(operator==(*d,*a)); assert(operator==(*d,*b));
+          assert(*a == *c); assert(*a == *d);
+          assert(*b == *c); assert(*b == *d);
+          assert(*c == *a); assert(*c == *b);
+          assert(*d == *a); assert(*d == *b);
         }
         else
         {
-          assert(!operator==(*a,*c)); assert(!operator==(*a,*d));
-          assert(!operator==(*b,*c)); assert(!operator==(*b,*d));
-          assert(!operator==(*c,*a)); assert(!operator==(*c,*b));
-          assert(!operator==(*d,*a)); assert(!operator==(*d,*b));
+          assert(*a != *c); assert(*a != *d);
+          assert(*b != *c); assert(*b != *d);
+          assert(*c != *a); assert(*c != *b);
+          assert(*d != *a); assert(*d != *b);
         }
       }
     }
@@ -136,9 +156,9 @@ void ribi::cmap::Example::Test() noexcept
     const boost::shared_ptr<cmap::Example> a = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<cmap::Example> b = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<cmap::Example> c = ExampleFactory::Create("1",Competency::uninitialized);
-    assert( operator==(*a,*a)); assert( operator==(*a,*b)); assert(!operator==(*a,*c));
-    assert( operator==(*b,*a)); assert( operator==(*b,*b)); assert(!operator==(*b,*c));
-    assert(!operator==(*c,*a)); assert(!operator==(*c,*b)); assert( operator==(*c,*c));
+    assert(*a == *a); assert(*a == *b); assert(*a != *c);
+    assert(*b == *a); assert(*b == *b); assert(*b != *c);
+    assert(*c != *a); assert(*c != *b); assert(*c == *c);
   }
   //Conversion between std::string and competency
   {
@@ -179,7 +199,7 @@ void ribi::cmap::Example::Test() noexcept
         assert(e);
         const std::string s { e->ToXml() };
         const boost::shared_ptr<const Example> f(ExampleFactory().FromXml(s));
-        assert(operator==(*e,*f));
+        assert(*e == *f);
       }
     );
   }
@@ -210,7 +230,7 @@ void ribi::cmap::Example::Test() noexcept
   TRACE("Example::Test finished successfully");
 }
 
-const std::string ribi::cmap::Example::ToXml() const noexcept
+std::string ribi::cmap::Example::ToXml() const noexcept
 {
   std::stringstream s;
   s << "<example>";
@@ -233,35 +253,33 @@ const std::string ribi::cmap::Example::ToXml() const noexcept
 
   const std::string r = s.str();
   assert(r.size() >= 17);
-  assert(r.substr(0,9) == std::string("<example>"));
-  assert(r.substr(r.size() - 10,10) == std::string("</example>"));
+  assert(r.substr(0,9) == "<example>");
+  assert(r.substr(r.size() - 10,10) == "</example>");
   return r;
 }
 
-bool ribi::cmap::operator==(const cmap::Example& lhs, const cmap::Example& rhs)
+bool ribi::cmap::operator==(const cmap::Example& lhs, const cmap::Example& rhs) noexcept
 {
   return
        lhs.GetText() == rhs.GetText()
     && lhs.GetCompetency() == rhs.GetCompetency();
 }
 
-bool ribi::cmap::operator!=(const cmap::Example& lhs, const cmap::Example& rhs)
+bool ribi::cmap::operator!=(const cmap::Example& lhs, const cmap::Example& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-bool ribi::cmap::operator<(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs)
+bool ribi::cmap::operator<(const cmap::Example& lhs,const cmap::Example& rhs) noexcept
 {
-  assert(lhs && rhs);
-  if (lhs->GetText() < rhs->GetText()) return true;
-  if (lhs->GetText() > rhs->GetText()) return false;
-  return lhs->GetCompetency() < rhs->GetCompetency();
+  if (lhs.GetText() < rhs.GetText()) return true;
+  if (lhs.GetText() > rhs.GetText()) return false;
+  return lhs.GetCompetency() < rhs.GetCompetency();
 }
 
-bool ribi::cmap::operator>(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs)
+bool ribi::cmap::operator>(const cmap::Example& lhs,const cmap::Example& rhs) noexcept
 {
-  assert(lhs && rhs);
-  if (lhs->GetText() > rhs->GetText()) return true;
-  if (lhs->GetText() < rhs->GetText()) return false;
-  return lhs->GetCompetency() > rhs->GetCompetency();
+  if (lhs.GetText() > rhs.GetText()) return true;
+  if (lhs.GetText() < rhs.GetText()) return false;
+  return lhs.GetCompetency() > rhs.GetCompetency();
 }

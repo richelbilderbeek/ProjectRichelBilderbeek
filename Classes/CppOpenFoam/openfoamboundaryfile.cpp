@@ -15,7 +15,7 @@
 
 #include <QFile>
 
-#include "filename.h"
+
 #include "fileio.h"
 #include "openfoamheader.h"
 #include "openfoamboundaryindex.h"
@@ -62,29 +62,29 @@ ribi::foam::BoundaryFileItem& ribi::foam::BoundaryFile::Find(const FaceIndex& fa
   throw std::logic_error("ribi::foam::BoundaryFile::Find");
 }
 
-const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
 {
   const std::string class_name = "polyBoundaryMesh";
-  const std::string location   = "constant" + fileio::GetPathSeperator() + "polyMesh";
+  const std::string location   = "constant" + fileio::FileIo().GetPathSeperator() + "polyMesh";
   const std::string note       = "";
   const std::string object     = "boundary";
 
   return Header(class_name,location,note,object);
 }
 
-const ribi::foam::BoundaryFileItem ribi::foam::BoundaryFile::GetItem(const ribi::foam::BoundaryIndex& boundary_index) const noexcept
+ribi::foam::BoundaryFileItem ribi::foam::BoundaryFile::GetItem(const ribi::foam::BoundaryIndex& boundary_index) const noexcept
 {
   assert(boundary_index.Get() >= 0);
   assert(boundary_index < GetMaxBoundaryIndex());
   return m_items[ boundary_index.Get() ];
 }
 
-const ribi::foam::BoundaryIndex ribi::foam::BoundaryFile::GetMaxBoundaryIndex() const noexcept
+ribi::foam::BoundaryIndex ribi::foam::BoundaryFile::GetMaxBoundaryIndex() const noexcept
 {
   return BoundaryIndex(static_cast<int>(m_items.size()));
 }
 
-const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
+ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
 {
   BoundaryFile b;
   is >> b;
@@ -92,15 +92,15 @@ const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
   return b;
 }
 
-const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string& filename)
+ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string& filename)
 {
-  const std::string tmp_filename { fileio::GetTempFileName() };
-  fileio::CopyFile(filename,tmp_filename);
+  const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
+  fileio::FileIo().CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
   const ribi::foam::BoundaryFile file { Parse(f) };
   f.close();
-  fileio::DeleteFile(tmp_filename);
+  fileio::FileIo().DeleteFile(tmp_filename);
   return file;
 }
 
@@ -194,12 +194,12 @@ void ribi::foam::BoundaryFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         TRACE("ERROR");
         TRACE(filename);
       }
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       BoundaryFile b(filename);
       if (b.GetItems().empty())
       {
@@ -213,7 +213,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs)
+bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -242,7 +242,7 @@ bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs)
   return all_items_equal;
 }
 
-bool ribi::foam::operator!=(const BoundaryFile& lhs,const BoundaryFile& rhs)
+bool ribi::foam::operator!=(const BoundaryFile& lhs,const BoundaryFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -326,17 +326,24 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'
     << "" << '\n'
-    << f.m_items.size() << '\n'
+    << std::count_if(
+      f.m_items.begin(),f.m_items.end(),
+      [](const BoundaryFileItem& item)
+      {
+        return item.GetType() != PatchFieldType::no_patch_field;
+      }
+    ) << '\n'
     << "(" << '\n'
   ;
 
   for(const BoundaryFileItem item: f.m_items)
   {
+    if (item.GetType() == PatchFieldType::no_patch_field) continue;
     os << item << '\n';
   }
 

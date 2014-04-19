@@ -51,7 +51,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
+std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   const std::vector<std::string>& code,
   const SnippetType snippet_type) noexcept
 {
@@ -76,7 +76,7 @@ const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   std::transform(v.begin(),v.end(),std::back_inserter(w),
     [](const std::string& s)
     {
-      return s + std::string("<br/>");
+      return s + "<br/>";
     }
   );
 
@@ -90,7 +90,7 @@ const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   return w;
 }
 
-const std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
+std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
 {
   // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
   // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml/
@@ -167,20 +167,20 @@ const std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexc
   return t;
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
+std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
   const std::string& filename) noexcept
 {
   const std::vector<std::string> v {
-    ribi::fileio::FileToVector(filename)
+    ribi::fileio::FileIo().FileToVector(filename)
   };
   const FileType file_type = FileTypes::DeduceFileType(filename);
   return Replacer::ToHtml(v,file_type);
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
+std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
   const std::string& foldername) noexcept
 {
-  assert(fileio::IsFolder(foldername));
+  assert(fileio::FileIo().IsFolder(foldername));
   const FolderType folder_type = FolderTypes::DeduceFolderType(foldername);
   switch(folder_type)
   {
@@ -195,10 +195,10 @@ const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
   throw std::logic_error("ribi::c2h::Dialog::FolderToHtml");
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
+std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
   const std::string& foldername) noexcept
 {
-  assert(fileio::IsFolder(foldername));
+  assert(fileio::FileIo().IsFolder(foldername));
   assert(foldername.back() != '\\');
   assert(foldername.back() != '/');
 
@@ -211,10 +211,19 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
     };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
+  //Info
+  {
+    const boost::shared_ptr<const Info> info(new Info);
+    const std::vector<std::string> w {
+      info->ToHtml(ExtractPageName(foldername))
+    };
+
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
   //Body
   {
     const std::vector<std::string> files_no_path {
-      fileio::GetFilesInFolderRecursive(foldername)
+      fileio::FileIo().GetFilesInFolderRecursive(foldername)
     };
     std::vector<std::string> files;
     std::transform(
@@ -224,24 +233,24 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
       [foldername](const std::string& s)
       {
         //If the path is already complete, return it
-        if (ribi::fileio::IsRegularFile(s))
+        if (ribi::fileio::FileIo().IsRegularFile(s))
         {
           return s;
         }
         //Prepend the folder name
         const std::string t {
           foldername
-          + ribi::fileio::GetPathSeperator()
+          + ribi::fileio::FileIo().GetPathSeperator()
           + s
         };
         #ifndef NDEBUG
-        if(!ribi::fileio::IsRegularFile(t))
+        if(!ribi::fileio::FileIo().IsRegularFile(t))
         {
           TRACE("ERROR");
           TRACE(foldername); TRACE(s); TRACE(t);
         }
         #endif
-        assert(ribi::fileio::IsRegularFile(t));
+        assert(ribi::fileio::FileIo().IsRegularFile(t));
         return t;
       }
     );
@@ -249,15 +258,15 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
     #ifndef NDEBUG
     for (const std::string& file: files)
     {
-      if (!ribi::fileio::IsRegularFile(file)) { TRACE(file); }
-      assert(ribi::fileio::IsRegularFile(file));
+      if (!ribi::fileio::FileIo().IsRegularFile(file)) { TRACE(file); }
+      assert(ribi::fileio::FileIo().IsRegularFile(file));
     }
     #endif
 
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        assert(ribi::fileio::IsRegularFile(filename));
+        assert(ribi::fileio::FileIo().IsRegularFile(filename));
         const boost::shared_ptr<File> content {
           new File(filename,FileType::txt)
         };
@@ -274,14 +283,14 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
   return v;
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::GetProFilesInFolder(
+std::vector<std::string> ribi::c2h::Dialog::GetProFilesInFolder(
   const std::string& folder)
 {
-  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
+  return ribi::fileio::FileIo().GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
 }
 
 
-const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
+std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
   const std::string& foldername) noexcept
 {
   std::vector<std::string> v;
@@ -307,7 +316,7 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
       {
         const std::string t {
           foldername
-          + ribi::fileio::GetPathSeperator()
+          + ribi::fileio::FileIo().GetPathSeperator()
           + s
         };
         return t;
@@ -317,8 +326,8 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
     #ifndef NDEBUG
     for (const std::string& pro_file: pro_files)
     {
-      if (!ribi::fileio::IsRegularFile(pro_file)) { TRACE(pro_file); }
-      assert(ribi::fileio::IsRegularFile(pro_file));
+      if (!ribi::fileio::FileIo().IsRegularFile(pro_file)) { TRACE(pro_file); }
+      assert(ribi::fileio::FileIo().IsRegularFile(pro_file));
     }
     #endif
     //Info
@@ -344,13 +353,13 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
       [foldername](const std::string& s)
       {
         const std::string t {
-          foldername + fileio::GetPathSeperator() + s
+          foldername + fileio::FileIo().GetPathSeperator() + s
         };
-        if (!ribi::fileio::IsRegularFile(t))
+        if (!ribi::fileio::FileIo().IsRegularFile(t))
         {
           TRACE("ERROR"); TRACE(s); TRACE(foldername); TRACE(t);
         }
-        assert(ribi::fileio::IsRegularFile(t));
+        assert(ribi::fileio::FileIo().IsRegularFile(t));
         return t;
       }
     );
@@ -358,7 +367,7 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        assert(ribi::fileio::IsRegularFile(filename));
+        assert(ribi::fileio::FileIo().IsRegularFile(filename));
         const boost::shared_ptr<File> content {
           new File(filename)
         };
@@ -374,10 +383,10 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
   return v;
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
+std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
   const std::string& foldername ) noexcept
 {
-  assert(fileio::IsFolder(foldername));
+  assert(fileio::FileIo().IsFolder(foldername));
   assert(foldername.back() != '\\');
   assert(foldername.back() != '/');
 
@@ -393,7 +402,7 @@ const std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
   //Body
   {
     const std::vector<std::string> files_no_path {
-      fileio::GetFilesInFolderRecursive(foldername)
+      fileio::FileIo().GetFilesInFolderRecursive(foldername)
     };
     std::vector<std::string> files;
     std::transform(
@@ -403,24 +412,24 @@ const std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
       [foldername](const std::string& s)
       {
         //If the path is already complete, return it
-        if (ribi::fileio::IsRegularFile(s))
+        if (ribi::fileio::FileIo().IsRegularFile(s))
         {
           return s;
         }
         //Prepend the folder name
         const std::string t {
           foldername
-          + ribi::fileio::GetPathSeperator()
+          + ribi::fileio::FileIo().GetPathSeperator()
           + s
         };
         #ifndef NDEBUG
-        if(!ribi::fileio::IsRegularFile(t))
+        if(!ribi::fileio::FileIo().IsRegularFile(t))
         {
           TRACE("ERROR");
           TRACE(foldername); TRACE(s); TRACE(t);
         }
         #endif
-        assert(ribi::fileio::IsRegularFile(t));
+        assert(ribi::fileio::FileIo().IsRegularFile(t));
         return t;
       }
     );
@@ -428,15 +437,15 @@ const std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
     #ifndef NDEBUG
     for (const std::string& file: files)
     {
-      if (!ribi::fileio::IsRegularFile(file)) { TRACE(file); }
-      assert(ribi::fileio::IsRegularFile(file));
+      if (!ribi::fileio::FileIo().IsRegularFile(file)) { TRACE(file); }
+      assert(ribi::fileio::FileIo().IsRegularFile(file));
     }
     #endif
 
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        assert(ribi::fileio::IsRegularFile(filename));
+        assert(ribi::fileio::FileIo().IsRegularFile(filename));
         const boost::shared_ptr<File> content {
           new File(filename,FileType::txt)
         };
@@ -461,53 +470,53 @@ void ribi::c2h::Dialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  assert(ExtractPageName("X") == std::string("X"));
-  assert(ExtractPageName("/X") == std::string("X"));
-  assert(ExtractPageName("/A/X") == std::string("X"));
-  assert(ExtractPageName("/A/B/X") == std::string("X"));
-  assert(ExtractPageName("/A/B/C/X") == std::string("X"));
-  assert(ExtractPageName("/X/") == std::string("X"));
-  assert(ExtractPageName("/A/X/") == std::string("X"));
-  assert(ExtractPageName("/A/B/X/") == std::string("X"));
-  assert(ExtractPageName("/A/B/C/X/") == std::string("X"));
+  assert(ExtractPageName("X") == "X");
+  assert(ExtractPageName("/X") == "X");
+  assert(ExtractPageName("/A/X") == "X");
+  assert(ExtractPageName("/A/B/X") == "X");
+  assert(ExtractPageName("/A/B/C/X") == "X");
+  assert(ExtractPageName("/X/") == "X");
+  assert(ExtractPageName("/A/X/") == "X");
+  assert(ExtractPageName("/A/B/X/") == "X");
+  assert(ExtractPageName("/A/B/C/X/") == "X");
 
-  assert(ExtractPageName("\\X") == std::string("X"));
-  assert(ExtractPageName("\\A\\X") == std::string("X"));
-  assert(ExtractPageName("\\A\\B\\X") == std::string("X"));
-  assert(ExtractPageName("\\A\\B\\C\\X") == std::string("X"));
-  assert(ExtractPageName("\\X\\") == std::string("X"));
-  assert(ExtractPageName("\\A\\X\\") == std::string("X"));
-  assert(ExtractPageName("\\A\\B\\X\\") == std::string("X"));
-  assert(ExtractPageName("\\A\\B\\C\\X\\") == std::string("X"));
+  assert(ExtractPageName("\\X") == "X");
+  assert(ExtractPageName("\\A\\X") == "X");
+  assert(ExtractPageName("\\A\\B\\X") == "X");
+  assert(ExtractPageName("\\A\\B\\C\\X") == "X");
+  assert(ExtractPageName("\\X\\") == "X");
+  assert(ExtractPageName("\\A\\X\\") == "X");
+  assert(ExtractPageName("\\A\\B\\X\\") == "X");
+  assert(ExtractPageName("\\A\\B\\C\\X\\") == "X");
 
-  assert(ExtractPageName("/X") == std::string("X"));
-  assert(ExtractPageName("/A\\X") == std::string("X"));
-  assert(ExtractPageName("/A\\B/X") == std::string("X"));
-  assert(ExtractPageName("\\A\\B/C/X") == std::string("X"));
-  assert(ExtractPageName("\\X/") == std::string("X"));
-  assert(ExtractPageName("/A\\X/") == std::string("X"));
-  assert(ExtractPageName("/A/B\\X/") == std::string("X"));
-  assert(ExtractPageName("/A/B\\C/X/") == std::string("X"));
+  assert(ExtractPageName("/X") == "X");
+  assert(ExtractPageName("/A\\X") == "X");
+  assert(ExtractPageName("/A\\B/X") == "X");
+  assert(ExtractPageName("\\A\\B/C/X") == "X");
+  assert(ExtractPageName("\\X/") == "X");
+  assert(ExtractPageName("/A\\X/") == "X");
+  assert(ExtractPageName("/A/B\\X/") == "X");
+  assert(ExtractPageName("/A/B\\C/X/") == "X");
 
-  assert(ExtractPageName("main.cpp") == std::string(""));
-  assert(ExtractPageName("/X/main.cpp") == std::string("X"));
-  assert(ExtractPageName("/A/X/main.cpp") == std::string("X"));
-  assert(ExtractPageName("/A/B/X/main.cpp") == std::string("X"));
-  assert(ExtractPageName("/A/B/C/X/main.cpp") == std::string("X"));
-  assert(ExtractPageName("/X/main.cpp/") == std::string("X"));
-  assert(ExtractPageName("/A/X/main.cpp/") == std::string("X"));
-  assert(ExtractPageName("/A/B/X/main.cpp/") == std::string("X"));
-  assert(ExtractPageName("/A/B/C/X/main.cpp/") == std::string("X"));
+  assert(ExtractPageName("main.cpp") == "");
+  assert(ExtractPageName("/X/main.cpp") == "X");
+  assert(ExtractPageName("/A/X/main.cpp") == "X");
+  assert(ExtractPageName("/A/B/X/main.cpp") == "X");
+  assert(ExtractPageName("/A/B/C/X/main.cpp") == "X");
+  assert(ExtractPageName("/X/main.cpp/") == "X");
+  assert(ExtractPageName("/A/X/main.cpp/") == "X");
+  assert(ExtractPageName("/A/B/X/main.cpp/") == "X");
+  assert(ExtractPageName("/A/B/C/X/main.cpp/") == "X");
 
   assert(ExtractPageName("/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml")
-    == std::string("ToolCodeToHtml"));
+    == "ToolCodeToHtml");
 
   //GetProFiles
   {
     //Always first remove the temp file
-    const std::string filename = fileio::GetTempFileName() + ".pro";
-    if (ribi::fileio::IsRegularFile(filename)) { ribi::fileio::DeleteFile(filename); }
-    assert(!ribi::fileio::IsRegularFile(filename));
+    const std::string filename = fileio::FileIo().GetTempFileName() + ".pro";
+    if (ribi::fileio::FileIo().IsRegularFile(filename)) { ribi::fileio::FileIo().DeleteFile(filename); }
+    assert(!ribi::fileio::FileIo().IsRegularFile(filename));
 
     const std::size_t n = GetProFilesInFolder("").size();
     {
@@ -523,8 +532,8 @@ void ribi::c2h::Dialog::Test() noexcept
       for (std::string s: GetProFilesInFolder("")) TRACE(s);
     }
     assert(n == p - 1);
-    ribi::fileio::DeleteFile(filename);
-    assert(!ribi::fileio::IsRegularFile(filename));
+    ribi::fileio::FileIo().DeleteFile(filename);
+    assert(!ribi::fileio::FileIo().IsRegularFile(filename));
     const std::size_t q = GetProFilesInFolder("").size();
     assert(n == q);
   }
@@ -538,7 +547,7 @@ void ribi::c2h::Dialog::Test() noexcept
   if (IsTidyInstalled())
   {
     const std::string filename = "../ToolCodeToHtml/qtmain.cpp";
-    if (ribi::fileio::IsRegularFile(filename))
+    if (ribi::fileio::FileIo().IsRegularFile(filename))
     {
       const std::vector<std::string> v { Dialog::FileToHtml(filename) };
       assert(IsCleanHtml(v) && "Assume tidy HTML");
@@ -555,7 +564,7 @@ void ribi::c2h::Dialog::Test() noexcept
   if (IsTidyInstalled())
   {
     const std::string path = "../ToolCodeToHtml";
-    if (ribi::fileio::IsFolder(path))
+    if (ribi::fileio::FileIo().IsFolder(path))
     {
       const std::vector<std::string> v { Dialog::FolderToHtml(path) };
       assert(IsCleanHtml(v) && "Assume tidy HTML");

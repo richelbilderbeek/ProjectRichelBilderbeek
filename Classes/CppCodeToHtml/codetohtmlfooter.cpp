@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-const std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) noexcept
+std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) noexcept
 {
   #ifndef NDEBUG
   //Test();
@@ -43,5 +43,14 @@ const std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_t
   v.push_back("<p>This page has been created by the <a href=\"Tools.htm\">tool</a> <a href=\"ToolCodeToHtml.htm\">CodeToHtml</a></p>");
   v.push_back("</body>");
   v.push_back("</html>");
+  return v;
+}
+
+std::vector<std::string> ribi::c2h::Footer::ToMarkdown(const FooterType /*page_type*/) noexcept
+{
+  #ifndef NDEBUG
+  //Test();
+  #endif
+  std::vector<std::string> v;
   return v;
 }

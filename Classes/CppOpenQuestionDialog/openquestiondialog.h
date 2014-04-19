@@ -38,15 +38,15 @@ struct OpenQuestionDialog : public QuestionDialog
   explicit OpenQuestionDialog(const std::string& question);
   explicit OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question);
 
-  const boost::shared_ptr<const OpenQuestion> GetOpenQuestion() const { return m_question; }
+  boost::shared_ptr<const OpenQuestion> GetOpenQuestion() const noexcept { return m_question; }
 
-  const boost::shared_ptr<const Question> GetQuestion() const;
+  boost::shared_ptr<const Question> GetQuestion() const noexcept;
 
   ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Submit an answer
   ///For an open question, s will be the anwer

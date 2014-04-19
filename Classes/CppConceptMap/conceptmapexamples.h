@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef CONCEPTMAPEXAMPLES_H
 #define CONCEPTMAPEXAMPLES_H
 
@@ -21,10 +41,10 @@ struct Examples
   Examples& operator=(const Example& rhs) = delete;
 
 
-  const std::vector<boost::shared_ptr<Example> >& Get() { return m_v; }
-  const std::vector<boost::shared_ptr<const Example> > Get() const;
+  std::vector<boost::shared_ptr<Example> >& Get() noexcept { return m_v; }
+  std::vector<boost::shared_ptr<const Example> > Get() const noexcept;
 
-  const std::string ToXml() const noexcept;
+  std::string ToXml() const noexcept;
 
   ///Something of one of the examples was changed
   mutable boost::signals2::signal<void(const Examples*)> m_signal_examples_changed;
@@ -36,7 +56,7 @@ private:
   //void Add(const boost::shared_ptr<cmap::Example>& example);
 
   ///All signals emitted from the examples are connected to this member function
-  void OnExampleChanged();
+  void OnExampleChanged() noexcept;
 
   ///Test this class
   static void Test() noexcept;

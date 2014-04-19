@@ -44,7 +44,7 @@ struct QtCreatorProFile
   QtCreatorProFile& operator=(const QtCreatorProFile&) = delete;
 
   ///Obtain this class its About information
-  static const ribi::About GetAbout() noexcept;
+  static ribi::About GetAbout() noexcept;
 
   ///Obtain the CONFIG
   const std::set<std::string>& GetConfig() const noexcept { return m_config; }
@@ -92,10 +92,10 @@ struct QtCreatorProFile
   const std::set<std::string>& GetTemplate() const noexcept { return m_template; }
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the CONFIG
   void SetConfig(const std::set<std::string>& s) { m_config = s; }
@@ -200,7 +200,7 @@ struct QtCreatorProFile
   void RemoveComments(std::vector<std::string>& v);
 
   ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input, const char seperator);
 
   #ifndef NDEBUG

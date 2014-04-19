@@ -40,7 +40,7 @@ namespace c2h {
 struct Replacer
 {
   ///Convert text to its HTML equivalent
-  static const std::vector<std::string> ToHtml(
+  static std::vector<std::string> ToHtml(
     const std::vector<std::string>& text,
     const FileType file_type
   ) noexcept;
@@ -77,12 +77,12 @@ struct Replacer
   static const Replacements& GetReplacementsTxt();
 
   ///Replace all instances in a std::string by the replacements
-  static const std::string MultiReplace(
+  static std::string MultiReplace(
     const std::string& line,
     const std::vector<std::pair<std::string,std::string> >& replacements);
 
   ///Replace all occurrences of replaceWhat by replaceWithWhat in a string
-  static const std::string ReplaceAll(
+  static std::string ReplaceAll(
     std::string s,
     const std::string& replaceWhat,
     const std::string& replaceWithWhat);

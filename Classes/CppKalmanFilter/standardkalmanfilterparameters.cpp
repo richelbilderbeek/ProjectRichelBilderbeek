@@ -33,12 +33,12 @@ ribi::kalman::StandardKalmanFilterParameters::StandardKalmanFilterParameters(
   #endif
 }
 
-const std::string ribi::kalman::StandardKalmanFilterParameters::GetVersion() noexcept
+std::string ribi::kalman::StandardKalmanFilterParameters::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::kalman::StandardKalmanFilterParameters::GetVersionHistory() noexcept
+std::vector<std::string> ribi::kalman::StandardKalmanFilterParameters::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version",

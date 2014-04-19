@@ -24,9 +24,6 @@ ribi::cmap::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *pare
   Test();
   #endif
   ui->setupUi(this);
-
-  //Temporary, as I am working on this now
-  on_button_conceptmapwidget_clicked();
 }
 
 ribi::cmap::QtTestConceptMapMenuDialog::~QtTestConceptMapMenuDialog() noexcept

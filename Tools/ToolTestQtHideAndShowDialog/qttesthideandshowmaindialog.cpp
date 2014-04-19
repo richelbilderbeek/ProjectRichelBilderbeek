@@ -1,8 +1,13 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttesthideandshowmaindialog.h"
 
 #include <boost/lexical_cast.hpp>
 #include <QKeyEvent>
 #include "ui_qttesthideandshowmaindialog.h"
+#pragma GCC diagnostic pop
 
 QtTestHideAndShowMainDialog::QtTestHideAndShowMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
@@ -19,7 +24,7 @@ QtTestHideAndShowMainDialog::QtTestHideAndShowMainDialog(QWidget *parent)
   ui->label_width_constructor->setText(s);
 }
 
-QtTestHideAndShowMainDialog::~QtTestHideAndShowMainDialog()
+QtTestHideAndShowMainDialog::~QtTestHideAndShowMainDialog() noexcept
 {
   delete ui;
 }

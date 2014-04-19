@@ -3,7 +3,7 @@
 
 namespace ribi {
 
-struct Coordinat3D;
+//struct Coordinat3D;
 
 namespace foam {
 

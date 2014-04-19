@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -58,7 +78,7 @@ ribi::cmap::QtDisplayConceptMap::QtDisplayConceptMap(
 }
 
 
-void ribi::cmap::QtDisplayConceptMap::AddEdge(
+ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
@@ -116,6 +136,7 @@ void ribi::cmap::QtDisplayConceptMap::AddEdge(
   }
   assert(qtedge->pos().y() == edge->GetY());
   #endif
+  return qtedge;
 }
 
 ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::shared_ptr<Node> node)
@@ -214,8 +235,9 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
   const auto edge_concept = ribi::cmap::ConceptFactory().GetTests().at(index);
   const double node_x = 12.34; //Just some coordinat
   const double node_y = 45.67; //Just some coordinat
-  const boost::shared_ptr<Edge> edge = cmap::EdgeFactory::Create(
-    edge_concept,node_x,node_y,node_from,true,node_to,true);
+  const boost::shared_ptr<Edge> edge = EdgeFactory().Create(
+    edge_concept,node_x,node_y,node_from,true,node_to,true
+  );
   this->AddEdge(edge);
   const int n_edges_after = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
   const int n_nodes_after = boost::numeric_cast<int>(GetConceptMap()->GetNodes().size());

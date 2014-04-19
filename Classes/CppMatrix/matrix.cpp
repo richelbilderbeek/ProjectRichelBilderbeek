@@ -125,12 +125,12 @@ const boost::numeric::ublas::vector<int> ribi::Matrix::CreateVectorInt(
   return w;
 }
 
-const std::string ribi::Matrix::GetVersion() noexcept
+std::string ribi::Matrix::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::Matrix::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Matrix::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version",

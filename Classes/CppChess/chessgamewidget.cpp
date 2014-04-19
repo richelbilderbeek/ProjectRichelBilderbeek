@@ -12,11 +12,13 @@
 #include "chesssquarefactory.h"
 #include "chesssquareselector.h"
 #include "chessmovefactory.h"
+#include "geometry.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#include <boost/make_shared.hpp>
 #pragma GCC diagnostic pop
 
 //ribi::Chess::GameWidget::GameWidget()
@@ -141,14 +143,18 @@ void ribi::Chess::GameWidget::Test() noexcept
   #endif
     {
       {
-        boost::shared_ptr<Chess::Game> game(new Chess::Game);
-        boost::shared_ptr<Chess::ChessWidget> w(new GameWidget(game,Rect(0,0,100,100)));
+        const boost::shared_ptr<Chess::Game> game
+          = boost::make_shared<Chess::Game>();
+        const boost::shared_ptr<Chess::ChessWidget> w(
+          new GameWidget(game,Geometry().CreateRect(0,0,100,100)));
         w->ClickPixel(-1,-1);
         w->ClickPixel(1000,1000);
       }
       {
-        boost::shared_ptr<Chess::Game> game(new Chess::Game);
-        boost::shared_ptr<Chess::GameWidget> widget(new Chess::GameWidget(game,Rect(0,0,100,100)));
+        const boost::shared_ptr<Chess::Game> game
+          = boost::make_shared<Chess::Game>();
+        const boost::shared_ptr<Chess::GameWidget> widget(
+          new Chess::GameWidget(game,Geometry().CreateRect(0,0,100,100)));
         assert(widget->GetSelector()->GetCursor()->GetFile() == Chess::File("a"));
         assert(widget->GetSelector()->GetCursor()->GetRank() == Chess::Rank("1"));
         assert(!widget->GetSelector()->GetSelected());

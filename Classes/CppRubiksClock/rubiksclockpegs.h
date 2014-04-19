@@ -23,7 +23,7 @@ struct Pegs
   boost::shared_ptr<ToggleButtonWidget> m_pegs[2][2]; //Is peg pressed?
   static Pegs CreatePegsFromIndex(const int index) noexcept;
   const boost::shared_ptr<const ToggleButtonWidget> GetPeg(const Side side) const noexcept;
-  const std::string ToXml() const noexcept;
+  std::string ToXml() const noexcept;
 
   private:
   ~Pegs() noexcept {}

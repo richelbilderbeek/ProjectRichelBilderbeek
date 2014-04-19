@@ -39,25 +39,18 @@ struct ShinyButtonWidget : public Widget
     const double color,
     const double gradient,
     const std::string& text = "",
-    const Rect rect = Rect(80,20));
+    const Rect rect = CreateRect(0,0,80,20)
+  );
   ShinyButtonWidget(const ShinyButtonWidget&) = delete;
   ShinyButtonWidget& operator=(const ShinyButtonWidget&) = delete;
   ~ShinyButtonWidget() noexcept {}
 
-  ///Obtain a read-and-write pointer to ShinyButton
-  ShinyButton * GetShinyButton() { return m_button.get(); }
+        ShinyButton * GetShinyButton()       noexcept { return m_button.get(); }
+  const ShinyButton * GetShinyButton() const noexcept { return m_button.get(); }
 
-  ///Obtain a read-only pointer to ShinyButton
-  const ShinyButton * GetShinyButton() const { return m_button.get(); }
-
-  ///Respond to the user clicking on this class
-  void Click();
-
-  ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
-
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  void Click() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///The signal emitted when the ShinyButtonWidget is clicked
   mutable boost::signals2::signal<void (const ShinyButtonWidget* const)> m_signal_clicked;
@@ -68,10 +61,10 @@ struct ShinyButtonWidget : public Widget
   boost::scoped_ptr<ShinyButton> m_button;
 
   ///Allow std::cout access to ShinyButtonWidget
-  friend std::ostream& operator<<(std::ostream& os, const ShinyButtonWidget& button);
+  friend std::ostream& operator<<(std::ostream& os, const ShinyButtonWidget& button) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const ShinyButtonWidget& button);
+std::ostream& operator<<(std::ostream& os, const ShinyButtonWidget& button) noexcept;
 
 } //~namespace ribi
 

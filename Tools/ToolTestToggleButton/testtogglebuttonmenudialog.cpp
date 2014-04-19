@@ -64,7 +64,7 @@ int ribi::TestToggleButtonMenuDialog::ExecuteSpecific(const std::vector<std::str
 }
 
 
-const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestToggleButtonMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -77,7 +77,6 @@ const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("DrawCanvas version: " + DrawCanvas::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("ToggleButton version: " + ToggleButton::GetVersion());
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
@@ -86,7 +85,7 @@ const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestToggleButtonMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestToggleButtonMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -100,7 +99,7 @@ const ribi::Help ribi::TestToggleButtonMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestToggleButtonMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestToggleButtonMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestToggleButton
@@ -109,12 +108,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestToggleButtonMenuDialog::G
   return p;
 }
 
-const std::string ribi::TestToggleButtonMenuDialog::GetVersion() const noexcept
+std::string ribi::TestToggleButtonMenuDialog::GetVersion() const noexcept
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-16: Version 1.0: initial version, desktop version not yet working",

@@ -52,12 +52,12 @@ ribi::Chess::Rank::Rank(const int y)
   }
 }
 
-const std::string ribi::Chess::Rank::GetVersion()
+std::string ribi::Chess::Rank::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -166,22 +166,6 @@ const std::string& ribi::Chess::Rank::ToStr() const
 {
   return m_rank;
 }
-
-/*
-Rank& ribi::Chess::Rank::operator++()
-{
-  assert(m_rank != std::string("8"));
-  m_rank = boost::lexical_cast<std::string>(++boost::lexical_cast<int>(m_rank));
-  return *this;
-}
-
-Rank& ribi::Chess::Rank::operator--()
-{
-  assert(m_rank != std::string("1"));
-  m_rank = boost::lexical_cast<std::string>(--boost::lexical_cast<int>(m_rank));
-  return *this;
-}
-*/
 
 bool ribi::Chess::operator==(const Chess::Rank& lhs, const Chess::Rank& rhs)
 {

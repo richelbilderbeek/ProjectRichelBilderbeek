@@ -37,7 +37,7 @@ struct Header
   ///(6) location
   ///(7) object
   ///(8) bracket close
-  int GetNumberOfLines() const noexcept { return 8; }
+  static constexpr int GetNumberOfLines() { return 8; }
 
   void SetVersion(const std::string& version) noexcept { m_version = version; }
 
@@ -57,9 +57,9 @@ struct Header
   friend std::istream& operator>>(std::istream& is, Header& h);
 };
 
-bool operator==(const Header& lhs, const Header& rhs);
-bool operator!=(const Header& lhs, const Header& rhs);
-std::ostream& operator<<(std::ostream& os, const Header& f);
+bool operator==(const Header& lhs, const Header& rhs) noexcept;
+bool operator!=(const Header& lhs, const Header& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const Header& f) noexcept;
 
 ///Read the header of an OpenFOAM file.
 ///Throws std::runtime_error if file is incorrectly formed

@@ -9,3 +9,4 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestDial/Licence.txt
+

@@ -4,19 +4,23 @@
 #include <ostream>
 
 #include "openfoamcell.h"
-#include "coordinat3d.h"
+#include "openfoamhelper.h"
 #include "trace.h"
 
 ribi::foam::Face::Face(
   const boost::shared_ptr<Cell> neighbour,
   const boost::shared_ptr<Cell> owner,
-  const std::vector<boost::shared_ptr<ribi::Coordinat3D> >& points
+  const std::vector<boost::shared_ptr<Coordinat3D>>& points
 )
   : m_neighbour(neighbour),
     m_owner(owner),
     m_points(points)
 {
-
+  #ifndef NDEBUG
+  assert(!m_neighbour);
+  assert(!m_owner);
+  for (auto p: m_points) { assert(p); }
+  #endif
 }
 
 void ribi::foam::Face::AssignNeighbour(const boost::shared_ptr<ribi::foam::Cell> neighbour) noexcept
@@ -34,23 +38,24 @@ void ribi::foam::Face::AssignOwner(const boost::shared_ptr<ribi::foam::Cell> own
   m_owner = owner;
 }
 
-const boost::shared_ptr<ribi::foam::Cell> ribi::foam::Face::GetOwner() noexcept
+boost::shared_ptr<ribi::foam::Cell> ribi::foam::Face::GetOwner() noexcept
 {
   assert( (m_owner || !m_owner) && "Allow Face to have no owner");
   return m_owner;
 }
 
-const std::vector<boost::shared_ptr<const ribi::Coordinat3D> > ribi::foam::Face::GetPoints() const noexcept
+std::vector<boost::shared_ptr<const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>>
+  ribi::foam::Face::GetPoints() const noexcept
 {
-  std::vector<boost::shared_ptr<const ribi::Coordinat3D>> v;
+  std::vector<boost::shared_ptr<const Coordinat3D>> v;
   std::transform(
     m_points.begin(),
     m_points.end(),
     std::back_inserter(v),
-    [](const boost::shared_ptr<ribi::Coordinat3D> point)
+    [](const boost::shared_ptr<Coordinat3D> point)
     {
       assert(point);
-      const boost::shared_ptr<const ribi::Coordinat3D> const_point {
+      const boost::shared_ptr<const Coordinat3D> const_point {
         point
       };
       assert(point == const_point);
@@ -64,19 +69,30 @@ const std::vector<boost::shared_ptr<const ribi::Coordinat3D> > ribi::foam::Face:
   return v;
 }
 
-ribi::Coordinat3D ribi::foam::CalcCenter(const Face& face) noexcept
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::foam::CalcCenter(const Face& face) noexcept
 {
-  Coordinat3D d;
-  for (boost::shared_ptr<const ribi::Coordinat3D> c: face.GetPoints())
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
+  Coordinat3D d(0.0,0.0,0.0);
+  for (boost::shared_ptr<const Coordinat3D> c: face.GetPoints())
   {
-    d += *c;
+    assert(c);
+    d.set<0>(d.get<0>() + c->get<0>());
+    d.set<1>(d.get<1>() + c->get<1>());
+    d.set<2>(d.get<2>() + c->get<2>());
+    //d += (*c);
   }
-  d /= static_cast<double>(face.GetPoints().size());
+  //d /= static_cast<double>(face.GetPoints().size());
+  d.set<0>(d.get<0>() / static_cast<double>(face.GetPoints().size()));
+  d.set<1>(d.get<1>() / static_cast<double>(face.GetPoints().size()));
+  d.set<2>(d.get<2>() / static_cast<double>(face.GetPoints().size()));
   return d;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Face& face)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Face& face) noexcept
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   if (face.m_neighbour)
   {
     //Only display the address of a neighbour to prevent recursion
@@ -92,10 +108,10 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Face& f
     os << face.m_owner;
   }
   os << '\n';
-  for (const boost::shared_ptr<ribi::Coordinat3D> coordinat: face.m_points)
+  for (const boost::shared_ptr<Coordinat3D> coordinat: face.m_points)
   {
     assert(coordinat);
-    os << *coordinat << '\n';
+    os << ToStr(*coordinat) << '\n';
   }
   return os;
 

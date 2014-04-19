@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -225,13 +245,13 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const Nodes nodes_1 = { node_11, node_12, node_13 };
       const Nodes nodes_2 = { node_21, node_22, node_23 };
 
-      const boost::shared_ptr<Edge> edge_11(EdgeFactory::Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
-      const boost::shared_ptr<Edge> edge_12(EdgeFactory::Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
-      const boost::shared_ptr<Edge> edge_13(EdgeFactory::Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
+      const boost::shared_ptr<Edge> edge_11(EdgeFactory().Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
+      const boost::shared_ptr<Edge> edge_12(EdgeFactory().Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
+      const boost::shared_ptr<Edge> edge_13(EdgeFactory().Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
 
-      const boost::shared_ptr<Edge> edge_21(EdgeFactory::Create(concept_e21,4.5,6.7,nodes_2.at(0),false,nodes_2.at(1),true));
-      const boost::shared_ptr<Edge> edge_22(EdgeFactory::Create(concept_e22,5.6,7.8,nodes_2.at(0),false,nodes_2.at(2),true));
-      const boost::shared_ptr<Edge> edge_23(EdgeFactory::Create(concept_e23,6.7,8.9,nodes_2.at(1),false,nodes_2.at(2),true));
+      const boost::shared_ptr<Edge> edge_21(EdgeFactory().Create(concept_e21,4.5,6.7,nodes_2.at(0),false,nodes_2.at(1),true));
+      const boost::shared_ptr<Edge> edge_22(EdgeFactory().Create(concept_e22,5.6,7.8,nodes_2.at(0),false,nodes_2.at(2),true));
+      const boost::shared_ptr<Edge> edge_23(EdgeFactory().Create(concept_e23,6.7,8.9,nodes_2.at(1),false,nodes_2.at(2),true));
 
       const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory::Create(
         { node_11, node_12, node_13 },
@@ -285,13 +305,13 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const Nodes nodes_1 = { node_11, node_12, node_13 };
       const Nodes nodes_2 = { node_21, node_22, node_23 };
 
-      const boost::shared_ptr<Edge> edge_21(EdgeFactory::Create(concept_e21,1.2,3.4,nodes_2.at(2),false,nodes_2.at(1),true));
-      const boost::shared_ptr<Edge> edge_22(EdgeFactory::Create(concept_e22,2.3,4.5,nodes_2.at(0),false,nodes_2.at(2),true));
-      const boost::shared_ptr<Edge> edge_23(EdgeFactory::Create(concept_e23,3.4,4.5,nodes_2.at(0),false,nodes_2.at(1),true));
+      const boost::shared_ptr<Edge> edge_21(EdgeFactory().Create(concept_e21,1.2,3.4,nodes_2.at(2),false,nodes_2.at(1),true));
+      const boost::shared_ptr<Edge> edge_22(EdgeFactory().Create(concept_e22,2.3,4.5,nodes_2.at(0),false,nodes_2.at(2),true));
+      const boost::shared_ptr<Edge> edge_23(EdgeFactory().Create(concept_e23,3.4,4.5,nodes_2.at(0),false,nodes_2.at(1),true));
 
-      const boost::shared_ptr<Edge> edge_11(EdgeFactory::Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
-      const boost::shared_ptr<Edge> edge_12(EdgeFactory::Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
-      const boost::shared_ptr<Edge> edge_13(EdgeFactory::Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
+      const boost::shared_ptr<Edge> edge_11(EdgeFactory().Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
+      const boost::shared_ptr<Edge> edge_12(EdgeFactory().Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
+      const boost::shared_ptr<Edge> edge_13(EdgeFactory().Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
 
       const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory::Create(
         { node_11, node_12, node_13 },
@@ -486,11 +506,13 @@ void ribi::cmap::ConceptMap::Test() noexcept
         //Count the number of sub concept maps with a center node
         const std::vector<boost::shared_ptr<ConceptMap> > subs = map->CreateSubs();
         const int n_center_nodes_here {
-          std::count_if(subs.begin(),subs.end(),
-            [](const boost::shared_ptr<const ConceptMap> sub)
-            {
-              return CountCenterNodes(sub) > 0;
-            }
+          static_cast<int>(
+            std::count_if(subs.begin(),subs.end(),
+              [](const boost::shared_ptr<const ConceptMap> sub)
+              {
+                return CountCenterNodes(sub) > 0;
+              }
+            )
           )
         };
         const int n_center_nodes_found = n_center_nodes_here;
@@ -533,7 +555,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const int index = 0;
       assert(index < static_cast<int>(ConceptFactory().GetTests().size()));
       const auto concept = ConceptFactory().GetTests().at(index);
-      const auto edge = EdgeFactory::Create(
+      const auto edge = EdgeFactory().Create(
         concept,123.456,456.789,node_a,true,node_b,true);
       concept_map->AddNode(node_a);
       concept_map->AddNode(node_b);

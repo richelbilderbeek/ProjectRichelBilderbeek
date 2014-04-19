@@ -1,8 +1,13 @@
 #ifndef TRAFFICLIGHTDIALOG_H
 #define TRAFFICLIGHTDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <QDialog>
+#pragma GCC diagnostic pop
+
 struct Image;
 
 namespace Ui {
@@ -15,10 +20,9 @@ class TrafficLightDialog : public QDialog
 
 public:
   explicit TrafficLightDialog(QWidget *parent = 0);
+  TrafficLightDialog(const TrafficLightDialog&) = delete;
+  TrafficLightDialog& operator=(const TrafficLightDialog&) = delete;
   ~TrafficLightDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::TrafficLightDialog *ui;

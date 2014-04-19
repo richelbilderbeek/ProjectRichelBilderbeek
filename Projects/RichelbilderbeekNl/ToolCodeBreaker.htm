@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CodeBreaker</title>
+  <meta name="description" content="C++ CodeBreaker"/>
+  <meta name="keywords" content="C++ CodeBreaker "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolCodeBreaker.htm">CodeBreaker</a></h1>
+<p>&nbsp;</p>
+<h2>./ToolCodeBreaker/ToolCodeBreakerDesktop/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolCodeBreaker/ToolCodeBreakerDesktop/main.cpp" border = "1"><tr><td><code>
+#include "qtcodebreakermaindialog.h"<br/>
+#include &lt;QApplication&gt;<br/>
+<br/>
+int main(int argc, char *argv[])<br/>
+{<br/>
+&nbsp;&nbsp;QApplication a(argc, argv);<br/>
+&nbsp;&nbsp;QtCodeBreakerMainDialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;return a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolCodeBreaker/ToolCodeBreakerDesktop/qtcodebreakermaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolCodeBreaker/ToolCodeBreakerDesktop/qtcodebreakermaindialog.cpp" border = "1"><tr><td><code>
+#include "qtcodebreakermaindialog.h"<br/>
+#include "ui_qtcodebreakermaindialog.h"<br/>
+<br/>
+QtCodeBreakerMainDialog::QtCodeBreakerMainDialog(QWidget *parent) :<br/>
+&nbsp;&nbsp;QDialog(parent),<br/>
+&nbsp;&nbsp;ui(new Ui::QtCodeBreakerMainDialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(this);<br/>
+}<br/>
+<br/>
+QtCodeBreakerMainDialog::~QtCodeBreakerMainDialog()<br/>
+{<br/>
+&nbsp;&nbsp;delete ui;<br/>
+}<br/>
+<br/>
+void QtCodeBreakerMainDialog::on_lineEdit_2_textEdited(const QString &amp;arg1)<br/>
+{<br/>
+&nbsp;&nbsp;std::string s = ui-<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolCodeBreaker/ToolCodeBreakerDesktop/qtcodebreakermaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolCodeBreaker/ToolCodeBreakerDesktop/qtcodebreakermaindialog.h" border = "1"><tr><td><code>
+#ifndef QTCODEBREAKERMAINDIALOG_H<br/>
+#define QTCODEBREAKERMAINDIALOG_H<br/>
+<br/>
+#include &lt;QDialog&gt;<br/>
+<br/>
+namespace Ui {<br/>
+&nbsp;&nbsp;class QtCodeBreakerMainDialog;<br/>
+}<br/>
+<br/>
+class QtCodeBreakerMainDialog : public QDialog<br/>
+{<br/>
+&nbsp;&nbsp;Q_OBJECT<br/>
+&nbsp;&nbsp;<br/>
+public:<br/>
+&nbsp;&nbsp;explicit QtCodeBreakerMainDialog(QWidget *parent = 0);<br/>
+&nbsp;&nbsp;~QtCodeBreakerMainDialog();<br/>
+&nbsp;&nbsp;<br/>
+private slots:<br/>
+&nbsp;&nbsp;void on_lineEdit_2_textEdited(const QString &amp;arg1);<br/>
+<br/>
+private:<br/>
+&nbsp;&nbsp;Ui::QtCodeBreakerMainDialog *ui;<br/>
+};<br/>
+<br/>
+#endif // QTCODEBREAKERMAINDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolCodeBreaker/ToolCodeBreakerDesktop/qtcodebreakermaindialog.ui</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolCodeBreaker/ToolCodeBreakerDesktop/qtcodebreakermaindialog.ui" border = "1"><tr><td><code>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br/>
+&lt;ui version="4.0"&gt;<br/>
+ &lt;class&gt;QtCodeBreakerMainDialog&lt;/class&gt;<br/>
+ &lt;widget class="QDialog" name="QtCodeBreakerMainDialog"&gt;<br/>
+&nbsp;&nbsp;&lt;property name="geometry"&gt;<br/>
+&nbsp;&nbsp; &lt;rect&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;x&gt;0&lt;/x&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;y&gt;0&lt;/y&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;width&gt;882&lt;/width&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;height&gt;300&lt;/height&gt;<br/>
+&nbsp;&nbsp; &lt;/rect&gt;<br/>
+&nbsp;&nbsp;&lt;/property&gt;<br/>
+&nbsp;&nbsp;&lt;property name="windowTitle"&gt;<br/>
+&nbsp;&nbsp; &lt;string&gt;QtCodeBreakerMainDialog&lt;/string&gt;<br/>
+&nbsp;&nbsp;&lt;/property&gt;<br/>
+&nbsp;&nbsp;&lt;layout class="QVBoxLayout" name="verticalLayout"&gt;<br/>
+&nbsp;&nbsp; &lt;item&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;widget class="QLineEdit" name="edit_cipher"&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="text"&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;string&gt;TSZNQHUWYJHRSCRPMIMMRYEMULIEHYTBKJQSOQKIRQXMIYHKLIRPDQAMVJQ&lt;/string&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="readOnly"&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bool&gt;true&lt;/bool&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/widget&gt;<br/>
+&nbsp;&nbsp; &lt;/item&gt;<br/>
+&nbsp;&nbsp; &lt;item&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;widget class="QLineEdit" name="edit_code"&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="text"&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;string&gt;HARTJE&lt;/string&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/widget&gt;<br/>
+&nbsp;&nbsp; &lt;/item&gt;<br/>
+&nbsp;&nbsp; &lt;item&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;widget class="QLineEdit" name="edit_plaintext"&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="readOnly"&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bool&gt;true&lt;/bool&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;/property&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/widget&gt;<br/>
+&nbsp;&nbsp; &lt;/item&gt;<br/>
+&nbsp;&nbsp;&lt;/layout&gt;<br/>
+ &lt;/widget&gt;<br/>
+ &lt;layoutdefault spacing="6" margin="11"/&gt;<br/>
+ &lt;resources/&gt;<br/>
+ &lt;connections/&gt;<br/>
+&lt;/ui&gt;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolCodeBreaker/ToolCodeBreakerDesktop/ToolCodeBreakerDesktop.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolCodeBreaker/ToolCodeBreakerDesktop/ToolCodeBreakerDesktop.pro" border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2014-03-25T22:40:15<br/>
+#<br/>
+#-------------------------------------------------<br/>
+<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets<br/>
+<br/>
+TARGET = ToolCodeBreakerDesktop<br/>
+TEMPLATE = app<br/>
+<br/>
+<br/>
+SOURCES += main.cpp\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtcodebreakermaindialog.cpp<br/>
+<br/>
+HEADERS&nbsp;&nbsp;+= qtcodebreakermaindialog.h<br/>
+<br/>
+FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= qtcodebreakermaindialog.ui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+FileIo, class with file I/O functions
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppFileIo.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -15,11 +35,18 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::fileio::FileIo::FileIo()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
-void ribi::fileio::CopyFile(
+void ribi::fileio::FileIo::CopyFile(
   const std::string& fileNameFrom,
   const std::string& fileNameTo,
-  const CopyMode copy_mode)
+  const CopyMode copy_mode
+) const
 {
   assert(IsRegularFile(fileNameFrom) && "Cannot copy a non-existing file");
   if (copy_mode == CopyMode::prevent_overwrite && IsRegularFile(fileNameTo))
@@ -38,7 +65,7 @@ void ribi::fileio::CopyFile(
   in.close();
 }
 
-void ribi::fileio::CreateFolder(const std::string& folder)
+void ribi::fileio::FileIo::CreateFolder(const std::string& folder) const
 {
   #ifndef NDEBUG
   if(IsFolder(folder))
@@ -59,7 +86,7 @@ void ribi::fileio::CreateFolder(const std::string& folder)
   assert(IsFolder(folder) && "it should work");
 }
 
-void ribi::fileio::DeleteFile(const std::string& filename)
+void ribi::fileio::FileIo::DeleteFile(const std::string& filename) const
 {
   #ifndef NDEBUG
   if(!IsRegularFile(filename))
@@ -93,7 +120,7 @@ void ribi::fileio::DeleteFile(const std::string& filename)
     && "File must not exist anymore");
 }
 
-void ribi::fileio::DeleteFolder(const std::string& folder)
+void ribi::fileio::FileIo::DeleteFolder(const std::string& folder) const
 {
   assert(IsFolder(folder)
     && "Can only delete folders that do exist");
@@ -102,7 +129,7 @@ void ribi::fileio::DeleteFolder(const std::string& folder)
   for (const std::string& subfolder: GetFoldersInFolder(folder))
   {
     DeleteFolder(
-      (folder.empty() ? folder : folder + fileio::GetPathSeperator())
+      (folder.empty() ? folder : folder + GetPathSeperator())
       + subfolder
     );
   }
@@ -110,7 +137,7 @@ void ribi::fileio::DeleteFolder(const std::string& folder)
   for (const std::string& filename: GetFilesInFolder(folder))
   {
     DeleteFile(
-      (folder.empty() ? folder : folder + fileio::GetPathSeperator())
+      (folder.empty() ? folder : folder + GetPathSeperator())
       + filename
    );
   }
@@ -130,9 +157,10 @@ void ribi::fileio::DeleteFolder(const std::string& folder)
   }
 }
 
-bool ribi::fileio::FilesAreIdentical(
+bool ribi::fileio::FileIo::FilesAreIdentical(
   const std::string& filename_a,
-  const std::string& filename_b)
+  const std::string& filename_b
+) const
 {
   #ifndef NDEBUG
   if (!IsRegularFile(filename_a))
@@ -151,7 +179,8 @@ bool ribi::fileio::FilesAreIdentical(
   return v == w;
 }
 
-const std::vector<std::string> ribi::fileio::FileToVector(const std::string& filename)
+std::vector<std::string> ribi::fileio::FileIo::FileToVector(
+  const std::string& filename) const
 {
   #ifndef NDEBUG
   if (!IsRegularFile(filename))
@@ -182,12 +211,13 @@ const std::vector<std::string> ribi::fileio::FileToVector(const std::string& fil
   return v;
 }
 
-const std::string ribi::fileio::GetExtension(const std::string& filename)
+std::string ribi::fileio::FileIo::GetExtension(
+  const std::string& filename) const noexcept
 {
   return GetExtensionWithDot(filename);
 }
 
-const std::string ribi::fileio::GetExtensionNoDot(const std::string& filename)
+std::string ribi::fileio::FileIo::GetExtensionNoDot(const std::string& filename) const noexcept
 {
   static const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
@@ -202,17 +232,17 @@ const std::string ribi::fileio::GetExtensionNoDot(const std::string& filename)
   return "";
 }
 
-const std::string ribi::fileio::GetExtensionWithDot(const std::string& filename)
+std::string ribi::fileio::FileIo::GetExtensionWithDot(const std::string& filename) const noexcept
 {
   return
     ( std::count(filename.begin(),filename.end(),'.')
-    ? std::string(".")
-    : std::string("")
+    ? "."
+    : ""
     )
     + GetExtensionNoDot(filename);
 }
 
-const std::string ribi::fileio::GetFileBasename(const std::string& filename)
+std::string ribi::fileio::FileIo::GetFileBasename(const std::string& filename) const
 {
   const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
@@ -227,7 +257,8 @@ const std::string ribi::fileio::GetFileBasename(const std::string& filename)
   return "";
 }
 
-const std::vector<std::string> ribi::fileio::GetFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolder(
+  const std::string& folder) const
 {
   assert(IsFolder(folder));
   QDir dir(folder.c_str());
@@ -245,7 +276,8 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolder(const std::string&
   return v;
 }
 
-const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std::string& root_folder)
+std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolderRecursive(
+  const std::string& root_folder) const
 {
   assert(IsFolder(root_folder));
 
@@ -257,7 +289,7 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
     };
     //Copy the files and folders with path added
     std::transform(files_here.begin(),files_here.end(),std::back_inserter(v),
-      [root_folder](const std::string& filename)
+      [this,root_folder](const std::string& filename)
       {
         const std::string filename_here {
           root_folder + GetPathSeperator() + filename
@@ -274,7 +306,7 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
       GetFoldersInFolder(root_folder)
     };
     std::transform(folders_here.begin(),folders_here.end(),std::back_inserter(folders_todo),
-      [root_folder](const std::string& foldername)
+      [this,root_folder](const std::string& foldername)
       {
         const std::string folder_here {
           root_folder + GetPathSeperator() + foldername
@@ -319,7 +351,7 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
 
     //Copy the files and folders with path added
     std::transform(files_here.begin(),files_here.end(),std::back_inserter(v),
-      [folder_todo](const std::string& filename)
+      [this,folder_todo](const std::string& filename)
       {
         const std::string file_here {
           folder_todo + GetPathSeperator() + filename
@@ -329,7 +361,7 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
       }
     );
     std::transform(folders_here.begin(),folders_here.end(),std::back_inserter(folders_todo),
-      [folder_todo](const std::string& foldername)
+      [this,folder_todo](const std::string& foldername)
       {
         assert(!foldername.empty());
         const std::string subfolder_name {
@@ -343,9 +375,10 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
   return v;
 }
 
-const std::vector<std::string> ribi::fileio::GetFilesInFolderByRegex(
+std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolderByRegex(
   const std::string& folder,
-  const std::string& regex_str)
+  const std::string& regex_str
+) const
 {
   #ifndef NDEBUG
   if(!IsFolder(folder))
@@ -377,7 +410,8 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderByRegex(
   return w;
 }
 
-const std::vector<std::string> ribi::fileio::GetFoldersInFolder(const std::string& folder)
+std::vector<std::string> ribi::fileio::FileIo::GetFoldersInFolder(
+  const std::string& folder) const
 {
   assert(IsFolder(folder));
   QDir dir(folder.c_str());
@@ -403,7 +437,7 @@ const std::vector<std::string> ribi::fileio::GetFoldersInFolder(const std::strin
   return v;
 }
 
-const std::string ribi::fileio::GetPath(const std::string& filename)
+std::string ribi::fileio::FileIo::GetPath(const std::string& filename) const
 {
   const int a = filename.rfind("\\",filename.size());
   const int b = filename.rfind("/",filename.size());
@@ -412,7 +446,7 @@ const std::string ribi::fileio::GetPath(const std::string& filename)
   return filename.substr(0,i);
 }
 
-const std::string ribi::fileio::GetPathSeperator() noexcept
+std::string ribi::fileio::FileIo::GetPathSeperator() const noexcept
 {
   #ifdef _WIN32
   return "\\";
@@ -421,7 +455,7 @@ const std::string ribi::fileio::GetPathSeperator() noexcept
   #endif
 }
 
-const std::string ribi::fileio::GetSuperFolder(const std::string& folder)
+std::string ribi::fileio::FileIo::GetSuperFolder(const std::string& folder) const
 {
   const int a = folder.rfind("\\",folder.size());
   const int b = folder.rfind("/",folder.size());
@@ -429,11 +463,11 @@ const std::string ribi::fileio::GetSuperFolder(const std::string& folder)
   assert(i < static_cast<int>(folder.size()));
   return
     i == static_cast<int>(std::string::npos)
-    ? std::string("")
+    ? ""
     : folder.substr(0,i);
 }
 
-const std::string ribi::fileio::GetTempFileName(const std::string& post)
+std::string ribi::fileio::FileIo::GetTempFileName(const std::string& post) const
 {
   //Limit the number of searches, to prevent the program from freezing
   //It might occur that the first random names are taken, because
@@ -453,7 +487,7 @@ const std::string ribi::fileio::GetTempFileName(const std::string& post)
 }
 
 
-const std::string ribi::fileio::GetTempFolderName()
+std::string ribi::fileio::FileIo::GetTempFolderName() const
 {
   //Limit the number of searches, to prevent the program from freezing
   //It might occur that the first random names are taken, because
@@ -471,31 +505,32 @@ const std::string ribi::fileio::GetTempFolderName()
   throw std::runtime_error("Could not find a temporary folder name");
 }
 
-const std::string ribi::fileio::GetVersion() noexcept
+std::string ribi::fileio::FileIo::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
-const std::vector<std::string> ribi::fileio::GetVersionHistory() noexcept
+std::vector<std::string> ribi::fileio::FileIo::GetVersionHistory() const noexcept
 {
   return {
-    "2013-10-14: Version 1.0: initial version",
+    "2013-10-14: Version 1.0: initial version, used free functions only",
     "2013-11-08: Version 1.1: improved FileToVector, improved GetFileBasename, added some functions",
-    "2013-12-10: Version 1.2: improved existing function, added some functions"
+    "2013-12-10: Version 1.2: improved existing function, added some functions",
+    "2014-03-24: Version 1.3: put free functions in FileIo class"
   };
 }
 
-bool ribi::fileio::IsFolder(const std::string& filename) noexcept
+bool ribi::fileio::FileIo::IsFolder(const std::string& filename) const noexcept
 {
   return QDir(filename.c_str()).exists();
 }
 
-bool ribi::fileio::IsRegularFile(const std::string& filename) noexcept
+bool ribi::fileio::FileIo::IsRegularFile(const std::string& filename) const noexcept
 {
   return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }
 
-const std::string ribi::fileio::RemovePath(const std::string& filename)
+std::string ribi::fileio::FileIo::RemovePath(const std::string& filename) const
 {
   std::vector<std::size_t> v;
   const std::size_t a = filename.rfind("\\",filename.size());
@@ -511,10 +546,10 @@ const std::string ribi::fileio::RemovePath(const std::string& filename)
   return s;
 }
 
-void ribi::fileio::RenameFile(
+void ribi::fileio::FileIo::RenameFile(
   const std::string& from,
   const std::string& to,
-  const RenameMode rename_mode)
+  const RenameMode rename_mode) const
 {
   #ifndef NDEBUG
   if (!IsRegularFile(from))
@@ -549,15 +584,50 @@ void ribi::fileio::RenameFile(
   }
 }
 
+std::string ribi::fileio::FileIo::SimplifyPath(const std::string& s) const noexcept
+{
+  std::string t = s;
+  while (1)
+  {
+    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile("(/\\w*/../)");
+
+    //const std::string new_t = boost::regex_replace(t,boost::regex("/\\w*/../"),"/");
+    const std::string new_t = boost::xpressive::regex_replace(
+      t,
+      regex,
+      "/"
+    );
+    if (t == new_t) break;
+    t = new_t;
+  }
+  #ifdef UDNEFINFE467830786530475
+  while (1)
+  {
+    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile("((/|_b)\\w*/..(/|_b))");
+
+    //const std::string new_t = boost::regex_replace(t,boost::regex("/\\w*/../"),"/");
+    const std::string new_t = boost::xpressive::regex_replace(
+      t,
+      regex,
+      ""
+    );
+    if (t == new_t) break;
+    t = new_t;
+  }
+  #endif
+  return t;
+}
+
+
 #ifndef NDEBUG
-void ribi::fileio::Test() noexcept
+void ribi::fileio::FileIo::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::fileio::Test");
+  TRACE("Starting ribi::fileio::FileIo::Test");
   //CopyFile
   for (int i=0; i!=2; ++i)
   {
@@ -696,87 +766,87 @@ void ribi::fileio::Test() noexcept
   }
   //GetFileBasename
   {
-    assert(GetFileBasename("") == std::string(""));
-    assert(GetFileBasename("tmp") == std::string("tmp"));
-    assert(GetFileBasename("tmp.") == std::string("tmp"));
-    assert(GetFileBasename("tmp.x") == std::string("tmp"));
-    assert(GetFileBasename("tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("tmp.text") == std::string("tmp"));
-    assert(GetFileBasename("tmp.longextension") == std::string("tmp"));
-    assert(GetFileBasename("input_triangle.txt") == std::string("input_triangle"));
-    assert(GetFileBasename("tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder\\tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder/tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder/tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder\\tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/My-Folder\\tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/My_Folder\\tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("") == "");
+    assert(GetFileBasename("tmp") == "tmp");
+    assert(GetFileBasename("tmp.") == "tmp");
+    assert(GetFileBasename("tmp.x") == "tmp");
+    assert(GetFileBasename("tmp.txt") == "tmp");
+    assert(GetFileBasename("tmp.text") == "tmp");
+    assert(GetFileBasename("tmp.longextension") == "tmp");
+    assert(GetFileBasename("input_triangle.txt") == "input_triangle");
+    assert(GetFileBasename("tmp") == "tmp");
+    assert(GetFileBasename("MyFolder/tmp") == "tmp");
+    assert(GetFileBasename("MyFolder/tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder\\tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder/MyFolder/tmp") == "tmp");
+    assert(GetFileBasename("MyFolder/MyFolder/tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder/MyFolder\\tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder/My-Folder\\tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder/My_Folder\\tmp.txt") == "tmp");
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameConnectThree")
-      == std::string("GameConnectThree"));
+      == "GameConnectThree");
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameAminoAcidFighter")
-      == std::string("GameAminoAcidFighter"));
+      == "GameAminoAcidFighter");
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameK3OpEenRij")
-      == std::string("GameK3OpEenRij"));
+      == "GameK3OpEenRij");
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Projects/ProjectRichelBilderbeek")
-      == std::string("ProjectRichelBilderbeek"));
+      == "ProjectRichelBilderbeek");
   }
   //GetExtension
   {
-    assert(GetExtensionNoDot("") == std::string(""));
-    assert(GetExtensionNoDot("tmp") == std::string(""));
-    assert(GetExtensionNoDot("tmp.") == std::string(""));
-    assert(GetExtensionNoDot("tmp.x") == std::string("x"));
-    assert(GetExtensionNoDot("tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("tmp.text") == std::string("text"));
-    assert(GetExtensionNoDot("tmp.longextension") == std::string("longextension"));
-    assert(GetExtensionNoDot("input_triangle.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("tmp") == std::string(""));
-    assert(GetExtensionNoDot("MyFolder/tmp") == std::string(""));
-    assert(GetExtensionNoDot("MyFolder/tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder\\tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp") == std::string(""));
-    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder/MyFolder\\tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder/My-Folder\\tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder/My_Folder\\tmp.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("") == "");
+    assert(GetExtensionNoDot("tmp") == "");
+    assert(GetExtensionNoDot("tmp.") == "");
+    assert(GetExtensionNoDot("tmp.x") == "x");
+    assert(GetExtensionNoDot("tmp.txt") == "txt");
+    assert(GetExtensionNoDot("tmp.text") == "text");
+    assert(GetExtensionNoDot("tmp.longextension") == "longextension");
+    assert(GetExtensionNoDot("input_triangle.txt") == "txt");
+    assert(GetExtensionNoDot("tmp") == "");
+    assert(GetExtensionNoDot("MyFolder/tmp") == "");
+    assert(GetExtensionNoDot("MyFolder/tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder\\tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp") == "");
+    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder/MyFolder\\tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder/My-Folder\\tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder/My_Folder\\tmp.txt") == "txt");
 
-    assert(GetExtensionWithDot("") == std::string(""));
-    assert(GetExtensionWithDot("tmp") == std::string(""));
-    assert(GetExtensionWithDot("tmp.") == std::string("."));
-    assert(GetExtensionWithDot("tmp.x") == std::string(".x"));
-    assert(GetExtensionWithDot("tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("tmp.text") == std::string(".text"));
-    assert(GetExtensionWithDot("tmp.longextension") == std::string(".longextension"));
-    assert(GetExtensionWithDot("input_triangle.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("tmp") == std::string(""));
-    assert(GetExtensionWithDot("MyFolder/tmp") == std::string(""));
-    assert(GetExtensionWithDot("MyFolder/tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder\\tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp") == std::string(""));
-    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder/My-Folder/tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder/My_Folder\\tmp.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("") == "");
+    assert(GetExtensionWithDot("tmp") == "");
+    assert(GetExtensionWithDot("tmp.") == ".");
+    assert(GetExtensionWithDot("tmp.x") == ".x");
+    assert(GetExtensionWithDot("tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("tmp.text") == ".text");
+    assert(GetExtensionWithDot("tmp.longextension") == ".longextension");
+    assert(GetExtensionWithDot("input_triangle.txt") == ".txt");
+    assert(GetExtensionWithDot("tmp") == "");
+    assert(GetExtensionWithDot("MyFolder/tmp") == "");
+    assert(GetExtensionWithDot("MyFolder/tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder\\tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp") == "");
+    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder/MyFolder\\tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder/My-Folder/tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder/My_Folder\\tmp.txt") == ".txt");
 
-    assert(GetExtension("") == std::string(""));
-    assert(GetExtension("tmp") == std::string(""));
-    assert(GetExtension("tmp.") == std::string("."));
-    assert(GetExtension("tmp.x") == std::string(".x"));
-    assert(GetExtension("tmp.txt") == std::string(".txt"));
-    assert(GetExtension("tmp.text") == std::string(".text"));
-    assert(GetExtension("tmp.longextension") == std::string(".longextension"));
-    assert(GetExtension("input_triangle.txt") == std::string(".txt"));
-    assert(GetExtension("tmp") == std::string(""));
-    assert(GetExtension("MyFolder/tmp") == std::string(""));
-    assert(GetExtension("MyFolder/tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder\\tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder/MyFolder/tmp") == std::string(""));
-    assert(GetExtension("MyFolder/MyFolder/tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder/My_Folder/tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder/My-Folder\\tmp.txt") == std::string(".txt"));
+    assert(GetExtension("") == "");
+    assert(GetExtension("tmp") == "");
+    assert(GetExtension("tmp.") == ".");
+    assert(GetExtension("tmp.x") == ".x");
+    assert(GetExtension("tmp.txt") == ".txt");
+    assert(GetExtension("tmp.text") == ".text");
+    assert(GetExtension("tmp.longextension") == ".longextension");
+    assert(GetExtension("input_triangle.txt") == ".txt");
+    assert(GetExtension("tmp") == "");
+    assert(GetExtension("MyFolder/tmp") == "");
+    assert(GetExtension("MyFolder/tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder\\tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder/MyFolder/tmp") == "");
+    assert(GetExtension("MyFolder/MyFolder/tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder/MyFolder\\tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder/My_Folder/tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder/My-Folder\\tmp.txt") == ".txt");
   }
   //GetFilesInFolderRecursive
   {
@@ -916,21 +986,21 @@ void ribi::fileio::Test() noexcept
   }
   //RemovePath
   {
-    assert(RemovePath("x.txt") == std::string("x.txt"));
-    assert(RemovePath("MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Another/MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet/Another/MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Another\\MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\Another\\MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Another/MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Another\\MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\Another/MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\Another\\MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\An-other\\MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\An_other\\MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\Another\\MyFolder/x_y.txt") == std::string("x_y.txt"));
-    assert(RemovePath("Yet\\Another\\MyFolder/x-y.txt") == std::string("x-y.txt"));
+    assert(RemovePath("x.txt") == "x.txt");
+    assert(RemovePath("MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Another/MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet/Another/MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Another\\MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Yet\\Another\\MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Another/MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Another\\MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet\\Another/MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Yet\\Another\\MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet\\An-other\\MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet\\An_other\\MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet\\Another\\MyFolder/x_y.txt") == "x_y.txt");
+    assert(RemovePath("Yet\\Another\\MyFolder/x-y.txt") == "x-y.txt");
   }
   //RenameFile
   {
@@ -962,15 +1032,27 @@ void ribi::fileio::Test() noexcept
     DeleteFile(filename_to);
     assert(!IsRegularFile(filename_to) && "Temporary file must be cleaned up");
   }
-  TRACE("Finished ribi::fileio::Test successfully");
+  //SimplifyPath
+  {
+    assert(SimplifyPath("/home/richel/Projects/Tools/ToolTestProFile/../../Classes/CppQtAboutDialog/qtaboutdialog.ui")
+      == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    assert(SimplifyPath("/home/richel/Projects/Tools/../Classes/CppQtAboutDialog/qtaboutdialog.ui")
+      == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    assert(SimplifyPath("/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui")
+      == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    #ifdef TODO_FIX_ISSUE_182
+    assert(SimplifyPath("Tools/..") == "");
+    #endif
+  }
+  TRACE("Finished ribi::fileio::FileIo::Test successfully");
 }
 #endif
 
-void ribi::fileio::VectorToFile(
+void ribi::fileio::FileIo::VectorToFile(
   const std::vector<std::string>& v,
   const std::string& filename,
   const CopyMode copy_mode
-)
+) const
 {
   if (copy_mode == CopyMode::prevent_overwrite)
   {

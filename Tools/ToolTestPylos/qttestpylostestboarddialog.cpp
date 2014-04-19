@@ -215,7 +215,7 @@ void ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog()
       = m_widget->GetOtherSelectors();
     if (v.empty()) { s+="none"; }
     if (v.size() > 0) { s+= v[0].ToStr(); }
-    if (v.size() == 2) { s+= std::string(" and ") + v[1].ToStr(); }
+    if (v.size() == 2) { s+= " and " + v[1].ToStr(); }
     ui->text_log->appendPlainText(s.c_str());
   }
   {

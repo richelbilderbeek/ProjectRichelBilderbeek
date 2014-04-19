@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ProjectRichelBilderbeekProgram.htm
+//From http://www.richelbilderbeek.nl/CppProjectRichelBilderbeekProgram.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType type) noexcept
+boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType type) noexcept
 {
   boost::shared_ptr<Program> p;
   switch (type)
@@ -49,7 +49,9 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::boenkenVcl: p.reset(new ProgramBoenkenVcl); break;
     case ProgramType::brainweaver: p.reset(new ProgramBrainweaver); break;
     case ProgramType::bristol: p.reset(new ProgramBristol); break;
+    case ProgramType::caesarCipher: p.reset(new ProgramCaesarCipher); break;
     case ProgramType::chrisWiley: p.reset(new ProgramChrisWiley); break;
+    case ProgramType::codeBreaker: p.reset(new ProgramCodeBreaker); break;
     case ProgramType::codeToHtml: p.reset(new ProgramCodeToHtml); break;
     case ProgramType::connectThree: p.reset(new ProgramConnectThree); break;
     case ProgramType::corridor: p.reset(new ProgramCorridor); break;
@@ -183,6 +185,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::testNewick: p.reset(new ProgramTestNewick); break;
     case ProgramType::testNewickVector: p.reset(new ProgramTestNewickVector); break;
     case ProgramType::testOpenQuestion: p.reset(new ProgramTestOpenQuestion); break;
+    case ProgramType::testPlane: p.reset(new ProgramTestPlane); break;
     case ProgramType::testPylos: p.reset(new ProgramTestPylos); break;
     case ProgramType::testQrcFile: p.reset(new ProgramTestQrcFile); break;
     case ProgramType::testQtArrowItems: p.reset(new ProgramTestQtArrowItems); break;
@@ -207,6 +210,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::testTicTacToe: p.reset(new ProgramTestTicTacToe); break;
     case ProgramType::testTimedServerPusher: p.reset(new ProgramTestTimedServerPusher); break;
     case ProgramType::testToggleButton: p.reset(new ProgramTestToggleButton); break;
+    case ProgramType::testTriangleMesh: p.reset(new ProgramTestTriangleMesh); break;
     case ProgramType::testTwoDigitNewick: p.reset(new ProgramTestTwoDigitNewick); break;
     case ProgramType::thorVeen: p.reset(new ProgramThorVeen); break;
     case ProgramType::thresholdFilterer: p.reset(new ProgramThresholdFilterer); break;
@@ -220,6 +224,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::ubuntuOneWatcher: p.reset(new ProgramUbuntuOneWatcher); break;
     case ProgramType::valentineCardDecrypter: p.reset(new ProgramValentineCardDecrypter); break;
     case ProgramType::vanDenBogaart: p.reset(new ProgramVanDenBogaart); break;
+    case ProgramType::vigenereCipher: p.reset(new ProgramVigenereCipher); break;
     case ProgramType::virtualBastard: p.reset(new ProgramVirtualBastard); break;
     case ProgramType::visualAbc: p.reset(new ProgramVisualAbc); break;
     case ProgramType::xeNonZero: p.reset(new ProgramXeNonZero); break;
@@ -248,17 +253,17 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
   return p;
 }
 
-const std::string ribi::Program::GetName() const noexcept
+std::string ribi::Program::GetName() const noexcept
 {
   return ribi::ProgramTypes::ProgramTypeToEnumName(this->GetType());
 }
 
-const std::string ribi::Program::GetScreenName() const noexcept
+std::string ribi::Program::GetScreenName() const noexcept
 {
   return ribi::ProgramTypes::ProgramTypeToScreenName(this->GetType());
 }
 
-const std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllPrograms() noexcept
+std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllPrograms() noexcept
 {
   const std::vector<ProgramType> types = ProgramTypes::GetAll();
   std::vector<boost::shared_ptr<Program> > v;
@@ -276,24 +281,24 @@ const std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllProgra
   return v;
 }
 
-const std::string ribi::Program::GetFilenameBase() const noexcept
+std::string ribi::Program::GetFilenameBase() const noexcept
 {
   std::string s = this->GetTypeName();
   s[0] = std::toupper(s[0]);
   return s + GetScreenName();
 }
 
-const std::string ribi::Program::GetTypeName() const noexcept
+std::string ribi::Program::GetTypeName() const noexcept
 {
   return ProgramTypes::ProgramTypeToEnumName(this->GetType());
 }
 
-const std::string ribi::Program::GetVersion() noexcept
+std::string ribi::Program::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Program::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Program::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version"

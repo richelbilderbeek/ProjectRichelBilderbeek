@@ -40,7 +40,7 @@ ribi::WtTicTacToeWidget::WtTicTacToeWidget()
 
 int ribi::WtTicTacToeWidget::GetState() const
 {
-  return m_tictactoe.GetWinner();
+  return m_tictactoe->GetWinner();
 }
 
 int ribi::WtTicTacToeWidget::GetHeight() const
@@ -67,18 +67,18 @@ int ribi::WtTicTacToeWidget::GetWidth() const
 
 void ribi::WtTicTacToeWidget::OnClicked(const Wt::WMouseEvent& e)
 {
-  if (m_tictactoe.GetWinner() != TicTacToe::no_winner) return;
+  if (m_tictactoe->GetWinner() != TicTacToe::no_winner) return;
   const int x = 3 * e.widget().x / this->GetWidth();
   if (x < 0 || x > 2) return;
   const int y = 3 * e.widget().y / this->GetHeight();
   if (y < 0 || y > 2) return;
-  if (m_tictactoe.CanDoMove(x,y))
+  if (m_tictactoe->CanDoMove(x,y))
   {
-    m_tictactoe.DoMove(x,y);
+    m_tictactoe->DoMove(x,y);
     //emit that the state has changed
     this->m_signal_state_changed();
   }
-  if (m_tictactoe.GetWinner() != TicTacToe::no_winner)
+  if (m_tictactoe->GetWinner() != TicTacToe::no_winner)
   {
     //emit that there is a winner
     this->m_signal_has_winner();
@@ -125,7 +125,7 @@ void ribi::WtTicTacToeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
     {
       const int y1 = ((col + 0) * (height / 3)) + (line_width/1) + 4;
       const int y2 = ((col + 1) * (height / 3)) - (line_width/1) - 4;
-      const int state = m_tictactoe.GetSquare(row,col);
+      const int state = m_tictactoe->GetSquare(row,col);
       if (state == TicTacToe::player1)
       {
         //player1 = cross
@@ -143,7 +143,10 @@ void ribi::WtTicTacToeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 
 void ribi::WtTicTacToeWidget::Restart()
 {
-  m_tictactoe = TicTacToe();
+  const boost::shared_ptr<TicTacToe> new_tictactoe(
+    new TicTacToe
+  );
+  m_tictactoe = new_tictactoe;
   this->update();
 }
 

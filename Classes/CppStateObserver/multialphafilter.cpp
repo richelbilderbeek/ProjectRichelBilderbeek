@@ -47,12 +47,12 @@ void ribi::MultiAlphaFilter::Update(double measurement)
   }
 }
 
-const std::string ribi::MultiAlphaFilter::GetVersion() noexcept
+std::string ribi::MultiAlphaFilter::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MultiAlphaFilter::GetVersionHistory() noexcept
+std::vector<std::string> ribi::MultiAlphaFilter::GetVersionHistory() noexcept
 {
   return {
     "2013-05-25: version 1.0: initial version",

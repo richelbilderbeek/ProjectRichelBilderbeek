@@ -55,7 +55,7 @@ int ribi::TestQtCreatorProFileMenuDialog::ExecuteSpecific(const std::vector<std:
     {
       std::cout << "Please specify a filename ending on .pro.\n";
     }
-    else if (!fileio::IsRegularFile(filename))
+    else if (!fileio::FileIo().IsRegularFile(filename))
     {
       std::cout << "Please specify a Qt Creator (.pro) project filename that exists.\n";
     }
@@ -72,7 +72,7 @@ int ribi::TestQtCreatorProFileMenuDialog::ExecuteSpecific(const std::vector<std:
   return 1;
 }
 
-const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -88,7 +88,7 @@ const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() const noexcep
   return a;
 }
 
-const ribi::Help ribi::TestQtCreatorProFileMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestQtCreatorProFileMenuDialog::GetHelp() const noexcept
 {
   return Help(
     GetAbout().GetFileTitle(),
@@ -103,7 +103,7 @@ const ribi::Help ribi::TestQtCreatorProFileMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestQtCreatorProFileMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestQtCreatorProFileMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestQtCreatorProFile
@@ -112,12 +112,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestQtCreatorProFileMenuDialo
   return p;
 }
 
-const std::string ribi::TestQtCreatorProFileMenuDialog::GetVersion() const noexcept
+std::string ribi::TestQtCreatorProFileMenuDialog::GetVersion() const noexcept
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-xx-xx: version 1.0: initial version, called TestProFile",
@@ -142,19 +142,19 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
     s
       << "SOURCES += qtmain.cpp" << '\n'
     ;
-    const std::string filename = fileio::GetTempFileName(".pro");
+    const std::string filename = fileio::FileIo().GetTempFileName(".pro");
     {
       std::ofstream f(filename.c_str());
       f << s.str();
     }
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
     const boost::shared_ptr<const QtCreatorProFile> p(
       new QtCreatorProFile(filename)
     );
     assert(p->GetSources().size() == 1);
     TRACE(*p);
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
   }
   {
     std::stringstream s;
@@ -183,19 +183,19 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
       << "" << '\n'
       << "SOURCES += qtmain.cpp" << '\n'
     ;
-    const std::string filename = fileio::GetTempFileName(".pro");
+    const std::string filename = fileio::FileIo().GetTempFileName(".pro");
     {
       std::ofstream f(filename.c_str());
       f << s.str();
     }
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
     const boost::shared_ptr<const QtCreatorProFile> p(
       new QtCreatorProFile(filename)
     );
     assert(p->GetSources().size() == 1);
     TRACE(*p);
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
   }
   TRACE("Finished ribi::TestQtCreatorProFileMenuDialog::Test successfully");
 }

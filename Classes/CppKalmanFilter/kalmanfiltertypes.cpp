@@ -2,7 +2,7 @@
 
 boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::KalmanFilterTypes::m_map;
 
-const boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::KalmanFilterTypes::CreateMap()
+boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::KalmanFilterTypes::CreateMap() noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -10,15 +10,15 @@ const boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::Kal
 
   boost::bimap<KalmanFilterType,std::string> m;
   m.insert(boost::bimap<KalmanFilterType,std::string>::value_type(
-    KalmanFilterType::fixed_lag_smoother,std::string("fixed lag smoother")));
+    KalmanFilterType::fixed_lag_smoother,"fixed lag smoother"));
   m.insert(boost::bimap<KalmanFilterType,std::string>::value_type(
-    KalmanFilterType::standard,std::string("discrete")));
+    KalmanFilterType::standard,"discrete"));
   m.insert(boost::bimap<KalmanFilterType,std::string>::value_type(
-    KalmanFilterType::steady_state,std::string("steady state")));
+    KalmanFilterType::steady_state,"steady state"));
   return m;
 }
 
-const std::vector<ribi::kalman::KalmanFilterType> ribi::kalman::KalmanFilterTypes::GetAllTypes()
+std::vector<ribi::kalman::KalmanFilterType> ribi::kalman::KalmanFilterTypes::GetAllTypes() noexcept
 {
   const std::vector<KalmanFilterType> v
   =
@@ -53,7 +53,7 @@ void ribi::kalman::KalmanFilterTypes::Test() noexcept
 }
 #endif
 
-const std::string ribi::kalman::KalmanFilterTypes::ToStr(const KalmanFilterType type)
+std::string ribi::kalman::KalmanFilterTypes::ToStr(const KalmanFilterType type) noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());

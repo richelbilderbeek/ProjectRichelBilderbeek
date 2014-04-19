@@ -242,7 +242,11 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::on_button_add_state_clicked()
   StateNamesModel * const model = dynamic_cast<StateNamesModel*>(abstract_model);
   assert(model);
   std::vector<std::string> v = model->GetRawData();
+<<<<<<< HEAD
   v.push_back(std::string("?"));
+=======
+  v.push_back("?");
+>>>>>>> develop
   model->SetRawData(v); //Set the data
   assert(model->GetRawData() == v);
   assert(IsValid());
@@ -500,7 +504,11 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
       assert(model);
       assert(example);
       model->SetExample(example);
+<<<<<<< HEAD
       d->SaveToDokuWiki(boost::lexical_cast<std::string>(cnt) + std::string(".txt"));
+=======
+      d->SaveToDokuWiki(boost::lexical_cast<std::string>(cnt) + ".txt");
+>>>>>>> develop
       ++cnt;
       const std::string s = model->ToDokuWiki();
       model->SetNumberOfTimesteps(999999999);

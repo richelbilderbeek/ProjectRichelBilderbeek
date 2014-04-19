@@ -16,7 +16,8 @@ void ribi::trim::CellsCheck(
 {
   if (cells.empty()) return;
 
-  //All Cells must be in use as much time
+  //All Cells must be in use once
+  #ifndef NDEBUG
   {
     const int use_count = cells[0].use_count();
     assert(use_count == 1);
@@ -26,15 +27,16 @@ void ribi::trim::CellsCheck(
         && "All Cells must have an equal use_count");
     }
   }
+  #endif
 
   for (const auto cell: cells)
   {
     assert(cell);
-    assert(cell->GetFaces().size() == 8);
+    assert(cell->GetFaces().size() == 5 || cell->GetFaces().size() == 8);
     for (const auto face: cell->GetFaces())
     {
       assert(face);
-      assert(face->GetPoints().size() == 3);
+      assert(face->GetPoints().size() == 3 || face->GetPoints().size() == 4);
       for (const auto point: face->GetPoints())
       {
         assert(point);

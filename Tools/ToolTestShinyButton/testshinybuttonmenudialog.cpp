@@ -44,7 +44,7 @@ int ribi::TestShinyButtonMenuDialog::ExecuteSpecific(const std::vector<std::stri
   return 1;
 }
 
-const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -54,9 +54,9 @@ const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
     "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestShinyButton.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("ShinyButton version: " + ShinyButton::GetVersion());
   a.AddLibrary("ShinyButtonWidget version: " + ShinyButtonWidget::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
@@ -64,7 +64,7 @@ const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestShinyButtonMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestShinyButtonMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -78,7 +78,7 @@ const ribi::Help ribi::TestShinyButtonMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestShinyButtonMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestShinyButtonMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestShinyButton
@@ -87,12 +87,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestShinyButtonMenuDialog::Ge
   return p;
 }
 
-const std::string ribi::TestShinyButtonMenuDialog::GetVersion() const noexcept
+std::string ribi::TestShinyButtonMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-16: Version 1.0: initial version, desktop version not yet working",

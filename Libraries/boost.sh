@@ -1,2 +1,4 @@
 #!/bin/sh
-7za x boost_1_54_0.zip
+wget http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.zip
+#7za x boost_1_55_0.zip
+unzip boost_1_55_0.zip

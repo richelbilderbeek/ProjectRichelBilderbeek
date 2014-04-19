@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "chessfwd.h"
+#include "chesscolor.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -12,21 +13,59 @@ namespace Chess {
 
 struct PieceFactory
 {
-  static const boost::shared_ptr<Piece> Create(
+  PieceFactory() {}
+
+  boost::shared_ptr<Piece> Create(
     const char namechar,
     const Color color,
-    const boost::shared_ptr<const Square> square) noexcept;
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
 
-  static const boost::shared_ptr<Piece> Create(
+  //For convenience
+  boost::shared_ptr<Piece> Create(
     const char namechar,
     const Color color,
-    const std::string& square);
+    const std::string& square
+  ) const noexcept;
 
-  static const boost::shared_ptr<Piece> CreateFromMove(const std::string& s);
+  boost::shared_ptr<PieceBishop> CreateBishop(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
 
-  static boost::shared_ptr<Piece> CreateFromPromotion(const std::string& s);
+  boost::shared_ptr<PieceKing> CreateKing(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
 
-  static const boost::shared_ptr<Piece> DeepCopy(const boost::shared_ptr<const Piece> piece) noexcept;
+  boost::shared_ptr<PieceKnight> CreateKnight(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
+
+  boost::shared_ptr<PiecePawn> CreatePawn(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
+
+  boost::shared_ptr<PieceQueen> CreateQueen(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
+
+  boost::shared_ptr<PieceRook> CreateRook(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
+
+  boost::shared_ptr<Piece> CreateFromMove(
+    const Color color,
+    const std::string& s
+  ) const noexcept;
+
+  boost::shared_ptr<Piece> CreateFromPromotion(const std::string& s) const noexcept;
+
+  boost::shared_ptr<Piece> DeepCopy(const boost::shared_ptr<const Piece> piece) const noexcept;
 };
 
 } //~namespace Chess

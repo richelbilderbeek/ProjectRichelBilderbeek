@@ -12,6 +12,3 @@ FORMS += \
     ../../Games/GameAminoAcidFighter/qtaminoacidfightermaindialog.ui \
     ../../Games/GameAminoAcidFighter/qtaminoacidfightermenudialog.ui
 
-RESOURCES += \
-    ../../Games/GameAminoAcidFighter/GameAminoAcidFighter.qrc
-

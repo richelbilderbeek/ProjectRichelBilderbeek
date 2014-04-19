@@ -127,12 +127,12 @@ struct MultiVector
 
   public:
 
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "1.1";
   }
 
-  const std::vector<std::string> GetVersionHistory()
+  std::vector<std::string> GetVersionHistory()
   {
     return {
       "2011-03-02: version 1.0: initial version",

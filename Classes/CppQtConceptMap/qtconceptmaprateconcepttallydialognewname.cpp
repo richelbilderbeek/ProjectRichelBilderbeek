@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtconceptmaprateconcepttallydialognewname.h"
@@ -95,10 +115,10 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
           center_is_from ? edge->GetTo() : edge->GetFrom()
         };
         const std::string s {
-            std::string("via ")
+            "via "
           + concept->GetName() + " verbonden met '"
           + other->GetConcept()->GetName()
-          + std::string("'")
+          + "'"
         };
         i->setText(s.c_str());
         const int column = 3;
@@ -144,7 +164,7 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
 
   //Set text on top
   ui->label_concept_name->setText(
-    (std::string("Voorbeelden/toelichting bij concept: ") + m_focus_name).c_str()
+    ("Voorbeelden/toelichting bij concept: " + m_focus_name).c_str()
   );
 
   ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -167,7 +187,7 @@ ribi::cmap::QtRateConceptTallyDialogNewName::~QtRateConceptTallyDialogNewName() 
   delete ui;
 }
 
-const std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
+std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
   ribi::cmap::QtRateConceptTallyDialogNewName::CreateData(const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> map)
 {
   std::vector<Row> data;
@@ -245,7 +265,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
         node_other
       } ,
       {
-        EdgeFactory::Create(concept_edge,1.2,3.4,node_focal,true,node_other,true)
+        EdgeFactory().Create(concept_edge,1.2,3.4,node_focal,true,node_other,true)
       }
     )
   );
@@ -253,8 +273,8 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   return sub_concept_map;
 }
 
-const std::string ribi::cmap::QtRateConceptTallyDialogNewName::GetFocusName(
-  const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map)
+std::string ribi::cmap::QtRateConceptTallyDialogNewName::GetFocusName(
+  const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map) noexcept
 {
   if (sub_concept_map)
   {
@@ -350,7 +370,7 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::keyPressEvent(QKeyEvent * even
     this->setWindowTitle("Relevance of illustrations");
     {
       ui->label_concept_name->setText(
-        (std::string("Illustrations and relations of the cluster: ") + m_focus_name).c_str()
+        ("Illustrations and relations of the cluster: " + m_focus_name).c_str()
       );
     }
     {
@@ -454,11 +474,12 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
 
   QtRateConceptTallyDialogNewName d(concept_map);
 
-  //TEMP
+  #ifndef NDEBUG
   {
     if(d.ui->table->columnCount() != 4) TRACE(d.ui->table->columnCount());
     if(d.ui->table->rowCount() != 3) TRACE(d.ui->table->rowCount());
   }
+  #endif
 
   assert(d.ui->table->columnCount() == 4);
   assert(d.ui->table->rowCount() == 3);

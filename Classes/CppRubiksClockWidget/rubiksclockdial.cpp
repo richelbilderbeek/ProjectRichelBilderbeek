@@ -48,20 +48,21 @@ ribi::ruco::ClockDial::ClockDial(
     m_time(time + 1)
 {
   assert(m_dial);
-  this->SetGeometry(Rect(x,y,width,height));
-  this->Turn(-1);
+  SetGeometry(x,y,width,height);
+  Turn(-1);
 }
 
-const std::string ribi::ruco::ClockDial::GetVersion() noexcept
+std::string ribi::ruco::ClockDial::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
-const std::vector<std::string> ribi::ruco::ClockDial::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ruco::ClockDial::GetVersionHistory() noexcept
 {
   return {
     "2011-09-08: Version 1.0: initial version, called RubiksClockDial",
-    "2014-01-23: Version 1.1: renamed to ClockDial"
+    "2014-01-23: Version 1.1: renamed to ClockDial",
+    "2014-03-28: version 1.2: replaced Rect by Boost.Geometry its box class"
   };
 }
 
@@ -84,7 +85,7 @@ std::ostream& ribi::ruco::operator<<(std::ostream& os, const ClockDial& widget) 
   os
     << "<ClockDial>"
     << *widget.m_dial
-    << widget.GetGeometry()
+    //<< widget.GetGeometry()
     << "</ClockDial>";
   return os;
 }

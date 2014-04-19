@@ -2,12 +2,12 @@ INCLUDEPATH += \
     ../../Tools/ToolEncranger
 
 SOURCES += \
-    ../../Tools/ToolEncranger/toolencrangermaindialog.cpp \
-    ../../Tools/ToolEncranger/toolencrangermenudialog.cpp
+    ../../Tools/ToolEncranger/encrangermaindialog.cpp \
+    ../../Tools/ToolEncranger/encrangermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolEncranger/toolencrangermaindialog.h \
-    ../../Tools/ToolEncranger/toolencrangermenudialog.h
+    ../../Tools/ToolEncranger/encrangermaindialog.h \
+    ../../Tools/ToolEncranger/encrangermenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolEncranger/Licence.txt

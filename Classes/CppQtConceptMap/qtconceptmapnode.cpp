@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -155,14 +175,14 @@ void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)
   //m_signal_item_has_updated(0); //causes Examples to get hidden
 }
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() const
+boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() const noexcept
 {
   const boost::shared_ptr<const ribi::cmap::Concept> p = m_node->GetConcept();
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept()
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() noexcept
 {
   const boost::shared_ptr<ribi::cmap::Concept> p = m_node->GetConcept();
   assert(p);
@@ -274,12 +294,12 @@ void ribi::cmap::QtNode::SetConcept(const boost::shared_ptr<Concept> concept)
   this->m_node->SetConcept(concept);
 }
 
-void ribi::cmap::QtNode::SetName(const std::string& name)
+void ribi::cmap::QtNode::SetName(const std::string& name) noexcept
 {
   m_node->GetConcept()->SetName(name);
 }
 
-void ribi::cmap::QtNode::SetX(const double x)
+void ribi::cmap::QtNode::SetX(const double x) noexcept
 {
   #ifndef NDEBUG
   const double epsilon = 0.000001;
@@ -301,7 +321,7 @@ void ribi::cmap::QtNode::SetX(const double x)
   assert(std::abs(x - m_display_strategy->pos().x()) < epsilon);
 }
 
-void ribi::cmap::QtNode::SetY(const double y)
+void ribi::cmap::QtNode::SetY(const double y) noexcept
 {
   #ifndef NDEBUG
   const double epsilon = 0.000001;

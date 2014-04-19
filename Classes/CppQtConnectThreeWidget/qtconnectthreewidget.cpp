@@ -49,12 +49,12 @@ ribi::con3::Player ribi::con3::QtConnectThreeWidget::GetActivePlayer() const noe
   return m_widget->GetGame()->GetActivePlayer();
 }
 
-const std::string ribi::con3::QtConnectThreeWidget::GetVersion() noexcept
+std::string ribi::con3::QtConnectThreeWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::con3::QtConnectThreeWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::con3::QtConnectThreeWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-01-10: version 1.0: initial version",

@@ -25,7 +25,7 @@ int ribi::PokeVolleyMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   return 0;
 }
 
-const ribi::About ribi::PokeVolleyMenuDialog::GetAbout() const noexcept
+ribi::About ribi::PokeVolleyMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -40,7 +40,7 @@ const ribi::About ribi::PokeVolleyMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::PokeVolleyMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::PokeVolleyMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -54,7 +54,7 @@ const ribi::Help ribi::PokeVolleyMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::PokeVolleyMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::PokeVolleyMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramPokeVolley
@@ -63,12 +63,12 @@ const boost::shared_ptr<const ribi::Program> ribi::PokeVolleyMenuDialog::GetProg
   return p;
 }
 
-const std::string ribi::PokeVolleyMenuDialog::GetVersion() const noexcept
+std::string ribi::PokeVolleyMenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::PokeVolleyMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::PokeVolleyMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07: version 1.1: conformized to ProjectRichelBilderbeekConsole"

@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #include "qtconceptmapwidget.h"
 
 #include <cassert>
@@ -13,6 +33,7 @@
 #include "qtconceptmap.h"
 #include "qtconceptmapnode.h"
 #include "qteditconceptmap.h"
+#include "qtconceptmapedge.h"
 #include "qtdisplayconceptmap.h"
 #include "qtrateconceptmap.h"
 #include "conceptmap.h"
@@ -43,20 +64,31 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   //Without this line, mouseMoveEvent won't be called
   this->setMouseTracking(true);
 
+  m_widget->m_signal_set_focus.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNode,this,boost::lambda::_1)
+  );
   m_widget->m_signal_concept_map_changed.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnConceptMapChanged,this)
+  );
+  m_widget->m_signal_add_edge.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnAddEdge,this,boost::lambda::_1)
   );
   m_widget->m_signal_add_node.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnAddNode,this,boost::lambda::_1)
   );
+  m_widget->m_signal_delete_edge.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnDeleteEdge,this,boost::lambda::_1)
+  );
   m_widget->m_signal_delete_node.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnDeleteNode,this,boost::lambda::_1)
   );
-
-  m_widget->m_signal_lose_focus_nodes.connect(
-    boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseFocusNodes,this,boost::lambda::_1)
+  m_widget->m_signal_lose_focus.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseFocus,this,boost::lambda::_1)
   );
-  m_widget->m_signal_set_focus_nodes.connect(
+  m_widget->m_signal_lose_selected.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseSelected,this,boost::lambda::_1)
+  );
+  m_widget->m_signal_set_selected.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNodes,this,boost::lambda::_1)
   );
 }
@@ -70,25 +102,33 @@ bool ribi::cmap::QtConceptMapWidget::CanDoCommand(
   return command->CanDoCommand(m_widget.get());
 }
 
+bool ribi::cmap::QtConceptMapWidget::CanUndo() const noexcept
+{
+  assert(m_widget);
+  return m_widget->CanUndo();
+}
+
 void ribi::cmap::QtConceptMapWidget::DoCommand(
   const boost::shared_ptr<Command> command) noexcept
 {
   assert(CanDoCommand(command));
-  command->DoCommand(m_widget.get());
+  m_widget->DoCommand(command);
+  //m_widget->AddAndDoCommand(command);
+  //command->DoCommand(m_widget.get());
+  assert(CanUndo());
 }
 
 void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
   if (e->key() == Qt::Key_Z && e->modifiers() & Qt::ControlModifier)
   {
-    TRACE("UNDO");
-    this->m_widget->Undo();
+    if (m_widget->CanUndo()) { m_widget->Undo(); }
   }
 }
 
 void ribi::cmap::QtConceptMapWidget::mouseDoubleClickEvent(QMouseEvent * e) noexcept
 {
-  TRACE(e);
+  //TRACE(e);
   if (!e) throw std::exception(); //To satisfy the compiler
 }
 
@@ -127,9 +167,45 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
   }
 }
 
+void ribi::cmap::QtConceptMapWidget::OnAddEdge(const boost::shared_ptr<Edge> edge) noexcept
+{
+  //TRACE_FUNC();
+  assert(edge);
+  if (!edge)
+  {
+    //m_qtconceptmap->clearFocus();
+  }
+  else
+  {
+    #ifndef NDEBUG
+    const std::size_t qtedge_before { m_qtconceptmap->GetQtEdges().size() };
+    const std::size_t edges_before { m_widget->GetConceptMap()->GetEdges().size() };
+    #endif
+    QtEdge * const qtedge { m_qtconceptmap->AddEdge(edge) };
+    assert(m_qtconceptmap->FindQtEdge(qtedge));
+    m_qtconceptmap->FindQtEdge(qtedge)->setFocus();
+
+    #ifndef NDEBUG
+    const std::size_t qtedges_after { m_qtconceptmap->GetQtEdges().size() };
+    const std::size_t edges_after { m_widget->GetConceptMap()->GetEdges().size() };
+    assert(qtedges_after > qtedge_before);
+    assert(edges_after == edges_before && "These edges are already added to the Widget");
+    if(m_qtconceptmap->GetQtEdges().size() != m_widget->GetConceptMap()->GetEdges().size())
+    {
+      TRACE(qtedge_before);
+      TRACE(edges_before);
+      TRACE(qtedges_after);
+      TRACE(edges_after);
+      TRACE("BREAK");
+    }
+    assert(m_qtconceptmap->GetQtEdges().size() == m_widget->GetConceptMap()->GetEdges().size());
+    #endif
+  }
+}
+
 void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> node) noexcept
 {
-  TRACE_FUNC();
+  //TRACE_FUNC();
   assert(node);
   if (!node)
   {
@@ -140,7 +216,6 @@ void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> nod
     #ifndef NDEBUG
     const std::size_t qtnodes_before { m_qtconceptmap->GetQtNodes().size() };
     const std::size_t nodes_before { m_widget->GetConceptMap()->GetNodes().size() };
-    TRACE(qtnodes_before)
     #endif
     m_qtconceptmap->AddNode(node);
     assert(m_qtconceptmap->FindQtNode(node.get()));
@@ -166,23 +241,50 @@ void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> nod
 
 void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept
 {
-  TRACE(m_qtconceptmap->scene()->items().count());
   m_qtconceptmap->scene()->update();
-  TRACE(m_qtconceptmap->scene()->items().count());
-
-  TRACE(m_qtconceptmap->items().count());
   m_qtconceptmap->update();
-  TRACE(m_qtconceptmap->items().count());
-
-  TRACE(scene()->items().count());
   scene()->update();
-  TRACE(scene()->items().count());
+}
 
+void ribi::cmap::QtConceptMapWidget::OnDeleteEdge(const boost::shared_ptr<Edge> edge) noexcept
+{
+  if (!edge)
+  {
+    //m_qtconceptmap->clearFocus();
+  }
+  else
+  {
+    #ifndef NDEBUG
+    const std::size_t qtedges_before { m_qtconceptmap->GetQtEdges().size() };
+    const std::size_t edges_before { m_widget->GetConceptMap()->GetEdges().size() };
+    #endif
+    assert(m_qtconceptmap->FindQtEdge(edge));
+    m_qtconceptmap->DeleteEdge(m_qtconceptmap->FindQtEdge(edge));
+    assert(!m_qtconceptmap->FindQtEdge(edge));
+    //m_qtconceptmap->FindQtEdge(node.get())->setFocus();
+    m_qtconceptmap->clearFocus();
+
+    #ifndef NDEBUG
+    const std::size_t qtedges_after { m_qtconceptmap->GetQtEdges().size() };
+    const std::size_t edges_after { m_widget->GetConceptMap()->GetEdges().size() };
+    assert(qtedges_after < qtedges_before);
+    assert(edges_after == edges_before && "These nodes are already added to the Widget");
+    if(m_qtconceptmap->GetQtEdges().size() != m_widget->GetConceptMap()->GetEdges().size())
+    {
+      TRACE(qtedges_before);
+      TRACE(edges_before);
+      TRACE(qtedges_after);
+      TRACE(edges_after);
+      TRACE("BREAK");
+    }
+    assert(m_qtconceptmap->GetQtEdges().size() == m_widget->GetConceptMap()->GetEdges().size());
+    #endif
+
+  }
 }
 
 void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> node) noexcept
 {
-  TRACE_FUNC();
   if (!node)
   {
     //m_qtconceptmap->clearFocus();
@@ -192,7 +294,6 @@ void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> 
     #ifndef NDEBUG
     const std::size_t qtnodes_before { m_qtconceptmap->GetQtNodes().size() };
     const std::size_t nodes_before { m_widget->GetConceptMap()->GetNodes().size() };
-    TRACE(qtnodes_before)
     #endif
     assert(m_qtconceptmap->FindQtNode(node.get()));
     m_qtconceptmap->DeleteNode(m_qtconceptmap->FindQtNode(node.get()));
@@ -219,28 +320,48 @@ void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> 
   }
 }
 
-void ribi::cmap::QtConceptMapWidget::OnLoseFocusNodes(const std::vector<boost::shared_ptr<Node>> nodes) noexcept
-{
-  for (const auto node: nodes) { OnLoseFocusNode(node); }
-}
 
-void ribi::cmap::QtConceptMapWidget::OnLoseFocusNode(const boost::shared_ptr<Node> node) noexcept
+void ribi::cmap::QtConceptMapWidget::OnLoseFocus(const boost::shared_ptr<Node> node) noexcept
 {
   if (m_qtconceptmap->FindQtNode(node.get()))
   {
     m_qtconceptmap->FindQtNode(node.get())->clearFocus();
+    //m_qtconceptmap->FindQtNode(node.get())->setSelected(false); //Would this be needed as well?
+  }
+}
+
+/*
+void ribi::cmap::QtConceptMapWidget::OnLoseSelected(const std::vector<boost::shared_ptr<Node>> nodes) noexcept
+{
+  for (const auto node: nodes) { OnLoseSelected(node); }
+}
+*/
+
+void ribi::cmap::QtConceptMapWidget::OnLoseSelected(const std::vector<boost::shared_ptr<Node>> nodes) noexcept
+{
+  for (const auto node: nodes)
+  {
+    if (m_qtconceptmap->FindQtNode(node.get()))
+    {
+      m_qtconceptmap->FindQtNode(node.get())->setSelected(false);
+    }
   }
 }
 
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNodes(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
 {
-  for (const auto node: nodes) { OnSetFocusNode(node); }
+  for (const auto node: nodes)
+  {
+    assert(node);
+    OnSetFocusNode(node);
+  }
 }
 
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept
 {
-  TRACE_FUNC();
+  //TRACE_FUNC();
   assert(node);
+  assert(m_qtconceptmap);
   assert(m_qtconceptmap->FindQtNode(node.get()));
   //if(m_qtconceptmap->FindQtNode(node))
   {
@@ -278,7 +399,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::QtConceptMapWidget::Test()");
-  //AddNode: Test creation of node from empty concept map
+  //AddNode: Test creation of node from empty concept map, undo via widget
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::Create() };
     assert(m);
@@ -289,20 +410,57 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<QtConceptMapWidget> w(
       new QtConceptMapWidget(c)
     );
+    assert(!w->CanUndo());
     const boost::shared_ptr<CommandCreateNewNode> cmd(
       new CommandCreateNewNode
     );
 
-    assert(m->GetNodes().empty() && "Tthe concept map must be empty");
+    assert(m->GetNodes().empty() && "The concept map must be empty");
     assert(c->GetQtNodes().empty() && "The QtConceptMap must be empty");
+    assert(w->CanDoCommand(cmd));
     w->DoCommand(cmd);
     assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
     assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
-    cmd->Undo();
+    assert(w->CanUndo());
+    w->Undo(); //Route #1
+    //cmd->Undo(); //Route #2
     assert(m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
     assert(c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
+    assert(!w->CanUndo());
+  }
+  //AddNode: Test creation of node from empty concept map, undo via command
+  {
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::Create() };
+    assert(m);
+    assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    assert(c);
+    assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
+    const boost::shared_ptr<QtConceptMapWidget> w(
+      new QtConceptMapWidget(c)
+    );
+    assert(!w->CanUndo());
+    const boost::shared_ptr<CommandCreateNewNode> cmd(
+      new CommandCreateNewNode
+    );
+
+    assert(m->GetNodes().empty() && "The concept map must be empty");
+    assert(c->GetQtNodes().empty() && "The QtConceptMap must be empty");
+    assert(w->CanDoCommand(cmd));
+    w->DoCommand(cmd);
+    assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
+    assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
+    assert(w->CanUndo());
+    //w->Undo(); //Route #1
+    cmd->Undo(); //Route #2
+    assert(m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
+    assert(c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
+    assert(!w->CanUndo());
   }
   //SetFocusRandom: that a 'set random focus' results in something getting a focus
+
+  #define TODO_ISSUE_167
+  #ifdef TODO_ISSUE_167
   {
     const int concept_map_index = 17;
     assert(concept_map_index < static_cast<int>(ConceptMapFactory::GetHeteromorphousTestConceptMaps().size()));
@@ -320,9 +478,13 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     //w->show();
     //assert(w->isVisible());
     //assert(c->isVisible());
+
+    //TODO BUG Brainweaver: fix CommandSetFocusRandom bug
+    assert(w->CanDoCommand(cmd));
     w->DoCommand(cmd);
     assert(dynamic_cast<QtNode*>(w->scene()->focusItem()));
   }
+  #endif //focusWidget
   //DeleteNode: Test deletion of node from concept map
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::Create() };
@@ -355,6 +517,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(c->GetQtNodes().size() == 1 && "After undoing the deletion of the only node, the previously empty QtConceptMap must have a node");
   }
   //DeleteNodeFocus: Test deletion of node with focus from concept map
+  #ifdef TODO_ISSUE_167
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMap(19) };
     assert(m);
@@ -371,9 +534,10 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
       const boost::shared_ptr<CommandSetFocusRandom> cmd(
         new CommandSetFocusRandom
       );
+
       //w->show();
       //assert(w->isVisible());
-      //assert(c->isVisible());
+      assert(w->CanDoCommand(cmd));
       w->DoCommand(cmd);
       assert(dynamic_cast<QtNode*>(w->scene()->focusItem()));
     }
@@ -384,8 +548,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
         new CommandDeleteFocusNode
       );
       w->DoCommand(cmd);
-
-      assert(static_cast<int>(m->GetNodes().size()) + 1 == n_nodes_before);
+      assert(static_cast<int>(m->GetNodes().size()  ) + 1 == n_nodes_before  );
       assert(static_cast<int>(c->GetQtNodes().size()) + 1 == n_qtnodes_before);
 
       cmd->Undo();
@@ -394,6 +557,14 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
       assert(static_cast<int>(c->GetQtNodes().size()) == n_qtnodes_before);
     }
   }
+  #endif
   TRACE("Finished ribi::cmap::QtConceptMapWidget::Test()");
 }
 #endif
+
+void ribi::cmap::QtConceptMapWidget::Undo() noexcept
+{
+  assert(m_widget);
+  assert(CanUndo());
+  m_widget->Undo();
+}

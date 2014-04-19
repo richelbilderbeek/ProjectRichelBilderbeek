@@ -64,7 +64,7 @@ int ribi::reversi::MenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 0;
 }
 
-const ribi::About ribi::reversi::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::reversi::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -79,7 +79,7 @@ const ribi::About ribi::reversi::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::reversi::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::reversi::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -95,7 +95,7 @@ const ribi::Help ribi::reversi::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::reversi::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::reversi::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramReversi
@@ -104,12 +104,12 @@ const boost::shared_ptr<const ribi::Program> ribi::reversi::MenuDialog::GetProgr
   return p;
 }
 
-const std::string ribi::reversi::MenuDialog::GetVersion() const noexcept
+std::string ribi::reversi::MenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::reversi::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::reversi::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07-13: version 1.1: conformized to ProjectRichelBilderbeekConsole"

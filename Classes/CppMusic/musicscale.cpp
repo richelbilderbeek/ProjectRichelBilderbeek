@@ -86,12 +86,12 @@ const std::vector<ribi::Music::Note> ribi::Music::Scale::GetNotes() const noexce
   return notes;
 }
 
-const std::string ribi::Music::Scale::GetVersion() noexcept
+std::string ribi::Music::Scale::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Music::Scale::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Music::Scale::GetVersionHistory() noexcept
 {
   return {
     "2012-08-10: version 1.0: initial version with five different scales",

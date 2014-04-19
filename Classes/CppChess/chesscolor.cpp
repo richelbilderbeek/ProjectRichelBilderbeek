@@ -7,7 +7,7 @@
 #include "chessplayer.h"
 #include "trace.h"
 
-const std::string ribi::Chess::ColorToStr(const Color c)
+std::string ribi::Chess::ColorToStr(const Color c)
 {
   switch (c)
   {
@@ -37,12 +37,12 @@ ribi::Chess::Player ribi::Chess::ColorToPlayer(const Color c)
   throw std::logic_error("Cannot convert color to player");
 }
 
-const std::string ribi::Chess::ColorVersion::GetVersion()
+std::string ribi::Chess::ColorVersion::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Chess::ColorVersion::GetVersionHistory()
+std::vector<std::string> ribi::Chess::ColorVersion::GetVersionHistory()
 {
   return {
     "2012-01-25: version 1.0: initial version",

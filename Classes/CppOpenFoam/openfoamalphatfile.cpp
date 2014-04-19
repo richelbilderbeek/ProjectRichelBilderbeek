@@ -16,7 +16,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamheader.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -24,7 +24,8 @@
 
 ribi::foam::AlphatFile::AlphatFile(
   const Header header
-) : m_boundary_field{},
+) noexcept
+  : m_boundary_field{},
     m_dimensions{ {} },
     m_header{header},
     m_internal_field{}
@@ -34,7 +35,7 @@ ribi::foam::AlphatFile::AlphatFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::AlphatFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::AlphatFile::GetDefaultHeader() noexcept
 {
   return Header("volScalarField","0","","alphat");
 }
@@ -52,7 +53,7 @@ void ribi::foam::AlphatFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const AlphatFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const AlphatFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

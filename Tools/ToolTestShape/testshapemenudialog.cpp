@@ -60,14 +60,14 @@ ribi::TestShapeMenuDialog::TestShapeMenuDialog()
   {
     if (!QFile::exists(filename.c_str()))
     {
-      QFile f( (std::string(":/images/") + filename).c_str() );
+      QFile f( (":/images/" + filename).c_str() );
         f.copy(filename.c_str());
     }
     assert(QFile::exists(filename.c_str()));
   }
 }
 
-const ribi::About ribi::TestShapeMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestShapeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -86,7 +86,7 @@ const ribi::About ribi::TestShapeMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestShapeMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestShapeMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -100,7 +100,7 @@ const ribi::Help ribi::TestShapeMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestShapeMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestShapeMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestShape
@@ -109,12 +109,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestShapeMenuDialog::GetProgr
   return p;
 }
 
-const std::string ribi::TestShapeMenuDialog::GetVersion() const noexcept
+std::string ribi::TestShapeMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::TestShapeMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestShapeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-28: Version 1.0: initial version",

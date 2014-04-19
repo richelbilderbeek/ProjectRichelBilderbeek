@@ -72,12 +72,12 @@ int ribi::ValentineCardSymbol::CalcValue() const noexcept
   return (symbol_value * 9) + lines_value;
 }
 
-const std::string ribi::ValentineCardSymbol::GetVersion() noexcept
+std::string ribi::ValentineCardSymbol::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::ValentineCardSymbol::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ValentineCardSymbol::GetVersionHistory() noexcept
 {
   return {
     "2014-02-17: version 1.0: initial version"
@@ -128,7 +128,7 @@ void ribi::ValentineCardSymbol::Test() noexcept
   {
     assert(ValentineCardSymbol(i).CalcValue() == i);
     assert(ValentineCardSymbol(i).ToImage());
-    const std::string filename = fileio::GetTempFileName(
+    const std::string filename = fileio::FileIo().GetTempFileName(
       boost::lexical_cast<std::string>(i) + ".png");
     ValentineCardSymbol(i).ToImage()->save(filename.c_str());
   }

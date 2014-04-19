@@ -5,16 +5,14 @@
 
 #include <QFile>
 
-namespace ToolRasper {
-
-WtResources::WtResources()
+ribi::ToolRasper::WtResources::WtResources()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-void WtResources::Create(const std::string& filename)
+void ribi::ToolRasper::WtResources::Create(const std::string& filename) noexcept
 {
   if (!QFile::exists(filename.c_str()))
   {
@@ -31,35 +29,35 @@ void WtResources::Create(const std::string& filename)
 
 }
 
-const std::string WtResources::GetImageBackgroundFilename() const
+std::string ribi::ToolRasper::WtResources::GetImageBackgroundFilename() const noexcept
 {
   const std::string s = "RichelbilderbeekNlBackground.png";
   Create(s);
   return s;
 }
 
-const std::string WtResources::GetImageGpioFilename() const
+std::string ribi::ToolRasper::WtResources::GetImageGpioFilename() const noexcept
 {
   const std::string s = "ToolRasperGpioLayout.png";
   Create(s);
   return s;
 }
 
-const std::string WtResources::GetImageRaspberryPiDiagonallyFilename() const
+std::string ribi::ToolRasper::WtResources::GetImageRaspberryPiDiagonallyFilename() const noexcept
 {
   const std::string s = "ToolRasperRaspberryPiDiagonally.jpg";
   Create(s);
   return s;
 }
 
-const std::string WtResources::GetImageRaspberryPiTopFilename() const
+std::string ribi::ToolRasper::WtResources::GetImageRaspberryPiTopFilename() const noexcept
 {
   const std::string s = "ToolRasperRaspberryPiTop.jpg";
   Create(s);
   return s;
 }
 
-void WtResources::Test()
+void ribi::ToolRasper::WtResources::Test()
 {
   {
     static bool is_tested = false;
@@ -71,5 +69,3 @@ void WtResources::Test()
   WtResources().GetImageRaspberryPiDiagonallyFilename();
   WtResources().GetImageRaspberryPiTopFilename();
 }
-
-} //namespace ToolRasper

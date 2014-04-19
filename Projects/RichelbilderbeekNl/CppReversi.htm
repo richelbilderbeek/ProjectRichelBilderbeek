@@ -109,8 +109,8 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetSize() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> GetValidMoves(<b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
@@ -341,13 +341,13 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board[y][x];<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Board::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Board::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.1";<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Board::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Board::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2007-09-24: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> developed under <a href="CppBuilder.htm">C++ Builder</a>, called Reversi",<br/>
@@ -662,9 +662,9 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Notation:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> x,y <a href="CppOperatorMinus.htm">-</a>&gt; MovePlacePiece<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> [empty] <a href="CppOperatorMinus.htm">-</a>&gt; MovePass<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; Parse(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; Parse(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -678,7 +678,7 @@
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetX() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_x; }<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetY() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_y; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_x;<br/>
@@ -689,7 +689,7 @@
 {<br/>
 &nbsp;&nbsp;MovePass() {}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> "pass"; }<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> "pass"; }<br/>
 };<br/>
 <br/>
 <br/>
@@ -716,14 +716,14 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::MovePlacePiece::ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::MovePlacePiece::ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ',' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetY();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Move&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Move::Parse(<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Move&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Move::Parse(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::Move&gt; move;<br/>
@@ -776,7 +776,7 @@
 <br/>
 <b><a href="CppEnumClass.htm">enum class</a></b> Player { player1, player2 };<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> PlayerToStr(<b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<a href="CppStdString.htm">std::string</a> PlayerToStr(<b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameReversi.htm">reversi</a><br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -798,7 +798,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::PlayerToStr(<b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::PlayerToStr(<b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (player)<br/>
 &nbsp;&nbsp;{<br/>
@@ -898,8 +898,8 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> GetValidMoves() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;Winner GetWinner() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Text<a href="CppCanvas.htm">Canvas</a>&gt; ToText<a href="CppCanvas.htm">Canvas</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -1009,7 +1009,9 @@
 <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::<a href="CppWidget.htm">Widget</a>::<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">Widget</a>&amp; other)<br/>
 &nbsp;&nbsp;: m_board(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt;(<b><a href="CppNew.htm">new</a></b> Board(*other.m_board))),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_current_player(other.m_current_player),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_undo(other.m_undo)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_undo(other.m_undo),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_x{other.m_x},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_y{other.m_y}<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*m_board <a href="CppOperatorEqual.htm">==</a> *other.m_board <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Must be a copy");<br/>
@@ -1134,13 +1136,13 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> moves;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-12-19: <a href="CppVersion.htm">version</a> 1.0: split off from Reversi",<br/>

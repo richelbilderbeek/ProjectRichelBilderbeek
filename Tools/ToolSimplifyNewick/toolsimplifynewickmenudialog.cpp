@@ -18,7 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimplifyNewick.htm
 //---------------------------------------------------------------------------
-#include "toolsimplifynewickmenudialog.h"
+#include "simplifynewickmenudialog.h"
 
 #include <cassert>
 #include <iostream>
@@ -40,7 +40,7 @@ int ribi::ToolSimplifyNewickMenuDialog::ExecuteSpecific(const std::vector<std::s
   return 1;
 }
 
-const ribi::About ribi::ToolSimplifyNewickMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ToolSimplifyNewickMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -55,7 +55,7 @@ const ribi::About ribi::ToolSimplifyNewickMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ToolSimplifyNewickMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ToolSimplifyNewickMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -69,7 +69,7 @@ const ribi::Help ribi::ToolSimplifyNewickMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolSimplifyNewickMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ToolSimplifyNewickMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramSimplifyNewick
@@ -78,12 +78,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ToolSimplifyNewickMenuDialog:
   return p;
 }
 
-const std::string ribi::ToolSimplifyNewickMenuDialog::GetVersion() const noexcept
+std::string ribi::ToolSimplifyNewickMenuDialog::GetVersion() const noexcept
 {
   return "3.1";
 }
 
-const std::vector<std::string> ribi::ToolSimplifyNewickMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ToolSimplifyNewickMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-12: version 1.0: initial version",

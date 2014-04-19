@@ -39,12 +39,12 @@ ribi::QtQuestionDialog::QtQuestionDialog(
 
 }
 
-const std::string ribi::QtQuestionDialog::GetVersion() noexcept
+std::string ribi::QtQuestionDialog::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtQuestionDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtQuestionDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-30: version 1.0: initial version",

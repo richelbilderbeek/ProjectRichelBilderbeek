@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>DecltypeExample2</title>
+  <meta name="description" content="C++ DecltypeExample2"/>
+  <meta name="keywords" content="C++ DecltypeExample2 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDecltypeExample2.htm">DecltypeExample2</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppDecltypeExample2-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppDecltypeExample2/CppDecltypeExample2.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppDecltypeExample2/CppDecltypeExample2.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code below<br/>
+# win32 {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+# }<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppDecltypeExample2/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppDecltypeExample2/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppTime.htm">Time</a>sTwo1(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create an empty <b><a href="CppReturn.htm">return</a></b> vector<br/>
+&nbsp;&nbsp;<a href="CppStdRemove.htm">std::remove</a>_const&lt;<a href="CppStdRemove.htm">std::remove</a>_reference&lt;decltype(v)&gt;::type&gt;::type w;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Define the type of an element<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> decltype(w)::value_type Value;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Insert elements in <b><a href="CppReturn.htm">return</a></b> vector<br/>
+&nbsp;&nbsp;<a href="CppStdTransform.htm">std::transform</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(w),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> Value a) { <b><a href="CppReturn.htm">return</a></b> a * 2; }<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppTime.htm">Time</a>sTwo2(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppReturnType.htm">return type</a> vector from the input vector<br/>
+&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> w(v);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Define the type of an element<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> decltype(w)::value_type Value;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Modify elements in <b><a href="CppReturn.htm">return</a></b> vector<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(w.begin(),w.end(),[](Value&amp; a) { a <a href="CppOperatorMultiplyAssign.htm">*=</a> 2; } );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+<br/>
+<b><a href="CppAuto.htm">auto</a></b> <a href="CppTime.htm">Time</a>sTwo3(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v) <a href="CppOperatorMinus.htm">-</a>&gt; decltype(<a href="CppStdRemove.htm">std::remove</a>_reference&lt;decltype(v)&gt;::type{})<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> w(v);<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> decltype(w)::value_type Value;<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(w.begin(),w.end(),[](Value&amp; a) { a <a href="CppOperatorMultiplyAssign.htm">*=</a> 2; } );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppAuto.htm">auto</a></b> <a href="CppTime.htm">Time</a>sTwo4(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v) <a href="CppOperatorMinus.htm">-</a>&gt; decltype(<a href="CppStdVector.htm">std::vector</a>&lt;T&gt;{})<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> w(v);<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(w.begin(),w.end(),[](T&amp; a) { a <a href="CppOperatorMultiplyAssign.htm">*=</a> 2; } );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppTime.htm">Time</a>sTwo5(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> w(v);<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(w.begin(),w.end(),[](T&amp; a) { a <a href="CppOperatorMultiplyAssign.htm">*=</a> 2; } );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v { 1,2,3 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; e { 2,4,6 };<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppTime.htm">Time</a>sTwo1(v) <a href="CppOperatorEqual.htm">==</a> e);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppTime.htm">Time</a>sTwo2(v) <a href="CppOperatorEqual.htm">==</a> e);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppTime.htm">Time</a>sTwo3(v) <a href="CppOperatorEqual.htm">==</a> e);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppTime.htm">Time</a>sTwo4(v) <a href="CppOperatorEqual.htm">==</a> e);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppTime.htm">Time</a>sTwo5(v) <a href="CppOperatorEqual.htm">==</a> e);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

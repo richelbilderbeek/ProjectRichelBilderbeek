@@ -47,12 +47,12 @@ void ribi::QtHideAndShowDialog::closeEvent(QCloseEvent*)
   //QDialog::closeEvent(event); //Not needed
 }
 
-const std::string ribi::QtHideAndShowDialog::GetVersion() noexcept
+std::string ribi::QtHideAndShowDialog::GetVersion() noexcept
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::QtHideAndShowDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtHideAndShowDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v {
     "2012-11-13: version 1.0: initial version",
@@ -80,7 +80,7 @@ void ribi::QtHideAndShowDialog::ShowChild(QtHideAndShowDialog * const dialog)
   assert(dialog);
   this->hide();
 
-  QObject::connect(dialog,&QtHideAndShowDialog::close_me,this,&QtHideAndShowDialog::close_child);
+  QObject::connect(dialog,SIGNAL(close_me()),this,SLOT(close_child()));
   m_show_child = true;
   while (m_show_child)
   {
@@ -93,7 +93,7 @@ void ribi::QtHideAndShowDialog::ShowModal(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->setEnabled(false);
-  QObject::connect(dialog,&QtHideAndShowDialog::close_me,this,&QtHideAndShowDialog::close_child);
+  QObject::connect(dialog,SIGNAL(close_me),this,SLOT(close_child));
   m_show_child = true;
   while (m_show_child)
   {

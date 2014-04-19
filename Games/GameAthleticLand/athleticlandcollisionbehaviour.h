@@ -31,9 +31,11 @@ struct MovePlayerAwayCollision : public CollisionBehaviour
   const int m_y2;
 };
 
+#ifdef TODO_RICHEL
 bool DoCollide(const Rect& a, const Rect& b);
 bool InRect(const int x, const int y, const Rect& r);
 void MoveAway(Rect& r1, Rect& r2);
+#endif
 
 } //~namespace ribi
 } //~namespace athl

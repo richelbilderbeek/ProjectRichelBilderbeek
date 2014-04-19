@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 
+#include "geometry.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -72,24 +73,18 @@ QRectF ribi::QtArrowItem::boundingRect() const
   return shape().boundingRect();
 }
 
-double ribi::QtArrowItem::GetAngle(const double dx, const double dy)
-{
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan(dx/dy));
-}
-
-const std::string ribi::QtArrowItem::GetVersion() noexcept
+std::string ribi::QtArrowItem::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtArrowItem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtArrowItem::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-11-18: version 1.0: initial version");
-  v.push_back("2012-11-20: version 1.1: mouse cursor changes its shape when moving over this item");
-  v.push_back("2012-12-19: version 1.2: allow changing pens");
-  return v;
+  return {
+    "2012-11-18: version 1.0: initial version",
+    "2012-11-20: version 1.1: mouse cursor changes its shape when moving over this item",
+    "2012-12-19: version 1.2: allow changing pens"
+  };
 }
 
 void ribi::QtArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
@@ -161,7 +156,7 @@ void ribi::QtArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem 
   const double pi = boost::math::constants::pi<double>();
 
   //The angle from tail to head
-  double angle = GetAngle(line().dx(),line().dy());
+  double angle = Geometry().GetAngle(line().dx(),line().dy());
   if (line().dy() >= 0.0) angle = (1.0 * pi) + angle;
   const double sz = 10.0; //pixels
   if (m_tail)
@@ -194,12 +189,12 @@ void ribi::QtArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem 
   }
 }
 
-void ribi::QtArrowItem::SetArrowHeadClickingDistance(const double manhattan_distance)
+void ribi::QtArrowItem::SetArrowHeadClickingDistance(const double manhattan_distance) noexcept
 {
   m_arrow_head_clicking_distance = manhattan_distance;
 }
 
-void ribi::QtArrowItem::SetHeadPos(const double x, const double y)
+void ribi::QtArrowItem::SetHeadPos(const double x, const double y) noexcept
 {
   if (line().x2() != x || line().y2() != y)
   {
@@ -210,7 +205,7 @@ void ribi::QtArrowItem::SetHeadPos(const double x, const double y)
   }
 }
 
-void ribi::QtArrowItem::SetTailPos(const double x, const double y)
+void ribi::QtArrowItem::SetTailPos(const double x, const double y) noexcept
 {
   if (line().x1() != x || line().y1() != y)
   {

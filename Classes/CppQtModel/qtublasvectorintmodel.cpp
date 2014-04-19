@@ -98,12 +98,12 @@ Qt::ItemFlags ribi::QtUblasVectorIntModel::flags(const QModelIndex &) const noex
   | Qt::ItemIsEnabled;
 }
 
-const std::string ribi::QtUblasVectorIntModel::GetVersion() noexcept
+std::string ribi::QtUblasVectorIntModel::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtUblasVectorIntModel::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtUblasVectorIntModel::GetVersionHistory() noexcept
 {
   return {
     "2013-06-27: version 1.0: initial version",

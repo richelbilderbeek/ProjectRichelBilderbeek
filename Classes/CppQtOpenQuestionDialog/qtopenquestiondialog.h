@@ -59,8 +59,8 @@ public:
 
   const boost::shared_ptr<const QuestionDialog> GetDialog() const;
 
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 private slots:
   void on_button_submit_clicked() noexcept;

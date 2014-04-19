@@ -43,24 +43,58 @@ int ribi::CreateQtProjectZipFile::MenuDialog::ExecuteSpecific(const std::vector<
 {
   const int argc = static_cast<int>(argv.size());
   assert(argc > 0);
-  if (argc != 3 || (argv[1] != "-f" && argv[1] != "--folder"))
+  if (argc == 1)
   {
     std::cout << this->GetHelp() << '\n';
     return 1;
   }
-  const std::string folder { argv[2] };
-  if (!fileio::IsFolder(folder))
+
+  std::string folder;
+  for (int i=0; i!=argc-1; ++i)
   {
-    std::cout
-      << "Invalid folder '" << folder << "'\n"
-      << "Please supply a valid folder name\n";
+    if (argv[i] == "-f" || argv[i] == "--folder")
+    {
+      folder = argv[i+1];
+      break;
+    }
+  }
+  bool silent = false;
+  for (int i=0; i!=argc; ++i)
+  {
+    if (argv[i] == "-s" || argv[i] == "--silent")
+    {
+      silent = true;
+      break;
+    }
+  }
+
+  if (!fileio::FileIo().IsFolder(folder))
+  {
+    if (!silent)
+    {
+      std::cout
+        << "Invalid folder '" << folder << "'\n"
+        << "Please supply a valid folder name\n";
+    }
     return 1;
   }
-  std::cout << CreateQtProjectZipFileMainDialog(folder).GetScript() << '\n';
+  if (folder.substr(0,6) != "../../")
+  {
+    if (!silent)
+    {
+      std::cout
+        << "Folder must start with '../../'\n"
+        << "Please supply a folder name starting with '/../..'\n";
+    }
+    return 1;
+  }
+  const std::string script = CreateQtProjectZipFileMainDialog(folder).GetScript();
+  assert(!script.empty());
+  if (!silent) { std::cout << script << '\n'; }
   return 0;
 }
 
-const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -78,7 +112,7 @@ const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() const noe
   return a;
 }
 
-const ribi::Help ribi::CreateQtProjectZipFile::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::CreateQtProjectZipFile::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -95,7 +129,7 @@ const ribi::Help ribi::CreateQtProjectZipFile::MenuDialog::GetHelp() const noexc
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::CreateQtProjectZipFile::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::CreateQtProjectZipFile::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramCreateQtProjectZipFile
@@ -104,12 +138,12 @@ const boost::shared_ptr<const ribi::Program> ribi::CreateQtProjectZipFile::MenuD
   return p;
 }
 
-const std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() const noexcept
+std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
-const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-02-25: version 1.0: initial version",
@@ -118,6 +152,7 @@ const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVers
     "2012-06-10: version 1.3: added Path class for cleaner code",
     "2013-05-19: version 2.0: support for any depth of folder tree",
     "2014-01-27: version 2.1: also copies the included .pri files' content",
+    "2014-04-12: version 2.2: added 'silent' flag",
   };
 }
 
@@ -130,6 +165,8 @@ void ribi::CreateQtProjectZipFile::MenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::CreateQtProjectZipFile::MenuDialog::Test()");
+  MenuDialog d;
+  d.Execute( { "CreateQtProjectZipFile", "-f", "../../Tools/ToolCreateQtProjectZipFile", "-s" } );
   TRACE("Finished ribi::CreateQtProjectZipFile::MenuDialog::Test() successfully");
 }
 #endif

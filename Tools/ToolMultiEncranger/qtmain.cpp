@@ -22,13 +22,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
-#include "qttoolmultiencrangermenudialog.h"
+#include "qtmultiencrangermenudialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::QtToolMultiEncrangerMenuDialog w;
+  ribi::QtMultiEncrangerMenuDialog w;
   w.show();
   return a.exec();
 }

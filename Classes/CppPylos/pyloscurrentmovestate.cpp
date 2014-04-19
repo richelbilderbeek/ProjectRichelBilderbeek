@@ -40,12 +40,12 @@ ribi::pylos::CurrentMoveState::CurrentMoveState() noexcept
   //assert(IsRemoveUnknown());
 }
 
-const std::string ribi::pylos::CurrentMoveState::GetVersion() noexcept
+std::string ribi::pylos::CurrentMoveState::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::pylos::CurrentMoveState::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::CurrentMoveState::GetVersionHistory() noexcept
 {
   return {
     "2012-05-05: version 2.0: initial release version"

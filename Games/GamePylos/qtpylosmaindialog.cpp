@@ -62,12 +62,12 @@ ribi::pylos::QtPylosMainDialog::~QtPylosMainDialog() noexcept
   delete m_pylos_widget;
 }
 
-const std::string ribi::pylos::QtPylosMainDialog::GetVersion() noexcept
+std::string ribi::pylos::QtPylosMainDialog::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::pylos::QtPylosMainDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::QtPylosMainDialog::GetVersionHistory() noexcept
 {
   return {
     "2010-09-22: version 1.0: initial release version",

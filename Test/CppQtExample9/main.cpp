@@ -2,6 +2,10 @@
 #include <cmath>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/math/constants/constants.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/static_assert.hpp>
 #include <boost/timer.hpp>
@@ -13,13 +17,14 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include <QVBoxLayout>
+#pragma GCC diagnostic pop
 
 BOOST_STATIC_ASSERT(sizeof(qreal)==sizeof(double)
   && "Assume use of double is equivalent of qreal");
 
 struct Background : public QGraphicsPixmapItem
 {
-  Background(const int width = 256, const int height = 256)
+  explicit Background(const int width = 256, const int height = 256)
   {
     QImage i(width,height,QImage::Format_ARGB32);
     for (int y=0;y!=height;++y)
@@ -36,7 +41,7 @@ struct Background : public QGraphicsPixmapItem
 
 struct Sprite : public QGraphicsPixmapItem
 {
-  Sprite(const int width = 32, const int height = 32)
+  explicit Sprite(const int width = 32, const int height = 32)
     : dx(1.0), dy(1.0), maxx(0.0), maxy(0.0)
   {
     QImage i(width,height,QImage::Format_ARGB32);
@@ -92,7 +97,7 @@ int main(int argc, char *argv[])
     const double midx = background->pixmap().width() / 2.0;
     const double midy = background->pixmap().height() / 2.0;
     const double ray = std::min(midx,midy) * 0.8;
-    const double d_angle = 2.0 * M_PI / static_cast<double>(n_sprites);
+    const double d_angle = boost::math::constants::two_pi<double>() / static_cast<double>(n_sprites);
     double angle = 0.0;
     for (int i=0; i!=n_sprites; ++i)
     {

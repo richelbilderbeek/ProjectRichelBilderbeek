@@ -35,6 +35,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtathleticlandmenudialog.h"
 #include "qtbeerwantermenudialog.h"
 #include "qtboenkenmenudialog.h"
+#include "qtcaesarciphermenudialog.h"
+//#include "qtcodebreakermenudialog.h"
 #include "qtcodetohtmlmenudialog.h"
 #include "qtconnectthreemenudialog.h"
 #include "qtcreateglossarymenudialog.h"
@@ -81,6 +83,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestmulticanvasmenudialog.h"
 #include "qttestmultiplechoicequestionmenudialog.h"
 #include "qttestopenquestionmenudialog.h"
+#include "qttestplanemenudialog.h"
 #include "qttestpylosmenudialog.h"
 #include "qttestqrcfilemenudialog.h"
 #include "qttestqtarrowitemsmenudialog.h"
@@ -94,26 +97,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
 #include "qttesttextcanvasmenudialog.h"
+#include "qttesttrianglemeshmenudialog.h"
 #include "qttesttogglebuttonmaindialog.h"
 #include "qttesttogglebuttonmenudialog.h"
 #include "qttesttwodigitnewickmenudialog.h"
 #include "qtthresholdfilterermenudialog.h"
 #include "qttictactoemenudialog.h"
 #include "qtdotmatrixmenudialog.h"
-#include "qttoolencrangermaindialog.h"
-#include "qttoolencrangermenudialog.h"
-#include "qttoolgaborfiltermenudialog.h"
-#include "qttoolgraycodermenudialog.h"
-#include "qttoolmultiencrangermaindialog.h"
-#include "qttoolmultiencrangermenudialog.h"
-#include "qttoolprimeexpertmenudialog.h"
-#include "qttoolsimplifynewickmenudialog.h"
-#include "qttooltestapproximatormenudialog.h"
+#include "qtencrangermaindialog.h"
+#include "qtencrangermenudialog.h"
+#include "qtgaborfiltermenudialog.h"
+#include "qtgraycodermenudialog.h"
+#include "qtmultiencrangermaindialog.h"
+#include "qtmultiencrangermenudialog.h"
+#include "qtprimeexpertmenudialog.h"
+#include "qtsimplifynewickmenudialog.h"
+#include "qttestapproximatormenudialog.h"
 #include "qttestledmaindialog.h"
-#include "qttooltestmultiapproximatormenudialog.h"
-#include "qttooltestqtmodelsmenudialog.h"
-#include "qttooltestsimplelinearregressionmenudialog.h"
+#include "qttestmultiapproximatormenudialog.h"
+#include "qttestqtmodelsmenudialog.h"
+#include "qttestsimplelinearregressionmenudialog.h"
 #include "qttronmenudialog.h"
+#include "qtvigenereciphermenudialog.h"
 #include "richelbilderbeekprogram.h"
 
 #pragma GCC diagnostic pop
@@ -136,7 +141,9 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::boenkenVcl: break;
     case ProgramType::brainweaver: p = new pvdb::QtPvdbMenuDialog; break;
     case ProgramType::bristol: break;
+    case ProgramType::caesarCipher: p = new QtCaesarCipherMenuDialog; break;
     case ProgramType::chrisWiley: break;
+    case ProgramType::codeBreaker: break; //p = new QtCodeBreakerMenuDialog; break;
     case ProgramType::codeToHtml: p = new c2h::QtCodeToHtmlMenuDialog; break;
     case ProgramType::connectThree: p = new con3::QtConnectThreeMenuDialog; break;
     case ProgramType::corridor: break;
@@ -192,7 +199,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::metZnDrieenVcl: break;
     case ProgramType::midiLessonCreator: break;
     case ProgramType::morpher: break;
-    case ProgramType::multiEncranger: p = new QtToolMultiEncrangerMenuDialog; break;
+    case ProgramType::multiEncranger: p = new QtMultiEncrangerMenuDialog; break;
     case ProgramType::multiEncrangerVcl: break;
     case ProgramType::muscaDomestica: break;
     case ProgramType::musicTheory: p = new QtMusicTheoryMenuDialog; break;
@@ -275,6 +282,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testNewick: break;
     case ProgramType::testNewickVector: break;
     case ProgramType::testOpenQuestion: p = new QtTestOpenQuestionMenuDialog;  break;
+    case ProgramType::testPlane: p = new QtTestPlaneMenuDialog; break;
     case ProgramType::testPylos: p = new pylos::QtTestPylosMenuDialog; break;
     case ProgramType::testQrcFile: p = new QtTestQrcFileMenuDialog; break;
     case ProgramType::testQtCreatorProFile: p = new QtTestQtCreatorProFileMenuDialog; break;
@@ -298,12 +306,13 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testTextPositionWidget: break;
     case ProgramType::testTicTacToe: break;
     case ProgramType::testTimedServerPusher: break;
+    case ProgramType::testTriangleMesh: p = new QtTestTriangleMeshMenuDialog; break;
     case ProgramType::testToggleButton: p = new QtTestToggleButtonMenuDialog; break;
     case ProgramType::testTwoDigitNewick: p = new QtTestTwoDigitNewickMenuDialog; break;
     case ProgramType::thorVeen: break;
     case ProgramType::thresholdFilterer: p = new QtThresholdFiltererMenuDialog; break;
     case ProgramType::thresholdFiltererVcl: break;
-    case ProgramType::ticTacToe: p = new QtTicTacToeMenuDialog; break;
+    case ProgramType::ticTacToe: p = new tictactoe::QtTicTacToeMenuDialog; break;
     case ProgramType::ticTacToeLearner: break;
     case ProgramType::ticTacToeValuer: break;
     case ProgramType::timePoll: break;
@@ -312,6 +321,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::ubuntuOneWatcher: break;
     case ProgramType::valentineCardDecrypter: p = new QtValentineCardDecrypterMenuDialog; break;
     case ProgramType::vanDenBogaart: break;
+    case ProgramType::vigenereCipher: p = new QtVigenereCipherMenuDialog; break;
     case ProgramType::virtualBastard: break;
     case ProgramType::visualAbc: break;
     case ProgramType::xeNonZero: break;
@@ -343,28 +353,28 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholder
     label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     layout->addWidget(label);
   }
-  if (fileio::IsRegularFile(p->GetFilenameConsole()))
+  if (fileio::FileIo().IsRegularFile(p->GetFilenameConsole()))
   {
     const QPixmap pixmap(p->GetFilenameConsole().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (fileio::IsRegularFile(p->GetFilenameDesktop()))
+  if (fileio::FileIo().IsRegularFile(p->GetFilenameDesktop()))
   {
     const QPixmap pixmap(p->GetFilenameDesktop().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (fileio::IsRegularFile(p->GetFilenameDesktopWindowsOnly()))
+  if (fileio::FileIo().IsRegularFile(p->GetFilenameDesktopWindowsOnly()))
   {
     const QPixmap pixmap(p->GetFilenameDesktopWindowsOnly().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (fileio::IsRegularFile(p->GetFilenameWeb()))
+  if (fileio::FileIo().IsRegularFile(p->GetFilenameWeb()))
   {
     const QPixmap pixmap(p->GetFilenameWeb().c_str());
     QLabel * const label = new QLabel;

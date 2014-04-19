@@ -78,7 +78,7 @@ void ribi::QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
       const char c = (row / 26 ? 'A' : 'a') + (row % 26);
       const std::string s
         = std::string(1 + col,c)
-        + std::string(" ")
+        + " "
         + boost::lexical_cast<std::string>(c);
 
       item->SetText( std::vector<std::string>(1 + col,s) );

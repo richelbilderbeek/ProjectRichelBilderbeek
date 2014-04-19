@@ -54,7 +54,7 @@ int ribi::TestLedMenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
   return 0;
 }
 
-const ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -72,7 +72,7 @@ const ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestLedMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestLedMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -86,7 +86,7 @@ const ribi::Help ribi::TestLedMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestLedMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestLedMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestLed
@@ -95,12 +95,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestLedMenuDialog::GetProgram
   return p;
 }
 
-const std::string ribi::TestLedMenuDialog::GetVersion() const noexcept
+std::string ribi::TestLedMenuDialog::GetVersion() const noexcept
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version, web version not yet working",

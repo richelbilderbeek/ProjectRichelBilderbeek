@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPCONCEPTMAPWIDGET_H
 #define QTCONCEPTMAPCONCEPTMAPWIDGET_H
 
@@ -29,7 +49,9 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ~QtConceptMapWidget() noexcept {}
 
   bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
+  bool CanUndo() const noexcept;
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;
+  void Undo() noexcept;
 
   ///QtConceptMapWidget intercepts all user interactions and converts these
   ///to commands for Widget
@@ -53,6 +75,10 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   static void Test() noexcept;
   #endif
 
+  ///Called when Widget emits m_signal_add_edge
+  ///Which is emitted when the ConceptMap has an edge added
+  void OnAddEdge(const boost::shared_ptr<Edge> edge) noexcept;
+
   ///Called when Widget emits m_signal_add_node
   ///Which is emitted when the ConceptMap has a node added
   void OnAddNode(const boost::shared_ptr<Node> node) noexcept;
@@ -61,15 +87,24 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ///Which is emitted when the ConceptMap changes as a whole
   void OnConceptMapChanged() noexcept;
 
-  ///Called when Widget emits m_signal_add_node
-  ///Which is emitted when the ConceptMap has a node added
+  ///Called when Widget emits m_signal_delete_edge
+  ///Which is emitted when the ConceptMap an edge deleted
+  void OnDeleteEdge(const boost::shared_ptr<Edge> edge) noexcept;
+
+  ///Called when Widget emits m_signal_delete_node
+  ///Which is emitted when the ConceptMap has a node deleted
   void OnDeleteNode(const boost::shared_ptr<Node> node) noexcept;
 
   ///Called when Widget emits m_signal_lose_focus_node
   ///Which is emitted when a Node loses focus
   ///A Node has no idea of losing focus
-  void OnLoseFocusNode(const boost::shared_ptr<Node> node) noexcept;
-  void OnLoseFocusNodes(const std::vector<boost::shared_ptr<Node>> node) noexcept;
+  void OnLoseFocus(const boost::shared_ptr<Node> node) noexcept;
+
+  ///Called when Widget emits m_signal_lose_selected
+  ///Which is emitted when a Node loses being selected
+  ///A Node has no idea of being selected
+  //void OnLoseSelected(const boost::shared_ptr<Node> node) noexcept;
+  void OnLoseSelected(const std::vector<boost::shared_ptr<Node>> node) noexcept;
 
   ///Called when Widget emits m_signal_set_focus_node
   ///Which is emitted when Nodes are given focus.

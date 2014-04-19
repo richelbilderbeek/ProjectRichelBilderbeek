@@ -1,41 +1,18 @@
-//---------------------------------------------------------------------------
-/*
-CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2014 Richel Bilderbeek
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.If not, see <http://www.gnu.org/licenses/>.
-*/
-//---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
-//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qtcodetohtmlmenudialog.h"
+#include "qtstaircasecardcreatormenudialog.h"
 
-#include <QDesktopWidget>
-#include <QKeyEvent>
-
-#include "codetohtmlmenudialog.h"
-#include "qtaboutdialog.h"
-#include "qtcodetohtmlmaindialog.h"
-#include "qthideandshowdialog.h"
+#include "about.h"
 #include "trace.h"
-#include "ui_qtcodetohtmlmenudialog.h"
+#include "qtaboutdialog.h"
+#include "qtstaircasecardcreatormaindialog.h"
+#include "staircasecardcreatormenudialog.h"
+#include "ui_qtstaircasecardcreatormenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::c2h::QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) noexcept :
+ribi::scc::QtStaircaseCardCreatorMenuDialog::QtStaircaseCardCreatorMenuDialog(QWidget *parent) noexcept :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtCodeToHtmlMenuDialog)
+    ui(new Ui::QtStaircaseCardCreatorMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -43,48 +20,44 @@ ribi::c2h::QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) noexc
   ui->setupUi(this);
 }
 
-ribi::c2h::QtCodeToHtmlMenuDialog::~QtCodeToHtmlMenuDialog() noexcept
+ribi::scc::QtStaircaseCardCreatorMenuDialog::~QtStaircaseCardCreatorMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::c2h::QtCodeToHtmlMenuDialog::keyPressEvent(QKeyEvent * event) noexcept
-{
-  if (event->key() == Qt::Key_Escape) { close(); return; }
-}
 
-void ribi::c2h::QtCodeToHtmlMenuDialog::on_button_about_clicked() noexcept
+void ribi::scc::QtStaircaseCardCreatorMenuDialog::on_button_about_clicked() noexcept
 {
-  ribi::About a = CodeToHtmlMenuDialog().GetAbout();
+  ::ribi::About a = ::ribi::scc::MenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
-  ribi::QtAboutDialog d(a);
+  ::ribi::QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
-void ribi::c2h::QtCodeToHtmlMenuDialog::on_button_quit_clicked() noexcept
+void ribi::scc::QtStaircaseCardCreatorMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
-void ribi::c2h::QtCodeToHtmlMenuDialog::on_button_start_clicked() noexcept
+void ribi::scc::QtStaircaseCardCreatorMenuDialog::on_button_start_clicked() noexcept
 {
-  QtCodeToHtmlMainDialog d;
+  QtStaircaseCardCreatorMainDialog d;
   ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void ribi::c2h::QtCodeToHtmlMenuDialog::Test() noexcept
+void ribi::scc::QtStaircaseCardCreatorMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCodeToHtmlMenuDialog::Test");
-  CodeToHtmlMenuDialog();
-  QtCodeToHtmlMainDialog();
-  TRACE("Finished QtCodeToHtmlMenuDialog::Test successfully");
+  TRACE("Starting QtStaircaseCardCreatorMenuDialog::Test");
+  ribi::scc::MenuDialog();
+  QtStaircaseCardCreatorMainDialog();
+  TRACE("Finished QtStaircaseCardCreatorMenuDialog::Test successfully");
 }
 #endif

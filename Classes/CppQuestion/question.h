@@ -52,16 +52,16 @@ struct Question
   const std::string& GetQuestion() const noexcept { return m_question; }
 
   ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Would a submitted std::string be the correct answer?
   bool IsCorrect(const std::string& s) const noexcept;
 
   ///How to display the question as multiple lines
-  virtual const std::vector<std::string> ToLines() const = 0;
+  virtual std::vector<std::string> ToLines() const noexcept = 0;
 
   protected:
   virtual ~Question() noexcept {}

@@ -32,11 +32,11 @@ ribi::trim::Template::Template(
   Test();
   #endif
   PROFILE_FUNC();
-
+  
   TRACE("Load the points and faces created by Triangle");
   {
     const std::vector<std::string> v {
-      ribi::fileio::FileToVector(
+      ribi::fileio::FileIo().FileToVector(
         filename_node
       )
     };
@@ -49,7 +49,7 @@ ribi::trim::Template::Template(
       const std::string line = v[n];
       if(n==0) continue; //No idea why this has to be skipped
       const std::vector<std::string> w { SeperateString(line) };
-      if (w.empty() || w[0].empty() ||  w[0] == std::string("#"))
+      if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
         continue;
@@ -61,9 +61,9 @@ ribi::trim::Template::Template(
       assert(CanLexicalCast<int>(w[3]));
       const double x = boost::lexical_cast<double>(w[1]);
       const double y = boost::lexical_cast<double>(w[2]);
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
-      };
+      const boost::shared_ptr<const ConstCoordinat2D> bottom(
+        new ConstCoordinat2D(x,y)
+      );
 
       const boost::shared_ptr<Point> node {
         PointFactory().Create(bottom)
@@ -74,9 +74,8 @@ ribi::trim::Template::Template(
 
   TRACE("Load and translate faces");
   {
-    const std::vector<std::string> v {
-      ribi::fileio::FileToVector(filename_ele)
-    };
+    const std::vector<std::string> v
+      = ribi::fileio::FileIo().FileToVector(filename_ele);
     const int sz = v.size();
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
@@ -89,7 +88,7 @@ ribi::trim::Template::Template(
       const std::string line = v[n];
       if(n==0) continue;
       const std::vector<std::string> w { SeperateString(line) };
-      if (w.empty() || w[0].empty() ||  w[0] == std::string("#"))
+      if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
         continue;
@@ -120,11 +119,13 @@ ribi::trim::Template::Template(
         m_points[point2-1],
         m_points[point3-1]
       };
-      if (!IsClockwiseHorizontal(face_points))
+      if (!Helper().IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      assert(IsClockwiseHorizontal(face_points));
+      assert(Helper().IsClockwiseHorizontal(face_points));
+      if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
+      assert(Helper().IsConvex(face_points) && "FaceFacory only accepts convex ordered points");
 
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
@@ -206,8 +207,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
       const std::string boundary_type = "two_times_two";
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
+      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+        new ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
         PointFactory().Create(bottom)
@@ -220,17 +221,19 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
   {
     for (int i=0; i!=n_points; ++i)
     {
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      const boost::shared_ptr<const ConstCoordinat2D> a { points[i]->GetCoordinat() };
       for (int j=0; j!=n_points; ++j)
       {
-        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        const boost::shared_ptr<const ConstCoordinat2D> b { points[j]->GetCoordinat() };
         if (a == b)
         {
-          assert(ribi::Distance(*a,*b) < 0.001);
+          //assert(ribi::Distance(*a,*b) < 0.001);
+          assert(boost::geometry::distance(*a,*b) < 0.001);
         }
         else
         {
-          assert(ribi::Distance(*a,*b) > 0.001);
+          //assert(ribi::Distance(*a,*b) > 0.001);
+          assert(boost::geometry::distance(*a,*b) > 0.001);
         }
       }
     }
@@ -264,15 +267,16 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
         points[ v[1] ],
         points[ v[2] ]
       };
-      if (!IsClockwiseHorizontal(face_points))
+      
+      if (!Helper().IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      assert(IsClockwiseHorizontal(face_points));
+      assert(Helper().IsClockwiseHorizontal(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal //?20140224
+          FaceOrientation::horizontal
         )
       };
       faces.push_back(face);
@@ -332,8 +336,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
       const std::string boundary_type = "two_times_two";
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
+      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+        new ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
         PointFactory().Create(bottom)
@@ -346,17 +350,17 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
   {
     for (int i=0; i!=n_points; ++i)
     {
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      const boost::shared_ptr<const ConstCoordinat2D> a { points[i]->GetCoordinat() };
       for (int j=0; j!=n_points; ++j)
       {
-        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        const boost::shared_ptr<const ConstCoordinat2D> b { points[j]->GetCoordinat() };
         if (a == b)
         {
-          assert(ribi::Distance(*a,*b) < 0.001);
+          assert(boost::geometry::distance(*a,*b) < 0.001);
         }
         else
         {
-          assert(ribi::Distance(*a,*b) > 0.001);
+          assert(boost::geometry::distance(*a,*b) > 0.001);
         }
       }
     }
@@ -387,11 +391,13 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
         points[ v[1] ],
         points[ v[2] ]
       };
-      if (!IsClockwiseHorizontal(face_points))
+      
+      if (!Helper().IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      if (!IsClockwiseHorizontal(face_points))
+      #ifndef NDEBUG
+      if (!Helper().IsClockwiseHorizontal(face_points))
       {
         TRACE("ERROR");
         TRACE(*face_points[0]);
@@ -399,7 +405,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
         TRACE(*face_points[2]);
         TRACE("BREAK");
       }
-      assert(IsClockwiseHorizontal(face_points));
+      #endif
+      assert(Helper().IsClockwiseHorizontal(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -461,8 +468,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     {
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
+      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+        new ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
         PointFactory().Create(bottom)
@@ -475,17 +482,17 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
   {
     for (int i=0; i!=n_points; ++i)
     {
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      const boost::shared_ptr<const ConstCoordinat2D> a { points[i]->GetCoordinat() };
       for (int j=0; j!=n_points; ++j)
       {
-        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        const boost::shared_ptr<const ConstCoordinat2D> b { points[j]->GetCoordinat() };
         if (a == b)
         {
-          assert(ribi::Distance(*a,*b) < 0.001);
+          assert(boost::geometry::distance(*a,*b) < 0.001);
         }
         else
         {
-          assert(ribi::Distance(*a,*b) > 0.001);
+          assert(boost::geometry::distance(*a,*b) > 0.001);
         }
       }
     }
@@ -533,11 +540,12 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
         points[point2],
         points[point3]
       };
-      if (!IsClockwiseHorizontal(face_points))
+      
+      if (!Helper().IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      assert(IsClockwiseHorizontal(face_points));
+      assert(Helper().IsClockwiseHorizontal(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -600,8 +608,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
       const std::string boundary_type = "three_times_three";
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
+      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+        new ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
         PointFactory().Create(bottom)
@@ -614,17 +622,17 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
   {
     for (int i=0; i!=n_points; ++i)
     {
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      const boost::shared_ptr<const ConstCoordinat2D> a { points[i]->GetCoordinat() };
       for (int j=0; j!=n_points; ++j)
       {
-        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        const boost::shared_ptr<const ConstCoordinat2D> b { points[j]->GetCoordinat() };
         if (a == b)
         {
-          assert(ribi::Distance(*a,*b) < 0.001);
+          assert(boost::geometry::distance(*a,*b) < 0.001);
         }
         else
         {
-          assert(ribi::Distance(*a,*b) > 0.001);
+          assert(boost::geometry::distance(*a,*b) > 0.001);
         }
       }
     }
@@ -683,11 +691,12 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
         points[point2],
         points[point3]
       };
-      if (!IsClockwiseHorizontal(face_points))
+      
+      if (!Helper().IsClockwiseHorizontal(face_points))
       {
         std::reverse(face_points.begin(),face_points.end());
       }
-      assert(IsClockwiseHorizontal(face_points));
+      assert(Helper().IsClockwiseHorizontal(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -735,7 +744,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
 
 
 
-const std::vector<std::string> ribi::trim::Template::SeperateString(
+std::vector<std::string> ribi::trim::Template::SeperateString(
   const std::string& input_original) noexcept
 {
   PROFILE_FUNC();
@@ -762,51 +771,58 @@ void ribi::trim::Template::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Template::Test");
+  
   //IsClockWise
   {
     {
       //12 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a {
-        new ribi::ConstCoordinat2D(0.0,-1.0)
+      const boost::shared_ptr<const ConstCoordinat2D> a {
+        new ConstCoordinat2D(0.0,-1.0)
       };
       //4 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> b {
-        new ribi::ConstCoordinat2D(0.83,0.5)
+      const boost::shared_ptr<const ConstCoordinat2D> b {
+        new ConstCoordinat2D(0.83,0.5)
       };
       //8 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> c {
-        new ribi::ConstCoordinat2D(-0.83,0.5)
+      const boost::shared_ptr<const ConstCoordinat2D> c {
+        new ConstCoordinat2D(-0.83,0.5)
       };
       std::vector<boost::shared_ptr<Point>> points {
         PointFactory().Create(a),
         PointFactory().Create(b),
         PointFactory().Create(c)
       };
-      assert(IsClockwiseHorizontal(points));
+      points[0]->SetZ(1.0 * boost::units::si::meter);
+      points[1]->SetZ(1.0 * boost::units::si::meter);
+      points[2]->SetZ(1.0 * boost::units::si::meter);
+      assert(Helper().IsClockwiseHorizontal(points));
       std::reverse(points.begin(),points.end());
-      assert(!IsClockwiseHorizontal(points));
+      assert(!Helper().IsClockwiseHorizontal(points));
     }
     {
       //12 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a {
-        new ribi::ConstCoordinat2D(0.0,-1.0)
+      const boost::shared_ptr<const ConstCoordinat2D> a {
+        new ConstCoordinat2D(0.0,-1.0)
       };
       //8 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> b {
-        new ribi::ConstCoordinat2D(-0.83,0.5)
+      const boost::shared_ptr<const ConstCoordinat2D> b {
+        new ConstCoordinat2D(-0.83,0.5)
       };
       //4 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> c {
-        new ribi::ConstCoordinat2D(0.83,0.5)
+      const boost::shared_ptr<const ConstCoordinat2D> c {
+        new ConstCoordinat2D(0.83,0.5)
       };
       std::vector<boost::shared_ptr<Point>> points {
         PointFactory().Create(a),
         PointFactory().Create(b),
         PointFactory().Create(c)
       };
-      assert(!IsClockwiseHorizontal(points));
+      points[0]->SetZ(1.0 * boost::units::si::meter);
+      points[1]->SetZ(1.0 * boost::units::si::meter);
+      points[2]->SetZ(1.0 * boost::units::si::meter);
+      assert(!Helper().IsClockwiseHorizontal(points));
       std::reverse(points.begin(),points.end());
-      assert(IsClockwiseHorizontal(points));
+      assert(Helper().IsClockwiseHorizontal(points));
     }
   }
   for (int i=0; i!=4; ++i)
@@ -817,11 +833,11 @@ void ribi::trim::Template::Test() noexcept
     assert(my_template);
     for (auto face: my_template->GetFaces())
     {
-      if (!IsClockwiseHorizontal(face->GetPoints()))
+      if (!Helper().IsClockwiseHorizontal(face->GetPoints()))
       {
         TRACE("BREAK");
       }
-      assert(IsClockwiseHorizontal(face->GetPoints()));
+      assert(Helper().IsClockwiseHorizontal(face->GetPoints()));
     }
   }
   TRACE("Finished ribi::trim::Template::Test successfully");

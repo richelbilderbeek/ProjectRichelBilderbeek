@@ -129,11 +129,11 @@ const std::vector<boost::shared_ptr<const ribi::Question> >
   ribi::HometrainerMainDialog::CreateQuestions(
     const std::string& filename)
 {
-  if (!fileio::IsRegularFile(filename))
+  if (!fileio::FileIo().IsRegularFile(filename))
   {
     throw std::logic_error("HometrainerMainDialog: no valid file");
   }
-  const std::vector<std::string> text { fileio::FileToVector(filename) };
+  const std::vector<std::string> text { fileio::FileIo().FileToVector(filename) };
 
   std::vector<boost::shared_ptr<const Question> > v;
   for (const std::string s: text)

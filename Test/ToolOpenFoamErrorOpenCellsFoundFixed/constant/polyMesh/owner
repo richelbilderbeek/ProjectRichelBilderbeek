@@ -1,0 +1,21 @@
+FoamFile
+{	version	2.0;
+	format	ascii;
+	class	labelList;
+	note	"nPoints: 8 nCells: 2 nFaces: 9";
+	location	"constant/polyMesh";
+	object	owner;
+}
+
+9
+(
+0
+1
+0
+1
+0
+0
+1
+0
+1
+)

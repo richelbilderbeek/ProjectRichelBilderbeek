@@ -38,14 +38,14 @@ struct RegexTesterBoostRegexMainDialog : public RegexTesterMainDialog
   const boost::shared_ptr<RegexTesterMainDialog> Clone() const;
 
   ///Get an example format used to replace regex matches
-  const std::string GetExampleFormat() const { return "$0"; }
+  std::string GetExampleFormat() const { return "$0"; }
 
   ///Get an example regex
-  const std::string GetExampleRegex() const { return "\\d{4} [A-Z]{2}"; }
+  std::string GetExampleRegex() const { return "\\d{4} [A-Z]{2}"; }
 
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  const std::vector<std::string> GetRegexMatches(
+  std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const std::string& r) const;
 
@@ -53,7 +53,7 @@ struct RegexTesterBoostRegexMainDialog : public RegexTesterMainDialog
   bool GetRegexMatchLine(const std::string &line, const std::string &regex_str) const;
 
   ///Replace all regexes in a std::string following a regex and a format
-  const std::string GetRegexReplace(
+  std::string GetRegexReplace(
     const std::string& str,
     const std::string& regex_str,
     const std::string& format_str) const;
@@ -62,12 +62,12 @@ struct RegexTesterBoostRegexMainDialog : public RegexTesterMainDialog
   bool GetRegexValid(const std::string &regex_str) const;
 
   ///Obtain a description of the used implementation
-  const std::string GetUsedImplementation() const { return "Boost"; }
+  std::string GetUsedImplementation() const { return "Boost"; }
 
   private:
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static const std::vector<std::string> GetRegexMatches(
+  static std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const boost::regex& r);
 

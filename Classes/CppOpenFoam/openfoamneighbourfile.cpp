@@ -15,7 +15,7 @@
 
 #include <QFile>
 
-#include "filename.h"
+
 #include "fileio.h"
 #include "openfoamheader.h"
 #include "openfoamneighbourfileitem.h"
@@ -42,35 +42,7 @@ bool ribi::foam::NeighbourFile::CanGetItem(
   return face_index.Get() < static_cast<int>(m_items.size());
 }
 
-/*
-const ribi::foam::CellIndex ribi::foam::NeighbourFile::CountNumberOfCells() const noexcept
-{
-  //NOT CONFIDENT ABOUT THIS
-  if (m_items.empty())
-  {
-    return CellIndex(1);
-    //throw std::logic_error(
-    //  "NeighbourFile::FindMaxCellIndex: there is no valid cell index");
-  }
-  assert( (!m_items.empty() || m_items.empty())
-    && "If a mesh has no non-boundary cells, neighbour can be empty");
-
-  CellIndex i = (*std::max_element(
-    m_items.begin(),
-    m_items.end(),
-    [](const NeighbourFileItem& lhs, const NeighbourFileItem& rhs)
-    {
-      return lhs.GetCellIndex() < rhs.GetCellIndex();
-    }
-  )).GetCellIndex();
-  //TRACE(m_items.size());
-  //TRACE(i);
-  ++i;
-  return i;
-}
-*/
-
-const ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
 {
   return Header("labelList","constant/polyMesh","","neighbour");
 }
@@ -88,7 +60,7 @@ const ribi::foam::NeighbourFileItem& ribi::foam::NeighbourFile::GetItem(
   return m_items[ static_cast<int>(face_index.Get()) ];
 }
 
-const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& is)
+ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& is)
 {
   NeighbourFile b;
   is >> b;
@@ -96,15 +68,15 @@ const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& i
   return b;
 }
 
-const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(const std::string& filename)
+ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(const std::string& filename)
 {
-  const std::string tmp_filename { fileio::GetTempFileName() };
-  fileio::CopyFile(filename,tmp_filename);
+  const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
+  fileio::FileIo().CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
   const NeighbourFile file { Parse(f) };
   f.close();
-  fileio::DeleteFile(tmp_filename);
+  fileio::FileIo().DeleteFile(tmp_filename);
   return file;
 }
 
@@ -198,12 +170,12 @@ void ribi::foam::NeighbourFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         TRACE("ERROR");
         TRACE(filename);
       }
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       NeighbourFile b(filename);
       assert( (!b.GetItems().empty() || b.GetItems().empty())
         && "If a mesh has no non-bhoundary cells, neighbour can be empty");
@@ -213,7 +185,7 @@ void ribi::foam::NeighbourFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const NeighbourFile& lhs,const NeighbourFile& rhs)
+bool ribi::foam::operator==(const NeighbourFile& lhs,const NeighbourFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -228,7 +200,7 @@ bool ribi::foam::operator==(const NeighbourFile& lhs,const NeighbourFile& rhs)
   return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
 }
 
-bool ribi::foam::operator!=(const NeighbourFile& lhs,const NeighbourFile& rhs)
+bool ribi::foam::operator!=(const NeighbourFile& lhs,const NeighbourFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -312,7 +284,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, NeighbourFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const NeighbourFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const NeighbourFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

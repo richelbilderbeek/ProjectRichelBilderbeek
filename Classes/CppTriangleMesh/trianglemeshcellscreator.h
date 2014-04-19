@@ -6,10 +6,13 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/si/length.hpp>
+
 #include "trianglemeshfwd.h"
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -23,11 +26,13 @@ namespace trim {
 struct CellsCreator
 {
   CellsCreator(const CellsCreator&) = delete;
+  CellsCreator(CellsCreator&&) = delete;
   CellsCreator& operator=(const CellsCreator&) = delete;
+  CellsCreator& operator=(const CellsCreator&&) = delete;
 
   void Clear() noexcept { m_cells.clear(); }
 
-  const std::vector<boost::shared_ptr<Cell>> GetCells() noexcept;
+  std::vector<boost::shared_ptr<Cell>> GetCells() noexcept;
 
   ///The Cells must be released, and this will clear CellsCreator its Cells
   ///This is important, because one can freely delete those released Cells
@@ -42,39 +47,48 @@ struct CellsCreator
     const boost::shared_ptr<const Template> t,
     const int n_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
+    const CreateVerticalFacesStrategy strategy,
     const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
   );
-
+  ~CellsCreator() noexcept {}
 
   std::vector<boost::shared_ptr<Cell>> m_cells;
 
+  const CreateVerticalFacesStrategy m_strategy;
+
   static void CheckCells(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept;
 
-  const std::vector<boost::shared_ptr<Cell>> CreateCells(
+  //Must be static: it is used in the constructor
+  static std::vector<boost::shared_ptr<Cell>> CreateCells(
     const boost::shared_ptr<const Template> t,
     const int n_layers,
-    const boost::units::quantity<boost::units::si::length> layer_height
-  ) const noexcept;
+    const boost::units::quantity<boost::units::si::length> layer_height,
+    const CreateVerticalFacesStrategy strategy
+  ) noexcept;
 
-  static const std::vector<boost::shared_ptr<Face>> CreateHorizontalFaces(
+  static std::vector<boost::shared_ptr<Face>> CreateHorizontalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
     const int n_layers
   );
 
-  static const std::vector<boost::shared_ptr<Point>> CreatePoints(
+  static std::vector<boost::shared_ptr<Point>> CreatePoints(
     const boost::shared_ptr<const Template> t,
     const int n_layers,
     const boost::units::quantity<boost::units::si::length> layer_height
   );
 
-  static const std::vector<boost::shared_ptr<Face>> CreateVerticalFaces(
+
+  //Must be static: it is used in the constructor
+  static std::vector<boost::shared_ptr<Face>> CreateVerticalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
-    const int n_layers
-  );
+    const int n_layers,
+    const boost::units::quantity<boost::units::si::length> layer_height,
+    const CreateVerticalFacesStrategy strategy
+  ) noexcept;
 
-  static const std::vector<boost::shared_ptr<Face>> FindKnownFacesBetween(
+  static std::vector<boost::shared_ptr<Face>> FindKnownFacesBetween(
     const boost::shared_ptr<const Face> a, const boost::shared_ptr<const Face> b
   );
 
@@ -86,6 +100,11 @@ struct CellsCreator
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      CellsCreator* x);
+  friend void boost::checked_delete<>(const CellsCreator* x);
+  friend class boost::detail::sp_ms_deleter<      CellsCreator>;
+  friend class boost::detail::sp_ms_deleter<const CellsCreator>;
 };
 
 } //~namespace trim

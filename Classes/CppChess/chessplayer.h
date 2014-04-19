@@ -9,7 +9,7 @@ namespace Chess {
 
 ///Player is a chess player
 enum class Player { white, black };
-const std::string PlayerToStr(const Player player);
+std::string PlayerToStr(const Player player) noexcept;
 
 } //~namespace Chess
 } //~namespace ribi

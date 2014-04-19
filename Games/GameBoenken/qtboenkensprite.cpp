@@ -33,6 +33,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QImage>
 #include <QPainter>
 #include <QPixmap>
+
+#include "geometry.h"
 #pragma GCC diagnostic pop
 
 ///The maximum x coordinat a Sprite can have
@@ -73,12 +75,12 @@ void ribi::Boenken::Sprite::Draw(QPainter& painter) const
   painter.drawPixmap(this->rect(),this->pixmap());
 }
 
-const std::string ribi::Boenken::Sprite::GetVersion() noexcept
+std::string ribi::Boenken::Sprite::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory() noexcept
 {
   return
   {
@@ -218,8 +220,9 @@ QPixmap ribi::Boenken::Sprite::DrawGlobe(
 
 double ribi::Boenken::Sprite::GetAngle(const double dx, const double dy) noexcept
 {
-  const double pi = boost::math::constants::pi<double>();
-  return pi - std::atan2(dx,dy);
+  return Geometry().GetAngle(dx,dy);
+  //const double pi = boost::math::constants::pi<double>();
+  //return pi - std::atan2(dx,dy);
 }
 
 //From http://www.richelbilderbeek.nl/CppDoPerfectElasticCollision.htm

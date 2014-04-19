@@ -31,17 +31,17 @@ struct TestShapeMenuDialog : public MenuDialog
   ///Creates the resources needed
   TestShapeMenuDialog();
 
-  const About GetAbout() const noexcept;
-  const Help GetHelp() const noexcept;
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
   ///\brief
   ///Get the filename of the image shown at the welcome screen
   ///
   ///This is a non-static method to force this class its constructor being
   ///called, creating the file from the application its resource file
-  const std::string GetFilenameImageWelcome() const { return "ToolTestShapeWelcome.png"; }
-  const boost::shared_ptr<const Program> GetProgram() const noexcept;
-  const std::string GetVersion() const noexcept;
-  const std::vector<std::string> GetVersionHistory() const noexcept;
+  std::string GetFilenameImageWelcome() const { return "ToolTestShapeWelcome.png"; }
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;

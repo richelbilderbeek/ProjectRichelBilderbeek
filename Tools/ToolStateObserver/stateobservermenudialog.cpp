@@ -48,7 +48,7 @@ int ribi::StateObserverMenuDialog::ExecuteSpecific(const std::vector<std::string
   return 1;
 }
 
-const ribi::About ribi::StateObserverMenuDialog::GetAbout() const noexcept
+ribi::About ribi::StateObserverMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -71,7 +71,7 @@ const ribi::About ribi::StateObserverMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::StateObserverMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::StateObserverMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -85,7 +85,7 @@ const ribi::Help ribi::StateObserverMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::StateObserverMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::StateObserverMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramStateObserver
@@ -94,12 +94,12 @@ const boost::shared_ptr<const ribi::Program> ribi::StateObserverMenuDialog::GetP
   return p;
 }
 
-const std::string ribi::StateObserverMenuDialog::GetVersion() const noexcept
+std::string ribi::StateObserverMenuDialog::GetVersion() const noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::StateObserverMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::StateObserverMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-05-25: version 1.0: initial version",

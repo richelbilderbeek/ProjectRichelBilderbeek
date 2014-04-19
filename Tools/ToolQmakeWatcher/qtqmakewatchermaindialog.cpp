@@ -93,7 +93,7 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
   //Display Makefile
   {
     ui->edit_makefile->clear();
-    const std::vector<std::string> v(ribi::fileio::FileToVector("Makefile"));
+    const std::vector<std::string> v(ribi::fileio::FileIo().FileToVector("Makefile"));
     for(const std::string& s: v)
     {
       ui->edit_makefile->appendPlainText(QString(s.c_str()));
@@ -102,23 +102,23 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
   //Display diff
   {
     ui->edit_diff->clear();
-    const std::vector<std::string> v(ribi::fileio::FileToVector("tmp.txt"));
+    const std::vector<std::string> v(ribi::fileio::FileIo().FileToVector("tmp.txt"));
     for(const std::string& s: v)
     {
       std::string t = s;
       if (!s.empty() && s[0] == '>')
       {
         //Old
-        t = std::string("<font color=#0000FF>&lt;")
+        t = "<font color=#0000FF>&lt;"
           + s.substr(1,s.size()-1)
-          + std::string("</font>");
+          + "</font>";
       }
       if (!s.empty() && s[0] == '<')
       {
         //New
-        t = std::string("<b><font color=#FF0000>&gt;")
+        t = "<b><font color=#FF0000>&gt;"
           + s.substr(1,s.size()-1)
-          + std::string("</font></b>");
+          + "</font></b>";
       }
       ui->edit_diff->appendHtml(QString(t.c_str()));
     }

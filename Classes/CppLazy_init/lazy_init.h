@@ -118,10 +118,10 @@ template <class T, typename Arg0, typename Arg1> struct LazyInit2
 struct Lazy_initVersion
 {
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

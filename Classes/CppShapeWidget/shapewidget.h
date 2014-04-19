@@ -67,8 +67,8 @@ struct ShapeWidget : public Widget
   boost::scoped_ptr<Shape> m_shape;
 
   public:
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs) noexcept;

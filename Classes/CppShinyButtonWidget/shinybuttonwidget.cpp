@@ -42,30 +42,31 @@ ribi::ShinyButtonWidget::ShinyButtonWidget(
   this->SetGeometry(rect);
 }
 
-void ribi::ShinyButtonWidget::Click()
+void ribi::ShinyButtonWidget::Click() noexcept
 {
   m_signal_clicked(this);
 }
 
-const std::string ribi::ShinyButtonWidget::GetVersion() noexcept
+std::string ribi::ShinyButtonWidget::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
-const std::vector<std::string> ribi::ShinyButtonWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ShinyButtonWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-09-21: version 1.0: initial version",
-    "2011-10-29: version 1.1: added Click method and m_signal_clicked"
+    "2011-10-29: version 1.1: added Click method and m_signal_clicked",
+    "2014-03-28: version 1.2: replaced Rect by Boost.Geometry its box class"
   };
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const ShinyButtonWidget& button)
+std::ostream& ribi::operator<<(std::ostream& os, const ShinyButtonWidget& button) noexcept
 {
   os
     << "<ShinyButtonWidget>"
     << *button.m_button
-    << button.GetGeometry()
+    //<< button.GetGeometry()
     << "</ShinyButtonWidget>";
   return os;
 }

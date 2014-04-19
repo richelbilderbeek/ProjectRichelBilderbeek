@@ -36,12 +36,24 @@ ribi::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget
   Test();
   #endif
   ui->setupUi(this);
+  //QObject::connect(ui->widget,SIGNAL(destroyed()),this,SLOT(close()));
 }
 
 ribi::QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog() noexcept
 {
   delete ui;
 }
+
+void ribi::QtDasWahreSchlagerfestMainDialog::closeEvent(QCloseEvent * /*event*/ )
+{
+  close_me();
+}
+
+void ribi::QtDasWahreSchlagerfestMainDialog::keyPressEvent(QKeyEvent *event)
+{
+  if (event->key() == Qt::Key_Escape) { close(); return; }
+}
+
 
 #ifndef NDEBUG
 void ribi::QtDasWahreSchlagerfestMainDialog::Test() noexcept

@@ -46,7 +46,7 @@ ribi::c2h::Info::Info()
   //}
 }
 
-const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo()
+std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo()
 {
   //Do not create this map from a single huge initializer list: the compiler will choke on it after about 5000 lines
   typedef std::string Key;
@@ -414,6 +414,122 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppBoostGeometryExample3",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample3.htm\">Boost.Geometry example 3: IsConvex: determine if a 2D polygon is convex or concave</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  IsConvex is maintained in <a href=\"CppGeometry.htm\">CppGeometry</a>.",
+        "  See <a href=\"CppGeometry.htm\">CppGeometry</a>",
+        "  for the heavily used, debugged and tested version of IsConvex",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample4",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample4.htm\">Boost.Geometry example 4: CalcPlane: determine the plane passing through three point</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  CalcCrossProduct and CalcPlane are maintained in <a href=\"CppGeometry.htm\">CppGeometry</a>.",
+        "  See <a href=\"CppGeometry.htm\">CppGeometry</a>",
+        "  for the heavily used, debugged and tested versions of CalcCrossProduct and CalcPlane.",
+        "</p>"
+      }
+    }
+  );
+
+
+
+  m.push_back(
+    { "CppBoostGraphExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample1.htm\">Boost.Graph example 1: four human names and their relationships + plotting</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "  It defines a graph of person names and their relationships. Then the graph is written to .dot file and plotted using KGraphViewer.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostGraphExample1.png\">View the graph of this example (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGraphExample2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample2.htm\">Boost.Graph example 2: four human names and their relationships + plotting</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "  It defines a graph of person names and their relationships. Then the graph is written to .dot file and plotted using KGraphViewer.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostGraphExample2.png\">View the graph of this example (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppBoostGraphExample3",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample3.htm\">Boost.Graph example 3: four human names and their relationships + plotting</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "  It defines a graph of person names and their relationships. Then the graph is written to .dot file and plotted using KGraphViewer.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostGraphExample3.png\">View the graph of this example (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGraphExample4",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample4.htm\">Boost.Graph example 4: four human names and their relationships displayed in Qt</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "  It defines a graph of person names and their relationships. Then the graph is written to .dot file and plotted using KGraphViewer.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostGraphExample4.png\">View the graph of this example (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+
+
+  m.push_back(
     { "CppBoostRefExample2",
       {
         "<p>",
@@ -500,7 +616,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <a href=\"CppBoostSignals2Example1.htm\">Boost.Signals2 example 1: comparing Boost and Qt</a>",
         "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example that shows",
         "  both the use of <a href=\"CppBoostSignals2.htm\">Boost.Signals2 signals</a> and",
-        "  <a href=\"CppQtSignal.htm\">Qt signals</a>.</p>",
+        "  <a href=\"CppQtSignal.htm\">Qt signals</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
@@ -562,6 +678,26 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppBoostUnitsBug",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsBug.htm\">Boost.Units bug</a> shows a <a href=\"CppBoostUnits.htm\">Boost.Units</a> <a href=\"CppBug.htm\">bug</a>.",
+        "  Feel free, however, to call it an 'unexpected feature'.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsBug.htm\">Download the Qt Creator project 'CppUnitsBug' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppBoostUnitsExample1",
@@ -1640,7 +1776,32 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>",
         "  For the <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppLibrary.htm\">library</a>,",
         "  go to the page about <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppGeometry.htm\">CppGeometry</a> code snippets</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostGeometryExample4.htm\">CalcCrossProduct: determine the cross-product of two 3D points</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample4.htm\">CalcPlane: determine the 3D plane passing through three 3D points</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample3.htm\">Determine if a 2D polygon is convex or concave, IsConvex</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample1.htm\">Determine if a 2D point is within a polygon</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample3.htm\">Determine the 2D convex hull of a concave polygon</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample2.htm\">Determine the 3D area of a 2D polygon</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample4.htm\">Determine the 3D plane passing through three 3D points, CalcPlane</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample4.htm\">Determine the cross-product of two 3D points</a></li>",
+        "  <li><a href=\"CppGetAngle.htm\">GetAngle: calculate the angle between two points</a></li>",
+        "  <li><a href=\"CppGetDistance.htm\">GetDistance: calculate the distance between two points</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample3.htm\">IsConvex: determine if a 2D polygon is convex or concave</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>"
       }
     }
   );
@@ -1761,8 +1922,8 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <a href=\"CppGetTime.htm\">GetTime</a> can depend on two different <a href=\"CppLibrary.htm\">libraries</a>:",
         "</p>",
         "<ul>",
-        "  <li><img src=\"PicBoost.png\" alt=\"Boost\"> <a href=\"CppBoost.htm\">Boost</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
-        "  <li><img src=\"PicStl.png\" alt=\"STL\"> <a href=\"CppStl.htm\">STL</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
+        "  <li><img src=\"PicBoost.png\" alt=\"Boost\"/> <a href=\"CppBoost.htm\">Boost</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
+        "  <li><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppStl.htm\">STL</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
         "</ul>"
       }
     }
@@ -4382,6 +4543,48 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
 
+
+  m.push_back(
+    { "CppStkExample1",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStkExample1.htm\">STK example 1: beep</a> is an <a href=\"CppStk.htm\">STK</a> example that generates a beep.",
+        "  The code was copied from <a href=\"https://ccrma.stanford.edu/software/stk/crealtime.html\">https://ccrma.stanford.edu/software/stk/crealtime.html</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Note that original copy-pasted code resulted in multiple",
+        "  <a href=\"CppCompileWarning.htm\">compile warnings</a> and that the",
+        "  <a href=\"CppLibrary.htm\">library</a> style, design and example code looks",
+        "  different from the experts' recommendations",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStkExample2",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStkExample2.htm\">STK example 2: random beeps</a> is an <a href=\"CppStk.htm\">STK</a> example that generates random beeps infinitely (note: you cannot stop the program).",
+        "  The code was modified from <a href=\"https://ccrma.stanford.edu/software/stk/crealtime.html\">https://ccrma.stanford.edu/software/stk/crealtime.html</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Note that the original copy-pasted code resulted in multiple",
+        "  <a href=\"CppCompileWarning.htm\">compile warnings</a> and that the",
+        "  <a href=\"CppLibrary.htm\">library</a> style, design and example code looks",
+        "  different from the experts' recommendations",
+        "</p>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppMultiApproximator",
       {
@@ -4482,6 +4685,66 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppMxeExample1",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMxeExample1.htm\">MXE example 1: Hello World</a> is an",
+        "  <a href=\"CppMxe.htm\">MXE</a> <a href=\"CppExample.htm\">example</a> to",
+        "  <a href=\"CppCrossCompile.htm\">cross-compile</a> a",
+        "  <a href=\"CppHelloWorld.htm\">Hello World</a> program from",
+        "  <a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppMxeExample1.zip\">Download the Qt Creator project 'CppMxeExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppMxeExample2",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMxeExample2.htm\">MXE example 2: Hello World C++11</a> is an",
+        "  <a href=\"CppMxe.htm\">MXE</a> <a href=\"CppExample.htm\">example</a>",
+        "  to <a href=\"CppCrossCompile.htm\">cross-compile</a> a",
+        "  <a href=\"CppHelloWorldCpp11.htm\">Hello World C++11</a> program from",
+        "  <a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppMxeExample2.zip\">Download the Qt Creator project 'CppMxeExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppMxeExample3",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMxeExample3.htm\">MXE example 3: Hello Qt</a> is an",
+        "  <a href=\"CppMxe.htm\">MXE</a> <a href=\"CppExample.htm\">example</a>",
+        "  to <a href=\"CppCrossCompile.htm\">cross-compile</a> a",
+        "  <a href=\"CppHelloQt.htm\">Hello Qt</a> program from",
+        "  <a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppMxeExample3.zip\">Download the Qt Creator project 'CppMxeExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
     { "CppMxeExample4",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -4565,10 +4828,11 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<a href=\"CppArtificialIntelligence.htm\">Artificial Intelligence</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
-        "how to implement a Learner class that has to optimize its"
-        "reward from an N-armed bandit. As one would expect, the Learner class knows nothing"
-        "about the N-Armed Bandit class' internals.",
+        "<p>",
+        "  <a href=\"CppArtificialIntelligence.htm\">Artificial Intelligence</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  how to implement a Learner class that has to optimize its"
+        "  reward from an N-armed bandit. As one would expect, the Learner class knows nothing"
+        "  about the N-Armed Bandit class' internals.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
@@ -4847,6 +5111,124 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
 
     }
   );
+
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample1",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample1.htm\">QGraphicsSimpleTextItem example 1: Hello World</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with the text 'Hello World'. These items are movable",
+        "and selectable.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample1.png\">View a screenshot of 'QGraphicsSimpleTextItemExample1' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample1.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample1' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample1Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample2",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample2.htm\">QGraphicsSimpleTextItem example 2: coordinat display</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with their coordinats as text. These items are movable",
+        "and selectable.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample2.png\">View a screenshot of 'QGraphicsSimpleTextItemExample2' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample2.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample2' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample2Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample3",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample3.htm\">QGraphicsSimpleTextItem example 3: use tab to change focus</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with their coordinats as text. These items are movable",
+        "and selectable. By pressing tab, focus will be set to a random item.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample3.png\">View a screenshot of 'QGraphicsSimpleTextItemExample3' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample3.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample3' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample3Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample4",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample4.htm\">QGraphicsSimpleTextItem example 4: use arrow keys to change focus</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with their coordinats as text. These items are movable",
+        "and selectable. By pressing tab, focus will be set to a random item. By pressing the arrow, focus will be given to the nearest item",
+        "in that direction.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample4.png\">View a screenshot of 'QGraphicsSimpleTextItemExample4' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample4.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample4' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample4Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample5",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample5.htm\">QGraphicsSimpleTextItem example 5: keyboard-friendly view</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with their coordinats as text. These items are movable",
+        "and selectable. By pressing space, focus will be set to a random item. By pressing an arrow keys, focus will be given to the nearest item",
+        "in that direction. By pressing an arrow key while holding shift, the item is moved.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample5.png\">View a screenshot of 'QGraphicsSimpleTextItemExample5' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample5.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample5' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample5Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample5' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample6",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample6.htm\">QGraphicsSimpleTextItem example 6: remote texting</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with a text that changes in time. These items, however, are not",
+        "modified themselves: they are updated with a <a href=\"CppBoostSignal.htm\">boost::signal2</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample6.png\">View a screenshot of 'QGraphicsSimpleTextItemExample6' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample6.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample6' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample6Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample6' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppQmakeErrorUnknownModulesInQtLocationSensors",
       {
@@ -6511,6 +6893,78 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppStdSetExample1",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample1.htm\">std::set example 1: basics</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample2",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample2.htm\">std::set example 2: put a custom class in a std::set</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample3",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample3.htm\">std::set example 3: put a custom class in a std::set in a custom order</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample4",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample4.htm\">std::set example 4: put smart pointers of a custom class in a std::set in a custom order</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample5",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample5.htm\">std::set example 5</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample6",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample6.htm\">std::set example 6</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "CppStdTupleExample1",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -6852,6 +7306,30 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppWtAutoRun",
+      {
+        "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppWtAutoRun.htm\">WtAutoRun</a> is a bare-bone <a href=\"CppWt.htm\">Wt</a> program that",
+        "  starts the application without the need of a user giving command-line parameters. It is a",
+        "  fine starting point for a <a href=\"CppWt.htm\">Wt</a> application.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppWtAutoRun.zip\">Download the 'WtAutoRun' source code (zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The <a href=\"CppClass.htm\">class</a> <a href=\"CppWtAutoConfig.htm\">WtAutoConfig</a> embodies",
+        "  this functionality as a stand-alone <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppWtBroadcastServer",
       {
@@ -6918,6 +7396,26 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+
+  m.push_back(
+    { "CppWtGetIpAddress",
+      {
+        "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppWtFaq.htm\">Wt FAQ</a> on how to obtain the client's (that is:",
+        "  any person that browser your Wt website from any place in the world) IP address.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppWtGetIpAddress.png\">View a screenshot of 'CppWtGetIpAddress' (png)</a></li>",
+        "  <li><a href=\"CppWtGetIpAddress.zip\">Download the source code of 'CppWtGetIpAddress' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppWtGroupWidget",
       {
@@ -8091,6 +8589,167 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p>",
         "  <a href=\"GamePong.htm\">Pong</a> is a Pong <a href=\"Games.htm\">game</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "ToolOpenFoamErrorOpenCellsFound",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamErrorOpenCellsFound.htm\">ToolOpenFoamErrorOpenCellsFound</a> shows an <a href=\"ToolOpenFoam.htm\">OpenFOAM</a>",
+        "  error.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The error is given by checkMesh, which states there are two problems in the geometry.",
+        "  After investigation (see the pictures), I can note nothing strange.",
+        "</p>",
+        "<p>",
+        "  I posted this question at <a href=\"http://www.cfd-online.com/Forums/openfoam-meshing-technical/131611-checkmesh-states-faces-do-not-form-cell-mesh-appears-correct.html#post480639\">cfd-online.com its OpenFOAM forum</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Of the mesh I used, I made some pictures. The top-left image shows the point indices, ",
+        "  the others the face indices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamErrorOpenCellsFound.png\" alt=\"ToolOpenFoamErrorOpenCellsFound.png\"/>",
+        "</p>"
+
+
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamErrorOpenCellsFoundCorrected",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamErrorOpenCellsFoundCorrected.htm\">ToolOpenFoamErrorOpenCellsFoundCorrected</a> shows an",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> error",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  This is a follow-up on <a href=\"ToolOpenFoamErrorOpenCellsFound.htm\">ToolOpenFoamErrorOpenCellsFound</a>.",
+        "  After that error, I did a 'renumberMesh' and 'zipUpMesh'. These commands put the pseudo-corrected in the folder",
+        "  1.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  I posted this question at <a href=\"http://www.cfd-online.com/Forums/openfoam-meshing-technical/131734-checkmesh-states-mesh-ok-yet-faces-bent-pentagons.html\">cfd-online.com its OpenFOAM forum</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The image shows the points and faces of the pseudo-corrected mesh, put in folder 1.",
+        "  The top-left image shows the point indices, the others the face indices. Of the bottom right two folded faces,",
+        "  I number the indices of the face its vertices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamErrorOpenCellsFoundCorrected.png\" alt=\"ToolOpenFoamErrorOpenCellsFoundCorrected.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamErrorOpenCellsFoundFixed",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamErrorOpenCellsFoundFixed.htm\">ToolOpenFoamErrorOpenCellsFoundFixed</a>",
+        "  shows the solution of the <a href=\"ToolOpenFoam.htm\">OpenFOAM</a>",
+        "  error <a href=\"ToolOpenFoamErrorOpenCellsFound.htm\">ToolOpenFoamErrorOpenCellsFound</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The error was caused by not putting the internal faces first in the file 'boundary'.",
+        "</p>",
+        "<p>",
+        "  I posted this solution at <a href=\"http://www.cfd-online.com/Forums/openfoam-meshing-technical/131611-checkmesh-states-faces-do-not-form-cell-mesh-appears-correct.html#post480639\">cfd-online.com its OpenFOAM forum</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Of the mesh I used, I made some pictures. The top-left image shows the point indices, ",
+        "  the others the face indices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamErrorOpenCellsFoundFixed.png\" alt=\"ToolOpenFoamErrorOpenCellsFoundFixed.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamExample21",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamExample21.htm\">OpenFOAM example 21</a> is an",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> <a href=\"CppExample.htm\">example</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  This <a href=\"CppExample.htm\">example</a> shows how to to use 'swiftSnap' to assign",
+        "  boundary regions in <a href=\"ToolBlender.htm\">Blender</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamExample21_blender_with_regions.png\" alt=\"ToolOpenFoamExample21_blender_with_regions.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamExample23",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamExample23.htm\">OpenFOAM example 23: use blockMesh to create a cube</a> is an",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> <a href=\"CppExample.htm\">example</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  This <a href=\"CppExample.htm\">example</a> shows how to to use 'blockMesh' to create",
+        "  a cube.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The image shows the points and faces of the resulting mesh.",
+        "  The top-left image shows the point indices, the others the face indices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamExample23.png\" alt=\"ToolOpenFoamExample23.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamExample24",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamExample24.htm\">OpenFOAM example 24: use blockMesh to create a two-prism cube</a> is an",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> <a href=\"CppExample.htm\">example</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  This <a href=\"CppExample.htm\">example</a> shows how to to use 'blockMesh' to create",
+        "  a cube consisting out of two prisms.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The image shows the points and faces of the resulting mesh.",
+        "  The top-left image shows the point indices, the others the face indices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamExample24.png\" alt=\"ToolOpenFoamExample24.png\"/>",
         "</p>"
       }
     }
@@ -10854,9 +11513,21 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
   m.push_back(
+    { "ToolCaesarCipher",
+      {
+        "<p>",
+        "  <a href=\"ToolCaesarCipher.htm\">CaesarCipher</a> is a <a href=\"Tools.htm\">tool</a> to",
+        "  do Caesar cipher encryption and decryption",
+        "</p>"
+      }
+    }
+  );
+  m.push_back(
     { "ToolCnd",
       {
-        "<p><a href=\"ToolCnd.htm\">Color Number Determinator</a> is one of my first self-written tool. It shows the color of a certain red, green and blue value.</p>",
+        "<p>",
+        "  <a href=\"ToolCnd.htm\">Color Number Determinator</a> is one of my first self-written <a href=\"Tools.htm\">tools</a>. It shows the color of a certain red, green and blue value.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolCndScreenshot.png\">View a screenshot of 'Color Number Determinator' (png)</a></li>",
@@ -10866,6 +11537,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolCodeBreaker",
+      {
+        "<p>",
+        "  <a href=\"ToolCodeBreaker.htm\">CodeBreaker</a> is a <a href=\"Tools.htm\">tool</a> to",
+        "  do code breaking",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolCodeToHtml",
       {
@@ -14085,6 +14768,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "ToolTestPlane",
+      {
+        "<p>",
+        "  <a href=\"ToolTestPlane.htm\">TestPlane</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppPlane.htm\">Plane</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "ToolTestPrimeExpert",
       {
         "<p><a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a> is a <a href=\"Tools.htm\">tool</a> to test ",
@@ -14602,6 +15296,19 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+
+  m.push_back(
+    { "ToolTestTriangleMesh",
+      {
+        "<p>",
+        "  <a href=\"ToolTestTriangleMesh.htm\">TestTriangleMesh</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppTriangleMesh.htm\">TriangleMesh</a> <a href=\"CppClass.htm\">classes</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestTwoDigitNewick",
       {
@@ -14842,6 +15549,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "ToolVigenereCipher",
+      {
+        "<p>",
+        "  <a href=\"ToolVigenereCipher.htm\">VigenereCipher</a> is a <a href=\"Tools.htm\">tool</a> to",
+        "  do Vigenere cipher encryption and decryption",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "ToolVirtualBastard",
       {
         "<p>",
@@ -14975,7 +15693,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   return n;
 }
 
-const std::string ribi::c2h::Info::GetTime() noexcept
+std::string ribi::c2h::Info::GetTime() noexcept
 {
   const std::time_t t = std::time(0);
   const std::string s = std::ctime( &t);
@@ -14983,12 +15701,12 @@ const std::string ribi::c2h::Info::GetTime() noexcept
 }
 
 
-const std::string ribi::c2h::Info::GetVersion() noexcept
+std::string ribi::c2h::Info::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
+std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
 {
   return {
     "2013-09-20: version 1.0: initial versioning, added tests",
@@ -15036,9 +15754,9 @@ void ribi::c2h::Info::Test() noexcept
         TRACE(p.first);
         TRACE("SOLUTION: Clean HTML in ribi::c2h::Info::CreatePageInfo");
 
-        if (p.first == std::string("ZZZ_I_MUST_FAIL")) continue;
+        if (p.first == "ZZZ_I_MUST_FAIL") continue;
       }
-      assert(IsCleanHtml(v) && p.first != std::string("ZZZ_I_MUST_FAIL"));
+      assert(IsCleanHtml(v) && p.first != "ZZZ_I_MUST_FAIL");
     }
     #endif
     assert(!t.ToHtml("").empty());
@@ -15048,7 +15766,7 @@ void ribi::c2h::Info::Test() noexcept
 }
 #endif
 
-const std::vector<std::string> ribi::c2h::Info::ToHtml(const std::string page_name) const
+std::vector<std::string> ribi::c2h::Info::ToHtml(const std::string page_name) const
 {
   assert(page_name.find('/') == std::string::npos
     && "A c2h::Info page must not contain a slash");

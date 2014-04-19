@@ -47,10 +47,10 @@ public:
   ~QtRichelBilderbeekGalleryDialog() noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* e) noexcept;

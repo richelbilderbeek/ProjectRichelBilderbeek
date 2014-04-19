@@ -62,10 +62,10 @@ struct DialWidget : public Widget
   const Dial * GetDial() const noexcept { return m_dial.get(); }
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is the dial clicked?
   bool IsClicked(const int x, const int y) const noexcept;
@@ -89,17 +89,6 @@ struct DialWidget : public Widget
   boost::scoped_ptr<Dial> m_dial;
 
   friend std::ostream& operator<<(std::ostream& os, const DialWidget& widget) noexcept;
-
-  public:
-
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy) noexcept;
-  static double GetDistance(const double dx, const double dy) noexcept;
 };
 
 std::ostream& operator<<(std::ostream& os, const DialWidget& widget) noexcept;

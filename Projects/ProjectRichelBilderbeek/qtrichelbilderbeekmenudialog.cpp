@@ -65,22 +65,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "qtshapewidget.h"
 #include "qtshinybuttonwidget.h"
+#include "qtsimplifynewickmaindialog.h"
 #include "qtsprites.h"
 #include "qtstdvectorfunctionmodel.h"
 #include "qtstdvectorstringmodel.h"
 #include "qttictactoewidget.h"
 #include "qttogglebuttonwidget.h"
-#include "qttoolsimplifynewickmaindialog.h"
 #include "qtublasmatrixdoublemodel.h"
 #include "qtublasvectordoublemodel.h"
 #include "richelbilderbeekmenudialog.h"
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekprogramtypes.h"
+#include "simplifynewickmenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
 #include "testqtkeyboardfriendlygraphicsviewmenudialog.h"
+#include "testqtmodelsmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
-#include "toolsimplifynewickmenudialog.h"
-#include "tooltestqtmodelsmenudialog.h"
 #include "trace.h"
 #include "ui_qtrichelbilderbeekmenudialog.h"
 
@@ -127,6 +127,8 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
     );
     this->move( screen.center() - this->rect().center() );
   }
+
+  assert(1==2); //TEMP
 }
 
 ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept
@@ -134,7 +136,7 @@ ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept
   delete ui;
 }
 
-const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
+ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
 {
   About a = ProjectRichelBilderbeekMenuDialog().GetAbout();
   a.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
@@ -166,7 +168,7 @@ const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   //a.AddLibrary("QtSprites version: " + QtSprites::GetVersion());
   a.AddLibrary("QtStdVectorFunctionModel version: " + QtStdVectorFunctionModel::GetVersion());
   a.AddLibrary("QtStdVectorStringModel version: " + QtStdVectorStringModel::GetVersion());
-  a.AddLibrary("QtTicTacToeWidget version: " + QtTicTacToeWidget::GetVersion());
+  a.AddLibrary("QtTicTacToeWidget version: " + tictactoe::QtTicTacToeWidget::GetVersion());
   a.AddLibrary("QtToggleButtonWidget version: " + QtToggleButtonWidget::GetVersion());
   a.AddLibrary("QtUblasMatrixDoubleModel version: " + QtUblasMatrixDoubleModel::GetVersion());
   a.AddLibrary("QtUblasVectorDoubleModel version: " + QtUblasVectorDoubleModel::GetVersion());

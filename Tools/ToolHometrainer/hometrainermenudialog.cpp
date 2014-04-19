@@ -62,19 +62,19 @@ int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   }
   assert(argc >= 2);
   const std::string arg = argv[1];
-  if (arg == std::string("-e") || arg == std::string("--example"))
+  if (arg == "-e" || arg == "--example")
   {
     CreateExamples();
     return 0;
   }
-  if (fileio::IsRegularFile(arg))
+  if (fileio::FileIo().IsRegularFile(arg))
   {
     HometrainerMainDialog d(arg);
     d.Execute();
     return 0;
   }
-  if ( (arg == std::string("-f") || arg == std::string("--filename"))
-    && argc >= 3 && fileio::IsRegularFile(argv[2]))
+  if ( (arg == "-f" || arg == "--filename")
+    && argc >= 3 && fileio::FileIo().IsRegularFile(argv[2]))
   {
     HometrainerMainDialog d(argv[2]);
     d.Execute();
@@ -84,7 +84,7 @@ int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 1;
 }
 
-const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
+ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -96,7 +96,7 @@ const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Exercise version: " + Exercise::GetVersion());
-  a.AddLibrary("FileIo version: " + ribi::fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
   a.AddLibrary("Hometrainer version: " + ribi::HometrainerMenuDialog::GetVersion());
   a.AddLibrary("MultipleChoiceQuestion version: " + MultipleChoiceQuestion::GetVersion());
   a.AddLibrary("MultipleChoiceQuestionDialog version: " + MultipleChoiceQuestionDialog::GetVersion());
@@ -108,7 +108,7 @@ const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -125,19 +125,19 @@ const ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::HometrainerMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::HometrainerMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramHometrainer);
   assert(p);
   return p;
 }
 
-const std::string ribi::HometrainerMenuDialog::GetVersion() const noexcept
+std::string ribi::HometrainerMenuDialog::GetVersion() const noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-xx-xx: Version 0.9: initial version (called HomeTrainer)",

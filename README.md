@@ -12,6 +12,14 @@ ProjectRichelBilderbeek consists of:
 * C++ Builder Windows-only code, to be ported to cross-platform Qt Creator code
 * The core of Richel Bilderbeek's HTML website
 
+## The ProjectRichelBilderbeek galleries
+
+For an overview of all games, projects and tools in ProjectRichelBilderbeek, visit the gallery pages:
+* [Classes gallery](http://www.richelbilderbeek.nl/CppClassGallery.htm)
+* [Games gallery](http://www.richelbilderbeek.nl/GameGallery.htm)
+* [Projects gallery](http://www.richelbilderbeek.nl/ProjectGallery.htm)
+* [Tools gallery](http://www.richelbilderbeek.nl/ToolGallery.htm)
+
 ## I want to collaborate!
 
 ProjectRichelBilderbeek encourages collaboration, and already has had contributions from many people, 
@@ -95,11 +103,7 @@ Questions and feature requests can be done by creating a new issue or sending an
 
 ## Git policy
 
-I follow the branching policy from [this article](http://nvie.com/posts/a-successful-git-branching-model), using only
-three types: master, develop and feature branches.
-* After every push to the master branch, ProjectRichelBilderbeek* must all compile
-* Only the develop branch pushes to master
-* The feature branch branches and merges with the develop branch
+See [the Git workflow ](git_workflow.md).
 
 ## External links
 

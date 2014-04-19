@@ -25,7 +25,7 @@ int ribi::AthleticLandMenuDialog::ExecuteSpecific(const std::vector<std::string>
   return 0;
 }
 
-const ribi::About ribi::AthleticLandMenuDialog::GetAbout() const noexcept
+ribi::About ribi::AthleticLandMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -40,7 +40,7 @@ const ribi::About ribi::AthleticLandMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::AthleticLandMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::AthleticLandMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -54,7 +54,7 @@ const ribi::Help ribi::AthleticLandMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::AthleticLandMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::AthleticLandMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramAthleticLand
@@ -63,12 +63,12 @@ const boost::shared_ptr<const ribi::Program> ribi::AthleticLandMenuDialog::GetPr
   return p;
 }
 
-const std::string ribi::AthleticLandMenuDialog::GetVersion() const noexcept
+std::string ribi::AthleticLandMenuDialog::GetVersion() const noexcept
 {
   return "0.1";
 }
 
-const std::vector<std::string> ribi::AthleticLandMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::AthleticLandMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07: version 0.1: conformized to ProjectRichelBilderbeekConsole"

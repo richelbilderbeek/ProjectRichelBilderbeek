@@ -1,8 +1,12 @@
 #include "commander.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include "firstdialog.h"
 #include "seconddialog.h"
+#pragma GCC diagnostic pop
 
 Commander * Commander::m_instance = 0;
 

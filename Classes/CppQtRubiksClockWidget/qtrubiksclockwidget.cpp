@@ -70,7 +70,7 @@ ribi::ruco::QtRubiksClockWidget::QtRubiksClockWidget(
       &ribi::ruco::QtRubiksClockWidget::OnResize,
       this));
 
-  m_widget->SetGeometry(Rect(0,0,200,200));
+  m_widget->SetGeometry(0,0,200,200);
 }
 
 void ribi::ruco::QtRubiksClockWidget::DoRepaint()
@@ -97,13 +97,17 @@ void ribi::ruco::QtRubiksClockWidget::DrawRubiksClock(
         QColor(
           front_side ? 127 : 96,
           front_side ? 127 : 96,
-          196)));
+          196
+        )
+      )
+    );
   }
   painter.drawEllipse(
     static_cast<double>(left),
     static_cast<double>(top),
     static_cast<double>(width),
-    static_cast<double>(height));
+    static_cast<double>(height)
+  );
 
 
 
@@ -117,11 +121,12 @@ void ribi::ruco::QtRubiksClockWidget::DrawRubiksClock(
           = (front_side ? clock->GetFrontTimes() : clock->GetBackTimes())->times[x][y];
         QtDialWidget::DrawDial(
           painter,
-          w->GetGeometry().GetX(),
-          w->GetGeometry().GetY(),
-          w->GetGeometry().GetWidth(),
-          w->GetGeometry().GetHeight(),
-          w->GetRubiksClockDial()->GetDial());
+          w->GetLeft(),
+          w->GetTop(),
+          w->GetWidth(),
+          w->GetHeight(),
+          w->GetRubiksClockDial()->GetDial()
+        );
       }
     }
     //Draw the pegs
@@ -133,7 +138,8 @@ void ribi::ruco::QtRubiksClockWidget::DrawRubiksClock(
           painter,
           (front_side
             ? clock->GetFrontPegs()
-            : clock->GetBackPegs())->m_pegs[x][y].get());
+            : clock->GetBackPegs())->m_pegs[x][y]
+        );
       }
     }
   }
@@ -145,24 +151,25 @@ void ribi::ruco::QtRubiksClockWidget::DrawRubiksClock(
 {
   DrawRubiksClock(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
+    widget->GetLeft(),
+    widget->GetTop(),
+    widget->GetWidth(),
+    widget->GetHeight(),
     widget->GetRubiksClock(),
     widget->GetDisplayFront());
 }
 
-const std::string ribi::ruco::QtRubiksClockWidget::GetVersion() noexcept
+std::string ribi::ruco::QtRubiksClockWidget::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
-const std::vector<std::string> ribi::ruco::QtRubiksClockWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ruco::QtRubiksClockWidget::GetVersionHistory() noexcept
 {
   return {
     "2012-12-22: version 1.0: initial version"
-    "2014-01-23: version 1.1: put in namespace ruco"
+    "2014-01-23: version 1.1: put in namespace ruco",
+    "2014-03-28: version 1.2: replaced Rect by Boost.Geometry its box class"
   };
 }
 
@@ -177,7 +184,7 @@ void ribi::ruco::QtRubiksClockWidget::mousePressEvent(QMouseEvent * e)
 
 void ribi::ruco::QtRubiksClockWidget::OnResize()
 {
-  resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+  resize(m_widget->GetWidth(),m_widget->GetHeight());
 }
 
 void ribi::ruco::QtRubiksClockWidget::paintEvent(QPaintEvent *)

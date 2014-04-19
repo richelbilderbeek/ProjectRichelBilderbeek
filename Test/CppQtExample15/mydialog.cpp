@@ -1,12 +1,17 @@
 #include "mydialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QPushButton>
 #include <QHBoxLayout>
+#pragma GCC diagnostic pop
 
 MyDialog::MyDialog(const QString s)
   : m_string(s),
   m_button1(new QPushButton),
   m_button2(new QPushButton),
+  m_children{},
   m_layout(new QHBoxLayout)
 {
   m_button1->setText("Left");

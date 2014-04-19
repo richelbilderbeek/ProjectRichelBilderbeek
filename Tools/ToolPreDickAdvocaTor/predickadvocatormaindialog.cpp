@@ -14,7 +14,7 @@ ribi::PreDickAdvocaTorMainDialog::PreDickAdvocaTorMainDialog(const int seed)
   #endif
 }
 
-const std::vector<std::string> ribi::PreDickAdvocaTorMainDialog::GetTeamNames() noexcept
+std::vector<std::string> ribi::PreDickAdvocaTorMainDialog::GetTeamNames() noexcept
 {
   const std::vector<std::string> v {
     "Algeria",
@@ -65,7 +65,7 @@ const std::vector<std::vector<int> > ribi::PreDickAdvocaTorMainDialog::CreateTea
   const std::size_t dutch_index
     = std::distance(
       team_names.begin(),
-      std::find(team_names.begin(),team_names.end(),std::string("Netherlands"))
+      std::find(team_names.begin(),team_names.end(),"Netherlands")
     );
   assert(dutch_index < sz);
   assert(GetTeamNames()[dutch_index] == "Netherlands");

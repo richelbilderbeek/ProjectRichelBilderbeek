@@ -39,7 +39,7 @@ int ribi::QuadraticSolverMenuDialog::ExecuteSpecific(const std::vector<std::stri
   return 1;
 }
 
-const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout() const noexcept
+ribi::About ribi::QuadraticSolverMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -54,7 +54,7 @@ const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::QuadraticSolverMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::QuadraticSolverMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -68,7 +68,7 @@ const ribi::Help ribi::QuadraticSolverMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::QuadraticSolverMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::QuadraticSolverMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramQuadraticSolver
@@ -77,12 +77,12 @@ const boost::shared_ptr<const ribi::Program> ribi::QuadraticSolverMenuDialog::Ge
   return p;
 }
 
-const std::string ribi::QuadraticSolverMenuDialog::GetVersion() const noexcept
+std::string ribi::QuadraticSolverMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2008-xx-xx: version 1.0: initial version in C++ Builder",

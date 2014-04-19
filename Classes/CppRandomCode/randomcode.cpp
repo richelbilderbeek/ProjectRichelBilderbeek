@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cstdlib>
 
-const std::vector<std::string> ribi::RandomCode::CreateRandomCode() noexcept
+std::vector<std::string> ribi::RandomCode::CreateRandomCode() noexcept
 {
   std::vector<std::string> v;
   v.push_back("#include <iostream>");
@@ -42,7 +42,7 @@ const std::vector<std::string> ribi::RandomCode::CreateRandomCode() noexcept
   return v;
 }
 
-const std::string ribi::RandomCode::CreateRandomLine(const unsigned int length) noexcept
+std::string ribi::RandomCode::CreateRandomLine(const unsigned int length) noexcept
 {
   std::string s = "  ";
   for (unsigned int i=0; i!=length; ++i)
@@ -53,7 +53,7 @@ const std::string ribi::RandomCode::CreateRandomLine(const unsigned int length) 
   return s;
 }
 
-const std::string ribi::RandomCode::CreateRandomString() noexcept
+std::string ribi::RandomCode::CreateRandomString() noexcept
 {
   switch (std::rand()%70)
   {
@@ -121,7 +121,7 @@ const std::string ribi::RandomCode::CreateRandomString() noexcept
   return " ";
 }
 
-const ribi::About ribi::RandomCode::GetAbout() noexcept
+ribi::About ribi::RandomCode::GetAbout() noexcept
 {
   const About a(
     "Richel Bilderbeek",
@@ -136,12 +136,12 @@ const ribi::About ribi::RandomCode::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::RandomCode::GetVersion() noexcept
+std::string ribi::RandomCode::GetVersion() noexcept
 {
   return "3.1";
 }
 
-const std::vector<std::string> ribi::RandomCode::GetVersionHistory() noexcept
+std::vector<std::string> ribi::RandomCode::GetVersionHistory() noexcept
 {
   return {
     "2007-10-19: Version 1.0: initial version",

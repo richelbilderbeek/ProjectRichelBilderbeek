@@ -6,10 +6,8 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 
-//#include "chessboard.h"
 #include "chessfwd.h"
 #include "chesswidget.h"
-//struct Rect;
 #pragma GCC diagnostic pop
 
 namespace ribi {

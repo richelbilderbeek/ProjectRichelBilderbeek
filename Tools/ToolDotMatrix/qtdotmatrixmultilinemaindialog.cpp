@@ -42,7 +42,7 @@ void ribi::QtDotMatrixMultiLineMainDialog::on_edit_textChanged()
   ui->image->setPixmap(QPixmap::fromImage(*m_image.get()));
 }
 
-const std::vector<std::string> ribi::QtDotMatrixMultiLineMainDialog::SeperateString(
+std::vector<std::string> ribi::QtDotMatrixMultiLineMainDialog::SeperateString(
   const std::string& input,
   const char seperator) noexcept
 {

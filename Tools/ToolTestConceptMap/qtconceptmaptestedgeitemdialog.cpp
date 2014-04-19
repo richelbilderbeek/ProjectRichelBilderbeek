@@ -48,8 +48,8 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
   assert(m_to);
   {
     const std::size_t index = 2; //Must have examples
-    assert(index < cmap::EdgeFactory::GetTests(m_from,m_to).size());
-    m_edge = cmap::EdgeFactory::GetTests(m_from,m_to)[index];
+    assert(index < cmap::EdgeFactory().GetTests(m_from,m_to).size());
+    m_edge = cmap::EdgeFactory().GetTests(m_from,m_to)[index];
     assert(m_edge->GetConcept());
     assert(m_edge->GetConcept()->GetExamples());
     assert(!m_edge->GetConcept()->GetExamples()->Get().empty()

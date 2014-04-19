@@ -1,8 +1,11 @@
 #include "mydialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QPushButton>
 #include <QVBoxLayout>
-
+#pragma GCC diagnostic pop
 
 MyDialog::MyDialog()
   : m_layout(new QVBoxLayout),

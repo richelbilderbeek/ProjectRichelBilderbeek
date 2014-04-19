@@ -60,7 +60,7 @@ ribi::QtResources::QtResources()
       };
     for (const std::string& s: files)
     {
-      if (!fileio::IsRegularFile(s.c_str()))
+      if (!fileio::FileIo().IsRegularFile(s.c_str()))
       {
         const std::string filename = ":/images/" + s;
         QFile f(filename.c_str());
@@ -75,8 +75,8 @@ ribi::QtResources::QtResources()
         }
         assert(QFile::exists(s.c_str()));
       }
-      if (!fileio::IsRegularFile(s)) { TRACE(s); }
-      assert(fileio::IsRegularFile(s));
+      if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
+      assert(fileio::FileIo().IsRegularFile(s));
     }
   }
   //Try to create the screenshots
@@ -96,27 +96,27 @@ ribi::QtResources::QtResources()
 
     for(const std::string& s: files)
     {
-      if (!fileio::IsRegularFile(s.c_str()))
+      if (!fileio::FileIo().IsRegularFile(s.c_str()))
       {
         const std::string filename = ":/images/" + s;
         QFile f(filename.c_str());
         f.copy(s.c_str());
-        if (!fileio::IsRegularFile(s)) { TRACE(s); }
-        assert(fileio::IsRegularFile(s)
+        if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
+        assert(fileio::FileIo().IsRegularFile(s)
           && "Must add the traced resource to Projects/RichelBilderbeekNl/qtrichelbildeekgalleryresources.qrc");
       }
-      if (!fileio::IsRegularFile(s)) { TRACE(s); }
-      assert(fileio::IsRegularFile(s));
+      if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
+      assert(fileio::FileIo().IsRegularFile(s));
     }
   }
 }
 
-const std::string ribi::QtResources::GetVersion() noexcept
+std::string ribi::QtResources::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtResources::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtResources::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version",

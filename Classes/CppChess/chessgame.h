@@ -75,10 +75,10 @@ struct Game
   const PiecePtr GetPiece(const boost::shared_ptr<const Square> square) const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Get all squares that are visible by a player with the requested color.
   ///If the Color is set to Color::indeterminate, both players' sights

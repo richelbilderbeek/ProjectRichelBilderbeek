@@ -55,11 +55,11 @@ struct fuzzy_equal_to
   }
   const double m_tolerance;
 
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "1.3";
   }
-  static const std::vector<std::string> GetVersionHistory()
+  static std::vector<std::string> GetVersionHistory()
   {
     std::vector<std::string> v;
     v.push_back("2011-02-24: version 1.0: initial version");
@@ -90,11 +90,11 @@ struct fuzzy_equal_to_abs
   }
   const double m_tolerance;
 
-  static const std::string GetVersion() noexcept
+  static std::string GetVersion() noexcept
   {
     return "1.0";
   }
-  static const std::vector<std::string> GetVersionHistory() noexcept
+  static std::vector<std::string> GetVersionHistory() noexcept
   {
     return {
       "2013-11-05: version 1.0: initial version from fuzzy_equal_to"

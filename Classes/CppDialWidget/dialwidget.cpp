@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "dialwidget.h"
 
 #include <cassert>
@@ -32,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dial.h"
 #include "drawcanvas.h"
+#include "geometry.h"
 #include "rectangle.h"
 #include "trace.h"
 #include "textcanvas.h"
@@ -52,17 +54,19 @@ ribi::DialWidget::DialWidget(
   #ifndef NDEBUG
   Test();
   #endif
-  this->SetGeometry(Rect(x,y,width,height));
+  this->SetGeometry(Geometry().CreateRect(x,y,width,height));
 }
 
 void ribi::DialWidget::Click(const int x,const int y) noexcept
 {
   if (!IsClicked(x,y)) return;
-  const int midx = GetGeometry().GetX() + (GetGeometry().GetWidth()  / 2);
-  const int midy = GetGeometry().GetY() + (GetGeometry().GetHeight() / 2);
+  const Geometry h; //Helper
+  const auto g(GetGeometry());
+  const int midx = h.GetLeft(g) + (h.GetWidth( g) / 2);
+  const int midy = h.GetTop( g) + (h.GetHeight(g) / 2);
   const double dx = boost::numeric_cast<double>(x - midx);
   const double dy = boost::numeric_cast<double>(y - midy);
-  const double angle = Dial::GetAngle(dx,dy);
+  const double angle = Geometry().GetAngle(dx,dy);
   const double pi = boost::math::constants::pi<double>();
   const double position = angle / (2.0 * pi);
   assert(position >= 0.0);
@@ -70,12 +74,12 @@ void ribi::DialWidget::Click(const int x,const int y) noexcept
   m_dial->SetPosition(position);
 }
 
-const std::string ribi::DialWidget::GetVersion() noexcept
+std::string ribi::DialWidget::GetVersion() noexcept
 {
-  return "2.4";
+  return "2.5";
 }
 
-const std::vector<std::string> ribi::DialWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::DialWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: Version 1.0: initial version",
@@ -83,32 +87,25 @@ const std::vector<std::string> ribi::DialWidget::GetVersionHistory() noexcept
     "2011-08-20: Version 2.1: added operator<<",
     "2011-08-31: Version 2.2: allow changing the dial its color",
     "2011-09-08: Version 2.3: check for clicking on the dial, instead of its rectangle",
-    "2013-04-30: Version 2.4: added testing, fixed bug in GetAngle"
+    "2013-04-30: Version 2.4: added testing, fixed bug in GetAngle",
+    "2014-03-28: Version 2.5: replaced custom Rect class by Boost.Geometry",
   };
-}
-
-double ribi::DialWidget::GetAngle(const double dx, const double dy) noexcept
-{
-  return Dial::GetAngle(dx,dy);
-}
-
-double ribi::DialWidget::GetDistance(const double dx, const double dy) noexcept
-{
-  return Dial::GetDistance(dx,dy);
 }
 
 bool ribi::DialWidget::IsClicked(const int x, const int y) const noexcept
 {
+  const Geometry h; //Helper
+  const auto g(GetGeometry());
   const double widget_midx
-    = boost::numeric_cast<double>(GetGeometry().GetX())
-    + (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
+    = boost::numeric_cast<double>(GetLeft())
+    + (boost::numeric_cast<double>(h.GetWidth(g)) / 2.0);
   const double widget_midy
-    = boost::numeric_cast<double>(GetGeometry().GetY())
-    + (boost::numeric_cast<double>(this->GetGeometry().GetHeight()) / 2.0);
+    = boost::numeric_cast<double>(h.GetTop(g))
+    + (boost::numeric_cast<double>(h.GetHeight(g)) / 2.0);
   const double x_d = boost::numeric_cast<double>(x);
   const double y_d = boost::numeric_cast<double>(y);
-  return GetDistance(x_d - widget_midx, y_d - widget_midy)
-    < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
+  return Geometry().GetDistance(x_d - widget_midx, y_d - widget_midy)
+    < (boost::numeric_cast<double>(h.GetWidth(g)) / 2.0);
 }
 
 void ribi::DialWidget::Test() noexcept
@@ -230,8 +227,9 @@ std::ostream& ribi::operator<<(std::ostream& os, const DialWidget& widget) noexc
   os
     << "<DialWidget>"
     << *widget.m_dial
-    << widget.GetGeometry()
-    << "</DialWidget>";
+    //<< widget.GetGeometry()
+    << "</DialWidget>"
+  ;
   return os;
 }
 

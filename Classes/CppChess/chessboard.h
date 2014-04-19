@@ -9,11 +9,13 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/logic/tribool.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "chessfwd.h"
 #include "chesscolor.h"
 #include "chessmove.h"
+#include "chesscastling.h"
 //#include "chesspiece.h"
 #pragma GCC diagnostic pop
 
@@ -56,39 +58,39 @@ struct Board
   //const Piece GetPiece(const int x, const int y) const;
 
   ///Create Pieces in their startup positions
-  static const Pieces GetInitialSetup();
+  static Pieces GetInitialSetup();
 
   ///Get the Move history
   //const std::vector<boost::shared_ptr<Move> >& GetMoveHistory() const { return m_move_history; }
 
   ///Collect all moves that are possible for a Piece at a certain Square.
   ///If there is no Piece at that Square, no Moves are returned
-  const std::vector<boost::shared_ptr<Move> > GetMoves(const boost::shared_ptr<const Square> square) const;
+  std::vector<boost::shared_ptr<Move> > GetMoves(const boost::shared_ptr<const Square> square) const;
 
   ///Collect all moves that are possible
-  const std::vector<boost::shared_ptr<Move> > GetMoves(const Player player) const;
+  std::vector<boost::shared_ptr<Move> > GetMoves(const Player player) const;
 
   ///Find a Piece at a certain Square.
   ///If there is no Piece at that Square, an empty Piece is returned
-  const PiecePtr GetPiece(const boost::shared_ptr<const Square> square);
+  PiecePtr GetPiece(const boost::shared_ptr<const Square> square);
 
   ///Find a Piece at a certain Square.
   ///If there is no Piece at that Square, an empty Piece is returned
-  const ConstPiecePtr GetPiece(const boost::shared_ptr<const Square> square) const;
+  ConstPiecePtr GetPiece(const boost::shared_ptr<const Square> square) const;
 
   ///Obtain all read-only Piece instances
-  const ConstPieces GetPieces() const;
+  ConstPieces GetPieces() const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Get all squares that are visible by a player with the requested color.
   ///If the Color is set to Color::indeterminate, both players' sights
   ///are returned
-  const BitBoard GetVisibleSquares(const Player player) const;
+  BitBoard GetVisibleSquares(const Player player) const;
 
   ///Is, in the current position, the player being in check?
   bool IsCheck(const Player player) const;
@@ -120,11 +122,11 @@ struct Board
 
   ///Given a Move with a certain destination, deduce all Moves (with a starting position added)
   ///that have the same destination
-  const std::vector<boost::shared_ptr<const Move> > CompleteMove(
+  std::vector<boost::shared_ptr<const Move> > CompleteMove(
     const boost::shared_ptr<const Move> move,
     const Player player) const;
 
-  static const std::vector<boost::shared_ptr<Square > > CreateSquaresBetweenKingAndRook(
+  static std::vector<boost::shared_ptr<Square > > CreateSquaresBetweenKingAndRook(
     const Player player,const Castling castling);
 
   ///Check if all squares between two Squares are empty (e
@@ -142,8 +144,15 @@ struct Board
 
   //friend bool operator==(const Board& lhs, const Board& rhs);
   friend class BoardFactory;
+  //friend class boost::shared_ptr<Board>;
+  friend boost::shared_ptr<Board> boost::make_shared<Board>(const Pieces&);
+
+  friend void boost::checked_delete<>(      Board *);
+  friend void boost::checked_delete<>(const Board *);
+  friend class boost::detail::sp_ms_deleter<Board>;
+  friend class boost::detail::sp_ms_deleter<const Board>;
+
   friend std::ostream& operator<<(std::ostream& os, const Board& board);
-  friend void boost::checked_delete<>(Board *);
 };
 
 bool AreEqual(const Board::ConstPieces& lhs,const Board::ConstPieces& rhs);

@@ -38,22 +38,22 @@ struct Program
   virtual ~Program() noexcept {}
 
   ///Create a std::vector with all different Program instances in it
-  static const boost::shared_ptr<Program> CreateProgram(const ProgramType type) noexcept;
+  static boost::shared_ptr<Program> CreateProgram(const ProgramType type) noexcept;
 
   ///Create a std::vector with all different Program instances in it
-  static const std::vector<boost::shared_ptr<Program> > GetAllPrograms() noexcept;
+  static std::vector<boost::shared_ptr<Program> > GetAllPrograms() noexcept;
 
   ///Get the filename of a console version screenshot
-  virtual const std::string GetFilenameConsole() const noexcept = 0;
+  virtual std::string GetFilenameConsole() const noexcept = 0;
 
   ///Get the filename of a desktop platform-independent version screenshot
-  virtual const std::string GetFilenameDesktop() const noexcept = 0;
+  virtual std::string GetFilenameDesktop() const noexcept = 0;
 
   ///Get the filename of a desktop windows-only version screenshot
-  virtual const std::string GetFilenameDesktopWindowsOnly() const noexcept = 0;
+  virtual std::string GetFilenameDesktopWindowsOnly() const noexcept = 0;
 
   ///Get the filename of a web application version screenshot
-  virtual const std::string GetFilenameWeb() const noexcept = 0;
+  virtual std::string GetFilenameWeb() const noexcept = 0;
 
   ///Status of the console-only version
   virtual ProgramStatus GetStatusConsole() const noexcept = 0;
@@ -68,29 +68,29 @@ struct Program
   virtual ProgramStatus GetStatusWebApplication() const noexcept = 0;
 
   ///The item its enum name, e.g. 'k3OpEenRij'
-  const std::string GetName() const noexcept;
+  std::string GetName() const noexcept;
 
   ///The item its on-screen name, e.g. 'K3-Op-Een-Rij'
-  const std::string GetScreenName() const noexcept;
+  std::string GetScreenName() const noexcept;
 
   ///The program, e.g. 'RichelBilderbeekProgramType::boenken'
   virtual ProgramType GetType() const noexcept = 0;
 
   ///The type of program its name, e.g. 'Game'
-  virtual const std::string GetTypeName() const noexcept = 0;
+  virtual std::string GetTypeName() const noexcept = 0;
 
   ///The item its URL (at http://ww.richelbilderbeek.nl), e.g. 'ToolSimMysteryMachine.htm'
-  virtual const std::string GetUrl() const noexcept = 0;
+  virtual std::string GetUrl() const noexcept = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///Get the base of a filename
-  const std::string GetFilenameBase() const noexcept;
+  std::string GetFilenameBase() const noexcept;
 };
 
 ///ProgramClass is the base class for all class demonstration programs
@@ -99,7 +99,7 @@ struct ProgramClass : public Program
   virtual ~ProgramClass() noexcept {}
 
   ///The type of program its name, e.g. 'game'
-  const std::string GetTypeName() const noexcept { return "class"; }
+  std::string GetTypeName() const noexcept { return "class"; }
 };
 
 struct ProgramGame : public Program
@@ -107,7 +107,7 @@ struct ProgramGame : public Program
   virtual ~ProgramGame() noexcept {}
 
   ///The type of program its name, e.g. 'game'
-  const std::string GetTypeName() const noexcept { return "game"; }
+  std::string GetTypeName() const noexcept { return "game"; }
 };
 
 struct ProgramProject : public Program
@@ -115,7 +115,7 @@ struct ProgramProject : public Program
   virtual ~ProgramProject() noexcept {}
 
   ///The type of program its name, e.g. 'game'
-  const std::string GetTypeName() const noexcept { return "project"; }
+  std::string GetTypeName() const noexcept { return "project"; }
 };
 
 struct ProgramTool : public Program
@@ -123,2867 +123,2942 @@ struct ProgramTool : public Program
   virtual ~ProgramTool() noexcept {}
 
   ///The type of program its name, e.g. 'game'
-  const std::string GetTypeName() const noexcept { return "tool"; }
+  std::string GetTypeName() const noexcept { return "tool"; }
 };
 
 struct ProgramAminoAcidFighter : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameAminoAcidFighter_0_9.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameAminoAcidFighter_0_9.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "AminoAcidFighter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameAminoAcidFighter_0_9.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameAminoAcidFighter_0_9.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "AminoAcidFighter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::aminoAcidFighter; }
-  const std::string GetUrl() const noexcept { return "GameAminoAcidFighter.htm"; }
+  std::string GetUrl() const noexcept { return "GameAminoAcidFighter.htm"; }
 };
 
 struct ProgramAthleticLand : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Athletic Land"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Athletic Land"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::athleticLand; }
-  const std::string GetUrl() const noexcept { return "GameAthleticLand.htm"; }
+  std::string GetUrl() const noexcept { return "GameAthleticLand.htm"; }
 };
 
 struct ProgramAthleticLandVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameAthleticLand_0_9.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Athletic Land (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameAthleticLand_0_9.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Athletic Land (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::athleticLandVcl; }
-  const std::string GetUrl() const noexcept { return "GameAthleticLandVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameAthleticLandVcl.htm"; }
 };
 
 struct ProgramAsciiArter : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolAsciiArter_5_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolAsciiArter_5_2.png"; }
-  const std::string GetScreenName() const noexcept { return "AsciiArter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolAsciiArter_5_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolAsciiArter_5_2.png"; }
+  std::string GetScreenName() const noexcept { return "AsciiArter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::asciiArter; }
-  const std::string GetUrl() const noexcept { return "ToolAsciiArter.htm"; }
+  std::string GetUrl() const noexcept { return "ToolAsciiArter.htm"; }
 };
 
 struct ProgramAsciiArterVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolAsciiArter_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "AsciiArter (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolAsciiArter_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "AsciiArter (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::asciiArterVcl; }
-  const std::string GetUrl() const noexcept { return "ToolAsciiArterVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolAsciiArterVcl.htm"; }
 };
 
 struct ProgramBarbaImage : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolBarbaImage_1_3.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "BarbaImage"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolBarbaImage_1_3.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "BarbaImage"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::barbaImage; }
-  const std::string GetUrl() const noexcept { return "ToolBarbaImage.htm"; }
+  std::string GetUrl() const noexcept { return "ToolBarbaImage.htm"; }
 };
 
 struct ProgramBeerWanter : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameBeerWanter5.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "BeerWanter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameBeerWanter5.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "BeerWanter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::beerWanter; }
-  const std::string GetUrl() const noexcept { return "GameBeerWanter.htm"; }
+  std::string GetUrl() const noexcept { return "GameBeerWanter.htm"; }
 };
 
 struct ProgramBeerWanterVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBeerWanter3.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "BeerWanter (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBeerWanter3.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "BeerWanter (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::beerWanterVcl; }
-  const std::string GetUrl() const noexcept { return "GameBeerWanterVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameBeerWanterVcl.htm"; }
 };
 
 struct ProgramBochum : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ProjectBochumGaborFiltersResults.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Project Bochum"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ProjectBochumGaborFiltersResults.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Project Bochum"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::bochum; }
-  const std::string GetUrl() const noexcept { return "ProjectBochum.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectBochum.htm"; }
 };
 
 struct ProgramBoenken : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameBoenken_4_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Boenken"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameBoenken_4_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Boenken"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::boenken; }
-  const std::string GetUrl() const noexcept { return "GameBoenken.htm"; }
+  std::string GetUrl() const noexcept { return "GameBoenken.htm"; }
 };
 
 struct ProgramBoenkenVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBoenken_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Boenken (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBoenken_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Boenken (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::boenkenVcl; }
-  const std::string GetUrl() const noexcept { return "GameBoenkenVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameBoenkenVcl.htm"; }
 };
 
 struct ProgramBrainweaver : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Brainweaver"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Brainweaver"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::brainweaver; }
-  const std::string GetUrl() const noexcept { return "ProjectBrainweaver.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectBrainweaver.htm"; }
 };
 
 struct ProgramBristol : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ProjectBristol_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Bristol"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ProjectBristol_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Bristol"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::bristol; }
-  const std::string GetUrl() const noexcept { return "ProjectBristol.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectBristol.htm"; }
+};
+
+struct ProgramCaesarCipher : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "CaesarCipher"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }
+  ProgramType GetType() const noexcept { return ProgramType::caesarCipher; }
+  std::string GetUrl() const noexcept { return "ToolCaesarCipher.htm"; }
 };
 
 struct ProgramChrisWiley : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectChrisWiley_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Project Chris Wiley"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectChrisWiley_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Project Chris Wiley"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::chrisWiley; }
-  const std::string GetUrl() const noexcept { return "ProjectChrisWiley.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectChrisWiley.htm"; }
+};
+
+struct ProgramCodeBreaker : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "CodeBreaker"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::codeBreaker; }
+  std::string GetUrl() const noexcept { return "ToolCodeBreaker.htm"; }
 };
 
 struct ProgramCodeToHtml : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolCodeToHtml_2_3.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolCodeToHtml_2_0.png"; }
-  const std::string GetScreenName() const noexcept { return "CodeToHtml"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolCodeToHtml_2_3.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolCodeToHtml_2_0.png"; }
+  std::string GetScreenName() const noexcept { return "CodeToHtml"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::codeToHtml; }
-  const std::string GetUrl() const noexcept { return "ToolCodeToHtml.htm"; }
+  std::string GetUrl() const noexcept { return "ToolCodeToHtml.htm"; }
 };
 
 struct ProgramConnectThree : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameConnectThree_5_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "GameConnectThree_6_0.png"; }
-  const std::string GetScreenName() const noexcept { return "ConnectThree"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameConnectThree_5_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "GameConnectThree_6_0.png"; }
+  std::string GetScreenName() const noexcept { return "ConnectThree"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::connectThree; }
-  const std::string GetUrl() const noexcept { return "GameConnectThree.htm"; }
+  std::string GetUrl() const noexcept { return "GameConnectThree.htm"; }
 };
 
 struct ProgramCorridor : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameCorridor.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Corridor"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameCorridor.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Corridor"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::corridor; }
-  const std::string GetUrl() const noexcept { return "GameCorridor.htm"; }
+  std::string GetUrl() const noexcept { return "GameCorridor.htm"; }
 };
 
 struct ProgramCreateGlossary : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolCreateGlossary_1_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "CreateGlossary"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolCreateGlossary_1_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "CreateGlossary"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::createGlossary; }
-  const std::string GetUrl() const noexcept { return "ToolCreateGlossary.htm"; }
+  std::string GetUrl() const noexcept { return "ToolCreateGlossary.htm"; }
 };
 
 struct ProgramCreateQtProjectZipFile : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolCreateQtProjectZipFile_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "CreateQtProjectZipFile"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolCreateQtProjectZipFile_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "CreateQtProjectZipFile"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::createQtProjectZipFile; }
-  const std::string GetUrl() const noexcept { return "ToolCreateQtProjectZipFile.htm"; }
+  std::string GetUrl() const noexcept { return "ToolCreateQtProjectZipFile.htm"; }
 };
 
 struct ProgramCrossPoll : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectCrossPoll3.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "CrossPoll"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectCrossPoll3.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "CrossPoll"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::crossPoll; }
-  const std::string GetUrl() const noexcept { return "ProjectCrossPoll.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectCrossPoll.htm"; }
 };
 
 struct ProgramDasWahreSchlagerfest : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return "GameDasWahreSchlagerfest_2_5.png"; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameDasWahreSchlagerfest_2_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Das Wahre Schlagerfest"; }
+  std::string GetFilenameConsole() const noexcept { return "GameDasWahreSchlagerfest_2_5.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "GameDasWahreSchlagerfest_2_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Das Wahre Schlagerfest"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::dasWahreSchlagerfest; }
-  const std::string GetUrl() const noexcept { return "GameDasWahreSchlagerfest.htm"; }
+  std::string GetUrl() const noexcept { return "GameDasWahreSchlagerfest.htm"; }
 };
 
 struct ProgramDasWahreSchlagerfestVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameDasWahreSchlagerfest_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Das Wahre Schlagerfest (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameDasWahreSchlagerfest_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Das Wahre Schlagerfest (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::dasWahreSchlagerfestVcl; }
-  const std::string GetUrl() const noexcept { return "GameDasWahreSchlagerfestVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameDasWahreSchlagerfestVcl.htm"; }
 };
 
 struct ProgramDotMatrix : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolDotMatrix_2_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "DotMatrix"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolDotMatrix_2_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "DotMatrix"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::dotMatrix; }
-  const std::string GetUrl() const noexcept { return "ToolDotMatrix.htm"; }
+  std::string GetUrl() const noexcept { return "ToolDotMatrix.htm"; }
 };
 
 struct ProgramDotMatrixVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolDotMatrix_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "DotMatrix (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolDotMatrix_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "DotMatrix (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::dotMatrixVcl; }
-  const std::string GetUrl() const noexcept { return "ToolDotMatrixVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolDotMatrixVcl.htm"; }
+};
+
+struct ProgramEncranger : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolEncranger_2_5.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolEncranger_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return "ToolEncranger_2_1.png"; }
+  std::string GetScreenName() const noexcept { return "Encranger"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
+  ProgramType GetType() const noexcept { return ProgramType::encranger; }
+  std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }
 };
 
 struct ProgramEverythingToPiecesShooter : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "EverythingToPiecesShooter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "EverythingToPiecesShooter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::everythingToPiecesShooter; }
-  const std::string GetUrl() const noexcept { return "GameEverythingToPiecesShooter.htm"; }
+  std::string GetUrl() const noexcept { return "GameEverythingToPiecesShooter.htm"; }
 };
 
 struct ProgramFakeEvy : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "GrayFakeEvy"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "GrayFakeEvy"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::fakeEvy; }
-  const std::string GetUrl() const noexcept { return "ToolFakeEvy.htm"; }
+  std::string GetUrl() const noexcept { return "ToolFakeEvy.htm"; }
 };
 
 struct ProgramFilterOperationer : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolFilterOperationer_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "FilterOperationer"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolFilterOperationer_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "FilterOperationer"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::filterOperationer; }
-  const std::string GetUrl() const noexcept { return "ToolFilterOperationer.htm"; }
+  std::string GetUrl() const noexcept { return "ToolFilterOperationer.htm"; }
 };
 
 struct ProgramFilterOperationerVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFilterOperationer_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "FilterOperationer (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFilterOperationer_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "FilterOperationer (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::filterOperationerVcl; }
-  const std::string GetUrl() const noexcept { return "ToolFilterOperationerVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolFilterOperationerVcl.htm"; }
 };
 
 struct ProgramFryskLeareLieder : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFryskLeareLieder_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "FryskLeareLieder"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFryskLeareLieder_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "FryskLeareLieder"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::fryskLeareLieder; }
-  const std::string GetUrl() const noexcept { return "ToolFryskLeareLieder.htm"; }
+  std::string GetUrl() const noexcept { return "ToolFryskLeareLieder.htm"; }
 };
 
 struct ProgramFunctionPlotter : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolFunctionPlotter_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "FunctionPlotter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolFunctionPlotter_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "FunctionPlotter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::functionPlotter; }
-  const std::string GetUrl() const noexcept { return "ToolFunctionPlotter.htm"; }
+  std::string GetUrl() const noexcept { return "ToolFunctionPlotter.htm"; }
 };
 
 struct ProgramFunctionPlotterVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFunctionPlotter_1_1.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "FunctionPlotter (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFunctionPlotter_1_1.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "FunctionPlotter (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::functionPlotterVcl; }
-  const std::string GetUrl() const noexcept { return "ToolFunctionPlotterVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolFunctionPlotterVcl.htm"; }
 };
 
 struct ProgramGaborFilter : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolGaborFilter_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "GaborFilter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolGaborFilter_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "GaborFilter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::gaborFilter; }
-  const std::string GetUrl() const noexcept { return "ToolGaborFilter.htm"; }
+  std::string GetUrl() const noexcept { return "ToolGaborFilter.htm"; }
 };
 
 struct ProgramGaborFilterVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGaborFilter_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "GaborFilter (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGaborFilter_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "GaborFilter (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::gaborFilterVcl; }
-  const std::string GetUrl() const noexcept { return "ToolGaborFilterVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolGaborFilterVcl.htm"; }
 };
 
 struct ProgramGrayCoder : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolGrayCoder_2_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "GrayCoder"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolGrayCoder_2_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "GrayCoder"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::grayCoder; }
-  const std::string GetUrl() const noexcept { return "ToolGrayCoder.htm"; }
+  std::string GetUrl() const noexcept { return "ToolGrayCoder.htm"; }
 };
 
 struct ProgramGrayCoderVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGrayCoder_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "GrayCoder (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGrayCoder_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "GrayCoder (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::grayCoderVcl; }
-  const std::string GetUrl() const noexcept { return "ToolGrayCoderVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolGrayCoderVcl.htm"; }
 };
 
 struct ProgramGtst : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ProjectGtst_1_2.png"; }
-  const std::string GetScreenName() const noexcept { return "GTST"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ProjectGtst_1_2.png"; }
+  std::string GetScreenName() const noexcept { return "GTST"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::gtst; }
-  const std::string GetUrl() const noexcept { return "ProjectGtst.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectGtst.htm"; }
 };
 
 struct ProgramHistogramEqualizationer : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolHistogramEqualizationer_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "HistogramEqualizationer"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolHistogramEqualizationer_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "HistogramEqualizationer"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::unk; }
   ProgramType GetType() const noexcept { return ProgramType::histogramEqualizationer; }
-  const std::string GetUrl() const noexcept { return "ToolHistogramEqualizationer.htm"; }
+  std::string GetUrl() const noexcept { return "ToolHistogramEqualizationer.htm"; }
 };
 
 struct ProgramHistogramEqualizationerVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolHistogramEqualizationer_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "HistogramEqualizationer (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolHistogramEqualizationer_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "HistogramEqualizationer (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::histogramEqualizationerVcl; }
-  const std::string GetUrl() const noexcept { return "ToolHistogramEqualizationerVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolHistogramEqualizationerVcl.htm"; }
 };
 
 struct ProgramHometrainer : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolHometrainer_2_0.png"; }
-  const std::string GetScreenName() const noexcept { return "Hometrainer"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolHometrainer_2_0.png"; }
+  std::string GetScreenName() const noexcept { return "Hometrainer"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::hometrainer; }
-  const std::string GetUrl() const noexcept { return "ToolHometrainer.htm"; }
+  std::string GetUrl() const noexcept { return "ToolHometrainer.htm"; }
 };
 
 struct ProgramHometrainerVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolHometrainer_1_8.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Hometrainer (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolHometrainer_1_8.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Hometrainer (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::hometrainerVcl; }
-  const std::string GetUrl() const noexcept { return "ToolHometrainerVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolHometrainerVcl.htm"; }
 };
 
 struct ProgramImageRotater : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolImageRotater_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ImageRotater"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolImageRotater_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "ImageRotater"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::unk; }
   ProgramType GetType() const noexcept { return ProgramType::imageRotater; }
-  const std::string GetUrl() const noexcept { return "ToolImageRotater.htm"; }
+  std::string GetUrl() const noexcept { return "ToolImageRotater.htm"; }
 };
 
 
 struct ProgramImageRotaterClx : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolImageRotaterClx_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ImageRotater (CLX)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolImageRotaterClx_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "ImageRotater (CLX)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::imageRotaterClx; }
-  const std::string GetUrl() const noexcept { return "ToolImageRotaterClx.htm"; }
+  std::string GetUrl() const noexcept { return "ToolImageRotaterClx.htm"; }
 };
 
 struct ProgramImageRotaterVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolImageRotaterVcl_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ImageRotater (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolImageRotaterVcl_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "ImageRotater (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::imageRotaterVcl; }
-  const std::string GetUrl() const noexcept { return "ToolImageRotaterVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolImageRotaterVcl.htm"; }
 };
 
 struct ProgramK3OpEenRij : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameK3OpEenRij_6_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "GameK3OpEenRij_5_0.png"; }
-  const std::string GetScreenName() const noexcept { return "K3 Op Een Rij"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameK3OpEenRij_6_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "GameK3OpEenRij_5_0.png"; }
+  std::string GetScreenName() const noexcept { return "K3 Op Een Rij"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::k3OpEenRij; }
-  const std::string GetUrl() const noexcept { return "GameK3OpEenRij.htm"; }
+  std::string GetUrl() const noexcept { return "GameK3OpEenRij.htm"; }
 };
 
 struct ProgramK3OpEenRijVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameK3OpEenRij_4_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "K3 Op Een Rij (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameK3OpEenRij_4_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "K3 Op Een Rij (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::k3OpEenRijVcl; }
-  const std::string GetUrl() const noexcept { return "GameK3OpEenRijVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameK3OpEenRijVcl.htm"; }
 };
 
 struct ProgramKalmanFilterer : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolKalmanFilterer_1_11.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "KalmanFilterer"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolKalmanFilterer_1_11.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "KalmanFilterer"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::kalmanFilterer; }
-  const std::string GetUrl() const noexcept { return "ToolKalmanFilterer.htm"; }
+  std::string GetUrl() const noexcept { return "ToolKalmanFilterer.htm"; }
 };
 
 struct ProgramKeySender : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolKeySender_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "KeySender"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolKeySender_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "KeySender"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::keySender; }
-  const std::string GetUrl() const noexcept { return "ToolKeySender.htm"; }
+  std::string GetUrl() const noexcept { return "ToolKeySender.htm"; }
 };
 
 struct ProgramKnokfighter : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Knokfighter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Knokfighter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::knokfighter; }
-  const std::string GetUrl() const noexcept { return "GameKnokfighter.htm"; }
+  std::string GetUrl() const noexcept { return "GameKnokfighter.htm"; }
 };
 
 struct ProgramKnokfighterVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameKnokfighter_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Knokfighter (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameKnokfighter_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Knokfighter (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::knokfighterVcl; }
-  const std::string GetUrl() const noexcept { return "GameKnokfighterVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameKnokfighterVcl.htm"; }
 };
 
 
 struct ProgramKTouchLectureCreator : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "KTouchLectureCreator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "KTouchLectureCreator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::kTouchLectureCreator; }
-  const std::string GetUrl() const noexcept { return "ToolKTouchLectureCreator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolKTouchLectureCreator.htm"; }
 };
 
 struct ProgramLambdaBot : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "LambdaBot"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "LambdaBot"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::lambdaBot; }
-  const std::string GetUrl() const noexcept { return "ToolLambdaBot.htm"; }
+  std::string GetUrl() const noexcept { return "ToolLambdaBot.htm"; }
 };
 
 struct ProgramLearyCircumplex : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolLearyCircumplex_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "LearyCircumplex"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolLearyCircumplex_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "LearyCircumplex"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::learyCircumplex; }
-  const std::string GetUrl() const noexcept { return "ToolLearyCircumplex.htm"; }
+  std::string GetUrl() const noexcept { return "ToolLearyCircumplex.htm"; }
 };
 
 struct ProgramLogisticGrowthSimulator : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolLogisticGrowthSimulator_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "LogisticGrowthSimulator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolLogisticGrowthSimulator_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "LogisticGrowthSimulator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::logisticGrowthSimulator; }
-  const std::string GetUrl() const noexcept { return "ToolLogisticGrowthSimulator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolLogisticGrowthSimulator.htm"; }
 };
 
 struct ProgramLoose : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolLoose_2_0.png"; }
-  const std::string GetScreenName() const noexcept { return "Loose"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolLoose_2_0.png"; }
+  std::string GetScreenName() const noexcept { return "Loose"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::loose; }
-  const std::string GetUrl() const noexcept { return "ToolLoose.htm"; }
+  std::string GetUrl() const noexcept { return "ToolLoose.htm"; }
 };
 
 struct ProgramMartianCafeTuinemaTycoon : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMartianCafeTuinemaTycoon_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MartianCafeTuinemaTycoon"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMartianCafeTuinemaTycoon_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MartianCafeTuinemaTycoon"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::martianCafeTuinemaTycoon; }
-  const std::string GetUrl() const noexcept { return "GameMartianCafeTuinemaTycoon.htm"; }
+  std::string GetUrl() const noexcept { return "GameMartianCafeTuinemaTycoon.htm"; }
 };
 
 struct ProgramMazeCreator : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolMazeCreator_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MazeCreator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolMazeCreator_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MazeCreator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::mazeCreator; }
-  const std::string GetUrl() const noexcept { return "ToolMazeCreator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolMazeCreator.htm"; }
 };
 
 struct ProgramMazeCreatorVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMazeCreator_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MazeCreator (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMazeCreator_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MazeCreator (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::mazeCreatorVcl; }
-  const std::string GetUrl() const noexcept { return "ToolMazeCreatorVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolMazeCreatorVcl.htm"; }
 };
 
 struct ProgramMaziak : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameMaziak_1_3.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Maziak"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameMaziak_1_3.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Maziak"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::maziak; }
-  const std::string GetUrl() const noexcept { return "GameMaziak.htm"; }
+  std::string GetUrl() const noexcept { return "GameMaziak.htm"; }
 };
 
 struct ProgramMaziakVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMaziak_2_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Maziak (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMaziak_2_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Maziak (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::maziakVcl; }
-  const std::string GetUrl() const noexcept { return "GameMaziakVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameMaziakVcl.htm"; }
 };
 
 struct ProgramMetZnDrieen : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MetZnDrieen"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MetZnDrieen"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::metZnDrieen; }
-  const std::string GetUrl() const noexcept { return "GameMetZnDrieen.htm"; }
+  std::string GetUrl() const noexcept { return "GameMetZnDrieen.htm"; }
 };
 
 struct ProgramMetZnDrieenVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMetZnDrieen_1_3.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MetZnDrieen (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMetZnDrieen_1_3.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MetZnDrieen (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::metZnDrieenVcl; }
-  const std::string GetUrl() const noexcept { return "GameMetZnDrieenVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameMetZnDrieenVcl.htm"; }
 };
 
 struct ProgramMidiLessonCreator : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MidiLessonCreator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MidiLessonCreator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::midiLessonCreator; }
-  const std::string GetUrl() const noexcept { return "ToolMidiLessonCreator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolMidiLessonCreator.htm"; }
 };
 
 struct ProgramMorpher : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMorpher_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Morpher"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMorpher_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Morpher"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::morpher; }
-  const std::string GetUrl() const noexcept { return "ToolMorpher.htm"; }
+  std::string GetUrl() const noexcept { return "ToolMorpher.htm"; }
 };
 
 struct ProgramMultiEncranger : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MultiEncranger"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MultiEncranger"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::multiEncranger; }
-  const std::string GetUrl() const noexcept { return "ToolMultiEncranger.htm"; }
+  std::string GetUrl() const noexcept { return "ToolMultiEncranger.htm"; }
 };
 
 struct ProgramMultiEncrangerVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMultiEncranger_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MultiEncranger (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMultiEncranger_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MultiEncranger (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::multiEncrangerVcl; }
-  const std::string GetUrl() const noexcept { return "ToolMultiEncrangerVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolMultiEncrangerVcl.htm"; }
 };
 
 struct ProgramMuscaDomestica : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectMuscaDomestica_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Project Musca Domestica"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectMuscaDomestica_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Project Musca Domestica"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::muscaDomestica; }
-  const std::string GetUrl() const noexcept { return "ProjectMuscaDomestica.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectMuscaDomestica.htm"; }
 };
 
 struct ProgramMusicTheory : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolMusicTheory_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "MusicTheory"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolMusicTheory_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "MusicTheory"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::musicTheory; }
-  const std::string GetUrl() const noexcept { return "ToolMusicTheory.htm"; }
+  std::string GetUrl() const noexcept { return "ToolMusicTheory.htm"; }
 };
 
 struct ProgramNdsmake : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Ndsmake"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Ndsmake"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::ndsmake; }
-  const std::string GetUrl() const noexcept { return "ToolNdsmake.htm"; }
+  std::string GetUrl() const noexcept { return "ToolNdsmake.htm"; }
 };
 
 struct ProgramNdsPaint : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "NdsPaint"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "NdsPaint"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::ndsPaint; }
-  const std::string GetUrl() const noexcept { return "ToolNdsPaint.htm"; }
+  std::string GetUrl() const noexcept { return "ToolNdsPaint.htm"; }
 };
 
 struct ProgramPaperRockScissors : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolPaperRockScissors_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "PaperRockScissors"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolPaperRockScissors_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "PaperRockScissors"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::paperRockScissors; }
-  const std::string GetUrl() const noexcept { return "ToolPaperRockScissors.htm"; }
+  std::string GetUrl() const noexcept { return "ToolPaperRockScissors.htm"; }
 };
 
 struct ProgramPause : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Pause"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Pause"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::pause; }
-  const std::string GetUrl() const noexcept { return "ToolPause.htm"; }
+  std::string GetUrl() const noexcept { return "ToolPause.htm"; }
 };
 
 struct ProgramPerfectElasticCollision : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolPerfectElasticCollision_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "PerfectElasticCollision"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolPerfectElasticCollision_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "PerfectElasticCollision"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::perfectElasticCollision; }
-  const std::string GetUrl() const noexcept { return "ToolPerfectElasticCollision.htm"; }
+  std::string GetUrl() const noexcept { return "ToolPerfectElasticCollision.htm"; }
 };
 
 struct ProgramPicToCode : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolPicToCode_1_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolPicToCode_1_3.png"; }
-  const std::string GetScreenName() const noexcept { return "PicToCode"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolPicToCode_1_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolPicToCode_1_3.png"; }
+  std::string GetScreenName() const noexcept { return "PicToCode"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::picToCode; }
-  const std::string GetUrl() const noexcept { return "ToolPicToCode.htm"; }
+  std::string GetUrl() const noexcept { return "ToolPicToCode.htm"; }
 };
 
 struct ProgramPixelator : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Pixelator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Pixelator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::pixelator; }
-  const std::string GetUrl() const noexcept { return "ToolPixelator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolPixelator.htm"; }
 };
 
 struct ProgramPixelatorVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolPixelator_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Pixelator (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolPixelator_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Pixelator (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::pixelatorVcl; }
-  const std::string GetUrl() const noexcept { return "ToolPixelatorVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolPixelatorVcl.htm"; }
 };
 
 struct ProgramPokeVolley : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GamePokeVolley_2_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "PokeVolley"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GamePokeVolley_2_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "PokeVolley"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::pokeVolley; }
-  const std::string GetUrl() const noexcept { return "GamePokeVolley.htm"; }
+  std::string GetUrl() const noexcept { return "GamePokeVolley.htm"; }
 };
 
 struct ProgramPong : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Pong"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Pong"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::pong; }
-  const std::string GetUrl() const noexcept { return "GamePong.htm"; }
+  std::string GetUrl() const noexcept { return "GamePong.htm"; }
 };
 
 struct ProgramPreDickAdvocaTor : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "PreDickAdvocaTor"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "PreDickAdvocaTor"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::preDickAdvocaTor; }
-  const std::string GetUrl() const noexcept { return "ToolPreDickAdvocaTor.htm"; }
+  std::string GetUrl() const noexcept { return "ToolPreDickAdvocaTor.htm"; }
 };
 
 struct ProgramPrimeExpert : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolPrimeExpert_2_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolTestPrimeExpert_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "PrimeExpert"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolPrimeExpert_2_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolTestPrimeExpert_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "PrimeExpert"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::primeExpert; }
-  const std::string GetUrl() const noexcept { return "ToolPrimeExpert.htm"; }
+  std::string GetUrl() const noexcept { return "ToolPrimeExpert.htm"; }
 };
 
 struct ProgramProjectRichelBilderbeek : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ProjectRichelBilderbeek"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "ProjectRichelBilderbeek"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::projectRichelBilderbeek; }
-  const std::string GetUrl() const noexcept { return "ProjectRichelBilderbeek.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectRichelBilderbeek.htm"; }
 };
 
 
 struct ProgramPylos : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GamePylos_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Pylos"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GamePylos_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Pylos"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::pylos; }
-  const std::string GetUrl() const noexcept { return "GamePylos.htm"; }
+  std::string GetUrl() const noexcept { return "GamePylos.htm"; }
 };
 
 struct ProgramQmakeWatcher : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "QmakeWatcher"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "QmakeWatcher"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::qmakeWatcher; }
-  const std::string GetUrl() const noexcept { return "ToolQmakeWatcher.htm"; }
+  std::string GetUrl() const noexcept { return "ToolQmakeWatcher.htm"; }
 };
 
 struct ProgramQuadraticSolver : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return "ToolQuadraticSolver_1_0.png"; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "QuadraticSolver"; }
+  std::string GetFilenameConsole() const noexcept { return "ToolQuadraticSolver_1_0.png"; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "QuadraticSolver"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::quadraticSolver; }
-  const std::string GetUrl() const noexcept { return "ToolQuadraticSolver.htm"; }
+  std::string GetUrl() const noexcept { return "ToolQuadraticSolver.htm"; }
 };
 
 struct ProgramRampalEtienne : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ProjectRampalEtienne"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "ProjectRampalEtienne"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::rampalEtienne; }
-  const std::string GetUrl() const noexcept { return "ProjectRampalEtienne.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectRampalEtienne.htm"; }
 };
 
 struct ProgramRandomCode : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolRandomCode_4_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolRandomCode_3_0.png"; }
-  const std::string GetScreenName() const noexcept { return "RandomCode"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolRandomCode_4_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolRandomCode_3_0.png"; }
+  std::string GetScreenName() const noexcept { return "RandomCode"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::randomCode; }
-  const std::string GetUrl() const noexcept { return "ToolRandomCode.htm"; }
+  std::string GetUrl() const noexcept { return "ToolRandomCode.htm"; }
 };
 
 struct ProgramRandomCodeVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolRandomCode_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "RandomCode (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolRandomCode_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "RandomCode (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::randomCodeVcl; }
-  const std::string GetUrl() const noexcept { return "ToolRandomCodeVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolRandomCodeVcl.htm"; }
 };
 
 struct ProgramRasper : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolRasper_0_3.png"; }
-  const std::string GetScreenName() const noexcept { return "Rasper"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolRasper_0_3.png"; }
+  std::string GetScreenName() const noexcept { return "Rasper"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::rasper; }
-  const std::string GetUrl() const noexcept { return "ToolRasper.htm"; }
+  std::string GetUrl() const noexcept { return "ToolRasper.htm"; }
 };
 
 struct ProgramRefrigeratorPuzzleSolver : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolRefrigeratorPuzzleSolver_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "RefrigeratorPuzzleSolver"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolRefrigeratorPuzzleSolver_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "RefrigeratorPuzzleSolver"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::refrigeratorPuzzleSolver; }
-  const std::string GetUrl() const noexcept { return "ToolRefrigeratorPuzzleSolver.htm"; }
+  std::string GetUrl() const noexcept { return "ToolRefrigeratorPuzzleSolver.htm"; }
 };
 
 struct ProgramRegexTester : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolRegexTester_1_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "RegexTester"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolRegexTester_1_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "RegexTester"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::regexTester; }
-  const std::string GetUrl() const noexcept { return "ToolRegexTester.htm"; }
+  std::string GetUrl() const noexcept { return "ToolRegexTester.htm"; }
 };
 
 struct ProgramReversi : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameReversi_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Reversi"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameReversi_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Reversi"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::reversi; }
-  const std::string GetUrl() const noexcept { return "GameReversi.htm"; }
+  std::string GetUrl() const noexcept { return "GameReversi.htm"; }
 };
 
 
 struct ProgramRichelBilderbeekGallery : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolRichelBilderbeekGallery_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "RichelBilderbeekGallery"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolRichelBilderbeekGallery_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "RichelBilderbeekGallery"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::richelBilderbeekGallery; }
-  const std::string GetUrl() const noexcept { return "ToolRichelBilderbeekGallery.htm"; }
+  std::string GetUrl() const noexcept { return "ToolRichelBilderbeekGallery.htm"; }
 };
 
 struct ProgramRichelBilderbeekNlSitemapGenerator : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "RichelBilderbeekNlSitemapGenerator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "RichelBilderbeekNlSitemapGenerator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::richelbilderbeekNlSitemapGenerator; }
-  const std::string GetUrl() const noexcept { return "ToolRichelbilderbeekNlSitemapGenerator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolRichelbilderbeekNlSitemapGenerator.htm"; }
 };
 
 struct ProgramRubiksClock : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameRubiksClockDesktop_2_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "GameRubiksClock_2_1.png"; }
-  const std::string GetScreenName() const noexcept { return "Rubik's Clock"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameRubiksClockDesktop_2_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "GameRubiksClock_2_1.png"; }
+  std::string GetScreenName() const noexcept { return "Rubik's Clock"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::rubiksClock; }
-  const std::string GetUrl() const noexcept { return "GameRubiksClock.htm"; }
+  std::string GetUrl() const noexcept { return "GameRubiksClock.htm"; }
 };
 
 struct ProgramRubiksClockVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameRubiksClock_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Rubik's Clock (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameRubiksClock_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Rubik's Clock (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::rubiksClockVcl; }
-  const std::string GetUrl() const noexcept { return "GameRubiksClockVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameRubiksClockVcl.htm"; }
 };
 
 struct ProgramSearchAndDestroyChess : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Search And Destroy Chess"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Search And Destroy Chess"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::searchAndDestroyChess; }
-  const std::string GetUrl() const noexcept { return "GameSearchAndDestroyChess.htm"; }
+  std::string GetUrl() const noexcept { return "GameSearchAndDestroyChess.htm"; }
 };
 
 struct ProgramSearchAndDestroyChessVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return "GameSearchAndDestroyChessConsole_1_0.png"; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSearchAndDestroyChess_2_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Search And Destroy Chess (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return "GameSearchAndDestroyChessConsole_1_0.png"; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSearchAndDestroyChess_2_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Search And Destroy Chess (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::searchAndDestroyChessVcl; }
-  const std::string GetUrl() const noexcept { return "GameSearchAndDestroyChessVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameSearchAndDestroyChessVcl.htm"; }
 };
 
 struct ProgramSecretMessage : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SecretMessage"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SecretMessage"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }
   ProgramType GetType() const noexcept { return ProgramType::secretMessage; }
-  const std::string GetUrl() const noexcept { return "ToolSecretMessage.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSecretMessage.htm"; }
 };
 
 struct ProgramSecretMessageVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSecretMessage_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SecretMessage (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSecretMessage_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SecretMessage (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::secretMessageVcl; }
-  const std::string GetUrl() const noexcept { return "ToolSecretMessageVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSecretMessageVcl.htm"; }
 };
 
 struct ProgramSimBrainiac : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSimBrainiac_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SimBrainiac"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSimBrainiac_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SimBrainiac"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::simBrainiac; }
-  const std::string GetUrl() const noexcept { return "ToolSimBrainiac.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSimBrainiac.htm"; }
 };
 
 struct ProgramSimImmuneResponse : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSimImmuneResponse_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SimImmuneResponse"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSimImmuneResponse_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SimImmuneResponse"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::simImmuneResponse; }
-  const std::string GetUrl() const noexcept { return "ToolSimImmuneResponse.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSimImmuneResponse.htm"; }
 };
 
 struct ProgramSimMysteryMachine : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolSimMysteryMachine_1_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolSimMysteryMachine_1_1_web.png"; }
-  const std::string GetScreenName() const noexcept { return "SimMysteryMachine"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolSimMysteryMachine_1_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolSimMysteryMachine_1_1_web.png"; }
+  std::string GetScreenName() const noexcept { return "SimMysteryMachine"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::simMysteryMachine; }
-  const std::string GetUrl() const noexcept { return "ToolSimMysteryMachine.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSimMysteryMachine.htm"; }
 };
 
 struct ProgramSimplifyNewick : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolSimplifyNewick_1_2.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SimplifyNewick"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolSimplifyNewick_1_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SimplifyNewick"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::simplifyNewick; }
-  const std::string GetUrl() const noexcept { return "ToolSimplifyNewick.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSimplifyNewick.htm"; }
 };
 
 struct ProgramSimPredator : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSimPredator_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SimPredator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSimPredator_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SimPredator"; }
 
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::simPredator; }
-  const std::string GetUrl() const noexcept { return "GameSimPredator.htm"; }
+  std::string GetUrl() const noexcept { return "GameSimPredator.htm"; }
 };
 
 struct ProgramSimStagecraft : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSimStagecraft_1_1.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SimStagecraft"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSimStagecraft_1_1.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SimStagecraft"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::simStagecraft; }
-  const std::string GetUrl() const noexcept { return "ToolSimStagecraft.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSimStagecraft.htm"; }
 };
 
 struct ProgramSoaSim : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSoaSim_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SoaSim"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSoaSim_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SoaSim"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::soaSim; }
-  const std::string GetUrl() const noexcept { return "ToolSoaSim.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSoaSim.htm"; }
 };
 
 struct ProgramSolvePuzzleX : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SolvePuzzleX"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SolvePuzzleX"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::solvePuzzleX; }
-  const std::string GetUrl() const noexcept { return "ToolSolvePuzzleX.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSolvePuzzleX.htm"; }
 };
 
 struct ProgramSpaceHarry : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Space Harry"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Space Harry"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::spaceHarry; }
-  const std::string GetUrl() const noexcept { return "GameSpaceHarry.htm"; }
+  std::string GetUrl() const noexcept { return "GameSpaceHarry.htm"; }
 };
 
 struct ProgramSpaceHarryVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSpaceHarry_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Space Harry (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSpaceHarry_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Space Harry (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::spaceHarryVcl; }
-  const std::string GetUrl() const noexcept { return "GameSpaceHarryVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameSpaceHarryVcl.htm"; }
 };
 
 struct ProgramStaircaseCardCreator : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "StaircaseCardCreator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "StaircaseCardCreator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::staircaseCardCreator; }
-  const std::string GetUrl() const noexcept { return "ToolStaircaseCardCreator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolStaircaseCardCreator.htm"; }
 };
 
 struct ProgramStateObserver : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolStateObserver_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "StateObserver"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolStateObserver_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "StateObserver"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::stateObserver; }
-  const std::string GetUrl() const noexcept { return "ToolStateObserver.htm"; }
+  std::string GetUrl() const noexcept { return "ToolStateObserver.htm"; }
 };
 
 struct ProgramStyleSheetSetter : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "StyleSheetSetter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "StyleSheetSetter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::styleSheetSetter; }
-  const std::string GetUrl() const noexcept { return "ToolStyleSheetSetter.htm"; }
+  std::string GetUrl() const noexcept { return "ToolStyleSheetSetter.htm"; }
 };
 
 struct ProgramSuperNsanaBros : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Super Nsana Bros"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Super Nsana Bros"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::superNsanaBros; }
-  const std::string GetUrl() const noexcept { return "GameSuperNsanaBros.htm"; }
+  std::string GetUrl() const noexcept { return "GameSuperNsanaBros.htm"; }
 };
 
 struct ProgramSurfacePlotter : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolSurfacePlotter_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SurfacePlotter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolSurfacePlotter_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SurfacePlotter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::surfacePlotter; }
-  const std::string GetUrl() const noexcept { return "ToolSurfacePlotter.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSurfacePlotter.htm"; }
 };
 
 struct ProgramSurfacePlotterVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSurfacePlotter_1_2.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "SurfacePlotter (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSurfacePlotter_1_2.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "SurfacePlotter (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::surfacePlotterVcl; }
-  const std::string GetUrl() const noexcept { return "ToolSurfacePlotterVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolSurfacePlotterVcl.htm"; }
 };
 
 struct ProgramTankBattalion : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TankBattalion"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TankBattalion"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::tankBattalion; }
-  const std::string GetUrl() const noexcept { return "GameTankBattalion.htm"; }
+  std::string GetUrl() const noexcept { return "GameTankBattalion.htm"; }
 };
 
 struct ProgramTestAbout : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestAbout_1_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestAbout"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestAbout_1_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestAbout"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testAbout; }
-  const std::string GetUrl() const noexcept { return "ToolTestAbout.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestAbout.htm"; }
 };
 
 struct ProgramTestApproximator : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestApproximator_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestApproximator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestApproximator_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestApproximator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testApproximator; }
-  const std::string GetUrl() const noexcept { return "ToolTestApproximator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestApproximator.htm"; }
 };
 
 struct ProgramTestBinaryNewickVector : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestBinaryNewickVector_1_5.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestBinaryNewickVector"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestBinaryNewickVector_1_5.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestBinaryNewickVector"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testBinaryNewickVector; }
-  const std::string GetUrl() const noexcept { return "ToolTestBinaryNewickVector.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestBinaryNewickVector.htm"; }
 };
 
 struct ProgramTestBouncingBallsWidget : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestBouncingBallsWidget_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestBouncingBallsWidget"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestBouncingBallsWidget_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestBouncingBallsWidget"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testBouncingBallsWidget; }
-  const std::string GetUrl() const noexcept { return "ToolTestBouncingBallsWidget.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestBouncingBallsWidget.htm"; }
 };
 
 struct ProgramTestBouncingRectsWidget : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestBouncingRectsWidget_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestBouncingRectsWidget"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestBouncingRectsWidget_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestBouncingRectsWidget"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testBouncingRectsWidget; }
-  const std::string GetUrl() const noexcept { return "ToolTestBouncingRectsWidget.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestBouncingRectsWidget.htm"; }
 };
 
 struct ProgramTestBroadcastServer : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestBroadcastServer_1_0.png"; }
-  const std::string GetScreenName() const noexcept { return "TestBroadcastServer"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestBroadcastServer_1_0.png"; }
+  std::string GetScreenName() const noexcept { return "TestBroadcastServer"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::n_a; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testBroadcastServer; }
-  const std::string GetUrl() const noexcept { return "ToolTestBroadcastServer.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestBroadcastServer.htm"; }
 };
 
 
 struct ProgramTestChess : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestChess20120209.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestChess20120207.png"; }
-  const std::string GetScreenName() const noexcept { return "TestChess"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestChess20120209.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestChess20120207.png"; }
+  std::string GetScreenName() const noexcept { return "TestChess"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }
   ProgramType GetType() const noexcept { return ProgramType::testChess; }
-  const std::string GetUrl() const noexcept { return "ToolTestChess.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestChess.htm"; }
 };
 
 struct ProgramTestConceptMap : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestConceptMap"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestConceptMap"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::unk; }
   ProgramType GetType() const noexcept { return ProgramType::testConceptMap; }
-  const std::string GetUrl() const noexcept { return "ToolTestConceptMap.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestConceptMap.htm"; }
 };
 
 struct ProgramTestDial : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestDial_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestDial_1_1.png"; }
-  const std::string GetScreenName() const noexcept { return "TestDial"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestDial_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestDial_1_1.png"; }
+  std::string GetScreenName() const noexcept { return "TestDial"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testDial; }
-  const std::string GetUrl() const noexcept { return "ToolTestDial.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestDial.htm"; }
 };
 
 struct ProgramTestDrawCanvas : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestDrawCanvas"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestDrawCanvas"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testDrawCanvas; }
-  const std::string GetUrl() const noexcept { return "ToolTestDrawCanvas.htm"; }
-};
-
-struct ProgramEncranger : public ProgramClass
-{
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolEncranger_2_5.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolEncranger_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolEncranger_2_1.png"; }
-  const std::string GetScreenName() const noexcept { return "Encranger"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
-  ProgramType GetType() const noexcept { return ProgramType::encranger; }
-  const std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestDrawCanvas.htm"; }
 };
 
 struct ProgramTestEntrance : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestEntrance_1_0.png"; }
-  const std::string GetScreenName() const noexcept { return "TestEntrance"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestEntrance_1_0.png"; }
+  std::string GetScreenName() const noexcept { return "TestEntrance"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::n_a; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testEntrance; }
-  const std::string GetUrl() const noexcept { return "ToolTestEntrance.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestEntrance.htm"; }
 };
 
 struct ProgramTestExercise : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestExercise_1_0.png"; }
-  const std::string GetScreenName() const noexcept { return "TestExercise"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestExercise_1_0.png"; }
+  std::string GetScreenName() const noexcept { return "TestExercise"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::unk; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testExercise; }
-  const std::string GetUrl() const noexcept { return "ToolTestExercise.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestExercise.htm"; }
 };
 
 struct ProgramTestFunctionParser : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestFunctionParser_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolTestFunctionParser_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestFunctionParser_2_1.png"; }
-  const std::string GetScreenName() const noexcept { return "TestFunctionParser"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestFunctionParser_2_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolTestFunctionParser_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestFunctionParser_2_1.png"; }
+  std::string GetScreenName() const noexcept { return "TestFunctionParser"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testFunctionParser; }
-  const std::string GetUrl() const noexcept { return "ToolTestFunctionParser.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestFunctionParser.htm"; }
 };
 
 struct ProgramTestGnuplotInterface : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestGnuplotInterface"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestGnuplotInterface"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testGnuplotInterface; }
-  const std::string GetUrl() const noexcept { return "ToolTestGnuplotInterface.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestGnuplotInterface.htm"; }
 };
 
 struct ProgramTestGraphicsProxyWidget : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestGraphicsProxyWidget"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestGraphicsProxyWidget"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testGraphicsProxyWidget; }
-  const std::string GetUrl() const noexcept { return "ToolTestGraphicsProxyWidget.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestGraphicsProxyWidget.htm"; }
 };
 
 struct ProgramTestGravityWidget : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestGravityWidget"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestGravityWidget"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testGravityWidget; }
-  const std::string GetUrl() const noexcept { return "ToolTestGravityWidget.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestGravityWidget.htm"; }
 };
 
 struct ProgramTestGroupWidget : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestGroupWidget_1_0.png"; }
-  const std::string GetScreenName() const noexcept { return "TestGroupWidget"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestGroupWidget_1_0.png"; }
+  std::string GetScreenName() const noexcept { return "TestGroupWidget"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testGroupWidget; }
-  const std::string GetUrl() const noexcept { return "ToolTestGroupWidget.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestGroupWidget.htm"; }
 };
 
 struct ProgramTestHugeVector : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestHugeVector"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestHugeVector"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testHugeVector; }
-  const std::string GetUrl() const noexcept { return "ToolTestHugeVector.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestHugeVector.htm"; }
 };
 
 struct ProgramTestImageCanvas : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestImageCanvas"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestImageCanvas"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testImageCanvas; }
-  const std::string GetUrl() const noexcept { return "ToolTestImageCanvas.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestImageCanvas.htm"; }
 };
 
 struct ProgramTestLazy_init : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestLazy_init"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestLazy_init"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testLazy_init; }
-  const std::string GetUrl() const noexcept { return "ToolTestLazy_init.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestLazy_init.htm"; }
 };
 
 struct ProgramTestLed : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestLed_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestLed_1_1.png"; }
-  const std::string GetScreenName() const noexcept { return "TestLed"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestLed_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestLed_1_1.png"; }
+  std::string GetScreenName() const noexcept { return "TestLed"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testLed; }
-  const std::string GetUrl() const noexcept { return "ToolTestLed.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestLed.htm"; }
 };
 
 struct ProgramTestManyDigitNewick : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestManyDigitNewick"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestManyDigitNewick"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testManyDigitNewick; }
-  const std::string GetUrl() const noexcept { return "ToolTestManyDigitNewick.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestManyDigitNewick.htm"; }
 };
 
 struct ProgramTestMultiApproximator : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestMultiApproximator_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestMultiApproximator"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestMultiApproximator_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestMultiApproximator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testMultiApproximator; }
-  const std::string GetUrl() const noexcept { return "ToolTestMultiApproximator.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestMultiApproximator.htm"; }
 };
 
 struct ProgramTestMultiCanvas : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestMultiCanvas"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestMultiCanvas"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testMultiCanvas; }
-  const std::string GetUrl() const noexcept { return "ToolTestMultiCanvas.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestMultiCanvas.htm"; }
 };
 
 struct ProgramTestMultipleChoiceQuestion : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestMultipleChoiceQuestion"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestMultipleChoiceQuestion"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testMultipleChoiceQuestion; }
-  const std::string GetUrl() const noexcept { return "ToolTestMultipleChoiceQuestion.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestMultipleChoiceQuestion.htm"; }
 };
 
 struct ProgramTestMultiVector : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestMultiVector"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestMultiVector"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testMultiVector; }
-  const std::string GetUrl() const noexcept { return "ToolTestMultiVector.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestMultiVector.htm"; }
+};
+
+struct ProgramTestPlane : public ProgramClass
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestPlane"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::testPlane; }
+  std::string GetUrl() const noexcept { return "ToolTestPlane.htm"; }
 };
 
 struct ProgramTestNdsmake : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestNdsmake_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestNdsmake"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestNdsmake_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestNdsmake"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testNdsmake; }
-  const std::string GetUrl() const noexcept { return "ToolTestNdsmake.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestNdsmake.htm"; }
 };
 
 struct ProgramTestNeuralNet : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestNeuralNet_0_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestNeuralNet"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestNeuralNet_0_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestNeuralNet"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testNeuralNet; }
-  const std::string GetUrl() const noexcept { return "ToolTestNeuralNet.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestNeuralNet.htm"; }
 };
 
 struct ProgramTestNewick : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestNewick"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestNewick"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testNewick; }
-  const std::string GetUrl() const noexcept { return "ToolTestNewick.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestNewick.htm"; }
 };
 
 struct ProgramTestNewickVector : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestNewickVector"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestNewickVector"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testNewickVector; }
-  const std::string GetUrl() const noexcept { return "ToolTestNewickVector.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestNewickVector.htm"; }
 };
 
 struct ProgramTestOpenQuestion : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestOpenQuestion"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestOpenQuestion"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testOpenQuestion; }
-  const std::string GetUrl() const noexcept { return "ToolTestOpenQuestion.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestOpenQuestion.htm"; }
 };
 
 struct ProgramTestPylos : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestPylos_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestPylos"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestPylos_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestPylos"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testPylos; }
-  const std::string GetUrl() const noexcept { return "ToolTestPylos.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestPylos.htm"; }
 };
 
 struct ProgramTestQrcFile : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQrcFile"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQrcFile"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQrcFile; }
-  const std::string GetUrl() const noexcept { return "ToolTestQrcFile.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQrcFile.htm"; }
 };
 
 struct ProgramTestQtArrowItems : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestQtArrowItems_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtArrowItems"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtArrowItems_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtArrowItems"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtArrowItems; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtArrowItems.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtArrowItems.htm"; }
 };
 
 struct ProgramTestQtCreatorProFile : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtCreatorProFile"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtCreatorProFile"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtCreatorProFile; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtCreatorProFile.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtCreatorProFile.htm"; }
 };
 
 struct ProgramTestQtHideAndShowDialog : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtHideAndShowDialog"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtHideAndShowDialog"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtHideAndShowDialog; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtHideAndShowDialog.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtHideAndShowDialog.htm"; }
 };
 
 struct ProgramTestQtKeyboardFriendlyGraphicsView : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtKeyboardFriendlyGraphicsView"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtKeyboardFriendlyGraphicsView"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtKeyboardFriendlyGraphicsView; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtKeyboardFriendlyGraphicsView.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtKeyboardFriendlyGraphicsView.htm"; }
 };
 
 struct ProgramTestQtModels : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtModels"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtModels"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtModels; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtModels.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtModels.htm"; }
 };
 
 struct ProgramTestQtOcrWidget : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtOcrWidget"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtOcrWidget"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtOcrWidget; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtOcrWidget.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtOcrWidget.htm"; }
 };
 
 struct ProgramTestQtRoundedEditRectItem : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedEditRectItem_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtRoundedEditRectItem"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedEditRectItem_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtRoundedEditRectItem"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtRoundedEditRectItem; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtRoundedEditRectItem.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtRoundedEditRectItem.htm"; }
 };
 
 struct ProgramTestQtRoundedRectItem : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedRectItem_1_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtRoundedRectItem"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedRectItem_1_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtRoundedRectItem"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtRoundedRectItem; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtRoundedRectItem.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtRoundedRectItem.htm"; }
 };
 
 struct ProgramTestQtRoundedTextRectItem : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedTextRectItem_1_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQtRoundedTextRectItem"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedTextRectItem_1_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQtRoundedTextRectItem"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testQtRoundedTextRectItem; }
-  const std::string GetUrl() const noexcept { return "ToolTestQtRoundedTextRectItem.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQtRoundedTextRectItem.htm"; }
 };
 
 struct ProgramTestQuestion : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestQuestion_2_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestQuestion"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQuestion_2_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestQuestion"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::unk; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testQuestion; }
-  const std::string GetUrl() const noexcept { return "ToolTestQuestion.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestQuestion.htm"; }
 };
 
 struct ProgramTestReversi : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestReversi"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestReversi"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testReversi; }
-  const std::string GetUrl() const noexcept { return "ToolTestReversi.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestReversi.htm"; }
 };
 
 struct ProgramTestSelectFileDialog : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestSelectFileDialog_1_1.png"; }
-  const std::string GetScreenName() const noexcept { return "TestSelectFileDialog"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestSelectFileDialog_1_1.png"; }
+  std::string GetScreenName() const noexcept { return "TestSelectFileDialog"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testSelectFileDialog; }
-  const std::string GetUrl() const noexcept { return "ToolTestSelectFileDialog.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestSelectFileDialog.htm"; }
 };
 
 struct ProgramTestServerPusher : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestServerPusher"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestServerPusher"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testServerPusher; }
-  const std::string GetUrl() const noexcept { return "ToolTestServerPusher.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestServerPusher.htm"; }
 };
 
 struct ProgramTestShape : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestShape_1_0_desktop.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestShape_1_0_web.png"; }
-  const std::string GetScreenName() const noexcept { return "TestShape"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestShape_1_0_desktop.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestShape_1_0_web.png"; }
+  std::string GetScreenName() const noexcept { return "TestShape"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testShape; }
-  const std::string GetUrl() const noexcept { return "ToolTestShape.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestShape.htm"; }
 };
 
 struct ProgramTestShinyButton : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestShinyButton_2_0_desktop.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestShinyButton_2_0_web.png"; }
-  const std::string GetScreenName() const noexcept { return "TestShinyButton"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestShinyButton_2_0_desktop.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestShinyButton_2_0_web.png"; }
+  std::string GetScreenName() const noexcept { return "TestShinyButton"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testShinyButton; }
-  const std::string GetUrl() const noexcept { return "ToolTestShinyButton.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestShinyButton.htm"; }
 };
 
 struct ProgramTestSimpleLinearRegression : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestSimpleLinearRegression_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestSimpleLinearRegression"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestSimpleLinearRegression_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestSimpleLinearRegression"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testSimpleLinearRegression; }
-  const std::string GetUrl() const noexcept { return "ToolTestSimpleLinearRegression.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestSimpleLinearRegression.htm"; }
 };
 
 struct ProgramTestStopwatch : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestStopwatch"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestStopwatch"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testStopwatch; }
-  const std::string GetUrl() const noexcept { return "ToolTestStopwatch.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestStopwatch.htm"; }
 };
 
 struct ProgramTestTextCanvas : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestTextCanvas"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestTextCanvas"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testTextCanvas; }
-  const std::string GetUrl() const noexcept { return "ToolTestTextCanvas.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestTextCanvas.htm"; }
 };
 
 struct ProgramTestTextPositionWidget : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestTextPositionWidget"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestTextPositionWidget"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testTextPositionWidget; }
-  const std::string GetUrl() const noexcept { return "ToolTestTextPositionWidget.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestTextPositionWidget.htm"; }
 };
 
 struct ProgramTestTicTacToe : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestTicTacToe_1_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestTicTacToe_1_2.png"; }
-  const std::string GetScreenName() const noexcept { return "TestTicTacToe"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestTicTacToe_1_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTestTicTacToe_1_2.png"; }
+  std::string GetScreenName() const noexcept { return "TestTicTacToe"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testTicTacToe; }
-  const std::string GetUrl() const noexcept { return "ToolTestTicTacToe.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestTicTacToe.htm"; }
 };
 
 struct ProgramTestTimedServerPusher : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestTimedServerPusher"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestTimedServerPusher"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testTimedServerPusher; }
-  const std::string GetUrl() const noexcept { return "ToolTestTimedServerPusher.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestTimedServerPusher.htm"; }
 };
 
 struct ProgramTestToggleButton : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestToggleButton"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestToggleButton"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testToggleButton; }
-  const std::string GetUrl() const noexcept { return "ToolTestToggleButton.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestToggleButton.htm"; }
+};
+
+struct ProgramTestTriangleMesh : public ProgramClass
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestTriangleMesh"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::testTriangleMesh; }
+  std::string GetUrl() const noexcept { return "ToolTestTriangleMesh.htm"; }
 };
 
 struct ProgramTestTwoDigitNewick : public ProgramClass
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestTwoDigitNewick_0_6.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestTwoDigitNewick"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestTwoDigitNewick_0_6.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestTwoDigitNewick"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testTwoDigitNewick; }
-  const std::string GetUrl() const noexcept { return "ToolTestTwoDigitNewick.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTestTwoDigitNewick.htm"; }
 };
 
 struct ProgramThorVeen : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectThorVeen_0_9.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Project ThorVeen"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectThorVeen_0_9.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Project ThorVeen"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::thorVeen; }
-  const std::string GetUrl() const noexcept { return "ProjectThorVeen.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectThorVeen.htm"; }
 };
 
 struct ProgramThresholdFilterer : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ThresholdFilterer"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "ThresholdFilterer"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::thresholdFilterer; }
-  const std::string GetUrl() const noexcept { return "ToolThresholdFilterer.htm"; }
+  std::string GetUrl() const noexcept { return "ToolThresholdFilterer.htm"; }
 };
 
 struct ProgramThresholdFiltererVcl : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolThresholdFilterer_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ThresholdFilterer (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolThresholdFilterer_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "ThresholdFilterer (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::thresholdFiltererVcl; }
-  const std::string GetUrl() const noexcept { return "ToolThresholdFiltererVcl.htm"; }
+  std::string GetUrl() const noexcept { return "ToolThresholdFiltererVcl.htm"; }
 };
 
 struct ProgramTicTacToe : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return "GameTicTacToe_1_6.png"; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameTicTacToe_1_5.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "GameTicTacToe_1_4.png"; }
-  const std::string GetScreenName() const noexcept { return "TicTacToe"; }
+  std::string GetFilenameConsole() const noexcept { return "GameTicTacToe_1_6.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "GameTicTacToe_1_5.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "GameTicTacToe_1_4.png"; }
+  std::string GetScreenName() const noexcept { return "TicTacToe"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::ticTacToe; }
-  const std::string GetUrl() const noexcept { return "GameTicTacToe.htm"; }
+  std::string GetUrl() const noexcept { return "GameTicTacToe.htm"; }
 };
 
 struct ProgramTicTacToeLearner : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTicTacToeLearner_0_3.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TicTacToeLearner"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTicTacToeLearner_0_3.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TicTacToeLearner"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::ticTacToeLearner; }
-  const std::string GetUrl() const noexcept { return "ToolTicTacToeLearner.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTicTacToeLearner.htm"; }
 };
 
 struct ProgramTicTacToeValuer : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTicTacToeValuer_0_7.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TicTacToeValuer"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTicTacToeValuer_0_7.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TicTacToeValuer"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::ticTacToeValuer; }
-  const std::string GetUrl() const noexcept { return "ToolTicTacToeValuer.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTicTacToeValuer.htm"; }
 };
 
 struct ProgramTimePoll : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTimePoll_4_1.png"; }
-  const std::string GetScreenName() const noexcept { return "TimePoll"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return "ToolTimePoll_4_1.png"; }
+  std::string GetScreenName() const noexcept { return "TimePoll"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::timePoll; }
-  const std::string GetUrl() const noexcept { return "ToolTimePoll.htm"; }
+  std::string GetUrl() const noexcept { return "ToolTimePoll.htm"; }
 };
 
 struct ProgramTronCollection : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TronCollection"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TronCollection"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::tronCollection; }
-  const std::string GetUrl() const noexcept { return "GameTronCollection.htm"; }
+  std::string GetUrl() const noexcept { return "GameTronCollection.htm"; }
 };
 
 struct ProgramTronCollectionVcl : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TronCollection (VCL)"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TronCollection (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::tronCollectionVcl; }
-  const std::string GetUrl() const noexcept { return "GameTronCollectionVcl.htm"; }
+  std::string GetUrl() const noexcept { return "GameTronCollectionVcl.htm"; }
 };
 
 struct ProgramUbuntuOneWatcher : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolUbuntuOneWatcher_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "UbuntuOneWatcher"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolUbuntuOneWatcher_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "UbuntuOneWatcher"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::ubuntuOneWatcher; }
-  const std::string GetUrl() const noexcept { return "ToolUbuntuOneWatcher.htm"; }
+  std::string GetUrl() const noexcept { return "ToolUbuntuOneWatcher.htm"; }
 };
 
 
 struct ProgramValentineCardDecrypter : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ValentineCardDecrypter"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "ValentineCardDecrypter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::valentineCardDecrypter; }
-  const std::string GetUrl() const noexcept { return "ToolValentineCardDecrypter.htm"; }
+  std::string GetUrl() const noexcept { return "ToolValentineCardDecrypter.htm"; }
 };
 
 
 struct ProgramVanDenBogaart : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "VanDenBogaart"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "VanDenBogaart"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::vanDenBogaart; }
-  const std::string GetUrl() const noexcept { return "ProjectVanDenBogaart.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectVanDenBogaart.htm"; }
+};
+
+struct ProgramVigenereCipher : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "VigenereCipher"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }
+  ProgramType GetType() const noexcept { return ProgramType::vigenereCipher; }
+  std::string GetUrl() const noexcept { return "ToolVigenereCipher.htm"; }
 };
 
 struct ProgramVirtualBastard : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "VirtualBastard"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "VirtualBastard"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::virtualBastard; }
-  const std::string GetUrl() const noexcept { return "ToolVirtualBastard.htm"; }
+  std::string GetUrl() const noexcept { return "ToolVirtualBastard.htm"; }
 };
 
 struct ProgramVisualAbc : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolVisualAbc_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "VisualAbc"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolVisualAbc_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "VisualAbc"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::visualAbc; }
-  const std::string GetUrl() const noexcept { return "ToolVisualAbc.htm"; }
+  std::string GetUrl() const noexcept { return "ToolVisualAbc.htm"; }
 };
 
 struct ProgramXeNonZero : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameXeNonZero_0_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "XeNonZero"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "GameXeNonZero_0_1.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "XeNonZero"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::xeNonZero; }
-  const std::string GetUrl() const noexcept { return "GameXeNonZero.htm"; }
+  std::string GetUrl() const noexcept { return "GameXeNonZero.htm"; }
 };
 
 struct ProgramZork : public ProgramGame
 {
-  const std::string GetFilenameConsole() const noexcept { return "GameZork.png"; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "Zork"; }
+  std::string GetFilenameConsole() const noexcept { return "GameZork.png"; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Zork"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::zork; }
-  const std::string GetUrl() const noexcept { return "GameZork.htm"; }
+  std::string GetUrl() const noexcept { return "GameZork.htm"; }
 };
 
 /*
 struct ProgramNewickVector : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "NewickVector"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetName() const { return "NewickVector"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::newickVector; }
-  const std::string GetUrl() const noexcept { return "ProjectNewickVector.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectNewickVector.htm"; }
 };
 
 
 struct ProgramTwoDigitNewick : public ProgramProject
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "TwoDigitNewick"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetName() const { return "TwoDigitNewick"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::twoDigitNewick; }
-  const std::string GetUrl() const noexcept { return "ProjectTwoDigitNewick.htm"; }
+  std::string GetUrl() const noexcept { return "ProjectTwoDigitNewick.htm"; }
 };
 
 
@@ -2993,33 +3068,33 @@ struct ProgramTwoDigitNewick : public ProgramProject
 
 struct ProgramCreateSitemap : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "CreateSitemap"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetName() const { return "CreateSitemap"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::createSitemap; }
-  const std::string GetUrl() const noexcept { return "ToolCreateSitemap.htm"; }
+  std::string GetUrl() const noexcept { return "ToolCreateSitemap.htm"; }
 };
 
 
 struct ProgramEncranger : public ProgramTool
 {
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolEncranger_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "Encranger"; }
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolEncranger_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetName() const { return "Encranger"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::encranger; }
-  const std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }
+  std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }
 };
 
 */

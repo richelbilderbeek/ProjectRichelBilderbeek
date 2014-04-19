@@ -1,8 +1,11 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QGraphicsView>
 #include <QTimer>
 #include "qtgravitywidget.h"
 #include "qtgravitywidgetitem.h"
-
+#pragma GCC diagnostic pop
 
 QtGravityWidget::QtGravityWidget(QWidget *parent)
   : QGraphicsView(parent),

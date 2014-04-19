@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #include "conceptmapcenternodefactory.h"
 
 #include <cassert>
@@ -93,15 +113,15 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::F
 {
   if (s.size() < 27)
   {
-    return nullptr;
+    return boost::shared_ptr<CenterNode>();
   }
-  if (s.substr(0,13) != std::string("<center_node>"))
+  if (s.substr(0,13) != "<center_node>")
   {
-    return nullptr;
+    return boost::shared_ptr<CenterNode>();
   }
-  if (s.substr(s.size() - 14,14) != std::string("</center_node>"))
+  if (s.substr(s.size() - 14,14) != "</center_node>")
   {
-    return nullptr;
+    return boost::shared_ptr<CenterNode>();
   }
 
   //m_concept

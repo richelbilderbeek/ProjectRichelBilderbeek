@@ -44,12 +44,12 @@ ribi::Chess::Color ribi::Chess::Square::GetColor() const
   return ((this->GetFile().ToInt() + this->GetRank().ToInt()) % 2 == 1 ? Color::white : Color::black);
 }
 
-const std::string ribi::Chess::Square::GetVersion()
+std::string ribi::Chess::Square::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Square::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Square::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-01-25: version 1.0: initial version");
@@ -88,7 +88,7 @@ void ribi::Chess::Square::Test() noexcept
         FTRACE("Test a1");
         Chess::Square s("a1");
         assert(s.GetFile().ToStr() == "a");
-        assert(s.GetRank().ToStr() == std::string("1"));
+        assert(s.GetRank().ToStr() == "1");
         assert(s.GetFile().ToInt() == 0);
         assert(s.GetRank().ToInt() == 0);
         assert(s.GetColor() == Color::black);
@@ -97,7 +97,7 @@ void ribi::Chess::Square::Test() noexcept
         FTRACE("Test b1");
         Chess::Square s("b1");
         assert(s.GetFile().ToStr() == "b");
-        assert(s.GetRank().ToStr() == std::string("1"));
+        assert(s.GetRank().ToStr() == "1");
         assert(s.GetFile().ToInt() == 1);
         assert(s.GetRank().ToInt() == 0);
         assert(s.GetColor() == Color::white);
@@ -106,7 +106,7 @@ void ribi::Chess::Square::Test() noexcept
         FTRACE("Test a2");
         Chess::Square s("a2");
         assert(s.GetFile().ToStr() == "a");
-        assert(s.GetRank() == Chess::Rank(std::string("2")));
+        assert(s.GetRank() == Chess::Rank("2"));
         assert(s.GetFile().ToInt() == 0);
         assert(s.GetRank().ToInt() == 1);
         assert(s.GetColor() == Color::white);
@@ -125,7 +125,7 @@ void ribi::Chess::Square::Test() noexcept
         FTRACE("Test g8");
         Chess::Square s("g8");
         assert(s.GetFile().ToStr() == "g");
-        assert(s.GetRank() == Rank(std::string("8")));
+        assert(s.GetRank() == Rank("8"));
         assert(s.GetFile().ToInt() == 6);
         assert(s.GetRank().ToInt() == 7);
       }
@@ -188,7 +188,7 @@ void ribi::Chess::Square::Test() noexcept
 }
 #endif
 
-const std::string ribi::Chess::Square::ToStr() const
+std::string ribi::Chess::Square::ToStr() const noexcept
 {
   std::string s
     = boost::lexical_cast<std::string>(GetFile().ToStr())
@@ -196,19 +196,19 @@ const std::string ribi::Chess::Square::ToStr() const
   return s;
 }
 
-std::ostream& ribi::Chess::operator<<(std::ostream& os, const Square& s)
+std::ostream& ribi::Chess::operator<<(std::ostream& os, const Square& s) noexcept
 {
   os << s.ToStr();
   return os;
 }
 
-bool ribi::Chess::operator==(const Square& lhs, const Square& rhs)
+bool ribi::Chess::operator==(const Square& lhs, const Square& rhs) noexcept
 {
   return lhs.GetFile() == rhs.GetFile()
     && lhs.GetRank() == rhs.GetRank();
 }
 
-bool ribi::Chess::operator!=(const Square& lhs, const Square& rhs)
+bool ribi::Chess::operator!=(const Square& lhs, const Square& rhs) noexcept
 {
   return !(lhs == rhs);
 }

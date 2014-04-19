@@ -2,10 +2,13 @@ INCLUDEPATH += \
     ../../Tools/ToolSurfacePlotter
 
 SOURCES += \
-    ../../Tools/ToolSurfacePlotter/toolsurfaceplottermenudialog.cpp
+    ../../Tools/ToolSurfacePlotter/surfaceplottermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolSurfacePlotter/toolsurfaceplottermenudialog.h
+    ../../Tools/ToolSurfacePlotter/surfaceplottermenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolSurfacePlotter/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolSurfacePlotter/ToolSurfacePlotter.qrc

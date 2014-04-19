@@ -20,12 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "counter.h"
 
-const std::string ribi::Counter::GetVersion() noexcept
+std::string ribi::Counter::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Counter::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Counter::GetVersionHistory() noexcept
 {
   return {
     "2011-08-20: Version 1.0: initial version"

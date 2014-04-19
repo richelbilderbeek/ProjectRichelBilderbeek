@@ -12,9 +12,9 @@
 
 
 ribi::Chess::Score::Score(const std::string& s)
-  : m_is_black_winner(s == std::string("0-1")),
-    m_is_draw(s == std::string("1/2-1/2")),
-    m_is_white_winner(s == std::string("1-0"))
+  : m_is_black_winner(s == "0-1"),
+    m_is_draw(s == "1/2-1/2"),
+    m_is_white_winner(s == "1-0")
 {
   #ifndef NDEBUG
   Test();
@@ -27,12 +27,12 @@ ribi::Chess::Score::Score(const std::string& s)
   }
 }
 
-const std::string ribi::Chess::Score::GetVersion()
+std::string ribi::Chess::Score::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Score::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Score::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -99,7 +99,7 @@ void ribi::Chess::Score::Test() noexcept
 }
 #endif
 
-const std::string ribi::Chess::Score::ToStr() const
+std::string ribi::Chess::Score::ToStr() const
 {
   if (m_is_black_winner) return "0-1";
   if (m_is_draw) return "1/2-1/2";

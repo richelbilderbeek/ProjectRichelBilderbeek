@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPCONCEPTMAPITEM_H
 #define QTCONCEPTMAPCONCEPTMAPITEM_H
 
@@ -24,23 +44,23 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
   virtual void EnableAll() = 0;
 
   ///Obtain the Concept from either a Node or an Edge
-  virtual const boost::shared_ptr<const Concept>  GetConcept() const = 0;
-  virtual const boost::shared_ptr<      Concept>  GetConcept()       = 0;
+  virtual boost::shared_ptr<const Concept>  GetConcept() const noexcept = 0;
+  virtual boost::shared_ptr<      Concept>  GetConcept()       noexcept = 0;
 
-  virtual const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const = 0;
-  virtual const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       = 0;
+  virtual boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept = 0;
+  virtual boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept = 0;
 
   ///Set the name of the concept
-  virtual void SetName(const std::string& name) = 0;
+  virtual void SetName(const std::string& name) noexcept = 0;
 
   ///Set the position
-  void SetPos(const double x, const double y) { SetX(x); SetY(y); }
+  void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
 
   ///Set the X coordinat
-  virtual void SetX(const double x) = 0;
+  virtual void SetX(const double x) noexcept = 0;
 
   ///Set the Y coordinat
-  virtual void SetY(const double y) = 0;
+  virtual void SetY(const double y) noexcept = 0;
 
   ///A more specific signal: a Concept requests an edit, this is passed to
   ///OnConceptRequestsEdit, which lets this QtConceptMapItem request for an edit

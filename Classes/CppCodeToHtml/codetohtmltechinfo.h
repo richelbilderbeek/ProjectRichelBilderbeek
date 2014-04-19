@@ -48,7 +48,7 @@ struct TechInfo
   explicit TechInfo(const std::vector<std::string>& profile_filenames);
 
   ///Convert the TechInfo to HTML
-  const std::vector<std::string> ToHtml() const;
+  std::vector<std::string> ToHtml() const;
 
   private:
   ~TechInfo() noexcept {}

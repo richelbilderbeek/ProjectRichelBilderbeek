@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbprintconceptmapdialog.h"
@@ -11,6 +31,7 @@
 
 #include <QFileDialog>
 #include <QPrinter>
+#include <QTimer>
 
 #include "pvdbfile.h"
 #include "conceptmapconcept.h"
@@ -42,7 +63,7 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
 
 
   ui->label_student_name->setText(
-    (std::string("Concept map van ")
+    ("Concept map van "
       + m_file->GetStudentName()).c_str()
   );
   {
@@ -50,10 +71,13 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
     std::time( &my_time );
     const std::tm * const time_and_date = std::localtime(&my_time);
     const std::string s = std::asctime(time_and_date);
-    ui->label_date->setText( (std::string("Datum: ") + s).c_str());
+    ui->label_date->setText( ("Datum: " + s).c_str());
   }
 
   //Much work done in ShowEvent
+  {
+    QTimer::singleShot(1000,this,SLOT(fitConceptMap()));
+  }
 }
 
 ribi::pvdb::QtPvdbPrintConceptMapDialog::~QtPvdbPrintConceptMapDialog() noexcept
@@ -136,6 +160,21 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::Print()
   painter.end();
 }
 
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::resizeEvent(QResizeEvent *)
+{
+    fitConceptMap();
+}
+
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::fitConceptMap()
+{
+  assert(m_widget);
+  assert(m_widget->GetConceptMap());
+  const QRectF all_items_rect = m_widget->scene()->itemsBoundingRect();
+  m_widget->setMinimumHeight(all_items_rect.height() + 2);
+  m_widget->fitInView(all_items_rect);
+
+}
+
 void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
 {
   //Concept map
@@ -187,4 +226,5 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
       ui->frame_concept_map_as_text->layout()->addWidget(widget);
     }
   }
+    fitConceptMap();
 }

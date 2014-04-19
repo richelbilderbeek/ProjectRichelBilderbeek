@@ -146,9 +146,9 @@ void ribi::sema::MainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::SecretMessage::MenuDialog::Test");
-  const std::string source_file { fileio::GetTempFileName(".png") };
-  const std::string message_file { fileio::GetTempFileName(".png") };
-  //const std::string result_file { fileio::GetTempFileName(".png") };
+  const std::string source_file { fileio::FileIo().GetTempFileName(".png") };
+  const std::string message_file { fileio::FileIo().GetTempFileName(".png") };
+  //const std::string result_file { fileio::FileIo().GetTempFileName(".png") };
   {
     QFile qt_source_file(":/secretmessage/images/ToolSecretMessageWhite.png");
     qt_source_file.copy(source_file.c_str());
@@ -157,16 +157,16 @@ void ribi::sema::MainDialog::Test() noexcept
     QFile qt_message_file(":/secretmessage/images/ToolSecretMessageR.png");
     qt_message_file.copy(message_file.c_str());
   }
-  assert(fileio::IsRegularFile(source_file));
+  assert(fileio::FileIo().IsRegularFile(source_file));
   const boost::shared_ptr<QImage> source { new QImage(source_file.c_str()) };
-  assert(fileio::IsRegularFile(message_file));
+  assert(fileio::FileIo().IsRegularFile(message_file));
   const boost::shared_ptr<QImage> message { new QImage(message_file.c_str()) };
   const boost::shared_ptr<QImage> result { MainDialog().CreateSecretMessageRed(source,message) };
   assert(*result != *source);
   const boost::shared_ptr<QImage> message_again { MainDialog().ExtractMessageRed(result) };
   assert(message_again);
-  fileio::DeleteFile(source_file);
-  fileio::DeleteFile(message_file);
+  fileio::FileIo().DeleteFile(source_file);
+  fileio::FileIo().DeleteFile(message_file);
   TRACE("Finished ribi::SecretMessage::MainDialog::Test successfully");
 }
 #endif

@@ -9,7 +9,9 @@ const boost::shared_ptr<ribi::Chess::Move> ribi::Chess::MoveFactory::Create(cons
   const boost::shared_ptr<ribi::Chess::Move> p {
     new Move(s)
   };
+  #ifdef TODO_ISSUE_176
   assert(p);
+  #endif
   return p;
 }
 

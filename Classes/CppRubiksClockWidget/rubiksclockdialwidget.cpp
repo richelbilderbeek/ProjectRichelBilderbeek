@@ -48,7 +48,7 @@ ribi::ruco::ClockDialWidget::ClockDialWidget(
   const unsigned char blue)
   : m_dial(new ClockDial(position,x,y,width,height,red,green,blue))
 {
-  this->SetGeometry(Rect(x,y,width,height));
+  SetGeometry(x,y,width,height);
 }
 
 double ribi::ruco::ClockDialWidget::GetDistance(const double dX, const double dY)
@@ -56,31 +56,32 @@ double ribi::ruco::ClockDialWidget::GetDistance(const double dX, const double dY
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
-const std::string ribi::ruco::ClockDialWidget::GetVersion() noexcept
+std::string ribi::ruco::ClockDialWidget::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
-const std::vector<std::string> ribi::ruco::ClockDialWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ruco::ClockDialWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-09-08: Version 1.0: initial version, called 'RubiksClockDialWidget'",
-    "2014-01-23: Version 1.1: renamed to 'ClockDialWidget'"
+    "2014-01-23: Version 1.1: renamed to 'ClockDialWidget'",
+    "2014-03-28: version 1.2: replaced Rect by Boost.Geometry its box class"
   };
 }
 
 bool ribi::ruco::ClockDialWidget::IsClicked(const int x, const int y) const
 {
   const double widget_midx
-    = boost::numeric_cast<double>(GetGeometry().GetX())
-    + (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
+    = boost::numeric_cast<double>(GetLeft())
+    + (boost::numeric_cast<double>(GetWidth()) / 2.0);
   const double widget_midy
-    = boost::numeric_cast<double>(GetGeometry().GetY())
-    + (boost::numeric_cast<double>(this->GetGeometry().GetHeight()) / 2.0);
+    = boost::numeric_cast<double>(GetTop())
+    + (boost::numeric_cast<double>(GetHeight()) / 2.0);
   const double x_d = boost::numeric_cast<double>(x);
   const double y_d = boost::numeric_cast<double>(y);
   return GetDistance(x_d - widget_midx, y_d - widget_midy)
-    < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
+    < (boost::numeric_cast<double>(GetWidth()) / 2.0);
 }
 
 std::ostream& ribi::ruco::operator<<(std::ostream& os, const ribi::ruco::ClockDialWidget& widget)
@@ -88,7 +89,7 @@ std::ostream& ribi::ruco::operator<<(std::ostream& os, const ribi::ruco::ClockDi
   os
     << "<RubiksClockDialWidget>"
     << *widget.m_dial
-    << widget.GetGeometry()
+    //<< widget.GetGeometry()
     << "</RubiksClockDialWidget>";
   return os;
 }

@@ -4,6 +4,12 @@
 namespace ribi {
 namespace foam {
 
+/// From http://openfoam.org/docs/user/mesh-description.php, pragraph 5.1.1.4 Boundary:
+///   A boundary is a list of patches, each of which is associated with a boundary condition.
+///   A patch is a list of face labels which clearly must contain only boundary faces
+///   and no internal faces. The boundary is required to be closed,
+///   i.e. the sum all boundary face area vectors equates to zero to machine tolerance.
+/// To indicate internal faces, use no_patch_field
 enum class PatchFieldType {
   advective,
   alphaSgsJayatillekeWallFunction,
@@ -62,6 +68,7 @@ enum class PatchFieldType {
   mutUWallFunction,
   mutkRoughWallFunction,
   mutkWallFunction,
+  no_patch_field, //To indicate that a 'no boundary'; that is, an internal face
   nonuniformTransformCyclic,
   oscillatingFixedValue,
   outletInlet,

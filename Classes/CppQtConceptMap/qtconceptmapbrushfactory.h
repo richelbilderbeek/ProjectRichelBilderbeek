@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPBRUSHFACTORY_H
 #define QTCONCEPTMAPBRUSHFACTORY_H
 
@@ -15,28 +35,28 @@ namespace cmap {
 struct QtBrushFactory
 {
   ///Obtain a brush its name
-  static const std::string BrushToStr(const QBrush& brush);
+  static std::string BrushToStr(const QBrush& brush);
 
   ///Blue brush, to be used in all derived classes for uniform coloring
-  static const QBrush CreateBlueGradientBrush();
+  static QBrush CreateBlueGradientBrush() noexcept;
 
   ///Gold brush, to be used in all derived classes for uniform coloring
-  static const QBrush CreateGoldGradientBrush();
+  static QBrush CreateGoldGradientBrush() noexcept;
 
   ///Gray brush, to be used in all derived classes for uniform coloring
-  static const QBrush CreateGrayGradientBrush();
+  static QBrush CreateGrayGradientBrush() noexcept;
 
   ///Green brush, to be used in all derived classes for uniform coloring
-  static const QBrush CreateGreenGradientBrush();
+  static QBrush CreateGreenGradientBrush() noexcept;
 
   ///Red brush, to be used in all derived classes for uniform coloring
-  static const QBrush CreateRedGradientBrush();
+  static QBrush CreateRedGradientBrush() noexcept;
 
   ///Yellow brush, to be used in all derived classes for uniform coloring
-  static const QBrush CreateYellowGradientBrush();
+  static QBrush CreateYellowGradientBrush() noexcept;
 
   ///Near-white brush, to be used in all derived classes for uniform coloring
-  static const QBrush CreateWhiteGradientBrush();
+  static QBrush CreateWhiteGradientBrush() noexcept;
 
   private:
   ///The bottom coordinat of a gradient

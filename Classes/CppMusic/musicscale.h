@@ -34,7 +34,7 @@ struct Scale
 
   ///Obtain the Scale its name
   ///For example, 'Major' or 'Moll-Dur subdominant'
-  virtual const std::string GetName() const noexcept = 0;
+  virtual std::string GetName() const noexcept = 0;
 
   ///Obtain a Scale its Notes
   ///For example, C major will returnn {A,B,C,D,E,F,G}
@@ -43,10 +43,10 @@ struct Scale
   const Note& GetRoot() const noexcept { return m_root; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Test this class
   static void Test() noexcept;
@@ -68,7 +68,7 @@ struct ScaleBlues : public Scale
   ScaleBlues(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const  noexcept{ return "blues"; }
+  std::string GetName() const  noexcept{ return "blues"; }
 };
 
 ///The harminic minor scale
@@ -78,7 +78,7 @@ struct ScaleHarmonicMinor : public Scale
   ScaleHarmonicMinor(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "harmonic minor"; }
+  std::string GetName() const noexcept { return "harmonic minor"; }
 };
 
 ///The hexatonic scale
@@ -88,7 +88,7 @@ struct ScaleHexatonic : public Scale
   ScaleHexatonic(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "hexatonic"; }
+  std::string GetName() const noexcept { return "hexatonic"; }
 };
 
 ///The hypermajor scale
@@ -98,7 +98,7 @@ struct ScaleHyperMajor : public Scale
   ScaleHyperMajor(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "hypermajor"; }
+  std::string GetName() const noexcept { return "hypermajor"; }
 };
 
 ///The major scale
@@ -108,7 +108,7 @@ struct ScaleMajor : public Scale
   ScaleMajor(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "major"; }
+  std::string GetName() const noexcept { return "major"; }
 };
 
 ///The major pentatonic scale
@@ -118,7 +118,7 @@ struct ScaleMajorPentatonic : public Scale
   ScaleMajorPentatonic(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "major pentatonic"; }
+  std::string GetName() const noexcept { return "major pentatonic"; }
 };
 
 ///The minor pentatonic scale
@@ -128,7 +128,7 @@ struct ScaleMinorPentatonic : public Scale
   ScaleMinorPentatonic(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "minor pentatonic"; }
+  std::string GetName() const noexcept { return "minor pentatonic"; }
 };
 
 ///The Moll-dur dominant scale
@@ -138,7 +138,7 @@ struct ScaleMollDurDominant : public Scale
   ScaleMollDurDominant(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "moll-dur dominant"; }
+  std::string GetName() const noexcept { return "moll-dur dominant"; }
 };
 
 ///The Moll-dur subdominant scale
@@ -148,7 +148,7 @@ struct ScaleMollDurSubdominant : public Scale
   ScaleMollDurSubdominant(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const noexcept { return "moll-dur subdominant"; }
+  std::string GetName() const noexcept { return "moll-dur subdominant"; }
 };
 
 } //~namespace Music

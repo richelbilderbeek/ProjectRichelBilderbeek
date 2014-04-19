@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef CONCEPTMAPCONCEPTMAP_H
 #define CONCEPTMAPCONCEPTMAP_H
 
@@ -51,14 +71,13 @@ struct ConceptMap
   ///Delete a node and all the edges connected to it
   void DeleteNode(const boost::shared_ptr<Node> node);
 
-  ///Check if the ConceptMap is empty
+  ///Check if the ConceptMap is empty, that is: it has no nodes and (thus) no edges
   bool Empty() const;
 
   ///Find the CenterNode, if any
   const boost::shared_ptr<const CenterNode> FindCenterNode() const noexcept;
   const boost::shared_ptr<      CenterNode> FindCenterNode()       noexcept;
 
-  ///Get the edges
   const std::vector<boost::shared_ptr<const Edge> >  GetEdges() const;
   const std::vector<boost::shared_ptr<      Edge> >& GetEdges() { return m_edges; }
 
@@ -66,19 +85,21 @@ struct ConceptMap
   const boost::shared_ptr<const Node> GetFocalNode() const noexcept;
   const boost::shared_ptr<      Node> GetFocalNode()       noexcept;
 
-  ///Get the nodes
   const std::vector<boost::shared_ptr<const Node> >  GetNodes() const;
   const std::vector<boost::shared_ptr<      Node> >& GetNodes() { return m_nodes; }
 
-  ///Get the focus question
-  ///TODO: remove this member function, use GetCenterNode instead
-  const std::string GetQuestion() const noexcept;
+  //Use this instead:
+  //  assert(FindCenterNode());
+  //  assert(FindCenterNode()->GetConcept());
+  //  return FindCenterNode()->GetConcept()->GetName();
+  //
+  //std::string GetQuestion() const noexcept
 
-  ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  bool HasNode(const boost::shared_ptr<const Node>& node) const noexcept;
+  //const std::vector<boost::shared_ptr<      Node> >& GetNodes() { return m_nodes; }
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality
   static bool HasSameContent(const ConceptMap& lhs, const ConceptMap& rhs);
@@ -89,7 +110,7 @@ struct ConceptMap
   #endif
 
   ///Convert a ConceptMap from an XML std::string
-  static const std::string ToXml(const boost::shared_ptr<const ConceptMap> c);
+  static std::string ToXml(const boost::shared_ptr<const ConceptMap> c) noexcept;
 
 private:
 
@@ -136,8 +157,8 @@ int CountCenterNodes(const boost::shared_ptr<const ConceptMap> conceptmap) noexc
 ///Count the number of Edges connected to a CenterNodes
 int CountCenterNodeEdges(const boost::shared_ptr<const ConceptMap> conceptmap) noexcept;
 
-bool operator==(const ConceptMap& lhs, const ConceptMap& rhs);
-bool operator!=(const ConceptMap& lhs, const ConceptMap& rhs);
+bool operator==(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;
+bool operator!=(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;
 
 } //~namespace cmap
 } //~namespace ribi

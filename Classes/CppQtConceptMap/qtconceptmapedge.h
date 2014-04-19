@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef QTCONCEPTMAPEDGEITEM_H
 #define QTCONCEPTMAPEDGEITEM_H
 
@@ -11,15 +31,15 @@ namespace ribi {
 
 namespace cmap {
 
-///The QtEdge is a QtEditStrategy that
-///draws a bezier curve underneath itself, between head and tail arrowhead
+///The QtEdge is a QtConceptMapElement that
+///draws a curve underneath itself, between head and tail arrowhead
 ///concept_item is the Strategy for displaying the ConceptItem
 struct QtEdge : public QtConceptMapElement
 {
 
   QtEdge(
     const boost::shared_ptr<Edge> edge,
-    const boost::shared_ptr<QtItemDisplayStrategy> concept_item,
+    const boost::shared_ptr<QtItemDisplayStrategy> display_strategy,
     QtNode* const from,
     QtNode* const to);
   QtEdge(const QtEdge&) = delete;
@@ -31,42 +51,42 @@ struct QtEdge : public QtConceptMapElement
   void DisableAll();
   void EnableAll();
 
-  const boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const { return m_arrow; }
-  const boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       { return m_arrow; }
+  boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const noexcept { return m_arrow; }
+  boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       noexcept { return m_arrow; }
 
-  const boost::shared_ptr<const Concept>  GetConcept() const;
-  const boost::shared_ptr<      Concept>  GetConcept()      ;
+  boost::shared_ptr<const Concept>  GetConcept() const noexcept;
+  boost::shared_ptr<      Concept>  GetConcept()       noexcept;
 
-  const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const final { return m_concept_item; }
-  const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       final { return m_concept_item; }
+  boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
+  boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
 
-  const boost::shared_ptr<const cmap::Edge>  GetEdge() const { return m_edge; }
-  const boost::shared_ptr<      cmap::Edge>& GetEdge()       { return m_edge; }
+        boost::shared_ptr<const Edge>  GetEdge() const noexcept { return m_edge; }
+  const boost::shared_ptr<      Edge>& GetEdge()       noexcept { return m_edge; }
 
   ///The node item the arrow originates from
-  const QtNode * GetFrom() const { return m_from; }
-        QtNode * GetFrom()       { return m_from; }
+  const QtNode * GetFrom() const noexcept { return m_from; }
+        QtNode * GetFrom()       noexcept { return m_from; }
 
   ///Get the name of the relation
-  const std::string GetName() const;
+  std::string GetName() const noexcept;
 
   ///The node item the arrow targets
-  const QtNode * GetTo() const { return m_to; }
-        QtNode * GetTo()       { return m_to; }
+  const QtNode * GetTo() const noexcept { return m_to; }
+        QtNode * GetTo()       noexcept { return m_to; }
 
   void SetConcept(const boost::shared_ptr<Concept> concept);
 
-  void SetHasHeadArrow(const bool has_head_arrow);
-  void SetHasTailArrow(const bool has_tail_arrow);
+  void SetHasHeadArrow(const bool has_head_arrow) noexcept;
+  void SetHasTailArrow(const bool has_tail_arrow) noexcept;
 
   ///Set the name of the relation on the edge
-  void SetName(const std::string& name);
+  void SetName(const std::string& name) noexcept;
 
   ///Set the X coordinat of the central concept
-  void SetX(const double x);
+  void SetX(const double x) noexcept;
 
   ///Set the Y coordinat of the central concept
-  void SetY(const double y);
+  void SetY(const double y) noexcept;
 
   ///No 'own/autonomous' signals, these are present in the ConceptItems
 
@@ -86,7 +106,7 @@ private:
   boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;
 
   ///The Strategy for displaying the Concept
-  const boost::shared_ptr<QtItemDisplayStrategy> m_concept_item;
+  const boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
 
   const QPen m_contour_pen;
   const QPen m_focus_pen;
@@ -101,7 +121,7 @@ private:
   QtNode * const m_to;
 
   ///Called whenever the edge changes
-  void OnEdgeChanged(const cmap::Edge * const edge);
+  void OnEdgeChanged(const Edge * const edge);
 
   ///Called whenever the arrow updates
   void OnItemHasUpdated();

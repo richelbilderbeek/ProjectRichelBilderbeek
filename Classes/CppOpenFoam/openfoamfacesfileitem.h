@@ -29,9 +29,9 @@ struct FacesFileItem
   friend std::istream& operator>>(std::istream& is, FacesFileItem& f);
 };
 
-bool operator==(const FacesFileItem& lhs, const FacesFileItem& rhs);
-bool operator!=(const FacesFileItem& lhs, const FacesFileItem& rhs);
-std::ostream& operator<<(std::ostream& os, const FacesFileItem& f);
+bool operator==(const FacesFileItem& lhs, const FacesFileItem& rhs) noexcept;
+bool operator!=(const FacesFileItem& lhs, const FacesFileItem& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const FacesFileItem& f) noexcept;
 std::istream& operator>>(std::istream& is, FacesFileItem& f);
 
 } //~namespace foam

@@ -22,13 +22,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
-#include "qttoolsurfaceplottermenudialog.h"
+#include "QtSurfacePlottermenudialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    ribi::QtToolSurfacePlotterMenuDialog w;
+    ribi::QtSurfacePlotterMenuDialog w;
     w.show();
     
     return a.exec();
