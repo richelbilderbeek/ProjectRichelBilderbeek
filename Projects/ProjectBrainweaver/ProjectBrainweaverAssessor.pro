@@ -2,18 +2,21 @@
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)
 
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += printsupport
 
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
+#Specific, console
+include(../../Classes/CppConceptMap/CppConceptMap.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+#Specific, desktop
 include(../../Classes/CppQtArrowItem/CppQtArrowItem.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Classes/CppQtConceptMap/CppQtConceptMap.pri)
 include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)
 include(../../Classes/CppQtLabeledQuadBezierArrowItem/CppQtLabeledQuadBezierArrowItem.pri)
 include(../../Classes/CppQtPathArrowItem/CppQtPathArrowItem.pri)
@@ -22,19 +25,12 @@ include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
 include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
 include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
 include(../../Classes/CppQtScopedDisable/CppQtScopedDisable.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
-include(../../Classes/CppXml/CppXml.pri)
-
-#Specific
-include(../../Classes/CppConceptMap/CppConceptMap.pri)
 include(../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetterDesktop.pri)
 include(../../Tools/ToolTestConceptMap/ToolTestConceptMapDesktop.pri)
 include(../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItemsDesktop.pri)
 include(../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItemDesktop.pri)
 include(../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItemDesktop.pri)
 
-#Desktop
-include(../../Classes/CppQtConceptMap/CppQtConceptMap.pri)
 include(ProjectBrainweaverDesktop.pri)
 
 SOURCES += \

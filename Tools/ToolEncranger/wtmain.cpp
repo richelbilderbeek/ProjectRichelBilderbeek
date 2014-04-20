@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Encranger, tool to test the Encranger class
-Copyright (C) 2009-2011 Richel Bilderbeek
+Encranger, encryption tool
+Copyright (C) 2009-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WEnvironment>
 
 #include "wtautoconfig.h"
-#include "wttestencrangermenudialog.h"
+#include "wtencrangermenudialog.h"
 
 struct WtApplication : public Wt::WApplication
 {
@@ -34,6 +34,8 @@ struct WtApplication : public Wt::WApplication
     this->useStyleSheet("wt.css");
     root()->addWidget(m_dialog);
   }
+  WtApplication(const WtApplication&) = delete;
+  WtApplication& operator=(const WtApplication&) = delete;
   private:
   ribi::WtEncrangerMenuDialog * const m_dialog;
 };

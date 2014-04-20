@@ -15,9 +15,6 @@ FORMS    += \
     ../../Tools/ToolEncranger/qtencrangermaindialog.ui \
     ../../Tools/ToolEncranger/qtencrangermenudialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolEncranger/ToolEncranger.qrc
-
 OTHER_FILES += \
     ../../Tools/ToolEncranger/Licence.txt
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Encranger, tool to test the Encranger class
-Copyright (C) 2009-2011 Richel Bilderbeek
+Encranger, encryption tool
+Copyright (C) 2009-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,6 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
 #include <Wt/WBreak>
@@ -26,8 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WLabel>
 #include <Wt/WPushButton>
 
-#include "toolencrangermaindialog.h"
-#include "wttoolencrangermaindialog.h"
+#include "encrangermaindialog.h"
+#include "wtencrangermaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::WtEncrangerMainDialog::WtEncrangerMainDialog()
   : m_dialog(new ToolEncrangerMainDialog),
