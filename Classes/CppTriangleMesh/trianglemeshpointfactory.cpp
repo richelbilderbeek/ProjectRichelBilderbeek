@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-#include "Shiny.h"
+
 
 #include "geometry.h"
 #include "trianglemeshhelper.h"
@@ -40,7 +40,7 @@ boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
   const boost::shared_ptr<const Coordinat2D> coordinat
 ) const noexcept
 {
-  PROFILE_FUNC();
+  
   //Give every Point some index at creation
   static int cnt = 1;
   const int n = cnt;

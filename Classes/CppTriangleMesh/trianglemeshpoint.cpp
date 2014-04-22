@@ -8,8 +8,6 @@
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 
-#include "Shiny.h"
-
 #include "geometry.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"

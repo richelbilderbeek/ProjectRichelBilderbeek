@@ -12,8 +12,6 @@
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
 
-#include "Shiny.h"
-
 #include "geometry.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
@@ -48,7 +46,7 @@ ribi::trim::Face::Face(
 {
   #ifndef NDEBUG
   Test();
-  PROFILE_FUNC();
+  
   assert(m_points == any_points);
   assert(!m_points.empty());
   assert(  m_points[0].use_count() >= 2);
@@ -181,7 +179,7 @@ void ribi::trim::Face::CheckOrientation() const
 
 void ribi::trim::Face::DoExtractCoordinats() const
 {
-  PROFILE_FUNC();
+  
   assert(CanExtractCoordinats());
   //assert(m_coordinats.empty()); //This is done multiple times in debugging
   
@@ -190,7 +188,7 @@ void ribi::trim::Face::DoExtractCoordinats() const
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
 {
-  PROFILE_FUNC();
+  
   assert(m_belongs_to.size() <= 2);
   m_belongs_to.erase(
     std::remove_if(
@@ -221,7 +219,7 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetConstOwner() const noexcept
 {
-  PROFILE_FUNC();
+  
   assert(m_belongs_to.size() <= 2);
   m_belongs_to.erase(
     std::remove_if(
@@ -255,7 +253,7 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::Face::GetNonConstOwner() noexcep
 
 boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int index) const noexcept
 {
-  PROFILE_FUNC();
+  
   assert(index >= 0);
   assert(index < static_cast<int>(GetPoints().size()));
   return GetPoints()[index];
@@ -278,7 +276,7 @@ void ribi::trim::Face::OnCellDestroyed(const Cell* const cell) noexcept
 
 void ribi::trim::Face::SetCorrectWinding() noexcept
 {
-  PROFILE_FUNC();
+  
   
   assert(m_points.size() == 3 || m_points.size() == 4);
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)

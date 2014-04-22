@@ -3,7 +3,6 @@ include(../../ConsoleApplication.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/BigInteger.pri)
 include(../../Libraries/Fparser.pri)
-include(../../Libraries/Shiny.pri)
 
 include(../../Classes/CppAbout/CppAbout.pri)
 include(../../Classes/CppApproximator/CppApproximator.pri)

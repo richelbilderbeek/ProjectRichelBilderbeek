@@ -12,7 +12,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/units/systems/si.hpp>
 
-#include "Shiny.h"
+
 
 #include "fileio.h"
 #include "openfoamcontroldictfile.h"
@@ -44,7 +44,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const double quality
 )
 {
-  PROFILE_FUNC();
+  
   #ifndef NDEBUG
   Test();
   #endif
@@ -205,8 +205,6 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       std::clog << "external faces: " << n_external << std::endl;
     }
 
-    PROFILER_UPDATE();
-    PROFILER_OUTPUT("shiny_output.txt");
   }
   //Check the cells
   {
@@ -451,8 +449,6 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
         strategy,
         quality
       );
-      PROFILER_UPDATE();
-      PROFILER_OUTPUT("shiny_output.txt");
     }
     catch (std::exception& e)
     {

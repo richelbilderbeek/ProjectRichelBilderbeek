@@ -8,8 +8,6 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/math/constants/constants.hpp>
 
-#include "Shiny.h"
-
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
 #include "fileio.h"
@@ -31,7 +29,7 @@ ribi::trim::Template::Template(
   #ifndef NDEBUG
   Test();
   #endif
-  PROFILE_FUNC();
+
   
   TRACE("Load the points and faces created by Triangle");
   {
@@ -44,7 +42,6 @@ ribi::trim::Template::Template(
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
     {
-      PROFILE_BLOCK(Load_the_points_and_faces_created_by_Triangle);
       if (n % percent == 0) std::clog << '%';
       const std::string line = v[n];
       if(n==0) continue; //No idea why this has to be skipped
@@ -80,7 +77,6 @@ ribi::trim::Template::Template(
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
     {
-      PROFILE_BLOCK(Load_and_translate_faces);
       if (n % percent == 0)
       {
         std::clog << '%';
@@ -747,7 +743,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
 std::vector<std::string> ribi::trim::Template::SeperateString(
   const std::string& input_original) noexcept
 {
-  PROFILE_FUNC();
+
   std::string input = boost::algorithm::replace_all_copy(input_original,"\t"," ");
   for (int i=0; i!=8; ++i)
   {

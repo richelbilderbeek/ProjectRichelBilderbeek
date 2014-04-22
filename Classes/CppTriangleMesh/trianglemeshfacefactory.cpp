@@ -7,8 +7,6 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/make_shared.hpp>
 
-#include "Shiny.h"
-
 #include "geometry.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trianglemeshface.h"
@@ -33,7 +31,7 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   const FaceOrientation any_orientation
 ) const noexcept
 {
-  PROFILE_FUNC();
+  
   //Give every Cell some index at creation
   static int cnt = 1;
   const int n = cnt;

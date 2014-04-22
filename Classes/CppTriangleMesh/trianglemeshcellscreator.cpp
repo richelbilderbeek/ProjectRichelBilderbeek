@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/make_shared.hpp>
 
-#include "Shiny.h"
+
 
 #include "geometry.h"
 #include "trianglemeshcell.h"
@@ -57,7 +57,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   const CreateVerticalFacesStrategy strategy
 ) noexcept
 {
-  PROFILE_FUNC();
+  
   assert(t);
   const bool verbose = false;
 
@@ -177,7 +177,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   const int n_layers
 )
 {
-  PROFILE_FUNC();
+  
   std::vector<boost::shared_ptr<Face> > v;
   assert(t);
   assert(!all_points.empty());
@@ -267,7 +267,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   const CreateVerticalFacesStrategy strategy
 ) noexcept
 {
-  PROFILE_FUNC();
+  
   assert(t);
   #ifndef NDEBUG
   const FaceFactory face_factory;
@@ -440,7 +440,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   const boost::shared_ptr<const Face> a, const boost::shared_ptr<const Face> b
 )
 {
-  PROFILE_FUNC();
+  
   assert(a->GetOrientation() == FaceOrientation::horizontal);
   assert(b->GetOrientation() == FaceOrientation::horizontal);
   assert(a->GetPoints().size() == 3);
@@ -499,7 +499,7 @@ bool ribi::trim::CellsCreator::IsSubset(
   std::vector<boost::shared_ptr<Point>> w
 ) noexcept
 {
-  PROFILE_FUNC();
+  
 
   std::sort(v.begin(),v.end(),Helper().OrderByX());
   std::sort(w.begin(),w.end(),Helper().OrderByX());

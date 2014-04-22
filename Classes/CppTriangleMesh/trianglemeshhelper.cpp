@@ -10,7 +10,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/math/constants/constants.hpp>
-#include "Shiny.h"
+
 
 #include "geometry.h"
 #include "trace.h"
@@ -107,7 +107,7 @@ std::set<
   const std::vector<boost::shared_ptr<const Point>>& points
 ) const noexcept
 {
-  PROFILE_FUNC();
+  
   using boost::geometry::get;
 
   std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> s(

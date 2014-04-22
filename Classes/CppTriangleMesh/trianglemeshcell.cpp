@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "Shiny.h"
+
 
 #include "geometry.h"
 #include "trianglemeshcellfactory.h"
@@ -39,7 +39,7 @@ ribi::trim::Cell::~Cell()
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Cell::CalculateCenter() const noexcept
 {
-  PROFILE_FUNC();
+  
   Coordinat3D center(0.0,0.0,0.0);
   int cnt = 0;
   for(const boost::shared_ptr<const Face> face: m_faces)

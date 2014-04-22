@@ -11,7 +11,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "Shiny.h"
+
 
 #include "trianglemeshcell.h"
 #include "trianglemeshface.h"
@@ -521,8 +521,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     std::ofstream f(ribi::foam::Filenames().GetCase().c_str());
     //Need nothing to stream
   }
-
-  PROFILER_UPDATE();
 }
 
 std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
