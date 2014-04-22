@@ -84,9 +84,19 @@ void ribi::trim::Cell::SetIndex(const int index) noexcept
 {
   m_index = index;
 
-  assert(!"TODO");
-  //If there is a Face that has this cell as its neighbour, yet that neighbour
+  //If there is a Face that has this cell as its neighbour, yet that Face its Owner
   //does not have an index yet, transfer the Face its ownership from neighbour to owner
+  for (auto face: m_faces)
+  {
+    assert(face->GetConstOwner());
+
+    if (face->GetNeighbour()
+      && face->GetNeighbour().get() == this
+      && face->GetConstOwner()->GetIndex() == Face::sm_face_no_index)
+    {
+      face->TransferOwnership();
+    }
+  }
 }
 
 #ifndef NDEBUG

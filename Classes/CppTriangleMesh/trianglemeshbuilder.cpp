@@ -116,12 +116,27 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
 
 
   //Unset all Cell indices
-  const int cell_no_index = -1;
+  //const int cell_no_index = -1;
   {
     const int n_cells = static_cast<int>(m_cells.size());
     for (int i=0; i!=n_cells; ++i)
     {
-      m_cells[i]->SetIndex(cell_no_index);
+      m_cells[i]->SetIndex(Cell::sm_cell_no_index);
+    }
+  }
+  //Unset all Face indices
+  {
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      //Faces have either
+      // - no neighbour
+      // - owner index less then neighbour index
+      //if (m_faces[i]->GetNeighbour() && m_faces[i]->GetNonConstOwner()->GetIndex() < m_faces[i]->GetNeighbour()->GetIndex())
+      //{
+      //  m_faces[i]->TransferOwnership();
+      //}
+      m_faces[i]->SetIndex(Face::sm_face_no_index);
     }
   }
   //#2: For each face, find its owner (a cell), and assign these increasing cell indices
@@ -144,13 +159,13 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
         // *1) Assigned owner yes/no?
         // *2) Assigned neighbour yes/no?
         const int owner_index = m_faces[i]->GetNonConstOwner()->GetIndex();
-        if (owner_index != cell_no_index) continue;
+        if (owner_index != Cell::sm_cell_no_index) continue;
         //const int neighbour_index = m_faces[i]->GetNeighbour()->GetIndex();
         assert(
           //No neighbour
              !m_faces[i]->GetNeighbour()
           //Neighbour not assigned an index yet
-          || m_faces[i]->GetNeighbour()->GetIndex() == cell_no_index
+          || m_faces[i]->GetNeighbour()->GetIndex() == Cell::sm_cell_no_index
           //Owner and neighbour correctly sorted
           || m_faces[i]->GetNonConstOwner()->GetIndex() < m_faces[i]->GetNeighbour()->GetIndex()
         );
@@ -171,7 +186,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       {
         auto owner = m_faces[i]->GetNonConstOwner();
         assert(owner);
-        if (owner->GetIndex() == cell_no_index)
+        if (owner->GetIndex() == Cell::sm_cell_no_index)
         {
           owner->SetIndex(cell_index);
           ++cell_index;
@@ -193,8 +208,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       }
     }
   }
-
-  const int face_no_index = -1;
 
   #ifdef BELIEVE_THIS_IS_A_GOOD_WAY_20130417
   //Transfer face ownership
@@ -273,21 +286,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   }
   #endif
 
-  //Unset all Face indices
-  {
-    const int n_faces = static_cast<int>(m_faces.size());
-    for (int i=0; i!=n_faces; ++i)
-    {
-      //Faces have either
-      // - no neighbour
-      // - owner index less then neighbour index
-      if (m_faces[i]->GetNeighbour() && m_faces[i]->GetNonConstOwner()->GetIndex() < m_faces[i]->GetNeighbour()->GetIndex())
-      {
-        m_faces[i]->TransferOwnership();
-      }
-      m_faces[i]->SetIndex(face_no_index);
-    }
-  }
   //#3: Go though all cells by increasing index. For each cell,
   //find the faces it owns, assign an increasing face index
   {
@@ -307,7 +305,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
         if (cell->GetIndex() != cell_index) continue;
         for (auto face: cell->GetFaces())
         {
-          if (face->GetIndex() == face_no_index)
+          if (face->GetIndex() == Face::sm_face_no_index)
           {
             face->SetIndex(face_index);
             ++face_index;

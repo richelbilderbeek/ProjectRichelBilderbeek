@@ -79,6 +79,8 @@ struct Face
   boost::signals2::signal<void(const Face* const)> m_signal_destroyed;
   #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
+  static const int sm_face_no_index = -1;
+
   private:
   ~Face() noexcept;
   friend void boost::checked_delete<>(Face* x);

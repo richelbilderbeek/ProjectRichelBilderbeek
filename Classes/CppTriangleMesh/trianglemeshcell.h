@@ -39,6 +39,8 @@ struct Cell
   mutable boost::signals2::signal<void(const Cell* const)> m_signal_destroyed;
   #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
+  static const int sm_cell_no_index = -1;
+
   private:
   ~Cell() noexcept;
   friend void boost::checked_delete<>(      Cell* x);
