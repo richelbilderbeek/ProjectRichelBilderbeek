@@ -3072,7 +3072,8 @@ std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHist
     "2013-10-12: Version 1.11: added DotMatrix, Encranger, GrayCoder, MultiEncranger, PrimeExpert, QuadraticSolver, TestCanvas, TestMultipleChoiceQuestion, TestOpenQuestion",
     "2013-11-15: Version 1.12: improved console application interface, use of .pri files, added Brainweaver",
     "2013-11-29: Version 1.13: added HistogramEqualizationer, ImageOperationer, ImageRotater, StyleSheetSetter, ThresholdFilterer",
-    "2014-02-27: Version 1.14: added ValentineCardDecrypter, added retro versions to some games, many small improvements",
+    "2014-02-27: Version 1.14: added PreDickAdvocaTor and ValentineCardDecrypter, added retro versions to some games",
+    "2014-04-22: Version 1.15: added CaesarCipher, CodeBreaker and VigenereCipher"
   };
 }
 
