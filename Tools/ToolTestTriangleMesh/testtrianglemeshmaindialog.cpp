@@ -42,7 +42,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const int n_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
-  const double quality
+  const double quality,
+  const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function
 )
 {
   
@@ -97,15 +98,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     }
     //Remove some random cells
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
-    #define TRIANGLE_MESH_DO_SCULPTING
-    #ifdef  TRIANGLE_MESH_DO_SCULPTING
-    std::random_shuffle(cells.begin(),cells.end());
-    std::reverse(cells.begin(),cells.end());
-    std::random_shuffle(cells.begin(),cells.end());
-    cells.resize(cells.size() * 9 / 10);
-    #else
-    TRACE("TRIANGLE_MESH_DO_SCULPTING");
-    #endif //~TRIANGLE_MESH_DO_SCULPTING
+
+    sculpt_function(cells);
 
     std::clog << "Number of cells after sculpting: " << cells.size() << std::endl;
 
@@ -417,6 +411,27 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 }
 
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateSculptFunctionNone() noexcept
+{
+  return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
+  {
+    std::random_shuffle(cells.begin(),cells.end());
+  }
+  ;
+}
+
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom() noexcept
+{
+  return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
+  {
+    std::random_shuffle(cells.begin(),cells.end());
+    std::reverse(cells.begin(),cells.end());
+    std::random_shuffle(cells.begin(),cells.end());
+    cells.resize(cells.size() * 3 / 4);
+  }
+  ;
+}
+
 #ifndef NDEBUG
 void ribi::TestTriangleMeshMainDialog::Test() noexcept
 {
@@ -446,7 +461,8 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
         3,
         1.0 * boost::units::si::meter,
         strategy,
-        quality
+        quality,
+        TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom()
       );
     }
     catch (std::exception& e)

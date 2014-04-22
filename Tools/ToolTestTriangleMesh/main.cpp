@@ -19,7 +19,6 @@
 #include "trianglemeshhelper.h"
 #pragma GCC diagnostic pop
 
-
 int main(int, char* argv[])
 {
   START_TRACE();
@@ -80,7 +79,8 @@ int main(int, char* argv[])
         n_layers,
         layer_height,
         strategy,
-        quality
+        quality,
+        ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom()
       );
       TRACE(checkMesh_command);
       std::system(checkMesh_command.c_str());
@@ -117,7 +117,8 @@ int main(int, char* argv[])
       n_layers,
       layer_height,
       strategy,
-      quality
+      quality,
+      ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom()
     );
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
