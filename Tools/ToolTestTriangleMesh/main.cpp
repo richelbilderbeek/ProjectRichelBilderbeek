@@ -80,7 +80,8 @@ int main(int, char* argv[])
         layer_height,
         strategy,
         quality,
-        ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom()
+        ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(),
+        ribi::TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction()
       );
       TRACE(checkMesh_command);
       std::system(checkMesh_command.c_str());
@@ -118,7 +119,8 @@ int main(int, char* argv[])
       layer_height,
       strategy,
       quality,
-      ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom()
+      ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(),
+      ribi::TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction()
     );
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");

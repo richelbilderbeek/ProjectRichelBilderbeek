@@ -43,7 +43,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const boost::units::quantity<boost::units::si::length> layer_height,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
   const double quality,
-  const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function
+  const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
+  const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function
 )
 {
   
@@ -96,14 +97,13 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       for (auto cell:cells) { assert(cell); }
       #endif
     }
-    //Remove some random cells
+
+    //Sculpting
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
-
     sculpt_function(cells);
-
     std::clog << "Number of cells after sculpting: " << cells.size() << std::endl;
 
-    //Assign boundaries to the faces
+    //Remove weak faces
     {
       std::vector<boost::shared_ptr<ribi::trim::Face>> faces;
       for (const boost::shared_ptr<ribi::trim::Cell>& cell: cells)
@@ -131,72 +131,10 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       const auto new_end = std::unique(faces.begin(),faces.end());
       faces.erase(new_end,faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
-      int n_internal = 0;
-      int n_external = 0;
-      for (boost::shared_ptr<ribi::trim::Face> face: faces)
-      {
-        if (face->GetNeighbour())
-        {
-          assert(face->GetConstOwner());
-          face->SetBoundaryType("inside");
-          ++n_internal;
-          continue;
-        }
-        else
-        {
-          assert(face->GetConstOwner());
-          assert(!face->GetNeighbour());
-          ++n_external;
-          //If Owner its center has a higher Z coordinat, this is a bottom face
-          if (face->GetOrientation() == ribi::trim::FaceOrientation::horizontal)
-          {
-            const double owner_z = boost::geometry::get<2>(face->GetConstOwner()->CalculateCenter());
-            const double face_z = face->GetPoint(0)->GetZ().value();
-            if (face_z < owner_z)
-            {
-              face->SetBoundaryType("bottom");
-            }
-            else
-            {
-              face->SetBoundaryType("top");
-            }
-          }
-          else
-          {
-            assert(face->GetOrientation() == ribi::trim::FaceOrientation::vertical);
-            const auto center(face->CalcCenter());
-            const double center_x = boost::geometry::get<0>(center);
-            const double center_y = boost::geometry::get<1>(center);
-            if (center_x < 0.0)
-            {
-              if (center_y < 0.0)
-              {
-                face->SetBoundaryType("front");
-              }
-              else
-              {
-                face->SetBoundaryType("back");
-              }
-            }
-            else
-            {
-              if (center_y < 0.0)
-              {
-                face->SetBoundaryType("left");
-              }
-              else
-              {
-                face->SetBoundaryType("right");
-              }
-            }
-          }
-          continue;
-        }
-      }
-      std::clog << "internal faces: " << n_internal << std::endl;
-      std::clog << "external faces: " << n_external << std::endl;
     }
 
+    //Assign boundaries to the strong faces
+    assign_boundary_function(cells);
   }
   //Check the cells
   {
@@ -411,6 +349,79 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 }
 
+
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction() noexcept
+{
+  return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
+  {
+    std::vector<boost::shared_ptr<ribi::trim::Face>> faces;
+    for (const boost::shared_ptr<ribi::trim::Cell>& cell: cells)
+    {
+      const std::vector<boost::shared_ptr<ribi::trim::Face>> w { cell->GetFaces() };
+      std::copy(w.begin(),w.end(),std::back_inserter(faces));
+    }
+    for (boost::shared_ptr<ribi::trim::Face> face: faces)
+    {
+      if (face->GetNeighbour())
+      {
+        assert(face->GetConstOwner());
+        face->SetBoundaryType("inside");
+        continue;
+      }
+      else
+      {
+        assert(face->GetConstOwner());
+        assert(!face->GetNeighbour());
+        //If Owner its center has a higher Z coordinat, this is a bottom face
+        if (face->GetOrientation() == ribi::trim::FaceOrientation::horizontal)
+        {
+          const double owner_z = boost::geometry::get<2>(face->GetConstOwner()->CalculateCenter());
+          const double face_z = face->GetPoint(0)->GetZ().value();
+          if (face_z < owner_z)
+          {
+            face->SetBoundaryType("bottom");
+          }
+          else
+          {
+            face->SetBoundaryType("top");
+          }
+        }
+        else
+        {
+          assert(face->GetOrientation() == ribi::trim::FaceOrientation::vertical);
+          const auto center(face->CalcCenter());
+          const double center_x = boost::geometry::get<0>(center);
+          const double center_y = boost::geometry::get<1>(center);
+          if (center_x < 0.0)
+          {
+            if (center_y < 0.0)
+            {
+              face->SetBoundaryType("front");
+            }
+            else
+            {
+              face->SetBoundaryType("back");
+            }
+          }
+          else
+          {
+            if (center_y < 0.0)
+            {
+              face->SetBoundaryType("left");
+            }
+            else
+            {
+              face->SetBoundaryType("right");
+            }
+          }
+        }
+        continue;
+      }
+    }
+  }
+  ;
+}
+
 std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateSculptFunctionNone() noexcept
 {
   return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
@@ -462,7 +473,8 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
         1.0 * boost::units::si::meter,
         strategy,
         quality,
-        TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom()
+        TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(),
+        TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction()
       );
     }
     catch (std::exception& e)
