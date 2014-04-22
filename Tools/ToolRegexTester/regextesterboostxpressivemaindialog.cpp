@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,18 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "regextesterboostxpressivemaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/xpressive/xpressive.hpp>
 
 #include <boost/xpressive/detail/dynamic/parse_charset.hpp>
-#pragma GCC diagnostic pop
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::RegexTesterBoostXpressiveMainDialog::RegexTesterBoostXpressiveMainDialog()
 {
@@ -39,15 +38,15 @@ ribi::RegexTesterBoostXpressiveMainDialog::RegexTesterBoostXpressiveMainDialog()
 }
 
 
-const boost::shared_ptr<ribi::RegexTesterMainDialog>
-  ribi::RegexTesterBoostXpressiveMainDialog::Clone() const
+boost::shared_ptr<ribi::RegexTesterMainDialog>
+  ribi::RegexTesterBoostXpressiveMainDialog::Clone() const noexcept
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
     new RegexTesterBoostXpressiveMainDialog);
   return d;
 }
 
-const std::vector<std::string>
+std::vector<std::string>
   ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
@@ -58,7 +57,7 @@ const std::vector<std::string>
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string>
+std::vector<std::string>
   ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatches(
   const std::string& s,
   const boost::xpressive::sregex& r)
@@ -85,7 +84,7 @@ const std::vector<std::string>
 }
 
 bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatchLine(
-  const std::string& line, const std::string& regex_str) const
+  const std::string& line, const std::string& regex_str) const noexcept
 {
   if (!GetRegexValid(regex_str)) return false;
   const boost::xpressive::sregex r(
@@ -93,7 +92,7 @@ bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatchLine(
   return boost::xpressive::regex_match(line,r);
 }
 
-const std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
+std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
   const std::string& str,
   const std::string& regex_str,
   const std::string& format_str) const
@@ -117,7 +116,7 @@ const std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
 }
 
 bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexValid(
-  const std::string& regex_str) const
+  const std::string& regex_str) const noexcept
 {
   try
   {
@@ -128,7 +127,7 @@ bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexValid(
 }
 
 #ifndef NDEBUG
-void ribi::RegexTesterBoostXpressiveMainDialog::Test()
+void ribi::RegexTesterBoostXpressiveMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

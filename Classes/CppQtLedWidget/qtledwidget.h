@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtLedWidget, Qt widget for displaying the Led class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,12 +21,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTLEDWIDGET_H
 #define QTLEDWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
 
 #include <QWidget>
 
 #include "led.h"       //Needed by MOC
 #include "ledwidget.h" //Needed by MOC
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -53,7 +56,7 @@ public:
   ///Draw a Led from a LedWidget
   static void DrawLed(
     QPainter& painter,
-    const LedWidget * const widget);
+    const boost::shared_ptr<const LedWidget> widget);
 
 
 protected:
@@ -61,14 +64,14 @@ protected:
   void resizeEvent(QResizeEvent *);
 
 private:
-  boost::scoped_ptr<LedWidget> m_widget;
+  boost::shared_ptr<LedWidget> m_widget;
 
   ///OnResize is called when the geometry of the LedWidget is changed
   void OnResize();
 
 public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 };
 

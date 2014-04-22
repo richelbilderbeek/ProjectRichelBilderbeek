@@ -22,21 +22,21 @@ struct GapsFilledWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
     const boost::numeric::ublas::matrix<double>& state_transition);
 
   ///The number of timesteps after which a real measurement is acquired
-  const boost::numeric::ublas::vector<int>& GetMeasurementFrequency() const { return m_measurement_frequency; }
+  const boost::numeric::ublas::vector<int>& GetMeasurementFrequency() const noexcept { return m_measurement_frequency; }
 
   ///Obtain the type as an enum
-  WhiteNoiseSystemType GetType() const { return WhiteNoiseSystemType::gaps_filled; }
+  WhiteNoiseSystemType GetType() const noexcept { return WhiteNoiseSystemType::gaps_filled; }
 
   private:
   ///Can only be deleted by boost::checked_delete
-  ~GapsFilledWhiteNoiseSystemParameters() {}
+  ~GapsFilledWhiteNoiseSystemParameters() noexcept {}
   friend void boost::checked_delete<>(GapsFilledWhiteNoiseSystemParameters*);
 
   ///The gaps (in timesteps) is the number of measurements of which only one real measurement is acquired
   const boost::numeric::ublas::vector<int> m_measurement_frequency;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

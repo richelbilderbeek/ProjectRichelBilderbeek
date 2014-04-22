@@ -3,9 +3,11 @@
 
 #include <string>
 
-namespace Knokfighter {
+#include "knokfighterattack.h"
 
-struct Attack;
+namespace ribi {
+namespace knok {
+
 struct Key;
 struct Player;
 
@@ -13,19 +15,22 @@ struct PlayerState
 {
   enum class Direction { left, right };
 
+  PlayerState(const PlayerState&) = delete;
+  PlayerState& operator=(const PlayerState&) = delete;
+
   ///The State needs access to the Player it is a state of
   PlayerState(Player * const player);
 
   virtual ~PlayerState() {}
 
   ///Respond to a key press
-  virtual void PressKey(const Key& key) = 0;
+  virtual void OnKeyPress(const Key& key) = 0;
 
   ///Respond to the main timer ticking
   virtual void Tick() = 0;
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  virtual const std::string ToStr() const = 0;
+  virtual std::string ToStr() const = 0;
 
   protected:
 
@@ -36,27 +41,26 @@ struct PlayerState
   Player * const m_player;
 };
 
-
 struct PlayerStateAttack : public PlayerState
 {
   ///The State needs access to the Player it is a state of
-  PlayerStateAttack(Player * const player);
+  PlayerStateAttack(Player * const player) : PlayerState(player), m_attack{Attack::high_kick}, m_ticks_left{0} {}
 
   ///Respond to a key press
-  void PressKey(const Key& key);
+  void OnKeyPress(const Key&) {}
 
   ///Set the type of Attack and how many ticks it will last
-  void StartAttack(const Attack& attack, const int n_ticks);
+  void StartAttack(const Attack& /* attack */, const int /* n_ticks */) {}
 
   ///Respond to the main timer ticking
-  void Tick();
+  void Tick() {}
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  const std::string ToStr() const;
+  std::string ToStr() const { return "attack"; }
 
   private:
   ///The Attack being done
-  //Attack m_attack;
+  Attack m_attack;
 
   ///The number of ticks this attack will last before Player goes back to PlayerStateIdle
   int m_ticks_left;
@@ -65,33 +69,34 @@ struct PlayerStateAttack : public PlayerState
 struct PlayerStateIdle : public PlayerState
 {
   ///The State needs access to the Player it is a state of
-  PlayerStateIdle(Player * const player);
+  PlayerStateIdle(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
-  void PressKey(const Key& key);
+  void OnKeyPress(const Key& /* key */) {}
 
   ///Respond to the main timer ticking
-  void Tick();
+  void Tick() {}
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  const std::string ToStr() const;
+  std::string ToStr() const { return "idle"; }
 };
 
 struct PlayerStateWalk : public PlayerState
 {
   ///The State needs access to the Player it is a state of
-  PlayerStateWalk(Player * const player);
+  PlayerStateWalk(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
-  void PressKey(const Key& key);
+  void OnKeyPress(const Key& /* key */) {}
 
   ///Respond to the main timer ticking
-  void Tick();
+  void Tick() {}
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  const std::string ToStr() const;
+  std::string ToStr() const { return "walk"; }
 };
 
-} //~namespace Knokfighter
+} //~namespace knok
+} //~namespace ribi
 
 #endif // KNOKFIGHTERPLAYERSTATE_H

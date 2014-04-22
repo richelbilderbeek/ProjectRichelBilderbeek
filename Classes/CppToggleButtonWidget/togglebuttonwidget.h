@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ToggleButtonWidget, widget for the ToggleButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,12 +24,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "widget.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
+struct DrawCanvas;
+struct TextCanvas;
 struct ToggleButton;
 
 struct ToggleButtonWidget : public Widget
@@ -40,6 +43,9 @@ struct ToggleButtonWidget : public Widget
     const unsigned char green = 255,
     const unsigned char blue = 255
   );
+  ToggleButtonWidget(const ToggleButtonWidget&) = delete;
+  ToggleButtonWidget& operator=(const ToggleButtonWidget&) = delete;
+  ~ToggleButtonWidget() noexcept {}
 
   ///Obtain a read-and-write pointer to ToggleButton
   ToggleButton * GetToggleButton() { return m_button.get(); }
@@ -51,10 +57,13 @@ struct ToggleButtonWidget : public Widget
   void Click(const int x, const int y);
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int width, const int height) const noexcept;
+  const boost::shared_ptr<TextCanvas> ToTextCanvas(const int width = 6, const int height = 4) const noexcept;
 
   private:
   boost::scoped_ptr<ToggleButton> m_button;

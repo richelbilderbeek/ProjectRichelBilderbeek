@@ -18,13 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
 #include "qtperfectelasticcollisionmenudialog.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtPerfectElasticCollisionMenuDialog w;
+  ribi::QtPerfectElasticCollisionMenuDialog w;
   w.show();
   return a.exec();
 }

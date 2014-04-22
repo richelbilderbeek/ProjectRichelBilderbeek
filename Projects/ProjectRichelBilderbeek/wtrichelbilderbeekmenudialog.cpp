@@ -87,7 +87,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtsimmysterymachinemenudialog.h"
 #include "wtasciiartermaindialog.h"
 #include "wttestdialmenudialog.h"
-#include "wttestencrangermenudialog.h"
+#include "wttoolencrangermenudialog.h"
 #include "wttestentrancemenudialog.h"
 #include "wttestexercisemenudialog.h"
 #include "wttestfunctionparsermenudialog.h"
@@ -120,7 +120,8 @@ ribi::RichelBilderbeek::WtMenuDialog::Ui::Ui()
 }
 
 ribi::RichelBilderbeek::WtMenuDialog::WtMenuDialog(const std::string& ip_address)
-  : m_about_menu_items(CreateAboutMenuItems()),
+  : ui{},
+    m_about_menu_items(CreateAboutMenuItems()),
     m_button_height(20),
     m_button_width(120),
     m_classes_menu_items(CreateClassesMenuItems()),
@@ -146,25 +147,25 @@ ribi::RichelBilderbeek::WtMenuDialog::WtMenuDialog(const std::string& ip_address
   for (int i=0; i!=n_menu_items; ++i)
   {
     const double color = (0.5 * gradient) + (boost::numeric_cast<double>(i) * gradient);
-    WtShinyButtonWidget * const b = new WtShinyButtonWidget(color,gradient,m_main_menu_items[i].GetCaption());
+    WtShinyButtonWidget * const b = new WtShinyButtonWidget(color,gradient,m_main_menu_items[i]->GetCaption());
     b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
     this->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnMainItemClicked,this,boost::lambda::_1));
-    ui.m_stack_main->insertWidget(i,m_main_menu_items[i].GetCreateDialogFunction()(this));
+    ui.m_stack_main->insertWidget(i,m_main_menu_items[i]->GetCreateDialogFunction()(this));
   }
 
   this->addWidget(new Wt::WBreak);
   this->addWidget(ui.m_stack_main);
 
   //Display first screen
-  m_main_menu_items[0].GetStack()->setCurrentIndex(m_main_menu_items[0].GetIndex());
+  m_main_menu_items[0]->GetStack()->setCurrentIndex(m_main_menu_items[0]->GetIndex());
 
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuItem> ribi::RichelBilderbeek::WtMenuDialog::CollectSubMenuItems() const
+const std::vector<ribi::RichelBilderbeek::WtMenuDialog::Item_t> ribi::RichelBilderbeek::WtMenuDialog::CollectSubMenuItems() const
 {
-  std::vector<WtMenuItem> v;
+  std::vector<Item_t> v;
   std::copy(m_about_menu_items.begin(),m_about_menu_items.end(),std::back_inserter(v));
   std::copy(m_classes_menu_items.begin(),m_classes_menu_items.end(),std::back_inserter(v));
   std::copy(m_games_menu_items.begin(),m_games_menu_items.end(),std::back_inserter(v));
@@ -173,97 +174,155 @@ const std::vector<ribi::RichelBilderbeek::WtMenuItem> ribi::RichelBilderbeek::Wt
   return v;
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuItem> ribi::RichelBilderbeek::WtMenuDialog::CreateAboutMenuItems() const
+const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> >
+  ribi::RichelBilderbeek::WtMenuDialog::CreateAboutMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_about;
-  return std::vector<WtMenuItem>(
-    {
-      WtMenuItem("Program" ,s,0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutProgramDialog),
-      WtMenuItem("Statuses",s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewStatusesDialog),
-      WtMenuItem("Bep"     ,s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutBepDialog)
-    }
-  );
+  return {
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Program" ,s,0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutProgramDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Statuses",s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewStatusesDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Bep"     ,s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutBepDialog)
+    )
+  };
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuItem> ribi::RichelBilderbeek::WtMenuDialog::CreateClassesMenuItems() const
+const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateClassesMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_classes;
-
-  return std::vector<WtMenuItem>(
-    {
-      WtMenuItem("Dial"             ,s, 0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestDialDialog),
-      WtMenuItem("Entrance"         ,s, 1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestEntranceDialog),
-      WtMenuItem("Exercise"         ,s, 2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestExerciseDialog),
-      WtMenuItem("FunctionParser"   ,s, 3,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestFunctionParserDialog),
-      WtMenuItem("GroupWidget"      ,s, 4,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestGroupWidgetDialog),
-      WtMenuItem("Led"              ,s, 5,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestLedDialog),
-      WtMenuItem("Question"         ,s, 6,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestQuestionDialog),
-      WtMenuItem("SelectFile"       ,s, 7,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestSelectFileDialogDialog),
-      WtMenuItem("ServerPusher"     ,s, 8,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestServerPusherDialog),
-      WtMenuItem("Shape"            ,s, 9,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestShapeDialog),
-      WtMenuItem("ShinyButton"      ,s,10,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestShinyButtonDialog),
-      WtMenuItem("TimedServerPusher",s,11,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestTimedServerPusherDialog),
-      WtMenuItem("ToggleButton"     ,s,12,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestToggleButtonDialog),
-      WtMenuItem("TimePoll"         ,s,13,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTimePollDialog)
-    }
-  );
+  return {
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Dial"             ,s, 0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestDialDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Entrance"         ,s, 1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestEntranceDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Exercise"         ,s, 2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestExerciseDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("FunctionParser"   ,s, 3,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestFunctionParserDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("GroupWidget"      ,s, 4,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestGroupWidgetDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Led"              ,s, 5,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestLedDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Question"         ,s, 6,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestQuestionDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("SelectFile"       ,s, 7,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestSelectFileDialogDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("ServerPusher"     ,s, 8,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestServerPusherDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Shape"            ,s, 9,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestShapeDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("ShinyButton"      ,s,10,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestShinyButtonDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("TimedServerPusher",s,11,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestTimedServerPusherDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("ToggleButton"     ,s,12,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestToggleButtonDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("TimePoll"         ,s,13,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTimePollDialog)
+    )
+  };
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuItem> ribi::RichelBilderbeek::WtMenuDialog::CreateGamesMenuItems() const
+const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateGamesMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_games;
 
-  return std::vector<WtMenuItem>(
-    {
-      WtMenuItem("Connect Three",s, 0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewConnectThreeDialog),
-      WtMenuItem("Rubik's Clock",s, 1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewRubiksClockDialog),
-      WtMenuItem("Tic Tac Toe"  ,s, 2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTicTacToeDialog)
-    }
-  );
+  return {
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Connect Three",s, 0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewConnectThreeDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Rubik's Clock",s, 1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewRubiksClockDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Tic Tac Toe"  ,s, 2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTicTacToeDialog)
+    )
+  };
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuItem> ribi::RichelBilderbeek::WtMenuDialog::CreateMainMenuItems() const
+const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateMainMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_main;
-  return std::vector<WtMenuItem>(
-    {
-      WtMenuItem("Welcome" ,s,0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewWelcomeDialog),
-      WtMenuItem("Classes" ,s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewClassesDialog),
-      WtMenuItem("Games"   ,s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewGamesDialog),
-      WtMenuItem("Projects",s,3,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewProjectsDialog),
-      WtMenuItem("Tools"   ,s,4,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewToolsDialog),
-      WtMenuItem("About"   ,s,5,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutDialog)
-    }
-  );
+  return {
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Welcome" ,s,0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewWelcomeDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Classes" ,s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewClassesDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Games"   ,s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewGamesDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Projects",s,3,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewProjectsDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Tools"   ,s,4,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewToolsDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("About"   ,s,5,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutDialog)
+    )
+  };
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuItem> ribi::RichelBilderbeek::WtMenuDialog::CreateProjectsMenuItems() const
+const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateProjectsMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_projects;
 
-  return std::vector<WtMenuItem>(
-    {
-      WtMenuItem("GTST"          ,s,0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewGtstDialog),
-      WtMenuItem("NewickVector"  ,s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestNewickVectorDialog),
-      WtMenuItem("TwoDigitNewick",s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestTwoDigitNewickDialog)
-    }
-  );
+  return {
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("GTST"          ,s,0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewGtstDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("NewickVector"  ,s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestNewickVectorDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("TwoDigitNewick",s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestTwoDigitNewickDialog)
+    )
+  };
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuItem> ribi::RichelBilderbeek::WtMenuDialog::CreateToolsMenuItems() const
+const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateToolsMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_tools;
 
-  return std::vector<WtMenuItem>(
-    {
-      WtMenuItem("AsciiArter"    ,s,0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestAsciiArterDialog),
-      WtMenuItem("CodeToHtml"    ,s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewCodeToHtmlDialog),
-      WtMenuItem("Encranger"     ,s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestEncrangerDialog),
-      WtMenuItem("Hometrainer"   ,s,3,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewHometrainerDialog),
-      WtMenuItem("MysteryMachine",s,4,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewSimMysteryMachineDialog),
-      WtMenuItem("RandomCode"    ,s,5,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewRandomCodeDialog)
-    }
-  );
+  return {
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("AsciiArter"    ,s,0,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestAsciiArterDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("CodeToHtml"    ,s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewCodeToHtmlDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Encranger"     ,s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewEncrangerDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("Hometrainer"   ,s,3,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewHometrainerDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("MysteryMachine",s,4,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewSimMysteryMachineDialog)
+    ),
+    boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
+      new WtMenuItem("RandomCode"    ,s,5,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewRandomCodeDialog)
+    )
+  };
 }
 
 Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutDialog()
@@ -273,20 +332,20 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewAboutDialog()
   const int n_menu_items = boost::numeric_cast<int>(m_main_menu_items.size());
   const double gradient = 1.0 / boost::numeric_cast<double>(n_menu_items + 1);
   const int i = 5; // Index in the main menu
-  assert(m_main_menu_items[i].GetCaption() == "About");
+  assert(m_main_menu_items[i]->GetCaption() == "About");
   const double main_color = (0.5 * gradient) + (boost::numeric_cast<double>(i) * gradient);
-  const std::vector<WtMenuItem>& v = m_about_menu_items;
+  const auto& v = m_about_menu_items;
   const int n_sub_menu_items = boost::numeric_cast<int>(v.size());
   const double sub_menu_gradient = gradient / boost::numeric_cast<double>(n_sub_menu_items);
   for (int j=0; j!=n_sub_menu_items; ++j)
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
-    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j].GetCaption());
+    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
     b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
-    ui.m_stack_about->insertWidget(j,v[j].GetCreateDialogFunction()(this));
+    ui.m_stack_about->insertWidget(j,v[j]->GetCreateDialogFunction()(this));
   }
 
   dialog->addWidget(ui.m_stack_about);
@@ -359,18 +418,18 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewClassesDialog()
   const double gradient = 1.0 / boost::numeric_cast<double>(n_menu_items + 1);
   const int i = 1; // Index in the main menu
   const double main_color = (0.5 * gradient) + (boost::numeric_cast<double>(i) * gradient);
-  const std::vector<WtMenuItem>& v = m_classes_menu_items;
+  const auto& v = m_classes_menu_items;
   const int n_sub_menu_items = boost::numeric_cast<int>(v.size());
   const double sub_menu_gradient = gradient / boost::numeric_cast<double>(n_sub_menu_items);
   for (int j=0; j!=n_sub_menu_items; ++j)
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
-    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j].GetCaption());
+    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
     b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
-    ui.m_stack_classes->insertWidget(j,v[j].GetCreateDialogFunction()(this));
+    ui.m_stack_classes->insertWidget(j,v[j]->GetCreateDialogFunction()(this));
   }
   dialog->addWidget(ui.m_stack_classes);
 
@@ -400,19 +459,19 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewGamesDialog()
   const double gradient = 1.0 / boost::numeric_cast<double>(n_menu_items + 1);
   const int i = 2; // Index in the main menu
   const double main_color = (0.5 * gradient) + (boost::numeric_cast<double>(i) * gradient);
-  const std::vector<WtMenuItem>& v = m_games_menu_items;
+  const auto& v = m_games_menu_items;
   const int n_sub_menu_items = boost::numeric_cast<int>(v.size());
   const double sub_menu_gradient = gradient / boost::numeric_cast<double>(n_sub_menu_items);
 
   for (int j=0; j!=n_sub_menu_items; ++j)
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
-    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j].GetCaption());
+    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
     b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
-    ui.m_stack_games->insertWidget(j,v[j].GetCreateDialogFunction()(this));
+    ui.m_stack_games->insertWidget(j,v[j]->GetCreateDialogFunction()(this));
   }
   dialog->addWidget(ui.m_stack_games);
   return dialog;
@@ -442,18 +501,18 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewProjectsDialog()
   const double gradient = 1.0 / boost::numeric_cast<double>(n_menu_items + 1);
   const int i = 3; // Index in the main menu
   const double main_color = (0.5 * gradient) + (boost::numeric_cast<double>(i) * gradient);
-  const std::vector<WtMenuItem>& v = m_projects_menu_items;
+  const auto& v = m_projects_menu_items;
   const int n_sub_menu_items = boost::numeric_cast<int>(v.size());
   const double sub_menu_gradient = gradient / boost::numeric_cast<double>(n_sub_menu_items);
   for (int j=0; j!=n_sub_menu_items; ++j)
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
-    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j].GetCaption());
+    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
     b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
-    ui.m_stack_projects->insertWidget(j,v[j].GetCreateDialogFunction()(this));
+    ui.m_stack_projects->insertWidget(j,v[j]->GetCreateDialogFunction()(this));
   }
   dialog->addWidget(ui.m_stack_projects);
   return dialog;
@@ -503,9 +562,9 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestDialDialog() co
   return d;
 }
 
-Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestEncrangerDialog() const
+Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewEncrangerDialog() const
 {
-  WtTestEncrangerMenuDialog * const d = new WtTestEncrangerMenuDialog;
+  WtEncrangerMenuDialog * const d = new WtEncrangerMenuDialog;
   assert(d);
   return d;
 }
@@ -632,19 +691,19 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewToolsDialog()
   const double gradient = 1.0 / boost::numeric_cast<double>(n_menu_items + 1);
   const int i = 4; // Index in the main menu
   const double main_color = (0.5 * gradient) + (boost::numeric_cast<double>(i) * gradient);
-  const std::vector<WtMenuItem>& v = m_tools_menu_items;
+  const auto& v = m_tools_menu_items;
   const int n_sub_menu_items = boost::numeric_cast<int>(v.size());
   const double sub_menu_gradient = gradient / boost::numeric_cast<double>(n_sub_menu_items);
 
   for (int j=0; j!=n_sub_menu_items; ++j)
   {
     const double sub_menu_color = main_color - (0.5 * gradient) + (boost::numeric_cast<double>(j) * sub_menu_gradient);
-    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j].GetCaption());
+    WtShinyButtonWidget * const b = new WtShinyButtonWidget(sub_menu_color,sub_menu_gradient,v[j]->GetCaption());
     b->GetWidget()->SetGeometry(Rect(0,0,m_button_width,m_button_height));
     dialog->addWidget(b);
     b->GetWidget()->m_signal_clicked.connect(
       boost::bind(&ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked,this,boost::lambda::_1));
-    ui.m_stack_tools->insertWidget(j,v[j].GetCreateDialogFunction()(this));
+    ui.m_stack_tools->insertWidget(j,v[j]->GetCreateDialogFunction()(this));
   }
   dialog->addWidget(ui.m_stack_tools);
   return dialog;
@@ -677,31 +736,31 @@ void ribi::RichelBilderbeek::WtMenuDialog::OnMainItemClicked(const ShinyButtonWi
   assert(widget);
   const std::string text = widget->GetShinyButton()->GetText();
   const auto i = std::find_if(m_main_menu_items.begin(),m_main_menu_items.end(),
-    [text](const WtMenuItem& item)
+    [text](const Item_t& item)
     {
-      return item.GetCaption() == text;
+      return item->GetCaption() == text;
     }
   );
 
   assert(i != m_main_menu_items.end());
 
-  (*i).GetStack()->setCurrentIndex((*i).GetIndex());
+  (*i)->GetStack()->setCurrentIndex((*i)->GetIndex());
 }
 
 void ribi::RichelBilderbeek::WtMenuDialog::OnSubItemClicked(const ShinyButtonWidget * const widget)
 {
-  const std::vector<WtMenuItem> sub_menu_items = CollectSubMenuItems();
+  const std::vector<Item_t> sub_menu_items = CollectSubMenuItems();
 
   assert(widget);
   const std::string text = widget->GetShinyButton()->GetText();
   const auto i = std::find_if(sub_menu_items.begin(),sub_menu_items.end(),
-    [text](const WtMenuItem& item)
+    [text](const Item_t& item)
     {
-      return item.GetCaption() == text;
+      return item->GetCaption() == text;
     }
   );
 
   assert(i != sub_menu_items.end());
 
-  (*i).GetStack()->setCurrentIndex((*i).GetIndex());
+  (*i)->GetStack()->setCurrentIndex((*i)->GetIndex());
 }

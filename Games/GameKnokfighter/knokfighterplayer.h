@@ -6,7 +6,8 @@
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 
-namespace Knokfighter {
+namespace ribi {
+namespace knok {
 
 struct PlayerState;
 struct Key;
@@ -14,6 +15,8 @@ struct Key;
 struct Player
 {
   Player();
+  Player(const Player&) = delete;
+  Player& operator=(const Player&) = delete;
 
   ///Respond to a key press
   void PressKey(const Key& key);
@@ -40,15 +43,17 @@ struct Player
   ///Player is idle
   boost::scoped_ptr<PlayerState> m_idle_state;
 
+  ///The current state
+  PlayerState * m_state;
+
   ///Player is walking
   boost::scoped_ptr<PlayerState> m_walk_state;
 
-  ///The current state
-  PlayerState * m_state;
 };
 
 std::ostream& operator<<(std::ostream& os, const Player& gumballMachine);
 
-} //~namespace Knokfighter
+} //~namespace knok
+} //~namespace ribi
 
 #endif // KNOKFIGHTERPLAYER_H

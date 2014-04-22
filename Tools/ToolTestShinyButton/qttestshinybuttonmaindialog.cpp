@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShinyButton, tool to test the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,27 +18,30 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestshinybuttonmaindialog.h"
 
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "qtshinybuttonwidget.h"
+#include "trace.h"
 #include "ui_qttestshinybuttonmaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
- : QDialog(parent),
+ : QtHideAndShowDialog(parent),
    ui(new Ui::QtTestShinyButtonMainDialog),
    m_shiny_button(new QtShinyButtonWidget)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->my_layout->addWidget(m_shiny_button.get());
@@ -56,7 +59,7 @@ ribi::QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
   on_edit_text_textChanged(QString());
 }
 
-ribi::QtTestShinyButtonMainDialog::~QtTestShinyButtonMainDialog()
+ribi::QtTestShinyButtonMainDialog::~QtTestShinyButtonMainDialog() noexcept
 {
   delete ui;
 }
@@ -70,7 +73,7 @@ void ribi::QtTestShinyButtonMainDialog::OnChanged()
     = static_cast<double>(ui->dial_gradient->value())
     / static_cast<double>(ui->dial_gradient->maximum());
   const std::string s
-    = std::string("Color: (")
+    = "Color: ("
     + boost::lexical_cast<std::string>(color)
     + ","
     + boost::lexical_cast<std::string>(gradient)
@@ -114,3 +117,15 @@ void ribi::QtTestShinyButtonMainDialog::on_dial_gradient_sliderMoved(int)
   m_shiny_button->GetWidget()->GetShinyButton()->SetColor(color,gradient);
 }
 
+#ifndef NDEBUG
+void ribi::QtTestShinyButtonMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestShinyButtonMainDialog::Test");
+  TRACE("Finished ribi::QtTestShinyButtonMainDialog::Test successfully");
+}
+#endif

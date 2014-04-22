@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RubiksClock. Rubik's Clock game.
-Copyright (C) 2007-2012  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,13 +22,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTRUBIKSCLOCKMENUDIALOG_H
 #define QTRUBIKSCLOCKMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtRubiksClockMenuDialog;
 }
 
 namespace ribi {
+namespace ruco {
 
 class QtRubiksClockMenuDialog : public QtHideAndShowDialog
 {
@@ -36,7 +40,9 @@ class QtRubiksClockMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtRubiksClockMenuDialog(QWidget *parent = 0);
-  ~QtRubiksClockMenuDialog();
+  QtRubiksClockMenuDialog(const QtRubiksClockMenuDialog&) = delete;
+  QtRubiksClockMenuDialog& operator=(const QtRubiksClockMenuDialog&) = delete;
+  ~QtRubiksClockMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);
@@ -44,12 +50,17 @@ protected:
 private:
   Ui::QtRubiksClockMenuDialog *ui;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void on_button_about_clicked();
   void on_button_quit_clicked();
   void on_button_start_clicked();
 };
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // QTRUBIKSCLOCKMENUDIALOG_H

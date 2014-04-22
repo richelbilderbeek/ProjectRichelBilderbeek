@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Hometrainer, exercise and survey suite
-Copyright (C) 2009-2013 Richel Bilderbeek
+Copyright (C) 2009-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,12 +27,14 @@ namespace ribi {
 
 struct HometrainerResources
 {
+  ///Creates the resources from the resource file
+  ///Throws a std::runtime_error if one of these is not found
   HometrainerResources();
-  const std::string GetQuestion() const { return "ToolHometrainerQuestion.png"; }
-  const std::string GetExerciseClouds() const { return "ToolHometrainerExerciseClouds.txt"; }
-  const std::string GetExerciseTest() const { return "ToolHometrainerExerciseTest.txt"; }
-  const std::string GetQuestionMark() const { return "ToolHometrainerQuestionmark.png"; }
-  const std::string GetWelcome() const { return "ToolHometrainerWelcome.png"; }
+  std::string GetQuestion() const noexcept { return "ToolHometrainerQuestion.png"; }
+  std::string GetExerciseClouds() const noexcept { return "ToolHometrainerExerciseClouds.txt"; }
+  std::string GetExerciseTest() const noexcept { return "ToolHometrainerExerciseTest.txt"; }
+  std::string GetQuestionMark() const noexcept { return "ToolHometrainerQuestionmark.png"; }
+  std::string GetWelcome() const noexcept { return "ToolHometrainerWelcome.png"; }
 };
 
 } //~namespace ribi

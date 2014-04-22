@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Widget, GUI independent widget class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,38 +25,55 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/make_shared.hpp>
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
+#include <boost/geometry/geometries/box.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
 #include "rectangle.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///GUI indepedent widget class, modeled after the Qt and Wt architure
 struct Widget
 {
-  const Rect& GetGeometry() const { return m_geometry; }
-  Rect& GetGeometry() { return m_geometry; }
+  typedef boost::geometry::model::d2::point_xy<double> Point;
+  typedef boost::geometry::model::box<Point> Rect;
+
+  static Rect CreateRect(const double left, const double top, const double width, const double height) noexcept;
+
+  double GetBottom() const noexcept;
+  const Rect& GetGeometry() const noexcept { return m_geometry; }
+  Rect& GetGeometry() noexcept { return m_geometry; }
+  double GetHeight() const noexcept;
+  double GetLeft() const noexcept;
+  double GetRight() const noexcept;
+  double GetTop() const noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+  double GetWidth() const noexcept;
+
+  ///Is the coordinat within the widget its rectangle?
+  bool IsIn(const double x, const double y) const noexcept;
 
   ///SetGeometry resizes the Widget and emits an OnResize signal
-  void SetGeometry(const Rect& geometry);
-
-  ///Obtain the version of this class
-  static const std::string GetVersion();
-
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  void SetGeometry(const Rect& geometry) noexcept;
+  void SetGeometry(const double left, const double top, const double width, const double height) noexcept;
 
   ///Respond to a change in size
   mutable boost::signals2::signal<void ()> m_signal_geometry_changed;
 
   protected:
-  virtual ~Widget() {}
-  friend void boost::checked_delete<>(Widget*);
+  virtual ~Widget() noexcept {}
+  friend void boost::checked_delete<>(      Widget*);
+  friend void boost::checked_delete<>(const Widget*);
+  friend class boost::detail::sp_ms_deleter<      Widget>;
+  friend class boost::detail::sp_ms_deleter<const Widget>;
 
   private:
   Rect m_geometry;

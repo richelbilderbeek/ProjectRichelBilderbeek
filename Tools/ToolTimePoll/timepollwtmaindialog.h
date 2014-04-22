@@ -20,14 +20,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TIMEPOLLWTMAINDIALOG_H
 #define TIMEPOLLWTMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "wtserverpusherclient.h"
 #include "wttimedserverpusherclient.h"
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   //namespace Chart { struct WCartesianChart; }
@@ -37,7 +37,7 @@ namespace Wt
 
 namespace ribi {
 namespace ToolTimePoll {
-//---------------------------------------------------------------------------
+
 ///TimePoll its main dialog
 struct WtTimePollMainDialog
   : public Wt::WContainerWidget, WtServerPusherClient, WtTimedServerPusherClient
@@ -71,7 +71,7 @@ struct WtTimePollMainDialog
   ///Event triggered by WtTimedServerPusher
   void OnTimedServerPush();
 };
-//---------------------------------------------------------------------------
+
 } //~namespace ToolTimePoll
 
 } //~namespace ribi

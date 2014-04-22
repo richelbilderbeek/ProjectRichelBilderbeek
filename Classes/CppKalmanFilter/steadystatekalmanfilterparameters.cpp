@@ -48,12 +48,12 @@ const boost::numeric::ublas::matrix<double> ribi::kalman::SteadyStateKalmanFilte
 
 }
 
-const std::string ribi::kalman::SteadyStateKalmanFilterParameters::GetVersion()
+std::string ribi::kalman::SteadyStateKalmanFilterParameters::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::kalman::SteadyStateKalmanFilterParameters::GetVersionHistory()
+std::vector<std::string> ribi::kalman::SteadyStateKalmanFilterParameters::GetVersionHistory() noexcept
 {
   return {
     "2013-05-01: version 1.0: initial version"

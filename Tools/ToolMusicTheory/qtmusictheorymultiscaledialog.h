@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MusicTheory, tool for visualizing my music theory
-Copyright (C)  2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMUSICTHEORYMULTISCALEDIALOG_H
 #define QTMUSICTHEORYMULTISCALEDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtMusicTheoryMultiScaleDialog;
@@ -29,13 +32,15 @@ class QtMusicTheoryMultiScaleDialog;
 
 namespace ribi {
 
-class QtMusicTheoryMultiScaleDialog : public QDialog
+class QtMusicTheoryMultiScaleDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
   explicit QtMusicTheoryMultiScaleDialog(QWidget *parent = 0);
-  ~QtMusicTheoryMultiScaleDialog();
+  QtMusicTheoryMultiScaleDialog(const QtMusicTheoryMultiScaleDialog&) = delete;
+  QtMusicTheoryMultiScaleDialog& operator=(const QtMusicTheoryMultiScaleDialog&) = delete;
+  ~QtMusicTheoryMultiScaleDialog() noexcept;
 
   void resizeEvent(QResizeEvent *);
     

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,71 +24,72 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+namespace c2h {
+
 namespace Version
 {
 
-///FileToVector reads a file and converts it to a std::vector<std::string>
-///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> FileToVector(const std::string& filename);
-
 ///GetBoostVersion returns the version of the current Boost library.
 ///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm
-const std::string GetBoostVersion();
+std::string GetBoostVersion() noexcept;
 
 #ifndef _WIN32
 ///GetLubuntuVersion returns the version number of the Lubuntu distribution currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetLubuntuVersion.htm
-const std::string GetLubuntuVersion();
+std::string GetLubuntuVersion() noexcept;
 #endif
 
 #ifndef _WIN32
 ///GetLubuntuVersionCodename returns the codename of the Lubuntu distribution currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetLubuntuVersionCodename.htm
-const std::string GetLubuntuVersionCodename();
+std::string GetLubuntuVersionCodename() noexcept;
 #endif
 
 ///GetGccVersion returns the version number of GCC currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetGccVersion.htm
-const std::string GetGccVersion();
+std::string GetGccVersion() noexcept;
 
 ///GetQtVersion returns the version of the Qt library installed.
 ///From http://www.richelbilderbeek.nl/CppGetQtVersion.htm
-const std::string GetQtVersion();
+std::string GetQtVersion() noexcept;
 
 #ifndef _WIN32
 ///GetQtCreatorVersion returns the version Qt Creator currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetQtCreatorVersion.htm
-const std::string GetQtCreatorVersion();
+std::string GetQtCreatorVersion() noexcept;
 #endif
 
 ///GetStlVersion returns the version number of the GCC STL currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetStlVersion.htm
-const std::string GetStlVersion();
+std::string GetStlVersion() noexcept;
 
 #ifndef _WIN32
 ///GetUbuntuVersion returns the version number of the Ubuntu distribution currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetUbuntuVersion.htm
-const std::string GetUbuntuVersion();
+std::string GetUbuntuVersion() noexcept;
 #endif
 
 #ifndef _WIN32
 ///GetUbuntuVersionCodename returns the codename of the Ubuntu distribution currently installed.
 ///From http://www.richelbilderbeek.nl/CppGetUbuntuVersionCodename.htm
-const std::string GetUbuntuVersionCodename();
+std::string GetUbuntuVersionCodename() noexcept;
 #endif
 
 ///GetVirtualBoxVersion returns the version of the currently installed VirtualBox
 ///From http://www.richelbilderbeek.nl/CppGetVirtualBoxVersion.htm
-const std::string GetVirtualBoxVersion();
+std::string GetVirtualBoxVersion() noexcept;
 
 ///GetWineVersion returns the version of the currently installed Wine
 ///From http://www.richelbilderbeek.nl/CppGetWineVersion.htm
-const std::string GetWineVersion();
+std::string GetWineVersion() noexcept;
 
 ///GetWtVersion returns the version of the currently installed Wt library
 ///From http://www.richelbilderbeek.nl/CppGetWtVersion.htm
-const std::string GetWtVersion();
-
+std::string GetWtVersion() noexcept;
 }
+
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLVERSION_H

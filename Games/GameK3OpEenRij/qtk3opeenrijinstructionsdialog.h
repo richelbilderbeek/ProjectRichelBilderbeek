@@ -14,8 +14,10 @@ class QtK3OpEenRijInstructionsDialog : public QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  explicit QtK3OpEenRijInstructionsDialog(QWidget *parent = 0);
-  ~QtK3OpEenRijInstructionsDialog();
+  explicit QtK3OpEenRijInstructionsDialog(QWidget *parent = 0) noexcept;
+  QtK3OpEenRijInstructionsDialog(const QtK3OpEenRijInstructionsDialog&) = delete;
+  QtK3OpEenRijInstructionsDialog& operator=(const QtK3OpEenRijInstructionsDialog&) = delete;
+  ~QtK3OpEenRijInstructionsDialog() noexcept;
   
 private:
   Ui::QtK3OpEenRijInstructionsDialog *ui;

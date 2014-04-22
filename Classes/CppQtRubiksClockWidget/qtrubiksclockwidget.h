@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtRubiksClockWidget, Wt widget for displaying the RubiksClock class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,21 +25,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 #include <QWidget>
 
-#include "rubiksclock.h" //Required by MOC
+#include "rubiksclock.h"       //Required by MOC
+#include "rubiksclockfwd.h"
 #include "rubiksclockwidget.h" //Required by MOC
+#pragma GCC diagnostic pop
 
 namespace Wt { struct WMouseEventEvent; }
 struct QPainter;
 
 namespace ribi {
-
-struct RubiksClock;
+namespace ruco {
 
 ///QtRubiksClockWidget displays a RubiksClock
 class QtRubiksClockWidget : public QWidget
@@ -55,16 +56,16 @@ public:
     const unsigned char blue = 255);
 
   ///Obtain a read-only pointer to the RubiksClockWidget
-  const RubiksClockWidget * GetWidget() const { return m_widget.get(); }
+  const ClockWidget * GetWidget() const { return m_widget.get(); }
 
   ///Obtain a read-and-write pointer to the RubiksClockWidget
-  RubiksClockWidget * GetWidget() { return m_widget.get(); }
+  ClockWidget * GetWidget() { return m_widget.get(); }
 
   ///Obtain the QtRubiksClockWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the QtRubiksClockWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///\brief
   ///Draw the RubiksClock
@@ -75,13 +76,13 @@ public:
     QPainter& painter,
     const int x, const int y,
     const int width, const int height,
-    const RubiksClock * const clock,
+    const Clock * const clock,
     const bool front_size);
 
   ///Draw the RubiksClock
   static void DrawRubiksClock(
     QPainter& painter,
-    const RubiksClockWidget * const widget);
+    const ClockWidget * const widget);
 
   protected:
   ///Paint the QtRubiksClockWidget
@@ -91,7 +92,7 @@ public:
 
   private:
   ///The RubiksClockWidget
-  boost::scoped_ptr<RubiksClockWidget> m_widget;
+  boost::scoped_ptr<ClockWidget> m_widget;
 
   ///Do not let this be called by the client
   void resize(const int width, const int height);
@@ -103,56 +104,7 @@ public:
   void OnResize();
 };
 
-
-/*
-
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
-#include <Graphics.hpp>
-
-#include "UnitRubiksClock.h"
-
-class TFormRubiksClockMain : public TForm
-{
-__published:	// IDE-managed Components
-        TImage *ImageClockFront;
-        TImage *ImageClockBack;
-        TPanel *Panel1;
-        TButton *ButtonAbout;
-        TButton *ButtonShuffle;
-        void __fastcall FormResize(TObject *Sender);
-        void __fastcall ImageClockFrontMouseDown(TObject *Sender,
-          TMouseButton Button, TShiftState Shift, int X, int Y);
-        void __fastcall ImageClockBackMouseDown(TObject *Sender,
-          TMouseButton Button, TShiftState Shift, int X, int Y);
-        void __fastcall ButtonAboutClick(TObject *Sender);
-        void __fastcall ButtonShuffleClick(TObject *Sender);
-private:	// User declarations
-  RubiksClock mClock;
-  void DrawScreen();
-public:		// User declarations
-        __fastcall TFormRubiksClockMain(TComponent* Owner);
-};
-
-extern PACKAGE TFormRubiksClockMain *FormRubiksClockMain;
-
-void DrawRubiksClock(
-  const RubiksClockTimes& times,
-  const RubiksClockPegs& pegs,
-  const TColor colorCasing,
-  const TColor colorClock,
-  TImage * const image);
-
-void PaintVcl(TImage * const image,
-  const unsigned char red,
-  const unsigned char green,
-  const unsigned char blue  );
-
-*/
-
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // QTRUBIKSCLOCKWIDGET_H

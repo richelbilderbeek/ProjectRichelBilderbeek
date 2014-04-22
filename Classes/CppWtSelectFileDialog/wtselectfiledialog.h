@@ -20,18 +20,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTSELECTFILEDIALOG_H
 #define WTSELECTFILEDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WLineEdit;
   struct WPushButton;
   struct WSelectionBox;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
@@ -39,8 +39,8 @@ namespace ribi {
 struct WtSelectFileDialog : public Wt::WContainerWidget
 {
   WtSelectFileDialog();
-
-  ///Base class must have a virtual public destructor
+  WtSelectFileDialog(const WtSelectFileDialog&) = delete;
+  WtSelectFileDialog& operator=(const WtSelectFileDialog&) = delete;
   virtual ~WtSelectFileDialog() {}
 
   ///Check the folder for files again
@@ -79,10 +79,12 @@ protected:
   struct Ui
   {
     Ui();
+    Ui(const Ui&) = delete;
+    Ui& operator=(const Ui&) = delete;
     Wt::WLineEdit * const m_edit_filter;
     Wt::WLabel * const m_label_filter;
     Wt::WSelectionBox * const m_selection_box;
-  } ui;
+  } m_ui;
 
   ///Get all the files in a folder
   //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm

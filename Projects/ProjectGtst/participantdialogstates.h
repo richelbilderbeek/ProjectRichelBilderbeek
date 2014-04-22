@@ -34,6 +34,8 @@ struct ParticipantDialogStates
   ParticipantDialogStates(
     ParticipantDialog* const dialog,
     Server * const server);
+  ParticipantDialogStates(const ParticipantDialogStates&) = delete;
+  ParticipantDialogStates& operator=(const ParticipantDialogStates&) = delete;
 
   ///Get the ParticipantDialog its current ParticipantDialogState
   ParticipantDialogState * GetCurrentState() const;

@@ -1,16 +1,14 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 #include <QDesktopWidget>
 #include "qttestqtroundedtextrectitemmenudialog.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtTestQtRoundedTextRectItemMenuDialog w;
+  ribi::QtTestQtRoundedTextRectItemMenuDialog w;
   w.show();
   return a.exec();
 }

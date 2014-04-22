@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Dial, dial class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,10 +44,10 @@ struct Dial
     const unsigned char blue  = 255);
 
   ///Get the blueness of the Dial its color
-  unsigned char GetBlue() const { return m_blue; }
+  unsigned char GetBlue() const noexcept { return m_blue; }
 
   ///Get the greenness of the Dial its color
-  unsigned char GetGreen() const { return m_green; }
+  unsigned char GetGreen() const noexcept { return m_green; }
 
   ///\brief
   ///Get the position of the Dial
@@ -57,31 +57,31 @@ struct Dial
   ///0.05: Down ,  6:00 'o clock
   ///0.75: Left ,  9:00 'o clock
   ///1.00: Up   , 12:00 'o clock
-  double GetPosition() const { return m_position; }
+  double GetPosition() const noexcept { return m_position; }
 
   ///Get the redness of the Dial its color
-  unsigned char GetRed() const { return m_red; }
+  unsigned char GetRed() const noexcept { return m_red; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the blue the Dial
-  void SetBlue(const int b);
+  void SetBlue(const int b) noexcept;
 
   ///Set the color the Dial
-  void SetColor(const int r, const int g, const int b);
+  void SetColor(const int r, const int g, const int b) noexcept;
 
   ///Set the greenness the Dial
-  void SetGreen(const int g);
+  void SetGreen(const int g) noexcept;
 
   ///Set the position of the Dial
-  void SetPosition(const double position);
+  void SetPosition(const double position) noexcept;
 
   ///Set the redness the Dial
-  void SetRed(const int r);
+  void SetRed(const int r) noexcept;
 
   ///The signal emitted when the Dial its color is changed
   mutable boost::signals2::signal<void ()> m_signal_color_changed;
@@ -91,8 +91,9 @@ struct Dial
 
   private:
   //Dial can only be deleted by Boost smart pointers
-  virtual ~Dial() {}
+  virtual ~Dial() noexcept {}
   friend void boost::checked_delete<>(Dial*);
+  friend void boost::checked_delete<>(const Dial*);
 
   unsigned char m_blue;
   unsigned char m_green;
@@ -101,21 +102,9 @@ struct Dial
 
   friend std::ostream& operator<<(std::ostream& os, const Dial& dial);
 
-  public:
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy);
-
-  //From www.richelbilderbeek.nl/CppGetDistance.htm
-  static double GetDistance(const double dX, const double dY);
-
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

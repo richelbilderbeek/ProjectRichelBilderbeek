@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,12 +26,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::TestQuestionMainDialog::TestQuestionMainDialog()
   : m_questions(CreateQuestions())
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestQuestionMainDialog::CreateQuestions()
@@ -96,7 +99,15 @@ std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestQuestionMainDial
   return v;
 }
 
-
-
-
-
+#ifndef NDEBUG
+void ribi::TestQuestionMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestQuestionMainDialog::Test");
+  TRACE("Finished ribi::TestQuestionMainDialog::Test successfully");
+}
+#endif

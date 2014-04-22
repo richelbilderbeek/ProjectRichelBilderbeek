@@ -18,21 +18,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // ---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtArrowItems.htm
 // ---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
 #include <QDesktopWidget>
 #include "qttestqtarrowitemsmenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtTestQtArrowItemsMenuDialog d;
   START_TRACE();
+  ribi::QtTestQtArrowItemsMenuDialog d;
   d.show();
   return a.exec();
 }

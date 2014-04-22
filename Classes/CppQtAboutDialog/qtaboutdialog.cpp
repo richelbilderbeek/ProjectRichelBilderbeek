@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtAboutDialog, Qt dialog for About
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about)
+ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about) noexcept
   : ui(new Ui::QtAboutDialog)
 {
   ui->setupUi(this);
@@ -64,9 +64,9 @@ ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about)
   ui->label_build_date_time->setText(
     QString(
       (std::string("Source code built on ")
-      + std::string(__DATE__)
-      + std::string(" ")
-      + std::string(__TIME__)).c_str()));
+      + __DATE__
+      + " "
+      + __TIME__).c_str()));
 
   #ifdef NDEBUG
   ui->label_build_type->setText(QString("Release version"));
@@ -111,17 +111,17 @@ ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about)
   ui->text_whatsnew->moveCursor(QTextCursor::Start);
 }
 
-ribi::QtAboutDialog::~QtAboutDialog()
+ribi::QtAboutDialog::~QtAboutDialog() noexcept
 {
   delete ui;
 }
 
-const std::string ribi::QtAboutDialog::GetVersion()
+std::string ribi::QtAboutDialog::GetVersion() noexcept
 {
-  return "1.7";
+  return "1.9";
 }
 
-const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
+std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-01-11: version 1.0: initial version of QtAboutDialog",
@@ -132,6 +132,8 @@ const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
     "2012-01-27: version 1.5: abandoned use of BOOST_FOREACH, due to run-time errors",
     "2013-09-05: version 1.6: transition to namespace ribi"
     "2013-09-10: version 1.7: explicitly disabled copying, compiles with -Weffc++"
+    "2013-09-16: version 1.8: noexcept",
+    "2013-09-19: version 1.9: derive from QtHideAndShowDialog"
   };
 }
 

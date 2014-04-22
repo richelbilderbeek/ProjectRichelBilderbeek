@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtModel, my classes derived from QAbstractTableModel
-Copyright (C) 2013 Richel Bilderbeek
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtStdVectorFunctionModel::QtStdVectorFunctionModel(
   const std::string& variable,
-  QObject *parent)
+  QObject *parent) noexcept
   : QAbstractTableModel(parent),
     m_data{},
     m_header_horizontal_text{},
@@ -44,7 +44,7 @@ ribi::QtStdVectorFunctionModel::QtStdVectorFunctionModel(
   assert(!variable.empty());
 }
 
-int ribi::QtStdVectorFunctionModel::columnCount(const QModelIndex &) const
+int ribi::QtStdVectorFunctionModel::columnCount(const QModelIndex &) const noexcept
 {
   return rowCount() > 0 ? 1 : 0;
 }
@@ -68,7 +68,7 @@ QVariant ribi::QtStdVectorFunctionModel::data(const QModelIndex &index, int role
   return QString(m_data[row].c_str());
 }
 
-Qt::ItemFlags ribi::QtStdVectorFunctionModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtStdVectorFunctionModel::flags(const QModelIndex &) const noexcept
 {
   return
     Qt::ItemIsSelectable
@@ -78,12 +78,12 @@ Qt::ItemFlags ribi::QtStdVectorFunctionModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string ribi::QtStdVectorFunctionModel::GetVersion()
+std::string ribi::QtStdVectorFunctionModel::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtStdVectorFunctionModel::GetVersionHistory()
+std::vector<std::string> ribi::QtStdVectorFunctionModel::GetVersionHistory() noexcept
 {
   return {
     "2013-05-15: version 1.0: initial version",
@@ -158,7 +158,7 @@ bool ribi::QtStdVectorFunctionModel::removeRows(int row, int count, const QModel
   return true;
 }
 
-int ribi::QtStdVectorFunctionModel::rowCount(const QModelIndex &) const
+int ribi::QtStdVectorFunctionModel::rowCount(const QModelIndex &) const noexcept
 {
   return boost::numeric_cast<int>(m_data.size());
 }

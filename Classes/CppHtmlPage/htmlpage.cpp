@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 HtmlPage, HTML page class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,72 +18,67 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppHtmlPage.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "htmlpage.h"
 
 #include <fstream>
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string.hpp>
 #include <boost/xpressive/xpressive.hpp>
-#pragma GCC diagnostic pop
 
+#include <QDir>
 #include <QFile>
 
-ribi::HtmlPage::HtmlPage(const std::string& filename)
-  : m_filename(filename)
-{
-  assert(QFile::exists(filename.c_str()));
+#include "fileio.h"
+#pragma GCC diagnostic pop
 
+ribi::HtmlPage::HtmlPage(const std::string& filename)
+  : m_filename{filename},
+    m_title{FindTitle(filename)}
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
+
+}
+
+std::string ribi::HtmlPage::FindTitle(const std::string& filename) noexcept
+{
   const boost::xpressive::sregex title_regex
     = boost::xpressive::sregex::compile("<title>.*</title>");
 
   //Copy all filenames matching the regex in the resulting std::vector
-  const std::vector<std::string> v = FileToVector(filename);
-  std::for_each(v.begin(),v.end(),
-    [this,title_regex](const std::string& s)
-    {
-      if (boost::xpressive::regex_search(s,title_regex))
-      {
-        std::string t = s;
-        //Trim leading whitespace
-        while (!std::isgraph(t[0])) t = t.substr(1,t.size() - 1);
-        //Trim trailing whitespace
-        while (!std::isgraph(t[t.size()-1])) t.resize(t.size() - 1);
-        //Extract title
-        assert(t.substr(0,7)=="<title>");
-        assert(t.substr(t.size()-8,8)=="</title>");
-        m_title = t.substr(7,t.size()-8-7);
-        m_title = ReplaceAll(m_title,"&amp;","&");
-
-      }
-    }
-  );
-}
-
-const std::vector<std::string> ribi::HtmlPage::FileToVector(const std::string& filename)
-{
-  assert(QFile::exists(filename.c_str()));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
+  const std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
+  for (const std::string s: v)
   {
-    std::getline(in,s);
-    v.push_back(s);
+    if (boost::xpressive::regex_search(s,title_regex))
+    {
+      std::string t = s;
+      //Trim leading whitespace
+      while (!std::isgraph(t[0])) t = t.substr(1,t.size() - 1);
+      //Trim trailing whitespace
+      while (!std::isgraph(t[t.size()-1])) t.resize(t.size() - 1);
+      //Extract title
+      assert(t.substr(0,7)=="<title>");
+      assert(t.substr(t.size()-8,8)=="</title>");
+      const std::string title = t.substr(7,t.size()-8-7);
+      const std::string title_clean = ReplaceAll(title,"&amp;","&");
+      return title_clean;
+    }
   }
-  return v;
+  return {};
 }
 
-const std::string ribi::HtmlPage::GetVersion()
+std::string ribi::HtmlPage::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::HtmlPage::GetVersionHistory()
+std::vector<std::string> ribi::HtmlPage::GetVersionHistory() noexcept
 {
   return {
     "2011-xx-xx: version 1.0: initial version",
@@ -92,10 +87,10 @@ const std::vector<std::string> ribi::HtmlPage::GetVersionHistory()
   };
 }
 
-const std::string ribi::HtmlPage::ReplaceAll(
+std::string ribi::HtmlPage::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
-  const std::string& replaceWithWhat)
+  const std::string& replaceWithWhat) noexcept
 {
   while(1)
   {
@@ -106,7 +101,37 @@ const std::string ribi::HtmlPage::ReplaceAll(
   return s;
 }
 
-bool ribi::operator<(const HtmlPage& lhs, const HtmlPage& rhs)
+#ifndef NDEBUG
+void ribi::HtmlPage::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  //Test finding
+  {
+    const std::string filename { "tmp.txt" };
+    std::ofstream file(filename);
+    file << "Nothing";
+    file.close();
+    assert(FindTitle(filename)=="");
+    std::remove(filename.c_str());
+  }
+  {
+    const std::string filename { "tmp.txt" };
+    std::ofstream file(filename);
+    file << "Nothing\n";
+    file << "<title>Something</title>\n";
+    file << "Nothing\n";
+    file.close();
+    assert(FindTitle(filename)=="Something");
+    std::remove(filename.c_str());
+  }
+}
+#endif
+
+bool ribi::operator<(const HtmlPage& lhs, const HtmlPage& rhs) noexcept
 {
   //Case insensitive compare
   return boost::algorithm::to_lower_copy(lhs.GetTitle())

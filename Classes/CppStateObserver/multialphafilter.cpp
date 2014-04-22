@@ -3,7 +3,7 @@
 #include "multialphafilter.h"
 
 #include <cassert>
-#include <boost/foreach.hpp>
+
 
 #pragma GCC diagnostic pop
 
@@ -21,7 +21,7 @@ const std::vector<boost::shared_ptr<ribi::AlphaFilter> > ribi::MultiAlphaFilter:
 {
   std::vector<boost::shared_ptr<AlphaFilter> > v;
 
-  BOOST_FOREACH(const double alpha, alphas)
+  for(const double alpha: alphas)
   {
     boost::shared_ptr<AlphaFilter> filter(new AlphaFilter(alpha,dt));
     assert(filter);
@@ -47,12 +47,12 @@ void ribi::MultiAlphaFilter::Update(double measurement)
   }
 }
 
-const std::string ribi::MultiAlphaFilter::GetVersion()
+std::string ribi::MultiAlphaFilter::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MultiAlphaFilter::GetVersionHistory()
+std::vector<std::string> ribi::MultiAlphaFilter::GetVersionHistory() noexcept
 {
   return {
     "2013-05-25: version 1.0: initial version",

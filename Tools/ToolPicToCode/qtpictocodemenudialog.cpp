@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PicToCode, tool to convert a picture to C++ code
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,25 +18,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolPicToCode.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpictocodemenudialog.h"
 
+#include <cassert>
 
 #include "about.h"
 #include "pictocodemenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtpictocodemaindialog.h"
+#include "trace.h"
 #include "ui_qtpictocodemenudialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtPicToCodeMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
-ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog()
+
+ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog() noexcept
 {
   delete ui;
 }
@@ -44,21 +50,29 @@ ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog()
 void ribi::QtPicToCodeMenuDialog::on_button_start_clicked()
 {
   QtPicToCodeMainDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtPicToCodeMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(PicToCodeMenuDialog::GetAbout());
-  this->hide();
-  d.exec();
-  this->show();
+  QtAboutDialog d(PicToCodeMenuDialog().GetAbout());
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtPicToCodeMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-//---------------------------------------------------------------------------
+
+#ifndef NDEBUG
+void ribi::QtPicToCodeMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtPicToCodeMenuDialog::Test");
+  TRACE("Finished ribi::QtPicToCodeMenuDialog::Test successfully");
+}
+#endif

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestKeyboardFriendlyGraphicsView, tests QtKeyboardFriendlyGraphicsView
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,20 +21,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H
 #define TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-///GUI independent TestKeyboardFriendlyGraphicsView menu dialog
-struct TestKeyboardFriendlyGraphicsViewMenuDialog
+struct TestKeyboardFriendlyGraphicsViewMenuDialog : public MenuDialog
 {
-  TestKeyboardFriendlyGraphicsViewMenuDialog() {}
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -1,21 +1,26 @@
 #ifndef QTTESTTOGGLEBUTTONMENUDIALOG_H
 #define QTTESTTOGGLEBUTTONMENUDIALOG_H
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
+
 namespace Ui {
-class QtTestToggleButtonMenuDialog;
+  class QtTestToggleButtonMenuDialog;
 }
 
 namespace ribi {
 
-class QtTestToggleButtonMenuDialog : public QDialog
+class QtTestToggleButtonMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestToggleButtonMenuDialog(QWidget *parent = 0);
-  ~QtTestToggleButtonMenuDialog();
+  QtTestToggleButtonMenuDialog(const QtTestToggleButtonMenuDialog&) = delete;
+  QtTestToggleButtonMenuDialog& operator=(const QtTestToggleButtonMenuDialog&) = delete;
+  ~QtTestToggleButtonMenuDialog() noexcept;
 
 private slots:
   void on_button_start_clicked();
@@ -24,6 +29,10 @@ private slots:
 
 private:
   Ui::QtTestToggleButtonMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

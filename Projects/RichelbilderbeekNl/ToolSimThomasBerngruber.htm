@@ -1,0 +1,587 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>SimThomasBerngruber</title>
+  <meta name="description" content="C++ SimThomasBerngruber"/>
+  <meta name="keywords" content="C++ SimThomasBerngruber "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolSimThomasBerngruber.htm">SimThomasBerngruber</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name ToolSimThomasBerngruber-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimThomasBerngruber/Project1.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimThomasBerngruber/Project1.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+USEFORM("Unit1<a href="CppImplementationFile.htm">.cpp</a>", Form1);<br/>
+USEFORM("..\Unit2<a href="CppImplementationFile.htm">.cpp</a>", Form2);<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "Simple Cellular Automaton";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TForm1), &amp;Form1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TForm2), &amp;Form2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimThomasBerngruber/Unit1.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimThomasBerngruber/Unit1.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> Unit1H<br/>
+<a href="CppDefine.htm">#define</a> Unit1H<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Graphics.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Chart.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ComCtrls.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Series.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;TeEngine.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;TeeProcs.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Dialogs.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;Grids.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;ValEdit.hpp&gt;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "UnitRandom.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;richel001.h&gt;<br/>
+<b><a href="CppEnum.htm">enum</a></b> STATE {EMPTY, SUS, RES, KILL};&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Some global <a href="CppDefinition.htm">definitions</a><br/>
+STATE area[400][400];<br/>
+<b><a href="CppInt.htm">int</a></b> NEmpty=0;<br/>
+<b><a href="CppInt.htm">int</a></b> NSus=0;<br/>
+<b><a href="CppInt.htm">int</a></b> NRes=0;<br/>
+<b><a href="CppInt.htm">int</a></b> NKill=0;<br/>
+<b><a href="CppDouble.htm">double</a></b> deathrate=0.0;<br/>
+<b><a href="CppDouble.htm">double</a></b> birthrate=0.0;<br/>
+<b><a href="CppDouble.htm">double</a></b> cost_of_res=0.0;<br/>
+<b><a href="CppDouble.htm">double</a></b> extra_death_kil=0.0;<br/>
+<b><a href="CppDouble.htm">double</a></b> mut=0.0;<br/>
+<b><a href="CppInt.htm">int</a></b> duration=0;<br/>
+<b><a href="CppInt.htm">int</a></b> maxx=0;<br/>
+<b><a href="CppInt.htm">int</a></b> maxy=0;<br/>
+<b><a href="CppDouble.htm">double</a></b> initsus=0.0;<br/>
+<b><a href="CppDouble.htm">double</a></b> initres=0.0;<br/>
+<b><a href="CppDouble.htm">double</a></b> initkill=0.0;<br/>
+<b><a href="CppInt.htm">int</a></b> diffusion=0;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppClass.htm">class</a></b> TForm1 : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+{<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+&nbsp;&nbsp;TButton *Button1;<br/>
+&nbsp;&nbsp;TChart *Chart1;<br/>
+&nbsp;&nbsp;TLineSeries *Series1;<br/>
+&nbsp;&nbsp;TLineSeries *Series2;<br/>
+&nbsp;&nbsp;TLineSeries *Series3;<br/>
+&nbsp;&nbsp;TLineSeries *Series4;<br/>
+&nbsp;&nbsp;TValueListEditor *ValueListEditor1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageGrid;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall Button1Click(TObject *Sender);<br/>
+<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
+<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
+&nbsp;&nbsp;__fastcall TForm1(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+};<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppExtern.htm">extern</a></b> PACKAGE TForm1 *Form1;<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+ <a href="CppComment.htm">//</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">//</a><br/>
+/<a href="CppComment.htm">//</a> Mobius <a href="CppFunction.htm">Function</a><a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> Mobius(T &amp;number,T min, T max)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (number&gt;max) {number<a href="CppOperatorMinusAssign.htm">-=</a>(max+min);}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (number&lt;min) {number<a href="CppOperatorPlusAssign.htm">+=</a>(max-min);}<br/>
+&nbsp;&nbsp;}<a href="CppComment.htm">//</a>End of: <b><a href="CppVoid.htm">void</a></b> Mobius<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">//</a> Choose from a 4 neighborhood at max distance diffusion<a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> FindNeighbour(<b><a href="CppInt.htm">int</a></b> x1, <b><a href="CppInt.htm">int</a></b> y1, <b><a href="CppInt.htm">int</a></b> &amp;x2, <b><a href="CppInt.htm">int</a></b>&amp; y2, <b><a href="CppInt.htm">int</a></b> diffusion)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp; x2=x1+(random(2*diffusion+1)-diffusion);<br/>
+&nbsp;&nbsp; y2=y1+(random(2*diffusion+1)-diffusion);<br/>
+&nbsp;&nbsp; <b><a href="CppWhile.htm">while</a></b> (x2<a href="CppOperatorEqual.htm">==</a>x1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y2<a href="CppOperatorEqual.htm">==</a>y1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x2=x1+(random(2*diffusion+1)-diffusion);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y2=y1+(random(2*diffusion+1)-diffusion);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><b><a href="CppSwitch.htm">switch</a></b>(random(4))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0 : y2=y1-diffusion; x2=x1; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1 : x2=x1-diffusion; y2=y1; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2 : y2=y1+diffusion; x2=x1; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3 : x2=x1-diffusion; y2=y1; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a>End of: <b><a href="CppSwitch.htm">switch</a></b> (random(4))<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+/<a href="CppComment.htm">//</a> Map states to colors <a href="CppComment.htm">//</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<br/>
+TColor <a href="CppState.htm">State</a>ToColor(STATE number)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;TColor solution=clWhite;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (number<a href="CppOperatorEqual.htm">==</a>EMPTY) solution=clBlack;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (number<a href="CppOperatorEqual.htm">==</a>SUS) solution=clYellow;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (number<a href="CppOperatorEqual.htm">==</a>RES) solution=clLime;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (number<a href="CppOperatorEqual.htm">==</a>KILL) solution=clRed;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (solution);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> ExtractRGB(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; colorvalue, <b><a href="CppInt.htm">int</a></b> &amp;R, <b><a href="CppInt.htm">int</a></b> &amp;G, <b><a href="CppInt.htm">int</a></b> &amp;B)<br/>
+&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp; R=GetRValue(colorvalue);<br/>
+&nbsp;&nbsp; G=GetGValue(colorvalue);<br/>
+&nbsp;&nbsp; B=GetBValue(colorvalue);<br/>
+&nbsp;&nbsp; }<a href="CppComment.htm">//</a>End of:<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> ExtractRGB(<b><a href="CppConst.htm">const</a></b> TColor&amp; colorvalue, <b><a href="CppInt.htm">int</a></b> &amp;R, <b><a href="CppInt.htm">int</a></b> &amp;G, <b><a href="CppInt.htm">int</a></b> &amp;B)<br/>
+&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp; R=GetRValue(colorvalue);<br/>
+&nbsp;&nbsp; G=GetGValue(colorvalue);<br/>
+&nbsp;&nbsp; B=GetBValue(colorvalue);<br/>
+&nbsp;&nbsp; }<a href="CppComment.htm">//</a>End of:<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">//</a> EMPTY THE CHART<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<b><a href="CppVoid.htm">void</a></b> EmptyChart(TChart * Chart1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;Chart1-&gt;Series[0]-&gt;Clear();<br/>
+&nbsp;&nbsp;Chart1-&gt;Series[1]-&gt;Clear();<br/>
+&nbsp;&nbsp;Chart1-&gt;Series[2]-&gt;Clear();<br/>
+&nbsp;&nbsp;Chart1-&gt;Series[3]-&gt;Clear();<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">//</a> INITIALIZE THE GRID<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<b><a href="CppVoid.htm">void</a></b> Init_grid(<b><a href="CppVoid.htm">void</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x&lt;maxx; x<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;maxy; y<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>ShowMessage(initsus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> ran1=rnd::uniform();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ran1 &lt; initsus) {area[x][y]=SUS;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ran1 &gt; initsus <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp;ran1 &lt; initsus+initres) {area[x][y]=RES; <b><a href="CppContinue.htm">continue</a></b>;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ran1 &gt; initsus+initres&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> ran1 &lt; initsus+initres+initkill) {area[x][y]=KILL; <b><a href="CppContinue.htm">continue</a></b>;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;area[x][y]=EMPTY;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a> next y<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a> next x<br/>
+&nbsp;&nbsp;}<a href="CppComment.htm">//</a>End of: Init_grid<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">//</a> UPDATE THE GRID<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<b><a href="CppVoid.htm">void</a></b> GridUpdate(<b><a href="CppVoid.htm">void</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x1,y1,x2,y2;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (y1=0; y1&lt;maxy; y1<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (x1=0; x1&lt;maxx; x1<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FindNeighbour(x1,y1,x2,y2,diffusion);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobius(x2,0,maxx-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobius(y2,0,maxy-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Update rule<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATE Here=area[x1][y1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATE Neighbour=area[x2][y2];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> ran1=rnd::uniform();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> ran2=rnd::uniform();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (Here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> EMPTY : <b><a href="CppIf.htm">if</a></b> ((ran1 &lt; birthrate) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (Neighbour<a href="CppOperatorEqual.htm">==</a>SUS))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;area[x1][y1]=SUS; <a href="CppComment.htm">//</a>Birth: If res/sus are neighbor<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> ((ran2 &lt; birthrate-cost_of_res) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (Neighbour<a href="CppOperatorEqual.htm">==</a>RES))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;area[x1][y1]=RES;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppBreak.htm">break</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> SUS&nbsp;&nbsp; : <b><a href="CppIf.htm">if</a></b> (ran2 &lt; deathrate&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> Neighbour<a href="CppOperatorEqual.htm">==</a>KILL)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;area[x1][y1]=EMPTY; <a href="CppComment.htm">//</a>Mortality of Sus<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppBreak.htm">break</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RES&nbsp;&nbsp; : <b><a href="CppIf.htm">if</a></b> (ran2 &lt; deathrate)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; area[x1][y1]=EMPTY; <a href="CppComment.htm">//</a> Mortality of Res<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (ran1 &lt; mut) <a href="CppComment.htm">//</a>Mutation: Res becomes Kil<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; area[x1][y1]=KILL;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppBreak.htm">break</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> KILL&nbsp;&nbsp;: <b><a href="CppIf.htm">if</a></b> (ran1 &lt; deathrate <a href="CppOperatorPlus.htm">+</a> extra_death_kil)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; area[x1][y1]=EMPTY; <a href="CppComment.htm">//</a>Mortality of Kil<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a>End of: <b><a href="CppSwitch.htm">switch</a></b>(Here)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a>Next x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a>Next y<br/>
+&nbsp;&nbsp;}<a href="CppComment.htm">//</a>End of: <b><a href="CppVoid.htm">void</a></b> Update(<b><a href="CppVoid.htm">void</a></b>)<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">//</a> EXAMINE THE GRID<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<b><a href="CppVoid.htm">void</a></b> CountValues(<b><a href="CppVoid.htm">void</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Reset values<br/>
+&nbsp;&nbsp;NEmpty=0; NSus=0; NRes=0; NKill=0;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Count total grid<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;maxy; y<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x&lt;maxx; x<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (area[x][y]<a href="CppOperatorEqual.htm">==</a>EMPTY) NEmpty<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (area[x][y]<a href="CppOperatorEqual.htm">==</a>SUS) NSus<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (area[x][y]<a href="CppOperatorEqual.htm">==</a>RES) NRes<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (area[x][y]<a href="CppOperatorEqual.htm">==</a>KILL) NKill<a href="CppOperatorIncrement.htm">++</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a>Next x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a>Next y<br/>
+&nbsp;&nbsp;}<a href="CppComment.htm">//</a>End of: <b><a href="CppVoid.htm">void</a></b> CountValues(<b><a href="CppVoid.htm">void</a></b>)<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">//</a> DISPLAY THE VALUES IN THE CHART<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
+<b><a href="CppVoid.htm">void</a></b> DisplayValues(TChart * Chart1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> Graphical Output <a href="CppTime.htm">time</a>series<br/>
+&nbsp;&nbsp;Chart1-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>(NEmpty);<br/>
+&nbsp;&nbsp;Chart1-&gt;Series[1]-&gt;<a href="CppAdd.htm">Add</a>(NSus);<br/>
+&nbsp;&nbsp;Chart1-&gt;Series[2]-&gt;<a href="CppAdd.htm">Add</a>(NRes);<br/>
+&nbsp;&nbsp;Chart1-&gt;Series[3]-&gt;<a href="CppAdd.htm">Add</a>(NKill);<br/>
+&nbsp;&nbsp;Chart1-&gt;Refresh();<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp; SHOW AREA<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<b><a href="CppVoid.htm">void</a></b> ShowArea(T<a href="CppPaint.htm">Paint</a>Box * <a href="CppPaint.htm">Paint</a>Box1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x,y;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (y=0; y&lt;maxy; y<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (x=0; x&lt;maxx; x<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPaint.htm">Paint</a>Box1-&gt;<a href="CppCanvas.htm">Canvas</a>-&gt;Pixels[x][y]=<a href="CppState.htm">State</a>ToColor(area[x][y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a>Next x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<a href="CppComment.htm">//</a>Next y<br/>
+&nbsp;&nbsp;}<a href="CppComment.htm">//</a>End of: <b><a href="CppVoid.htm">void</a></b> ShowArea(..)<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp; SHOW AREA<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<b><a href="CppVoid.htm">void</a></b> ShowArea(<a href="CppTImage.htm">TImage</a> * pImage)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> red, green, blue;<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * pLine;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;pImage-&gt;Height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pLine=(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *) pImage-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x&lt;pImage-&gt;Width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExtractRGB(<a href="CppState.htm">State</a>ToColor(area[x][y]),red,green,blue);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pLine[x*3]&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> blue;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pLine[x*3+1]<a href="CppOperatorAssign.htm">=</a> green;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pLine[x*3+2]<a href="CppOperatorAssign.htm">=</a> red;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimThomasBerngruber/Unit1.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimThomasBerngruber/Unit1.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.htm">#include</a> &lt;math.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "Unit1.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+TForm1 *Form1;<br/>
+<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a> CONSTRUCTOR OF FORM<br/>
+__fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+&nbsp;&nbsp;: TForm(Owner)<br/>
+{<br/>
+}<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp; MAIN FUNCTION <a href="CppComment.htm">//</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TForm1::Button1Click(TObject *Sender)<br/>
+{<br/>
+<a href="CppComment.htm">//</a> Read in Parameters<br/>
+<br/>
+birthrate <a href="CppOperatorAssign.htm">=</a> ValueListEditor1-&gt;Cells[1][1].<a href="CppToDouble.htm">ToDouble</a>();<br/>
+deathrate <a href="CppOperatorAssign.htm">=</a>ValueListEditor1-&gt;Cells[1][2].<a href="CppToDouble.htm">ToDouble</a>();<br/>
+cost_of_res <a href="CppOperatorAssign.htm">=</a>ValueListEditor1-&gt;Cells[1][3].<a href="CppToDouble.htm">ToDouble</a>();<br/>
+extra_death_kil <a href="CppOperatorAssign.htm">=</a>ValueListEditor1-&gt;Cells[1][4].<a href="CppToDouble.htm">ToDouble</a>();<br/>
+mut <a href="CppOperatorAssign.htm">=</a>ValueListEditor1-&gt;Cells[1][5].<a href="CppToDouble.htm">ToDouble</a>();<br/>
+initsus <a href="CppOperatorAssign.htm">=</a>ValueListEditor1-&gt;Cells[1][6].<a href="CppToDouble.htm">ToDouble</a>();<br/>
+initres <a href="CppOperatorAssign.htm">=</a>ValueListEditor1-&gt;Cells[1][7].<a href="CppToDouble.htm">ToDouble</a>();<br/>
+initkill <a href="CppOperatorAssign.htm">=</a>ValueListEditor1-&gt;Cells[1][8].<a href="CppToDouble.htm">ToDouble</a>();<br/>
+maxx=ValueListEditor1-&gt;Cells[1][9].<a href="CppToInt.htm">ToInt</a>();<br/>
+maxy=ValueListEditor1-&gt;Cells[1][10].<a href="CppToInt.htm">ToInt</a>();<br/>
+duration=ValueListEditor1-&gt;Cells[1][11].<a href="CppToInt.htm">ToInt</a>();<br/>
+diffusion=ValueListEditor1-&gt;Cells[1][12].<a href="CppToInt.htm">ToInt</a>();<br/>
+<br/>
+EmptyChart(Chart1);<br/>
+Init_grid(); <a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialize</a> grid<br/>
+CountValues();<br/>
+DisplayValues(Chart1);<br/>
+ShowArea(ImageGrid);<br/>
+<br/>
+<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> <a href="CppTime.htm">time</a>=0; <a href="CppTime.htm">time</a>&lt;duration; <a href="CppTime.htm">time</a><a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;GridUpdate();<br/>
+&nbsp;&nbsp;CountValues();<br/>
+&nbsp;&nbsp;DisplayValues(Chart1);<br/>
+&nbsp;&nbsp;ShowArea(ImageGrid);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppCanvas.htm">Canvas</a>-&gt;Draw(0,0,ImageGrid-&gt;Picture-&gt;Graphic);<br/>
+&nbsp;&nbsp;}<a href="CppComment.htm">//</a>Next <a href="CppTime.htm">time</a><br/>
+}<br/>
+<a href="CppComment.htm">//</a>------------------------------------------------------------------------<a href="CppOperatorDecrement.htm">--</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimThomasBerngruber/UnitRandom.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimThomasBerngruber/UnitRandom.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> UnitRandomH<br/>
+<a href="CppDefine.htm">#define</a> UnitRandomH<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;math.h&gt;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> rnd<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppLong.htm">long</a></b> <b><a href="CppInt.htm">int</a></b> idum;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> MBIG;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> MSEED;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> MZ;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> FAC;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Returns a uniform random value from 0.0 to 1.0<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> uniform()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> inext,inextp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppLong.htm">long</a></b> ma[56];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> iff=0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppLong.htm">long</a></b> mj,mk;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i,ii,k;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (idum &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> iff <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iff=1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mj=MSEED-(idum &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>idum : idum);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mj <a href="CppOperatorModulusAssign.htm">%=</a> MBIG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ma[55]=mj;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mk=1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=1;i<a href="CppOperatorLessEqual.htm">&lt;=</a>54;i<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ii=(21*i) <a href="CppOperatorModulus.htm">%</a> 55;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ma[ii]=mk;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mk=mj-mk;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mk &lt; MZ) mk <a href="CppOperatorPlusAssign.htm">+=</a> MBIG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mj=ma[ii];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (k=1;k<a href="CppOperatorLessEqual.htm">&lt;=</a>4;k<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=1;i<a href="CppOperatorLessEqual.htm">&lt;=</a>55;i<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ma[i] <a href="CppOperatorMinusAssign.htm">-=</a> ma[1+(i+30) <a href="CppOperatorModulus.htm">%</a> 55];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ma[i] &lt; MZ) ma[i] <a href="CppOperatorPlusAssign.htm">+=</a> MBIG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inext=0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inextp=31;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idum=1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppOperatorIncrement.htm">++</a>inext <a href="CppOperatorEqual.htm">==</a> 56) inext=1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppOperatorIncrement.htm">++</a>inextp <a href="CppOperatorEqual.htm">==</a> 56) inextp=1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mj=ma[inext]-ma[inextp];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mj &lt; MZ) mj <a href="CppOperatorPlusAssign.htm">+=</a> MBIG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ma[inext]=mj;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mj*FAC;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> gasdev()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> iset=0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> gset;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> fac,r,v1,v2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDouble.htm">double</a></b> uniform();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;uniform();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>&nbsp;&nbsp;(iset <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDo.htm">do</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1=2.0*uniform()-1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2=2.0*uniform()-1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r=v1*v1+v2*v2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fac=sqrt(-2.0*log(r)/r);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gset=v1*fac;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iset=1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v2*fac;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iset=0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> gset;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Sets the seed <b><a href="CppFor.htm">for</a></b> the <a href="CppRandomNumber.htm">random number</a> sequence<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> SetSeed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; seed)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;idum <a href="CppOperatorAssign.htm">=</a> <b><a href="CppLong.htm">long</a></b>(-<a href="CppStdAbs.htm">std::abs</a>(seed));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=0; i&lt;100; i<a href="CppOperatorIncrement.htm">++</a>) uniform();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Returns a <a href="CppRandomNumber.htm">random number</a> from a gaussian distrubution<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> normal(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; mean,<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; <a href="CppStd.htm">std</a>ev)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> gasdev()*<a href="CppStd.htm">std</a>ev <a href="CppOperatorPlus.htm">+</a> mean;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Returns a random <a href="CppInt.htm">integer</a> from 0 to N<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> RandomNumber(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; N)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> out;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x=<a href="CppStdFloor.htm">std::floor</a>(uniform()*N);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;out=<b><a href="CppInt.htm">int</a></b> (x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> out;<br/>
+&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolSimThomasBerngruber/UnitRandom.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolSimThomasBerngruber/UnitRandom.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "UnitRandom.h"<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppLong.htm">long</a></b> <b><a href="CppInt.htm">int</a></b> rnd::idum;<br/>
+<b><a href="CppInt.htm">int</a></b> rnd::MBIG&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 1000000000;<br/>
+<b><a href="CppInt.htm">int</a></b> rnd::MSEED <a href="CppOperatorAssign.htm">=</a> 161803398;<br/>
+<b><a href="CppInt.htm">int</a></b> rnd::MZ <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppDouble.htm">double</a></b> rnd::FAC <a href="CppOperatorAssign.htm">=</a> (1.0/MBIG);<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

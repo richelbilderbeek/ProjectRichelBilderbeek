@@ -1,9 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtk3opeenrijresources.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 ribi::QtK3OpEenRijResources::QtK3OpEenRijResources(
-  const boost::logic::tribool is_player3_kathleen)
+  const Tribool is_player3_kathleen)
   : ConnectThreeResources(
     {
       "K3OpEenRijComputer1.png",
@@ -28,9 +31,9 @@ ribi::QtK3OpEenRijResources::QtK3OpEenRijResources(
 
 }
 
-const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerNames(const boost::logic::tribool is_player3_kathleen)
+std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerNames(const Tribool is_player3_kathleen)
 {
-  if (is_player3_kathleen)
+  if (is_player3_kathleen == Tribool::True)
   {
     return
     {
@@ -39,7 +42,7 @@ const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerNames(co
       "K3OpEenRijKathleen.png"
     };
   }
-  else if (!is_player3_kathleen)
+  else if (is_player3_kathleen == Tribool::False)
   {
     return
     {
@@ -50,7 +53,7 @@ const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerNames(co
   }
   else
   {
-    //assert(is_player3_kathleen == boost::logic::indeterminate);
+    assert(is_player3_kathleen == Tribool::Indeterminate);
     return
     {
       "K3OpEenRijKaren.png",
@@ -61,9 +64,9 @@ const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerNames(co
   }
 }
 
-const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerGreyNames(const boost::logic::tribool is_player3_kathleen)
+std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerGreyNames(const Tribool is_player3_kathleen)
 {
-  if (is_player3_kathleen)
+  if (is_player3_kathleen == Tribool::True)
   {
     return
     {
@@ -72,7 +75,7 @@ const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerGreyName
       "K3OpEenRijKathleenGrey.png"
     };
   }
-  else if (!is_player3_kathleen)
+  else if (is_player3_kathleen == Tribool::False)
   {
     return
     {
@@ -83,7 +86,7 @@ const std::vector<std::string> ribi::QtK3OpEenRijResources::CreatePlayerGreyName
   }
   else
   {
-    //assert(is_player3_kathleen == boost::logic::indeterminate);
+    assert(is_player3_kathleen == Tribool::Indeterminate);
     return
     {
       "K3OpEenRijKarenGrey.png",

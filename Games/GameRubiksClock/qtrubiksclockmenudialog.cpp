@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RubiksClock. Rubik's Clock game.
-Copyright (C) 2007-2012  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameRubiksClock.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtrubiksclockmenudialog.h"
 
 #include <QKeyEvent>
@@ -32,28 +32,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "qtrubiksclockwidget.h"
 #include "qttogglebuttonwidget.h"
 #include "rubiksclockmenudialog.h"
+#include "trace.h"
 #include "ui_qtrubiksclockmenudialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
+ribi::ruco::QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRubiksClockMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtRubiksClockMenuDialog::~QtRubiksClockMenuDialog()
+ribi::ruco::QtRubiksClockMenuDialog::~QtRubiksClockMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtRubiksClockMenuDialog::keyPressEvent(QKeyEvent * e)
+void ribi::ruco::QtRubiksClockMenuDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void ribi::QtRubiksClockMenuDialog::on_button_about_clicked()
+void ribi::ruco::QtRubiksClockMenuDialog::on_button_about_clicked()
 {
-  About a = RubiksClockMenuDialog::GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtRubiksClockWidget version: " + QtRubiksClockWidget::GetVersion());
@@ -61,19 +66,29 @@ void ribi::QtRubiksClockMenuDialog::on_button_about_clicked()
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtRubiksClockMenuDialog::on_button_quit_clicked()
+void ribi::ruco::QtRubiksClockMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void ribi::QtRubiksClockMenuDialog::on_button_start_clicked()
+void ribi::ruco::QtRubiksClockMenuDialog::on_button_start_clicked()
 {
   QtRubiksClockMainDialog d;
   ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::ruco::QtRubiksClockMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ruco::QtRubiksClockMenuDialog::Test");
+  TRACE("Finished ribi::ruco::QtRubiksClockMenuDialog::Test successfully");
+}
+#endif

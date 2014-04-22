@@ -14,9 +14,11 @@ SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
+    ../../Classes/CppQtStateObserver/qtalphafilterdialog.cpp \
     ../../Classes/CppStateObserver/alphabetafilter.cpp \
     ../../Classes/CppStateObserver/alphabetagammafilter.cpp \
     ../../Classes/CppStateObserver/alphafilter.cpp \
+    ../../Classes/CppStateObserver/floatingpointstateobserver.cpp \
     ../../Classes/CppStateObserver/integeralphafilter.cpp \
     ../../Classes/CppStateObserver/integerstateobserver.cpp \
     ../../Classes/CppStateObserver/integersymmetricalphafilter.cpp \
@@ -29,17 +31,17 @@ SOURCES += \
     qtstateobservermenudialog.cpp \
     slidingmodeobserver.cpp \
     slsqfilter.cpp \
-    stateobservermenudialog.cpp \
-    ../../Classes/CppStateObserver/floatingpointstateobserver.cpp \
-    ../../Classes/CppQtStateObserver/qtalphafilterdialog.cpp
+    stateobservermenudialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
+    ../../Classes/CppQtStateObserver/qtalphafilterdialog.h \
     ../../Classes/CppStateObserver/alphabetafilter.h \
     ../../Classes/CppStateObserver/alphabetagammafilter.h \
     ../../Classes/CppStateObserver/alphafilter.h \
+    ../../Classes/CppStateObserver/floatingpointstateobserver.h \
     ../../Classes/CppStateObserver/integeralphafilter.h \
     ../../Classes/CppStateObserver/integerstateobserver.h \
     ../../Classes/CppStateObserver/integersymmetricalphafilter.h \
@@ -52,15 +54,13 @@ HEADERS  += \
     qtstateobservermaindialog.h \
     qtstateobservermenudialog.h \
     slsqfilter.h \
-    stateobservermenudialog.h \
-    ../../Classes/CppStateObserver/floatingpointstateobserver.h \
-    ../../Classes/CppQtStateObserver/qtalphafilterdialog.h
+    stateobservermenudialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
+    ../../Classes/CppQtStateObserver/qtalphafilterdialog.ui \
     qtstateobservermaindialog.ui \
-    qtstateobservermenudialog.ui \
-    ../../Classes/CppQtStateObserver/qtalphafilterdialog.ui
+    qtstateobservermenudialog.ui
 
 RESOURCES += \
     ToolStateObserver.qrc
@@ -82,31 +82,15 @@ OTHER_FILES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-#
-#
-# Platform specific
-#
-#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ 
 
-#
-#
-# Compiler flags
-#
-#
-
-#Can't add -Weffc++ due to Qt resources
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra  -Werror
+unix {
+  QMAKE_CXXFLAGS +=  -Werror
+}
 
 #
 #

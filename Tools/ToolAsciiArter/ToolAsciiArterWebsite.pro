@@ -1,33 +1,21 @@
-#This application uses QImage for image conversion
-QT       += core gui
-LIBS += -lwt -lwthttp -lboost_program_options
-QMAKE_CXXFLAGS += -DNDEBUG
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
+include(../../WebApplication.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppAsciiArter \
-  ../../Classes/CppWtAboutDialog \
-  ../../Classes/CppWtAutoConfig
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-  asciiartermaindialog.cpp \
-  wtmain.cpp \
-  wtasciiartermaindialog.cpp \
-  ../../Classes/CppAsciiArter/asciiarter.cpp \
-  ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp
+#General, website
+include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
+include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
 
-HEADERS  += \
-  asciiartermaindialog.h \
-  wtasciiartermaindialog.h \
-  ../../Classes/CppAsciiArter/asciiarter.h \
-  ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-  ../../Classes/CppAbout/about.h \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h
+#Specific
+include(../../Tools/ToolAsciiArter/ToolAsciiArterWebsite.pri)
 
-RESOURCES += \
-    ToolAsciiArter.qrc
+SOURCES += wtmain.cpp

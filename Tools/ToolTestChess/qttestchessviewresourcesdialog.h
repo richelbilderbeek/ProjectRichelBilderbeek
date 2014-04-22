@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestChess, program to test my chess classes
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,27 +21,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTCHESSVIEWRESOURCESDIALOG_H
 #define QTTESTCHESSVIEWRESOURCESDIALOG_H
 
-//---------------------------------------------------------------------------
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
-//---------------------------------------------------------------------------
 namespace Ui {
-class QtTestChessViewResourcesDialog;
+  class QtTestChessViewResourcesDialog;
 }
 
-//---------------------------------------------------------------------------
-class QtTestChessViewResourcesDialog : public QDialog
+namespace ribi {
+
+class QtTestChessViewResourcesDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestChessViewResourcesDialog(QWidget *parent = 0);
-  ~QtTestChessViewResourcesDialog();
+  QtTestChessViewResourcesDialog(const QtTestChessViewResourcesDialog&) = delete;
+  QtTestChessViewResourcesDialog& operator=(const QtTestChessViewResourcesDialog&) = delete;
+  ~QtTestChessViewResourcesDialog() noexcept;
 
 private:
   Ui::QtTestChessViewResourcesDialog *ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
 
 #endif // QTTESTCHESSVIEWRESOURCESDIALOG_H
-//---------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ManyDigitNewick, Newick class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "manydigitnewickcoordinat.h"
 
 #include <algorithm>
@@ -25,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <functional>
 
 #include <boost/numeric/conversion/cast.hpp>
+#pragma GCC diagnostic pop
 
 ribi::ManyDigitNewickCoordinat::ManyDigitNewickCoordinat(
   const std::vector<int>& v)

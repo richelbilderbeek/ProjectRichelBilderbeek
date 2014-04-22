@@ -1,7 +1,10 @@
 #include "knokfighterplayerstate.h"
 
-namespace Knokfighter {
+ribi::knok::PlayerState::PlayerState(
+  Player * const player)
+  : m_direction{Direction::right},
+    m_player(player)
+{
 
+}
 
-
-} //~namespace Knokfighter

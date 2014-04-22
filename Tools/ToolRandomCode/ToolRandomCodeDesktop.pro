@@ -1,7 +1,6 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -9,23 +8,24 @@ INCLUDEPATH += \
     ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppRandomCode
 
-SOURCES += qtmain.cpp \
+SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppRandomCode/randomcode.cpp \
-    randomcodemenudialog.cpp \
-    qtrandomcodemaindialog.cpp \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    qtrandomcodemenudialog.cpp
+    ../../Classes/CppRandomCode/randomcode.cpp \
+    qtmain.cpp \
+    qtrandomcodemaindialog.cpp \
+    qtrandomcodemenudialog.cpp \
+    randomcodemenudialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
-    ../../Classes/CppRandomCode/randomcode.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    randomcodemenudialog.h \
-    qtrandomcodemaindialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    qtrandomcodemenudialog.h
+    ../../Classes/CppRandomCode/randomcode.h \
+    qtrandomcodemaindialog.h \
+    qtrandomcodemenudialog.h \
+    randomcodemenudialog.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -37,3 +37,30 @@ RESOURCES += \
 
 OTHER_FILES += \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QrcFile, class to parse Qt Project files
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
 #include "qrcfile.h"
 
 #include <algorithm>
@@ -37,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/function.hpp>
 #include <boost/xpressive/xpressive.hpp>
 
+#include "fileio.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -47,8 +47,8 @@ ribi::QrcFile::QrcFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  if(!FileExists(filename)) TRACE(filename);
-  assert(FileExists(filename)
+  if(!ribi::fileio::FileIo().IsRegularFile(filename)) TRACE(filename);
+  assert(ribi::fileio::FileIo().IsRegularFile(filename)
     && "QrcFile::QrcFile error: .qrc file must exist");
   #endif
 
@@ -73,55 +73,35 @@ ribi::QrcFile::QrcFile(const std::string& filename)
   }
 }
 
-bool ribi::QrcFile::FileExists(const std::string& filename)
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
-}
-
-const std::vector<std::string> ribi::QrcFile::FileToVector(const std::string& filename)
-{
-  assert(FileExists(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
-}
-
-const ribi::About ribi::QrcFile::GetAbout()
+ribi::About ribi::QrcFile::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
     "QrcFile",
     "class to parse Qt Resource files",
     "the 19th of August 2013",
-    "2012-2013",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/CppQrcFile.htm",
     GetVersion(),
     GetVersionHistory());
   return a;
 }
 
-const std::string ribi::QrcFile::GetVersion()
+std::string ribi::QrcFile::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QrcFile::GetVersionHistory()
+std::vector<std::string> ribi::QrcFile::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-06-13: version 1.0: initial version");
-  v.push_back("2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive");
-  return v;
+  return {
+    "2012-06-13: version 1.0: initial version",
+    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive"
+  };
 }
 
-void ribi::QrcFile::Test()
+#ifndef NDEBUG
+void ribi::QrcFile::Test() noexcept
 {
   ///Test exactly once
   {
@@ -162,8 +142,9 @@ void ribi::QrcFile::Test()
     //assert(!p.GetFiles().count("RCC"));
   }
 }
+#endif
 
-std::ostream& ribi::operator<<(std::ostream& os,const QrcFile& f)
+std::ostream& ribi::operator<<(std::ostream& os,const QrcFile& f) noexcept
 {
   std::for_each(f.m_files.begin(),f.m_files.end(),
     [&os](const std::string& s)

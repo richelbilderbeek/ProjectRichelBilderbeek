@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/trianglefile/files">
+        <file>triangle.exe</file>
+    </qresource>
+</RCC>

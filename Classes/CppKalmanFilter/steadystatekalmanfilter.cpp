@@ -45,18 +45,18 @@ ribi::kalman::SteadyStateKalmanFilter::SteadyStateKalmanFilter(
   //m_last_calculation->SetUpdatedState(m_parameters->GetInitialStateEstimate());
 }
 
-int ribi::kalman::SteadyStateKalmanFilter::GetStateSize() const
+int ribi::kalman::SteadyStateKalmanFilter::GetStateSize() const noexcept
 {
   const int sz = boost::numeric_cast<int>(m_state_estimate.size());
   return sz;
 }
 
-const std::string ribi::kalman::SteadyStateKalmanFilter::GetVersion()
+std::string ribi::kalman::SteadyStateKalmanFilter::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::kalman::SteadyStateKalmanFilter::GetVersionHistory()
+std::vector<std::string> ribi::kalman::SteadyStateKalmanFilter::GetVersionHistory() noexcept
 {
   return {
     "2013-05-01: version 1.0: initial version",

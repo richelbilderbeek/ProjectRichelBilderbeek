@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 struct WtTestFunctionParserMainDialog : public Wt::WContainerWidget
 {
   WtTestFunctionParserMainDialog();
+  WtTestFunctionParserMainDialog(const WtTestFunctionParserMainDialog&) = delete;
+  WtTestFunctionParserMainDialog& operator=(const WtTestFunctionParserMainDialog&) = delete;
 
   private:
   Wt::WLineEdit * m_edit_function;

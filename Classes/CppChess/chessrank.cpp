@@ -4,9 +4,13 @@
 #include <cassert>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::Chess::Rank::Rank(const std::string& y)
   : m_rank(y)
@@ -48,12 +52,12 @@ ribi::Chess::Rank::Rank(const int y)
   }
 }
 
-const std::string ribi::Chess::Rank::GetVersion()
+std::string ribi::Chess::Rank::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -61,14 +65,14 @@ const std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
   return v;
 }
 
-void ribi::Chess::Rank::Test()
+void ribi::Chess::Rank::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -145,7 +149,7 @@ void ribi::Chess::Rank::Test()
         assert(r.ToInt() == 7);
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
@@ -162,22 +166,6 @@ const std::string& ribi::Chess::Rank::ToStr() const
 {
   return m_rank;
 }
-
-/*
-Rank& ribi::Chess::Rank::operator++()
-{
-  assert(m_rank != std::string("8"));
-  m_rank = boost::lexical_cast<std::string>(++boost::lexical_cast<int>(m_rank));
-  return *this;
-}
-
-Rank& ribi::Chess::Rank::operator--()
-{
-  assert(m_rank != std::string("1"));
-  m_rank = boost::lexical_cast<std::string>(--boost::lexical_cast<int>(m_rank));
-  return *this;
-}
-*/
 
 bool ribi::Chess::operator==(const Chess::Rank& lhs, const Chess::Rank& rhs)
 {

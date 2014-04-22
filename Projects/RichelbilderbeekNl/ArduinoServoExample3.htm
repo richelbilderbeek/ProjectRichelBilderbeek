@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ArduinoServoExample3</title>
+  <meta name="description" content="C++ ArduinoServoExample3"/>
+  <meta name="keywords" content="C++ ArduinoServoExample3 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ArduinoServoExample3.htm">ArduinoServoExample3</a></h1>
+<p>&nbsp;</p>
+<h2>./ArduinoServoExample3/ArduinoServoExample3.ino</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ArduinoServoExample3/ArduinoServoExample3.ino" border = "1"><tr><td><code>
+#include &lt;Servo.h&gt;<br/>
+<br/>
+const int pin_servo = 2;<br/>
+const int pin_input = A0;<br/>
+<br/>
+Servo servo;<br/>
+<br/>
+const int n = 80;<br/>
+<br/>
+void setup()<br/>
+{<br/>
+&nbsp;&nbsp;pinMode(pin_input,INPUT);<br/>
+&nbsp;&nbsp;servo.attach(pin_servo);&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;servo.write(n);<br/>
+&nbsp;&nbsp;delay(1000);<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;Serial.begin(9600);<br/>
+}<br/>
+<br/>
+void loop()<br/>
+{<br/>
+&nbsp;&nbsp;const int input = analogRead(pin_input);<br/>
+&nbsp;&nbsp;Serial.println(input);<br/>
+&nbsp;&nbsp;if (input &lt; 100)<br/>
+&nbsp;&nbsp;{&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;servo.write(n-5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;delay(200);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;servo.write(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;delay(1000);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else if (input &gt; 600)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;servo.write(n+5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;delay(200);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;servo.write(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;delay(1000);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

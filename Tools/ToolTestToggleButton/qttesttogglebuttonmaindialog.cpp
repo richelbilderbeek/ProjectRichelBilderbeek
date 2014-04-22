@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestToggleButton, tool to test the ToggleButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,26 +18,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestToggleButton.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttesttogglebuttonmaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
+
+#include "drawcanvas.h"
 #include "qtaboutdialog.h"
 #include "rainbow.h"
 #include "testtogglebuttonmenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
+#include "trace.h"
 #include "ui_qttesttogglebuttonmaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent)
- : QDialog(parent),
+ : QtHideAndShowDialog(parent),
    ui(new Ui::QtTestToggleButtonMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->toggle_button->m_signal_toggled.connect(
@@ -47,7 +52,7 @@ ribi::QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent
   ui->toggle_button->GetWidget()->Click(1,1);
 }
 
-ribi::QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog()
+ribi::QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog() noexcept
 {
   delete ui;
 }
@@ -55,19 +60,30 @@ ribi::QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog()
 void ribi::QtTestToggleButtonMainDialog::DisplayToggleButtonValue()
 {
   ui->label_is_pressed->setText(
-    (std::string("Is pressed: ")
-    + (ui->toggle_button->GetWidget()->GetToggleButton()->IsPressed()
-      ? std::string("yes")
-      : std::string("no"))).c_str());
+    (
+      std::string("Is pressed: ")
+      + (
+        ui->toggle_button->GetWidget()->GetToggleButton()->IsPressed()
+        ? "yes"
+        : "no"
+        )
+    ).c_str()
+  );
   ui->label_color->setText(
-    (std::string("Color: (")
+    ("Color: ("
     + boost::lexical_cast<std::string>(static_cast<int>(ui->toggle_button->GetWidget()->GetToggleButton()->GetRed()))
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(static_cast<int>(ui->toggle_button->GetWidget()->GetToggleButton()->GetGreen()))
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(static_cast<int>(ui->toggle_button->GetWidget()->GetToggleButton()->GetBlue()))
-    + std::string(") (RGB)")).c_str());
+    + ") (RGB)").c_str());
 
+  std::string text;
+  for (const std::string& s: ui->toggle_button->GetWidget()->ToDrawCanvas(30,10)->ToStrings())
+  {
+    text += s + '\n';
+  }
+  ui->text->setPlainText(text.c_str());
 }
 
 void ribi::QtTestToggleButtonMainDialog::on_dial_dialMoved(int)
@@ -95,3 +111,15 @@ void ribi::QtTestToggleButtonMainDialog::on_dial_sliderPressed()
   OnDial();
 }
 
+#ifndef NDEBUG
+void ribi::QtTestToggleButtonMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestToggleButtonMainDialog::Test");
+  TRACE("Finished ribi::QtTestToggleButtonMainDialog::Test successfully");
+}
+#endif

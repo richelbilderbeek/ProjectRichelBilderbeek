@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RandomCode, tool to generate random C++ code
-Copyright (C) 2007-2012  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,7 +36,9 @@ class QtRandomCodeMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtRandomCodeMainDialog(QWidget *parent = 0);
-  ~QtRandomCodeMainDialog();
+  QtRandomCodeMainDialog(const QtRandomCodeMainDialog&) = delete;
+  QtRandomCodeMainDialog& operator=(const QtRandomCodeMainDialog&) = delete;
+  ~QtRandomCodeMainDialog() noexcept;
 
 protected:
   
@@ -44,6 +46,10 @@ protected:
 
 private:
   Ui::QtRandomCodeMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void on_button_about_clicked();

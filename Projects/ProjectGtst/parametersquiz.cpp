@@ -23,15 +23,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include <iostream>
 #include <sstream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 // 
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "parametersquiz.h"
 #include "votingoption.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersQuiz::ParametersQuiz()
   : m_duration(10),
     //m_options(CreateDefaultOptions()),
@@ -39,20 +39,20 @@ ribi::gtst::ParametersQuiz::ParametersQuiz()
 {
 
 }
-//---------------------------------------------------------------------------
+
 int ribi::gtst::ParametersQuiz::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
-//---------------------------------------------------------------------------
+
 ///Get the descriptions of the options to vote for only
 const std::vector<std::string> ribi::gtst::ParametersQuiz::GetVoteDescriptions() const
 {
   std::vector<std::string> w;
   return w;
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersQuiz::Parse(const std::string& s)
 {
@@ -145,7 +145,7 @@ void ribi::gtst::ParametersQuiz::Parse(const std::string& s)
   }
 
 }
-//---------------------------------------------------------------------------
+
 ///SeperateString splits a std::string
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
 const std::vector<std::string> ribi::gtst::ParametersQuiz::SeperateString(
@@ -163,19 +163,19 @@ const std::vector<std::string> ribi::gtst::ParametersQuiz::SeperateString(
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersQuiz::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
-//---------------------------------------------------------------------------
+
 ///Set if there is waited for all before going on
 void ribi::gtst::ParametersQuiz::SetWait(const bool wait)
 {
   m_wait = wait;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersQuiz& parameters)
 {
   os
@@ -187,6 +187,6 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersQuiz& para
 
   return os;
 }
-//---------------------------------------------------------------------------
+
 
 

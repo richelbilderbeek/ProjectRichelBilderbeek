@@ -11,11 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Printen assessor preview</string>
+   <string>Preview van PDF</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Brainweaver.qrc">
     <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
@@ -34,8 +37,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>699</width>
-        <height>937</height>
+        <width>698</width>
+        <height>955</height>
        </rect>
       </property>
       <property name="maximumSize">
@@ -64,7 +67,7 @@
           <item>
            <widget class="QLabel" name="label_focal_question">
             <property name="text">
-             <string>FOCUS VRAAG: ?</string>
+             <string>FOCUS: ?</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
@@ -154,49 +157,6 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QTableWidget" name="table_concepts">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>true</bool>
-            </property>
-            <attribute name="horizontalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="horizontalHeaderHighlightSections">
-             <bool>true</bool>
-            </attribute>
-            <attribute name="horizontalHeaderStretchLastSection">
-             <bool>true</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string>Complexiteit</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Concreetheid</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Specificiteit</string>
-             </property>
-            </column>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
@@ -235,6 +195,52 @@
            </widget>
           </item>
           <item>
+           <widget class="QTableWidget" name="table_concepts">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderHighlightSections">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Complexiteit</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Concreetheid</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Specificiteit</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
            <widget class="QTableWidget" name="table_examples">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -253,6 +259,9 @@
               <width>324</width>
               <height>235</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="verticalScrollBarPolicy">
              <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -299,10 +308,26 @@
              <property name="text">
               <string>%</string>
              </property>
+             <property name="background">
+              <color>
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
+              </color>
+             </property>
             </column>
             <item row="0" column="0">
              <property name="text">
               <string/>
+             </property>
+             <property name="background">
+              <brush brushstyle="NoBrush">
+               <color alpha="255">
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
+               </color>
+              </brush>
              </property>
             </item>
             <item row="1" column="0">
@@ -473,7 +498,7 @@
    <item>
     <widget class="QPushButton" name="button_print">
      <property name="text">
-      <string>&amp;Print</string>
+      <string>&amp;Opslaan</string>
      </property>
     </widget>
    </item>

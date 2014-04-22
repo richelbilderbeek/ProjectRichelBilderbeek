@@ -1,8 +1,13 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/function.hpp>
+#pragma GCC diagnostic pop
 
 int f1(const int i) { return i + 1; }
 int f2(const int i) { return i + 2; }

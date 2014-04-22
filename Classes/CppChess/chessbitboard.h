@@ -4,7 +4,13 @@
 #include <iosfwd>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
+
 #include "chessfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace Chess {
@@ -16,19 +22,19 @@ struct BitBoard
   BitBoard();
 
   ///Set a value
-  void Set(const Square& s, const bool value);
+  void Set(const boost::shared_ptr<const Square> s, const bool value);
 
   ///Get a value
-  bool Get(const Square& s) const;
+  bool Get(const boost::shared_ptr<const Square> s) const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Test the BitBoard
-  static void Test();
+  static void Test() noexcept;
 
   private:
   ///An 8x8 std::vector of bools

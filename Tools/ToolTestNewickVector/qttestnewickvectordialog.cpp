@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestNewickVector, GUI tool to test NewickVector
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,26 +18,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestNewickVector.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestnewickvectordialog.h"
-
 
 #include <algorithm>
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
 #include <string>
-//---------------------------------------------------------------------------
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
-#pragma GCC diagnostic pop
-//---------------------------------------------------------------------------
+
+
+
 #include <QTimer>
-//---------------------------------------------------------------------------
+
 #include "BigIntegerLibrary.hh"
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "binarynewickvector.h"
 #include "testnewickvectordialog.h"
@@ -45,14 +42,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newickvector.h"
 #include "qtaboutdialog.h"
 #include "ui_qttestnewickvectordialog.h"
-//---------------------------------------------------------------------------
-///QtTestNewickVectorDialog constructor performs most Newick tests
-ribi::QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) :
-    QDialog(parent),
+#pragma GCC diagnostic pop
+
+ribi::QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestNewickVectorDialog),
     m_timer(new QTimer),
     m_dialog(new TestNewickVectorDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   QObject::connect(
     ui->edit_newick,SIGNAL(textChanged(QString)),
@@ -83,27 +83,27 @@ ribi::QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) :
 
   this->OnAnyChange();
 }
-//---------------------------------------------------------------------------
-ribi::QtTestNewickVectorDialog::~QtTestNewickVectorDialog()
+
+ribi::QtTestNewickVectorDialog::~QtTestNewickVectorDialog() noexcept
 {
   m_timer->stop();
   delete ui;
   delete m_timer;
 }
-//---------------------------------------------------------------------------
 
-void ribi::QtTestNewickVectorDialog::Display()
+
+void ribi::QtTestNewickVectorDialog::Display() noexcept
 {
   ui->edit_text->clear();
   const std::vector<std::string>& text = m_dialog->GetText();
   ui->edit_text->clear();
-  BOOST_FOREACH(const std::string& s,text)
+  for(const std::string& s: text)
   {
     ui->edit_text->appendPlainText(s.c_str());
   }
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestNewickVectorDialog::OnAnyChange()
+
+void ribi::QtTestNewickVectorDialog::OnAnyChange() noexcept
 {
   m_dialog->SetMaxComplexity(ui->edit_max_complexity->text().toStdString());
   m_dialog->SetNewick(ui->edit_newick->text().toStdString());
@@ -111,8 +111,8 @@ void ribi::QtTestNewickVectorDialog::OnAnyChange()
   m_dialog->AutoCalculate();
   Display();
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestNewickVectorDialog::OnDemoTick()
+
+void ribi::QtTestNewickVectorDialog::OnDemoTick() noexcept
 {
   //Get any Newick
   if ((std::rand() >> 4) % 2)
@@ -128,8 +128,8 @@ void ribi::QtTestNewickVectorDialog::OnDemoTick()
     ui->edit_newick->setText(QString(s.c_str()));
   }
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestNewickVectorDialog::on_button_demo_clicked()
+
+void ribi::QtTestNewickVectorDialog::on_button_demo_clicked() noexcept
 {
   if (m_timer->isActive())
   {
@@ -144,14 +144,14 @@ void ribi::QtTestNewickVectorDialog::on_button_demo_clicked()
     ui->button_demo->setText("&Stop demo");
   }
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestNewickVectorDialog::on_button_about_clicked()
+
+void ribi::QtTestNewickVectorDialog::on_button_about_clicked() noexcept
 {
   QtAboutDialog d(TestNewickVectorDialog::GetAbout());
   d.exec();
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestNewickVectorDialog::on_button_calculate_clicked()
+
+void ribi::QtTestNewickVectorDialog::on_button_calculate_clicked() noexcept
 {
   m_dialog->SetMaxComplexity(ui->edit_max_complexity->text().toStdString());
   m_dialog->SetNewick(ui->edit_newick->text().toStdString());
@@ -159,15 +159,27 @@ void ribi::QtTestNewickVectorDialog::on_button_calculate_clicked()
   m_dialog->Calculate();
   Display();
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestNewickVectorDialog::on_box_show_calculation_clicked()
+
+void ribi::QtTestNewickVectorDialog::on_box_show_calculation_clicked() noexcept
 {
   m_dialog->SetAnalyseCalculation(ui->box_show_calculation->isChecked());
   ui->box_compare->setEnabled( ui->box_show_calculation->isChecked() );
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestNewickVectorDialog::on_box_compare_clicked()
+
+void ribi::QtTestNewickVectorDialog::on_box_compare_clicked() noexcept
 {
   m_dialog->SetCompareToTwoDigitNewick(ui->box_compare->isChecked());
 }
-//---------------------------------------------------------------------------
+
+#ifndef NDEBUG
+void ribi::QtTestNewickVectorDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestNewickVectorDialog::Test");
+  TRACE("Finished ribi::QtTestNewickVectorDialog::Test successfully");
+}
+#endif

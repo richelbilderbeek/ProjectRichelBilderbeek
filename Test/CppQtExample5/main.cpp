@@ -1,6 +1,9 @@
 #include <cassert>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 
 #include <QApplication>
@@ -10,10 +13,11 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
+#pragma GCC diagnostic pop
 
 struct ChangingBackground : public QGraphicsPixmapItem
 {
-  ChangingBackground(const int width, const int height)
+  explicit ChangingBackground(const int width, const int height)
     : z(0)
   {
     QPixmap m(width,height);
@@ -42,7 +46,7 @@ struct ChangingBackground : public QGraphicsPixmapItem
 
 struct ChangingTransparentSprite : public QGraphicsPixmapItem
 {
-  ChangingTransparentSprite(
+  explicit ChangingTransparentSprite(
     const std::string& filename,
     const QColor& transparency_color = QColor(0,255,0)) //Lime green
     : dx( ((std::rand() >> 4) % 3) - 1), //Random direction

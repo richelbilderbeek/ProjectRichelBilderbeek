@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestOpenQuestion, tool to test the OpenQuestion and OpenQuestionDialog classes
-Copyright (C) 2013 Richel Bilderbeek
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,13 +21,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTOPENQUESTIONMENUDIALOG_H
 #define QTTESTOPENQUESTIONMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
-class QtTestOpenQuestionMenuDialog;
+  class QtTestOpenQuestionMenuDialog;
 }
+
+namespace ribi {
+
 struct TestOpenQuestionMenuDialog;
 
 class QtTestOpenQuestionMenuDialog : public QtHideAndShowDialog
@@ -36,7 +43,9 @@ class QtTestOpenQuestionMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestOpenQuestionMenuDialog(QWidget *parent = 0);
-  ~QtTestOpenQuestionMenuDialog();
+  QtTestOpenQuestionMenuDialog(const QtTestOpenQuestionMenuDialog&) = delete;
+  QtTestOpenQuestionMenuDialog& operator=(const QtTestOpenQuestionMenuDialog&) = delete;
+  ~QtTestOpenQuestionMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* event);
@@ -51,8 +60,10 @@ private:
   boost::scoped_ptr<TestOpenQuestionMenuDialog> m_dialog;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTESTOPENQUESTIONMENUDIALOG_H

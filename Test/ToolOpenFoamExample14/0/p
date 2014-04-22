@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform 1; //1 bar
+
+boundaryField
+{
+    Default_Boundary_Region
+    {
+        type            zeroGradient;
+    }
+    inlet
+    {
+        type            zeroGradient;
+        //type            mixed;
+        refValue        uniform 5; //inflow is 5 bar
+        refGradient     uniform 0;
+        valueFraction   uniform 0.3;
+    }
+    outlet
+    {
+        type            mixed;
+        refValue        uniform 1; //surrounding is 1 bar
+        refGradient     uniform 0;
+        valueFraction   uniform 1;
+    }
+ }
+
+
+// ************************************************************************* //

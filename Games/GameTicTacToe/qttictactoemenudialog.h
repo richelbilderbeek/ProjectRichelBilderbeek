@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,31 +21,43 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTICTACTOEMENUDIALOG_H
 #define QTTICTACTOEMENUDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTicTacToeMenuDialog;
 }
 
 namespace ribi {
+namespace tictactoe {
 
-class QtTicTacToeMenuDialog : public QDialog
+class QtTicTacToeMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTicTacToeMenuDialog(QWidget *parent = 0);
-  ~QtTicTacToeMenuDialog();
+  QtTicTacToeMenuDialog(const QtTicTacToeMenuDialog&) = delete;
+  QtTicTacToeMenuDialog& operator=(const QtTicTacToeMenuDialog&) = delete;
+  ~QtTicTacToeMenuDialog() noexcept;
 
 private:
   Ui::QtTicTacToeMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
     void on_button_quit_clicked();
     void on_button_about_clicked();
     void on_button_start_clicked();
+    void on_button_start_old_school_clicked();
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEMENUDIALOG_H

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,36 +20,179 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #include "codetohtmlmenudialog.h"
+
+#include <algorithm>
+#include <cassert>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+
+#include <boost/scoped_ptr.hpp>
+
+#include "codetohtml.h"
+#include "fileio.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
+#include "codetohtmldialog.h"
+#include "codetohtmlinfo.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout()
+ribi::c2h::CodeToHtmlMenuDialog::CodeToHtmlMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  #ifndef NDEBUG
+  assert(argc > 0);
+  assert(ribi::fileio::FileIo().IsRegularFile(argv[0]));
+  assert(ribi::fileio::FileIo().IsFolder(ribi::fileio::FileIo().GetPath(argv[0])));
+  #ifndef _WIN32
+  assert(c2h::IsTidyInstalled());
+  #endif
+  #else
+  std::cout << "Starting " << argv[0] << std::endl;
+  assert(1==2 && "I will be deleted");
+  #endif
+
+  std::vector<std::string> v;
+  for (int i=1; i!=argc; ++i) { v.push_back(argv[i]); }
+  std::cout << "Number of arguments supplied: " << (argc-1) << std::endl;
+
+  if (argc == 1)
+  {
+    std::cout
+      << "Please supply a source.\n"
+      << "\n"
+      << "For example:"
+      << "  CodeToHtml main.cpp\n";
+    return 1;
+  }
+  if (argc > 2)
+  {
+    std::cout
+      << "Please supply exactly one argument: the source folder or file.\n"
+      << "\n"
+      << "For example:"
+      << "  CodeToHtml main.cpp\n";
+    return 1;
+  }
+  const std::string source = argv[1];
+  std::cout << "Source: '" << source << "'" << std::endl;
+
+  if (!ribi::fileio::FileIo().IsFolder(source) && !ribi::fileio::FileIo().IsRegularFile(source))
+  {
+    std::cout << "Source exists: no\n";
+    std::cout << "Specify an existing file or folder\n";
+    return 1;
+  }
+  assert(ribi::fileio::FileIo().IsFolder(source) || ribi::fileio::FileIo().IsRegularFile(source));
+
+  std::cout << "Source exists: yes" << std::endl;
+
+  if (ribi::fileio::FileIo().GetFileBasename(source).empty())
+  {
+    std::cout
+      << "Source its basename has length zero (which can be due to chosing '.' or '..')\n"
+      << "Please choose a regular name as a source";
+    return 1;
+  }
+
+  assert( (ribi::fileio::FileIo().IsFolder(source) || ribi::fileio::FileIo().IsRegularFile(source))
+    && "Source can be either a file or a path");
+
+
+  if (ribi::fileio::FileIo().IsFolder(source))
+  {
+    std::cout << "Source is directory: yes" << std::endl;
+  }
+  else
+  {
+    assert(ribi::fileio::FileIo().IsRegularFile(source));
+    std::cout << "Source is directory: no" << std::endl;
+  }
+
+  const std::function<const std::vector<std::string>(const std::string&)> f {
+    ribi::fileio::FileIo().IsRegularFile(source) ? &Dialog::FileToHtml : &Dialog::FolderToHtml
+  };
+
+  try
+  {
+    const std::vector<std::string> v = f(source);
+    const std::string output_filename = ribi::fileio::FileIo().GetFileBasename(source) + ".htm";
+    assert(output_filename != ".htm");
+    std::cout << "Output written to '" << output_filename << "'" << std::endl;
+    std::ofstream f(output_filename.c_str());
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+    std::cout << "CodeToHtml succeeded" << std::endl;
+    return 0;
+  }
+  catch (std::exception& e)
+  {
+    std::cout << e.what() << std::endl;
+    return 2;
+  }
+  catch (...)
+  {
+    std::cout << "Unknown exception thrown" << std::endl;
+    return 3;
+  }
+}
+
+ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
 {
   ribi::About a {
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
-    "the 19th of August 2013",
-    "2010-2013",
+    "the 26th of November 2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
     GetVersionHistory()
   };
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
-const std::string ribi::CodeToHtmlMenuDialog::GetVersion()
+
+ribi::Help ribi::c2h::CodeToHtmlMenuDialog::GetHelp() const noexcept
 {
-  return "2.7";
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+    },
+    {
+      "CodeToHtmlConsole main.cpp",
+    }
+  );
 }
 
-const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p(new ProgramCodeToHtml);
+  assert(p);
+  return p;
+}
+
+std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
+{
+  return "3.0";
+}
+
+std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
 {
   const std::vector<std::string> v {
     "2010-03-14: version 1.0: programmed initial console version of CodeToHtml. Due to my switch from Windows to Ubuntu, I had to abandon MS Word as my favorite HTML editor. Then I had to write my webpages in plain HTML, but adding links to all my code snippets was tiresome. CodeToHtml automated this for me",
@@ -85,8 +228,66 @@ const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory()
     "2013-05-19: version 2.5: +3400 replacements, following architectural changes in QtCreatorProFile and QtCreatorProFileZipScript",
     "2013-08-19: version 2.6: replaced Boost.Filesystem and Boost.Regex by Qt and Boost.Xpressive, added tests, added +5000 lines of CodeToHtml info",
     "2013-09-05: version 2.7: transition to namespace ribi",
-    "2013-09-10: version 2.8: compile with -Weffc++, fixed bug due to this"
-
+    "2013-09-17: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info, do tests at run-time, added reading .pri files"
+    "2013-09-26: version 2.9: use of boost::checked_delete on all classes, removed use of Boost.Program_options"
+    "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek",
+    "2013-11-26: version 3.0: improved interface and architecture, support for OpenFOAM projects"
   };
   return v;
 }
+
+#ifndef NDEBUG
+void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::c2h::CodeToHtmlMenuDialog::Test()");
+  {
+    const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
+    const std::vector<std::string> html {
+      info->ToHtml("non_existing_page_762538762539827382309728")
+    };
+    assert(html.size() == 1);
+    const std::string no_info_str = "<!-- No CodeToHtmlInfo about this class";
+    const std::string html_str = html[0];
+    assert(html_str.substr(0,no_info_str.size()) == no_info_str);
+  }
+  //Every Program must have some CodeToHtml info
+  {
+    const std::vector<boost::shared_ptr<Program> > programs { Program::GetAllPrograms() };
+    std::vector<std::string> pagenames;
+    std::transform(programs.begin(),programs.end(),std::back_inserter(pagenames),
+      [](const boost::shared_ptr<Program> program)
+      {
+        const std::string s = program->GetUrl();
+        assert(s.substr(s.size() - 4, 4) == ".htm");
+        const std::string t = s.substr(0,s.size() - 4);
+        return t;
+      }
+    );
+
+    for (const std::string pagename: pagenames)
+    {
+      const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
+      const std::vector<std::string> html {
+        info->ToHtml(pagename)
+      };
+      assert(!html.empty());
+      const std::string no_info_str = "<!-- No CodeToHtmlInfo about this class";
+      const std::string html_str = html[0];
+      if(html_str.substr(0,no_info_str.size()) == no_info_str)
+      {
+        TRACE("ERROR");
+        TRACE("No info for page:");
+        TRACE(pagename);
+      }
+      assert(html_str.substr(0,no_info_str.size()) != no_info_str
+        && "For every programType there must be HTML info");
+    }
+  }
+  TRACE("Finished ribi::c2h::CodeToHtmlMenuDialog::Test()");
+}
+#endif

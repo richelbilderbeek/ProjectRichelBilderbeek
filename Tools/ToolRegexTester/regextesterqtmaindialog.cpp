@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,18 +22,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "regextesterqtmaindialog.h"
 
+#include <stdexcept>
+
 #include <QRegExp>
+
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterQtMainDialog::Clone() const
+boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterQtMainDialog::Clone() const noexcept
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
     new RegexTesterQtMainDialog);
   return d;
 }
 
-const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
+std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
 {
@@ -44,7 +47,7 @@ const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
 
 ///Obtain all regex matches in a std::string
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
+std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -65,7 +68,7 @@ const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
 
 bool ribi::RegexTesterQtMainDialog::GetRegexMatchLine(
   const std::string& /* line */,
-  const std::string& /* regex_str */) const
+  const std::string& /* regex_str */) const noexcept
 {
   assert(!"Qt does not have a regex match algorithm");
   //if (!GetRegexValid(regex_str)) return false;
@@ -75,7 +78,7 @@ bool ribi::RegexTesterQtMainDialog::GetRegexMatchLine(
   //return boost::regex_match(line,r);
 }
 
-const std::string ribi::RegexTesterQtMainDialog::GetRegexReplace(
+std::string ribi::RegexTesterQtMainDialog::GetRegexReplace(
   const std::string& /* str */,
   const std::string& /* regex_str */,
   const std::string& /* format_str */) const
@@ -85,7 +88,7 @@ const std::string ribi::RegexTesterQtMainDialog::GetRegexReplace(
 
 
 bool ribi::RegexTesterQtMainDialog::GetRegexValid(
-  const std::string& /* regex_str */) const
+  const std::string& /* regex_str */) const noexcept
 {
   assert(!"TODO");
   //try { const boost::regex regex_temp(regex_str); }

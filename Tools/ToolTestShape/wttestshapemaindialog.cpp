@@ -21,28 +21,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WGridLayout>
 #include <Wt/WGroupBox>
 #include <Wt/WLabel>
 #include <Wt/WPushButton>
 #include <Wt/WSlider>
-//---------------------------------------------------------------------------
+
 #include "shape.h"
 #include "shapewidget.h"
 #include "testshapemaindialog.h"
 #include "wtaboutdialog.h"
 #include "wtshapewidget.h"
 #include "wttestshapemaindialog.h"
-//---------------------------------------------------------------------------
+
 ribi::WtTestShapeMainDialog::WtTestShapeMainDialog()
   : m_dialog(new TestShapeMainDialog),
-    m_label_score(0)
+    m_dialogs{},
+    m_label_score{}
 {
   Show();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestShapeMainDialog::Show()
 {
   clear();
@@ -61,4 +62,4 @@ void ribi::WtTestShapeMainDialog::Show()
     ++i;
   }
 }
-//---------------------------------------------------------------------------
+

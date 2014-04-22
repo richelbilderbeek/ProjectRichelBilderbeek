@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/histogramequalizationer/images">
+        <file>ToolHistogramEqualizationerTest.png</file>
+        <file>ToolHistogramEqualizationerResult.png</file>
+        <file>ToolHistogramEqualizationerMenu.png</file>
+    </qresource>
+</RCC>

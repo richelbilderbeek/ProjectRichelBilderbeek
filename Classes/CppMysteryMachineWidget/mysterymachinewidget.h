@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MysteryMachineWidget, GUI independent widget for MysteryMachine
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,18 +30,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
-#include <boost/noncopyable.hpp>
+
 #include <boost/signals2.hpp>
 #include <boost/tuple/tuple.hpp>
 
 #include "widget.h"
 #include "rectangle.h"
+#include "mysterymachinekey.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct MysteryMachine;
 struct DialWidget;
+struct TextCanvas;
 struct ToggleButtonWidget;
 struct LedWidget;
 
@@ -49,35 +51,47 @@ struct LedWidget;
 ///user interface of the display of a MysteryMachine
 struct MysteryMachineWidget : public Widget
 {
-  explicit MysteryMachineWidget(const Rect& geometry
-    = Rect(0,0,200,400));
+  explicit MysteryMachineWidget(const Rect& geometry = CreateRect(0,0,200,400)) noexcept;
 
   ///Respond to the user clicking on the MysteryMachineWidget
-  void Click(const int x, const int y);
+  void Click(const int x, const int y) noexcept;
 
-  const MysteryMachine * GetMachine() const { return m_machine.get(); }
+  const boost::shared_ptr<const MysteryMachine> GetMachine() const noexcept { return m_machine; }
+  const boost::shared_ptr<      MysteryMachine> GetMachine()       noexcept { return m_machine; }
 
-  ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  void PressKey(const MysteryMachineKey key) noexcept;
+
+  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+
+  boost::signals2::signal<void()> m_signal_changed;
 
   private:
-  ///MysteryMachineWidget can only be deleted by Boost smart pointers
-  virtual ~MysteryMachineWidget() {}
-  ///MysteryMachineWidget can only be deleted by Boost smart pointers
+  virtual ~MysteryMachineWidget() noexcept {}
   friend void boost::checked_delete<>(MysteryMachineWidget*);
 
-  boost::scoped_ptr<MysteryMachine> m_machine;
+  boost::shared_ptr<MysteryMachine> m_machine;
+
+  static Rect CreateRect(
+    const double left,
+    const double top,
+    const double width,
+    const double height
+  ) noexcept;
 
   ///Respond to a change in geometry
-  void OnResize();
+  void OnResize() noexcept;
 
-  friend std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget);
+std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget) noexcept;
 
 } //~namespace ribi
 

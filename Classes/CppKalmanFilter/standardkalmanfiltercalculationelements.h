@@ -92,7 +92,7 @@ struct StandardKalmanFilterCalculationElements : public KalmanFilterCalculationE
 
   private:
   ///Can only be deleted by boost::checked_delete
-  ~StandardKalmanFilterCalculationElements() {}
+  ~StandardKalmanFilterCalculationElements() noexcept {}
   friend void boost::checked_delete<>(StandardKalmanFilterCalculationElements*);
 
   ///The innovation ('y_squiggle')

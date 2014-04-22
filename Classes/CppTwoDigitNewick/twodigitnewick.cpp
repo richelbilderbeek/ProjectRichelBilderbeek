@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTwoDigitNewick, tool to test the two-digit-Newick architecture
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "binarynewickvector.h"
@@ -129,12 +129,12 @@ int ribi::TwoDigitNewick::GetSumTermsAboveZero() const
   return m_sum_terms_above_zero;
 }
 
-const std::string ribi::TwoDigitNewick::GetVersion()
+std::string ribi::TwoDigitNewick::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::TwoDigitNewick::GetVersionHistory()
+std::vector<std::string> ribi::TwoDigitNewick::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-08-22: version 1.0: initial version");
@@ -171,11 +171,11 @@ void ribi::TwoDigitNewick::SetTheta(const double theta)
   sm_theta = theta;
 }
 
-void ribi::TwoDigitNewick::Test()
+void ribi::TwoDigitNewick::Test() noexcept
 {
   ribi::TwoDigitNewick::SetTheta(10.0);
   const std::vector<std::string> v = Newick::CreateValidNewicks();
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     if ( Newick::CalcComplexity(Newick::StringToNewick(s))
       >  BigInteger(1000000) )

@@ -18,19 +18,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolPause.htm
 //---------------------------------------------------------------------------
-//#include header file as first substantive line of code, from:
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
 #include "pausemenudialog.h"
 
 #include <cassert>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/timer.hpp>
 #pragma GCC diagnostic pop
 
-void ribi::PauseMenuDialog::Execute(const int argc, const char * const argv[])
+void ribi::PauseMenuDialog::Execute(const int argc, const char * const argv[]) noexcept
 {
   assert(argc >= 1);
   if (argc == 1)
@@ -51,7 +51,7 @@ void ribi::PauseMenuDialog::Execute(const int argc, const char * const argv[])
   }
 }
 
-const ribi::About ribi::PauseMenuDialog::GetAbout()
+const ribi::About ribi::PauseMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -66,12 +66,12 @@ const ribi::About ribi::PauseMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::PauseMenuDialog::GetVersion()
+const std::string ribi::PauseMenuDialog::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::PauseMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::PauseMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-xx-xx: Version 1.0: initial version");
@@ -79,7 +79,7 @@ const std::vector<std::string> ribi::PauseMenuDialog::GetVersionHistory()
   return v;
 }
 
-void ribi::PauseMenuDialog::Wait(const double n_secs)
+void ribi::PauseMenuDialog::Wait(const double n_secs) noexcept
 {
   boost::timer t;
   while (t.elapsed() < n_secs) {}

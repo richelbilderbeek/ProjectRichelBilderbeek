@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestKeyboardFriendlyGraphicsView, tests QtKeyboardFriendlyGraphicsView
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,9 +19,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolTestKeyboardFriendlyGraphicsView.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
-
 #include "qttestqtkeyboardfriendlygraphicsviewmenudialog.h"
 
 #include <QDesktopWidget>
@@ -37,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "qttestqtkeyboardfriendlygraphicsviewwidget.h"
 #include "testqtkeyboardfriendlygraphicsviewmenudialog.h"
+#include "trace.h"
 #include "ui_qttestqtkeyboardfriendlygraphicsviewmenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -44,6 +44,9 @@ ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::QtTestKeyboardFriendlyGraphi
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestKeyboardFriendlyGraphicsViewMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   {
     typedef QtTestKeyboardFriendlyGraphicsViewWidget Widget;
@@ -61,7 +64,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::QtTestKeyboardFriendlyGraphi
   }
 }
 
-ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::~QtTestKeyboardFriendlyGraphicsViewMenuDialog()
+ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::~QtTestKeyboardFriendlyGraphicsViewMenuDialog() noexcept
 {
   delete ui;
 }
@@ -73,7 +76,7 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::keyPressEvent(QKeyEvent
 
 void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout()
 {
-  About about = TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout();
+  About about = TestKeyboardFriendlyGraphicsViewMenuDialog().GetAbout();
   about.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
   about.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   about.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
@@ -85,12 +88,23 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout()
   about.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion());
   QtAboutDialog d(about);
   d.setWindowIcon(this->windowIcon());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Quit()
 {
   close();
 }
+
+#ifndef NDEBUG
+void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Test");
+  TRACE("Finished ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Test successfully");
+}
+#endif

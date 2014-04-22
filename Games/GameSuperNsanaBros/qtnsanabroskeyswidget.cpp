@@ -1,14 +1,18 @@
-//---------------------------------------------------------------------------
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
-//---------------------------------------------------------------------------
+
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "nsanabrosqtheader.h"
 #include "qtnsanabroskeyswidget.h"
-//---------------------------------------------------------------------------
-QtNsanaBrosKeysWidget::QtNsanaBrosKeysWidget(
+#pragma GCC diagnostic pop
+
+ribi::QtNsanaBrosKeysWidget::QtNsanaBrosKeysWidget(
   const NsanaBrosKeys * const keys,
   QWidget *parent)
   : QWidget(parent),
@@ -17,17 +21,17 @@ QtNsanaBrosKeysWidget::QtNsanaBrosKeysWidget(
   TRACE_FUNC();
   m_keys->m_signal_keyschanged.connect(
     boost::bind(
-      &QtNsanaBrosKeysWidget::OnKeysChanged,
+      &ribi::QtNsanaBrosKeysWidget::OnKeysChanged,
       this));
 
 }
-//---------------------------------------------------------------------------
-void QtNsanaBrosKeysWidget::OnKeysChanged()
+
+void ribi::QtNsanaBrosKeysWidget::OnKeysChanged()
 {
   this->repaint();
 }
-//---------------------------------------------------------------------------
-void QtNsanaBrosKeysWidget::paintEvent(QPaintEvent *)
+
+void ribi::QtNsanaBrosKeysWidget::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
   const int width  = this->width();
@@ -45,6 +49,6 @@ void QtNsanaBrosKeysWidget::paintEvent(QPaintEvent *)
     midx + (midx * m_keys->GetHorizontal()),
     midy + (midy * m_keys->GetVertical()));
 }
-//---------------------------------------------------------------------------
+
 
 

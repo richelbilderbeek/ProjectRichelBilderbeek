@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 LedWidget, Widget for the Led class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct Led;
+struct TextCanvas;
 
 ///Widget for displaying a Led
 struct LedWidget : public Widget
@@ -46,27 +47,36 @@ struct LedWidget : public Widget
     const unsigned char green =   0,
     const unsigned char blue  =   0
   );
+  LedWidget(const LedWidget&) = delete;
+  LedWidget& operator=(const LedWidget&) = delete;
+  ~LedWidget() noexcept {}
 
   ///Obtain a read-only pointer to Led
-  const Led * GetLed() const { return m_led.get(); }
+  const Led * GetLed() const noexcept { return m_led.get(); }
 
   ///Obtain a read-and-write pointer to Led
-  Led * GetLed() { return m_led.get(); }
+  Led * GetLed() noexcept { return m_led.get(); }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
+  const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;
 
   private:
   ///The LED
   boost::scoped_ptr<Led> m_led;
 
-  friend std::ostream& operator<<(std::ostream& os, const LedWidget& widget);
+  friend std::ostream& operator<<(std::ostream& os, const LedWidget& widget) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const LedWidget& widget);
+std::ostream& operator<<(std::ostream& os, const LedWidget& widget) noexcept;
 
 } //~namespace ribi
 

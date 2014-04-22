@@ -51,6 +51,7 @@ ribi::WtHometrainerStartExerciseDialog::Ui::Ui()
 }
 
 ribi::WtHometrainerStartExerciseDialog::WtHometrainerStartExerciseDialog()
+  : ui{}
 {
   ui.m_box_exercise->addWidget(new Wt::WLabel("No exercise loaded: select a file from the 'Load Exercise' menu item"));
   this->addWidget(ui.m_box_exercise);

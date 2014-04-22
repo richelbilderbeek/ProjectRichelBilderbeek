@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>StdExceptionExample1</title>
   <meta name="description" content="C++ StdExceptionExample1"/>
-  <meta name="keywords" content="C++ StdExceptionExample1 code snippet"/>
+  <meta name="keywords" content="C++ StdExceptionExample1 "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,20 +21,15 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppStdExceptionExample1.htm">StdExceptionExample1</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppStdExceptionExample1-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -46,27 +41,27 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppStdExceptionExample1.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppStdExceptionExample1/CppStdExceptionExample1.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppStdExceptionExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<table summary="./CppStdExceptionExample1/CppStdExceptionExample1.pro" border = "1"><tr><td><code>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -74,14 +69,14 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppStdExceptionExample1/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./CppStdExceptionExample1/main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppExceptionH.htm">exception</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> MyException : <b><a href="CppPublic.htm">public</a></b> <a href="CppException.htm">std::exception</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> My<a href="CppException.htm">Exception</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppStdException.htm">std::exception</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> * what () <b><a href="CppConst.htm">const</a></b> <b><a href="CppThrow.htm">throw</a></b> ()<br/>
 &nbsp;&nbsp;{<br/>
@@ -91,7 +86,7 @@ CONFIG -= qt<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> Fire()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> MyException();<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> My<a href="CppException.htm">Exception</a>();<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
@@ -100,14 +95,14 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Fire();<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(MyException&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(My<a href="CppException.htm">Exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "MyException caught: '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "My<a href="CppException.htm">Exception</a> caught: '"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Other errors, shown <b><a href="CppFor.htm">for</a></b> completeness<br/>
 &nbsp;&nbsp;}<br/>
@@ -115,7 +110,7 @@ CONFIG -= qt<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Screen output:<br/>
 <br/>
-MyException caught: 'Bilderbikkel was here'<br/>
+My<a href="CppException.htm">Exception</a> caught: 'Bilderbikkel was here'<br/>
 Press &lt;RETURN&gt; to close <b><a href="CppThis.htm">this</a></b> window...<br/>
 <br/>
 <a href="CppComment.htm">*/</a><br/>

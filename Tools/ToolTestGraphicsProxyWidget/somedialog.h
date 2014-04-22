@@ -1,7 +1,10 @@
 #ifndef SOMEDIALOG_H
 #define SOMEDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class SomeDialog;

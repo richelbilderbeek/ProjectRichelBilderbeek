@@ -1,10 +1,15 @@
 #include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtknokfighterplayer.h"
 
 #include <QBitmap>
 #include <QPixmap>
 #include <QGraphicsScene>
 #include "qtknokfighterbackground.h"
+#pragma GCC diagnostic pop
 
 ribi::QtKnokfighterPlayer::QtKnokfighterPlayer(
   const Name name,

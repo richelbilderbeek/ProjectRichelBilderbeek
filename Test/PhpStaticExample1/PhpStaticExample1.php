@@ -1,0 +1,1 @@
+<?phpfor ($i=0; $i!=4; ++$i){	$a[] = $i;	static $b = array(0,1,2); //Could also put b outside for loop without static	print_r($a);	if ($a == $b) 	{		echo "FOUND\n";	}}/*Array(    [0] => 0)Array(    [0] => 0    [1] => 1)Array(    [0] => 0    [1] => 1    [2] => 2)FOUNDArray(    [0] => 0    [1] => 1    [2] => 2    [3] => 3)*/?>

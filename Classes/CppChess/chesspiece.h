@@ -3,13 +3,17 @@
 
 #include <vector>
 
-#include <boost/noncopyable.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 #include <boost/checked_delete.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "chesscolor.h"
 #include "chessfwd.h"
 //#include "chesssquare.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace Chess {
@@ -19,66 +23,61 @@ namespace Chess {
 //- a (possibly undetermined) color
 struct Piece
 {
-  //Base classes must have a public destructor:
-  //Herb Sutter, Andrei Alexandrescu. C++ coding standards:
-  //101 rules, guidelines, and best practices.
-  //ISBN: 0-32-111358-6. Item 50: 'Make base class destructors
-  //public and virtual, or protected and nonvirtual'.
-  virtual ~Piece() {}
+  virtual ~Piece() noexcept {}
 
   ///Determines if this Piece can possibly do this move
-  virtual bool CanDoMove(const Chess::Move& move) const = 0;
+  virtual bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept = 0;
 
   ///Perform a Move on a Piece
-  void DoMove(const Chess::Move& move);
+  void DoMove(const boost::shared_ptr<const Move> move);
 
   ///Obtain the (possibily indeterminate) Color of a Piece
-  Color GetColor() const;
+  Color GetColor() const noexcept;
 
   ///Obtain the last move this Piece did.
-  const boost::shared_ptr<Move>& GetLastMove() const { return m_last_move; }
+  boost::shared_ptr<const Move> GetLastMove() const noexcept { return m_last_move; }
 
   ///Returns all Moves to be done by a Piece.
   ///These moves are all valid (for example, on an empty board), but might be invalid in the current chessgame.
-  virtual const std::vector<boost::shared_ptr<Move> > GetMoves() const = 0;
+  virtual std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept = 0;
 
   ///Obtain the Square the piece is standing on
-  const boost::shared_ptr<Square>& GetSquare() const;
+  boost::shared_ptr<const Square> GetSquare() const noexcept;
 
   ///Convert a Piece type to a its full name, e.g. 'knight'
-  virtual const std::string GetName() const = 0;
+  virtual std::string GetName() const noexcept = 0;
 
   ///Convert a Piece type to a its notational character, e.g 'N'
-  virtual char GetNameChar() const = 0;
+  virtual char GetNameChar() const noexcept = 0;
 
   ///Returns the color and symbol
   //const std::pair<char,char> GetSymbol() const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   #ifndef NDEBUG
   ///Test all Pieces
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   protected:
 
   Piece(
     const Color color,
-    const boost::shared_ptr<Square>& square);
+    const boost::shared_ptr<const Square>& square);
 
   ///Triple number of moves by adding check and checkmate
   static const std::vector<boost::shared_ptr<Move> > AddCheckAndCheckmate(const std::vector<boost::shared_ptr<Move> >& v);
 
   ///Clone a Piece
-  virtual const boost::shared_ptr<Piece> Clone() const = 0;
+  virtual boost::shared_ptr<Piece> Clone() const = 0;
 
   private:
 
@@ -86,12 +85,10 @@ struct Piece
   const Color m_color;
 
   ///The last move this Piece did.
-  boost::shared_ptr<Move> m_last_move;
+  boost::shared_ptr<const Move> m_last_move;
 
   ///The piece its location
-  boost::shared_ptr<Square> m_square;
-
-  friend bool IsEqual(const Piece& lhs, const Piece& rhs);
+  boost::shared_ptr<const Square> m_square;
 
   friend void boost::checked_delete<>(Piece *);
 };
@@ -99,219 +96,244 @@ struct Piece
 struct PieceBishop : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const Chess::Move& move) const;
+  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
 
-  const std::vector<boost::shared_ptr<Move> > GetMoves() const;
+  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
 
   ///Convert a Piece type to a its notational character, e.g 'N'
-  char GetNameChar() const { return 'B'; }
+  char GetNameChar() const noexcept { return 'B'; }
 
   ///Convert a Piece type to a its full name, e.g. 'knight'
-  const std::string GetName() const { return "bishop"; }
+  std::string GetName() const noexcept { return "bishop"; }
 
   #ifndef NDEBUG
   ///Test Bishop
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
   PieceBishop(
     const Color color,
-    const boost::shared_ptr<Square>& square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
   PieceBishop(const PieceBishop&) = delete;
   PieceBishop& operator=(const PieceBishop&) = delete;
 
   ///Clone this Piece
-  const boost::shared_ptr<Piece> Clone() const;
+  boost::shared_ptr<Piece> Clone() const;
 
-  ~PieceBishop() {}
+  ~PieceBishop() noexcept {}
 
   friend void boost::checked_delete<>(PieceBishop *);
+  friend struct PieceFactory;
+
+  //Cannot get these to compile
+  //friend boost::shared_ptr<      PieceBishop> boost::make_shared<      PieceBishop>(const Color color,const boost::shared_ptr<const Square> square);
+  //friend boost::shared_ptr<const PieceBishop> boost::make_shared<const PieceBishop>(const Color color,const boost::shared_ptr<const Square> square);
+
+  //Keep these for possible `reference
+  //friend class boost::detail::sp_ms_deleter<PieceBishop>;
+  //friend class boost::detail::sp_ms_deleter<const PieceBishop>;
+
 };
 
 struct PieceKing : public Piece
 {
 
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const Chess::Move& move) const;
+  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
 
-  const std::vector<boost::shared_ptr<Move> > GetMoves() const;
+  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
   //void Move(const Square& to);
 
   ///Convert a Piece type to a its notational character, e.g 'N'
-  char GetNameChar() const { return 'K'; }
+  char GetNameChar() const noexcept { return 'K'; }
 
   ///Convert a Piece type to a its full name, e.g. 'knight'
-  const std::string GetName() const { return "king"; }
+  std::string GetName() const noexcept { return "king"; }
 
   #ifndef NDEBUG
   ///Test PieceKing
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
   PieceKing(
     const Color color,
-    const boost::shared_ptr<Square>& square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
-  const boost::shared_ptr<Piece> Clone() const;
+  boost::shared_ptr<Piece> Clone() const;
 
-  ~PieceKing() {}
+  ~PieceKing() noexcept {}
 
   friend void boost::checked_delete<>(PieceKing *);
 
   ///Keep track of whether king has moved for castling
   bool m_has_moved;
 
+  friend struct PieceFactory;
 };
 
 struct PieceKnight : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const Chess::Move& move) const;
+  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
 
 
   ///Returns all Moves to be done by a Piece.
   ///These moves are all valid, but might be invalid in the current chessgame.
-  const std::vector<boost::shared_ptr<Move> > GetMoves() const;
+  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
 
-  char GetNameChar() const { return 'N'; }
+  char GetNameChar() const noexcept { return 'N'; }
 
   ///Convert a Piece type to a its full name, e.g. 'knight'
-  const std::string GetName() const { return "knight"; }
+  std::string GetName() const noexcept { return "knight"; }
 
   #ifndef NDEBUG
   ///Test PieceKnight
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
   PieceKnight(
     const Color color,
-    const boost::shared_ptr<Square>& square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
-  const boost::shared_ptr<Piece> Clone() const;
+  boost::shared_ptr<Piece> Clone() const;
 
-  ~PieceKnight() {}
+  ~PieceKnight() noexcept {}
   friend void boost::checked_delete<>(PieceKnight *);
+  friend struct PieceFactory;
 };
 
 struct PiecePawn : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const Chess::Move& move) const;
+  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
 
-
-  const std::vector<boost::shared_ptr<Move> > GetMoves() const;
-  char GetNameChar() const { return '.'; }
+  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
+  char GetNameChar() const noexcept { return '.'; }
 
   ///Convert a Piece type to a its full name, e.g. 'knight'
-  const std::string GetName() const { return "pawn"; }
+  std::string GetName() const noexcept { return "pawn"; }
 
   #ifndef NDEBUG
   ///Test PiecePawn
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
   PiecePawn(
     const Color color,
-    const boost::shared_ptr<Square>& square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
-  const boost::shared_ptr<Piece> Clone() const;
+  boost::shared_ptr<Piece> Clone() const;
 
-  ~PiecePawn() {}
+  ~PiecePawn() noexcept {}
 
   friend void boost::checked_delete<>(PiecePawn *);
+  friend struct PieceFactory;
 };
 
 struct PieceQueen : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const Chess::Move& move) const;
+  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
 
-  const std::vector<boost::shared_ptr<Move> > GetMoves() const;
-  char GetNameChar() const { return 'Q'; }
+  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
+  char GetNameChar() const noexcept { return 'Q'; }
 
   ///Convert a Piece type to a its full name, e.g. 'king'
-  const std::string GetName() const { return "queen"; }
+  std::string GetName() const noexcept { return "queen"; }
 
   #ifndef NDEBUG
   ///Test PieceQueen
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
 
   PieceQueen(
     const Color color,
-    const boost::shared_ptr<Square>& square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
-  const boost::shared_ptr<Piece> Clone() const;
+  boost::shared_ptr<Piece> Clone() const;
 
-  ~PieceQueen() {}
+  ~PieceQueen() noexcept {}
   friend void boost::checked_delete<>(PieceQueen *);
+  friend struct PieceFactory;
 };
 
 struct PieceRook : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const Chess::Move& move) const;
+  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
 
-  const std::vector<boost::shared_ptr<Move> > GetMoves() const;
+  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
 
-  char GetNameChar() const { return 'R'; }
+  char GetNameChar() const noexcept { return 'R'; }
 
   ///Convert a Piece type to a its full name, e.g. 'king'
-  const std::string GetName() const { return "rook"; }
+  std::string GetName() const noexcept { return "rook"; }
 
   #ifndef NDEBUG
   ///Test PieceRook
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
   PieceRook(
     const Color color,
-    const boost::shared_ptr<Square>& square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
-  const boost::shared_ptr<Piece> Clone() const;
+  boost::shared_ptr<Piece> Clone() const;
 
-  ~PieceRook() {}
+  ~PieceRook() noexcept {}
   friend void boost::checked_delete<>(PieceRook *);
 
   ///Keep track of whether rook has moved for castling
   bool m_has_moved;
 
+  friend struct PieceFactory;
 };
 
 
-bool operator==(const Piece& lhs, const Piece& rhs); //FORBID
-bool operator!=(const Piece& lhs, const Piece& rhs); //FORBID
-bool IsEqual(const Piece& lhs, const Piece& rhs);
+bool operator==(const Piece& lhs, const Piece& rhs);
+bool operator!=(const Piece& lhs, const Piece& rhs);
 std::ostream& operator<<(std::ostream& os, const Piece& piece);
 
 } //~namespace Chess

@@ -46,7 +46,7 @@ ribi::kalman::QtStandardKalmanFilterCalculationDialog::QtStandardKalmanFilterCal
   );
 }
 
-ribi::kalman::QtStandardKalmanFilterCalculationDialog::~QtStandardKalmanFilterCalculationDialog()
+ribi::kalman::QtStandardKalmanFilterCalculationDialog::~QtStandardKalmanFilterCalculationDialog() noexcept
 {
   delete ui;
 }

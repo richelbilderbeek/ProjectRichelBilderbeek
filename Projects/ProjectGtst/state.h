@@ -40,19 +40,7 @@ struct State
   virtual const std::string ToStr() const = 0;
 
   protected:
-  ///\brief Only allow a Boost smart pointer to delete State
-  ///
-  ///This prevents the following trouble,
-  ///cited from http://www.boost.org/libs/utility/checked_delete.html:
-  ///The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  ///class types to be deleted with a delete-expression.
-  ///When the class has a non-trivial destructor, or a class-specific operator
-  ///delete, the behavior is undefined. Some compilers issue a warning when an
-  ///incomplete type is deleted, but unfortunately, not all do, and programmers
-  ///sometimes ignore or disable warnings.
   virtual ~State() {}
-  ///Only allow a Boost smart pointer to delete State
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(State*);
 };
 //---------------------------------------------------------------------------
@@ -62,9 +50,7 @@ struct StateAssignPayoff : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "assign_payoff"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateAssignPayoff() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateAssignPayoff*);
 };
 //---------------------------------------------------------------------------
@@ -74,9 +60,7 @@ struct StateChat : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "chat"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateChat() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateChat*);
 };
 //---------------------------------------------------------------------------
@@ -86,9 +70,7 @@ struct StateChooseAction : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "choose_action"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateChooseAction() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateChooseAction*);
 };
 //---------------------------------------------------------------------------
@@ -98,9 +80,7 @@ struct StateFinished : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "finished"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateFinished() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateFinished*);
 };
 //---------------------------------------------------------------------------
@@ -110,9 +90,7 @@ struct StateGroupAssign : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "group_assign"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateGroupAssign() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateGroupAssign*);
 };
 //---------------------------------------------------------------------------
@@ -122,9 +100,7 @@ struct StateGroupReAssign : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "group_reassign"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateGroupReAssign() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateGroupReAssign*);
 };
 //---------------------------------------------------------------------------
@@ -134,9 +110,7 @@ struct StateLoggedIn : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "logged_in"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateLoggedIn() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateLoggedIn*);
 };
 //---------------------------------------------------------------------------
@@ -147,9 +121,7 @@ struct StateNotLoggedIn : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "not_logged_in"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateNotLoggedIn() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateNotLoggedIn*);
 };
 //---------------------------------------------------------------------------
@@ -159,9 +131,7 @@ struct StateQuiz : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "quiz"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateQuiz() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateQuiz*);
 };
 //---------------------------------------------------------------------------
@@ -171,9 +141,7 @@ struct StateViewResultsGroup : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "view_results_group"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateViewResultsGroup() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateViewResultsGroup*);
 };
 //---------------------------------------------------------------------------
@@ -183,9 +151,7 @@ struct StateViewResultsVoting : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "view_results_voting"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateViewResultsVoting() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateViewResultsVoting*);
 };
 //---------------------------------------------------------------------------
@@ -195,9 +161,7 @@ struct StateVoting : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "voting"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateVoting() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateVoting*);
 };
 //---------------------------------------------------------------------------
@@ -207,9 +171,7 @@ struct StateWaiting : public State
   ///Represent this State as a std::string
   const std::string ToStr() const { return "waiting"; }
   protected:
-  ///Only allow a Boost smart pointer to delete this State
   virtual ~StateWaiting() {}
-  ///Only allow a Boost smart pointer to delete this State
   friend void boost::checked_delete<>(StateWaiting*);
 };
 

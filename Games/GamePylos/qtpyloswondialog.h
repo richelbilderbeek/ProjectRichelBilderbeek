@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Pylos, Pylos/Pyraos game
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,9 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTPYLOSWONDIALOG
 #define QTPYLOSWONDIALOG
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
 
 #include "pyloswinner.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPylosWonDialog;
@@ -31,14 +34,16 @@ namespace Ui {
 
 namespace ribi {
 
-class QtPylosWonDialog : public QDialog
+class QtPylosWonDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtPylosWonDialog(QWidget *parent = 0);
-  ~QtPylosWonDialog();
-  void SetWinner(const Pylos::Winner winner);
+  QtPylosWonDialog(const QtPylosWonDialog&) = delete;
+  QtPylosWonDialog& operator=(const QtPylosWonDialog&) = delete;
+  ~QtPylosWonDialog() noexcept;
+  void SetWinner(const pylos::Winner winner);
 
 private:
   Ui::QtPylosWonDialog *ui;

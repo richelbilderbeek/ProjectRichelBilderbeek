@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BinaryNewickVector, class to store a Newick as a std::vector<int>
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include <boost/numeric/conversion/cast.hpp>
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 
 #include "BigIntegerLibrary.hh"
@@ -145,7 +145,7 @@ double ribi::BinaryNewickVector::CalculateProbabilityInternal(
         typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
         const std::vector<NewickFrequencyPair> newick_freqs
           = Newick::GetSimplerNewicksFrequencyPairs(n.Peek());
-        BOOST_FOREACH(const NewickFrequencyPair& p,newick_freqs)
+        for(const NewickFrequencyPair& p: newick_freqs)
         {
           const int frequency = p.second;
           assert(frequency > 0);
@@ -161,9 +161,9 @@ double ribi::BinaryNewickVector::CalculateProbabilityInternal(
             coefficients.push_back( (f_d*(f_d-1.0)) / d);
           }
           #ifdef DEBUG_BINARYNEWICKVECTOR_CALCULATEPROBABILITYINTERNAL
-          TRACE(std::string("BinaryNewickVector ")
+          TRACE("BinaryNewickVector "
             + Newick::NewickToString(p.first)
-            + std::string(" has coefficient ")
+            + " has coefficient "
             + boost::lexical_cast<std::string>(coefficients.back())
             + '\n';
          #endif
@@ -217,21 +217,21 @@ const std::pair<ribi::BinaryNewickVector,ribi::BinaryNewickVector> ribi::BinaryN
   return p;
 }
 
-const std::string ribi::BinaryNewickVector::GetVersion()
+std::string ribi::BinaryNewickVector::GetVersion() noexcept
 {
   return "3.1";
 }
 
-const std::vector<std::string> ribi::BinaryNewickVector::GetVersionHistory()
+std::vector<std::string> ribi::BinaryNewickVector::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2009-06-01: Version 1.0: Initial version");
-  v.push_back("2010-08-10: Version 1.1: Major architectural revision");
-  v.push_back("2011-02-20: Version 1.2: Removed helper functions from global namespace");
-  v.push_back("2011-02-22: Version 2.0: Changed file management");
-  v.push_back("2011-03-01: Version 3.0: major rewrite of algorithms");
-  v.push_back("2011-04-08: Version 3.1: fixed error forgiven by G++, but fatal for i686-pc-mingw32-qmake");
-  return v;
+  return {
+    "2009-06-01: Version 1.0: Initial version",
+    "2010-08-10: Version 1.1: Major architectural revision",
+    "2011-02-20: Version 1.2: Removed helper functions from global namespace",
+    "2011-02-22: Version 2.0: Changed file management",
+    "2011-03-01: Version 3.0: major rewrite of algorithms",
+    "2011-04-08: Version 3.1: fixed error forgiven by G++, but fatal for i686-pc-mingw32-qmake"
+  };
 }
 
  bool ribi::BinaryNewickVector::IsCloseBracketRight(const int pos) const
@@ -324,7 +324,7 @@ const ribi::BinaryNewickVector ribi::BinaryNewickVector::LoseBrackets(const int 
 
 bool ribi::BinaryNewickVector::NewickCompare(
   const std::vector<int>& lhs,
-  const std::vector<int>& rhs)
+  const std::vector<int>& rhs) noexcept
 {
   const int l_sz = lhs.size();
   const int r_sz = rhs.size();
@@ -346,7 +346,7 @@ bool ribi::BinaryNewickVector::NewickCompare(
   return false;
 }
 
-int ribi::BinaryNewickVector::Size() const
+int ribi::BinaryNewickVector::Size() const noexcept
 {
   return boost::numeric_cast<int>(m_v.size());
 }
@@ -421,15 +421,19 @@ const ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsOne(const int i) 
   return BinaryNewickVector(std::vector<int>());
 }
 
-void ribi::BinaryNewickVector::Test()
+void ribi::BinaryNewickVector::Test() noexcept
 {
-
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
   //Check that well-formed Newicks are confirmed valid
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
-      TRACE(std::string("I must be accepted: ") + s);
+      TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
@@ -489,7 +493,7 @@ void ribi::BinaryNewickVector::Test()
         const std::vector<std::vector<int> > simpler
           = Newick::GetSimplerBinaryNewicks(
             Newick::StringToNewick(s));
-        BOOST_FOREACH(const std::vector<int> simple,simpler)
+        for(const std::vector<int> simple: simpler)
         {
           assert(Newick::IsNewick(simple));
           Newick::CheckNewick(simple);
@@ -507,13 +511,13 @@ void ribi::BinaryNewickVector::Test()
   }
 }
 
-const std::string ribi::BinaryNewickVector::ToStr() const
+std::string ribi::BinaryNewickVector::ToStr() const noexcept
 {
   assert(Newick::IsNewick(m_v));
   return Newick::NewickToString(m_v);
 }
 
-bool ribi::operator<(const BinaryNewickVector& lhs, const BinaryNewickVector& rhs)
+bool ribi::operator<(const BinaryNewickVector& lhs, const BinaryNewickVector& rhs) noexcept
 {
   //return lhs.v < rhs.v;
   return ribi::BinaryNewickVector::NewickCompare(lhs.Peek(),rhs.Peek());

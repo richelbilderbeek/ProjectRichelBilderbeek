@@ -18,15 +18,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtMysteryMachineWidget.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "wtmysterymachinewidget.h"
+
 #include <iostream>
+
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBrush>
 #include <Wt/WEvent>
 #include <Wt/WPainter>
 #include <Wt/WPen>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "dialwidget.h"
 #include "led.h"
@@ -38,13 +43,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "mysterymachinewidget.h"
 #include "wtdialwidget.h"
 #include "wtledwidget.h"
-#include "wtmysterymachinewidget.h"
 #include "wttogglebuttonwidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtMysteryMachineWidget::WtMysteryMachineWidget(
   const int width, const int height)
-  : m_widget(new MysteryMachineWidget(
-    Rect(0,0,width-1,height-1)))
+  : m_signal_changed{},
+    m_widget(new MysteryMachineWidget(
+      Rect(0,0,width-1,height-1)))
+
 {
   assert(m_widget);
 
@@ -64,22 +71,22 @@ ribi::WtMysteryMachineWidget::WtMysteryMachineWidget(
 
   this->m_widget->SetGeometry(Rect(0,0,width,height));
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtMysteryMachineWidget::DoRepaint()
 {
   this->update();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtMysteryMachineWidget::OnResize()
 {
   ribi::WtMysteryMachineWidget::resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::WtMysteryMachineWidget::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::WtMysteryMachineWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -88,14 +95,14 @@ const std::vector<std::string> ribi::WtMysteryMachineWidget::GetVersionHistory()
   v.push_back("2011-08-20: Version 1.1: added operator<<");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtMysteryMachineWidget::OnClicked(const Wt::WMouseEvent& e)
 {
   const int x = e.widget().x;
   const int y = e.widget().y;
   m_widget->Click(x,y);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtMysteryMachineWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
@@ -113,12 +120,12 @@ void ribi::WtMysteryMachineWidget::paintEvent(Wt::WPaintDevice *paintDevice)
   WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedTopMiddle());
   WtToggleButtonWidget::DrawToggleButton(painter,GetWidget()->GetMachine()->GetToggleButton());
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtMysteryMachineWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::operator<<(std::ostream& os, const WtMysteryMachineWidget& widget)
 {
   os
@@ -127,4 +134,4 @@ std::ostream& ribi::operator<<(std::ostream& os, const WtMysteryMachineWidget& w
     << "</WtMysteryMachineWidget>";
   return os;
 }
-//---------------------------------------------------------------------------
+

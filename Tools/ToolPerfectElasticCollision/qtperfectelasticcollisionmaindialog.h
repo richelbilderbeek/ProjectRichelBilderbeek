@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PerfectElasticCollision, tool to investigate a perfect elastic collision
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,27 +21,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTPERFECTELASTICCOLLISIONMAINDIALOG_H
 #define QTPERFECTELASTICCOLLISIONMAINDIALOG_H
 
-#include <QDialog>
-#include <QTimer>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
+
+struct QTimer;
 
 namespace Ui {
   class QtPerfectElasticCollisionMainDialog;
 }
 
-class QtPerfectElasticCollisionMainDialog : public QDialog
+namespace ribi {
+
+class QtPerfectElasticCollisionMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtPerfectElasticCollisionMainDialog(QWidget *parent = 0);
-  ~QtPerfectElasticCollisionMainDialog();
+  QtPerfectElasticCollisionMainDialog(const QtPerfectElasticCollisionMainDialog&) = delete;
+  QtPerfectElasticCollisionMainDialog& operator=(const QtPerfectElasticCollisionMainDialog&) = delete;
+  ~QtPerfectElasticCollisionMainDialog() noexcept;
 
 protected:
   void paintEvent(QPaintEvent*);
 
 private:
   Ui::QtPerfectElasticCollisionMainDialog *ui;
-  QTimer m_timer;
+  QTimer * const m_timer;
 
 private slots:
   void onAnyChange();
@@ -82,11 +90,10 @@ private slots:
   static double GetAngle(const double dx, const double dy);
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 
-
+} //~namespace ribi
 
 #endif // QTPERFECTELASTICCOLLISIONMAINDIALOG_H

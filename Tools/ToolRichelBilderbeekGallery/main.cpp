@@ -18,92 +18,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm
 //---------------------------------------------------------------------------
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <string>
-#include <vector>
-//---------------------------------------------------------------------------
-#include <boost/program_options.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "trace.h"
 #include "richelbilderbeekgallerymenudialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 int main(int argc, char **argv)
 {
   START_TRACE();
-
-  // Declare the supported options.
-  boost::program_options::options_description d("Allowed options for RichelBilderbeekGalleryConsole");
-
-  d.add_options()
-      ("about","displays the 'About' information")
-      ("gallery","creates the Richel Bilderbeek's gallery web pages")
-      ("help","produce this help message")
-      ("status","creates the Richel Bilderbeek's program status web page")
-      ("version","displays the version")
-       ;
-
-  boost::program_options::variables_map m;
-  boost::program_options::store(
-    boost::program_options::parse_command_line(
-      argc, argv, d), m);
-  boost::program_options::notify(m);
-
-  if (m.count("help"))
-  {
-    std::cout << d << "\n";
-    return 0;
-  }
-
-  if (m.count("about"))
-  {
-    std::cout << RichelBilderbeek::GalleryMenuDialog::GetAbout() << "\n";
-    return 0;
-  }
-
-  if (m.count("version"))
-  {
-    std::cout << RichelBilderbeek::GalleryMenuDialog::GetVersion() << "\n";
-    return 0;
-  }
-
-  if (m.count("gallery"))
-  {
-    {
-      const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlClassGallery();
-      std::ofstream f("CppClassGallery.htm");
-      std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-    }
-    {
-      const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlGameGallery();
-      std::ofstream f("GameGallery.htm");
-      std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-    }
-    {
-      const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlProjectGallery();
-      std::ofstream f("ProjectGallery.htm");
-      std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-    }
-    {
-      const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlToolGallery();
-      std::ofstream f("ToolGallery.htm");
-      std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-    }
-    return 0;
-  }
-
-  if (m.count("status"))
-  {
-    {
-      const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlStatus();
-      std::ofstream f("CppRichelBilderbeekStatus.htm");
-      std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-    }
-    return 0;
-  }
-
-  //Display the help
-  std::cout << d << "\n";
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::GalleryMenuDialog().Execute(args);
 }
-//---------------------------------------------------------------------------

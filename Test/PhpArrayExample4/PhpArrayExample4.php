@@ -1,0 +1,1 @@
+<?php//Removing an element from an array$v=array(0,1,4);for ($i=-2; $i!=5; ++$i){  echo "[$i]: '" . $v[$i] . "', is null: '" . is_null($v[$i]) . "'\n";}/* Screen output:[-2]: '', is null: '1'[-1]: '', is null: '1'[0]: '0', is null: ''[1]: '1', is null: ''[2]: '4', is null: ''[3]: '', is null: '1'[4]: '', is null: '1'*/?>

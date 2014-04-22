@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestChess, program to test my chess classes
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,73 +18,83 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestChess.htm
 //---------------------------------------------------------------------------
-#include "about.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "qttestchessmenudialog.h"
+
+#include <QBitmap>
+#include <QPainter>
+#include <QPixmap>
+
 #include "qtaboutdialog.h"
 #include "qtchessboardwidget.h"
 #include "qtchessresources.h"
 #include "qttestchessboarddialog.h"
 #include "qttestchessgamedialog.h"
-#include "qttestchessmenudialog.h"
 #include "qttestchessviewresourcesdialog.h"
 #include "testchessmenudialog.h"
+#include "trace.h"
 #include "ui_qttestchessmenudialog.h"
-//---------------------------------------------------------------------------
-#include <QBitmap>
-#include <QPainter>
-#include <QPixmap>
-//---------------------------------------------------------------------------
-QtTestChessMenuDialog::QtTestChessMenuDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtTestChessMenuDialog)
+
+#pragma GCC diagnostic pop
+
+ribi::QtTestChessMenuDialog::QtTestChessMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtTestChessMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
-QtTestChessMenuDialog::~QtTestChessMenuDialog()
+
+ribi::QtTestChessMenuDialog::~QtTestChessMenuDialog() noexcept
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtTestChessMenuDialog::on_button_about_clicked()
+
+void ribi::QtTestChessMenuDialog::on_button_about_clicked()
 {
-  this->hide();
-  About a = TestChessMenuDialog::GetAbout();
-  a.AddLibrary("QtChessBoardWidget version: " + QtChessBoardWidget::GetVersion());
+  About a = TestChessMenuDialog().GetAbout();
+  a.AddLibrary("QtChessBoardWidget version: " + Chess::QtChessBoardWidget::GetVersion());
   a.AddLibrary("Chess::QtResources version: " + Chess::QtResources::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  this->show();
-
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
-void QtTestChessMenuDialog::on_button_quit_clicked()
+
+void ribi::QtTestChessMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-//---------------------------------------------------------------------------
-void QtTestChessMenuDialog::on_button_view_resources_clicked()
+
+void ribi::QtTestChessMenuDialog::on_button_view_resources_clicked()
 {
-  this->hide();
   QtTestChessViewResourcesDialog d;
-  d.exec();
-  this->show();
-
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
-void QtTestChessMenuDialog::on_button_test_board_clicked()
+
+void ribi::QtTestChessMenuDialog::on_button_test_board_clicked()
 {
-  this->hide();
   QtTestChessBoardDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
+}
 
-}
-//---------------------------------------------------------------------------
-void QtTestChessMenuDialog::on_button_test_game_clicked()
+void ribi::QtTestChessMenuDialog::on_button_test_game_clicked()
 {
-  this->hide();
   QtTestChessGameDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
+
+#ifndef NDEBUG
+void ribi::QtTestChessMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestChessMenuDialog::Test");
+  TRACE("Finished ribi::QtTestChessMenuDialog::Test successfully");
+}
+#endif

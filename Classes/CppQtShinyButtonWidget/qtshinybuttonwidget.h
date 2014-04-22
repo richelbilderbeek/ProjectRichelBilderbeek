@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtShinyButtonWidget, Qt widget for displaying the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,15 +25,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QWidget>
-
 #include "shinybutton.h" //For MOC
 #include "shinybuttonwidget.h" //For MOC
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -53,7 +52,7 @@ struct QtShinyButtonWidget : public QWidget
     const double color,
     const double gradient,
     const std::string& text = "",
-    const Rect rect = Rect(80,20),
+    const Widget::Rect rect = Widget::CreateRect(0,0,80,20),
     QWidget *parent = 0);
 
   static void DrawShinyButton(
@@ -67,41 +66,26 @@ struct QtShinyButtonWidget : public QWidget
     QPainter& painter,
     const ShinyButtonWidget * const widget);
 
-  ///Obtain a read-only pointer to the ShinyButton
-  const ShinyButtonWidget * GetWidget() const { return m_widget.get(); }
-
-  ///Obtain a read-and-write pointer to the ShinyButton
-  ShinyButtonWidget * GetWidget() { return m_widget.get(); }
+  const ShinyButtonWidget * GetWidget() const noexcept { return m_widget.get(); }
+        ShinyButtonWidget * GetWidget()       noexcept { return m_widget.get(); }
 
   ///Signal that is emitted when a QtShinyButtonWidget is toggled
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
-  ///Obtain the QtShinyButtonWidget its version
-  static const std::string GetVersion();
-
-  ///Obtain the QtShinyButtonWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   protected:
-  ///Respond to mouse clicks
   void mousePressEvent(QMouseEvent *);
-
-  ///Paint the QtShinyButtonWidget
   void paintEvent(QPaintEvent *);
-
-  ///Resize the QtShinyButtonWidget
   void resizeEvent(QResizeEvent *);
 
   private:
-
-  ///The ShinyButton
   boost::scoped_ptr<ShinyButtonWidget> m_widget;
 
   ///Repaint the QtShinyButtonWidget
   void DoRepaint();
 
-  ///Respond to mouse click
-  //void OnClicked(const Wt::WMouseEvent& e);
 };
 
 } //~namespace ribi

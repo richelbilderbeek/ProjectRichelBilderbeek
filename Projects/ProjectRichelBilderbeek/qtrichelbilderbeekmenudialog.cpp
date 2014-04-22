@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,20 +18,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtrichelbilderbeekmenudialog.h"
 
 #include <algorithm>
 
 #include <string>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
 #include <boost/lambda/lambda.hpp>
 
+#include <QDesktopWidget>
 #include <QFile>
 #include <QKeyEvent>
 #include <QLabel>
@@ -44,7 +44,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreewidget.h"
 #include "qtdialwidget.h"
 #include "qtdisplaypositem.h"
-
 #include "qtexercise.h"
 #include "qtgaborfilterwidget.h"
 #include "qtkeyboardfriendlygraphicsview.h"
@@ -66,6 +65,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "qtshapewidget.h"
 #include "qtshinybuttonwidget.h"
+#include "qtsimplifynewickmaindialog.h"
 #include "qtsprites.h"
 #include "qtstdvectorfunctionmodel.h"
 #include "qtstdvectorstringmodel.h"
@@ -75,10 +75,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtublasvectordoublemodel.h"
 #include "richelbilderbeekmenudialog.h"
 #include "richelbilderbeekprogram.h"
+#include "richelbilderbeekprogramtypes.h"
+#include "simplifynewickmenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
 #include "testqtkeyboardfriendlygraphicsviewmenudialog.h"
+#include "testqtmodelsmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
-#include "tooltestqtmodelsmenudialog.h"
 #include "trace.h"
 #include "ui_qtrichelbilderbeekmenudialog.h"
 
@@ -103,6 +105,9 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
     QLayout * const layout = new QVBoxLayout;
     this->setLayout(layout);
     layout->addWidget(widget);
+    widget->m_signal_show.connect(
+      boost::bind(&QtRichelBilderbeekMenuDialog::OnShow,this,boost::lambda::_1)
+    );
     widget->setFocus();
 
     QPushButton * const button = new QPushButton("&About");
@@ -110,19 +115,32 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
     QObject::connect(button,SIGNAL(clicked()),this,SLOT(OnAbout()));
     layout->addWidget(button);
   }
+  {
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(
+      QRect(
+        0,
+        0,
+        screen.width() * 8 / 10,
+        screen.height() * 8 / 10
+      )
+    );
+    this->move( screen.center() - this->rect().center() );
+  }
+
+  assert(1==2); //TEMP
 }
 
-ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog()
+ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept
 {
   delete ui;
 }
 
-
-const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout()
+ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
 {
-  About a = RichelBilderbeek::MenuDialog::GetAbout();
+  About a = ProjectRichelBilderbeekMenuDialog().GetAbout();
   a.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
-  a.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
+  a.AddLibrary("QtConnectThreeWidget version: " + con3::QtConnectThreeWidget::GetVersion());
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
   a.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
@@ -138,7 +156,7 @@ const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout()
   a.AddLibrary("QtMysteryMachineWidget version: " + QtMysteryMachineWidget::GetVersion());
   a.AddLibrary("QtOpenQuestionDialog version: " + QtOpenQuestionDialog::GetVersion());
   a.AddLibrary("QtPathArrowItem version: " + QtPathArrowItem::GetVersion());
-  a.AddLibrary("QtPylosWidget version: " + QtPylosWidget::GetVersion());
+  a.AddLibrary("QtPylosWidget version: " + pylos::QtPylosWidget::GetVersion());
   a.AddLibrary("QtQuadBezierArrowItem version: " + QtQuadBezierArrowItem::GetVersion());
   a.AddLibrary("QtQuestionDialog version: " + QtQuestionDialog::GetVersion());
   a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
@@ -150,13 +168,14 @@ const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout()
   //a.AddLibrary("QtSprites version: " + QtSprites::GetVersion());
   a.AddLibrary("QtStdVectorFunctionModel version: " + QtStdVectorFunctionModel::GetVersion());
   a.AddLibrary("QtStdVectorStringModel version: " + QtStdVectorStringModel::GetVersion());
-  a.AddLibrary("QtTicTacToeWidget version: " + QtTicTacToeWidget::GetVersion());
+  a.AddLibrary("QtTicTacToeWidget version: " + tictactoe::QtTicTacToeWidget::GetVersion());
   a.AddLibrary("QtToggleButtonWidget version: " + QtToggleButtonWidget::GetVersion());
   a.AddLibrary("QtUblasMatrixDoubleModel version: " + QtUblasMatrixDoubleModel::GetVersion());
   a.AddLibrary("QtUblasVectorDoubleModel version: " + QtUblasVectorDoubleModel::GetVersion());
-  a.AddLibrary("TestKeyboardFriendlyGraphicsView version: " + TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersion());
-  a.AddLibrary("TestQtArrowItems version: " + TestQtArrowItemsMenuDialog::GetVersion());
-  a.AddLibrary("TestQtModels version: " + ToolTestQtModelsMenuDialog::GetVersion());
+  a.AddLibrary("SimplifyNewick version: " + ToolSimplifyNewickMenuDialog().GetVersion());
+  a.AddLibrary("TestKeyboardFriendlyGraphicsView version: " + TestKeyboardFriendlyGraphicsViewMenuDialog().GetVersion());
+  a.AddLibrary("TestQtArrowItems version: " + TestQtArrowItemsMenuDialog().GetVersion());
+  a.AddLibrary("TestQtModels version: " + ToolTestQtModelsMenuDialog().GetVersion());
   return a;
 }
 
@@ -173,8 +192,33 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
   d.exec();
 }
 
+void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
+{
+  const boost::shared_ptr<QDialog> dialog(
+    QtRichelBilderbeekProgram::CreateQtMenuDialog(program_type));
+
+  if (!dialog)
+  {
+    TRACE("Create placeholder");
+    const boost::shared_ptr<QtHideAndShowDialog> placeholder(
+      QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(program_type));
+    assert(placeholder);
+    this->ShowChild(placeholder.get());
+    return;
+  }
+  else
+  {
+    TRACE("Create QtHideAndShowDialog");
+    const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
+      boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
+    assert(hide_and_show_dialog);
+    this->ShowChild(hide_and_show_dialog.get());
+    return;
+  }
+}
+
 #ifndef NDEBUG
-void ribi::QtRichelBilderbeekMenuDialog::Test()
+void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -182,9 +226,16 @@ void ribi::QtRichelBilderbeekMenuDialog::Test()
     is_tested = true;
   }
   {
-    const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::GetAllProgramTypes();
-    for (const RichelBilderbeek::ProgramType type: v)
+    const std::vector<ProgramType> v = ProgramTypes::GetAll();
+    for (const ProgramType type: v)
     {
+      #ifndef NDEBUG
+      const std::string progress
+        = boost::lexical_cast<std::string>(static_cast<int>(type))
+        + "/"
+        + boost::lexical_cast<std::string>(v.size());
+      TRACE(progress);
+      #endif
       const boost::shared_ptr<QDialog> d(
         QtRichelBilderbeekProgram::CreateQtMenuDialog(type));
     }

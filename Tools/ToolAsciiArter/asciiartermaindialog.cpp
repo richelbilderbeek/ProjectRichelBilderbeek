@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 AsciiArter, tool to create ASCII art
-Copyright (C) 2006-2013 Richel Bilderbeek
+Copyright (C) 2006-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,36 +18,95 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "asciiartermaindialog.h"
 
-#include "asciiarter.h"
+#include <ostream>
+#include <stdexcept>
 
-ribi::AsciiArterMainDialog::AsciiArterMainDialog()
-  : m_width(0),
-    m_asciiarter(new AsciiArter)
+#include <boost/scoped_ptr.hpp>
+#include <boost/numeric/conversion/cast.hpp>
+
+#include <QImage>
+#include <QFile>
+
+#include "canvas.h"
+#include "imagecanvas.h"
+#include "fileio.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
+
+ribi::AsciiArterMainDialog::AsciiArterMainDialog(
+  const std::string& filename,
+  const int n_cols)
+  : m_filename(filename),
+    m_n_cols(n_cols)
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
-bool ribi::AsciiArterMainDialog::CanConvert() const
+
+
+std::vector<std::string> ribi::AsciiArterMainDialog::GetAsciiArt() const noexcept
 {
-  return !m_image.empty() && m_width > 5;
+  const boost::shared_ptr<ribi::ImageCanvas> canvas { GetImageCanvas() };
+  return canvas->ToStrings();
 }
 
-void ribi::AsciiArterMainDialog::Convert()
+const boost::shared_ptr<ribi::ImageCanvas> ribi::AsciiArterMainDialog::GetImageCanvas() const noexcept
 {
-  m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
+  if (!fileio::FileIo().IsRegularFile(m_filename))
+  {
+    const std::string s = "AsciiArterMainDialog: file '"+ m_filename + "' not found";
+    throw std::logic_error(s.c_str());
+  }
+  if (m_n_cols < 5)
+  {
+    throw std::logic_error("AsciiArterMainDialog: n_cols < 5");
+  }
+  const boost::shared_ptr<ribi::ImageCanvas> canvas {
+    new ImageCanvas(m_filename,m_n_cols)
+  };
+  assert(canvas);
+  return canvas;
 }
 
-void ribi::AsciiArterMainDialog::SetImage(const std::vector<std::vector<double> >& image)
+#ifndef NDEBUG
+void ribi::AsciiArterMainDialog::Test() noexcept
 {
-  m_image = image;
-}
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::AsciiArterMainDialog::Test()");
+  const std::string temp_filename = fileio::FileIo().GetTempFileName();
+  assert(!fileio::FileIo().IsRegularFile(temp_filename));
+  {
+    QFile qfile(":/ToolAsciiArter/images/R.png");
+    qfile.copy(temp_filename.c_str());
+  }
+  assert(fileio::FileIo().IsRegularFile(temp_filename)
+    && "Resource file must exist");
 
-void ribi::AsciiArterMainDialog::SetWidth(const int width)
+  const AsciiArterMainDialog d(temp_filename,20);
+  assert(!d.GetAsciiArt().empty());
+  std::stringstream s;
+  s << d;
+  assert(!s.str().empty());
+  //TRACE(d);
+
+  fileio::FileIo().DeleteFile(temp_filename);
+  assert(!fileio::FileIo().IsRegularFile(temp_filename));
+  TRACE("Finished ribi::AsciiArterMainDialog::Test()");
+}
+#endif
+
+std::ostream& ribi::operator<<(std::ostream& os, const AsciiArterMainDialog& d)
 {
-  assert(width > 5);
-  m_width = width;
+  os << (*d.GetImageCanvas());
+  return os;
 }

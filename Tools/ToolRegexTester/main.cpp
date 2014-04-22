@@ -18,22 +18,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-//From http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#ifdef _WIN32
-#undef __STRICT_ANSI__
-#endif
-
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/program_options.hpp>
 
 #include "regextestermaindialog.h"
-#include "regextesterboostmaindialog.h"
+#include "regextesterboostregexmaindialog.h"
+#include "regextesterboostxpressivemaindialog.h"
 #include "regextestercpp11maindialog.h"
 #include "regextestertr1maindialog.h"
 #include "regextesterqtmaindialog.h"
 #include "regextestermenudialog.h"
+
+#pragma GCC diagnostic pop
+
 
 int main(int argc, char* argv[])
 {
@@ -69,13 +70,13 @@ int main(int argc, char* argv[])
 
   if (m.count("a"))
   {
-    std::cout << RegexTesterMenuDialog::GetAbout() << '\n';
+    std::cout << ribi::RegexTesterMenuDialog::GetAbout() << '\n';
     return 0;
   }
 
   if (m.count("v"))
   {
-    std::cout << RegexTesterMenuDialog::GetVersion() << '\n';
+    std::cout << ribi::RegexTesterMenuDialog::GetVersion() << '\n';
     return 0;
   }
 
@@ -83,24 +84,29 @@ int main(int argc, char* argv[])
     << "Regex: " << r << '\n'
     << '\n';
 
-  std::vector<boost::shared_ptr<RegexTesterMainDialog> > dialogs;
+  std::vector<boost::shared_ptr<ribi::RegexTesterMainDialog> > dialogs;
   //Cannot get my crosscompiler to support -lboost_regex
+  {
+    boost::shared_ptr<ribi::RegexTesterMainDialog> p(new ribi::RegexTesterBoostXpressiveMainDialog);
+    assert(p);
+    dialogs.push_back(p);
+  }
   #ifndef _WIN32
   {
-    boost::shared_ptr<RegexTesterMainDialog> p(new RegexTesterBoostMainDialog);
+    boost::shared_ptr<RegexTesterMainDialog> p(new RegexTesterBoostRegexMainDialog);
     assert(p);
     dialogs.push_back(p);
   }
   #endif
   {
-    boost::shared_ptr<RegexTesterMainDialog> p(new RegexTesterQtMainDialog);
+    boost::shared_ptr<ribi::RegexTesterMainDialog> p(new ribi::RegexTesterQtMainDialog);
     assert(p);
     dialogs.push_back(p);
   }
   //std::regex not implemented in GCC
   #ifndef __GNUC__
   {
-    boost::shared_ptr<RegexTesterMainDialog> p(new RegexTesterCpp11MainDialog);
+    boost::shared_ptr<ribi::RegexTesterMainDialog> p(new ribi::RegexTesterCpp11MainDialog);
     assert(p);
     dialogs.push_back(p);
   }
@@ -108,14 +114,14 @@ int main(int argc, char* argv[])
   //std::tr1::regex not implemented in GCC
   #ifndef __GNUC__
   {
-    boost::shared_ptr<RegexTesterMainDialog> p(new RegexTesterTr1MainDialog);
+    boost::shared_ptr<ribi::RegexTesterMainDialog> p(new ribi::RegexTesterTr1MainDialog);
     assert(p);
     dialogs.push_back(p);
   }
   #endif
 
   std::for_each(dialogs.begin(),dialogs.end(),
-    [&r, &s](const boost::shared_ptr<RegexTesterMainDialog> dialog)
+    [&r, &s](const boost::shared_ptr<ribi::RegexTesterMainDialog> dialog)
     {
       std::cout << "Using: " << dialog->GetUsedImplementation() << '\n';
       std::cout << std::boolalpha

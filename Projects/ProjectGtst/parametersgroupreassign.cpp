@@ -24,20 +24,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 #include <string>
-//---------------------------------------------------------------------------
+
 // 
-//---------------------------------------------------------------------------
+
 #include "fparser.hh"
 #include "parametersgroupreassign.h"
 //#include "trace.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersGroupReAssign::ParametersGroupReAssign()
   : m_duration(30),
-    m_n_periods(1)
+    m_n_periods(1),
+    m_next_period_payoff_function{}
 {
   SetNextPeriodPayoffFunction("0.0");
 }
-//---------------------------------------------------------------------------
+
 double ribi::gtst::ParametersGroupReAssign::CalculateNextPeriodPayoff(const double average_payoff) const
 {
   FunctionParser f;
@@ -63,20 +64,20 @@ double ribi::gtst::ParametersGroupReAssign::CalculateNextPeriodPayoff(const doub
 
   return payoff_for_reaching_next_period;
 }
-//---------------------------------------------------------------------------
+
 int ribi::gtst::ParametersGroupReAssign::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
-//---------------------------------------------------------------------------
+
 ///Get the number of times the larger-cycle/experiment repeats itself
 int ribi::gtst::ParametersGroupReAssign::GetNumberOfPeriods() const
 {
   assert(m_n_periods >= 0);
   return m_n_periods;
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersGroupReAssign::Parse(const std::string& s)
 {
@@ -131,7 +132,7 @@ void ribi::gtst::ParametersGroupReAssign::Parse(const std::string& s)
     (std::string("Unparsable parameter file line: group_reassign_") + s).c_str());
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersGroupReAssign::SetNextPeriodPayoffFunction(const std::string& function)
 {
   FunctionParser f;
@@ -143,20 +144,20 @@ void ribi::gtst::ParametersGroupReAssign::SetNextPeriodPayoffFunction(const std:
   }
   m_next_period_payoff_function = function;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersGroupReAssign::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
-//---------------------------------------------------------------------------
+
 ///Set the number of times the larger-cycle/experiment repeats itself
 void ribi::gtst::ParametersGroupReAssign::SetNumberOfPeriods(const int n_periods)
 {
   m_n_periods = n_periods;
   assert(m_n_periods >= 1);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersGroupReAssign& parameters)
 {
   os
@@ -171,4 +172,4 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersGroupReAss
 
   return os;
 }
-//---------------------------------------------------------------------------
+

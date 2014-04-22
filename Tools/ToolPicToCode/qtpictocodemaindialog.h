@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PicToCode, tool to convert a picture to C++ code
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,27 +23,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#include "pictocodemaindialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPicToCodeMainDialog;
 }
 
 struct QImage;
-#include "pictocodemaindialog.h"
 
 namespace ribi {
 
-class QtPicToCodeMainDialog : public QDialog
+class QtPicToCodeMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtPicToCodeMainDialog(QWidget *parent = 0);
-  ~QtPicToCodeMainDialog();
+  QtPicToCodeMainDialog(const QtPicToCodeMainDialog&) = delete;
+  QtPicToCodeMainDialog& operator=(const QtPicToCodeMainDialog&) = delete;
+  ~QtPicToCodeMainDialog() noexcept;
 
 private:
   Ui::QtPicToCodeMainDialog *ui;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void on_button_convert_clicked();

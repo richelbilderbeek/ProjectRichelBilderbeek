@@ -25,12 +25,12 @@ void ribi::AlphaFilter::Update(const double measurement)
   m_output += m_alpha * difference;
 }
 
-const std::string ribi::AlphaFilter::GetVersion()
+std::string ribi::AlphaFilter::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::AlphaFilter::GetVersionHistory()
+std::vector<std::string> ribi::AlphaFilter::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2013-05-25: version 1.0: initial version");

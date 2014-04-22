@@ -1,7 +1,12 @@
 #include <algorithm>
 #include <cassert>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
+#pragma GCC diagnostic pop
 
 //From http://www.richelbilderbeek.nl/CppBubbleSort.htm
 template <class T>
@@ -69,7 +74,7 @@ const std::vector<int> CreateShuffledVector(const std::size_t sz)
   std::vector<int> v(sz);
 
   int value = 0;
-  BOOST_FOREACH(int i,v)
+  BOOST_FOREACH(int& i,v)
   {
     i = value;
     ++value;

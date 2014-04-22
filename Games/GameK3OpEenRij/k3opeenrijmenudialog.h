@@ -1,19 +1,26 @@
 #ifndef K3OPEENRIJMENUDIALOG_H
 #define K3OPEENRIJMENUDIALOG_H
 
-
-#include <string>
-#include <vector>
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-///
-struct K3OpEenRijMenuDialog
+struct K3OpEenRijMenuDialog : public MenuDialog
 {
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  void Show(const int girl_index) const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

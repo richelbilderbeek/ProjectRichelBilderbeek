@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtQuestionDialog, Qt dialog for QuestionDialog
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,12 +22,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTQUESTIONDIALOG_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
-
-#include <QDialog>
 
 namespace ribi {
 
@@ -35,32 +35,24 @@ struct Question;
 struct QuestionDialog;
 
 ///Qt dialog for QuestionDialog
-struct QtQuestionDialog : public QDialog
+struct QtQuestionDialog : public QtHideAndShowDialog
 {
   explicit QtQuestionDialog(QWidget *parent = 0);
 
-  virtual ~QtQuestionDialog() {}
-
-  QtQuestionDialog(
-    const boost::shared_ptr<QuestionDialog>& dialog,
-    QWidget *parent = 0);
+  virtual ~QtQuestionDialog() noexcept {}
 
   ///Obtain a read-only pointer to the dialog
-  const QuestionDialog * GetDialog() const { return m_dialog.get(); }
+  virtual const boost::shared_ptr<const QuestionDialog> GetDialog() const = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///This signal is emitted when the client submits an answer, where
-  ///the boolean indicates if a correct answer was given
-  mutable boost::signals2::signal<void (bool)> m_signal_submitted;
-
-  protected:
-
-  boost::shared_ptr<QuestionDialog> m_dialog;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

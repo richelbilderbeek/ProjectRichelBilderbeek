@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MusicTheory, tool for visualizing my music theory
-Copyright (C)  2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,23 +21,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef MUSICTHEORYMENUDIALOG_H
 #define MUSICTHEORYMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///GUI independent MusicTheory menu dialog
-struct MusicTheoryMenuDialog
+struct MusicTheoryMenuDialog : public MenuDialog
 {
-  static const About GetAbout();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its version number
-  static const std::string GetVersion();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 };
 
 } //namespace ribi

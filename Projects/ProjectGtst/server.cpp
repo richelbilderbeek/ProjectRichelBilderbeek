@@ -59,7 +59,8 @@ ribi::gtst::Server::Server()
   : m_administrators(new Administrators),
     m_groups(new Groups(this)),
     m_log(new LogFile),
-    m_parameters(new Parameters(this))
+    m_parameters(new Parameters(this)),
+    m_states{}
 {
   std::lock_guard<std::recursive_mutex> lock(m_mutex);
 

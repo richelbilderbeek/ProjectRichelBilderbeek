@@ -1,24 +1,24 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-07-22T22:43:13
-#
-#-------------------------------------------------
-QT += core
-QT -= gui
-SOURCES += \
-    beerwanter.cpp \
-    mainWt.cpp \
-    beerwanterwtwidget.cpp
-HEADERS  += \
-    beerwanter.h \
-    beerwanterwtwidget.h \
-    myassert.h
-LIBS += -lwt -lwthttp
-#Note: the flag below is a workaround for the following error:
-#  http://richelbilderbeek.nl/CppCompileErrorCc1plusInternalCompilerErrorSegmentationFault.htm
-#Drawback: all asserts will removed as well
-QMAKE_CXXFLAGS += -DNDEBUG
-CONFIG   += console
-CONFIG   += qt
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
+include(../../WebApplication.pri)
+
+#General
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
+
+#Website general
+include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
+include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
+
+#Specific
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+
+include(../../Games/GameBeerWanter/GameBeerWanterWebsite.pri)
+
+SOURCES += wtmain.cpp

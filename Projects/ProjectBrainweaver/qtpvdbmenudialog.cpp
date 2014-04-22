@@ -1,8 +1,28 @@
-#include "qtpvdbmenudialog.h"
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qtpvdbmenudialog.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -12,12 +32,13 @@
 #include <QLayout>
 #include <QVBoxLayout>
 
-#include "pvdbconceptfactory.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbconceptmap.h"
-#include "qtpvdbrateconcepttallydialog.h"
-#include "pvdbexamples.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapconcept.h"
+#include "conceptmapfactory.h"
+#include "fileio.h"
+#include "conceptmap.h"
+#include "qtconceptmaprateconcepttallydialognewname.h"
+#include "conceptmapexamples.h"
 #include "qtpvdbfiledialog.h"
 #include "qtpvdbtestcreatesubconceptmapdialog.h"
 #include "pvdbfilefactory.h"
@@ -26,122 +47,127 @@
 #include "qtpvdbassessormenudialog.h"
 #include "qtpvdbclusterdialog.h"
 #include "qtpvdbclusterwidget.h"
-#include "pvdbnode.h"
-#include "pvdbconcept.h"
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#include "qtpvdbconcepteditdialog.h"
+#include "conceptmapnode.h"
+#include "conceptmapconcept.h"
+#include "conceptmapexample.h"
+#include "qttestconceptmapmenudialog.h"
+#include "conceptmapexamples.h"
+#include "qtconceptmapconcepteditdialog.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "qtpvdbcreateassessmentcompletedialog.h"
-#include "qtpvdbtestconceptmapdisplaywidgetdialog.h"
-#include "qtpvdbtestconceptmapeditwidgetdialog.h"
-#include "qtpvdbtestconceptmapratewidgetdialog.h"
+#include "qttestdisplayconceptmapdialog.h"
+#include "qttesteditconceptmapdialog.h"
+#include "qttestrateconceptmapdialog.h"
+
+#include "qttestrateconceptmapdialog.h"
 #include "qtpvdboverviewdialog.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"
-#include "qtpvdbrateconceptdialog.h"
+#include "qtconceptmaprateconceptdialognewname.h"
 #include "qtpvdbrateconceptmapdialog.h"
-#include "qtpvdbrateexamplesdialog.h"
+#include "qtconceptmaprateexamplesdialognewname.h"
 #include "qtpvdbratingdialog.h"
 #include "qtpvdbstudentmenudialog.h"
-#include "qtpvdbtestconceptitemdialog.h"
-#include "qtpvdbtestconceptmapdisplaywidgetdialog.h"
-#include "qtpvdbtestconceptmapeditwidgetdialog.h"
-#include "qtpvdbtestconceptmapratewidgetdialog.h"
-#include "qtpvdbtestedgeitemdialog.h"
-#include "qtpvdbtestnodeitemdialog.h"
 #include "qtpvdbviewfilesdialog.h"
-#include "qtpvdbviewtestsdialog.h"
-#include "toolstylesheetsettermaindialog.h"
-#include "qtpvdbtestedgeitemdialog.h"
-
+//#include "qtconceptmapviewtestsdialog.h"
+#include "qtstylesheetsettermaindialog.h"
 #include "qttestqtarrowitemsmenudialog.h"
 #include "qttestqtroundededitrectitemmenudialog.h"
 #include "qttestqtroundedtextrectitemmenudialog.h"
 #include "trace.h"
 #include "ui_qtpvdbmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbMenuDialog::QtPvdbMenuDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbMenuDialog),
+    m_file{},
     m_show_child_dialogs_modal(true)
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
-  #else
-  ui->widget_debug_1->setVisible(false);
-  ui->widget_debug_2->setVisible(false);
   #endif
 }
 
-ribi::pvdb::QtPvdbMenuDialog::~QtPvdbMenuDialog()
+ribi::pvdb::QtPvdbMenuDialog::~QtPvdbMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbMenuDialog::keyPressEvent(QKeyEvent* e) noexcept
 {
   assert(e);
   if (e->key()  == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_assessor_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_assessor_clicked() noexcept
 {
   QtPvdbAssessorMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); } //For testing
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
 {
   //Obtain an empty file
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
-  //Set HeteromorphousTestConceptMap[15]
+  //Use HeteromorphousTestConceptMap[17] to check for subconcept maps with many examples
+  //Use HeteromorphousTestConceptMap[18] to check for subconcept maps with large texts
+  //Use HeteromorphousTestConceptMap[19] to check for connection to focus with ...
   {
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-      = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
+    const boost::shared_ptr<cmap::ConceptMap> concept_map
+      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(19);
     assert(concept_map);
     assert(!file->GetConceptMap() && "Can only set a concept map once");
     file->SetConceptMap(concept_map);
   }
   //Obtain a random sub-concept-map
-  const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > concept_maps = file->GetConceptMap()->CreateSubs();
+  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > concept_maps = file->GetConceptMap()->CreateSubs();
   //Display this random concept map
   const int index = std::rand() % concept_maps.size();
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = concept_maps[ index ];
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[ index ];
+  assert( (!concept_map || concept_map->IsValid())
+    && "Expect no or a valid concept map");
   //Create and show the dialog
-  boost::shared_ptr<QtPvdbRateConceptDialog> d(
-    new QtPvdbRateConceptDialog(concept_map));
+  boost::shared_ptr<cmap::QtRateConceptDialogNewName> d(
+    new cmap::QtRateConceptDialogNewName(concept_map));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 {
-  TRACE("***");
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-    = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
+  //Use HeteromorphousTestConceptMap[17] to check for subconcept maps with many examples
+  //Use HeteromorphousTestConceptMap[18] to check for subconcept maps with large texts
+  //Use HeteromorphousTestConceptMap[19] to check for connection to focus with ...
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+    = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(19);
   file->SetConceptMap(concept_map);
   QtPvdbRateConceptMapDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 {
-  const boost::shared_ptr<ribi::pvdb::Concept> concept = ribi::pvdb::ConceptFactory::GetTests().at(4);
-  boost::shared_ptr<QtPvdbRateExamplesDialog> d(new QtPvdbRateExamplesDialog(concept));
+  using namespace cmap;
+  const int index = 2;
+  assert(index < static_cast<int>(ConceptFactory().GetTests().size()));
+  const boost::shared_ptr<Concept> concept = ConceptFactory().GetTests().at(index);
+  boost::shared_ptr<QtRateExamplesDialogNewName> d(new QtRateExamplesDialogNewName(concept));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked() noexcept
 {
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
+  #ifdef TODO_RJCB //TODO RJCB
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(5);
   assert(file);
   QtPvdbRatingDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
+  #endif //TODO RJCB
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked() noexcept
 {
   if (!m_show_child_dialogs_modal) return;
 
@@ -169,14 +195,14 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked()
 
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked() noexcept
 {
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   assert(!file->GetCluster());
   assert(!file->GetConceptMap());
   {
     const std::string question = "qtvdbmenudialog.cpp 79?";
-    boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(question));
+    boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(File::CreateConceptMap(question));
     assert(concept_map);
     assert(!file->GetConceptMap() && "Can only set concept map once");
     file->SetQuestion(question);
@@ -195,7 +221,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_overview_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_overview_clicked() noexcept
 {
   const QString old_title = this->windowTitle();
   this->setWindowTitle("Loading, please wait...");
@@ -203,7 +229,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_overview_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_about_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_about_clicked() noexcept
 {
   const auto d = QtPvdbAboutDialog::Get();
   if (m_show_child_dialogs_modal)
@@ -218,58 +244,20 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_about_clicked()
   }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
-{
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-    = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
-  assert(concept_map);
-  assert(!file->GetConceptMap() && "Can only set a concept map once");
-  file->SetConceptMap(concept_map);
-  QtPvdbConceptMapDialog d(file);
-  assert(file);
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked()
-{
-  const auto concepts = ribi::pvdb::ConceptFactory::GetTests();
-  boost::shared_ptr<ribi::pvdb::Concept>  concept = concepts[ std::rand() % concepts.size() ];
-  while (concept->GetExamples()->Get().empty())
-  {
-    concept = concepts[ std::rand() % concepts.size() ];
-  }
-  assert(concept);
-  QtPvdbConceptEditDialog d(concept);
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-
-void ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked() noexcept
 {
   QtPvdbViewFilesDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked()
-{
-  QtPvdbViewTestsDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-
-
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbMenuDialog::Test()
+void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("Started ribi::pvdb::QtPvdbMenuDialog::Test");
   {
     QtPvdbOverviewDialog d; //Creates all screens, does all tests
@@ -283,7 +271,7 @@ void ribi::pvdb::QtPvdbMenuDialog::Test()
       =
       {
         //Duplication of tests, the ones I am most interested in now
-        ui->button_rate_concept_auto,
+        ui->button_test_conceptedit,
 
         //Normal alphabetical order of tests
         ui->button_about,
@@ -302,18 +290,12 @@ void ribi::pvdb::QtPvdbMenuDialog::Test()
         ui->button_test_arrowitems,
         ui->button_test_cluster,
         ui->button_test_conceptedit,
-        ui->button_test_conceptitem,
         ui->button_test_conceptmap,
         ui->button_test_create_sub_concept_map,
-        ui->button_test_edge_item,
-        ui->button_test_node_item,
-        ui->button_test_qtconceptmapdisplaywidget,
-        ui->button_test_qtconceptmapeditwidget,
-        ui->button_test_qtconceptmapratewidget,
+        ui->button_test_conceptmaps,
         ui->button_test_qtroundededitrectitem,
         ui->button_test_qtroundedtextrectitem,
-        ui->button_view_files,
-        ui->button_view_test_concept_maps
+        ui->button_view_files
       };
     const std::size_t n_buttons = buttons.size();
     for (std::size_t i = 0; i!=n_buttons; ++i)
@@ -482,64 +464,36 @@ void ribi::pvdb::QtPvdbMenuDialog::Test()
     std::remove(pvdb::File::GetTestFileName().c_str());
   }
   TRACE("Finished ribi::pvdb::QtPvdbMenuDialog::Test successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked()
+/*
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked() noexcept
 {
-  QtPvdbTestConceptItemDialog d;
+  cmap::QtConceptMapTestNodeItemDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
+*/
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked()
-{
-  QtPvdbTestNodeItemDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-
-
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked() noexcept
 {
   QtTestQtRoundedTextRectItemMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked() noexcept
 {
   QtTestQtRoundedEditRectItemMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_edge_item_clicked()
-{
-  QtPvdbTestEdgeItemDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_arrowitems_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_arrowitems_clicked() noexcept
 {
   QtTestQtArrowItemsMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked()
-{
-  QtPvdbTestConceptMapEditWidgetDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked()
-{
-  QtPvdbTestConceptMapRateWidgetDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-
-void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked() noexcept
 {
   //Obtain the human student concept maps
   {
@@ -554,12 +508,12 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked()
         qtfile.copy(filename.c_str());
         qtfile.close();
       }
-      if (!QFile::exists(filename.c_str()))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         break;
       }
 
-      assert(QFile::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
   //Obtain the artificial concept maps
@@ -576,53 +530,53 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked()
   }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_modify_stylesheet_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_modify_stylesheet_clicked() noexcept
 {
-  ToolStyleSheetSetterMainDialog d(qApp->styleSheet().toStdString());
+  QtStyleSheetSetterMainDialog d(qApp->styleSheet().toStdString());
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   qApp->setStyleSheet(d.GetStyleSheet().c_str());
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked()
-{
-  QtPvdbTestConceptMapDisplayWidgetDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-
-void ribi::pvdb::QtPvdbMenuDialog::on_button_print_concept_map_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_print_concept_map_clicked() noexcept
 {
   on_button_create_test_files_clicked();
   const std::string filename = "1." + pvdb::File::GetFilenameExtension();
-  assert(QFile::exists(filename.c_str()));
+  assert(fileio::FileIo().IsRegularFile(filename));
   const boost::shared_ptr<pvdb::File> file = pvdb::File::Load(filename);
   assert(file);
   QtPvdbPrintConceptMapDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_print_rating_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_print_rating_clicked() noexcept
 {
   on_button_create_test_files_clicked();
   const std::string filename = "1." + pvdb::File::GetFilenameExtension();
-  assert(QFile::exists(filename.c_str()));
+  assert(fileio::FileIo().IsRegularFile(filename));
   const boost::shared_ptr<pvdb::File> file = pvdb::File::Load(filename);
   assert(file);
   QtPvdbPrintRatingDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked() noexcept
 {
 
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-    = QtPvdbRateConceptTallyDialog::CreateTestConceptMap();
-  boost::shared_ptr<QtPvdbRateConceptTallyDialog> d(
-    new QtPvdbRateConceptTallyDialog(concept_map));
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+    = cmap::QtRateConceptTallyDialogNewName::CreateTestConceptMap();
+  boost::shared_ptr<cmap::QtRateConceptTallyDialogNewName> d(
+    new cmap::QtRateConceptTallyDialogNewName(concept_map));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked() noexcept
 {
   QtPvdbTestCreateSubConceptMapDialog d;
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
+}
+
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmaps_clicked()
+{
+  cmap::QtTestConceptMapMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }

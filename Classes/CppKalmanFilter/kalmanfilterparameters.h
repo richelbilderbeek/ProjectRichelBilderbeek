@@ -19,9 +19,7 @@ struct KalmanFilterParameters
 {
   KalmanFilterParameters(const KalmanFilterParameters&) = delete;
   KalmanFilterParameters& operator=(const KalmanFilterParameters&) = delete;
-
-
-  virtual ~KalmanFilterParameters() {}
+  virtual ~KalmanFilterParameters() noexcept {}
 
   ///Obtain the Kalman filter type as an enum
   virtual KalmanFilterType GetType() const = 0;

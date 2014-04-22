@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QuestionDialog, dialog for Question
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,59 +21,88 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QUESTIONDIALOG_H
 #define QUESTIONDIALOG_H
 
+#include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct Question;
 
-///Dialog for an Question
+///Dialog for (a derived class of) Question
+///For an OpenQuestion use an OpenQuestionDialog
+///For a MultipleChoiceQuestion use a MultipleChoiceQuestionDialog
 struct QuestionDialog
 {
-  explicit QuestionDialog(const boost::shared_ptr<Question>& question);
+  explicit QuestionDialog();
 
-  ///Check if an answer can be submitted
-  bool CanSubmit() const { return !m_has_submitted; }
-
-  ///Get all possible correct answers
-  const std::vector<std::string> GetCorrectAnswers() const;
+  ///Run the dialog from the command line
+  void Execute();
 
   ///Obtain the question
-  boost::shared_ptr<Question> GetQuestion() const { return m_question; }
+  virtual boost::shared_ptr<const Question> GetQuestion() const = 0;
 
   ///Obtain the version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Check if an answer has been submitted
-  bool HasSubmitted() const { return m_has_submitted; }
+  bool HasSubmitted() const { return !m_is_correct.empty(); }
 
   ///See if the submitted answer is correct
   bool IsAnswerCorrect() const;
 
-  ///(Re)set the Question
-  //void SetQuestion(const Question * const question);
-  void SetQuestion(const boost::shared_ptr<Question>& question);
+  ///Try to submit an answer
+  ///For an open question, s will be the anwer
+  ///For a multiple choice question, s will be the index of the answer
+  ///Submit will throw an exception if s is invalid. For example,
+  ///if s is a word, where a multiple choice question needs an index (like '2')
+  virtual void Submit(const std::string& s) = 0;
 
-  ///Submit an answer
-  void Submit(const std::string& s);
+  ///This signal is emitted when the client requests to quit
+  mutable boost::signals2::signal<void ()> m_signal_request_quit;
+
+  ///This signal is emitted when the client submits an answer, where
+  ///the boolean indicates if a correct answer was given
+  mutable boost::signals2::signal<void (bool)> m_signal_submitted;
 
   protected:
-  virtual ~QuestionDialog() {}
+  virtual ~QuestionDialog() noexcept {}
   friend void boost::checked_delete<>(QuestionDialog*);
+  friend void boost::checked_delete<>(const QuestionDialog*);
+
+  ///Set whether the user has answered the client correct
+  ///and emit m_signal_submitted
+  void SetIsCorrect(const bool is_correct);
 
   private:
-  ///The question
-  boost::shared_ptr<Question> m_question;
-
-  ///Has the user already submitted an answer?
-  bool m_has_submitted;
 
   ///Was the submitted answer correct?
-  bool m_is_correct;
+  ///Emulates a bool*:
+  ///m_is_correct.empty() -> nullptr -> indeterminate
+  ///m_is_correct[0] == 0 -> false
+  ///m_is_correct[0] == 1 -> true
+  ///Other values and sizes are invalid
+  std::vector<int> m_is_correct;
+
+  ///The question
+  //boost::shared_ptr<const Question> m_question;
+
+  std::string AskUserForInput() const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 };
 
 } //~namespace ribi

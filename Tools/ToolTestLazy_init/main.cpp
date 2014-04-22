@@ -53,14 +53,30 @@ struct Z
 
 int main()
 {
+  std::cout << "Lazy construction\n";
   ribi::LazyInit0<W> w;
   ribi::LazyInit1<X,int> x(314);
   ribi::LazyInit1<Y,std::string> y("Hello World");
   ribi::LazyInit2<Z,std::string,int> z("Hell",0);
-
+  std::cout << "Calling objects\n";
   z.Get().f();
   y.Get().f();
   x.Get().f();
   w.Get().f();
 }
 
+/* Screen output:
+
+Lazy construction
+Calling objects
+Z contructor
+Hell0
+Y contructor
+Hello World
+X contructor
+314
+W contructor
+I am W
+Press <RETURN> to close this window...
+
+*/

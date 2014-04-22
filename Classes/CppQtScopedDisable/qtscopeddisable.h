@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtScopedDisable, Qt class that disables something up until it is destroyed
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,13 +44,13 @@ struct QtScopedDisable
   }
 
   ///Obtain the version of this class
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "1.2";
   }
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory()
+  static std::vector<std::string> GetVersionHistory()
   {
     std::vector<std::string> v;
     v.push_back("2012-11-22: version 1.0: initial version");

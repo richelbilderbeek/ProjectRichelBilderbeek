@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,11 +25,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <set>
 
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-CodeToHtmlReplacements::CodeToHtmlReplacements(
+ribi::c2h::Replacements::Replacements(
   const std::vector<std::pair<std::string,std::string> >& replacements)
   : m_replacements(CreateAllReplacements(replacements))
 {
@@ -53,24 +54,22 @@ CodeToHtmlReplacements::CodeToHtmlReplacements(
 
   {
     ///Check against recurring replacements
-    std::for_each(replacements.begin(),replacements.end(),
-      [](const std::pair<std::string,std::string>& p)
+    for(const std::pair<std::string,std::string>& p: replacements)
+    {
+      if(!(
+        std::search(p.second.begin(),p.second.end(),p.first.begin(),p.first.end())
+        == p.second.end()))
       {
-        if(!(
-          std::search(p.second.begin(),p.second.end(),p.first.begin(),p.first.end())
-          == p.second.end()))
-        {
-          TRACE("Recurring replacement detected:")
-          TRACE(p.first);
-          TRACE(p.second);
-          TRACE("Add $ symbols in the second part, so that the first part is not a subsequence of it")
-        }
-
-        assert(
-          std::search(p.second.begin(),p.second.end(),p.first.begin(),p.first.end())
-          == p.second.end());
+        TRACE("Recurring replacement detected:")
+        TRACE(p.first);
+        TRACE(p.second);
+        TRACE("Add $ symbols in the second part, so that the first part is not a subsequence of it")
       }
-    );
+
+      assert(
+        std::search(p.second.begin(),p.second.end(),p.first.begin(),p.first.end())
+        == p.second.end());
+    }
   }
 
   {
@@ -78,12 +77,14 @@ CodeToHtmlReplacements::CodeToHtmlReplacements(
     const auto end = m_replacements.end();
     for (auto i=m_replacements.begin();i!=end;++i)
     {
-      TRACE((*i).first);
       for (auto j=m_replacements.begin();j!=end;++j)
       {
         if (i==j) continue;
+        if ((*i).first == "$") continue;
         if ((*i).first == (*j).first)
         {
+          TRACE("ERROR: duplicate in replacements");
+          TRACE("Remove the duplicate from codetohtmlreplacementscpp.cpp or codetohtmlreplacementspro.cpp");
           TRACE((*i).first);
         }
         assert((*i).first != (*j).first);
@@ -93,16 +94,28 @@ CodeToHtmlReplacements::CodeToHtmlReplacements(
 
   {
     ///Check nested processed input
+    const std::set<std::string> skip {
+      "$",
+      "<",
+      ">",
+      "&",
+      "[AMPERSAND]",
+      "[DOLLAR]",
+      "[GREATER_THAN]",
+      "[LESS_THAN]"
+    };
     const auto end = m_replacements.end();
     for (auto i=m_replacements.begin();i!=end;++i)
     {
       const std::string s = (*i).second;
-      //if (s.find("any")!=std::string::npos) { std::clog << "any_ found!\n"; }
+      if (skip.count(s) == 1) continue;
+      assert(skip.count(s) == 0);
       for (auto j=m_replacements.begin();j!=end;++j)
       {
         if (i==j) continue;
         const std::string t = (*j).first;
-        //if (t == "any") { std::clog << "any found!\n"; }
+        if (skip.count(t) == 1) continue;
+        assert(skip.count(t) == 0);
         if (s.find(t) != std::string::npos)
         {
           std::cerr << "Error: "
@@ -119,14 +132,14 @@ CodeToHtmlReplacements::CodeToHtmlReplacements(
   #endif
 }
 
-const std::vector<std::pair<std::string,std::string> >
-  CodeToHtmlReplacements::CreateAllReplacements(
+std::vector<std::pair<std::string,std::string>>
+  ribi::c2h::Replacements::CreateAllReplacements(
     const std::vector<std::pair<std::string,std::string> >& replacements)
 {
   std::vector<std::pair<std::string,std::string> > v;
   //Initial
   {
-    std::vector<std::pair<std::string,std::string> > w
+    const std::vector<std::pair<std::string,std::string> > w
       = CreateInitialReplacements();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
@@ -163,9 +176,8 @@ const std::vector<std::pair<std::string,std::string> >
   return v;
 }
 
-const std::vector<std::pair<std::string,std::string> > CodeToHtmlReplacements::CreateEndReplacements()
+std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateEndReplacements()
 {
-  //C++11 initializer list
   return
   {
   //2
@@ -180,9 +192,8 @@ const std::vector<std::pair<std::string,std::string> > CodeToHtmlReplacements::C
   };
 }
 
-const std::vector<std::pair<std::string,std::string> > CodeToHtmlReplacements::CreateInitialReplacements()
+std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateInitialReplacements()
 {
-  //C++11 initializer list
   return
   {
     //symbol replacements that will mess up the markup if placed in bottom
@@ -193,5 +204,3 @@ const std::vector<std::pair<std::string,std::string> > CodeToHtmlReplacements::C
     { ">","[GREATER_THAN]" }
   };
 }
-
-

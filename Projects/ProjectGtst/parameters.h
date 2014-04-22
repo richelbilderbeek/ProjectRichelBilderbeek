@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
+
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
@@ -36,10 +36,12 @@ namespace gtst {
 
 ///\brief
 ///Parameters for an experiment
-struct Parameters : public boost::noncopyable
+struct Parameters
 {
   ///Create a default-constructed Parameters
   Parameters(Server * const server);
+  Parameters(const Parameters&) = delete;
+  Parameters& operator=(const Parameters&) = delete;
 
   ///Create a default non-logged in Participant
   boost::shared_ptr<Participant> CreateDefaultParticipant();
@@ -104,36 +106,30 @@ struct Parameters : public boost::noncopyable
   void AddParticipant(boost::shared_ptr<Participant> participant);
 
   private:
-  ///Only allow a Boost smart pointer to delete Administrator
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   ~Parameters() {}
-  ///Only let smart pointers delete Parameters
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(Parameters*);
 
+  ///The ParametersAssignPayoff
+  boost::shared_ptr<ParametersAssignPayoff> m_assign_payoff;
+
+  ///The ParametersChat
+  boost::shared_ptr<ParametersChat> m_chat;
+
+  ///The ParametersChooseAction
+  boost::shared_ptr<ParametersChooseAction> m_choose_action;
+
+  ///The ParametersFinished
+  boost::shared_ptr<ParametersFinished> m_finished;
+
+  ///The ParametersGroupAssign
+  boost::shared_ptr<ParametersGroupAssign> m_group_assign;
+
+  ///The ParametersGroupReAssign
+  boost::shared_ptr<ParametersGroupReAssign> m_group_reassign;
 
   ///Unassigned Participant colection
   std::vector<boost::shared_ptr<Participant> > m_participants;
 
-  ///The ParametersAssignPayoff
-  boost::shared_ptr<ParametersAssignPayoff> m_assign_payoff;
-  ///The ParametersChat
-  boost::shared_ptr<ParametersChat> m_chat;
-  ///The ParametersChooseAction
-  boost::shared_ptr<ParametersChooseAction> m_choose_action;
-  ///The ParametersFinished
-  boost::shared_ptr<ParametersFinished> m_finished;
-  ///The ParametersGroupAssign
-  boost::shared_ptr<ParametersGroupAssign> m_group_assign;
-  ///The ParametersGroupReAssign
-  boost::shared_ptr<ParametersGroupReAssign> m_group_reassign;
   ///The ParametersQuiz
   boost::shared_ptr<ParametersQuiz> m_quiz;
 
@@ -141,11 +137,12 @@ struct Parameters : public boost::noncopyable
 
   ///The ParametersViewResultsGroup
   boost::shared_ptr<ParametersViewResultsGroup> m_view_results_group;
+
   ///The ParametersViewResultsVoting
   boost::shared_ptr<ParametersViewResultsVoting> m_view_results_voting;
+
   ///The ParametersVoting
   boost::shared_ptr<ParametersVoting> m_voting;
-
 
   ///Parse a line in a Parameter file
   void Parse(const std::string& s);

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,44 +24,53 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
-
+#include <boost/bimap.hpp>
 #include "about.h"
+#include "help.h"
+#include "menudialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
-namespace RichelBilderbeek {
 
 struct Program;
 
 ///The GUI independent version of Project Richel Bilderbeek its menu dialog
-struct MenuDialog
+struct ProjectRichelBilderbeekMenuDialog : public ::ribi::MenuDialog
 {
-  MenuDialog();
+  ProjectRichelBilderbeekMenuDialog();
+  ~ProjectRichelBilderbeekMenuDialog() noexcept {}
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+  About GetAbout() const noexcept { return GetAboutStatic(); }
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
 
   ///Get every Program by Richel Bilderbeek
-  const std::vector<boost::shared_ptr<Program> >& GetPrograms() const { return m_programs; }
-
-  ///Obtain the version of this class
-  static const std::string GetVersion();
-
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
-
-  ///Obtain the About information of this class
-  static const About GetAbout();
-
-  ///Every Program by Richel Bilderbeek
-  const std::vector<boost::shared_ptr<Program> > m_programs;
-
+  //const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
+  std::string GetVersion() const noexcept { return GetVersionStatic(); }
+  std::vector<std::string> GetVersionHistory() const noexcept { return GetVersionHistoryStatic(); }
 
   private:
-  ///Create all programs in a sorted order
-  const std::vector<boost::shared_ptr<Program> > CreatePrograms() const;
+  ///All program menus
+  const std::vector<boost::shared_ptr<MenuDialog>> m_menus;
 
+  ///Create all menus
+  static const std::vector<boost::shared_ptr<MenuDialog>> CreateMenus() noexcept;
+
+  static About GetAboutStatic() noexcept;
+  static std::string GetVersionStatic() noexcept;
+  static std::vector<std::string> GetVersionHistoryStatic() noexcept;
+
+  ///Shows all programs' statuses
+  void ShowStatus() const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
-
-} //~namespace RichelBilderbeek
 
 } //~namespace ribi
 

@@ -32,7 +32,7 @@ struct WtApplication : public Wt::WApplication
   {
     setTitle("Rasper");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new ToolRasper::WtMenuDialog);
+    root()->addWidget(new ribi::ToolRasper::WtMenuDialog);
 
   }
 };
@@ -45,10 +45,10 @@ Wt::WApplication *createApplication(const Wt::WEnvironment& env)
 int main(int argc, char **argv)
 {
   //Create the resources
-  ToolRasper::WtResources();
+  ribi::ToolRasper::WtResources();
 
-  WtAutoConfig::SaveDefaultStylesheet();
-  WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
 
   return a.Run();
 }

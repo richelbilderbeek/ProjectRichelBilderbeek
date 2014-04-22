@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Rainbow, class for a rainbow color gradient
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,13 +33,13 @@ struct Rainbow
     const double x,
     double& r,
     double& g,
-    double& b);
+    double& b) noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

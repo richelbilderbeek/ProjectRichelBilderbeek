@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelbilderbeekNlSitemapGenerator, generates the richelbilderbeek.nl sitemap
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,9 @@ class QtSitemapGeneratorMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtSitemapGeneratorMainDialog(QWidget *parent = 0);
-  ~QtSitemapGeneratorMainDialog();
+  QtSitemapGeneratorMainDialog(const QtSitemapGeneratorMainDialog&);
+  QtSitemapGeneratorMainDialog& operator=(const QtSitemapGeneratorMainDialog&);
+  ~QtSitemapGeneratorMainDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent * e);
@@ -46,36 +48,17 @@ private:
 private slots:
   void on_button_start_clicked();
 
-  static const std::vector<std::string> AddHeader(const std::vector<std::string>& files);
-
-  static const std::vector<std::string> CreateConfigXml(
-    const std::string& local_website_path,
-    const std::string& urllist_path);
-
-  //From http://www.richelbilderbeek.nl/CppFileExists.htm
-  //bool FileExists(const std::string& filename);
-
-  //From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& fileName);
+  //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
+  static std::string GetCurrentFolder();
 
   //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
-  static const std::string GetCurrentFolder();
+  static std::string GetCurrentFolder(const std::string& s);
 
-  //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
-  static const std::string GetCurrentFolder(const std::string& s);
+  void OnLogMessage(const std::string& msg) noexcept;
 
-  //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-  static const std::vector<std::string> GetFilesInFolder(const std::string& folder);
-
-  //From http://www.richelbilderbeek.nl/CppGetHtmlFilesInFolder.htm
-  static const std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder);
-
-  //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
-  static const std::string GetDateIso8601();
-
-  //From http://www.richelbilderbeek.nl/CppGetPath.htm
-  static const std::string GetPath(const std::string& filename);
-
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

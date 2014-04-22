@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>BoostConceptCheckExample1</title>
   <meta name="description" content="C++ BoostConceptCheckExample1"/>
-  <meta name="keywords" content="C++ BoostConceptCheckExample1 code snippet"/>
+  <meta name="keywords" content="C++ BoostConceptCheckExample1 "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,20 +21,15 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppBoostConceptCheckExample1.htm">BoostConceptCheckExample1</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppBoostConceptCheckExample1-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -46,27 +41,43 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppBoostConceptCheckExample1.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppBoostConceptCheckExample1/CppBoostConceptCheckExample1.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppBoostConceptCheckExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<table summary="./CppBoostConceptCheckExample1/CppBoostConceptCheckExample1.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code below<br/>
+# win32 {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+# }<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -74,10 +85,10 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppBoostConceptCheckExample1/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./CppBoostConceptCheckExample1/main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
 <b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppStd.htm">std</a>;<br/>

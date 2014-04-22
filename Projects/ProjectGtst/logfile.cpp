@@ -20,10 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <fstream>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
-//---------------------------------------------------------------------------
+
 #include "all_parameters.h"
 #include "chatmessage.h"
 #include "chooseactionoption.h"
@@ -37,9 +37,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "serverstate.h"
 #include "votingoption.h"
-//---------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------
+
+
 ribi::gtst::LogFile::LogFile()
   : m_log_filename("log" + GetTimestamp() + ".xml")
 {
@@ -49,13 +49,13 @@ ribi::gtst::LogFile::LogFile()
   //  << "‭<logfile name=\"gtst\" xml:lang=\"en\">";
 
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::LogFile::~LogFile()
 {
   //std::ofstream f(m_log_filename.c_str(),std::ios::app);
   //f << "‎</logfile>";
 }
-//---------------------------------------------------------------------------
+
 /*
 void ribi::gtst::LogFile::ClearLogFile()
 {
@@ -75,7 +75,7 @@ void ribi::gtst::LogFile::ClearLogFile()
   }
 }
 */
-//---------------------------------------------------------------------------
+
 ///Returns date in YYYY-MM-DD format
 //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
 const std::string ribi::gtst::LogFile::GetDateIso8601()
@@ -89,7 +89,7 @@ const std::string ribi::gtst::LogFile::GetDateIso8601()
   assert(s[7]=='-');
   return s;
 }
-//---------------------------------------------------------------------------
+
 ///Get the current time
 //From http://www.richelbilderbeek.nl/CppGetTime.htm
 const std::string ribi::gtst::LogFile::GetTime()
@@ -103,7 +103,7 @@ const std::string ribi::gtst::LogFile::GetTime()
   //Return the std::string
   return s.str();
 }
-//---------------------------------------------------------------------------
+
 ///Returns the current date and time as a YYYY_MM_DD_HH_MM_SS std::string,
 ///for example '2011_07_01_11_35_38'
 //From http://www.richelbilderbeek.nl/CppGetTimestamp.htm
@@ -114,7 +114,7 @@ const std::string ribi::gtst::LogFile::GetTimestamp()
   std::replace(s.begin(),s.end(),'-','_');
   return s;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogAction(const boost::shared_ptr<const Participant>& participant)
 {
   assert(participant->CanGetId());
@@ -132,7 +132,7 @@ void ribi::gtst::LogFile::LogAction(const boost::shared_ptr<const Participant>& 
     << "</action>"
     << "</choose_action>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogAssignGroup(
   const Group * const group,
   const boost::shared_ptr<const Participant>& participant)
@@ -156,7 +156,7 @@ void ribi::gtst::LogFile::LogAssignGroup(
     << "</group>"
     << "</assign_group>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogAssignPayoff(const boost::shared_ptr<const Participant>& participant)
 {
   std::ofstream f(m_log_filename.c_str(),std::ios::app);
@@ -173,7 +173,7 @@ void ribi::gtst::LogFile::LogAssignPayoff(const boost::shared_ptr<const Particip
     << *participant->GetPayoffs()->GetLast()
     << "</assign_payoff>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogExperimentStateChanged(const ServerState* new_state)
 {
   std::ofstream f(m_log_filename.c_str(),std::ios::app);
@@ -193,7 +193,7 @@ void ribi::gtst::LogFile::LogExperimentStateChanged(const ServerState* new_state
     << "</new_state>"
     << "</experimentstate_change>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::Login(const boost::shared_ptr<const Participant>& participant)
 {
   std::ofstream f(m_log_filename.c_str(),std::ios::app);
@@ -205,7 +205,7 @@ void ribi::gtst::LogFile::Login(const boost::shared_ptr<const Participant>& part
     << (*participant)
     << "</login>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::Logout(const boost::shared_ptr<const Participant>& participant)
 {
   std::ofstream f(m_log_filename.c_str(),std::ios::app);
@@ -217,7 +217,7 @@ void ribi::gtst::LogFile::Logout(const boost::shared_ptr<const Participant>& par
     << (*participant)
     << "</logout>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogReAssignPayoff(const boost::shared_ptr<const Participant>& participant)
 {
   std::ofstream f(m_log_filename.c_str(),std::ios::app);
@@ -234,7 +234,7 @@ void ribi::gtst::LogFile::LogReAssignPayoff(const boost::shared_ptr<const Partic
     << *participant->GetPayoffs()->GetLast()
     << "</reassign_payoff>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogRemoveParticipant(
   const Group * const group,
   const boost::shared_ptr<const Participant>& participant)
@@ -256,7 +256,7 @@ void ribi::gtst::LogFile::LogRemoveParticipant(
     << "</old_group>"
     << "</remove_participant>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogVote(const boost::shared_ptr<const Participant>& participant)
 {
   assert(participant->CanGetId());
@@ -274,7 +274,7 @@ void ribi::gtst::LogFile::LogVote(const boost::shared_ptr<const Participant>& pa
     << "</voting_option>"
     << "</vote>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogParameters(boost::shared_ptr<Parameters> parameters)
 {
   std::ofstream f(m_log_filename.c_str(),std::ios::app);
@@ -286,7 +286,7 @@ void ribi::gtst::LogFile::LogParameters(boost::shared_ptr<Parameters> parameters
     << (*parameters.get())
     << "</set_parameters>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogParticipantDialogStateChanged(const ParticipantDialogState* const new_state)
 {
   std::ofstream f(m_log_filename.c_str(),std::ios::app);
@@ -299,7 +299,7 @@ void ribi::gtst::LogFile::LogParticipantDialogStateChanged(const ParticipantDial
     << new_state->ToStr()
     << "</participantdialogstate_change>\n";
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::LogFile::LogChatMessage(
   const boost::shared_ptr<const Participant>& participant,
   const boost::shared_ptr<ChatMessage>& message)
@@ -317,7 +317,7 @@ void ribi::gtst::LogFile::LogChatMessage(
     << (*message)
     << "</chat>\n";
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const LogFile& logfile)
 {
   os
@@ -328,4 +328,4 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const LogFile& logfile)
     << "</logfile>";
   return os;
 }
-//---------------------------------------------------------------------------
+

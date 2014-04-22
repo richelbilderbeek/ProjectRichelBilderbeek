@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,30 +19,73 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-
-
 #include "boenkenmenudialog.h"
 
-const ribi::About ribi::Boenken::MenuDialog::GetAbout()
+#include <cassert>
+#include <iostream>
+
+#include "trace.h"
+
+int ribi::Boenken::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
+}
+
+ribi::About ribi::Boenken::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "Boenken",
     "a multiplayer soccer/billiards game",
     "the 17th of November 2012",
-    "2007-2012",
+    "2007-2014",
     "http://www.richelbilderbeek.nl/GameBoenken.htm",
     GetVersion(),
     GetVersionHistory());
   return a;
 }
 
-const std::string ribi::Boenken::MenuDialog::GetVersion()
+ribi::Help ribi::Boenken::MenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::Boenken::MenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramBoenken
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::Boenken::MenuDialog::GetVersion() const noexcept
 {
   return "4.1";
 }
 
-const std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2000-xx-xx: version 0.0: wrote QBASIC version of Boenken",
@@ -54,3 +97,16 @@ const std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory()
     "2012-11-17: version 4.1: added a fancy color gradient to the main menu"
   };
 }
+
+#ifndef NDEBUG
+void ribi::Boenken::MenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Boenken::MenuDialog::Test");
+  TRACE("Finished ribi::Boenken::MenuDialog::Test successfully");
+}
+#endif

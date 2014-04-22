@@ -1,28 +1,37 @@
 #ifndef NSANABROSGAME_H
 #define NSANABROSGAME_H
-//---------------------------------------------------------------------------
+
 #include <set>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-#include <boost/noncopyable.hpp>
+
 #include <boost/timer.hpp>
-//---------------------------------------------------------------------------
+
 //#include "nsanabroskeys.h"
 //#include "nsanabrosplayer.h"
 //#include "nsanabrosscreen.h"
-//---------------------------------------------------------------------------
+
 #include "nsanabrosstlfwdheader.h"
-//---------------------------------------------------------------------------
-struct NsanaBrosGame : public boost::noncopyable
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
+struct NsanaBrosGame
 {
   NsanaBrosGame();
-  const NsanaBrosKeys * GetKeys() const;
-  const NsanaBrosPlayer * GetPlayer() const;
-  const std::vector<const NsanaBrosSprite*> GetSprites() const;
+  NsanaBrosGame(const NsanaBrosGame&) = delete;
+  NsanaBrosGame& operator=(const NsanaBrosGame&) = delete;
+
+  const boost::shared_ptr<const NsanaBrosKeys> GetKeys() const;
+  const boost::shared_ptr<const NsanaBrosPlayer> GetPlayer() const;
+  const std::vector<boost::shared_ptr<const NsanaBrosSprite> > GetSprites() const;
 
   static int GetHeight();
   static int GetWidth();
@@ -33,11 +42,11 @@ struct NsanaBrosGame : public boost::noncopyable
   mutable boost::signals2::signal<void()> m_signal_repaint;
 
   private:
-  ~NsanaBrosGame() {}
+  ~NsanaBrosGame() noexcept {}
   friend void boost::checked_delete<>(NsanaBrosGame *);
 
-  boost::scoped_ptr<NsanaBrosKeys> m_keys;
-  boost::scoped_ptr<NsanaBrosPlayer> m_player;
+  boost::shared_ptr<NsanaBrosKeys> m_keys;
+  boost::shared_ptr<NsanaBrosPlayer> m_player;
   std::vector<boost::shared_ptr<NsanaBrosSprite> > m_sprites;
 
   static const double m_height;
@@ -46,6 +55,7 @@ struct NsanaBrosGame : public boost::noncopyable
 
   static const std::vector<boost::shared_ptr<NsanaBrosSprite> > CreateTestSprites();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
 
 #endif // NSANABROSGAME_H

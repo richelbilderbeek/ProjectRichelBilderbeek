@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtKeyboardFriendlyGraphicsView, an keyboard friendly QGraphicsView
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtKeyboardFriendlyGraphicsView.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtkeyboardfriendlygraphicsview.h"
 
 #include <cassert>
@@ -29,8 +29,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QGraphicsSimpleTextItem>
 
+//#include "conceptmaphelper.h"
+#pragma GCC diagnostic pop
+
 ribi::QtKeyboardFriendlyGraphicsView::QtKeyboardFriendlyGraphicsView(QWidget* parent)
-  : QGraphicsView(new QGraphicsScene,parent)
+  : QGraphicsView(new QGraphicsScene,parent),
+    m_signal_update{}
 {
 
 }
@@ -67,7 +71,7 @@ double ribi::QtKeyboardFriendlyGraphicsView::GetDistance(const QPointF& a, const
   return std::sqrt((dx * dx) + (dy * dy));
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsAbove(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsAbove(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -99,7 +103,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsBelow(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsBelow(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -131,7 +135,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsLeft(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsLeft(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -162,7 +166,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsRight(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsRight(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -193,20 +197,20 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::string ribi::QtKeyboardFriendlyGraphicsView::GetVersion()
+std::string ribi::QtKeyboardFriendlyGraphicsView::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtKeyboardFriendlyGraphicsView::GetVersionHistory()
+std::vector<std::string> ribi::QtKeyboardFriendlyGraphicsView::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-13: version 1.0: initial version");
-  v.push_back("2012-12-31: version 1.1: improved moving focus");
-  return v;
+  return {
+    "2012-12-13: version 1.0: initial version",
+    "2012-12-31: version 1.1: improved moving focus"
+  };
 }
 
-void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event)
+void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexcept
 {
   if (event->modifiers() & Qt::ShiftModifier)
   {

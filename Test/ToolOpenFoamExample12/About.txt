@@ -1,0 +1,2 @@
+Originally copied from from C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\tutorials\compressible\rhoSimplecFoam\squareBend
+Changed shape and setup

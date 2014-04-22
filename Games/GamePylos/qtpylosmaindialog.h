@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Pylos, Pylos/Pyraos game
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,17 +23,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
 
 #include "qtpylosgamewidget.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPylosMainDialog;
 }
 
 namespace ribi {
+namespace pylos {
 
-class QtPylosMainDialog : public QDialog
+class QtPylosMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -41,22 +45,29 @@ public:
   explicit QtPylosMainDialog(
   QtPylosGameWidget * const pylos_widget = 0,
     QWidget *parent = 0);
-  ~QtPylosMainDialog();
+  QtPylosMainDialog(const QtPylosMainDialog&) = delete;
+  QtPylosMainDialog& operator=(const QtPylosMainDialog&) = delete;
+  ~QtPylosMainDialog() noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 private:
   Ui::QtPylosMainDialog *ui;
   QtPylosGameWidget * const m_pylos_widget;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void OnWinner();
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTPYLOSMAINDIALOG

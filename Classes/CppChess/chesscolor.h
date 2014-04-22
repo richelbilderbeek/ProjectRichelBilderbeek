@@ -6,11 +6,11 @@
 #include <vector>
 
 #include "chessfwd.h"
+#include "chessplayer.h"
 
 namespace ribi {
 namespace Chess {
 
-//C++0x enum class
 enum class Color
 {
   black, white, indeterminate, red, green, blue
@@ -19,13 +19,13 @@ enum class Color
 struct ColorVersion
 {
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 };
 
-const std::string ColorToStr(const Color c);
+std::string ColorToStr(const Color c);
 Player ColorToPlayer(const Color c);
 std::ostream& operator<<(std::ostream& os, const Color c);
 

@@ -1,28 +1,18 @@
-QT       += core
-QT       -= gui
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++0x
+include(../../ConsoleApplication.pri)
 
-LIBS += \
-    -lboost_filesystem \
-    -lboost_program_options \
-    -lboost_regex \
-    -lboost_system
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQrcFile \
-    ../../Classes/CppTrace
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += main.cpp \
-    ../../Classes/CppQrcFile/qrcfile.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    testqrcfilemenudialog.cpp
+#Specific, console
+include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
+include(../../Classes/CppQrcFile/CppQrcFile.pri)
 
-HEADERS += \
-    ../../Classes/CppQrcFile/qrcfile.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppTrace/trace.h \
-    testqrcfilemenudialog.h
+include(../../Tools/ToolTestQrcFile/ToolTestQrcFileConsole.pri)
+
+SOURCES += main.cpp

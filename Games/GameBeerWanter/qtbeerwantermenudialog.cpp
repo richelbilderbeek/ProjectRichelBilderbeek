@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2013 Richel Bilderbeek
+Copyright (C) 2005-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,40 +27,56 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtbeerwantermaindialog.h"
 #include "ui_qtbeerwantermenudialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtBeerWanterMenuDialog::QtBeerWanterMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtBeerWanterMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtBeerWanterMenuDialog::~QtBeerWanterMenuDialog()
+ribi::QtBeerWanterMenuDialog::~QtBeerWanterMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtBeerWanterMenuDialog::on_button_start_clicked()
+void ribi::QtBeerWanterMenuDialog::on_button_start_clicked() noexcept
 {
   QtBeerWanterMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtBeerWanterMenuDialog::on_button_about_clicked()
+void ribi::QtBeerWanterMenuDialog::on_button_about_clicked() noexcept
 {
   this->hide();
-  About a = BeerWanterMenuDialog::GetAbout();
+  About a = BeerWanterMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtBeerWanterMenuDialog::on_button_quit_clicked()
+void ribi::QtBeerWanterMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtBeerWanterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtBeerWanterMenuDialog::Test");
+  QtBeerWanterMainDialog();
+  TRACE("Finished ribi::QtBeerWanterMenuDialog::Test successfully");
+}
+#endif

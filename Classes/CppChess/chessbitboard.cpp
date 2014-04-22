@@ -18,23 +18,22 @@ ribi::Chess::BitBoard::BitBoard()
   assert(m_v[7].size() == 8);
 }
 
-const std::string ribi::Chess::BitBoard::GetVersion()
+std::string ribi::Chess::BitBoard::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::BitBoard::GetVersionHistory()
+std::vector<std::string> ribi::Chess::BitBoard::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version"
+  };
 }
 
-void ribi::Chess::BitBoard::Set(const Square& s, const bool value)
+void ribi::Chess::BitBoard::Set(const boost::shared_ptr<const Square> s, const bool value)
 {
-  const int x = s.GetFile().ToInt();
-  const int y = s.GetRank().ToInt();
+  const int x = s->GetFile().ToInt();
+  const int y = s->GetRank().ToInt();
   #ifndef NDEBUG
   m_v.at(y).at(x) = value;
   #else
@@ -42,10 +41,10 @@ void ribi::Chess::BitBoard::Set(const Square& s, const bool value)
   #endif
 }
 
-bool ribi::Chess::BitBoard::Get(const Square& s) const
+bool ribi::Chess::BitBoard::Get(const boost::shared_ptr<const Square> s) const
 {
-  const int x = s.GetFile().ToInt();
-  const int y = s.GetRank().ToInt();
+  const int x = s->GetFile().ToInt();
+  const int y = s->GetRank().ToInt();
   #ifndef NDEBUG
   return m_v.at(y).at(x);
   #else
@@ -53,7 +52,7 @@ bool ribi::Chess::BitBoard::Get(const Square& s) const
   #endif
 }
 
-void ribi::Chess::BitBoard::Test()
+void ribi::Chess::BitBoard::Test() noexcept
 {
   //Testing Chess::BitBoard exactly once
   {
@@ -61,7 +60,7 @@ void ribi::Chess::BitBoard::Test()
     if (tested) return;
     tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -69,13 +68,13 @@ void ribi::Chess::BitBoard::Test()
       FTRACE("Test Chess::BitBoard");
       BitBoard b;
 
-      assert(!b.Get(*SquareFactory::Create("g8")));
-      b.Set(*SquareFactory::Create("g8"),true);
-      assert( b.Get(*SquareFactory::Create(("g8"))));
-      b.Set(*SquareFactory::Create("g8"),false);
-      assert(!b.Get(*SquareFactory::Create(("g8"))));
+      assert(!b.Get(SquareFactory::Create("g8")));
+      b.Set(SquareFactory::Create("g8"),true);
+      assert( b.Get(SquareFactory::Create(("g8"))));
+      b.Set(SquareFactory::Create("g8"),false);
+      assert(!b.Get(SquareFactory::Create(("g8"))));
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

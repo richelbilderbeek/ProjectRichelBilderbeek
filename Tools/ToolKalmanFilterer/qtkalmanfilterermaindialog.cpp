@@ -29,7 +29,7 @@
 //#include <qwt_plot_seriesitem.h>
 #include <qwt_legend.h>
 
-#ifdef _WIN32
+#if QWT_VERSION >= 0x060100
 #include <qwt_point_data.h>
 #endif
 
@@ -125,7 +125,7 @@ ribi::kalman::QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   this->ui->button_start->click(); //Start the simulation
 }
 
-ribi::kalman::QtKalmanFiltererMainDialog::~QtKalmanFiltererMainDialog()
+ribi::kalman::QtKalmanFiltererMainDialog::~QtKalmanFiltererMainDialog() noexcept
 {
   delete ui;
   delete m_experiment_dialog;
@@ -377,7 +377,11 @@ void ribi::kalman::QtKalmanFiltererMainDialog::ShowCalculation(
     assert(experiment->GetCalculationElements()[i]->IsComplete());
 
     std::string style_sheet = calculation_dialog->styleSheet().toStdString()
+<<<<<<< HEAD
       + std::string("QDialog { background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 ");
+=======
+      + "QDialog { background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 ";
+>>>>>>> develop
     switch (i % 6)
     {
       case 0: style_sheet+= "#f00, stop: 1 #000); }"; break;
@@ -505,7 +509,7 @@ void ribi::kalman::QtKalmanFiltererMainDialog::ShowGraph(const boost::shared_ptr
     assert(i < vs.size());
     const std::vector<double>& v = vs[i];
     assert(n_timesteps == boost::numeric_cast<int>(v.size()));
-    #if QWT_VERSION >= 0x060000
+    #if QWT_VERSION >= 0x060100 || !WIN32
     curves[i]->setData(new QwtPointArrayData(&time_series[0],&v[0],time_series.size()));
     #else
     curves[i]->setData(&time_series[0],&v[0],time_series.size());
@@ -714,7 +718,7 @@ void ribi::kalman::QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr
 }
 
 #ifndef NDEBUG
-void ribi::kalman::QtKalmanFiltererMainDialog::Test()
+void ribi::kalman::QtKalmanFiltererMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

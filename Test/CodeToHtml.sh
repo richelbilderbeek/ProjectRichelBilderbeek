@@ -1,9 +1,9 @@
 #!/bin/bash
-for folder in `ls | egrep "Cpp"`
+for folder in `ls | egrep -v "build-"`
 do
   echo $folder
 
-  ~/bin/ToolCodeToHtmlConsole --source ./$folder
+  ~/bin/ToolCodeToHtmlConsole ./$folder
 done
 
 rm tmp.txt

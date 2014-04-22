@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateQtProjectZipFile, tool to create a zip file from a Qt project
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,23 +34,24 @@ class QtCreateQtProjectZipFileMenuDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
-  explicit QtCreateQtProjectZipFileMenuDialog(QWidget *parent = 0);
-  ~QtCreateQtProjectZipFileMenuDialog();
+  explicit QtCreateQtProjectZipFileMenuDialog(QWidget *parent = 0) noexcept;
+  QtCreateQtProjectZipFileMenuDialog(const QtCreateQtProjectZipFileMenuDialog&) = delete;
+  QtCreateQtProjectZipFileMenuDialog& operator=(const QtCreateQtProjectZipFileMenuDialog&) = delete;
+  ~QtCreateQtProjectZipFileMenuDialog() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent *);
+  void keyPressEvent(QKeyEvent *) noexcept;
 
 private slots:
-  void on_button_start_clicked();
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
+  void on_button_start_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtCreateQtProjectZipFileMenuDialog *ui;
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

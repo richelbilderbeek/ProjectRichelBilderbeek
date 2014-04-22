@@ -18,11 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
 
 #include <boost/foreach.hpp>
@@ -31,12 +29,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #include "qttestquestionmenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   START_TRACE();
-  QtTestQuestionMenuDialog w;
+  ribi::QtTestQuestionMenuDialog w;
   w.show();
   return a.exec();
 }

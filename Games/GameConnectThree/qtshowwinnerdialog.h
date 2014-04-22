@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,15 +23,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtShowWinnerDialog;
 }
 
 namespace ribi {
+namespace con3 {
 
-class QtShowWinnerDialog : public QDialog
+class QtShowWinnerDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -39,17 +43,19 @@ public:
   explicit QtShowWinnerDialog(
     const std::string& filename,
     const std::string& winner_text,
-    QWidget *parent = 0);
-  ~QtShowWinnerDialog();
-  void SetPixmap();
+    QWidget *parent = 0) noexcept;
+  QtShowWinnerDialog(const QtShowWinnerDialog&) = delete;
+  QtShowWinnerDialog& operator=(const QtShowWinnerDialog&) = delete;
+  ~QtShowWinnerDialog() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent *);
+  void keyPressEvent(QKeyEvent *) noexcept;
 
 private:
   Ui::QtShowWinnerDialog *ui;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTSHOWWINNERDIALOG_H

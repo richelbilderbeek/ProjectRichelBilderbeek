@@ -19,18 +19,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include <boost/numeric/conversion/bounds.hpp>
-//---------------------------------------------------------------------------
+
 #include "grouploggedin.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::GroupLoggedIn::GroupLoggedIn(Server * const server)
   : Group(server)
 {
 
 }
-//---------------------------------------------------------------------------
+
 ///GroupLoggedIn its ID is the highest maximum int minus one
 int ribi::gtst::GroupLoggedIn::GetId() const
 {
   return boost::numeric::bounds<int>::highest() - 1;
 }
-//---------------------------------------------------------------------------
+

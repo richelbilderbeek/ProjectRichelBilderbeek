@@ -4,7 +4,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
@@ -18,7 +18,7 @@ namespace Ui {
 namespace ribi {
 namespace kalman {
 
-class QtKalmanFilterExamplesDialog : public QDialog
+class QtKalmanFilterExamplesDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -27,7 +27,7 @@ public:
   QtKalmanFilterExamplesDialog& operator=(const QtKalmanFilterExamplesDialog&) = delete;
 
   explicit QtKalmanFilterExamplesDialog(QWidget *parent = 0);
-  ~QtKalmanFilterExamplesDialog();
+  ~QtKalmanFilterExamplesDialog() noexcept;
 
   ///Click one of the examples
   void EmitExample(const int n) const;
@@ -46,7 +46,7 @@ private:
 
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 private slots:

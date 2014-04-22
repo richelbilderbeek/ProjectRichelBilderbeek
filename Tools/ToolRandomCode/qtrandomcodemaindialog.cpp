@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RandomCode, tool to generate random C++ code
-Copyright (C) 2007-2012  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,17 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRandomCode.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtrandomcodemaindialog.h"
 
 #include <string>
 #include <vector>
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
@@ -39,11 +35,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtrandomcodemaindialog.h"
 #include "randomcode.h"
 #include "randomcodemenudialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::QtRandomCodeMainDialog::QtRandomCodeMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRandomCodeMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Put the dialog in the screen center
@@ -54,7 +55,7 @@ ribi::QtRandomCodeMainDialog::QtRandomCodeMainDialog(QWidget *parent) :
   ui->button_generate->click();
 }
 
-ribi::QtRandomCodeMainDialog::~QtRandomCodeMainDialog()
+ribi::QtRandomCodeMainDialog::~QtRandomCodeMainDialog() noexcept
 {
   delete ui;
 }
@@ -68,7 +69,7 @@ void ribi::QtRandomCodeMainDialog::on_button_generate_clicked()
 {
   const std::vector<std::string> v = RandomCode::CreateRandomCode();
   ui->textEdit->clear();
-  BOOST_FOREACH(const std::string& s, v)
+  for(const std::string& s: v)
   {
     ui->textEdit->append(s.c_str());
   }
@@ -76,11 +77,21 @@ void ribi::QtRandomCodeMainDialog::on_button_generate_clicked()
 
 void ribi::QtRandomCodeMainDialog::on_button_about_clicked()
 {
-  About about = RandomCodeMenuDialog::GetAbout();
+  About about = RandomCodeMenuDialog().GetAbout();
   //about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
   QtAboutDialog d(about);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtRandomCodeMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtRandomCodeMainDialog::Test");
+  TRACE("Finished ribi::QtRandomCodeMainDialog::Test successfully");
+}
+#endif

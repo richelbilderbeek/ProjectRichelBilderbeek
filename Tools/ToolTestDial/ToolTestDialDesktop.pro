@@ -1,50 +1,25 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
 
-TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppDial \
-  ../../Classes/CppDialWidget \
-  ../../Classes/CppQtAboutDialog \
-  ../../Classes/CppQtDialWidget \
-  ../../Classes/CppRainbow \
-  ../../Classes/CppRectangle \
-  ../../Classes/CppTrace \
-  ../../Classes/CppWidget
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppCoordinat/CppCoordinat.pri)
+include(../../Classes/CppDial/CppDial.pri)
+include(../../Classes/CppDialWidget/CppDialWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
-SOURCES += qtmain.cpp\
-  ../../Classes/CppAbout/about.cpp \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-  ../../Classes/CppDial/dial.cpp \
-  ../../Classes/CppQtDialWidget/qtdialwidget.cpp \
-    qttestdialmaindialog.cpp \
-    testdialmenudialog.cpp \
-    qttestdialmenudialog.cpp \
-    ../../Classes/CppDialWidget/dialwidget.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppRainbow/rainbow.cpp
+#Specific, desktop
+include(../../Classes/CppQtDialWidget/CppQtDialWidget.pri)
+include(../../Classes/CppRainbow/CppRainbow.pri)
+include(../../Tools/ToolTestDial/ToolTestDialDesktop.pri)
 
-HEADERS  += \
-  ../../Classes/CppAbout/about.h \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-  ../../Classes/CppDial/dial.h \
-  ../../Classes/CppQtDialWidget/qtdialwidget.h \
-    qttestdialmaindialog.h \
-    testdialmenudialog.h \
-    qttestdialmenudialog.h \
-    ../../Classes/CppDialWidget/dialwidget.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppRainbow/rainbow.h
-
-FORMS += \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttestdialmaindialog.ui \
-    qttestdialmenudialog.ui
-
-RESOURCES += \
-    ToolTestDial.qrc
+SOURCES += qtmain.cpp

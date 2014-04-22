@@ -7,6 +7,7 @@
 #include "chesscolor.h"
 #include "chessfile.h"
 #include "chessrank.h"
+#include "chessfwd.h"
 
 namespace ribi {
 namespace Chess {
@@ -29,18 +30,18 @@ struct Square
   const Chess::Rank& GetRank() const { return m_rank; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Test the correct working of Square
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert the Square to a string
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
   ///Obtain a Square from its coordinats
@@ -57,12 +58,12 @@ struct Square
 
   ~Square() {}
   friend void boost::checked_delete<>(Square *);
+  friend class SquareFactory;
 };
 
-std::ostream& operator<<(std::ostream& os, const Chess::Square& s);
-bool operator==(const Chess::Square& lhs, const Chess::Square& rhs); //FORBID
-bool operator!=(const Chess::Square& lhs, const Chess::Square& rhs); //FORBID
-bool IsEqual(const Chess::Square& lhs, const Chess::Square& rhs);
+std::ostream& operator<<(std::ostream& os, const Chess::Square& s) noexcept;
+bool operator==(const Chess::Square& lhs, const Chess::Square& rhs) noexcept;
+bool operator!=(const Chess::Square& lhs, const Chess::Square& rhs) noexcept;
 
 } //~namespace Chess
 } //~namespace ribi

@@ -3,7 +3,7 @@ for folder in `ls | egrep "Cpp"`
 do
   echo $folder
 
-  ~/bin/ToolCodeToHtmlConsole --source ./$folder
+  ~/bin/ToolCodeToHtmlConsole ./$folder
 done
 
 rm tmp.txt

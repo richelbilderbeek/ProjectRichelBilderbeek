@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestKeyboardFriendlyGraphicsView, tests QtKeyboardFriendlyGraphicsView
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,9 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestKeyboardFriendlyGraphicsView.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttestqtkeyboardfriendlygraphicsviewwidget.h"
@@ -29,7 +28,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
 
 #include <QKeyEvent>
 
@@ -41,9 +39,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundededitrectitem.h"
 #include "qtroundedtextrectitem.h"
 #include "qtquadbezierarrowitem.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidget()
+  : m_signal_request_about{},
+    m_signal_request_quit{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const double pi = boost::math::constants::pi<double>();
   {
     //Legend
@@ -297,7 +302,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       text.push_back("* *");
       for (int j=0; j!=i; ++j)
       {
-        const std::string s = std::string(j+2,'*') + std::string(" *");
+        const std::string s = std::string(j+2,'*') + " *";
         text.push_back(s);
       }
 
@@ -317,7 +322,7 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::DoUpdateScene()
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *event) noexcept
 {
   switch (event->key())
   {
@@ -328,3 +333,16 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *ev
   QtKeyboardFriendlyGraphicsView::keyPressEvent(event);
 }
 #pragma GCC diagnostic pop
+
+#ifndef NDEBUG
+void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test");
+  TRACE("Finished ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test successfully");
+}
+#endif

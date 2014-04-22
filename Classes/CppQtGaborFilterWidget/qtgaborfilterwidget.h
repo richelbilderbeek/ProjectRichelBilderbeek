@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtGaborFilterWidget, Qt widget for displaying the GaborFilter class
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,12 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTGABORFILTERWIDGET_H
 #define QTGABORFILTERWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 
 #include <QWidget>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "gaborfilter.h"         //Needed by MOC
 #include "gaborfilterwidget.h"   //Needed by MOC
 #pragma GCC diagnostic pop
@@ -69,8 +70,8 @@ private:
   void OnResize();
 
 public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 };
 

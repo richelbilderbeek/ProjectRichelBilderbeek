@@ -1,6 +1,9 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestgraphicsproxywidget.h"
 #include "tooltestgraphicsproxywidgetmaindialog.h"
 #include "ui_tooltestgraphicsproxywidgetmaindialog.h"
+#pragma GCC diagnostic pop
 
 ToolTestGraphicsProxyWidgetMainDialog::ToolTestGraphicsProxyWidgetMainDialog(QWidget *parent) :
     QDialog(parent),
@@ -10,7 +13,7 @@ ToolTestGraphicsProxyWidgetMainDialog::ToolTestGraphicsProxyWidgetMainDialog(QWi
   ui->layout->addWidget(new QtTestGraphicsProxyWidget(this));
 }
 
-ToolTestGraphicsProxyWidgetMainDialog::~ToolTestGraphicsProxyWidgetMainDialog()
+ToolTestGraphicsProxyWidgetMainDialog::~ToolTestGraphicsProxyWidgetMainDialog() noexcept
 {
   delete ui;
 }

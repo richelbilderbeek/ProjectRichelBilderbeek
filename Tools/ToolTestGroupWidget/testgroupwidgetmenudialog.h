@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestGroupWidget, tool to test the GroupWidget class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,19 +21,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTGROUPWIDGETMENUDIALOG_H
 #define TESTGROUPWIDGETMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-///The GUI independent version of WtTestGroupWidgetMenuDialog
-struct TestGroupWidgetMenuDialog
+struct TestGroupWidgetMenuDialog : public MenuDialog
 {
-  static const std::vector<std::string> GetVersionHistory();
-  static const std::string GetVersion();
-  static const About GetAbout();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 

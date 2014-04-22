@@ -3,11 +3,23 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
-QMAKE_CXXFLAGS += -std=c++11
-
 SOURCES += main.cpp \
     data.cpp
 
 HEADERS += \
     data.h
 
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

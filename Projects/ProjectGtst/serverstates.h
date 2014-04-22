@@ -41,6 +41,8 @@ struct ServerStates
     Server * const server,
     boost::shared_ptr<const Parameters> parameters,
     LogFile * const log);
+  ServerStates(const ServerStates&) = delete;
+  ServerStates& operator=(const ServerStates&) = delete;
 
   ///Get the current ServerState
   ServerState * GetCurrentState();
@@ -60,9 +62,6 @@ struct ServerStates
   ~ServerStates() {}
   friend void boost::checked_delete<>(ServerStates*);
 
-  ///The chronological collection of ServerState instances
-  std::vector<boost::shared_ptr<ServerState> > m_v;
-
   ///The current ServerState index
   int m_i;
 
@@ -71,6 +70,10 @@ struct ServerStates
 
   ///The map that maps the period (= key) to the number of IPGG cycles
   std::map<int,int> m_n_cycles;
+
+  ///The chronological collection of ServerState instances
+  std::vector<boost::shared_ptr<ServerState> > m_v;
+
 };
 
 } //~namespace gtst

@@ -1,17 +1,8 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <iostream>
 
-#include <QtGlobal>
-#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
 #include <QApplication>
-#else
-#include <QApplication>
-#endif
-
 #include <QIcon>
 #include <QVBoxLayout>
 #include <QFileDialog>
@@ -19,15 +10,16 @@
 #include "pvdbfile.h"
 #include "pvdbhelper.h"
 #include "qtpvdbclusterdialog.h"
-#include "qtpvdbcompetency.h"
+#include "qtconceptmapcompetency.h"
 #include "qtpvdbclusterwidget.h"
 #include "qtpvdbconceptmapdialog.h"
-#include "qtpvdbconcepteditdialog.h"
-#include "qtpvdbconceptmapeditwidget.h"
-#include "qtpvdbrateexamplesdialog.h"
-#include "qtpvdbconceptmapratewidget.h"
+//#include "qtpvdbconcepteditdialog.h"
+//#include "qtpvdbconceptmapeditwidget.h"
+//#include "qtpvdbrateexamplesdialog.h"
+//#include "qtpvdbconceptmapratewidget.h"
 #include "qtpvdbstudentmenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::string CreateStyleSheet()
 {
@@ -88,11 +80,12 @@ int main(int argc, char *argv[])
       assert(file);
       ribi::pvdb::QtPvdbStudentMenuDialog d(file);
       d.show();
-      a.exec();
+      return a.exec();
     }
     catch (...)
     {
       //Gotta catch 'm all
     }
   }
+  return 1;
 }

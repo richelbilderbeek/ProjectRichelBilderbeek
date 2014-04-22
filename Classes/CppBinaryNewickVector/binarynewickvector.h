@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BinaryNewickVector, class to store a Newick as a std::vector<int>
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -46,14 +46,16 @@ struct BinaryNewickVector
   const BigInteger CalcNumOfSymmetries() const;
   double CalcProbabilitySimpleNewick(const double theta) const;
   bool Empty() const { return m_v.empty(); }
-  const std::vector<int>& Peek() const { return m_v; }
+
+  ///Peek at the implementation
+  const std::vector<int>& Peek() const noexcept { return m_v; }
   const std::vector<BinaryNewickVector> GetSimplerNewicks() const;
   const std::pair<BinaryNewickVector,BinaryNewickVector> GetRootBranches() const;
   bool IsSimple() const;
-  const std::string ToStr() const;
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
-  int Size() const;
+  std::string ToStr() const noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+  int Size() const noexcept;
 
 
   private:
@@ -71,23 +73,21 @@ struct BinaryNewickVector
   const BinaryNewickVector TermIsOne(const int i) const;
 
   public:
-
-
   static double CalculateProbability(
     const std::string& newick_str,
     const double theta);
 
-  static void Test();
+  static void Test() noexcept;
 
   static bool NewickCompare(
     const std::vector<int>& lhs,
-    const std::vector<int>& rhs);
+    const std::vector<int>& rhs) noexcept;
 
 };
 
 bool operator<(
   const BinaryNewickVector& lhs,
-  const BinaryNewickVector& rhs);
+  const BinaryNewickVector& rhs) noexcept;
 
 } //~namespace ribi
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestquestionmenudialog.h"
 
 #include <QKeyEvent>
@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testquestionmenudialog.h"
 #include "trace.h"
 #include "ui_qttestquestionmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestQuestionMenuDialog::QtTestQuestionMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
@@ -47,7 +48,7 @@ ribi::QtTestQuestionMenuDialog::QtTestQuestionMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTestQuestionMenuDialog::~QtTestQuestionMenuDialog()
+ribi::QtTestQuestionMenuDialog::~QtTestQuestionMenuDialog() noexcept
 {
   delete ui;
 }
@@ -66,7 +67,6 @@ void ribi::QtTestQuestionMenuDialog::on_button_start_clicked()
 
 void ribi::QtTestQuestionMenuDialog::on_button_about_clicked()
 {
-  hide();
   About a = m_dialog->GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtOpenQuestionDialog version: " + QtOpenQuestionDialog::GetVersion());
@@ -74,8 +74,7 @@ void ribi::QtTestQuestionMenuDialog::on_button_about_clicked()
   a.AddLibrary("QtQuestionDialog version: " + QtQuestionDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestQuestionMenuDialog::on_button_quit_clicked()
@@ -84,7 +83,7 @@ void ribi::QtTestQuestionMenuDialog::on_button_quit_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtTestQuestionMenuDialog::Test()
+void ribi::QtTestQuestionMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

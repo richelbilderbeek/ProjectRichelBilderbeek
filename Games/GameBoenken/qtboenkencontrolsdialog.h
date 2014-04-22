@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,9 +25,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
 
 #include "boenkencontrols.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenControlsDialog;
@@ -40,14 +43,17 @@ namespace ribi {
 ///This dialog connects player names to their controls
 ///(but it does not connect sprites to their controllers,
 ///this is what DialogPlayers is for)
-class QtBoenkenControlsDialog : public QDialog
+class QtBoenkenControlsDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtBoenkenControlsDialog(QWidget *parent = 0);
-  ~QtBoenkenControlsDialog();
-  Boenken::Controls GetControls() const;
+  QtBoenkenControlsDialog(const QtBoenkenControlsDialog&) = delete;
+  QtBoenkenControlsDialog& operator=(const QtBoenkenControlsDialog&) = delete;
+  ~QtBoenkenControlsDialog() noexcept;
+
+  Boenken::Controls GetControls() const noexcept;
 
 private:
   Ui::QtBoenkenControlsDialog *ui;
@@ -55,15 +61,15 @@ private:
   std::vector<int> m_keys_turn;
 
 private slots:
-  void onAccelerate1();
-  void onAccelerate2();
-  void onTurn1();
-  void onTurn2();
-  void showKeys();
+  void onAccelerate1() noexcept;
+  void onAccelerate2() noexcept;
+  void onTurn1() noexcept;
+  void onTurn2() noexcept;
+  void showKeys() noexcept;
 
-  std::vector<int> getKeysAccel() const;
-  std::vector<int> getKeysTurn() const;
-  std::vector<std::string> getNames() const;
+  std::vector<int> getKeysAccel() const noexcept;
+  std::vector<int> getKeysTurn() const noexcept;
+  std::vector<std::string> getNames() const noexcept;
 };
 
 } //~namespace ribi

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RubiksClockDial, class for displaying a Rubik's Clock Dial
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,18 +30,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
+#include "rubiksclockfwd.h"
 #include "widget.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct Dial;
 
-///RubiksClockDial is a class to display a Rubik's Clock Dial
-struct RubiksClockDial : public Widget
+namespace ruco {
+
+///ClockDial is a class to display a Rubik's Clock Dial
+struct ClockDial : public Widget
 {
-  explicit RubiksClockDial(
+  explicit ClockDial(
     const int time,
     const int x,
     const int y,
@@ -51,35 +54,31 @@ struct RubiksClockDial : public Widget
     const unsigned char green,
     const unsigned char blue);
 
-  ///Obtain a read-and-write pointert to the Dial
-  //Dial * GetDial() { return m_dial.get(); }
+  const Dial * GetDial() const noexcept { return m_dial.get(); }
 
-  ///Obtain a read-only pointert to the Dial
-  const Dial * GetDial() const { return m_dial.get(); }
-
-  int GetTime() const { return m_time % 12; }
+  int GetTime() const noexcept { return m_time % 12; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Turn the dials n_positions_clockwise clockwise,
   ///negative values are also allowed
-  void Turn(const int n_positions_clockwise);
+  void Turn(const int n_positions_clockwise) noexcept;
 
   private:
   //DialWidget can only be deleted by Boost smart pointers
-  virtual ~RubiksClockDial() {}
-  friend void boost::checked_delete<>(RubiksClockDial*);
+  virtual ~ClockDial() noexcept {}
+  friend void boost::checked_delete<>(ClockDial*);
 
   boost::scoped_ptr<Dial> m_dial;
 
   ///Denotes the time shown by the dial as in a clock
   int m_time;
 
-  friend std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget);
+  friend std::ostream& operator<<(std::ostream& os, const ClockDial& widget) noexcept;
 
   public:
 
@@ -92,11 +91,12 @@ struct RubiksClockDial : public Widget
   //static double GetAngle(const double dX, const double dY);
 
   //From www.richelbilderbeek.nl/CppGetDistance.htm
-  static double GetDistance(const double dX, const double dY);
+  static double GetDistance(const double dX, const double dY) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget);
+std::ostream& operator<<(std::ostream& os, const ClockDial& widget) noexcept;
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // RUBIKSCLOCKDIAL_H

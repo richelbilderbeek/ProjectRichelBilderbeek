@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShinyButton, tool to test the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,25 +20,43 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "testshinybuttonmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "rainbow.h"
 #include "rectangle.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "trace.h"
 
-const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout()
+int ribi::TestShinyButtonMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "TestShinyButton",
     "tool to test the ShinyButton class",
     "the 13th of February 2012",
-    "2011-2012",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestShinyButton.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("ShinyButton version: " + ShinyButton::GetVersion());
   a.AddLibrary("ShinyButtonWidget version: " + ShinyButtonWidget::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
@@ -46,16 +64,53 @@ const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestShinyButtonMenuDialog::GetVersion()
+ribi::Help ribi::TestShinyButtonMenuDialog::GetHelp() const noexcept
 {
-  return "2.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::TestShinyButtonMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestShinyButton
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::TestShinyButtonMenuDialog::GetVersion() const noexcept
+{
+  return "2.1";
+}
+
+std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-16: Version 1.0: initial version, desktop version not yet working",
     "2011-06-31: Version 1.1: added more tests and an image to the Welcome screen in website version",
     "2012-02-13: Version 2.0: created a desktop version of TestShinyButton",
+    "2013-11-05: version 2.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestShinyButtonMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestShinyButtonMenuDialog::Test");
+  TRACE("Finished ribi::TestShinyButtonMenuDialog::Test successfully");
+}
+#endif

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,11 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "regextestermaindialog.h"
+#pragma GCC diagnostic pop
 
-const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes()
+std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes() noexcept
 {
   return
   {
@@ -31,10 +32,11 @@ const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes()
     "\\",
     "{d}2",
     ""
+    //"(\\2)" //Results in crash
   };
 }
 
-const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestStrings()
+std::vector<std::string> ribi::RegexTesterMainDialog::GetTestStrings() noexcept
 {
   return
   {

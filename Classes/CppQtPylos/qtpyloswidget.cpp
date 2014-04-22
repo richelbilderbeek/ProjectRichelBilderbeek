@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PylosWidget, widget to display Pylos class
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,9 +19,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
-
 #include "qtpyloswidget.h"
 
 #include <cassert>
@@ -41,27 +40,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmustremovestate.h"
 #include "pylosplayer.h"
 #include "trace.h"
+#include "qtpylossprites.h"
 #pragma GCC diagnostic pop
 
-ribi::QtPylosWidget::QtPylosWidget() :
-    QWidget(0),
+ribi::pylos::QtPylosWidget::QtPylosWidget()
+ :  QWidget(0),
+    m_other_selectors{},
     m_select(0,0,0),
-    m_sprites(this->width(),this->height(),Pylos::GetRedBlueColors()),
-    m_tilt(30.0 * 2.0
-      * boost::math::constants::pi<double>()
-      / 360.0)
+    m_sprites(new QtSprites(this->width(),this->height(),GetRedBlueColors())),
+    m_tilt(30.0 * 2.0 * boost::math::constants::pi<double>() / 360.0)
 {
+  assert(m_sprites);
   //Allows this widget to respond to mouse moving over it
   this->setMouseTracking(true);
 
-  SetSelector(Pylos::Coordinat(0,0,0));
+  SetSelector(pylos::Coordinat(0,0,0));
 
   SaveAllSprites();
   this->setMinimumWidth(64);
   this->setMinimumHeight(64);
 }
 
-void ribi::QtPylosWidget::DeselectRemove(const Pylos::Coordinat& c)
+void ribi::pylos::QtPylosWidget::DeselectRemove(const pylos::Coordinat& c)
 {
   assert(!m_other_selectors.empty());
   const int sz = boost::numeric_cast<int>(m_other_selectors.size());
@@ -87,56 +87,44 @@ void ribi::QtPylosWidget::DeselectRemove(const Pylos::Coordinat& c)
   }
 }
 
-void ribi::QtPylosWidget::DrawRemove(QPainter& painter, const Pylos::Coordinat& c)
+void ribi::pylos::QtPylosWidget::DrawRemove(QPainter& painter, const pylos::Coordinat& c)
 {
-  const Pylos::QtSprites::Type sprite =
-    ( Get(c) == Pylos::PositionState::player1
-     ? Pylos::QtSprites::Type::player1_remove
-     : Pylos::QtSprites::Type::player2_remove );
+  const pylos::QtSprites::Type sprite =
+    ( Get(c) == pylos::PositionState::player1
+     ? pylos::QtSprites::Type::player1_remove
+     : pylos::QtSprites::Type::player2_remove );
 
   const std::pair<int,int> p = Transform(c);
   painter.drawPixmap(
-    p.first  - (m_sprites.GetMarbleWidth()  / 2),
-    p.second - (m_sprites.GetMarbleHeight() / 2),
-    m_sprites.Get(sprite));
-  /*
-  painter.drawPixmap(
-      c.GetX() * m_sprites.GetMarbleWidth()  + (c.GetLayer() * (m_sprites.GetMarbleWidth()  / 2)),
-      c.GetY() * m_sprites.GetMarbleHeight() + (c.GetLayer() * (m_sprites.GetMarbleHeight() / 2)),
-      m_sprites.Get(sprite));
-  */
+    p.first  - (m_sprites->GetMarbleWidth()  / 2),
+    p.second - (m_sprites->GetMarbleHeight() / 2),
+    m_sprites->Get(sprite));
 }
 
-void ribi::QtPylosWidget::DrawSelect(QPainter& painter)
+void ribi::pylos::QtPylosWidget::DrawSelect(QPainter& painter)
 {
-  if (GetWinner() != Pylos::Winner::none) return;
-  const Pylos::QtSprites::Type sprite
-    = (GetCurrentTurn() == Pylos::Player::player1
-    ? Pylos::QtSprites::Type::player1_select
-    : Pylos::QtSprites::Type::player2_select);
+  if (GetWinner() != pylos::Winner::none) return;
+  const pylos::QtSprites::Type sprite
+    = (GetCurrentTurn() == pylos::Player::player1
+    ? pylos::QtSprites::Type::player1_select
+    : pylos::QtSprites::Type::player2_select);
 
   const std::pair<int,int> c = Transform(m_select);
   painter.drawPixmap(
-    c.first  - (m_sprites.GetMarbleWidth()  / 2),
-    c.second - (m_sprites.GetMarbleHeight() / 2),
-    m_sprites.Get(sprite));
-  /*
-  painter.drawPixmap(
-    m_select.GetX() * m_sprites.GetMarbleWidth()  + (m_select.GetLayer() * (m_sprites.GetMarbleWidth()  / 2)),
-    m_select.GetY() * m_sprites.GetMarbleHeight() + (m_select.GetLayer() * (m_sprites.GetMarbleHeight() / 2)),
-    m_sprites.Get(sprite));
-  */
+    c.first  - (m_sprites->GetMarbleWidth()  / 2),
+    c.second - (m_sprites->GetMarbleHeight() / 2),
+    m_sprites->Get(sprite));
 }
 
-const std::vector<ribi::Pylos::Coordinat> ribi::QtPylosWidget::GetCoordinats(
+const std::vector<ribi::pylos::Coordinat> ribi::pylos::QtPylosWidget::GetCoordinats(
   const int mouse_x, const int mouse_y)
 {
-  const std::vector<Pylos::Coordinat> v = Pylos::GetAllCoordinats();
+  const std::vector<pylos::Coordinat> v = pylos::GetAllCoordinats();
   std::vector<double> d; //Distances
   std::transform(v.begin(),v.end(),std::back_inserter(d),
-    [this,mouse_x,mouse_y](const Pylos::Coordinat& c)
+    [this,mouse_x,mouse_y](const pylos::Coordinat& c)
     {
-      //Calculate this Pylos::Coordinat its center on the widget
+      //Calculate this pylos::Coordinat its center on the widget
       const std::pair<int,int> p = Transform(c);
 
       return GetDistance(
@@ -147,12 +135,12 @@ const std::vector<ribi::Pylos::Coordinat> ribi::QtPylosWidget::GetCoordinats(
   );
   assert(v.size() == d.size());
 
-  std::vector<Pylos::Coordinat> c;
+  std::vector<pylos::Coordinat> c;
 
   const std::size_t sz = v.size();
   const double ray = 0.33 * GetDistance(
-    static_cast<double>(m_sprites.GetMarbleWidth()),
-    static_cast<double>(m_sprites.GetMarbleHeight()) );
+    static_cast<double>(m_sprites->GetMarbleWidth()),
+    static_cast<double>(m_sprites->GetMarbleHeight()) );
 
   for (std::size_t i=0; i!=sz; ++i)
   {
@@ -161,34 +149,34 @@ const std::vector<ribi::Pylos::Coordinat> ribi::QtPylosWidget::GetCoordinats(
   return c;
 }
 
-double ribi::QtPylosWidget::GetDistance(const double dx, const double dy)
+double ribi::pylos::QtPylosWidget::GetDistance(const double dx, const double dy)
 {
   return std::sqrt( (dx * dx) + (dy * dy) );
 }
 
-const std::vector<ribi::Pylos::Coordinat>& ribi::QtPylosWidget::GetOtherSelectors() const
+const std::vector<ribi::pylos::Coordinat>& ribi::pylos::QtPylosWidget::GetOtherSelectors() const
 {
   return m_other_selectors;
 }
 
-const std::string ribi::QtPylosWidget::GetVersion()
+std::string ribi::pylos::QtPylosWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtPylosWidget::GetVersionHistory()
+std::vector<std::string> ribi::pylos::QtPylosWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-05-28: version 1.0: initial version. Added tilt.");
   return v;
 }
 
-bool ribi::QtPylosWidget::IsOtherSelector(const Pylos::Coordinat& c) const
+bool ribi::pylos::QtPylosWidget::IsOtherSelector(const pylos::Coordinat& c) const
 {
   return std::find(m_other_selectors.begin(),m_other_selectors.end(),c) != m_other_selectors.end();
 }
 
-void ribi::QtPylosWidget::MouseLeftClick()
+void ribi::pylos::QtPylosWidget::MouseLeftClick()
 {
   if (!GetMustRemove())
     MouseLeftClickSelect();
@@ -196,7 +184,7 @@ void ribi::QtPylosWidget::MouseLeftClick()
     MouseLeftClickRemove();
 }
 
-void ribi::QtPylosWidget::MouseLeftClickRemove()
+void ribi::pylos::QtPylosWidget::MouseLeftClickRemove()
 {
   //Player tries to select a third marble
   if (m_other_selectors.size() == 2)
@@ -226,7 +214,7 @@ void ribi::QtPylosWidget::MouseLeftClickRemove()
   //Player toggles his first marble for removal
   if (m_other_selectors.empty())
   {
-    if (CanRemove( std::vector<Pylos::Coordinat>(1,m_select) )) m_other_selectors.push_back(m_select);
+    if (CanRemove( std::vector<pylos::Coordinat>(1,m_select) )) m_other_selectors.push_back(m_select);
     repaint();
     emit Toggle();
     return;
@@ -247,9 +235,9 @@ void ribi::QtPylosWidget::MouseLeftClickRemove()
 
 ///MouseLeftClickSelect handles mouse left-clicking
 ///during select state.
-void ribi::QtPylosWidget::MouseLeftClickSelect()
+void ribi::pylos::QtPylosWidget::MouseLeftClickSelect()
 {
-  if (GetWinner() != Pylos::Winner::none) return;
+  if (GetWinner() != pylos::Winner::none) return;
 
   //Select marble for movement
   if (m_other_selectors.empty() && CanTransfer(m_select))
@@ -271,30 +259,30 @@ void ribi::QtPylosWidget::MouseLeftClickSelect()
   if (m_other_selectors.empty() && CanSet(m_select))
   {
     Set(m_select);
-    m_other_selectors = std::vector<Pylos::Coordinat>();
+    m_other_selectors = std::vector<pylos::Coordinat>();
     repaint();
     emit DoneMove();
-    if (GetWinner() != Pylos::Winner::none)
+    if (GetWinner() != pylos::Winner::none)
       emit HasWinner();
     return;
   }
 
     //User might want to move a marble
-  if (GetMustRemove() == Pylos::MustRemoveState::no)
+  if (GetMustRemove() == pylos::MustRemoveState::no)
   {
     if (!m_other_selectors.empty()
       && CanTransfer(m_other_selectors[0], m_select) )
     {
       Transfer(m_other_selectors[0],m_select);
       emit DoneMove();
-      m_other_selectors = std::vector<Pylos::Coordinat>();
+      m_other_selectors = std::vector<pylos::Coordinat>();
       repaint();
     }
     return;
   }
 }
 
-void ribi::QtPylosWidget::MouseMove(const int mouse_x, const int mouse_y)
+void ribi::pylos::QtPylosWidget::MouseMove(const int mouse_x, const int mouse_y)
 {
   if (!GetMustRemove())
     MouseMoveSelect(mouse_x,mouse_y);
@@ -302,7 +290,7 @@ void ribi::QtPylosWidget::MouseMove(const int mouse_x, const int mouse_y)
     MouseMoveRemoval(mouse_x,mouse_y);
 }
 
-void ribi::QtPylosWidget::mouseMoveEvent(QMouseEvent * e)
+void ribi::pylos::QtPylosWidget::mouseMoveEvent(QMouseEvent * e)
 {
   assert(e->type() == QMouseEvent::MouseMove);
   const int mouse_x = e->x();
@@ -310,9 +298,9 @@ void ribi::QtPylosWidget::mouseMoveEvent(QMouseEvent * e)
   MouseMove(mouse_x,mouse_y);
 }
 
-void ribi::QtPylosWidget::mousePressEvent(QMouseEvent* e)
+void ribi::pylos::QtPylosWidget::mousePressEvent(QMouseEvent* e)
 {
-  //std::clog << "void ribi::QtPylosWidget::mousePressEvent(QMouseEvent* e)\n";
+  //std::clog << "void ribi::pylos::QtPylosWidget::mousePressEvent(QMouseEvent* e)\n";
   const int mouse_x = e->x();
   const int mouse_y = e->y();
   MouseMove(mouse_x,mouse_y); //Always first perform a mouse move to set the selector right
@@ -324,25 +312,15 @@ void ribi::QtPylosWidget::mousePressEvent(QMouseEvent* e)
   }
 }
 
-void ribi::QtPylosWidget::MouseMoveRemoval(
+void ribi::pylos::QtPylosWidget::MouseMoveRemoval(
   const int mouse_x,
   const int mouse_y)
 {
 
   //Selector must be set to removable marbles
-  /*
-  //Check lowest Pylos level first, otherwise (0,0,0) cannot be selected when (1,0,0) can be
-  for (int layer=0; layer!=4; ++layer)
-  {
-    const int x = (mouse_x - ((m_sprites.GetMarbleWidth()  / 2) *layer)) / m_sprites.GetMarbleWidth();
-    const int y = (mouse_y - ((m_sprites.GetMarbleHeight() / 2) *layer)) / m_sprites.GetMarbleHeight();
-
-    if (!Pylos::Coordinat::IsValid(layer,x,y)) continue;
-    Pylos::Coordinat c(layer,x,y);
-  */
-  const std::vector<Pylos::Coordinat> v = GetCoordinats(mouse_x,mouse_y);
+  const std::vector<pylos::Coordinat> v = GetCoordinats(mouse_x,mouse_y);
   std::for_each(v.begin(),v.end(),
-    [this](const Pylos::Coordinat& c)
+    [this](const pylos::Coordinat& c)
     {
       if (
        //player has selected two marbles for removal,
@@ -353,7 +331,7 @@ void ribi::QtPylosWidget::MouseMoveRemoval(
        //removed as well
     || (m_other_selectors.size() == 1 && CanRemove( { m_other_selectors[0],c } ))
        //player has selected nothing for removal
-    || (m_other_selectors.empty() && CanRemove( std::vector<Pylos::Coordinat>(1,c) ))
+    || (m_other_selectors.empty() && CanRemove( std::vector<pylos::Coordinat>(1,c) ))
       )
       {
         SetSelector(c);
@@ -367,25 +345,16 @@ void ribi::QtPylosWidget::MouseMoveRemoval(
 ///MouseMoveSelect handles mouse movement
 ///when player must select either a location to
 ///place a new marble or to select a marble to move
-void ribi::QtPylosWidget::MouseMoveSelect(
+void ribi::pylos::QtPylosWidget::MouseMoveSelect(
   const int mouse_x, const int mouse_y)
 {
   //Selector must show to either
   //- movable marbles
   //- spots to place a new marble
   //Check lowest Pylos level first, otherwise (0,0,0) cannot be selected when (1,0,0) can be
-  /*
-  for (int layer=0; layer!=4; ++layer)
-  {
-    const int x = (mouse_x - ((m_sprites.GetMarbleWidth()  / 2) * layer)) / m_sprites.GetMarbleWidth();
-    const int y = (mouse_y - ((m_sprites.GetMarbleHeight() / 2) * layer)) / m_sprites.GetMarbleHeight();
-
-    if (!Pylos::Coordinat::IsValid(layer,x,y)) continue;
-    Pylos::Coordinat c(layer,x,y);
-  */
-  const std::vector<Pylos::Coordinat> v = GetCoordinats(mouse_x,mouse_y);
+  const std::vector<pylos::Coordinat> v = GetCoordinats(mouse_x,mouse_y);
   std::for_each(v.begin(),v.end(),
-    [this](const Pylos::Coordinat& c)
+    [this](const pylos::Coordinat& c)
     {
       if (
          //Player selects his/her first position
@@ -406,7 +375,7 @@ void ribi::QtPylosWidget::MouseMoveSelect(
   );
 }
 
-void ribi::QtPylosWidget::MouseRightClick()
+void ribi::pylos::QtPylosWidget::MouseRightClick()
 {
   if (!GetMustRemove()) return;
   //Right mouse button is only used to remove the
@@ -418,24 +387,24 @@ void ribi::QtPylosWidget::MouseRightClick()
   {
     Remove(m_other_selectors);
     emit DoneMove();
-    m_other_selectors = std::vector<Pylos::Coordinat>();
+    m_other_selectors = std::vector<pylos::Coordinat>();
     repaint();
   }
 }
 
-void ribi::QtPylosWidget::paintEvent(QPaintEvent *)
+void ribi::pylos::QtPylosWidget::paintEvent(QPaintEvent *)
 {
   //assert(m_pylos);
   QPainter painter(this);
 
-  painter.drawPixmap(0,0,m_sprites.Get(Pylos::QtSprites::Type::board_bottom));
+  painter.drawPixmap(0,0,m_sprites->Get(pylos::QtSprites::Type::board_bottom));
   //Draw the hole
   for (int y=0; y!=4; ++y)
     for (int x=0; x!=4; ++x)
       painter.drawPixmap(
-        x * m_sprites.GetMarbleWidth(),
-        y * m_sprites.GetMarbleHeight(),
-        m_sprites.Get(Pylos::QtSprites::Type::board_hole));
+        x * m_sprites->GetMarbleWidth(),
+        y * m_sprites->GetMarbleHeight(),
+        m_sprites->Get(pylos::QtSprites::Type::board_hole));
 
   for (int layer=0; layer!=4; ++layer)
   {
@@ -444,41 +413,35 @@ void ribi::QtPylosWidget::paintEvent(QPaintEvent *)
     {
       for (int x=0; x!=layer_size; ++x)
       {
-        assert(Pylos::Coordinat::IsValid(layer,x,y));
-        const Pylos::Coordinat c(layer,x,y);
+        assert(pylos::Coordinat::IsValid(layer,x,y));
+        const pylos::Coordinat c(layer,x,y);
 
         //Draw selector, after sprite is drawn
         if (c == m_select) DrawSelect(painter);
 
-        const Pylos::PositionState state = Get(c);
+        const pylos::PositionState state = Get(c);
 
-        Pylos::QtSprites::Type sprite = Pylos::QtSprites::Type::board_hole;
+        pylos::QtSprites::Type sprite = pylos::QtSprites::Type::board_hole;
         switch (state)
         {
-          case Pylos::PositionState::empty  : continue;
-          case Pylos::PositionState::player1: sprite = Pylos::QtSprites::Type::player1; break;
-          case Pylos::PositionState::player2: sprite = Pylos::QtSprites::Type::player2; break;
+          case pylos::PositionState::empty  : continue;
+          case pylos::PositionState::player1: sprite = pylos::QtSprites::Type::player1; break;
+          case pylos::PositionState::player2: sprite = pylos::QtSprites::Type::player2; break;
           default: assert(!"Should not get here");
         }
-        assert(sprite != Pylos::QtSprites::Type::board_hole);
+        assert(sprite != pylos::QtSprites::Type::board_hole);
 
-        const std::pair<int,int> p = Transform(Pylos::Coordinat(layer,x,y));
+        const std::pair<int,int> p = Transform(pylos::Coordinat(layer,x,y));
 
         painter.drawPixmap(
-          p.first  - (m_sprites.GetMarbleWidth()  / 2),
-          p.second - (m_sprites.GetMarbleHeight() / 2),
-          m_sprites.Get(sprite));
-        /*
-        painter.drawPixmap(
-          x * m_sprites.GetMarbleWidth()  + (layer * (m_sprites.GetMarbleWidth()  / 2)),
-          y * m_sprites.GetMarbleHeight() + (layer * (m_sprites.GetMarbleHeight() / 2)),
-          m_sprites.Get(sprite));
-        */
+          p.first  - (m_sprites->GetMarbleWidth()  / 2),
+          p.second - (m_sprites->GetMarbleHeight() / 2),
+          m_sprites->Get(sprite));
 
         //Draw remove
         {
           std::for_each(m_other_selectors.begin(),m_other_selectors.end(),
-            [this,c,&painter](const Pylos::Coordinat& d)
+            [this,c,&painter](const pylos::Coordinat& d)
             {
               if (d == c) DrawRemove(painter,c);
             }
@@ -492,58 +455,76 @@ void ribi::QtPylosWidget::paintEvent(QPaintEvent *)
   }
 }
 
-void ribi::QtPylosWidget::resizeEvent(QResizeEvent *)
+void ribi::pylos::QtPylosWidget::resizeEvent(QResizeEvent *)
 {
-  m_sprites.SetBoardSize(this->width(),this->height());
+  m_sprites.reset(
+    new pylos::QtSprites(
+      this->width(),
+      this->height(),
+      m_sprites->GetColorScheme()
+    )
+  );
   repaint();
 }
 
-void ribi::QtPylosWidget::SaveAllSprites() const
+void ribi::pylos::QtPylosWidget::SaveAllSprites() const
 {
-  m_sprites.Get(Pylos::QtSprites::Type::player1).save("sprite_player1.png");
-  m_sprites.Get(Pylos::QtSprites::Type::player2).save("sprite_player2.png");
-  m_sprites.Get(Pylos::QtSprites::Type::player1_select).save("sprite_player1_select.png");
-  m_sprites.Get(Pylos::QtSprites::Type::player2_select).save("sprite_player2_select.png");
-  m_sprites.Get(Pylos::QtSprites::Type::player1_remove).save("sprite_player1_remove.png");
-  m_sprites.Get(Pylos::QtSprites::Type::player2_remove).save("sprite_player2_remove.png");
-  m_sprites.Get(Pylos::QtSprites::Type::board_bottom).save("sprite_board_bottom.png");
-  m_sprites.Get(Pylos::QtSprites::Type::board_hole).save("sprite_board_hole.png");
+  m_sprites->Get(pylos::QtSprites::Type::player1).save("sprite_player1.png");
+  m_sprites->Get(pylos::QtSprites::Type::player2).save("sprite_player2.png");
+  m_sprites->Get(pylos::QtSprites::Type::player1_select).save("sprite_player1_select.png");
+  m_sprites->Get(pylos::QtSprites::Type::player2_select).save("sprite_player2_select.png");
+  m_sprites->Get(pylos::QtSprites::Type::player1_remove).save("sprite_player1_remove.png");
+  m_sprites->Get(pylos::QtSprites::Type::player2_remove).save("sprite_player2_remove.png");
+  m_sprites->Get(pylos::QtSprites::Type::board_bottom).save("sprite_board_bottom.png");
+  m_sprites->Get(pylos::QtSprites::Type::board_hole).save("sprite_board_hole.png");
 }
 
-void ribi::QtPylosWidget::SetColorSchemeBlackWhite()
+void ribi::pylos::QtPylosWidget::SetColorSchemeBlackWhite()
 {
-  m_sprites.SetColorScheme(Pylos::GetBlackWhiteColors());
+  m_sprites.reset(
+    new pylos::QtSprites(
+      this->width(),
+      this->height(),
+      pylos::GetBlackWhiteColors()
+    )
+  );
   repaint();
 }
 
-void ribi::QtPylosWidget::SetColorSchemeRedBlue()
+void ribi::pylos::QtPylosWidget::SetColorSchemeRedBlue()
 {
-  m_sprites.SetColorScheme(Pylos::GetRedBlueColors());
+  m_sprites.reset(
+    new pylos::QtSprites(
+      this->width(),
+      this->height(),
+      pylos::GetRedBlueColors()
+    )
+  );
   repaint();
 }
 
-void ribi::QtPylosWidget::SetSelector(const Pylos::Coordinat& c)
+void ribi::pylos::QtPylosWidget::SetSelector(const pylos::Coordinat& c)
 {
   m_select = c;
   emit SelectorChanged();
 }
 
-void ribi::QtPylosWidget::SetTilt(const double tilt)
+void ribi::pylos::QtPylosWidget::SetTilt(const double tilt)
 {
   m_tilt = tilt;
   repaint();
 }
 
-const std::pair<int,int> ribi::QtPylosWidget::Transform(const Pylos::Coordinat& c) const
+const std::pair<int,int> ribi::pylos::QtPylosWidget::Transform(const pylos::Coordinat& c) const
 {
   const int x_co
-    = (m_sprites.GetMarbleWidth() / 2)
-    + static_cast<int>(std::sin(m_tilt) * static_cast<double>((m_sprites.GetMarbleWidth()) * (c.GetLayer() + 0)))
-    + (c.GetX() * m_sprites.GetMarbleWidth());
+    = (m_sprites->GetMarbleWidth() / 2)
+    + static_cast<int>(std::sin(m_tilt) * static_cast<double>((m_sprites->GetMarbleWidth()) * (c.GetLayer() + 0)))
+    + (c.GetX() * m_sprites->GetMarbleWidth());
   const int y_co
-    = (m_sprites.GetMarbleHeight() / 2)
-    + static_cast<int>(std::sin(m_tilt) * static_cast<double>((m_sprites.GetMarbleHeight()) * (c.GetLayer() + 0)))
-    + (c.GetY() * m_sprites.GetMarbleHeight());
+    = (m_sprites->GetMarbleHeight() / 2)
+    + static_cast<int>(std::sin(m_tilt) * static_cast<double>((m_sprites->GetMarbleHeight()) * (c.GetLayer() + 0)))
+    + (c.GetY() * m_sprites->GetMarbleHeight());
   return std::make_pair(x_co,y_co);
 }
 

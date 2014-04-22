@@ -45,7 +45,7 @@ ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::QtFixedLagSmoothe
   );
 }
 
-ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::~QtFixedLagSmootherKalmanFilterCalculationDialog()
+ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::~QtFixedLagSmootherKalmanFilterCalculationDialog() noexcept
 {
   delete ui;
 }

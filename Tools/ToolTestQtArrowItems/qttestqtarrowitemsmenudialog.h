@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 /*
 TestQtArrowItems, tool to test Qt arrow QGraphicsItems
-Copyright (C) 2012-2013  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTQTARROWITEMSMENUDIALOG_H
 #define QTTESTQTARROWITEMSMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestQtArrowItemsMenuDialog;
@@ -35,7 +38,9 @@ class QtTestQtArrowItemsMenuDialog : public ribi::QtHideAndShowDialog
 
 public:
   explicit QtTestQtArrowItemsMenuDialog(QWidget *parent = 0);
-  ~QtTestQtArrowItemsMenuDialog();
+  QtTestQtArrowItemsMenuDialog(const QtTestQtArrowItemsMenuDialog&) = delete;
+  QtTestQtArrowItemsMenuDialog& operator=(const QtTestQtArrowItemsMenuDialog&) = delete;
+  ~QtTestQtArrowItemsMenuDialog() noexcept;
 
 protected:
   
@@ -48,6 +53,10 @@ private slots:
   void on_button_about_clicked();
   void on_button_quit_clicked();
   void on_button_start_clicked();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

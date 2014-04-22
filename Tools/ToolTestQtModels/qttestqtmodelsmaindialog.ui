@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtToolTestQtModelsMainDialog</class>
+ <widget class="QDialog" name="QtToolTestQtModelsMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>453</width>
+    <height>375</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TestQtModels</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="QComboBox" name="box_type">
+     <item>
+      <property name="text">
+       <string>std::vector&lt;std::string&gt;</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>std::vector&lt;std::string&gt; (with function of t)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>boost::numeric::ublas::matrix&lt;double&gt;</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>boost::numeric::ublas::vector&lt;double&gt;</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>boost::numeric::ublas::vector&lt;int&gt;</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="button_data">
+     <property name="text">
+      <string>Put &amp;data in (again)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="2">
+    <widget class="QPushButton" name="button_headers">
+     <property name="text">
+      <string>Put &amp;headers in (again)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QTableView" name="table">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>box_type</tabstop>
+  <tabstop>button_data</tabstop>
+  <tabstop>button_headers</tabstop>
+  <tabstop>table</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

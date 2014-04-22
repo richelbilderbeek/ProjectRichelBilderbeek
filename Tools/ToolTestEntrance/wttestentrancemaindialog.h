@@ -40,13 +40,6 @@ struct WtMainDialog : public Wt::WContainerWidget
   WtMainDialog(boost::shared_ptr<const IpAddress> ip_address);
 
   private:
-  struct Ui
-  {
-    Ui();
-    Wt::WLineEdit * const m_edit;
-    Wt::WContainerWidget * const m_view_names_dialog;
-    Wt::WContainerWidget * const m_view_visits_dialog;
-  } ui;
 
   ///Create the Welcome dialog
   Wt::WWidget * CreateNewWelcomeDialog();
@@ -61,6 +54,14 @@ struct WtMainDialog : public Wt::WContainerWidget
   void OnNewVisit();
 
   const boost::shared_ptr<const IpAddress> m_ip_address;
+
+  struct Ui
+  {
+    Ui();
+    Wt::WLineEdit * const m_edit;
+    Wt::WContainerWidget * const m_view_names_dialog;
+    Wt::WContainerWidget * const m_view_visits_dialog;
+  } ui;
 };
 
 } //~namespace ToolTestEntrance

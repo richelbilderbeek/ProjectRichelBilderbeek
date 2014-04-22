@@ -18,11 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestGroupWidget.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -31,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "rainbow.h"
 #include "testgroupwidgetmenudialog.h"
 #include "wtaboutdialog.h"
@@ -39,9 +41,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtgroupwidget.h"
 #include "wttestgroupwidgetmaindialog.h"
 #include "wttestgroupwidgetmenudialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
 {
   {
@@ -99,7 +102,7 @@ ribi::WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestGroupWidgetMenuDialog::GetAbout();
@@ -110,14 +113,14 @@ Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewMainDialog() const
 {
   WtTestGroupWidgetMainDialog * const d = new WtTestGroupWidgetMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -133,4 +136,4 @@ Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolTestGroupWidgetWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

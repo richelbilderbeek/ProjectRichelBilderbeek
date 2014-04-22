@@ -32,6 +32,8 @@ namespace Wt
 }
 
 
+namespace ribi {
+
 struct IpAddress;
 
 namespace ToolRasper {
@@ -85,6 +87,7 @@ struct WtMainDialog : public Wt::WContainerWidget
 };
 
 } //~namespace ToolRasper
+} //~namespace ribi
 
 
 #endif // WTRASPERMAINDIALOG_H

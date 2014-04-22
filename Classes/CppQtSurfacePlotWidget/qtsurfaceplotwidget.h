@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtSurfacePlotWidget, Qt widget for displaying a surface plot
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,11 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTSURFACEPLOTWIDGET_H
 #define QTSURFACEPLOTWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
 struct QtSurfacePlotWidget : public QWidget
 {
   Q_OBJECT
@@ -41,10 +47,10 @@ public:
   void SetSurfaceGrey(const std::vector<std::vector<unsigned char> >& surface);
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
 protected:
   void paintEvent(QPaintEvent *);
@@ -53,5 +59,7 @@ protected:
 private:
   std::vector<std::vector<unsigned char> > m_surface;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif //QTSURFACEPLOTWIDGET_H

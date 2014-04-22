@@ -1,3 +1,25 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbstudentstartcompletedialog.h"
 
 #include <fstream>
@@ -5,7 +27,7 @@
 #include <QFileDialog>
 #include "pvdbfile.h"
 #include "pvdbclusterfactory.h"
-#include "pvdbconceptmapfactory.h"
+#include "conceptmapfactory.h"
 //#include "pvdbmenudialog.h"
 #include "qtpvdbfiledialog.h"
 #include "qtpvdbclusterdialog.h"
@@ -13,6 +35,7 @@
 #include "qtpvdbcreateassessmentmenudialog.h"
 #include "trace.h"
 #include "ui_qtpvdbstudentstartcompletedialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbStudentStartCompleteDialog::QtPvdbStudentStartCompleteDialog(
   const boost::shared_ptr<pvdb::File> file,
@@ -24,10 +47,10 @@ ribi::pvdb::QtPvdbStudentStartCompleteDialog::QtPvdbStudentStartCompleteDialog(
 {
   ui->setupUi(this);
   assert(m_file);
-  assert(IsEqual(*file,*m_file));
+  assert(operator==(*file,*m_file));
 }
 
-ribi::pvdb::QtPvdbStudentStartCompleteDialog::~QtPvdbStudentStartCompleteDialog()
+ribi::pvdb::QtPvdbStudentStartCompleteDialog::~QtPvdbStudentStartCompleteDialog() noexcept
 {
   delete ui;
 }
@@ -88,7 +111,7 @@ void ribi::pvdb::QtPvdbStudentStartCompleteDialog::Save()
   const std::string filename
     =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
       || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
-     ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
+     ? filename_raw + "." + pvdb::File::GetFilenameExtension()
      : filename_raw);
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()

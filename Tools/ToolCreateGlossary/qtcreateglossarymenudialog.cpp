@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateGlossary, tool to create my glossaries
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateGlossary.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtcreateglossarymenudialog.h"
 
 #include "createglossarymenudialog.h"
@@ -27,27 +27,30 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreateglossarymaindialog.h"
 #include "ui_qtcreateglossarymenudialog.h"
 #include "createglossarymaindialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
-ribi::QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtCreateGlossaryMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtCreateGlossaryMenuDialog::~QtCreateGlossaryMenuDialog()
+ribi::QtCreateGlossaryMenuDialog::~QtCreateGlossaryMenuDialog() noexcept
 {
   delete ui;
 }
 
 void ribi::QtCreateGlossaryMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(CreateGlossaryMenuDialog::GetAbout());
+  QtAboutDialog d(CreateGlossaryMenuDialog().GetAbout());
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtCreateGlossaryMenuDialog::on_button_quit_clicked()
@@ -57,13 +60,22 @@ void ribi::QtCreateGlossaryMenuDialog::on_button_quit_clicked()
 
 void ribi::QtCreateGlossaryMenuDialog::on_button_start_clicked()
 {
-  //Make a screenshot
-  QPixmap::grabWidget(this,this->window()->rect()).save("ToolCreateGlossaryMenuDialog.png");
-
   QtCreateGlossaryMainDialog d;
   //d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtCreateGlossaryMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtCreateGlossaryMenuDialog::Test");
+  QtCreateGlossaryMainDialog();
+  CreateGlossaryMenuDialog();
+  TRACE("Finished QtCreateGlossaryMenuDialog::Test successfully");
+}
+#endif

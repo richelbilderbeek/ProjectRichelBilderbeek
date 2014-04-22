@@ -10,7 +10,7 @@
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/ublas/functional.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -50,7 +50,7 @@
 ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtKalmanFilterExperimentDialog),
     m_examples_dialog{new QtKalmanFilterExamplesDialog},
     m_filter_dialog{new QtKalmanFilterDialog(model)},
@@ -141,7 +141,7 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   assert(IsValid());
 }
 
-ribi::kalman::QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog()
+ribi::kalman::QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog() noexcept
 {
   delete ui;
   delete m_examples_dialog;
@@ -242,7 +242,11 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::on_button_add_state_clicked()
   StateNamesModel * const model = dynamic_cast<StateNamesModel*>(abstract_model);
   assert(model);
   std::vector<std::string> v = model->GetRawData();
+<<<<<<< HEAD
   v.push_back(std::string("?"));
+=======
+  v.push_back("?");
+>>>>>>> develop
   model->SetRawData(v); //Set the data
   assert(model->GetRawData() == v);
   assert(IsValid());
@@ -422,7 +426,7 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps(const in
 }
 
 #ifndef NDEBUG
-void ribi::kalman::QtKalmanFilterExperimentDialog::Test()
+void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -495,12 +499,16 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test()
     const std::vector<boost::shared_ptr<KalmanFilterExample> > examples
       = KalmanFilterExample::CreateExamples();
     int cnt = 1;
-    BOOST_FOREACH(const boost::shared_ptr<KalmanFilterExample>& example, examples)
+    for(const boost::shared_ptr<KalmanFilterExample>& example: examples)
     {
       assert(model);
       assert(example);
       model->SetExample(example);
+<<<<<<< HEAD
       d->SaveToDokuWiki(boost::lexical_cast<std::string>(cnt) + std::string(".txt"));
+=======
+      d->SaveToDokuWiki(boost::lexical_cast<std::string>(cnt) + ".txt");
+>>>>>>> develop
       ++cnt;
       const std::string s = model->ToDokuWiki();
       model->SetNumberOfTimesteps(999999999);

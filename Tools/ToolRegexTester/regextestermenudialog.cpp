@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,36 +18,90 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
 #include "regextestermenudialog.h"
 
-const ribi::About ribi::RegexTesterMenuDialog::GetAbout()
+#include <cassert>
+#include <iostream>
+
+#include "trace.h"
+
+int ribi::RegexTesterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "RegexTester",
     "regular expression tester",
     "the 16th of July 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolRegexTester.htm",
     GetVersion(),
     GetVersionHistory());
   return a;
 }
 
-const std::string ribi::RegexTesterMenuDialog::GetVersion()
+ribi::Help ribi::RegexTesterMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::RegexTesterMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramRegexTester
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::RegexTesterMenuDialog::GetVersion() const noexcept
 {
   return "1.7";
 }
 
-const std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-08-19: Version 1.3: Qt GUI application");
-  v.push_back("2012-01-07: Version 1.4: port to Wt and console application");
-  v.push_back("2012-09-24: Version 1.5: added Qt and C++11 versions");
-  v.push_back("2013-03-20: Version 1.6: added TR1 version, added replace");
-  v.push_back("2013-07-16: Version 1.7: added Boost.Xpressive");
-  return v;
+  return {
+    "2010-08-19: Version 1.3: Qt GUI application",
+    "2012-01-07: Version 1.4: port to Wt and console application",
+    "2012-09-24: Version 1.5: added Qt and C++11 versions",
+    "2013-03-20: Version 1.6: added TR1 version, added replace",
+    "2013-07-16: Version 1.7: added Boost.Xpressive"
+  };
 }
+
+#ifndef NDEBUG
+void ribi::RegexTesterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::RegexTesterMenuDialog::Test");
+  TRACE("Finished ribi::RegexTesterMenuDialog::Test successfully");
+}
+#endif

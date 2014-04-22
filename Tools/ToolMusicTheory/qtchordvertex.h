@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MusicTheory, tool for visualizing my music theory
-Copyright (C)  2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,10 +40,10 @@ struct QtChordVertex : public QGraphicsItem
   QRectF boundingRect() const;
 
   ///Obtain this class its version number
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   //Thanks compiler, for reminding me to define this
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);

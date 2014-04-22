@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>BoostXpressiveExample1</title>
   <meta name="description" content="C++ BoostXpressiveExample1"/>
-  <meta name="keywords" content="C++ BoostXpressiveExample1 code snippet"/>
+  <meta name="keywords" content="C++ BoostXpressiveExample1 "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,20 +21,15 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppBoostXpressiveExample1.htm">BoostXpressiveExample1</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppBoostXpressiveExample1-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -42,38 +37,47 @@
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
-  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppBoostXpressiveExample1.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppBoostXpressiveExample1/CppBoostXpressiveExample1.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppBoostXpressiveExample1.pro" border = "1"><tr><td><code>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<table summary="./CppBoostXpressiveExample1/CppBoostXpressiveExample1.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code below<br/>
+# win32 {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+# }<br/>
 <br/>
-win32 {<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
-}<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -81,15 +85,16 @@ win32 {<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppBoostXpressiveExample1/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./CppBoostXpressiveExample1/main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -100,22 +105,22 @@ win32 {<br/>
 &nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>("\\d{4}\\s[A-Z]{2}");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> the <a href="CppRegex.htm">regex</a> works properly<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppString.htm">std::string</a>("1234 AB"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppString.htm">std::string</a>("1234 ab"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppString.htm">std::string</a>("1234ab"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppStdString.htm">std::string</a>("1234 AB"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppStdString.htm">std::string</a>("1234 ab"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppStdString.htm">std::string</a>("1234ab"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Define a sentence with a Dutch zip code in it<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "My Dutch zip code is 1234 AB.";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "My Dutch zip code is 1234 AB.";<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Show how <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match and <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_search work<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(s,dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "the <a href="CppString.htm">std::string</a> does not match a dutch zip code");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "the <a href="CppStdString.htm">std::string</a> does not match a dutch zip code");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_search(s,dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "but the <a href="CppString.htm">std::string</a> does contain a dutch zip code");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "but the <a href="CppStdString.htm">std::string</a> does contain a dutch zip code");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show how to obtain a Dutch zip code from a <a href="CppString.htm">std::string</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show how to obtain a Dutch zip code from a <a href="CppStdString.htm">std::string</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>_<a href="CppIterator.htm">iterator</a> i(s.begin(),s.end(),dutch_zip_code);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> i-&gt;str();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> i-&gt;str();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t<a href="CppOperatorEqual.htm">==</a>"1234 AB");<br/>
 }<br/>
 </code></td></tr></table>
@@ -125,10 +130,10 @@ win32 {<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>CppBoostXpressiveExample.sh</h2>
+<h2>./CppBoostXpressiveExample1/CppBoostXpressiveExample.sh</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppBoostXpressiveExample.sh" border = "1"><tr><td><code>
+<table summary="./CppBoostXpressiveExample1/CppBoostXpressiveExample.sh" border = "1"><tr><td><code>
 #!/bin/bash<br/>
 #Script to check the status of compiles<br/>
 #Copies executables (both Linux and Win32) executables to ~/bin (overwrites older)<br/>

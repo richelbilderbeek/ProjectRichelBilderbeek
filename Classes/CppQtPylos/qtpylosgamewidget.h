@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PylosWidget, widget to display Pylos class
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,56 +24,59 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/tuple/tuple.hpp>
 #include <boost/shared_ptr.hpp>
-#pragma GCC diagnostic pop
-
 #include <QWidget>
-
 #include "qtpyloswidget.h"
+#pragma GCC diagnostic pop
 
 struct QPaintEvent;
 
 namespace ribi {
+namespace pylos {
 
-namespace Pylos { struct Game; }
+struct Game;
 
-///PylosWidget manages a Pylos::Game and facilitates its user interface
+///PylosWidget manages a pylos::Game and facilitates its user interface
 class QtPylosGameWidget : public QtPylosWidget
 {
   Q_OBJECT
 public:
   QtPylosGameWidget();
+  QtPylosGameWidget(const QtPylosGameWidget&) = delete;
+  QtPylosGameWidget& operator=(const QtPylosGameWidget&) = delete;
+  ~QtPylosGameWidget() noexcept {}
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).
-  bool CanRemove(const std::vector<Pylos::Coordinat>& v) const;
+  bool CanRemove(const std::vector<pylos::Coordinat>& v) const;
 
   ///CanSet tests if the current player can be set at the Coordinat
-  bool CanSet(const Pylos::Coordinat& c) const;
+  bool CanSet(const pylos::Coordinat& c) const;
 
   ///CanTransfer specifies if current player can transfer
   ///the marble at the specified coordinat for movement
-  bool CanTransfer(const Pylos::Coordinat& c) const;
+  bool CanTransfer(const pylos::Coordinat& c) const;
 
   ///CanTransfer specifies if current player can transfer his marble
   ///to a new, higher position
   bool CanTransfer(
-    const Pylos::Coordinat& from,
-    const Pylos::Coordinat& to) const;
+    const pylos::Coordinat& from,
+    const pylos::Coordinat& to) const;
 
   ///Obtain the PositionState at a certain coordinat
-  Pylos::PositionState Get(const Pylos::Coordinat& c) const;
+  pylos::PositionState Get(const pylos::Coordinat& c) const;
 
   ///GetCurrentTurn returns whose turn it is now
-  Pylos::Player GetCurrentTurn() const;
+  pylos::Player GetCurrentTurn() const;
 
   ///Obtain the MustRemoveState of the widget
-  Pylos::MustRemoveState GetMustRemove() const;
+  pylos::MustRemoveState GetMustRemove() const;
 
-  ///GetPylos returns a read-only Pylos::Game
-  const Pylos::Game * GetPylos() { return m_pylos.get(); }
+  ///GetPylos returns a read-only pylos::Game
+  const pylos::Game * GetPylos() { return m_pylos.get(); }
 
   ///GetLayerSize returns how many marbles this is wide/height.
   ///For exaple; layer 0 has 4x4 marbles, so GetLayerSize
@@ -81,22 +84,22 @@ public:
   int GetLayerSize(const int layer) const;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Return the possible winner
-  Pylos::Winner GetWinner() const;
+  pylos::Winner GetWinner() const;
 
   ///Remove lets the current player remove one or two marbles
-  void Remove(const std::vector<Pylos::Coordinat>& v);
+  void Remove(const std::vector<pylos::Coordinat>& v);
 
   ///Set makes current player place his marble
   ///at the specified position. After Set,
   ///GetMustRemove must be called to determine if
   ///the current player must remove some marbles
-  void Set(const Pylos::Coordinat& c);
+  void Set(const pylos::Coordinat& c);
 
   ///StartAdvanced cleans the board to start a game
   ///with advanced rules
@@ -108,17 +111,18 @@ public:
 
   ///Transfer lets current player tranfer his marble to a new, higher position
   void Transfer(
-    const Pylos::Coordinat& from,
-    const Pylos::Coordinat& to);
+    const pylos::Coordinat& from,
+    const pylos::Coordinat& to);
 
 
 private:
 
-  ///The Pylos::Game class displayed and interacted with
-  boost::shared_ptr<Pylos::Game> m_pylos;
+  ///The pylos::Game class displayed and interacted with
+  boost::shared_ptr<pylos::Game> m_pylos;
 
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTPYLOSGAMEWIDGET_H

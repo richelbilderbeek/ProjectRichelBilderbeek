@@ -1,26 +1,35 @@
 #ifndef NSANABROSGAMEDIALOG_H
 #define NSANABROSGAMEDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
-#include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+#include <boost/shared_ptr.hpp>
+
 #include "nsanabrosstlfwdheader.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
 ///NsanaBrosGameDialog manages all NsanaBrosGameWidgets
-struct NsanaBrosGameDialog : public boost::noncopyable
+struct NsanaBrosGameDialog
 {
-  NsanaBrosGameDialog(const NsanaBrosOptions * const options);
+  NsanaBrosGameDialog(const boost::shared_ptr<const NsanaBrosOptions> options);
+  NsanaBrosGameDialog(const NsanaBrosGameDialog&) = delete;
+  NsanaBrosGameDialog& operator=(const NsanaBrosGameDialog&) = delete;
 
   private:
-  ~NsanaBrosGameDialog() {}
+  ~NsanaBrosGameDialog() noexcept;
   friend void boost::checked_delete<>(NsanaBrosGameDialog *);
 
 
-  boost::scoped_ptr<NsanaBrosGameArea2dWidget> m_area;
-  boost::scoped_ptr<NsanaBrosKeysWidget> m_keys;
-  const NsanaBrosOptions * const m_options;
+  boost::shared_ptr<NsanaBrosGameArea2dWidget> m_area;
+  boost::shared_ptr<NsanaBrosKeysWidget> m_keys;
+  const boost::shared_ptr<const NsanaBrosOptions> m_options;
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // NSANABROSGAMEDIALOG_H

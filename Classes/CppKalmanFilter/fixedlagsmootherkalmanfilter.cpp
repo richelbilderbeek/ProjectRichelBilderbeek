@@ -160,12 +160,12 @@ const boost::shared_ptr<const ribi::kalman::FixedLagSmootherKalmanFilterParamete
 }
 
 
-const std::string ribi::kalman::FixedLagSmootherKalmanFilter::GetVersion()
+std::string ribi::kalman::FixedLagSmootherKalmanFilter::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::FixedLagSmootherKalmanFilter::GetVersionHistory()
+std::vector<std::string> ribi::kalman::FixedLagSmootherKalmanFilter::GetVersionHistory() noexcept
 {
   return {
     "2013-05-03: version 1.0: initial version"
@@ -300,7 +300,7 @@ void ribi::kalman::FixedLagSmootherKalmanFilter::SupplyMeasurementAndInput(
 }
 
 #ifndef NDEBUG
-void ribi::kalman::FixedLagSmootherKalmanFilter::Test()
+void ribi::kalman::FixedLagSmootherKalmanFilter::Test() noexcept
 {
   {
     static bool is_tested = false;

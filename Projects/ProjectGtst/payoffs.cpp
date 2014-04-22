@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 //---------------------------------------------------------------------------
 ribi::gtst::Payoffs::Payoffs()
+  : m_v{}
 {
 
 }

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,10 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtregextestermenudialog.h"
-
 
 #include <cassert>
 #include <string>
@@ -41,6 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "regextesterqtmaindialog.h"
 #include "trace.h"
 #include "ui_qtregextestermenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtRegexTesterMenuDialog::QtRegexTesterMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
@@ -53,19 +53,17 @@ ribi::QtRegexTesterMenuDialog::QtRegexTesterMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtRegexTesterMenuDialog::~QtRegexTesterMenuDialog()
+ribi::QtRegexTesterMenuDialog::~QtRegexTesterMenuDialog() noexcept
 {
   delete ui;
 }
 
 void ribi::QtRegexTesterMenuDialog::on_button_about_clicked()
 {
-  const About a = RegexTesterMenuDialog::GetAbout();
-  this->hide();
+  const About a = RegexTesterMenuDialog().GetAbout();
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtRegexTesterMenuDialog::on_button_quit_clicked()
@@ -111,7 +109,7 @@ void ribi::QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtRegexTesterMenuDialog::Test()
+void ribi::QtRegexTesterMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

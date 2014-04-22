@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
-//---------------------------------------------------------------------------
+
 #include "administratordialog.h"
 #include "administratordialogstateloggedin.h"
 #include "administratordialogstatenotloggedin.h"
@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "wtserverpusher.h"
 #include "wtselectfiledialog.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::AdministratorDialogStateNotLoggedIn::AdministratorDialogStateNotLoggedIn(
   Server * const server,
   AdministratorDialog * const dialog)
@@ -42,7 +42,7 @@ ribi::gtst::AdministratorDialogStateNotLoggedIn::AdministratorDialogStateNotLogg
 {
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialogStateNotLoggedIn::OnPassword()
 {
   assert(!GetDialog()->CanGetAdministrator() && "Assume no administrator yet");
@@ -59,12 +59,12 @@ void ribi::gtst::AdministratorDialogStateNotLoggedIn::OnPassword()
     WtServerPusher::GetInstance()->Post();
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialogStateNotLoggedIn::OnTimer()
 {
   //Do exactly nothing...
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialogStateNotLoggedIn::ShowPage(AdministratorDialog * const dialog)
 {
   assert(dialog);
@@ -90,4 +90,4 @@ void ribi::gtst::AdministratorDialogStateNotLoggedIn::ShowPage(AdministratorDial
     this,&ribi::gtst::AdministratorDialogStateNotLoggedIn::OnPassword);
 
 }
-//---------------------------------------------------------------------------
+

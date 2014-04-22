@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>TemplateFunctionExample3</title>
   <meta name="description" content="C++ TemplateFunctionExample3"/>
-  <meta name="keywords" content="C++ TemplateFunctionExample3 code snippet"/>
+  <meta name="keywords" content="C++ TemplateFunctionExample3 "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,20 +21,15 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppTemplateFunctionExample3.htm">TemplateFunctionExample3</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppTemplateFunctionExample3-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -46,33 +41,46 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppTemplateFunctionExample3.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppTemplateFunctionExample3/CppTemplateFunctionExample3.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppTemplateFunctionExample3.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<table summary="./CppTemplateFunctionExample3/CppTemplateFunctionExample3.pro" border = "1"><tr><td><code>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
-<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;data.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;data.h<br/>
+<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG<br/>
+}<br/>
+<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -80,10 +88,10 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>data.h</h2>
+<h2>./CppTemplateFunctionExample3/data.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="data.h" border = "1"><tr><td><code>
+<table summary="./CppTemplateFunctionExample3/data.h" border = "1"><tr><td><code>
 <a href="CppIfndef.htm">#ifndef</a> DATA_H<br/>
 <a href="CppDefine.htm">#define</a> DATA_H<br/>
 <br/>
@@ -91,16 +99,16 @@ CONFIG -= qt<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Data<br/>
 {<br/>
-&nbsp;&nbsp;Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
+&nbsp;&nbsp;Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d, <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s);<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_int;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_<b><a href="CppDouble.htm">double</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_string;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_string;<br/>
 };<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt; <b><a href="CppConst.htm">const</a></b> T&amp; Get(<b><a href="CppConst.htm">const</a></b> Data&amp;);<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d);<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d);<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; Get&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d);<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; Get&lt;<a href="CppStdString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d);<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DATA_H<br/>
 </code></td></tr></table>
@@ -110,25 +118,25 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>data.cpp</h2>
+<h2>./CppTemplateFunctionExample3/data.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="data.cpp" border = "1"><tr><td><code>
+<table summary="./CppTemplateFunctionExample3/data.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> "data.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d, <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s)<br/>
 &nbsp;&nbsp;: m_int(i), m_<b><a href="CppDouble.htm">double</a></b>(d), m_string(s)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_int);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_<b><a href="CppDouble.htm">double</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<a href="CppString.htm">std::string</a>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_string);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorEqual.htm">==</a> m_int);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorEqual.htm">==</a> m_<b><a href="CppDouble.htm">double</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<a href="CppStdString.htm">std::string</a>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorEqual.htm">==</a> m_string);<br/>
 }<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d) { <b><a href="CppReturn.htm">return</a></b> d.m_int; }<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d) { <b><a href="CppReturn.htm">return</a></b> d.m_<b><a href="CppDouble.htm">double</a></b>; }<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; Get&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d) { <b><a href="CppReturn.htm">return</a></b> d.m_string; }<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; Get&lt;<a href="CppStdString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d) { <b><a href="CppReturn.htm">return</a></b> d.m_string; }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -136,10 +144,10 @@ Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppTemplateFunctionExample3/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./CppTemplateFunctionExample3/main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -150,9 +158,9 @@ Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> 123.456;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Data d(42,x,"<a href="CppHelloWorld.htm">Hello world</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(d) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 42);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(d) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> x);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<a href="CppString.htm">std::string</a>&gt;(d) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppHelloWorld.htm">Hello world</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(d) <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(d) <a href="CppOperatorEqual.htm">==</a> x);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<a href="CppStdString.htm">std::string</a>&gt;(d) <a href="CppOperatorEqual.htm">==</a> "<a href="CppHelloWorld.htm">Hello world</a>");<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

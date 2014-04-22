@@ -30,13 +30,13 @@ namespace ribi {
 
 struct PauseMenuDialog
 {
-  static void Execute(const int argc, const char * const argv[]);
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static void Execute(const int argc, const char * const argv[]) noexcept;
+  static const About GetAbout() noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
-  static void Wait(const double n_secs);
+  static void Wait(const double n_secs) noexcept;
 };
 
 } //~namespace ribi

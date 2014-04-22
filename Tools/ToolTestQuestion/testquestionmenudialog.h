@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,29 +21,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTQUESTIONMENUDIALOG_H
 #define TESTQUESTIONMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-///The logic behind the menu dialog
-struct TestQuestionMenuDialog
+struct TestQuestionMenuDialog : public MenuDialog
 {
   ///Creates the resources needed
   TestQuestionMenuDialog();
 
-  ///Obtain the about information
-  ///
-  ///\note
-  ///This is a non-static method, to ensure users of this class
-  ///call TestQuestionMenuDialog its constructor: this is where
-  ///the resources needed are created
-  const About GetAbout() const;
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version
-  static const std::string GetVersion();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

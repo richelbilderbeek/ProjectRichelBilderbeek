@@ -1,0 +1,1 @@
+<?php$i = 123;var_dump($i);$x = 123.456;var_dump($x);$v = array(1,2,3);var_dump($v);$w = array(1.2,2.3,3.4);var_dump($w);/* Screen output:int(123)float(123.456)array(3) {  [0]=>  int(1)  [1]=>  int(2)  [2]=>  int(3)}array(3) {  [0]=>  float(1.2)  [1]=>  float(2.3)  [2]=>  float(3.4)}*/?>

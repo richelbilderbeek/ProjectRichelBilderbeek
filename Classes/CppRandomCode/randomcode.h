@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RandomCode, class to generate random C++ code
-Copyright (C) 2007  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef RANDOMCODE_H
 #define RANDOMCODE_H
 
+#include "about.h"
 #include <string>
 #include <vector>
 
@@ -29,14 +30,13 @@ namespace ribi {
 
 struct RandomCode
 {
-  static const std::vector<std::string> CreateRandomCode();
-  static const std::vector<std::string> GetAbout();
-  static const std::vector<std::string> GetLicence();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> CreateRandomCode() noexcept;
+  static About GetAbout() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
   private:
-  static const std::string CreateRandomLine(const unsigned int length);
-  static const std::string CreateRandomString();
+  static std::string CreateRandomLine(const unsigned int length) noexcept;
+  static std::string CreateRandomString() noexcept;
 };
 
 } //~namespace ribi

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtArrowItem, an arrow QGraphicsItem
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,12 +25,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QGraphicsLineItem>
 #include <QPen>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -50,47 +51,47 @@ struct QtArrowItem : public QGraphicsLineItem
     QGraphicsItem* parent = 0);
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is there an arrow at the 'to' point (x2,y2)?
-  bool HasHead() const { return m_head; }
+  bool HasHead() const noexcept { return m_head; }
 
   ///Is there an arrow at the 'from' point (x1,y1)?
-  bool HasTail() const { return m_tail; }
+  bool HasTail() const noexcept { return m_tail; }
 
   ///Respond to key presses
   void keyPressEvent(QKeyEvent *event);
 
   ///Set the distance in pixels the user is allowed to be distance from the
   ///arrow head/tail to change it
-  void SetArrowHeadClickingDistance(const double manhattan_distance);
+  void SetArrowHeadClickingDistance(const double manhattan_distance) noexcept;
 
   ///Set the pen used to show focus
-  void SetFocusPen(const QPen& pen) { m_focus_pen = pen; }
+  void SetFocusPen(const QPen& pen) noexcept { m_focus_pen = pen; }
 
   ///Set if the arrow has a point at the head
-  void SetHasHead(const bool has_head) { m_head = has_head; }
+  void SetHasHead(const bool has_head) noexcept { m_head = has_head; }
 
   ///Set if the arrow has a point at the tail
-  void SetHasTail(const bool has_tail) { m_tail = has_tail; }
+  void SetHasTail(const bool has_tail) noexcept { m_tail = has_tail; }
 
   ///Set the position of the head
-  void SetHeadPos(const double x, const double y);
+  void SetHeadPos(const double x, const double y) noexcept;
 
   ///Set the regular pen used to draw the arrow
-  void SetPen(const QPen& pen) { m_pen = pen; }
+  void SetPen(const QPen& pen) noexcept { m_pen = pen; }
 
   ///Set the position of the tail
-  void SetTailPos(const double x, const double y);
+  void SetTailPos(const double x, const double y) noexcept;
 
   ///Signal emitted when this item has changed and the scene needs to be updated
   boost::signals2::signal<void (This*)> m_signal_item_requests_scene_update;
 
 protected:
-  virtual ~QtArrowItem() {}
+  virtual ~QtArrowItem() noexcept {}
 
   QRectF boundingRect() const;
   virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
@@ -120,14 +121,9 @@ private:
   ///Show arrow at tail
   bool m_tail;
 
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy);
-
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
 namespace c2h {
 
 ///Defines the header of the resulting HTML page
@@ -47,9 +48,13 @@ struct TechInfo
   explicit TechInfo(const std::vector<std::string>& profile_filenames);
 
   ///Convert the TechInfo to HTML
-  const std::vector<std::string> ToHtml() const;
+  std::vector<std::string> ToHtml() const;
 
   private:
+  ~TechInfo() noexcept {}
+  friend void boost::checked_delete<>(TechInfo*);
+  friend void boost::checked_delete<>(const TechInfo*);
+
   ///The application types for this project
   std::set<ApplicationType> m_application_types;
   ///The compiler used for this project
@@ -66,6 +71,7 @@ struct TechInfo
   std::set<Standard> m_standards;
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLTECHNICALINFO_H

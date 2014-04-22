@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ShinyButton, toggle button class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
@@ -39,24 +40,24 @@ struct ShinyButton
   explicit ShinyButton(
     const double color,
     const double gradient,
-    const std::string& text = "");
+    const std::string& text = "") noexcept;
 
   ///Get the main color (the color in the middle) of the ShinyButton
-  double GetColor() const { return m_color; }
+  double GetColor() const noexcept { return m_color; }
 
   ///Get the change of gradient on the ShinyButton.
   ///The difference in color between the left and right of the ShinyButton
-  double GetGradient() const { return m_gradient; }
+  double GetGradient() const noexcept { return m_gradient; }
 
-  const std::string& GetText() const { return m_text; }
+  const std::string& GetText() const noexcept { return m_text; }
 
   ///Set the ShinyButton its color
   void SetColor(
     const double color,
-    const double gradient);
+    const double gradient) noexcept;
 
   ///Set the ShinyButton its text
-  void SetText(const std::string& text);
+  void SetText(const std::string& text) noexcept;
 
   ///The signal that is emitted when ShinyButton changes color
   mutable boost::signals2::signal<void ()> m_signal_color_changed;
@@ -66,7 +67,7 @@ struct ShinyButton
 
   private:
   //ShinyButton can only be deleted by Boost smart pointers
-  virtual ~ShinyButton() {}
+  virtual ~ShinyButton() noexcept {}
   //ShinyButton can only be deleted by Boost smart pointers
   friend void boost::checked_delete<>(ShinyButton*);
 
@@ -88,14 +89,14 @@ struct ShinyButton
   ///The text displayed by the ShinyButton
   std::string m_text;
 
-  friend std::ostream& operator<<(std::ostream& os, const ShinyButton& button);
+  friend std::ostream& operator<<(std::ostream& os, const ShinyButton& button) noexcept;
 
   public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const ShinyButton& button);
+std::ostream& operator<<(std::ostream& os, const ShinyButton& button) noexcept;
 
 } //~namespace ribi
 

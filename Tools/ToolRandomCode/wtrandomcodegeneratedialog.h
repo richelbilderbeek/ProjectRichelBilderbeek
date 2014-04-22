@@ -36,6 +36,8 @@ namespace ribi {
 struct WtRandomCodeGenerateDialog : public Wt::WContainerWidget
 {
   WtRandomCodeGenerateDialog();
+  WtRandomCodeGenerateDialog(const WtRandomCodeGenerateDialog&) = delete;
+  WtRandomCodeGenerateDialog& operator=(const WtRandomCodeGenerateDialog&) = delete;
   private:
   Wt::WPushButton * const m_button_generate;
   Wt::WTextArea * const m_text_area;

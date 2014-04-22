@@ -15,12 +15,16 @@ class QtSearchAndDestroyChessGameDialog : public QtHideAndShowDialog
 
 public:
   explicit QtSearchAndDestroyChessGameDialog(QWidget *parent = 0);
-  ~QtSearchAndDestroyChessGameDialog();
+  QtSearchAndDestroyChessGameDialog(const QtSearchAndDestroyChessGameDialog&) = delete;
+  QtSearchAndDestroyChessGameDialog& operator=(const QtSearchAndDestroyChessGameDialog&) = delete;
+  ~QtSearchAndDestroyChessGameDialog() noexcept;
 
 private:
   Ui::QtSearchAndDestroyChessGameDialog *ui;
 
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

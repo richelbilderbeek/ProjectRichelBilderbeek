@@ -19,9 +19,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppWtAutoConfig.htm
 //---------------------------------------------------------------------------
 #include <algorithm>
+#include <cassert>
 #include <fstream>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
 
@@ -29,8 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WEnvironment>
 
 #include "wtautoconfig.h"
-
-#include <cassert>
+#pragma GCC diagnostic pop
 
 ribi::WtAutoConfig::WtAutoConfig(
   const int argc, char ** const argv,const FunctionType function)
@@ -48,10 +51,10 @@ const std::string ribi::WtAutoConfig::GetVersion()
 
 const std::vector<std::string> ribi::WtAutoConfig::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-16: version 1.0: initial version");
-  v.push_back("2011-04-18: version 1.1: added CreateDefaultStylesheet and SaveDefaultStylesheet methods");
-  return v;
+  return {
+    "2011-04-16: version 1.0: initial version",
+    "2011-04-18: version 1.1: added CreateDefaultStylesheet and SaveDefaultStylesheet methods"
+  };
 }
 
 int ribi::WtAutoConfig::Run()

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,56 +19,56 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtboenkenmenudialog.h"
 
 #include <cassert>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
+
 #include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/timer.hpp>
-#pragma GCC diagnostic pop
 
 #include "boenkenmenudialog.h"
 #include "boenkenarenasettings.h"
-#include "boenkengame.h"
+#include "qtboenkengame.h"
 #include "qtaboutdialog.h"
 #include "qtboenkenarenadialog.h"
 #include "qtboenkencontrolsdialog.h"
 #include "qtboenkenmaindialog.h"
 #include "qtboenkenplayersdialog.h"
-#include "boenkenspriteball.h"
-#include "boenkenspritemoving.h"
-#include "boenkenspritenonmoving.h"
-#include "boenkenspriteplayer.h"
+#include "qtboenkenspriteball.h"
+#include "qtboenkenspritemoving.h"
+#include "qtboenkenspritenonmoving.h"
+#include "qtboenkenspriteplayer.h"
+#include "trace.h"
 #include "ui_qtboenkenmenudialog.h"
 
-ribi::QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtBoenkenMenuDialog),
-  m_controls(new QtBoenkenControlsDialog),
-  m_players( new QtBoenkenPlayersDialog),
-  m_arena(new QtBoenkenArenaDialog)
+#pragma GCC diagnostic pop
 
+ribi::QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtBoenkenMenuDialog),
+    m_controls(new QtBoenkenControlsDialog),
+    m_players( new QtBoenkenPlayersDialog),
+    m_arena(new QtBoenkenArenaDialog)
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
-  QObject::connect(ui->button_set_controls,SIGNAL(clicked()),this,SLOT(onControlsClick()));
-  QObject::connect(ui->button_set_players,SIGNAL(clicked()),this,SLOT(onPlayersClick()));
-  QObject::connect(ui->button_set_arena,SIGNAL(clicked()),this,SLOT(onArenaClick()));
-  QObject::connect(ui->button_start,SIGNAL(clicked()),this,SLOT(onStartClick()));
-  QObject::connect(ui->button_train,SIGNAL(clicked()),this,SLOT(onTrainClick()));
-  QObject::connect(ui->button_about,SIGNAL(clicked()),this,SLOT(onAboutClick()));
-  QObject::connect(ui->button_quit,SIGNAL(clicked()),this,SLOT(close()));
+  QObject::connect(ui->button_set_controls,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onControlsClick);
+  QObject::connect(ui->button_set_players ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onPlayersClick );
+  QObject::connect(ui->button_set_arena   ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onArenaClick   );
+  QObject::connect(ui->button_start       ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onStartClick   );
+  QObject::connect(ui->button_train       ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onTrainClick   );
+  QObject::connect(ui->button_about       ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onAboutClick   );
+  QObject::connect(ui->button_quit        ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::close          );
 }
 
-ribi::QtBoenkenMenuDialog::~QtBoenkenMenuDialog()
+ribi::QtBoenkenMenuDialog::~QtBoenkenMenuDialog() noexcept
 {
   delete ui;
 }
@@ -261,23 +261,17 @@ const std::vector<boost::shared_ptr<ribi::Boenken::SpriteNonMoving> > ribi::QtBo
 
 void ribi::QtBoenkenMenuDialog::onControlsClick()
 {
-  this->hide();
-  this->m_controls->exec();
-  this->show();
+  this->ShowChild(m_controls.get());
 }
 
 void ribi::QtBoenkenMenuDialog::onPlayersClick()
 {
-  this->hide();
-  this->m_players->exec();
-  this->show();
+  this->ShowChild(m_players.get());
 }
 
 void ribi::QtBoenkenMenuDialog::onArenaClick()
 {
-  this->hide();
-  this->m_arena->exec();
-  this->show();
+  this->ShowChild(m_arena.get());
 }
 
 void ribi::QtBoenkenMenuDialog::onStartClick()
@@ -312,7 +306,7 @@ void ribi::QtBoenkenMenuDialog::onTrainClick()
   for (int i=0; i!=1000; ++i)
   {
     d.show();
-    BOOST_FOREACH(const boost::shared_ptr<Boenken::SpritePlayer>& p,players)
+    for(const boost::shared_ptr<Boenken::SpritePlayer>& p: players)
     {
       p->Accelerate();
       p->TurnRight();
@@ -325,20 +319,20 @@ void ribi::QtBoenkenMenuDialog::onTrainClick()
 
 void ribi::QtBoenkenMenuDialog::onAboutClick()
 {
-  About a = Boenken::MenuDialog::GetAbout();
+  About a = Boenken::MenuDialog().GetAbout();
   QtAboutDialog d(a);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtBoenkenMenuDialog::Test()
+#ifndef NDEBUG
+void ribi::QtBoenkenMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::QtBoenkenMenuDialog::Test");
   {
 
     Boenken::ArenaSettings a;
@@ -355,5 +349,6 @@ void ribi::QtBoenkenMenuDialog::Test()
     assert(b);
     QtBoenkenMainDialog d(0,b);
   }
+  TRACE("Finished ribi::QtBoenkenMenuDialog::Test successfully");
 }
-
+#endif

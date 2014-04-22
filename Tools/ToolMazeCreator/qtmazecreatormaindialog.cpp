@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MazeCreator, creates a maze and displays it on screen.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolMazeCreator.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtmazecreatormaindialog.h"
 
 #include <cassert>
@@ -34,10 +34,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QTimer>
 
+#include "trace.h"
 #include "ui_qtmazecreatormaindialog.h"
+#pragma GCC diagnostic pop
 
-QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
-    QDialog(parent,Qt::Window),
+ribi::QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtMazeCreatorMainDialog),
     m_scene(new QGraphicsScene),
     m_background(new QGraphicsPixmapItem),
@@ -45,6 +47,9 @@ QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
     m_maze_sz(7),
     m_rotation(0.0)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->graphicsView->setScene(m_scene.get());
   m_scene->addItem(m_background.get());
@@ -66,13 +71,13 @@ QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtMazeCreatorMainDialog::~QtMazeCreatorMainDialog()
+ribi::QtMazeCreatorMainDialog::~QtMazeCreatorMainDialog() noexcept
 {
   delete ui;
 }
 
 //Sets the scale of the maze
-void QtMazeCreatorMainDialog::resizeEvent(QResizeEvent*)
+void ribi::QtMazeCreatorMainDialog::resizeEvent(QResizeEvent*)
 {
   const double scale
     = 0.9 * std::min(ui->graphicsView->width(),ui->graphicsView->height())
@@ -80,7 +85,7 @@ void QtMazeCreatorMainDialog::resizeEvent(QResizeEvent*)
   m_background->setScale(scale);
 }
 
-void QtMazeCreatorMainDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtMazeCreatorMainDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->type() == QEvent::KeyPress)
   {
@@ -104,7 +109,7 @@ void QtMazeCreatorMainDialog::keyPressEvent(QKeyEvent* event)
   }
 }
 
-void QtMazeCreatorMainDialog::drawMaze()
+void ribi::QtMazeCreatorMainDialog::drawMaze()
 {
   const int size = static_cast<int>(m_maze_sz);
   //Prepare a pixmap of right size
@@ -148,17 +153,17 @@ void QtMazeCreatorMainDialog::drawMaze()
   m_background->setPixmap(m_background->pixmap().fromImage(i));
 }
 
-void QtMazeCreatorMainDialog::onTimer()
+void ribi::QtMazeCreatorMainDialog::onTimer()
 {
   m_rotation+=1.0;
   m_background->setRotation(m_rotation);
 }
-//---------------------------------------------------------------------------
+
 //Creates a maze
 // 0 : path
 // 1 : wall
 //From http://www.richelbilderbeek.nl/CppCreateMaze.htm
-const std::vector<std::vector<int> > QtMazeCreatorMainDialog::CreateMaze(const int sz)
+const std::vector<std::vector<int> > ribi::QtMazeCreatorMainDialog::CreateMaze(const int sz)
 {
   //Assume correct size dimensions
   assert( sz > 4 && sz % 4 == 3
@@ -222,3 +227,16 @@ const std::vector<std::vector<int> > QtMazeCreatorMainDialog::CreateMaze(const i
   }
   return maze;
 }
+
+#ifndef NDEBUG
+void ribi::QtMazeCreatorMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtMazeCreatorMainDialog::Test");
+  TRACE("Finished ribi::QtMazeCreatorMainDialog::Test successfully");
+}
+#endif

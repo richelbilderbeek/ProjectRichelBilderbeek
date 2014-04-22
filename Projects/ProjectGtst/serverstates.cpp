@@ -33,7 +33,10 @@ ribi::gtst::ServerStates::ServerStates(
   Server * const server,
   boost::shared_ptr<const Parameters> parameters,
   LogFile * const log)
-  : m_i(0), m_log(log)
+  : m_i(0),
+    m_log(log),
+    m_n_cycles{},
+    m_v{}
 {
   assert(parameters);
   assert(m_log);

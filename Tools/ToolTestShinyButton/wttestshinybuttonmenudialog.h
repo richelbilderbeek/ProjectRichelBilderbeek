@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTSHINYBUTTONMENUDIALOG_H
 #define WTTESTSHINYBUTTONMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 
 namespace ribi {

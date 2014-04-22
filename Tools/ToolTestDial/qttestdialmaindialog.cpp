@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestDial, tool to test the Dial and DialWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,27 +18,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestDial.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestdialmaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "dial.h"
 #include "dialwidget.h"
 #include "qtaboutdialog.h"
 #include "qtdialwidget.h"
 #include "rainbow.h"
+#include "textcanvas.h"
+#include "trace.h"
 #include "ui_qttestdialmaindialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestDialMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->dial->GetWidget()->GetDial()->m_signal_color_changed.connect(
@@ -55,12 +59,23 @@ ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) :
   DisplayDialValue();
 }
 
-ribi::QtTestDialMainDialog::~QtTestDialMainDialog()
+ribi::QtTestDialMainDialog::~QtTestDialMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestDialMainDialog::DisplayDialColor()
+void ribi::QtTestDialMainDialog::DisplayDialAsText() noexcept
+{
+  const int radius { ui->box_radius->value() };
+  const boost::shared_ptr<TextCanvas> canvas {
+    ui->dial->GetWidget()->ToTextCanvas(radius)
+  };
+  std::string s;
+  for (const std::string t: canvas->ToStrings()) { s += (t + '\n'); }
+  ui->text->setPlainText(s.c_str());
+}
+
+void ribi::QtTestDialMainDialog::DisplayDialColor() noexcept
 {
   //Check
   const unsigned char r = ui->dial->GetWidget()->GetDial()->GetRed();
@@ -68,25 +83,26 @@ void ribi::QtTestDialMainDialog::DisplayDialColor()
   const unsigned char b = ui->dial->GetWidget()->GetDial()->GetBlue();
 
   const std::string text
-    = std::string("Color: (")
+    = "Color: ("
     + boost::lexical_cast<std::string>(boost::numeric_cast<int>(r))
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(boost::numeric_cast<int>(g))
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(boost::numeric_cast<int>(b))
-    + std::string(") (RGB)");
+    + ") (RGB)";
   ui->label_color->setText(text.c_str());
 }
 
-void ribi::QtTestDialMainDialog::DisplayDialValue()
+void ribi::QtTestDialMainDialog::DisplayDialValue() noexcept
 {
   const std::string s
-    = std::string("Dial angle: ")
+    = "Dial angle: "
     + boost::lexical_cast<std::string>(ui->dial->GetWidget()->GetDial()->GetPosition());
   ui->label_angle->setText(s.c_str());
+  DisplayDialAsText();
 }
 
-void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */)
+void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */) noexcept
 {
   //Set the color
   const double min = boost::numeric_cast<double>(ui->dial_color->minimum());
@@ -104,4 +120,22 @@ void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */)
     boost::numeric_cast<int>(g * 255.0),
     boost::numeric_cast<int>(b * 255.0));
 
+}
+
+#ifndef NDEBUG
+void ribi::QtTestDialMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestDialMainDialog::Test");
+  TRACE("Finished ribi::QtTestDialMainDialog::Test successfully");
+}
+#endif
+
+void ribi::QtTestDialMainDialog::on_box_radius_valueChanged(int)
+{
+  DisplayDialAsText();
 }

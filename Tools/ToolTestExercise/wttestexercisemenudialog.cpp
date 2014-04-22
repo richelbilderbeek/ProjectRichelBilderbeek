@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestExercise.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <cassert>
 //---------------------------------------------------------------------------
 #include <boost/filesystem.hpp>
@@ -43,7 +45,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtquestiondialog.h"
 //---------------------------------------------------------------------------
 #include <QFile>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
+
 ribi::WtTestExerciseMenuDialog::WtTestExerciseMenuDialog()
   : m_dialog(new TestExerciseMenuDialog)
 {

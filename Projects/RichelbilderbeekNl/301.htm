@@ -63,33 +63,33 @@
 <!-- start of code -->
 <table summary="ProjectRampalTest.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
 #Disallow release version<br/>
-#CONFIG&nbsp;&nbsp; += debug<br/>
-#CONFIG&nbsp;&nbsp; -= release<br/>
+#<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += debug<br/>
+#<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= release<br/>
 #Under Windows, under release mode, add this dumb config,<br/>
 #otherwise, it will still be in debug mode (beats me why)<br/>
-CONFIG -= debug<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= debug<br/>
 #Message showing what the application is thinking<br/>
-unix: CONFIG(debug&nbsp;&nbsp;,debug|release):message("Building Ubuntu debug")<br/>
-unix: CONFIG(release,debug|release):message("Building Ubuntu release: SHOULD NOT HAPPEN")<br/>
-win32:CONFIG(debug&nbsp;&nbsp;,debug|release):message("Building Windows debug")<br/>
-win32:CONFIG(release,debug|release):message("Building Windows release: SHOULD NOT HAPPEN")<br/>
+unix: <a href="CppQmakeConfig.htm">CONFIG</a>(debug&nbsp;&nbsp;,debug|release):message("Building Ubuntu debug")<br/>
+unix: <a href="CppQmakeConfig.htm">CONFIG</a>(release,debug|release):message("Building Ubuntu release: SHOULD NOT HAPPEN")<br/>
+win32:<a href="CppQmakeConfig.htm">CONFIG</a>(debug&nbsp;&nbsp;,debug|release):message("Building Windows debug")<br/>
+win32:<a href="CppQmakeConfig.htm">CONFIG</a>(release,debug|release):message("Building Windows release: SHOULD NOT HAPPEN")<br/>
 #Application name<br/>
 #Debug flag for keeping/removing <a href="CppAssert.htm">assert</a><br/>
-CONFIG(release,debug|release):DEFINES += NDEBUG<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release,debug|release):<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG<br/>
 #Add the path of the BigInt library and <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a><br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> +=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> +=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppBinaryNewickVector.htm">CppBinaryNewickVector</a>&nbsp;&nbsp;\<br/>
 &nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppNewick.htm">CppNewick</a>&nbsp;&nbsp;\<br/>
 &nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppStopwatch.htm">CppStopwatch</a> \<br/>
 &nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30<br/>
 #<a href="CppLibrary.htm">Libraries</a><br/>
-win32:<a href="CppLIBS.htm">LIBS</a> += C:/Qt/2010.02.1/qt/lib/libboost_filesystem.lib<br/>
-unix:<a href="CppLIBS.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_filesystem</a><br/>
+win32:<a href="CppQmakeLibs.htm">LIBS</a> += C:/Qt/2010.02.1/qt/lib/libboost_filesystem.lib<br/>
+unix:<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_filesystem</a><br/>
 #Using BigInt library by including its source<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogrampaltest.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ProjectRampalTest.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;test.cpp \<br/>
@@ -100,7 +100,7 @@ unix:<a href="CppLIBS.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_files
 &nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30/BigUnsigned.cc \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30/BigUnsignedInABase.cc \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppNewick.htm">CppNewick</a>/<a href="CppNewick.htm">newick</a>.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;test.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogrampaltest.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppBinaryNewickVector.htm">CppBinaryNewickVector</a>/<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h \<br/>
@@ -108,7 +108,7 @@ unix:<a href="CppLIBS.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_files
 &nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="CppClass.htm">Classes</a>/<a href="CppNewick.htm">CppNewick</a>/<a href="CppNewick.htm">newick</a>.h<br/>
 <a href="CppFORMS.htm">FORMS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogrampaltest.ui<br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ProjectRampal.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -144,7 +144,7 @@ unix:<a href="CppLIBS.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_files
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;" failed\n on line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"\n in file "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__FILE__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__<a href="CppCfile.htm">FILE</a>__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("<a href="CppAssert.htm">assert</a>_out.txt");&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
@@ -153,7 +153,7 @@ unix:<a href="CppLIBS.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_files
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;" failed\n on line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"\n in file "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__FILE__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__<a href="CppCfile.htm">FILE</a>__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;f.close();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppExit.htm">std::exit</a>(1234);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
@@ -197,7 +197,7 @@ unix:<a href="CppLIBS.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_files
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"\' line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;" in file '"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__FILE__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__<a href="CppCfile.htm">FILE</a>__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"': "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a> (x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
@@ -210,7 +210,7 @@ unix:<a href="CppLIBS.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_files
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"\' line "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;(__LINE__)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;" in file '"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__FILE__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;__<a href="CppCfile.htm">FILE</a>__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"': "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a> (x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;"'"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \<br/>
@@ -235,7 +235,7 @@ unix:<a href="CppLIBS.htm">LIBS</a> += <a href="CppFilesystem.htm">-lboost_files
 <a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> hdrstop<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("UnitFormAnalyse.cpp", FormAnalyse);<br/>
+USEFORM("UnitFormAnalyse<a href="CppImplementationFile.htm">.cpp</a>", FormAnalyse);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
@@ -442,7 +442,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 <a href="CppComment.htm">///</a>because its purpose is to test the code.<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;DialogRampalTest d;<br/>
@@ -514,12 +514,12 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>f: theta values from file 'test_thetas.txt'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>m: manual input of thetas<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "-m")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>1 <a href="CppOperatorEqual.htm">==</a> "-m")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;theta <a href="CppOperatorAssign.htm">=</a> AskUserForTheta();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (theta<a href="CppOperatorEqual.htm">==</a>0.0) <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "-r")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>1 <a href="CppOperatorEqual.htm">==</a> "-r")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;theta <a href="CppOperatorAssign.htm">=</a> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>() * 100.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -535,12 +535,12 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>m: manual input of <a href="CppNewick.htm">newick</a> strings<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>p: predefined <a href="CppNewick.htm">newick</a> strings<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>r: random <a href="CppNewick.htm">newick</a> strings<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "-m")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>2 <a href="CppOperatorEqual.htm">==</a> "-m")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> AskUserFor<a href="CppNewick.htm">Newick</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppNewick.htm">newick</a>.empty()) <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "-r")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argv</a>2 <a href="CppOperatorEqual.htm">==</a> "-r")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::CreateRandom<a href="CppNewick.htm">Newick</a>(7,7);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -929,7 +929,7 @@ DialogRampalTest::~DialogRampalTest()<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> ui-&gt;table-&gt;columnCount();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>-18 because of header column<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> (ui-&gt;table-&gt;width() <a href="CppOperatorMinus.htm">-</a> 18) <a href="CppOperatorDivide.htm">/</a> n_cols;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setColumnWidth(i,width);<br/>
 &nbsp;&nbsp;}<br/>
@@ -1083,10 +1083,10 @@ DialogRampalTest::~DialogRampalTest()<br/>
 <b><a href="CppInt.htm">int</a></b> DialogRampalTest::GetNumTestsChecked() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> cnt <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_ravindran-&gt;isChecked()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) <a href="CppOperatorPlus.htm">+</a>+cnt;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_end<a href="CppVersion.htm">version</a>2-&gt;isChecked()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) <a href="CppOperatorPlus.htm">+</a>+cnt;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_<a href="CppTwoDigitNewick.htm">twodigitnewick</a>_<a href="CppDebug.htm">debug</a>-&gt;isChecked()&nbsp;&nbsp;) <a href="CppOperatorPlus.htm">+</a>+cnt;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_<a href="CppTwoDigitNewick.htm">twodigitnewick</a>_release-&gt;isChecked()) <a href="CppOperatorPlus.htm">+</a>+cnt;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_ravindran-&gt;isChecked()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) <a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_end<a href="CppVersion.htm">version</a>2-&gt;isChecked()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) <a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_<a href="CppTwoDigitNewick.htm">twodigitnewick</a>_<a href="CppDebug.htm">debug</a>-&gt;isChecked()&nbsp;&nbsp;) <a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;box_<a href="CppTwoDigitNewick.htm">twodigitnewick</a>_release-&gt;isChecked()) <a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> cnt;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -1127,7 +1127,7 @@ DialogRampalTest::~DialogRampalTest()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.m_complexity).c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row, 4, i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+row;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>row;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -1786,7 +1786,7 @@ DialogRampalTest::~DialogRampalTest()<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; myVector;<br/>
 &nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(fileName.c_str());<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> myString;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,myString);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;myVector.push_back(myString);<br/>
@@ -1841,7 +1841,7 @@ DialogRampalTest::~DialogRampalTest()<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sys_error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(full_command.c_str());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> s.elapsed();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(result_filename));<br/>
@@ -1949,7 +1949,7 @@ DialogRampalTest::~DialogRampalTest()<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Test::Execute(exe_filename,command_full,output_filename);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Starting <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a><a href="CppDebug.htm">Debug</a> <b><a href="CppFor.htm">for</a></b> '"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename<br/>
@@ -1978,7 +1978,7 @@ DialogRampalTest::~DialogRampalTest()<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStopwatch.htm">Stopwatch</a> s;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sys_error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(command.c_str());<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> s.elapsed();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> result_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
@@ -2017,7 +2017,7 @@ DialogRampalTest::~DialogRampalTest()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "\"";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Test::Execute(exe_filename,command_full,output_filename);<br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Starting <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>Release <b><a href="CppFor.htm">for</a></b> '"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppNewick.htm">Newick</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename<br/>
@@ -2046,7 +2046,7 @@ DialogRampalTest::~DialogRampalTest()<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sys_error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(command.c_str());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sys_error <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> s.elapsed();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> result_filename <a href="CppOperatorAssign.htm">=</a> "Result_probability.txt";<br/>

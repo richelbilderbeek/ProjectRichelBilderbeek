@@ -4,8 +4,8 @@ TEMPLATE = app
 SOURCES += main.cpp
 QMAKE_CXXFLAGS += -Wall -Wextra -Werror
 
-INCLUDEPATH+= ../../Libraries/qwt-6.1.0/src
-LIBS+= -L../../Libraries/qwt-6.1.0/lib
+INCLUDEPATH+= ../../Libraries/qwt-6.1/src
+LIBS+= -L../../Libraries/qwt-6.1/lib
 
 CONFIG(release, debug|release) {
   message(Windows: Qwt: Linking to qwt)

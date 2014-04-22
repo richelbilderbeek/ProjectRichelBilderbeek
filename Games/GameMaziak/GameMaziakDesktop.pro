@@ -1,89 +1,27 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TEMPLATE = app
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
+#General, desktop
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    qtmain.cpp \
-    qtmaziakmenudialog.cpp \
-    qtmaziakmaindialog.cpp \
-    qtmaziakinstructionsdialog.cpp \
-    maziakmenudialog.cpp \
-    qtmaziakgameoverdialog.cpp \
-    qtmaziakgamewondialog.cpp
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
 
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    qtmaziakmenudialog.h \
-    qtmaziakmaindialog.h \
-    qtmaziakinstructionsdialog.h \
-    maziakmenudialog.h \
-    qtmaziakgameoverdialog.h \
-    qtmaziakgamewondialog.h
+#Specific, desktop
+include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
+include(../../Games/GameMaziak/GameMaziakDesktop.pri)
 
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtmaziakmenudialog.ui \
-    qtmaziakmaindialog.ui \
-    qtmaziakinstructionsdialog.ui \
-    qtmaziakgameoverdialog.ui \
-    qtmaziakgamewondialog.ui
-
-RESOURCES += \
-    gamemaziak.qrc
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
-CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-#
-#
-# Platform specific
-#
-#
-
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
-unix {
-  message(Unix)
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += ../../Libraries/boost_1_54_0
-}
+SOURCES += qtmain.cpp

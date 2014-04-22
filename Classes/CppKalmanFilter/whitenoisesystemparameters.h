@@ -20,42 +20,42 @@ struct WhiteNoiseSystemParameters
   WhiteNoiseSystemParameters(const WhiteNoiseSystemParameters&) = delete;
   WhiteNoiseSystemParameters& operator=(const WhiteNoiseSystemParameters&) = delete;
 
-  virtual ~WhiteNoiseSystemParameters() {}
+  virtual ~WhiteNoiseSystemParameters() noexcept {}
 
   ///The control matrix to determine the influence of the input (in GoToNextState)
-  const boost::numeric::ublas::matrix<double>& GetControl() const
+  const boost::numeric::ublas::matrix<double>& GetControl() const noexcept
     { return m_control; }
 
   ///Obtain the real initial state
-  const boost::numeric::ublas::vector<double>& GetInitialState() const
+  const boost::numeric::ublas::vector<double>& GetInitialState() const noexcept
     { return m_initial_state; }
 
   ///The real standard deviation of the noise in the state transition
   ///(used in WhiteNoiseSystem::GoToNextState)
-  const boost::numeric::ublas::vector<double>& GetProcessNoise() const
+  const boost::numeric::ublas::vector<double>& GetProcessNoise() const noexcept
     { return m_real_process_noise; }
 
   ///The real amount of noise in the system
   ///A noise of zero indicates a system that can be measured accurately to infinite precision
-  const boost::numeric::ublas::vector<double>& GetMeasurementNoise() const
+  const boost::numeric::ublas::vector<double>& GetMeasurementNoise() const noexcept
     { return m_real_measurement_noise; }
 
   ///The state transitions in the system
   ///(used in WhiteNoiseSystem::GoToNextState)
-  const boost::numeric::ublas::matrix<double>& GetStateTransition() const
+  const boost::numeric::ublas::matrix<double>& GetStateTransition() const noexcept
     { return m_state_transition; }
 
   ///Obtain the type as an enum
-  virtual WhiteNoiseSystemType GetType() const = 0;
+  virtual WhiteNoiseSystemType GetType() const noexcept = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Check two parameter sets for equality using a fuzzy comparison
-  static bool IsAboutEqual(const WhiteNoiseSystemParameters& lhs, const WhiteNoiseSystemParameters& rhs);
+  static bool IsAboutEqual(const WhiteNoiseSystemParameters& lhs, const WhiteNoiseSystemParameters& rhs) noexcept;
 
   protected:
   ///An ABC can only be constructed by derived classes

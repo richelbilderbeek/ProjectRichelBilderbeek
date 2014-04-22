@@ -19,58 +19,20 @@
 <p>&nbsp;</p>
 <h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQmake.htm">qmake</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppQmake.htm">qmake</a> helps to create makefiles for <a href="CppQt.htm">Qt Creator projects</a></p>
+<p>
+  <a href="CppQmake.htm">qmake</a> helps to create <a href="CppMakefile.htm">makefiles</a> 
+  for <a href="CppQt.htm">Qt Creator projects</a>
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example</h2>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
-<p>The example below shows how to build different versions (that is: debug and release) versions of a single version. 
-Note: the code layout does matter.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-#-------------------------------------------------<br/>
-#<br/>
-# Project created by QtCreator 2010-08-19T15:10:48<br/>
-#<br/>
-#-------------------------------------------------<br/>
-# THIS WORK CORRECTLY ONLY UNDER UBUNTU!<br/>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-CONFIG(debug, debug|release) {<br/>
-&nbsp;&nbsp;TARGET = MyProjectDebug<br/>
-&nbsp;&nbsp;message(Building debug version)<br/>
-<br/>
-} else {<br/>
-&nbsp;&nbsp;TARGET = MyProjectRelease<br/>
-&nbsp;&nbsp;DEFINES += NDEBUG<br/>
-&nbsp;&nbsp;message(Building release version)<br/>
-}<br/>
-LIBS += -L/usr/local/lib -lboost_regex<br/>
-LIBS += -L/usr/local/lib -lcln<br/>
-TEMPLATE = app<br/>
-SOURCES += main.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;newicks.cpp<br/>
-HEADERS += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;newicks.h<br/>
-FORMS += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;dialogabout.ui<br/>
-RESOURCES += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;resources.qrc<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>I know it sounds stupid, but under Windows, when you want to build a release version, you must explictly add:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-CONFIG&nbsp;&nbsp; += debug<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <a href="CppQmakeExample1.htm">qmake examples 1: different debug and release build</a>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -84,10 +46,28 @@ CONFIG&nbsp;&nbsp; += debug<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQmakeVariable.htm">qmake variables</a></h2>
+<h2><a href="CppQmakeFunction.htm">qmake function</a></h2>
 <p>&nbsp;</p>
-<p>For an overview of all <a href="CppQmakeVariable.htm">qmake variables</a>, go to the
-page about <a href="CppQmakeVariable.htm">qmake variables</a>.</p>
+<p>
+  For an overview of all <a href="CppQmakeFunction.htm">qmake functions</a>, go to the
+  page about <a href="CppQmakeFunction.htm">qmake functions</a>.
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQmakeVariable.htm">qmake variable</a></h2>
+<p>&nbsp;</p>
+<!--
+  Internal note: personally, I'd have called these 'qmake directives', but TrollTech
+  does name these variables, so variables it is
+-->
+<p>
+  For an overview of all <a href="CppQmakeVariable.htm">qmake variables</a> (personally,
+  I'd have called them 'qmake directives'), go to the
+  page about <a href="CppQmakeVariable.htm">qmake variables</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -95,8 +75,10 @@ page about <a href="CppQmakeVariable.htm">qmake variables</a>.</p>
 <p>&nbsp;</p>
 <h2><a href="CppQmakeArgument.htm">qmake arguments</a></h2>
 <p>&nbsp;</p>
-<p>To view where to put <a href="CppQmakeArgument.htm">qmake arguments</a>, go to the
-page about <a href="CppQmakeArgument.htm">qmake arguments</a>.</p>
+<p>
+  To view where to put <a href="CppQmakeArgument.htm">qmake arguments</a>, go to the
+  page about <a href="CppQmakeArgument.htm">qmake arguments</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -113,8 +95,25 @@ page about <a href="CppQmakeMkspec.htm">qmake mkspecs</a>.</p>
 <p>&nbsp;</p>
 <h2><a href="CppQmake.htm">qmake</a> source code</h2>
 <p>&nbsp;</p>
-<p>The <a href="CppQmake.htm">qmake</a> source code can be downloaded from the Qt gitorous repository,
+<p>The <a href="CppQmake.htm">qmake</a> source code can be downloaded from the Qt gitorious repository,
 in the folder '/qmake'.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQmake.htm">qmake</a> misc</h2>
+<p>&nbsp;</p>
+<p>
+  <li>
+    Create a <a href="CppVisualStudio.htm">Visual Studio</a> project file: 'qmake -tp vc myqtproject.pro'
+  </li>
+  <li>
+    Create a <a href="CppProjectFile.htm">Qt .pro file</a> from files in the folder: 'qmake -project'. Note:
+    on a Windows computer, use the MS-DOS command prompt for this, instead of the Git Bash: the Git Bash
+    will take its time to run out of memory and crash
+  </li>
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

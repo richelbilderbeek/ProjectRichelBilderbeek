@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 About, class for containing information about a program
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 #include <boost/version.hpp>
 
@@ -42,7 +43,7 @@ ribi::About::About(
     const std::string years,
     const std::string url,
     const std::string version,
-    const std::vector<std::string>& version_history)
+    const std::vector<std::string>& version_history) noexcept
   : m_author { author },
     m_file_title(file_title),
     m_file_description(file_description),
@@ -54,54 +55,54 @@ ribi::About::About(
     m_version_history(version_history)
 {
   AddLibrary(
-    std::string("About version: ")
+    "About version: "
     + GetAboutVersion());
   AddLibrary(
-    std::string("Boost version: ")
+    "Boost version: "
     + GetBoostVersion());
   AddLibrary(
-    std::string("STL version: ")
+    "STL version: "
     + GetStlVersion()
-    + std::string(" (GNU ISO C++ library)"));
+    + " (GNU ISO C++ library)");
 }
 
-void ribi::About::AddLibrary(const std::string& s)
+void ribi::About::AddLibrary(const std::string& s) noexcept
 {
   m_libraries.push_back(s);
   std::sort(m_libraries.begin(),m_libraries.end());
 }
 
-const std::vector<std::string> ribi::About::CreateAboutText() const
+std::vector<std::string> ribi::About::CreateAboutText() const noexcept
 {
   const std::vector<std::string> v
   {
-    m_file_title + std::string(", version ") + m_version,
-    std::string("Copyright (C) ") + m_years + std::string(" ") + m_author,
-    std::string("Programmed on ") + m_programmed_on,
-    std::string("by ") + m_author,
+    m_file_title + ", version " + m_version,
+    "Copyright (C) " + m_years + " " + m_author,
+    "Programmed on " + m_programmed_on,
+    "by " + m_author,
     "",
-    m_file_title + std::string(" can be downloaded from ") + m_url,
+    m_file_title + " can be downloaded from " + m_url,
     "Licenced under GPL 3.0"
   };
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateLibrariesUsedText() const
+std::vector<std::string> ribi::About::CreateLibrariesUsedText() const noexcept
 {
   std::vector<std::string> v;
   v.push_back("Libraries and classes used: ");
   for(const std::string& s: m_libraries)
   {
-    v.push_back(std::string(" * ") + s);
+    v.push_back(" * " + s);
   }
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateLicenceText() const
+std::vector<std::string> ribi::About::CreateLicenceText() const noexcept
 {
   std::vector<std::string> v {
-    m_file_title + std::string(", ") + m_file_description,
-    std::string("Copyright (C) ") + m_years + std::string(" ") + m_author,
+    m_file_title + ", " + m_file_description,
+    "Copyright (C) " + m_years + " " + m_author,
     "",
     "This program is free software: you can redistribute it and/or modify",
     "it under the terms of the GNU General Public License as published by",
@@ -118,24 +119,24 @@ const std::vector<std::string> ribi::About::CreateLicenceText() const
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateVersionHistory() const
+std::vector<std::string> ribi::About::CreateVersionHistory() const noexcept
 {
   std::vector<std::string> v;
   v.push_back("Version history:");
   v.push_back(" * YYYY-MM-DD: version X.Y: [description]");
   for(const std::string& s: m_version_history)
   {
-    v.push_back(std::string(" * ") + s);
+    v.push_back(" * " + s);
   }
   return v;
 }
 
-const std::string ribi::About::GetAboutVersion()
+std::string ribi::About::GetAboutVersion() noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
-const std::vector<std::string> ribi::About::GetAboutVersionHistory()
+std::vector<std::string> ribi::About::GetAboutVersionHistory() noexcept
 {
   return {
     "2011-01-07: version 1.0: initial version",
@@ -145,22 +146,23 @@ const std::vector<std::string> ribi::About::GetAboutVersionHistory()
     "2012-01-26: version 1.4: removed BOOST_FOREACH",
     "2013-04-29: version 1.5: added #ifdefs for GCC 4.4.0"
     "2013-09-05: version 1.6: transition to namespace ribi"
+    "2013-09-16: version 1.7: noexcept added"
   };
 }
 
-const std::string ribi::About::GetBoostVersion()
+std::string ribi::About::GetBoostVersion() noexcept
 {
   std::string s = BOOST_LIB_VERSION;
   std::replace(s.begin(),s.end(),'_','.');
   return s;
 }
 
-const std::string ribi::About::GetStlVersion()
+std::string ribi::About::GetStlVersion() noexcept
 {
   return boost::lexical_cast<std::string>(__VERSION__);
 }
 
-std::ostream& ribi::operator<<(std::ostream& os,const About& a)
+std::ostream& ribi::operator<<(std::ostream& os,const About& a) noexcept
 {
   {
     const std::vector<std::string> v = a.CreateAboutText();

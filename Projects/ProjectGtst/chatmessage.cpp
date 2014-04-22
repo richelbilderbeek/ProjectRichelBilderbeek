@@ -19,10 +19,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include "chatmessage.h"
 #include "participant.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ChatMessage::ChatMessage(
   const boost::shared_ptr<const Participant>& sender,
   std::string message)
@@ -30,7 +30,7 @@ ribi::gtst::ChatMessage::ChatMessage(
 {
   assert(m_sender);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ChatMessage& p)
 {
   os
@@ -42,4 +42,4 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ChatMessage& p)
     << "</chat_message>";
   return os;
 }
-//---------------------------------------------------------------------------
+

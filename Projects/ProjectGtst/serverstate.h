@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
-#include <boost/noncopyable.hpp>
+
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 #include "state.h"
@@ -38,10 +38,12 @@ namespace gtst {
 ///ServerState embodies the state of the server.
 ///
 ///ServerState is a State.
-struct ServerState : public boost::noncopyable, State
+struct ServerState : public State
 {
   ///Create a ServerState with a pointer to its Server
   ServerState(Server * const server, const int period, const int cycle);
+  ServerState(const ServerState&) = delete;
+  ServerState& operator=(const ServerState&) = delete;
 
   ///Check if this state can go to the next state.
   ///This method is implemented like this for possible future
@@ -91,13 +93,7 @@ struct ServerState : public boost::noncopyable, State
   virtual void Start() = 0;
 
   protected:
-  ///Only let smart pointers delete this ServerState
   virtual ~ServerState() {}
-  ///\brief
-  ///Only let smart pointers delete this ServerState
-  ///
-  ///Do not forget the template brackets, as stated in
-  ///Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(ServerState*);
 
   ///The IPGG cycle this ServerState is in

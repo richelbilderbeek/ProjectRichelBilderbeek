@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 //---------------------------------------------------------------------------
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
+
 //---------------------------------------------------------------------------
 
 namespace ribi {
@@ -34,8 +34,11 @@ namespace gtst {
 ///\brief
 ///RepeatAssigner is a Strategy to determined
 ///how often a certain state is repeated
-struct RepeatAssigner : public boost::noncopyable
+struct RepeatAssigner
 {
+  RepeatAssigner();
+  RepeatAssigner(const RepeatAssigner&) = delete;
+  RepeatAssigner& operator=(const RepeatAssigner&) = delete;
 
   ///Assign determines the number of IPGG repeats
   virtual int Assign() const = 0;
@@ -50,14 +53,7 @@ struct RepeatAssigner : public boost::noncopyable
   virtual const std::string ToStr() const = 0;
 
   protected:
-  ///Let RepeatAssigner only be instanciated by its derived classes
-  //Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules,
-  //guidelines, and best practices. ISBN: 0-32-111358-6. Item 50: 'Make base
-  //class destructors public and virtual, or protected and nonvirtual'.
   virtual ~RepeatAssigner() {}
-  ///Only let smart pointers delete RepeatAssigner
-  //Do not forget the template brackets, as stated in
-  //Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(RepeatAssigner*);
 
   ///The log of all assigned values

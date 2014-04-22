@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QuadraticSolver, solver of quadratic equations
-Copyright (C) 2008-2013 Richel Bilderbeek
+Copyright (C) 2008-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -10,28 +10,43 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "quadraticsolvermenudialog.h"
 
+#include "quadraticsolvermaindialog.h"
 #include "trace.h"
 
-const About QuadraticSolverMenuDialog::GetAbout()
+int ribi::QuadraticSolverMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    QuadraticSolverMainDialog d;
+    d.Execute();
+    return 0;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::QuadraticSolverMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "QuadraticSolver",
     "solver of quadratic equations",
-    "the 26th of August 2013",
-    "2008-2013",
+    "the 1st of Oktober 2013",
+    "2008-2014",
     "http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm",
     GetVersion(),
     GetVersionHistory());
@@ -39,15 +54,52 @@ const About QuadraticSolverMenuDialog::GetAbout()
   return a;
 }
 
-const std::string QuadraticSolverMenuDialog::GetVersion()
+ribi::Help ribi::QuadraticSolverMenuDialog::GetHelp() const noexcept
 {
-  return "2.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> QuadraticSolverMenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::QuadraticSolverMenuDialog::GetProgram() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2008-xx-xx: version 1.0: initial version in C++ Builder");
-  v.push_back("2013-08-26: version 2.0: port to Qt Creator");
-  return v;
+  const boost::shared_ptr<const Program> p {
+    new ProgramQuadraticSolver
+  };
+  assert(p);
+  return p;
 }
+
+std::string ribi::QuadraticSolverMenuDialog::GetVersion() const noexcept
+{
+  return "2.1";
+}
+
+std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2008-xx-xx: version 1.0: initial version in C++ Builder",
+    "2013-08-26: version 2.0: port to Qt Creator, console version",
+    "2013-10-01: version 2.1: added desktop version"
+  };
+}
+
+#ifndef NDEBUG
+void ribi::QuadraticSolverMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QuadraticSolverMenuDialog::Test");
+  TRACE("Finished ribi::QuadraticSolverMenuDialog::Test successfully");
+}
+#endif

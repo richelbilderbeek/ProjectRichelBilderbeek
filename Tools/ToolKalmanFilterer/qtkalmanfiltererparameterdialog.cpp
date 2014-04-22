@@ -38,7 +38,7 @@ ribi::kalman::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
   const std::string& parameter_description,
   QAbstractTableModel * const model,
   QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtKalmanFiltererParameterDialog)
 {
   
@@ -59,7 +59,7 @@ ribi::kalman::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
     this,SLOT(OnModelSizeChanged()));
 }
 
-ribi::kalman::QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
+ribi::kalman::QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog() noexcept
 {
   delete ui;
 }
@@ -70,7 +70,11 @@ void ribi::kalman::QtKalmanFiltererParameterDialog::keyPressEvent(QKeyEvent * ev
   QDialog::keyPressEvent(event);
 }
 
+<<<<<<< HEAD
 const std::string ribi::kalman::QtKalmanFiltererParameterDialog::ToHtml() const
+=======
+std::string ribi::kalman::QtKalmanFiltererParameterDialog::ToHtml() const
+>>>>>>> develop
 {
   std::string s;
   s+="<table summary=\"" + ui->label->text().toStdString() + "\" border=\"1\">";

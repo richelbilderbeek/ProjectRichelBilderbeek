@@ -1,20 +1,20 @@
-//---------------------------------------------------------------------------
+
 #include "nsanabrosstlheader.h"
-//---------------------------------------------------------------------------
-NsanaBrosOptionsDialog::NsanaBrosOptionsDialog()
+
+ribi::NsanaBrosOptionsDialog::NsanaBrosOptionsDialog()
   : m_options(new NsanaBrosOptions)
 {
 }
-//---------------------------------------------------------------------------
-const NsanaBrosOptions * NsanaBrosOptionsDialog::GetOptions() const
+
+const boost::shared_ptr<const ribi::NsanaBrosOptions> ribi::NsanaBrosOptionsDialog::GetOptions() const
 {
-  return m_options.get();
+  return m_options;
 }
-//---------------------------------------------------------------------------
+
 //boost::shared_ptr<NsanaBrosOptions> NsanaBrosOptionsDialog::UseOptions()
 //{
 //  return m_options;
 //}
-//---------------------------------------------------------------------------
+
 
 

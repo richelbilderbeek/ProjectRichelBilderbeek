@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2010 Richel Bilderbeek
+Copyright (C) 2005-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,34 +19,47 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
-#include <Wt/WApplication>
-//---------------------------------------------------------------------------
-#include "beerwanterwtwidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #include <Wt/WApplication>
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
-struct BeerWanterWtApplication : public Wt::WApplication
+
+#include "wtautoconfig.h"
+#include "wtbeerwanterwidget.h"
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
+struct WtBeerWanterApplication : public Wt::WApplication
 {
-  BeerWanterWtApplication(const Wt::WEnvironment& env)
+  WtBeerWanterApplication(const Wt::WEnvironment& env)
   : Wt::WApplication(env),
-    m_widget(new BeerWanterWtWidget)
+    m_widget(new WtBeerWanterWidget)
   {
     this->setTitle("BeerWanter");
     root()->addWidget(m_widget);
   }
+  WtBeerWanterApplication(const WtBeerWanterApplication&) = delete;
+  WtBeerWanterApplication& operator=(const WtBeerWanterApplication&) = delete;
   private:
-  BeerWanterWtWidget * const m_widget;
+  WtBeerWanterWidget * const m_widget;
   void OnLevelUp();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 Wt::WApplication * createApplication(const Wt::WEnvironment& env)
 {
-  return new BeerWanterWtApplication(env);
+  return new ribi::WtBeerWanterApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
-  return WRun(argc, argv, &createApplication);
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
+  return a.Run();
+  //return WRun(argc, argv, &createApplication);
 }
-//---------------------------------------------------------------------------
+

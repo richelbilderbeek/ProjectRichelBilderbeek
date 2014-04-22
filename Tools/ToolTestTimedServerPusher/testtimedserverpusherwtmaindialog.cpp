@@ -20,26 +20,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 #include <Wt/WText>
-//---------------------------------------------------------------------------
+
 #include "testtimedserverpusherdata.h"
 #include "testtimedserverpushermenudialog.h"
 #include "testtimedserverpusherwtmaindialog.h"
 #include "wttimedserverpusher.h"
 #include "wtaboutdialog.h"
-//---------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------
 ribi::ToolTestTimedServerPusher::WtMainDialog::WtMainDialog()
+  : ui{}
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);
   ui.m_text= new Wt::WText(this);
   OnTimedServerPush();
 }
-//---------------------------------------------------------------------------
+
 void ribi::ToolTestTimedServerPusher::WtMainDialog::OnTimedServerPush()
 {
   ui.m_text->setText(ToolTestTimedServerPusher::Data::GetInstance()->GetData());
@@ -51,5 +50,5 @@ void ribi::ToolTestTimedServerPusher::WtMainDialog::OnTimedServerPush()
     std::clog << "new_interval: " << new_interval << '\n';
   }
 }
-//---------------------------------------------------------------------------
+
 

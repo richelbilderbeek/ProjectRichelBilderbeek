@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 AsciiArter, tool to create ASCII art
-Copyright (C) 2006-2013 Richel Bilderbeek
+Copyright (C) 2006-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,12 +21,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTASCIIARTERDIALOG_H
 #define QTASCIIARTERDIALOG_H
 
-#include <QDialog>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
+#include "qthideandshowdialog.h"
 
 #include "asciiartermaindialog.h"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtAsciiArterMainDialog;
@@ -42,22 +45,29 @@ class QtAsciiArterMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtAsciiArterMainDialog(QWidget *parent = 0);
-  ~QtAsciiArterMainDialog();
+  QtAsciiArterMainDialog(const QtAsciiArterMainDialog&) = delete;
+  QtAsciiArterMainDialog& operator=(const QtAsciiArterMainDialog&) = delete;
+  ~QtAsciiArterMainDialog() noexcept;
+
+  const std::string& GetFilename() const noexcept { return m_filename; }
+  int GetWidth() const noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);
 
 private:
   Ui::QtAsciiArterMainDialog *ui;
-  const boost::scoped_ptr<AsciiArterMainDialog> m_dialog;
-  void DrawAsciiArt();
-
-  static const std::vector<std::vector<double> >
-    ConvertToGreyYx(const QImage * const i);
+  boost::scoped_ptr<AsciiArterMainDialog> m_dialog;
+  std::string m_filename;
+  void OnAnyChange();
 
 private slots:
-  void on_edit_width_textChanged(QString );
   void on_button_load_clicked();
+  void on_box_width_valueChanged(int);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

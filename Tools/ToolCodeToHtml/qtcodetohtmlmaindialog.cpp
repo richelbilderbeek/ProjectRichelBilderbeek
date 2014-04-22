@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // ---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 // ---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtcodetohtmlmaindialog.h"
 
 #define QTCODETOHTMLMAINDIALOG_TEMPORARILY_REMOVE_QWEBVIEW_253489729387428907
@@ -29,14 +30,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <sstream>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QFile>
@@ -46,13 +45,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtmlversion.h"
 #include "codetohtml.h"
+#include "codetohtmlinfo.h"
 #include "codetohtmldialog.h"
+#include "fileio.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
 #include "ui_qtcodetohtmlmaindialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
-    QtHideAndShowDialog(parent),
+ribi::c2h::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtCodeToHtmlMainDialog)
 {
   #ifndef NDEBUG
@@ -64,23 +66,29 @@ ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
   const QRect scr = QApplication::desktop()->screenGeometry();
   move( scr.center() - rect().center() );
 
+  {
+    assert(!QApplication::instance()->arguments().empty());
+    const std::string argv0 { QApplication::instance()->arguments()[0].toStdString() };
+    const std::string path = ribi::fileio::FileIo().GetPath(argv0);
+    assert(ribi::fileio::FileIo().IsFolder(path));
+    this->ui->edit_source->setText(path.c_str());
+  }
   on_tab_source_currentChanged(0);
 }
 
-ribi::QtCodeToHtmlMainDialog::~QtCodeToHtmlMainDialog()
+ribi::c2h::QtCodeToHtmlMainDialog::~QtCodeToHtmlMainDialog() noexcept
 {
   delete ui;
 }
 
-const std::vector<std::string> ribi::QtCodeToHtmlMainDialog::EditToVector(
-  const QPlainTextEdit * const edit)
+std::vector<std::string> ribi::c2h::QtCodeToHtmlMainDialog::EditToVector(
+  const QPlainTextEdit * const edit) noexcept
 {
   std::vector<std::string> v;
 
   const QTextDocument * const doc = edit->document();
   if (!doc) return v;
   const int n_lines = doc->lineCount();
-  //std::clog << "Source text contains " << n_lines << " line(s)\n";
   for (int i=0; i!=n_lines; ++i)
   {
     const QTextBlock block = doc->findBlockByNumber(i);
@@ -93,92 +101,54 @@ const std::vector<std::string> ribi::QtCodeToHtmlMainDialog::EditToVector(
     }
     assert(block.isValid());
     const QString line = block.text();
-    //std::clog << "Line " << i << "/" << n_lines
-    //  << " has text '" << line.toStdString() << "'\n";
     v.push_back(line.toStdString());
   }
   return v;
 }
 
-c2h::PageType ribi::QtCodeToHtmlMainDialog::GetPageType() const
-{
-  const std::string s = ui->box_header->currentText().toStdString();
-  if (s == "C++") return c2h::PageType::cpp;
-  if (s == "Music") return c2h::PageType::music;
-  if (s == "Text") return c2h::PageType::text;
-  if (s == "Tool") return c2h::PageType::tool;
-  assert(!"Should not get here");
-  throw std::logic_error("QtCodeToHtmlMainDialog::GetPageType");
-}
-
-c2h::ContentType ribi::QtCodeToHtmlMainDialog::GetContentType() const
-{
-  const std::string s = ui->box_source->currentText().toStdString();
-  if (s == "C++") return c2h::ContentType::cpp;
-  if (s == "Text") return c2h::ContentType::txt;
-  if (s == "Project file") return c2h::ContentType::pro;
-  assert(!"Should not get here");
-  throw std::logic_error("QtCodeToHtmlMainDialog::GetContentType");
-}
-
-c2h::TechInfoType ribi::QtCodeToHtmlMainDialog::GetTechInfo() const
-{
-  const std::string s = ui->box_tech_info->currentText().toStdString();
-  if (s == "Auto") return c2h::TechInfoType::automatic;
-  if (s == "No") return c2h::TechInfoType::no;
-  if (s == "Yes") return c2h::TechInfoType::yes;
-  assert(!"Should not get here");
-  throw std::logic_error("QtCodeToHtmlMainDialog::GetTechInfo");
-}
-
-void ribi::QtCodeToHtmlMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::c2h::QtCodeToHtmlMainDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked()
+void ribi::c2h::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
 {
   if (ui->tab_source->currentIndex() == 0)
   {
     //Convert code snippet
-    const std::string source
-      = std::string(std::tmpnam(0))
-      + (GetContentType() == c2h::ContentType::cpp ? ".cpp" : ".txt");
-    {
-      const std::vector<std::string> v = EditToVector(ui->edit_source_snippet);
-      std::ofstream f(source.c_str());
-      std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-    }
-    c2h::Dialog d(
-      GetPageType(),
-      source,
-      GetContentType(),
-      GetTechInfo());
-    const std::vector<std::string> v = d.ToHtml();
-    Display(v);
-    std::remove(source.c_str());
+    const std::vector<std::string> v = EditToVector(ui->edit_source_snippet);
+    const std::vector<std::string> w = Dialog::SnippetToHtml(v,SnippetType::cpp);
+    Display(w);
   }
   else
   {
     //Convert file or folder
     const std::string source = ui->edit_source->text().toStdString();
-    if (!QFile::exists(source.c_str()))
+    if (!ribi::fileio::FileIo().IsFolder(source)
+      && !ribi::fileio::FileIo().IsRegularFile(source))
     {
       ui->button_convert->setText("Source (file or folder) does not exist");
       ui->button_convert->setEnabled(false);
       return;
     }
-    c2h::Dialog d(
-      GetPageType(),
-      source,
-      GetContentType(),
-      GetTechInfo());
-    const std::vector<std::string> v = d.ToHtml();
-    Display(v);
+    if (ribi::fileio::FileIo().IsRegularFile(source))
+    {
+      const std::vector<std::string> v { Dialog::FileToHtml(source) };
+      Display(v);
+    }
+    else
+    {
+      assert(ribi::fileio::FileIo().IsFolder(source));
+      const std::vector<std::string> v {
+        Dialog::FolderToHtml(source)
+      };
+      Display(v);
+    }
+
   }
 }
 
-void ribi::QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v)
+void ribi::c2h::QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v) noexcept
 {
   QString text;
   std::for_each(v.begin(),v.end(),
@@ -194,7 +164,7 @@ void ribi::QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v)
   ui->edit_html->setPlainText(text);
 }
 
-void ribi::QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
+void ribi::c2h::QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index) noexcept
 {
   if (index == 0)
   {
@@ -217,7 +187,7 @@ void ribi::QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
   }
 }
 
-void ribi::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
+void ribi::c2h::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString ) noexcept
 {
   const std::string source = ui->edit_source->text().toStdString();
 
@@ -228,31 +198,31 @@ void ribi::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
     return;
   }
 
-  if (!c2h::IsRegularFile(source))
+  if (!ribi::fileio::FileIo().IsRegularFile(source))
   {
     //source is a folder
     const std::vector<std::string> v
       = c2h::SortFiles(
           c2h::FilterFiles(
-            c2h::GetFilesInFolder(source)));
+            ribi::fileio::FileIo().GetFilesInFolder(source)));
     const std::string s
-      = std::string("Convert (source type: folder, ")
+      = "Convert (source type: folder, "
       + boost::lexical_cast<std::string>(v.size())
-      + std::string(" files)");
+      + " files)";
 
     ui->button_convert->setText(s.c_str());
     ui->button_convert->setEnabled(true);
   }
   else
   {
-    assert(c2h::IsRegularFile(source.c_str()));
+    assert(ribi::fileio::FileIo().IsRegularFile(source.c_str()));
     ui->button_convert->setText("Convert (source type: file)");
     ui->button_convert->setEnabled(true);
   }
 }
 
 #ifndef NDEBUG
-void ribi::QtCodeToHtmlMainDialog::Test()
+void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -262,7 +232,7 @@ void ribi::QtCodeToHtmlMainDialog::Test()
   TRACE("Starting QtCodeToHtmlMainDialog::Test");
   //IsRegularFile
   {
-    assert(!c2h::IsRegularFile("../ToolCodeToHtml"));
+    assert(!ribi::fileio::FileIo().IsRegularFile("../ToolCodeToHtml"));
   }
   {
     QtCodeToHtmlMainDialog d;
@@ -272,8 +242,15 @@ void ribi::QtCodeToHtmlMainDialog::Test()
       for (const std::string& s:
         {
           "/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml",
-          "E:/Projects/Tools/ToolCodeToHtml",
-          "../../Tools/ToolCodeToHtml"
+          "D:/Projects/Tools/ToolCodeToHtml",
+          "D:\\Projects\\Tools\\ToolCodeToHtml",
+          "D:/Projects/Test/ToolOpenFoamExample1",
+          "D:\\Projects\\Test\\ToolOpenFoamExample1",
+          "../../Tools/ToolCodeToHtml",
+          "..\\..\\Tools\\ToolCodeToHtml",
+          "../../Test/ToolOpenFoamExample1",
+          "..\\..\\Test\\ToolOpenFoamExample1",
+          "/home/richel/ProjectRichelBilderbeek/Test/ToolOpenFoamExample1"
         }
       )
       {

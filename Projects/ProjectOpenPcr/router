@@ -1,0 +1,152 @@
+Netlist
+
+Exported from OpenPCR-combined-blockfront.brd at 21-8-2013 17:24:58
+
+EAGLE Version 6.2.0 Copyright (c) 1988-2012 CadSoft
+
+Net      Part     Pad
+
++3.3V    R3       2
+         X1       1
+         X1       13
+         X1       2
+
++5VREG   JP1      15
+         JP1      2
+         R10      2
+         R5       1
+         R6       1
+         U$3      5V
+
++5VSTBY  R11      2
+         X1       9
+
++12V1    C2       +
+         C3       +
+         IC2      13
+         IC2      23
+         IC2      3
+         IC2      VCC
+         IC2      VCC@1
+         J1       4
+         JP2      2
+         U$3      VIN
+         X1       10
+         X1       11
+
+3V       U$3      3V
+
+GND1     C2       -
+         C3       -
+         IC2      18
+         IC2      19
+         IC2      20
+         IC2      26
+         IC2      27
+         IC2      28
+         J1       2
+         JP1      1
+         JP1      16
+         JP1      5
+         JP2      1
+         JP3      2
+         Q2       1
+         R11      1
+         R3       1
+         U$3      GND
+         U$3      GND1
+         U$3      GND2
+         X1       15
+         X1       16
+         X1       17
+         X1       18
+         X1       19
+         X1       24
+         X1       3
+         X1       5
+         X1       7
+
+N$1      U$3      A0
+         X1       8
+
+N$2      JP1      3
+         U$3      D5
+
+N$3      JP1      4
+         U$3      D6
+
+N$4      JP1      14
+         U$3      A3
+
+N$5      JP3      1
+         U$3      A4
+
+N$8      R12      2
+         U$3      D3
+
+N$10     JP1      13
+         U$3      A2
+
+N$11     JP1      6
+         U$3      D7
+
+N$12     JP1      12
+         U$3      A5
+
+N$14     U$3      D13
+
+N$16     IC2      8
+         R7       2
+
+N$17     IC2      11
+         R8       1
+
+N$18     J1       3
+         Q2       2
+
+N$19     IC2      5
+         R9       1
+
+N$20     JP1      11
+         U$3      D8
+
+N$25     IC2      1
+         IC2      25
+         IC2      30
+         IC2      OUTA
+         IC2      OUTA@1
+         J1       5
+
+N$27     U$3      D12
+
+N$29     U$3      D10
+
+N$30     R7       1
+         U$3      D9
+
+N$31     R8       2
+         U$3      D4
+
+N$32     IC2      15
+         IC2      16
+         IC2      21
+         IC2      OUTB
+         IC2      OUTB@1
+         J1       6
+
+N$33     R9       2
+         U$3      D2
+
+N$34     IC2      6
+         R5       2
+
+N$35     IC2      10
+         R6       2
+
+N$37     J1       1
+         R10      1
+         U$3      A1
+
+T1       Q2       3
+         R12      1
+

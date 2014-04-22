@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2013 Richel Bilderbeek
+Copyright (C) 2005-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,13 +28,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "beerwantermaindialog.h"
 #include "qtbeerwanterwidget.h"
 #include "ui_qtbeerwantermaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
-    QtHideAndShowDialog(parent),
+ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtBeerWanterMainDialog),
     m_widget(new QtBeerWanterWidget)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->beerwanter_layout->addWidget(m_widget.get());
   this->setGeometry(
@@ -49,19 +53,46 @@ ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
     this,SLOT(OnShake(const int,const int)));
 }
 
-ribi::QtBeerWanterMainDialog::~QtBeerWanterMainDialog()
+ribi::QtBeerWanterMainDialog::~QtBeerWanterMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtBeerWanterMainDialog::ChangeTitle(const std::string& title)
+void ribi::QtBeerWanterMainDialog::ChangeTitle(const std::string& title) noexcept
 {
   this->setWindowTitle(title.c_str());
 }
 
-void ribi::QtBeerWanterMainDialog::OnShake(const int x, const int y)
+void ribi::QtBeerWanterMainDialog::OnShake(const int x, const int y) noexcept
 {
   this->setGeometry(x,y,this->width(),this->height());
   this->repaint();
 }
 
+#ifndef NDEBUG
+void ribi::QtBeerWanterMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtBeerWanterMainDialog::Test");
+  const int screen_width = 640;
+  const int screen_height = 400;
+  const int sprite_width = 32;
+  const int sprite_height = 48;
+  const int window_width = 320;
+  const int window_height = 200;
+
+  BeerWanterMainDialog(
+    screen_width,
+    screen_height,
+    sprite_width,
+    sprite_height,
+    window_width,
+    window_height
+  );
+  TRACE("Finished ribi::QtBeerWanterMainDialog::Test successfully");
+}
+#endif

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ToggleButton, toggle button class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
@@ -40,34 +41,34 @@ struct ToggleButton
     const bool pressed = false,
     const unsigned char red = 255,
     const unsigned char green = 255,
-    const unsigned char blue = 255);
+    const unsigned char blue = 255) noexcept;
 
   ///Get the blueness of the ToggleButton's surface
-  unsigned char GetBlue() const { return m_blue; }
+  unsigned char GetBlue() const noexcept { return m_blue; }
 
   ///Get the greenness of the ToggleButton's surface
-  unsigned char GetGreen() const { return m_green; }
+  unsigned char GetGreen() const noexcept { return m_green; }
 
   ///Get the redness of the ToggleButton's surface
-  unsigned char GetRed() const { return m_red; }
+  unsigned char GetRed() const noexcept { return m_red; }
 
   ///Returns if the ToggleButton is pressed
-  bool IsPressed() const { return m_pressed; }
+  bool IsPressed() const noexcept { return m_pressed; }
 
   ///Press the ToggleButton
-  void Press();
+  void Press() noexcept;
 
   ///Release/'unpress' the ToggleButton
-  void Release();
+  void Release() noexcept;
 
   ///Set the ToggleButton its color
   void SetColor(
     const unsigned char red,
     const unsigned char green,
-    const unsigned char blue);
+    const unsigned char blue) noexcept;
 
   ///Toggle the ToggleButton
-  void Toggle();
+  void Toggle() noexcept;
 
   ///The signal that is emitted when ToggleButton changes color
   mutable boost::signals2::signal<void ()> m_signal_color_changed;
@@ -78,7 +79,7 @@ struct ToggleButton
 
   private:
   //ToggleButton can only be deleted by Boost smart pointers
-  virtual ~ToggleButton() {}
+  virtual ~ToggleButton() noexcept {}
   //ToggleButton can only be deleted by Boost smart pointers
   friend void boost::checked_delete<>(ToggleButton*);
 
@@ -94,14 +95,14 @@ struct ToggleButton
   ///The blueness of the ToggleButton's surface
   unsigned char m_blue;
 
-  friend std::ostream& operator<<(std::ostream& os, const ToggleButton& button);
+  friend std::ostream& operator<<(std::ostream& os, const ToggleButton& button) noexcept;
 
   public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const ToggleButton& button);
+std::ostream& operator<<(std::ostream& os, const ToggleButton& button) noexcept;
 
 } //~namespace ribi
 

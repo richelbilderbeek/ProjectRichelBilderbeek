@@ -1,8 +1,10 @@
-#include <iostream>
+#define TODO_WINAND
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <iostream>
 
 #include <boost/lexical_cast.hpp>
 
@@ -10,25 +12,31 @@
 #include <QIcon>
 #include <QVBoxLayout>
 
+#ifdef TODO_COEN
+#include <pvdbfile.h>
+#include <pvdbfilefactory.h>
+#endif
+
 #include "pvdbfile.h"
 #include "pvdbhelper.h"
 #include "qtpvdbclusterdialog.h"
-#include "qtpvdbcompetency.h"
+#include "qtconceptmapcompetency.h"
 #include "qtpvdbclusterwidget.h"
 #include "qtpvdbconceptmapdialog.h"
-#include "qtpvdbconcepteditdialog.h"
-#include "qtpvdbconceptmapeditwidget.h"
-#include "qtpvdbrateexamplesdialog.h"
-#include "qtpvdbconceptmapratewidget.h"
+#include "qtconceptmapconcepteditdialog.h"
+#include "qteditconceptmap.h"
+#include "qtconceptmaprateexamplesdialognewname.h"
+#include "qtrateconceptmap.h"
 #include "qtpvdbmenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::string CreateStyleSheet()
 {
   const std::string s =
     "QDialog { "
-    "  background-image: url(:/images/PicLoomBackground.png);"
-//    "  background-color: qlineargradient(x1: 0, y1: 1, x2: 1, y2: 0, stop: 0 #bbf, stop: 1 #bff);"
+//    "  background-image: url(:/images/PicLoomBackground.png);" //Sorry Joost!
+    "  background-color: qlineargradient(x1: 0, y1: 1, x2: 1, y2: 0, stop: 0 #bbf, stop: 1 #bff);"
     "} "
     "QLabel { "
     "  font-size: 18px;"
@@ -71,7 +79,8 @@ int main(int argc, char *argv[])
   //Perform tests
   #ifndef NDEBUG
   std::clog << "DEBUG mode" << std::endl;
-  ribi::pvdb::QtPvdbMenuDialog::Test(); //Tests all
+  ribi::pvdb::TestHelperFunctions();
+  //ribi::pvdb::QtPvdbMenuDialog::Test(); //Tests all
   #else
   std::clog << "RELEASE mode" << std::endl;
   assert(1==2 && "Assume debugging is really disabled");
@@ -83,6 +92,25 @@ int main(int argc, char *argv[])
   //QtPvdbMenuDialog::Test();
   a.setStyleSheet(CreateStyleSheet().c_str());
   a.setWindowIcon(QIcon(":/images/R.png"));
+
+  #ifdef TODO_COEN
+  {
+    const boost::shared_ptr<ribi::pvdb::File> file = ribi::pvdb::FileFactory::Create();
+    assert(!file->GetCluster());
+    assert(!file->GetConceptMap());
+    {
+      const std::string question = "qtvdbmenudialog.cpp 79?";
+      boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(ribi::pvdb::File::CreateConceptMap(question));
+      assert(concept_map);
+      assert(!file->GetConceptMap() && "Can only set concept map once");
+      file->SetQuestion(question);
+      assert(file->GetQuestion() == question);
+    }
+    ribi::pvdb::QtPvdbClusterDialog d(file);
+      d.exec();
+  }
+  assert(1==2);
+  #endif
 
   ribi::pvdb::QtPvdbMenuDialog d;
   if (argc != 1)
@@ -105,19 +133,19 @@ int main(int argc, char *argv[])
         &ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_arrowitems_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_edge_item_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_edge_item_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked
       };
     try
     {
@@ -133,54 +161,17 @@ int main(int argc, char *argv[])
       std::cerr << "Incorrect argument: please supply a number from 0 to " << v.size() << std::endl;
     }
   }
+  //assert(1==2);
   d.show();
-  a.exec();
+  return a.exec();
 }
 
-///TODO
-///2013-05-20:
-///- ?DONE: Increase the area of a QtNodeIdem
-///    1) FAILS: by adding 'QPainterPath QtPvdbConceptItem::shape() const'
-///    2) MIGHT WORK: Bypass in QtPvdbNodeItem::boundingRect
-///- ?1st of May, when concluded it's a good thing to implement:
-///  - cluster dialog: allow more than 2 levels in clustering
-///  - concept map dialog: allow examples from concepts to be dragged out and promoted to new conpepts
-///- ?DONE: in assessor printing dialog: too long concepts/examples run off the page
-///- BIG
-
-///BEFORE 2013-03-25:
-///- In assessor final report screen, set the column widths to the correct width (depends on font)
-///
-///DONE:
-///- in assessor printing dialog: resize concept map to page size
-///- FIXED BUG: if an arrow is drawn between two nodes, creating another arrow between these two same nodes
-///    in the opposite direction, program crashes
-///- when saving in the cluster dialog, only save (i.e. do not go back to main menu)
-///- when saving in the create concept map dialog, only save (i.e. do not go back to main menu)
-///- sub-concept maps are messed up: relations are put at origin
-///- let students print like assessors: to PDF
-///- get to cross-compile the Student and Assessor versions again
-///- FIXED BUG: Test concept maps do not show
-
-///TODO PERHAPS ONCE
-///- add Undo functionality to cluster screen
-///- add Undo functionality to concept map screen
-///- Allow copy-paste of XML code to display the corresponding concept map
-///- Allow movement of items by keyboard in cluster dialog
-///- Allow multithreaded testing, gives the following error now:
-///  [xcb] Unknown request in queue while dequeuing
-///  [xcb] Most likely this is a multi-threaded client and XInitThreads has not been called
-///  [xcb] Aborting, sorry about that.
-///  BrainweaverDeveloper: ../../src/xcb_io.c:178: dequeue_pending_request: Assertion `!xcb_xlib_unknown_req_in_deq' failed.
-///- Make Violet Blue meet doktor Light (from Mega Man), assure they marry, so that her name becomes Violet Light-Blue
-///
 ///DO NEVER FORGET
 /// - Do not use std::all_of, because cross-compiler has trouble with it
 /// - Do not change a QGraphicItem (that is: call a paint event) outside of the paint event
 ///   (this was the case by signals that caused a repaint)
 ///   -> trick: check for QGraphicsRectItem::paintingActive()
 /// - Use the default operator== for pointer comparison of smart pointers
-/// - Instead of overloading operator== to compare the content for all combinations of smart pointers,
-///   use IsEqual(const T&,const T&)
+/// - Only overload operator==(const T&,const T&), instead for some smart pointer shortcuts
 /// - If a class connects its signals to some other class with a different lifetime,
 ///   disconnect these signals in its destructor

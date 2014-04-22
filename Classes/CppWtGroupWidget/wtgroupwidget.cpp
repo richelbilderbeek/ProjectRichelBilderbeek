@@ -38,6 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtgroupwidget.h"
 
 ribi::WtGroupWidget::WtGroupWidget()
+  : m_v{}
 {
   this->resize(100,100);
 }

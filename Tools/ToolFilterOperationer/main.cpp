@@ -1,11 +1,6 @@
-#include <QApplication>
-#include "qtfilteroperationermaindialog.h"
+#include "filteroperationermenudialog.h"
 
-int main(int argc, char *argv[])
+int main(int agc, char* argv[])
 {
-    QApplication a(argc, argv);
-    QtFilterOperationerMainDialog w;
-    w.show();
-    
-    return a.exec();
+
 }

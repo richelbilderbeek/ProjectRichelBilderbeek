@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestLed.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <algorithm>
 #include <cassert>
 #include <iterator>
@@ -48,6 +50,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wtsimmysterymachinemaindialog.h"
 #include "wtmysterymachinewidget.h"
+#pragma GCC diagnostic pop
+
 //---------------------------------------------------------------------------
 ribi::WtSimMysteryMachineMainDialog::Ui::Ui()
  : m_machine(new WtMysteryMachineWidget(300,600))
@@ -56,6 +60,7 @@ ribi::WtSimMysteryMachineMainDialog::Ui::Ui()
 }
 //---------------------------------------------------------------------------
 ribi::WtSimMysteryMachineMainDialog::WtSimMysteryMachineMainDialog()
+  : ui{}
 {
   setContentAlignment(Wt::AlignCenter);
   addWidget(ui.m_machine);

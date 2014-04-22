@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestFunctionParser, tool to demonstrate Warp's FunctionParser class
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,16 +34,22 @@ class QtTestFunctionParserMenuDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
-  explicit QtTestFunctionParserMenuDialog(QWidget *parent = 0);
-  ~QtTestFunctionParserMenuDialog();
+  explicit QtTestFunctionParserMenuDialog(QWidget *parent = 0) noexcept;
+  QtTestFunctionParserMenuDialog(const QtTestFunctionParserMenuDialog&) = delete;
+  QtTestFunctionParserMenuDialog& operator=(const QtTestFunctionParserMenuDialog&) = delete;
+  ~QtTestFunctionParserMenuDialog() noexcept;
 
 private slots:
-  void on_button_start_clicked();
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
+  void on_button_start_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtTestFunctionParserMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

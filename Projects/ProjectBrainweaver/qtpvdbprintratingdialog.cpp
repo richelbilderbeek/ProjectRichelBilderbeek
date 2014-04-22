@@ -1,3 +1,27 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbprintratingdialog.h"
 
 #include <cassert>
@@ -11,18 +35,19 @@
 #include <QPrinter>
 
 #include "pvdbfile.h"
-#include "pvdbconcept.h"
+#include "conceptmapconcept.h"
 #include "qtpvdbfiledialog.h"
-#include "pvdbnode.h"
-#include "pvdbedge.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#include "pvdbconceptmap.h"
-#include "qtpvdbratedconceptwidget.h"
+#include "conceptmapnode.h"
+#include "conceptmapedge.h"
+#include "conceptmapfactory.h"
+#include "conceptmapexample.h"
+#include "conceptmapexamples.h"
+#include "conceptmap.h"
+#include "qtconceptmapratedconceptdialog.h"
 #include "qtpvdbdisplay.h"
-#include "qtpvdbconceptmapratewidget.h"
+#include "qtrateconceptmap.h"
 #include "ui_qtpvdbprintratingdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   const boost::shared_ptr<pvdb::File>& file,
@@ -30,20 +55,20 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintRatingDialog),
     m_file(file),
-    m_widget(new QtPvdbConceptMapRateWidget(file->GetConceptMap()))
+    m_widget(new cmap::QtRateConceptMap(file->GetConceptMap()))
 {
   ui->setupUi(this);    
   assert(m_file);
   ui->label_focal_question->setText(
-    (std::string("FOCUSVRAAG: ")
+    ("FOCUSVRAAG: "
     + m_file->GetQuestion()).c_str()
   );
   ui->label_student_name->setText(
-    (std::string("VAN: ")
+    ("VAN: "
       + m_file->GetStudentName()).c_str()
   );
   ui->label_assessor_name->setText(
-    (std::string("ASSESSOR: ")
+    ("ASSESSOR: "
       + m_file->GetAssessorName()).c_str()
   );
 
@@ -59,12 +84,12 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
     std::time( &my_time );
     const std::tm * const time_and_date = std::localtime(&my_time);
     const std::string s = std::asctime(time_and_date);
-    ui->label_date->setText( (std::string("Datum: ") + s).c_str()
+    ui->label_date->setText( ("Datum: " + s).c_str()
     );
   }
 }
 
-ribi::pvdb::QtPvdbPrintRatingDialog::~QtPvdbPrintRatingDialog()
+ribi::pvdb::QtPvdbPrintRatingDialog::~QtPvdbPrintRatingDialog() noexcept
 {
   delete ui;
 }
@@ -162,10 +187,10 @@ void ribi::pvdb::QtPvdbPrintRatingDialog::showEvent(QShowEvent *)
 {
   //Concept map
   {
-    //const boost::shared_ptr<ribi::pvdb::ConceptMap> copy_concept_map
+    //const boost::shared_ptr<ribi::cmap::ConceptMap> copy_concept_map
     //  = m_file->GetConceptMap();
-    //const boost::shared_ptr<ribi::pvdb::ConceptMap> copy_concept_map
-    //  = ribi::pvdb::ConceptMapFactory::DeepCopy(m_file->GetConceptMap()); //2013-05-31 REJECT DEEP COPIES
+    //const boost::shared_ptr<ribi::cmap::ConceptMap> copy_concept_map
+    //  = ribi::cmap::ConceptMapFactory::DeepCopy(m_file->GetConceptMap()); //2013-05-31 REJECT DEEP COPIES
     //m_widget->ReadFromConceptMap(copy_concept_map);
     m_widget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_widget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -183,8 +208,8 @@ void ribi::pvdb::QtPvdbPrintRatingDialog::showEvent(QShowEvent *)
     {
       const auto node = m_file->GetConceptMap()->GetNodes().at(node_index);
       assert(node);
-      QtPvdbRatedConceptWidget * const widget
-        = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node);
+      cmap::QtConceptMapRatedConceptDialog * const widget
+        = new cmap::QtConceptMapRatedConceptDialog(m_file->GetConceptMap(),node);
       assert(widget);
       ui->widget_concept_map_as_text->layout()->addWidget(widget);
     }

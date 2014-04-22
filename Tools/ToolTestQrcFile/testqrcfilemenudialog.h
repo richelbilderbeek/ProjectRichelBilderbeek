@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQrcFile, tool to test the QrcFile class
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,24 +21,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTQRCFILEMENUDIALOG_H
 #define TESTQRCFILEMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-struct TestQrcFileMenuDialog
+struct TestQrcFileMenuDialog : public MenuDialog
 {
+  TestQrcFileMenuDialog();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its About information
-  static const About GetAbout();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Obtain this class its version
-  static const std::string GetVersion();
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
-
-  ///Test the QrcFile
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

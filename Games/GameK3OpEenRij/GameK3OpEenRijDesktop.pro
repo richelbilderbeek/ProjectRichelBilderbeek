@@ -1,97 +1,24 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TEMPLATE = app
+include(../../DesktopApplication.pri)
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+include(../../Libraries/Boost.pri)
 
-#unix {
-  QMAKE_CXXFLAGS += -Werror
-#}
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
-win32 {
-  #LIBS += -L../../Libraries/mxe/usr/i686-pc-mingw32/lib
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppConnectThree/CppConnectThree.pri)
+include(../../Classes/CppConnectThreeWidget/CppConnectThreeWidget.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppTribool/CppTribool.pri)
 
-  INCLUDEPATH += \
-    e:/Projects/Libraries/boost_1_54_0
-}
+#Specific, desktop
+include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
+include(../../Classes/CppQtConnectThreeWidget/CppQtConnectThreeWidget.pri)
+include(../../Games/GameConnectThree/GameConnectThreeDesktop.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppConnectThree \
-    ../../Classes/CppConnectThreeWidget \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtConnectThreeWidget \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppTrace \
-    ../../Games/GameConnectThree
+include(GameK3OpEenRijDesktop.pri)
 
-SOURCES += qtmain.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppConnectThree/connectthree.cpp \
-    ../../Classes/CppConnectThreeWidget/connectthreewidget.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    ../GameConnectThree/connectthreeresources.cpp \
-    ../GameConnectThree/qtconnectthreegamedialog.cpp \
-    ../GameConnectThree/qtshowwinnerdialog.cpp \
-    k3opeenrijmenudialog.cpp \
-    qtk3opeenrijinstructionsdialog.cpp \
-    qtk3opeenrijmenudialog.cpp \
-    qtk3opeenrijselectplayerwidget.cpp \
-    qtk3opeenrijresources.cpp
-
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppConnectThree/connectthree.h \
-    ../../Classes/CppConnectThreeWidget/connectthreewidget.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppTrace/trace.h \
-    ../GameConnectThree/connectthreeresources.h \
-    ../GameConnectThree/qtconnectthreegamedialog.h \
-    ../GameConnectThree/qtshowwinnerdialog.h \
-    k3opeenrijmenudialog.h \
-    qtk3opeenrijinstructionsdialog.h \
-    qtk3opeenrijmenudialog.h \
-    qtk3opeenrijselectplayerwidget.h \
-    qtk3opeenrijresources.h
-
-OTHER_FILES += \
-    ../../Classes/CppConnectThreeWidget/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    ../GameConnectThree/ConnectThreeComputer1.png \
-    ../GameConnectThree/ConnectThreeComputer2.png \
-    ../GameConnectThree/ConnectThreeComputer3.png \
-    ../GameConnectThree/ConnectThreeComputerGrey.png \
-    ../GameConnectThree/ConnectThreeEmpty.png \
-    ../GameConnectThree/ConnectThreeGood1.png \
-    ../GameConnectThree/ConnectThreeGood2.png \
-    ../GameConnectThree/ConnectThreePlayer1Grey.png \
-    ../GameConnectThree/ConnectThreePlayer1.png \
-    ../GameConnectThree/ConnectThreePlayer2Grey.png \
-    ../GameConnectThree/ConnectThreePlayer2.png \
-    ../GameConnectThree/ConnectThreePlayer3Grey.png \
-    ../GameConnectThree/ConnectThreePlayer3.png \
-    ../GameConnectThree/ConnectThreeWrong.png \
-    ../GameConnectThree/GameConnectThree.css \
-    ../GameConnectThree/GameConnectThreeLubuntuToWindows.sh \
-    ../GameConnectThree/GameConnectThreeWelcomeNoLegend.png \
-    ../GameConnectThree/GameConnectThreeWelcome.png \
-    ../GameConnectThree/Licence.txt \
-    ../GameConnectThree/R.png \
-    ../GameConnectThree/zip.sh \
-    K3OpEenRij.css
-
-FORMS += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    ../GameConnectThree/qtconnectthreegamedialog.ui \
-    ../GameConnectThree/qtshowwinnerdialog.ui \
-    qtk3opeenrijinstructionsdialog.ui \
-    qtk3opeenrijmenudialog.ui
-
-RESOURCES += \
-    GameK3OpEenRij.qrc
+SOURCES += qtmain.cpp

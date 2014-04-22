@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2013 Richel Bilderbeek
+Copyright (C) 2005-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ ribi::QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
     ),
     m_debug_text{},
     m_dialog{},
-    m_sprite(new QPixmap(":/PicBeer.png")),
+    m_sprite(new QPixmap(BeerWanterMainDialog::GetResourceFilename().c_str())),
     m_timer(new QTimer)
 {
   assert(!m_sprite.get()->isNull());

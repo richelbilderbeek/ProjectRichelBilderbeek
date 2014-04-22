@@ -1,15 +1,16 @@
-
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
-#include "qtvisualabcmenudialog.h"
-#include "checkprerequisites.h"
-//---------------------------------------------------------------------------
+#include "qttoolvisualabcmenudialog.h"
+#include "toolvisualabccheckprerequisites.h"
+#pragma GCC diagnostic pop
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  CheckPrerequisites();
-  QtVisualAbcMenuDialog w;
+  ribi::CheckPrerequisites();
+  ribi::QtVisualAbcMenuDialog w;
   w.show();
   return a.exec();
 }
-//---------------------------------------------------------------------------
+

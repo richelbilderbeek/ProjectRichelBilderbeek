@@ -26,7 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 ribi::gtst::ParticipantStateLoggedIn::ParticipantStateLoggedIn(
   Participant * const participant,Server * const server)
-  : ParticipantState(participant,server)
+  : ParticipantState(participant,server),
+    m_message{}
 {
 
 }

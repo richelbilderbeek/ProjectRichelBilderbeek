@@ -1,35 +1,34 @@
 #ifndef SEARCHANDDESTROYCHESSMENUDIALOG_H
 #define SEARCHANDDESTROYCHESSMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
-namespace SearchAndDestroyChess {
+namespace sadc {
 
 ///The logic behind the menu dialog
-struct MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
   ///Creates the resources needed
   MenuDialog();
 
-  ///Obtain the about information
-  ///
-  ///\note
-  ///This is a non-static method, to ensure users of this class
-  ///call MenuDialog its constructor: this is where
-  ///the resources needed are created
-  const About GetAbout() const;
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version
-  static const std::string GetVersion();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  private:
 
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
-} //~namespace SearchAndDestroyChess
+} //~namespace sadc
 } //~namespace ribi
 
 #endif // SEARCHANDDESTROYCHESSMENUDIALOG_H

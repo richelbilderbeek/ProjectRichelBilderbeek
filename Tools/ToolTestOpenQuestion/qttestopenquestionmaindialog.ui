@@ -11,11 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TestQuestion</string>
+   <string>TestOpenQuestion</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/ToolTestQuestionIcon14x14.png</normaloff>:/images/ToolTestQuestionIcon14x14.png</iconset>
+   <iconset resource="ToolTestOpenQuestion.qrc">
+    <normaloff>:/images/ToolTestOpenQuestionIcon14x14.png</normaloff>:/images/ToolTestOpenQuestionIcon14x14.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -46,6 +46,8 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="ToolTestOpenQuestion.qrc"/>
+ </resources>
  <connections/>
 </ui>

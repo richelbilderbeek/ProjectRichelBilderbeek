@@ -1,3 +1,25 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdboverviewdialog.h"
 
 #include <QDialog>
@@ -11,23 +33,18 @@
 
 #include "pvdbfile.h"
 #include "pvdbfilefactory.h"
-#include "pvdbconceptfactory.h"
-#include "qtpvdbtestconceptitemdialog.h"
-#include "qtpvdbviewtestsdialog.h"
-#include "pvdbconceptmapfactory.h"
-#include "qtpvdbconcepteditdialog.h"
-#include "qtpvdbrateconcepttallydialog.h"
-//#include "pvdbmenudialog.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapfactory.h"
+#include "qtconceptmapconcepteditdialog.h"
+#include "qtconceptmaprateconcepttallydialognewname.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"
-#include "qtpvdbtestedgeitemdialog.h"
-#include "qtpvdbtestnodeitemdialog.h"
-#include "qtpvdbtestconceptmapeditwidgetdialog.h"
-#include "qtpvdbtestconceptmapratewidgetdialog.h"
+#include "qttesteditconceptmapdialog.h"
+#include "qttestrateconceptmapdialog.h"
 #include "qtpvdbassessormenudialog.h"
-#include "qtpvdbrateconceptdialog.h"
+#include "qtconceptmaprateconceptdialognewname.h"
 #include "qtpvdbrateconceptmapdialog.h"
-#include "qtpvdbrateexamplesdialog.h"
+#include "qtconceptmaprateexamplesdialognewname.h"
 #include "qtpvdbclusterdialog.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "qtpvdbcreateassessmentcompletedialog.h"
@@ -38,6 +55,7 @@
 #include "qtpvdbstudentmenudialog.h"
 #include "qtpvdbstudentstartcompletedialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbOverviewWidget::QtPvdbOverviewWidget(QWidget* parent)
   : QGraphicsView(new QGraphicsScene,parent),
@@ -81,6 +99,7 @@ ribi::pvdb::QtPvdbOverviewWidget::QtPvdbOverviewWidget(QWidget* parent)
 
 const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget::GetAllDialogs()
 {
+  using namespace cmap;
   std::vector<QtHideAndShowDialog* > v;
   {
     QtHideAndShowDialog* p(new QtPvdbAssessorMenuDialog);
@@ -88,7 +107,9 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::GetTests().at(3));
+    const int index = 3;
+    assert(index < static_cast<int>(FileFactory::GetTests().size()));
+    const boost::shared_ptr<pvdb::File> file(FileFactory::GetTests().at(index));
     assert(file);
     assert(file->GetCluster());
     QtHideAndShowDialog* p(new QtPvdbClusterDialog(file));
@@ -96,12 +117,16 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbConceptEditDialog(pvdb::ConceptFactory::GetTests().at(4)));
+    const int index = 2;
+    assert(index < static_cast<int>(ConceptFactory().GetTests().size()));
+    QtHideAndShowDialog* p(new QtConceptMapConceptEditDialog(ConceptFactory().GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbConceptMapDialog(pvdb::FileFactory::GetTests().at(2)));
+    const int index = 2;
+    assert(index < static_cast<int>(cmap::ConceptFactory().GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbConceptMapDialog(FileFactory().GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
@@ -121,45 +146,61 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
+    const int index = 4;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(index);
     assert(file);
     QtHideAndShowDialog* p(new QtPvdbPrintConceptMapDialog(file));
     assert(p);
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
+    const int index = 4;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(index);
     assert(file);
     QtHideAndShowDialog* p(new QtPvdbPrintConceptMapDialog(file));
     assert(p);
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    const int index = 18;
+    assert(index < static_cast<int>(ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().size()));
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(index);
     assert(concept_map);
-    QtHideAndShowDialog* p(new QtPvdbRateConceptDialog(concept_map));
+    QtHideAndShowDialog* p(new cmap::QtRateConceptDialogNewName(concept_map));
     assert(p);
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    const int index = 18;
+    assert(index < static_cast<int>(ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().size()));
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(index);
     assert(concept_map);
-    QtHideAndShowDialog* p(new QtPvdbRateConceptTallyDialog(concept_map));
+    QtHideAndShowDialog* p(new cmap::QtRateConceptTallyDialogNewName(concept_map));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbRateConceptMapDialog(pvdb::FileFactory::GetTests().at(2)));
+    const int index = 2;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbRateConceptMapDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbRateExamplesDialog(pvdb::ConceptFactory::GetTests().at(4)));
+    const int index = 2;
+    assert(index < static_cast<int>(ConceptFactory().GetTests().size()));
+    QtHideAndShowDialog* p(new QtRateExamplesDialogNewName(ConceptFactory().GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbRatingDialog(pvdb::FileFactory::GetTests().at(4)));
+    const int index = 4;
+    assert(index < static_cast<int>(FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbRatingDialog(FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
@@ -171,12 +212,16 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     #endif
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbStudentMenuDialog(pvdb::FileFactory::GetTests().at(2)));
+    const int index = 2;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbStudentMenuDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbStudentStartCompleteDialog(pvdb::FileFactory::GetTests().at(2)));
+    const int index = 2;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbStudentStartCompleteDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }

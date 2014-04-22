@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GaborFilterWidget, Widget for the GaborFilter class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,26 +39,26 @@ ribi::GaborFilterWidget::GaborFilterWidget(
   const double sigma)
   : m_filter(new GaborFilter(angle,frequency,sigma))
 {
-  this->SetGeometry(Rect(x,y,width,height));
+  this->SetGeometry(x,y,width,height);
 }
 
-const std::string ribi::GaborFilterWidget::GetVersion()
+std::string ribi::GaborFilterWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::GaborFilterWidget::GetVersionHistory()
+std::vector<std::string> ribi::GaborFilterWidget::GetVersionHistory() noexcept
 {
   return {
     "2012-07-09: version 1.0: initial version"
   };
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const GaborFilterWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const GaborFilterWidget& widget) noexcept
 {
   os
     << "<GaborFilterWidget>"
-    << widget.GetGeometry()
+    //<< widget.GetGeometry()
     << *widget.m_filter
     << "</GaborFilterWidget>";
   return os;

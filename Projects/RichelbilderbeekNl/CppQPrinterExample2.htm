@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>QPrinter example 2: grab a window and print it</title>
-  <meta name="description" content="C++ QPrinter example 2: grab a window and print it"/>
-  <meta name="keywords" content="C++ QPrinter example 2: grab a window and print it code snippet"/>
+  <title>QPrinterExample2</title>
+  <meta name="description" content="C++ QPrinterExample2"/>
+  <meta name="keywords" content="C++ QPrinterExample2 "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,19 +18,9 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <img src="PicQt.png" alt="Qt"/> <a href="CppQPrinterExample2.htm">QPrinter example 2: grab a window and print it</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQPrinterExample2.htm">QPrinterExample2</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppQPrinterExample2.htm">QPrinter example 2: grab a window and print it</a> is an example how to grab
-a window and use <a href="CppQPrinter.htm">QPrinter</a> to write it to <a href="CppPdf.htm">PDF</a>.</p>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="CppQPrinterExample2.zip">Download the Qt Creator project 'QPrinterExample2' (zip)</a></li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQPrinterExample2-->
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppApplication.htm">Application type(s)</a></p>
@@ -39,11 +29,11 @@ a window and use <a href="CppQPrinter.htm">QPrinter</a> to write it to <a href="
 </ul>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -55,32 +45,33 @@ a window and use <a href="CppQPrinter.htm">QPrinter</a> to write it to <a href="
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 4.8.3 (32 bit)</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.2 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppQPrinterExample2.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppQPrinterExample2/CppQPrinterExample2.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="./CppQPrinterExample2/CppQPrinterExample2.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-QMAKE_CXXFLAGS += <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
-greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-TARGET = CppQPrinterExample2<br/>
-TEMPLATE = app<br/>
-SOURCES += <a href="CppMain.htm">main</a>.cpp\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog.cpp<br/>
-HEADERS&nbsp;&nbsp;+= dialog.h<br/>
-FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= dialog.ui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s printsupport<br/>
 <br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= dialog.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= dialog.ui<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -88,27 +79,27 @@ FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= dialog.ui<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>dialog.h</h2>
+<h2>./CppQPrinterExample2/dialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="./CppQPrinterExample2/dialog.h" border = "1"><tr><td><code>
 <a href="CppIfndef.htm">#ifndef</a> DIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> DIALOG_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> Dialog;<br/>
 }<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
-&nbsp;&nbsp;<br/>
+<br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~Dialog();<br/>
-&nbsp;&nbsp;<br/>
+<br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_clicked();<br/>
 <br/>
@@ -117,7 +108,6 @@ FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= dialog.ui<br/>
 };<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOG_H<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -125,10 +115,10 @@ FORMS&nbsp;&nbsp;&nbsp;&nbsp;+= dialog.ui<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>dialog.cpp</h2>
+<h2>./CppQPrinterExample2/dialog.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="./CppQPrinterExample2/dialog.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPrinter.htm">QPrinter</a>&gt;<br/>
@@ -171,10 +161,9 @@ Dialog::~Dialog()<br/>
 &nbsp;&nbsp;painter.end();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Start the printer<br/>
-&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQPrintDialog.htm">QPrintDialog</a>&gt; dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppQPrintDialog.htm">QPrintDialog</a>(&amp;printer));<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQPrintDialog.htm">QPrintDialog</a>&gt; dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppQPrintDialog.htm">QPrintDialog</a>(&amp;printer));<br/>
 &nbsp;&nbsp;dialog-&gt;exec();<br/>
 }<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -182,22 +171,21 @@ Dialog::~Dialog()<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppQPrinterExample2/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<table summary="./CppQPrinterExample2/main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> "dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;Dialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

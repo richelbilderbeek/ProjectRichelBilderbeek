@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>HelloWtQtCreatorLubuntu</title>
   <meta name="description" content="C++ HelloWtQtCreatorLubuntu"/>
-  <meta name="keywords" content="C++ HelloWtQtCreatorLubuntu code snippet"/>
+  <meta name="keywords" content="C++ HelloWtQtCreatorLubuntu "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,11 +21,6 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloWtQtCreatorLubuntu.htm">HelloWtQtCreatorLubuntu</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppHelloWtQtCreatorLubuntu-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppApplication.htm">Application type(s)</a></p>
@@ -34,11 +29,11 @@
 </ul>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -50,35 +45,35 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
-  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.2.2</li>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.53</li>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.2 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.3.0</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloWtQtCreatorLubuntu.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppHelloWtQtCreatorLubuntu/CppHelloWtQtCreatorLubuntu.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppHelloWtQtCreatorLubuntu.pro" border = "1"><tr><td><code>
+<table summary="./CppHelloWtQtCreatorLubuntu/CppHelloWtQtCreatorLubuntu.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a><br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a><br/>
 <br/>
 #Needed for older Wt versions<br/>
-#<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -DNDEBUG<br/>
+#<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -DNDEBUG<br/>
 <br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -86,10 +81,10 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppHelloWtQtCreatorLubuntu/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./CppHelloWtQtCreatorLubuntu/main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">/*</a><br/>
  * Copyright (C) 2008 Emweb bvba, Heverlee, Belgium.<br/>
  *<br/>
@@ -145,23 +140,23 @@ Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.
 <br/>
 &nbsp;&nbsp;greeting_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">WText</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> empty text<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp; * Connect <b><a href="CppQtSignals.htm">signals</a></b> with <b><a href="CppSlots.htm">slots</a></b><br/>
 &nbsp;&nbsp; *<br/>
 &nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> simple <a href="CppWt.htm">Wt</a>-way<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;b-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;Hello<a href="CppApplication.htm">Application</a>::greet);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppUsing.htm">using</a></b> an arbitrary <a href="CppFunction.htm">function</a> object (binding values with <a href="CppBind.htm">boost::bind</a>())<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppUsing.htm">using</a></b> an arbitrary <a href="CppFunction.htm">function</a> object (binding values with <a href="CppBoostBind.htm">boost::bind</a>())<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;nameEdit_-&gt;enterPressed().connect<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppBind.htm">boost::bind</a>(&amp;Hello<a href="CppApplication.htm">Application</a>::greet, <b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppBoostBind.htm">boost::bind</a>(&amp;Hello<a href="CppApplication.htm">Application</a>::greet, <b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> Hello<a href="CppApplication.htm">Application</a>::greet()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp; * Update the text, <b><a href="CppUsing.htm">using</a></b> text input into the nameEdit_ field.<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;greeting_-&gt;setText("Hello there, " <a href="CppOperatorPlus.htm">+</a> nameEdit_-&gt;text());<br/>
@@ -169,7 +164,7 @@ Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.
 <br/>
 <a href="CppWApplication.htm">WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp; * You could read information from the environment to decide whether<br/>
 &nbsp;&nbsp; * the user has permission to start a <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.htm">application</a><br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
@@ -178,8 +173,8 @@ Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp; * Your <a href="CppMain.htm">main</a> method may set up some shared resources, but should then<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp; * Your <a href="CppMain.htm">main</a> <a href="CppMemberFunction.htm">member function</a> may set up some shared resources, but should then<br/>
 &nbsp;&nbsp; * start the server <a href="CppApplication.htm">application</a> (FastCGI or httpd) that starts listening<br/>
 &nbsp;&nbsp; * <b><a href="CppFor.htm">for</a></b> requests, and handles all of the <a href="CppApplication.htm">application</a> life cycles.<br/>
 &nbsp;&nbsp; *<br/>
@@ -198,10 +193,10 @@ Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>CppHelloWtQtCreatorLubuntu.sh</h2>
+<h2>./CppHelloWtQtCreatorLubuntu/CppHelloWtQtCreatorLubuntu.sh</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppHelloWtQtCreatorLubuntu.sh" border = "1"><tr><td><code>
+<table summary="./CppHelloWtQtCreatorLubuntu/CppHelloWtQtCreatorLubuntu.sh" border = "1"><tr><td><code>
 #!/bin/bash<br/>
 mymake="make"<br/>
 myqmake="qmake"<br/>

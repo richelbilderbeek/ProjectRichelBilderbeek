@@ -1,39 +1,45 @@
-#ifndef BEERWANTERWT_H
-#define BEERWANTERWT_H
-//---------------------------------------------------------------------------
+#ifndef WTBEERWANTERWIDGET_H
+#define WTBEERWANTERWIDGET_H
+
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 #include <Wt/WPaintedWidget>
 #include <Wt/WPainter>
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WPaintDevice;
   struct WPaintedWidget;
   struct WPainter;
 };
-//---------------------------------------------------------------------------
-struct BeerWanter;
-//---------------------------------------------------------------------------
-struct BeerWanterWtWidget : public Wt::WPaintedWidget
+
+namespace ribi {
+
+struct BeerWanterMainDialog;
+
+struct WtBeerWanterWidget : public Wt::WPaintedWidget
 {
 public:
-  BeerWanterWtWidget(
+  WtBeerWanterWidget(
     Wt::WContainerWidget *parent = 0);
-  ~BeerWanterWtWidget() {}
+  WtBeerWanterWidget(const WtBeerWanterWidget&) = delete;
+  WtBeerWanterWidget& operator=(const WtBeerWanterWidget&) = delete;
+  ~WtBeerWanterWidget() {}
 
 protected:
    void paintEvent(Wt::WPaintDevice *paintDevice);
 
 private:
-  Wt::WPainter::Image * m_image;
-  boost::shared_ptr<BeerWanter> m_beerwanter;
-
   std::string m_debug_text;
+  boost::shared_ptr<BeerWanterMainDialog> m_dialog;
+  Wt::WPainter::Image * m_image;
+
 
   void OnClick(const Wt::WMouseEvent& e);
   void OnMouseMove(const Wt::WMouseEvent& e);
 };
-//---------------------------------------------------------------------------
-#endif // BEERWANTERWT_H
+
+} //~namespace ribi
+
+#endif // WTBEERWANTERWIDGET_H

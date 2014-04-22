@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtRichelBilderbeekGalleryDialog, gallery of Richel Bilderbeek's work
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,18 +23,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include "qthideandshowdialog.h"
-
+#pragma GCC diagnostic pop
 
 namespace Ui { class QtRichelBilderbeekGalleryDialog; }
 struct QModelIndex;
 
 namespace ribi {
 
-namespace RichelBilderbeek { struct Program; }
-
+struct Program;
 
 class QtRichelBilderbeekGalleryDialog : public QtHideAndShowDialog
 {
@@ -42,31 +42,33 @@ class QtRichelBilderbeekGalleryDialog : public QtHideAndShowDialog
 
 public:
   explicit QtRichelBilderbeekGalleryDialog(QWidget *parent = 0);
-  ~QtRichelBilderbeekGalleryDialog();
+  QtRichelBilderbeekGalleryDialog(const QtRichelBilderbeekGalleryDialog&) = delete;
+  QtRichelBilderbeekGalleryDialog& operator=(const QtRichelBilderbeekGalleryDialog&) = delete;
+  ~QtRichelBilderbeekGalleryDialog() noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent* e);
+  void keyPressEvent(QKeyEvent* e) noexcept;
 
 
 private slots:
-  void on_table_clicked(const QModelIndex &index);
+  void on_table_clicked(const QModelIndex &index) noexcept;
 
-  void on_table_cellEntered(int row, int column);
+  void on_table_cellEntered(int row, int column) noexcept;
 
-  void on_table_entered(const QModelIndex &index);
+  void on_table_entered(const QModelIndex &index) noexcept;
 
 private:
   Ui::QtRichelBilderbeekGalleryDialog *ui;
-  const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > m_programs;
+  const std::vector<boost::shared_ptr<Program> > m_programs;
 
   ///Show the screenshot requested by the item in [col,row]
-  void ShowScreenshot(const int col, const int row);
+  void ShowScreenshot(const int col, const int row) noexcept;
 };
 
 } //~namespace ribi

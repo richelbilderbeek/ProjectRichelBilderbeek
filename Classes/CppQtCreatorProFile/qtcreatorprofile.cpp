@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtCreatorProFile, class to parse Qt Project files
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,13 +34,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/function.hpp>
 
-#include <QDir>
-#include <QFile>
-
+//#include <QDir>
+//#include <QFile>
+#include "fileio.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -54,6 +55,7 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
     m_includepath{},
     m_libs{},
     m_other_files{},
+    m_pri_files{},
     m_pro_filename{filename},
     m_qmake_cxxflags{},
     m_qt{},
@@ -67,52 +69,51 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   #endif
 
   #ifndef NDEBUG
-  if (!IsRegularFile(filename.c_str()))
+  if (!ribi::fileio::FileIo().IsRegularFile(filename))
   {
     TRACE(filename);
     TRACE("BREAK");
   }
   #endif
-  assert(IsRegularFile(filename.c_str()));
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
 
-  const std::vector<std::string> v = FileToVector(filename);
-  Parse(v);
+  std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
+  RemoveComments(v);
+  DoReplacements(v);
+  std::stringstream data;
+  std::copy(std::begin(v),std::end(v),std::ostream_iterator<std::string>(data," "));
+  TRACE(data.str());
+  Parse(data);
 }
 
-const std::vector<std::string> ribi::QtCreatorProFile::FileToVector(const std::string& filename)
+void ribi::QtCreatorProFile::DoReplacements(std::vector<std::string>& v)
 {
-  assert(IsRegularFile(filename.c_str()));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
+  for (std::string& s: v)
   {
-    std::getline(in,s);
-    v.push_back(s);
+    boost::algorithm::replace_all(s,"include (","include(");
   }
-  return v;
 }
 
-const ribi::About ribi::QtCreatorProFile::GetAbout()
+ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
 {
   ribi::About a(
     "Richel Bilderbeek",
     "QtCreatorProFile",
     "class to parse Qt Project files",
     "the 19th of August 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/CppQtCreatorProFile.htm",
     GetVersion(),
     GetVersionHistory());
   return a;
 }
 
-const std::string ribi::QtCreatorProFile::GetVersion()
+std::string ribi::QtCreatorProFile::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory()
+std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
 {
   return {
     "2010-12-19: version 1.0: initial version",
@@ -126,119 +127,148 @@ const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory()
     "2012-12-23: version 1.8: renamed to QtCreatorProFile due to naming conflicts when cross-compiling",
     "2013-05-18: version 2.0: simplified architecture by removing file I/O",
     "2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem",
+    "2014-01-27: version 2.2: removes all comments, can detect includes of .pri files"
   };
 }
 
-#ifndef NDEBUG
-bool ribi::QtCreatorProFile::IsRegularFile(const std::string& filename)
+void ribi::QtCreatorProFile::Parse(std::stringstream& data)
 {
-  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
-}
-#endif
-
-void ribi::QtCreatorProFile::Parse(const std::vector<std::string> &v)
-{
+  const bool verbose = true;
   std::set<std::string> * p = nullptr; //A set to write to
   enum class Prefix { none, plus, minus };
   Prefix prefix = Prefix::none;
-  for (const std::string& dirty_line: v)
+  while (data)
   {
-    const std::string line = boost::algorithm::trim_copy(dirty_line);
-    if (line.empty()) continue;
-    if (line[0] == '#') continue;
-    if (line[0] == '{') continue;
-    if (line[0] == '}') continue;
-    if (line.size() >= 7 && line.substr(0,7) == std::string("message")) continue;
-    const std::vector<std::string> words = SeperateString(line,' ');
-    for (const std::string& dirty_word: words)
+    std::string s;
+    data >> s;
+    if (verbose) { TRACE(s); }
+    assert(s[0] != '#' && "Comments are already removed");
+    if (s[0] == '{') continue;
+    if (s[0] == '}') continue;
+    if (s[0] == '\\') continue;
+    if (s.size() > 7 && s.substr(0,7) == "include")
     {
-      const std::string word = boost::algorithm::trim_copy(dirty_word);
-      if (word.empty()) continue;
-      if (word[0] == '#') break; //Skip the rest of the line
-      assert(!word.empty());
-      std::string s = word; //s gets cut into bits
-      const std::vector<std::string> conditional_sections
-        =
+      std::string t = s.substr(8,s.size() - 8 - 1);
+      if (verbose) { TRACE(t); }
+      while (t[0] == ' ' || t[0] == '(') t = t.substr(1,t.size()-1);
+      if (verbose) { TRACE(t); }
+      while (t.back() == ' ' || t.back() == ')') t.pop_back();
+      if (verbose) { TRACE(t); }
+      assert(t.find('(') == std::string::npos);
+      assert(t.find(')') == std::string::npos);
+      m_pri_files.insert(t);
+      continue;
+    }
+    const std::vector<std::string> conditional_sections {
+      "unix", "win32", "static", "debug", "release"
+    };
+    if (std::count(conditional_sections.begin(),conditional_sections.end(),s))
+    {
+      p = nullptr;
+      continue;
+    }
+    const std::map<std::string,std::set<std::string>* > m {
+      { "CONFIG"        ,&m_config },
+      { "DEFINES"       ,&m_defines },
+      { "FORMS"         ,&m_forms },
+      { "HEADERS"       ,&m_headers },
+      { "INCLUDEPATH"   ,&m_includepath },
+      { "LIBS"          ,&m_libs },
+      { "OTHER_FILES"   ,&m_other_files },
+      { "QMAKE_CXXFLAGS",&m_qmake_cxxflags },
+      { "QT"            ,&m_qt },
+      { "RESOURCES"     ,&m_resources },
+      { "SOURCES"       ,&m_sources },
+      { "TARGET"        ,&m_target },
+      { "TEMPLATE"      ,&m_template }
+    };
+    const std::map<std::string,std::set<std::string>* >::const_iterator iter {
+      std::find_if(std::begin(m),std::end(m),
+        [s](const std::pair<std::string,std::set<std::string>* > sub_pair)
         {
-          "unix", "win32", "static", "debug", "release"
-        };
-      if (std::count(conditional_sections.begin(),conditional_sections.end(),s))
+          return sub_pair.first == s;
+        }
+      )
+    };
+    if (iter != std::end(m))
+    {
+      if (verbose) { const std::string msg = "Set pointer to " + iter->first; TRACE(msg); }
+      p = iter->second;
+      prefix = Prefix::none;
+      continue;
+    }
+    //Determine prefixes
+    bool has_prefixes = true;
+    while (has_prefixes)
+    {
+      has_prefixes = false;
+      if (!s.empty() && s[0] == '+')
       {
-        p = nullptr;
-        continue;
+        prefix = Prefix::plus;
+        s = s.substr(1,s.size() - 1);
+        has_prefixes = true;
       }
-      const std::map<std::string,std::set<std::string>* > m
-        =
-        {
-          { "CONFIG"        ,&m_config },
-          { "DEFINES"       ,&m_defines },
-          { "FORMS"         ,&m_forms },
-          { "HEADERS"       ,&m_headers },
-          { "INCLUDEPATH"   ,&m_includepath },
-          { "LIBS"          ,&m_libs },
-          { "OTHER_FILES"   ,&m_other_files },
-          { "QMAKE_CXXFLAGS",&m_qmake_cxxflags },
-          { "QT"            ,&m_qt },
-          { "RESOURCES"     ,&m_resources },
-          { "SOURCES"       ,&m_sources },
-          { "TARGET"        ,&m_target },
-          { "TEMPLATE"      ,&m_template }
-        };
-      for (const std::pair<std::string,std::set<std::string>* > sub_pair: m)
+      else if (!s.empty() && s[0] == '-')
       {
-        const std::string& sub = sub_pair.first;
-        if (s.size() >= sub.size() && s.substr(0,sub.size()) == sub)
-        {
-          p = sub_pair.second;
-          assert(p);
-          s = s.substr(sub.size(),s.size() - sub.size());
-          prefix = Prefix::none;
-        }
+        prefix = Prefix::minus;
+        s = s.substr(1,s.size() - 1);
+        has_prefixes = true;
       }
-      //Determine prefixes
-      bool has_prefixes = true;
-      while (has_prefixes)
+      else if (!s.empty() && s[0] == '\\')
       {
-        has_prefixes = false;
-        if (!s.empty() && s[0] == '+')
-        {
-          prefix = Prefix::plus;
-          s = s.substr(1,s.size() - 1);
-          has_prefixes = true;
-        }
-        else if (!s.empty() && s[0] == '-')
-        {
-          prefix = Prefix::minus;
-          s = s.substr(1,s.size() - 1);
-          has_prefixes = true;
-        }
-        else if (!s.empty() && s[0] == '\\')
-        {
-          s = s.substr(1,s.size() - 1);
-          has_prefixes = true;
-        }
-        else if (!s.empty() && s[0] == '=')
-        {
-          s = s.substr(1,s.size() - 1);
-          has_prefixes = true;
-        }
+        s = s.substr(1,s.size() - 1);
+        has_prefixes = true;
       }
-      //Remove possible postfix
-      if (!s.empty())
+      else if (!s.empty() && s[0] == '=')
       {
-        if (s[ s.size() - 1] == '\\') s.resize(s.size() - 1);
+        s = s.substr(1,s.size() - 1);
+        has_prefixes = true;
+      }
+    }
+    //Remove possible postfix
+    if (!s.empty())
+    {
+      if (s[ s.size() - 1] == '\\') s.resize(s.size() - 1);
 
-      }
-      if (p && !s.empty())
-      {
-        p->insert(
-          (prefix == Prefix::minus ? std::string("-") : std::string()) + s);
-      }
+    }
+    if (p && !s.empty())
+    {
+      if (verbose) { const std::string msg = "Added " + s; TRACE(msg); }
+      p->insert(
+        (prefix == Prefix::minus ? "-" : "") + s);
     }
   }
 }
 
-const std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
+void ribi::QtCreatorProFile::RemoveComments(std::vector<std::string>& v)
+{
+  for (std::string& s: v)
+  {
+    const std::string t = boost::algorithm::trim_copy(s);
+    if (t[0] == '#')
+    {
+      s = "";
+      continue;
+    }
+    if (t.size() >= 7 && t.substr(0,7) == "message")
+    {
+      s = "";
+      continue;
+    }
+
+    const auto iter = std::find(std::begin(t),std::end(t),'#');
+    if (iter != std::end(t))
+    {
+      s.assign(std::begin(t),iter);
+    }
+
+    assert(std::find(std::begin(s),std::end(s),'#') == std::end(s)
+      && "Every comment is removed");
+  }
+
+}
+
+std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
   const std::string& input,
   const char seperator)
 {
@@ -255,7 +285,7 @@ const std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
 }
 
 #ifndef NDEBUG
-void ribi::QtCreatorProFile::Test()
+void ribi::QtCreatorProFile::Test() noexcept
 {
   //Test exactly once
   {
@@ -263,9 +293,59 @@ void ribi::QtCreatorProFile::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting QtCreatorProFile::Test");
   {
-    //Create a project file
-    const std::string mypath = "tmp.txt";
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
+    {
+      std::ofstream f(mypath);
+      f << "SOURCES += qtmain.cpp";
+    }
+    //Check the project file
+    const QtCreatorProFile p(mypath);
+    assert(p.GetSources().size() == 1);
+    assert(p.GetSources().count("qtmain.cpp"));
+    fileio::FileIo().DeleteFile(mypath.c_str());
+  }
+  {
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
+    {
+      std::ofstream f(mypath);
+      f << "include(something.pri)";
+    }
+    //Check the project file
+    const QtCreatorProFile p(mypath);
+    assert(p.GetPriFiles().size() == 1);
+    TRACE(*p.GetPriFiles().begin());
+    assert(p.GetPriFiles().count("something.pri"));
+    fileio::FileIo().DeleteFile(mypath.c_str());
+  }
+  {
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
+    {
+      std::ofstream f(mypath);
+      f << "include (something.pri)";
+    }
+    //Check the project file
+    const QtCreatorProFile p(mypath);
+    assert(p.GetPriFiles().size() == 1);
+    TRACE(*p.GetPriFiles().begin());
+    assert(p.GetPriFiles().count("something.pri"));
+    fileio::FileIo().DeleteFile(mypath.c_str());
+  }
+  {
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
+    {
+      std::ofstream f(mypath);
+      f << "HEADERS += header.h #Must remove this comment";
+    }
+    //Check the project file
+    const QtCreatorProFile p(mypath);
+    assert(p.GetHeaders().size() == 1);
+    assert(p.GetHeaders().count("header.h"));
+    fileio::FileIo().DeleteFile(mypath.c_str());
+  }
+  {
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath);
       f << "#-------------------------------------------------\n"
@@ -287,6 +367,7 @@ void ribi::QtCreatorProFile::Test()
     }
     //Check the project file
     const QtCreatorProFile p(mypath);
+    TRACE(p.GetConfig().size());
     assert(p.GetConfig().size() == 2);
     assert(p.GetConfig().count("console"));
     assert(p.GetConfig().count("-app_bundle"));
@@ -305,23 +386,21 @@ void ribi::QtCreatorProFile::Test()
     assert(p.GetTarget().count("ToolTestQtCreatorProFile") == 1);
     assert(p.GetTemplate().size() == 1);
     assert(p.GetTemplate().count("app"));
-    //Test operator<<
     {
-      //std::cout << p << '\n';
       std::stringstream ss;
       ss << p << '\n';
     }
-    //Test operator==
+    //TRACE("Test QtCreatorProFile::operator==");
     {
       QtCreatorProFile q(mypath);
       assert(p == q);
     }
-    std::remove(mypath.c_str());
+    fileio::FileIo().DeleteFile(mypath.c_str());
   }
-  //Test Merge
+  //TRACE("Test QtCreatorProFile::Merge");
   {
-    const std::string mypath1 = "tmp1.txt";
-    const std::string mypath2 = "tmp2.txt";
+    const std::string mypath1 { fileio::FileIo().GetTempFileName() };
+    const std::string mypath2 { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath1);
       f << "#-------------------------------------------------\n"
@@ -363,13 +442,13 @@ void ribi::QtCreatorProFile::Test()
     //Check the project file
     const boost::shared_ptr<const QtCreatorProFile> p1(new QtCreatorProFile(mypath1));
     const boost::shared_ptr<const QtCreatorProFile> p2(new QtCreatorProFile(mypath2));
-    std::remove(mypath1.c_str());
-    std::remove(mypath2.c_str());
+    fileio::FileIo().DeleteFile(mypath1.c_str());
+    fileio::FileIo().DeleteFile(mypath2.c_str());
   }
   //Test conditionals
   {
     //Create a project file
-    const std::string mypath = "tmp.txt";
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath);
       f
@@ -399,7 +478,6 @@ void ribi::QtCreatorProFile::Test()
 
     //Test operator<<
     {
-      //std::cout << p << '\n';
       std::stringstream ss;
       ss << p << '\n';
     }
@@ -408,54 +486,19 @@ void ribi::QtCreatorProFile::Test()
       QtCreatorProFile q(mypath);
       assert(p == q);
     }
-    std::remove(mypath.c_str());
+    fileio::FileIo().DeleteFile(mypath.c_str());
   }
-  //IsRegularFile
-  {
-    {
-      std::remove("tmp.txt");
-
-      //Create a regular file
-      assert(!IsRegularFile("tmp.txt"));
-      {
-        std::fstream f;
-        f.open("tmp.txt",std::ios::out);
-        f << "TEMP TEXT";
-        f.close();
-      }
-      assert(IsRegularFile("tmp.txt"));
-
-      std::remove("tmp.txt");
-
-      assert(!IsRegularFile("tmp.txt"));
-    }
-    {
-      //Create a folder
-      std::system("mkdir tmp");
-      assert(!IsRegularFile("tmp"));
-      std::system("rmdir tmp");
-    }
-  }
+  TRACE("Finished QtCreatorProFile::Test successfully");
 }
 #endif
-std::ostream& ribi::operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p)
-{
-  assert(p);
-  os << (*p);
-  return os;
-}
-
-std::ostream& ribi::operator<<(std::ostream& os, const boost::shared_ptr<const QtCreatorProFile>& p)
-{
-  assert(p);
-  os << (*p);
-  return os;
-}
 
 std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
 {
   os << "\n";
-
+  for (const std::string pri: p.GetPriFiles())
+  {
+    os << "include(" << pri << ")" << '\n';
+  }
   {
     const std::vector<
       std::pair<
@@ -487,7 +530,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
           if (w.size() > 1)
           {
             std::transform(w.begin(),--w.end(),std::ostream_iterator<std::string>(os," \\\n"),
-              [](const std::string& s) { return std::string("    ") + s; } );
+              [](const std::string& s) { return "    " + s; } );
           }
           os << "    " + (*(--w.end())) + '\n';
           os << "\n";
@@ -502,7 +545,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
   {
     const std::vector<std::string> v = p.GetAbout().CreateAboutText();
     std::transform(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"),
-      [](const std::string& s) { return std::string("# ") + s; } );
+      [](const std::string& s) { return "# " + s; } );
   }
   os << "#\n";
   os << "#\n";
@@ -510,7 +553,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
   {
     const std::vector<std::string> v = p.GetAbout().CreateLicenceText();
     std::transform(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"),
-      [](const std::string& s) { return std::string("# ") + s; } );
+      [](const std::string& s) { return "# " + s; } );
   }
   os << "#--------------------------------------------------------------------------";
   return os;

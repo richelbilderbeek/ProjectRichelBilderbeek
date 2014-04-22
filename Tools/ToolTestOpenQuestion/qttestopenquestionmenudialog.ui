@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>231</width>
-    <height>220</height>
+    <width>224</width>
+    <height>239</height>
    </rect>
   </property>
   <property name="font">
@@ -16,11 +16,11 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>testopenquestion</string>
+   <string>TestOpenQuestion</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/TooltestopenquestionIcon14x14.png</normaloff>:/images/TooltestopenquestionIcon14x14.png</iconset>
+   <iconset resource="ToolTestOpenQuestion.qrc">
+    <normaloff>:/images/ToolTestOpenQuestionIcon14x14.png</normaloff>:/images/ToolTestOpenQuestionIcon14x14.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">/*QDialog { 
@@ -44,7 +44,7 @@ QPushButton {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/TooltestopenquestionIcon14x14.png</pixmap>
+      <pixmap resource="ToolTestOpenQuestion.qrc">:/images/ToolTestOpenQuestionIcon14x14.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -83,6 +83,8 @@ QPushButton {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="ToolTestOpenQuestion.qrc"/>
+ </resources>
  <connections/>
 </ui>

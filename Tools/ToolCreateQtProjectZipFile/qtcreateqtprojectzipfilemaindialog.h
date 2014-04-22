@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateQtProjectZipFile, tool to create a zip file from a Qt project
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,29 +34,25 @@ class QtCreateQtProjectZipFileMainDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
-  explicit QtCreateQtProjectZipFileMainDialog(QWidget *parent = 0);
-  ~QtCreateQtProjectZipFileMainDialog();
+  explicit QtCreateQtProjectZipFileMainDialog(QWidget *parent = 0) noexcept;
+  QtCreateQtProjectZipFileMainDialog(const QtCreateQtProjectZipFileMainDialog&) = delete;
+  QtCreateQtProjectZipFileMainDialog& operator=(const QtCreateQtProjectZipFileMainDialog&) = delete;
+  ~QtCreateQtProjectZipFileMainDialog() noexcept;
 
 
 private slots:
-  void on_lineEdit_textChanged(const QString &arg1);
+  void on_lineEdit_textChanged(const QString &arg1) noexcept;
 
 private:
   Ui::QtCreateQtProjectZipFileMainDialog *ui;
 
   ///Create a script from a valid folder
-  void CreateScript(const std::string source_folder);
+  void CreateScript(const std::string source_folder) noexcept;
 
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
-
-  void keyPressEvent(QKeyEvent *);
-
+  void keyPressEvent(QKeyEvent *) noexcept;
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

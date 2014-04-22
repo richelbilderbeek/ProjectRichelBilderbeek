@@ -19,12 +19,12 @@ void ribi::IntegerSymmetricalAlphaFilter::Update(const int64_t measurement)
   m_value_active += delta + (delta == 0 && measurement - m_value_active > 0 ? 1 : 0);
 }
 
-const std::string ribi::IntegerSymmetricalAlphaFilter::GetVersion()
+std::string ribi::IntegerSymmetricalAlphaFilter::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::IntegerSymmetricalAlphaFilter::GetVersionHistory()
+std::vector<std::string> ribi::IntegerSymmetricalAlphaFilter::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2013-06-04: version 1.0: initial version");

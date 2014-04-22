@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::vector</title>
+  <meta name="description" content="C++ std::vector"/>
+  <meta name="keywords" content="C++ std::vector std vector code snippet snippets"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppVector.htm">std::vector</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppStl.htm">STL</a> <a href="CppContainer.htm">container</a> for storing <a href="CppInstance.htm">instances</a> of any <a href="CppDataType.htm">data type</a>.</p>
+<p>&nbsp;</p>
+<p>Advantages of a <a href="CppVector.htm">std::vector</a> over an <a href="CppArray.htm">array</a> are:</p>
+<ol>
+  <li><a href="CppVector.htm">std::vector</a> allocates memory from the free space when increasing in size</li>
+  <li><a href="CppVector.htm">std::vector</a> is not a <a href="CppPointer.htm">pointer</a> in disguise [3]</li>
+  <li><a href="CppVector.htm">std::vector</a> can increase/decrease in size run-time</li>
+  <li><a href="CppVector.htm">std::vector</a> can do range checking (using at())</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>The erase-remove idiom</h2>
+<p>&nbsp;</p>
+<p>Calling <a href="CppRemove.htm">std::remove</a> to remove a certain value from a <a href="CppVector.htm">std::vector</a> does not change
+a <a href="CppVector.htm">std::vector</a> its size. <a href="CppRemove.htm">std::remove</a> does <a href="CppReturn.htm">return</a> an
+<a href="CppIterator.htm">iterator</a> to where the removed elements are put. This <a href="CppIterator.htm">iterator</a> can be used
+to call <a href="CppVector.htm">std::vector</a> its 'erase' member function. These two operations are called the erase-remove idiom.</p>
+<p>&nbsp;</p>
+<p>Use the erase-remove idiom the really remove a value from a <a href="CppVector.htm">std::vector</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppExample.htm">Examples</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppVectorExample1.htm">std::vector example 1: basics</a></li>
+  <li><a href="CppVectorExample2.htm">std::vector example 2: erase-remove idiom</a></li>
+  <li><a href="CppVectorExample3.htm">std::vector example 3: C++11 emplace member function</a></li>
+  <li><a href="CppVectorExample4.htm">std::vector example 4: remove an element with preserving the order</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppVector.htm">std::vector</a> <a href="CppCodeSnippets.htm">code snippets</a></h2>
+<p>&nbsp;</p>
+<p>Note that among these are also more general <a href="CppContainer.htm">container</a> <a href="CppCodeSnippets.htm">code snippets</a>.</p>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppAllAboutEqual.htm">AllAboutEqual, check if all doubles in a std::vector are about equal</a></li>
+  <li><a href="CppAppend.htm">Append two std::vectors, Append</a></li>
+  <li><a href="CppAppend.htm">Append, append two std::vectors</a></li>
+  <li><a href="CppAllAboutEqual.htm">Check if all doubles in a std::vector are about equal, AllAboutEqual</a></li>
+  <li><a href="CppCreateVector.htm">CreateVector</a>, create a std::vector from three values</li>
+  <li><a href="CppConvertMatrix.htm">Convert Matrix&lt;X&gt; to Matrix&lt;Y&gt;, ConvertMatrix</a></li>
+  <li><a href="CppConvertMatrix.htm">Convert std::vector&lt;std::vector&lt;X&gt; &gt; to std::vector&lt;std::vector&lt;Y&gt; &gt;, ConvertMatrix</a></li>
+  <li><a href="CppConvertMatrix.htm">Convert two 2D std::vector&lt;X&gt; to 2D std::vector&lt;Y&gt;, ConvertMatrix</a></li>
+  <li><a href="CppConvertMatrix.htm">ConvertMatrix, convert Matrix&lt;X&gt; to Matrix&lt;Y&gt;</a></li>
+  <li><a href="CppConvertMatrix.htm">ConvertMatrix, convert std::vector&lt;std::vector&lt;X&gt; &gt; to std::vector&lt;std::vector&lt;Y&gt; &gt;</a></li>
+  <li><a href="CppConvertMatrix.htm">ConvertMatrix, convert two 2D std::vector&lt;X&gt; to 2D std::vector&lt;Y&gt;</a></li>
+  <li><a href="CppCoutVector.htm">CoutVector, std::cout on a std::vector</a></li>
+  <li><a href="CppGetIncVector.htm">GetIncVector, get a std::vector of incremented values (for example with values 0,1,2,3,etc)</a></li>
+  <li><a href="CppGetLongestStringLength.htm">GetLongestString, find the length of the std::string with the most characters in a container</a></li> 
+  <li><a href="CppGetShortestStringLength.htm">GetShortestString, find the length of the std::string with the least characters in a container</a></li> 
+  <li><a href="CppHugeVector.htm">HugeVector, class that can contain more elements than std::vector</a></li>
+  <li><a href="CppLoopReader.htm">LoopReader, reading a container looped</a></li>
+  <li><a href="CppRandomShuffle.htm">RandomShuffle, shuffle a std::vector to a random order</a></li>
+  <li><a href="CppVectorToStream.htm">Read and write a std::vector from/to a std::stream</a></li>
+  <li><a href="CppVectorsToStream.htm">Read and write two std::vectors from/to a std::stream</a></li>
+  <li><a href="CppLoopReader.htm">Reading a container looped, LoopReader</a></li>
+  <li><a href="CppSaveContainer.htm">Save a container to file, SaveContainer</a></li>
+  <li><a href="CppSaveContainer.htm">SaveContainer, save a container to file</a></li>
+  <li><a href="CppSumStringLength.htm">SumStringLength, sum the lengths of std::strings irn a container</a></li> 
+  <li><a href="CppRandomShuffle.htm">Shuffle a std::vector to a random order, RandomShuffle</a></li>
+  <li><a href="CppSortVector.htm">Sort a std::vector, SortVector</a></li>
+  <li><a href="CppSortVector.htm">SortVector, sort a std::vector</a></li>
+  <li><a href="CppVectorToStream.htm">Write and read a std::vector to/from a std::stream</a></li>
+  <li><a href="CppVectorsToStream.htm">Write and read two std::vectors to/from a std::stream</a></li>
+  <li><a href="CppCoutVector.htm">std::cout on a std::vector, CoutVector</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Prefer using a <a href="CppVector.htm">std::vector</a> over an <a href="CppArray.htm">array</a> [1-4]
+  </li>
+  <li>
+    Use <a href="CppVector.htm">std::vector</a> as your default <a href="CppContainer.htm">container</a> [5]
+  </li>
+  <li>
+    Don't use <a href="CppIterator.htm">iterators</a> into a resized <a href="CppVector.htm">std::vector</a> or <a href="CppDeque.htm">std::deque</a> [6]
+  </li>
+  <li>
+    Don't assume <a href="CppPerformance.htm">performance</a> benefits from reserve() without measurements [7]
+  </li>
+  <li>
+    When necessary, use reserve() to make <a href="CppPerformance.htm">performance</a> predictable [8]
+  </li>
+  <li>
+    Do not assume that <a href="CppOperatorIndex.htm">operator[]</a> range checks [9]
+  </li>
+  <li>
+    Use the 'at' <a href="CppMemberFunction.htm">member function</a> when you need guaranteed range checks [10]
+  </li>
+  <li>
+    Use emplace() for notational convenience [11]
+  </li>
+  <li>
+    Use emplace() to avoid having to pre-initialize <a href="CppVariable.htm">variables</a> [12]
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.codepedia.com/CppVector">CodePedia page about std::vector</a></li>
+  <li><a href="http://www.sgi.com/tech/stl/Vector.html">SGI page about std::vector</a></li>
+  <li><a href="http://www.cplusplus.com/reference/stl/vector/vector">Cplusplus.com page about std::vector</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!--  1 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 76: 'Use vector by default. Otherwise, choose an appropriate container'.</li>
+  <li><!--  2 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 77: 'Use vector and string instead of arrays'.</li>
+  <li><!--  3 --><a href="CppMarshallCline.htm">Marshall Cline</a>, <a href="CppGregLomow.htm">Greg Lomow</a> and <a href="CppMikeGirou.htm">Mike Girou</a>. C++ FAQs. ISBN: 0-201-3098301. FAQ 28.02: 'Are arrays good or evil?' (Answer: 'Arrays are evil').</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter C.14.11 'Prefer vector over array'.</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[2] Use vector as your default container'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[21] Don't use iterators into a resized vector or deque'</li>
+  <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[19] Don't assume performance benefits from reserve() without measurements'</li>
+  <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[22] When necessary, use reserve() to make performance predictable'</li>
+  <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[23] Do not assume that [] range checks'</li>
+  <li><!-- 10 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[24] Use at() when you need guaranteed range checks'</li>
+  <li><!-- 11 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[25] Use emplace() for notational convenience'</li>
+  <li><!-- 12 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 925: '[27] Use emplace() to avoid having to pre-initialize variables'</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

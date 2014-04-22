@@ -4,19 +4,17 @@
 #include <bitset>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
+#include <QWidget>
+#include "connectthreewidget.h" //thanks to MOC :-(
 #pragma GCC diagnostic pop
 
-#include <QWidget>
-
-#include "connectthreewidget.h" //thanks to MOC :-(
-
 namespace ribi {
+namespace con3 {
 
-//#include "connectthree.h"       //thanks to MOC :-(
-//struct ConnectThreeWidget;
 struct ConnectThreeResources;
 struct ConnectThreeWidget;
 
@@ -32,11 +30,11 @@ public:
     const int n_rows = 12);
 
   void DoComputerTurn();
-  int GetActivePlayer() const;
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
-  int GetWinner() const;
-  bool IsComputerTurn() const;
+  Player GetActivePlayer() const noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+  Winner GetWinner() const noexcept;
+  bool IsComputerTurn() const noexcept;
 
   ///m_signal_valid_move is emitted on a valid move,
   ///causing the game to be terminated or let
@@ -59,13 +57,14 @@ protected:
   const QImage m_player2;
   const QImage m_player3;
   const QImage m_empty;
-  const QImage& GetImage(const int sprite) const;
+  const QImage& GetImage(const Square sprite) const noexcept;
 
   static const int m_sprite_width;
   static const int m_sprite_height;
 
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 

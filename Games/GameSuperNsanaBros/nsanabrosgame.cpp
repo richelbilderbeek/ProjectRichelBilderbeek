@@ -1,24 +1,31 @@
-//---------------------------------------------------------------------------
+#include "nsanabrosgame.h"
+
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
-#include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
+
+#include "nsanabrossprite.h"
 #include "nsanabrosstlheader.h"
-//---------------------------------------------------------------------------
-const double NsanaBrosGame::m_width  = 20.0;
-const double NsanaBrosGame::m_height = 16.0;
-const double NsanaBrosGame::m_dy_gravity = 0.01;
-//---------------------------------------------------------------------------
-NsanaBrosGame::NsanaBrosGame()
-  : m_keys(new NsanaBrosKeys),
+#pragma GCC diagnostic pop
+
+const double ribi::NsanaBrosGame::m_width  = 20.0;
+const double ribi::NsanaBrosGame::m_height = 16.0;
+const double ribi::NsanaBrosGame::m_dy_gravity = 0.01;
+
+ribi::NsanaBrosGame::NsanaBrosGame()
+  : m_signal_repaint{},
+    m_keys(new NsanaBrosKeys),
     m_player(new NsanaBrosPlayer),
     m_sprites(CreateTestSprites())
 {
 
 }
-//---------------------------------------------------------------------------
-const std::vector<boost::shared_ptr<NsanaBrosSprite> > NsanaBrosGame::CreateTestSprites()
+
+const std::vector<boost::shared_ptr<ribi::NsanaBrosSprite> > ribi::NsanaBrosGame::CreateTestSprites()
 {
   const std::vector<boost::shared_ptr<NsanaBrosSprite> > v
   = {
@@ -40,56 +47,56 @@ const std::vector<boost::shared_ptr<NsanaBrosSprite> > NsanaBrosGame::CreateTest
   };
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///GetHeight returns the height of the world in the number of blocks
-int NsanaBrosGame::GetHeight()
+int ribi::NsanaBrosGame::GetHeight()
 {
   return m_height;
 }
-//---------------------------------------------------------------------------
+
 ///GetWidth returns the width of the world in the number of blocks
-int NsanaBrosGame::GetWidth()
+int ribi::NsanaBrosGame::GetWidth()
 {
   return m_width;
 }
-//---------------------------------------------------------------------------
-const NsanaBrosKeys * NsanaBrosGame::GetKeys() const
+
+const boost::shared_ptr<const ribi::NsanaBrosKeys> ribi::NsanaBrosGame::GetKeys() const
 {
   //delete m_keys.get(); //Should not compile
-  return m_keys.get();
+  return m_keys;
 }
-//---------------------------------------------------------------------------
-const NsanaBrosPlayer * NsanaBrosGame::GetPlayer() const
+
+const boost::shared_ptr<const ribi::NsanaBrosPlayer> ribi::NsanaBrosGame::GetPlayer() const
 {
-  return m_player.get();
+  return m_player;
 }
-//---------------------------------------------------------------------------
-const std::vector<const NsanaBrosSprite*> NsanaBrosGame::GetSprites() const
+
+const std::vector<boost::shared_ptr<const ribi::NsanaBrosSprite> > ribi::NsanaBrosGame::GetSprites() const
 {
-  std::vector<const NsanaBrosSprite*> v;
-  BOOST_FOREACH(const boost::shared_ptr<NsanaBrosSprite>& s,m_sprites)
+  std::vector<boost::shared_ptr<const NsanaBrosSprite> > v;
+  for(const boost::shared_ptr<const NsanaBrosSprite> s: m_sprites)
   {
-    v.push_back(s.get());
+    v.push_back(s);
   }
   //v[0]->Translate(1.0,1.0); //Should not compile
   //delete v[0]; //Should not compile
   return v;
 }
-//---------------------------------------------------------------------------
-void NsanaBrosGame::KeyPress(const int key)
+
+void ribi::NsanaBrosGame::KeyPress(const int key)
 {
   m_keys->KeyPress(key);
 }
-//---------------------------------------------------------------------------
-void NsanaBrosGame::KeyRelease(const int key)
+
+void ribi::NsanaBrosGame::KeyRelease(const int key)
 {
   m_keys->KeyRelease(key);
 }
-//---------------------------------------------------------------------------
+
 ///OnTimer() performs a tick in the game in which sprites move
 ///OnTimer is called by XtNsanaBrosGameDialog, as these
 ///libraries supply a ticking timer
-void NsanaBrosGame::OnTimer()
+void ribi::NsanaBrosGame::OnTimer()
 {
   //Let the player start a jump, move left, etc
   m_player->RespondToKeys(GetKeys());
@@ -101,12 +108,12 @@ void NsanaBrosGame::OnTimer()
   //Bounce into walls, etc...
   bool is_falling = true;
   {
-    const std::vector<const NsanaBrosSprite*> sprites = GetSprites();
+    const std::vector<boost::shared_ptr<const NsanaBrosSprite> > sprites = GetSprites();
     bool done = false;
     while (!done)
     {
       done = true;
-      BOOST_FOREACH(const NsanaBrosSprite* sprite, sprites)
+      for(const boost::shared_ptr<const NsanaBrosSprite> sprite: sprites)
       {
         if (
           sprite->GetCollisionVectorFromPoint(
@@ -163,5 +170,3 @@ void NsanaBrosGame::OnTimer()
   //Move the player
   m_player->Move();
 }
-//---------------------------------------------------------------------------
-

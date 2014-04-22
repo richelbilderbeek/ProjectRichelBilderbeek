@@ -71,7 +71,7 @@
 # Project created by <a href="CppQtCreator.htm">QtCreator</a> 2010-07-22T22:43:13<br/>
 #<br/>
 #-------------------------------------------------<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \ <br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \ <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;bird.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;matetally.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;speciestally.cpp \<br/>
@@ -86,7 +86,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;femalesampling.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;densitydependentselection.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \ <br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \ <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;bird.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;matetally.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;speciestally.h \<br/>
@@ -102,8 +102,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;densitydependentselection.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;enums.h<br/>
 QT += core gui<br/>
-TEMPLATE = app<br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> +=<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> +=<br/>
 <a href="CppFORMS.htm">FORMS</a> +=<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -121,9 +121,9 @@ TEMPLATE = app<br/>
 <a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> hdrstop<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("UnitMain.cpp", FormMain);<br/>
-USEFORM("UnitThreeDotsChasing.cpp", FormThreeDotsChasing);<br/>
-USEFORM("UnitAboutBox2.cpp", Form<a href="CppAbout.htm">About</a>Box2);<br/>
+USEFORM("UnitMain<a href="CppImplementationFile.htm">.cpp</a>", FormMain);<br/>
+USEFORM("UnitThreeDotsChasing<a href="CppImplementationFile.htm">.cpp</a>", FormThreeDotsChasing);<br/>
+USEFORM("UnitAboutBox2<a href="CppImplementationFile.htm">.cpp</a>", Form<a href="CppAbout.htm">About</a>Box2);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
@@ -563,7 +563,7 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Read parameters<br/>
 &nbsp;&nbsp;Parameters parameters <a href="CppOperatorAssign.htm">=</a> readStringGrid();<br/>
-&nbsp;&nbsp;parameters.matingSystem&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> (RadioGroupGamy-&gt;ItemIndex&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? monogamy : polygyny);<br/>
+&nbsp;&nbsp;parameters.matingSystem&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> (RadioGroupGamy-&gt;ItemIndex&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 0 ? monogamy : polygyny);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(RadioGroupFemaleSampling-&gt;ItemIndex)<br/>
 &nbsp;&nbsp;{<br/>
@@ -576,7 +576,7 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Unknown index of RadioGroupTestSampling"); <a href="CppExit.htm">std::exit</a>(1);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;parameters.densityDependentSelection <a href="CppOperatorAssign.htm">=</a> (RadioGroupDensityDependentSelection-&gt;ItemIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? afterMating : beforeMating );<br/>
+&nbsp;&nbsp;parameters.densityDependentSelection <a href="CppOperatorAssign.htm">=</a> (RadioGroupDensityDependentSelection-&gt;ItemIndex <a href="CppOperatorEqual.htm">==</a> 0 ? afterMating : beforeMating );<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Show parameters<br/>
 &nbsp;&nbsp;RichEditOutput-&gt;Lines-&gt;Clear();<br/>
@@ -604,7 +604,7 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 &nbsp;&nbsp;RichEditOutput-&gt;Lines-&gt;<a href="CppAdd.htm">Add</a>("Cost trait: " <a href="CppOperatorPlus.htm">+</a> FloatToStr(parameters.costTrait));<br/>
 &nbsp;&nbsp;RichEditOutput-&gt;Lines-&gt;<a href="CppAdd.htm">Add</a>("Cost preference: " <a href="CppOperatorPlus.htm">+</a> FloatToStr(parameters.costPreference));<br/>
 &nbsp;&nbsp;RichEditOutput-&gt;Lines-&gt;<a href="CppAdd.htm">Add</a>("Mutation rate: " <a href="CppOperatorPlus.htm">+</a> FloatToStr(parameters.mutationRate));<br/>
-&nbsp;&nbsp;RichEditOutput-&gt;Lines-&gt;<a href="CppAdd.htm">Add</a>(parameters.matingSystem&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> monogamy ? "Mating system: monogamy" : "Mating system: polygyny" );<br/>
+&nbsp;&nbsp;RichEditOutput-&gt;Lines-&gt;<a href="CppAdd.htm">Add</a>(parameters.matingSystem&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> monogamy ? "Mating system: monogamy" : "Mating system: polygyny" );<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(parameters.femaleSampling)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> bestOfNconspicific:<br/>
@@ -630,11 +630,11 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Start simulation<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> deltaFraction<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (PageControlSim-&gt;ActivePageIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 ? EditFractionStep-&gt;Text.<a href="CppToDouble.htm">ToDouble</a>() : 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (PageControlSim-&gt;ActivePageIndex <a href="CppOperatorEqual.htm">==</a> 1 ? EditFractionStep-&gt;Text.<a href="CppToDouble.htm">ToDouble</a>() : 1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fractionFrom<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (PageControlSim-&gt;ActivePageIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 ? EditFractionFrom-&gt;Text.<a href="CppToDouble.htm">ToDouble</a>() : EditFraction-&gt;Text.<a href="CppToDouble.htm">ToDouble</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (PageControlSim-&gt;ActivePageIndex <a href="CppOperatorEqual.htm">==</a> 1 ? EditFractionFrom-&gt;Text.<a href="CppToDouble.htm">ToDouble</a>() : EditFraction-&gt;Text.<a href="CppToDouble.htm">ToDouble</a>());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fractionTo<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (PageControlSim-&gt;ActivePageIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 ? EditFractionTo-&gt;Text.<a href="CppToDouble.htm">ToDouble</a>() : 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (PageControlSim-&gt;ActivePageIndex <a href="CppOperatorEqual.htm">==</a> 1 ? EditFractionTo-&gt;Text.<a href="CppToDouble.htm">ToDouble</a>() : 1.0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> lastErrorMessage;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> fraction <a href="CppOperatorAssign.htm">=</a> fractionFrom; fraction &lt; fractionTo; fraction<a href="CppOperatorPlusAssign.htm">+=</a>deltaFraction)<br/>
@@ -652,7 +652,7 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>parameters.nGenerations <a href="CppOperatorAssign.htm">=</a> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSimulations <a href="CppOperatorAssign.htm">=</a> parameters.nSimulations;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppTime.htm">Time</a>Series&gt; all<a href="CppTime.htm">Time</a>Series; <a href="CppComment.htm">//</a>Size 0, use push_back<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> simulation <a href="CppOperatorAssign.htm">=</a> 0; simulation &lt; nSimulations; <a href="CppOperatorPlus.htm">+</a>+simulation)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> simulation <a href="CppOperatorAssign.htm">=</a> 0; simulation &lt; nSimulations; <a href="CppOperatorIncrement.htm">++</a>simulation)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Stick parameter in simulation and run it<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;Simulation&gt; simulation(<b><a href="CppNew.htm">new</a></b> Simulation(parameters));<br/>
@@ -675,7 +675,7 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 <br/>
 &nbsp;&nbsp;setCursor("CursorPiedFly<b><a href="CppCatch.htm">catch</a></b>er.cur");<br/>
 &nbsp;&nbsp;StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text <a href="CppOperatorAssign.htm">=</a> to<a href="CppAnsiString.htm">AnsiString</a>(lastErrorMessage);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (BitBtn1-&gt;Tag<a href="CppOperatorEqual.htm">==</a>0) PlaySound("PiedFly<b><a href="CppCatch.htm">catch</a></b>er.wav",0,SND_FILENAME | SND_ASYNC);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (BitBtn1-&gt;Tag<a href="CppOperatorEqual.htm">==</a>0) PlaySound("PiedFly<b><a href="CppCatch.htm">catch</a></b>er.wav",0,SND_<a href="CppCfile.htm">FILE</a>NAME | SND_ASYNC);<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -686,91 +686,91 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> checkInt; <b><a href="CppBool.htm">bool</a></b> check; <b><a href="CppDouble.htm">double</a></b> check<a href="CppDouble.htm">Double</a>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>nFemales<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> Try<a href="CppStrToInt.htm">StrToInt</a>(StringGridParameters-&gt;Cells[1][1],checkInt);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'nFemales' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'nFemales' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (checkInt <a href="CppOperatorLessEqual.htm">&lt;=</a> 0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'nFemales' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>nMales<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> Try<a href="CppStrToInt.htm">StrToInt</a>(StringGridParameters-&gt;Cells[1][2],checkInt);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'nMales' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'nMales' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (checkInt <a href="CppOperatorLessEqual.htm">&lt;=</a> 0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'nMales' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>bestOfHowMuch<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (&nbsp;&nbsp; RadioGroupFemaleSampling-&gt;ItemIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> RadioGroupFemaleSampling-&gt;ItemIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> RadioGroupFemaleSampling-&gt;ItemIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2 ) <a href="CppComment.htm">//</a>If female uses bestOfHowMuch<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (&nbsp;&nbsp; RadioGroupFemaleSampling-&gt;ItemIndex <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> RadioGroupFemaleSampling-&gt;ItemIndex <a href="CppOperatorEqual.htm">==</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> RadioGroupFemaleSampling-&gt;ItemIndex <a href="CppOperatorEqual.htm">==</a> 2 ) <a href="CppComment.htm">//</a>If female uses bestOfHowMuch<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> Try<a href="CppStrToInt.htm">StrToInt</a>(StringGridParameters-&gt;Cells[1][3],checkInt);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'bestOfHowMuch' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'bestOfHowMuch' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (checkInt <a href="CppOperatorLessEqual.htm">&lt;=</a> 0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'bestOfHowMuch' should be bigger then 0"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>assessingErrorA<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][4],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'assessingErrorA' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'assessingErrorA' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &lt; 0.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'assessingErrorA' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &gt; 1.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'assessingErrorA' should be smaller or equal to 1.0"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>assessingErrorB<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][5],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'assessingErrorB' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'assessingErrorB' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &lt; 0.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'assessingErrorB' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &gt; 1.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'assessingErrorB' should be smaller or equal to 1.0"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Mean trait males A<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][6],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Mean trait males A' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Mean trait males A' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>StdDev trait males A<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][7],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'StdDev trait males A' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'StdDev trait males A' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Mean trait males B<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][8],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Mean trait males B' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Mean trait males B' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>StdDev trait males B<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][9],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'StdDev trait males B' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'StdDev trait males B' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Mean preference males A<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][10],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Mean preference males A' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Mean preference males A' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>StdDev preference males A<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][11],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'StdDev preference males A' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'StdDev preference males A' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Mean preference males B<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][12],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Mean preference males B' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Mean preference males B' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>StdDev preference males B<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][13],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'StdDev preference males B' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'StdDev preference males B' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Number of simulations<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> Try<a href="CppStrToInt.htm">StrToInt</a>(StringGridParameters-&gt;Cells[1][14],checkInt);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of simulations' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of simulations' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (checkInt <a href="CppOperatorLessEqual.htm">&lt;=</a> 0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of simulations' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Number of generations<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> Try<a href="CppStrToInt.htm">StrToInt</a>(StringGridParameters-&gt;Cells[1][15],checkInt);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of generations' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of generations' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (checkInt <a href="CppOperatorLessEqual.htm">&lt;=</a> 0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of generations' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Number of offspring<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> Try<a href="CppStrToInt.htm">StrToInt</a>(StringGridParameters-&gt;Cells[1][16],checkInt);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of offspring' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of offspring' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (checkInt <a href="CppOperatorLessEqual.htm">&lt;=</a> 0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'Number of offspring' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>SurviveSpeciesAlpha<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][17],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SurviveSpeciesAlpha' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SurviveSpeciesAlpha' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &lt; 0.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SurviveSpeciesAlpha' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &gt; 1.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SurviveSpeciesAlpha' should be smaller or equal to 1.0"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>SurviveSpeciesBeta<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][18],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SurviveSpeciesBeta' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SurviveSpeciesBeta' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &lt; 0.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SurviveSpeciesBeta' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>SigmaSquared<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][19],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SigmaSquared' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SigmaSquared' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> <a href="CppOperatorLessEqual.htm">&lt;=</a> 0.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'SigmaSquared' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>CostTrait<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][20],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'CostTrait' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'CostTrait' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &lt; 0.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'CostTrait' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>CostPreference<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][21],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'CostPreference' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'CostPreference' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &lt; 0.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'CostPreference' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>MutationRate<br/>
 &nbsp;&nbsp;check <a href="CppOperatorAssign.htm">=</a> TryStrToFloat(StringGridParameters-&gt;Cells[1][22],check<a href="CppDouble.htm">Double</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'MutationRate' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'MutationRate' is not a valid input"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (check<a href="CppDouble.htm">Double</a> &lt; 0.0) { StatusBarMain-&gt;Panels-&gt;Items[0]-&gt;Text="Parameter 'MutationRate' should be positive"; <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
@@ -799,10 +799,10 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 &nbsp;&nbsp;emptyChart(ChartPopSize);<br/>
 &nbsp;&nbsp;emptyChart(ChartMate<a href="CppTime.htm">Time</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nGenerations <a href="CppOperatorAssign.htm">=</a> mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nGenerations; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nGenerations; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> iD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ChartPopSize-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>XY(iD+0.00,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].speciesTallyOffspring.getNfemalesA());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ChartPopSize-&gt;Series[1]-&gt;<a href="CppAdd.htm">Add</a>XY(iD+0.00,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].speciesTallyOffspring.getNfemaleHybridsA());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ChartPopSize-&gt;Series[2]-&gt;<a href="CppAdd.htm">Add</a>XY(iD+0.00,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].speciesTallyOffspring.getNfemaleHybridsB());<br/>
@@ -850,11 +850,11 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 &nbsp;&nbsp;&nbsp;&nbsp;ChartBias<a href="CppTime.htm">Time</a>-&gt;Series[2]-&gt;<a href="CppAdd.htm">Add</a>XY(iD,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].mateTally.calculateFractionMixedPairs());<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nTraits <a href="CppOperatorAssign.htm">=</a> mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].traits.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> j=0; j&lt;nTraits; <a href="CppOperatorPlus.htm">+</a>+j) ChartTraitPreference-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>XY(iD,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].traits[j]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> j=0; j&lt;nTraits; <a href="CppOperatorIncrement.htm">++</a>j) ChartTraitPreference-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>XY(iD,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].traits[j]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nPreferences <a href="CppOperatorAssign.htm">=</a> mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].preferences.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> j=0; j&lt;nPreferences; <a href="CppOperatorPlus.htm">+</a>+j) ChartTraitPreference-&gt;Series[1]-&gt;<a href="CppAdd.htm">Add</a>XY(iD,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].preferences[j]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> j=0; j&lt;nPreferences; <a href="CppOperatorIncrement.htm">++</a>j) ChartTraitPreference-&gt;Series[1]-&gt;<a href="CppAdd.htm">Add</a>XY(iD,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].preferences[j]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesValues <a href="CppOperatorAssign.htm">=</a> mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].descents.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> j=0; j&lt;nSpeciesValues; <a href="CppOperatorPlus.htm">+</a>+j) ChartTraitPreference-&gt;Series[2]-&gt;<a href="CppAdd.htm">Add</a>XY(iD,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].descents[j]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> j=0; j&lt;nSpeciesValues; <a href="CppOperatorIncrement.htm">++</a>j) ChartTraitPreference-&gt;Series[2]-&gt;<a href="CppAdd.htm">Add</a>XY(iD,mean.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i].descents[j]);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -941,12 +941,12 @@ Parameters TFormMain::readStringGrid() <b><a href="CppConst.htm">const</a></b><
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>&gt; histogramWinner(4);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;4; <a href="CppOperatorPlus.htm">+</a>+i) histogramWinner[i]=0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;4; <a href="CppOperatorIncrement.htm">++</a>i) histogramWinner[i]=0;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;1000; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;1000; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> winnerIndex <a href="CppOperatorAssign.htm">=</a> femaleSampling-&gt;getWinnerIndex(males,females[0],parameters);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+(histogramWinner[winnerIndex]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>(histogramWinner[winnerIndex]);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;emptyChart(ChartTest);<br/>
 &nbsp;&nbsp;ChartTest-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>XY(0.0,histogramWinner[0]);<br/>
@@ -1136,7 +1136,7 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 <b><a href="CppVoid.htm">void</a></b> emptyChart(TChart* <b><a href="CppChar.htm">char</a></b>t)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSeries <a href="CppOperatorAssign.htm">=</a> <b><a href="CppChar.htm">char</a></b>t-&gt;SeriesCount();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSeries; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSeries; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>t-&gt;Series[i]-&gt;Clear();<br/>
 &nbsp;&nbsp;}<br/>
@@ -1152,10 +1152,10 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TStringList&gt; stringList(<b><a href="CppNew.htm">new</a></b> TStringList);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> grid-&gt;RowCount;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> grid-&gt;ColCount;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;String myString;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x&lt;maxx-1; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x&lt;maxx-1; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myString<a href="CppOperatorPlusAssign.htm">+=</a>grid-&gt;Cells[x][y] <a href="CppOperatorPlus.htm">+</a> seperator; <a href="CppComment.htm">//</a>This <a href="CppFunction.htm">function</a> should have been <b><a href="CppConst.htm">const</a></b>, as it is a read <a href="CppFunction.htm">function</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -1177,7 +1177,7 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt; TChartValueList* &gt; xValuesVector;<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt; TChartValueList* &gt; yValuesVector;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSeries <a href="CppOperatorAssign.htm">=</a> <b><a href="CppChar.htm">char</a></b>t-&gt;SeriesCount();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSeries; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSeries; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;xValuesVector.push_back(<b><a href="CppChar.htm">char</a></b>t-&gt;Series[i]-&gt;XValues);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;yValuesVector.push_back(<b><a href="CppChar.htm">char</a></b>t-&gt;Series[i]-&gt;YValues);<br/>
@@ -1188,7 +1188,7 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Make a nice collumn of X values and then all Y values<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nRows <a href="CppOperatorAssign.htm">=</a> xValuesVector[0]-&gt;Count();<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSeries; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSeries; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xValuesVector[i]-&gt;Count()<a href="CppOperatorEqual.htm">==</a>nRows);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(yValuesVector[i]-&gt;Count()<a href="CppOperatorEqual.htm">==</a>nRows);<br/>
@@ -1196,12 +1196,12 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nCols <a href="CppOperatorAssign.htm">=</a> xValuesVector.size();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nCols <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> yValuesVector.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nCols <a href="CppOperatorEqual.htm">==</a> yValuesVector.size());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;nRows; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;nRows; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;String myString <a href="CppOperatorAssign.htm">=</a> FloatToStr(xValuesVector[0]-&gt;<b><a href="CppOperator.htm">operator</a></b> [](y)) <a href="CppOperatorPlus.htm">+</a> seperator;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> x=0; x&lt;nCols-1; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> x=0; x&lt;nCols-1; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myString<a href="CppOperatorPlusAssign.htm">+=</a>FloatToStr(yValuesVector[x]-&gt;<b><a href="CppOperator.htm">operator</a></b> [](y)) <a href="CppOperatorPlus.htm">+</a> seperator;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -1226,7 +1226,7 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nRows <a href="CppOperatorAssign.htm">=</a> xValues-&gt;Count();<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1.0;<br/>
 &nbsp;&nbsp;String myString;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;nRows; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;nRows; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <b><a href="CppThis.htm">this</a></b>X <a href="CppOperatorAssign.htm">=</a> xValues-&gt;<b><a href="CppOperator.htm">operator</a></b> [](y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x<a href="CppOperatorNotEqual.htm">!=</a><b><a href="CppThis.htm">this</a></b>X)<br/>
@@ -1237,7 +1237,7 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myString <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> FloatToStr(yValues-&gt;<b><a href="CppOperator.htm">operator</a></b> [](y))+seperator;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myString <a href="CppOperatorPlusAssign.htm">+=</a> FloatToStr(yValues-&gt;<b><a href="CppOperator.htm">operator</a></b> [](y))+seperator;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -1415,7 +1415,7 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormMain::PageControlSimChange(TObject *Sender)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>ShowMessage("TEST" <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(PageControlSim-&gt;ActivePageIndex));<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (PageControlSim-&gt;ActivePageIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (PageControlSim-&gt;ActivePageIndex <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Single fraction sim (in <a href="CppTime.htm">time</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PageControlMain-&gt;Pages[0]-&gt;TabVisible <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
@@ -1451,7 +1451,7 @@ String to<a href="CppAnsiString.htm">AnsiString</a>(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;&nbsp;&nbsp;BitBtn1-&gt;Glyph-&gt;LoadFromFile("PiedFly<b><a href="CppCatch.htm">catch</a></b>erSleeping.bmp");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;BitBtn1-&gt;Tag=1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Button <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> mbRight <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp;X &lt; 10 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> Y &lt; 10)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Button <a href="CppOperatorEqual.htm">==</a> mbRight <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp;X &lt; 10 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> Y &lt; 10)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TForm<a href="CppAbout.htm">About</a>Box2&gt; <a href="CppAbout.htm">about</a>Box(<b><a href="CppNew.htm">new</a></b> TForm<a href="CppAbout.htm">About</a>Box2(<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormThreeDotsChasing&gt; threeDotsChasing(<b><a href="CppNew.htm">new</a></b> TFormThreeDotsChasing(<b><a href="CppThis.htm">this</a></b>));<br/>
@@ -1600,15 +1600,15 @@ __fastcall TFormThreeDotsChasing::TFormThreeDotsChasing(T<a href="CppComponent.h
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> n<a href="CppPoint.htm">Point</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppPointer.htm">point</a>s.size();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> maxy <a href="CppOperatorAssign.htm">=</a> Image1-&gt;Height;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> maxx <a href="CppOperatorAssign.htm">=</a> Image1-&gt;Width;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppChar.htm">char</a></b> i=0; i&lt;n<a href="CppPoint.htm">Point</a>s; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppChar.htm">char</a></b> i=0; i&lt;n<a href="CppPoint.htm">Point</a>s; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> other <a href="CppOperatorAssign.htm">=</a> (i+1)%n<a href="CppPoint.htm">Point</a>s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(other<a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(other&lt;n<a href="CppPoint.htm">Point</a>s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppPointer.htm">point</a>s[i].x &lt; <a href="CppPointer.htm">point</a>s[other].x) <a href="CppOperatorPlus.htm">+</a>+(<a href="CppPointer.htm">point</a>s[i].dx);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppOperatorMinus.htm">-</a>-(<a href="CppPointer.htm">point</a>s[i].dx);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppPointer.htm">point</a>s[i].y &lt; <a href="CppPointer.htm">point</a>s[other].y) <a href="CppOperatorPlus.htm">+</a>+(<a href="CppPointer.htm">point</a>s[i].dy);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppOperatorMinus.htm">-</a>-(<a href="CppPointer.htm">point</a>s[i].dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppPointer.htm">point</a>s[i].x &lt; <a href="CppPointer.htm">point</a>s[other].x) <a href="CppOperatorIncrement.htm">++</a>(<a href="CppPointer.htm">point</a>s[i].dx);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppOperatorDecrement.htm">--</a>(<a href="CppPointer.htm">point</a>s[i].dx);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppPointer.htm">point</a>s[i].y &lt; <a href="CppPointer.htm">point</a>s[other].y) <a href="CppOperatorIncrement.htm">++</a>(<a href="CppPointer.htm">point</a>s[i].dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppOperatorDecrement.htm">--</a>(<a href="CppPointer.htm">point</a>s[i].dy);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[i].x<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppPointer.htm">point</a>s[i].dx;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppPointer.htm">point</a>s[i].x&lt;0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[i].x=0; <a href="CppPointer.htm">point</a>s[i].dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppPointer.htm">point</a>s[i].dx; }<br/>
@@ -1622,10 +1622,10 @@ __fastcall TFormThreeDotsChasing::TFormThreeDotsChasing(T<a href="CppComponent.h
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * pLine;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppShort.htm">short</a></b> y=0; y&lt;maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppShort.htm">short</a></b> y=0; y&lt;maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pLine=<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(Image1-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppShort.htm">short</a></b> x=0; x&lt;maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppShort.htm">short</a></b> x=0; x&lt;maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> indexRedX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> abs(x-<a href="CppPointer.htm">point</a>s[0].x)%maxx;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> indexRedY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> abs(y-<a href="CppPointer.htm">point</a>s[0].y)%maxy;<br/>
@@ -1650,7 +1650,7 @@ __fastcall TFormThreeDotsChasing::TFormThreeDotsChasing(T<a href="CppComponent.h
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pLine[x*3+2]<a href="CppOperatorAssign.htm">=</a> distance[indexRedX&nbsp;&nbsp;][indexRedY&nbsp;&nbsp;]; <a href="CppComment.htm">//</a>Red<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Canvas-&gt;Draw(0,0,Image1-&gt;Picture-&gt;Graphic);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppCanvas.htm">Canvas</a>-&gt;Draw(0,0,Image1-&gt;Picture-&gt;Graphic);<br/>
 &nbsp;&nbsp;Done <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -1664,7 +1664,7 @@ __fastcall TFormThreeDotsChasing::TFormThreeDotsChasing(T<a href="CppComponent.h
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;ClientWidth;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;ClientHeight;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> n<a href="CppPoint.htm">Point</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppPointer.htm">point</a>s.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;n<a href="CppPoint.htm">Point</a>s; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;n<a href="CppPoint.htm">Point</a>s; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[i].x <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%width;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[i].y <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%height;<br/>
@@ -1680,15 +1680,15 @@ __fastcall TFormThreeDotsChasing::TFormThreeDotsChasing(T<a href="CppComponent.h
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;ClientHeight;<br/>
 <br/>
 &nbsp;&nbsp;distance.resize(width);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;width; <a href="CppOperatorPlus.htm">+</a>+i) distance[i].resize(height);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;width; <a href="CppOperatorIncrement.htm">++</a>i) distance[i].resize(height);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate look-up table<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> widthD&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> heightD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxDist <a href="CppOperatorAssign.htm">=</a> sqrt( (widthD*widthD) <a href="CppOperatorPlus.htm">+</a> (heightD*heightD) );<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x&lt;width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x&lt;width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y);<br/>
@@ -1876,13 +1876,13 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Calculate the number of males of speciesA<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesA <a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;0.5 <a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(parameters.nMales) * parameters.fractionMaleA)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;* (parameters.densityDependentSelection <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> beforeMating ? 2.0 : 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* (parameters.densityDependentSelection <a href="CppOperatorEqual.htm">==</a> beforeMating ? 2.0 : 1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesB <a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;0.5 <a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(parameters.nMales) * (1.0-parameters.fractionMaleA))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;* (parameters.densityDependentSelection <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> beforeMating ? 2.0 : 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* (parameters.densityDependentSelection <a href="CppOperatorEqual.htm">==</a> beforeMating ? 2.0 : 1.0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Dot("Of " <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(nMales) <a href="CppOperatorPlus.htm">+</a> " males, there are " <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(nSpeciesA) <a href="CppOperatorPlus.htm">+</a> " of speciesA");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Fill the vector<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSpeciesA; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSpeciesA; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Male maleA;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;maleA.index <a href="CppOperatorAssign.htm">=</a> i;<br/>
@@ -1893,7 +1893,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;maleA.assessingError <a href="CppOperatorAssign.htm">=</a> parameters.assessingErrorA;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;males.push_back(maleA);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0 ; i&lt;nSpeciesB; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0 ; i&lt;nSpeciesB; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Male maleB;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;maleB.index <a href="CppOperatorAssign.htm">=</a> i;<br/>
@@ -1916,14 +1916,14 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Calculate the number of females of speciesA<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesA<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.5 <a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(parameters.nFemales) * parameters.fractionFemaleA)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;* (parameters.densityDependentSelection <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> beforeMating ? 2.0 : 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* (parameters.densityDependentSelection <a href="CppOperatorEqual.htm">==</a> beforeMating ? 2.0 : 1.0);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesB<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.5 <a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(parameters.nFemales) * (1.0-parameters.fractionFemaleA))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;* (parameters.densityDependentSelection <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> beforeMating ? 2.0 : 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* (parameters.densityDependentSelection <a href="CppOperatorEqual.htm">==</a> beforeMating ? 2.0 : 1.0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Fill the vector<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSpeciesA; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nSpeciesA; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Female femaleA;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;femaleA.index <a href="CppOperatorAssign.htm">=</a> i;<br/>
@@ -1934,7 +1934,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;femaleA.trait <a href="CppOperatorAssign.htm">=</a> rnd::normal(parameters.meanTraitA, parameters.stdDevTraitA);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;females.push_back(femaleA);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0 ; i&lt;nSpeciesB; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0 ; i&lt;nSpeciesB; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Female femaleB;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;femaleB.index <a href="CppOperatorAssign.htm">=</a> i;<br/>
@@ -1949,7 +1949,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppVector.htm">std::vector</a>&lt;Male&gt; Bird::createTestMales(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppOperatorDivide.htm">/</a>*parameters<a href="CppComment.htm">*/</a>,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppComment.htm">/*</a>parameters<a href="CppComment.htm">*/</a>,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; species1, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; trait1,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; species2, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; trait2,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; species3, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; trait3,<br/>
@@ -2129,10 +2129,10 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 <a href="CppInclude.htm">#include</a> "speciestally.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <a href="CppState.htm">State</a>DensityDependentSelectionAfterMating::canDoSelection(<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Female&gt;&amp; <a href="CppOperatorDivide.htm">/</a>*females<a href="CppComment.htm">*/</a>,<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Male&gt;&amp; <a href="CppOperatorDivide.htm">/</a>*males<a href="CppComment.htm">*/</a>,<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppOperatorDivide.htm">/</a>*parameters<a href="CppComment.htm">*/</a>,<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a>&amp; <a href="CppOperatorDivide.htm">/</a>*errorMessage<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Female&gt;&amp; <a href="CppComment.htm">/*</a>females<a href="CppComment.htm">*/</a>,<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Male&gt;&amp; <a href="CppComment.htm">/*</a>males<a href="CppComment.htm">*/</a>,<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppComment.htm">/*</a>parameters<a href="CppComment.htm">*/</a>,<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppString.htm">std::string</a>&amp; <a href="CppComment.htm">/*</a>errorMessage<a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> SpeciesTally&amp; speciesTally<br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b><br/>
 <a href="CppComment.htm">//</a>{<br/>
@@ -2140,9 +2140,9 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 <a href="CppComment.htm">//</a>}<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> <a href="CppState.htm">State</a>DensityDependentSelectionAfterMating::<b><a href="CppDo.htm">do</a></b>Selection(<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Female&gt;&amp; <a href="CppOperatorDivide.htm">/</a>*females<a href="CppComment.htm">*/</a>,<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Male&gt;&amp; <a href="CppOperatorDivide.htm">/</a>*males<a href="CppComment.htm">*/</a>,<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppOperatorDivide.htm">/</a>*parameters<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Female&gt;&amp; <a href="CppComment.htm">/*</a>females<a href="CppComment.htm">*/</a>,<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Male&gt;&amp; <a href="CppComment.htm">/*</a>males<a href="CppComment.htm">*/</a>,<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppComment.htm">/*</a>parameters<a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> SpeciesTally&amp; speciesTally<br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b><br/>
 <a href="CppComment.htm">//</a>{<br/>
@@ -2212,14 +2212,14 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 {<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesAwanted&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> parameters.getNmalesAwanted();<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesBwanted&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> parameters.getNmalesBwanted();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nMalesAwanted <a href="CppOperatorPlus.htm">+</a> nMalesBwanted <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> parameters.nMales);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nMalesAwanted <a href="CppOperatorPlus.htm">+</a> nMalesBwanted <a href="CppOperatorEqual.htm">==</a> parameters.nMales);<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemalesAwanted <a href="CppOperatorAssign.htm">=</a> parameters.getNfemalesAwanted();<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemalesBwanted <a href="CppOperatorAssign.htm">=</a> parameters.getNfemalesBwanted();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nFemalesAwanted <a href="CppOperatorPlus.htm">+</a> nFemalesBwanted <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> parameters.nFemales);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nFemalesAwanted <a href="CppOperatorPlus.htm">+</a> nFemalesBwanted <a href="CppOperatorEqual.htm">==</a> parameters.nFemales);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;males.size(); ) <a href="CppComment.htm">//</a>No increment<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[i].species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Male is of type A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[i].species <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Male is of type A<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (nMalesAwanted<a href="CppOperatorEqual.htm">==</a>0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -2229,8 +2229,8 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Keep the male<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-nMalesAwanted;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>nMalesAwanted;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppComment.htm">//</a>Male is of type B<br/>
@@ -2243,15 +2243,15 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Keep the male<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-nMalesBwanted;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>nMalesBwanted;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;females.size(); ) <a href="CppComment.htm">//</a>No increment<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (females[i].species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Female is of type A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (females[i].species <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Female is of type A<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (nFemalesAwanted<a href="CppOperatorEqual.htm">==</a>0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -2261,8 +2261,8 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Keep the female<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-nFemalesAwanted;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>nFemalesAwanted;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppComment.htm">//</a>Female is of type B<br/>
@@ -2275,8 +2275,8 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Keep the female<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-nFemalesBwanted;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>nFemalesBwanted;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
@@ -2517,23 +2517,23 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>&gt; maleIndicesCopy <a href="CppOperatorAssign.htm">=</a> maleIndices;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove the males that are either heterospecific or assessed wrong<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;maleIndices.size(); ) <a href="CppComment.htm">//</a>No <a href="CppOperatorPlus.htm">+</a>+i indeed<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;maleIndices.size(); ) <a href="CppComment.htm">//</a>No <a href="CppOperatorIncrement.htm">++</a>i indeed<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (rnd::uniform() &gt; female.assessingError) <a href="CppComment.htm">//</a>The female does NOT <a href="CppMake.htm">make</a> an error<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (female.species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Female is of species A (piedFlyCatcher)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (female.species <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Female is of species A (piedFlyCatcher)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[ maleIndices[i] ].species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> collaredFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Male is of species B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[ maleIndices[i] ].species <a href="CppOperatorEqual.htm">==</a> collaredFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Male is of species B<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maleIndices.erase(maleIndices.begin() <a href="CppOperatorPlus.htm">+</a> i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppComment.htm">//</a>Male is of species A (piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorPlus.htm">+</a>+i; } <a href="CppComment.htm">//</a>The male is a conspicific and remains in the vecor<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorIncrement.htm">++</a>i; } <a href="CppComment.htm">//</a>The male is a conspicific and remains in the vecor<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppComment.htm">//</a>Female is of species B (collaredFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[ maleIndices[i] ].species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> collaredFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Male is of species B<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorPlus.htm">+</a>+i; }<a href="CppComment.htm">//</a>The male is a conspicific and remains in the vecor<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[ maleIndices[i] ].species <a href="CppOperatorEqual.htm">==</a> collaredFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppComment.htm">//</a>Male is of species B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorIncrement.htm">++</a>i; }<a href="CppComment.htm">//</a>The male is a conspicific and remains in the vecor<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppComment.htm">//</a>Male is of species A<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maleIndices.erase(maleIndices.begin() <a href="CppOperatorPlus.htm">+</a> i);<br/>
@@ -2543,7 +2543,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+i; <a href="CppComment.htm">//</a>The wrongly assessed male remains<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i; <a href="CppComment.htm">//</a>The wrongly assessed male remains<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -2579,7 +2579,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> candidatIndex <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> bestTrait <a href="CppOperatorAssign.htm">=</a> males[ maleIndices[0] ].trait;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;bestOfHowMuch; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;bestOfHowMuch; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[ maleIndices[i] ].trait &lt; bestTrait)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -2594,7 +2594,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> candidatIndex <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> bestTrait <a href="CppOperatorAssign.htm">=</a> males[ maleIndices[0] ].trait;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;bestOfHowMuch; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;bestOfHowMuch; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[ maleIndices[i] ].trait &gt; bestTrait)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -2628,7 +2628,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Get the best male<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> candidatIndex <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> closestTrait <a href="CppOperatorAssign.htm">=</a> <a href="CppFabs.htm">std::fabs</a>(males[ maleIndices[0] ].trait <a href="CppOperatorMinus.htm">-</a> female.preference);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;bestOfHowMuch; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;bestOfHowMuch; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppFabs.htm">std::fabs</a>(males[ maleIndices[i] ].trait <a href="CppOperatorMinus.htm">-</a> female.preference) &lt; closestTrait)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -2651,23 +2651,23 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppState.htm">State</a>FemaleSamplingFixedThresholdConspicific::getWinnerIndex(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Male&gt;&amp; males,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Female&amp; female,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppOperatorDivide.htm">/</a>*parameters<a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppComment.htm">/*</a>parameters<a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMales <a href="CppOperatorAssign.htm">=</a> males.size();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppEnum.htm">enum</a></b>Species femaleSpecies <a href="CppOperatorAssign.htm">=</a> female.species;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; nMales*2; <a href="CppOperatorPlus.htm">+</a>+i) <a href="CppComment.htm">//</a>The female searches all males 2x<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; nMales*2; <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppComment.htm">//</a>The female searches all males 2x<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> maleIndex <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%nMales;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppEnum.htm">enum</a></b>Species maleSpecies <a href="CppOperatorAssign.htm">=</a> males[maleIndex].species;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (rnd::uniform() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> female.assessingError) <a href="CppComment.htm">//</a>The female does NOT <a href="CppMake.htm">make</a> an error<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>The female chooses him when either having a trait smaller of bigger then 0.5<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (femaleSpecies <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (femaleSpecies <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>She fancies a male of speciesA<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( maleSpecies <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er) <b><a href="CppReturn.htm">return</a></b> maleIndex;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( maleSpecies <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er) <b><a href="CppReturn.htm">return</a></b> maleIndex;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>She fancies a male of species B<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( maleSpecies <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> collaredFly<b><a href="CppCatch.htm">catch</a></b>er) <b><a href="CppReturn.htm">return</a></b> maleIndex;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( maleSpecies <a href="CppOperatorEqual.htm">==</a> collaredFly<b><a href="CppCatch.htm">catch</a></b>er) <b><a href="CppReturn.htm">return</a></b> maleIndex;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppComment.htm">//</a>The female <a href="CppMake.htm">make</a>s an error<br/>
@@ -2685,11 +2685,11 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppState.htm">State</a>FemaleSamplingFixedThresholdTraitSign::getWinnerIndex(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Male&gt;&amp; males,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Female&amp; female,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppOperatorDivide.htm">/</a>*parameters<a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; <a href="CppComment.htm">/*</a>parameters<a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMales <a href="CppOperatorAssign.htm">=</a> males.size();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> femalePreference <a href="CppOperatorAssign.htm">=</a> female.preference;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; nMales*2; <a href="CppOperatorPlus.htm">+</a>+i) <a href="CppComment.htm">//</a>The female searches all males 2x<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; nMales*2; <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppComment.htm">//</a>The female searches all males 2x<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> maleIndex <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%nMales;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maleTrait <a href="CppOperatorAssign.htm">=</a> males[maleIndex].trait;<br/>
@@ -2722,7 +2722,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMales <a href="CppOperatorAssign.htm">=</a> males.size();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sigmaSquared <a href="CppOperatorAssign.htm">=</a> parameters.sigmaSquared;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> femalePreference <a href="CppOperatorAssign.htm">=</a> female.preference;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; nMales*2; <a href="CppOperatorPlus.htm">+</a>+i) <a href="CppComment.htm">//</a>The female searches all males 2x<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; nMales*2; <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppComment.htm">//</a>The female searches all males 2x<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> maleIndex <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%nMales;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maleTrait <a href="CppOperatorAssign.htm">=</a> males[maleIndex].trait;<br/>
@@ -2765,11 +2765,11 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>&gt; bestMaleIndices;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nCandidats <a href="CppOperatorAssign.htm">=</a> maleTraits.size();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nCandidats; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nCandidats; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (rnd::uniform() &gt; assessingError) <a href="CppComment.htm">//</a>The female does NOT <a href="CppMake.htm">make</a> an error<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>The female chooses her preference<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( maleTraits[i] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> femalePreference) bestMaleIndices.push_back(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( maleTraits[i] <a href="CppOperatorEqual.htm">==</a> femalePreference) bestMaleIndices.push_back(i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <a href="CppComment.htm">//</a>The female <a href="CppMake.htm">make</a>s an error<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>The female chooses him whatever species he is<br/>
@@ -2800,7 +2800,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMales <a href="CppOperatorAssign.htm">=</a> maleIndex.size();<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; maleTraits(nMales);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nMales; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nMales; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> indexMale <a href="CppOperatorAssign.htm">=</a> maleIndex[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;maleTraits[i] <a href="CppOperatorAssign.htm">=</a> males[indexMale].trait;<br/>
@@ -2817,7 +2817,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>&amp; nMales)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>&gt; maleIndex(nMales);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> mate <a href="CppOperatorAssign.htm">=</a> 0; mate &lt; bestOfHowMuch; <a href="CppOperatorPlus.htm">+</a>+mate)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> mate <a href="CppOperatorAssign.htm">=</a> 0; mate &lt; bestOfHowMuch; <a href="CppOperatorIncrement.htm">++</a>mate)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;maleIndex[mate] <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%nMales;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No checking <b><a href="CppIf.htm">if</a></b> a male is already chosen twice<br/>
@@ -2841,7 +2841,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;maleIndex[0] <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%nMales; <a href="CppComment.htm">//</a>0th element is always unique<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> mate <a href="CppOperatorAssign.htm">=</a> 1; mate &lt; bestOfHowMuch; <a href="CppOperatorPlus.htm">+</a>+mate)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> mate <a href="CppOperatorAssign.htm">=</a> 1; mate &lt; bestOfHowMuch; <a href="CppOperatorIncrement.htm">++</a>mate)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> 1000000; <a href="CppComment.htm">//</a>1M<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDo.htm">do</a></b><br/>
@@ -2859,7 +2859,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{ <a href="CppComment.htm">//</a>To few males (nMales &lt; bestOfHowMuch)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;maleIndex.resize(nMales);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> male <a href="CppOperatorAssign.htm">=</a> 0; male&lt; nMales; <a href="CppOperatorPlus.htm">+</a>+male) maleIndex[male] <a href="CppOperatorAssign.htm">=</a> male;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> male <a href="CppOperatorAssign.htm">=</a> 0; male&lt; nMales; <a href="CppOperatorIncrement.htm">++</a>male) maleIndex[male] <a href="CppOperatorAssign.htm">=</a> male;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> maleIndex;<br/>
@@ -2984,7 +2984,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 {<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> sum=0;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> myVector.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>myVector[i];<br/>
 &nbsp;&nbsp;}<br/>
@@ -2995,7 +2995,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 {<br/>
 &nbsp;&nbsp;T sum=0;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> myVector.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a>myVector[i];<br/>
 &nbsp;&nbsp;}<br/>
@@ -3007,7 +3007,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> myVector.size();<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> indexLowest <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> lowestValue <a href="CppOperatorAssign.htm">=</a> myVector[0];<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> value <a href="CppOperatorAssign.htm">=</a> myVector[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value &lt; lowestValue)<br/>
@@ -3024,7 +3024,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> myVector.size();<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> indexHighest <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> highestValue <a href="CppOperatorAssign.htm">=</a> myVector[0];<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=1; i&lt;size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> value <a href="CppOperatorAssign.htm">=</a> myVector[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value &gt; highestValue)<br/>
@@ -3048,7 +3048,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> myInt0 <a href="CppOperatorAssign.htm">=</a> myUnion.myInts[0];<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> myInt1 <a href="CppOperatorAssign.htm">=</a> myUnion.myInts[1];<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> myBitString;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i&lt;32; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i&lt;32; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (myInt0%2<a href="CppOperatorEqual.htm">==</a>0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myBitString <a href="CppOperatorAssign.htm">=</a> "0" <a href="CppOperatorPlus.htm">+</a> myBitString;<br/>
@@ -3056,7 +3056,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myBitString <a href="CppOperatorAssign.htm">=</a> "1" <a href="CppOperatorPlus.htm">+</a> myBitString;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;myInt0<a href="CppOperatorBitShiftRightAssign.htm">&gt;&gt;=</a>1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i&lt;32; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i&lt;32; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (myInt1%2<a href="CppOperatorEqual.htm">==</a>0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myBitString <a href="CppOperatorAssign.htm">=</a> "0" <a href="CppOperatorPlus.htm">+</a> myBitString;<br/>
@@ -3076,7 +3076,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;mean <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sumX <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sumXsquared <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T value <a href="CppOperatorAssign.htm">=</a> myVector[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;sumX<a href="CppOperatorPlusAssign.htm">+=</a>value;<br/>
@@ -3114,7 +3114,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> output <a href="CppOperatorAssign.htm">=</a> "index: ";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> myVector.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;output<a href="CppOperatorPlusAssign.htm">+=</a>ftoa(myVector[i])+" ";<br/>
 &nbsp;&nbsp;}<br/>
@@ -3127,7 +3127,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> output <a href="CppOperatorAssign.htm">=</a> "index: ";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> myVector.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;output<a href="CppOperatorPlusAssign.htm">+=</a>itoa(myVector[i])+" ";<br/>
 &nbsp;&nbsp;}<br/>
@@ -3140,7 +3140,7 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> output <a href="CppOperatorAssign.htm">=</a> "index: ";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> myVector.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;output<a href="CppOperatorPlusAssign.htm">+=</a>itoa(myVector[i])+" ";<br/>
 &nbsp;&nbsp;}<br/>
@@ -3338,32 +3338,32 @@ Bird::Bird(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href=
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> MateTally::tally(<b><a href="CppConst.htm">const</a></b> Bird&amp; mother, <b><a href="CppConst.htm">const</a></b> Bird&amp; father)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mother.species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mother.species <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (father.species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorPlus.htm">+</a>+nMateAA; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (father.species <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorIncrement.htm">++</a>nMateAA; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorPlus.htm">+</a>+nMateAB; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorIncrement.htm">++</a>nMateAB; }<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (father.species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorPlus.htm">+</a>+nMateBA; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (father.species <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorIncrement.htm">++</a>nMateBA; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorPlus.htm">+</a>+nMateBB; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppOperatorIncrement.htm">++</a>nMateBB; }<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppDouble.htm">double</a></b> MateTally::calculateBiasA() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (nMateAB <a href="CppOperatorPlus.htm">+</a> nMateBA <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 0.0<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (nMateAB <a href="CppOperatorPlus.htm">+</a> nMateBA <a href="CppOperatorEqual.htm">==</a> 0 ? 0.0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nMateAB) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nMateAB <a href="CppOperatorPlus.htm">+</a> nMateBA));<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppDouble.htm">double</a></b> MateTally::calculateBiasB() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (nMateAB <a href="CppOperatorPlus.htm">+</a> nMateBA <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 0.0<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (nMateAB <a href="CppOperatorPlus.htm">+</a> nMateBA <a href="CppOperatorEqual.htm">==</a> 0 ? 0.0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nMateBA) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nMateAB <a href="CppOperatorPlus.htm">+</a> nMateBA));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -3555,10 +3555,10 @@ Offspring <a href="CppState.htm">State</a>MatingSystemMonogamyFixedNumberOffspri
 <br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesAwanted&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> parameters.getNmalesAwanted();<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesBwanted&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> parameters.getNmalesBwanted();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nMalesAwanted <a href="CppOperatorPlus.htm">+</a> nMalesBwanted <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> parameters.nMales);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nMalesAwanted <a href="CppOperatorPlus.htm">+</a> nMalesBwanted <a href="CppOperatorEqual.htm">==</a> parameters.nMales);<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemalesAwanted <a href="CppOperatorAssign.htm">=</a> parameters.getNfemalesAwanted();<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemalesBwanted <a href="CppOperatorAssign.htm">=</a> parameters.getNfemalesBwanted();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nFemalesAwanted <a href="CppOperatorPlus.htm">+</a> nFemalesBwanted <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> parameters.nFemales);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nFemalesAwanted <a href="CppOperatorPlus.htm">+</a> nFemalesBwanted <a href="CppOperatorEqual.htm">==</a> parameters.nFemales);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesAwanted <a href="CppOperatorAssign.htm">=</a> nMalesAwanted <a href="CppOperatorPlus.htm">+</a> nFemalesAwanted;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesBwanted <a href="CppOperatorAssign.htm">=</a> nMalesBwanted <a href="CppOperatorPlus.htm">+</a> nFemalesBwanted;<br/>
@@ -3568,17 +3568,17 @@ Offspring <a href="CppState.htm">State</a>MatingSystemMonogamyFixedNumberOffspri
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the couples<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt; Couple &gt; couples;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; females.size() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> males.size() &gt; 0; <a href="CppOperatorDivide.htm">/</a>*nothing<a href="CppComment.htm">*/</a>)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; females.size() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> males.size() &gt; 0; <a href="CppComment.htm">/*</a>nothing<a href="CppComment.htm">*/</a>)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the female pick her favorite<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> winnerIndex <a href="CppOperatorAssign.htm">=</a> femaleSampling-&gt;getWinnerIndex(males, females[female], parameters);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(winnerIndex <a href="CppOperatorLessEqual.htm">&lt;=</a> males.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Dot("The index of the mate in vector 'males' is: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(winnerIndex));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winnerIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> males.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winnerIndex <a href="CppOperatorEqual.htm">==</a> males.size())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The female did not mate<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNconspicific <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNextremeTrait <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNclosestTrait);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+female;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>female;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Form the <a href="CppPair.htm">std::pair</a> from the lovers and store them in the <a href="CppVector.htm">std::vector</a> couples<br/>
@@ -3597,13 +3597,13 @@ Offspring <a href="CppState.htm">State</a>MatingSystemMonogamyFixedNumberOffspri
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> myTry <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(speciesA.size()<a href="CppOperatorNotEqual.htm">!=</a>nSpeciesAwanted <a href="CppOperatorLogicalOr.htm">||</a> speciesB.size()<a href="CppOperatorNotEqual.htm">!=</a>nSpeciesBwanted)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+myTry;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>myTry;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (myTry<a href="CppOperatorEqual.htm">==</a>maxTries) <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> couple <a href="CppOperatorAssign.htm">=</a> 0; couple &lt; nCouples; <a href="CppOperatorPlus.htm">+</a>+couple)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> couple <a href="CppOperatorAssign.htm">=</a> 0; couple &lt; nCouples; <a href="CppOperatorIncrement.htm">++</a>couple)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Find out whether he is a conspicific and put it in the results<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bird birdy(couples[couple].female,couples[couple].male,mutation);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (birdy.species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (birdy.species <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Birdy is of speciesA<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppDebug.htm">debug</a>MateTally-&gt;tally(couples[couple].female,couples[couple].male);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (speciesA.size() &lt; nSpeciesAwanted)<br/>
@@ -3638,11 +3638,11 @@ Offspring <a href="CppState.htm">State</a>MatingSystemMonogamyFixedNumberOffspri
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(speciesA.size()<a href="CppOperatorEqual.htm">==</a>nSpeciesAwanted);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(speciesB.size()<a href="CppOperatorEqual.htm">==</a>nSpeciesBwanted);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Females<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemalesAwanted; <a href="CppOperatorPlus.htm">+</a>+i) offspring.females.push_back(speciesA[i]);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemalesBwanted; <a href="CppOperatorPlus.htm">+</a>+i) offspring.females.push_back(speciesB[i]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemalesAwanted; <a href="CppOperatorIncrement.htm">++</a>i) offspring.females.push_back(speciesA[i]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemalesBwanted; <a href="CppOperatorIncrement.htm">++</a>i) offspring.females.push_back(speciesB[i]);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Males<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=nFemalesAwanted; i&lt;nSpeciesAwanted; <a href="CppOperatorPlus.htm">+</a>+i) offspring.males.push_back(speciesA[i]);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=nFemalesBwanted; i&lt;nSpeciesBwanted; <a href="CppOperatorPlus.htm">+</a>+i) offspring.males.push_back(speciesB[i]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=nFemalesAwanted; i&lt;nSpeciesAwanted; <a href="CppOperatorIncrement.htm">++</a>i) offspring.males.push_back(speciesA[i]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=nFemalesBwanted; i&lt;nSpeciesBwanted; <a href="CppOperatorIncrement.htm">++</a>i) offspring.males.push_back(speciesB[i]);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(offspring.females.size()<a href="CppOperatorEqual.htm">==</a>nFemalesAwanted+nFemalesBwanted);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(offspring.males.size()<a href="CppOperatorEqual.htm">==</a>nMalesAwanted+nMalesBwanted);<br/>
@@ -3664,7 +3664,7 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFixedNumberOffspri
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mateTally.isNull()<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the fraction of species A and B<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> SpeciesTally speciesTally(males,females);<br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesAwanted&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(parameters.nMales * speciesTally.getNallMalesA()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(speciesTally.getNallMales());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesBwanted&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(parameters.nMales * speciesTally.getNallMalesB()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(speciesTally.getNallMales());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemalesAwanted <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(parameters.nFemales * speciesTally.getNfemalesA()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(speciesTally.getNallFemales());<br/>
@@ -3672,10 +3672,10 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFixedNumberOffspri
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesAwanted&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> parameters.getNmalesAwanted();<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesBwanted&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> parameters.getNmalesBwanted();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nMalesAwanted <a href="CppOperatorPlus.htm">+</a> nMalesBwanted <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> parameters.nMales);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nMalesAwanted <a href="CppOperatorPlus.htm">+</a> nMalesBwanted <a href="CppOperatorEqual.htm">==</a> parameters.nMales);<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemalesAwanted <a href="CppOperatorAssign.htm">=</a> parameters.getNfemalesAwanted();<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemalesBwanted <a href="CppOperatorAssign.htm">=</a> parameters.getNfemalesBwanted();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nFemalesAwanted <a href="CppOperatorPlus.htm">+</a> nFemalesBwanted <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> parameters.nFemales);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nFemalesAwanted <a href="CppOperatorPlus.htm">+</a> nFemalesBwanted <a href="CppOperatorEqual.htm">==</a> parameters.nFemales);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesAwanted <a href="CppOperatorAssign.htm">=</a> nMalesAwanted <a href="CppOperatorPlus.htm">+</a> nFemalesAwanted;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nSpeciesBwanted <a href="CppOperatorAssign.htm">=</a> nMalesBwanted <a href="CppOperatorPlus.htm">+</a> nFemalesBwanted;<br/>
@@ -3689,16 +3689,16 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFixedNumberOffspri
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> myTry <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(speciesA.size()<a href="CppOperatorNotEqual.htm">!=</a>nSpeciesAwanted <a href="CppOperatorLogicalOr.htm">||</a> speciesB.size()<a href="CppOperatorNotEqual.htm">!=</a>nSpeciesBwanted)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+myTry;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>myTry;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (myTry<a href="CppOperatorEqual.htm">==</a>maxTries) <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; nFemales; <a href="CppOperatorPlus.htm">+</a>+female)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; nFemales; <a href="CppOperatorIncrement.htm">++</a>female)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the female pick her favorite<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> winnerIndex <a href="CppOperatorAssign.htm">=</a> femaleSampling-&gt;getWinnerIndex(males, females[female], parameters);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(winnerIndex <a href="CppOperatorLessEqual.htm">&lt;=</a> males.size());<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Dot("The index of the mate in vector 'males' is: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(winnerIndex));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winnerIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> males.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winnerIndex <a href="CppOperatorEqual.htm">==</a> males.size())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The female did not mate<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNconspicific <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNextremeTrait <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNclosestTrait);<br/>
@@ -3707,7 +3707,7 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFixedNumberOffspri
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Find out whether he is a conspicific and put it in the results<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bird birdy(females[female],males[winnerIndex],mutation);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (birdy.species <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (birdy.species <a href="CppOperatorEqual.htm">==</a> piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Birdy is of speciesA<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (speciesA.size() &lt; nSpeciesAwanted)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>When we can use offspring of speciesA<br/>
@@ -3742,11 +3742,11 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFixedNumberOffspri
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(speciesA.size()<a href="CppOperatorEqual.htm">==</a>nSpeciesAwanted);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(speciesB.size()<a href="CppOperatorEqual.htm">==</a>nSpeciesBwanted);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Females<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemalesAwanted; <a href="CppOperatorPlus.htm">+</a>+i) offspring.females.push_back(speciesA[i]);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemalesBwanted; <a href="CppOperatorPlus.htm">+</a>+i) offspring.females.push_back(speciesB[i]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemalesAwanted; <a href="CppOperatorIncrement.htm">++</a>i) offspring.females.push_back(speciesA[i]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemalesBwanted; <a href="CppOperatorIncrement.htm">++</a>i) offspring.females.push_back(speciesB[i]);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Males<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=nFemalesAwanted; i&lt;nSpeciesAwanted; <a href="CppOperatorPlus.htm">+</a>+i) offspring.males.push_back(speciesA[i]);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=nFemalesBwanted; i&lt;nSpeciesBwanted; <a href="CppOperatorPlus.htm">+</a>+i) offspring.males.push_back(speciesB[i]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=nFemalesAwanted; i&lt;nSpeciesAwanted; <a href="CppOperatorIncrement.htm">++</a>i) offspring.males.push_back(speciesA[i]);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=nFemalesBwanted; i&lt;nSpeciesBwanted; <a href="CppOperatorIncrement.htm">++</a>i) offspring.males.push_back(speciesB[i]);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(offspring.females.size()<a href="CppOperatorEqual.htm">==</a>nFemalesAwanted+nFemalesBwanted);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(offspring.males.size()<a href="CppOperatorEqual.htm">==</a>nMalesAwanted+nMalesBwanted);<br/>
@@ -3775,11 +3775,11 @@ Offspring <a href="CppState.htm">State</a>MatingSystemMonogamyFreeNumberOffsprin
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> winnerIndex <a href="CppOperatorAssign.htm">=</a> femaleSampling-&gt;getWinnerIndex(males, females[female], parameters);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(winnerIndex <a href="CppOperatorLessEqual.htm">&lt;=</a> males.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Dot("The index of the mate in vector 'males' is: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(winnerIndex));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winnerIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> males.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winnerIndex <a href="CppOperatorEqual.htm">==</a> males.size())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The female did not mate<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNconspicific <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNextremeTrait <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNclosestTrait);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+female;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>female;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Form the <a href="CppPair.htm">std::pair</a> from the lovers and store them in the <a href="CppVector.htm">std::vector</a> couples<br/>
@@ -3793,10 +3793,10 @@ Offspring <a href="CppState.htm">State</a>MatingSystemMonogamyFreeNumberOffsprin
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the couples produce offspring<br/>
 &nbsp;&nbsp;Offspring offspring;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nCouples <a href="CppOperatorAssign.htm">=</a> couples.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> couple <a href="CppOperatorAssign.htm">=</a> 0; couple &lt; nCouples; <a href="CppOperatorPlus.htm">+</a>+couple)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> couple <a href="CppOperatorAssign.htm">=</a> 0; couple &lt; nCouples; <a href="CppOperatorIncrement.htm">++</a>couple)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nOffspring <a href="CppOperatorAssign.htm">=</a> parameters.nOffspring;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nOffspring; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nOffspring; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Find out whether he is a conspicific and put it in the results<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bird birdy(couples[couple].female,couples[couple].male,mutation);<br/>
@@ -3831,14 +3831,14 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFreeNumberOffsprin
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemales <a href="CppOperatorAssign.htm">=</a> females.size();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nFemales&gt;0);<br/>
 &nbsp;&nbsp;Offspring offspring;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; nFemales; <a href="CppOperatorPlus.htm">+</a>+female)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; nFemales; <a href="CppOperatorIncrement.htm">++</a>female)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the female pick her favorite<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> winnerIndex <a href="CppOperatorAssign.htm">=</a> femaleSampling-&gt;getWinnerIndex(males, females[female], parameters);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(winnerIndex <a href="CppOperatorLessEqual.htm">&lt;=</a> males.size());<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Dot("The index of the mate in vector 'males' is: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(winnerIndex));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winnerIndex <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> males.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winnerIndex <a href="CppOperatorEqual.htm">==</a> males.size())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The female did not mate<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNconspicific <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNextremeTrait <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> parameters.femaleSampling<a href="CppOperatorNotEqual.htm">!=</a>bestOfNclosestTrait);<br/>
@@ -3847,7 +3847,7 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFreeNumberOffsprin
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nOffspring <a href="CppOperatorAssign.htm">=</a> parameters.nOffspring;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let them produce m<a href="CppAny.htm">any</a> offspring<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nOffspring; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nOffspring; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Find out whether he is a conspicific and put it in the results<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bird birdy(females[female],males[winnerIndex],mutation);<br/>
@@ -4048,7 +4048,7 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFreeNumberOffsprin
 &nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in (fileName.c_str());<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> myString;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> tempInt;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;in <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> myString;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (myString<a href="CppOperatorEqual.htm">==</a>"nGenerations")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ in <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> nGenerations; <b><a href="CppContinue.htm">continue</a></b>; }<br/>
@@ -4173,11 +4173,11 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFreeNumberOffsprin
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> iff=0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppLong.htm">long</a></b> mj,mk;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i,ii,k;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (idum &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> iff <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (idum &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> iff <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iff=1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mj=MSEED-(idum &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>idum : idum);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mj <a href="CppOperatorModulus.htm">%</a><a href="CppOperatorAssign.htm">=</a> MBIG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mj <a href="CppOperatorModulusAssign.htm">%=</a> MBIG;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ma[55]=mj;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mk=1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=1;i<a href="CppOperatorLessEqual.htm">&lt;=</a>54;i<a href="CppOperatorIncrement.htm">++</a>)<br/>
@@ -4185,23 +4185,23 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFreeNumberOffsprin
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ii=(21*i) <a href="CppOperatorModulus.htm">%</a> 55;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ma[ii]=mk;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mk=mj-mk;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mk &lt; MZ) mk <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> MBIG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mk &lt; MZ) mk <a href="CppOperatorPlusAssign.htm">+=</a> MBIG;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mj=ma[ii];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (k=1;k<a href="CppOperatorLessEqual.htm">&lt;=</a>4;k<a href="CppOperatorIncrement.htm">++</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=1;i<a href="CppOperatorLessEqual.htm">&lt;=</a>55;i<a href="CppOperatorIncrement.htm">++</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ma[i] <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> ma[1+(i+30) <a href="CppOperatorModulus.htm">%</a> 55];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ma[i] &lt; MZ) ma[i] <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> MBIG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ma[i] <a href="CppOperatorMinusAssign.htm">-=</a> ma[1+(i+30) <a href="CppOperatorModulus.htm">%</a> 55];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ma[i] &lt; MZ) ma[i] <a href="CppOperatorPlusAssign.htm">+=</a> MBIG;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inext=0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inextp=31;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idum=1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppOperatorIncrement.htm">++</a>inext <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 56) inext=1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppOperatorIncrement.htm">++</a>inextp <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 56) inextp=1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppOperatorIncrement.htm">++</a>inext <a href="CppOperatorEqual.htm">==</a> 56) inext=1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppOperatorIncrement.htm">++</a>inextp <a href="CppOperatorEqual.htm">==</a> 56) inextp=1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mj=ma[inext]-ma[inextp];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mj &lt; MZ) mj <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> MBIG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mj &lt; MZ) mj <a href="CppOperatorPlusAssign.htm">+=</a> MBIG;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ma[inext]=mj;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mj*FAC;<br/>
 &nbsp;&nbsp;}<br/>
@@ -4213,7 +4213,7 @@ Offspring <a href="CppState.htm">State</a>MatingSystemPolygynyFreeNumberOffsprin
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> fac,r,v1,v2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDouble.htm">double</a></b> uniform();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;uniform();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>&nbsp;&nbsp;(iset <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>&nbsp;&nbsp;(iset <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDo.htm">do</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -4499,7 +4499,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nGenerations <a href="CppOperatorAssign.htm">=</a> mParameters.nGenerations;<br/>
 &nbsp;&nbsp;m<a href="CppTime.htm">Time</a>Series.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s.resize(nGenerations);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> generation=0; generation&lt;nGenerations; <a href="CppOperatorPlus.htm">+</a>+generation)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> generation=0; generation&lt;nGenerations; <a href="CppOperatorIncrement.htm">++</a>generation)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>log("Start of species selection. Nmales: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(mMales.size()) <a href="CppOperatorPlus.htm">+</a> ",Nfemales: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(mFemales.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m<a href="CppTime.htm">Time</a>Series.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[generation].speciesTallyOffspring.tallySpecies(mFemales,mMales);<br/>
@@ -4536,7 +4536,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 <b><a href="CppVoid.htm">void</a></b> Simulation::speciesSelection()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Easy implementation: hybrids just die<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> male <a href="CppOperatorAssign.htm">=</a> 0; male &lt; mMales.size(); <a href="CppOperatorPlus.htm">+</a>+male)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> male <a href="CppOperatorAssign.htm">=</a> 0; male &lt; mMales.size(); <a href="CppOperatorIncrement.htm">++</a>male)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(male &lt; mMales.size() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> willDieSpecies(mMales[male])<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -4548,7 +4548,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; mFemales.size(); <a href="CppOperatorPlus.htm">+</a>+female)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; mFemales.size(); <a href="CppOperatorIncrement.htm">++</a>female)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(female &lt; mFemales.size() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> willDieSpecies(mFemales[female])<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -4565,7 +4565,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 <b><a href="CppVoid.htm">void</a></b> Simulation::viabilitySelection()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Easy implementation: hybrids just die<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> male <a href="CppOperatorAssign.htm">=</a> 0; male &lt; mMales.size(); <a href="CppOperatorPlus.htm">+</a>+male)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> male <a href="CppOperatorAssign.htm">=</a> 0; male &lt; mMales.size(); <a href="CppOperatorIncrement.htm">++</a>male)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(male &lt; mMales.size() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> willDieTrait(mMales[male])<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -4577,7 +4577,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; mFemales.size(); <a href="CppOperatorPlus.htm">+</a>+female)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> female <a href="CppOperatorAssign.htm">=</a> 0; female &lt; mFemales.size(); <a href="CppOperatorIncrement.htm">++</a>female)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(female &lt; mFemales.size() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> willDiePreference(mFemales[female])<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -4804,41 +4804,41 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Females first<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemales <a href="CppOperatorAssign.htm">=</a> females.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nFemales; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nFemales; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppEnum.htm">enum</a></b>Species species <a href="CppOperatorAssign.htm">=</a> females[i].species;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (species<a href="CppOperatorEqual.htm">==</a>piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppOperatorPlus.htm">+</a>+(nFemalesA);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a>+(nFemalesB);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (species<a href="CppOperatorEqual.htm">==</a>piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppOperatorIncrement.htm">++</a>(nFemalesA);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorIncrement.htm">++</a>(nFemalesB);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Tally the men<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMales <a href="CppOperatorAssign.htm">=</a> males.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nMales; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nMales; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppEnum.htm">enum</a></b>Species species <a href="CppOperatorAssign.htm">=</a> males[i].species;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (species<a href="CppOperatorEqual.htm">==</a>piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppOperatorPlus.htm">+</a>+(nMalesA);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a>+(nMalesB);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (species<a href="CppOperatorEqual.htm">==</a>piedFly<b><a href="CppCatch.htm">catch</a></b>er) <a href="CppOperatorIncrement.htm">++</a>(nMalesA);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorIncrement.htm">++</a>(nMalesB);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Females first<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemales <a href="CppOperatorAssign.htm">=</a> females.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nFemales; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nFemales; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> descent <a href="CppOperatorAssign.htm">=</a> females[i].descent;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (descent &lt; <a href="CppOperatorMinus.htm">-</a>0.5)&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a>+(nFemalesA);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (descent &lt; 0.0) <a href="CppOperatorPlus.htm">+</a>+(nFemaleHybridsA);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (descent &lt; 0.5) <a href="CppOperatorPlus.htm">+</a>+(nFemaleHybridsB);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a>+(nFemalesB);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (descent &lt; <a href="CppOperatorMinus.htm">-</a>0.5)&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorIncrement.htm">++</a>(nFemalesA);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (descent &lt; 0.0) <a href="CppOperatorIncrement.htm">++</a>(nFemaleHybridsA);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (descent &lt; 0.5) <a href="CppOperatorIncrement.htm">++</a>(nFemaleHybridsB);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorIncrement.htm">++</a>(nFemalesB);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Tally the men<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMales <a href="CppOperatorAssign.htm">=</a> males.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nMales; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;nMales; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> descent <a href="CppOperatorAssign.htm">=</a> males[i].descent;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (descent &lt; <a href="CppOperatorMinus.htm">-</a>0.5)&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a>+(nMalesA);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (descent &lt; 0.0) <a href="CppOperatorPlus.htm">+</a>+(nMaleHybridsA);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (descent &lt; 0.5) <a href="CppOperatorPlus.htm">+</a>+(nMaleHybridsB);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a>+(nMalesB);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (descent &lt; <a href="CppOperatorMinus.htm">-</a>0.5)&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorIncrement.htm">++</a>(nMalesA);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (descent &lt; 0.0) <a href="CppOperatorIncrement.htm">++</a>(nMaleHybridsA);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (descent &lt; 0.5) <a href="CppOperatorIncrement.htm">++</a>(nMaleHybridsB);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorIncrement.htm">++</a>(nMalesB);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
@@ -4958,11 +4958,11 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;&nbsp;&nbsp;speciesTallyAfterDensityDependentSelection<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.speciesTallyAfterDensityDependentSelection;<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> traitSize <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.traits.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;traitSize; <a href="CppOperatorPlus.htm">+</a>+i) traits.push_back(<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.traits[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;traitSize; <a href="CppOperatorIncrement.htm">++</a>i) traits.push_back(<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.traits[i]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> preferenceSize <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.preferences.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;preferenceSize; <a href="CppOperatorPlus.htm">+</a>+i) preferences.push_back(<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.preferences[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;preferenceSize; <a href="CppOperatorIncrement.htm">++</a>i) preferences.push_back(<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.preferences[i]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> descentSize <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.descents.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;descentSize; <a href="CppOperatorPlus.htm">+</a>+i) descents.push_back(<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.descents[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;descentSize; <a href="CppOperatorIncrement.htm">++</a>i) descents.push_back(<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>.descents[i]);<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -5032,7 +5032,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get sample of female preferences<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemalesA <a href="CppOperatorAssign.htm">=</a> 0, nFemalesB <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nFemales <a href="CppOperatorAssign.htm">=</a> females.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemales ; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nFemales ; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (females[i].species<a href="CppOperatorEqual.htm">==</a>piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -5040,7 +5040,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preferences.push_back(females[i].preference);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descents.push_back(females[i].descent);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+nFemalesA;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>nFemalesA;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
@@ -5049,7 +5049,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preferences.push_back(females[i].preference);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descents.push_back(females[i].descent);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+nFemalesB;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>nFemalesB;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (nFemalesA<a href="CppOperatorEqual.htm">==</a>sampleSize <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> nFemalesB<a href="CppOperatorEqual.htm">==</a>sampleSize) <b><a href="CppBreak.htm">break</a></b>;<br/>
@@ -5060,7 +5060,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get sample of male traits<br/>
 &nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMalesA <a href="CppOperatorAssign.htm">=</a> 0, nMalesB <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> nMales <a href="CppOperatorAssign.htm">=</a> males.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nMales ; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> i=0; i&lt;nMales ; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (males[i].species<a href="CppOperatorEqual.htm">==</a>piedFly<b><a href="CppCatch.htm">catch</a></b>er)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -5068,7 +5068,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;traits.push_back(males[i].trait);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descents.push_back(males[i].descent);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+nMalesA;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>nMalesA;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
@@ -5077,7 +5077,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;traits.push_back(males[i].trait);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descents.push_back(males[i].descent);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+nMalesB;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>nMalesB;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (nMalesA<a href="CppOperatorEqual.htm">==</a>sampleSize <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> nMalesB<a href="CppOperatorEqual.htm">==</a>sampleSize) <b><a href="CppBreak.htm">break</a></b>;<br/>
@@ -5148,7 +5148,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> n<a href="CppTime.htm">Time</a><a href="CppPoint.htm">Point</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppTime.htm">time</a>Series.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s.size()<a href="CppOperatorEqual.htm">==</a>n<a href="CppTime.htm">Time</a><a href="CppPoint.htm">Point</a>s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;n<a href="CppTime.htm">Time</a><a href="CppPoint.htm">Point</a>s; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;n<a href="CppTime.htm">Time</a><a href="CppPoint.htm">Point</a>s; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i]<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppTime.htm">time</a>Series.<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5156,7 +5156,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorDivide.htm">operator/</a></b>=(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>&amp; valueInt) <a href="CppComment.htm">//</a>For taking the average of multiple <a href="CppTime.htm">time</a><a href="CppPointer.htm">point</a>s<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> n<a href="CppTime.htm">Time</a><a href="CppPoint.htm">Point</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;n<a href="CppTime.htm">Time</a><a href="CppPoint.htm">Point</a>s; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;n<a href="CppTime.htm">Time</a><a href="CppPoint.htm">Point</a>s; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[i]<a href="CppOperatorDivideAssign.htm">/=</a>valueInt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5211,11 +5211,11 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Only set: biasA, biasB, fractionMixedPairs<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> n<a href="CppTime.htm">Time</a>Series <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>Series.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;n<a href="CppTime.htm">Time</a>Series; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=0; i&lt;n<a href="CppTime.htm">Time</a>Series; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the index of the <b><a href="CppFinal.htm">final</a></b> index<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>Series[i].<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s.size() <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mean <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>Series[i].<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[<a href="CppTime.htm">time</a>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mean <a href="CppOperatorPlusAssign.htm">+=</a> <a href="CppTime.htm">time</a>Series[i].<a href="CppTime.htm">time</a><a href="CppPoint.htm">Point</a>s[<a href="CppTime.htm">time</a>];<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;mean<a href="CppOperatorDivideAssign.htm">/=</a>n<a href="CppTime.htm">Time</a>Series;<br/>
 }<br/>
@@ -5223,15 +5223,15 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> Parameters&amp; p
 <b><a href="CppVoid.htm">void</a></b> getMeanAndStdError<a href="CppTime.htm">Time</a>Series(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppTime.htm">Time</a>Series&gt;&amp; <a href="CppTime.htm">time</a>Series,<br/>
 &nbsp;&nbsp;<a href="CppTime.htm">Time</a>Series&amp; mean,<br/>
-&nbsp;&nbsp;<a href="CppTime.htm">Time</a>Series&amp; <a href="CppOperatorDivide.htm">/</a>*<a href="CppStd.htm">std</a>Error<a href="CppComment.htm">*/</a>)<br/>
+&nbsp;&nbsp;<a href="CppTime.htm">Time</a>Series&amp; <a href="CppComment.htm">/*</a><a href="CppStd.htm">std</a>Error<a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mean.isNull()<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;mean <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>Series[0];<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> n<a href="CppTime.htm">Time</a>Series <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>Series.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=1; i&lt;n<a href="CppTime.htm">Time</a>Series; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppUnsigned.htm">unsigned</a></b> i=1; i&lt;n<a href="CppTime.htm">Time</a>Series; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the index of the <b><a href="CppFinal.htm">final</a></b> index<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mean <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>Series[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mean <a href="CppOperatorPlusAssign.htm">+=</a> <a href="CppTime.htm">time</a>Series[i];<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;mean<a href="CppOperatorDivideAssign.htm">/=</a>n<a href="CppTime.htm">Time</a>Series;<br/>
 }<br/>

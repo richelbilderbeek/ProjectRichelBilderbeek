@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTRICHELBILDERBEEKPROGRAM_H
 #define QTRICHELBILDERBEEKPROGRAM_H
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include "richelbilderbeekprogramtype.h"
 #include "qthideandshowdialog.h"
 
@@ -30,17 +30,13 @@ namespace ribi {
 struct QtRichelBilderbeekProgram
 {
   ///Create the menu dialog corresponding to the program type
-  ///Might return a nullprt, if the program type has no Qt menu
-  static QDialog * CreateQtMenuDialog(const RichelBilderbeek::ProgramType type);
+  ///Might return a nullprt, if the program type has no menu
+  static QtHideAndShowDialog * CreateQtMenuDialog(const ProgramType type);
 
   ///Create a placeholder dialog for the program type
-  static QtHideAndShowDialog * CreateQtPlaceholderDialog(const RichelBilderbeek::ProgramType type);
-
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
+  static QtHideAndShowDialog * CreateQtPlaceholderDialog(const ProgramType type);
 };
 
-} //~namespace rib
+} //~namespace ribi
 
 #endif // QTRICHELBILDERBEEKPROGRAM_H

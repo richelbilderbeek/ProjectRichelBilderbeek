@@ -1,15 +1,13 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestqtroundededitrectitemwidget.h"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QFontDialog>
 #include <QGraphicsScene>
@@ -22,14 +20,19 @@
 #include "qtaboutdialog.h"
 #include "qtroundededitrectitem.h"
 #include "testqtroundededitrectitemmenudialog.h"
-
+#include "trace.h"
 #ifndef NDEBUG
 #include "qtroundedtextrectitem.h"
 #endif
 
+#pragma GCC diagnostic pop
+
 ribi::QtTestQtRoundedEditRectItemWidget::QtTestQtRoundedEditRectItemWidget(QWidget *parent)
   : QtKeyboardFriendlyGraphicsView(parent)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   //Display with default font
   this->Display(QtRoundedEditRectItem().GetFont());
 }
@@ -75,8 +78,9 @@ void ribi::QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
       const char c = (row / 26 ? 'A' : 'a') + (row % 26);
       const std::string s
         = std::string(1 + col,c)
-        + std::string(" ")
+        + " "
         + boost::lexical_cast<std::string>(c);
+
       item->SetText( std::vector<std::string>(1 + col,s) );
       item->setPos(x,y);
       item->SetFocusPen(QPen(QColor(255,0,0),3.0));
@@ -91,7 +95,7 @@ void ribi::QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
 
 }
 
-void ribi::QtTestQtRoundedEditRectItemWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtTestQtRoundedEditRectItemWidget::keyPressEvent(QKeyEvent *event) noexcept
 {
 
   switch (event->key())
@@ -107,3 +111,16 @@ void ribi::QtTestQtRoundedEditRectItemWidget::keyPressEvent(QKeyEvent *event)
   }
   QtKeyboardFriendlyGraphicsView::keyPressEvent(event);
 }
+
+#ifndef NDEBUG
+void ribi::QtTestQtRoundedEditRectItemWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtRoundedEditRectItemWidget::Test");
+  TRACE("Finished ribi::QtTestQtRoundedEditRectItemWidget::Test successfully");
+}
+#endif

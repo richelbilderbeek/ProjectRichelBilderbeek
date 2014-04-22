@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-RubiksClockDial, class for displaying a Rubik's Clock Dial
-Copyright (C) 2011 Richel Bilderbeek
+ClockDial, class for displaying a Rubik's Clock Dial
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::RubiksClockDial::RubiksClockDial(
+ribi::ruco::ClockDial::ClockDial(
   const int time,
   const int x,
   const int y,
@@ -47,23 +47,26 @@ ribi::RubiksClockDial::RubiksClockDial(
   : m_dial(new Dial(0.0,red,green,blue)),
     m_time(time + 1)
 {
-  this->SetGeometry(Rect(x,y,width,height));
-  this->Turn(-1);
+  assert(m_dial);
+  SetGeometry(x,y,width,height);
+  Turn(-1);
 }
 
-const std::string ribi::RubiksClockDial::GetVersion()
+std::string ribi::ruco::ClockDial::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.2";
 }
 
-const std::vector<std::string> ribi::RubiksClockDial::GetVersionHistory()
+std::vector<std::string> ribi::ruco::ClockDial::GetVersionHistory() noexcept
 {
   return {
-    "2011-09-08: Version 1.0: initial version"
+    "2011-09-08: Version 1.0: initial version, called RubiksClockDial",
+    "2014-01-23: Version 1.1: renamed to ClockDial",
+    "2014-03-28: version 1.2: replaced Rect by Boost.Geometry its box class"
   };
 }
 
-void ribi::RubiksClockDial::Turn(const int n_positions_clockwise)
+void ribi::ruco::ClockDial::Turn(const int n_positions_clockwise) noexcept
 {
   if (n_positions_clockwise % 12 != 0)
   {
@@ -77,13 +80,13 @@ void ribi::RubiksClockDial::Turn(const int n_positions_clockwise)
   }
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDial& widget)
+std::ostream& ribi::ruco::operator<<(std::ostream& os, const ClockDial& widget) noexcept
 {
   os
-    << "<RubiksClockDial>"
+    << "<ClockDial>"
     << *widget.m_dial
-    << widget.GetGeometry()
-    << "</RubiksClockDial>";
+    //<< widget.GetGeometry()
+    << "</ClockDial>";
   return os;
 }
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GaborFilter, Gabor filter class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "gaborfilter.h"
 
-#include "exercise.h"
 #include <cassert>
 #include <iostream>
 
@@ -41,12 +40,17 @@ ribi::GaborFilter::GaborFilter(
     m_frequency(frequency),
     m_sigma(sigma)
 {
-
+  if (sigma == 0.0)
+  {
+    throw std::logic_error("Cannot set GaborFilter::sigma to zero");
+  }
+  assert(m_sigma != 0.0);
 }
 
 double ribi::GaborFilter::GaborFunction(const double x, const double y,
   const double angle, const double frequency, const double sigma)
 {
+  assert(sigma != 0.0);
   const double dx = x;
   const double dy = y;
   const double distance = std::sqrt((dx * dx) + (dy * dy));
@@ -63,19 +67,19 @@ double ribi::GaborFilter::GaborFunction(const double x, const double y) const
   return GaborFunction(x,y,m_angle,m_frequency,m_sigma);
 }
 
-const std::string ribi::GaborFilter::GetVersion()
+std::string ribi::GaborFilter::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::GaborFilter::GetVersionHistory()
+std::vector<std::string> ribi::GaborFilter::GetVersionHistory() noexcept
 {
   return {
     "2012-07-08: version 1.0: initial version"
   };
 }
 
-void ribi::GaborFilter::SetAngle(const double angle)
+void ribi::GaborFilter::SetAngle(const double angle) noexcept
 {
   if (angle != m_angle)
   {
@@ -95,11 +99,16 @@ void ribi::GaborFilter::SetFrequency(const double frequency)
 
 void ribi::GaborFilter::SetSigma(const double sigma)
 {
+  if (sigma == 0.0)
+  {
+    throw std::logic_error("Cannot set GaborFilter::sigma to zero");
+  }
   if (sigma != m_sigma)
   {
     m_sigma = sigma;
     m_signal_changed();
   }
+  assert(m_sigma != 0.0);
 }
 
 double ribi::GaborFilter::SuggestSigma(const double width, const double height) const
@@ -108,7 +117,7 @@ double ribi::GaborFilter::SuggestSigma(const double width, const double height) 
   return std::sqrt(-(s * s) / (2.0*std::log(1.0/510.0)));
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const GaborFilter& g)
+std::ostream& ribi::operator<<(std::ostream& os, const GaborFilter& g) noexcept
 {
   os
     << "<GaborFilter>"

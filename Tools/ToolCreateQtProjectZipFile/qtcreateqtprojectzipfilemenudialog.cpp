@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateQtProjectZipFile, tool to create a zip file from a Qt project
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtcreateqtprojectzipfilemenudialog.h"
 
 #include <QKeyEvent>
@@ -28,52 +28,52 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtcreateqtprojectzipfilemaindialog.h"
 #include "ui_qtcreateqtprojectzipfilemenudialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtCreateQtProjectZipFileMenuDialog::QtCreateQtProjectZipFileMenuDialog(QWidget *parent) :
+ribi::QtCreateQtProjectZipFileMenuDialog::QtCreateQtProjectZipFileMenuDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtCreateQtProjectZipFileMenuDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 }
 
-ribi::QtCreateQtProjectZipFileMenuDialog::~QtCreateQtProjectZipFileMenuDialog()
+ribi::QtCreateQtProjectZipFileMenuDialog::~QtCreateQtProjectZipFileMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtCreateQtProjectZipFileMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCreateQtProjectZipFileMenuDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_start_clicked()
+void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_start_clicked() noexcept
 {
   QtCreateQtProjectZipFileMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_about_clicked()
+void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_about_clicked() noexcept
 {
   this->hide();
-  About a = CreateQtProjectZipFile::MenuDialog::GetAbout();
+  About a = CreateQtProjectZipFile::MenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_quit_clicked()
+void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::QtCreateQtProjectZipFileMenuDialog::Test()
+void ribi::QtCreateQtProjectZipFileMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

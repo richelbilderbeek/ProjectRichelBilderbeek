@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQrcFile, tool to test the QrcFile class
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,21 +21,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTQRCFILEMENUDIALOG_H
 #define QTTESTQRCFILEMENUDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
-class QtTestQrcFileMenuDialog;
+  class QtTestQrcFileMenuDialog;
 }
 
 namespace ribi {
 
-class QtTestQrcFileMenuDialog : public QDialog
+class QtTestQrcFileMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestQrcFileMenuDialog(QWidget *parent = 0);
-  ~QtTestQrcFileMenuDialog();
+  QtTestQrcFileMenuDialog(const QtTestQrcFileMenuDialog&) = delete;
+  QtTestQrcFileMenuDialog& operator=(const QtTestQrcFileMenuDialog&) = delete;
+  ~QtTestQrcFileMenuDialog() noexcept;
 
 private slots:
   void on_button_start_clicked();
@@ -44,6 +49,10 @@ private slots:
 
 private:
   Ui::QtTestQrcFileMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

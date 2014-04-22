@@ -47,6 +47,8 @@ namespace RichelBilderbeek {
 ///WtMenuDialog is the menu of WtRichelBilderbeek
 struct WtMenuDialog : public Wt::WContainerWidget
 {
+  typedef boost::shared_ptr<WtMenuItem> Item_t;
+
   explicit WtMenuDialog(const std::string& ip_address);
 
   private:
@@ -62,24 +64,24 @@ struct WtMenuDialog : public Wt::WContainerWidget
   } ui;
 
 
-  const std::vector<WtMenuItem> m_about_menu_items;
+  const std::vector<Item_t> m_about_menu_items;
 
   const int m_button_height;
   const int m_button_width;
 
-  const std::vector<WtMenuItem> m_classes_menu_items;
-  const std::vector<WtMenuItem> m_games_menu_items;
+  const std::vector<Item_t> m_classes_menu_items;
+  const std::vector<Item_t> m_games_menu_items;
 
   ///The client his/her IP address
   const std::string m_ip_address;
 
-  const std::vector<WtMenuItem> m_main_menu_items;
-  const std::vector<WtMenuItem> m_projects_menu_items;
-  const std::vector<WtMenuItem> m_tools_menu_items;
+  const std::vector<Item_t> m_main_menu_items;
+  const std::vector<Item_t> m_projects_menu_items;
+  const std::vector<Item_t> m_tools_menu_items;
 
 
   ///Collect all the submenu items
-  const std::vector<WtMenuItem> CollectSubMenuItems() const;
+  const std::vector<Item_t> CollectSubMenuItems() const;
 
   ///Create the 'About' submenu dialog
   Wt::WWidget * CreateNewAboutDialog();
@@ -117,7 +119,7 @@ struct WtMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewStatusesDialog() const;
   Wt::WWidget * CreateNewTestAsciiArterDialog() const;
   Wt::WWidget * CreateNewTestDialDialog() const;
-  Wt::WWidget * CreateNewTestEncrangerDialog() const;
+  Wt::WWidget * CreateNewEncrangerDialog() const;
   Wt::WWidget * CreateNewTestEntranceDialog() const;
   Wt::WWidget * CreateNewTestExerciseDialog() const;
   Wt::WWidget * CreateNewTestFunctionParserDialog() const;
@@ -142,12 +144,12 @@ struct WtMenuDialog : public Wt::WContainerWidget
   void OnMainItemClicked(const ShinyButtonWidget * const widget);
   void OnSubItemClicked(const ShinyButtonWidget * const widget);
 
-  const std::vector<WtMenuItem> CreateAboutMenuItems() const;
-  const std::vector<WtMenuItem> CreateClassesMenuItems() const;
-  const std::vector<WtMenuItem> CreateGamesMenuItems() const;
-  const std::vector<WtMenuItem> CreateMainMenuItems() const;
-  const std::vector<WtMenuItem> CreateProjectsMenuItems() const;
-  const std::vector<WtMenuItem> CreateToolsMenuItems() const;
+  const std::vector<Item_t> CreateAboutMenuItems() const;
+  const std::vector<Item_t> CreateClassesMenuItems() const;
+  const std::vector<Item_t> CreateGamesMenuItems() const;
+  const std::vector<Item_t> CreateMainMenuItems() const;
+  const std::vector<Item_t> CreateProjectsMenuItems() const;
+  const std::vector<Item_t> CreateToolsMenuItems() const;
 };
 
 } //~namespace RichelBilderbeek

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,7 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTBOENKENPLAYERSDIALOG_H
 #define QTBOENKENPLAYERSDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenPlayersDialog;
@@ -34,13 +37,15 @@ namespace ribi {
 ///A controller can be\n
 ///- a human\n
 ///- a computer\n
-class QtBoenkenPlayersDialog : public QDialog
+class QtBoenkenPlayersDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtBoenkenPlayersDialog(QWidget *parent = 0);
-  ~QtBoenkenPlayersDialog();
+  QtBoenkenPlayersDialog(const QtBoenkenPlayersDialog&) = delete;
+  QtBoenkenPlayersDialog& operator=(const QtBoenkenPlayersDialog&) = delete;
+  ~QtBoenkenPlayersDialog() noexcept;
 
 private:
   Ui::QtBoenkenPlayersDialog *ui;

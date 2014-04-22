@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestKeyboardFriendlyGraphicsView, tests QtKeyboardFriendlyGraphicsView
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@ struct QtTestKeyboardFriendlyGraphicsViewWidget : public QtKeyboardFriendlyGraph
   typedef QtTestKeyboardFriendlyGraphicsViewWidget This;
 
   QtTestKeyboardFriendlyGraphicsViewWidget();
+  ~QtTestKeyboardFriendlyGraphicsViewWidget() noexcept {}
 
   ///Signal emitted when the user wants to see the about screen
   boost::signals2::signal<void()> m_signal_request_about;
@@ -46,12 +47,16 @@ struct QtTestKeyboardFriendlyGraphicsViewWidget : public QtKeyboardFriendlyGraph
 
 protected:
 
-  void keyPressEvent(QKeyEvent *event);
+  void keyPressEvent(QKeyEvent *event) noexcept;
 
 private:
 
   ///Update the view
   void DoUpdateScene();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

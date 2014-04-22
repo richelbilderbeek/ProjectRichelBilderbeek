@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShape, tool to test the Shape and ShapeWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,35 +18,34 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShape.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testshapemaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "qtaboutdialog.h"
 #include "qttestshapemaindialog.h"
 #include "qtshapewidget.h"
 #include "trace.h"
 #include "ui_qttestshapemaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestShapeMainDialog::QtTestShapeMainDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTestShapeMainDialog),
-    m_dialog(new TestShapeMainDialog)
+    m_dialog(new TestShapeMainDialog),
+    m_widgets{}
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
   int i=0;
-  BOOST_FOREACH(boost::shared_ptr<ShapeWidget>& widget,
-    m_dialog->GetShapes())
+  for(boost::shared_ptr<ShapeWidget>& widget: m_dialog->GetShapes())
   {
     boost::shared_ptr<QtShapeWidget> w(new QtShapeWidget(widget));
 
@@ -57,12 +56,12 @@ ribi::QtTestShapeMainDialog::QtTestShapeMainDialog(QWidget *parent) :
   }
 }
 
-ribi::QtTestShapeMainDialog::~QtTestShapeMainDialog()
+ribi::QtTestShapeMainDialog::~QtTestShapeMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestShapeMainDialog::Test()
+void ribi::QtTestShapeMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

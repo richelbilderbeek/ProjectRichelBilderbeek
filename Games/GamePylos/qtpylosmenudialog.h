@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Pylos, Pylos/Pyraos game
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,21 +21,27 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTPYLOSMENUDIALOG
 #define QTPYLOSMENUDIALOG
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPylosMenuDialog;
 }
 
 namespace ribi {
+namespace pylos {
 
-class QtPylosMenuDialog : public QDialog
+class QtPylosMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtPylosMenuDialog(QWidget *parent = 0);
-  ~QtPylosMenuDialog();
+  QtPylosMenuDialog(const QtPylosMenuDialog&) = delete;
+  QtPylosMenuDialog& operator=(const QtPylosMenuDialog&) = delete;
+  ~QtPylosMenuDialog() noexcept;
 
 protected:
   void mousePressEvent(QMouseEvent *);
@@ -47,12 +53,17 @@ private:
   bool m_type_basic;
   bool m_theme_bw;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void OnStart();
   void OnAbout();
   void OnInstructions();
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTPYLOSMENUDIALOG

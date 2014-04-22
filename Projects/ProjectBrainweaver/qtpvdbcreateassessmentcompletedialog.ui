@@ -14,14 +14,14 @@
    <string>Formuleer de focusvraag</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ProjectVanDenBogaart.qrc">
+   <iconset resource="Brainweaver.qrc">
     <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Formuleer de focusvraag voor de complete concept map:</string>
+      <string>Formuleer de focus voor de complete concept map:</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -46,7 +46,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="ProjectVanDenBogaart.qrc"/>
+  <include location="Brainweaver.qrc"/>
  </resources>
  <connections/>
 </ui>

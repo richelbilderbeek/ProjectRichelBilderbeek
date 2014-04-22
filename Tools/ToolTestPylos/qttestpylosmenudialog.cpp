@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestpylosmenudialog.h"
 
 #include "qtaboutdialog.h"
@@ -28,62 +28,69 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestpylosgametestsdialog.h"
 #include "qttestpylosrandomplaydialog.h"
 #include "testpylosmenudialog.h"
+#include "trace.h"
 #include "ui_qttestpylosmenudialog.h"
-//---------------------------------------------------------------------------
-ribi::QtTestPylosMenuDialog::QtTestPylosMenuDialog(QWidget *parent) :
-    QDialog(parent),
+#pragma GCC diagnostic pop
+
+ribi::pylos::QtTestPylosMenuDialog::QtTestPylosMenuDialog(QWidget *parent) :
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTestPylosMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
-ribi::QtTestPylosMenuDialog::~QtTestPylosMenuDialog()
+
+ribi::pylos::QtTestPylosMenuDialog::~QtTestPylosMenuDialog() noexcept
 {
     delete ui;
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosMenuDialog::on_button_test_board_clicked()
+
+void ribi::pylos::QtTestPylosMenuDialog::on_button_test_board_clicked()
 {
   QtTestPylosTestBoardDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosMenuDialog::on_button_test_game_clicked()
+
+void ribi::pylos::QtTestPylosMenuDialog::on_button_test_game_clicked()
 {
   QtTestPylosTestGameDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosMenuDialog::on_button_show_game_tests_clicked()
+
+void ribi::pylos::QtTestPylosMenuDialog::on_button_show_game_tests_clicked()
 {
   QtTestPylosGameTestsDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosMenuDialog::on_button_about_clicked()
+
+void ribi::pylos::QtTestPylosMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(TestPylosMenuDialog::GetAbout());
-  this->hide();
-  d.exec();
-  this->show();
+  QtAboutDialog d(TestPylosMenuDialog().GetAbout());
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosMenuDialog::on_button_quit_clicked()
+
+void ribi::pylos::QtTestPylosMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosMenuDialog::on_button_random_play_clicked()
+
+void ribi::pylos::QtTestPylosMenuDialog::on_button_random_play_clicked()
 {
   QtTestPylosRandomPlayDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
+
+#ifndef NDEBUG
+void ribi::pylos::QtTestPylosMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::pylos::QtTestPylosMenuDialog::Test");
+  TRACE("Finished ribi::pylos::QtTestPylosMenuDialog::Test successfully");
+}
+#endif

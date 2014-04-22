@@ -2,79 +2,144 @@
 
 #include <algorithm>
 #include <cassert>
+#include <iostream>
 
-#ifdef SADC_USE_THREADS
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
 #endif
 
 #include "chessgame.h"
+
+#include "chesswidget.h"
+#include "chesssquareselector.h"
+#include "chesssquarefactory.h"
+#include "chesssquare.h"
+#include "chessscore.h"
+#include "chessrank.h"
+#include "chessplayer.h"
+#include "chesspiecefactory.h"
+#include "chesspiece.h"
+#include "chessmoves.h"
+#include "chessmovefactory.h"
+#include "chessmove.h"
+#include "chesshelper.h"
+#include "chessgamewidget.h"
+#include "chessgame.h"
+#include "chessfwd.h"
+#include "chessfile.h"
+#include "chesscolor.h"
+#include "chesscastling.h"
+#include "chessboardwidget.h"
+#include "chessboardfactory.h"
+#include "chessboard.h"
+#include "chessbitboard.h"
+
 #include "trace.h"
 
 #include <QFile>
+#pragma GCC diagnostic pop
 
-namespace SearchAndDestroyChess {
-
-MenuDialog::MenuDialog()
+ribi::sadc::MenuDialog::MenuDialog()
 {
-  /*
-  const std::vector<std::string> filenames = Chess::Resources::GetFilenames();
-
-  std::for_each(filenames.begin(),filenames.end(),
-    [](const std::string& filename)
-  {
-    if (!QFile::exists(filename.c_str()))
-    {
-      QFile f( (std::string(":/images/") + filename).c_str() );
-        f.copy(filename.c_str());
-    }
-  } );
-
   #ifndef NDEBUG
-  std::for_each(filenames.begin(),filenames.end(),
-    [](const std::string& filename) { assert(QFile::exists(filename.c_str())); } );
+  Test();
   #endif
-  */
 }
 
-const About MenuDialog::GetAbout() const
+int ribi::sadc::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+
+ribi::About ribi::sadc::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "SearchAndDestroyChess",
     "Kriegspiel",
     "the 23rd of Februari 2013",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/GameSearchAndDestroyChess.htm",
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Artwork from GNU XBoard");
-  //a.AddLibrary("Chess::Board2d version: " + Chess::Board2d::GetVersion());
+  a.AddLibrary("Chess::widget version: " + Chess::ChessWidget::GetVersion());
+  a.AddLibrary("Chess::SquareSelector version: " + Chess::SquareSelector::GetVersion());
+  a.AddLibrary("Chess::Square: " + Chess::Square::GetVersion());
+  a.AddLibrary("Chess::Score: " + Chess::Score::GetVersion());
+  a.AddLibrary("Chess::Rank: " + Chess::Rank::GetVersion());
+  a.AddLibrary("Chess::Moves: " + Chess::Moves::GetVersion());
+  a.AddLibrary("Chess::Move: " + Chess::Move::GetVersion());
+  a.AddLibrary("Chess::Game: " + Chess::Game::GetVersion());
+  a.AddLibrary("Chess::GameWidget: " + Chess::GameWidget::GetVersion());
+  a.AddLibrary("Chess::File: " + Chess::File::GetVersion());
+  a.AddLibrary("Chess::Board: " + Chess::Board::GetVersion());
+  a.AddLibrary("Chess::BoardWidget: " + Chess::BoardWidget::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
-const std::string MenuDialog::GetVersion()
+ribi::Help ribi::sadc::MenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::sadc::MenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramSearchAndDestroyChess
+  };
+  assert(p);
+  return p;
+}
+
+
+std::string ribi::sadc::MenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::sadc::MenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-28: Version 1.0: initial version");
-  v.push_back("2013-02-24: Version 1.1: testing done in seperate thread");
-  return v;
+  return {
+    "2011-06-28: Version 1.0: initial version",
+    "2013-02-24: Version 1.1: testing done in seperate thread"
+  };
 }
 
-
-void MenuDialog::Test()
+#ifndef NDEBUG
+void ribi::sadc::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -83,11 +148,9 @@ void MenuDialog::Test()
       MenuDialog();
       Chess::Game();
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
-
-} //~ namespace SearchAndDestroyChess
-
+#endif

@@ -1,33 +1,100 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
+#include "conceptmap.h"
+#include "fileio.h"
 #include "fuzzy_equal_to.h"
 #include "trace.h"
+#include "xml.h"
+#pragma GCC diagnostic pop
 
-const ribi::About ribi::pvdb::MenuDialog::GetAbout()
+int ribi::pvdb::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
     "Brainweaver",
-    "program to create and assess concept maps",
-    "the 7th of September 2013",
-    "2012-2013",
+    "tool to create and assess concept maps",
+    "the 31st of December 2013",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("Trace version: " + Trace::GetVersion());
+
+  a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
+  a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
   a.AddLibrary("fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
-const std::string ribi::pvdb::MenuDialog::GetVersion()
+ribi::Help ribi::pvdb::MenuDialog::GetHelp() const noexcept
 {
-  return "0.36";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramBrainweaver
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
+{
+  return "0.47";
+}
+
+std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2012-06-17: Version 0.01: concept version, using 'IronHide' style",
+    "2012-06-17: Version 0.01: concept version of ProjectVanDenBogaart, using 'IronHide' style",
     "2012-10-18: Version 0.02: able to crosscompile to windows, few dialogs present",
     "2012-10-19: Version 0.03: added use of QtHideAndShowDialog, most dialogs present",
     "2012-10-24: Version 0.04: added QtPvdbClusterWidget",
@@ -55,13 +122,22 @@ const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
     "2013-01-18: Version 0.26: calculate rating values correctly",
     "2013-01-20: Version 0.27: added graphics to menu's, using 'Dolphin' style",
     "2013-01-23: Version 0.28: allow ConceptMapEdit arrows having solitary focus, progress on printing",
-    "2013-02-12: Version 0.29: changed name to Brainweaver (formely called ProjectVanDenBogaart), progress on printing",
+    "2013-02-12: Version 0.29: changed name to Brainweaver, progress on printing",
     "2013-04-21: Version 0.30: shows sub-concepts maps in rating well, allows saving without going back to the main menu",
     "2013-05-04: Version 0.31: improved printing for student and assessor, first steps in implementing undo functionality",
     "2013-07-27: Version 0.32: first step in semi-automated rating mechanism",
     "2013-08-06: Version 0.33: added icons and artwork",
     "2013-08-18: Version 0.34: fixed file dialog",
     "2013-08-30: Version 0.35: fixed segmentation faults, replaced print dialogs by save file dialogs",
-    "2013-09-07: Version 0.36: placed all classes in namespace ribi::pvdb, minor changes"
+    "2013-09-07: Version 0.36: placed all classes in namespace ribi::pvdb, minor changes",
+    "2013-09-15: Version 0.37: minor changes, added wordwrap in concept names",
+    "2013-09-21: Version 0.38: minor changes, added wordwrap in examples in concept map widgets",
+    "2013-09-29: Version 0.39: minor changes, added wordwrap in examples in rate examples dialog",
+    "2013-10-03: Version 0.40: minor changes, added wordwrap in some more player",
+    "2013-12-29: Version 0.43: bugfixes, renaming, refactoring, preparing for undo functionality",
+    "2013-12-31: Version 0.44: when tallying the relevancies of a concept its connected examples, the node names connected to the edges are displayed",
+    "2013-12-31: Version 0.45: sub concept map creation bug fixes",
+    "2013-xx-xx: Version 0.46: misc",
+    "2014-04-19: Version 0.47: hotfix"
   };
 }

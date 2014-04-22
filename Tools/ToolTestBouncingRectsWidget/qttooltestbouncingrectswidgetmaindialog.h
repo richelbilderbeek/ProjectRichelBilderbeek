@@ -1,7 +1,10 @@
 #ifndef QTTOOLTESTBOUNCINGRECTSWIDGETMAINDIALOG_H
 #define QTTOOLTESTBOUNCINGRECTSWIDGETMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtToolTestBouncingRectsWidgetMainDialog;
@@ -13,7 +16,9 @@ class QtToolTestBouncingRectsWidgetMainDialog : public QDialog
     
 public:
     explicit QtToolTestBouncingRectsWidgetMainDialog(QWidget *parent = 0);
-    ~QtToolTestBouncingRectsWidgetMainDialog();
+    QtToolTestBouncingRectsWidgetMainDialog(const QtToolTestBouncingRectsWidgetMainDialog&) = delete;
+    QtToolTestBouncingRectsWidgetMainDialog& operator=(const QtToolTestBouncingRectsWidgetMainDialog&) = delete;
+    ~QtToolTestBouncingRectsWidgetMainDialog() noexcept;
     
 private:
     Ui::QtToolTestBouncingRectsWidgetMainDialog *ui;

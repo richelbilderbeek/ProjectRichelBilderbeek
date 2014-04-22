@@ -1,3 +1,24 @@
+//---------------------------------------------------------------------------
+/*
+Approximator, class for approximating values by interpolation
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppApproximator.htm
+//---------------------------------------------------------------------------
+
 #ifndef APPROXIMATOR_H
 #define APPROXIMATOR_H
 
@@ -35,31 +56,31 @@ struct Approximator
   typedef Key key_type;
   typedef Value value_type;
 
-  explicit Approximator(const Container& m = Container() );
+  explicit Approximator(const Container& m = Container() ) noexcept;
 
   ///Add a key-value pair, where the key must be unique
   void Add(const Key& key, const Value& value);
 
   ///Approximate a key its value
-  const Value Approximate(const Key& key) const;
+  Value Approximate(const Key& key) const;
 
   ///Can only add a value if its key is not present
-  bool CanAdd(const Key& key, const Value& ) const;
+  bool CanAdd(const Key& key, const Value& ) const noexcept;
 
   ///Obtain the container
-  const Container& Get() const { return m_m; }
+  const Container& Get() const noexcept { return m_m; }
 
   ///Obtain the lowest key value
-  const Key GetMax() const { assert(!m_m.empty()); return (*m_m.rbegin()).first; }
+  Key GetMax() const { assert(!m_m.empty()); return (*m_m.rbegin()).first; }
 
   ///Obtain the heighest key value
-  const Key GetMin() const { assert(!m_m.empty()); return (*m_m.begin()).first; }
+  Key GetMin() const { assert(!m_m.empty()); return (*m_m.begin()).first; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///The container used
@@ -67,13 +88,13 @@ struct Approximator
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 
 
 template <class Key, class Value, class Container>
-Approximator<Key,Value,Container>::Approximator(const Container& m)
+Approximator<Key,Value,Container>::Approximator(const Container& m) noexcept
   : m_m { m }
 {
   static_assert(!std::is_integral<Key>(),
@@ -94,7 +115,7 @@ void Approximator<Key,Value,Container>::Add(const Key& key, const Value& value)
 }
 
 template <class Key, class Value, class Container>
-const Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
+Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
 {
   typedef typename Container::const_iterator Iterator;
 
@@ -131,20 +152,20 @@ const Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
 }
 
 template <class Key, class Value, class Container>
-bool Approximator<Key,Value,Container>::CanAdd(const Key& key, const Value& ) const
+bool Approximator<Key,Value,Container>::CanAdd(const Key& key, const Value& ) const noexcept
 {
   return m_m.find(key) == m_m.end();
 }
 
 template <class Key, class Value, class Container>
-const std::string Approximator<Key,Value,Container>::GetVersion()
+std::string Approximator<Key,Value,Container>::GetVersion() noexcept
 {
   return "1.0";
 }
 
 ///Obtain the version history of this class
 template <class Key, class Value, class Container>
-const std::vector<std::string> Approximator<Key,Value,Container>::GetVersionHistory()
+std::vector<std::string> Approximator<Key,Value,Container>::GetVersionHistory() noexcept
 {
   const std::vector<std::string> v {
     "2013-08-22: version 1.0: initial version"
@@ -155,7 +176,7 @@ const std::vector<std::string> Approximator<Key,Value,Container>::GetVersionHist
 
 #ifndef NDEBUG
 template <class Key, class Value, class Container>
-void Approximator<Key,Value,Container>::Test()
+void Approximator<Key,Value,Container>::Test() noexcept
 {
   {
     static bool is_tested { false };

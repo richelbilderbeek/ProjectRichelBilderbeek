@@ -15,7 +15,11 @@ const std::vector<std::string> GetRegexMatchesCpp11(
   return v;
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/regex.hpp>
+#pragma GCC diagnostic pop
 
 ///Obtain all regex matches in a std::string
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
@@ -41,6 +45,7 @@ const std::vector<std::string> GetRegexMatchesBoostRegex(
 }
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/xpressive/xpressive.hpp>
 #pragma GCC diagnostic pop
@@ -63,7 +68,11 @@ const std::vector<std::string>
 }
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QRegExp>
+#pragma GCC diagnostic pop
 
 ///Obtain all regex matches in a std::string
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm

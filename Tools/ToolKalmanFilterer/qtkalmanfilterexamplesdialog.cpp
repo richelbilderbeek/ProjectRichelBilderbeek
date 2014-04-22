@@ -27,7 +27,7 @@
 #pragma GCC diagnostic pop
 
 ribi::kalman::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     m_signal_example{},
     ui(new Ui::QtKalmanFilterExamplesDialog)
 {
@@ -48,7 +48,7 @@ ribi::kalman::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget
   }
 }
 
-ribi::kalman::QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
+ribi::kalman::QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog() noexcept
 {
   delete ui;
 }
@@ -69,7 +69,7 @@ void ribi::kalman::QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event
 }
 
 #ifndef NDEBUG
-void ribi::kalman::QtKalmanFilterExamplesDialog::Test()
+void ribi::kalman::QtKalmanFilterExamplesDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

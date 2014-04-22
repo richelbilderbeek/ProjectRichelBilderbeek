@@ -50,7 +50,8 @@ ribi::ToolTestEntrance::WtMainDialog::Ui::Ui()
 }
 
 ribi::ToolTestEntrance::WtMainDialog::WtMainDialog(boost::shared_ptr<const IpAddress> ip_address)
- :  m_ip_address(ip_address)
+ :  m_ip_address(ip_address),
+    ui{}
 {
   assert(ip_address);
   this->setContentAlignment(Wt::AlignCenter);

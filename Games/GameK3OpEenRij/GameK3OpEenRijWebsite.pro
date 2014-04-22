@@ -1,40 +1,33 @@
-QT       += core
-QT       -= gui
-LIBS += -lwt -lwthttp -lboost_filesystem
-QMAKE_CXXFLAGS += -DNDEBUG
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppConnectThree \
-    ../../Classes/CppTrace \
-    ../../Classes/CppWtAboutDialog \
-    ../../Classes/CppWtConnectThreeWidget \
-    ../../Games/GameConnectThree
+include(../../WebApplication.pri)
 
-SOURCES += \
-    wtmain.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppConnectThree/connectthree.cpp \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    ../../Classes/CppWtConnectThreeWidget/wtconnectthreewidget.cpp \
-    ../../Games/GameConnectThree/wtconnectthreedialog.cpp \
-    ../../Games/GameConnectThree/wtconnectthreemenudialog.cpp \
-    ../../Games/GameConnectThree/wtconnectthreegamedialog.cpp \
-    ../../Games/GameConnectThree/wtselectplayerwidget.cpp \
-    ../GameConnectThree/connectthreefilenames.cpp
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
 
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppConnectThree/connectthree.h \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    ../../Classes/CppWtConnectThreeWidget/wtconnectthreewidget.h \
-    ../../Games/GameConnectThree/wtconnectthreedialog.h \
-    ../../Games/GameConnectThree/wtconnectthreemenudialog.h \
-    ../../Games/GameConnectThree/wtconnectthreegamedialog.h \
-    ../../Games/GameConnectThree/wtselectplayerwidget.h \
-    ../GameConnectThree/connectthreefilenames.h
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-OTHER_FILES += \
-    K3OpEenRij.css
+#General, web
+include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
+include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
+
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppConnectThree/CppConnectThree.pri)
+include(../../Classes/CppConnectThreeWidget/CppConnectThreeWidget.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppTribool/CppTribool.pri)
+#include(../../Games/GameConnectThree/GameConnectThreeConsole.pri)
+
+#Specific, web
+include(../../Games/GameK3OpEenRij/GameK3OpEenRijWebsite.pri)
+include(../../Classes/CppWtConnectThreeWidget/CppWtConnectThreeWidget.pri)
+include(../../Games/GameConnectThree/GameConnectThreeWebsite.pri)
+
+SOURCES += wtmain.cpp
+
+#/home/richel/ProjectRichelBilderbeek/Games/GameConnectThree/qtconnectthreeresources.

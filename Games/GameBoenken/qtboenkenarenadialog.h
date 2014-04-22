@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,8 +22,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTBOENKENARENADIALOG_H
 #define QTBOENKENARENADIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
 #include "boenkenarenasettings.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenArenaDialog;
@@ -34,19 +37,22 @@ namespace ribi {
 ///QtBoenkenArenaDialog
 ///
 ///Dialog to setup up the arena
-class QtBoenkenArenaDialog : public QDialog
+class QtBoenkenArenaDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtBoenkenArenaDialog(QWidget *parent = 0);
-  ~QtBoenkenArenaDialog();
-  const std::pair<int,int> GetScreenSize() const;
-  int GetNballs() const;
-  int GetNobstacles() const;
-  Boenken::Formation GetFormation() const;
-  double GetFriction() const;
-  const Boenken::ArenaSettings GetSettings() const;
+  explicit QtBoenkenArenaDialog(QWidget *parent = 0) noexcept;
+  QtBoenkenArenaDialog(const QtBoenkenArenaDialog&) = delete;
+  QtBoenkenArenaDialog& operator=(const QtBoenkenArenaDialog&) = delete;
+  ~QtBoenkenArenaDialog() noexcept;
+
+  const std::pair<int,int> GetScreenSize() const noexcept;
+  int GetNballs() const noexcept;
+  int GetNobstacles() const noexcept;
+  Boenken::Formation GetFormation() const noexcept;
+  double GetFriction() const noexcept;
+  const Boenken::ArenaSettings GetSettings() const noexcept;
 
 private:
   Ui::QtBoenkenArenaDialog *ui;

@@ -1,0 +1,79 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : checkmesh
+Date   : Mar 24 2014
+Time   : 09:36:11
+Host   : "AIRBEAR-W7-I5"
+PID    : 5772
+Case   : D:/Projects/Test/ToolOpenFoamExample23
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Time = 0
+
+Mesh stats
+    points:           8
+    internal points:  0
+    faces:            6
+    internal faces:   0
+    cells:            1
+    boundary patches: 1
+    point zones:      0
+    face zones:       0
+    cell zones:       0
+
+Overall number of cells of each type:
+    hexahedra:     1
+    prisms:        0
+    wedges:        0
+    pyramids:      0
+    tet wedges:    0
+    tetrahedra:    0
+    polyhedra:     0
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+    Number of regions: 1 (OK).
+
+Checking patch topology for multiply connected surfaces ...
+    Patch               Faces    Points   Surface topology                  
+    my_cube_faces       6        8        ok (closed singly connected)      
+
+Checking geometry...
+    Overall domain bounding box (-1 -1 -1) (1 1 1)
+    Mesh (non-empty, non-wedge) directions (1 1 1)
+    Mesh (non-empty) directions (1 1 1)
+    Boundary openness (0 0 0) OK.
+    Max cell openness = 0 OK.
+    Max aspect ratio = 1 OK.
+    Minimum face area = 4. Maximum face area = 4.  Face area magnitudes OK.
+    Min volume = 8. Max volume = 8.  Total volume = 8.  Cell volumes OK.
+    Non-orthogonality check OK.
+    Face pyramids OK.
+    Max skewness = 0 OK.
+    Coupled point location match (average 0) OK.
+
+Mesh OK.
+
+End
+

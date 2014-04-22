@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestFunctionParser, tool to demonstrate Warp's FunctionParser class
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,28 +18,33 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestFunctionParser.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestfunctionparsermenudialog.h"
 
 #include "qtaboutdialog.h"
 #include "qttestfunctionparsermaindialog.h"
 #include "testfunctionparsermenudialog.h"
+#include "trace.h"
 #include "ui_qttestfunctionparsermenudialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtTestFunctionParserMenuDialog::QtTestFunctionParserMenuDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestFunctionParserMenuDialog)
+ribi::QtTestFunctionParserMenuDialog::QtTestFunctionParserMenuDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtTestFunctionParserMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtTestFunctionParserMenuDialog::~QtTestFunctionParserMenuDialog()
+ribi::QtTestFunctionParserMenuDialog::~QtTestFunctionParserMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestFunctionParserMenuDialog::on_button_start_clicked()
+void ribi::QtTestFunctionParserMenuDialog::on_button_start_clicked() noexcept
 {
   QtTestFunctionParserMainDialog d;
   d.setStyleSheet(this->styleSheet());
@@ -47,19 +52,29 @@ void ribi::QtTestFunctionParserMenuDialog::on_button_start_clicked()
   ShowChild(&d);
 }
 
-void ribi::QtTestFunctionParserMenuDialog::on_button_about_clicked()
+void ribi::QtTestFunctionParserMenuDialog::on_button_about_clicked() noexcept
 {
-  About a = TestFunctionParserMenuDialog::GetAbout();
+  About a = TestFunctionParserMenuDialog().GetAbout();
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  hide();
-  d.exec();
-  show();
+  ShowChild(&d);
 }
 
-void ribi::QtTestFunctionParserMenuDialog::on_button_quit_clicked()
+void ribi::QtTestFunctionParserMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtTestFunctionParserMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestFunctionParserMenuDialog::Test");
+  TRACE("Finished ribi::QtTestFunctionParserMenuDialog::Test successfully");
+}
+#endif

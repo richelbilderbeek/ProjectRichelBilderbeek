@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 SimMysteryMachine, simulator of my mystery machine
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTSIMMYSTERYMACHINEINSTRUCTIONSDIALOG_H
 #define QTSIMMYSTERYMACHINEINSTRUCTIONSDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
     class QtSimMysteryMachineInstructionsDialog;
@@ -29,13 +32,15 @@ namespace Ui {
 
 namespace ribi {
 
-class QtSimMysteryMachineInstructionsDialog : public QDialog
+class QtSimMysteryMachineInstructionsDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
 
 public:
     explicit QtSimMysteryMachineInstructionsDialog(QWidget *parent = 0);
-    ~QtSimMysteryMachineInstructionsDialog();
+    QtSimMysteryMachineInstructionsDialog(const QtSimMysteryMachineInstructionsDialog&) = delete;
+    QtSimMysteryMachineInstructionsDialog& operator=(const QtSimMysteryMachineInstructionsDialog&) = delete;
+    ~QtSimMysteryMachineInstructionsDialog() noexcept;
 
 private:
     Ui::QtSimMysteryMachineInstructionsDialog *ui;

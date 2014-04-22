@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShape, tool to test the Shape and ShapeWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,8 +23,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -47,6 +50,10 @@ struct TestShapeMainDialog
   void OnShapeAnswered();
 
   static std::vector<boost::shared_ptr<ShapeWidget> > CreateShapes();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -1,8 +1,12 @@
 #include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include "qttextpositionitem.h"
 #include "qttextpositionwidget.h"
+#pragma GCC diagnostic pop
 
 QtTextPositionWidget::QtTextPositionWidget(const std::vector<std::string>& items)
 {

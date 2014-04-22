@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQtCreatorProFile, tool to test the QtCreatorProFile class
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtTestQtCreatorProFileMainDialog;
+  class QtTestQtCreatorProFileMainDialog;
 }
 
 namespace ribi {
@@ -35,13 +35,19 @@ class QtTestQtCreatorProFileMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestQtCreatorProFileMainDialog(QWidget *parent = 0);
-  ~QtTestQtCreatorProFileMainDialog();
+  QtTestQtCreatorProFileMainDialog(const QtTestQtCreatorProFileMainDialog&) = delete;
+  QtTestQtCreatorProFileMainDialog& operator=(const QtTestQtCreatorProFileMainDialog&) = delete;
+  ~QtTestQtCreatorProFileMainDialog() noexcept;
 
 private slots:
   void on_button_select_clicked();
 
 private:
   Ui::QtTestQtCreatorProFileMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

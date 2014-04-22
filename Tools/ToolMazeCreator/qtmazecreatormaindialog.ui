@@ -11,17 +11,22 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MazeCreator (C) 2007 Richel Bilderbeek</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="mazecreator.qrc">
-    <normaloff>:/images/PicR.png</normaloff>:/images/PicR.png</iconset>
+   <string>MazeCreator</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -43,8 +48,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="mazecreator.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

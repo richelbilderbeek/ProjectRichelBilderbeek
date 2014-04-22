@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShape, tool to test the Shape and ShapeWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,12 +29,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "shape.h"
 #include "shapewidget.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
 ribi::TestShapeMainDialog::TestShapeMainDialog()
   : m_shapes(CreateShapes())
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
 
 }
 
@@ -66,3 +70,16 @@ std::vector<boost::shared_ptr<ribi::ShapeWidget> > ribi::TestShapeMainDialog::Cr
   //std::random_shuffle(v.begin(),v.end());
   return v;
 }
+
+#ifndef NDEBUG
+void ribi::TestShapeMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestShapeMainDialog::Test");
+  TRACE("Finished ribi::TestShapeMainDialog::Test successfully");
+}
+#endif

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 SimMysteryMachine, simulator of my mystery machine
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,31 +18,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtsimmysterymachinemenudialog.h"
-
-
 
 #include "dial.h"
 #include "led.h"
 #include "ledwidget.h"
 #include "qtaboutdialog.h"
+#include "qtcanvasdialog.h"
 #include "qtdialwidget.h"
 #include "qtledwidget.h"
-
+#include "qtmysterymachinecanvas.h"
 #include "qtmysterymachinewidget.h"
 #include "qtsimmysterymachineinstructionsdialog.h"
 #include "qtsimmysterymachinemaindialog.h"
 #include "qtsimmysterymachinerealmachinedialog.h"
 #include "qttogglebuttonwidget.h"
 #include "simmysterymachinemenudialog.h"
+#include "trace.h"
 #include "ui_qtsimmysterymachinemenudialog.h"
 
-ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) :
-    QDialog(parent),
+#pragma GCC diagnostic pop
+
+ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) noexcept :
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtSimMysteryMachineMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->led_1->GetWidget()->GetLed()->SetColor(255,255,255);
@@ -50,33 +55,31 @@ ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *pare
   ui->led_3->GetWidget()->GetLed()->SetColor(  0,255,  0);
   ui->led_4->GetWidget()->GetLed()->SetColor(  0,  0,255);
   ui->led_5->GetWidget()->GetLed()->SetColor(  0,  0,  0);
-  /*
-  const int size = ui->button_about->height() + 8;
-  ui->led_1->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  ui->led_2->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  ui->led_3->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  ui->led_4->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  ui->led_5->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  */
 }
 
-ribi::QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog()
+ribi::QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_start_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_start_clicked() noexcept
 {
-  this->hide();
-  QtSimMysteryMachineMainDialog d;
-  d.exec();
-  this->show();
+  const boost::shared_ptr<QtMysteryMachineCanvas> canvas {
+    new QtMysteryMachineCanvas
+  };
+  assert(canvas);
+  const boost::shared_ptr<QtCanvasDialog> dialog {
+    new QtCanvasDialog(canvas.get())
+  };
+  ShowChild(dialog.get());
+
+  //QtSimMysteryMachineMainDialog d;
+  //ShowChild(&d);
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked() noexcept
 {
-  this->hide();
-  About a = SimMysteryMachineMenuDialog::GetAbout();
+  About a = SimMysteryMachineMenuDialog().GetAbout();
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtLedWidget version: " + QtLedWidget::GetVersion());
   a.AddLibrary("QtMysteryMachineWidget version: " + QtMysteryMachineWidget::GetVersion());
@@ -84,28 +87,50 @@ void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked()
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_quit_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_quit_clicked() noexcept
 {
   this->close();
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_instructions_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_instructions_clicked() noexcept
 {
-  this->hide();
   QtSimMysteryMachineInstructionsDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_real_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_real_clicked() noexcept
 {
-  this->hide();
   QtSimMysteryMachineRealMachineDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtSimMysteryMachineMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtSimMysteryMachineMenuDialog::Test");
+  QtMysteryMachineWidget();
+  const boost::shared_ptr<MysteryMachineWidget> p { new MysteryMachineWidget };
+  /*
+  {
+    const boost::shared_ptr<QtMysteryMachineCanvas> canvas {
+      new QtMysteryMachineCanvas
+    };
+    assert(canvas);
+    const boost::shared_ptr<QtCanvasDialog> dialog {
+      new QtCanvasDialog(canvas.get())
+    };
+    assert(dialog);
+  }
+  */
+  assert(p);
+  TRACE("Finished ribi::QtSimMysteryMachineMenuDialog::Test successfully");
+}
+#endif

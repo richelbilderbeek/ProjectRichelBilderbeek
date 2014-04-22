@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestToggleButton, tool to test the ToggleButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,23 +20,64 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "testtogglebuttonmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
+#include "drawcanvas.h"
 #include "rectangle.h"
+#include "textcanvas.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
 
-const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout()
+int ribi::TestToggleButtonMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc != 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+
+  const boost::shared_ptr<ToggleButtonWidget> widget(
+    new ToggleButtonWidget
+  );
+
+  widget->GetToggleButton()->Press();
+
+  std::cout
+    << "Pressed\n"
+    << '\n'
+    << (*widget->ToDrawCanvas(30,15)) << std::endl;
+
+  widget->GetToggleButton()->Toggle();
+
+  std::cout
+    << '\n'
+    << "Toggled:\n"
+    << '\n'
+    << (*widget->ToDrawCanvas(30,15)) << std::endl;
+  return 0;
+}
+
+
+ribi::About ribi::TestToggleButtonMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "TestToggleButton",
     "tool to test the ToggleButton class",
-    "the 11st of June 2012",
-    "2011-2012",
+    "the 21st of January 2014",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestToggleButton.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("DrawCanvas version: " + DrawCanvas::GetVersion());
+  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("ToggleButton version: " + ToggleButton::GetVersion());
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
@@ -44,16 +85,54 @@ const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestToggleButtonMenuDialog::GetVersion()
+ribi::Help ribi::TestToggleButtonMenuDialog::GetHelp() const noexcept
 {
-  return "1.2";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::TestToggleButtonMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestToggleButton
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::TestToggleButtonMenuDialog::GetVersion() const noexcept
+{
+  return "1.4";
+}
+
+std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-16: Version 1.0: initial version, desktop version not yet working",
     "2011-06-31: Version 1.1: added more tests and an image to the Welcome screen in website version",
-    "2012-06-21: Version 1.2: added desktop version"
+    "2012-06-21: Version 1.2: added desktop version",
+    "2013-11-05: version 1.3: conformized for ProjectRichelBilderbeekConsole",
+    "2014-01-21: version 1.4: added displaying a toggle button as text"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestToggleButtonMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestToggleButtonMenuDialog::Test");
+  TRACE("Finished ribi::TestToggleButtonMenuDialog::Test successfully");
+}
+#endif

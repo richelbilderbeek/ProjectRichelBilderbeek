@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtKeyboardFriendlyGraphicsView, an keyboard friendly QGraphicsView
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,11 +22,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTKEYBOARDFRIENDLYGRAPHICSVIEW_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QGraphicsView>
+#pragma GCC diagnostic pop
 
 struct QGraphicsItem;
 
@@ -40,16 +40,16 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
   ///QtKeyboardFriendlyGraphicsView creates its own QGraphicsScene
   QtKeyboardFriendlyGraphicsView(QGraphicsScene* scene, QWidget* parent) = delete;
 
-  virtual ~QtKeyboardFriendlyGraphicsView() {}
+  virtual ~QtKeyboardFriendlyGraphicsView() noexcept {}
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Respond to a key press
-  virtual void keyPressEvent(QKeyEvent *event);
+  virtual void keyPressEvent(QKeyEvent *event) noexcept;
 
   ///Signals which QGraphicsItem has been moved by setpos
   boost::signals2::signal<void (QGraphicsItem*)> m_signal_update;
@@ -66,16 +66,16 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
   static double GetDistance(const QPointF& a, const QPointF& b);
 
   ///Obtain the items above the focus_item
-  const std::vector<QGraphicsItem *> GetItemsAbove(const QGraphicsItem* const focus_item) const;
+  std::vector<QGraphicsItem *> GetItemsAbove(const QGraphicsItem* const focus_item) const;
 
   ///Obtain the items below the focus_item
-  const std::vector<QGraphicsItem *> GetItemsBelow(const QGraphicsItem* const focus_item) const;
+  std::vector<QGraphicsItem *> GetItemsBelow(const QGraphicsItem* const focus_item) const;
 
   ///Obtain the items left of the focus_item
-  const std::vector<QGraphicsItem *> GetItemsLeft(const QGraphicsItem* const focus_item) const;
+  std::vector<QGraphicsItem *> GetItemsLeft(const QGraphicsItem* const focus_item) const;
 
   ///Obtain the items right of the focus_item
-  const std::vector<QGraphicsItem *> GetItemsRight(const QGraphicsItem* const focus_item) const;
+  std::vector<QGraphicsItem *> GetItemsRight(const QGraphicsItem* const focus_item) const;
 
   ///Give focus to a random item
   void SetRandomFocus();

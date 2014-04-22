@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,10 +23,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <bitset>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QImage>
 #include <QWidget>
+#pragma GCC diagnostic pop
 
 namespace ribi {
+namespace con3 {
 
 class QtSelectPlayerWidget : public QWidget
 {
@@ -56,6 +60,7 @@ private:
   static const int m_sprite_width;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTSELECTPLAYERWIDGET_H

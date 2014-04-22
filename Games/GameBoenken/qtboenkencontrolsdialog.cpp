@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,19 +19,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtboenkencontrolsdialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "qtboenkenpresskeydialog.h"
 #include "ui_qtboenkencontrolsdialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::QtBoenkenControlsDialog)
+ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtBoenkenControlsDialog),
+    m_keys_accel{},
+    m_keys_turn{}
 {
   ui->setupUi(this);
   QObject::connect(ui->button_done,SIGNAL(clicked()),this,SLOT(close()));
@@ -48,12 +51,12 @@ ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent) :
   showKeys();
 }
 
-ribi::QtBoenkenControlsDialog::~QtBoenkenControlsDialog()
+ribi::QtBoenkenControlsDialog::~QtBoenkenControlsDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtBoenkenControlsDialog::showKeys()
+void ribi::QtBoenkenControlsDialog::showKeys() noexcept
 {
   ui->button_accelerate_1->setText(
     boost::lexical_cast<std::string>(m_keys_accel[0]).c_str() );
@@ -66,7 +69,7 @@ void ribi::QtBoenkenControlsDialog::showKeys()
 
 }
 
-void ribi::QtBoenkenControlsDialog::onAccelerate1()
+void ribi::QtBoenkenControlsDialog::onAccelerate1() noexcept
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -75,7 +78,7 @@ void ribi::QtBoenkenControlsDialog::onAccelerate1()
   showKeys();
 }
 
-void ribi::QtBoenkenControlsDialog::onAccelerate2()
+void ribi::QtBoenkenControlsDialog::onAccelerate2() noexcept
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -84,7 +87,7 @@ void ribi::QtBoenkenControlsDialog::onAccelerate2()
   showKeys();
 }
 
-void ribi::QtBoenkenControlsDialog::onTurn1()
+void ribi::QtBoenkenControlsDialog::onTurn1() noexcept
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -93,7 +96,7 @@ void ribi::QtBoenkenControlsDialog::onTurn1()
   showKeys();
 }
 
-void ribi::QtBoenkenControlsDialog::onTurn2()
+void ribi::QtBoenkenControlsDialog::onTurn2() noexcept
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -102,17 +105,17 @@ void ribi::QtBoenkenControlsDialog::onTurn2()
   showKeys();
 }
 
-std::vector<int> ribi::QtBoenkenControlsDialog::getKeysAccel() const
+std::vector<int> ribi::QtBoenkenControlsDialog::getKeysAccel() const noexcept
 {
   return m_keys_accel;
 }
 
-std::vector<int> ribi::QtBoenkenControlsDialog::getKeysTurn() const
+std::vector<int> ribi::QtBoenkenControlsDialog::getKeysTurn() const noexcept
 {
   return m_keys_turn;
 }
 
-std::vector<std::string> ribi::QtBoenkenControlsDialog::getNames() const
+std::vector<std::string> ribi::QtBoenkenControlsDialog::getNames() const noexcept
 {
   std::vector<std::string> v;
   v.push_back(ui->edit_name1->text().toStdString());
@@ -120,7 +123,7 @@ std::vector<std::string> ribi::QtBoenkenControlsDialog::getNames() const
   return v;
 }
 
-ribi::Boenken::Controls ribi::QtBoenkenControlsDialog::GetControls() const
+ribi::Boenken::Controls ribi::QtBoenkenControlsDialog::GetControls() const noexcept
 {
   Boenken::Controls c;
   c.m_keys_accel = this->getKeysAccel();

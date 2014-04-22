@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,22 +21,29 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TICTACTOEMENUDIALOG_H
 #define TICTACTOEMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
+namespace tictactoe {
 
-///TicTacToeMenuDialog embodies the logic
-///behind the TicTacToe menu
-struct TicTacToeMenuDialog
+struct TicTacToeMenuDialog : public MenuDialog
 {
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  TicTacToeMenuDialog();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // TICTACTOEMENUDIALOG_H

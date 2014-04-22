@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::ofstream</title>
+  <meta name="description" content="C++ std::ofstream"/>
+  <meta name="keywords" content="C++ STL std::ofstream std ofstream output file stream out code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppOfstream.htm">std::ofstream</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppOfstream.htm">std::ofstream</a> (abbreviation of 'output file <a href="CppStream.htm">stream</a>') is an <a href="CppStl.htm">STL</a> <a href="CppFileIo.htm">file I/O</a> output <a href="CppStream.htm">stream</a>.</p>
+<p>&nbsp;</p>
+<p><a href="CppOfstream.htm">std::ofstream</a> is used to write to a file. To read from a file, use <a href="CppIfstream.htm">std::ifstream</a>. Both are <a href="CppDerivedClass.htm">derived classes</a> from <a href="CppFstream.htm">std::fstream</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example: <a href="CppCopyFile.htm">CopyFile</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCopyFile.htm">CopyFile</a>.htm<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppCopyFile.htm">CopyFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileNameFrom, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileNameTo)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileExists.htm">FileExists</a>(fileNameFrom));<br/>
+&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in (fileNameFrom.c_str());<br/>
+&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> out(fileNameTo.c_str());<br/>
+&nbsp;&nbsp;out <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> in.rdbuf(); <br/>
+&nbsp;&nbsp;out.close();<br/>
+&nbsp;&nbsp;in.close();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

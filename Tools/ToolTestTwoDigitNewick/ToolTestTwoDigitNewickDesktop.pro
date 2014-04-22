@@ -1,63 +1,23 @@
-QT       += core gui
-CONFIG   += console
-CONFIG   -= app_bundle
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+include(../../Libraries/Boost.pri)
+include(../../Libraries/BigInteger.pri)
 
-#Use 64 bit
-#QMAKE_CXXFLAGS += -m64
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppBinaryNewickVector \
-  ../../Classes/CppFuzzy_equal_to \
-  ../../Classes/CppNewick \
-  ../../Classes/CppQtAboutDialog \
-  ../../Classes/CppTrace \
-  ../../Classes/CppTwoDigitNewick \
-  ../../Libraries/bigint-2010.04.30
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-#Debug flag for keeping/removing assert
-CONFIG(release,debug|release): DEFINES += NDEBUG
-#Libraries
-LIBS += -lboost_regex
-#Using BigInt library by including its source
-TEMPLATE = app
-SOURCES += qtmain.cpp \
-    qttesttwodigitnewickdialog.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppBinaryNewickVector/binarynewickvector.cpp \
-    ../../Classes/CppNewick/newick.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewick.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewicks.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.cpp \
-    ../../Libraries/bigint-2010.04.30/BigInteger.cc \
-    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \
-    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsigned.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppNewick/newickcpp98.cpp
+#Specific
+include(../../Classes/CppBinaryNewickVector/CppBinaryNewickVector.pri)
+include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppNewick/CppNewick.pri)
+include(../../Classes/CppTwoDigitNewick/CppTwoDigitNewick.pri)
+include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
 
-HEADERS += \
-    qttesttwodigitnewickdialog.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
-    ../../Classes/CppNewick/newick.h \
-    ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewick.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewicks.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppNewick/newickcpp98.h
-FORMS += \
-    qttesttwodigitnewickdialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
-
-RESOURCES += \
-    ToolTestTwoDigitNewick.qrc
+SOURCES += qtmain.cpp

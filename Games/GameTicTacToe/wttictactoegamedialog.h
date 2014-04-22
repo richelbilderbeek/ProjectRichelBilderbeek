@@ -20,19 +20,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTICTACTOEGAMEDIALOG_H
 #define WTTICTACTOEGAMEDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
 struct WtTicTacToeWidget;
-//---------------------------------------------------------------------------
+
 struct WtTicTacToeGameDialog : public Wt::WContainerWidget
 {
   WtTicTacToeGameDialog(const bool display_close_button = true);
+  WtTicTacToeGameDialog(const WtTicTacToeGameDialog&) = delete;
+  WtTicTacToeGameDialog& operator=(const WtTicTacToeGameDialog&) = delete;
+
   boost::signals2::signal<void ()> m_signal_close;
   private:
   Wt::WPushButton * m_button_restart;

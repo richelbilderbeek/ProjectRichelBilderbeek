@@ -1,13 +1,8 @@
-//---------------------------------------------------------------------------
-#include <QApplication>
-#include "dialogmain.h"
-//---------------------------------------------------------------------------
-int main(int argc, char *argv[])
-{
-  QApplication a(argc, argv);
-  DialogMain w;
-  w.show();
+#include "testreversimenudialog.h"
 
-  return a.exec();
+int main(int argc, char * argv[])
+{
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::TestReversiMenuDialog().Execute(args);
 }
-//---------------------------------------------------------------------------
+

@@ -1,6 +1,12 @@
 #include <cassert>
 #include <string>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/tuple/tuple.hpp>
+#pragma GCC diagnostic pop
 
 int main()
 {

@@ -1,16 +1,14 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
 #include "sketchdialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   SketchDialog w;
-#if defined(Q_WS_S60)
-  w.showMaximized();
-#else
   w.show();
-#endif
-
   return a.exec();
 }
-//---------------------------------------------------------------------------

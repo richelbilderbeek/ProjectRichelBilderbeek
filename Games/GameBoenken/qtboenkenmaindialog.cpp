@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,31 +19,33 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtboenkenmaindialog.h"
 
 #include <cassert>
 #include <cstdlib>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
 #include <QPainter>
 
-#include "boenkengame.h"
+#include "qtboenkengame.h"
 #include "ui_qtboenkenmaindialog.h"
+#include "trace.h"
+
+#pragma GCC diagnostic pop
 
 ///All parameters are fed into the contructor
 ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(
   QWidget *parent,
   boost::shared_ptr<Boenken::Game> boenken,
   bool is_training)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtBoenkenMainDialog),
     m_background(new QPixmap),
     m_timer(new QTimer),
@@ -75,7 +77,7 @@ ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(
   }
 }
 
-ribi::QtBoenkenMainDialog::~QtBoenkenMainDialog()
+ribi::QtBoenkenMainDialog::~QtBoenkenMainDialog() noexcept
 {
   m_timer->stop();
   m_timer_countdown->stop();
@@ -176,21 +178,15 @@ void ribi::QtBoenkenMainDialog::Paint(
   pixmap = pixmap.fromImage(image);
 }
 
-void ribi::QtBoenkenMainDialog::Test()
+#ifndef NDEBUG
+void ribi::QtBoenkenMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  {
-    //boost::shared_ptr<Boenken::Game> p(new Boenken::Game(
-  }
+  TRACE("Starting ribi::QtBoenkenMainDialog::Test");
+  TRACE("Finished ribi::QtBoenkenMainDialog::Test successfully");
 }
-
-///Null function
-//boost::shared_ptr<Boenken::Game> CreateNoBoenken()
-//{
-//  boost::shared_ptr<Boenken::Game> p;
-//  return p;
-//}
+#endif

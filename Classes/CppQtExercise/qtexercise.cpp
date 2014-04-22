@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtExercise, Qt GUI of Exercise
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,15 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtExercise.htm
 //---------------------------------------------------------------------------
-#include <fstream>
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qtexercise.h"
+
+#include <fstream>
+
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 #include <QGroupBox>
 #include <QLabel>
@@ -36,11 +38,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "exercise.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestiondialog.h"
-#include "qtexercise.h"
 #include "qtmultiplechoicequestiondialog.h"
 #include "qtopenquestiondialog.h"
 #include "qtquestiondialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::QtExercise::MyUi::MyUi()
   : m_box(new QGroupBox),
@@ -50,8 +52,10 @@ ribi::QtExercise::MyUi::MyUi()
 }
 
 ribi::QtExercise::QtExercise()
-  : m_n_answered(0),
+  : m_exercise{},
+    m_n_answered(0),
     m_n_correct(0),
+    m_ui{},
     m_waiting_time_correct(1000),
     m_waiting_time_incorrect(5000)
 {
@@ -95,7 +99,7 @@ void ribi::QtExercise::DisplayCurrentQuestion()
   m_ui.m_box->setLayout(layout);
   layout->addWidget(question);
 
-  question->m_signal_submitted.connect(
+  question->GetDialog()->m_signal_submitted.connect(
     boost::bind(&ribi::QtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
 
 }
@@ -106,12 +110,12 @@ const ribi::Exercise * ribi::QtExercise::GetExercise() const
   return m_exercise.get();
 }
 
-const std::string ribi::QtExercise::GetVersion()
+std::string ribi::QtExercise::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtExercise::GetVersionHistory()
+std::vector<std::string> ribi::QtExercise::GetVersionHistory() noexcept
 {
   return {
     "2012-12-23: Version 1.0: initial version"

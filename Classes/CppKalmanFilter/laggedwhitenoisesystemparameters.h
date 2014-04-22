@@ -24,18 +24,18 @@ struct LaggedWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
     const boost::numeric::ublas::matrix<double>& state_transition);
 
   ///The lag (in timesteps) the lagged white noise system has
-  int GetLag() const { return m_lag; }
+  int GetLag() const noexcept { return m_lag; }
 
   ///The white noise system parameters of unlagged behavior
   //const boost::shared_ptr<const StandardWhiteNoiseSystemParameters>& GetStandardWhiteNoiseSystemParameters() const
   //  { return m_standard_parameters; }
 
   ///Obtain the type as an enum
-  WhiteNoiseSystemType GetType() const { return WhiteNoiseSystemType::lagged; }
+  WhiteNoiseSystemType GetType() const noexcept { return WhiteNoiseSystemType::lagged; }
 
   private:
   ///Can only be deleted by boost::checked_delete
-  ~LaggedWhiteNoiseSystemParameters() {}
+  ~LaggedWhiteNoiseSystemParameters() noexcept {}
   friend void boost::checked_delete<>(LaggedWhiteNoiseSystemParameters*);
 
   ///The lag (in timesteps) the lagged white noise system has

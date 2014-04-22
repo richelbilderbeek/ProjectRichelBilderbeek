@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/checked_delete.hpp>
 //#include <boost/scoped_ptr.hpp>
-#include <boost/noncopyable.hpp>
+
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
@@ -40,7 +40,7 @@ namespace gtst {
 ///
 ///A ChooseActionOption has a description and if this description denotes
 ///a contribution or not
-struct ChooseActionOption : public boost::noncopyable
+struct ChooseActionOption
 {
   ///A ChooseActionOption has a description and a chance of getting caught
   ///by a supervisor.
@@ -49,6 +49,8 @@ struct ChooseActionOption : public boost::noncopyable
     const double cost,
     const std::string& description,
     const std::string& message);
+  ChooseActionOption(const ChooseActionOption&) = delete;
+  ChooseActionOption& operator=(const ChooseActionOption&) = delete;
 
   ///Get the Participant his/her contribution to the group by this option
   double GetContribution() const;
@@ -88,9 +90,7 @@ struct ChooseActionOption : public boost::noncopyable
   void SetMessageChoice(const std::string& message);
 
   private:
-  ///\brief Only allow a Boost smart pointer to delete ChooseActionOption
   ~ChooseActionOption() {}
-  ///Only allow a Boost smart pointer to delete ChooseActionOption
   friend void boost::checked_delete<>(ChooseActionOption*);
 
   ///The Participant his/her contribution to the group by this option

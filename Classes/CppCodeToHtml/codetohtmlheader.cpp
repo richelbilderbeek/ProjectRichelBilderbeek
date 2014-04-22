@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,69 +18,56 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-
-
 #include "codetohtmlheader.h"
 
 #include <cassert>
 #include <stdexcept>
 
 #include "codetohtml.h"
+#include "fileio.h"
 
-c2h::Header::Header(
-  const PageType page_type,
-  const std::string& filename)
-  : m_filename(CreateFilename(page_type,filename)),
-    m_page_type(page_type),
-    m_title(CreateTitle(page_type,filename))
-{
-
-}
-
-const std::string c2h::Header::CreateFilename(
-  const PageType page_type,
+std::string ribi::c2h::Header::CreateFilename(
+  const HeaderType page_type,
   const std::string& filename_original)
 {
   if (filename_original.empty())
   {
     switch (page_type)
     {
-      case PageType::cpp:   return "CppXXX.htm";
-      case PageType::music: return "SongXXX.htm";
-      case PageType::text:  return "CppXXX.htm";
-      case PageType::tool:  return "ToolXXX.htm";
+      case HeaderType::cpp:   return "Cpp.htm";
+      //case HeaderType::music: return "SongXXX.htm";
+      //case HeaderType::text:  return "CppXXX.htm";
+      case HeaderType::foam:  return "ToolOpenFoam.htm";
     }
     assert(!"Should not get here");
-    throw std::logic_error("c2h::Header::CreateFilename");
+    throw std::logic_error("ribi::c2h::Header::CreateFilename");
   }
   else
   {
     assert(!filename_original.empty());
-    return GetFileBasename(filename_original) + ".htm";
+    return ribi::fileio::FileIo().GetFileBasename(filename_original) + ".htm";
   }
 }
 
-const std::string c2h::Header::CreateTitle(
-  const PageType page_type,
+std::string ribi::c2h::Header::CreateTitle(
+  const HeaderType page_type,
   const std::string& filename)
 {
   if (filename.empty())
   {
     switch (page_type)
     {
-      case PageType::cpp:
-      case PageType::music:
-      case PageType::text:
-      case PageType::tool:
-       return "XXX";
+      case HeaderType::cpp:
+      case HeaderType::foam:
+        return filename;
     }
     assert(!"Should not get here");
-    throw std::logic_error("c2h::Header::CreateTitle");
+    throw std::logic_error("ribi::c2h::Header::CreateTitle");
   }
   else
   {
     assert(!filename.empty());
-    std::string s = GetFileBasename(filename);
+    std::string s = ribi::fileio::FileIo().GetFileBasename(filename);
     int chars_to_strip = 0;
     if (s.size() > 3 && s.substr(0,3) == "Cpp") chars_to_strip = 3;
     else if (s.size() > 4 && s.substr(0,4) == "Song") chars_to_strip = 4;
@@ -90,34 +77,32 @@ const std::string c2h::Header::CreateTitle(
   }
 }
 
-const std::vector<std::string> c2h::Header::ToHtml() const
+std::vector<std::string> ribi::c2h::Header::ToHtml(
+  const HeaderType header_type,
+  const std::string& filename
+  ) noexcept
 {
+  const std::string m_filename { CreateFilename(header_type,filename) };
+  const std::string m_title { CreateTitle(header_type,filename) };
+
   std::vector<std::string> v;
   v.push_back("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"");
   v.push_back("\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
   v.push_back("<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">");
   v.push_back("<head>");
   v.push_back("  <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/>");
-  switch (m_page_type)
+  switch (header_type)
   {
-    case PageType::text:
-    case PageType::cpp:
+    //case HeaderType::text:
+    case HeaderType::cpp:
       v.push_back("  <title>" + m_title + "</title>");
       v.push_back("  <meta name=\"description\" content=\"C++ " + m_title + "\"/>");
-      v.push_back("  <meta name=\"keywords\" content=\"C++ " + m_title + " code snippet\"/>");
+      v.push_back("  <meta name=\"keywords\" content=\"C++ " + m_title + " \"/>");
     break;
-    case PageType::music:
+    case HeaderType::foam:
       v.push_back("  <title>" + m_title + "</title>");
-      v.push_back("  <meta name=\"description\" content=\"Song " + m_title + "\"/>");
-      v.push_back("  <meta name=\"keywords\" content=\"Richel Bilderbeek Music Song " + m_title + " free legal\"/>");
-    break;
-    case PageType::tool:
-      v.push_back("  <title>XXX</title>");
-      v.push_back("  <meta name=\"description\" content=\"C++ Tool " + m_title + "\"/>");
-      v.push_back("  <meta name=\"keywords\" content=\"C++ Tool " + m_title + " GPL open source freeware\"/>");
-    break;
-    default:
-      assert(!"Should not get here");
+      v.push_back("  <meta name=\"description\" content=\"OpenFOAM " + m_title + "\"/>");
+      v.push_back("  <meta name=\"keywords\" content=\"OpenFOAM " + m_title + " \"/>");
     break;
   }
   v.push_back("  <link rel=\"stylesheet\" href=\"Richelbilderbeek.css\" type=\"text/css\"/>");
@@ -125,21 +110,14 @@ const std::vector<std::string> c2h::Header::ToHtml() const
   v.push_back("<!-- End of head, start of body -->");
   v.push_back("<body>");
   v.push_back("<p><a href=\"index.htm\">Go back to Richel Bilderbeek's homepage</a>.</p>");
-  switch (m_page_type)
+  switch (header_type)
   {
-    case PageType::cpp:
-    case PageType::text:
+    case HeaderType::cpp:
       v.push_back("<p><a href=\"Cpp.htm\">Go back to Richel Bilderbeek's C++ page</a>.</p>");
       break;
-    case PageType::music:
-      v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
+    case HeaderType::foam:
+      v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
       break;
-    case PageType::tool:
-      v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
-      break;
-    default:
-      assert(!"Should not get here");
-    break;
   }
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
@@ -148,22 +126,48 @@ const std::vector<std::string> c2h::Header::ToHtml() const
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<!-- Page header -->");
 
-  switch (m_page_type)
+  switch (header_type)
   {
-    case PageType::cpp:
-    case PageType::text:
+    case HeaderType::cpp:
       v.push_back("<h1>(<a href=\"Cpp.htm\">C++</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
-    case PageType::music:
-      v.push_back("<h1>(<a href=\"Music.htm\">Music</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
+    case HeaderType::foam:
+      v.push_back("<h1>(<a href=\"ToolOpenFoam.htm\">OpenFOAM</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
-    case PageType::tool:
-      v.push_back("<h1>(<a href=\"Tools.htm\">Tool</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
-      break;
-    default:
-      assert(!"Should not get here");
-    break;
   }
   v.push_back("<p>&nbsp;</p>");
+  return v;
+}
+
+std::vector<std::string> ribi::c2h::Header::ToMarkdown(
+  const HeaderType header_type,
+  const std::string& filename
+  ) noexcept
+{
+  const std::string m_filename { CreateFilename(header_type,filename) };
+  const std::string m_title { CreateTitle(header_type,filename) };
+
+  std::vector<std::string> v;
+  switch (header_type)
+  {
+    //case HeaderType::text:
+    case HeaderType::cpp:
+    case HeaderType::foam:
+      v.push_back(m_title);
+      v.push_back(std::string(m_title.size(),'='));
+    break;
+  }
+  /*
+  switch (header_type)
+  {
+    case HeaderType::cpp:
+      v.push_back("<h1>(<a href=\"Cpp.htm\">C++</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
+      break;
+    case HeaderType::foam:
+      v.push_back("<h1>(<a href=\"ToolOpenFoam.htm\">OpenFOAM</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
+      break;
+  }
+  v.push_back("<p>&nbsp;</p>");
+  */
   return v;
 }

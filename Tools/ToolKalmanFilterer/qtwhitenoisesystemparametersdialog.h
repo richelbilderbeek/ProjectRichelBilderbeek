@@ -10,7 +10,7 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/shared_ptr.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 #pragma GCC diagnostic pop
 
@@ -30,7 +30,7 @@ namespace Ui {
 namespace ribi {
 namespace kalman {
 
-class QtWhiteNoiseSystemParametersDialog : public QDialog
+class QtWhiteNoiseSystemParametersDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -41,7 +41,7 @@ public:
   explicit QtWhiteNoiseSystemParametersDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);
-  ~QtWhiteNoiseSystemParametersDialog();
+  ~QtWhiteNoiseSystemParametersDialog() noexcept;
 
   ///Read the lag (in timesteps) from the dialog
   int GetLag() const;
@@ -83,7 +83,7 @@ private slots:
   void on_box_lag_valueChanged(int arg1);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

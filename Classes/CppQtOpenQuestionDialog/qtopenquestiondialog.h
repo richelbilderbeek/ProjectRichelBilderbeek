@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtOpenQuestionDialog, Qt dialog for OpenQuestionDialog
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,16 +21,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTOPENQUESTIONDIALOG_H
 #define QTOPENQUESTIONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 #include "questiondialog.h"
 #include "qtquestiondialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
-class QtOpenQuestionDialog;
+  class QtOpenQuestionDialog;
 }
 
 namespace ribi {
@@ -46,25 +49,25 @@ class QtOpenQuestionDialog : public QtQuestionDialog
 public:
   explicit QtOpenQuestionDialog(QWidget *parent = 0);
 
-
-  QtOpenQuestionDialog(
-    const boost::shared_ptr<QuestionDialog>& dialog,
+  ///Will throw if the QuestionDialog is not an OpenQuestionDialog
+  explicit QtOpenQuestionDialog(
+    const boost::shared_ptr<OpenQuestionDialog> dialog,
     QWidget *parent = 0);
+  QtOpenQuestionDialog(const QtOpenQuestionDialog&) = delete;
+  QtOpenQuestionDialog& operator=(const QtOpenQuestionDialog&) = delete;
+  ~QtOpenQuestionDialog() noexcept;
 
-  ~QtOpenQuestionDialog();
+  const boost::shared_ptr<const QuestionDialog> GetDialog() const;
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
-
-  ///Set the Question
-  void SetQuestion(const boost::shared_ptr<Question>& question);
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 private slots:
-  void on_button_submit_clicked();
+  void on_button_submit_clicked() noexcept;
 
 private:
   Ui::QtOpenQuestionDialog *ui;
-  //boost::scoped_ptr<OpenQuestionDialog> m_dialog;
+  const boost::shared_ptr<OpenQuestionDialog> m_dialog;
 };
 
 } //~namespace ribi

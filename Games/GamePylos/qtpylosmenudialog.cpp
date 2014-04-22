@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Pylos, Pylos/Pyraos game
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GamePylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpylosmenudialog.h"
 
 #include <iostream>
@@ -35,38 +35,34 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpylossprites.h"
 #include "qtpyloswidget.h"
 #include "ui_qtpylosmenudialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
-ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
-  QDialog(parent),
+ribi::pylos::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtPylosMenuDialog),
   m_selected(-1),
   m_type_basic(true),
   m_theme_bw(false)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Generate sprites when needed
   {
-    Pylos::QtSprites s(256,256);
-    /*
-    s.Get(Pylos::QtSprites::board_hole).save("sprite_hole.png");
-    s.Get(Pylos::QtSprites::player1).save("sprite_player1.png");
-    s.Get(Pylos::QtSprites::player2).save("sprite_player2.png");
-    s.Get(Pylos::QtSprites::player1_remove).save("sprite_player1_remove.png");
-    s.Get(Pylos::QtSprites::player2_remove).save("sprite_player2_remove.png");
-    s.Get(Pylos::QtSprites::player1_select).save("sprite_player1_select.png");
-    s.Get(Pylos::QtSprites::player2_select).save("sprite_player2_select.png");
-    */
+    pylos::QtSprites s(256,256);
   }
 
 }
 
-ribi::QtPylosMenuDialog::~QtPylosMenuDialog()
+ribi::pylos::QtPylosMenuDialog::~QtPylosMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
+void ribi::pylos::QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
 {
   if (ui->label_theme->underMouse())
   {
@@ -97,7 +93,7 @@ void ribi::QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
   }
 }
 
-void ribi::QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
+void ribi::pylos::QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
 {
   if (
        ui->label_start->underMouse()
@@ -151,25 +147,24 @@ void ribi::QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
   repaint();
 }
 
-void ribi::QtPylosMenuDialog::OnAbout()
+void ribi::pylos::QtPylosMenuDialog::OnAbout()
 {
-  About a = PylosMenuDialog::GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("QtPylosBoardWidget version: " + QtPylosBoardWidget::GetVersion());
   a.AddLibrary("QtPylosGameWidget version: " + QtPylosGameWidget::GetVersion());
-  a.AddLibrary("Pylos::QtSprites version: " + Pylos::QtSprites::GetVersion());
+  a.AddLibrary("pylos::QtSprites version: " + QtSprites::GetVersion());
   a.AddLibrary("QtPylosWidget version: " + QtPylosWidget::GetVersion());
   QtAboutDialog d(a);
-
-  d.exec();
+  this->ShowChild(&d);
 }
 
-void ribi::QtPylosMenuDialog::OnInstructions()
+void ribi::pylos::QtPylosMenuDialog::OnInstructions()
 {
   QtPylosInstructionsDialog d;
-  d.exec();
+  this->ShowChild(&d);
 }
 
-void ribi::QtPylosMenuDialog::OnStart()
+void ribi::pylos::QtPylosMenuDialog::OnStart()
 {
   QtPylosGameWidget * const p = new QtPylosGameWidget();
   assert(p);
@@ -182,10 +177,26 @@ void ribi::QtPylosMenuDialog::OnStart()
   //Create the game dialog
   //note: p is deleted by DialogMain
   QtPylosMainDialog d(p);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-
-
+#ifndef NDEBUG
+void ribi::pylos::QtPylosMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::pylos::QtPylosMenuDialog::Test");
+  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  assert(p);
+  //Set the game type
+  p->StartBasic();
+  p->SetColorSchemeBlackWhite();
+  const QtPylosMainDialog d(p);
+  assert(!d.GetVersion().empty());
+  delete p;
+  TRACE("Finished ribi::pylos::QtPylosMenuDialog::Test successfully");
+}
+#endif

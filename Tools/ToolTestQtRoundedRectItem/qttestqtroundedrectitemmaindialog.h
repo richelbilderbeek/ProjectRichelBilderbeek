@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQtRoundedRectItem, tool to test QtRoundedRectItem
-Copyright (C) 2012-2013  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,12 +36,19 @@ class QtTestQtRoundedRectItemMainDialog : public QtHideAndShowDialog
 public:
 
   explicit QtTestQtRoundedRectItemMainDialog(QWidget *parent = 0);
-  ~QtTestQtRoundedRectItemMainDialog();
+  QtTestQtRoundedRectItemMainDialog(const QtTestQtRoundedRectItemMainDialog&) = delete;
+  QtTestQtRoundedRectItemMainDialog& operator=(const QtTestQtRoundedRectItemMainDialog&) = delete;
+  ~QtTestQtRoundedRectItemMainDialog() noexcept;
+
 protected:
   void keyPressEvent(QKeyEvent * event);
 
 private:
   Ui::QtTestQtRoundedRectItemMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

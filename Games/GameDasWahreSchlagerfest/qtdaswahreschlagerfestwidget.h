@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Das Wahre Schlagerfest, a simple game
-Copyright (C) 2003-2012 Richel Bilderbeek
+Copyright (C) 2003-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,13 +21,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTDASWAHRESCHLAGERFESTWIDGET_H
 #define QTDASWAHRESCHLAGERFESTWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <QWidget>
 #include "daswahreschlagerfestwidget.h"
+#pragma GCC diagnostic pop
 
 struct DasWahreSchlagerfestWidget;
 namespace Ui {
-class QtDasWahreSchlagerfestWidget;
+  class QtDasWahreSchlagerfestWidget;
 }
 
 namespace ribi {
@@ -37,12 +40,11 @@ class QtDasWahreSchlagerfestWidget : public QWidget
     Q_OBJECT
     
 public:
-    explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0);
-    ~QtDasWahreSchlagerfestWidget();
+    explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0) noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent *);
-  void paintEvent(QPaintEvent *);
+  void keyPressEvent(QKeyEvent *) noexcept;
+  void paintEvent(QPaintEvent *) noexcept;
 
 private:
   boost::shared_ptr<DasWahreSchlagerfestWidget> m_widget;
@@ -52,9 +54,9 @@ private:
   const QPixmap m_richel;
 
   ///Obtain the pixmap for this tile
-  const QPixmap& GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const;
+  const QPixmap& GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept;
 
-  void OnChange();
+  void OnChange() noexcept;
 };
 
 } //~namespace ribi

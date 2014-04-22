@@ -1,20 +1,43 @@
+//---------------------------------------------------------------------------
+/*
+QtRoundedTextRectItem, rectangular-shaped multi-line QGraphicsItem
+Copyright (C) 2012-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtRoundedTextRectItem.htm
+//---------------------------------------------------------------------------
 #ifndef QTROUNDEDTEXTRECTITEM_H
 #define QTROUNDEDTEXTRECTITEM_H
 
 #include <string>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 #include <QFont>
+
 #include "qtroundedrectitem.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
-///A QtRoundedRectItem displaying a single line of text
+///A QtRoundedTextItem displays a single line of text
+///For multiple lines of text, use QtRoundedEditRectItem
 struct QtRoundedTextRectItem : public QtRoundedRectItem
 {
   struct Padding
@@ -34,33 +57,31 @@ struct QtRoundedTextRectItem : public QtRoundedRectItem
     QGraphicsItem* parent = 0);
 
   ///ABC must have public virtual destructor
-  // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines, and best practices.
-  //   ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'
-  virtual ~QtRoundedTextRectItem() {}
+  virtual ~QtRoundedTextRectItem() noexcept {}
 
   ///Get the font by which the text is drawn
-  const QFont& GetFont() const { return m_font; }
+  const QFont& GetFont() const noexcept { return m_font; }
 
   ///Get the text
-  const std::string& GetText() const { return m_text; }
+  const std::string& GetText() const noexcept { return m_text; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the font by which the text is drawn
-  void SetFont(const QFont& font);
+  void SetFont(const QFont& font) noexcept;
 
   ///Set the padding between text and rectangle
-  void SetPadding(const Padding& padding);
+  void SetPadding(const Padding& padding) noexcept;
 
   ///Set the text displayed
-  void SetText(const std::string& text);
+  void SetText(const std::string& text) noexcept;
 
   ///Set the pen by which the text is drawn
-  void SetTextPen(const QPen& pen);
+  void SetTextPen(const QPen& pen) noexcept;
 
 protected:
   virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);

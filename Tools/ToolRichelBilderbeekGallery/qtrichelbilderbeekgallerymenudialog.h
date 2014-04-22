@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,9 @@ class QtRichelBilderbeekGalleryMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtRichelBilderbeekGalleryMenuDialog(QWidget *parent = 0);
-  ~QtRichelBilderbeekGalleryMenuDialog();
+  QtRichelBilderbeekGalleryMenuDialog(const QtRichelBilderbeekGalleryMenuDialog&) = delete;
+  QtRichelBilderbeekGalleryMenuDialog& operator=(const QtRichelBilderbeekGalleryMenuDialog&) = delete;
+  ~QtRichelBilderbeekGalleryMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* e);
@@ -51,9 +53,9 @@ private slots:
 private:
   Ui::QtRichelBilderbeekGalleryMenuDialog *ui;
 
-  ///Returns the path of a filename
-  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
-  static const std::string GetPath(const std::string& filename);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

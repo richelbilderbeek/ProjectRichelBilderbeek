@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,8 +24,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/checked_delete.hpp>
+#include "codetohtmlfiletype.h"
+#include "codetohtmlfwd.h"
+#pragma GCC diagnostic pop
+
+namespace ribi {
+namespace c2h {
+
 ///\brief
-///Contains all code replacements
+///A low-level class that contains all code replacements
+///Use Replacer for actual code replacements
 ///
 ///All code replacements have the following order:
 ///-m_initial_replacements: converts '&' to '[AMPERSAND]'
@@ -33,21 +45,32 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ///-m_end_replacements: converts '[AMPERSAND]' back to '&'
 ///
 ///m_all_replacements contains all replacements as a single std::vector
-struct CodeToHtmlReplacements
+struct Replacements
 {
-  CodeToHtmlReplacements(const std::vector<std::pair<std::string,std::string> >& replacements);
+  Replacements(const Replacements&) = delete;
+  Replacements& operator=(const Replacements&) = delete;
 
-  const std::vector<std::pair<std::string,std::string> >& Get() const { return m_replacements; }
-
-  private:
-  ///The important replacements
-  const std::vector<std::pair<std::string,std::string> > m_replacements;
+  const std::vector<std::pair<std::string,std::string>>& Get() const { return m_replacements; }
 
   private:
-  static const std::vector<std::pair<std::string,std::string> > CreateAllReplacements(
-    const std::vector<std::pair<std::string,std::string> >& replacements);
-  static const std::vector<std::pair<std::string,std::string> > CreateEndReplacements();
-  static const std::vector<std::pair<std::string,std::string> > CreateInitialReplacements();
+  friend struct Replacer;
+  Replacements(const std::vector<std::pair<std::string,std::string> >& replacements);
+
+  ~Replacements() noexcept {}
+  friend void boost::checked_delete<>(Replacements*);
+  friend void boost::checked_delete<>(const Replacements*);
+
+
+  ///The replacements
+  const std::vector<std::pair<std::string,std::string>> m_replacements;
+
+  static std::vector<std::pair<std::string,std::string>> CreateAllReplacements(
+    const std::vector<std::pair<std::string,std::string>>& replacements);
+  static std::vector<std::pair<std::string,std::string>> CreateEndReplacements();
+  static std::vector<std::pair<std::string,std::string>> CreateInitialReplacements();
 };
+
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLREPLACEMENTS_H

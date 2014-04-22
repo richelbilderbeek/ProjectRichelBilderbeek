@@ -12,11 +12,15 @@ struct QtTestQtRoundedEditRectItemWidget : public QtKeyboardFriendlyGraphicsView
 {
   QtTestQtRoundedEditRectItemWidget(QWidget *parent = 0);
 
-  void keyPressEvent(QKeyEvent *event);
+  void keyPressEvent(QKeyEvent *event) noexcept;
 
 private:
   ///Display a font
   void Display(const QFont& font);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

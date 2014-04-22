@@ -20,23 +20,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTMYSTERYMACHINEWIDGET_H
 #define WTMYSTERYMACHINEWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <iostream>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
-//---------------------------------------------------------------------------
+
 namespace Wt { struct WMouseEventEvent; }
 
 namespace ribi {
 
 struct MysteryMachineWidget;
 struct WtToggleButtonWidget;
-//---------------------------------------------------------------------------
+
 ///WtMysteryMachineWidget displays a MysteryMachine
 struct WtMysteryMachineWidget : public Wt::WPaintedWidget
 {
@@ -81,7 +81,7 @@ struct WtMysteryMachineWidget : public Wt::WPaintedWidget
   ///Wt resize: hide it from sight
   void resize(const Wt::WLength& width, const Wt::WLength& height);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const WtMysteryMachineWidget& widget);
 
 } //~namespace ribi

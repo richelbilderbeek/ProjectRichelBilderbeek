@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShinyButton, tool to test the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,23 +18,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestshinybuttonmenudialog.h"
 
 #include "qtaboutdialog.h"
 #include "qtshinybuttonwidget.h"
 #include "qttestshinybuttonmaindialog.h"
 #include "testshinybuttonmenudialog.h"
+#include "trace.h"
 #include "ui_qttestshinybuttonmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTestShinyButtonMenuDialog),
     m_button_start(new QtShinyButtonWidget(0.25,0.25,"Start")),
     m_button_about(new QtShinyButtonWidget(0.50,0.25,"About")),
     m_button_quit( new QtShinyButtonWidget(0.75,0.25,"Quit"))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->layout->addWidget(m_button_start.get());
   ui->layout->addWidget(m_button_about.get());
@@ -48,27 +53,24 @@ ribi::QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) 
     &ribi::QtTestShinyButtonMenuDialog::OnButtonQuitClicked,this));
 }
 
-ribi::QtTestShinyButtonMenuDialog::~QtTestShinyButtonMenuDialog()
+ribi::QtTestShinyButtonMenuDialog::~QtTestShinyButtonMenuDialog() noexcept
 {
   delete ui;
 }
 
 void ribi::QtTestShinyButtonMenuDialog::OnButtonStartClicked()
 {
-  this->hide();
   QtTestShinyButtonMainDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestShinyButtonMenuDialog::OnButtonAboutClicked()
 {
   this->hide();
-  About a = TestShinyButtonMenuDialog::GetAbout();
+  About a = TestShinyButtonMenuDialog().GetAbout();
   a.AddLibrary("QtShinyButtonWidget version: " + QtShinyButtonWidget::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestShinyButtonMenuDialog::OnButtonQuitClicked()
@@ -76,3 +78,15 @@ void ribi::QtTestShinyButtonMenuDialog::OnButtonQuitClicked()
   this->close();
 }
 
+#ifndef NDEBUG
+void ribi::QtTestShinyButtonMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestShinyButtonMenuDialog::Test");
+  TRACE("Finished ribi::QtTestShinyButtonMenuDialog::Test successfully");
+}
+#endif

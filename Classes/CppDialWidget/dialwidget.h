@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 DialWidget, class for displaying a Dial
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,6 +36,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct Dial;
+struct DrawCanvas;
+struct TextCanvas;
 
 ///DialWidget is a class to display a Dial
 struct DialWidget : public Widget
@@ -51,49 +53,45 @@ struct DialWidget : public Widget
     const unsigned char blue = 255);
 
   ///Click on the Dial
-  void Click(const int x, const int y);
+  void Click(const int x, const int y) noexcept;
 
   ///Obtain a read-and-write pointert to the Dial
-  Dial * GetDial() { return m_dial.get(); }
+  Dial * GetDial() noexcept { return m_dial.get(); }
 
   ///Obtain a read-only pointert to the Dial
-  const Dial * GetDial() const { return m_dial.get(); }
+  const Dial * GetDial() const noexcept { return m_dial.get(); }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is the dial clicked?
-  bool IsClicked(const int x, const int y) const;
+  bool IsClicked(const int x, const int y) const noexcept;
+
+  ///Convert to a DrawCanvas
+  const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int radius) const noexcept;
+
+  ///Convert to a TextCanvas
+  const boost::shared_ptr<TextCanvas> ToTextCanvas(const int radius) const noexcept;
 
   private:
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   //DialWidget can only be deleted by Boost smart pointers
-  virtual ~DialWidget() {}
+  virtual ~DialWidget() noexcept {}
   friend void boost::checked_delete<>(DialWidget*);
+  friend void boost::checked_delete<>(const DialWidget*);
 
   boost::scoped_ptr<Dial> m_dial;
 
-  friend std::ostream& operator<<(std::ostream& os, const DialWidget& widget);
-
-  public:
-
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy);
-  static double GetDistance(const double dx, const double dy);
+  friend std::ostream& operator<<(std::ostream& os, const DialWidget& widget) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const DialWidget& widget);
+std::ostream& operator<<(std::ostream& os, const DialWidget& widget) noexcept;
 
 } //~namespace ribi
 

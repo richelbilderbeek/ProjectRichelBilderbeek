@@ -27,6 +27,9 @@ ribi::gtst::VotingOption::VotingOption(
   const double chance,
   const double cost,
   const std::string& description)
+  : m_chance{},
+    m_cost{},
+    m_description{}
 {
   SetChance(chance);
   SetCost(cost);

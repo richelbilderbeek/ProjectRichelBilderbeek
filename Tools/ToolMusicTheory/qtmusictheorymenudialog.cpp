@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MusicTheory, tool for visualizing my music theory
-Copyright (C)  2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolMusicTheory.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtmusictheorymenudialog.h"
 
 #include <QDesktopWidget>
@@ -33,33 +33,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtmusictheorysinglescaledialog.h"
 #include "qtmusictheorymultiscaledialog.h"
 #include "ui_qtmusictheorymenudialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::QtMusicTheoryMenuDialog::QtMusicTheoryMenuDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtMusicTheoryMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtMusicTheoryMenuDialog::~QtMusicTheoryMenuDialog()
+ribi::QtMusicTheoryMenuDialog::~QtMusicTheoryMenuDialog() noexcept
 {
   delete ui;
 }
 
 void ribi::QtMusicTheoryMenuDialog::on_button_about_clicked()
 {
-  About a = MusicTheoryMenuDialog::GetAbout();
+  About a = MusicTheoryMenuDialog().GetAbout();
   a.AddLibrary("QtChordEdge version: " + QtChordEdge::GetVersion());
   a.AddLibrary("QtChordVertex version: " + QtChordVertex::GetVersion());
   a.AddLibrary("QtChordRelationsWidget version: " + QtChordRelationsWidget::GetVersion());
   a.AddLibrary("QtMultiScaleChordRelationsWidget version: " + QtMultiScaleChordRelationsWidget::GetVersion());
   QtAboutDialog d(a);
-
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtMusicTheoryMenuDialog::on_button_quit_clicked()
@@ -69,20 +71,25 @@ void ribi::QtMusicTheoryMenuDialog::on_button_quit_clicked()
 
 void ribi::QtMusicTheoryMenuDialog::on_button_start_singlescale_clicked()
 {
-  //Make a screenshot
-  QPixmap::grabWidget(this,this->window()->rect()).save("ToolMusicTheoryMenuDialog.png");
-
   QtMusicTheorySingleScaleDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-
 
 void ribi::QtMusicTheoryMenuDialog::on_button_start_multiscale_clicked()
 {
   QtMusicTheoryMultiScaleDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
+
+#ifndef NDEBUG
+void ribi::QtMusicTheoryMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtMusicTheoryMenuDialog::Test");
+  TRACE("Finished ribi::QtMusicTheoryMenuDialog::Test successfully");
+}
+#endif

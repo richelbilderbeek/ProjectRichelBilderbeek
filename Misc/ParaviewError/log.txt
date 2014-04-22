@@ -1,0 +1,29 @@
+From command prompt:
+
+paraView
+
+In paraView
+- From the menu bar, select 'Source | Cylinder' to create a cylinder
+- In the bar on the left, click Apply to view the cylinder. 
+- View screenshot 'before.png'. I did rotate the cylinder a bit and chose 'Surface With Edges'
+- File | Save data, save file as cylinder.stl, choose File type 'Ascii'
+- close paraView
+
+From command prompt:
+
+  paraView cylinder.stl
+
+In paraView:
+- In the bar on the left, click Apply to view the cylinder
+- View screenshot 'after.png'. I did rotate the cylinder a bit and chose 'Surface With Edges'
+
+When saving as ASCII, the object becomes messed up
+
+When doing the same steps with a cone, saving to binary, the same error happens
+
+When doing the same steps with a box, saving to ascii, the same error happens
+
+When doing the same steps with a sphere, saving to binary, everything is fine
+
+
+

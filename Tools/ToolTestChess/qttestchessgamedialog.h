@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestChess, program to test my chess classes
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,21 +20,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTCHESSGAMEDIALOG_H
 #define QTTESTCHESSGAMEDIALOG_H
-//---------------------------------------------------------------------------
-#include <QDialog>
+
+#include "qthideandshowdialog.h"
+
 struct QModelIndex;
-//---------------------------------------------------------------------------
+
 namespace Ui {
 class QtTestChessGameDialog;
 }
-//---------------------------------------------------------------------------
-class QtTestChessGameDialog : public QDialog
+
+namespace ribi {
+
+class QtTestChessGameDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestChessGameDialog(QWidget *parent = 0);
-  ~QtTestChessGameDialog();
+  QtTestChessGameDialog(const QtTestChessGameDialog&) = delete;
+  QtTestChessGameDialog& operator=(const QtTestChessGameDialog&) = delete;
+  ~QtTestChessGameDialog() noexcept;
 
 private slots:
   void on_list_moves_doubleClicked(const QModelIndex &index);
@@ -43,6 +48,12 @@ private:
   Ui::QtTestChessGameDialog *ui;
 
   void OnChessboardChanged();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTCHESSGAMEDIALOG_H

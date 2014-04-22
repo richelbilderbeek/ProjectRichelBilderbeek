@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GaborFilter, Gabor filter class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,33 +29,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
+
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///GaborFilter manages a Gabor filter
-struct GaborFilter : public boost::noncopyable
+struct GaborFilter
 {
   GaborFilter(
     const double angle     = 0.0,
     const double frequency = 1.0,
     const double sigma     = 1.0);
+  GaborFilter(const GaborFilter&) = delete;
+  GaborFilter& operator=(const GaborFilter&) = delete;
 
   ///Signal emitted when a value of the Gabor filter changes
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
   ///Get the GaborFilter its angle
-  double GetAngle()  const { return m_angle;  }
+  double GetAngle() const noexcept { return m_angle;  }
 
   ///Get the GaborFilter its frequency
-  double GetFrequency()  const { return m_frequency;  }
+  double GetFrequency() const noexcept { return m_frequency;  }
 
-  double GetMax() const { return 1.0; }
+  double GetMax() const noexcept { return 1.0; }
 
   ///Get the GaborFilter its sigma
-  double GetSigma()  const { return m_sigma;  }
+  double GetSigma() const noexcept { return m_sigma;  }
 
 
   ///The Gabor funtion
@@ -69,7 +71,7 @@ struct GaborFilter : public boost::noncopyable
     const double x, const double y) const;
 
   ///Set the GaborFilter its angle
-  void SetAngle(const double angle);
+  void SetAngle(const double angle) noexcept;
 
   ///Set the GaborFilter its frequency
   void SetFrequency(const double frequency);
@@ -81,11 +83,9 @@ struct GaborFilter : public boost::noncopyable
   double SuggestSigma(const double width, const double height) const;
 
   private:
-  ///GaborFilter can only be deleted by Boost smart pointers
-  virtual ~GaborFilter() {}
-  ///GaborFilter can only be deleted by Boost smart pointers
-  //Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
+  virtual ~GaborFilter() noexcept {}
   friend void boost::checked_delete<>(GaborFilter*);
+  friend void boost::checked_delete<>(const GaborFilter*);
 
   ///Angle of the filter in radians
   double m_angle;
@@ -98,13 +98,13 @@ struct GaborFilter : public boost::noncopyable
 
   public:
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const GaborFilter& g);
+std::ostream& operator<<(std::ostream& os, const GaborFilter& g) noexcept;
 
 } //~namespace ribi
 

@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ToXml</title>
+  <meta name="description" content="C++ ToXml"/>
+  <meta name="keywords" content="C++ ToXml "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppToXml.htm">ToXml</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppToXml-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppToXml/CppToXml.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppToXml/CppToXml.pro" border = "1"><tr><td><code>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppToXml/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppToXml/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a <a href="CppStdString.htm">std::string</a> to single-line <a href="CppXml.htm">XML</a><br/>
+<a href="CppComment.htm">///</a>For example, a <a href="CppStdString.htm">std::string</a> with tag name "cat_name" and content "Kitty" becomes<br/>
+/<a href="CppComment.htm">//</a> &lt;cat_name&gt;Kitty&lt;/cat_name&gt;<br/>
+<a href="CppComment.htm">///</a>The data can be <a href="CppConvert.htm">convert</a>ed back with <a href="CppXml.htm">Xml</a>ToStr<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> To<a href="CppXml.htm">Xml</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T&amp; tag_name,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> U&amp; content)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;"&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tag_name <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&gt;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> content <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tag_name <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&gt;";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>No test here, as To<a href="CppXml.htm">Xml</a> is used in testing From<a href="CppXml.htm">Xml</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a <a href="CppStdString.htm">std::string</a> to single-line <a href="CppXml.htm">XML</a><br/>
+<a href="CppComment.htm">///</a>For example, a <a href="CppStdString.htm">std::string</a> with tag name "cat_name" and content "Kitty" becomes<br/>
+/<a href="CppComment.htm">//</a> &lt;cat_name&gt;Kitty&lt;/cat_name&gt;<br/>
+<a href="CppComment.htm">///</a>The data can be <a href="CppConvert.htm">convert</a>ed back with <a href="CppXml.htm">Xml</a>ToStr<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> To<a href="CppXml.htm">Xml</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T&amp; tag_name,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> U&amp; content,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppStdString.htm">std::string</a>(<b><a href="CppConst.htm">const</a></b> T&amp;)&gt; tag_to_str_function,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppStdString.htm">std::string</a>(<b><a href="CppConst.htm">const</a></b> U&amp;)&gt; tag_to_content_function<br/>
+&nbsp;&nbsp;)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;"&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tag_to_str_function(tag_name) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tag_to_content_function(content)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tag_to_str_function(tag_name) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&gt;";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>No test here, as To<a href="CppXml.htm">Xml</a> is used in testing From<a href="CppXml.htm">Xml</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a single-line <a href="CppXml.htm">XML</a> to its content and its tag name<br/>
+<a href="CppComment.htm">///</a>For example, the <a href="CppXml.htm">XML</a> line "&lt;cat_name&gt;Kitty&lt;/cat_name&gt;"<br/>
+<a href="CppComment.htm">///</a>becomes a <a href="CppStdPair.htm">std::pair</a> with elements {"cat_name","Kitty"}<br/>
+<a href="CppComment.htm">///</a>The data can be <a href="CppConvert.htm">convert</a>ed back with To<a href="CppXml.htm">Xml</a><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt; From<a href="CppXml.htm">Xml</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; xml)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!xml.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xml[0] <a href="CppOperatorEqual.htm">==</a> '&lt;');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xml[xml.size() <a href="CppOperatorMinus.htm">-</a> 1] <a href="CppOperatorEqual.htm">==</a> '&gt;');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xml.find('&gt;') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> tag_name_sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(xml.find('&gt;')) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> tag_name <a href="CppOperatorAssign.htm">=</a> xml.substr(1,tag_name_sz);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xml.find_last_of('/') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> content_sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(xml.find_last_of('/')) <a href="CppOperatorMinus.htm">-</a> tag_name_sz <a href="CppOperatorMinus.htm">-</a> 3;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> content <a href="CppOperatorAssign.htm">=</a> xml.substr(tag_name.size() <a href="CppOperatorPlus.htm">+</a> 2,content_sz);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt; p {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;T&gt;(tag_name),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;U&gt;(content)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(To<a href="CppXml.htm">Xml</a>(p.first,p.second) <a href="CppOperatorEqual.htm">==</a> xml);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a single-line <a href="CppXml.htm">XML</a> to its content and its tag name<br/>
+<a href="CppComment.htm">///</a>For example, the <a href="CppXml.htm">XML</a> line "&lt;cat_name&gt;Kitty&lt;/cat_name&gt;"<br/>
+<a href="CppComment.htm">///</a>becomes a <a href="CppStdPair.htm">std::pair</a> with elements {"cat_name","Kitty"}<br/>
+<a href="CppComment.htm">///</a>The data can be <a href="CppConvert.htm">convert</a>ed back with To<a href="CppXml.htm">Xml</a><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt; From<a href="CppXml.htm">Xml</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; xml,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;T(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; str_to_tag_function,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;U(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; str_to_content_function<br/>
+&nbsp;&nbsp;)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!xml.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xml[0] <a href="CppOperatorEqual.htm">==</a> '&lt;');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xml[xml.size() <a href="CppOperatorMinus.htm">-</a> 1] <a href="CppOperatorEqual.htm">==</a> '&gt;');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xml.find('&gt;') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> tag_name_sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(xml.find('&gt;')) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> tag_name <a href="CppOperatorAssign.htm">=</a> xml.substr(1,tag_name_sz);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xml.find_last_of('/') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> content_sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(xml.find_last_of('/')) <a href="CppOperatorMinus.htm">-</a> tag_name_sz <a href="CppOperatorMinus.htm">-</a> 3;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> content <a href="CppOperatorAssign.htm">=</a> xml.substr(tag_name.size() <a href="CppOperatorPlus.htm">+</a> 2,content_sz);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt; p {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;str_to_tag_function(tag_name),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;str_to_content_function(content)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot <b><a href="CppDo.htm">do</a></b> <b><a href="CppThis.htm">this</a></b> <a href="CppDebug.htm">debug</a> check <a href="CppAny.htm">any</a>more, as one would need<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a tag_to_str_function and content_to_str_function:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(To<a href="CppXml.htm">Xml</a>(p.first,p.second,tag_to_str_function,content_to_str_function) <a href="CppOperatorEqual.htm">==</a> xml);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>tag: <a href="CppStdString.htm">std::string</a>, content: <a href="CppStdString.htm">std::string</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdString.htm">std::string</a> TagType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdString.htm">std::string</a> ContentType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TagType&nbsp;&nbsp;&nbsp;&nbsp; tag_name { "name"&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ContentType content&nbsp;&nbsp;{ "Kitty" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> xml { To<a href="CppXml.htm">Xml</a>(tag_name,content) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;TagType,ContentType&gt; p { From<a href="CppXml.htm">Xml</a>&lt;TagType,ContentType&gt;(xml) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.first&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> tag_name);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.second <a href="CppOperatorEqual.htm">==</a> content);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>tag: <b><a href="CppInt.htm">int</a></b>, content: <a href="CppStdString.htm">std::string</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppInt.htm">int</a></b> TagType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdString.htm">std::string</a> ContentType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TagType&nbsp;&nbsp;&nbsp;&nbsp; tag_name { 42&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ContentType content&nbsp;&nbsp;{ "The answer" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> xml { To<a href="CppXml.htm">Xml</a>(tag_name,content) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;TagType,ContentType&gt; p { From<a href="CppXml.htm">Xml</a>&lt;TagType,ContentType&gt;(xml) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.first&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> tag_name);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.second <a href="CppOperatorEqual.htm">==</a> content);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>tag: <b><a href="CppInt.htm">int</a></b>, content: <a href="CppStdString.htm">std::string</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppInt.htm">int</a></b> ContentType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdString.htm">std::string</a> TagType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TagType&nbsp;&nbsp;&nbsp;&nbsp; tag_name { "The answer" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ContentType content&nbsp;&nbsp;{ 42 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> xml { To<a href="CppXml.htm">Xml</a>(tag_name,content) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;TagType,ContentType&gt; p { From<a href="CppXml.htm">Xml</a>&lt;TagType,ContentType&gt;(xml) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.first&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> tag_name);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.second <a href="CppOperatorEqual.htm">==</a> content);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>tag: <b><a href="CppInt.htm">int</a></b>, content: <b><a href="CppInt.htm">int</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdString.htm">std::string</a> TagType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppInt.htm">int</a></b> ContentType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TagType&nbsp;&nbsp;&nbsp;&nbsp; tag_name { 123 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ContentType content&nbsp;&nbsp;{ 456 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> xml { To<a href="CppXml.htm">Xml</a>(tag_name,content) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;TagType,ContentType&gt; p { From<a href="CppXml.htm">Xml</a>&lt;TagType,ContentType&gt;(xml) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.first&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> tag_name);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.second <a href="CppOperatorEqual.htm">==</a> content);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>tag: <a href="CppStdString.htm">std::string</a>, content: <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&gt;<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdString.htm">std::string</a> TagType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&gt; ContentType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TagType&nbsp;&nbsp;&nbsp;&nbsp; tag_name { "name" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ContentType content&nbsp;&nbsp;{ <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppStdString.htm">std::string</a>("Kitty")) };<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> tag and content to <a href="CppXml.htm">XML</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppStdString.htm">std::string</a>(<b><a href="CppConst.htm">const</a></b> TagType&amp;)&gt; tag_to_str_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> TagType&amp; t) { <b><a href="CppReturn.htm">return</a></b> t; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppStdString.htm">std::string</a>(<b><a href="CppConst.htm">const</a></b> ContentType&amp;)&gt; content_to_str_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> ContentType&amp; c) { <b><a href="CppReturn.htm">return</a></b> *c; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> xml {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To<a href="CppXml.htm">Xml</a>(tag_name,content,tag_to_str_function,content_to_str_function)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> <a href="CppXml.htm">XML</a> back to its tag and content<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>with custom <a href="CppFunction.htm">function</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;TagType(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; str_to_tag_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) { <b><a href="CppReturn.htm">return</a></b> s; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;ContentType(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; str_to_content_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) { <b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppStdString.htm">std::string</a>(s)); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check both conversion <a href="CppFunction.htm">function</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot simply compare to tag_name and content, as these may be of <a href="CppAny.htm">any</a> type<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(tag_to_str_function(str_to_tag_function(tag_to_str_function(tag_name)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp; tag_to_str_function(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tag_name));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(content_to_str_function(str_to_content_function(content_to_str_function(content)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp; content_to_str_function(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;TagType,ContentType&gt; p {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From<a href="CppXml.htm">Xml</a>&lt;TagType,ContentType&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xml,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str_to_tag_function,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str_to_content_function<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot simply compare to tag_name and content, as these may be of <a href="CppAny.htm">any</a> type<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(tag_to_str_function(&nbsp;&nbsp;&nbsp;&nbsp;p.first ) <a href="CppOperatorEqual.htm">==</a> tag_to_str_function(&nbsp;&nbsp;&nbsp;&nbsp;tag_name));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(content_to_str_function(p.second) <a href="CppOperatorEqual.htm">==</a> content_to_str_function(content ));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>tag: <b><a href="CppInt.htm">int</a></b>, content: <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&gt;<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppInt.htm">int</a></b> TagType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&gt; ContentType;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TagType&nbsp;&nbsp;&nbsp;&nbsp; tag_name { 123 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ContentType content&nbsp;&nbsp;{ <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppStdString.htm">std::string</a>("one-two-three")) };<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> tag and content to <a href="CppXml.htm">XML</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppStdString.htm">std::string</a>(<b><a href="CppConst.htm">const</a></b> TagType&amp;)&gt; tag_to_str_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> TagType&amp; t) { <b><a href="CppReturn.htm">return</a></b> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(t); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppStdString.htm">std::string</a>(<b><a href="CppConst.htm">const</a></b> ContentType&amp;)&gt; content_to_str_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> ContentType&amp; c) { <b><a href="CppReturn.htm">return</a></b> *c; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> xml {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To<a href="CppXml.htm">Xml</a>(tag_name,content,tag_to_str_function,content_to_str_function)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> <a href="CppXml.htm">XML</a> back to its tag and content<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>with custom <a href="CppFunction.htm">function</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;TagType(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; str_to_tag_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) { <b><a href="CppReturn.htm">return</a></b> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;TagType&gt;(s); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;ContentType(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; str_to_content_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) { <b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppStdString.htm">std::string</a>(s)); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check both conversion <a href="CppFunction.htm">function</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot simply compare to tag_name and content, as these may be of <a href="CppAny.htm">any</a> type<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(tag_to_str_function(str_to_tag_function(tag_to_str_function(tag_name)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp; tag_to_str_function(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tag_name));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(content_to_str_function(str_to_content_function(content_to_str_function(content)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp; content_to_str_function(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;TagType,ContentType&gt; p {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From<a href="CppXml.htm">Xml</a>&lt;TagType,ContentType&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xml,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str_to_tag_function,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str_to_content_function<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot simply compare to tag_name and content, as these may be of <a href="CppAny.htm">any</a> type<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(tag_to_str_function(&nbsp;&nbsp;&nbsp;&nbsp;p.first ) <a href="CppOperatorEqual.htm">==</a> tag_to_str_function(&nbsp;&nbsp;&nbsp;&nbsp;tag_name));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(content_to_str_function(p.second) <a href="CppOperatorEqual.htm">==</a> content_to_str_function(content ));<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

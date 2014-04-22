@@ -1,15 +1,13 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestqtroundedrectitemwidget.h"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
 
 #include <QGraphicsScene>
 #include <QKeyEvent>

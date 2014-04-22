@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/pixelator/images">
+        <file>ToolPixelatorR.png</file>
+        <file>ToolPixelatorTest.png</file>
+        <file>ToolPixelatorResult.png</file>
+    </qresource>
+</RCC>

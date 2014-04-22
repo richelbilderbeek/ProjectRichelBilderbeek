@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ShinyButton, toggle button class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::ShinyButton::ShinyButton(
   const double color,
   const double gradient,
-  const std::string& text)
+  const std::string& text) noexcept
   : m_signal_color_changed{},
     m_signal_text_changed{},
     m_color(color),
@@ -44,12 +44,12 @@ ribi::ShinyButton::ShinyButton(
 
 }
 
-const std::string ribi::ShinyButton::GetVersion()
+std::string ribi::ShinyButton::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::ShinyButton::GetVersionHistory()
+std::vector<std::string> ribi::ShinyButton::GetVersionHistory() noexcept
 {
   return {
     "2011-09-21: Version 1.0: initial version"
@@ -58,7 +58,7 @@ const std::vector<std::string> ribi::ShinyButton::GetVersionHistory()
 
 void ribi::ShinyButton::SetColor(
   const double color,
-  const double gradient)
+  const double gradient) noexcept
 {
   if (color != m_color || gradient != m_gradient)
   {
@@ -69,7 +69,7 @@ void ribi::ShinyButton::SetColor(
 }
 
 void ribi::ShinyButton::SetText(
-  const std::string& text)
+  const std::string& text) noexcept
 {
   if (text != m_text)
   {
@@ -78,7 +78,7 @@ void ribi::ShinyButton::SetText(
   }
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const ShinyButton& button)
+std::ostream& ribi::operator<<(std::ostream& os, const ShinyButton& button) noexcept
 {
   os
     << "<ShinyButton>"

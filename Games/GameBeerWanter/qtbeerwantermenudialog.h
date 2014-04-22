@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2013 Richel Bilderbeek
+Copyright (C) 2005-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,20 +37,21 @@ class QtBeerWanterMenuDialog : public QtHideAndShowDialog
 public:
   QtBeerWanterMenuDialog(const QtBeerWanterMenuDialog&) = delete;
   QtBeerWanterMenuDialog& operator=(const QtBeerWanterMenuDialog&) = delete;
-
   explicit QtBeerWanterMenuDialog(QWidget *parent = 0);
-  ~QtBeerWanterMenuDialog();
+  ~QtBeerWanterMenuDialog() noexcept;
 
 private slots:
 
-  void on_button_start_clicked();
-
-  void on_button_about_clicked();
-
-  void on_button_quit_clicked();
+  void on_button_start_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtBeerWanterMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

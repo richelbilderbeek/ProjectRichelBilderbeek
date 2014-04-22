@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>HelloOdeWindows</title>
+  <meta name="description" content="C++ HelloOdeWindows"/>
+  <meta name="keywords" content="C++ HelloOdeWindows "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloOdeWindows.htm">HelloOdeWindows</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppHelloOdeWindows-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppHelloOdeWindows/CppHelloOdeWindows.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppHelloOdeWindows/CppHelloOdeWindows.pro" border = "1"><tr><td><code>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppHelloOdeWindows/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppHelloOdeWindows/main.cpp" border = "1"><tr><td><code>
+<a href="CppDefine.htm">#define</a> dSINGLE<br/>
+<a href="CppComment.htm">//</a>D:\<a href="Projects.htm">Projects</a>\<a href="CppLibrary.htm">Libraries</a>\ode-0.12\include\ode\common.h<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://ode-wiki.org/wiki/index.php?title=HOWTO_simple_bouncing_sphere<br/>
+<a href="CppInclude.htm">#include</a> &lt;ode/ode.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;drawstuff/drawstuff.h&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a> dynamics and collision objects<br/>
+<b><a href="CppStatic.htm">static</a></b> dWorldID world;<br/>
+<b><a href="CppStatic.htm">static</a></b> dSpaceID space;<br/>
+<b><a href="CppStatic.htm">static</a></b> dBodyID body;<br/>
+<b><a href="CppStatic.htm">static</a></b> dGeomID geom;<br/>
+<b><a href="CppStatic.htm">static</a></b> dMass m;<br/>
+<b><a href="CppStatic.htm">static</a></b> dJointGroupID contactgroup;<br/>
+<br/>
+<a href="CppComment.htm">//</a> <b><a href="CppThis.htm">this</a></b> is called by dSpaceCollide when two objects in space are<br/>
+<a href="CppComment.htm">//</a> potentially colliding.<br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> nearCallback (<b><a href="CppVoid.htm">void</a></b> *data, dGeomID o1, dGeomID o2)<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dBodyID b1 <a href="CppOperatorAssign.htm">=</a> dGeomGetBody(o1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dBodyID b2 <a href="CppOperatorAssign.htm">=</a> dGeomGetBody(o2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dContact contact;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contact.surface.mode <a href="CppOperatorAssign.htm">=</a> dContactBounce | dContactSoftCFM;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> friction parameter<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contact.surface.mu <a href="CppOperatorAssign.htm">=</a> dInfinity;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> bounce is the amount of "bouncyness".<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contact.surface.bounce <a href="CppOperatorAssign.htm">=</a> 0.9;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> bounce_vel is the minimum incoming velocity to cause a bounce<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contact.surface.bounce_vel <a href="CppOperatorAssign.htm">=</a> 0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> constraint force mixing parameter<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contact.surface.soft_cfm <a href="CppOperatorAssign.htm">=</a> 0.001;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppInt.htm">int</a></b> numc <a href="CppOperatorAssign.htm">=</a> dCollide (o1,o2,1,&amp;contact.geom,<b><a href="CppSizeof.htm">sizeof</a></b>(dContact))) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointID c <a href="CppOperatorAssign.htm">=</a> dJointCreateContact (world,contactgroup,&amp;contact);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointAttach (c,b1,b2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a> start simulation <a href="CppOperatorMinus.htm">-</a> set view<a href="CppPointer.htm">point</a><br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> start()<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppFloat.htm">float</a></b> xyz[3] <a href="CppOperatorAssign.htm">=</a> {2.0f,-2.0f,1.7600f};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppFloat.htm">float</a></b> hpr[3] <a href="CppOperatorAssign.htm">=</a> {140.000f,-17.0000f,0.0000f};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dsSetView<a href="CppPointer.htm">point</a> (xyz,hpr);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a> simulation loop<br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> simLoop (<b><a href="CppInt.htm">int</a></b> <a href="ToolPause.htm">pause</a>)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> dReal *pos;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> dReal *R;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> find collisions and add contact joints<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dSpaceCollide (space,0,&amp;nearCallback);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> step the simulation<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dWorldQuickStep (world,0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> remove all contact joints<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointGroupEmpty (contactgroup);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> redraw sphere at <b><a href="CppNew.htm">new</a></b> location<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pos <a href="CppOperatorAssign.htm">=</a> dGeomGetPosition (geom);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;R <a href="CppOperatorAssign.htm">=</a> dGeomGetRotation (geom);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dsDrawSphere(pos,R,dGeomSphereGetRadius (geom));<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a> (<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> setup <a href="CppPointer.htm">pointer</a>s to drawstuff callback <a href="CppFunction.htm">function</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ds<a href="CppFunction.htm">Function</a>s fn;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fn.<a href="CppVersion.htm">version</a> <a href="CppOperatorAssign.htm">=</a> DS_VERSION;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fn.start <a href="CppOperatorAssign.htm">=</a> &amp;start;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fn.step <a href="CppOperatorAssign.htm">=</a> &amp;simLoop;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fn.stop <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fn.command <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fn.path_to_textures <a href="CppOperatorAssign.htm">=</a> "../../drawstuff/textures";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dInitODE ();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> create world<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;world <a href="CppOperatorAssign.htm">=</a> dWorldCreate ();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;space <a href="CppOperatorAssign.htm">=</a> dHashSpaceCreate (0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dWorldSetGravity (world,0,0,-0.2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dWorldSetCFM (world,1e-5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dCreatePlane (space,0,0,1,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contactgroup <a href="CppOperatorAssign.htm">=</a> dJointGroupCreate (0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> create object<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;body <a href="CppOperatorAssign.htm">=</a> dBodyCreate (world);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;geom <a href="CppOperatorAssign.htm">=</a> dCreateSphere (space,0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dMassSetSphere (&amp;m,1,0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dBodySetMass (body,&amp;m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dGeomSetBody (geom,body);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> set initial position<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dBodySetPosition (body,0,0,3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> run simulation<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dsSimulationLoop (<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,352,288,&amp;fn);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> clean up<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dJointGroupDestroy (contactgroup);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dSpaceDestroy (space);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dWorldDestroy (world);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dCloseODE();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+<br/>
+<a href="CppQmakeDefines.htm">DEFINES</a> <a href="CppOperatorPlusAssign.htm">+=</a> dDOUBLE<br/>
+<a href="CppQmakeDefines.htm">DEFINES</a> <a href="CppOperatorPlusAssign.htm">+=</a> CCD_DOUBLE<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> <a href="CppOperatorPlusAssign.htm">+=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/<a href="CppArray.htm">array</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_kernel.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_libccd.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_space_internal.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_<a href="CppStd.htm">std</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_transform.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_colliders.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_internal.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_util.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/config.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/heightfield.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/lcp.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/mat.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/objects.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/obstack.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/odeou.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/odetls.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/quickstep.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/step.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/util.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/amotor.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/ball.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/contact.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/fixed.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/hinge.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/hinge2.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/joint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/joint_internal.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/joints.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/lmotor.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/null.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/piston.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/plane2d.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/pr.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/pu.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/slider.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/universal.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/../../Include/drawstuff/drawstuff.h<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> <a href="CppOperatorPlusAssign.htm">+=</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/<a href="CppArray.htm">array</a><a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/box<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/capsule<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_cylinder_box<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_cylinder_plane<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_cylinder_sphere<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_cylinder_trimesh<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_kernel<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_libccd<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_quadtreespace<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_sapspace<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_space<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_transform<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_box<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_ccylinder<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_disabled<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_distance<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_gimpact<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_opcode<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_plane<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_ray<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_sphere<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_trimesh<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_trimesh_trimesh_new<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/collision_util<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/convex<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/cylinder<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/error<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/<b><a href="CppExport.htm">export</a></b>-dif<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/fa<a href="CppStd.htm">std</a>ot.c \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/fastldlt.c \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/fastlsolve.c \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/fastltsolve.c \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/heightfield<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/lcp<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/mass<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/mat<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/<a href="CppMatrix.htm">matrix</a><a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/<a href="CppMemory.htm">memory</a><a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/misc<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/nextafterf.c \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/obstack<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/ode<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/odeinit<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/odemath<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/odeou<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/odetls<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/plane<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/quickstep<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/ray<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/rotation<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/sphere<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/step<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/<a href="CppTime.htm">time</a>r<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/util<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/amotor<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/ball<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/contact<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/fixed<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/hinge<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/hinge2<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/joint<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/lmotor<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/null<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/piston<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/plane2d<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/pr<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/pu<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/slider<a href="CppImplementationFile.htm">.cpp</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/ode-0.12/ode/src/joints/universal<a href="CppImplementationFile.htm">.cpp</a><br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

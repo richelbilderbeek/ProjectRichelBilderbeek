@@ -1,42 +1,54 @@
 #include "chesswidget.h"
 
 #include <cassert>
+
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
+#endif
 
 #include "chessboard.h"
 #include "chesspiece.h"
 #include "chessgame.h"
 #include "chesssquare.h"
+#include "chesssquarefactory.h"
 #include "chesssquareselector.h"
+#include "geometry.h"
 #include "trace.h"
 
-namespace Chess {
-
-ChessWidget::ChessWidget(const Rect& geometry)
-  : m_selector(new SquareSelector)
+ribi::Chess::ChessWidget::ChessWidget(const Rect& geometry)
+  : m_signal_graphic_changed{},
+    m_selector{new SquareSelector}
 {
   #ifndef NDEBUG
-  ChessWidget::Test();
+  ribi::Chess::ChessWidget::Test();
   #endif
 
   m_selector->m_signal_changed.connect(
     boost::bind(
-      &ChessWidget::OnChanged,
-      this));
+      &ribi::Chess::ChessWidget::OnChanged,
+      this
+    )
+  );
 
   this->SetGeometry(geometry);
 }
 
-ChessWidget::~ChessWidget()
+ribi::Chess::ChessWidget::~ChessWidget() noexcept
 {
   //All done automatically
 }
 
-void ChessWidget::ClickPixel(const int x,const int y)
+void ribi::Chess::ChessWidget::ClickPixel(const int x,const int y)
 {
   try
   {
-    const Square square(8 * x / this->GetGeometry().GetWidth(), 8 * y / this->GetGeometry().GetHeight());
+    const boost::shared_ptr<Square> square {
+      SquareFactory::Create(
+        File(8 * x / Geometry().GetWidth( GetGeometry())),
+        Rank(8 * y / Geometry().GetHeight(GetGeometry()))
+      )
+    };
+    assert(square);
     this->Click(square);
   }
   catch (std::exception& e)
@@ -45,25 +57,24 @@ void ChessWidget::ClickPixel(const int x,const int y)
   }
 }
 
-const std::string ChessWidget::GetVersion()
+std::string ribi::Chess::ChessWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ChessWidget::GetVersionHistory()
+std::vector<std::string> ribi::Chess::ChessWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version"
+  };
 }
 
-void ChessWidget::OnChanged() const
+void ribi::Chess::ChessWidget::OnChanged() const
 {
   m_signal_graphic_changed();
 }
 
-void ChessWidget::PressKey(const Chess::ChessWidget::Key key)
+void ribi::Chess::ChessWidget::PressKey(const ChessWidget::Key key)
 {
   switch (key)
   {
@@ -71,12 +82,12 @@ void ChessWidget::PressKey(const Chess::ChessWidget::Key key)
     case Key::right : m_selector->MoveRight(); break;
     case Key::down  : m_selector->MoveDown(); break;
     case Key::left  : m_selector->MoveLeft(); break;
-    case Key::select: this->Click(*m_selector->GetCursor()); break;
+    case Key::select: this->Click(m_selector->GetCursor()); break;
     default: assert(!"Should not get here");
   }
 }
 
-void ChessWidget::Test()
+void ribi::Chess::ChessWidget::Test() noexcept
 {
   //Testing Chess::Widget exactly once
   {
@@ -84,15 +95,20 @@ void ChessWidget::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
+  #endif
     {
       {
-        boost::shared_ptr< ::Widget > w(new ::Widget);
-        w->SetGeometry(Rect(0,0,100,100));
+        boost::shared_ptr<Widget > w(new Widget);
+        w->SetGeometry(Geometry().CreateRect(0.0,0.0,100.0,100.0));
       }
       //Nothing to test
     }
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.join();
+  #endif
+
 }

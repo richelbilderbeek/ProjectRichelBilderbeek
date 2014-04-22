@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 AsciiArter, tool to create ASCII art
-Copyright (C) 2006-2013 Richel Bilderbeek
+Copyright (C) 2006-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,15 +18,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtasciiartermenudialog.h"
 
 #include <QKeyEvent>
+
 #include "qtaboutdialog.h"
 #include "asciiartermenudialog.h"
 #include "qtasciiartermaindialog.h"
+#include "trace.h"
 #include "ui_qtasciiartermenudialog.h"
+#pragma GCC diagnostic pop
+
 
 ribi::QtAsciiArterMenuDialog::QtAsciiArterMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
@@ -35,7 +39,7 @@ ribi::QtAsciiArterMenuDialog::QtAsciiArterMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtAsciiArterMenuDialog::~QtAsciiArterMenuDialog()
+ribi::QtAsciiArterMenuDialog::~QtAsciiArterMenuDialog() noexcept
 {
   delete ui;
 }
@@ -53,7 +57,7 @@ void ribi::QtAsciiArterMenuDialog::on_button_start_clicked()
 
 void ribi::QtAsciiArterMenuDialog::on_button_about_clicked()
 {
-  About a = AsciiArterMenuDialog::GetAbout();
+  About a = AsciiArterMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
@@ -67,3 +71,17 @@ void ribi::QtAsciiArterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
+
+#ifndef NDEBUG
+void ribi::QtAsciiArterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtAsciiArterMenuDialog::Test");
+  QtAsciiArterMenuDialog();
+  TRACE("Finished ribi::QtAsciiArterMenuDialog::Test successfully");
+}
+#endif

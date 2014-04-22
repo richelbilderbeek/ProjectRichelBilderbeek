@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>580</width>
-    <height>532</height>
+    <height>538</height>
    </rect>
   </property>
   <property name="font">
@@ -20,7 +20,17 @@
   </property>
   <property name="windowIcon">
    <iconset resource="ToolTestToggleButton.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+    <normaloff>:/ToolTestToggleButton/images/R.png</normaloff>:/ToolTestToggleButton/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }
+QPushButton { font: 32px monospace;  }
+QPlainTextEdit { font: 12px courier new, courier, monospace;  }
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -61,7 +71,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestToggleButton.qrc">:/images/ToolTestToggleButtonWelcome.png</pixmap>
+      <pixmap resource="ToolTestToggleButton.qrc">:/ToolTestToggleButton/images/ToolTestToggleButtonWelcome.png</pixmap>
      </property>
     </widget>
    </item>

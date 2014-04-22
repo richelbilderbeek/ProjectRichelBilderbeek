@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ArduinoRelayAndLcd</title>
+  <meta name="description" content="C++ ArduinoRelayAndLcd"/>
+  <meta name="keywords" content="C++ ArduinoRelayAndLcd "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ArduinoRelayAndLcd.htm">ArduinoRelayAndLcd</a></h1>
+<p>&nbsp;</p>
+<h2>./ArduinoRelayAndLcd/ArduinoRelayAndLcd.ino</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ArduinoRelayAndLcd/ArduinoRelayAndLcd.ino" border = "1"><tr><td><code>
+#include &lt;LiquidCrystal.h&gt;<br/>
+<br/>
+<br/>
+const int pin_relay_a =&nbsp;&nbsp;2;<br/>
+const int pin_relay_b =&nbsp;&nbsp;3;<br/>
+const int pin_relay_c =&nbsp;&nbsp;4;<br/>
+const int pin_relay_d =&nbsp;&nbsp;5;<br/>
+<br/>
+//OpenPCR defaults. Note: pin 16 and 17 don't exist!<br/>
+//iLcd(6, 7, 8, A5, 16, 17),<br/>
+const int pin_lcd_rs =&nbsp;&nbsp;8; //Arduino pin that connects to R/S pin of LCD display<br/>
+const int pin_lcd_e&nbsp;&nbsp;=&nbsp;&nbsp;9; //Arduino pin that connects to E&nbsp;&nbsp; pin of LCD display<br/>
+const int pin_lcd_d4 = 10; //Arduino pin that connects to D4&nbsp;&nbsp;pin of LCD display<br/>
+const int pin_lcd_d5 = 11; //Arduino pin that connects to D5&nbsp;&nbsp;pin of LCD display<br/>
+const int pin_lcd_d6 = 12; //Arduino pin that connects to D6&nbsp;&nbsp;pin of LCD display<br/>
+const int pin_lcd_d7 = 13; //Arduino pin that connects to D7&nbsp;&nbsp;pin of LCD display<br/>
+<br/>
+LiquidCrystal lcd(<br/>
+&nbsp;&nbsp;pin_lcd_rs,<br/>
+&nbsp;&nbsp;pin_lcd_e,<br/>
+&nbsp;&nbsp;pin_lcd_d4,<br/>
+&nbsp;&nbsp;pin_lcd_d5,<br/>
+&nbsp;&nbsp;pin_lcd_d6,<br/>
+&nbsp;&nbsp;pin_lcd_d7);<br/>
+<br/>
+<br/>
+void setup ()<br/>
+{<br/>
+&nbsp;&nbsp;lcd.begin(16,1);<br/>
+&nbsp;&nbsp;Serial.begin(9600);<br/>
+}<br/>
+<br/>
+void loop()<br/>
+{<br/>
+&nbsp;&nbsp;lcd.clear();<br/>
+&nbsp;&nbsp;lcd.setCursor(0,0);<br/>
+&nbsp;&nbsp;lcd.print(millis());<br/>
+&nbsp;&nbsp;Serial.print(millis());<br/>
+&nbsp;&nbsp;Serial.print("\n");<br/>
+&nbsp;&nbsp;delay(100);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

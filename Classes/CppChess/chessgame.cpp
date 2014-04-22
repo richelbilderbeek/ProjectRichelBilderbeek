@@ -5,9 +5,9 @@
 #include <iostream>
 #include <stdexcept>
 
-//#include <boost/bind.hpp>
-#include <boost/foreach.hpp>
-//#include <boost/lambda/lambda.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 
 #include "chessbitboard.h"
 #include "chessboard.h"
@@ -21,9 +21,12 @@
 #include "chessscore.h"
 #include "chesssquare.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::Chess::Game::Game()
-  : m_board(BoardFactory::Create())
+  : m_board(BoardFactory::Create()),
+    m_moves{},
+    m_score{}
 {
   #ifndef NDEBUG
   Test();
@@ -65,36 +68,36 @@ int ribi::Chess::Game::CanDoGameUntil(const std::vector<std::string>& moves)
   for (int i=0; i!=n_moves; ++i)
   {
     const std::string s = moves[i];
-    if (!game.CanDoMove(*MoveFactory::Create(s))) return i;
-    game.DoMove(*Chess::MoveFactory::Create(s));
+    if (!game.CanDoMove(MoveFactory::Create(s))) return i;
+    game.DoMove(Chess::MoveFactory::Create(s));
   }
   return n_moves;
 }
 
-bool ribi::Chess::Game::CanDoMove(const Move& move) const
+bool ribi::Chess::Game::CanDoMove(const boost::shared_ptr<const Move> move) const
 {
   return m_board->CanDoMove(move,GetActivePlayer());
 }
 
-void ribi::Chess::Game::DoMove(const Move& move)
+void ribi::Chess::Game::DoMove(const boost::shared_ptr<const Move> move)
 {
   //assert(CanDoMove(move));
   assert(!m_score);
   m_moves.push_back(move);
-  if (move.From())
+  if (move->From())
   {
-    PiecePtr p = GetPiece(*move.From());
+    PiecePtr p = GetPiece(move->From());
     assert(p);
     assert(p->CanDoMove(move));
     p->DoMove(move);
   }
-  else if (move.Score())
+  else if (move->Score())
   {
-    m_score = move.Score();
+    m_score = move->Score();
   }
 }
 
-const ribi::Chess::Game::PiecePtr ribi::Chess::Game::GetPiece(const Square& square) const
+const ribi::Chess::Game::PiecePtr ribi::Chess::Game::GetPiece(const boost::shared_ptr<const Square> square) const
 {
   return m_board->GetPiece(square);
 }
@@ -109,22 +112,21 @@ const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetM
   return m_board->GetMoves(GetActivePlayer());
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetMoves(const Square& square) const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetMoves(const boost::shared_ptr<const Square> square) const
 {
   return m_board->GetMoves(square);
 }
 
-const std::string ribi::Chess::Game::GetVersion()
+std::string ribi::Chess::Game::GetVersion()
 {
   return "0.1";
 }
 
-const std::vector<std::string> ribi::Chess::Game::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Game::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2012-06-16: version 0.1: initial seperation from Chess::Board");
-  return v;
+  return {
+    "2012-06-16: version 0.1: initial seperation from Chess::Board"
+  };
 }
 
 const ribi::Chess::BitBoard ribi::Chess::Game::GetVisibleSquares() const
@@ -148,14 +150,15 @@ const boost::shared_ptr<ribi::Chess::Score>& ribi::Chess::Game::Score() const
   return m_score;
 }
 
-void ribi::Chess::Game::Test()
+#ifndef NDEBUG
+void ribi::Chess::Game::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -163,11 +166,12 @@ void ribi::Chess::Game::Test()
       FTRACE("Testing Game");
       Chess::Game();
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
+#endif
 
 bool ribi::Chess::operator==(const Game& lhs, const Game& rhs)
 {
@@ -177,8 +181,7 @@ bool ribi::Chess::operator==(const Game& lhs, const Game& rhs)
   {
     if (*lhs.Score() != *rhs.Score()) return false;
   }
-  return IsEqual(*lhs.m_board,*rhs.m_board);
-  return true;
+  return *lhs.m_board == *rhs.m_board;
 }
 
 bool ribi::Chess::operator!=(const Game& lhs, const Game& rhs)

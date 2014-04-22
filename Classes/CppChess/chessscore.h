@@ -14,10 +14,10 @@ struct Score
   Score(const std::string& s);
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   bool IsBlackWinner() const { return m_is_black_winner; }
   bool IsDraw() const { return m_is_draw; }
@@ -25,11 +25,11 @@ struct Score
 
   #ifndef NDEBUG
   ///Test if Score is working correctly
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Score to string
-  const std::string ToStr() const;
+  std::string ToStr() const;
 
   private:
 

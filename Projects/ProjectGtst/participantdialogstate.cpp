@@ -23,9 +23,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
-//---------------------------------------------------------------------------
+
 #include "all_participantdialogstates.h"
 #include "all_participantstates.h"
 #include "all_serverstates.h"
@@ -42,7 +42,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 #include "trace.h"
 #include "wtserverpusher.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParticipantDialogState::ParticipantDialogState(
   ParticipantDialog * const dialog,
   Server * const server)
@@ -52,7 +52,7 @@ ribi::gtst::ParticipantDialogState::ParticipantDialogState(
   assert(m_dialog);
   assert(m_server);
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::gtst::ParticipantDialogState::CurrencyToStr(const double value)
 {
   std::stringstream s;
@@ -60,7 +60,7 @@ const std::string ribi::gtst::ParticipantDialogState::CurrencyToStr(const double
   s << value;
   return s.str();
 }
-//---------------------------------------------------------------------------
+
 ///FileToVector reads a file and converts it to a std::vector<std::string>
 ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> ribi::gtst::ParticipantDialogState::FileToVector(const std::string& filename)
@@ -76,25 +76,25 @@ const std::vector<std::string> ribi::gtst::ParticipantDialogState::FileToVector(
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParticipantDialog * ribi::gtst::ParticipantDialogState::GetDialog()
 {
   assert(m_dialog);
   return m_dialog;
 }
-//---------------------------------------------------------------------------
+
 const ribi::gtst::ParticipantDialog * ribi::gtst::ParticipantDialogState::GetDialog() const
 {
   assert(m_dialog);
   return m_dialog;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogState::Logout()
 {
   m_server->NotifyLogout(GetDialog()->GetParticipant());
   WtServerPusher::GetInstance()->Post();
 }
-//---------------------------------------------------------------------------
+
 ///Respons to the Participant his/her ParticipantState, which
 ///can be changed by the Server
 void ribi::gtst::ParticipantDialogState::RespondToParticipant()
@@ -182,4 +182,4 @@ void ribi::gtst::ParticipantDialogState::RespondToParticipant()
   //  == GetDialog()->GetParticipant()->GetState()->ToStr());
 
 }
-//---------------------------------------------------------------------------
+

@@ -8,7 +8,7 @@
 
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 
 #include "qwt_plot.h"
@@ -32,7 +32,7 @@ namespace kalman {
 
 ///QtKalmanFilterExperimentDialog is a Facade for
 ///the KalmanFilterExperiment parameters
-class QtKalmanFilterExperimentDialog : public QDialog
+class QtKalmanFilterExperimentDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -43,7 +43,7 @@ public:
   explicit QtKalmanFilterExperimentDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);
-  ~QtKalmanFilterExperimentDialog();
+  ~QtKalmanFilterExperimentDialog() noexcept;
 
   ///Click on an example
   void ClickExample(const int i);
@@ -107,7 +107,7 @@ private:
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   private slots:

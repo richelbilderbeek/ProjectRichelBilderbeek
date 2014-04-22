@@ -18,29 +18,29 @@ namespace kalman {
 struct KalmanFilterExperimentParameter
 {
   ///Check if a convert from KalmanFilterExperimentParameter to a KalmanFilterParameter will succeed
-  static bool CanConvertToKalmanFilterParameter(const KalmanFilterExperimentParameterType parameter);
+  static bool CanConvertToKalmanFilterParameter(const KalmanFilterExperimentParameterType parameter) noexcept;
 
   ///Check if a convert from KalmanFilterExperimentParameter to a WhiteNoiseSystemParameter will succeed
-  static bool CanConvertToWhiteNoiseSystemParameter(const KalmanFilterExperimentParameterType parameter);
+  static bool CanConvertToWhiteNoiseSystemParameter(const KalmanFilterExperimentParameterType parameter) noexcept;
 
   ///Convert a KalmanFilterParameter to a KalmanFilterExperimentParameter,
   ///which will always succeed
-  static KalmanFilterExperimentParameterType ConvertToKalmanFilterExperimentParameter(const KalmanFilterParameterType parameter);
+  static KalmanFilterExperimentParameterType ConvertToKalmanFilterExperimentParameter(const KalmanFilterParameterType parameter) noexcept;
 
   ///Convert a KalmanFilterParameter to a KalmanFilterExperimentParameter,
   ///which will always succeed
-  static KalmanFilterExperimentParameterType ConvertToKalmanFilterExperimentParameter(const WhiteNoiseSystemParameterType parameter);
+  static KalmanFilterExperimentParameterType ConvertToKalmanFilterExperimentParameter(const WhiteNoiseSystemParameterType parameter) noexcept;
 
   ///Convert a KalmanFilterExperimentParameter to a KalmanFilterParameter,
   ///assumes CanConvertToKalmanFilterParameter succeeds
-  static KalmanFilterParameterType ConvertToKalmanFilterParameter(const KalmanFilterExperimentParameterType parameter);
+  static KalmanFilterParameterType ConvertToKalmanFilterParameter(const KalmanFilterExperimentParameterType parameter) noexcept;
 
   ///Convert a KalmanFilterExperimentParameter to a WhiteNoiseSystemParameterType,
   ///assumes CanConvertToWhiteNoiseSystemParameter succeeds
-  static WhiteNoiseSystemParameterType ConvertToWhiteNoiseSystemParameter(const KalmanFilterExperimentParameterType parameter);
+  static WhiteNoiseSystemParameterType ConvertToWhiteNoiseSystemParameter(const KalmanFilterExperimentParameterType parameter) noexcept;
 
   ///Get all KalmanFilterExperimentParameterType values
-  static const std::vector<KalmanFilterExperimentParameterType> GetAll();
+  static std::vector<KalmanFilterExperimentParameterType> GetAll() noexcept;
 
   ///Is this parameter a matrix/vector of type double?
   static bool IsDouble(const KalmanFilterExperimentParameterType type);
@@ -60,21 +60,22 @@ struct KalmanFilterExperimentParameter
   ///Is this parameter a vector?
   static bool IsVector(const KalmanFilterExperimentParameterType type);
 
-  #ifndef NDEBUG
-  ///Test this class
-  static void Test();
-  #endif
-
   ///Obtain the full name of a type, e.g. 'Matrix to capture the physics of the system'
-  static const std::string ToDescription(const KalmanFilterExperimentParameterType type);
+  static std::string ToDescription(const KalmanFilterExperimentParameterType type) noexcept;
 
   ///Obtain the full name of a type, e.g. 'State transition'
-  static const std::string ToName(const KalmanFilterExperimentParameterType type);
+  static std::string ToName(const KalmanFilterExperimentParameterType type) noexcept;
 
   ///Obtain the symbol of a type, e.g. 'A'
-  static const std::string ToSymbol(const KalmanFilterExperimentParameterType type);
+  static std::string ToSymbol(const KalmanFilterExperimentParameterType type) noexcept;
 
   private:
+
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test() noexcept;
+  #endif
+
   static const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> > m_map_kalman_filter;
   static const std::vector<std::pair<WhiteNoiseSystemParameterType,KalmanFilterExperimentParameterType> > m_map_white_noise_system;
   static const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> > CreateMapKalmanFilter();

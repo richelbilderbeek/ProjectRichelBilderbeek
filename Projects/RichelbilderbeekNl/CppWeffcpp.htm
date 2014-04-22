@@ -24,7 +24,7 @@
 from 'Effective C++' by <a href="CppScottMeyers.htm">Scott Meyers</a> will be given to help you.</p>
 <p>&nbsp;</p> 
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="How to add -Weffc++ to a Qt Creator project" border = "1"><tr><td><code>
 QMAKE_CXXFLAGS += <a href="CppWeffcpp.htm">-Weffc++</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -44,7 +44,7 @@ Prefer <a href="CppCompileError.htm">compile errors</a> to <a href="CppRuntimeEr
 <p>Add the following line to your code:</p>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="How to add -Weffc++ to code" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic warning "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -65,15 +65,10 @@ Prefer <a href="CppCompileError.htm">compile errors</a> to <a href="CppRuntimeEr
 <p>Add the line below to your code to start suppressing the <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppCompileWarning.htm">compile warnings</a>:</p>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
+<table summary="How to suppress -Weffc++" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Add the line below to your code to stop suppressing the <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppCompileWarning.htm">compile warnings</a>:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
+//Your code<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 </code></td></tr></table>
 <!-- end of the code -->

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,26 +20,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TESTPYLOSMAINDIALOG_H
 #define TESTPYLOSMAINDIALOG_H
-//---------------------------------------------------------------------------
-#include <string>
-#include <vector>
-//---------------------------------------------------------------------------
-#include "about.h"
-//---------------------------------------------------------------------------
+
+#include "menudialog.h"
 
 namespace ribi {
 
-struct TestPylosMenuDialog
+struct TestPylosMenuDialog : public MenuDialog
 {
-  ///Obtain the About information of this class
-  static const About GetAbout();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version of this class
-  static const std::string GetVersion();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
-
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PerfectElasticCollision, tool to investigate a perfect elastic collision
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm
 //---------------------------------------------------------------------------
-
-
 #include "perfectelasticcollisionmenudialog.h"
 
 #include <cstdlib>
@@ -27,14 +25,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
-const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout()
+#include "trace.h"
+
+int ribi::PerfectElasticCollisionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << this->GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "PerfectElasticCollision",
     "tool to investigate a perfect elastic collision",
     "the 7th of March 2012",
-    "2010-2012",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm",
     GetVersion(),
     GetVersionHistory());
@@ -42,16 +57,53 @@ const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::PerfectElasticCollisionMenuDialog::GetVersion()
+ribi::Help ribi::PerfectElasticCollisionMenuDialog::GetHelp() const noexcept
 {
-  return "1.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::PerfectElasticCollisionMenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::PerfectElasticCollisionMenuDialog::GetProgram() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-08-14: version 1.0: initial version.");
-  v.push_back("2012-03-07: version 1.1: added versioning. Added menu screen.");
-  return v;
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramPerfectElasticCollision
+  };
+  assert(p);
+  return p;
 }
 
+std::string ribi::PerfectElasticCollisionMenuDialog::GetVersion() const noexcept
+{
+  return "1.2";
+}
+
+std::vector<std::string> ribi::PerfectElasticCollisionMenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2010-08-14: version 1.0: initial version",
+    "2012-03-07: version 1.1: added versioning. Added menu screen",
+    "2013-11-04: version 1.2: conformized to ProjectRichelBilderbeekConsole",
+  };
+}
+
+
+#ifndef NDEBUG
+void ribi::PerfectElasticCollisionMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::PerfectElasticCollisionMenuDialog::Test");
+  TRACE("Finished ribi::PerfectElasticCollisionMenuDialog::Test successfully");
+}
+#endif

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateQtProjectZipFile, tool to create a zip file from a Qt project
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -45,19 +45,19 @@ struct Path
   ///Examples:
   ///-'Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro' -> 'ProjectRichelBilderbeekDesktop.pro'
   ///-'Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro' -> 'ToolCreateQtProjectZipFileDesktop.pro'
-  static const std::string ExtractFilename(const std::string& filename);
+  static std::string ExtractFilename(const std::string& filename);
 
   ///Extract the main folder from a path.
   ///Examples:
   ///-'Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro' -> 'Projects'
   ///-'Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro' -> 'Tools'
-  static const std::string ExtractMainFolder(const std::string& filename);
+  static std::string ExtractMainFolder(const std::string& filename);
 
   ///Extract the sub-folder from a path.
   ///Examples:
   ///-'Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro' -> 'ProjectRichelBilderbeek'
   ///-'Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro' -> 'ToolCreateQtProjectZipFile'
-  static const std::string ExtractSubFolder(const std::string& filename);
+  static std::string ExtractSubFolder(const std::string& filename);
 
   ///Get the sub folder, e.g. 'ProjectRichelBilderbeekDesktop.pro', 'ToolCreateQtProjectZipFileDesktop.pro'
   const std::string& GetFilename() const { return m_filename; }
@@ -74,10 +74,6 @@ struct Path
   ///Test if this Path can be found at ../../[main folder]/[sub folder]/[filename]
   bool IsPresent() const;
 
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
-
   ///Set the main folder, e.g. 'Projects', 'Tools'
   void SetMainFolder(const std::string& s);
 
@@ -85,7 +81,7 @@ struct Path
   void SetSubFolder(const std::string& s);
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Converts a Path to a string
   ///For example,
@@ -94,7 +90,7 @@ struct Path
   /// - m_filename: toolcreatezipfiledesktop.pro
   ///becomes
   /// '/home/richel/Projects/Tools/ToolCreateQtProjectZipFile/toolcreatezipfiledesktop.pro'
-  const std::string ToStr() const;
+  std::string ToStr() const;
 
   private:
   const std::string m_filename;

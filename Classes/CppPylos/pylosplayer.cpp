@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Player, Pylos enum class for the players
-Copyright (C) 2010-2012 Richel Bilderbeek
+pylos::Player, Pylos enum class for the players
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,12 +29,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 
-void ribi::Pylos::Toggle(Player& player)
+void ribi::pylos::Toggle(Player& player)
 {
   player = (player == Player::player1 ? Player::player2 : Player::player1);
 }
 
-ribi::Pylos::Player ribi::Pylos::ToPlayer(const PositionState& state)
+ribi::pylos::Player ribi::pylos::ToPlayer(const PositionState& state)
 {
   switch (state)
   {
@@ -46,7 +46,7 @@ ribi::Pylos::Player ribi::Pylos::ToPlayer(const PositionState& state)
   throw std::logic_error("Cannot convert this PositionState to a Player");
 }
 
-bool ribi::Pylos::operator==(const Player& player, const PositionState& state)
+bool ribi::pylos::operator==(const Player& player, const PositionState& state)
 {
   switch (player)
   {
@@ -56,7 +56,7 @@ bool ribi::Pylos::operator==(const Player& player, const PositionState& state)
   return false;
 }
 
-bool ribi::Pylos::operator!=(const Player& player, const PositionState& state)
+bool ribi::pylos::operator!=(const Player& player, const PositionState& state)
 {
   return !(player==state);
 }

@@ -19,7 +19,7 @@ class QtKalmanFiltererMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtKalmanFiltererMenuDialog(QWidget *parent = 0);
-  ~QtKalmanFiltererMenuDialog();
+  ~QtKalmanFiltererMenuDialog() noexcept;
 
   QtKalmanFiltererMenuDialog(const QtKalmanFiltererMenuDialog&) = delete;
   QtKalmanFiltererMenuDialog& operator=(const QtKalmanFiltererMenuDialog&) = delete;
@@ -36,8 +36,7 @@ private slots:
   void on_button_start_clicked();
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

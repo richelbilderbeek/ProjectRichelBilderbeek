@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::PositionState, Pylos enum class for the state of a position
-Copyright (C) 2010-2012 Richel Bilderbeek
+pylos::PositionState, Pylos enum class for the state of a position
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosplayer.h"
 
 
-char ribi::Pylos::ToChar(const PositionState state)
+char ribi::pylos::ToChar(const PositionState state)
 {
   switch (state)
   {
@@ -40,7 +40,7 @@ char ribi::Pylos::ToChar(const PositionState state)
   throw std::logic_error("Unknown PositionState in ToChar");
 }
 
-ribi::Pylos::PositionState ribi::Pylos::ToPositionState(const Player& player)
+ribi::pylos::PositionState ribi::pylos::ToPositionState(const Player& player)
 {
   switch (player)
   {
@@ -52,12 +52,12 @@ ribi::Pylos::PositionState ribi::Pylos::ToPositionState(const Player& player)
   throw std::logic_error("Cannot convert this Player to a PositionState");
 }
 
-bool ribi::Pylos::operator==(const PositionState state, const Player& player)
+bool ribi::pylos::operator==(const PositionState state, const Player& player)
 {
   return player == state;
 }
 
-bool ribi::Pylos::operator!=(const PositionState state, const Player& player)
+bool ribi::pylos::operator!=(const PositionState state, const Player& player)
 {
   return player != state;
 }

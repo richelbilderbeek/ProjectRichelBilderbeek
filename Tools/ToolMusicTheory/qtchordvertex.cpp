@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MusicTheory, tool for visualizing my music theory
-Copyright (C)  2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolMusicTheory.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtchordvertex.h"
 
 #include <QBrush>
 #include <QPainter>
-
+#pragma GCC diagnostic pop
 
 ribi::QtChordVertex::QtChordVertex(
   boost::shared_ptr<Music::Chord>& chord,
@@ -60,12 +60,12 @@ void ribi::QtChordVertex::paint(QPainter *painter, const QStyleOptionGraphicsIte
     m_chord->ToStr().c_str());
 }
 
-const std::string ribi::QtChordVertex::GetVersion()
+std::string ribi::QtChordVertex::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtChordVertex::GetVersionHistory()
+std::vector<std::string> ribi::QtChordVertex::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-08-10: version 1.0: initial version");

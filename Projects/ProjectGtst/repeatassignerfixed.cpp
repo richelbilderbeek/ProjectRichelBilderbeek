@@ -26,7 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "repeatassignerfixed.h"
 //---------------------------------------------------------------------------
 ribi::gtst::RepeatAssignerFixed::RepeatAssignerFixed(const int value)
-  : m_value(value)
+  : RepeatAssigner{},
+    m_value(value)
 {
   assert(m_value > 0 && "An experimental state must be visited at least once");
 }

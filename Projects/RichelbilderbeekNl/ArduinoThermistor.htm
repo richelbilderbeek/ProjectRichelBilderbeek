@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ArduinoThermistor</title>
+  <meta name="description" content="C++ ArduinoThermistor"/>
+  <meta name="keywords" content="C++ ArduinoThermistor "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ArduinoThermistor.htm">ArduinoThermistor</a></h1>
+<p>&nbsp;</p>
+<h2>./ArduinoThermistor/ArduinoThermistor.ino</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ArduinoThermistor/ArduinoThermistor.ino" border = "1"><tr><td><code>
+#include &lt;LiquidCrystal.h&gt;<br/>
+<br/>
+// 5V<br/>
+// |<br/>
+// thermistor<br/>
+// |<br/>
+// +---- pin<br/>
+// |<br/>
+// GND<br/>
+const int pin_thermistor = A0;<br/>
+<br/>
+<br/>
+//OpenPCR defaults. Note: pin 16 and 17 don't exist!<br/>
+//iLcd(6, 7, 8, A5, 16, 17),<br/>
+const int pin_lcd_rs =&nbsp;&nbsp;2; //Arduino pin that connects to R/S pin of LCD display<br/>
+const int pin_lcd_e&nbsp;&nbsp;=&nbsp;&nbsp;3; //Arduino pin that connects to E&nbsp;&nbsp; pin of LCD display<br/>
+const int pin_lcd_d4 =&nbsp;&nbsp;4; //Arduino pin that connects to D4&nbsp;&nbsp;pin of LCD display<br/>
+const int pin_lcd_d5 =&nbsp;&nbsp;5; //Arduino pin that connects to D5&nbsp;&nbsp;pin of LCD display<br/>
+const int pin_lcd_d6 =&nbsp;&nbsp;6; //Arduino pin that connects to D6&nbsp;&nbsp;pin of LCD display<br/>
+const int pin_lcd_d7 =&nbsp;&nbsp;7; //Arduino pin that connects to D7&nbsp;&nbsp;pin of LCD display<br/>
+/*&nbsp;&nbsp;<br/>
+PROGMEM const unsigned int DIY_RESISTANCE_TABLE[] = {&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;9795, 7617, 5970, 4713, 3747, 3000, 2417, 1959, 1598, 1310, 1080, 895, 746, 624, 525, 444, 377, 321, 275, 236, 204, 176, 153, 133, 116, 103, 90, 80, 70, 62, 56,};<br/>
+//0,&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;40&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;&nbsp;&nbsp;&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;55&nbsp;&nbsp;60&nbsp;&nbsp;&nbsp;&nbsp;65&nbsp;&nbsp;70&nbsp;&nbsp;75&nbsp;&nbsp;&nbsp;&nbsp;80<br/>
+*/<br/>
+PROGMEM const unsigned int DIY_RESISTANCE_TABLE[] = {&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;14692, 11425, 8955, 7069.97, 5400.53, 3580.86, 3635, 2938, 2397, 1966, 1621, 1343, 1119, 937, 788, 666, 566, 482, 412, 354, 306, 265, 230, 200, 175, 154, 135, 119, 106, 94, 83 };<br/>
+//0,&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;25<br/>
+<br/>
+float TableLookup(const unsigned int lookupTable[], unsigned int tableSize, int startValue, unsigned long searchValue) {<br/>
+&nbsp;&nbsp;//simple linear search for now<br/>
+&nbsp;&nbsp;int i;<br/>
+&nbsp;&nbsp;for (i = 0; i &lt; tableSize; i++) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (searchValue &gt;= pgm_read_word_near(lookupTable + i))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;if (i &gt; 0) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;unsigned long high_val = pgm_read_word_near(lookupTable + i - 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;unsigned long low_val = pgm_read_word_near(lookupTable + i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return (i * 5) + startValue - (float)(searchValue - low_val) / (float)(high_val - low_val);<br/>
+&nbsp;&nbsp;} else {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return startValue;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+double ReadTemp() <br/>
+{<br/>
+&nbsp;&nbsp;unsigned long voltage_mv = (unsigned long)analogRead(pin_thermistor) * 5000 / 1024;<br/>
+&nbsp;&nbsp;unsigned long resistance = (voltage_mv * 2200 / (5000 - voltage_mv));<br/>
+&nbsp;&nbsp;const double t = TableLookup(DIY_RESISTANCE_TABLE, sizeof(DIY_RESISTANCE_TABLE) / sizeof(DIY_RESISTANCE_TABLE[0]), 0, resistance);<br/>
+&nbsp;&nbsp;return t;<br/>
+}<br/>
+<br/>
+<br/>
+LiquidCrystal lcd(<br/>
+&nbsp;&nbsp;pin_lcd_rs,<br/>
+&nbsp;&nbsp;pin_lcd_e,<br/>
+&nbsp;&nbsp;pin_lcd_d4,<br/>
+&nbsp;&nbsp;pin_lcd_d5,<br/>
+&nbsp;&nbsp;pin_lcd_d6,<br/>
+&nbsp;&nbsp;pin_lcd_d7);<br/>
+<br/>
+<br/>
+void setup ()<br/>
+{<br/>
+&nbsp;&nbsp;pinMode(pin_thermistor,INPUT);<br/>
+&nbsp;&nbsp;lcd.begin(16,2);<br/>
+&nbsp;&nbsp;Serial.begin(9600);<br/>
+}<br/>
+<br/>
+void loop()<br/>
+{<br/>
+&nbsp;&nbsp;lcd.clear();<br/>
+&nbsp;&nbsp;lcd.setCursor(0,0);<br/>
+&nbsp;&nbsp;//const int value = analogRead(pin_thermistor);<br/>
+&nbsp;&nbsp;//const double f = static_cast&lt;double&gt;(value) / 1024.0;<br/>
+&nbsp;&nbsp;//lcd.print(f * 5.0);<br/>
+&nbsp;&nbsp;lcd.print( ReadTemp());<br/>
+&nbsp;&nbsp;Serial.print(" resistance: ");<br/>
+&nbsp;&nbsp;Serial.print((((unsigned long)analogRead(pin_thermistor) * 5000 / 1024) * 2200 / (5000 - (unsigned long)analogRead(pin_thermistor) * 5000 / 1024)) );<br/>
+&nbsp;&nbsp;Serial.print("&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;");<br/>
+&nbsp;&nbsp;Serial.println(ReadTemp());<br/>
+&nbsp;&nbsp;delay(100);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

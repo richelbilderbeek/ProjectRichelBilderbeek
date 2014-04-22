@@ -19,10 +19,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
-//---------------------------------------------------------------------------
+
 #include "all_parameters.h"
 #include "all_serverstates.h"
 #include "groupfinished.h"
@@ -39,15 +39,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participantdialogstateassignpayoff.h"
 #include "server.h"
 #include "wtserverpusher.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParticipantDialogStateAssignPayoff::ParticipantDialogStateAssignPayoff(
   ParticipantDialog * const dialog,
   Server * const server)
-  : ParticipantDialogState(dialog,server)
+  : ParticipantDialogState(dialog,server),
+    m_ui{}
 {
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateAssignPayoff::RespondToTimedServerPush()
 {
   assert(GetDialog()->CanGetParticipant()
@@ -58,16 +59,16 @@ void ribi::gtst::ParticipantDialogStateAssignPayoff::RespondToTimedServerPush()
   RespondToParticipant();
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateAssignPayoff::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
 
-  ui.m_label_status
+  m_ui.m_label_status
     = new Wt::WLabel(
       m_server->GetParameters()->GetAssignPayoff()->GetMessage().c_str());
 
   dialog->addWidget(new Wt::WBreak);
-  dialog->addWidget(ui.m_label_status);
+  dialog->addWidget(m_ui.m_label_status);
 }
-//---------------------------------------------------------------------------
+

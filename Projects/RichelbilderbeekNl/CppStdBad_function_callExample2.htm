@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>StdBad_function_callExample2</title>
+  <meta name="description" content="C++ StdBad_function_callExample2"/>
+  <meta name="keywords" content="C++ StdBad_function_callExample2 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStdBad_function_callExample2.htm">StdBad_function_callExample2</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppStdBad_function_callExample2-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppStdBad_function_callExample2/CppStdBad_function_callExample2.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStdBad_function_callExample2/CppStdBad_function_callExample2.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code below<br/>
+# win32 {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0 \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_55_0<br/>
+# }<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppStdBad_function_callExample2/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStdBad_function_callExample2/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) : m_x(x) {}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_x;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> <a href="CppBoost.htm">boost</a>::detail::sp_ms_deleter&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyClass&gt;;<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> <a href="CppBoost.htm">boost</a>::detail::sp_ms_deleter&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyClass* x);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<b><a href="CppConst.htm">const</a></b> MyClass* x);<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;MyClass&gt;(0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;MyClass&gt;(1),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;MyClass&gt;(2),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;MyClass&gt;(3),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;MyClass&gt;(4),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;MyClass&gt;(5)<br/>
+&nbsp;&nbsp;};<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdSet.htm">std::set</a>&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppBool.htm">bool</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;,<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;)&gt;<br/>
+&nbsp;&nbsp;&gt; MySet;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>This code below will <b><a href="CppThrow.htm">throw</a></b> a <a href="CppStd.htm">std</a>::bad_function_call<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MySet s;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy_if.htm">std::copy_if</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::inserter(s,s.begin()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> do_copy <a href="CppOperatorAssign.htm">=</a> i-&gt;m_x <a href="CppOperatorModulus.htm">%</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> do_copy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStd.htm">std</a>::bad_function_call&amp;)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Ok, should fail<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>This code below will not <b><a href="CppThrow.htm">throw</a></b> a <a href="CppStd.htm">std</a>::bad_function_call<br/>
+&nbsp;&nbsp;MySet s(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;&amp; lhs,<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt;&amp; rhs)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs-&gt;m_x &lt; rhs-&gt;m_x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.size() <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdCopy_if.htm">std::copy_if</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::inserter(s,s.begin()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> do_copy <a href="CppOperatorAssign.htm">=</a> i-&gt;m_x <a href="CppOperatorModulus.htm">%</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> do_copy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

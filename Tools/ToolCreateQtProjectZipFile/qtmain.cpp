@@ -18,16 +18,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
+
+#include <csignal>
+#include <iostream>
 
 #include "qtcreateqtprojectzipfilemenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
+
+void OnAbort(int)
+{
+  std::cout << "Abort" << std::endl;
+}
 
 int main(int argc, char *argv[])
 {
+  std::signal(SIGABRT,OnAbort);
   QApplication a(argc, argv);
   START_TRACE();
-  QtCreateQtProjectZipFileMenuDialog w;
+  ribi::QtCreateQtProjectZipFileMenuDialog w;
   w.show();
   return a.exec();
 }

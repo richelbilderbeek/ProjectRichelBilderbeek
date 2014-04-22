@@ -33,7 +33,10 @@
     Follow a good <a href="CppFunctionDesign.htm">function design</a>. Note: many points of <a href="CppAdvice.htm">advice</a>!
   </li>
   <li>
-    Prefer writing short <a href="CppMemberFunction.htm">member functions</a> [3] (and <a href="CpphelperFunction.htm">helper functions</a> [18-20]).
+    Prefer writing short <a href="CppMemberFunction.htm">member functions</a> [3] (and <a href="CppHelperFunction.htm">helper functions</a> [18-20]).
+  </li>
+  <li>
+    Attempt to make your names so clear that comments are unnecessary [24]
   </li>
 </ul>
 <p>&nbsp;</p>
@@ -110,6 +113,10 @@
 <p>&nbsp;</p>
 <ul>
   <li>
+    Use function overloading and default arguments to create an intuitive, easy-to-use interface [24]
+  </li>
+
+  <li>
     Provide setters and getters for a <a href="CppMemberVariable.htm">member variable</a> only if the fundamental semantics of a class requires them [23]
   </li>
   <li>
@@ -163,6 +170,8 @@
   <li><!-- 21 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 18.5. Advice. page 548: '[8] Use nonmember functions for symmetric operators'</li>
   <li><!-- 22 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 18.5. Advice. page 548: '[9] Use member functions to express operators that require an lvalue as their left-hand operand'</li>
   <li><!-- 23 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 18.5. Advice. page 548: '[11] Provide "set() and get() functions" for a data member only if the fundamental semantics of a class requires them'</li>
+  <li><!-- 24 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 7: 'When you create a class, make your names as clear as possible. Your goal should be to make the client programmer’s interface conceptually simple. Attempt to make your names so clear that comments are unnecessary. To this end, use function overloading and default arguments to create an intuitive, easy-to-use interface.'</li>
+
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

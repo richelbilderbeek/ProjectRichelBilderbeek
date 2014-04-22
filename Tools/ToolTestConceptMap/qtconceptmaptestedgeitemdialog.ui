@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtConceptMapTestEdgeItemDialog</class>
+ <widget class="QDialog" name="QtConceptMapTestEdgeItemDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>864</width>
+    <height>597</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Test Edge</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>cmap::EdgeFactory::GetTests()[1]</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Edit via:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_edit">
+        <item>
+         <property name="text">
+          <string>m_edge</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>m_edge_item-&gt;GetEdge()</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="edit_name">
+        <property name="text">
+         <string>sg</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Rating complexity</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_complexity">
+        <item>
+         <property name="text">
+          <string>-1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Rating concreteness</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_concreteness">
+        <item>
+         <property name="text">
+          <string>-1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Rating specificity</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_specificity">
+        <item>
+         <property name="text">
+          <string>-1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Example[0] text</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="edit_example_text"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Example[0] competency</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_competency"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>Arrow at head</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_arrow_head">
+        <item>
+         <property name="text">
+          <string>No</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Yes</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Arrow at tail</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="box_arrow_tail">
+        <item>
+         <property name="text">
+          <string>No</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Yes</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>63</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="ribi::QtKeyboardFriendlyGraphicsView" name="view"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ribi::QtKeyboardFriendlyGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>qtkeyboardfriendlygraphicsview.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>box_edit</tabstop>
+  <tabstop>edit_name</tabstop>
+  <tabstop>box_complexity</tabstop>
+  <tabstop>box_concreteness</tabstop>
+  <tabstop>box_specificity</tabstop>
+  <tabstop>edit_example_text</tabstop>
+  <tabstop>box_competency</tabstop>
+  <tabstop>box_arrow_head</tabstop>
+  <tabstop>box_arrow_tail</tabstop>
+  <tabstop>view</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

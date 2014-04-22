@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RubiksClockDialWidget, class for displaying a RubiksClockDial
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::RubiksClockDialWidget::RubiksClockDialWidget(
+ribi::ruco::ClockDialWidget::ClockDialWidget(
   const double position,
   const int x,
   const int y,
@@ -46,50 +46,50 @@ ribi::RubiksClockDialWidget::RubiksClockDialWidget(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_dial(new RubiksClockDial(position,x,y,width,height,red,green,blue))
+  : m_dial(new ClockDial(position,x,y,width,height,red,green,blue))
 {
-  this->SetGeometry(Rect(x,y,width,height));
+  SetGeometry(x,y,width,height);
 }
 
-double ribi::RubiksClockDialWidget::GetDistance(const double dX, const double dY)
+double ribi::ruco::ClockDialWidget::GetDistance(const double dX, const double dY)
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
-const std::string ribi::RubiksClockDialWidget::GetVersion()
+std::string ribi::ruco::ClockDialWidget::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.2";
 }
 
-const std::vector<std::string> ribi::RubiksClockDialWidget::GetVersionHistory()
+std::vector<std::string> ribi::ruco::ClockDialWidget::GetVersionHistory() noexcept
 {
   return {
-    "2011-09-08: Version 1.0: initial version"
+    "2011-09-08: Version 1.0: initial version, called 'RubiksClockDialWidget'",
+    "2014-01-23: Version 1.1: renamed to 'ClockDialWidget'",
+    "2014-03-28: version 1.2: replaced Rect by Boost.Geometry its box class"
   };
 }
 
-bool ribi::RubiksClockDialWidget::IsClicked(const int x, const int y) const
+bool ribi::ruco::ClockDialWidget::IsClicked(const int x, const int y) const
 {
   const double widget_midx
-    = boost::numeric_cast<double>(GetGeometry().GetX())
-    + (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
+    = boost::numeric_cast<double>(GetLeft())
+    + (boost::numeric_cast<double>(GetWidth()) / 2.0);
   const double widget_midy
-    = boost::numeric_cast<double>(GetGeometry().GetY())
-    + (boost::numeric_cast<double>(this->GetGeometry().GetHeight()) / 2.0);
+    = boost::numeric_cast<double>(GetTop())
+    + (boost::numeric_cast<double>(GetHeight()) / 2.0);
   const double x_d = boost::numeric_cast<double>(x);
   const double y_d = boost::numeric_cast<double>(y);
   return GetDistance(x_d - widget_midx, y_d - widget_midy)
-    < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
+    < (boost::numeric_cast<double>(GetWidth()) / 2.0);
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDialWidget& widget)
+std::ostream& ribi::ruco::operator<<(std::ostream& os, const ribi::ruco::ClockDialWidget& widget)
 {
   os
     << "<RubiksClockDialWidget>"
     << *widget.m_dial
-    << widget.GetGeometry()
+    //<< widget.GetGeometry()
     << "</RubiksClockDialWidget>";
   return os;
 }
-
-

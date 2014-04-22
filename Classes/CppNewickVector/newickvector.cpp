@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 NewickVector, class to store a Newick as a std::vector<int>
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include <boost/numeric/conversion/cast.hpp>
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 
 #include "BigIntegerLibrary.hh"
@@ -147,7 +147,7 @@ double ribi::NewickVector::CalculateProbabilityInternal(
       typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
       const std::vector<NewickFrequencyPair> newick_freqs
         = Newick::GetSimplerNewicksFrequencyPairs(n.Peek());
-      BOOST_FOREACH(const NewickFrequencyPair& p,newick_freqs)
+      for(const NewickFrequencyPair& p: newick_freqs)
       {
         const int frequency = p.second;
         assert(frequency > 0);
@@ -163,9 +163,9 @@ double ribi::NewickVector::CalculateProbabilityInternal(
           coefficients.push_back( (f_d*(f_d-1.0)) / d);
         }
         #ifdef DEBUG_NEWICKVECTOR_CALCULATEPROBABILITYINTERNAL
-        TRACE(std::string("NewickVector ")
+        TRACE("NewickVector "
           + Newick::NewickToString(p.first)
-          + std::string(" has coefficient ")
+          + " has coefficient "
           + boost::lexical_cast<std::string>(coefficients.back()));
         #endif
       }
@@ -198,6 +198,8 @@ int ribi::NewickVector::FindPosAfter(const std::vector<int>& v,const int x, cons
   const int sz = v.size();
   for (int i=index; i!=sz; ++i)
   {
+    assert(i >= 0);
+    assert(i < sz);
     if (v[i]==x) return i;
   }
   return sz;
@@ -208,6 +210,11 @@ int ribi::NewickVector::FindPosBefore(const std::vector<int>& v,const int x, con
 
   for (int i=index; i!=-1; --i)
   {
+    #ifndef NDEBUG
+    const int sz = static_cast<int>(v.size());
+    assert(i >= 0);
+    assert(i < sz);
+    #endif
     if (v[i]==x) return i;
   }
   return -1;
@@ -229,12 +236,12 @@ const std::pair<ribi::NewickVector,ribi::NewickVector> ribi::NewickVector::GetRo
   return p;
 }
 
-const std::string ribi::NewickVector::GetVersion()
+std::string ribi::NewickVector::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::NewickVector::GetVersionHistory()
+std::vector<std::string> ribi::NewickVector::GetVersionHistory() noexcept
 {
   return {
     "2009-06-01: Version 1.0: Initial version",
@@ -329,7 +336,7 @@ const ribi::NewickVector ribi::NewickVector::LoseBrackets(const int x, const int
 
 bool ribi::NewickVector::NewickCompare(
   const std::vector<int>& lhs,
-  const std::vector<int>& rhs)
+  const std::vector<int>& rhs) noexcept
 {
   const int l_sz = lhs.size();
   const int r_sz = rhs.size();
@@ -351,7 +358,7 @@ bool ribi::NewickVector::NewickCompare(
   return false;
 }
 
-int ribi::NewickVector::Size() const
+int ribi::NewickVector::Size() const noexcept
 {
   return boost::numeric_cast<int>(m_v.size());
 }
@@ -427,10 +434,10 @@ const ribi::NewickVector ribi::NewickVector::TermIsOne(const int i) const
 }
 
 #ifndef NDEBUG
-void ribi::NewickVector::Test()
+void ribi::NewickVector::Test() noexcept
 {
   {
-    bool is_tested = false;
+    static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
@@ -445,7 +452,7 @@ void ribi::NewickVector::Test()
       assert(Newick::IsTrinaryNewick(n));
       const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
       #ifdef DEBUG_BO_2_3_4_BC
-      BOOST_FOREACH(const std::vector<int>& v, ns)
+      for(const std::vector<int>& v: ns)
       {
         TRACE(Newick::NewickToString(v));
       }
@@ -556,7 +563,7 @@ void ribi::NewickVector::Test()
       //#define DEBUG_BO_1_BO_1_1_BC_1
       #ifdef  DEBUG_BO_1_BO_1_1_BC_1
       TRACE(boost::lexical_cast<std::string>(ns.size()));
-      BOOST_FOREACH(const std::vector<int>& v, ns)
+      for(const std::vector<int>& v: ns)
       {
         TRACE(Newick::NewickToString(v));
       }
@@ -590,9 +597,9 @@ void ribi::NewickVector::Test()
   //Check that well-formed Newicks are confirmed valid
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
-      TRACE(std::string("I must be accepted: ") + s);
+      TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
@@ -647,7 +654,7 @@ void ribi::NewickVector::Test()
         const std::vector<std::vector<int> > simpler
           = Newick::GetSimplerNewicks(
             Newick::StringToNewick(s));
-        BOOST_FOREACH(const std::vector<int> simple,simpler)
+        for(const std::vector<int> simple: simpler)
         {
           assert(Newick::IsNewick(simple));
           Newick::CheckNewick(simple);
@@ -660,7 +667,7 @@ void ribi::NewickVector::Test()
         const std::vector<std::vector<int> > b
             = Newick::GetRootBranches(
               Newick::StringToNewick(s));
-        BOOST_FOREACH(const std::vector<int>& c,b)
+        for(const std::vector<int>& c: b)
         {
           assert(Newick::IsNewick(c));
         }
@@ -671,9 +678,9 @@ void ribi::NewickVector::Test()
   //Check if ill-formed Newicks are rejected
   {
     const std::vector<std::string> v = Newick::CreateInvalidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
-      TRACE(std::string("I must be rejected: ") + s);
+      TRACE("I must be rejected: " + s);
       assert(!Newick::IsNewick(s));
     }
   }
@@ -681,9 +688,9 @@ void ribi::NewickVector::Test()
   //Check that well-formed Newicks are confirmed valid
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
-      TRACE(std::string("I must be accepted: ") + s);
+      TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
@@ -739,7 +746,7 @@ void ribi::NewickVector::Test()
         const std::vector<std::vector<int> > simpler
           = Newick::GetSimplerBinaryNewicks(
             Newick::StringToNewick(s));
-        BOOST_FOREACH(const std::vector<int> simple,simpler)
+        for(const std::vector<int> simple: simpler)
         {
           assert(Newick::IsNewick(simple));
           Newick::CheckNewick(simple);
@@ -816,7 +823,7 @@ void ribi::NewickVector::Test()
   {
     const std::vector<boost::tuple<std::string,double,double> > v
       = Newick::GetKnownProbabilities();
-    BOOST_FOREACH(const auto& t, v)
+    for(const auto& t:  v)
     {
       const std::string newick_str = boost::get<0>(t);
       const double theta = boost::get<1>(t);
@@ -829,7 +836,7 @@ void ribi::NewickVector::Test()
 }
 #endif
 
-const std::string ribi::NewickVector::ToStr() const
+std::string ribi::NewickVector::ToStr() const
 {
   assert(Newick::IsNewick(m_v));
   return Newick::NewickToString(m_v);

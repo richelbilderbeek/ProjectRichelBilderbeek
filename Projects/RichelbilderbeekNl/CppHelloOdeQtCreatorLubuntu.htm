@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>HelloOdeQtCreatorLubuntu</title>
   <meta name="description" content="C++ HelloOdeQtCreatorLubuntu"/>
-  <meta name="keywords" content="C++ HelloOdeQtCreatorLubuntu code snippet"/>
+  <meta name="keywords" content="C++ HelloOdeQtCreatorLubuntu "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,20 +21,15 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloOdeQtCreatorLubuntu.htm">HelloOdeQtCreatorLubuntu</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppHelloOdeQtCreatorLubuntu-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -46,46 +41,46 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloOdeQtCreatorLubuntu.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppHelloOdeQtCreatorLubuntu/CppHelloOdeQtCreatorLubuntu.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppHelloOdeQtCreatorLubuntu.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= qt<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/opende-code/include<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/opende-code/ode/demo<br/>
+<table summary="./CppHelloOdeQtCreatorLubuntu/CppHelloOdeQtCreatorLubuntu.pro" border = "1"><tr><td><code>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/opende-code/include<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/opende-code/ode/demo<br/>
 <br/>
 #The Open Dynamics Engine (ODE)<br/>
-<a href="CppLIBS.htm">LIBS</a> += -lode<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -lode<br/>
 <br/>
 #The Open Dynamics Engine its drawstuff library<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/opende-code/drawstuff/src -ldrawstuff<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/opende-code/drawstuff/src -ldrawstuff<br/>
 <br/>
 #POSIX thread<br/>
-<a href="CppLIBS.htm">LIBS</a> += -lpthread<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -lpthread<br/>
 <br/>
 #Open Graphics Library (OpenGL)<br/>
-<a href="CppLIBS.htm">LIBS</a> += -lGL<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -lGL<br/>
 <br/>
 #The X11 display server<br/>
-<a href="CppLIBS.htm">LIBS</a> += -lX11<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -lX11<br/>
 <br/>
 #OpenGL Utilities (GLU)<br/>
-<a href="CppLIBS.htm">LIBS</a> += -lGLU<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -lGLU<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -93,10 +88,10 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppHelloOdeQtCreatorLubuntu/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./CppHelloOdeQtCreatorLubuntu/main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">/*</a>************************************************************************<br/>
  *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
  * Open Dynamics Engine, Copyright (C) 2001,2002 Russell L. Smith.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<br/>
@@ -188,8 +183,8 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i,n;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> only collide things with the ground<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> g1 <a href="CppOperatorAssign.htm">=</a> (o1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ground <a href="CppOperatorLogicalOr.htm">||</a> o1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ground_box);<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> g2 <a href="CppOperatorAssign.htm">=</a> (o2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ground <a href="CppOperatorLogicalOr.htm">||</a> o2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ground_box);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> g1 <a href="CppOperatorAssign.htm">=</a> (o1 <a href="CppOperatorEqual.htm">==</a> ground <a href="CppOperatorLogicalOr.htm">||</a> o1 <a href="CppOperatorEqual.htm">==</a> ground_box);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> g2 <a href="CppOperatorAssign.htm">=</a> (o2 <a href="CppOperatorEqual.htm">==</a> ground <a href="CppOperatorLogicalOr.htm">||</a> o2 <a href="CppOperatorEqual.htm">==</a> ground_box);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(g1 ^ g2)) <b><a href="CppReturn.htm">return</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> N <a href="CppOperatorAssign.htm">=</a> 10;<br/>
@@ -237,23 +232,23 @@ CONFIG -= qt<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (cmd) {<br/>
 &nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 'a': <b><a href="CppCase.htm">case</a></b> 'A':<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;speed <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> 0.3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;speed <a href="CppOperatorPlusAssign.htm">+=</a> 0.3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 'z': <b><a href="CppCase.htm">case</a></b> 'Z':<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;speed <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> 0.3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;speed <a href="CppOperatorMinusAssign.htm">-=</a> 0.3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ',':<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;steer <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;steer <a href="CppOperatorMinusAssign.htm">-=</a> 0.5;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> '.':<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;steer <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> 0.5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;steer <a href="CppOperatorPlusAssign.htm">+=</a> 0.5;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ' ':<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;speed <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;steer <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> '1': {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE *f <a href="CppOperatorAssign.htm">=</a> fopen ("state.dif","wt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCfile.htm">FILE</a> *f <a href="CppOperatorAssign.htm">=</a> fopen ("state.dif","wt");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (f) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dWorldExportDIF (world,f,"");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fclose (f);<br/>
@@ -265,10 +260,10 @@ CONFIG -= qt<br/>
 <br/>
 <a href="CppComment.htm">//</a> simulation loop<br/>
 <br/>
-<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> simLoop (<b><a href="CppInt.htm">int</a></b> pause)<br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> simLoop (<b><a href="CppInt.htm">int</a></b> <a href="ToolPause.htm">pause</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!pause) {<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="ToolPause.htm">pause</a>) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> motor<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamVel2,-speed);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamFMax2,0.1);<br/>
@@ -303,7 +298,7 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;dGeomBoxGetLengths (ground_box,ss);<br/>
 &nbsp;&nbsp;dsDrawBox (dGeomGetPosition(ground_box),dGeomGetRotation(ground_box),ss);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;printf ("%.10f <a href="CppOperatorModulus.htm">%</a>.10f <a href="CppOperatorModulus.htm">%</a>.10f <a href="CppOperatorModulus.htm">%</a>.10f\n",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointGetHingeAngle (joint[1]),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dJointGetHingeAngle (joint[2]),<br/>
@@ -361,7 +356,7 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;dBodySetPosition (body[3],-0.5*LENGTH,-WIDTH*0.5,STARTZ-HEIGHT*0.5);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> front wheel hinge<br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;joint[0] <a href="CppOperatorAssign.htm">=</a> dJointCreateHinge2 (world,0);<br/>
 &nbsp;&nbsp;dJointAttach (joint[0],body[0],body[1]);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> dReal *a <a href="CppOperatorAssign.htm">=</a> dBodyGetPosition (body[1]);<br/>
@@ -391,7 +386,7 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> set stops to <a href="CppMake.htm">make</a> sure wheels always stay in alignment<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[i],dParamLoStop,0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[i],dParamHiStop,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> the following alternative method is no good as the wheels may get out<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> the following alternative <a href="CppMemberFunction.htm">member function</a> is no good as the wheels may get out<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> of alignment:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; dJointSetHinge2Param (joint[i],dParamVel,0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; dJointSetHinge2Param (joint[i],dParamFMax,dInfinity);<br/>

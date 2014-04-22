@@ -1,20 +1,17 @@
-QT       += core
-QT       -= gui
+include(../../ConsoleApplication.pri)
 
-QMAKE_CXXFLAGS += -std=c++0x
+include(../../Libraries/Boost.pri)
 
-LIBS += \
-    -lboost_system \
-    -lboost_filesystem \
-    -lboost_regex
-INCLUDEPATH += ../../Classes/CppHtmlPage
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
-SOURCES += main.cpp \
-    ../../Classes/CppHtmlPage/htmlpage.cpp \
-    createglossarymaindialog.cpp
-HEADERS += \
-    ../../Classes/CppHtmlPage/htmlpage.h \
-    createglossarymaindialog.h
+include(../../Tools/ToolCreateGlossary/ToolCreateGlossaryConsole.pri)
+
+include(../../Classes/CppHtmlPage/CppHtmlPage.pri)
+
+
+SOURCES += main.cpp

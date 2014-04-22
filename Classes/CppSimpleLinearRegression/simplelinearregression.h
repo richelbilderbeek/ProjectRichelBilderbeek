@@ -34,16 +34,13 @@ struct SimpleLinearRegression
     const std::vector<Y>& ys) -> const std::pair<decltype(ys[0]/xs[0]),Y>;
 
   ///Obtain Anscombe's Quartet its x values, for index 1 to (and including) 4
-  static const std::vector<double> GetAnscombesQuartetX(const int index);
+  static std::vector<double> GetAnscombesQuartetX(const int index);
 
   ///Obtain Anscombe's Quartet its y values, for index 1 to (and including) 4
-  static const std::vector<double> GetAnscombesQuartetY(const int index);
+  static std::vector<double> GetAnscombesQuartetY(const int index);
 
-  ///Obtain the version of this class
-  static const std::string GetVersion();
-
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 private:
 
@@ -67,7 +64,7 @@ private:
     const std::vector<double>& v);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

@@ -19,16 +19,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WButtonGroup>
 #include <Wt/WGroupBox>
 #include <Wt/WLabel>
 #include <Wt/WPushButton>
 #include <Wt/WRadioButton>
-//---------------------------------------------------------------------------
+
 #include "all_groups.h"
 #include "all_parameters.h"
 #include "all_serverstates.h"
@@ -43,14 +43,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participantdialogstate.h"
 #include "participantdialogstatechooseaction.h"
 #include "wtserverpusher.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParticipantDialogStateChooseAction::ParticipantDialogStateChooseAction(
   ParticipantDialog * const dialog,Server * const server)
-  : ParticipantDialogState(dialog,server)
+  : ParticipantDialogState(dialog,server),
+    ui{}
 {
 
 }
-//---------------------------------------------------------------------------
+
 ///Do something random with the UI, used by DebugDialog
 void ribi::gtst::ParticipantDialogStateChooseAction::DoSomethingRandom()
 {
@@ -75,7 +76,7 @@ void ribi::gtst::ParticipantDialogStateChooseAction::DoSomethingRandom()
     default: break; //No problem
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateChooseAction::OnChooseActionClick()
 {
   const int action_index = ui.m_group->selectedButtonIndex();
@@ -109,7 +110,7 @@ void ribi::gtst::ParticipantDialogStateChooseAction::OnChooseActionClick()
   std::for_each(buttons.begin(),buttons.end(),
     [](Wt::WRadioButton * const r) { r->setEnabled(false); } );
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateChooseAction::RespondToTimedServerPush()
 {
   const int time_left = m_server->GetStates()->GetCurrentState()->GetTimeLeft();
@@ -178,7 +179,7 @@ void ribi::gtst::ParticipantDialogStateChooseAction::RespondToTimedServerPush()
   ///Follow the server its tempo
   RespondToParticipant();
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateChooseAction::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
@@ -227,4 +228,4 @@ void ribi::gtst::ParticipantDialogStateChooseAction::ShowPage(ParticipantDialog 
     this,
     &ribi::gtst::ParticipantDialogStateChooseAction::OnChooseActionClick);
 }
-//---------------------------------------------------------------------------
+

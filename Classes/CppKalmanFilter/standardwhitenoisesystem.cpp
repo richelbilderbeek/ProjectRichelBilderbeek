@@ -20,12 +20,12 @@ ribi::kalman::StandardWhiteNoiseSystem::StandardWhiteNoiseSystem(
   assert(m_parameters);
 }
 
-const std::string ribi::kalman::StandardWhiteNoiseSystem::GetVersion()
+std::string ribi::kalman::StandardWhiteNoiseSystem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystem::GetVersionHistory()
+std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystem::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version"
@@ -62,7 +62,7 @@ void ribi::kalman::StandardWhiteNoiseSystem::GoToNextState(const boost::numeric:
   SetNewCurrentState(new_state);
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::StandardWhiteNoiseSystem::Measure() const
+const boost::numeric::ublas::vector<double> ribi::kalman::StandardWhiteNoiseSystem::Measure() const noexcept
 {
   const auto sz = GetCurrentState().size();
   assert(GetCurrentState().size() == m_parameters->GetMeasurementNoise().size());

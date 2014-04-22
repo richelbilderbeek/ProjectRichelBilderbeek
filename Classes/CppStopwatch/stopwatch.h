@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Stopwatch, stopwatch class
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,22 +29,22 @@ namespace ribi {
 
 struct Stopwatch
 {
-  Stopwatch() : m_time_start(std::time(0)) {}
+  Stopwatch() noexcept : m_time_start(std::time(0)) {}
   const std::time_t m_time_start;
-  int elapsed() const
+  int elapsed() const noexcept
   {
     return std::difftime(std::time(0),m_time_start);
   }
-  static const std::string GetVersion()
+  static std::string GetVersion() noexcept
   {
     return "1.1";
   }
-  static const std::vector<std::string> GetVersionHistory()
+  static std::vector<std::string> GetVersionHistory() noexcept
   {
-    std::vector<std::string> v;
-    v.push_back("2010-10-08: version 1.0: initial version");
-    v.push_back("2011-05-30: version 1.1: added version history");
-    return v;
+    return {
+      "2010-10-08: version 1.0: initial version",
+      "2011-05-30: version 1.1: added version history"
+    };
   }
 };
 

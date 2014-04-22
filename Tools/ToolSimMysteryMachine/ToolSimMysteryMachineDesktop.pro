@@ -1,107 +1,40 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
+include(../../DesktopApplication.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppDial \
-    ../../Classes/CppDialWidget \
-    ../../Classes/CppLed \
-    ../../Classes/CppLedWidget \
-    ../../Classes/CppMysteryMachine \
-    ../../Classes/CppMysteryMachineWidget \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtDialWidget \
-    ../../Classes/CppQtLedWidget \
-    ../../Classes/CppQtMysteryMachineWidget \
-    ../../Classes/CppQtToggleButtonWidget \
-    ../../Classes/CppRectangle \
-    ../../Classes/CppToggleButton \
-    ../../Classes/CppToggleButtonWidget \
-    ../../Classes/CppTrace \
-    ../../Classes/CppWidget
+#Libs
+include(../../Libraries/Boost.pri)
+include(../../Libraries/Fparser.pri)
 
-SOURCES += qtmain.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppDial/dial.cpp \
-    ../../Classes/CppDialWidget/dialwidget.cpp \
-    ../../Classes/CppLed/led.cpp \
-    ../../Classes/CppLedWidget/ledwidget.cpp \
-    ../../Classes/CppMysteryMachine/mysterymachine.cpp \
-    ../../Classes/CppMysteryMachineWidget/mysterymachinewidget.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtDialWidget/qtdialwidget.cpp \
-    ../../Classes/CppQtLedDisplayWidget/qtleddisplaywidget.cpp \
-    ../../Classes/CppQtLedWidget/qtledwidget.cpp \
-    ../../Classes/CppQtMysteryMachineWidget/qtmysterymachinewidget.cpp \
-    ../../Classes/CppQtToggleButtonWidget/qttogglebuttonwidget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppToggleButton/togglebutton.cpp \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    qtsimmysterymachineinstructionsdialog.cpp \
-    qtsimmysterymachinemaindialog.cpp \
-    qtsimmysterymachinemenudialog.cpp \
-    qtsimmysterymachinerealmachinedialog.cpp \
-    simmysterymachinemenudialog.cpp
+#General, console
+include(../../Libraries/GeneralConsole.pri)
 
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppDial/dial.h \
-    ../../Classes/CppDialWidget/dialwidget.h \
-    ../../Classes/CppLed/led.h \
-    ../../Classes/CppLedWidget/ledwidget.h \
-    ../../Classes/CppMysteryMachine/mysterymachine.h \
-    ../../Classes/CppMysteryMachineWidget/mysterymachinewidget.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtDialWidget/qtdialwidget.h \
-    ../../Classes/CppQtLedDisplayWidget/qtleddisplaywidget.h \
-    ../../Classes/CppQtLedWidget/qtledwidget.h \
-    ../../Classes/CppQtMysteryMachineWidget/qtmysterymachinewidget.h \
-    ../../Classes/CppQtToggleButtonWidget/qttogglebuttonwidget.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppToggleButton/togglebutton.h \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.h \
-    ../../Classes/CppWidget/widget.h \
-    qtsimmysterymachineinstructionsdialog.h \
-    qtsimmysterymachinemaindialog.h \
-    qtsimmysterymachinemenudialog.h \
-    qtsimmysterymachinerealmachinedialog.h \
-    simmysterymachinemenudialog.h
+#General, desktop
+include(../../Libraries/GeneralDesktop.pri)
 
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtsimmysterymachineinstructionsdialog.ui \
-    qtsimmysterymachinemaindialog.ui \
-    qtsimmysterymachinemenudialog.ui \
-    qtsimmysterymachinerealmachinedialog.ui
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppCoordinat/CppCoordinat.pri)
+include(../../Classes/CppDial/CppDial.pri)
+include(../../Classes/CppDialWidget/CppDialWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
+include(../../Classes/CppLed/CppLed.pri)
+include(../../Classes/CppLedWidget/CppLedWidget.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppMysteryMachine/CppMysteryMachine.pri)
+include(../../Classes/CppMysteryMachineWidget/CppMysteryMachineWidget.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppToggleButton/CppToggleButton.pri)
+include(../../Classes/CppToggleButtonWidget/CppToggleButtonWidget.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
-RESOURCES += \
-    ToolSimMysteryMachine.qrc
+#Specific, desktop
+include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
+include(../../Classes/CppQtDialWidget/CppQtDialWidget.pri)
+include(../../Classes/CppQtLedWidget/CppQtLedWidget.pri)
+include(../../Classes/CppQtMysteryMachineWidget/CppQtMysteryMachineWidget.pri)
+include(../../Classes/CppQtToggleButtonWidget/CppQtToggleButtonWidget.pri)
+include(../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineDesktop.pri )
 
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
-CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-#
-#
-# Boost
-#
-#
-win32 {
-  INCLUDEPATH += ../../Libraries/boost_1_54_0
-}
+SOURCES += qtmain.cpp

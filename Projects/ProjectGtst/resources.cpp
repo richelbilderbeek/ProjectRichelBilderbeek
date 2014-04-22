@@ -18,20 +18,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <algorithm>
 #include <cassert>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
-//---------------------------------------------------------------------------
+#include <QFile>
+
 #include "resources.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 ///#include Qt files after Wt files
-#include <QFile>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
+
 ribi::gtst::Resources::Resources()
 {
   TRACE_FUNC();
@@ -83,7 +87,7 @@ ribi::gtst::Resources::Resources()
     }
   );
 }
-//---------------------------------------------------------------------------
+
 ///Create the CSS for this application
 const std::vector<std::string> ribi::gtst::Resources::CreateStylesheet() const
 {
@@ -161,7 +165,7 @@ const std::vector<std::string> ribi::gtst::Resources::CreateStylesheet() const
   v.push_back("}");
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///Save the stylesheet for this application to file
 void ribi::gtst::Resources::SaveStylesheet() const
 {
@@ -169,4 +173,4 @@ void ribi::gtst::Resources::SaveStylesheet() const
   std::ofstream f("wt.css");
   std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
 }
-//---------------------------------------------------------------------------
+

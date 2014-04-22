@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::ctime</title>
+  <meta name="description" content="C++ std::ctime"/>
+  <meta name="keywords" content="C++ std::ctime std ctime STL c time code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStdCtime.htm">std::ctime</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppStdCtime.htm">std::ctime</a> is an <a href="CppStl.htm">STL</a> <a href="CppFunction.htm">function</a> to <a href="CppConvert.htm">convert</a> <a href="CppTime_t.htm">std::time_t</a> to <a href="CppString.htm">std::string</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCtimeH.htm">ctime</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a time <b><a href="CppStruct.htm">struct</a></b><br/>
+&nbsp;&nbsp;<a href="CppTime_t.htm">std::time_t</a> t;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the time <b><a href="CppStruct.htm">struct</a></b> to the current time<br/>
+&nbsp;&nbsp;<a href="CppTime.htm">std::time</a>(&t);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Convert the time <b><a href="CppStruct.htm">struct</a></b> to <a href="CppString.htm">std::string</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCtime.htm">std::ctime</a>(&t);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the time <a href="CppString.htm">std::string</a> on screen<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+Mon Aug  2 12:37:32 2010
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

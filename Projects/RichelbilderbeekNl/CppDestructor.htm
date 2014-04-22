@@ -27,21 +27,15 @@ href="CppClass.htm">class</a> goes out of <a href="CppScope.htm">scope</a>. The
 href="CppClass.htm">class</a> is created is called the <a
 href="CppConstructor.htm">constructor</a>.</p>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
-{<br/>
-&nbsp;&nbsp;~MyClass() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppDestructor.htm">Destructor</a>\n"; }<br/>
-};<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;MyClass m;<br/>
-} <a href="CppComment.htm">//</a>MyClass <a href="CppDestructor.htm">destructor</a> called at end of <a href="CppMain.htm">main</a><br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppExample.htm">Examples</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppDestructorExample1.htm">destructor example 1: basics</a></h2>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -77,6 +71,9 @@ href="CppConstructor.htm">constructor</a>.</p>
     If a <a href="CppClass.htm">class</a> has a <a href="CppVirtual.htm">virtual</a> <a href="CppMemberFunction.htm">member functions</a>, 
     it needs a <a href="CppVirtual.htm">virtual</a> <a href="CppDestructor.htm">destructor</a> [7,8]
   </li>
+  <li>
+    Generated <a href="CppDestructor.htm">destructors</a> are implicitly <a href="CppNoexcept.htm">noexcept</a> [10]
+  </li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -96,6 +93,7 @@ href="CppConstructor.htm">constructor</a>.</p>
   <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[4] If a class has a virtual function, it needs a virtual destructor'</li>
   <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 20.7. Advice. page 611: '[8] A class with a virtual function should have a virtual destructor'</li>
   <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 22.7. Advice. page 663: '[7] Don't call virtual functions during construction and destruction'</li>
+  <li><!-- 10 --><a href="http://www.stroustrup.com/C++11FAQ.html#noexcept">Bjarne Stroustrup's C++11 FAQ</a>: 'A destructor shouldn't throw; a generated destructor is implicitly noexcept (independently of what code is in its body) if all of the members of its class have noexcept destructors.'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

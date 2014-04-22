@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QmakeWatcher, tool to watch qmake's .pro to Makefile conversion
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,32 +24,38 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtQmakeWatcherMainDialog;
 }
 
-class QtQmakeWatcherMainDialog : public QDialog
+namespace ribi {
+
+class QtQmakeWatcherMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtQmakeWatcherMainDialog(QWidget *parent = 0);
-  ~QtQmakeWatcherMainDialog();
-
-protected:
-  
+  QtQmakeWatcherMainDialog(const QtQmakeWatcherMainDialog&) = delete;
+  QtQmakeWatcherMainDialog& operator=(const QtQmakeWatcherMainDialog&) = delete;
+  ~QtQmakeWatcherMainDialog() noexcept;
 
 private:
   Ui::QtQmakeWatcherMainDialog *ui;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
-  void OnQmake();
-
-  //From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& fileName);
-
+  void OnQmake() noexcept;
 };
+
+} //~namespace ribi
 
 #endif // QTQMAKEWATCHERMAINDIALOG_H

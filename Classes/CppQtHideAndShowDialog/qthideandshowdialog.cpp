@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtHideAndShowDialog, Qt dialog to display children modally while hidden
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,10 +25,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <QKeyEvent>
 
-//#include "trace.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent)
+ribi::QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent) noexcept
   : QDialog(parent),
     m_show_child { false }
 {
@@ -47,25 +47,31 @@ void ribi::QtHideAndShowDialog::closeEvent(QCloseEvent*)
   //QDialog::closeEvent(event); //Not needed
 }
 
-const std::string ribi::QtHideAndShowDialog::GetVersion()
+std::string ribi::QtHideAndShowDialog::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
-const std::vector<std::string> ribi::QtHideAndShowDialog::GetVersionHistory()
+std::vector<std::string> ribi::QtHideAndShowDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v {
     "2012-11-13: version 1.0: initial version",
     "2012-11-18: version 1.1: added ShowModal member function",
     "2012-11-18: version 1.2: added ",
     "2012-12-31: version 1.3: added keyPressEvent to close on escape"
+    "2013-09-16: version 1.4: noexcept"
   };
   return v;
 }
 
 void ribi::QtHideAndShowDialog::keyPressEvent(QKeyEvent* event)
 {
-  if (event->key() == Qt::Key_Escape) { close(); return; }
+  if (event->key() == Qt::Key_Escape)
+  {
+    TRACE_FUNC();
+    close();
+    return;
+  }
   QDialog::keyPressEvent(event);
 }
 
@@ -73,6 +79,7 @@ void ribi::QtHideAndShowDialog::ShowChild(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->hide();
+
   QObject::connect(dialog,SIGNAL(close_me()),this,SLOT(close_child()));
   m_show_child = true;
   while (m_show_child)
@@ -86,7 +93,7 @@ void ribi::QtHideAndShowDialog::ShowModal(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->setEnabled(false);
-  QObject::connect(dialog,SIGNAL(close_me()),this,SLOT(close_child()));
+  QObject::connect(dialog,SIGNAL(close_me),this,SLOT(close_child));
   m_show_child = true;
   while (m_show_child)
   {

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestMultipleChoiceQuestion, tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes
-Copyright (C) 2013 Richel Bilderbeek
+TestMultipleChoiceQuestion, tests multiple choice question classes
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,28 +18,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestMultipleChoiceQuestion.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testmultiplechoicequestionmaindialog.h"
 
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
-TestMultipleChoiceQuestionMainDialog::TestMultipleChoiceQuestionMainDialog()
+ribi::TestMultipleChoiceQuestionMainDialog::TestMultipleChoiceQuestionMainDialog()
   : m_questions(CreateQuestions())
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
-std::vector<boost::shared_ptr<QuestionDialog> > TestMultipleChoiceQuestionMainDialog::CreateQuestions()
+std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestMultipleChoiceQuestionMainDialog::CreateQuestions()
 {
   std::vector<boost::shared_ptr<QuestionDialog> > v;
 
@@ -77,7 +74,15 @@ std::vector<boost::shared_ptr<QuestionDialog> > TestMultipleChoiceQuestionMainDi
   return v;
 }
 
-
-
-
-
+#ifndef NDEBUG
+void ribi::TestMultipleChoiceQuestionMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestMultipleChoiceQuestionMainDialog::Test");
+  TRACE("Finished ribi::TestMultipleChoiceQuestionMainDialog::Test successfully");
+}
+#endif

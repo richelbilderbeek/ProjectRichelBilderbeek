@@ -24,25 +24,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <sstream>
 #include <string>
-//---------------------------------------------------------------------------
+
 // 
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "chooseactionoption.h"
 #include "parameterschooseaction.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersChooseAction::ParametersChooseAction()
-  : m_duration(5),
+  : m_duration{5},
+    m_options{},
     m_wait(true)
 {
 }
-//---------------------------------------------------------------------------
+
 int ribi::gtst::ParametersChooseAction::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersChooseAction::Parse(const std::string& s)
 {
@@ -130,7 +131,7 @@ void ribi::gtst::ParametersChooseAction::Parse(const std::string& s)
     return;
   }
 }
-//---------------------------------------------------------------------------
+
 ///SeperateString splits a std::string
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
 const std::vector<std::string> ribi::gtst::ParametersChooseAction::SeperateString(
@@ -148,13 +149,13 @@ const std::vector<std::string> ribi::gtst::ParametersChooseAction::SeperateStrin
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersChooseAction::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersChooseAction& parameters)
 {
   os
@@ -178,5 +179,3 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersChooseActi
     << "</parameterschooseaction>";
   return os;
 }
-//---------------------------------------------------------------------------
-

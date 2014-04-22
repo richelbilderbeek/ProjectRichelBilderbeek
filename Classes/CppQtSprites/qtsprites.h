@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtSprites, class to create images by hand
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,8 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTSPRITES_H
 #define QTSPRITES_H
 
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QPixmap>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

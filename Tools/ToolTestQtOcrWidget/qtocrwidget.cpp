@@ -1,8 +1,11 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtocrwidget.h"
 
 #include <QFile>
 
 #include "ocr.h"
+#pragma GCC diagnostic pop
 
 QtOcrWidget::QtOcrWidget(
   const std::string& datafile,

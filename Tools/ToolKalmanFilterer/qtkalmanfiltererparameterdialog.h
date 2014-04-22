@@ -5,7 +5,7 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidgetItem>
 #pragma GCC diagnostic pop
 
@@ -17,7 +17,7 @@ namespace ribi {
 namespace kalman {
 
 ///Dialog for a parameter, stores a QtKalmanFiltererParameterDialog::ValueType
-class QtKalmanFiltererParameterDialog : public QDialog
+class QtKalmanFiltererParameterDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   
@@ -31,10 +31,14 @@ public:
     QAbstractTableModel * const model,
     QWidget *parent = 0);
 
-  ~QtKalmanFiltererParameterDialog();
+  ~QtKalmanFiltererParameterDialog() noexcept;
 
   ///Convert the table and its content to HTML
+<<<<<<< HEAD
   const std::string ToHtml() const;
+=======
+  std::string ToHtml() const;
+>>>>>>> develop
 
 signals:
   ///Emitted when table changes from/to a valid to/from an invalid state

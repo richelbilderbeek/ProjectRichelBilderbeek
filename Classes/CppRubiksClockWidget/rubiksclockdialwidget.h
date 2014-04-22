@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RubiksClockDialWidget, class for displaying a RubiksClockDial
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,21 +26,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/signals2.hpp>
+#include "rubiksclockfwd.h"
+#include "widget.h"
 #pragma GCC diagnostic pop
 
-#include "widget.h"
-
 namespace ribi {
-
-struct RubiksClockDial;
+namespace ruco {
 
 ///RubiksClockDialWidget is a class to display a RubiksClockDial
-struct RubiksClockDialWidget : public Widget
+struct ClockDialWidget : public ::ribi::Widget
 {
-  explicit RubiksClockDialWidget(
+  explicit ClockDialWidget(
     const double position,
     const int x,
     const int y,
@@ -50,36 +50,31 @@ struct RubiksClockDialWidget : public Widget
     const unsigned char green,
     const unsigned char blue);
 
-  ///Obtain a read-and-write pointert to the RubiksClockDial
-  RubiksClockDial * GetRubiksClockDial() { return m_dial.get(); }
+        ClockDial * GetRubiksClockDial()       noexcept { return m_dial.get(); }
+  const ClockDial * GetRubiksClockDial() const noexcept { return m_dial.get(); }
 
-  ///Obtain a read-only pointert to the RubiksClockDial
-  const RubiksClockDial * GetRubiksClockDial() const { return m_dial.get(); }
-
-  ///Obtain this class its version
-  static const std::string GetVersion();
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is the dial clicked?
   bool IsClicked(const int x, const int y) const;
 
   private:
   //RubiksClockDialWidget can only be deleted by Boost smart pointers
-  virtual ~RubiksClockDialWidget() {}
-  friend void boost::checked_delete<>(RubiksClockDialWidget*);
+  virtual ~ClockDialWidget() noexcept {}
+  friend void boost::checked_delete<>(ClockDialWidget*);
 
-  boost::scoped_ptr<RubiksClockDial> m_dial;
+  boost::scoped_ptr<ClockDial> m_dial;
 
   static double GetDistance(const double dX, const double dY);
 
 
-  friend std::ostream& operator<<(std::ostream& os, const RubiksClockDialWidget& widget);
+  friend std::ostream& operator<<(std::ostream& os, const ClockDialWidget& widget);
 };
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockDialWidget& widget);
+std::ostream& operator<<(std::ostream& os, const ClockDialWidget& widget);
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // RUBIKSCLOCKDIALWIDGET_H

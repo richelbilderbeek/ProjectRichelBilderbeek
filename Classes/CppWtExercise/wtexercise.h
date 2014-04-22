@@ -70,18 +70,18 @@ struct WtExercise : public Wt::WContainerWidget
   ///The number of correctly answered questions
   int m_n_correct;
 
-  ///The time the user has to wait when he/she answered correctly, in milliseconds
-  int m_waiting_time_correct;
-
-  ///The time the user has to wait when he/she answered incorrectly, in milliseconds
-  int m_waiting_time_incorrect;
-
   struct Ui
   {
     Ui();
     Wt::WGroupBox * const m_box;
     Wt::WLabel * const m_label_score;
-  } ui;
+  } m_ui;
+
+  ///The time the user has to wait when he/she answered correctly, in milliseconds
+  int m_waiting_time_correct;
+
+  ///The time the user has to wait when he/she answered incorrectly, in milliseconds
+  int m_waiting_time_incorrect;
 
   ///Displays m_dialog its current question
   void DisplayCurrentQuestion();

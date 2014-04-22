@@ -18,13 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
-#include "qttoolsurfaceplottermenudialog.h"
+#include "QtSurfacePlottermenudialog.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QtToolSurfacePlotterMenuDialog w;
+    ribi::QtSurfacePlotterMenuDialog w;
     w.show();
     
     return a.exec();

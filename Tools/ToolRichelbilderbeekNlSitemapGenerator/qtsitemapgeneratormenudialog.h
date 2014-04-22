@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelbilderbeekNlSitemapGenerator, generates the richelbilderbeek.nl sitemap
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,9 @@ class QtSitemapGeneratorMenuDialog : public QtHideAndShowDialog
     
 public:
   explicit QtSitemapGeneratorMenuDialog(QWidget *parent = 0);
-  ~QtSitemapGeneratorMenuDialog();
+  QtSitemapGeneratorMenuDialog(const QtSitemapGeneratorMenuDialog&) = delete;
+  QtSitemapGeneratorMenuDialog& operator=(const QtSitemapGeneratorMenuDialog&) = delete;
+  ~QtSitemapGeneratorMenuDialog() noexcept;
     
 protected:
   void keyPressEvent(QKeyEvent * event);
@@ -49,6 +51,10 @@ private slots:
 
 private:
   Ui::QtSitemapGeneratorMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

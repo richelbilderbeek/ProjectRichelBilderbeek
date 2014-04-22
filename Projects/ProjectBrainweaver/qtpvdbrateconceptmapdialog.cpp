@@ -1,8 +1,28 @@
-#include "qtpvdbrateconceptmapdialog.h"
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qtpvdbrateconceptmapdialog.h"
 
 #include <cassert>
 
@@ -14,17 +34,18 @@
 #include <QFileDialog>
 #include <QKeyEvent>
 
-#include "pvdbconceptmapfactory.h"
-#include "pvdbconceptmap.h"
+#include "conceptmapfactory.h"
+#include "conceptmap.h"
 #include "pvdbfilefactory.h"
 #include "qtpvdbfiledialog.h"
 #include "qtscopeddisable.h"
 #include "pvdbfile.h"
-#include "qtpvdbconceptmapratewidget.h"
+#include "qtrateconceptmap.h"
 #include "trace.h"
 #include "qtpvdbratingdialog.h"
-#include "qtpvdbrateconceptdialog.h"
+#include "qtconceptmaprateconceptdialognewname.h"
 #include "ui_qtpvdbrateconceptmapdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   boost::shared_ptr<pvdb::File> file,
@@ -32,14 +53,14 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbRateConceptMapDialog),
   m_file(file),
-  m_widget(new QtPvdbConceptMapRateWidget(file->GetConceptMap()))
+  m_widget(new cmap::QtRateConceptMap(file->GetConceptMap()))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   assert(file);
   #endif
-  //boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = m_file->GetConceptMap();
+  //boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = m_file->GetConceptMap();
   //assert(concept_map);
 
   {
@@ -50,7 +71,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   }
 
   {
-    const std::string s = std::string("Naam student: ") + m_file->GetStudentName();
+    const std::string s = "Naam student: " + m_file->GetStudentName();
     ui->label_name->setText(s.c_str());
   }
 
@@ -67,12 +88,12 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
 
 }
 
-ribi::pvdb::QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog()
+ribi::pvdb::QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog() noexcept
 {
   delete ui;
 }
 
-ribi::pvdb::QtPvdbConceptMapRateWidget * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
+ribi::cmap::QtRateConceptMap * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
 {
   assert(m_widget);
   return m_widget;
@@ -82,6 +103,20 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   if ((e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_S) { Save(); return; }
+  if ( (e->modifiers() & Qt::ControlModifier)
+    && (e->modifiers() & Qt::ShiftModifier)
+    && e->key() == Qt::Key_T)
+  {
+    //Translate
+    this->setWindowTitle("Evaluate concept map");
+    ui->button_next->setText("Generate parameters");
+    ui->button_save->setText("Save assessment");
+    ui->label_keys->setText("F1: assess concept, F2: classify examples");
+    ui->label_name->setText("Name");
+    ui->label_todo->setText("Click on a concept to assess it");
+    return;
+  }
+
   QDialog::keyPressEvent(e);
 }
 
@@ -96,7 +131,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::on_button_next_clicked()
   }
 }
 
-void ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const boost::shared_ptr<ribi::pvdb::ConceptMap> sub_concept_map)
+void ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map)
 {
   assert(sub_concept_map);
   #ifdef HIDE_PARENT_IDEA_5675869837643987593795
@@ -109,24 +144,19 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const bo
   this->show();
   this->m_widget->setEnabled(true);
   #else
-  QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
+  cmap::QtRateConceptDialogNewName d(sub_concept_map); //Item may be changed
   d.exec();
   #endif
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbRateConceptMapDialog::Test()
+void ribi::pvdb::QtPvdbRateConceptMapDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("ribi::pvdb::QtPvdbRateConceptMapDialog::Test started");
   {
     const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::FileFactory::GetTests();
@@ -148,7 +178,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Test()
           || (!file->GetConceptMap() && !d.GetWidget()->GetConceptMap()));
       assert(
            !file->GetConceptMap()
-        || ribi::pvdb::ConceptMap::HasSameContent(
+        || ribi::cmap::ConceptMap::HasSameContent(
              *file->GetConceptMap(),
              *d.GetWidget()->GetConceptMap()
            )
@@ -156,11 +186,6 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Test()
     }
   }
   TRACE("ribi::pvdb::QtPvdbRateConceptMapDialog::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 
@@ -183,7 +208,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Save()
   const std::string filename
     =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
       || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
-     ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
+     ? filename_raw + "." + pvdb::File::GetFilenameExtension()
      : filename_raw);
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
@@ -200,7 +225,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Save(const std::string& filename)
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()
     && "File must have correct file extension name");
   assert(m_widget->GetConceptMap() == m_file->GetConceptMap());
-  //const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = GetWidget()->GetConceptMap();
+  //const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = GetWidget()->GetConceptMap();
   //assert(concept_map);
   //m_file->SetConceptMap(concept_map);
   //assert(IsEqual(*m_file->GetConceptMap(),*GetWidget()->GetConceptMap()));

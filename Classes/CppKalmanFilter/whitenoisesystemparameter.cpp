@@ -7,7 +7,7 @@
 #include <boost/numeric/conversion/cast.hpp>
 #pragma GCC diagnostic pop
 
-const std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::WhiteNoiseSystemParameter::GetAll()
+std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::WhiteNoiseSystemParameter::GetAll() noexcept
 {
   const std::vector<WhiteNoiseSystemParameterType> v {
     WhiteNoiseSystemParameterType::control,
@@ -23,7 +23,7 @@ const std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::Whi
   return v;
 }
 
-bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type)
+bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type) noexcept
 {
   switch (type)
   {
@@ -41,27 +41,27 @@ bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemPar
   throw std::logic_error(__func__);
 }
 
-bool ribi::kalman::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type)
+bool ribi::kalman::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type) noexcept
 {
   return !ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(type);
 }
 
-const std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type) noexcept
 {
   switch (type)
   {
     case WhiteNoiseSystemParameterType::control:
-      return std::string("Matrix for converting input to state change");
+      return "Matrix for converting input to state change";
     case WhiteNoiseSystemParameterType::initial_state_real:
-      return std::string("Vector with the real initial state");
+      return "Vector with the real initial state";
     case WhiteNoiseSystemParameterType::measurement_frequency:
-      return std::string("Vector containing after which number of timesteps a measurement is taken");
+      return "Vector containing after which number of timesteps a measurement is taken";
     case WhiteNoiseSystemParameterType::real_measurement_noise:
-      return std::string("Vector with the real standard deviations of the measurement noise per state");
+      return "Vector with the real standard deviations of the measurement noise per state";
     case WhiteNoiseSystemParameterType::real_process_noise:
-      return std::string("Vector with the real standard deviations of the process noise per state");
+      return "Vector with the real standard deviations of the process noise per state";
     case WhiteNoiseSystemParameterType::state_transition:
-      return std::string("Matrix that contains the internal physics of the system; the effect of current state on the next state");
+      return "Matrix that contains the internal physics of the system; the effect of current state on the next state";
     case WhiteNoiseSystemParameterType::n_parameters:
       assert(!"Unimplemented type of WhiteNoiseSystemParameterType");
       throw std::logic_error(__func__);
@@ -70,22 +70,22 @@ const std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const W
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type) noexcept
 {
   switch (type)
   {
     case WhiteNoiseSystemParameterType::control:
-      return std::string("Control");
+      return "Control";
     case WhiteNoiseSystemParameterType::initial_state_real:
-      return std::string("Real initial state");
+      return "Real initial state";
     case WhiteNoiseSystemParameterType::measurement_frequency:
-      return std::string("Measurement frequencies");
+      return "Measurement frequencies";
     case WhiteNoiseSystemParameterType::real_measurement_noise:
-      return std::string("Real measurement noise");
+      return "Real measurement noise";
     case WhiteNoiseSystemParameterType::real_process_noise:
-      return std::string("Real process noise");
+      return "Real process noise";
     case WhiteNoiseSystemParameterType::state_transition:
-      return std::string("State transition");
+      return "State transition";
     case WhiteNoiseSystemParameterType::n_parameters:
       assert(!"Unimplemented type of WhiteNoiseSystemParameterType");
       throw std::logic_error(__func__);
@@ -94,22 +94,22 @@ const std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoi
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type) noexcept
 {
   switch (type)
   {
     case WhiteNoiseSystemParameterType::control:
-      return std::string("B");
+      return "B";
     case WhiteNoiseSystemParameterType::initial_state_real:
-      return std::string("x");
+      return "x";
     case WhiteNoiseSystemParameterType::measurement_frequency:
-      return std::string("f");
+      return "f";
     case WhiteNoiseSystemParameterType::real_measurement_noise:
-      return std::string("R"); //Shouldn't be 'r', as it is a vector?
+      return "R"; //Shouldn't be 'r', as it is a vector?
     case WhiteNoiseSystemParameterType::real_process_noise:
-      return std::string("Q"); //Shouldn't be 'q', as it is a vector?
+      return "Q"; //Shouldn't be 'q', as it is a vector?
     case WhiteNoiseSystemParameterType::state_transition:
-      return std::string("A");
+      return "A";
     case WhiteNoiseSystemParameterType::n_parameters:
       assert(!"Unimplemented type of WhiteNoiseSystemParameterType");
       throw std::logic_error(__func__);

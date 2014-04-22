@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtExercise, Qt GUI of Exercise
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 struct QGroupBox;
 struct QLabel;
@@ -36,10 +36,11 @@ namespace ribi {
 struct Exercise;
 
 ///A QtExercise is the Qt dialog of Exercise
-struct QtExercise : public QDialog
+struct QtExercise : public QtHideAndShowDialog
 {
   ///Construct a QtExercise without questions
   QtExercise();
+  ~QtExercise() noexcept {}
 
   ///Obtain the user its score: its number of correctly answered
   ///questions and the total number of questions answered
@@ -49,12 +50,14 @@ struct QtExercise : public QDialog
   const Exercise * GetExercise() const;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Set the questions
+  ///Set the questions, read from a file
+  ///Throws std::logic_error if file does not exist
+  ///Throws std::runtime_error if file does not contain a single question
   void SetQuestions(const std::string& filename);
 
   ///Set the time the user has to wait when he/she answered correctly, in milliseconds
@@ -73,18 +76,18 @@ struct QtExercise : public QDialog
   ///The number of correctly answered questions
   int m_n_correct;
 
-  ///The time the user has to wait when he/she answered correctly, in milliseconds
-  int m_waiting_time_correct;
-
-  ///The time the user has to wait when he/she answered incorrectly, in milliseconds
-  int m_waiting_time_incorrect;
-
   struct MyUi
   {
     MyUi();
     QGroupBox * const m_box;
     QLabel * const m_label_score;
   } m_ui;
+
+  ///The time the user has to wait when he/she answered correctly, in milliseconds
+  int m_waiting_time_correct;
+
+  ///The time the user has to wait when he/she answered incorrectly, in milliseconds
+  int m_waiting_time_incorrect;
 
   ///Displays m_dialog its current question
   void DisplayCurrentQuestion();

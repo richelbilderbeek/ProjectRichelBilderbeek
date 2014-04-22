@@ -6,7 +6,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 #include "standardkalmanfiltercalculationelements.h"
 #include "qtkalmanfiltercalculationdialog.h"
@@ -28,7 +28,7 @@ public:
   QtStandardKalmanFilterCalculationDialog operator=(const QtStandardKalmanFilterCalculationDialog&) = delete;
 
   explicit QtStandardKalmanFilterCalculationDialog(QWidget *parent = 0);
-  ~QtStandardKalmanFilterCalculationDialog();
+  ~QtStandardKalmanFilterCalculationDialog() noexcept;
 
   ///Obtain the Kalman filter type as an enum
   KalmanFilterType GetType() const { return KalmanFilterType::standard; }

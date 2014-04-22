@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,57 +24,64 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <boost/logic/tribool.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///RegexTesterMainDialog is a Strategy Design Pattern
 struct RegexTesterMainDialog
 {
-  RegexTesterMainDialog() {}
-
-  virtual ~RegexTesterMainDialog() {}
+  RegexTesterMainDialog() noexcept {}
+  RegexTesterMainDialog(const RegexTesterMainDialog&) = delete;
+  RegexTesterMainDialog& operator=(const RegexTesterMainDialog&) = delete;
+  virtual ~RegexTesterMainDialog() noexcept {}
 
   ///Clone this class
-  virtual const boost::shared_ptr<RegexTesterMainDialog> Clone() const = 0;
+  virtual boost::shared_ptr<RegexTesterMainDialog> Clone() const noexcept = 0;
 
   ///Get an example format used to replace regex matches
-  virtual const std::string GetExampleFormat() const = 0;
+  virtual std::string GetExampleFormat() const noexcept = 0;
 
   ///Get an example line to apply a regex on
-  virtual const std::string GetExampleLine() const
+  virtual std::string GetExampleLine() const noexcept
   {
     return "Both '1234 AB' and '9999 ZZ' are valid Dutch zip codes";
   }
 
   ///Get an example regex
-  virtual const std::string GetExampleRegex() const = 0;
+  virtual std::string GetExampleRegex() const noexcept = 0;
 
   ///Is the regex valid?
-  virtual bool GetRegexValid(const std::string& regex_str) const = 0;
+  virtual bool GetRegexValid(const std::string& regex_str) const noexcept = 0;
 
   ///Does the regex match the whole line?
-  virtual bool GetRegexMatchLine(const std::string& line, const std::string& regex_str) const = 0;
+  virtual bool GetRegexMatchLine(const std::string& line, const std::string& regex_str) const noexcept = 0;
 
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  virtual const std::vector<std::string> GetRegexMatches(
+  virtual std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const std::string& r) const = 0;
 
   ///Replace all regexes in a std::string following a regex and a format
-  virtual const std::string GetRegexReplace(
+  virtual std::string GetRegexReplace(
     const std::string& str,
     const std::string& regex_str,
     const std::string& format_str) const = 0;
 
   ///Obtain a description of the used implementation
-  virtual const std::string GetUsedImplementation() const = 0;
+  virtual std::string GetUsedImplementation() const noexcept = 0;
 
-  static const std::vector<std::string> GetTestRegexes();
-  static const std::vector<std::string> GetTestStrings();
+  static std::vector<std::string> GetTestRegexes() noexcept;
+  static std::vector<std::string> GetTestStrings() noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

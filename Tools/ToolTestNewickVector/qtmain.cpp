@@ -32,24 +32,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 /// \version 2.0
 /// \date    2011-02-21
 ///
-//---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <iomanip>
 #include <QApplication>
 #include "qttestnewickvectordialog.h"
 #include "newick.h"
 #include "newickvector.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 int main(int argc, char *argv[])
 {
   if (argc == 1)
   {
     QApplication a(argc, argv);
-    QtTestNewickVectorDialog w;
+    ribi::QtTestNewickVectorDialog w;
     w.show();
     return a.exec();
   }
@@ -67,7 +65,7 @@ int main(int argc, char *argv[])
     return 1;
   }
   const std::string newick = argv[1];
-  if (!Newick::IsNewick(newick))
+  if (!ribi::Newick::IsNewick(newick))
   {
     std::cout
       << "Invalid Newick format. Use for example:\n"
@@ -87,7 +85,6 @@ int main(int argc, char *argv[])
 
   }
   const double theta = boost::lexical_cast<double>(argv[2]);
-  const double p = NewickVector::CalculateProbability(newick,theta);
+  const double p = ribi::NewickVector::CalculateProbability(newick,theta);
   std::cout << std::setprecision(99) << p << '\n';
 }
-//---------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Maziak, a simple maze game
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,19 +18,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
 //---------------------------------------------------------------------------
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 
 #include "qtmaziakinstructionsdialog.h"
 #include "ui_qtmaziakinstructionsdialog.h"
 
+#pragma GCC diagnostic pop
+
 ribi::QtMaziakInstructionsDialog::QtMaziakInstructionsDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtMaziakInstructionsDialog)
 {
     ui->setupUi(this);
 }
 
-ribi::QtMaziakInstructionsDialog::~QtMaziakInstructionsDialog()
+ribi::QtMaziakInstructionsDialog::~QtMaziakInstructionsDialog() noexcept
 {
     delete ui;
 }

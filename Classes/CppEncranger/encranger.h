@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Encranger, encryption and de-encryption class
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,42 +29,29 @@ namespace ribi {
 //Encranger stands for 'ENCryption by RAndom Number GEneratoR'
 struct Encranger
 {
-  //From http://www.richelbilderbeek.nl/CppIncrease.htm
-  struct Increase : public std::unary_function<void,int>
-  {
-    explicit Increase(const int init_x = 0) : m_x(init_x) {}
-    void operator()(int& x)
-    {
-      x = m_x;
-      ++m_x;
-    }
-
-    private:
-    int m_x;
-  };
-
   Encranger(const int key);
-  const std::string Encrypt(std::string s) const;
-  const std::string Deencrypt(std::string s) const;
+  std::string Encrypt(std::string s) const noexcept;
+  std::string Deencrypt(std::string s) const noexcept;
 
-  ///Obtain this class its version
-  static const std::string GetVersion();
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
 
   const std::vector<char> characters;
   const std::vector<int>  table;
 
-  char Encrypt(const char c, const int d) const;
-  char Deencrypt(const char c, const int d) const;
-  int GetIndex(const char c) const;
-
   const std::vector<int> CreateTable(const int key, const unsigned int sz) const;
-  const std::vector<char> CreateCharacters() const;
+  static const std::vector<int> CreateTestKeys() noexcept;
+  static const std::vector<char> CreateCharacters() noexcept;
 
+  char Encrypt(const char c, const int d) const noexcept;
+  char Deencrypt(const char c, const int d) const noexcept;
+  int GetIndex(const char c) const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

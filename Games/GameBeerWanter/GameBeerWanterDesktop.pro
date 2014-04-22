@@ -1,70 +1,19 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-TEMPLATE = app
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppQtAboutDialog
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES +=  \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    beerwantermaindialog.cpp \
-    beerwantermenudialog.cpp \
-    qtbeerwantermaindialog.cpp \
-    qtbeerwantermenudialog.cpp \
-    qtbeerwanterwidget.cpp \
-    qtmain.cpp
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    beerwantermaindialog.h \
-    beerwantermenudialog.h \
-    qtbeerwantermaindialog.h \
-    qtbeerwantermenudialog.h \
-    qtbeerwanterwidget.h
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Games/GameBeerWanter/GameBeerWanterDesktop.pri)
 
-
-RESOURCES += \
-    beerwanter.qrc
-
-FORMS += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtbeerwantermaindialog.ui \
-    qtbeerwantermenudialog.ui
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    GameBeerWanterTest.sh
-
-#
-#
-# Platform specific
-#
-#
-
-#
-#
-# Compiler flags
-#
-#
-#Cannot use -Weffc++ due to use of resources
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += ../../Libraries/boost_1_54_0
-}
-
+SOURCES += qtmain.cpp

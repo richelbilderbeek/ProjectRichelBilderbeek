@@ -4,15 +4,19 @@
 #include <cassert>
 #include <stdexcept>
 
-#ifdef SADC_USE_THREADS
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
 #endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
-File::File(const std::string& s)
+ribi::Chess::File::File(const std::string& s)
   : m_s(s)
 {
   #ifndef NDEBUG
@@ -26,46 +30,48 @@ File::File(const std::string& s)
   assert(c <= 'h');
 }
 
-File::File(const int x)
+ribi::Chess::File::File(const int x)
   : m_s(IntToCharToStr(x))
 {
   #ifndef NDEBUG
   Test();
   #endif
   if (x < 0 || x > 7) throw std::logic_error("X coordinats go from 0 to and including 7");
+
+  #ifndef NDEBUG
   const char c = m_s[0];
   assert(m_s.size() == 1);
   assert(c >= 'a');
   assert(c <= 'h');
+  #endif
 }
 
-const std::string File::GetVersion()
+std::string ribi::Chess::File::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> File::GetVersionHistory()
+std::vector<std::string> ribi::Chess::File::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version"
+  };
 }
 
-std::string File::IntToCharToStr(const int x)
+std::string ribi::Chess::File::IntToCharToStr(const int x)
 {
   char c = 'a' + x;
   return boost::lexical_cast<std::string>(c);
 }
 
-void File::Test()
+void ribi::Chess::File::Test() noexcept
 {
   {
     static bool tested = false;
     if (tested) return;
     tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -142,13 +148,13 @@ void File::Test()
         assert(f.ToInt() == 7);
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
 
-int File::ToInt() const
+int ribi::Chess::File::ToInt() const
 {
   const char c = m_s[0];
   assert(c >= 'a');
@@ -160,23 +166,7 @@ int File::ToInt() const
   return value;
 }
 
-/*
-File& File::operator++()
-{
-  assert(m_s != std::string("h"));
-  m_s = IntToCharToStr(++this->ToInt());
-  return *this;
-}
-
-File& File::operator--()
-{
-  assert(m_s != std::string("a"));
-  m_s = IntToCharToStr(--this->ToInt());
-  return *this;
-}
-*/
-
-bool operator==(const Chess::File& lhs, const Chess::File& rhs)
+bool ribi::Chess::operator==(const File& lhs, const File& rhs)
 {
   return lhs.ToStr() == rhs.ToStr();
 }

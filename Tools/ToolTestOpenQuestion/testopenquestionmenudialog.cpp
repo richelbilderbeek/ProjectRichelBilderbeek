@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestOpenQuestion, tool to test the OpenQuestion and OpenQuestionDialog classes
-Copyright (C) 2013 Richel Bilderbeek
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,70 +18,118 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testopenquestionmenudialog.h"
 
-#include <boost/foreach.hpp>
+#include <cassert>
+#include <iostream>
+#include <stdexcept>
 
 #include "openquestion.h"
 #include "openquestiondialog.h"
-//#include "question.h"
-//#include "questiondialog.h"
-//#include "trace.h"
+#include "fileio.h"
+#include "trace.h"
 
 #include <QFile>
+#pragma GCC diagnostic pop
 
-TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
+ribi::TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
 {
-  const std::vector<std::string> files = { "question.png" };
-  BOOST_FOREACH(const std::string& filename,files)
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const std::vector<std::string> files = { "Question.png" };
+  for(const std::string& filename: files)
   {
-    if (!QFile::exists(filename.c_str()))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
-      QFile f( (std::string(":/images/") + filename).c_str() );
-        f.copy(filename.c_str());
+      QFile f( (":/images/" + filename).c_str() );
+      f.copy(filename.c_str());
     }
-    assert(QFile::exists(filename.c_str()));
+    assert(fileio::FileIo().IsRegularFile(filename));
+    if (!fileio::FileIo().IsRegularFile(filename))
+    {
+      const std::string s = "TestOpenQuestionMenuDialog: file not found: " + filename;
+      throw std::logic_error(s.c_str());
+    }
   }
 }
 
-const About TestOpenQuestionMenuDialog::GetAbout() const
+int ribi::TestOpenQuestionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "TestOpenQuestion",
     "tool to test the OpenQuestion and OpenQuestionDialog classes",
     "the 20th of August 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm",
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
-  //a.AddLibrary("Question version: " + Question::GetVersion());
-  //a.AddLibrary("QuestionDialog version: " + QuestionDialog::GetVersion());
-  //a.AddLibrary("Trace version: " + Trace::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
-const std::string TestOpenQuestionMenuDialog::GetVersion()
+ribi::Help ribi::TestOpenQuestionMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::TestOpenQuestionMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestOpenQuestion
+  };
+  assert(p);
+  return p;
+}
+std::string ribi::TestOpenQuestionMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> TestOpenQuestionMenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::TestOpenQuestionMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2013-08-20: Version 1.0: initial version");
-  return v;
+  return {
+    "2013-08-20: Version 1.0: initial version"
+    "2013-11-05: version 2.1: conformized for ProjectRichelBilderbeekConsole"
+  };
 }
 
+#ifndef NDEBUG
+void ribi::TestOpenQuestionMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestOpenQuestionMenuDialog::Test");
+  TRACE("Finished ribi::TestOpenQuestionMenuDialog::Test successfully");
+}
+#endif

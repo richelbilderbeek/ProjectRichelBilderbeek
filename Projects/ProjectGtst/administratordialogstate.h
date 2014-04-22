@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 //---------------------------------------------------------------------------
-#include <boost/noncopyable.hpp>
+
 #include <boost/checked_delete.hpp>
 //#include <boost/shared_ptr.hpp>
 //---------------------------------------------------------------------------
@@ -38,12 +38,14 @@ namespace gtst {
 
 ///\brief
 ///The WtAdministratorDialog its state.
-struct AdministratorDialogState : public boost::noncopyable, Wt::WObject
+struct AdministratorDialogState : public Wt::WObject
 {
   ///An AdministratorDialogState needs its AdministratorDialog
   AdministratorDialogState(
     Server * const server,
     AdministratorDialog * const dialog);
+  AdministratorDialogState(const AdministratorDialogState&) = delete;
+  AdministratorDialogState& operator=(const AdministratorDialogState&) = delete;
 
   ///Obtain if the Administrator is logged in
   bool IsLoggedIn() const;
@@ -58,11 +60,7 @@ struct AdministratorDialogState : public boost::noncopyable, Wt::WObject
   AdministratorDialog * GetDialog() const { return m_dialog; }
 
   protected:
-  ///Only let smart pointers delete AdministratorDialogState
   virtual ~AdministratorDialogState() {}
-  ///Only let smart pointers delete AdministratorDialogState
-  //Do not forget the template brackets, as stated in
-  //Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(AdministratorDialogState*);
 
   private:

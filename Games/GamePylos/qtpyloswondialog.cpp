@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Pylos, Pylos/Pyraos game
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,30 +18,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GamePylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpyloswondialog.h"
 
 #include <cassert>
 
 #include "ui_qtpyloswondialog.h"
 #include "pyloswinner.h"
+#pragma GCC diagnostic pop
 
 ribi::QtPylosWonDialog::QtPylosWonDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtPylosWonDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtPylosWonDialog::~QtPylosWonDialog()
+ribi::QtPylosWonDialog::~QtPylosWonDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtPylosWonDialog::SetWinner(const Pylos::Winner winner)
+void ribi::QtPylosWonDialog::SetWinner(const pylos::Winner winner)
 {
-  if (winner == Pylos::Winner::player1)
+  if (winner == pylos::Winner::player1)
     ui->label_sprite->setPixmap(QPixmap(":/images/sprite_player1.png"));
   else
     ui->label_sprite->setPixmap(QPixmap(":/images/sprite_player2.png"));

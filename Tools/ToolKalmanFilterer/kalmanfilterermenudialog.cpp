@@ -15,41 +15,80 @@
 #include "standardwhitenoisesystemparameters.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout()
+int ribi::kalman::KalmanFiltererMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 0;
+}
+
+ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "KalmanFilterer",
     "tool to work with Kalman filters",
     "the 17th of July 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolKalmanFilterer.htm",
     GetVersion(),
-    GetVersionHistory());
-    a.AddLibrary("FixedLagSmootherKalmanFilter version: " + FixedLagSmootherKalmanFilter::GetVersion());
-    a.AddLibrary("GapsFilledWhiteNoiseSystem version: " + GapsFilledWhiteNoiseSystem::GetVersion());
-    a.AddLibrary("KalmanFilter version: " + KalmanFilter::GetVersion());
-    a.AddLibrary("LaggedWhiteNoiseSystem version: " + LaggedWhiteNoiseSystem::GetVersion());
-    a.AddLibrary("Matrix version: " + Matrix::GetVersion());
-    a.AddLibrary("StandardKalmanFilter version: " + StandardKalmanFilter::GetVersion());
-    a.AddLibrary("StandardKalmanFilterParameters version: " + StandardKalmanFilterParameters::GetVersion());
-    a.AddLibrary("StandardWhiteNoiseSystem version: " + StandardWhiteNoiseSystem::GetVersion());
-    a.AddLibrary("StandardWhiteNoiseSystemParameters version: " + StandardWhiteNoiseSystemParameters::GetVersion());
-    a.AddLibrary("SteadyStateKalmanFilter version: " + SteadyStateKalmanFilter::GetVersion());
-    a.AddLibrary("SteadyStateKalmanFilterParameters version: " + SteadyStateKalmanFilterParameters::GetVersion());
-    a.AddLibrary("Trace version: " + Trace::GetVersion());
-    a.AddLibrary("WhiteNoiseSystem version: " + WhiteNoiseSystem::GetVersion());
+    GetVersionHistory()
+  );
+  a.AddLibrary("FixedLagSmootherKalmanFilter version: " + FixedLagSmootherKalmanFilter::GetVersion());
+  a.AddLibrary("GapsFilledWhiteNoiseSystem version: " + GapsFilledWhiteNoiseSystem::GetVersion());
+  a.AddLibrary("KalmanFilter version: " + KalmanFilter::GetVersion());
+  a.AddLibrary("LaggedWhiteNoiseSystem version: " + LaggedWhiteNoiseSystem::GetVersion());
+  a.AddLibrary("Matrix version: " + Matrix::GetVersion());
+  a.AddLibrary("StandardKalmanFilter version: " + StandardKalmanFilter::GetVersion());
+  a.AddLibrary("StandardKalmanFilterParameters version: " + StandardKalmanFilterParameters::GetVersion());
+  a.AddLibrary("StandardWhiteNoiseSystem version: " + StandardWhiteNoiseSystem::GetVersion());
+  a.AddLibrary("StandardWhiteNoiseSystemParameters version: " + StandardWhiteNoiseSystemParameters::GetVersion());
+  a.AddLibrary("SteadyStateKalmanFilter version: " + SteadyStateKalmanFilter::GetVersion());
+  a.AddLibrary("SteadyStateKalmanFilterParameters version: " + SteadyStateKalmanFilterParameters::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
+  a.AddLibrary("WhiteNoiseSystem version: " + WhiteNoiseSystem::GetVersion());
   return a;
 }
 
-const std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion()
+ribi::Help ribi::kalman::KalmanFiltererMenuDialog::GetHelp() const noexcept
+{
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+      //Options
+    },
+    {
+      //Example options
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::kalman::KalmanFiltererMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramKalmanFilterer
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion() const noexcept
 {
   return "1.15";
 }
 
-const std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory() const noexcept
 {
-  const std::vector<std::string> v {
+  return {
     "2013-04-28: version 1.0: initial Qt4 and Boost 1.49.0 version that started from CppKalmanFilterExample13",
     "2013-05-01: version 1.1: added plotting, added steady-state Kalman filter",
     "2013-05-02: version 1.2: fixed messed-up graphs and calculation displayal",
@@ -67,5 +106,17 @@ const std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersio
     "2013-07-08: version 1.14: display statistics and value tables correctly, allow editing of context, tables resize to the number of rows",
     "2013-07-17: version 1.15: allow copying from and pasting to parameter tables, transitioned to Qt5, GCC 4.8.0 and Boost 1.54.0, able to crosscompile again"
   };
-  return v;
 }
+
+#ifndef NDEBUG
+void ribi::kalman::KalmanFiltererMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::kalman::KalmanFiltererMenuDialog::Test");
+  TRACE("Finished ribi::kalman::KalmanFiltererMenuDialog::Test successfully");
+}
+#endif

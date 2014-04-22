@@ -45,9 +45,8 @@ struct Administrators
   ~Administrators() {}
   friend void boost::checked_delete<>(Administrators*);
 
-  const boost::shared_ptr<Counter> m_last_id_administrator;
-
   std::set<boost::shared_ptr<Administrator> > m_administrators;
+  const boost::shared_ptr<Counter> m_last_id_administrator;
 };
 
 } //~namespace gtst

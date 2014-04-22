@@ -1,7 +1,7 @@
-
+//---------------------------------------------------------------------------
 /*
 ShapeWidget, class for displaying a Shape
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -15,9 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-
+//---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppShapeWidget.htm
-
+//---------------------------------------------------------------------------
 #ifndef SHAPEWIDGET_H
 #define SHAPEWIDGET_H
 
@@ -25,12 +25,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include "widget.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -51,27 +51,27 @@ struct ShapeWidget : public Widget
     const unsigned char blue = 255);
 
   ///Make a deep copy of ShapeWidget
-  ShapeWidget * Clone() const;
+  ShapeWidget * Clone() const noexcept;
 
   ///Obtain a read-only pointert to the Shape
-  const Shape * GetShape() const { return m_shape.get(); }
+  const Shape * GetShape() const noexcept { return m_shape.get(); }
 
 
   private:
   //ShapeWidget can only be deleted by Boost smart pointers
-  virtual ~ShapeWidget() {}
+  virtual ~ShapeWidget() noexcept {}
   friend void boost::checked_delete<>(ShapeWidget*);
-  friend bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs);
+  friend bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs) noexcept;
 
   ///The Shape
   boost::scoped_ptr<Shape> m_shape;
 
   public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
-bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs);
+bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs) noexcept;
 
 } //~namespace ribi
 

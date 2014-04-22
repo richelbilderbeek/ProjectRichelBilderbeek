@@ -68,18 +68,7 @@ struct GroupAssignerPredetermined : public GroupAssigner
   //int Assign(const int /* id */) const { return m_group; }
 
   private:
-  ///To prevent the following trouble,
-  ///cited from http://www.boost.org/libs/utility/checked_delete.html:
-  ///The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  ///class types to be deleted with a delete-expression.
-  ///When the class has a non-trivial destructor, or a class-specific operator
-  ///delete, the behavior is undefined. Some compilers issue a warning when an
-  ///incomplete type is deleted, but unfortunately, not all do, and programmers
-  ///sometimes ignore or disable warnings.
   ~GroupAssignerPredetermined() {}
-
-  ///Template syntax from Herb Sutter. Exceptional C++ style. 2005.
-  ///ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(GroupAssignerPredetermined*);
 
   const int m_group;
@@ -97,18 +86,7 @@ struct GroupAssignerDeterminedByServer: public GroupAssigner
   //int Assign(const int id) const;
 
   private:
-  ///To prevent the following trouble,
-  ///cited from http://www.boost.org/libs/utility/checked_delete.html:
-  ///The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  ///class types to be deleted with a delete-expression.
-  ///When the class has a non-trivial destructor, or a class-specific operator
-  ///delete, the behavior is undefined. Some compilers issue a warning when an
-  ///incomplete type is deleted, but unfortunately, not all do, and programmers
-  ///sometimes ignore or disable warnings.
   ~GroupAssignerDeterminedByServer() {}
-
-  ///Template syntax from Herb Sutter. Exceptional C++ style. 2005.
-  ///ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(GroupAssignerDeterminedByServer*);
 
   ///Read-only pointer to server

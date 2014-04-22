@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,35 +20,40 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTPYLOSRANDOMPLAYDIALOG_H
 #define QTTESTPYLOSRANDOMPLAYDIALOG_H
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
+
 namespace Ui {
-class QtTestPylosRandomPlayDialog;
+  class QtTestPylosRandomPlayDialog;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
+namespace pylos {
 
-class QtTestPylosRandomPlayDialog : public QDialog
+class QtTestPylosRandomPlayDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
   explicit QtTestPylosRandomPlayDialog(QWidget *parent = 0);
-  ~QtTestPylosRandomPlayDialog();
+  QtTestPylosRandomPlayDialog(const QtTestPylosRandomPlayDialog&) = delete;
+  QtTestPylosRandomPlayDialog& operator=(const QtTestPylosRandomPlayDialog&) = delete;
+  ~QtTestPylosRandomPlayDialog() noexcept;
     
 private slots:
-
     void on_button_start_clicked();
-
-
     void on_edit_n_games_textChanged(const QString &arg1);
 
 private:
   Ui::QtTestPylosRandomPlayDialog *ui;
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTTESTPYLOSRANDOMPLAYDIALOG_H

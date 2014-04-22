@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,29 +21,40 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTICTACTOEWINNERDIALOG_H
 #define QTTICTACTOEWINNERDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTicTacToeWinnerDialog;
 }
 
 namespace ribi {
+namespace tictactoe {
 
-class QtTicTacToeWinnerDialog : public QDialog
+class QtTicTacToeWinnerDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTicTacToeWinnerDialog(QWidget *parent = 0);
-  ~QtTicTacToeWinnerDialog();
+  QtTicTacToeWinnerDialog(const QtTicTacToeWinnerDialog&) = delete;
+  QtTicTacToeWinnerDialog& operator=(const QtTicTacToeWinnerDialog&) = delete;
+  ~QtTicTacToeWinnerDialog() noexcept;
   void SetDraw();
   void SetWinnerCross();
   void SetWinnerCircle();
 
 private:
   Ui::QtTicTacToeWinnerDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEWINNERDIALOG_H

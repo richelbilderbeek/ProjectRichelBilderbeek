@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::MustRemoveState, Pylos enum class for the state of a removal
-Copyright (C) 2010-2012 Richel Bilderbeek
+pylos::MustRemoveState, Pylos enum class for the state of a removal
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace Pylos {
+namespace pylos {
 
 ///After placing (Set) or moving (Transfer) a marble, the MustRemoveState
 ///will be removed. These are:

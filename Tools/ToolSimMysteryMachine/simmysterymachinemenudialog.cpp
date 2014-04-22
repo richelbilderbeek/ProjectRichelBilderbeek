@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 SimMysteryMachine, simulator of my mystery machine
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,6 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "simmysterymachinemenudialog.h"
 
+#include <cassert>
+#include <iostream>
+#include <memory>
+
 #include "dial.h"
 #include "dialwidget.h"
 #include "led.h"
@@ -30,17 +34,33 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "mysterymachinewidget.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
+#include "trace.h"
 #include "widget.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout()
+int ribi::SimMysteryMachineMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "SimMysteryMachine",
     "simulator of my mystery machine",
     "the 26th of August 2012",
-    "2011-2012",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm",
     GetVersion(),
     GetVersionHistory());
@@ -52,17 +72,39 @@ const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout()
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
   a.AddLibrary("MysteryMachine version: " + MysteryMachine::GetVersion());
   a.AddLibrary("MysteryMachineWidget version: " + MysteryMachineWidget::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }
 
-const std::string ribi::SimMysteryMachineMenuDialog::GetVersion()
+ribi::Help ribi::SimMysteryMachineMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::SimMysteryMachineMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramSimMysteryMachine
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::SimMysteryMachineMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version (web application version not working yet)",
@@ -71,3 +113,16 @@ const std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHist
   };
 }
 
+#ifndef NDEBUG
+void ribi::SimMysteryMachineMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::SimMysteryMachineMenuDialog::Test");
+  //::shared_ptr<MysteryMachineWidget> w { std::make_shared<MysteryMachineWidget>() };
+  TRACE("Finished ribi::SimMysteryMachineMenuDialog::Test successfully");
+}
+#endif

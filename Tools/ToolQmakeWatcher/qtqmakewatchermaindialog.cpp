@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QmakeWatcher, tool to watch qmake's .pro to Makefile conversion
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolQmakeWatcher.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtqmakewatchermaindialog.h"
 
 #include <cassert>
@@ -29,20 +30,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <string>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
-#pragma GCC diagnostic pop
-
 #include <QDesktopWidget>
 #include <QFile>
 
+#include "fileio.h"
+#include "trace.h"
 #include "ui_qtqmakewatchermaindialog.h"
+#pragma GCC diagnostic pop
 
-QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent) :
-    QDialog(parent, Qt::Window),
+ribi::QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtQmakeWatcherMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->edit_pro->setWordWrapMode(QTextOption::NoWrap);
   ui->edit_makefile->setWordWrapMode(QTextOption::NoWrap);
@@ -59,28 +61,12 @@ QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtQmakeWatcherMainDialog::~QtQmakeWatcherMainDialog()
+ribi::QtQmakeWatcherMainDialog::~QtQmakeWatcherMainDialog() noexcept
 {
   delete ui;
 }
 
-const std::vector<std::string> QtQmakeWatcherMainDialog::FileToVector(const std::string& fileName)
-{
-
-  assert(QFile::exists(fileName.c_str()));
-  std::vector<std::string> myVector;
-  std::ifstream in(fileName.c_str());
-  std::string myString;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,myString);
-    myVector.push_back(myString);
-  }
-  return myVector;
-}
-
-
-void QtQmakeWatcherMainDialog::OnQmake()
+void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
 {
   //Save text to file
   {
@@ -107,8 +93,8 @@ void QtQmakeWatcherMainDialog::OnQmake()
   //Display Makefile
   {
     ui->edit_makefile->clear();
-    const std::vector<std::string> v(FileToVector("Makefile"));
-    BOOST_FOREACH(const std::string& s, v)
+    const std::vector<std::string> v(ribi::fileio::FileIo().FileToVector("Makefile"));
+    for(const std::string& s: v)
     {
       ui->edit_makefile->appendPlainText(QString(s.c_str()));
     }
@@ -116,25 +102,38 @@ void QtQmakeWatcherMainDialog::OnQmake()
   //Display diff
   {
     ui->edit_diff->clear();
-    const std::vector<std::string> v(FileToVector("tmp.txt"));
-    BOOST_FOREACH(const std::string& s, v)
+    const std::vector<std::string> v(ribi::fileio::FileIo().FileToVector("tmp.txt"));
+    for(const std::string& s: v)
     {
       std::string t = s;
       if (!s.empty() && s[0] == '>')
       {
         //Old
-        t = std::string("<font color=#0000FF>&lt;")
+        t = "<font color=#0000FF>&lt;"
           + s.substr(1,s.size()-1)
-          + std::string("</font>");
+          + "</font>";
       }
       if (!s.empty() && s[0] == '<')
       {
         //New
-        t = std::string("<b><font color=#FF0000>&gt;")
+        t = "<b><font color=#FF0000>&gt;"
           + s.substr(1,s.size()-1)
-          + std::string("</font></b>");
+          + "</font></b>";
       }
       ui->edit_diff->appendHtml(QString(t.c_str()));
     }
   }
 }
+
+#ifndef NDEBUG
+void ribi::QtQmakeWatcherMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtQmakeWatcherMainDialog::Test");
+  TRACE("Finished ribi::QtQmakeWatcherMainDialog::Test successfully");
+}
+#endif

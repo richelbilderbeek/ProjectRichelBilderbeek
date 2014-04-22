@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestMultipleChoiceQuestion, tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes
-Copyright (C) 2013 Richel Bilderbeek
+TestMultipleChoiceQuestion, tests multiple choice question classes
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,17 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestMultipleChoiceQuestion.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestmultiplechoicequestionmaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
@@ -47,9 +41,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestmultiplechoicequestionmaindialog.h"
 #pragma GCC diagnostic pop
 
-QtTestMultipleChoiceQuestionMainDialog::QtTestMultipleChoiceQuestionMainDialog(QWidget *parent)
+ribi::QtTestMultipleChoiceQuestionMainDialog::QtTestMultipleChoiceQuestionMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestMultipleChoiceQuestionMainDialog)
+    ui(new Ui::QtTestMultipleChoiceQuestionMainDialog),
+    m_dialog{}
 {
   #ifndef NDEBUG
   Test();
@@ -59,18 +54,18 @@ QtTestMultipleChoiceQuestionMainDialog::QtTestMultipleChoiceQuestionMainDialog(Q
   this->SetQuestion("-,1+1=,2,1,3,4,5,6");
 }
 
-QtTestMultipleChoiceQuestionMainDialog::~QtTestMultipleChoiceQuestionMainDialog()
+ribi::QtTestMultipleChoiceQuestionMainDialog::~QtTestMultipleChoiceQuestionMainDialog() noexcept
 {
   delete ui;
 }
 
-boost::shared_ptr<QtMultipleChoiceQuestionDialog> QtTestMultipleChoiceQuestionMainDialog::CreateQtMultipleChoiceQuestionDialog(const std::string& s)
+boost::shared_ptr<ribi::QtMultipleChoiceQuestionDialog> ribi::QtTestMultipleChoiceQuestionMainDialog::CreateQtMultipleChoiceQuestionDialog(const std::string& s)
 {
   boost::shared_ptr<QtMultipleChoiceQuestionDialog> p;
 
   try
   {
-    boost::shared_ptr<QuestionDialog> d(new MultipleChoiceQuestionDialog(s));
+    const boost::shared_ptr<MultipleChoiceQuestionDialog> d(new MultipleChoiceQuestionDialog(s));
     if (d) p.reset(new QtMultipleChoiceQuestionDialog(d));
     assert(p);
     return p;
@@ -83,12 +78,12 @@ boost::shared_ptr<QtMultipleChoiceQuestionDialog> QtTestMultipleChoiceQuestionMa
 }
 
 
-void QtTestMultipleChoiceQuestionMainDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtTestMultipleChoiceQuestionMainDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtTestMultipleChoiceQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
+void ribi::QtTestMultipleChoiceQuestionMainDialog::on_edit_question_textChanged(const QString &arg1)
 {
   const std::string s = arg1.toStdString();
   m_dialog = CreateQtMultipleChoiceQuestionDialog(s);
@@ -110,29 +105,29 @@ void QtTestMultipleChoiceQuestionMainDialog::on_edit_question_textChanged(const 
   }
 }
 
-void QtTestMultipleChoiceQuestionMainDialog::SetQuestion(const std::string& s)
+void ribi::QtTestMultipleChoiceQuestionMainDialog::SetQuestion(const std::string& s)
 {
   this->ui->edit_question->setText(s.c_str());
 }
 
 #ifndef NDEBUG
-void QtTestMultipleChoiceQuestionMainDialog::Test()
+void ribi::QtTestMultipleChoiceQuestionMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTestMultipleChoiceQuestionMainDialog::Test");
+  TRACE("Starting ribi::QtTestMultipleChoiceQuestionMainDialog::Test");
   QtTestMultipleChoiceQuestionMainDialog d;
-  d.SetQuestion("-,1+1=,2");
+  d.SetQuestion("-,1+1=,2,1,3"); //Valid: multiple choice question
   assert(d.GetDialog());
   d.SetQuestion("nonsense");
-  assert(!d.GetDialog());
+  assert(!d.GetDialog() && "A single word cannot be parsed as a multiple choice question");
   d.SetQuestion("-,1+1=,2");
-  assert(d.GetDialog());
+  assert(!d.GetDialog() && "Open questions cannot be parsed as multiple choice question");
   d.SetQuestion("more nonsense");
   assert(!d.GetDialog());
-  TRACE("Finished QtTestMultipleChoiceQuestionMainDialog::Test successfully");
+  TRACE("Finished ribi::QtTestMultipleChoiceQuestionMainDialog::Test successfully");
 }
 #endif

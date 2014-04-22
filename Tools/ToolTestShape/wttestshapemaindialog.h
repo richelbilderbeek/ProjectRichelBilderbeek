@@ -20,22 +20,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTSHAPEMAINDIALOG_H
 #define WTTESTSHAPEMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <vector>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 namespace Wt { struct WLabel; }
 
 namespace ribi {
 
 struct TestShapeMainDialog;
 struct WtShapeWidget;
-//---------------------------------------------------------------------------
+
 struct WtTestShapeMainDialog : public Wt::WContainerWidget
 {
   WtTestShapeMainDialog();
+  WtTestShapeMainDialog(const WtTestShapeMainDialog&) = delete;
+  WtTestShapeMainDialog& operator=(const WtTestShapeMainDialog&) = delete;
 
   private:
 

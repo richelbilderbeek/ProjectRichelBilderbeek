@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestSelectFileDialog.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
@@ -37,8 +39,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtselectfiledialog.h"
 //---------------------------------------------------------------------------
 #include <QFile>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtTestSelectFileDialogMainDialog::WtTestSelectFileDialogMainDialog()
+  : ui{}
 {
   {
     std::vector<std::string> v;

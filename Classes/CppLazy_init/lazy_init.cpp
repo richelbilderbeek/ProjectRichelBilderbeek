@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Lazy_init. Class to postpone constructor call upon first use.
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,16 +19,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppLazy_init.htm
 //---------------------------------------------------------------------------
-
-
 #include "lazy_init.h"
 
-const std::string ribi::Lazy_initVersion::GetVersion()
+std::string ribi::Lazy_initVersion::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Lazy_initVersion::GetVersionHistory()
+std::vector<std::string> ribi::Lazy_initVersion::GetVersionHistory() noexcept
 {
   return {
     "2012-02-11: version 1.0: initial version"

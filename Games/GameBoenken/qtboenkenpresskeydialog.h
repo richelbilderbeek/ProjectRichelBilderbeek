@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,7 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTBOENKENPRESSKEYDIALOG_H
 #define QTBOENKENPRESSKEYDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenPressKeyDialog;
@@ -33,13 +36,15 @@ namespace ribi {
 ///QtBoenkenPressKeyDialog asks the user to press
 ///any key. The key pressed can be requested
 ///later, by DialogControls.
-class QtBoenkenPressKeyDialog : public QDialog
+class QtBoenkenPressKeyDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtBoenkenPressKeyDialog(QWidget *parent = 0);
-  ~QtBoenkenPressKeyDialog();
+  QtBoenkenPressKeyDialog(const QtBoenkenPressKeyDialog&) = delete;
+  QtBoenkenPressKeyDialog& operator=(const QtBoenkenPressKeyDialog&) = delete;
+  ~QtBoenkenPressKeyDialog() noexcept;
   int GetKey() const { return m_key; }
 
 protected:

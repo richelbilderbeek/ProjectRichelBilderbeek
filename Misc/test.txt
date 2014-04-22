@@ -1,0 +1,3 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+TEXT#pragma GCC diagnostic pop

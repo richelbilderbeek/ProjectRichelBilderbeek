@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>GamePaperRockScissors</title>
   <meta name="description" content="C++ GamePaperRockScissors"/>
-  <meta name="keywords" content="C++ GamePaperRockScissors code snippet"/>
+  <meta name="keywords" content="C++ GamePaperRockScissors "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,11 +21,6 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="GamePaperRockScissors.htm">GamePaperRockScissors</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name GamePaperRockScissors-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppApplication.htm">Application type(s)</a></p>
@@ -34,11 +29,11 @@
 </ul>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -46,59 +41,42 @@
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
   <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
-  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.2.2</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.3.0</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: GamePaperRockScissors.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./GamePaperRockScissors/GamePaperRockScissorsConsole.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="GamePaperRockScissors.pro" border = "1"><tr><td><code>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= core<br/>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += \<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http \<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
-&nbsp;&nbsp;<a href="CppBoostSignals.htm">-lboost_signals</a> \<br/>
-&nbsp;&nbsp;-lboost_thread<br/>
-&nbsp;&nbsp;<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
-&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a> \<br/>
-&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a><br/>
+<table summary="./GamePaperRockScissors/GamePaperRockScissorsConsole.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri)<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += wt<a href="CppMain.htm">main</a>.cpp \<br/>
-&nbsp;&nbsp;wtpaperrockscissorsdialog.cpp \<br/>
-&nbsp;&nbsp;wtpaperrockscissorsserver.cpp \<br/>
-&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
-&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.cpp \<br/>
-&nbsp;&nbsp;wtpaperrockscissorsevent.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wtpaperrockscissorsdialogstate.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
-&nbsp;&nbsp;wtpaperrockscissorsdialog.h \<br/>
-&nbsp;&nbsp;wtpaperrockscissorsevent.h \<br/>
-&nbsp;&nbsp;wtpaperrockscissorsserver.h \<br/>
-&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
-&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wtpaperrockscissorsdialogstate.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
+<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppHelp.htm">CppHelp</a>/<a href="CppHelp.htm">CppHelp</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">CppTrace</a>.pri)<br/>
+<br/>
+include(<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>Console.pri)<br/>
+<br/>
+#Won't link: no source present<br/>
+#<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -106,78 +84,354 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtmain.cpp</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./GamePaperRockScissors/GamePaperRockScissorsDesktop.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtmain.cpp" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/GamePaperRockScissorsDesktop.pro" border = "1"><tr><td><code>
+include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
+<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppHelp.htm">CppHelp</a>/<a href="CppHelp.htm">CppHelp</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">CppTrace</a>.pri)<br/>
+<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>.pri)<br/>
+<br/>
+include(<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>Desktop.pri)<br/>
+<br/>
+#Won't link: no <a href="CppMain.htm">main</a> present<br/>
+#<a href="CppQmakeSources.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./GamePaperRockScissors/GamePaperRockScissorsWebsite.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GamePaperRockScissors/GamePaperRockScissorsWebsite.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+&nbsp;&nbsp;<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
+&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a> \<br/>
+&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.cpp \<br/>
+&nbsp;&nbsp;wt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;wtpaperrockscissorsdialog.cpp \<br/>
+&nbsp;&nbsp;wtpaperrockscissorsdialogstate.cpp \<br/>
+&nbsp;&nbsp;wtpaperrockscissorsevent.cpp \<br/>
+&nbsp;&nbsp;wtpaperrockscissorsserver.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
+&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
+&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h \<br/>
+&nbsp;&nbsp;wtpaperrockscissorsdialog.h \<br/>
+&nbsp;&nbsp;wtpaperrockscissorsdialogstate.h \<br/>
+&nbsp;&nbsp;wtpaperrockscissorsevent.h \<br/>
+&nbsp;&nbsp;wtpaperrockscissorsserver.h<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Wt<br/>
+#<br/>
+#<br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./GamePaperRockScissors/GamePaperRockScissorsConsole.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GamePaperRockScissors/GamePaperRockScissorsConsole.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>/paperrockscissorsmenudialog.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>/paperrockscissorsmenudialog.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./GamePaperRockScissors/GamePaperRockScissorsDesktop.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GamePaperRockScissors/GamePaperRockScissorsDesktop.pri" border = "1"><tr><td><code>
+include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>Console.pri)<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./GamePaperRockScissors/paperrockscissorsmenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GamePaperRockScissors/paperrockscissorsmenudialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> PAPERROCKSCISSORSMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> PAPERROCKSCISSORSMENUDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "menudialog.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> PaperRockScissorsMenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Program&gt; GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PAPERROCKSCISSORSMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./GamePaperRockScissors/paperrockscissorsmenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GamePaperRockScissors/paperrockscissorsmenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "paperrockscissorsmenudialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " cannot be run in console mode\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"PaperRockScissors",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"PRS cellular <b><a href="CppAuto.htm">auto</a></b>maton",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"today",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2000x-2014",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GamePaperRockScissors.htm">GamePaperRockScissors</a>.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtDialWidget.htm">QtDialWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtDialWidget.htm">QtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Help(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileDescription(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+}<br/>
+<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; p {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> ProgramPaperRockScissors<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
+}<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "0.1";<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-13: <a href="CppVersion.htm">version</a> 0.1: conformized to <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>ConsoleS"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./GamePaperRockScissors/wtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GamePaperRockScissors/wtmain.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppProgram_options.htm">boost/program_options.hpp</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.htm">WText</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsdialog.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissors<a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
 {<br/>
 &nbsp;&nbsp;WtPaperRockScissors<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env);<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 WtPaperRockScissors<a href="CppApplication.htm">Application</a>::WtPaperRockScissors<a href="CppApplication.htm">Application</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
 &nbsp;&nbsp;: <a href="CppWApplication.htm">WApplication</a>(env)<br/>
 {<br/>
 &nbsp;&nbsp;setTitle("PaperRockScissors");<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
-&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::WtPaperRockScissorsDialog);<br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> WtPaperRockScissors<a href="CppApplication.htm">Application</a>(env);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> Declare the supported options.<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d(<br/>
+&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::options_description d(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Allowed options <b><a href="CppFor.htm">for</a></b> CppWtExample3");<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> docroot;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_address;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_port;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> docroot;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> http_address;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> http_port;<br/>
 &nbsp;&nbsp;d.add_options()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("help",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"produce <b><a href="CppThis.htm">this</a></b> help message")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("docroot",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;docroot)-&gt;default_value("."),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoostProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppStdString.htm">std::string</a>&gt;(&amp;docroot)-&gt;default_value("."),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the docroot")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("http-address",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;http_address)-&gt;default_value("0.0.0.0"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoostProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppStdString.htm">std::string</a>&gt;(&amp;http_address)-&gt;default_value("0.0.0.0"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the server's http <a href="CppAddress.htm">address</a>")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("http-port",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;http_port)-&gt;default_value("8080"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoostProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppStdString.htm">std::string</a>&gt;(&amp;http_port)-&gt;default_value("8080"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the server's http port")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::variables_map m;<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::store(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::parse_command_line(<br/>
+&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::variables_map m;<br/>
+&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::store(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::parse_command_line(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, d), m);<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::notify(m);<br/>
+&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::notify(m);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("help"))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the options_description<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the arguments in <a href="CppString.htm">std::string</a> format<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v(7);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the arguments in <a href="CppStdString.htm">std::string</a> format<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v(7);<br/>
 &nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> <a href="CppArgc.htm">argv</a>[0];<br/>
 &nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>docroot";<br/>
 &nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> docroot;<br/>
@@ -187,13 +441,12 @@ WtPaperRockScissors<a href="CppApplication.htm">Application</a>::WtPaperRockScis
 &nbsp;&nbsp;v[6] <a href="CppOperatorAssign.htm">=</a> http_port;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> the arguments to <b><a href="CppChar.htm">char</a></b>* format<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>*&gt; w(7);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>7; <a href="CppOperatorPlus.htm">+</a>+i) w[i] <a href="CppOperatorAssign.htm">=</a> &amp;v[i][0];<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>*&gt; w(7);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>7; <a href="CppOperatorIncrement.htm">++</a>i) w[i] <a href="CppOperatorAssign.htm">=</a> &amp;v[i][0];<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Give <a href="CppWt.htm">Wt</a> the modified parameters<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(w.size(), &amp;w[0], &amp;create<a href="CppApplication.htm">Application</a>);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -201,13 +454,13 @@ WtPaperRockScissors<a href="CppApplication.htm">Application</a>::WtPaperRockScis
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtpaperrockscissorsdialog.h</h2>
+<h2>./GamePaperRockScissors/wtpaperrockscissorsdialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtpaperrockscissorsdialog.h" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/wtpaperrockscissorsdialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-PaperRockScissors, <a href="CppTime.htm">time</a> polling server<br/>
+PaperRockScissors, paper-rock-scissors game<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -227,17 +480,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> WTPAPERROCKSCISSORSDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> WTPAPERROCKSCISSORSDIALOG_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<b><a href="CppQtSignals.htm">signals</a></b>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWApplication.htm">WApplication</a>;<br/>
@@ -245,12 +498,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWLabel.htm">WLabel</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWPushButton.htm">WPushButton</a>;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsEvent;<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsServer;<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a> <a href="CppState.htm">State</a>;<br/>
@@ -279,21 +534,23 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer * <b><a href="CppConst.htm">const</a></b> m_server;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppState.htm">State</a> * m_state;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_about;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_connect;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_login;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_game;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_about;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_connect;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_login;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_game;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClose();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Show();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
 <br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTPAPERROCKSCISSORSDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -302,13 +559,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtpaperrockscissorsdialog.cpp</h2>
+<h2>./GamePaperRockScissors/wtpaperrockscissorsdialog.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtpaperrockscissorsdialog.cpp" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/wtpaperrockscissorsdialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-PaperRockScissors, <a href="CppTime.htm">time</a> polling server<br/>
+PaperRockScissors, paper-rock-scissors game<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -327,8 +584,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>PaperRockScissors.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWButtonGroup.htm">WButtonGroup</a>&gt;<br/>
@@ -337,14 +594,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWRadioButton.htm">WRadioButton</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsdialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsserver.h"<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsdialogstate.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> *parent)<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppWContainerWidget.htm">WContainerWidget</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppApplication.htm">application</a>(<a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_server(WtPaperRockScissorsServer::GetInstance()),<br/>
@@ -355,7 +612,7 @@ WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(<a href="CppWContainerWidge
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Need to have <a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>() at the<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConstructor.htm">constructor</a> of the <b><a href="CppClass.htm">class</a></b>, to have it directly<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>accessible in WtPaperRockScissorsDialog::PollChangedEvent<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>accessible in <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::PollChangedEvent<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Set<a href="CppState.htm">State</a>(<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppState.htm">State</a>Login());<br/>
@@ -366,14 +623,14 @@ WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(<a href="CppWContainerWidge
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> session's event loop when another user selects another option.<br/>
 &nbsp;&nbsp;m_<a href="CppApplication.htm">application</a>-&gt;enableUpdates();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
- WtPaperRockScissorsDialog::~WtPaperRockScissorsDialog()<br/>
+<br/>
+ <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::~WtPaperRockScissorsDialog()<br/>
 {<br/>
 &nbsp;&nbsp;m_state-&gt;Disconnect();<br/>
 &nbsp;&nbsp;m_signal_close();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> WtPaperRockScissorsDialog::GetAbout()<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -386,63 +643,63 @@ WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(<a href="CppWContainerWidge
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsDialog::Get<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_state_about);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;m_state_about.get();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsDialog::Get<a href="CppState.htm">State</a>Connect() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppState.htm">State</a>Connect() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_state_connect);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;m_state_connect.get();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsDialog::Get<a href="CppState.htm">State</a>Game() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppState.htm">State</a>Game() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_state_game);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;m_state_game.get();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsDialog::Get<a href="CppState.htm">State</a>Login() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppState.htm">State</a>Login() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_state_login);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;m_state_login.get();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> WtPaperRockScissorsDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; WtPaperRockScissorsDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-04-15: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog::OnClose()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::OnClose()<br/>
 {<br/>
 &nbsp;&nbsp;m_state-&gt;Disconnect();<br/>
 &nbsp;&nbsp;m_signal_close();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog::Set<a href="CppState.htm">State</a>(<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> state)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Set<a href="CppState.htm">State</a>(<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> state)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(state);<br/>
 &nbsp;&nbsp;m_state <a href="CppOperatorAssign.htm">=</a> state;<br/>
 &nbsp;&nbsp;Show();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog::Show()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Show()<br/>
 {<br/>
 &nbsp;&nbsp;m_state-&gt;Show();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>Called by server triggered from other session<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog::ServerEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::ServerEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; event)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a>::UpdateLock lock <a href="CppOperatorAssign.htm">=</a> m_<a href="CppApplication.htm">application</a>-&gt;getUpdateLock();<br/>
 <br/>
@@ -450,7 +707,6 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 <br/>
 &nbsp;&nbsp;m_<a href="CppApplication.htm">application</a>-&gt;triggerUpdate();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -458,21 +714,24 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtpaperrockscissorsdialogstate.h</h2>
+<h2>./GamePaperRockScissors/wtpaperrockscissorsdialogstate.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtpaperrockscissorsdialogstate.h" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/wtpaperrockscissorsdialogstate.h" border = "1"><tr><td><code>
 <a href="CppIfndef.htm">#ifndef</a> WTPAPERROCKSCISSORSDIALOGSTATE_H<br/>
 <a href="CppDefine.htm">#define</a> WTPAPERROCKSCISSORSDIALOGSTATE_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWObject.htm">WObject</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog;<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsServer;<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsEvent;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWObject.htm">Wt::WObject</a><br/>
 {<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a>(<br/>
@@ -485,21 +744,21 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/another user does something we need to be noted of<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; event) <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> prev_state);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>(WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> prev_state);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Show() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>* x);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>* x);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog * <b><a href="CppConst.htm">const</a></b> m_dialog;<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer * <b><a href="CppConst.htm">const</a></b> m_server;<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a><br/>
 &nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><br/>
 {<br/>
@@ -515,14 +774,14 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>* x);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>* x);<br/>
 <br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * m_prev_state;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClose();<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect<br/>
 &nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><br/>
 {<br/>
@@ -536,10 +795,10 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect* x);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect* x);<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game<br/>
 &nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><br/>
 {<br/>
@@ -554,12 +813,12 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game* x);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppWButtonGroup.htm">Wt::WButtonGroup</a> * m_group;<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login<br/>
 &nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><br/>
 {<br/>
@@ -573,13 +832,15 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login* x);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * m_edit_username;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnEditChanged();<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTPAPERROCKSCISSORSDIALOGSTATE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -588,17 +849,17 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtpaperrockscissorsdialogstate.cpp</h2>
+<h2>./GamePaperRockScissors/wtpaperrockscissorsdialogstate.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtpaperrockscissorsdialogstate.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<table summary="./GamePaperRockScissors/wtpaperrockscissorsdialogstate.cpp" border = "1"><tr><td><code>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/cast.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWButtonGroup.htm">WButtonGroup</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.htm">WGroupBox</a>&gt;<br/>
@@ -606,15 +867,15 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.htm">WLineEdit</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWRadioButton.htm">WRadioButton</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsdialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsdialogstate.h"<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsserver.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>(<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>(<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog * <b><a href="CppConst.htm">const</a></b> dialog,<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer * <b><a href="CppConst.htm">const</a></b> server)<br/>
 &nbsp;&nbsp;: m_dialog(dialog),<br/>
@@ -623,13 +884,13 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::WtPaperRockScissorsDi
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_server);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>()<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>()<br/>
 {<br/>
 &nbsp;&nbsp;Disconnect();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Connect()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Connect()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_dialog-&gt;m_event_connection.connected())<br/>
 &nbsp;&nbsp;{<br/>
@@ -638,8 +899,8 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::~WtPaperRockScissorsD
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;WtPaperRockScissorsDialog::ServerEvent);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Disconnect()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Disconnect()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Stop listing to events<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_dialog-&gt;m_event_connection.connected())<br/>
@@ -647,8 +908,8 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::~WtPaperRockScissorsD
 &nbsp;&nbsp;&nbsp;&nbsp;m_dialog-&gt;m_event_connection.disconnect();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Set<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> prev_state)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Set<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>(WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> prev_state)<br/>
 {<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a> * <a href="CppAbout.htm">about</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::polymorphic_downcast&lt;<br/>
@@ -658,8 +919,8 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::~WtPaperRockScissorsD
 &nbsp;&nbsp;<a href="CppAbout.htm">about</a>-&gt;SetOnClose<a href="CppState.htm">State</a>(prev_state);<br/>
 &nbsp;&nbsp;m_dialog-&gt;Set<a href="CppState.htm">State</a>(<a href="CppAbout.htm">about</a>);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>(<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>(<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog * <b><a href="CppConst.htm">const</a></b> dialog,<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer * <b><a href="CppConst.htm">const</a></b> server,<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> prev_state)<br/>
@@ -670,24 +931,24 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_server);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prev_state);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; event)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp;)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do nothing :-)<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::OnClose()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::OnClose()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog-&gt;Set<a href="CppState.htm">State</a>(m_prev_state);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::SetOnClose<a href="CppState.htm">State</a>(WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> prev_state)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::SetOnClose<a href="CppState.htm">State</a>(WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * <b><a href="CppConst.htm">const</a></b> prev_state)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prev_state);<br/>
 &nbsp;&nbsp;m_prev_state <a href="CppOperatorAssign.htm">=</a> prev_state;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::Show()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::Show()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Temporarily <b><a href="CppDo.htm">do</a></b> not listen to events<br/>
 &nbsp;&nbsp;Disconnect();<br/>
@@ -696,51 +957,51 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">
 &nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>(a);<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("TODO");<br/>
 &nbsp;&nbsp;d-&gt;m_signal_close.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::OnClose,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::OnClose,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;m_dialog-&gt;clear();<br/>
 &nbsp;&nbsp;m_dialog-&gt;addWidget(d);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect(<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect(<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog * <b><a href="CppConst.htm">const</a></b> dialog,<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer * <b><a href="CppConst.htm">const</a></b> server)<br/>
 &nbsp;&nbsp;: WtPaperRockScissorsDialog<a href="CppState.htm">State</a>(dialog,server)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect::ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; event)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect::ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; <a href="CppComment.htm">/*</a> event <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 <br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect::Show()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect::Show()<br/>
 {<br/>
 &nbsp;&nbsp;Connect();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game(<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game(<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog * <b><a href="CppConst.htm">const</a></b> dialog,<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer * <b><a href="CppConst.htm">const</a></b> server)<br/>
 &nbsp;&nbsp;: WtPaperRockScissorsDialog<a href="CppState.htm">State</a>(dialog,server)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; event)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; <a href="CppComment.htm">/*</a> event <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 <br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>Send the <b><a href="CppNew.htm">new</a></b> selected radio button's index<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::Send()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::Send()<br/>
 {<br/>
-&nbsp;&nbsp;m_server-&gt;SendMessageToServer(<a href="CppRand.htm">std::rand</a>());<br/>
+&nbsp;&nbsp;m_server-&gt;SendMessageToServer(<a href="CppStdRand.htm">std::rand</a>());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::Show()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::Show()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog-&gt;clear();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Title<br/>
@@ -773,35 +1034,36 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::WtPaperRockScisso
 &nbsp;&nbsp;&nbsp;&nbsp;m_group-&gt;setSelectedButtonIndex(0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_server-&gt;GetCurrentIndex());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_group-&gt;checkedChanged().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::Send);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::Send);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAbout.htm">About</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>("<a href="CppAbout.htm">About</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dialog-&gt;addWidget(button);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;button-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Set<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>button-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Set<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login(<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login(<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog * <b><a href="CppConst.htm">const</a></b> dialog,<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer * <b><a href="CppConst.htm">const</a></b> server)<br/>
 &nbsp;&nbsp;: WtPaperRockScissorsDialog<a href="CppState.htm">State</a>(dialog,server)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; event)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::ProcessEvent(<b><a href="CppConst.htm">const</a></b> WtPaperRockScissorsEvent&amp; <a href="CppComment.htm">/*</a> event <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 <br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::OnEditChanged()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::OnEditChanged()<br/>
 {<br/>
 <br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::Show()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::Show()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog-&gt;clear();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Title<br/>
@@ -819,10 +1081,10 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::WtPaperRockSciss
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_edit_username<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_edit_username <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRand.htm">std::rand</a>()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdRand.htm">std::rand</a>()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_edit_username-&gt;changed().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::OnEditChanged);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::OnEditChanged);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dialog-&gt;addWidget(m_edit_username);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;m_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
@@ -830,10 +1092,10 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::WtPaperRockSciss
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>("<a href="CppAbout.htm">About</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dialog-&gt;addWidget(button);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;button-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Set<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>button-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>::Set<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -841,13 +1103,13 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::WtPaperRockSciss
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtpaperrockscissorsevent.h</h2>
+<h2>./GamePaperRockScissors/wtpaperrockscissorsevent.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtpaperrockscissorsevent.h" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/wtpaperrockscissorsevent.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-PaperRockScissors, <a href="CppTime.htm">time</a> polling server<br/>
+PaperRockScissors, paper-rock-scissors game<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -867,23 +1129,27 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> WTPAPERROCKSCISSORSEVENT_H<br/>
 <a href="CppDefine.htm">#define</a> WTPAPERROCKSCISSORSEVENT_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsEvent<br/>
 {<br/>
 &nbsp;&nbsp;WtPaperRockScissorsEvent(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; fractions);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; fractions);<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetIndex() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_index; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; GetFractions() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_fractions; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; GetFractions() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_fractions; }<br/>
 <br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_index;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_fractions;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_fractions;<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTPAPERROCKSCISSORSEVENT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -892,13 +1158,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtpaperrockscissorsevent.cpp</h2>
+<h2>./GamePaperRockScissors/wtpaperrockscissorsevent.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtpaperrockscissorsevent.cpp" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/wtpaperrockscissorsevent.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-PaperRockScissors, <a href="CppTime.htm">time</a> polling server<br/>
+PaperRockScissors, paper-rock-scissors game<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -917,16 +1183,15 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>PaperRockScissors.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsevent.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsEvent::WtPaperRockScissorsEvent(<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsEvent::WtPaperRockScissorsEvent(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; fractions)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; fractions)<br/>
 &nbsp;&nbsp;: m_index(index),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_fractions(fractions)<br/>
 {<br/>
 <br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -934,13 +1199,13 @@ WtPaperRockScissorsEvent::WtPaperRockScissorsEvent(<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtpaperrockscissorsserver.h</h2>
+<h2>./GamePaperRockScissors/wtpaperrockscissorsserver.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtpaperrockscissorsserver.h" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/wtpaperrockscissorsserver.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-PaperRockScissors, <a href="CppTime.htm">time</a> polling server<br/>
+PaperRockScissors, paper-rock-scissors game<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -960,16 +1225,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> WTPAPERROCKSCISSORSSERVER_H<br/>
 <a href="CppDefine.htm">#define</a> WTPAPERROCKSCISSORSSERVER_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppThread.htm">thread</a>.hpp&gt;<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWObject.htm">WObject</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/W<a href="CppSignal.htm">Signal</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWTimer.htm">WTimer</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "wtpaperrockscissorsevent.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsServer : <b><a href="CppPublic.htm">public</a></b> <a href="CppWObject.htm">Wt::WObject</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> WtPaperRockScissorsServer * GetInstance();<br/>
@@ -979,12 +1246,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;WtPaperRockScissorsServer&gt; <a href="CppInstance.htm">m_instance</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;WtPaperRockScissorsServer&gt; <a href="CppInstance.htm">m_instance</a>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppWtSignal.htm">Wt::Signal</a>&lt;WtPaperRockScissorsEvent&gt; m_change_index_event;<br/>
 &nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppMutex.htm">mutex</a> m_mutex;<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTPAPERROCKSCISSORSSERVER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -993,13 +1262,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtpaperrockscissorsserver.cpp</h2>
+<h2>./GamePaperRockScissors/wtpaperrockscissorsserver.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtpaperrockscissorsserver.cpp" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/wtpaperrockscissorsserver.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-PaperRockScissors, <a href="CppTime.htm">time</a> polling server<br/>
+PaperRockScissors, paper-rock-scissors game<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1017,45 +1286,41 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>PaperRockScissors.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> "wtpaperrockscissorsserver.h"<br/>
+<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "wtpaperrockscissorsserver.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "wtpaperrockscissorsdialogstate.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;WtPaperRockScissorsServer&gt; WtPaperRockScissorsServer::<a href="CppInstance.htm">m_instance</a>;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppUndef.htm">#undef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsServer::WtPaperRockScissorsServer()<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+<a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer&gt; <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer::<a href="CppInstance.htm">m_instance</a>;<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer::WtPaperRockScissorsServer()<br/>
 {<br/>
 <br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtPaperRockScissorsServer * WtPaperRockScissorsServer::GetInstance()<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer * <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer::GetInstance()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppInstance.htm">m_instance</a>) <a href="CppInstance.htm">m_instance</a>.reset(<b><a href="CppNew.htm">new</a></b> WtPaperRockScissorsServer);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppInstance.htm">m_instance</a>.get();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>A client sends a message to the server<br/>
-<b><a href="CppVoid.htm">void</a></b> WtPaperRockScissorsServer::SendMessageToServer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer::SendMessageToServer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppComment.htm">/*</a> index <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppMutex.htm">mutex</a>::<a href="CppScope.htm">scope</a>d_lock lock(m_mutex);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; fractions <a href="CppOperatorAssign.htm">=</a> GetCurrentFractions();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; fractions <a href="CppOperatorAssign.htm">=</a> GetCurrentFractions();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Update the current index<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_current_index <a href="CppOperatorAssign.htm">=</a> index;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The server emits the message to the clients<br/>
 &nbsp;&nbsp;m_change_index_event.<b><a href="CppEmit.htm">emit</a></b>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;WtPaperRockScissorsEvent(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0,<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;()));<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1063,10 +1328,10 @@ WtPaperRockScissorsServer * WtPaperRockScissorsServer::GetInstance()<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>zip.sh</h2>
+<h2>./GamePaperRockScissors/zip.sh</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="zip.sh" border = "1"><tr><td><code>
+<table summary="./GamePaperRockScissors/zip.sh" border = "1"><tr><td><code>
 #!/bin/sh<br/>
 #zip packs all the files to port into a single .zip file,<br/>
 #minicking the same folder structure<br/>

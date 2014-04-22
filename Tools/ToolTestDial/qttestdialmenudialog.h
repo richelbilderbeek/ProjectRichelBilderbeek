@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestDial, tool to test the Dial and DialWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,32 +21,38 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTDIALMENUDIALOG_H
 #define QTTESTDIALMENUDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
-class QtTestDialMenuDialog;
+  class QtTestDialMenuDialog;
 }
 
 namespace ribi {
 
-class QtTestDialMenuDialog : public QDialog
+class QtTestDialMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestDialMenuDialog(QWidget *parent = 0);
-  ~QtTestDialMenuDialog();
+  explicit QtTestDialMenuDialog(QWidget *parent = 0) noexcept;
+  QtTestDialMenuDialog(const QtTestDialMenuDialog&) = delete;
+  QtTestDialMenuDialog& operator=(const QtTestDialMenuDialog&) = delete;
+  ~QtTestDialMenuDialog() noexcept;
 
 private slots:
-  void on_button_start_clicked();
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
+  void on_button_start_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtTestDialMenuDialog *ui;
 
-  ///Test this class
-  void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

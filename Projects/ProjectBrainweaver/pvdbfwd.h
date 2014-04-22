@@ -1,57 +1,39 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
 #ifndef PVDBFWD_H
 #define PVDBFWD_H
 
-struct QRegExp;
-struct QTimer;
+#include "conceptmapfwd.h"
+
+//struct QRegExp;
+//struct QTimer;
 
 namespace ribi {
 
 namespace pvdb {
 
-struct CenterNode;
 struct Cluster;
-struct Concept;
-struct ConceptFactory;
-struct ConceptMap;
-struct Edge;
-struct Example;
-struct Examples;
 struct File;
-struct Node;
-struct QtPvdbArrow;
-struct QtPvdbClusterDialog;
-struct QtPvdbClusterWidget;
-struct QtPvdbConceptEditDialog;
-struct QtPvdbConceptItem;
-struct QtPvdbConceptMapDialog;
-struct QtPvdbConceptMapItem;
-struct QtPvdbConceptMapDisplayWidget;
-struct QtPvdbConceptMapEditWidget;
-struct QtPvdbConceptMapRateWidget;
-struct QtPvdbConceptMapWidget;
-struct QtPvdbRateConceptDialog;
-struct QtPvdbRateExamplesDialog;
-struct QtPvdbDisplayConceptItem;
-struct QtPvdbEdgeItem;
-struct QtPvdbEditConceptItem;
-struct QtPvdbExamplesItem;
-struct QtPvdbItemHighlighter;
-struct QtPvdbNewArrow;
-struct QtPvdbNodeItem;
-struct QtPvdbPathArrow;
-struct QtPvdbRateConceptItem;
-struct QtPvdbStudentMenuDialog;
-struct QtPvdbTestConceptItemDialog;
-struct QtPvdbTestConceptMapEditWidgetDialog;
-struct QtPvdbTestConceptMapRateWidgetDialog;
-struct QtPvdbTestEdgeItemDialog;
-struct QtPvdbTestNodeItemDialog;
-struct QtPvdbToolsItem;
 
 } //~namespace pvdb
-
-struct QtArrowItem;
-struct QtQuadBezierArrowItem;
 
 } //~namespace ribi
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
   The Rampal Etienne Project, calculates the probability of a phylogeny
-  (C) 2009 Richel Bilderbeek
+  (C) 2009-2014 Richel Bilderbeek
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -22,8 +22,11 @@
 #define SORTEDBINARYNEWICKVECTOR_H
 
 #include <vector>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "binarynewickvector.h"
 #include "newick.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -47,7 +50,7 @@ struct SortedBinaryNewickVector
   const SortedBinaryNewickVector LoseBrackets(const int x,const int i) const;
 
   const std::vector<int>& Peek() const { return m_v;}
-  const std::string ToStr() const;
+  std::string ToStr() const;
 
   private:
   std::vector<int> m_v;
@@ -69,8 +72,8 @@ struct SortedBinaryNewickVector
     const std::string& newick_str,
     const double theta);
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   static bool NewickCompare(
     const std::vector<int>& lhs,

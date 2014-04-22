@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestNewickVector, GUI tool to test NewickVector
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,29 +20,34 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTNEWICKVECTORDIALOG_H
 #define QTTESTNEWICKVECTORDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
+
 namespace Ui {
   class QtTestNewickVectorDialog;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
 struct TestNewickVectorDialog;
-//---------------------------------------------------------------------------
-class QtTestNewickVectorDialog : public QDialog
+
+class QtTestNewickVectorDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestNewickVectorDialog(QWidget *parent = 0);
-  ~QtTestNewickVectorDialog();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  ///QtTestNewickVectorDialog constructor performs most Newick tests
+  explicit QtTestNewickVectorDialog(QWidget *parent = 0) noexcept;
+  QtTestNewickVectorDialog(const QtTestNewickVectorDialog&) = delete;
+  QtTestNewickVectorDialog& operator=(const QtTestNewickVectorDialog&) = delete;
+  ~QtTestNewickVectorDialog() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 protected:
   
 
@@ -50,19 +55,21 @@ private:
   Ui::QtTestNewickVectorDialog *ui;
   QTimer * m_timer;
   boost::scoped_ptr<TestNewickVectorDialog> m_dialog;
-  void Display();
+  void Display() noexcept;
 
 
 private slots:
-  void on_box_compare_clicked();
-  void on_box_show_calculation_clicked();
-  void on_button_calculate_clicked();
-  void on_button_about_clicked();
-  void on_button_demo_clicked();
-  void OnAnyChange();
-  void OnDemoTick();
+  void on_box_compare_clicked() noexcept;
+  void on_box_show_calculation_clicked() noexcept;
+  void on_button_calculate_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_demo_clicked() noexcept;
+  void OnAnyChange() noexcept;
+  void OnDemoTick() noexcept;
 
-  //static bool Match(const std::vector<int>& lhs, const std::vector<int>& rhs);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

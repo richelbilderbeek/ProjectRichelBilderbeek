@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <algorithm>
 #include <cassert>
 #include <string>
@@ -9,6 +11,7 @@
 #include "ocr.h"
 #include "qtocrinputdialog.h"
 #include "qtocrwidget.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {

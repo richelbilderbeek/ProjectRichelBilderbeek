@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQrcFile, tool to test the QrcFile class
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTQRCFILEMAINDIALOG_H
 #define QTTESTQRCFILEMAINDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestQrcFileMainDialog;
@@ -29,13 +32,15 @@ namespace Ui {
 
 namespace ribi {
 
-class QtTestQrcFileMainDialog : public QDialog
+class QtTestQrcFileMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestQrcFileMainDialog(QWidget *parent = 0);
-  ~QtTestQrcFileMainDialog();
+  QtTestQrcFileMainDialog(const QtTestQrcFileMainDialog&) = delete;
+  QtTestQrcFileMainDialog& operator=(const QtTestQrcFileMainDialog&) = delete;
+  ~QtTestQrcFileMainDialog() noexcept;
 
 private slots:
   void on_edit_textChanged(const QString &arg1);
@@ -43,9 +48,9 @@ private slots:
 private:
   Ui::QtTestQrcFileMainDialog *ui;
 
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 };
 

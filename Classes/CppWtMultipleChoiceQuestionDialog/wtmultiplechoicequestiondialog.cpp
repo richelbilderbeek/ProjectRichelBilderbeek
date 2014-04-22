@@ -1,14 +1,13 @@
-//---------------------------------------------------------------------------
 #include <boost/bind.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "wtmultiplechoicequestiondialog.h"
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WButtonGroup>
 #include <Wt/WGroupBox>
@@ -19,71 +18,86 @@
 #include <Wt/WRadioButton>
 #include <Wt/WStackedWidget>
 //#include <Wt/WGroupBox>
-//---------------------------------------------------------------------------
+
 ribi::WtMultipleChoiceQuestionDialog::Ui::Ui()
  : m_button_submit(new Wt::WPushButton("Submit")),
+   m_radio_buttons{},
    m_stacked_widget(new Wt::WStackedWidget)
 {
 
 }
-//---------------------------------------------------------------------------
+
+/*
 ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   const std::string& s)
   : WtQuestionDialog(
     boost::shared_ptr<QuestionDialog>(
-      new MultipleChoiceQuestionDialog(s)))
+      new MultipleChoiceQuestionDialog(s))),
+    m_ui{}
 {
   Show();
 }
-//---------------------------------------------------------------------------
+*/
+
 ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
-  const boost::shared_ptr<QuestionDialog>& dialog)
-  : WtQuestionDialog(dialog)
+  const boost::shared_ptr<MultipleChoiceQuestionDialog>& dialog)
+  : m_ui{},
+    m_dialog(dialog)
 {
   Show();
 }
-//---------------------------------------------------------------------------
+
+const boost::shared_ptr<const ribi::QuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetDialog() const noexcept
+{
+  return m_dialog;
+}
+
+const boost::shared_ptr<const ribi::MultipleChoiceQuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetMultipleChoiceQuestionDialog() const noexcept
+{
+  return m_dialog;
+}
+
 const std::string ribi::WtMultipleChoiceQuestionDialog::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::WtMultipleChoiceQuestionDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-29: version 1.0: initial version");
-  v.push_back("2011-09-15: version 1.1: added internal Ui struct");
-  return v;
+  return {
+    "2011-06-29: version 1.0: initial version",
+    "2011-09-15: version 1.1: added internal Ui struct"
+  };
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
 {
-  assert(m_dialog->CanSubmit());
+  assert(!m_dialog->HasSubmitted());
 
   if (std::find_if(
-    ui.m_radio_buttons.begin(), ui.m_radio_buttons.end(),
+    m_ui.m_radio_buttons.begin(), m_ui.m_radio_buttons.end(),
     boost::bind(&Wt::WRadioButton::isChecked,boost::lambda::_1)
-      == true) == ui.m_radio_buttons.end()) return;
+      == true) == m_ui.m_radio_buttons.end()) return;
 
   const std::string s =
     (*std::find_if(
-      ui.m_radio_buttons.begin(), ui.m_radio_buttons.end(),
+      m_ui.m_radio_buttons.begin(), m_ui.m_radio_buttons.end(),
       boost::bind(&Wt::WRadioButton::isChecked,boost::lambda::_1)
         == true))->text().toUTF8();
 
   this->m_dialog->Submit(s);
 
-  this->ui.m_stacked_widget->setCurrentIndex(m_dialog->IsAnswerCorrect()
+  this->m_ui.m_stacked_widget->setCurrentIndex(m_dialog->IsAnswerCorrect()
     ? 1
     : 2);
 
   m_signal_submitted(m_dialog->IsAnswerCorrect());
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtMultipleChoiceQuestionDialog::Show()
 {
-  const auto question = m_dialog->GetQuestion();
-  m_dialog->SetQuestion(question);
+  //const auto question = m_dialog->GetMultipleChoiceQuestion();
+  //m_dialog->SetQuestion(question);
 
   this->setContentAlignment(Wt::AlignCenter);
 
@@ -96,7 +110,7 @@ void ribi::WtMultipleChoiceQuestionDialog::Show()
     = dynamic_cast<const MultipleChoiceQuestion *>(question.get());
   assert(q);
 
-  this->addWidget(ui.m_stacked_widget);
+  this->addWidget(m_ui.m_stacked_widget);
   //Create the question page
   {
     Wt::WContainerWidget * const page = new Wt::WContainerWidget;
@@ -114,23 +128,23 @@ void ribi::WtMultipleChoiceQuestionDialog::Show()
           = new Wt::WRadioButton(q->GetOptions()[i].c_str(),container);
         group->addButton(button);
         new Wt::WBreak(container);
-        ui.m_radio_buttons.push_back(button);
+        m_ui.m_radio_buttons.push_back(button);
       }
       page->addWidget(container);
     }
     //Button
-    page->addWidget(ui.m_button_submit);
+    page->addWidget(m_ui.m_button_submit);
     page->addWidget(new Wt::WBreak);
-    ui.m_button_submit->clicked().connect(
+    m_ui.m_button_submit->clicked().connect(
       this,&ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked);
-    ui.m_stacked_widget->addWidget(page);
+    m_ui.m_stacked_widget->addWidget(page);
   }
   //Create the correct page
   {
     Wt::WContainerWidget * const page = new Wt::WContainerWidget;
     page->addWidget(new Wt::WLabel("Correct"));
     page->addWidget(new Wt::WBreak);
-    ui.m_stacked_widget->addWidget(page);
+    m_ui.m_stacked_widget->addWidget(page);
   }
   //Create the incorrect page
   {
@@ -141,9 +155,9 @@ void ribi::WtMultipleChoiceQuestionDialog::Show()
     page->addWidget(new Wt::WBreak);
     page->addWidget(new Wt::WLabel(q->GetAnswer().c_str()));
     page->addWidget(new Wt::WBreak);
-    ui.m_stacked_widget->addWidget(page);
+    m_ui.m_stacked_widget->addWidget(page);
   }
-  ui.m_stacked_widget->setCurrentIndex(0);
+  m_ui.m_stacked_widget->setCurrentIndex(0);
 }
-//---------------------------------------------------------------------------
+
 

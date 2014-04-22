@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestEntrance, tool to test WtEntrance
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,26 +21,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTENTRANCEMENUDIALOG_H
 #define TESTENTRANCEMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 namespace ToolTestEntrance {
 
 ///The GUI independent part of the menu
-struct MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
-  ///Get this class its version
-  static const std::string GetVersion();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Get this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Get this class its About
-  static const About GetAbout();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ToolTestEntrance

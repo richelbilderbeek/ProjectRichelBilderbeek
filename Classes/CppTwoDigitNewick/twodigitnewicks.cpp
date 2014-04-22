@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTwoDigitNewick, tool to test the two-digit-Newick architecture
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "newick.h"
@@ -89,7 +89,7 @@ const ribi::TwoDigitNewick& ribi::TwoDigitNewicks::GetNewick(
   //Check if returned indices are okay
   #ifndef NDEBUG
   const TwoDigitNewick& v = m_v[i];
-  BOOST_FOREACH(const TwoDigitNewickDerivative& j,v.GetDerivatives())
+  for(const TwoDigitNewickDerivative& j: v.GetDerivatives())
   {
     assert(j.m_derived_index >= 0);
     assert(j.m_derived_index < this->Size() );
@@ -113,7 +113,7 @@ void ribi::TwoDigitNewicks::SetNewick(const int i, const TwoDigitNewick& v)
   assert(m_v[i].Empty());
 
   #ifndef NDEBUG
-  BOOST_FOREACH(const TwoDigitNewickDerivative& j, v.GetDerivatives())
+  for(const TwoDigitNewickDerivative& j: v.GetDerivatives())
   {
     assert(j.m_derived_index > 0);
     assert(j.m_derived_index < boost::numeric_cast<int>(m_v.size())

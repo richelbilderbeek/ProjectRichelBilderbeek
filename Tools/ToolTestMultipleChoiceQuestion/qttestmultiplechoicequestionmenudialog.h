@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestMultipleChoiceQuestion, tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes
-Copyright (C) 2013 Richel Bilderbeek
+TestMultipleChoiceQuestion, tests multiple choice question classes
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,8 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtTestMultipleChoiceQuestionMenuDialog;
+  class QtTestMultipleChoiceQuestionMenuDialog;
 }
+
+namespace ribi {
+
 struct TestMultipleChoiceQuestionMenuDialog;
 
 class QtTestMultipleChoiceQuestionMenuDialog : public QtHideAndShowDialog
@@ -36,7 +39,9 @@ class QtTestMultipleChoiceQuestionMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestMultipleChoiceQuestionMenuDialog(QWidget *parent = 0);
-  ~QtTestMultipleChoiceQuestionMenuDialog();
+  QtTestMultipleChoiceQuestionMenuDialog(const QtTestMultipleChoiceQuestionMenuDialog&) = delete;
+  QtTestMultipleChoiceQuestionMenuDialog& operator=(const QtTestMultipleChoiceQuestionMenuDialog&) = delete;
+  ~QtTestMultipleChoiceQuestionMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* event);
@@ -51,8 +56,10 @@ private:
   boost::scoped_ptr<TestMultipleChoiceQuestionMenuDialog> m_dialog;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTESTMULTIPLECHOICEQUESTIONMENUDIALOG_H

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,44 +35,44 @@ struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
   RegexTesterBoostXpressiveMainDialog();
 
   ///Clone this class
-  const boost::shared_ptr<RegexTesterMainDialog> Clone() const;
+  boost::shared_ptr<RegexTesterMainDialog> Clone() const noexcept;
 
   ///Get an example format used to replace regex matches
-  const std::string GetExampleFormat() const { return "$1$3\n"; }
+  std::string GetExampleFormat() const noexcept { return "$1$3\n"; }
 
   ///Get an example regex
-  const std::string GetExampleRegex() const { return "(\\d{4})( )([A-Z]{2})"; }
+  std::string GetExampleRegex() const noexcept { return "(\\d{4})( )([A-Z]{2})"; }
 
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  const std::vector<std::string> GetRegexMatches(
+  std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const std::string& r) const;
 
   ///Does the regex match the whole line?
-  bool GetRegexMatchLine(const std::string &line, const std::string &regex_str) const;
+  bool GetRegexMatchLine(const std::string &line, const std::string &regex_str) const noexcept;
 
   ///Replace all regexes in a std::string following a regex and a format
-  const std::string GetRegexReplace(
+  std::string GetRegexReplace(
     const std::string& str,
     const std::string& regex_str,
     const std::string& format_str) const;
 
   ///Is the regex valid?
-  bool GetRegexValid(const std::string &regex_str) const;
+  bool GetRegexValid(const std::string &regex_str) const noexcept;
 
   ///Obtain a description of the used implementation
-  const std::string GetUsedImplementation() const { return "Boost"; }
+  std::string GetUsedImplementation() const noexcept { return "Boost"; }
 
   private:
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static const std::vector<std::string> GetRegexMatches(
+  static std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const boost::xpressive::sregex& r);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

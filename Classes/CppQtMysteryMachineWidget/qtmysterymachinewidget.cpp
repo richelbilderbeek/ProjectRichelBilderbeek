@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtMysteryMachineWidget, Wt widget for displaying the MysteryMachine class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtMysteryMachineWidget.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtmysterymachinewidget.h"
@@ -49,8 +48,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtMysteryMachineWidget::QtMysteryMachineWidget(QWidget *parent)
   : QWidget(parent),
+    m_signal_changed{},
     m_widget(new MysteryMachineWidget(
-    Rect(0,0,200,400)))
+    Widget::CreateRect(0,0,200,400)))
 {
   assert(m_widget);
 
@@ -72,8 +72,10 @@ ribi::QtMysteryMachineWidget::QtMysteryMachineWidget(
   const int width, const int height,
   QWidget *parent)
   : QWidget(parent),
-    m_widget(new MysteryMachineWidget(
-    Rect(0,0,width,height)))
+    m_signal_changed{},
+    m_widget{new MysteryMachineWidget(
+      Widget::CreateRect(0,0,width,height))
+    }
 {
   assert(m_widget);
 
@@ -96,17 +98,17 @@ void ribi::QtMysteryMachineWidget::DoRepaint()
   this->repaint();
 }
 
-const std::string ribi::QtMysteryMachineWidget::GetVersion()
+std::string ribi::QtMysteryMachineWidget::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
-const std::vector<std::string> ribi::QtMysteryMachineWidget::GetVersionHistory()
+std::vector<std::string> ribi::QtMysteryMachineWidget::GetVersionHistory() noexcept
 {
   return {
-    "YYYY-MM-DD: version X.Y: [description]",
     "2011-07-04: version 1.0: initial version",
-    "2011-09-15: version 2.0: made QtMysteryMachineWidget same as WtMysteryMachineWidget"
+    "2011-09-15: version 2.0: made QtMysteryMachineWidget same as WtMysteryMachineWidget",
+    "2014-03-28: version 2.1: replaced Rect by Boost.Geometry its box class"
   };
 }
 
@@ -135,6 +137,6 @@ void ribi::QtMysteryMachineWidget::paintEvent(QPaintEvent *)
 
 void ribi::QtMysteryMachineWidget::resizeEvent(QResizeEvent *)
 {
-  m_widget->SetGeometry(Rect(0,0,width(),height()));
+  m_widget->SetGeometry(0,0,width(),height());
 }
 

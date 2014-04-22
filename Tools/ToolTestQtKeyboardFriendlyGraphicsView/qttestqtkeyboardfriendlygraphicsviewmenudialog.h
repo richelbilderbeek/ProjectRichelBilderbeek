@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestKeyboardFriendlyGraphicsView, tests QtKeyboardFriendlyGraphicsView
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,9 @@ class QtTestKeyboardFriendlyGraphicsViewMenuDialog : public QtHideAndShowDialog
   
 public:
   explicit QtTestKeyboardFriendlyGraphicsViewMenuDialog(QWidget *parent = 0);
-  ~QtTestKeyboardFriendlyGraphicsViewMenuDialog();
+  QtTestKeyboardFriendlyGraphicsViewMenuDialog(const QtTestKeyboardFriendlyGraphicsViewMenuDialog&) = delete;
+  QtTestKeyboardFriendlyGraphicsViewMenuDialog& operator=(const QtTestKeyboardFriendlyGraphicsViewMenuDialog&) = delete;
+  ~QtTestKeyboardFriendlyGraphicsViewMenuDialog() noexcept;
 
   void ShowAbout();
   void Quit();
@@ -46,6 +48,10 @@ private slots:
 
 private:
   Ui::QtTestKeyboardFriendlyGraphicsViewMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

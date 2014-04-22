@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Game, class for a game of Pylos/Phyraos
-Copyright (C) 2010-2012 Richel Bilderbeek
+pylos::Game, class for a game of Pylos/Phyraos
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,8 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pyloswinner.h"
 
 namespace ribi {
-
-namespace Pylos {
+namespace pylos {
 
 ///Pylos is a class for storing a Pylos game.
 ///Games can be player in:\n
@@ -54,14 +53,14 @@ struct Game
   Game(
     const boost::shared_ptr<Board>& board,
     const Player current_player,
-    const std::vector<Pylos::Move>& move_history,
+    const std::vector<pylos::Move>& move_history,
     const boost::shared_ptr<CurrentMoveState>& current_move);
 
   ///CanDo determines if a Pylos notation move is valid
   bool CanDo(const std::string& s) const;
 
   ///CanDo determines if a Pylos move is valid
-  bool CanDo(const Pylos::Move& m) const;
+  bool CanDo(const pylos::Move& m) const;
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).
@@ -93,37 +92,37 @@ struct Game
   void Do(const Move& m);
 
   ///GetAllPossibleMoves returns all moves valid for the active player
-  const std::vector<Move> GetAllPossibleMoves() const;
+  const std::vector<Move> GetAllPossibleMoves() const noexcept;
 
   ///GetBoard returns the board.
-  const boost::shared_ptr<Board>& GetBoard() const { return m_board; }
+  const boost::shared_ptr<Board>& GetBoard() const noexcept { return m_board; }
 
   ///Obtain the current move's state
-  const boost::shared_ptr<CurrentMoveState> GetCurrentMove() const { return m_current_move; }
+  const boost::shared_ptr<CurrentMoveState> GetCurrentMove() const noexcept { return m_current_move; }
 
   ///GetCurrentTurn returns whose turn it is now
-  Player GetCurrentTurn() const;
+  Player GetCurrentTurn() const noexcept;
 
-  const std::vector<Pylos::Move>& GetMoveHistory() const
+  const std::vector<pylos::Move>& GetMoveHistory() const noexcept
   {
     return m_move_history;
   }
 
   ///MustRemove returns whether the current player
   ///must remove one or two marbles
-  MustRemoveState GetMustRemove() const;
+  MustRemoveState GetMustRemove() const noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///GetWinner returns the winner.
-  Winner GetWinner() const;
+  Winner GetWinner() const noexcept;
 
   ///IsValid returns if the current Pylos game is valid
-  bool IsValid() const;
+  //bool IsValid() const; //?Not used?
 
   ///Load loads a game in Pylos notation
   //void Load(const std::string& s) = 0;
@@ -159,7 +158,7 @@ struct Game
   boost::shared_ptr<Board> m_board;
   boost::shared_ptr<CurrentMoveState> m_current_move;
   Player m_current_player;
-  std::vector<Pylos::Move> m_move_history;
+  std::vector<pylos::Move> m_move_history;
 
   ///CanRemove specifies if current player can remove
   ///the marble at the requested position.
@@ -170,7 +169,7 @@ struct Game
 
   #ifndef NDEBUG
   ///Test the Game class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///TogglePlayer toggles between player1 and player2 and saves the current
@@ -187,9 +186,6 @@ std::ostream& operator<<(std::ostream& os,const Game& p);
 ///CanLoadPylos determines if loading a Pylos game from file
 ///will be successfull
 bool CanLoadPylos(const std::string& filename);
-
-//From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> FileToVector(const std::string& fileName);
 
 ///LoadPylos loads a Pylos game from file
 boost::shared_ptr<Game> LoadPylos(const std::string& filename);

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,28 +21,54 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef CODETOHTMLINFO_H
 #define CODETOHTMLINFO_H
 
+#include <map>
 #include <string>
 #include <vector>
+#include <boost/checked_delete.hpp>
+#include <boost/scoped_ptr.hpp>
 
 #include "codetohtml.h"
 
+namespace ribi {
 namespace c2h {
 
 ///Defines the info of the resulting HTML page
+///Info is a heavy class due to the map connecting a page name and its info
 struct Info
 {
-  explicit Info(const std::string& source);
+  explicit Info();
+  Info(const Info&) = delete;
+  Info& operator=(const Info&) = delete;
 
-  const std::vector<std::string> ToHtml() const;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  std::vector<std::string> ToHtml(const std::string page_name) const;
 
   private:
-  const std::string m_page_name;
+  ~Info() noexcept {}
+  friend void boost::checked_delete<>(Info*);
+  friend void boost::checked_delete<>(const Info*);
+
+  ///For every page name (the key), contains the HTML info (the value)
+  const std::map<std::string,std::vector<std::string> > m_page_info;
+
+  ///Create, for every page name (the key), the HTML info (the value)
+  ///The purpose of this is to be able to check every HTML info
+  ///for validity
+  static std::map<std::string,std::vector<std::string> > CreatePageInfo();
+
+  //From http://www.richelbilderbeek.nl/CppGetTime.htm
+  static std::string GetTime() noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
+
+
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLINFO_H

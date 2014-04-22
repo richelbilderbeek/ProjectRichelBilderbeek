@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtPathArrowItem, an arrow QGraphicsItem with one or more midpoints
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,9 +23,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
 #include <QGraphicsLineItem>
 #include <QPen>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -42,19 +46,19 @@ struct QtPathArrowItem : public QGraphicsItem
     const QPointF& head_pos,
     QGraphicsItem *parent = 0);
 
-  virtual ~QtPathArrowItem() {}
+  virtual ~QtPathArrowItem() noexcept {}
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is there an arrow at the 'to' point (x2,y2)?
-  bool HasHead() const { return m_head; }
+  bool HasHead() const noexcept { return m_head; }
 
   ///Is there an arrow at the 'from' point (x1,y1)?
-  bool HasTail() const { return m_tail; }
+  bool HasTail() const noexcept { return m_tail; }
 
   ///Respond to key presses
   void keyPressEvent(QKeyEvent *event);
@@ -63,19 +67,20 @@ struct QtPathArrowItem : public QGraphicsItem
   void SetArrowPath(
     const QPointF& tail_pos,
     const std::vector<QPointF>& mid_pos,
-    const QPointF& head_pos);
+    const QPointF& head_pos
+  );
 
   ///Set the pen used to show focus
-  void SetFocusPen(const QPen& pen) { m_focus_pen = pen; }
+  void SetFocusPen(const QPen& pen) noexcept { m_focus_pen = pen; }
 
   ///Set the regular pen used to draw the arrow
-  void SetPen(const QPen& pen) { m_pen = pen; }
+  void SetPen(const QPen& pen) noexcept { m_pen = pen; }
 
   ///Set if the arrow has a point at the head
-  void SetHasHead(const bool has_head) { m_head = has_head; }
+  void SetHasHead(const bool has_head) noexcept { m_head = has_head; }
 
   ///Set if the arrow has a point at the tail
-  void SetHasTail(const bool has_tail) { m_tail = has_tail; }
+  void SetHasTail(const bool has_tail) noexcept { m_tail = has_tail; }
 
   ///Signal to request a scene update, because this item has moved/changed
   boost::signals2::signal<void (This*)> m_signal_item_requests_scene_update;
@@ -120,7 +125,7 @@ private:
   /// 6 o'clock is 1.0 * pi
   /// 9 o'clock is 1.5 * pi
   //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy);
+  //static double GetAngle(const double dx, const double dy);
 
 };
 

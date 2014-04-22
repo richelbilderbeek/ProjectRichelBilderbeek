@@ -30,7 +30,7 @@ struct KalmanFilterExample
     const std::vector<std::string>& state_names,
     const boost::shared_ptr<const StandardWhiteNoiseSystemParameters>& white_noise_system_parameters);
 
-  static const std::vector<boost::shared_ptr<KalmanFilterExample> > CreateExamples();
+  static std::vector<boost::shared_ptr<KalmanFilterExample> > CreateExamples() noexcept;
 
   static std::unique_ptr<KalmanFilterExample> CreateExample(const int i);
 
@@ -46,7 +46,7 @@ struct KalmanFilterExample
 
   private:
   ///Can only be deleted by boost::checked_delete
-  ~KalmanFilterExample() {}
+  ~KalmanFilterExample() noexcept {}
   ///Can only be deleted by smart pointers: boost::checked_delete and std::unique_ptr
   friend void boost::checked_delete<>(KalmanFilterExample*);
   friend void boost::checked_delete<>(const KalmanFilterExample*);
@@ -70,7 +70,7 @@ struct KalmanFilterExample
   static std::unique_ptr<KalmanFilterExample> CreateExample7();
   static std::unique_ptr<KalmanFilterExample> CreateExample8();
 
-  static const std::string DisplayAsUblasVector(const std::vector<std::string>& v);
+  static std::string DisplayAsUblasVector(const std::vector<std::string>& v);
 };
 
 } //~namespace kalman

@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>StaticLibraryQtCreatorExample1</title>
+  <meta name="description" content="C++ StaticLibraryQtCreatorExample1"/>
+  <meta name="keywords" content="C++ StaticLibraryQtCreatorExample1 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStaticLibraryQtCreatorExample1.htm">StaticLibraryQtCreatorExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppStaticLibraryQtCreatorExample1-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.2 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppStaticLibraryQtCreatorExample1/CppStaticLibraryQtCreatorExample1Application.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStaticLibraryQtCreatorExample1/CppStaticLibraryQtCreatorExample1Application.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+!exists(../build-CppStaticLibrary<a href="CppQtCreator.htm">QtCreator</a>Example1Library-Desktop_Qt_5_1_1_MinGW_32bit-Debug/debug/libCppStaticLibrary<a href="CppQtCreator.htm">QtCreator</a>Example1.a) {<br/>
+&nbsp;&nbsp;error(Could not find correct path to built library)<br/>
+}<br/>
+<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += ../build-CppStaticLibrary<a href="CppQtCreator.htm">QtCreator</a>Example1Library-Desktop_Qt_5_1_1_MinGW_32bit-Debug/debug/libCppStaticLibrary<a href="CppQtCreator.htm">QtCreator</a>Example1.a<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppStaticLibraryQtCreatorExample1/CppStaticLibraryQtCreatorExample1Library.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStaticLibraryQtCreatorExample1/CppStaticLibraryQtCreatorExample1Library.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= core gui<br/>
+TARGET = CppStaticLibrary<a href="CppQtCreator.htm">QtCreator</a>Example1<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = lib<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += staticlib<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += cppstaticlibraryqtcreatorexample1.cpp<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += cppstaticlibraryqtcreatorexample1.h<br/>
+unix:!symbian {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maemo5 {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target.path = /opt/usr/lib<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} else {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target.path = /usr/lib<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeInstalls.htm">INSTALLS</a> += target<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppStaticLibraryQtCreatorExample1/cppstaticlibraryqtcreatorexample1.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStaticLibraryQtCreatorExample1/cppstaticlibraryqtcreatorexample1.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> CPPSTATICLIBRARYQTCREATOREXAMPLE1_H<br/>
+<a href="CppDefine.htm">#define</a> CPPSTATICLIBRARYQTCREATOREXAMPLE1_H<br/>
+<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> CppStatic<a href="CppLibrary.htm">Library</a><a href="CppQtCreator.htm">QtCreator</a>Example1<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;CppStatic<a href="CppLibrary.htm">Library</a><a href="CppQtCreator.htm">QtCreator</a>Example1();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello();<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CPPSTATICLIBRARYQTCREATOREXAMPLE1_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppStaticLibraryQtCreatorExample1/cppstaticlibraryqtcreatorexample1.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStaticLibraryQtCreatorExample1/cppstaticlibraryqtcreatorexample1.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "cpp<b><a href="CppStatic.htm">static</a></b><a href="CppLibrary.htm">library</a>qtcreatorexample1.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+CppStatic<a href="CppLibrary.htm">Library</a><a href="CppQtCreator.htm">QtCreator</a>Example1::CppStatic<a href="CppLibrary.htm">Library</a><a href="CppQtCreator.htm">QtCreator</a>Example1()<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> CppStatic<a href="CppLibrary.htm">Library</a><a href="CppQtCreator.htm">QtCreator</a>Example1::SayHello()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello\n";<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppStaticLibraryQtCreatorExample1/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppStaticLibraryQtCreatorExample1/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "cpp<b><a href="CppStatic.htm">static</a></b><a href="CppLibrary.htm">library</a>qtcreatorexample1.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;CppStatic<a href="CppLibrary.htm">Library</a><a href="CppQtCreator.htm">QtCreator</a>Example1().SayHello();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -1,41 +1,65 @@
+//---------------------------------------------------------------------------
+/*
+QtRoundedRectItem, rectangular-shaped QGraphicsItem
+Copyright (C) 2012-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtRoundedRectItem.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
-
 #include "qtroundedrectitem.h"
-#pragma GCC diagnostic pop
 
 #include <cassert>
 #include <sstream>
+
 #include <QFont>
 #include <QGraphicsScene>
 #include <QPainter>
+#pragma GCC diagnostic pop
 
 ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   : QGraphicsRectItem(parent), //New since Qt5
+   m_signal_item_has_updated{},
+   m_signal_request_scene_update{},
    m_contour_pen(QPen(QColor(0,0,0))),
-   m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine))
+   m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine)),
+   m_radius_x{4.0},
+   m_radius_y{4.0}
 {
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
-  this->SetRoundedRect(QRectF(-16.0,-16.0,32.0,32.0),4.0,4.0);
+  this->SetRoundedRect(QRectF(-16.0,-16.0,32.0,32.0),m_radius_x,m_radius_y);
 }
 
-const std::string ribi::QtRoundedRectItem::GetVersion()
+std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory()
+std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-13: version 1.0: initial version");
-  v.push_back("2012-12-19: version 1.1: added use of pen, brush and focus-indicating pen");
-  v.push_back("2012-12-22: version 1.2: correctly uses the focus and regular pen, added contour pen");
-  return v;
+  return {
+    "2012-12-13: version 1.0: initial version",
+    "2012-12-19: version 1.1: added use of pen, brush and focus-indicating pen",
+    "2012-12-22: version 1.2: correctly uses the focus and regular pen, added contour pen"
+  };
 }
 
 #pragma GCC diagnostic push

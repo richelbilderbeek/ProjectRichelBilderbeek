@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtToggleButtonWidget, Qt widget for displaying the ToggleButtonWidget class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,11 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QWidget>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -57,10 +57,10 @@ struct QtToggleButtonWidget : public QWidget
   mutable boost::signals2::signal<void ()> m_signal_toggled;
 
   ///Obtain the QtToggleButtonWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the QtToggleButtonWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Draw a ToggleButton from a ToggleButton
   static void DrawToggleButton(
@@ -72,7 +72,8 @@ struct QtToggleButtonWidget : public QWidget
   ///Draw a ToggleButton from a ToggleButtonWidget
   static void DrawToggleButton(
     QPainter& painter,
-    const ToggleButtonWidget * const widget);
+    const boost::shared_ptr<const ToggleButtonWidget> widget
+  );
 
   protected:
   ///Paint the QtToggleButtonWidget
@@ -84,7 +85,7 @@ struct QtToggleButtonWidget : public QWidget
   private:
 
   ///The ToggleButton
-  boost::scoped_ptr<ToggleButtonWidget> m_widget;
+  boost::shared_ptr<ToggleButtonWidget> m_widget;
 
   ///Repaint the QtToggleButtonWidget
   void DoRepaint();

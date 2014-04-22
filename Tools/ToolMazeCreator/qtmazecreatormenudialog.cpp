@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MazeCreator, creates a maze and displays it on screen.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,47 +19,61 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolMazeCreator.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtmazecreatormenudialog.h"
 
 #include "mazecreatormenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtmazecreatormaindialog.h"
+#include "trace.h"
 #include "ui_qtmazecreatormenudialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::QtMazeCreatorMenuDialog::QtMazeCreatorMenuDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtMazeCreatorMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
-ribi::QtMazeCreatorMenuDialog::~QtMazeCreatorMenuDialog()
+
+ribi::QtMazeCreatorMenuDialog::~QtMazeCreatorMenuDialog() noexcept
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtMazeCreatorMenuDialog::on_button_start_clicked()
 {
-  this->hide();
   QtMazeCreatorMainDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtMazeCreatorMenuDialog::on_button_about_clicked()
 {
   this->hide();
-  About a = MazeCreatorMenuDialog::GetAbout();
+  About a = MazeCreatorMenuDialog().GetAbout();
   //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtMazeCreatorMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-//---------------------------------------------------------------------------
+
+#ifndef NDEBUG
+void ribi::QtMazeCreatorMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtMazeCreatorMenuDialog::Test");
+  TRACE("Finished ribi::QtMazeCreatorMenuDialog::Test successfully");
+}
+#endif

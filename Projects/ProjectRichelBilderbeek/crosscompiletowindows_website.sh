@@ -1,13 +1,33 @@
 #!/bin/sh
 #From http://richelbilderbeek.nl/CppQtCrosscompileToWindowsExample15.htm
 
-echo "1. Cross compiling to Windows: web application version"
+#Cleaning up
+rm Makefile
+rm Makefile.*
+rm -r release
+rm -r debug
+rm ui_*.h
+rm qrc_*.cpp
+rm moc_*.cpp
+rm object_script*.*
+rm *.o
+rm *_plugin_import.cpp
 
-echo "1.1: Creating Windows makefile"
-i686-pc-mingw32-qmake ProjectRichelBilderbeekWebsite.pro
+../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake ProjectRichelBilderbeekWebsite.pro
 
-echo "1.2: making makefile"
 make
 
-echo "1.3: copying executable"
-cp release/ProjectRichelBilderbeekWebsite.exe .
+cp release/ProjectRichelBilderbeekWebsite.exe ~/bin
+
+#Cleaning up
+rm Makefile
+rm Makefile.*
+rm -r release
+rm -r debug
+rm ui_*.h
+rm qrc_*.cpp
+rm moc_*.cpp
+rm object_script*.*
+rm *.o
+rm *_plugin_import.cpp
+

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Das Wahre Schlagerfest, a simple game
-Copyright (C) 2003-2012 Richel Bilderbeek
+Copyright (C) 2003-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,46 +18,102 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtdaswahreschlagerfestmenudialog.h"
+
+#include <QKeyEvent>
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include "daswahreschlagerfestmenudialog.h"
 #include "qtaboutdialog.h"
+#include "qtcanvasdialog.h"
+#include "qtdaswahreschlagerfestcanvas.h"
 #include "qtdaswahreschlagerfestmaindialog.h"
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
-ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtDasWahreSchlagerfestMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog()
+ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::keyPressEvent(QKeyEvent * e)
+{
+  if (e->key() == Qt::Key_Escape) { close(); }
+  if (e->key() == Qt::Key_At || e->key() == Qt::Key_Dollar || e->key() == Qt::Key_0)
+  {
+    on_button_start_oldschool_clicked();
+  }
+}
+
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept
 {
   QtDasWahreSchlagerfestMainDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked() noexcept
 {
-  QtAboutDialog d(DasWahreSchlagerfestMenuDialog::GetAbout());
-  d.setWindowIcon(this->windowIcon());
-  d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  QtAboutDialog d(DasWahreSchlagerfestMenuDialog().GetAbout());
+  d.setWindowIcon(windowIcon());
+  d.setStyleSheet(styleSheet());
+  ShowChild(&d);
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
+}
+
+#ifndef NDEBUG
+void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtDasWahreSchlagerfestMenuDialog::Test");
+  QtDasWahreSchlagerfestMainDialog();
+  {
+    const boost::shared_ptr<QtDasWahreSchlagerfestCanvas> c {
+      new QtDasWahreSchlagerfestCanvas(9,5)
+    };
+    assert(c);
+  }
+  TRACE("Finished ribi::QtDasWahreSchlagerfestMenuDialog::Test successfully");
+}
+#endif
+
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_oldschool_clicked()
+{
+  QtCanvas * const qtcanvas {
+    new QtDasWahreSchlagerfestCanvas(9,5)
+  };
+  boost::scoped_ptr<QtCanvasDialog> d {
+    new QtCanvasDialog(qtcanvas)
+  };
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    d->setGeometry(
+      0,0,102,102);
+    d->move( screen.center() - this->rect().center() );
+  }
+  d->setWindowTitle("Das Wahre Schlagerfest");
+  ShowChild(d.get());
+  //canvas will be deleted by QtCanvasDialog
 }

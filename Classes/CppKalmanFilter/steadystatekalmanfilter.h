@@ -23,31 +23,31 @@ struct SteadyStateKalmanFilter : public KalmanFilter
   SteadyStateKalmanFilter& operator=(const SteadyStateKalmanFilter&) = delete;
 
   ///Clear the calculation, will set IsComplete to false
-  void Clear();
+  //void Clear();
 
   ///Get the Kalman filter last calculation elements
-  const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const
+  const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const noexcept
   { return m_last_calculation; }
 
   ///Obtain the Kalman filter parameters
-  const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const
+  const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const noexcept
   { return m_parameters; }
 
   ///Obtain the number of values a state consists of
-  int GetStateSize() const;
+  int GetStateSize() const noexcept;
 
   ///Obtain the current prediction of the state ('x')
-  const boost::numeric::ublas::vector<double>& GetStateEstimate() const
+  const boost::numeric::ublas::vector<double>& GetStateEstimate() const noexcept
    { return m_state_estimate; }
 
   ///Obtain the Kalman filter type as an enum
-  KalmanFilterType GetType() const { return KalmanFilterType::steady_state; }
+  KalmanFilterType GetType() const noexcept { return KalmanFilterType::steady_state; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Give the filter a measurement and input, and it will update its predictions
   void SupplyMeasurementAndInput(
@@ -66,7 +66,7 @@ struct SteadyStateKalmanFilter : public KalmanFilter
   friend class SteadyStateKalmanFilterFactory;
 
   ///Can only be deleted by boost::checked_delete
-  ~SteadyStateKalmanFilter() {}
+  ~SteadyStateKalmanFilter() noexcept {}
   friend void boost::checked_delete<>(SteadyStateKalmanFilter*);
 
   ///The last calculation

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,48 +18,108 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttictactoemenudialog.h"
 
+#include <cassert>
+
+#include <QApplication>
+#include <QDesktopWidget>
+
 #include "qtaboutdialog.h"
+#include "qtcanvas.h"
+#include "qtcanvasdialog.h"
+#include "qttictactoecanvas.h"
 #include "qttictactoegamedialog.h"
 #include "qttictactoewidget.h"
 #include "tictactoemenudialog.h"
+#include "trace.h"
 #include "ui_qttictactoemenudialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::tictactoe::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 }
 
-ribi::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog()
+ribi::tictactoe::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTicTacToeMenuDialog::on_button_start_clicked()
+void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_start_clicked()
 {
-  QtTicTacToeGameDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  const boost::shared_ptr<Ai> player1;
+  const boost::shared_ptr<Ai> player2;
+  QtTicTacToeGameDialog d(player1,player2);
+  this->ShowChild(&d);
 }
 
-void ribi::QtTicTacToeMenuDialog::on_button_about_clicked()
+void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_about_clicked()
 {
-  About a = TicTacToeMenuDialog::GetAbout();
-  a.AddLibrary("QtTicTacToeWidget version: " + QtTicTacToeWidget::GetVersion());
+  About a = TicTacToeMenuDialog().GetAbout();
+  a.AddLibrary("QtTicTacToeWidget version: " + tictactoe::QtTicTacToeWidget::GetVersion());
   QtAboutDialog d(a);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtTicTacToeMenuDialog::on_button_quit_clicked()
+void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
+#ifndef NDEBUG
+void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::tictactoe::QtTicTacToeMenuDialog::Test");
+  {
+    const boost::shared_ptr<Ai> player1;
+    const boost::shared_ptr<Ai> player2;
+    QtTicTacToeGameDialog d(player1,player2);
+    assert(!d.GetVersion().empty());
+  }
+  {
+    QtCanvas * const qtcanvas {
+      new QtTicTacToeCanvas
+    };
+    boost::scoped_ptr<QtCanvasDialog> d {
+      new QtCanvasDialog(qtcanvas)
+    };
+    assert(d);
+  }
+
+  TRACE("Finished ribi::tictactoe::QtTicTacToeMenuDialog::Test successfully");
+}
+#endif
+
+void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_start_old_school_clicked()
+{
+  QtCanvas * const qtcanvas {
+    new QtTicTacToeCanvas
+  };
+  boost::scoped_ptr<QtCanvasDialog> d {
+    new QtCanvasDialog(qtcanvas)
+  };
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    d->setGeometry(
+      0,0,102,102);
+    d->move( screen.center() - this->rect().center() );
+  }
+  d->setWindowTitle("TicTacToe");
+  ShowChild(d.get());
+  //canvas will be deleted by QtCanvasDialog
+}

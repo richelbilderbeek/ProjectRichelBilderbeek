@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShinyButton, tool to test the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,9 +21,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTSHINYBUTTONDIALOG_H
 #define QTTESTSHINYBUTTONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestShinyButtonMainDialog;
@@ -33,13 +36,15 @@ namespace ribi {
 
 struct QtShinyButtonWidget;
 
-class QtTestShinyButtonMainDialog : public QDialog
+class QtTestShinyButtonMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestShinyButtonMainDialog(QWidget *parent = 0);
-  ~QtTestShinyButtonMainDialog();
+  QtTestShinyButtonMainDialog(const QtTestShinyButtonMainDialog&) = delete;
+  QtTestShinyButtonMainDialog& operator=(const QtTestShinyButtonMainDialog&) = delete;
+  ~QtTestShinyButtonMainDialog() noexcept;
 
 protected:
   
@@ -54,6 +59,10 @@ private slots:
   void on_edit_text_textChanged(const QString &arg1);
   void on_dial_main_color_sliderMoved(int position);
   void on_dial_gradient_sliderMoved(int position);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

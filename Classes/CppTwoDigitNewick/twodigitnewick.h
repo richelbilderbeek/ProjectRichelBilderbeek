@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTwoDigitNewick, tool to test the two-digit-Newick architecture
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "twodigitnewickderivative.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -64,8 +67,8 @@ struct TwoDigitNewick
   void SetProbability(const double p);
   static void SetTheta(const double theta);
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///m_derivatives contains all the information
@@ -96,7 +99,7 @@ struct TwoDigitNewick
     const std::string& newick,
     const double theta);
 
-  static void Test();
+  static void Test() noexcept;
 
 };
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtLeftRightRectItem, QGraphicsRectItem with a left and right rectangle
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,9 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtLeftRightRectItem.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtleftrightrectitem.h"
@@ -35,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent)
  : QGraphicsRectItem(parent),
+   m_signal_request_scene_update{},
    m_focus(Focus::left)
 {
   this->setFlags(
@@ -44,12 +44,12 @@ ribi::QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent)
   this->setRect(-16.0,-16.0,32.0,32.0);
 }
 
-const std::string ribi::QtLeftRightRectItem::GetVersion()
+std::string ribi::QtLeftRightRectItem::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtLeftRightRectItem::GetVersionHistory()
+std::vector<std::string> ribi::QtLeftRightRectItem::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-12-19: version 1.0: initial version");

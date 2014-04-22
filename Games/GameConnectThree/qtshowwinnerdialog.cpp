@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,17 +18,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtshowwinnerdialog.h"
-
 #include <QKeyEvent>
-
 #include "ui_qtshowwinnerdialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtShowWinnerDialog::QtShowWinnerDialog(
+ribi::con3::QtShowWinnerDialog::QtShowWinnerDialog(
   const std::string& filename,
   const std::string& winner_text,
-  QWidget *parent)
-  : QDialog(parent),
+  QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtShowWinnerDialog)
 {
   ui->setupUi(this);
@@ -38,12 +39,12 @@ ribi::QtShowWinnerDialog::QtShowWinnerDialog(
   this->setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
-ribi::QtShowWinnerDialog::~QtShowWinnerDialog()
+ribi::con3::QtShowWinnerDialog::~QtShowWinnerDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtShowWinnerDialog::keyPressEvent(QKeyEvent * e)
+void ribi::con3::QtShowWinnerDialog::keyPressEvent(QKeyEvent * e) noexcept
 {
   if (e->key() == Qt::Key_Escape) { close(); return; }
 }

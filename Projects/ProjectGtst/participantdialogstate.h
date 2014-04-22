@@ -47,6 +47,8 @@ struct ParticipantDialogState : public State, Wt::WObject
   ParticipantDialogState(
     ParticipantDialog * const dialog,
     Server * const server);
+  ParticipantDialogState(const ParticipantDialogState&) = delete;
+  ParticipantDialogState& operator=(const ParticipantDialogState&) = delete;
 
   ///Do something random with the UI, used by DebugDialog
   virtual void DoSomethingRandom() = 0;

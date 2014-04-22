@@ -1,0 +1,740 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Energie
+\end_layout
+
+\begin_layout Author
+Richèl Bilderbeek
+\end_layout
+
+\begin_layout Section
+Begrippen
+\end_layout
+
+\begin_layout Subsection
+Energie
+\end_layout
+
+\begin_layout Standard
+Energie is een abstract iets waarmee je iets kunt laten gebeuren.
+ Met 'een abstract iets' bedoel ik dat je energie niet kunt zien of aanraken,
+ je kunt het enkel beschrijven aan wat het kan.
+ Met 'iets waarmee je iets kunt laten gebeuren' bedoel ik bijvoorbeeld dat
+ energie voorwerpen kan laten bewegen; algemener bedoel ik dat energie kan
+ omgezet worden in andere vormen van energie: een beweging is bijvoorbeeld
+ een vorm van kinetische energie.
+ De eenheid van energie is Joule.
+\end_layout
+
+\begin_layout Subsection
+Vermogen
+\end_layout
+
+\begin_layout Standard
+Het vermogen van iets, bijvoorbeeld een machine, is de hoeveelheid energie
+ die deze om kan zetten per tijdseenheid.
+ Zo zal een lamp met een hoger vermogen meer licht produceren dan eenzelfde
+ type met een lager vermogen.
+ De eenheid van vermogen is Watt, danwel Joule per seconde.
+\end_layout
+
+\begin_layout Subsection
+Arbeid
+\end_layout
+
+\begin_layout Standard
+Arbeid is de hoeveelheid energie die gebruikt is om een verplaatsing te
+ bewerkstelligen.
+ Dit is het product van een kracht en een afstand.
+ Als er met een constante kracht van 100 Newton een voorwerp 10 meter wordt
+ verplaatst, dan is er een arbeid van 1000 Joule verricht.
+\end_layout
+
+\begin_layout Subsection
+Rendement
+\end_layout
+
+\begin_layout Standard
+Bij elke energie-omzetting, wordt niet alle toegevoerde energie omgezet
+ naar de gewenste vorm van energie.
+ Het rendement van een energie-omzetting is de fractie van de bronenergie
+ die omgezet wordt naar de doelenergie.
+ Een lamp zou je bijvoorbeeld kunnen zien als een omzetter van electrische
+ energie naar licht energie.
+ Als een lamp 100 Watt aan electriciteit(senergie) verbruikt en dit omzet
+ in 90 Watt in licht(energie), dan is het rendement van de lamp 90%, danwel
+ 0,9.
+ De rest van de electriciteitsenergie is omgezet naar bijvoorbeeld warmte.
+\end_layout
+
+\begin_layout Subsection
+Calorische waarde
+\end_layout
+
+\begin_layout Standard
+De calorische waarde van een stof is de hoeveelheid energie die kan worden
+ gewonnen bij de verbranding ervan.
+ Zo is verbrandingswaarde van een Snickers 1200 Joule.
+ Merk op dat met 'verbranding' zowel de vorm met vuur kan worden bedoeld,
+ maar ook de reactie met zuurstof in de cellen van een organisme.
+\end_layout
+
+\begin_layout Subsection
+Energiesoorten
+\end_layout
+
+\begin_layout Standard
+Een energiesoort is een verschijningsvorm van energie.
+ Er zijn er velen.
+ Voorbeelden zijn kinetische energie (ook wel bewegingsenergie genoemd),
+ electrische energie, licht energie, potentiële energie (de energie opgeslagen
+ door zwaartekracht te overwinnen), massa (jawel, massa kan omgezet worden
+ naar energie, bijvoorbeeld in kernreactors), thermische energie.
+ 
+\end_layout
+
+\begin_layout Subsection
+Potentiële energie
+\end_layout
+
+\begin_layout Standard
+Potentiële energie is de energie die is opgeslagen in een voorwerp door
+ het overwinnen van zwaartekracht.
+ Iets wat opgetild wordt, slaat potentiele energie om en zet deze energie
+ om in bewegingsenergie als deze wordt laten vallen.
+\end_layout
+
+\begin_layout Subsection
+Kinetische energie
+\end_layout
+
+\begin_layout Standard
+Kinetische energie wordt ook wel bewegingsenergie genoemd.
+ Het is de energie die is opgeslagen in de beweging van een voorwerp.
+ Een stilstaand voorwerp heeft geen kinetische energie.
+\end_layout
+
+\begin_layout Subsection
+Wet van behoud van energie
+\end_layout
+
+\begin_layout Standard
+De wet van behoud van energie houdt in dat het zo is dat energie niet verloren
+ kan gaan, enkel kan worden omgezet in een of meerdere vormen.
+ In het universum komt geen energie bij, noch gaat er energie verloren.
+\end_layout
+
+\begin_layout Subsection
+Mechanische energie
+\end_layout
+
+\begin_layout Standard
+Mechanische energie is de som van de kinetische en potentiele energie van
+ een voorwerp.
+ Een voorwerp dat bijvoorbeeld wordt laten vallen in een vacuum, heeft vanaf
+ het moment van loslaten tot het moment van de grond aanraken dezelfde mechanisc
+he energie.
+\end_layout
+
+\begin_layout Section
+Som
+\end_layout
+
+\begin_layout Subsection
+a
+\end_layout
+
+\begin_layout Standard
+m = 4,6 kg
+\end_layout
+
+\begin_layout Standard
+x = 5,0 m
+\end_layout
+
+\begin_layout Standard
+Ep = m .
+ g .
+ h = 4,6 kg .
+ 9,81 m/s
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ .
+ 5,0 m = 225,63 J
+\end_layout
+
+\begin_layout Standard
+Ek = 0,5 .
+ m .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+225,63 J = 0,5 .
+ 4,6 kg .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+v = 9,9 m/s
+\end_layout
+
+\begin_layout Subsection
+b
+\end_layout
+
+\begin_layout Standard
+m = 4,6 kg
+\end_layout
+
+\begin_layout Standard
+x = 20,0 m
+\end_layout
+
+\begin_layout Standard
+Ep = m .
+ g .
+ h = 4,6 kg .
+ 9,81 m/s
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ .
+ 20,0 m = 902,52 J
+\end_layout
+
+\begin_layout Standard
+Ek = 0,5 .
+ m .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+902,52 J = 0,5 .
+ 4,6 kg .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+v = 20 m/s
+\end_layout
+
+\begin_layout Subsection
+c
+\end_layout
+
+\begin_layout Standard
+m = 4,6 kg
+\end_layout
+
+\begin_layout Standard
+x = 25,0 m
+\end_layout
+
+\begin_layout Standard
+Ep = m .
+ g .
+ h = 4,6 kg .
+ 9,81 m/s
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ .
+ 25,0 m = 1128,15 J
+\end_layout
+
+\begin_layout Standard
+Ek = 0,5 .
+ m .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+1128,15 J = 0,5 .
+ 4,6 kg .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+v = 22 m/s
+\end_layout
+
+\begin_layout Section
+Visiestuk eigen energiegebruik en duurzaamheid
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename MtEnergieBesparenvanenergieNl.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Energiebalans per Nederlander.
+ Bron: http://www.besparenvanenergie.nl/energiebalans_per_Nederlander.php
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:EnergiebalansPerNederlander"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Als ik kijk naar figuur 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:EnergiebalansPerNederlander"
+
+\end_inset
+
+ (afgeleid van door het CBS verstrekte jaarcijfers over het totale energieverbru
+ik in Nederland in 2007) dan zie ik dat 27% van het energiegebruik van de
+ gemiddelde Nederlander door zijn/haar auto wordt gebruikt.
+ Dit is de op-een-na grootste energiegebruiker.
+ De op-twee-na grootste energieverbruiker is verwarming en warm water.
+ Daar mijn kamer waarschijnlijk kleiner is (16 m
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+) dan de gemiddelde Nederlander, verwacht ik ook hier onder het gemiddelde
+ te zitten.
+ Met deze kennis schat ik dat ik ongeveer een kwart minder energie verbruik
+ dan de gemiddelde Nederlander.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename MtEnergyEnergyConsumptionPerCapita2003.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Energiegebruik-per-capita"
+
+\end_inset
+
+Energiegebruik per capita, bron: http://en.wikipedia.org/wiki/File:Energy-consumpt
+ion-per-capita-2003.png, 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Als ik het energiegebruik van de gemiddelde Nederlander vergelijk met die
+ van andere landen, dan blijk ook ik een relatief grote energieverbruiker
+ te zijn.
+ Zie figuur 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Energiegebruik-per-capita"
+
+\end_inset
+
+, een kaart gemaakt uit data van de International Energy Agency Statistics
+ Division data uit 2006.
+ Omdat voor de data achter dit figuur betaald moet worden, heb ik helaas
+ niet het percentiel waarin de gemiddelde Nederlander zit uit kunnen rekenen,
+ noch mogelijke verklaringen voor deze waarden.
+\end_layout
+
+\begin_layout Standard
+Op individueel niveau vind ik het geen nut hebben energie te verspillen
+ en daarom probeer ik dit zo weinig mogelijk te doen.
+ Ik ben hier wellicht niet uniek in: ik vermoed dat niemand het nuttig vind
+ energie te verspillen.
+ Maar bij mij ligt de weging van energiezuinigigheid hoger: mocht ik een
+ auto kopen, dan kies ik de energiezuinigste, in plaats van de sportiefste.
+\end_layout
+
+\begin_layout Standard
+Duurzaamheid is een wat lastiger in getallen uit te drukken concept.
+ Een van mijn persoonlijke definities is: 'Duurzaamheid is de tijdsduur
+ waarin een samenleving op dezelfde manier door kan gaan in het gebruik
+ van haar omgeving'.
+ Ik hecht er zelf waarde aan dat de mensheid zich kan ontwikkelen, zonder
+ crises, waardoor ik duurzaamheid belangrijk vind.
+ Een van mijn regels is: 'Leef op zo een manier, dat als elk mens zo zou
+ leven, hun kinderen het minstens net zo goed zouden kunnen hebben'.
+ Dit probeer ik te bereiken door klein te wonen, weinig bezit te hebben
+ en nieuw bezit tweedehands te kopen.
+ Maar misschien mijn procentueel grootste bijdrage is door het geboortecijfer
+ van Nederland te beperken door geen vader te worden: dat is al minstens
+ een energieverbruiker minder.
+\end_layout
+
+\begin_layout Section
+Visiestuk fossiele brandstoffen, kernenergie en alternatieve brandstoffen
+\end_layout
+
+\begin_layout Standard
+Ik geloof dat ontwikkelingslanden fossiele brandstoffen nodig hebben als
+ opstap om geavanceerder te worden: het is gemakkelijker een kolencentrale
+ te bouwen dan een kerncentrale: dankzij de kolencentrales kunnen de fabrieken
+ om kerncentrales te bouwen van stroom worden voorzien.
+ De bijdrage van kolencentrales aan het broeikaseffect zal ik niet ontkennen,
+ maar zie dit meer als een uitdaging dan als een probleem: koolstofdioxide
+ in de lucht kun je ook zien als een gemakkelijk te verkrijgen koolstofbron.
+ Datgeen dat deze koolstofdioxide kan fixeren, levert een complexer eindproduct
+ op, misschien in de vorm van biomassa (bij bijvoorbeeld planten) of koolwaterst
+offen (bij chemische reacties).
+ Ik lees regelmatig in de wetenschappelijke tijdschriften dat ontwikkeldere
+ landen methodes onderzoeken om de gevolgen van kolencentrales te verlagen
+ en misschien is dat ook wel onze plicht: ook wij hadden vroeger (en hebben
+ nog steeds) kolencentrales.
+ Het is in mijn ogen onze plicht om op landelijk niveau een negatieve CO
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ uitstoot te hebben, opdat we de gevolgen van zich ontwikkelende landen
+ helpen te verzachten.
+ Natuurlijk zijn er meer manieren om te helpen, maar ik vind het werken
+ vanuit het eigen land het meest elegant: hiermee accepteer je dat landen
+ zich mogen ontwikkelen, maar neem je ook de verantwoordelijkheid als technologi
+sch geavanceerd land om de hele wereld leefbaar te houden.
+\end_layout
+
+\begin_layout Standard
+Bovenstaande redenatie is volgens mij redelijk gangbaar, maar ik ben sterker
+ tegen fossiele brandstoffen van het aldoor geschetste, voor een wat minder
+ gangbare reden, namelijk een van mijn persoonlijke definities van de deugd
+ schoonheid.
+ Ik vind zaken van een hogere complexiteit in de regel een hogere schoonheid
+ bezitten.
+ Het is ook gemakkelijker om iets stuk te maken dan iets op te bouwen.
+ Dus: het is gemakkelijker om schoonheid te verlagen dan haar te verhogen.
+ Dat maakt schoonheid in mijn ogen een kostbaar goed, omdat de dynamiek
+ ervan in het voordeel van de lelijkheid ligt.
+ Als ik dit argument doortrek naar moleculair niveau, dan is een verbranding
+ een reactie zonder schoonheid: de diverse en complexe moleculen van de
+ fossiele brandstof worden kapot gemaakt tot de doorsnee verbrandingsgassen.
+\end_layout
+
+\begin_layout Standard
+Naast de schoonheid ervan, zie ik ook rationeel goede argumenten voor kernenergi
+e.
+ Ik snap de nadelen van kernsplijting met uranium en ben er desondanks een
+ groot voorstander van.
+ Ik denk dat de grootste gevaren van deze vorm van kernenergie vooral liggen
+ bij de sensatiewaarde ervan die de media gebruikt om het gewone volk ermee
+ te prikkelen.
+ Zo zorgt de media ervoor dat er geen nieuwe kerncentrales worden gebouwd,
+ waardoor oude in bedrijf blijven.
+ Terwijl de veiligheid van kerncentrales steeds meer is toegenomen! Hierdoor
+ blijven de gevaarlijke centrales actief (die wellicht het beeld zullen
+ gaan bevestigen dat kernsplijting met uranium gevaarlijk is), terwijl de
+ tegenvoorbeelden (die laten zien dat kernsplijting door uranium veilig
+ is) niet gebouwd zullen worden.
+ Ik ben blijkbaar bezorgder om de effecten van de media op het gewone volk,
+ dan het proces zelf.
+ Ik kan niet ontkennen dat het lang radioactieve plutonium een vervelend
+ afvalproduct is, maar ik zie de wetenschap hier wel met een oplossing voor
+ komen (mijn -misschien slechte- idee is om het radioactieve plutonium naar
+ het vloeibare magma van de aardkern te sturen: hier kan het zich verdunnen
+ tot onschuldige concentraties, ver van de mensheid af).
+ 
+\end_layout
+
+\begin_layout Standard
+Mijn bezorgheid om de effecten van de media is meer dan reeds beschreven,
+ omdat diezelfde media de ontwikkeling van schonere vormen van kernenergie
+ in de weg zouden kunnen staan.
+ De vormen die ik wil beschijven zijn de splijting van thorium en kernfusie.
+\end_layout
+
+\begin_layout Standard
+Het mooie aan kernsplijting is de grote hoeveelheid energie die ermee wordt
+ gewonnen: massa is een vorm van energie van een erg hoge concentratie.
+ Een gevaar is dat deze grote hoeveelheid energie de controle op het proces
+ ontregeld.
+ Bij kernsplijting van uranium uit zich dit in een meltdown, waar Chernobyl
+ een goed voorbeeld van is.
+ De weg naar de eerste ontregeling naar meltdown toe is bij uranium een
+ zichzelf versterkende: als er een klein beetje meer energie wordt omgezet
+ dan de koeling kan verwerken, neemt vanaf dan de ontregeling sneller toe:
+ het is een autokatalytische catastrofe.
+\end_layout
+
+\begin_layout Standard
+Bij kernsplijting met thorium speelt deze zichzelf versterkende ontregeling
+ niet, omdat de ontregeling gemakkelijk tegen te gaan is: stop de toevoer
+ van thorium en de ontregeling dooft uit.
+ Kernsplijting met thorium lijkt hierdoor inherent veilig te zijn.
+ Daarnaast hebben de eindproducten van de kernsplijting (gewogen) gemiddeld
+ een kortere radioactiviteitsduur.
+ 
+\end_layout
+
+\begin_layout Standard
+Kernfusie is niet alleen net zo controleerbaar als kernsplijting van thorium,
+ maar heeft ook nog eens enkel ongevaarlijke eindproducten, namelijk het
+ edelgas helium, de waterstofisotoop tritium, en de kleine atomen lithium
+ en beryllium.
+ Het eindproduct hangt af van de kernfusiereactie, waarbij ik hier enkel
+ de eindproducten noem van reacties met als beginstoffen deuterium, tritium,
+ helium en lithium.
+ Ik focus op deze reacties, omdat dit de kernfusiereacties zijn die we zelf
+ het eerst zullen kunnen uitvoeren: bij zwaardere atomen als grondstof,
+ worden de randvoorwaarden voor een succesvolle kernfusie technologisch
+ moeilijker.
+ 
+\end_layout
+
+\begin_layout Standard
+Van alternatieve brandstoffen ben ik persoonlijk niet onder de indruk: in
+ mijn ogen verwelken de voordelen ervan onder de potentie en schoonheid
+ van kernenergie.
+ Dat wil niet zeggen dat ik tegenstander ben van alternatieve energiebronnen:
+ ik zie aardolie liever verwerkt worden in een zonnepaneel, dan verbrand
+ worden.
+ 
+\end_layout
+
+\begin_layout Standard
+Van alle vormen van alternatieve energie, zal ik mij beperken tot zonneenergie.
+ Dit doe ik omdat -voor zover ik dit juist kan beoordelen- ik het gevoel
+ heb dat dit de meest geschikte kandidaat is als duurzame alternatieve energiebr
+on.
+ Dit gevoel heb ik, omdat andere vormen van alternatieve energie vooral
+ en/of enkel op Aarde kunnen worden gewonnen, terwijl zonneenergie in het
+ hele universum gewonnen kan worden: dat is dus op oneindig zoveel plaatsen
+ meer!
+\end_layout
+
+\begin_layout Standard
+Een reden dat ik desondanks nog niet onder de indruk ben van zonneenergie
+ is, omdat het rendement ervan in mijn ogen nog te laag is.
+ Dit rendement is in mijn ogen te laag, zo lang er competitie is met aardolie.
+ Oftewel: ik vind het rendement van zonneenergie hoog, als deze de concurrentie
+ (fossiele brandstoffen) ontbetwist verslaat.
+ Een ander nadeel van zonneenergie vind ik dat het nog vooral op onhandige
+ plaatsen wordt gewonnen, namelijk vooral op het aardoppervlak.
+ Dit heeft meerdere nadelen, onder andere dat de helft van het jaar het
+ donker is, en als het dag is, er onderdelen in de dampkring zijn die de
+ energie van de zon reflecteren danwel absorberen.
+ De plek om zonneenergie te winnen is in mijn ogen buiten de atmosfeer,
+ in de vorm van bijvoorbeeld een Dysonbol: een verzameling zonnepanelen
+ die zwermt rondt de energiebron, de zon.
+ Het concept van de Dysonbol kan zeker op mijn sympathie rekenen, maar helaas
+ kan ik niet ontkennen dat we nog niet technologisch ontwikkeld genoeg zijn
+ om dit werkelijkheid te maken.
+\end_layout
+
+\begin_layout Standard
+Samenvattend is mijn visie dat de meerdere vormen van energiebronnen hun
+ plaats hebben, soms als opstapje naar een efficientere vorm.
+ Fossiele brandstoffen zijn in mijn ogen een van de meest ruwe vormen en
+ een opstap naar kernenergie en alternatieve energiebronnen.
+ Kernenergie zie ik als een mogelijk eindstation: de mensheid kan nu redelijk
+ veilig en efficient uranium splijten, maar zal hopelijk de stap nemen naar
+ het splijten van thorium en parallel hieraan het fuseren van (steeds grotere)
+ atoomkernen.
+ Parallel aan kernenergie zei ik ook de ontwikkeling gaan van alternatieve
+ energiebronnen, waarvan ik vooral zonneenergie een grote kanshebber zie
+ zijn, vanaf het moment dat haar rendement onomweerlegbaar hoog is en we
+ technologisch geavanceerd genoeg zijn om megastructuren als een Dysonbol
+ te bouwen.
+\end_layout
+
+\begin_layout Standard
+Mijn grootste angst is echter niet de gevaren die al deze vormen van energie
+ met zich meebrengen, maar de effecten van de media op het gewone volk,
+ die de ontwikkeling ervan in de weg staan.
+ Ik gun het de mensheid om van haar fouten te leren, inplaats van risico
+ vermijdend gedrag aan te wenden, dit laatste gesteund door de sensatiedrang
+ van de media.
+ De rol van scholing in kernenergie, klassikaal danwel individueel, is in
+ mijn ogen dan een kans die de geschoolde mens op zich zal kunnen nemen
+ om de mensheid verder te helpen in haar ontwikkeling.
+\end_layout
+
+\end_body
+\end_document

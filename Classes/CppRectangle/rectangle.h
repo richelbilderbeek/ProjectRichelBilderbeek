@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Rectangle, rectangle class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,6 +20,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
+
+#ifdef REALLY_USE_RECTANGLE
+//Use, for example, this code instead:
+//
+//#include <boost/geometry/geometries/box.hpp>
+//#include <boost/geometry/geometries/point_xy.hpp>
+//
+//  typedef boost::geometry::model::d2::point_xy<double> Point;
+//  typedef boost::geometry::model::box<Point> Rect;
+
 
 #include <string>
 #include <vector>
@@ -95,53 +105,62 @@ struct Rect
     const int any_x = 0,
     const int any_y = 0,
     const int any_w = 0,
-    const int any_h = 0)
-  : x(any_x), y(any_y), w(any_w), h(any_h) {}
+    const int any_h = 0);
 
   ///Obtain the x coordinat of the rectangle its bottom side
-  int GetBottom() const { return y + h; }
+  int GetBottom() const noexcept { return m_y + m_h; }
 
   ///Obtain the y coordinat of the rectangle its right side
-  int GetRight() const { return x + w; }
+  int GetRight() const noexcept { return m_x + m_w; }
 
   ///Obtain the rectangle its height
-  int GetHeight() const { return h; }
+  int GetHeight() const noexcept { return m_h; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  int GetLeft() const noexcept { return GetX(); }
 
   ///Obtain the rectangle its width
-  int GetWidth() const { return w; }
-
+  int GetWidth() const noexcept { return m_w; }
 
   ///Obtain the x coordinat of the rectangle its left side
-  int GetX() const { return x; }
+  int GetX() const noexcept { return m_x; }
 
   ///Obtain the y coordinat of the rectangle its top side
-  int GetY() const { return y; }
+  int GetY() const noexcept { return m_y; }
+  int GetTop() const noexcept { return GetX(); }
 
-  bool IsIn(const int any_x, const int any_y) const
+  bool IsIn(const int any_x, const int any_y) const noexcept
   {
-    return any_x > x && any_y > y && any_x < GetRight() && any_y < GetBottom();
+    return any_x > m_x && any_y > m_y && any_x < GetRight() && any_y < GetBottom();
   }
 
-  private:
-  int x;
-  int y;
-  int w;
-  int h;
+  void Translate(const int dx, const int dy) noexcept;
 
-  friend bool operator==(const Rect& lhs, const Rect& rhs);
-  friend std::ostream& operator<<(std::ostream& os,const Rect& rect);
+  private:
+  int m_x;
+  int m_y;
+  int m_w;
+  int m_h;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
+  friend bool operator==(const Rect& lhs, const Rect& rhs) noexcept;
+  friend std::ostream& operator<<(std::ostream& os,const Rect& rect) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os,const Rect& rect);
-bool operator==(const Rect& lhs, const Rect& rhs);
-bool operator!=(const Rect& lhs, const Rect& rhs);
+std::ostream& operator<<(std::ostream& os,const Rect& rect) noexcept;
+bool operator==(const Rect& lhs, const Rect& rhs) noexcept;
+bool operator!=(const Rect& lhs, const Rect& rhs) noexcept;
 
 } //~namespace ribi
 
 #endif // RECTANGLE_H
+
+#endif //#ifdef REALLY_USE_RECTANGLE

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShape, tool to test the Shape and ShapeWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,36 +21,34 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTSHAPEMENUDIALOG_H
 #define TESTSHAPEMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///The logic behind the menu dialog
-struct TestShapeMenuDialog
+struct TestShapeMenuDialog : public MenuDialog
 {
   ///Creates the resources needed
   TestShapeMenuDialog();
 
-  ///Obtain the about information
-  ///
-  ///\note
-  ///This is a non-static method, to ensure users of this class
-  ///call TestShapeMenuDialog its constructor: this is where
-  ///the resources needed are created
-  const About GetAbout() const;
-
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
   ///\brief
   ///Get the filename of the image shown at the welcome screen
   ///
   ///This is a non-static method to force this class its constructor being
   ///called, creating the file from the application its resource file
-  const std::string GetFilenameImageWelcome() const { return "ToolTestShapeWelcome.png"; }
+  std::string GetFilenameImageWelcome() const { return "ToolTestShapeWelcome.png"; }
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version
-  static const std::string GetVersion();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

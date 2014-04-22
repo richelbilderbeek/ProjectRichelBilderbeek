@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MusicTheory, tool for visualizing my music theory
-Copyright (C)  2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,23 +18,38 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolMusicTheory.htm
 //---------------------------------------------------------------------------
-
-
 #include "musictheorymenudialog.h"
 
+#include <cassert>
+#include <iostream>
 #include "musicchord.h"
 #include "musicnote.h"
 #include "musicscale.h"
-//#include "qtcreatorprofile.h"
+#include "trace.h"
 
-const ribi::About ribi::MusicTheoryMenuDialog::GetAbout()
+int ribi::MusicTheoryMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::MusicTheoryMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "MusicTheory",
     "tool for visualizing my music theory",
     "the 11th of August 2012",
-    "2012",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolMusicTheory.htm",
     GetVersion(),
     GetVersionHistory());
@@ -44,17 +59,52 @@ const ribi::About ribi::MusicTheoryMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::MusicTheoryMenuDialog::GetVersion()
+ribi::Help ribi::MusicTheoryMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::MusicTheoryMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramMusicTheory
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::MusicTheoryMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::MusicTheoryMenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::MusicTheoryMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-08-10: version 1.0: initial version");
-  v.push_back("2012-08-11: version 1.1: changes in the background, support crosscompiling to Windows");
-  v.push_back("2012-08-17: version 1.2: added multi-scale chord relations");
-  return v;
+  return {
+    "2012-08-10: version 1.0: initial version",
+    "2012-08-11: version 1.1: changes in the background, support crosscompiling to Windows",
+    "2012-08-17: version 1.2: added multi-scale chord relations"
+  };
 }
 
+#ifndef NDEBUG
+void ribi::MusicTheoryMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::MusicTheoryMenuDialog::Test");
+  TRACE("Finished ribi::MusicTheoryMenuDialog::Test successfully");
+}
+#endif

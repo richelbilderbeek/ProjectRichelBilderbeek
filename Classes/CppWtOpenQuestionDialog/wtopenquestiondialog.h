@@ -20,30 +20,33 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTOPENQUESTIONDIALOG_H
 #define WTOPENQUESTIONDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "wtquestiondialog.h"
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WLineEdit;
   struct WStackedWidget;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
 struct Question;
 struct OpenQuestion;
 struct OpenQuestionDialog;
-//---------------------------------------------------------------------------
+
 struct WtOpenQuestionDialog : public WtQuestionDialog
 {
   explicit WtOpenQuestionDialog(const std::string& question);
 
   explicit WtOpenQuestionDialog(const boost::shared_ptr<QuestionDialog>& dialog);
+
+  const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
+  const boost::shared_ptr<const OpenQuestionDialog> GetOpenQuestionDialog() const noexcept;
 
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
@@ -56,10 +59,12 @@ private:
     Wt::WPushButton * const m_button_submit;
     Wt::WLineEdit * const m_edit_answer;
     Wt::WStackedWidget * const m_stacked_widget;
-  } ui;
+  } m_ui;
+
+  boost::shared_ptr<OpenQuestionDialog> m_dialog;
 
   ///Set the Question
-  void SetQuestion(const boost::shared_ptr<Question>& question);
+  void SetQuestion(const boost::shared_ptr<const Question> question);
 
   void OnButtonSubmitClicked();
 };

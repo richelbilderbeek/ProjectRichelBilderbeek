@@ -21,19 +21,19 @@ struct WhiteNoiseSystem
 
 
 
-  virtual ~WhiteNoiseSystem() {}
+  virtual ~WhiteNoiseSystem() noexcept {}
 
   ///The parameters
-  const boost::shared_ptr<const WhiteNoiseSystemParameters>& GetParameters() const { return m_parameters; }
+  const boost::shared_ptr<const WhiteNoiseSystemParameters>& GetParameters() const noexcept { return m_parameters; }
 
   ///Obtain the type as an enum
-  virtual WhiteNoiseSystemType GetType() const = 0;
+  virtual WhiteNoiseSystemType GetType() const noexcept = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Update reality, that is, let the real system (i.e. reality) go to its next state
   virtual void GoToNextState(const boost::numeric::ublas::vector<double>& input) = 0;
@@ -42,7 +42,7 @@ struct WhiteNoiseSystem
   virtual const boost::numeric::ublas::vector<double> Measure() const = 0;
 
   ///Peek what the real value is
-  virtual const boost::numeric::ublas::vector<double>& PeekAtRealState() const { return m_current_state; }
+  virtual const boost::numeric::ublas::vector<double>& PeekAtRealState() const noexcept { return m_current_state; }
 
   protected:
   ///An ABC can only be constructed by derived classes
@@ -50,10 +50,10 @@ struct WhiteNoiseSystem
 
   ///Obtain a random number from a normal distribution
   ///From http://www.richelbilderbeek.nl/CppGetRandomNormal.htm
-  static double GetRandomNormal(const double mean = 0.0, const double sigma = 1.0);
+  static double GetRandomNormal(const double mean = 0.0, const double sigma = 1.0) noexcept;
 
   ///The real state of the system
-  const boost::numeric::ublas::vector<double>& GetCurrentState() const { return m_current_state; }
+  const boost::numeric::ublas::vector<double>& GetCurrentState() const noexcept { return m_current_state; }
 
   ///Set the new current state
   void SetNewCurrentState(const boost::numeric::ublas::vector<double>& new_current_state);

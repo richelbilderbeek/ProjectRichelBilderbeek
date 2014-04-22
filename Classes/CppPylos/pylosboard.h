@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Board, class for a Pylos/Phyraos board
-Copyright (C) 2010-2012 Richel Bilderbeek
+pylos::Board, class for a Pylos/Phyraos board
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,14 +34,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-namespace Pylos {
+
+struct TextCanvas;
+
+namespace pylos {
 
 struct Board
 {
   typedef std::vector<std::vector<PositionState> > Layer;
 
-  Board();
-  virtual ~Board() {}
+  Board() noexcept;
+  virtual ~Board() noexcept {}
 
   ///CanDo determines if a Pylos notation move is valid
   bool CanDo(const std::string& s, const Player player) const;
@@ -81,10 +84,10 @@ struct Board
   int Count(const PositionState state) const;
 
   ///Create a BoardAdvanced
-  static const boost::shared_ptr<Board> CreateAdvancedBoard();
+  static boost::shared_ptr<Board> CreateAdvancedBoard() noexcept;
 
   ///Create a BoardBasic
-  static const boost::shared_ptr<Board> CreateBasicBoard();
+  static boost::shared_ptr<Board> CreateBasicBoard() noexcept;
 
   ///Do performs a move in Pylos notation
   void Do(const std::string& s, const Player player);
@@ -93,27 +96,27 @@ struct Board
   void Do(const Move& m, const Player player);
 
   ///Get returns the state of the requested location
-  PositionState Get(const Coordinat& c) const;
+  PositionState Get(const Coordinat& c) const noexcept;
 
   ///GetAllPossibleMoves returns all moves valid for the selected player
-  const std::vector<Move> GetAllPossibleMoves(const Player& player) const;
+  const std::vector<Move> GetAllPossibleMoves(const Player& player) const noexcept;
 
   ///GetLayerSize returns how many marbles this is wide/height.
-  ///For exaple; layer 0 has 4x4 marbles, so GetLayerSize
+  ///For example; layer 0 has 4x4 marbles, so GetLayerSize
   ///will return 4.
-  int GetLayerSize(const int layer) const;
+  int GetLayerSize(const int layer) const noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Return the possible winner
-  Winner GetWinner() const;
+  Winner GetWinner() const noexcept;
 
   ///PlayRandomPylosGame plays a random Pylos game and returns the winner.
-  static Winner PlayRandomPylosGame(const boost::shared_ptr<Board>& board_original = boost::shared_ptr<Board>());
+  static Winner PlayRandomPylosGame(const boost::shared_ptr<Board>& board_original = boost::shared_ptr<Board>()) noexcept;
 
   ///Remove removes one or two marbles.
   void Remove(const std::vector<Coordinat>& v, const Player player);
@@ -130,10 +133,13 @@ struct Board
 
 
   ///Display the board as a std::string
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   ///Display the board as a 2D std::string
-  const std::vector<std::string> ToText() const;
+  std::vector<std::string> ToText() const noexcept;
+
+  ///Display the board as a 2D std::string
+  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   ///Transfer lets current player transfer his marble to a new, higher position
   void Transfer(
@@ -160,19 +166,19 @@ struct Board
 
   private:
   ///CreateEmptyBoard created an empty board.
-  const std::vector<Layer> CreateEmptyBoard() const;
+  std::vector<Layer> CreateEmptyBoard() const noexcept;
 
   ///CreateLayer creates an empty layer.
   const Layer CreateLayer(const int sz) const;
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   //Friends
   //friend void boost::checked_delete<>(Board* x);
-  friend bool operator==(const Board& lhs, const Board& rhs);
+  friend bool operator==(const Board& lhs, const Board& rhs) noexcept;
 };
 
 ///A BoardAdvanced lets a player remove one or two marbles when
@@ -181,11 +187,11 @@ struct Board
 ///  line of marbles of his/her color
 struct BoardAdvanced : public Board
 {
-  BoardAdvanced();
-  ~BoardAdvanced() {}
+  BoardAdvanced() noexcept;
+  ~BoardAdvanced() noexcept {}
 
   ///Clone a derived class of Board.
-  boost::shared_ptr<Board> Clone() const;
+  boost::shared_ptr<Board> Clone() const noexcept;
 
   ///Load loads a game in Pylos notation
   //void Load(const std::string& s);
@@ -214,11 +220,11 @@ struct BoardAdvanced : public Board
 ///- a player creates a 2x2 square of marbles of his/her color
 struct BoardBasic : public Board
 {
-  BoardBasic();
-  ~BoardBasic() {}
+  BoardBasic() noexcept;
+  ~BoardBasic() noexcept {}
 
   ///Clone a derived class of Pylos.
-  boost::shared_ptr<Board> Clone() const;
+  boost::shared_ptr<Board> Clone() const noexcept;
 
   ///Load loads a game in Pylos notation
   //void Load(const std::string& s);
@@ -246,9 +252,9 @@ struct BoardBasic : public Board
 ///- never
 
 
-bool operator==(const Board& lhs, const Board& rhs);
-bool operator!=(const Board& lhs, const Board& rhs);
-std::ostream& operator<<(std::ostream& os,const Board& p);
+bool operator==(const Board& lhs, const Board& rhs) noexcept;
+bool operator!=(const Board& lhs, const Board& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os,const Board& p) noexcept;
 
 } //~namespace Pylos
 } //~namespace ribi

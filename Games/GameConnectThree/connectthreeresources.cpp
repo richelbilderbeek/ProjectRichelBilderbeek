@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,13 +26,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <stdexcept>
 
+#include "fileio.h"
 #include "trace.h"
 
 #include <QFile>
 
 #pragma GCC diagnostic pop
 
-ribi::ConnectThreeResources::ConnectThreeResources(
+ribi::con3::ConnectThreeResources::ConnectThreeResources(
   const std::vector<std::string>& computers_filenames,
   const std::string& computer_grey_filename,
   const std::string& css,
@@ -60,7 +61,7 @@ ribi::ConnectThreeResources::ConnectThreeResources(
   Create();
 }
 
-ribi::ConnectThreeResources::~ConnectThreeResources()
+ribi::con3::ConnectThreeResources::~ConnectThreeResources() noexcept
 {
   for (const std::string filename: m_computers_filenames) { std::remove(filename.c_str()); }
   for (const std::string filename: m_players_filenames) { std::remove(filename.c_str()); }
@@ -73,7 +74,7 @@ ribi::ConnectThreeResources::~ConnectThreeResources()
   std::remove(m_instructions_wrong_filename.c_str());
 }
 
-void ribi::ConnectThreeResources::Create()
+void ribi::con3::ConnectThreeResources::Create() const
 {
   //CheckFile(m_background_filename);
   for (const std::string filename: m_computers_filenames) { CreateFile(filename); }
@@ -88,16 +89,21 @@ void ribi::ConnectThreeResources::Create()
   CreateFile(m_instructions_wrong_filename);
 }
 
-void ribi::ConnectThreeResources::CreateFile(const std::string& s)
+void ribi::con3::ConnectThreeResources::CreateFile(const std::string& s)
 {
-  if (!QFile::exists(s.c_str()))
+  if (!fileio::FileIo().IsRegularFile(s))
   {
     const std::string filename = ":/images/" + s;
     QFile f(filename.c_str());
     f.copy(s.c_str());
-    if (!QFile::exists(s.c_str())) { TRACE(s); }
-    assert(QFile::exists(s.c_str()));
+    if (!fileio::FileIo().IsRegularFile(s))
+    {
+      const std::string error = "ConnectThreeResources::CreateFile: file not found: '" + s
+        + "\', please add the file to a resource file, or correct the filename";
+      TRACE(s);
+      throw std::runtime_error(error);
+    }
   }
-  if (!QFile::exists(s.c_str())) { TRACE(s); }
-  assert(QFile::exists(s.c_str()));
+  if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
+  assert(fileio::FileIo().IsRegularFile(s));
 }

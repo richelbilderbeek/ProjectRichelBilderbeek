@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,28 +20,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTPYLOSGAMETESTSDIALOG_H
 #define QTTESTPYLOSGAMETESTSDIALOG_H
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
+
 namespace Ui {
   class QtTestPylosGameTestsDialog;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///DialogTests shows some of the more elaborate tests that
 ///are performed on the Pylos class
-class QtTestPylosGameTestsDialog : public QDialog
+class QtTestPylosGameTestsDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestPylosGameTestsDialog(QWidget *parent = 0);
-  ~QtTestPylosGameTestsDialog();
-
-protected:
-  
+  QtTestPylosGameTestsDialog(const QtTestPylosGameTestsDialog&) = delete;
+  QtTestPylosGameTestsDialog& operator=(const QtTestPylosGameTestsDialog&) = delete;
+  ~QtTestPylosGameTestsDialog() noexcept;
 
 private:
   Ui::QtTestPylosGameTestsDialog *ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTPYLOSGAMETESTSDIALOG_H

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,24 +18,36 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttictactoegamedialog.h"
 
 #include <cassert>
+#include <stdexcept>
 
 #include <QDesktopWidget>
 
-#include "tictactoe.h"
+#include "tictactoegame.h"
+#include "tictactoewidget.h"
 #include "qttictactoewidget.h"
 #include "qttictactoewinnerdialog.h"
+#include "trace.h"
 #include "ui_qttictactoegamedialog.h"
 
-ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
-    QDialog(parent, Qt::Window),
+#pragma GCC diagnostic pop
+
+ribi::tictactoe::QtTicTacToeGameDialog::QtTicTacToeGameDialog(
+  const boost::shared_ptr<Ai>& player1,
+  const boost::shared_ptr<Ai>& player2,
+  QWidget *parent
+) : QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeGameDialog),
-    m_tictactoe(new QtTicTacToeWidget)
+    m_tictactoe(new QtTicTacToeWidget(player1,player2))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
   ui->layout->addWidget(m_tictactoe.get());
   QObject::connect(m_tictactoe.get(),SIGNAL(hasWinner()),
@@ -47,23 +59,37 @@ ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtTicTacToeGameDialog::~QtTicTacToeGameDialog()
+ribi::tictactoe::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTicTacToeGameDialog::HasWinner()
+void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner()
 {
 
   QtTicTacToeWinnerDialog d;
-  switch (m_tictactoe->GetTicTacToe()->GetWinner())
+  switch (m_tictactoe->GetWidget()->GetWinner())
   {
-    case TicTacToe::player1: d.SetWinnerCross(); break;
-    case TicTacToe::player2: d.SetWinnerCircle(); break;
-    case TicTacToe::draw: d.SetDraw(); break;
-    default: assert(!"Should not get here");
+    case Winner::player1: d.SetWinnerCross(); break;
+    case Winner::player2: d.SetWinnerCircle(); break;
+    case Winner::draw: d.SetDraw(); break;
+    case Winner::no_winner:
+      assert(!"QtTicTacToeGameDialog::HasWinner: should not respond to no winner");
+      throw std::logic_error("QtTicTacToeGameDialog::HasWinner: should not respond to no winner");
   }
   d.exec();
   m_tictactoe->Restart();
 }
 
+#ifndef NDEBUG
+void ribi::tictactoe::QtTicTacToeGameDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::tictactoe::QtTicTacToeGameDialog::Test");
+  TRACE("Finished ribi::tictactoe::QtTicTacToeGameDialog::Test successfully");
+}
+#endif

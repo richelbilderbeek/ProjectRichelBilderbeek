@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MultipleChoiceQuestionDialog, dialog for MultipleChoiceQuestion
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,35 +21,52 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef MULTIPLECHOICEQUESTIONDIALOG_H
 #define MULTIPLECHOICEQUESTIONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
-
 #include "questiondialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct MultipleChoiceQuestion;
+struct Question;
 
 struct MultipleChoiceQuestionDialog : public QuestionDialog
 {
-  explicit MultipleChoiceQuestionDialog(
-    const boost::shared_ptr<MultipleChoiceQuestion>& question
-    = CreateDefaultQuestion());
-
   explicit MultipleChoiceQuestionDialog(const std::string& question);
 
+  ///Will work if question is not nullptr
+  explicit MultipleChoiceQuestionDialog(const boost::shared_ptr<const MultipleChoiceQuestion> question);
+
+  boost::shared_ptr<const MultipleChoiceQuestion> GetMultipleChoiceQuestion() const noexcept { return m_question; }
+
+  boost::shared_ptr<const Question> GetQuestion() const noexcept;
+
   ///Obtain the version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///Submit an answer
+  ///For a multiple choice question, s will be the index of the answer
+  void Submit(const std::string& s);
 
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestionDialog *);
-  ~MultipleChoiceQuestionDialog() {}
+  ~MultipleChoiceQuestionDialog() noexcept {}
+
+  const boost::shared_ptr<const MultipleChoiceQuestion> m_question;
 
   ///Create a default Question
   //static MultipleChoiceQuestion * CreateDefaultQuestion();
-  static boost::shared_ptr<MultipleChoiceQuestion> CreateDefaultQuestion();
+  static boost::shared_ptr<MultipleChoiceQuestion> CreateDefaultQuestion() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

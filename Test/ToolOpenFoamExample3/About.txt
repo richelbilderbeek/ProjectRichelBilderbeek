@@ -1,0 +1,1 @@
+It does something. I wanted to model diffusion of gas, but decided to keep this setup. Gas diffusion is planned for ToolOpenFoamExample4

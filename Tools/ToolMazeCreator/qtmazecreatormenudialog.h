@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MazeCreator, creates a maze and displays it on screen.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,7 +22,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMAZECREATORMENUDIALOG_H
 #define QTMAZECREATORMENUDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtMazeCreatorMenuDialog;
@@ -30,24 +33,28 @@ namespace Ui {
 
 namespace ribi {
 
-class QtMazeCreatorMenuDialog : public QDialog
+class QtMazeCreatorMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtMazeCreatorMenuDialog(QWidget *parent = 0);
-  ~QtMazeCreatorMenuDialog();
+  QtMazeCreatorMenuDialog(const QtMazeCreatorMenuDialog&) = delete;
+  QtMazeCreatorMenuDialog& operator=(const QtMazeCreatorMenuDialog&) = delete;
+  ~QtMazeCreatorMenuDialog() noexcept;
 
 private slots:
 
   void on_button_start_clicked();
-
   void on_button_about_clicked();
-
   void on_button_quit_clicked();
 
 private:
   Ui::QtMazeCreatorMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

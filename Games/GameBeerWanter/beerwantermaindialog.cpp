@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2013 Richel Bilderbeek
+Copyright (C) 2005-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::BeerWanterMainDialog::BeerWanterMainDialog(
@@ -54,6 +55,9 @@ ribi::BeerWanterMainDialog::BeerWanterMainDialog(
     m_window_x{(screen_width  / 2) - (window_width  / 2)},
     m_window_y{(screen_height / 2) - (window_height / 2)}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 bool ribi::BeerWanterMainDialog::ClickWilBeSuccess() const
@@ -93,9 +97,9 @@ int ribi::BeerWanterMainDialog::GetRandomWindowShake() const
     - ((m_level-1)/4);
 }
 
-const std::string ribi::BeerWanterMainDialog::GetWindowTitle() const
+std::string ribi::BeerWanterMainDialog::GetWindowTitle() const
 {
-  return std::string("BeerWanter (C) 2005-2013 Richel Bilderbeek. Beer already got: ")
+  return "BeerWanter (C) 2005-2014 Richel Bilderbeek. Beer already got: "
     + boost::lexical_cast<std::string>(m_level - 1);
 }
 
@@ -130,3 +134,31 @@ void ribi::BeerWanterMainDialog::ShakeWindow()
   m_window_x += GetRandomWindowShake();
   m_window_y += GetRandomWindowShake();
 }
+
+#ifndef NDEBUG
+void ribi::BeerWanterMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::BeerWanterMainDialog::Test");
+  const int screen_width = 640;
+  const int screen_height = 400;
+  const int sprite_width = 32;
+  const int sprite_height = 48;
+  const int window_width = 320;
+  const int window_height = 200;
+
+  BeerWanterMainDialog(
+    screen_width,
+    screen_height,
+    sprite_width,
+    sprite_height,
+    window_width,
+    window_height
+  );
+  TRACE("Finished ribi::BeerWanterMainDialog::Test successfully");
+}
+#endif

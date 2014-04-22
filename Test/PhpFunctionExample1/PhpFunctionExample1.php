@@ -1,0 +1,1 @@
+<?phpfunction SayHelloWorld(){  echo "Hello World\n";}function IsEven($i){  return $i % 2 == 0;}SayHelloWorld();echo "1 is even: " . (IsEven(1) ? "Yes" : "No") . "\n";echo "2 is even: " . (IsEven(2) ? "Yes" : "No") . "\n";?>

@@ -1,17 +1,21 @@
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
-//---------------------------------------------------------------------------
+
 #include <QKeyEvent>
-//---------------------------------------------------------------------------
+
 #include "nsanabrosqtheader.h"
 #include "ui_qtnsanabrosgamedialog.h"
-//---------------------------------------------------------------------------
-QtNsanaBrosGameDialog::QtNsanaBrosGameDialog(
+#pragma GCC diagnostic pop
+
+ribi::QtNsanaBrosGameDialog::QtNsanaBrosGameDialog(
   const NsanaBrosOptions * const options,
   QWidget *parent)
   : QDialog(parent),
     ui(new Ui::QtNsanaBrosGameDialog),
-    m_game(new NsanaBrosGame)
+    m_game(new NsanaBrosGame),
+    m_timer{}
 {
   TRACE_FUNC();
   ui->setupUi(this);
@@ -36,7 +40,7 @@ QtNsanaBrosGameDialog::QtNsanaBrosGameDialog(
   {
     QtNsanaBrosKeysWidget * widget
       = new QtNsanaBrosKeysWidget(
-        m_game->GetKeys());
+        m_game->GetKeys().get());
     ui->layout->addWidget(widget);
   }
 
@@ -44,13 +48,13 @@ QtNsanaBrosGameDialog::QtNsanaBrosGameDialog(
   m_timer.setInterval(50);
   m_timer.start();
 }
-//---------------------------------------------------------------------------
-QtNsanaBrosGameDialog::~QtNsanaBrosGameDialog()
+
+ribi::QtNsanaBrosGameDialog::~QtNsanaBrosGameDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtNsanaBrosGameDialog::changeEvent(QEvent *e)
+
+void ribi::QtNsanaBrosGameDialog::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
   switch (e->type()) {
@@ -61,19 +65,19 @@ void QtNsanaBrosGameDialog::changeEvent(QEvent *e)
     break;
   }
 }
-//---------------------------------------------------------------------------
-void QtNsanaBrosGameDialog::keyPressEvent(QKeyEvent * e)
+
+void ribi::QtNsanaBrosGameDialog::keyPressEvent(QKeyEvent * e)
 {
   m_game->KeyPress(e->key());
 }
-//---------------------------------------------------------------------------
-void QtNsanaBrosGameDialog::keyReleaseEvent(QKeyEvent * e)
+
+void ribi::QtNsanaBrosGameDialog::keyReleaseEvent(QKeyEvent * e)
 {
   m_game->KeyRelease(e->key());
 }
-//---------------------------------------------------------------------------
-void QtNsanaBrosGameDialog::OnTimerQt()
+
+void ribi::QtNsanaBrosGameDialog::OnTimerQt()
 {
   m_game->OnTimer();
 }
-//---------------------------------------------------------------------------
+

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateQtProjectZipFile, tool to create a zip file from a Qt project
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,12 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtcreateqtprojectzipfilemaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <fstream>
+
 #include <boost/lexical_cast.hpp>
 
 #include <QFile>
@@ -33,86 +34,50 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QMessageBox>
 
 #include "createqtprojectzipfilemenudialog.h"
+#include "createqtprojectzipfilemaindialog.h"
+#include "fileio.h"
 #include "qtcreatorprofilezipscript.h"
 #include "trace.h"
 #include "ui_qtcreateqtprojectzipfilemaindialog.h"
 
 #pragma GCC diagnostic pop
 
-ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWidget *parent) :
+ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtCreateQtProjectZipFileMainDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 
+  TRACE("QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog");
   ui->lineEdit->setText("Tools/ToolCreateQtProjectZipFile");
 }
 
-ribi::QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog()
+ribi::QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_folder)
+void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_folder) noexcept
 {
-  /*
-  std::stringstream s;
-
-  const std::vector<std::string> pro_filenames = GetProFilesInFolder(source_folder);
-
-  std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> > scripts;
-
-  for (const std::string& pro_filename: pro_filenames)
-  {
-    const boost::shared_ptr<QtCreatorProFile> pro_file(
-      new QtCreatorProFile(pro_filename));
-    assert(pro_file);
-
-    const boost::shared_ptr<QtCreatorProFileZipScript> script(
-      new QtCreatorProFileZipScript(pro_file));
-    assert(script);
-
-    scripts.push_back(script);
-  }
-
-
-  const boost::shared_ptr<QtCreatorProFileZipScript> merged_script
-    = QtCreatorProFileZipScript::Merge(scripts);
-  if (!merged_script)
-  {
-    ui->text->setPlainText("Folder does not contain any .pro files");
-  }
-  else
-  {
-    s << *merged_script << '\n';
-    ui->text->setPlainText( s.str().c_str() );
-  }
-  */
-  ui->text->setPlainText(QtCreatorProFileZipScript::CreateScript(source_folder).c_str());
+  const std::string text = QtCreatorProFileZipScript::CreateScript(source_folder);
+  ui->text->setPlainText(text.c_str());
 }
 
-bool ribi::QtCreateQtProjectZipFileMainDialog::IsRegularFile(const std::string& filename)
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
-}
-
-void ribi::QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QString &arg1)
+void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QString &arg1) noexcept
 {
   const std::string source_folder = "../../" + arg1.toStdString();
 
   if (!QFile::exists(source_folder.c_str()))
   {
-    const std::string text = "Folder '" + source_folder + std::string("' does not exist.");
+    const std::string text = "Folder '" + source_folder + "' does not exist.";
     ui->text->setPlainText(text.c_str());
     return;
   }
@@ -120,13 +85,14 @@ void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QSt
 }
 
 #ifndef NDEBUG
-void ribi::QtCreateQtProjectZipFileMainDialog::Test()
+void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::QtCreateQtProjectZipFileMainDialog::Test");
   //Test basic functions on this project with going two folders down
   const std::vector<std::string> pro_filenames
     =
@@ -139,7 +105,7 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test()
   const int n_tests = std::count_if(
     pro_filenames.begin(), pro_filenames.end(),
       [](const std::string& filename)
-      { return IsRegularFile(filename); }
+      { return fileio::FileIo().IsRegularFile(filename); }
     );
   const std::string s = "Testing "
     + boost::lexical_cast<std::string>(n_tests)
@@ -149,18 +115,27 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test()
 
   for (const std::string& pro_filename: pro_filenames)
   {
-    if (!IsRegularFile(pro_filename)) continue;
+    if (!fileio::FileIo().IsRegularFile(pro_filename)) continue;
+    if (!fileio::FileIo().IsFolder(pro_filename)) continue;
+    const CreateQtProjectZipFileMainDialog d(pro_filename);
+    assert(!d.GetScript().empty());
+  }
+
+  for (const std::string& pro_filename: pro_filenames)
+  {
+    if (!fileio::FileIo().IsRegularFile(pro_filename)) continue;
     const boost::shared_ptr<const QtCreatorProFile> pro_file(
       new QtCreatorProFile(pro_filename));
     assert(pro_file);
-
+    assert(fileio::FileIo().IsRegularFile(pro_filename));
     const boost::shared_ptr<const QtCreatorProFileZipScript> script(
       new QtCreatorProFileZipScript(pro_file));
-
+    assert(script);
     std::stringstream s;
-    s << *script;
+    s << (*script);
     assert(!s.str().empty());
   }
+  TRACE("Finished ribi::QtCreateQtProjectZipFileMainDialog::Test successfully");
 }
 #endif
 

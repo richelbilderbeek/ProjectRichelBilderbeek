@@ -1,0 +1,243 @@
+// The object is a bit like a hovercraft:
+// high pressure is supplied at the top inlet tube,
+// which then flows below the object
+//
+//
+//Isometric sketch:
+//
+//
+//         +---+
+//        /   /|----+
+//       +---+ |   /| 
+//      /|   | +  / |
+//     / |   |/  /  +
+//    /  +---+  /  /
+//   /         /  /
+//  +---------+  /
+//  |         | /
+//  +---------+
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+convertToMeters 0.1;
+
+//Isometric sketch:
+//
+//
+//         3---0
+//        /   /|----12
+//       2---1 |   /| 
+//      /|   | 4  / |
+//     / |   |/  /  16
+//    /  6---5  /  /
+//   /         /  /
+// 14---------13 /
+//  |         | /
+// 18---------17
+//
+//
+//Side:
+//
+//    +--+     top layer
+//    |  |
+// +--+--+--+  middle layer
+// |        |
+// +--------+  bottom layer
+//
+//Layers:
+//
+//Top layer:
+//
+//  
+//  
+//    3--0  
+//    |  |  
+//    |  |  
+//    2--1  
+//  
+//  
+//
+//
+//Middle layer:
+//
+// 15------12
+// |        |
+// |  7--4  |
+// |  |  |  |
+// |  |  |  |
+// |  6--5  |
+// |        |
+// 14------13
+//
+//Bottom layer:
+//
+// 19------16
+// |        |
+// | 11--8  |
+// |  |  |  |
+// |  |  |  |
+// | 10--9  |
+// |        |
+// 18------17
+
+vertices					
+(					
+  ( 1  1  20) // 0
+  ( 1 -1  20) // 1
+  (-1 -1  20) // 2
+  (-1  1  20) // 3
+
+  ( 1  1  0) // 4
+  ( 1 -1  0) // 5
+  (-1 -1  0) // 6
+  (-1  1  0) // 7
+
+  ( 1  1 -1) // 8
+  ( 1 -1 -1) // 9
+  (-1 -1 -1) //10
+  (-1  1 -1) //11
+
+  ( 9  9  0) //12 
+  ( 9 -9  0) //13
+  (-9 -9  0) //14
+  (-9  9  0) //15
+  ( 9  9 -1) //16
+  ( 9 -9 -1) //17
+  (-9 -9 -1) //18
+  (-9  9 -1) //19
+);					
+
+//Side:
+//
+//    +--+     top layer
+//    |  |
+// +--+--+--+  middle layer
+// |  |  |  |
+// +--------+  bottom layer
+//
+//Layers:
+//
+//Top layer:
+//
+//  
+//  
+//    +--+ The block below this section is called 'inlet'
+//    |  | 
+//    |  |  
+//    +--+  
+//  
+//  
+//
+//
+//Middle layer:
+//
+// +--------+ The block above the middle section is called 'inlet'
+// |\      /| The block below the middle section is called 'below inlet'
+// | \    / | The block below the upper  section is called 'outlet back'
+// |  +--+  | The block below the right  section is called 'outlet right'
+// |  |  |  | The block below the bottom section is called 'outlet front'
+// |  |  |  | The block below the left   section is called 'outlet left'
+// |  +--+  |
+// | /    \ |
+// |/      \|
+// +--------+
+//
+//Bottom layer:
+//
+// +--------+ The block above the middle section is called 'below inlet'
+// |\      /| The block above the upper  section is called 'outlet back'
+// | \    / | The block above the right  section is called 'outlet right'
+// |  +--+  | The block above the bottom section is called 'outlet front'
+// |  |  |  | The block above the left   section is called 'outlet left'
+// |  |  |  |
+// |  +--+  |
+// | /    \ |
+// |/      \|
+// +--------+
+
+blocks
+(
+    hex ( 6  5  4  7  2  1  0  3) (10 10 100) simpleGrading (1 1 1) //0: inlet
+    hex (10  9  8 11  6  5  4  7) (10 10 10) simpleGrading (1 1 1) //1: below inlet
+    hex (11  8 16 19  7  4 12 15) (10 10 10) simpleGrading (1 1 1) //2: outlet back
+    hex ( 9 17 16  8  5 13 12  4) (10 10 10) simpleGrading (1 1 1) //3: outlet right
+    hex (18 17  9 10 14 13  5  6) (10 10 10) simpleGrading (1 1 1) //4: outlet front
+    hex (18 10 11 19 14  6  7 15) (10 10 10) simpleGrading (1 1 1) //5: outlet left
+);
+
+//No edges needed: all are automatically defined as lines in blocks
+edges
+(
+);
+
+boundary
+(
+        // is there no way of defining all my 'defaultFaces' to be 'wall'?
+    Default_Boundary_Region
+    {
+        type wall;
+        faces
+        (
+			//Inlet sides
+			(0 1 5 4)
+			(0 4 7 3)
+            (3 7 6 2)
+			(1 2 6 5)
+            //top of outlet back
+            (4 12 15 7)
+            //top of outlet right
+			(4 5 13 12)
+            //top of outlet front
+			(5 6 14 13)
+            //top of outlet left
+			(6 7 15 14)
+
+            //bottom of outlet back
+			(8 11 19 16)
+            //bottom of outlet right
+			(8 16 17 9)
+            //bottom of outlet front
+			(9 17 18 10)
+            //bottom of outlet left
+			(10 18 19 11)
+            //bottom of below inlet
+			(8 9 10 11)
+        );
+    }
+    inlet
+    {
+        //type patch;
+        type inletOutlet;
+        faces
+        (
+			//Top
+            (0 3 2 1)
+			//Bottom
+			//(4 7 6 5) 
+        );
+    }
+    outlet
+    {
+        //type patch;
+        type inletOutlet;
+        faces
+        (
+            (12 13 17 16)
+            (13 14 18 17)
+            (12 16 19 15)
+            (14 15 19 18)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

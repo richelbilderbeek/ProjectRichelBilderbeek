@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,11 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <bitset>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
-
-#include <QDialog>
 
 
 namespace Ui {
@@ -36,11 +36,12 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace con3 {
 
 struct QtConnectThreeWidget;
 struct ConnectThreeResources;
 
-class QtConnectThreeGameDialog : public QDialog
+class QtConnectThreeGameDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -48,14 +49,15 @@ public:
   explicit QtConnectThreeGameDialog(
     const boost::shared_ptr<const ConnectThreeResources> resources,
     QWidget *parent = 0,
-    const std::bitset<3>& is_player_human = std::bitset<3>(true));
+    const std::bitset<3>& is_player_human = std::bitset<3>(true)) noexcept;
+  QtConnectThreeGameDialog(const QtConnectThreeGameDialog&) = delete;
+  QtConnectThreeGameDialog& operator=(const QtConnectThreeGameDialog&) = delete;
+  ~QtConnectThreeGameDialog() noexcept;
+
   boost::signals2::signal<void ()> m_signal_close;
 
-
-  ~QtConnectThreeGameDialog();
-
 public slots:
-  void DoComputerTurn();
+  void DoComputerTurn() noexcept;
 
 private:
   Ui::QtConnectThreeGameDialog *ui;
@@ -64,9 +66,18 @@ private:
 
   ///The filenames
   const boost::shared_ptr<const ConnectThreeResources> m_resources;
-  void OnValidMove();
+
+  ///OnValidMove is called after a valid move. The game
+  ///is either terminated, or the next player can do
+  ///his/her move.
+  void OnValidMove() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTCONNECTTHREEGAMEDIALOG_H

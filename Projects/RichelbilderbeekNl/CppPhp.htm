@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Php</title>
+  <meta name="description" content="C++ Php"/>
+  <meta name="keywords" content="C++ Php "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppPhp.htm">Php</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppPhp-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppPhp/CppPhp.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppPhp/CppPhp.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppPhp<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppPhp/php.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppPhp/php.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppPhp/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppPhp/php.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppPhp/php.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> PHP_H<br/>
+<a href="CppDefine.htm">#define</a> PHP_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppTypeinfoH.htm">typeinfo</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> php {<br/>
+<br/>
+<a href="CppComment.htm">//</a>Drop-in replacements <b><a href="CppFor.htm">for</a></b> PHP <a href="CppFunction.htm">function</a><br/>
+<br/>
+<a href="CppComment.htm">//</a>You are free to use <a href="CppFunction.htm">function</a>s from <b><a href="CppThis.htm">this</a></b> <b><a href="CppNamespace.htm">namespace</a></b>,<br/>
+<a href="CppComment.htm">//</a>but I did not intend you <b><a href="CppUsing.htm">using</a></b> these :)<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> php_<b><a href="CppPrivate.htm">private</a></b> {<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a type to the PHP description<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt; <a href="CppStdString.htm">std::string</a> TypeToStr() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;{ <b><a href="CppReturn.htm">return</a></b> "T"; }<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <a href="CppStdString.htm">std::string</a> TypeToStr&lt;<b><a href="CppInt.htm">int</a></b>&gt;() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <a href="CppStdString.htm">std::string</a> TypeToStr&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Iter&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump(Iter begin, <b><a href="CppConst.htm">const</a></b> Iter end,<br/>
+&nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppStdDistance.htm">std::distance</a>(begin,end);<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppArray.htm">array</a>(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ") {\n";<br/>
+&nbsp;&nbsp;<a href="CppStdSize_t.htm">std::size_t</a> i=0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (; begin<a href="CppOperatorNotEqual.htm">!=</a>end; <a href="CppOperatorIncrement.htm">++</a>begin)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;[" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "]=&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> TypeToStr&lt;<b><a href="CppTypename.htm">typename</a></b> Iter::value_type&gt;() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*begin) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "}\n";<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Iter&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump_ptrs(Iter begin, <b><a href="CppConst.htm">const</a></b> Iter end,<br/>
+&nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppStdDistance.htm">std::distance</a>(begin,end);<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppArray.htm">array</a>(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ") {\n";<br/>
+&nbsp;&nbsp;<a href="CppStdSize_t.htm">std::size_t</a> i=0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (; begin<a href="CppOperatorNotEqual.htm">!=</a>end; <a href="CppOperatorIncrement.htm">++</a>begin)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;[" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "]=&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> TypeToStr&lt;<b><a href="CppTypename.htm">typename</a></b> Iter::value_type::element_type&gt;() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*(*begin)) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>i;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "}\n";<br/>
+}<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~php_<b><a href="CppPrivate.htm">private</a></b><br/>
+<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_intersect(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; w) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdIs_sorted.htm">std::is_sorted</a>(v.begin(),v.end()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdIs_sorted.htm">std::is_sorted</a>(w.begin(),w.end()));<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; x;<br/>
+&nbsp;&nbsp;<a href="CppStdSet_intersection.htm">std::set_intersection</a>(v.begin(),v.end(),w.begin(),w.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(x));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<a href="CppStdSet.htm">std::set</a>&lt;T&gt; <a href="CppArray.htm">array</a>_intersect(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSet.htm">std::set</a>&lt;T&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSet.htm">std::set</a>&lt;T&gt;&amp; w) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;T&gt; x;<br/>
+&nbsp;&nbsp;<a href="CppStdSet_intersection.htm">std::set_intersection</a>(v.begin(),v.end(),w.begin(),w.end(),<a href="CppStd.htm">std</a>::inserter(x,x.begin()));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_keys(<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;T,U&gt;&amp; m) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt;&amp; p: m) v.push_back(p.first);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppArray.htm">array</a>_keys(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; m) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> m.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(i));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_merge(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; w) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; x { v };<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(x));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_merge(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; w,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; x) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; result { v };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt; temp { <a href="CppArray.htm">array</a>_merge(w,x) };<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(temp.begin(),temp.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(result));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_merge(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; w,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; y) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; result { v };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt; temp { <a href="CppArray.htm">array</a>_merge(w,x,y) };<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(temp.begin(),temp.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(result));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> KeyType, <b><a href="CppClass.htm">class</a></b> ValueType&gt;<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;ValueType&gt; <a href="CppArray.htm">array</a>_values(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;KeyType,ValueType&gt;&amp; m) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;ValueType&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> p: m)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(p.second);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> KeyType, <b><a href="CppClass.htm">class</a></b> ValueType&gt;<br/>
+<a href="CppStdMap.htm">std::map</a>&lt;KeyType,ValueType&gt; <a href="CppArray.htm">array</a>_values(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;KeyType,ValueType&gt;&amp; m) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;KeyType,ValueType&gt; v;<br/>
+&nbsp;&nbsp;KeyType key <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> p: m)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[key] <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>key;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> implode(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; seperator,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> implode(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; seperator,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> implode(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; seperator,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppDouble.htm">double</a></b>,3&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump(<b><a href="CppConst.htm">const</a></b> T&amp; t,<br/>
+&nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> php_<b><a href="CppPrivate.htm">private</a></b>::TypeToStr&lt;T&gt;()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump(<b><a href="CppConst.htm">const</a></b> <a href="CppStdSet.htm">std::set</a>&lt;T&gt;&amp; s,<br/>
+&nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;php_<b><a href="CppPrivate.htm">private</a></b>::var_dump(s.begin(),s.end(),os);<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump(<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt;&amp; p,<br/>
+&nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> php_<b><a href="CppPrivate.htm">private</a></b>::TypeToStr&lt;T&gt;() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorAssign.htm">=</a> &gt; "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> php_<b><a href="CppPrivate.htm">private</a></b>::TypeToStr&lt;U&gt;() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.second <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; s,<br/>
+&nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;php_<b><a href="CppPrivate.htm">private</a></b>::var_dump(s.begin(),s.end(),os);<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump(<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;T,U&gt;&amp; m,<br/>
+&nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt; Pair;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> m.size();<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppArray.htm">array</a>(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ") {\n";<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> Pair&amp; p: m)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;[" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "]=&gt;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> php_<b><a href="CppPrivate.htm">private</a></b>::TypeToStr&lt;<b><a href="CppTypename.htm">typename</a></b> Pair::second_type&gt;() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.second <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "}\n";<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;T&gt; &gt;&amp; s,<br/>
+&nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;php_<b><a href="CppPrivate.htm">private</a></b>::var_dump_ptrs(s.begin(),s.end(),os);<br/>
+}<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> php<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PHP_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppPhp/php.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppPhp/php.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> "php.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIomanipH.htm">iomanip</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::php::implode(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; seperator,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty()) <b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorPlusAssign.htm">+=</a> v[0];<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorPlusAssign.htm">+=</a> seperator <a href="CppOperatorPlus.htm">+</a> v[i];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::php::implode(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; seperator,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdSetprecision.htm">std::setprecision</a>(17);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty()) <b><a href="CppReturn.htm">return</a></b> s.str();<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[0];<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> seperator <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
+}<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::php::implode(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; seperator,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppDouble.htm">double</a></b>,3&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty()) <b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorPlusAssign.htm">+=</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(v[0]);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorPlusAssign.htm">+=</a> seperator <a href="CppOperatorPlus.htm">+</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(v[i]);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <a href="CppStdString.htm">std::string</a><br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::php::php_<b><a href="CppPrivate.htm">private</a></b>::TypeToStr&lt;<b><a href="CppInt.htm">int</a></b>&gt;() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> "<b><a href="CppInt.htm">int</a></b>"; }<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <a href="CppStdString.htm">std::string</a><br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::php::php_<b><a href="CppPrivate.htm">private</a></b>::TypeToStr&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> "<b><a href="CppFloat.htm">float</a></b>"; }<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

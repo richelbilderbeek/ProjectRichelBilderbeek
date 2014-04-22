@@ -1,0 +1,1 @@
+<?php//Show the difference between pre- and postfixecho "Prefix increment\n";$i=1;assert(++$i == 2); //Increment original, pass originalassert($i == 2);echo "Postfix increment\n";$j=1;assert($j++ == 1); //Copy old value, increment original, pass copyassert($j == 2);/* Screen output:Prefix incrementPostfix increment*/?>

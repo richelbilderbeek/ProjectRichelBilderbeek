@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestChess, program to test my chess classes
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,36 +20,40 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTCHESSMENUDIALOG_H
 #define QTTESTCHESSMENUDIALOG_H
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+#include "qthideandshowdialog.h"
+
 namespace Ui {
-class QtTestChessMenuDialog;
+  class QtTestChessMenuDialog;
 }
-//---------------------------------------------------------------------------
-class QtTestChessMenuDialog : public QDialog
+
+namespace ribi {
+
+class QtTestChessMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestChessMenuDialog(QWidget *parent = 0);
-  ~QtTestChessMenuDialog();
+  QtTestChessMenuDialog(const QtTestChessMenuDialog&) = delete;
+  QtTestChessMenuDialog& operator=(const QtTestChessMenuDialog&) = delete;
+  ~QtTestChessMenuDialog() noexcept;
 
 private slots:
-
   void on_button_about_clicked();
-
   void on_button_quit_clicked();
-
-
   void on_button_view_resources_clicked();
-
   void on_button_test_board_clicked();
-
   void on_button_test_game_clicked();
 
 private:
   Ui::QtTestChessMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTCHESSMENUDIALOG_H

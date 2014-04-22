@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtTicTacToeWidget, widget for TicTacToe class
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,42 +23,61 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
-
+#include <boost/signals2.hpp>
 #include <QWidget>
 
-namespace ribi {
+#include "tictactoefwd.h"
+#pragma GCC diagnostic pop
 
-struct TicTacToe;
+namespace ribi {
+namespace tictactoe {
 
 class QtTicTacToeWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit QtTicTacToeWidget(QWidget *parent = 0);
-  const TicTacToe * GetTicTacToe() const { return m_tictactoe.get(); }
-  void Restart();
+  explicit QtTicTacToeWidget(
+    const boost::shared_ptr<Ai>& player1,
+    const boost::shared_ptr<Ai>& player2,
+    QWidget *parent = 0);
+  boost::shared_ptr<const Widget> GetWidget() const { return m_widget; }
+
+  ///Called every second, makes the AI do a move
+  void OnTimer() noexcept;
+  void Restart() noexcept;
 
   ///mousePressEvent must be public for TicTacToeTest's
   ///virtual mouse clicks
   void mousePressEvent(QMouseEvent *);
 
-  static const std::string GetVersion() { return "1.0"; }
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_changed;
+  boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_has_winner;
 
 protected:
-  void paintEvent(QPaintEvent *);
-  void resizeEvent(QResizeEvent *);
+  void paintEvent(QPaintEvent *) noexcept;
+  void resizeEvent(QResizeEvent *) noexcept;
 
 private:
-  boost::shared_ptr<TicTacToe> m_tictactoe;
+  const boost::shared_ptr<Ai> m_player1;
+  const boost::shared_ptr<Ai> m_player2;
 
-signals:
-  void hasWinner();
-  void stateChanged();
-public slots:
+  boost::shared_ptr<Widget> m_widget;
 
+  void OnChanged();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEWIDGET_H

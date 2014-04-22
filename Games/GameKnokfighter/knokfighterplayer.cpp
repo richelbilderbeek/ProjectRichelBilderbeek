@@ -3,47 +3,46 @@
 #include "knokfighterplayer.h"
 #include "knokfighterplayerstate.h"
 
-namespace Knokfighter {
-
-Player::Player()
+ribi::knok::Player::Player()
  :  m_attack_state(new PlayerStateAttack(this)),
     m_idle_state(new PlayerStateIdle(this)),
+    m_state{nullptr},
     m_walk_state(new PlayerStateWalk(this))
 {
   SetState(GetIdleState());
 }
 
-PlayerState * Player::GetAttackState()
+ribi::knok::PlayerState * ribi::knok::Player::GetAttackState()
 {
   return m_attack_state.get();
 }
 
-PlayerState * Player::GetIdleState()
+ribi::knok::PlayerState * ribi::knok::Player::GetIdleState()
 {
   return m_idle_state.get();
 }
 
-PlayerState * Player::GetWalkState()
+ribi::knok::PlayerState * ribi::knok::Player::GetWalkState()
 {
   return m_walk_state.get();
 }
 
-const PlayerState * Player::GetState() const
+const ribi::knok::PlayerState * ribi::knok::Player::GetState() const
 {
   return m_state;
 }
 
-void Player::PressKey(const Key& key)
+void ribi::knok::Player::PressKey(const Key& key)
 {
-  m_state->PressKey(key);
+  m_state->OnKeyPress(key);
 }
 
-void Player::Tick()
+void ribi::knok::Player::Tick()
 {
   m_state->Tick();
 }
 
-void Player::SetState(PlayerState * const state)
+void ribi::knok::Player::SetState(PlayerState * const state)
 {
   assert(state);
   //No need to delete the old m_state, this is done
@@ -51,10 +50,8 @@ void Player::SetState(PlayerState * const state)
   m_state = state;
 }
 
-std::ostream& operator<<(std::ostream& os, const Player& player)
+std::ostream& ribi::knok::operator<<(std::ostream& os, const Player& player)
 {
   os << player.GetState()->ToStr() << '\n';
   return os;
 }
-
-} //~namespace Knokfighter

@@ -18,8 +18,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "projectgtstmenudialog.h"
+
 #include <boost/filesystem.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
 #include <Wt/WImage>
@@ -30,7 +34,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WTimer>
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
-//---------------------------------------------------------------------------
+
+//QFile must be #included after Wt header files
+#include <QFile>
+
 #include "about.h"
 #include "administratordialog.h"
 #include "all_serverstates.h"
@@ -46,7 +53,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"
 #include "ledwidget.h"
 #include "logfile.h"
-#include "projectgtstmenudialog.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "participant.h"
@@ -80,10 +86,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtshapegroupwidget.h"
 #include "wttimedserverpusher.h"
 #include "wttimedserverpusherclient.h"
-//---------------------------------------------------------------------------
-//QFile must be #included after Wt header files
-#include <QFile>
-//---------------------------------------------------------------------------
+
+
+#pragma GCC diagnostic pop
+
 ribi::gtst::MenuDialog::MenuDialog(const SafeIpAddress * const ip_address)
   : m_server(Server::Get())
 {
@@ -151,7 +157,7 @@ ribi::gtst::MenuDialog::MenuDialog(const SafeIpAddress * const ip_address)
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 ribi::WtAboutDialog * ribi::gtst::MenuDialog::CreateNewAboutDialog() const
 {
   About a = GetAbout();
@@ -159,7 +165,7 @@ ribi::WtAboutDialog * ribi::gtst::MenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
@@ -196,7 +202,7 @@ Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentDialog
 
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentFlowDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
@@ -214,7 +220,7 @@ Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentFlowDi
   new Wt::WImage(Resources::GetImageFilenameCycle(),dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentGeneralDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
@@ -240,7 +246,7 @@ Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentGenera
   new Wt::WLabel("* Richel Bilderbeek: programming",dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentParametersDialog() const
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
@@ -303,7 +309,7 @@ Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewAboutTheExperimentParame
   }
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewWelcomeDialog(
   const SafeIpAddress * const ip_address) const
 {
@@ -325,7 +331,7 @@ Wt::WContainerWidget * ribi::gtst::MenuDialog::CreateNewWelcomeDialog(
   new Wt::WBreak(dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 const ribi::About ribi::gtst::MenuDialog::GetAbout()
 {
   About a(
@@ -367,12 +373,12 @@ const ribi::About ribi::gtst::MenuDialog::GetAbout()
   a.AddLibrary("WtTimedServerPusherClient version: " + WtTimedServerPusherClient::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::gtst::MenuDialog::GetVersion()
 {
   return "1.02";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::gtst::MenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -440,4 +446,4 @@ const std::vector<std::string> ribi::gtst::MenuDialog::GetVersionHistory()
   v.push_back("2011-09-11: Version 1.02: small bugfix");
   return v;
 }
-//---------------------------------------------------------------------------
+

@@ -1,7 +1,11 @@
 #ifndef QTARROWITEM_H
 #define QTARROWITEM_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QGraphicsLineItem>
+#pragma GCC diagnostic pop
 
 struct QtArrowItem : public QGraphicsLineItem
 {
@@ -12,8 +16,7 @@ struct QtArrowItem : public QGraphicsLineItem
     const double x2,
     const double y2,
     const bool head,
-    QGraphicsItem *parent = 0,
-    QGraphicsScene *scene = 0);
+    QGraphicsItem *parent = 0);
 
   ///Respond to key presses
   void keyPressEvent(QKeyEvent *event);

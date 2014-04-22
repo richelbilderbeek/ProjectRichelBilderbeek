@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>GslExample1</title>
   <meta name="description" content="C++ GslExample1"/>
-  <meta name="keywords" content="C++ GslExample1 code snippet"/>
+  <meta name="keywords" content="C++ GslExample1 "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,20 +21,15 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppGslExample1.htm">GslExample1</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppGslExample1-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -46,29 +41,29 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppGslExample1.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppGslExample1/CppGslExample1.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppGslExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<table summary="./CppGslExample1/CppGslExample1.pro" border = "1"><tr><td><code>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/gsl-1.16<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/gsl-1.16<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -76,10 +71,10 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppGslExample1/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./CppGslExample1/main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;gsl/gsl_sf_bessel.h&gt;<br/>
 <br/>
@@ -87,7 +82,7 @@ CONFIG -= qt<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> gsl_sf_bessel_J0(x);<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "J0(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ") <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n"<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "J0(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ") <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n"<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

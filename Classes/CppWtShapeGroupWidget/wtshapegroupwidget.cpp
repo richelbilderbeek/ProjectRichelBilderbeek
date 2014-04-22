@@ -21,47 +21,47 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <iostream>
 #include <numeric>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
 //#include <boost/numeric/conversion/bounds.hpp>
 //#include <boost/bind.hpp>
 //#include <boost/lambda/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBrush>
 #include <Wt/WEvent>
 #include <Wt/WPaintDevice>
 #include <Wt/WPainter>
 #include <Wt/WPen>
-//---------------------------------------------------------------------------
+
 #include "shape.h"
 #include "wtgroupwidget.h"
 #include "wtshapegroupwidget.h"
 #include "wtshapewidget.h"
-//---------------------------------------------------------------------------
+
 ribi::WtShapeGroupWidget::WtShapeGroupWidget()
+  : m_v{}
 {
   this->resize(100,100);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShapeGroupWidget::DoRepaint()
 {
   this->update();
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::WtShapeGroupWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::WtShapeGroupWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-08-25: version 1.0: initial version");
-  return v;
+  return {
+    "2011-08-25: version 1.0: initial version"
+  };
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShapeGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
@@ -135,7 +135,7 @@ void ribi::WtShapeGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppRainbow.htm
 void ribi::WtShapeGroupWidget::Rainbow(
   const double x,
@@ -157,10 +157,10 @@ void ribi::WtShapeGroupWidget::Rainbow(
   g = f_g / max;
   b = f_b / max;
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShapeGroupWidget::SetShapes(const std::vector<std::vector<const Shape*> >& v)
 {
   m_v = v;
   update();
 }
-//---------------------------------------------------------------------------
+

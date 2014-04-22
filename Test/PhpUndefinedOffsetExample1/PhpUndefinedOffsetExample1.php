@@ -1,0 +1,1 @@
+<?phperror_reporting(E_ALL | E_STRICT);$map = array( 1 => 1, 2 => 4 );assert($map[0] == 0);/* Screen outputNotice: Undefined offset: 0 in MyFolder\PhpUndefinedOffset.php on line 7*/?>

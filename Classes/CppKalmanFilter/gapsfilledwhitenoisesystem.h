@@ -21,17 +21,18 @@ namespace kalman {
 struct GapsFilledWhiteNoiseSystem : public WhiteNoiseSystem
 {
   ///Obtain the gaps-filled white noise system parameters
-  const boost::shared_ptr<const GapsFilledWhiteNoiseSystemParameters>& GetGapsFilledWhiteNoiseSystemParameters() const
-    { return m_parameters; }
+  const boost::shared_ptr<const GapsFilledWhiteNoiseSystemParameters>&
+    GetGapsFilledWhiteNoiseSystemParameters() const noexcept
+      { return m_parameters; }
 
   ///Obtain the type as an enum
-  WhiteNoiseSystemType GetType() const { return WhiteNoiseSystemType::gaps_filled; }
+  WhiteNoiseSystemType GetType() const noexcept { return WhiteNoiseSystemType::gaps_filled; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Update reality, that is, let the real system (i.e. reality) go to its next state
   void GoToNextState(const boost::numeric::ublas::vector<double>& input);
@@ -40,7 +41,7 @@ struct GapsFilledWhiteNoiseSystem : public WhiteNoiseSystem
   const boost::numeric::ublas::vector<double> Measure() const;
 
   ///Peek what the real value is
-  const boost::numeric::ublas::vector<double>& PeekAtRealState() const;
+  const boost::numeric::ublas::vector<double>& PeekAtRealState() const noexcept;
 
   private:
   ///GapsFilledWhiteNoiseSystem must be created with a GapsFilledWhiteNoiseSystemFactory
@@ -48,7 +49,7 @@ struct GapsFilledWhiteNoiseSystem : public WhiteNoiseSystem
   friend class GapsFilledWhiteNoiseSystemFactory;
 
   ///Can only be deleted by boost::checked_delete
-  ~GapsFilledWhiteNoiseSystem() {}
+  ~GapsFilledWhiteNoiseSystem() noexcept {}
   friend void boost::checked_delete<>(GapsFilledWhiteNoiseSystem*);
 
   ///The last successfull measurement
@@ -62,7 +63,7 @@ struct GapsFilledWhiteNoiseSystem : public WhiteNoiseSystem
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,10 +21,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTREGEXTESTERMAINDIALOG_H
 #define QTREGEXTESTERMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include "qthideandshowdialog.h"
-
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtRegexTesterMainDialog;
@@ -42,7 +43,9 @@ public:
   explicit QtRegexTesterMainDialog(
   const boost::shared_ptr<RegexTesterMainDialog> dialog,
     QWidget *parent = 0);
-  ~QtRegexTesterMainDialog();
+  QtRegexTesterMainDialog(const QtRegexTesterMainDialog&) = delete;
+  QtRegexTesterMainDialog& operator=(const QtRegexTesterMainDialog&) = delete;
+  ~QtRegexTesterMainDialog() noexcept;
 
 protected:
 
@@ -51,6 +54,10 @@ private:
   Ui::QtRegexTesterMainDialog *ui;
 
   const boost::shared_ptr<RegexTesterMainDialog> m_dialog;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void onAnyChange();

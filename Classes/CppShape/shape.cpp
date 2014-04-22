@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Shape, shape class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,7 +28,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/math/constants/constants.hpp>
 
-//#include "trace.h"
+#include "geometry.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -50,12 +51,12 @@ ribi::Shape::Shape(
   #endif
 }
 
-const std::string ribi::Shape::GetVersion()
+std::string ribi::Shape::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::Shape::GetVersionHistory()
+std::vector<std::string> ribi::Shape::GetVersionHistory() noexcept
 {
   return {
     "2011-07-13: Version 1.0: initial version",
@@ -70,7 +71,7 @@ void ribi::Shape::SetNumberOfCorners(const int n_corners)
   m_n_corners = n_corners;
 }
 
-void ribi::Shape::SetRotation(const double rotation)
+void ribi::Shape::SetRotation(const double rotation) noexcept
 {
   if (m_rotation != rotation)
   {
@@ -79,19 +80,20 @@ void ribi::Shape::SetRotation(const double rotation)
   }
 }
 
-double ribi::Shape::GetAngle(const double dx, const double dy)
+double ribi::Shape::GetAngle(const double dx, const double dy) noexcept
 {
-  const double pi = boost::math::constants::pi<double>();
-  return pi - std::atan2(dx,dy);
+  return Geometry().GetAngle(dx,dy);
+  //const double pi = boost::math::constants::pi<double>();
+  //return pi - std::atan2(dx,dy);
 }
 
-double ribi::Shape::GetDistance(const double dX, const double dY)
+double ribi::Shape::GetDistance(const double dX, const double dY) noexcept
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
 #ifndef NDEBUG
-void ribi::Shape::Test()
+void ribi::Shape::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -165,7 +167,7 @@ void ribi::Shape::Test()
 }
 #endif
 
-bool ribi::operator==(const Shape& lhs, const Shape& rhs)
+bool ribi::operator==(const Shape& lhs, const Shape& rhs) noexcept
 {
   return lhs.m_blue == rhs.m_blue
     &&   lhs.m_green == rhs.m_green

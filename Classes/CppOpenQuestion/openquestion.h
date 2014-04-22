@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 OpenQuestion, class for an open question
-Copyright (C) 2011  Richl Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -42,27 +42,47 @@ struct OpenQuestion : public Question
     const std::vector<std::string>& answers);
 
   ///Create a copy of the Question, depending on the derived class its type
-  Question * Clone() const;
+  Question * Clone() const noexcept;
 
-  const std::vector<std::string>& GetAnswers() const;
+  ///Get the correct answers
+  ///call GetCorrectAnswers instead
+  //const std::vector<std::string>& GetAnswers() const noexcept;
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  ///Obtain an example multiple choice question
+  static std::string GetExampleOpenQuestion() noexcept { return "-,1+1=,2/two/Two"; }
+
+  ///Obtain valid multiple choice question
+  static std::vector<std::string> GetInvalidOpenQuestions() noexcept;
+
+  ///Obtain valid multiple choice question
+  static std::vector<std::string> GetValidOpenQuestions() noexcept;
+
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///How to display the question as multiple lines
+  std::vector<std::string> ToLines() const noexcept;
+
+  ///Convert to std::string line
+  std::string ToStr() const noexcept;
 
   private:
   friend void boost::checked_delete<>(OpenQuestion *);
-  ~OpenQuestion() {}
+  ~OpenQuestion() noexcept {}
 
   ///The wrong answers are at indices 2 to SeperateString(input,',').size()
-  static const std::vector<std::string> ExtractAnswers(
+  static std::vector<std::string> ExtractAnswers(
     const std::string& input);
 
   //Split a string
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input,
-    const char seperator);
+    const char seperator) noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

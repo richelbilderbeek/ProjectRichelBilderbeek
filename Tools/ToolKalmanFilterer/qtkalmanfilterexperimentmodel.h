@@ -89,10 +89,17 @@ struct QtKalmanFilterExperimentModel : public QObject
   void SetWhiteNoiseSystemType(const WhiteNoiseSystemType type);
 
   ///Convert the data to DokuWiki markup language
+<<<<<<< HEAD
   const std::string ToDokuWiki() const;
 
   ///Convert the data to HTML
   const std::string ToHtml() const;
+=======
+  std::string ToDokuWiki() const;
+
+  ///Convert the data to HTML
+  std::string ToHtml() const;
+>>>>>>> develop
 
   ///Emitted when the context changes
   boost::signals2::signal<void(const std::string)> m_signal_context_changed;
@@ -185,13 +192,17 @@ struct QtKalmanFilterExperimentModel : public QObject
   void ReadWhiteNoiseSystemType(const std::string& s);
 
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
+<<<<<<< HEAD
   static const std::vector<std::string> SeperateString(
+=======
+  static std::vector<std::string> SeperateString(
+>>>>>>> develop
     const std::string& input,
     const char seperator);
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

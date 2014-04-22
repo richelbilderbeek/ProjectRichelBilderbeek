@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,13 +24,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QPixmap>
 #include <QTimer>
-
-
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenMainDialog;
@@ -42,7 +43,7 @@ namespace Boenken { struct Game; }
 boost::shared_ptr<Boenken::Game> CreateNoBoenken();
 
 ///QtBoenkenMainDialog displays Boenken and handles user events
-class QtBoenkenMainDialog : public QDialog
+class QtBoenkenMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -52,7 +53,9 @@ public:
     boost::shared_ptr<Boenken::Game> boenken = CreateNoBoenken(),
     const bool is_training = false
   );
-  ~QtBoenkenMainDialog();
+  QtBoenkenMainDialog(const QtBoenkenMainDialog&) = delete;
+  QtBoenkenMainDialog& operator=(const QtBoenkenMainDialog&) = delete;
+  ~QtBoenkenMainDialog() noexcept;
 
 protected:
   void paintEvent(QPaintEvent*);
@@ -81,12 +84,14 @@ private:
     const unsigned char b,
     const unsigned char a = 255);
 
-  ///Test this class
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void onTimer();
   void onCountdownTimer();
+
 };
 
 } //~namespace ribi

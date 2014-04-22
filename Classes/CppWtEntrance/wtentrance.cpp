@@ -33,6 +33,8 @@ const std::string ribi::WtEntrance::m_filename_visits = "wtentrance_visits.txt";
 ribi::WtEntrance * ribi::WtEntrance::m_instance = 0;
 
 ribi::WtEntrance::WtEntrance()
+  : m_signal_name_changed{},
+    m_signal_new_visit{}
 {
   if (!boost::filesystem::exists(m_filename_names))
   {

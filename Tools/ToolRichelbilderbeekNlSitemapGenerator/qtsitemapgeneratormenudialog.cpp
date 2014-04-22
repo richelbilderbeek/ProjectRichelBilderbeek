@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelbilderbeekNlSitemapGenerator, generates the richelbilderbeek.nl sitemap
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelbilderbeekNlSitemapGenerator.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtsitemapgeneratormenudialog.h"
 
 #include <cassert>
@@ -29,18 +29,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtsitemapgeneratormaindialog.h"
 #include "sitemapgeneratormenudialog.h"
+#include "trace.h"
 #include "ui_qtsitemapgeneratormenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtSitemapGeneratorMenuDialog::QtSitemapGeneratorMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtSitemapGeneratorMenuDialog)
 {
-    ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
+  ui->setupUi(this);
 }
 
-ribi::QtSitemapGeneratorMenuDialog::~QtSitemapGeneratorMenuDialog()
+ribi::QtSitemapGeneratorMenuDialog::~QtSitemapGeneratorMenuDialog() noexcept
 {
-    delete ui;
+  delete ui;
 }
 
 void ribi::QtSitemapGeneratorMenuDialog::keyPressEvent(QKeyEvent * e)
@@ -57,16 +62,27 @@ void ribi::QtSitemapGeneratorMenuDialog::on_button_start_clicked()
 
 void ribi::QtSitemapGeneratorMenuDialog::on_button_about_clicked()
 {
-  About about = SitemapGeneratorMenuDialog::GetAbout();
+  About about = SitemapGeneratorMenuDialog().GetAbout();
   about.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
 
   QtAboutDialog d(about);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtSitemapGeneratorMenuDialog::on_button_quit_clicked()
 {
   close();
 }
+
+#ifndef NDEBUG
+void ribi::QtSitemapGeneratorMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtSitemapGeneratorMenuDialog::Test");
+  TRACE("Finished ribi::QtSitemapGeneratorMenuDialog::Test successfully");
+}
+#endif

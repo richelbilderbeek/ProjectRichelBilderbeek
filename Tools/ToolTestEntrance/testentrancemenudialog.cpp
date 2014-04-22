@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestEntrance, tool to test WtEntrance
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,18 +18,37 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestEntrance.htm
 //---------------------------------------------------------------------------
-#include "about.h"
-#include "ipaddress.h"
 #include "testentrancemenudialog.h"
 
-const ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout()
+#include <cassert>
+#include <iostream>
+
+#include "ipaddress.h"
+#include "trace.h"
+
+int ribi::ToolTestEntrance::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "TestEntrance",
     "tool to test WtEntrance",
     "the 19th of September 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestEntrance.htm",
     GetVersion(),
     GetVersionHistory());
@@ -38,14 +57,51 @@ const ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::ToolTestEntrance::MenuDialog::GetVersion()
+ribi::Help ribi::ToolTestEntrance::MenuDialog::GetHelp() const noexcept
 {
-  return "1.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::ToolTestEntrance::MenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::ToolTestEntrance::MenuDialog::GetProgram() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-19: Version 1.0: initial version");
-  return v;
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestEntrance
+  };
+  assert(p);
+  return p;
 }
+
+std::string ribi::ToolTestEntrance::MenuDialog::GetVersion() const noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::ToolTestEntrance::MenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2011-09-19: Version 1.0: initial version",
+    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
+  };
+}
+
+#ifndef NDEBUG
+void ribi::ToolTestEntrance::MenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ToolTestEntrance::MenuDialog::Test");
+  TRACE("Finished ribi::ToolTestEntrance::MenuDialog::Test successfully");
+}
+#endif

@@ -1,13 +1,11 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtcopyalltablewidget.h"
 
 #include <string>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/split.hpp>
 
 #include <QApplication>
@@ -116,7 +114,7 @@ void ribi::QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
   }
 }
 
-const std::vector<std::string> ribi::QtCopyAllTableWidget::SeperateString(
+std::vector<std::string> ribi::QtCopyAllTableWidget::SeperateString(
   const std::string& input,
   const char seperator)
 {

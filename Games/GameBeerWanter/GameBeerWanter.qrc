@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/GameBeerWanter/images">
+        <file>PicR.png</file>
+        <file>PicBeer.png</file>
+        <file>PicStart.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>qmemarray.h: No such file or directory</title>
+  <meta name="description" content="C++ qmemarray.h: No such file or directory"/>
+  <meta name="keywords" content="C++ qmemarray.h: No such file or directory code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppInstallErrorQmemarrayHnoSuchFileOrDirectory.htm">qmemarray.h: No such file or directory</a></h1>
+<p>&nbsp;</p>
+<p>
+  <a href="CppInstallError.htm">Install error</a> that can occur when installing <a href="CppQwt.htm">Qwt</a>
+  under <a href="CppWindows.htm">Windows</a> 7.
+</p>
+<p>&nbsp;</p>
+<p>After doing the following, the error pops up:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="How to generate the error" border = "1"><tr><td><code>
+cd D:\Projects\Libraries\qwt-6.1.0<br/>
+C:\Qt\5.1.1\mingw48_32\bin\qmake qwt.pro<br/>
+C:\Qt\Tools\mingw48_32\bin\mingw32-make.exe<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>The error message:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="Error message" border = "1"><tr><td><code>
+mingw32-make -f Makefile.Release<br/>
+mingw32-make[1]: Entering directory 'D:/Projects/Libraries/qwt-6.1.0'<br/>
+g++ -c -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra -frtti -fexceptions -m<br/>
+threads -DUNICODE -DQT_DLL -DQWT_DLL -DQWT_MAKEDLL -DQT_NO_DEBUG -DQT_GUI_LIB -D<br/>
+QT_CORE_LIB -I. -I"include" -I"C:\Qt\5.1.1\mingw48_32\include" -I"C:\Qt\5.1.1\mi<br/>
+ngw48_32\include\QtGui" -I"C:\Qt\5.1.1\mingw48_32\include\QtCore" -I"src\moc" -I<br/>
+"C:\Qt\5.1.1\mingw48_32\mkspecs\win32-g++" -o src\obj\qwt_autoscl.o src\qwt_auto<br/>
+scl.cpp<br/>
+In file included from include/qwt_scldiv.h:14:0,<br/>
+                 from include/qwt_autoscl.h:14,<br/>
+                 from src\qwt_autoscl.cpp:11:<br/>
+include/qwt_array.h:25:23: fatal error: qmemarray.h: No such file or directory<br/>
+ #include &lt;qmemarray.h&gt;<br/>
+                       ^<br/>
+compilation terminated.<br/>
+Makefile.Release:1859: recipe for target 'src/obj/qwt_autoscl.o' failed<br/>
+mingw32-make[1]: *** [src/obj/qwt_autoscl.o] Error 1<br/>
+mingw32-make[1]: Leaving directory 'D:/Projects/Libraries/qwt-6.1.0'<br/>
+makefile:34: recipe for target 'release' failed<br/>
+mingw32-make: *** [release] Error 2<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>
+  Download the most recent Qwt code.
+</p>
+<p>
+  Note that the build did not succeed in creating all examples, but this library itself was fine.
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

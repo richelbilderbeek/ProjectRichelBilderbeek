@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtRichelBilderbeekGalleryDialog, gallery of Richel Bilderbeek's work
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtRichelBilderbeekGalleryDialog.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtrichelbilderbeekgallerydialog.h"
 
 #include <cassert>
@@ -36,6 +36,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogramstatus.h"
 #include "trace.h"
 #include "ui_qtrichelbilderbeekgallerydialog.h"
+
+#pragma GCC diagnostic pop
 
 struct QtGalleryItem : public QTableWidgetItem
 {
@@ -59,11 +61,11 @@ struct QtGalleryItem : public QTableWidgetItem
 ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRichelBilderbeekGalleryDialog),
-  m_programs(RichelBilderbeek::Program::GetAllPrograms())
+  m_programs(Program::GetAllPrograms())
 {
   ui->setupUi(this);
 
-  RichelBilderbeek::QtResources r;
+  QtResources r;
   const int n = static_cast<int>(m_programs.size());
   ui->table->setColumnCount(5);
   ui->table->setRowCount(n + 1);
@@ -96,7 +98,7 @@ ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *
     }
     for (int col=0; col!=4; ++col)
     {
-      RichelBilderbeek::ProgramStatus p =  RichelBilderbeek::ProgramStatus::unk;
+      ProgramStatus p =  ProgramStatus::unk;
       switch (col)
       {
         case 0: p = m_programs[row]->GetStatusConsole(); break;
@@ -107,17 +109,17 @@ ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *
       std::string s;
       switch (p)
       {
-        case RichelBilderbeek::ProgramStatus::yes: s = r.GetGreen(); break;
-        case RichelBilderbeek::ProgramStatus::no: s = r.GetRed(); break;
-        case RichelBilderbeek::ProgramStatus::nvr: s = r.GetBlack(); break;
-        case RichelBilderbeek::ProgramStatus::n_a: s = r.GetBlack(); break;
-        case RichelBilderbeek::ProgramStatus::wip: s = r.GetYellow(); break;
-        case RichelBilderbeek::ProgramStatus::tbd: s = r.GetOrange(); break;
-        case RichelBilderbeek::ProgramStatus::unk: s = r.GetBlack(); break;
+        case ProgramStatus::yes: s = r.GetGreen(); break;
+        case ProgramStatus::no: s = r.GetRed(); break;
+        case ProgramStatus::nvr: s = r.GetBlack(); break;
+        case ProgramStatus::n_a: s = r.GetBlack(); break;
+        case ProgramStatus::wip: s = r.GetYellow(); break;
+        case ProgramStatus::tbd: s = r.GetOrange(); break;
+        case ProgramStatus::unk: s = r.GetBlack(); break;
       }
       {
         QtGalleryItem * const item = new QtGalleryItem(QIcon(s.c_str()),QString());
-        item->setToolTip(RichelBilderbeek::ProgramStatusToStr(p).c_str());
+        item->setToolTip(ProgramStatusToStr(p).c_str());
         ui->table->setItem(row+1,col+1,item);
       }
     }
@@ -159,17 +161,17 @@ ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *
   }
 }
 
-ribi::QtRichelBilderbeekGalleryDialog::~QtRichelBilderbeekGalleryDialog()
+ribi::QtRichelBilderbeekGalleryDialog::~QtRichelBilderbeekGalleryDialog() noexcept
 {
   delete ui;
 }
 
-const std::string ribi::QtRichelBilderbeekGalleryDialog::GetVersion()
+std::string ribi::QtRichelBilderbeekGalleryDialog::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtRichelBilderbeekGalleryDialog::GetVersionHistory()
+std::vector<std::string> ribi::QtRichelBilderbeekGalleryDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-02-19: version 1.0: initial version of QtAboutDialog");
@@ -177,12 +179,12 @@ const std::vector<std::string> ribi::QtRichelBilderbeekGalleryDialog::GetVersion
   return v;
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::keyPressEvent(QKeyEvent* e)
+void ribi::QtRichelBilderbeekGalleryDialog::keyPressEvent(QKeyEvent* e) noexcept
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &index)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &index) noexcept
 {
   const int row = index.row();
   if (row - 1 < 0 || row - 1 >= static_cast<int>(m_programs.size())) return;
@@ -191,14 +193,14 @@ void ribi::QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &
   ShowScreenshot(col,row);
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::on_table_cellEntered(int row, int column)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_cellEntered(int row, int column) noexcept
 {
   ShowScreenshot(column,row);
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const int row)
+void ribi::QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const int row) noexcept
 {
-  const boost::shared_ptr<RichelBilderbeek::Program>& p = m_programs[row - 1];
+  const boost::shared_ptr<Program>& p = m_programs[row - 1];
   std::string filename;
   switch (col)
   {
@@ -215,7 +217,7 @@ void ribi::QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const 
   this->move( screen.center() - this->rect().center() );
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::on_table_entered(const QModelIndex &index)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_entered(const QModelIndex &index) noexcept
 {
   const int row = index.row();
   if (row - 1 < 0 || row - 1 >= static_cast<int>(m_programs.size())) return;

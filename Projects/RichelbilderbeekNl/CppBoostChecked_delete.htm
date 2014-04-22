@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>boost::checked_delete</title>
+  <meta name="description" content="C++ boost::checked_delete"/>
+  <meta name="keywords" content="C++ boost::checked_delete boost checked_delete checked delete"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppChecked_delete.htm">boost::checked_delete</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppChecked_delete.htm">boost::checked_delete</a> is a compile-time-checked version of <a href="CppDelete.htm">delete</a>.</p>
+<p>&nbsp;</p>
+<p>To cite from <a href="http://www.boost.org/libs/utility/checked_delete.html">http://www.boost.org/libs/utility/checked_delete.html</a>:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+The C++ Standard allows, in 5.3.5/5, pointers to incomplete class types to be deleted
+with a delete-expression. When the class has a non-trivial destructor, or a
+class-specific operator delete, the behavior is undefined. Some compilers issue
+a warning when an incomplete type is deleted, but unfortunately, not all do,
+and programmers sometimes ignore or disable warnings.
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>In other words, if you use a lot of <a href="CppForwardDeclaration.htm">forward declarations</a> you might choose to prefer using <a href="CppChecked_delete.htm">boost::checked_delete</a>.</p>
+<p>&nbsp;</p>
+<p>Note that <a href="CppAuto_ptr.htm">std::auto_ptr</a> does not use a checked <a href="CppDelete.htm">delete</a>. When you really need a checked delete, use <a href="CppScoped_ptr.htm">boost::scoped_ptr</a> instead (but note that <a href="CppScoped_ptr.htm">boost::scoped_ptr</a> has a slightly different <a href="CppInterface.htm">interface</a> then <a href="CppAuto_ptr.htm">std::auto_ptr</a>).</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppFriend.htm">Befriending</a> a <a href="CppClass.htm">class</a> with boost::checked_delete</h2>
+<p>&nbsp;</p>
+<p>When you <a href="CppFriend.htm">befriending</a> a function template specialization (like <a href="CppChecked_delete.htm">boost::checked_delete</a>), always explicitly add at last the &lt;&gt; template syntax [1].</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>MyClass's <a href="CppInterface.htm">interface</a><br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;~MyClass() { <a href="CppComment.htm">/*</a> something <a href="CppComment.htm">*/</a> }<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&nbsp;&nbsp;(MyClass* x); <a href="CppComment.htm">//</a>Bad&nbsp;&nbsp;[1]<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(MyClass* x); <a href="CppComment.htm">//</a>Good [1]<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.boost.org/libs/utility/checked_delete.html">Boost's page about boost::checked_delete</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

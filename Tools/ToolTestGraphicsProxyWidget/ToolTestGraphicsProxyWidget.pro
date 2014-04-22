@@ -1,17 +1,15 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
 TEMPLATE = app
 
 
 SOURCES += \
-    main.cpp \
     tooltestgraphicsproxywidgetmaindialog.cpp \
     qttestgraphicsproxywidget.cpp \
     qttestgraphicsproxyitem.cpp \
-    somedialog.cpp
+    somedialog.cpp \
+    qtmain.cpp
 
 HEADERS  += tooltestgraphicsproxywidgetmaindialog.h \
     qttestgraphicsproxywidget.h \
@@ -20,3 +18,19 @@ HEADERS  += tooltestgraphicsproxywidgetmaindialog.h \
 
 FORMS    += tooltestgraphicsproxywidgetmaindialog.ui \
     somedialog.ui
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}

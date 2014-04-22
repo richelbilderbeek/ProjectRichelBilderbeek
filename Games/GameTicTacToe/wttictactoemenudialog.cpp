@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WLabel>
 #include <Wt/WMenu>
 #include <Wt/WStackedWidget>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "tictactoemenudialog.h"
 #include "wtaboutdialog.h"
@@ -30,10 +30,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wttictactoegamedialog.h"
 #include "wttictactoemenudialog.h"
 #include "wttictactoewidget.h"
-//---------------------------------------------------------------------------
+
 #include <cassert>
-//---------------------------------------------------------------------------
-ribi::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
+
+ribi::con3::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -66,14 +66,14 @@ ribi::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
-ribi::WtAboutDialog * ribi::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
+
+ribi::WtAboutDialog * ribi::con3::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
 {
-  About a = TicTacToeMenuDialog::GetAbout();
+  About a = TicTacToeMenuDialog().GetAbout();
   a.AddLibrary("WtTicTacToeWidget version: " + WtTicTacToeWidget::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   return d;
 }
-//---------------------------------------------------------------------------
+
 

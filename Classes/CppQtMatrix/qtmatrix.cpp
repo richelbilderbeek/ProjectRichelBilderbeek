@@ -12,12 +12,12 @@
 
 #pragma GCC diagnostic pop
 
-const std::string ribi::QtMatrix::GetVersion()
+std::string ribi::QtMatrix::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtMatrix::GetVersionHistory()
+std::vector<std::string> ribi::QtMatrix::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version",
@@ -101,7 +101,7 @@ void ribi::QtMatrix::StdVectorDoubleToTable(const std::vector<double>& v, QTable
   UblasVectorDoubleToTable(w,table);
 }
 
-void ribi::QtMatrix::Test()
+void ribi::QtMatrix::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -170,7 +170,7 @@ const boost::numeric::ublas::matrix<double> ribi::QtMatrix::ToMatrix(const QTabl
   return v;
 }
 
-const std::vector<std::string> ribi::QtMatrix::ToStrVector(const QTableWidget * const table)
+std::vector<std::string> ribi::QtMatrix::ToStrVector(const QTableWidget * const table)
 {
   assert(table);
   if (table->rowCount() == 0) { return std::vector<std::string>(); }

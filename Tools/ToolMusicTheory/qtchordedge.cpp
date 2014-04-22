@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MusicTheory, tool for visualizing my music theory
-Copyright (C)  2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,9 +18,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolMusicTheory.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtchordedge.h"
+#pragma GCC diagnostic pop
 
 QtChordEdge::QtChordEdge(QGraphicsItem *parent)
   : QGraphicsLineItem(parent)
@@ -28,15 +29,15 @@ QtChordEdge::QtChordEdge(QGraphicsItem *parent)
 
 }
 
-const std::string QtChordEdge::GetVersion()
+std::string QtChordEdge::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> QtChordEdge::GetVersionHistory()
+std::vector<std::string> QtChordEdge::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-08-10: version 1.0: initial version");
-  v.push_back("2013-07-25: version 1.1: transition to Qt5");
-  return v;
+  return {
+    "2012-08-10: version 1.0: initial version",
+    "2013-07-25: version 1.1: transition to Qt5"
+  };
 }

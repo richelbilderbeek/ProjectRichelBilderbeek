@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,36 +18,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestpylosrandomplaydialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
-//---------------------------------------------------------------------------
+
 #include "pylosboard.h"
 #include "pylosgame.h"
 #include "ui_qttestpylosrandomplaydialog.h"
-//---------------------------------------------------------------------------
-ribi::QtTestPylosRandomPlayDialog::QtTestPylosRandomPlayDialog(QWidget *parent) :
-  QDialog(parent),
+#pragma GCC diagnostic pop
+
+ribi::pylos::QtTestPylosRandomPlayDialog::QtTestPylosRandomPlayDialog(QWidget *parent) :
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestPylosRandomPlayDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
-ribi::QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog()
+
+ribi::pylos::QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog() noexcept
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
+
+void ribi::pylos::QtTestPylosRandomPlayDialog::on_button_start_clicked()
 {
-  const boost::shared_ptr<Pylos::Board> board =  (ui->radio_advanced->isChecked()
-    ? Pylos::Board::CreateAdvancedBoard()
-    : Pylos::Board::CreateBasicBoard() );
+  const boost::shared_ptr<Board> board = (ui->radio_advanced->isChecked()
+    ? Board::CreateAdvancedBoard()
+    : Board::CreateBasicBoard() );
 
   int won1 = 0;
   int won2 = 0;
@@ -59,8 +58,8 @@ void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
 
   for (int i=0; i!=max; ++i)
   {
-    const Pylos::Winner winner = Pylos::Game::PlayRandomGame(board);
-    if (winner == Pylos::Winner::player1) ++won1; else ++won2;
+    const Winner winner = Game::PlayRandomGame(board);
+    if (winner == Winner::player1) ++won1; else ++won2;
     ui->bar_progress->setValue(i);
     ui->bar_won_player1->setValue(
       static_cast<int>(
@@ -69,8 +68,8 @@ void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
 
   ui->bar_progress->setValue(max);
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QString &arg1)
+
+void ribi::pylos::QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QString &arg1)
 {
   try
   {
@@ -84,4 +83,4 @@ void ribi::QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QStrin
   ui->bar_progress->setMaximum(boost::lexical_cast<int>(arg1.toStdString()));
   ui->button_start->setEnabled(true);
 }
-//---------------------------------------------------------------------------
+

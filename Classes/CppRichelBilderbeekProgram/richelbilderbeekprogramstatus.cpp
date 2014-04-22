@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelBilderbeek::ProgramStatus, status of a program by Richel Bilderbeek
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ProjectRichelBilderbeekProgramStatus.htm
+//From http://www.richelbilderbeek.nl/CppProjectRichelBilderbeekProgramStatus.htm
 //---------------------------------------------------------------------------
 #include "richelbilderbeekprogramstatus.h"
 
@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
-const std::string ribi::RichelBilderbeek::ProgramStatusToStr(const ProgramStatus c)
+std::string ribi::ProgramStatusToStr(const ProgramStatus c)
 {
   switch (c)
   {
@@ -40,19 +40,19 @@ const std::string ribi::RichelBilderbeek::ProgramStatusToStr(const ProgramStatus
   throw std::logic_error("RichelBilderbeek::ProgramStatusToStr");
 }
 
-const std::string ribi::RichelBilderbeek::ProgramStatusVersion::GetVersion()
+std::string ribi::ProgramStatusVersion::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::ProgramStatusVersion::GetVersionHistory()
+std::vector<std::string> ribi::ProgramStatusVersion::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version"
   };
 }
 
-std::ostream& ribi::RichelBilderbeek::operator<<(std::ostream& os, const ProgramStatus c)
+std::ostream& ribi::operator<<(std::ostream& os, const ProgramStatus c)
 {
   os << ProgramStatusToStr(c);
   return os;

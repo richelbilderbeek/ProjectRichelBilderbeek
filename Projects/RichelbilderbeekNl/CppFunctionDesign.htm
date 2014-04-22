@@ -33,7 +33,8 @@
 <h2>General</h2>
 <p>&nbsp;</p>
 <ul>
-  <li>Avoid writing long <a href="CppFunction.htm">functions</a> [1-2,5]</li>
+  <li>Avoid writing long <a href="CppFunction.htm">functions</a> [1-2,5,35]</li>
+  <li>Avoid using <a href="CppFunction.htm">functions</a> with a large number of arguments [36]</li>
   <li>Prefer functions over <a href="CppMacro.htm">macros</a> [23,24]</li>
   <li>If a function may have to be evaluated at compile time, declare it <a href="CppConstexpr.htm">constexpr</a> [7]</li>
 </ul>
@@ -167,6 +168,10 @@
     Assume that every <a href="CppException.htm">exception</a> that can be <a href="CppThrow.htm">thrown</a> by a 
     <a href="CppFunction.htm">function</a> will be <a href="CppThrow.htm">thrown</a> [33]
   </li>
+  <li>
+    If a <a href="CppFunction.htm">function</a> may not <a href="CppThrow.htm">throw</a>, 
+    <a href="CppDeclaration.htm">declare</a> it <a href="CppNoexcept.htm">noexcept</a> [34]
+  </li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -220,6 +225,9 @@
   <li><!-- 31 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 21: Don't try to return a reference when you must return an object.</li>
   <li><!-- 32 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 13.7. Advice. page 386: '[3] Use exceptions for error handling'</li>
   <li><!-- 33 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 13.7. Advice. page 387: '[33] Assume that every exception that can be thrown by a function will be thrown'</li>
+  <li><!-- 34 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 13.7. Advice, page 387: '[23] If your function may not throw, declare it noexcept'</li>
+  <li><!-- 35 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 15: 'Watch for long member function definitions. A function that is long and complicated is difficult and expensive to maintain, and is probably trying to do too much all by itself. If you see such a function, it indicates that, at the least, it should be broken up into multiple functions. It may also suggest the creation of a new class.'</li>
+  <li><!-- 36 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 16: 'Watch for long argument lists. Function calls then become difficult to write, read and maintain. Instead, try to move the member function to a class where it is (more) appropriate, and/or pass objects in as arguments.'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

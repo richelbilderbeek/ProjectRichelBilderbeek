@@ -1,11 +1,17 @@
 #ifndef CHESSBOARDWIDGET_H
 #define CHESSBOARDWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 
 #include "chessfwd.h"
+#include "chessplayer.h"
 #include "chesswidget.h"
+#pragma GCC diagnostic pop
 
+namespace ribi {
 namespace Chess {
 
 ///Chess::BoardWidget is a Chess::Widget to interact with a Chess::Board
@@ -14,18 +20,19 @@ struct BoardWidget : public Chess::ChessWidget
   BoardWidget(boost::shared_ptr<Chess::Board> board, const Rect& geometry);
 
   ///Can do a move?
-  bool CanDoMove(const Chess::Square& from, const Chess::Square& to) const;
+  bool CanDoMove(
+    const boost::shared_ptr<const Chess::Square> from,
+    const boost::shared_ptr<const Chess::Square> to) const noexcept;
   //bool CanDoMove(const Chess::Move& move) const;
 
   ///Can the square be selected?
-  bool CanSelect(const Chess::Square& square) const;
+  bool CanSelect(const boost::shared_ptr<const Chess::Square> square) const noexcept;
 
   ///Respond to a click
-  void Click(const Chess::Square& square);
-
+  void Click(const boost::shared_ptr<const Chess::Square> square) noexcept;
 
   ///Do a move
-  void DoMove(const Chess::Square& from, const Chess::Square& to);
+  void DoMove(const boost::shared_ptr<const Chess::Square> from, const boost::shared_ptr<const Chess::Square> to);
 
   ///Get which Player is active
   Player GetActivePlayer() const { return m_player; }
@@ -37,21 +44,24 @@ struct BoardWidget : public Chess::ChessWidget
   void SetActivePlayer(const Player player);
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   private:
 
-  ~BoardWidget() {}
-
-  ///The active Player
-  Player m_player;
+  ~BoardWidget() noexcept {}
 
   ///The chessboard
   boost::shared_ptr<Chess::Board> m_board;
 
+  ///The active Player
+  Player m_player;
+
   friend void boost::checked_delete<>(BoardWidget* x);
+  friend class boost::detail::sp_ms_deleter<      BoardWidget>;
+  friend class boost::detail::sp_ms_deleter<const BoardWidget>;
 };
 
-} //~ namespace Chess
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSBOARDWIDGET_H

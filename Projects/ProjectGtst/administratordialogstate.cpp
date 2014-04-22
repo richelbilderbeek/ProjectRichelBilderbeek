@@ -20,10 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 #include <fstream>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
-//---------------------------------------------------------------------------
+
 #include "all_parameters.h"
 #include "all_serverstates.h"
 #include "administrator.h"
@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h" //In the precompiled header
 #include "administratordialog.h"
 #include "administratordialogstate.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::AdministratorDialogState::AdministratorDialogState(
   Server * const server,
   AdministratorDialog * const dialog)
@@ -44,7 +44,7 @@ ribi::gtst::AdministratorDialogState::AdministratorDialogState(
   assert(m_dialog);
   assert(m_server);
 }
-//---------------------------------------------------------------------------
+
 ///FileToVector reads a file and converts it to a std::vector<std::string>
 ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> ribi::gtst::AdministratorDialogState::FileToVector(const std::string& filename)
@@ -60,7 +60,7 @@ const std::vector<std::string> ribi::gtst::AdministratorDialogState::FileToVecto
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
 const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetFilesInFolder(const std::string& folder)
 {
@@ -86,7 +86,7 @@ const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetFilesInF
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppGetTextFilesInFolder.htm
 const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetTextFilesInFolder(const std::string& folder)
 {
@@ -109,10 +109,10 @@ const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetTextFile
   );
   return w;
 }
-//---------------------------------------------------------------------------
+
 bool ribi::gtst::AdministratorDialogState::IsLoggedIn() const
 {
   assert(GetDialog() && "Assume the parent can be read");
   return GetDialog()->CanGetAdministrator();
 }
-//---------------------------------------------------------------------------
+

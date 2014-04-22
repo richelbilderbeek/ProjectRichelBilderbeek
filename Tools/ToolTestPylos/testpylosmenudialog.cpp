@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,41 +18,94 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-
-
 #include "testpylosmenudialog.h"
-//---------------------------------------------------------------------------
-const ribi::About ribi::TestPylosMenuDialog::GetAbout()
+
+#include <cassert>
+#include <iostream>
+
+#include "trace.h"
+
+int ribi::TestPylosMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::TestPylosMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "TestPylos",
     "tool to test the Pylos board classes",
     "the 29th of April 2012",
-    "2010-2012",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolTestPylos.htm",
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
-const std::string ribi::TestPylosMenuDialog::GetVersion()
-{
-  return "2.0";
-}
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::TestPylosMenuDialog::GetVersionHistory()
-{
-  std::vector<std::string> v;
-  v.push_back("2010-09-19: version 0.1: initial version: cannot move marbles, cannot switch to advanced game, winner can be requested clumsily (by clicking next to the Pylos widget)");
-  v.push_back("2010-09-21: version 0.2: major architectural rewrite, PylosWidget now sends custom signals, due to which TestPylos can show more state");
-  v.push_back("2010-09-21: version 0.3: user can switch between basic and advanced play, user can now move marbles to a higher level");
-  v.push_back("2010-09-22: version 1.0: initial release version, allow PylosWidget resizing, allow visual random play, play many random virtual games at startup, keep track of move history");
-  v.push_back("2010-09-22: version 1.1: modified PylosWidget to not display selector when somewon has won, added extra test");
-  v.push_back("2010-09-22: version 1.2: if a marble is selected for movement to a higher layer, the left mouse button must be pressed. When a marble is selected for movement, no marble will be placed by clicking the left mouse button");
-  v.push_back("2012-04-29: version 2.0: major architectural change. Seperated PylosGame from PylosBoard");
-  return v;
-}
-//---------------------------------------------------------------------------
 
+ribi::Help ribi::TestPylosMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::TestPylosMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestPylos
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::TestPylosMenuDialog::GetVersion() const noexcept
+{
+  return "2.1";
+}
+
+std::vector<std::string> ribi::TestPylosMenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2010-09-19: version 0.1: initial version: cannot move marbles, cannot switch to advanced game, winner can be requested clumsily (by clicking next to the Pylos widget)",
+    "2010-09-21: version 0.2: major architectural rewrite, PylosWidget now sends custom signals, due to which TestPylos can show more state",
+    "2010-09-21: version 0.3: user can switch between basic and advanced play, user can now move marbles to a higher level",
+    "2010-09-22: version 1.0: initial release version, allow PylosWidget resizing, allow visual random play, play many random virtual games at startup, keep track of move history",
+    "2010-09-22: version 1.1: modified PylosWidget to not display selector when somewon has won, added extra test",
+    "2010-09-22: version 1.2: if a marble is selected for movement to a higher layer, the left mouse button must be pressed. When a marble is selected for movement, no marble will be placed by clicking the left mouse button"
+    "2012-04-29: version 2.0: major architectural change. Seperated PylosGame from PylosBoard",
+    "2013-11-05: version 2.1: conformized for ProjectRichelBilderbeekConsole"
+  };
+}
+
+#ifndef NDEBUG
+void ribi::TestPylosMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestPylosMenuDialog::Test");
+  TRACE("Finished ribi::TestPylosMenuDialog::Test successfully");
+}
+#endif

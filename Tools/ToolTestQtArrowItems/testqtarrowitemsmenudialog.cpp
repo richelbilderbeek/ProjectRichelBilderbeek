@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 /*
 TestQtArrowItems, tool to test Qt arrow QGraphicsItems
-Copyright (C) 2012-2013  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,16 +20,34 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // ---------------------------------------------------------------------------
 #include "testqtarrowitemsmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "trace.h"
 
-const ribi::About ribi::TestQtArrowItemsMenuDialog::GetAbout()
+int ribi::TestQtArrowItemsMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+ribi::About ribi::TestQtArrowItemsMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "TestQtArrowItems",
     "tool to test Qt arrow QGraphicsItems",
     "the 1st of Januari 2013",
-    "2012-2013",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolTestQtArrowItems.htm",
     GetVersion(),
     GetVersionHistory());
@@ -38,15 +56,52 @@ const ribi::About ribi::TestQtArrowItemsMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestQtArrowItemsMenuDialog::GetVersion()
+ribi::Help ribi::TestQtArrowItemsMenuDialog::GetHelp() const noexcept
 {
-  return "1.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::TestQtArrowItemsMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQtArrowItems
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::TestQtArrowItemsMenuDialog::GetVersion() const noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-12-07: version 0.1: initial version",
-    "2013-01-01: version 1.0: added menu"
+    "2013-01-01: version 1.0: added menu",
+    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestQtArrowItemsMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestQtArrowItemsMenuDialog::Test");
+  TRACE("Finished ribi::TestQtArrowItemsMenuDialog::Test successfully");
+}
+#endif

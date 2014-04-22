@@ -20,22 +20,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTSERVERPUSHER_H
 #define WTSERVERPUSHER_H
-//---------------------------------------------------------------------------
+
 #include <mutex>
 #include <thread>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/function.hpp>
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+#include <boost/shared_ptr.hpp>
+
 namespace ribi {
 
 struct WtServerPusherClient;
 
-//---------------------------------------------------------------------------
+
 ///A Server that broadcasts its messages
 struct WtServerPusher
 {
+  WtServerPusher(const WtServerPusher&) = delete;
+  WtServerPusher& operator=(const WtServerPusher&) = delete;
+
   ///Let a WtServerPusherClient have its supplied function called by WtServerPusher::Run
   void Connect(WtServerPusherClient * const client, const boost::function<void()>& function);
 
@@ -55,7 +59,7 @@ struct WtServerPusher
   void Post();
 
 private:
-  //Connection is a POD
+  //Connection is a non-copyable POD
   struct Connection
   {
     Connection(
@@ -66,9 +70,11 @@ private:
     {
 
     }
-    std::string m_session_id;
-    WtServerPusherClient * m_client;
-    boost::function<void()> m_function;
+    Connection(const Connection&) = delete;
+    Connection& operator=(const Connection&) = delete;
+    const std::string m_session_id;
+    WtServerPusherClient * const m_client;
+    const boost::function<void()> m_function;
   };
 
   ///WtServerPusher constructor, which is private, because WtServerPusher follows
@@ -82,7 +88,7 @@ private:
   friend void boost::checked_delete<>(WtServerPusher*);
 
   ///All connections to the WtServerPusherClients
-  std::vector<Connection> m_connections;
+  std::vector<boost::shared_ptr<Connection> > m_connections;
 
   ///The WtServerPusher its only instance
   static boost::scoped_ptr<WtServerPusher> m_instance;

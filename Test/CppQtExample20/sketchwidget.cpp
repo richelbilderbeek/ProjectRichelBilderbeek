@@ -1,22 +1,27 @@
-//---------------------------------------------------------------------------
+#include "sketchwidget.h"
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QMouseEvent>
 #include <QPainter>
-#include "sketchwidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 SketchWidget::SketchWidget(QWidget *parent)
-  : QWidget(parent)
+  : QWidget(parent),
+    m_points{}
 {
   this->setMouseTracking(true);
 }
-//---------------------------------------------------------------------------
+
 void SketchWidget::clear()
 {
   m_points.clear();
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void SketchWidget::mouseMoveEvent(QMouseEvent * e)
 {
   if (e->buttons() & Qt::LeftButton)
@@ -25,7 +30,7 @@ void SketchWidget::mouseMoveEvent(QMouseEvent * e)
     this->repaint();
   }
 }
-//---------------------------------------------------------------------------
+
 void SketchWidget::mousePressEvent(QMouseEvent * e)
 {
   if (e->buttons() & Qt::LeftButton)
@@ -34,7 +39,7 @@ void SketchWidget::mousePressEvent(QMouseEvent * e)
     m_points.back().push_back(e->pos());
   }
 }
-//---------------------------------------------------------------------------
+
 void SketchWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -56,5 +61,5 @@ void SketchWidget::paintEvent(QPaintEvent *)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 

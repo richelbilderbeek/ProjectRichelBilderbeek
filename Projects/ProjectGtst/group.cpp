@@ -27,11 +27,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <set>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/logic/tribool.hpp>
 #include <boost/weak_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "chooseactionoption.h"
 #include "logfile.h"
 #include "group.h"
@@ -41,13 +41,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #include "server.h"
 #include "votingoption.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::Group::Group(Server * const server)
-  : m_server(server)
+  : m_average_payoffs{},
+    m_participants{},
+    m_server{server}
 {
   assert(m_server);
 }
-//---------------------------------------------------------------------------
+
 ///Add a Participant to the Group
 void ribi::gtst::Group::AddParticipant(boost::shared_ptr<Participant> participant)
 {
@@ -56,13 +58,13 @@ void ribi::gtst::Group::AddParticipant(boost::shared_ptr<Participant> participan
 
   m_server->GetLog()->LogAssignGroup(this,participant);
 }
-//---------------------------------------------------------------------------
+
 ///Append the last IPGG's cycle(s) average payoff to m_payoffs
 void ribi::gtst::Group::AppendAveragePayoff(const double payoff)
 {
   m_average_payoffs.push_back(payoff);
 }
-//---------------------------------------------------------------------------
+
 ///Assign the payoffs to this group
 ///
 ///\note
@@ -147,13 +149,13 @@ void ribi::gtst::Group::AssignPayoff(
     }
   );
 }
-//---------------------------------------------------------------------------
+
 ///Clear all Participants
 void ribi::gtst::Group::Clear()
 {
   m_participants.resize(0);
 }
-//---------------------------------------------------------------------------
+
 ///Collects all Participants in this Group as read-only pointers
 const std::vector<boost::shared_ptr<const ribi::gtst::Participant> > ribi::gtst::Group::CollectParticipants() const
 {
@@ -167,20 +169,20 @@ const std::vector<boost::shared_ptr<const ribi::gtst::Participant> > ribi::gtst:
   assert(v.empty() || v[0] == m_participants[0]);
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///Obtain a random double in the range [0.0,1.0>
 //From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
 double ribi::gtst::Group::GetRandomUniform()
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
-//---------------------------------------------------------------------------
+
 ///Get the Group its size
 int ribi::gtst::Group::GetSize() const
 {
   return boost::numeric_cast<int>(m_participants.size());
 }
-//---------------------------------------------------------------------------
+
 ///Checks if a Participant is present in this Group
 bool ribi::gtst::Group::IsMember(const boost::shared_ptr<const Participant>& participant) const
 {
@@ -191,7 +193,7 @@ bool ribi::gtst::Group::IsMember(const boost::shared_ptr<const Participant>& par
   )
   != m_participants.end();
 }
-//---------------------------------------------------------------------------
+
 ///Remove a Participant from a Group
 boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Group::RemoveParticipant(const boost::shared_ptr<const Participant>& participant)
 {
@@ -241,7 +243,7 @@ boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Group::RemoveParticipant(
 
   return q;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os, const Group& group)
 {
   os << "<" << group.ToStr() << ">\n";
@@ -262,5 +264,5 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os, const Group& group)
   os << "</" << group.ToStr() << ">";
   return os;
 }
-//---------------------------------------------------------------------------
+
 

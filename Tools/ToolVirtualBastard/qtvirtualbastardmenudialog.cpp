@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtvirtualbastardmenudialog.h"
 
 #include <cassert>
@@ -8,7 +10,8 @@
 #include "qtvirtualbastardmaindialog.h"
 #include "virtualbastard.h"
 #include "ui_qtvirtualbastardmenudialog.h"
-
+#pragma GCC diagnostic pop
+x
 QtVirtualBastardMenuDialog::QtVirtualBastardMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtVirtualBastardMenuDialog)

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestMultipleChoiceQuestion, tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes
-Copyright (C) 2013 Richel Bilderbeek
+TestMultipleChoiceQuestion, tests multiple choice question classes
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestMultipleChoiceQuestion.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestmultiplechoicequestionmenudialog.h"
 
 #include <QKeyEvent>
@@ -39,8 +35,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testmultiplechoicequestionmenudialog.h"
 #include "trace.h"
 #include "ui_qttestmultiplechoicequestionmenudialog.h"
+#pragma GCC diagnostic pop
 
-QtTestMultipleChoiceQuestionMenuDialog::QtTestMultipleChoiceQuestionMenuDialog(QWidget *parent) :
+ribi::QtTestMultipleChoiceQuestionMenuDialog::QtTestMultipleChoiceQuestionMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestMultipleChoiceQuestionMenuDialog),
   m_dialog(new TestMultipleChoiceQuestionMenuDialog)
@@ -51,24 +48,24 @@ QtTestMultipleChoiceQuestionMenuDialog::QtTestMultipleChoiceQuestionMenuDialog(Q
   ui->setupUi(this);
 }
 
-QtTestMultipleChoiceQuestionMenuDialog::~QtTestMultipleChoiceQuestionMenuDialog()
+ribi::QtTestMultipleChoiceQuestionMenuDialog::~QtTestMultipleChoiceQuestionMenuDialog() noexcept
 {
   delete ui;
 }
 
-void QtTestMultipleChoiceQuestionMenuDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtTestMultipleChoiceQuestionMenuDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void QtTestMultipleChoiceQuestionMenuDialog::on_button_start_clicked()
+void ribi::QtTestMultipleChoiceQuestionMenuDialog::on_button_start_clicked()
 {
   QtTestMultipleChoiceQuestionMainDialog d;
   d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
-void QtTestMultipleChoiceQuestionMenuDialog::on_button_about_clicked()
+void ribi::QtTestMultipleChoiceQuestionMenuDialog::on_button_about_clicked()
 {
   hide();
   About a = m_dialog->GetAbout();
@@ -81,22 +78,22 @@ void QtTestMultipleChoiceQuestionMenuDialog::on_button_about_clicked()
   show();
 }
 
-void QtTestMultipleChoiceQuestionMenuDialog::on_button_quit_clicked()
+void ribi::QtTestMultipleChoiceQuestionMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
 #ifndef NDEBUG
-void QtTestMultipleChoiceQuestionMenuDialog::Test()
+void ribi::QtTestMultipleChoiceQuestionMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTestMultipleChoiceQuestionMenuDialog::Test");
+  TRACE("Starting ribi::QtTestMultipleChoiceQuestionMenuDialog::Test");
   QtTestMultipleChoiceQuestionMainDialog();
-  TRACE("Finished QtTestMultipleChoiceQuestionMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtTestMultipleChoiceQuestionMenuDialog::Test successfully");
 }
 #endif
 

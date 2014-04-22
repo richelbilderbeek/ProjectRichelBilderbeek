@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateGlossary, tool to create my glossaries
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,31 +18,43 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateGlossary.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtcreateglossarymaindialog.h"
 
 #include <QTimer>
 #include "createglossarymaindialog.h"
 #include "ui_qtcreateglossarymaindialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::QtCreateGlossaryMainDialog::QtCreateGlossaryMainDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtCreateGlossaryMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
-  QTimer::singleShot(100,this,SLOT(create_glossary()));
-}
-
-ribi::QtCreateGlossaryMainDialog::~QtCreateGlossaryMainDialog()
-{
-    delete ui;
-}
-
-
-void ribi::QtCreateGlossaryMainDialog::create_glossary()
-{
   CreateGlossaryMainDialog();
   ui->label->setText("Done!");
-
 }
+
+ribi::QtCreateGlossaryMainDialog::~QtCreateGlossaryMainDialog() noexcept
+{
+  delete ui;
+}
+
+#ifndef NDEBUG
+void ribi::QtCreateGlossaryMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtCreateGlossaryMainDialog::Test");
+  CreateGlossaryMainDialog();
+  TRACE("Finished QtCreateGlossaryMainDialog::Test successfully");
+}
+#endif

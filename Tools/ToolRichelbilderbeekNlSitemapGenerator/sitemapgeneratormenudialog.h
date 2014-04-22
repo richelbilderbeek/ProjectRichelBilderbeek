@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelbilderbeekNlSitemapGenerator, generates the richelbilderbeek.nl sitemap
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,23 +21,48 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef SITEMAPGENERATORMENUDIALOG_H
 #define SITEMAPGENERATORMENUDIALOG_H
 
-#include <string>
-#include <vector>
 
-#include "about.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/signals2.hpp>
+#include "menudialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
-struct SitemapGeneratorMenuDialog
+struct SitemapGeneratorMenuDialog : public MenuDialog
 {
-  ///Obtain the Abou information of this class
-  static const About GetAbout();
+  SitemapGeneratorMenuDialog();
+  ~SitemapGeneratorMenuDialog() noexcept {}
 
-  ///Obtain the version of this class
-  static const std::string GetVersion();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  boost::signals2::signal<void(const std::string)> m_signal_log;
+
+  private:
+
+  static std::vector<std::string> AddHeader(const std::vector<std::string>& files) noexcept;
+
+  static std::vector<std::string> CreateConfigXml(
+    const std::string& local_website_path,
+    const std::string& urllist_path) noexcept;
+
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  //Returns date in YYYY-MM-DD format
+  //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
+  static std::string GetDateIso8601() noexcept;
+
+  static std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

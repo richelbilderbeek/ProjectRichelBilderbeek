@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,11 +25,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include "codetohtmlversion.h"
+#include "fileio.h"
 #include "qtcreatorprofile.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
+ribi::c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
   :
     m_application_types{},
     m_compilers{},
@@ -45,7 +46,7 @@ c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
     std::back_inserter(profiles),
     [](const std::string& s)
     {
-      assert(IsRegularFile(s));
+      assert(ribi::fileio::FileIo().IsRegularFile(s));
       boost::shared_ptr<const ribi::QtCreatorProFile> p(new ribi::QtCreatorProFile(s));
       return p;
     }
@@ -120,7 +121,7 @@ c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
 
 }
 
-const std::vector<std::string> c2h::TechInfo::ToHtml() const
+std::vector<std::string> ribi::c2h::TechInfo::ToHtml() const
 {
   std::vector<std::string> v;
   v.push_back("<h2>Technical facts</h2>");

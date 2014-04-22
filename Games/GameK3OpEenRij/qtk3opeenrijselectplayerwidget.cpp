@@ -1,9 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtk3opeenrijselectplayerwidget.h"
 
 #include <QMouseEvent>
 #include <QPainter>
 
 #include "qtk3opeenrijresources.h"
+#pragma GCC diagnostic pop
 
 const int ribi::QtK3OpEenRijSelectPlayerWidget::m_sprite_height = 50;
 const int ribi::QtK3OpEenRijSelectPlayerWidget::m_sprite_width  = 50;
@@ -13,6 +16,7 @@ ribi::QtK3OpEenRijSelectPlayerWidget::QtK3OpEenRijSelectPlayerWidget(
   QWidget *parent)
   : QWidget(parent),
     m_is_player3_kathleen(false), //Set default to Josje
+    m_is_player_human{},
     m_josje(resources->GetPlayersFilenames()[3].c_str() ),
     m_josje_grey( resources->GetPlayersGreyFilenames()[3].c_str() ),
     m_karen(resources->GetPlayersFilenames()[0].c_str() ),

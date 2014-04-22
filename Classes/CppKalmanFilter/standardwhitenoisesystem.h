@@ -17,13 +17,13 @@ namespace kalman {
 struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
 {
   ///Obtain the type as an enum
-  WhiteNoiseSystemType GetType() const { return WhiteNoiseSystemType::standard; }
+  WhiteNoiseSystemType GetType() const noexcept { return WhiteNoiseSystemType::standard; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Update reality, that is, let the real system (i.e. reality) go to its next state,
   ///without any input
@@ -33,7 +33,7 @@ struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
   void GoToNextState(const boost::numeric::ublas::vector<double>& input);
 
   ///Measure a value from this system with normally distributed noise
-  const boost::numeric::ublas::vector<double> Measure() const;
+  const boost::numeric::ublas::vector<double> Measure() const noexcept;
 
   private:
   ///StandardWhiteNoiseSystem can only be created by a StandardWhiteNoiseSystemFactory
@@ -41,7 +41,7 @@ struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
   friend class StandardWhiteNoiseSystemFactory;
 
   ///Can only be deleted by boost::checked_delete
-  ~StandardWhiteNoiseSystem() {}
+  ~StandardWhiteNoiseSystem() noexcept {}
   friend void boost::checked_delete<>(StandardWhiteNoiseSystem*);
 
   ///The parameters for the white noise system

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,32 +18,33 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestpylostestgamedialog.h"
 
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
-//---------------------------------------------------------------------------
+
 #include <QBitmap>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QTimer>
-//---------------------------------------------------------------------------
+
+#include "pylosgame.h"
 #include "pylosboard.h"
 #include "pylosmove.h"
 #include "pylospositionstate.h"
 #include "qtpylosboardwidget.h"
+#include "qtpylosgamewidget.h"
 #include "ui_qttestpylostestgamedialog.h"
-//---------------------------------------------------------------------------
-ribi::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
-  QDialog(parent),
+#pragma GCC diagnostic pop
+
+ribi::pylos::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestPylosTestGameDialog),
   m_widget(new QtPylosGameWidget),
   m_timer(new QTimer(this))
@@ -72,14 +73,14 @@ ribi::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
 
   UpdateLog();
 }
-//---------------------------------------------------------------------------
-ribi::QtTestPylosTestGameDialog::~QtTestPylosTestGameDialog()
+
+ribi::pylos::QtTestPylosTestGameDialog::~QtTestPylosTestGameDialog() noexcept
 {
   m_timer->stop();
   delete ui;
 }
 
-void ribi::QtTestPylosTestGameDialog::on_button_play_visual_clicked()
+void ribi::pylos::QtTestPylosTestGameDialog::on_button_play_visual_clicked()
 {
   if (m_timer->isActive())
   {
@@ -89,7 +90,7 @@ void ribi::QtTestPylosTestGameDialog::on_button_play_visual_clicked()
   else
   {
     //Start timer
-    if (m_widget->GetWinner() != Pylos::Winner::none)
+    if (m_widget->GetWinner() != pylos::Winner::none)
     {
       if ( (std::rand() >> 4) % 2)
       {
@@ -104,8 +105,8 @@ void ribi::QtTestPylosTestGameDialog::on_button_play_visual_clicked()
     m_timer->start();
   }
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosTestGameDialog::OnTimer()
+
+void ribi::pylos::QtTestPylosTestGameDialog::OnTimer()
 {
   const QRect r = this->m_widget->geometry();
   const int x = r.left() + (std::rand() % r.width());
@@ -139,33 +140,33 @@ void ribi::QtTestPylosTestGameDialog::OnTimer()
   }
   this->m_widget->mousePressEvent(e.get());
 
-  if (m_widget->GetWinner() != Pylos::Winner::none)
+  if (m_widget->GetWinner() != pylos::Winner::none)
   {
     m_timer->stop();
   }
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosTestGameDialog::on_radio_advanced_clicked()
+
+void ribi::pylos::QtTestPylosTestGameDialog::on_radio_advanced_clicked()
 {
   m_widget->StartAdvanced();
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosTestGameDialog::on_radio_basic_clicked()
+
+void ribi::pylos::QtTestPylosTestGameDialog::on_radio_basic_clicked()
 {
   m_widget->StartBasic();
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosTestGameDialog::on_radio_bw_clicked()
+
+void ribi::pylos::QtTestPylosTestGameDialog::on_radio_bw_clicked()
 {
   m_widget->SetColorSchemeBlackWhite();
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosTestGameDialog::on_radio_rb_clicked()
+
+void ribi::pylos::QtTestPylosTestGameDialog::on_radio_rb_clicked()
 {
   m_widget->SetColorSchemeRedBlue();
 }
-//---------------------------------------------------------------------------
-void ribi::QtTestPylosTestGameDialog::UpdateLog()
+
+void ribi::pylos::QtTestPylosTestGameDialog::UpdateLog()
 {
   ui->text_log->clear();
 
@@ -173,28 +174,28 @@ void ribi::QtTestPylosTestGameDialog::UpdateLog()
     QString("Selector coordinat: ")
     + QString(m_widget->GetSelector().ToStr().c_str()));
 
-  ui->bar1->setValue(m_widget->GetPylos()->GetBoard()->Count(Pylos::PositionState::player1));
-  ui->bar2->setValue(m_widget->GetPylos()->GetBoard()->Count(Pylos::PositionState::player2));
+  ui->bar1->setValue(m_widget->GetPylos()->GetBoard()->Count(PositionState::player1));
+  ui->bar2->setValue(m_widget->GetPylos()->GetBoard()->Count(PositionState::player2));
 
   {
     std::string s = "Other selectors' coordinats: ";
-    const std::vector<Pylos::Coordinat>& v
+    const std::vector<Coordinat>& v
       = m_widget->GetOtherSelectors();
     if (v.empty()) { s+="none"; }
     if (v.size() > 0) { s+= v[0].ToStr(); }
-    if (v.size() == 2) { s+= std::string(" and ") + v[1].ToStr(); }
+    if (v.size() == 2) { s+= " and " + v[1].ToStr(); }
     ui->text_log->appendPlainText(s.c_str());
   }
   {
-    const std::string s = "Must remove: " + Pylos::ToStr(m_widget->GetMustRemove());
+    const std::string s = "Must remove: " + ToStr(m_widget->GetMustRemove());
     ui->text_log->appendPlainText(s.c_str());
   }
   {
-    const std::string s = "Winner: " + Pylos::ToStr(m_widget->GetWinner());
+    const std::string s = "Winner: " + ToStr(m_widget->GetWinner());
     ui->text_log->appendPlainText(s.c_str());
   }
   {
-    const std::vector<Pylos::Move> v = m_widget->GetPylos()->GetAllPossibleMoves();
+    const std::vector<Move> v = m_widget->GetPylos()->GetAllPossibleMoves();
     const std::size_t sz = v.size();
     {
       const std::string s = "#moves: " + boost::lexical_cast<std::string>(sz) ;
@@ -211,7 +212,7 @@ void ribi::QtTestPylosTestGameDialog::UpdateLog()
   {
     ui->text_log->appendPlainText("");
     ui->text_log->appendPlainText("Move history:");
-    const std::vector<Pylos::Move> v = m_widget->GetPylos()->GetMoveHistory();
+    const std::vector<Move> v = m_widget->GetPylos()->GetMoveHistory();
     const std::size_t sz = v.size();
     for (std::size_t i=0; i!=sz; ++i)
     {
@@ -222,4 +223,4 @@ void ribi::QtTestPylosTestGameDialog::UpdateLog()
   }
 
 }
-//---------------------------------------------------------------------------
+

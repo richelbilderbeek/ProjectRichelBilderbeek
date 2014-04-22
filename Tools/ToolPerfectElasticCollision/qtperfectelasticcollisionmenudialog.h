@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PerfectElasticCollision, tool to investigate a perfect elastic collision
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTPERFECTELASTICCOLLISIONMENUDIALOG_H
 #define QTPERFECTELASTICCOLLISIONMENUDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPerfectElasticCollisionMenuDialog;
@@ -29,27 +32,28 @@ namespace Ui {
 
 namespace ribi {
 
-class QtPerfectElasticCollisionMenuDialog : public QDialog
+class QtPerfectElasticCollisionMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtPerfectElasticCollisionMenuDialog(QWidget *parent = 0);
-  ~QtPerfectElasticCollisionMenuDialog();
+  QtPerfectElasticCollisionMenuDialog(const QtPerfectElasticCollisionMenuDialog&) = delete;
+  QtPerfectElasticCollisionMenuDialog& operator=(const QtPerfectElasticCollisionMenuDialog&) = delete;
+  ~QtPerfectElasticCollisionMenuDialog() noexcept;
 
 private slots:
 
   void on_button_start_clicked();
-
   void on_button_about_clicked();
-
-  void on_button_quit_clicked();
+  void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtPerfectElasticCollisionMenuDialog *ui;
 
-  ///Test this class
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

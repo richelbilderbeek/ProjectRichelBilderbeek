@@ -1,41 +1,29 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-TEMPLATE = app
+#General, desktop
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppLed \
-  ../../Classes/CppLedWidget \
-  ../../Classes/CppQtAboutDialog \
-  ../../Classes/CppQtLedWidget \
-  ../../Classes/CppRectangle \
-  ../../Classes/CppTrace \
-  ../../Classes/CppWidget
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppLed/CppLed.pri)
+include(../../Classes/CppLedWidget/CppLedWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
 
-SOURCES += qtmain.cpp \
-    qttestleddialog.cpp \
-    ../../Classes/CppLed/led.cpp \
-    ../../Classes/CppQtLedWidget/qtledwidget.cpp \
-    testledmenudialog.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppLedWidget/ledwidget.cpp
+#Specific, desktop
+include(../../Classes/CppQtLedWidget/CppQtLedWidget.pri)
+include(../../Tools/ToolTestLed/ToolTestLedDesktop.pri)
 
-HEADERS  += \
-  qttestleddialog.h \
-  ../../Classes/CppLed/led.h \
-  ../../Classes/CppQtLedWidget/qtledwidget.h \
-    testledmenudialog.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppLedWidget/ledwidget.h
-
-FORMS    += qttestleddialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+SOURCES += qtmain.cpp

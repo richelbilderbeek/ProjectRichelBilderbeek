@@ -21,9 +21,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include <boost/weak_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "all_serverstates.h"
 #include "groupassigner.h"
 #include "groupfinished.h"
@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "logfile.h"
 #include "server.h"
 #include "stopwatch.h"
-//---------------------------------------------------------------------------
+
 boost::shared_ptr<ribi::gtst::GroupAssigner> ribi::gtst::GroupAssigner::CreateAssigner(
   const std::string& s)
 {
@@ -56,7 +56,7 @@ boost::shared_ptr<ribi::gtst::GroupAssigner> ribi::gtst::GroupAssigner::CreateAs
       std::stoi(s)));
   return a;
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::GroupAssignerDeterminedByServer::GroupAssignerDeterminedByServer()
   //const Server * const server)
   //: m_server(server)

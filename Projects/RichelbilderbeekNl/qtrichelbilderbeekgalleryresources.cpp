@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,23 +18,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtrichelbilderbeekgalleryresources.h"
 
 #include <cassert>
+#include <fstream>
+#include <stdexcept>
 
-
-
-#include "richelbilderbeekprogram.h"
-#include "trace.h"
-
-//Must be #included after Wt header files
 #include <QFile>
 
+#include "fileio.h"
+#include "richelbilderbeekprogram.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
-
-ribi::RichelBilderbeek::QtResources::QtResources()
+ribi::QtResources::QtResources()
 {
   //Create the obligatory resources
   {
@@ -59,29 +58,34 @@ ribi::RichelBilderbeek::QtResources::QtResources()
         GetWeb(),
         GetWindows()
       };
-    std::for_each(files.begin(),files.end(),
-      [](const std::string& s)
+    for (const std::string& s: files)
+    {
+      if (!fileio::FileIo().IsRegularFile(s.c_str()))
       {
+        const std::string filename = ":/images/" + s;
+        QFile f(filename.c_str());
+        f.copy(s.c_str());
         if (!QFile::exists(s.c_str()))
         {
-          const std::string filename = ":/images/" + s;
-          QFile f(filename.c_str());
-          f.copy(s.c_str());
-          if (!QFile::exists(s.c_str())) { TRACE(s); }
-          assert(QFile::exists(s.c_str()));
+          TRACE("ERROR: FILE NOT FOUND:");
+          TRACE(s);
+          TRACE("SOLUTION: add file to /Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc");
+          const std::string error { "QtResources::QtResources: file not found: '" + s + '\'' };
+          throw std::logic_error(s.c_str());
         }
-        if (!QFile::exists(s.c_str())) { TRACE(s); }
         assert(QFile::exists(s.c_str()));
       }
-    );
+      if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
+      assert(fileio::FileIo().IsRegularFile(s));
+    }
   }
   //Try to create the screenshots
   {
-    const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > ps = RichelBilderbeek::Program::GetAllPrograms();
+    const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
     std::vector<std::string> files;
     std::for_each(ps.begin(),ps.end(),
-      [&files](const boost::shared_ptr<RichelBilderbeek::Program>& p)
+      [&files](const boost::shared_ptr<Program>& p)
       {
         if (!p->GetFilenameConsole().empty()) files.push_back(p->GetFilenameConsole());
         if (!p->GetFilenameDesktop().empty()) files.push_back(p->GetFilenameDesktop());
@@ -90,40 +94,33 @@ ribi::RichelBilderbeek::QtResources::QtResources()
       }
     );
 
-    std::for_each(files.begin(),files.end(),
-      [this](const std::string& s)
+    for(const std::string& s: files)
+    {
+      if (!fileio::FileIo().IsRegularFile(s.c_str()))
       {
-        if (!QFile::exists(s.c_str()))
-        {
-          const std::string filename = ":/images/" + s;
-          QFile f(filename.c_str());
-          f.copy(s.c_str());
-          if (!IsRegularFile(s)) { TRACE(s); }
-          assert(IsRegularFile(s)
-            && "Must add the traced resource to Projects/RichelBilderbeekNl/qtrichelbildeekgalleryresources.qrc");
-        }
-        if (!IsRegularFile(s)) { TRACE(s); }
-        assert(IsRegularFile(s));
+        const std::string filename = ":/images/" + s;
+        QFile f(filename.c_str());
+        f.copy(s.c_str());
+        if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
+        assert(fileio::FileIo().IsRegularFile(s)
+          && "Must add the traced resource to Projects/RichelBilderbeekNl/qtrichelbildeekgalleryresources.qrc");
       }
-    );
+      if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
+      assert(fileio::FileIo().IsRegularFile(s));
+    }
   }
 }
 
-const std::string ribi::RichelBilderbeek::QtResources::GetVersion()
+std::string ribi::QtResources::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::QtResources::GetVersionHistory()
+std::vector<std::string> ribi::QtResources::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-02-19: Version 1.0: initial version");
-  return v;
-}
-
-bool ribi::RichelBilderbeek::QtResources::IsRegularFile(const std::string& filename)
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
+  return {
+    "2012-02-19: Version 1.0: initial version",
+    "2013-09-20: Version 1.1: correct use of noexcept",
+    "2013-11-19: Version 1.2: use of ribi::fileio"
+  };
 }

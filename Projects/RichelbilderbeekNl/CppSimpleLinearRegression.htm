@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>SimpleLinearRegression</title>
   <meta name="description" content="C++ SimpleLinearRegression"/>
-  <meta name="keywords" content="C++ SimpleLinearRegression code snippet"/>
+  <meta name="keywords" content="C++ SimpleLinearRegression "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -21,11 +21,6 @@
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppSimpleLinearRegression.htm">SimpleLinearRegression</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppSimpleLinearRegression-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -33,10 +28,32 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>simplelinearregression.h</h2>
+<h2>./CppSimpleLinearRegression/CppSimpleLinearRegression.pri</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="simplelinearregression.h" border = "1"><tr><td><code>
+<table summary="./CppSimpleLinearRegression/CppSimpleLinearRegression.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppSimpleLinearRegression.htm">CppSimpleLinearRegression</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppSimpleLinearRegression.htm">CppSimpleLinearRegression</a>/simplelinearregression.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppSimpleLinearRegression.htm">CppSimpleLinearRegression</a>/simplelinearregression.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppSimpleLinearRegression.htm">CppSimpleLinearRegression</a>/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppSimpleLinearRegression/simplelinearregression.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppSimpleLinearRegression/simplelinearregression.h" border = "1"><tr><td><code>
 <a href="CppIfndef.htm">#ifndef</a> SIMPLELINEARREGRESSION_H<br/>
 <a href="CppDefine.htm">#define</a> SIMPLELINEARREGRESSION_H<br/>
 <br/>
@@ -45,7 +62,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
 T GetZero() { <b><a href="CppReturn.htm">return</a></b> T{}; }<br/>
@@ -59,67 +76,64 @@ T GetZero() { <b><a href="CppReturn.htm">return</a></b> T{}; }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Class to obtain the best fitting line through all (x,y) pairs<br/>
 <a href="CppComment.htm">///</a>The best fitting line has form 'y <a href="CppOperatorAssign.htm">=</a> a.x <a href="CppOperatorPlus.htm">+</a> b', where<br/>
-<a href="CppComment.htm">///</a><a href="CppOperatorMinus.htm">-</a> a: <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;::first<br/>
-<a href="CppComment.htm">///</a><a href="CppOperatorMinus.htm">-</a> b: <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;::second<br/>
+<a href="CppComment.htm">///</a><a href="CppOperatorMinus.htm">-</a> a: <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;::first<br/>
+<a href="CppComment.htm">///</a><a href="CppOperatorMinus.htm">-</a> b: <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;::second<br/>
 <b><a href="CppStruct.htm">struct</a></b> SimpleLinearRegression<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the best fitting line through all (x,y) pairs<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The best fitting line has form 'y <a href="CppOperatorAssign.htm">=</a> a.x <a href="CppOperatorPlus.htm">+</a> b', where<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> a: <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;::first<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> b: <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;::second<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> a: <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;::first<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppOperatorMinus.htm">-</a> b: <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;::second<br/>
 &nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> X, <b><a href="CppClass.htm">class</a></b> Y&gt;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppAuto.htm">auto</a></b> CalculateBestFit(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;X&gt;&amp; xs,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;decltype(ys[0]/xs[0]),Y&gt;;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;X&gt;&amp; xs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;decltype(ys[0]/xs[0]),Y&gt;;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain Anscombe's Quartet its x values, <b><a href="CppFor.htm">for</a></b> index 1 to (and including) 4<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetAnscombesQuartetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetAnscombesQuartetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain Anscombe's Quartet its y values, <b><a href="CppFor.htm">for</a></b> index 1 to (and including) 4<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetAnscombesQuartetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; GetAnscombesQuartetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/CppCalculateCovariance.htm<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> CalculateCovariance(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; xs,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; ys);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; xs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; ys);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetMean.htm">GetMean</a>.htm<br/>
 &nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> T CalculateMean(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> X, <b><a href="CppClass.htm">class</a></b> Y&gt;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppAuto.htm">auto</a></b> CalculateSlope(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;X&gt;&amp; xs,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; decltype(ys[0]/xs[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;X&gt;&amp; xs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; decltype(ys[0]/xs[0]);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/CppCalculateVariance.htm<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> CalculateVariance(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> X, <b><a href="CppClass.htm">class</a></b> Y&gt;<br/>
 <b><a href="CppAuto.htm">auto</a></b> SimpleLinearRegression::CalculateBestFit(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;X&gt;&amp; xs,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;decltype(ys[0]/xs[0]),Y&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;X&gt;&amp; xs,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;decltype(ys[0]/xs[0]),Y&gt;<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xs.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ys.size()<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xs.size() <a href="CppOperatorEqual.htm">==</a> ys.size()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Every coordinat must have exactly one x and one y value");<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> X mean_x { CalculateMean(xs) };<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Y mean_y { CalculateMean(ys) };<br/>
@@ -129,37 +143,37 @@ T GetZero() { <b><a href="CppReturn.htm">return</a></b> T{}; }<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> decltype(ys[0]/xs[0]) Slope;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Slope slope { CalculateSlope(xs,ys) };<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Y intercept { mean_y <a href="CppOperatorMinus.htm">-</a> (slope * mean_x) };<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppMake_pair.htm">std::make_pair</a>(slope,intercept);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdMake_pair.htm">std::make_pair</a>(slope,intercept);<br/>
 }<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
 T SimpleLinearRegression::CalculateMean(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic_assert.htm">static_assert</a></b>(!<a href="CppStd.htm">std</a>::is_integral&lt;T&gt;(),"Cannot calculate the mean of <a href="CppInt.htm">integer</a>s");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),T()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),T()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(v.size());<br/>
 }<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> X, <b><a href="CppClass.htm">class</a></b> Y&gt;<br/>
 <b><a href="CppAuto.htm">auto</a></b> SimpleLinearRegression::CalculateSlope(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;X&gt;&amp; xs,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; decltype(ys[0]/xs[0])<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;X&gt;&amp; xs,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Y&gt;&amp; ys) <a href="CppOperatorMinus.htm">-</a>&gt; decltype(ys[0]/xs[0])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xs.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ys.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xs.size() <a href="CppOperatorEqual.htm">==</a> ys.size());<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> decltype(xs[0] * ys[0]) Numerator;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> decltype(xs[0] * xs[0]) Denominator;<br/>
 &nbsp;&nbsp;Numerator numerator { GetZero&lt;X&gt;() * GetZero&lt;Y&gt;() };<br/>
 &nbsp;&nbsp;Denominator denominator { GetZero&lt;X&gt;() * GetZero&lt;X&gt;() };<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> X x_mean { CalculateMean(xs) };<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Y y_mean { CalculateMean(ys) };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz { xs.size() };<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz { xs.size() };<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> X x { xs[i] };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Y y { ys[i] };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;numerator&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> ((x <a href="CppOperatorMinus.htm">-</a> x_mean) * (y <a href="CppOperatorMinus.htm">-</a> y_mean));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;denominator <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> ((x <a href="CppOperatorMinus.htm">-</a> x_mean) * (x <a href="CppOperatorMinus.htm">-</a> x_mean));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;numerator&nbsp;&nbsp; <a href="CppOperatorPlusAssign.htm">+=</a> ((x <a href="CppOperatorMinus.htm">-</a> x_mean) * (y <a href="CppOperatorMinus.htm">-</a> y_mean));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;denominator <a href="CppOperatorPlusAssign.htm">+=</a> ((x <a href="CppOperatorMinus.htm">-</a> x_mean) * (x <a href="CppOperatorMinus.htm">-</a> x_mean));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> numerator <a href="CppOperatorDivide.htm">/</a> denominator;<br/>
 }<br/>
@@ -167,7 +181,7 @@ T SimpleLinearRegression::CalculateMean(<br/>
 <a href="CppComment.htm">//</a><b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppDouble.htm">double</a></b> SimpleLinearRegression::GetZero() { <b><a href="CppReturn.htm">return</a></b> 0.0; }<br/>
 <a href="CppComment.htm">//</a><b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt; T SimpleLinearRegression::GetZero() { <b><a href="CppReturn.htm">return</a></b> T(); }<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SIMPLELINEARREGRESSION_H<br/>
 </code></td></tr></table>
@@ -177,10 +191,12 @@ T SimpleLinearRegression::CalculateMean(<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>simplelinearregression.cpp</h2>
+<h2>./CppSimpleLinearRegression/simplelinearregression.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="simplelinearregression.cpp" border = "1"><tr><td><code>
+<table summary="./CppSimpleLinearRegression/simplelinearregression.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "simplelinearregression.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -190,15 +206,16 @@ T SimpleLinearRegression::CalculateMean(<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::CalculateCovariance(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; xs,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; ys)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::CalculateCovariance(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; xs,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; ys)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xs.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ys.size());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz { xs.size() };<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ps(sz);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xs.size() <a href="CppOperatorEqual.htm">==</a> ys.size());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz { xs.size() };<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ps(sz);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ps[i] <a href="CppOperatorAssign.htm">=</a> xs[i] * ys[i];<br/>
 &nbsp;&nbsp;}<br/>
@@ -209,15 +226,15 @@ T SimpleLinearRegression::CalculateMean(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mean_p <a href="CppOperatorMinus.htm">-</a> (mean_x * mean_y);<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::CalculateVariance(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::CalculateVariance(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean { CalculateMean(v) };<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean_of_squares {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),0.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdAccumulate.htm">std::accumulate</a>(v.begin(),v.end(),0.0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> init, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> init <a href="CppOperatorPlus.htm">+</a> (x * x);<br/>
@@ -228,8 +245,7 @@ T SimpleLinearRegression::CalculateMean(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mean_of_squares <a href="CppOperatorMinus.htm">-</a> (mean * mean);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index)<br/>
 &nbsp;&nbsp;{<br/>
@@ -241,20 +257,20 @@ T SimpleLinearRegression::CalculateMean(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> { 8.0,8.0,8.0,8.0,8.0,8.0,8.0,19.0,8.0,8.0,8.0 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR ("<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="Cpp__func__.htm">__func__</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "): Anscombe's Quartet has index 1 to and including 4, given index is: "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> index;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here: ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>(s.str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdLogic_error.htm">std::logic_error</a>(s.str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index)<br/>
 &nbsp;&nbsp;{<br/>
@@ -268,58 +284,58 @@ T SimpleLinearRegression::CalculateMean(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> { 6.58,5.76,7.71,8.84,8.47,7.04,5.25,12.5,5.56,7.91,6.89 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR ("<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="Cpp__func__.htm">__func__</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "): Anscombe's Quartet has index 1 to and including 4, given index is: "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> index;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here: ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>(s.str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdLogic_error.htm">std::logic_error</a>(s.str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::Get<a href="CppVersion.htm">Version</a>()<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-27: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>, as <a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog",<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-27: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>, as <a href="ToolTestSimpleLinearRegression.htm">ToolTestSimpleLinearRegression</a>MainDialog",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-08-28: <a href="CppVersion.htm">version</a> 1.1: renamed to SimpleLinearRegression, <b><a href="CppTemplate.htm">template</a></b>d CalculateBestFit",<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested { <b><a href="CppFalse.htm">false</a></b> };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Test");<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v { 75.0, 83.0, 96.0, 100.0, 121.0, 125.0 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v { 75.0, 83.0, 96.0, 100.0, 121.0, 125.0 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> variance { CalculateVariance(v) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected { 332.666667 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(variance <a href="CppOperatorMinus.htm">-</a> expected) &lt; 0.0001);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(variance <a href="CppOperatorMinus.htm">-</a> expected) &lt; 0.0001);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v { 0.23, 0.37, 0.45, 0.49, 0.56, 0.63, 0.63, 0.70, 0.72, 0.82 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v { 0.23, 0.37, 0.45, 0.49, 0.56, 0.63, 0.63, 0.70, 0.72, 0.82 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> variance { CalculateVariance(v) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected { 0.02846 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(variance <a href="CppOperatorMinus.htm">-</a> expected) &lt; 0.0001);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(variance <a href="CppOperatorMinus.htm">-</a> expected) &lt; 0.0001);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorPlus.htm">+</a>+i) <a href="CppComment.htm">//</a>Human-based counting, following the Ansombe's Quartet indices<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppComment.htm">//</a>Human-based counting, following the Ansombe's Quartet indices<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; xs { GetAnscombesQuartetX(i) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ys { GetAnscombesQuartetY(i) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; p { CalculateBestFit(xs,ys) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; xs { GetAnscombesQuartetX(i) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ys { GetAnscombesQuartetY(i) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; p { CalculateBestFit(xs,ys) };<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean_x { CalculateMean(xs) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mean_y { CalculateMean(ys) };<br/>
@@ -336,18 +352,18 @@ T SimpleLinearRegression::CalculateMean(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected_intercept { 3.00 }; <a href="CppComment.htm">//</a>to 2 decimal places<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> e { 0.01 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(expected_mean_x <a href="CppOperatorMinus.htm">-</a> mean_x) &lt; e);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(expected_mean_y <a href="CppOperatorMinus.htm">-</a> mean_y) &lt; e);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(expected_mean_x <a href="CppOperatorMinus.htm">-</a> mean_x) &lt; e);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(expected_mean_y <a href="CppOperatorMinus.htm">-</a> mean_y) &lt; e);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected_variance_x <a href="CppOperatorAssign.htm">=</a> 11.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected_variance_y <a href="CppOperatorAssign.htm">=</a> 4.125;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>4.122 or 4.127 (to 3 decimal places)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected_correlation <a href="CppOperatorAssign.htm">=</a> 0.816;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>to 3 decimal places)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(expected_variance_x <a href="CppOperatorMinus.htm">-</a> variance_x) &lt; e);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(expected_variance_y <a href="CppOperatorMinus.htm">-</a> variance_y) &lt; e);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(expected_slope <a href="CppOperatorMinus.htm">-</a> slope) &lt; e);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(expected_intercept <a href="CppOperatorMinus.htm">-</a> intercept) &lt; e);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(expected_variance_x <a href="CppOperatorMinus.htm">-</a> variance_x) &lt; e);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(expected_variance_y <a href="CppOperatorMinus.htm">-</a> variance_y) &lt; e);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(expected_slope <a href="CppOperatorMinus.htm">-</a> slope) &lt; e);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdAbs.htm">std::abs</a>(expected_intercept <a href="CppOperatorMinus.htm">-</a> intercept) &lt; e);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm\">ribi</a>::SimpleLinearRegression::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>

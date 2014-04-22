@@ -26,47 +26,47 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iterator>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "createholymakefile.h"
 #include "createmakefile.h"
 #include "ndsmake.h"
-#include "../ToolTestProFile/profile.h"
-//---------------------------------------------------------------------------
+#include "qtcreatorprofile.h"
+
 int main(int argc, char* argv[])
 {
   if ( argc!= 2
     || std::string(argv[1]) == "-help"
     || std::string(argv[1]) == "--help")
   {
-    const std::vector<std::string>& v = Ndsmake::GetHelp();
+    const std::vector<std::string>& v = ribi::Ndsmake::GetHelp();
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
     return 0;
   }
   if (std::string(argv[1]) == "--history")
   {
-    const std::vector<std::string>& v = Ndsmake::GetHistory();
+    const std::vector<std::string>& v = ribi::Ndsmake::GetHistory();
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
     return 0;
   }
   if (std::string(argv[1]) == "--licence")
   {
-    const std::vector<std::string>& v = Ndsmake::GetLicence();
+    const std::vector<std::string>& v = ribi::Ndsmake::GetLicence();
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
     return 0;
   }
   if (std::string(argv[1]) == "--version")
   {
-    std::cout << Ndsmake::GetVersion << '\n';
+    std::cout << ribi::Ndsmake::GetVersion() << '\n';
     return 0;
   }
   //Start ndsmake
-  const Ndsmake n(argv[1]);
+  const boost::shared_ptr<ribi::Ndsmake> n(new ribi::Ndsmake(argv[1]));
   //Copy source files
-  std::clog << "Ndsmake cmd: " << n.GetCommand() << '\n';
-  std::system(n.GetCommand().c_str());
+  std::clog << "Ndsmake cmd: " << n->GetCommand() << '\n';
+  std::system(n->GetCommand().c_str());
   //Create makefile and make it
   {
-    CreateMakefile(n.GetProFile());
+    n->CreateMakefile();
     const std::string s =
       "export DEVKITARM=/opt/devkitpro/devkitARM; "
       "export DEVKITPRO=/opt/devkitpro; "
@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
   {
     std::system(
       (std::string("desmume ")
-      + n.GetProFile().GetTarget()
+      + n->GetTarget()
       + std::string(".nds")).c_str());
   }
 }

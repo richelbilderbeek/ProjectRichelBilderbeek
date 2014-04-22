@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,39 +21,45 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTPYLOSMENUDIALOG_H
 #define QTTESTPYLOSMENUDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
-    class QtTestPylosMenuDialog;
+  class QtTestPylosMenuDialog;
 }
 
 namespace ribi {
+namespace pylos {
 
-class QtTestPylosMenuDialog : public QDialog
+class QtTestPylosMenuDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
 
 public:
-    explicit QtTestPylosMenuDialog(QWidget *parent = 0);
-    ~QtTestPylosMenuDialog();
+  explicit QtTestPylosMenuDialog(QWidget *parent = 0);
+  QtTestPylosMenuDialog(const QtTestPylosMenuDialog&) = delete;
+  QtTestPylosMenuDialog& operator=(const QtTestPylosMenuDialog&) = delete;
+  ~QtTestPylosMenuDialog() noexcept;
 
 private slots:
   void on_button_test_board_clicked();
-
   void on_button_test_game_clicked();
-
   void on_button_show_game_tests_clicked();
-
   void on_button_about_clicked();
-
   void on_button_quit_clicked();
-
   void on_button_random_play_clicked();
 
 private:
-    Ui::QtTestPylosMenuDialog *ui;
+  Ui::QtTestPylosMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTTESTPYLOSMENUDIALOG_H

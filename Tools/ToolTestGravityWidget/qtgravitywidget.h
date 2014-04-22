@@ -1,7 +1,10 @@
 #ifndef QTGRAVITYWIDGET_H
 #define QTGRAVITYWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QGraphicsView>
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 

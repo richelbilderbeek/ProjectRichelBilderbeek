@@ -1,7 +1,11 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "chesspiece.h"
 
 #include <cassert>
 #include <future>
+
+#include <boost/make_shared.hpp>
 
 #include "chessmove.h"
 #include "chessmovefactory.h"
@@ -9,6 +13,7 @@
 #include "chesssquarefactory.h"
 #include "chesspiecefactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ///Is there an elemnt in v for IsEqual(*p,*v)
 template <class T, class U>
@@ -24,7 +29,8 @@ bool IsPresent(boost::shared_ptr<T> p,const std::vector<boost::shared_ptr<U> > v
   ) > 0;
 }
 
-void ribi::Chess::Piece::Test()
+#ifndef NDEBUG
+void ribi::Chess::Piece::Test() noexcept
 {
   //Testing Chess::Piece exactly once
   {
@@ -32,7 +38,7 @@ void ribi::Chess::Piece::Test()
     if (tested) return;
     tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -43,11 +49,11 @@ void ribi::Chess::Piece::Test()
         assert(s);
         const boost::shared_ptr<Square> t = SquareFactory::Create("e4");
         assert(t);
-        const boost::shared_ptr<Piece> p = PieceFactory::Create('B',Color::white,*s);
+        const boost::shared_ptr<Piece> p = PieceFactory().Create('B',Color::white,s);
         assert(p);
-        const boost::shared_ptr<Piece> q = PieceFactory::Create('B',Color::white,*t);
+        const boost::shared_ptr<Piece> q = PieceFactory().Create('B',Color::white,t);
         assert(q);
-        assert(IsEqual(*p,*q));
+        assert(*p == *q);
 
       }
       ribi::Chess::PieceBishop::Test();
@@ -57,20 +63,21 @@ void ribi::Chess::Piece::Test()
       ribi::Chess::PieceQueen::Test();
       ribi::Chess::PieceRook::Test();
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
 
-void ribi::Chess::PieceBishop::Test()
+
+void ribi::Chess::PieceBishop::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -86,28 +93,34 @@ void ribi::Chess::PieceBishop::Test()
               = MoveFactory::Create(s);
             assert(move);
             {
-              boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateBishop(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::white,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateBishop(Chess::Color::white,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::black,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateBishop(Chess::Color::black,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::indeterminate,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateFromMove(Chess::Color::indeterminate,s);
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::white,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateFromMove(Chess::Color::white,s);
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::black,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateFromMove(Chess::Color::black,s);
+              assert(p->CanDoMove(move));
             }
           }
         );
@@ -124,28 +137,34 @@ void ribi::Chess::PieceBishop::Test()
                 = MoveFactory::Create(s);
               assert(move);
               {
-                boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateBishop(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::white,boost::shared_ptr<Square>()));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateBishop(Chess::Color::white,boost::shared_ptr<Square>());
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::black,boost::shared_ptr<Square>()));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateBishop(Chess::Color::black,boost::shared_ptr<Square>());
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::indeterminate,Move::ParseFrom(s)));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateBishop(Chess::Color::indeterminate,Move::ParseFrom(s));
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::white,Move::ParseFrom(s)));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateBishop(Chess::Color::white,Move::ParseFrom(s));
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceBishop(Chess::Color::black,Move::ParseFrom(s)));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateBishop(Chess::Color::black,Move::ParseFrom(s));
+                assert(!p->CanDoMove(move));
               }
             }
             catch (std::exception& e)
@@ -156,20 +175,20 @@ void ribi::Chess::PieceBishop::Test()
         );
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
 
-void ribi::Chess::PieceKing::Test()
+void ribi::Chess::PieceKing::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -184,28 +203,34 @@ void ribi::Chess::PieceKing::Test()
               = MoveFactory::Create(s);
             assert(move);
             {
-              boost::shared_ptr<Piece> p(new PieceKing(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKing(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKing(Chess::Color::white,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKing(Chess::Color::white,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKing(Chess::Color::black,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKing(Chess::Color::black,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKing(Chess::Color::indeterminate,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKing(Chess::Color::indeterminate,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKing(Chess::Color::white,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKing(Chess::Color::white,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKing(Chess::Color::black,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKing(Chess::Color::black,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
           }
         );
@@ -223,13 +248,15 @@ void ribi::Chess::PieceKing::Test()
                 = MoveFactory::Create(s);
               assert(move);
               {
-                boost::shared_ptr<Piece> p(new PieceKing(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-                if (p->CanDoMove(*move)) { TRACE(s); }
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateKing(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+                if (p->CanDoMove(move)) { TRACE(s); }
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceKing(Chess::Color::indeterminate,Move::ParseFrom(s)));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                 = PieceFactory().CreateKing(Chess::Color::indeterminate,Move::ParseFrom(s));
+                assert(!p->CanDoMove(move));
               }
             }
             catch (std::exception& e)
@@ -240,20 +267,20 @@ void ribi::Chess::PieceKing::Test()
         );
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
 
-void ribi::Chess::PieceKnight::Test()
+void ribi::Chess::PieceKnight::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -268,28 +295,34 @@ void ribi::Chess::PieceKnight::Test()
               = MoveFactory::Create(s);
             assert(move);
             {
-              boost::shared_ptr<Piece> p(new PieceKnight(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKnight(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKnight(Chess::Color::white,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKnight(Chess::Color::white,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKnight(Chess::Color::black,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKnight(Chess::Color::black,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKnight(Chess::Color::indeterminate,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKnight(Chess::Color::indeterminate,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKnight(Chess::Color::white,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKnight(Chess::Color::white,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceKnight(Chess::Color::black,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateKnight(Chess::Color::black,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
           }
         );
@@ -307,13 +340,15 @@ void ribi::Chess::PieceKnight::Test()
                 = MoveFactory::Create(s);
               assert(move);
               {
-                boost::shared_ptr<Piece> p(new PieceKnight(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-                if (p->CanDoMove(*move)) { TRACE(s); }
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateKnight(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+                if (p->CanDoMove(move)) { TRACE(s); }
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceKnight(Chess::Color::indeterminate,Move::ParseFrom(s)));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateKnight(Chess::Color::indeterminate,Move::ParseFrom(s));
+                assert(!p->CanDoMove(move));
               }
             }
             catch (std::exception& e)
@@ -325,9 +360,9 @@ void ribi::Chess::PieceKnight::Test()
       }
       FTRACE("Test Knight for generating its own moves");
       {
-        const boost::shared_ptr<const Square> square = SquareFactory::Create("d4");
+        const boost::shared_ptr<Square> square = SquareFactory::Create("d4");
         assert(square);
-        boost::shared_ptr<Piece> piece = PieceFactory::Create('N',Color::white,*square);
+        boost::shared_ptr<Piece> piece = PieceFactory().Create('N',Color::white,square);
         assert(piece);
         const std::vector<boost::shared_ptr<Move> > moves = piece->GetMoves();
         assert(moves.size() == 8 * 3); //*3 due to non-check, check and checkmate moves
@@ -339,7 +374,7 @@ void ribi::Chess::PieceKnight::Test()
       {
         const boost::shared_ptr<Square> square = SquareFactory::Create("a1");
         assert(square);
-        boost::shared_ptr<Piece> piece = PieceFactory::Create('N',Color::white,*square);
+        boost::shared_ptr<Piece> piece = PieceFactory().Create('N',Color::white,square);
         assert(piece);
         const std::vector<boost::shared_ptr<Move> > moves = piece->GetMoves();
         assert(moves.size() == 2 * 3); //*3 due to non-check, check and checkmate moves
@@ -351,7 +386,7 @@ void ribi::Chess::PieceKnight::Test()
       {
         const boost::shared_ptr<Square> square = SquareFactory::Create("b1");
         assert(square);
-        boost::shared_ptr<Piece> piece = PieceFactory::Create('N',Color::black,*square);
+        boost::shared_ptr<Piece> piece = PieceFactory().Create('N',Color::black,square);
         assert(piece);
         const std::vector<boost::shared_ptr<Move> > moves = piece->GetMoves();
         assert(moves.size() == 3 * 3); //*3 due to non-check, check and checkmate moves
@@ -361,20 +396,20 @@ void ribi::Chess::PieceKnight::Test()
         //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Nb1 c3")) != moves.end());
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
 
-void ribi::Chess::PiecePawn::Test()
+void ribi::Chess::PiecePawn::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -391,12 +426,14 @@ void ribi::Chess::PiecePawn::Test()
               = MoveFactory::Create(s);
             assert(move);
             {
-              boost::shared_ptr<Piece> p(new PiecePawn(color,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreatePawn(color,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PiecePawn(color,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreatePawn(color,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
           }
         );
@@ -416,13 +453,15 @@ void ribi::Chess::PiecePawn::Test()
                 = MoveFactory::Create(s);
               assert(move);
               {
-                boost::shared_ptr<Piece> p(new PiecePawn(color,boost::shared_ptr<Square>()));
-                if (p->CanDoMove(*move)) { TRACE(s); }
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreatePawn(color,boost::shared_ptr<Square>());
+                if (p->CanDoMove(move)) { TRACE(s); }
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PiecePawn(color,Move::ParseFrom(s)));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreatePawn(color,Move::ParseFrom(s));
+                assert(!p->CanDoMove(move));
               }
             }
             catch (std::exception& e)
@@ -435,92 +474,94 @@ void ribi::Chess::PiecePawn::Test()
 
       FTRACE("Test Pawn intimately");
       {
-        boost::shared_ptr<Piece> p(new PiecePawn(Chess::Color::white,boost::shared_ptr<Square>()));
+        boost::shared_ptr<Piece> p
+          = PieceFactory().CreatePawn(Chess::Color::white,boost::shared_ptr<Square>());
         assert(p);
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a2 a3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a2 a4");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a2 a1Q");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a7 a8Q");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a4");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a1Q");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a8Q");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
       }
 
       {
-        boost::shared_ptr<Piece> p(new PiecePawn(Chess::Color::black,boost::shared_ptr<Square>()));
+        boost::shared_ptr<Piece> p
+          = PieceFactory().CreatePawn(Chess::Color::black,boost::shared_ptr<Square>());
         assert(p);
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a2 a3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a2 a4");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a2 a1Q");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a7 a8Q");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a4");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a1Q");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("a8Q");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
       }
 
@@ -528,117 +569,117 @@ void ribi::Chess::PiecePawn::Test()
       {
         //const boost::shared_ptr<const Square> square = SquareFactory::Create("e4");
         //assert(square);
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('.',Chess::Color::indeterminate,"e4");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('.',Chess::Color::indeterminate,"e4");
         assert(p);
 
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4 e5");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xd5");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xf5");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4 e3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xd3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xf3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
       }
       {
         //const boost::shared_ptr<const Square> square = SquareFactory::Create("e4");
         //assert(square);
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('.',Chess::Color::white,"e4");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('.',Chess::Color::white,"e4");
         assert(p);
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4 e5");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xd5");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xf5");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4 e3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xd3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xf3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
 
       }
       {
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('.',Chess::Color::black,"e4");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('.',Chess::Color::black,"e4");
         assert(p);
         //boost::shared_ptr<Piece> p(new PiecePawn(Chess::Color::black,boost::shared_ptr<Square>(new Square("e4"))));
 
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4 e5");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xd4");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xf5");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4 e3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xd3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
         {
           const boost::shared_ptr<const Move> move = MoveFactory::Create("e4xf3");
           assert(move);
-          assert(p->CanDoMove(*move));
+          assert(p->CanDoMove(move));
         }
       }
 
       FTRACE("Test Pawn at e4 for generating its own moves");
       {
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('.',Chess::Color::indeterminate,"e4");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('.',Chess::Color::indeterminate,"e4");
         assert(p);
         //const PiecePawn p(Color::indeterminate,boost::shared_ptr<Square>(new Square("e4")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
@@ -652,7 +693,7 @@ void ribi::Chess::PiecePawn::Test()
         assert(moves.size() == 6 * 3); //*3 due to non-check, check and checkmate moves
       }
       {
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('.',Chess::Color::white,"e4");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('.',Chess::Color::white,"e4");
         assert(p);
         //PiecePawn p(Color::white,boost::shared_ptr<Square>(new Square("e4")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
@@ -662,7 +703,7 @@ void ribi::Chess::PiecePawn::Test()
         assert(moves.size() == 3 * 3); //*3 due to non-check, check and checkmate moves
       }
       {
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('.',Chess::Color::black,"e4");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('.',Chess::Color::black,"e4");
         assert(p);
         //PiecePawn p(Color::black,boost::shared_ptr<Square>(new Square("e4")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
@@ -672,20 +713,20 @@ void ribi::Chess::PiecePawn::Test()
         assert(moves.size() == 3 * 3); //*3 due to non-check, check and checkmate moves
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
 
-void ribi::Chess::PieceQueen::Test()
+void ribi::Chess::PieceQueen::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -700,28 +741,34 @@ void ribi::Chess::PieceQueen::Test()
               = MoveFactory::Create(s);
             assert(move);
             {
-              boost::shared_ptr<Piece> p(new PieceQueen(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateQueen(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceQueen(Chess::Color::white,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateQueen(Chess::Color::white,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceQueen(Chess::Color::black,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateQueen(Chess::Color::black,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceQueen(Chess::Color::indeterminate,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateQueen(Chess::Color::indeterminate,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceQueen(Chess::Color::white,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateQueen(Chess::Color::white,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceQueen(Chess::Color::black,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateQueen(Chess::Color::black,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
           }
         );
@@ -738,13 +785,15 @@ void ribi::Chess::PieceQueen::Test()
                 = MoveFactory::Create(s);
               assert(move);
               {
-                boost::shared_ptr<Piece> p(new PieceQueen(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-                if (p->CanDoMove(*move)) { TRACE(s); }
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateQueen(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+                if (p->CanDoMove(move)) { TRACE(s); }
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceQueen(Chess::Color::indeterminate,Move::ParseFrom(s)));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateQueen(Chess::Color::indeterminate,Move::ParseFrom(s));
+                assert(!p->CanDoMove(move));
               }
             }
             catch (std::exception& e)
@@ -757,7 +806,7 @@ void ribi::Chess::PieceQueen::Test()
 
       FTRACE("Test Queen for generating its own moves");
       {
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('Q',Chess::Color::white,"d4");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('Q',Chess::Color::white,"d4");
         assert(p);
         //PieceQueen q(Color::white,boost::shared_ptr<Square>(new Square("d4")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
@@ -768,7 +817,7 @@ void ribi::Chess::PieceQueen::Test()
         //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Qd4 h8")) != moves.end());
       }
       {
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('Q',Chess::Color::white,"a1");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('Q',Chess::Color::white,"a1");
         assert(p);
         //PieceQueen q(Color::white,boost::shared_ptr<Square>(new Square("a1")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
@@ -779,7 +828,7 @@ void ribi::Chess::PieceQueen::Test()
         //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Qa1 h1")) != moves.end());
       }
       {
-        const boost::shared_ptr<const Piece> p = PieceFactory::Create('Q',Chess::Color::black,"b1");
+        const boost::shared_ptr<const Piece> p = PieceFactory().Create('Q',Chess::Color::black,"b1");
         assert(p);
         //PieceQueen q(Color::white,boost::shared_ptr<Square>(new Square("b1")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
@@ -790,20 +839,20 @@ void ribi::Chess::PieceQueen::Test()
         //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Qb1 b8")) != moves.end());
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
 
-void ribi::Chess::PieceRook::Test()
+void ribi::Chess::PieceRook::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -818,28 +867,34 @@ void ribi::Chess::PieceRook::Test()
               = MoveFactory::Create(s);
             assert(move);
             {
-              boost::shared_ptr<Piece> p(new PieceRook(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateRook(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceRook(Chess::Color::white,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateRook(Chess::Color::white,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceRook(Chess::Color::black,boost::shared_ptr<Square>()));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateRook(Chess::Color::black,boost::shared_ptr<Square>());
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceRook(Chess::Color::indeterminate,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateRook(Chess::Color::indeterminate,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceRook(Chess::Color::white,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateRook(Chess::Color::white,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
             {
-              boost::shared_ptr<Piece> p(new PieceRook(Chess::Color::black,Move::ParseFrom(s)));
-              assert(p->CanDoMove(*move));
+              boost::shared_ptr<Piece> p
+                = PieceFactory().CreateRook(Chess::Color::black,Move::ParseFrom(s));
+              assert(p->CanDoMove(move));
             }
           }
         );
@@ -856,13 +911,15 @@ void ribi::Chess::PieceRook::Test()
                 = MoveFactory::Create(s);
               assert(move);
               {
-                boost::shared_ptr<Piece> p(new PieceRook(Chess::Color::indeterminate,boost::shared_ptr<Square>()));
-                if (p->CanDoMove(*move)) { TRACE(s); }
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateRook(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+                if (p->CanDoMove(move)) { TRACE(s); }
+                assert(!p->CanDoMove(move));
               }
               {
-                boost::shared_ptr<Piece> p(new PieceRook(Chess::Color::indeterminate,Move::ParseFrom(s)));
-                assert(!p->CanDoMove(*move));
+                boost::shared_ptr<Piece> p
+                  = PieceFactory().CreateRook(Chess::Color::indeterminate,Move::ParseFrom(s));
+                assert(!p->CanDoMove(move));
               }
             }
             catch (std::exception& e)
@@ -873,8 +930,9 @@ void ribi::Chess::PieceRook::Test()
         );
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
 }
+#endif

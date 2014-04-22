@@ -19,14 +19,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolMazeCreator.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 #include "qtmazecreatormenudialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtMazeCreatorMenuDialog w;
+  ribi::QtMazeCreatorMenuDialog w;
   w.show();
   return a.exec();
 }
-//---------------------------------------------------------------------------
+

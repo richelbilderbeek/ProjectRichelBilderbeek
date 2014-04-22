@@ -539,3 +539,19 @@ RESOURCES += \
 OTHER_FILES += \
     ../../Classes/CppTrace/Licence.txt \
     eng.traineddata
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+#QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ #Tesseract has too many compiler warnings
+
+#unix {
+#  QMAKE_CXXFLAGS += -Werror #Tesseract has too many compiler warnings
+#}

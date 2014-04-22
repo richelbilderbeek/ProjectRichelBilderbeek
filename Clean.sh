@@ -1,3 +1,5 @@
 #!/bin/bash
-#Remove all .pro.user files
+set -u
+
 rm `find . | egrep "\.pro\.user"`
+rm `find . | egrep "tmpfilename"`

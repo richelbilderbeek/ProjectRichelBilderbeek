@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShape, tool to test the Shape and ShapeWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShape.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestshapemenudialog.h"
 
 #include "about.h"
@@ -30,19 +30,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shapewidget.h"
 #include "testshapemenudialog.h"
 #include "ui_qttestshapemenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestShapeMenuDialog::QtTestShapeMenuDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestShapeMenuDialog),
   m_dialog(new TestShapeMenuDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 }
 
-ribi::QtTestShapeMenuDialog::~QtTestShapeMenuDialog()
+ribi::QtTestShapeMenuDialog::~QtTestShapeMenuDialog() noexcept
 {
   delete ui;
 }
@@ -70,7 +71,7 @@ void ribi::QtTestShapeMenuDialog::on_button_quit_clicked()
   close();
 }
 
-void ribi::QtTestShapeMenuDialog::Test()
+void ribi::QtTestShapeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

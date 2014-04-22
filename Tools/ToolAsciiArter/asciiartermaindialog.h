@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 AsciiArter, tool to create ASCII art
-Copyright (C) 2006-2013 Richel Bilderbeek
+Copyright (C) 2006-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,36 +21,56 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef ASCIIARTERMAINDIALOG_H
 #define ASCIIARTERMAINDIALOG_H
 
+#include <iosfwd>
 #include <string>
 #include <vector>
 
-#include <boost/scoped_ptr.hpp>
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/shared_ptr.hpp>
 #include "about.h"
+#pragma GCC diagnostic pop
+
+struct QImage;
 
 namespace ribi {
 
+struct ImageCanvas;
 struct AsciiArter;
 
+///AsciiArterMainDialog converts a graphics file to ASCII art
 struct AsciiArterMainDialog
 {
-  AsciiArterMainDialog();
-  const std::vector<std::string>& GetAsciiArt() const { return m_asciiart; }
-  bool CanConvert() const;
-  void Convert();
+  ///Will throw an exception if
+  ///- the file does not exists
+  ///- the number of columns is less than five
+  AsciiArterMainDialog(
+    const std::string& filename,
+    const int n_cols
+  );
 
-  int GetWidth() const { return m_width; }
-
-  void SetImage(const std::vector<std::vector<double> >& image);
-  void SetWidth(const int width);
+  std::vector<std::string> GetAsciiArt() const noexcept; // { return CreateAsciiArt(m_filename,m_n_cols); }
+  const boost::shared_ptr<ImageCanvas> GetImageCanvas() const noexcept;
 
   private:
-  std::vector<std::string> m_asciiart;
-  std::vector<std::vector<double> > m_image;
-  int m_width;
 
-  const boost::scoped_ptr<AsciiArter> m_asciiarter;
+
+  ///Will throw an exception if
+  ///- file does not exist
+  ///- n_cols < 5
+  //static const std::vector<std::string> CreateAsciiArt(
+  //  const std::string& filename, const int n_cols);
+
+  //const std::vector<std::string> m_asciiart;
+  const std::string m_filename;
+  const int m_n_cols;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+std::ostream& operator<<(std::ostream& os, const AsciiArterMainDialog& d);
 
 } //~namespace ribi
 

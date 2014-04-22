@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Lazy_init. Class to postpone constructor call upon first use.
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,6 +55,7 @@ template <class T, typename ... Args> struct LazyInit
 
 template <class T> struct LazyInit0
 {
+  LazyInit0() : m_data{} {}
   const T& Get() const
   {
     if(!m_data)
@@ -71,7 +72,8 @@ template <class T> struct LazyInit0
 template <class T, typename Arg0> struct LazyInit1
 {
   LazyInit1(const Arg0 args)
-    : m_args(args)
+    : m_args{args},
+      m_data{}
   {
 
   }
@@ -92,7 +94,9 @@ template <class T, typename Arg0> struct LazyInit1
 template <class T, typename Arg0, typename Arg1> struct LazyInit2
 {
   LazyInit2(const Arg0 arg0, const Arg1 arg1)
-    : m_arg0(arg0), m_arg1(arg1)
+    : m_arg0{arg0},
+      m_arg1{arg1},
+      m_data{}
   {
 
   }
@@ -114,10 +118,10 @@ template <class T, typename Arg0, typename Arg1> struct LazyInit2
 struct Lazy_initVersion
 {
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

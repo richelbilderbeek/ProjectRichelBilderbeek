@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Pylos, Pylos/Pyraos game
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,19 +18,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GamePylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpylosinstructionsdialog.h"
 #include "ui_qtpylosinstructionsdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtPylosInstructionsDialog::QtPylosInstructionsDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtPylosInstructionsDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtPylosInstructionsDialog::~QtPylosInstructionsDialog()
+ribi::QtPylosInstructionsDialog::~QtPylosInstructionsDialog() noexcept
 {
   delete ui;
 }

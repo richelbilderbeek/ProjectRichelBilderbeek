@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,37 +18,58 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttictactoewinnerdialog.h"
-#include "ui_qttictactoewinnerdialog.h"
 
-ribi::QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
-    QDialog(parent),
+#include <cassert>
+
+#include "trace.h"
+#include "ui_qttictactoewinnerdialog.h"
+#pragma GCC diagnostic pop
+
+ribi::tictactoe::QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeWinnerDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 }
 
-ribi::QtTicTacToeWinnerDialog::~QtTicTacToeWinnerDialog()
+ribi::tictactoe::QtTicTacToeWinnerDialog::~QtTicTacToeWinnerDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTicTacToeWinnerDialog::SetDraw()
+void ribi::tictactoe::QtTicTacToeWinnerDialog::SetDraw()
 {
   ui->label_title->setText("Draw");
   this->setWindowTitle("Draw");
   ui->label_winner->setText(" ");
 }
 
-void ribi::QtTicTacToeWinnerDialog::SetWinnerCross()
+void ribi::tictactoe::QtTicTacToeWinnerDialog::SetWinnerCross()
 {
   ui->label_winner->setPixmap(QPixmap(":/images/X.png"));
 }
 
-void ribi::QtTicTacToeWinnerDialog::SetWinnerCircle()
+void ribi::tictactoe::QtTicTacToeWinnerDialog::SetWinnerCircle()
 {
   ui->label_winner->setPixmap(QPixmap(":/images/O.png"));
 }
 
+#ifndef NDEBUG
+void ribi::tictactoe::QtTicTacToeWinnerDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::tictactoe::QtTicTacToeWinnerDialog::Test");
+  TRACE("Finished ribi::tictactoe::QtTicTacToeWinnerDialog::Test successfully");
+}
+#endif

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Led, LED class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,23 +25,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///Led manages an LED lamp
-struct Led : public boost::noncopyable
+struct Led
 {
   explicit Led(
     const double intensity    = 0.0,
     const unsigned char red   = 255,
     const unsigned char green =   0,
     const unsigned char blue  =   0);
+  Led(const Led&) = delete;
+  Led& operator=(const Led&) = delete;
 
   mutable boost::signals2::signal<void ()> m_signal_color_changed;
   mutable boost::signals2::signal<void ()> m_signal_intensity_changed;
@@ -77,10 +79,7 @@ struct Led : public boost::noncopyable
   void SetRed(const unsigned char red);
 
   private:
-  ///Led can only be deleted by Boost smart pointers
-  virtual ~Led() {}
-  ///Led can only be deleted by Boost smart pointers
-  //Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
+  virtual ~Led() noexcept {}
   friend void boost::checked_delete<>(Led*);
 
   ///m_intensity has range [0.0,1.0]
@@ -95,14 +94,18 @@ struct Led : public boost::noncopyable
   ///The Led its blueness
   unsigned char m_blue;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   friend std::ostream& operator<<(std::ostream& os, const Led& led);
 
   public:
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 std::ostream& operator<<(std::ostream& os, const Led& led);

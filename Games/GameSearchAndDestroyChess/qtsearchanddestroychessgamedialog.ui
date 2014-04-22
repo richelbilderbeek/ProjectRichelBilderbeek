@@ -15,13 +15,13 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QtChessBoardWidget" name="widget" native="true"/>
+    <widget class="ribi::Chess::QtChessBoardWidget" name="widget" native="true"/>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtChessBoardWidget</class>
+   <class>ribi::Chess::QtChessBoardWidget</class>
    <extends>QWidget</extends>
    <header>qtchessboardwidget.h</header>
    <container>1</container>

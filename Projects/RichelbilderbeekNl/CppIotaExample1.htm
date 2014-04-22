@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>IotaExample1</title>
+  <meta name="description" content="C++ IotaExample1"/>
+  <meta name="keywords" content="C++ IotaExample1 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppIotaExample1.htm">IotaExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppIotaExample1-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.0.2 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppIotaExample1/CppIotaExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppIotaExample1/CppIotaExample1.pro" border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by <a href="CppQtCreator.htm">QtCreator</a> 2011-08-24T11:23:44<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++0x</a><br/>
+TARGET = CppIota<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppIotaExample1/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppIotaExample1/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a> Numeric <a href="CppFunction.htm">function</a>s implementation <a href="CppOperatorMinus.htm">-</a>*<a href="CppOperatorMinus.htm">-</a> C<a href="CppOperatorIncrement.htm">++</a> <a href="CppOperatorMinus.htm">-</a>*-<br/>
+<br/>
+<a href="CppComment.htm">//</a> Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009<br/>
+<a href="CppComment.htm">//</a> Free Software Foundation, Inc.<br/>
+<a href="CppComment.htm">//</a><br/>
+<a href="CppComment.htm">//</a> This file is part of the GNU ISO C<a href="CppOperatorIncrement.htm">++</a> <a href="CppLibrary.htm">Library</a>.&nbsp;&nbsp;This <a href="CppLibrary.htm">library</a> is free<br/>
+<a href="CppComment.htm">//</a> software; you can redistribute it and/or modify it under the<br/>
+<a href="CppComment.htm">//</a> terms of the GNU General Public License as published by the<br/>
+<a href="CppComment.htm">//</a> Free Software Foundation; either version 3, or (at your option)<br/>
+<a href="CppComment.htm">//</a> <a href="CppAny.htm">any</a> later version.<br/>
+<br/>
+<a href="CppComment.htm">//</a> This <a href="CppLibrary.htm">library</a> is distributed in the hope that it will be useful,<br/>
+<a href="CppComment.htm">//</a> but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+<a href="CppComment.htm">//</a> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+<a href="CppComment.htm">//</a> GNU General Public License for more details.<br/>
+<br/>
+<a href="CppComment.htm">//</a> Under Section 7 of GPL <a href="CppVersion.htm">version</a> 3, you are granted additional<br/>
+<a href="CppComment.htm">//</a> permissions described in the GCC Run<a href="CppTime.htm">time</a> <a href="CppLibrary.htm">Library</a> <a href="CppException.htm">Exception</a>, <a href="CppVersion.htm">version</a><br/>
+<a href="CppComment.htm">//</a> 3.1, as published by the Free Software Foundation.<br/>
+<br/>
+<a href="CppComment.htm">//</a> You should have received a copy of the GNU General Public License and<br/>
+<a href="CppComment.htm">//</a> a copy of the GCC Run<a href="CppTime.htm">time</a> <a href="CppLibrary.htm">Library</a> <a href="CppException.htm">Exception</a> along with this program;<br/>
+<a href="CppComment.htm">//</a> see the files COPYING3 and COPYING.RUNTIME respectively.&nbsp;&nbsp;If not, see<br/>
+<a href="CppComment.htm">//</a> &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ *<br/>
+ * Copyright (c) 1994<br/>
+ * Hewlett-Packard Comp<a href="CppAny.htm">any</a><br/>
+ *<br/>
+ * Permission to use, copy, modify, distribute and sell <b><a href="CppThis.htm">this</a></b> software<br/>
+ * and its <a href="CppDocumentation.htm">documentation</a> <b><a href="CppFor.htm">for</a></b> <a href="CppAny.htm">any</a> purpose is hereby granted without fee,<br/>
+ * provided that the above copyright notice appear in all copies and<br/>
+ * that both that copyright notice and <b><a href="CppThis.htm">this</a></b> permission notice appear<br/>
+ * in supporting <a href="CppDocumentation.htm">documentation</a>.&nbsp;&nbsp;Hewlett-Packard Comp<a href="CppAny.htm">any</a> <a href="CppMake.htm">make</a>s no<br/>
+ * representations <a href="CppAbout.htm">about</a> the suitability of <b><a href="CppThis.htm">this</a></b> software <b><a href="CppFor.htm">for</a></b> <a href="CppAny.htm">any</a><br/>
+ * purpose.&nbsp;&nbsp;It is provided "as is" without express or implied warranty.<br/>
+ *<br/>
+ *<br/>
+ * Copyright (c) 1996,1997<br/>
+ * Silicon Graphics Computer Systems, Inc.<br/>
+ *<br/>
+ * Permission to use, copy, modify, distribute and sell <b><a href="CppThis.htm">this</a></b> software<br/>
+ * and its <a href="CppDocumentation.htm">documentation</a> <b><a href="CppFor.htm">for</a></b> <a href="CppAny.htm">any</a> purpose is hereby granted without fee,<br/>
+ * provided that the above copyright notice appear in all copies and<br/>
+ * that both that copyright notice and <b><a href="CppThis.htm">this</a></b> permission notice appear<br/>
+ * in supporting <a href="CppDocumentation.htm">documentation</a>.&nbsp;&nbsp;Silicon Graphics <a href="CppMake.htm">make</a>s no<br/>
+ * representations <a href="CppAbout.htm">about</a> the suitability of <b><a href="CppThis.htm">this</a></b> software <b><a href="CppFor.htm">for</a></b> <a href="CppAny.htm">any</a><br/>
+ * purpose.&nbsp;&nbsp;It is provided "as is" without express or implied warranty.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a>*<br/>
+ *&nbsp;&nbsp;@brief&nbsp;&nbsp;Create a range of sequentially increasing values.<br/>
+ *<br/>
+ *&nbsp;&nbsp;For each element in the range @p [first,last) assigns @p value and<br/>
+ *&nbsp;&nbsp;increments @p value as <b><a href="CppIf.htm">if</a></b> by @p <a href="CppOperatorIncrement.htm">++</a>value.<br/>
+ *<br/>
+ *&nbsp;&nbsp;@param&nbsp;&nbsp;first&nbsp;&nbsp;Start of range.<br/>
+ *&nbsp;&nbsp;@param&nbsp;&nbsp;last&nbsp;&nbsp;End of range.<br/>
+ *&nbsp;&nbsp;@param&nbsp;&nbsp;value&nbsp;&nbsp;Starting value.<br/>
+ *&nbsp;&nbsp;@<b><a href="CppReturn.htm">return</a></b>&nbsp;&nbsp;Nothing.<br/>
+ <a href="CppComment.htm">*/</a><br/>
+<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppTypename.htm">typename</a></b> _Forward<a href="CppIterator.htm">Iterator</a>, <b><a href="CppTypename.htm">typename</a></b> _Tp&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> iota(_Forward<a href="CppIterator.htm">Iterator</a> __first, _Forward<a href="CppIterator.htm">Iterator</a> __last, _Tp __value)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> concept requirements<br/>
+&nbsp;&nbsp;__glibcxx_function_requires(_Mutable_Forward<a href="CppIterator.htm">Iterator</a>Concept&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;_Forward<a href="CppIterator.htm">Iterator</a>&gt;)<br/>
+&nbsp;&nbsp;__glibcxx_function_requires(_<a href="CppConvert.htm">Convert</a>ibleConcept&lt;_Tp,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypename.htm">typename</a></b> <a href="CppIterator.htm">iterator</a>_traits&lt;_Forward<a href="CppIterator.htm">Iterator</a>&gt;::value_type&gt;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; __glibcxx_requires_valid_range(__first, __last);<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (; __first <a href="CppOperatorNotEqual.htm">!=</a> __last; <a href="CppOperatorIncrement.htm">++</a>__first)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;*__first <a href="CppOperatorAssign.htm">=</a> __value;<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>__value;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(10,0);<br/>
+<br/>
+&nbsp;&nbsp;iota(v.begin(),v.end(),0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppStdCout.htm">std::cout</a>," "));<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a> Screen output:<br/>
+ <br/>
+0 1 2 3 4 5 6 7 8 9 <br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -35,6 +35,8 @@ namespace gtst {
 struct Group
 {
   Group(Server * const server);
+  Group(const Group&) = delete;
+  Group& operator=(const Group&) = delete;
 
   ///Add a Participant to the Group
   void AddParticipant(boost::shared_ptr<Participant> participant);
@@ -89,23 +91,14 @@ struct Group
   virtual const std::string ToStr() const = 0;
 
   protected:
-  ///Only allow a Boost smart pointer to delete Group
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   virtual ~Group() {}
-  ///Only allow a Boost smart pointer to delete Group
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005.
-  //ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(Group*);
 
   ///Allow operator<< access to prevent recursion
   friend std::ostream& operator<<(std::ostream& os, const Group& group);
+
+  ///The average payoffs assigned after completing the IPGG periods
+  std::vector<double> m_average_payoffs;
 
   ///The Participant collection in this Group
   std::vector<boost::shared_ptr<Participant> > m_participants;
@@ -113,8 +106,6 @@ struct Group
   Server * const m_server;
 
   private:
-  ///The average payoffs assigned after completing the IPGG periods
-  std::vector<double> m_average_payoffs;
 
   ///Obtain a random double in the range [0.0,1.0>
   static double GetRandomUniform();

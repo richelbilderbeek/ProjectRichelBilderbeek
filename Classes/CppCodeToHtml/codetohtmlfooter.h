@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,21 +24,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include "codetohtmlpagetype.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "codetohtmlfootertype.h"
+#pragma GCC diagnostic pop
 
+namespace ribi {
 namespace c2h {
 
 ///Defines the header of the resulting HTML page
 struct Footer
 {
-  explicit Footer(const PageType page_type);
+  static std::vector<std::string> ToHtml(const FooterType page_type) noexcept;
+  static std::vector<std::string> ToMarkdown(const FooterType page_type) noexcept;
 
-  const std::vector<std::string> ToHtml() const;
-
-  private:
-  const PageType m_page_type;
+  //private:
+  //~Footer() noexcept {}
+  //friend void boost::checked_delete<>(Footer*);
+  //friend void boost::checked_delete<>(const Footer*);
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLFOOTER_H

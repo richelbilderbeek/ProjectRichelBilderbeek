@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtShapeWidget, Qt class for displaying a ShapeWidget
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,15 +25,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 #include <QWidget>
 
 #include "shape.h" //For MOC
 #include "shapewidget.h" //For MOC
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -70,8 +71,8 @@ private:
   boost::shared_ptr<ShapeWidget> m_widget;
 
 public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

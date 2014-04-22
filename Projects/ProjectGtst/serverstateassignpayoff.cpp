@@ -50,6 +50,7 @@ ribi::gtst::ServerStateAssignPayoff::ServerStateAssignPayoff(
   const boost::shared_ptr<const ParametersAssignPayoff> parameters,
   const boost::shared_ptr<const ServerStateViewResultsVoting> state_view_results_voting)
   : ServerState(server,period,cycle),
+    m_has_assigned_payoff{},
     m_parameters(parameters),
     m_state_view_results_voting(state_view_results_voting)
 {

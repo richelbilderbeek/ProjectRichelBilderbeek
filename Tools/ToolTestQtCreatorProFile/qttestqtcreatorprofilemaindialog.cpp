@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQtCreatorProFile, tool to test the QtCreatorProFile class
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtCreatorProFile.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestqtcreatorprofilemaindialog.h"
 
 #include <sstream>
@@ -29,16 +29,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtcreatorprofile.h"
 #include "testqtcreatorprofilemenudialog.h"
+#include "trace.h"
 #include "ui_qttestqtcreatorprofilemaindialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestQtCreatorProFileMainDialog)
+ribi::QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget *parent)
+ : QtHideAndShowDialog(parent),
+   ui(new Ui::QtTestQtCreatorProFileMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtTestQtCreatorProFileMainDialog::~QtTestQtCreatorProFileMainDialog()
+ribi::QtTestQtCreatorProFileMainDialog::~QtTestQtCreatorProFileMainDialog() noexcept
 {
   delete ui;
 }
@@ -55,7 +60,7 @@ void ribi::QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
   if (!QFile::exists(filename.c_str()))
   {
     ui->text_result->clear();
-    const std::string text = std::string("File '") + filename + std::string("' does not exist.");
+    const std::string text = "File '" + filename + "' does not exist.";
     ui->text_result->setPlainText(text.c_str());
     return;
   }
@@ -68,3 +73,17 @@ void ribi::QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
   ui->text_result->clear();
   ui->text_result->setPlainText(s.str().c_str());
 }
+
+#ifndef NDEBUG
+void ribi::QtTestQtCreatorProFileMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtCreatorProFileMainDialog::Test");
+
+  TRACE("Finished ribi::QtTestQtCreatorProFileMainDialog::Test successfully");
+}
+#endif

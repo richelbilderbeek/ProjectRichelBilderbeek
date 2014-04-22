@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestPylos, tool to test the Pylos classes
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,13 +21,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTPYLOSTESTBOARDDIALOG_H
 #define QTTESTPYLOSTESTBOARDDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 #include "pylosmove.h"
 #include "pylosboard.h"
 #include "qtpylosboardwidget.h"
+#pragma GCC diagnostic pop
 
 struct QLabel;
 struct QTimer;
@@ -36,14 +39,17 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace pylos {
 
-class QtTestPylosTestBoardDialog : public QDialog
+class QtTestPylosTestBoardDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestPylosTestBoardDialog(QWidget *parent = 0);
-  ~QtTestPylosTestBoardDialog();
+  QtTestPylosTestBoardDialog(const QtTestPylosTestBoardDialog&) = delete;
+  QtTestPylosTestBoardDialog& operator=(const QtTestPylosTestBoardDialog&) = delete;
+  ~QtTestPylosTestBoardDialog() noexcept;
 
 protected:
   
@@ -71,6 +77,7 @@ private slots:
   void on_slider_tilt_sliderMoved(int position);
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTTESTPYLOSTESTBOARDDIALOG_H

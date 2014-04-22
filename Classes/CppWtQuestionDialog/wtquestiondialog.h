@@ -34,10 +34,10 @@ struct QuestionDialog;
 ///Qt dialog for QuestionDialog
 struct WtQuestionDialog : public Wt::WContainerWidget
 {
-  explicit WtQuestionDialog(const boost::shared_ptr<QuestionDialog>& dialog);
+  explicit WtQuestionDialog();
 
-  ///Obtain a read-only pointer to the dialog
-  const QuestionDialog * GetDialog() const { return m_dialog.get(); }
+  ///Obtain the dialog
+  virtual const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept = 0;
 
   ///Obtain the version of this class
   static const std::string GetVersion();
@@ -51,8 +51,6 @@ struct WtQuestionDialog : public Wt::WContainerWidget
 
   protected:
   virtual ~WtQuestionDialog() {}
-
-  boost::shared_ptr<QuestionDialog> m_dialog;
 };
 
 } //~namespace ribi

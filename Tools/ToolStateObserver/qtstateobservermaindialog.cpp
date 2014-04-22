@@ -21,26 +21,31 @@
 #include "multiintegerstateobserver.h"
 #include "noisefunctionparser.h"
 #include "slidingmodeobserver.h"
+#include "trace.h"
 #include "ui_qtstateobservermaindialog.h"
 
-#ifdef _WIN32
-#include "qwt_point_data.h"
+#if QWT_VERSION >= 0x060100
+#include <qwt_point_data.h>
 #endif
 
 #pragma GCC diagnostic pop
 
-ribi::QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtStateObserverMainDialog),
-  m_curve_inputs(new QwtPlotCurve("Inputs")),
-  m_curve_outputs_alpha(new QwtPlotCurve("Alpha filter estimations")),
-  m_curve_outputs_alpha_beta(new QwtPlotCurve("Alpha beta filter estimations")),
-  m_curve_outputs_alpha_beta_gamma(new QwtPlotCurve("Alpha beta gamma filter estimations")),
-  m_curve_outputs_lsq(new QwtPlotCurve("LSQ filter estimations")),
-  m_curve_outputs_slsq(new QwtPlotCurve("SLSQ filter estimations")),
-  m_curve_outputs_ma(new QwtPlotCurve("Multi alpha filter estimations")),
-  m_curve_outputs_miso(new QwtPlotCurve("Multi integer state observer estimations"))
+ribi::QtStateObserverMainDialog::QtStateObserverMainDialog(
+  QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtStateObserverMainDialog),
+    m_curve_inputs(new QwtPlotCurve("Inputs")),
+    m_curve_outputs_alpha(new QwtPlotCurve("Alpha filter estimations")),
+    m_curve_outputs_alpha_beta(new QwtPlotCurve("Alpha beta filter estimations")),
+    m_curve_outputs_alpha_beta_gamma(new QwtPlotCurve("Alpha beta gamma filter estimations")),
+    m_curve_outputs_lsq(new QwtPlotCurve("LSQ filter estimations")),
+    m_curve_outputs_slsq(new QwtPlotCurve("SLSQ filter estimations")),
+    m_curve_outputs_ma(new QwtPlotCurve("Multi alpha filter estimations")),
+    m_curve_outputs_miso(new QwtPlotCurve("Multi integer state observer estimations"))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   #ifdef _WIN32
@@ -160,12 +165,12 @@ ribi::QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
   Run();
 }
 
-ribi::QtStateObserverMainDialog::~QtStateObserverMainDialog()
+ribi::QtStateObserverMainDialog::~QtStateObserverMainDialog() noexcept
 {
   delete ui;
 }
 
-const boost::shared_ptr<ribi::AlphaFilter> ribi::QtStateObserverMainDialog::CreateAlphaFilter() const
+const boost::shared_ptr<ribi::AlphaFilter> ribi::QtStateObserverMainDialog::CreateAlphaFilter() const noexcept
 {
   const double alpha  = ui->box_alpha_a->value();
   const double dt = CreateDt();
@@ -174,7 +179,7 @@ const boost::shared_ptr<ribi::AlphaFilter> ribi::QtStateObserverMainDialog::Crea
   return filter;
 }
 
-const boost::shared_ptr<ribi::AlphaBetaFilter> ribi::QtStateObserverMainDialog::CreateAlphaBetaFilter() const
+const boost::shared_ptr<ribi::AlphaBetaFilter> ribi::QtStateObserverMainDialog::CreateAlphaBetaFilter() const noexcept
 {
   const double alpha = ui->box_alpha_ab->value();
   const double beta = ui->box_beta_ab->value();
@@ -184,7 +189,7 @@ const boost::shared_ptr<ribi::AlphaBetaFilter> ribi::QtStateObserverMainDialog::
   return filter;
 }
 
-const boost::shared_ptr<ribi::AlphaBetaGammaFilter> ribi::QtStateObserverMainDialog::CreateAlphaBetaGammaFilter() const
+const boost::shared_ptr<ribi::AlphaBetaGammaFilter> ribi::QtStateObserverMainDialog::CreateAlphaBetaGammaFilter() const noexcept
 {
   const double alpha = ui->box_alpha_abg->value();
   const double beta = ui->box_beta_abg->value();
@@ -195,7 +200,7 @@ const boost::shared_ptr<ribi::AlphaBetaGammaFilter> ribi::QtStateObserverMainDia
   return filter;
 }
 
-const boost::shared_ptr<ribi::IntegerAlphaFilter> ribi::QtStateObserverMainDialog::CreateLsqFilter() const
+const boost::shared_ptr<ribi::IntegerAlphaFilter> ribi::QtStateObserverMainDialog::CreateLsqFilter() const noexcept
 {
   const int shift_lsq = ui->box_lsq_shift->value();
   const boost::shared_ptr<IntegerAlphaFilter> filter(new IntegerAlphaFilter(shift_lsq));
@@ -203,7 +208,7 @@ const boost::shared_ptr<ribi::IntegerAlphaFilter> ribi::QtStateObserverMainDialo
   return filter;
 }
 
-const boost::shared_ptr<ribi::IntegerSymmetricalAlphaFilter> ribi::QtStateObserverMainDialog::CreateSlsqFilter() const
+const boost::shared_ptr<ribi::IntegerSymmetricalAlphaFilter> ribi::QtStateObserverMainDialog::CreateSlsqFilter() const noexcept
 {
   const int shift_slsq = ui->box_slsq_shift->value();
   const boost::shared_ptr<IntegerSymmetricalAlphaFilter> filter(new IntegerSymmetricalAlphaFilter(shift_slsq));
@@ -212,7 +217,7 @@ const boost::shared_ptr<ribi::IntegerSymmetricalAlphaFilter> ribi::QtStateObserv
 }
 
 
-const boost::shared_ptr<ribi::MultiAlphaFilter> ribi::QtStateObserverMainDialog::CreateMultiAlphaFilter() const
+const boost::shared_ptr<ribi::MultiAlphaFilter> ribi::QtStateObserverMainDialog::CreateMultiAlphaFilter() const noexcept
 {
   const double ma_1 = ui->box_ma_1->value();
   const double ma_2 = ui->box_ma_2->value();
@@ -222,7 +227,7 @@ const boost::shared_ptr<ribi::MultiAlphaFilter> ribi::QtStateObserverMainDialog:
   return filter;
 }
 
-const boost::shared_ptr<ribi::MultiIntegerStateObserver> ribi::QtStateObserverMainDialog::CreateMiso() const
+const boost::shared_ptr<ribi::MultiIntegerStateObserver> ribi::QtStateObserverMainDialog::CreateMiso() const noexcept
 {
   std::vector<boost::shared_ptr<IntegerStateObserver> > state_observers;
   {
@@ -249,7 +254,7 @@ const boost::shared_ptr<ribi::MultiIntegerStateObserver> ribi::QtStateObserverMa
   return filter;
 }
 
-void ribi::QtStateObserverMainDialog::Run()
+void ribi::QtStateObserverMainDialog::Run() noexcept
 {
   const int timesteps = ui->box_timesteps->value();
   const std::string noise_function_str = ui->edit_noise->text().toStdString();
@@ -403,7 +408,20 @@ void ribi::QtStateObserverMainDialog::Run()
   }
 }
 
-void ribi::QtStateObserverMainDialog::on_button_rerun_clicked()
+void ribi::QtStateObserverMainDialog::on_button_rerun_clicked() noexcept
 {
   this->Run();
 }
+
+#ifndef NDEBUG
+void ribi::QtStateObserverMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtStateObserverMainDialog::Test");
+  TRACE("Finished ribi::QtStateObserverMainDialog::Test successfully");
+}
+#endif

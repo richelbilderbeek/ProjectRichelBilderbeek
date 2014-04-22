@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,9 +23,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define QTBOENKENMENUDIALOG_H
 
 #include <vector>
-#include <boost/shared_ptr.hpp>
-#include <QDialog>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/shared_ptr.hpp>
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenMenuDialog;
@@ -48,13 +51,15 @@ namespace Boenken
 ///QtBoenkenMenuDialog
 ///
 ///Gathers all options to start a game
-class QtBoenkenMenuDialog : public QDialog
+class QtBoenkenMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtBoenkenMenuDialog(QWidget *parent = 0);
-  ~QtBoenkenMenuDialog();
+  QtBoenkenMenuDialog(const QtBoenkenMenuDialog&) = delete;
+  QtBoenkenMenuDialog& operator=(const QtBoenkenMenuDialog&) = delete;
+  ~QtBoenkenMenuDialog() noexcept;
 
 private:
   Ui::QtBoenkenMenuDialog *ui;
@@ -71,7 +76,9 @@ private:
   static const std::vector<boost::shared_ptr<Boenken::SpriteNonMoving> > CreateObstacles(
     const Boenken::ArenaSettings& a);
 
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void onControlsClick();

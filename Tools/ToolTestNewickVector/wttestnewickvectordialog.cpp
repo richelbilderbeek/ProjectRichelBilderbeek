@@ -24,7 +24,10 @@
 #include <cassert>
 //---------------------------------------------------------------------------
 ribi::WtTestNewickVectorDialog::WtTestNewickVectorDialog()
-  : m_box_show_calculation(new Wt::WCheckBox),
+  : m_signal_about{},
+    m_signal_any_change{},
+    m_dialog{},
+    m_box_show_calculation(new Wt::WCheckBox),
     m_box_compare(new Wt::WCheckBox),
     m_edit_newick(new Wt::WLineEdit("((2,2),2)")),
     m_edit_password(new Wt::WLineEdit),

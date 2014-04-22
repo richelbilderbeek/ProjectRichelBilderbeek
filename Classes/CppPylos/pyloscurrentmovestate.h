@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::CurrentMoveState, Pylos/Phyraos current move state class
-Copyright (C) 2010-2012 Richel Bilderbeek
+pylos::CurrentMoveState, Pylos/Phyraos current move state class
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,27 +32,27 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace Pylos {
+namespace pylos {
 
 ///CurrentMoveState contains the state of the current Move.
-///CurrentMoveState is used by Pylos::Game, to incrementally keep track of the
+///CurrentMoveState is used by pylos::Game, to incrementally keep track of the
 ///ongoing move
 struct CurrentMoveState
 {
-  CurrentMoveState();
+  CurrentMoveState() noexcept;
 
   ///Obtain the current Move in process
-  const Move& GetMove() const { return m_current_move; }
+  const Move& GetMove() const noexcept { return m_current_move; }
 
   ///Obtain if the first part of the move has taken place and
   ///if the current player must remove one or two marbles
-  MustRemoveState GetMustRemove() const;
+  MustRemoveState GetMustRemove() const noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 
   ///Is it unknown what kind of Move this is?
@@ -60,7 +60,7 @@ struct CurrentMoveState
   bool IsMoveMove() const;
   bool IsMovePlace() const;
 
-  void Restart();
+  void Restart() noexcept;
 
   ///Set a complete Move directly
   void SetMove(const Move& move);
@@ -81,11 +81,11 @@ struct CurrentMoveState
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 
-bool operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs);
+bool operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs) noexcept;
 
 } //~namespace Pylos
 

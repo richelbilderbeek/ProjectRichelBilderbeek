@@ -1,3 +1,25 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbprintconceptmapdialog.h"
 
 #include <cassert>
@@ -9,14 +31,19 @@
 
 #include <QFileDialog>
 #include <QPrinter>
+#include <QTimer>
 
 #include "pvdbfile.h"
-#include "pvdbconceptmap.h"
-#include "pvdbconceptmapfactory.h"
-#include "qtpvdbratedconceptwidget.h"
+#include "conceptmapconcept.h"
+#include "conceptmap.h"
+#include "conceptmapfactory.h"
+#include "qtconceptmapnode.h"
+#include "qtconceptmapdisplaystrategy.h"
+#include "qtconceptmapratedconceptdialog.h"
 #include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbprintconceptmapdialog.h"
-#include "qtpvdbconceptmapdisplaywidget.h"
+#include "qtdisplayconceptmap.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   const boost::shared_ptr<pvdb::File>& file,
@@ -24,7 +51,7 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintConceptMapDialog),
     m_file(file),
-    m_widget(new QtPvdbConceptMapDisplayWidget(file->GetConceptMap()))
+    m_widget(new cmap::QtDisplayConceptMap(file->GetConceptMap()))
 {
   ui->setupUi(this);
 
@@ -36,7 +63,7 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
 
 
   ui->label_student_name->setText(
-    (std::string("Concept map van ")
+    ("Concept map van "
       + m_file->GetStudentName()).c_str()
   );
   {
@@ -44,11 +71,16 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
     std::time( &my_time );
     const std::tm * const time_and_date = std::localtime(&my_time);
     const std::string s = std::asctime(time_and_date);
-    ui->label_date->setText( (std::string("Datum: ") + s).c_str());
+    ui->label_date->setText( ("Datum: " + s).c_str());
+  }
+
+  //Much work done in ShowEvent
+  {
+    QTimer::singleShot(1000,this,SLOT(fitConceptMap()));
   }
 }
 
-ribi::pvdb::QtPvdbPrintConceptMapDialog::~QtPvdbPrintConceptMapDialog()
+ribi::pvdb::QtPvdbPrintConceptMapDialog::~QtPvdbPrintConceptMapDialog() noexcept
 {
   delete ui;
 }
@@ -128,12 +160,25 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::Print()
   painter.end();
 }
 
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::resizeEvent(QResizeEvent *)
+{
+    fitConceptMap();
+}
+
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::fitConceptMap()
+{
+  assert(m_widget);
+  assert(m_widget->GetConceptMap());
+  const QRectF all_items_rect = m_widget->scene()->itemsBoundingRect();
+  m_widget->setMinimumHeight(all_items_rect.height() + 2);
+  m_widget->fitInView(all_items_rect);
+
+}
+
 void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
 {
   //Concept map
   {
-    //const boost::shared_ptr<ribi::pvdb::ConceptMap> copy_concept_map
-    //  = m_file->GetConceptMap();
     assert(m_widget);
     assert(m_widget->GetConceptMap());
 
@@ -142,7 +187,20 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     m_widget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_widget->setMinimumHeight(m_widget->scene()->itemsBoundingRect().height() + 2);
     //Fit concept map to widget
-    m_widget->fitInView(m_widget->scene()->itemsBoundingRect());
+    const QRectF all_items_rect {
+      m_widget->scene()->itemsBoundingRect() //Does not work
+      //m_widget->scene()->sceneRect() //Does not work
+    };
+    #ifndef NDEBUG
+    for (const ribi::cmap::QtNode * const qtnode: m_widget->GetQtNodes())
+    {
+      //All QtNodes' their rectangles should be within all_items_rect
+      assert(qtnode);
+      assert(all_items_rect.contains(qtnode->boundingRect()));
+    }
+    #endif
+    m_widget->fitInView(all_items_rect); //Does not work
+    //m_widget->ensureVisible(all_items_rect,0,0); //Does not work
 
     assert(m_widget->scene()->items().count()
       >= boost::numeric_cast<int>(
@@ -158,13 +216,15 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     const int n_nodes = static_cast<int>(m_file->GetConceptMap()->GetNodes().size());
     for (int node_index = 1; node_index != n_nodes; ++node_index) //1: skip center node
     {
-      const boost::shared_ptr<ribi::pvdb::Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
+      using namespace cmap;
+      const boost::shared_ptr<Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
       assert(node);
-      QtPvdbRatedConceptWidget * const widget
-        = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node);
+      QtConceptMapRatedConceptDialog * const widget
+        = new QtConceptMapRatedConceptDialog(m_file->GetConceptMap(),node);
       assert(widget);
       widget->HideRating();
       ui->frame_concept_map_as_text->layout()->addWidget(widget);
     }
   }
+    fitConceptMap();
 }

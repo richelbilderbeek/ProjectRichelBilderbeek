@@ -1,34 +1,46 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
+
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+
+include(../../Classes/CppQtSprites/CppQtSprites.pri)
+
+include(ToolPicToCodeDesktop.pri)
 
 TEMPLATE = app
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtSprites
 
-SOURCES += qtmain.cpp\
-    pictocodemaindialog.cpp \
-    pictocodemenudialog.cpp \
-    qtpictocodemaindialog.cpp \
-    qtpictocodemenudialog.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtSprites/qtsprites.cpp
-HEADERS += \
-    pictocodemaindialog.h \
-    pictocodemenudialog.h \
-    qtpictocodemaindialog.h \
-    qtpictocodemenudialog.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtSprites/qtsprites.h
-FORMS += \
-    qtpictocodemaindialog.ui \
-    qtpictocodemenudialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+SOURCES += qtmain.cpp
 
-RESOURCES += \
-    ToolPicToCode.qrc
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

@@ -1,13 +1,36 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbfilefactory.h"
 
 #include <cassert>
-#include "pvdbconceptmapfactory.h"
+#include "conceptmapfactory.h"
 #include "pvdbclusterfactory.h"
-#include "pvdbconceptmap.h"
+#include "conceptmap.h"
 #include "pvdbcluster.h"
 #include "pvdbclusterfactory.h"
 #include "pvdbfile.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::Create()
 {
@@ -26,18 +49,19 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(cons
   {
     cluster = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
     assert(cluster);
-    assert(IsEqual(*cluster,*file->GetCluster()));
+    assert(operator==(*cluster,*file->GetCluster()));
   }
 
-  boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map;
+  boost::shared_ptr<ribi::cmap::ConceptMap> concept_map;
   if (file->GetConceptMap())
   {
-    concept_map = ribi::pvdb::ConceptMapFactory::DeepCopy(file->GetConceptMap());
+    concept_map = ribi::cmap::ConceptMapFactory::DeepCopy(file->GetConceptMap());
     assert(concept_map);
-    assert(IsEqual(*concept_map,*file->GetConceptMap()));
+    assert(*concept_map == *file->GetConceptMap());
   }
 
-  const boost::shared_ptr<pvdb::File> p(
+ //assert(!concept_map || file->GetQuestion() == concept_map->GetQuestion()); //BUG20131129
+ const boost::shared_ptr<pvdb::File> p(
     new File(
       file->GetAbout(),
       file->GetAssessorName(),
@@ -48,7 +72,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(cons
       file->GetVersion()));
   assert(p);
   assert(file != p && "It must be a DEEP copy");
-  assert(IsEqual(*file,*p) && "It must be a deep COPY");
+  assert(operator==(*file,*p) && "It must be a deep COPY");
   return p;
 }
 #endif
@@ -63,18 +87,21 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
   {
     boost::shared_ptr<pvdb::File> f = Create();
     assert(f);
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-      = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(0);
-    assert(concept_map);
-    f->SetConceptMap(concept_map);
-    v.push_back(f);
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+      = cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(0);
+    if (!concept_map->GetNodes().empty())
+    {
+      assert(concept_map);
+      f->SetConceptMap(concept_map);
+      v.push_back(f);
+    }
   }
   //[2]: file with complex concept map
   {
     boost::shared_ptr<pvdb::File> f = Create();
     assert(f);
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-      = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+      = cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
     assert(concept_map);
     f->SetConceptMap(concept_map);
     v.push_back(f);
@@ -84,8 +111,8 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
     boost::shared_ptr<pvdb::File> f = Create();
     assert(f);
     f->SetStudentName("ribi::pvdb::FileFactory::GetTests()[3] name");
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-      = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+      = cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
     assert(concept_map);
     f->SetConceptMap(concept_map);
     const boost::shared_ptr<pvdb::Cluster> cluster
@@ -99,8 +126,23 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
     boost::shared_ptr<pvdb::File> f = Create();
     assert(f);
     f->SetStudentName("ribi::pvdb::FileFactory::GetTests()[4] name");
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-      = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(16);
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+      = cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(16);
+    assert(concept_map);
+    f->SetConceptMap(concept_map);
+    const boost::shared_ptr<pvdb::Cluster> cluster
+      = ClusterFactory::GetTests().at(3);
+    assert(cluster);
+    f->SetCluster(cluster);
+    v.push_back(f);
+  }
+  //[5]: file with rated complex concept map and complex cluster, all multiple lines
+  {
+    boost::shared_ptr<pvdb::File> f = Create();
+    assert(f);
+    f->SetStudentName("ribi::pvdb::FileFactory::GetTests()[5] name");
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+      = cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
     assert(concept_map);
     f->SetConceptMap(concept_map);
     const boost::shared_ptr<pvdb::Cluster> cluster

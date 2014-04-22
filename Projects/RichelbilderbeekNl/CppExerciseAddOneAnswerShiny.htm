@@ -1,0 +1,997 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ExerciseAddOneAnswerShiny</title>
+  <meta name="description" content="C++ ExerciseAddOneAnswerShiny"/>
+  <meta name="keywords" content="C++ ExerciseAddOneAnswerShiny "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppExerciseAddOneAnswerShiny.htm">ExerciseAddOneAnswerShiny</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppExerciseAddOneAnswerShiny-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppExerciseAddOneAnswerShiny/CppExerciseAddOneAnswerShiny.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppExerciseAddOneAnswerShiny/CppExerciseAddOneAnswerShiny.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code below<br/>
+# win32 {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+# }<br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Shiny.pri) #Or use the code below<br/>
+# <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include<br/>
+#<br/>
+# <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/Shiny<a href="Tools.htm">Tools</a>.cpp \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/ShinyOutput.cpp \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/ShinyNodePool.cpp \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/ShinyNode.cpp \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/ShinyManager.cpp<br/>
+#<br/>
+#<br/>
+# <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyZone.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/Shiny<a href="Tools.htm">Tools</a>.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyPrereqs.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyOutput.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyNodePool.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyNode.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyManager.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyMacros.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyData.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyConfig.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/Shiny.h<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppExerciseAddOneAnswerShiny/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppExerciseAddOneAnswerShiny/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "Shiny.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForAssignment1stConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i) v[i]=1+v[i];<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForAssignment2ndConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i) v[i]=v[i]+1;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>For<a href="CppIncrease.htm">Increase</a>ConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i) v[i]<a href="CppOperatorPlusAssign.htm">+=</a>1;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForPostIncrementConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i) v[i]<a href="CppOperatorIncrement.htm">++</a>;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForPreIncrementConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppOperatorIncrement.htm">++</a>v[i];<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForAssignment1stNonConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>v.size(); <a href="CppOperatorIncrement.htm">++</a>i) v[i]=1+v[i];<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForAssignment2ndNonConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>v.size(); <a href="CppOperatorIncrement.htm">++</a>i) v[i]=v[i]+1;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>For<a href="CppIncrease.htm">Increase</a>NonConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>v.size(); <a href="CppOperatorIncrement.htm">++</a>i) v[i]<a href="CppOperatorPlusAssign.htm">+=</a>1;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForPostIncrementNonConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>v.size(); <a href="CppOperatorIncrement.htm">++</a>i) v[i]<a href="CppOperatorIncrement.htm">++</a>;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForPreIncrementNonConstSize(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>v.size(); <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppOperatorIncrement.htm">++</a>v[i];<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment1stConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> j <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i) (*i) <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (*i);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment2ndConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> j <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i) (*i) <a href="CppOperatorAssign.htm">=</a> (*i) <a href="CppOperatorPlus.htm">+</a> 1;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a><a href="CppIncrease.htm">Increase</a>ConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> j <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i) (*i)<a href="CppOperatorPlusAssign.htm">+=</a>1;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PostIncrementConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> j <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i) (*i)<a href="CppOperatorIncrement.htm">++</a>;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PreIncrementConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> j <a href="CppOperatorAssign.htm">=</a> v.end();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppOperatorIncrement.htm">++</a>(*i);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment1stNonConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>v.end(); <a href="CppOperatorIncrement.htm">++</a>i) (*i) <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (*i);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment2ndNonConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>v.end(); <a href="CppOperatorIncrement.htm">++</a>i) (*i) <a href="CppOperatorAssign.htm">=</a> (*i) <a href="CppOperatorPlus.htm">+</a> 1;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a><a href="CppIncrease.htm">Increase</a>NonConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>v.end(); <a href="CppOperatorIncrement.htm">++</a>i) (*i)<a href="CppOperatorPlusAssign.htm">+=</a>1;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PostIncrementNonConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>v.end(); <a href="CppOperatorIncrement.htm">++</a>i) (*i)<a href="CppOperatorIncrement.htm">++</a>;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PreIncrementNonConstEnd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> i <a href="CppOperatorAssign.htm">=</a> v.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>v.end(); <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppOperatorIncrement.htm">++</a>(*i);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>s<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a>Assignment1st(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; }<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a>Assignment2nd(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; }<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a><a href="CppIncrease.htm">Increase</a>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1; }<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a>PostIncrement(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>; }<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a>PreIncrement(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x; }<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>Assignment1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a>Assignment1st);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>Assignment2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a>Assignment2nd);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a><a href="CppIncrease.htm">Increase</a>(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a><a href="CppIncrease.htm">Increase</a>);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>PostIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a>PostIncrement);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>PreIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a>PreIncrement);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a><b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>s<br/>
+<b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a>AssignmentInline1st(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; }<br/>
+<b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a>AssignmentInline2nd(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; }<br/>
+<b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a><a href="CppIncrease.htm">Increase</a>Inline(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1; }<br/>
+<b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a>PostIncrementInline(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>; }<br/>
+<b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppAddOne.htm">AddOne</a>PreIncrementInline(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x; }<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>Assignment1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a>AssignmentInline1st);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>Assignment2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a>AssignmentInline2nd);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a><a href="CppIncrease.htm">Increase</a>(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a><a href="CppIncrease.htm">Increase</a>Inline);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>PostIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a>PostIncrementInline);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>PreIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(),<a href="CppAddOne.htm">AddOne</a>PreIncrementInline);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Non-<b><a href="CppInline.htm">inline</a></b>-<b><a href="CppOperatorFunctionCall.htm">operator()</a></b> structs<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment1st { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment2nd { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1;&nbsp;&nbsp;} };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePostIncrement { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>;&nbsp;&nbsp; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePreIncrement&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x;&nbsp;&nbsp; } };<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment1st() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment2nd() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInline<a href="CppIncrease.htm">Increase</a>(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rNonInline<a href="CppIncrease.htm">Increase</a>() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlinePostIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rNonInlinePostIncrement() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlinePreIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rNonInlinePreIncrement() );<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Inline-<b><a href="CppOperatorFunctionCall.htm">operator()</a></b> structs<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment1st { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment2nd { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePostIncrement { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePreIncrement&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x; } };<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rInlineAssignment1st() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rInlineAssignment2nd() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInline<a href="CppIncrease.htm">Increase</a>(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rInline<a href="CppIncrease.htm">Increase</a>() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlinePostIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rInlinePostIncrement() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlinePreIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppAddOne.htm">AddOne</a>rInlinePreIncrement() );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Bind1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdTransform.htm">std::transform</a>(v.begin(),v.end(),v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdBind1st.htm">std::bind1st</a>(<a href="CppStdPlus.htm">std::plus</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(),1));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Bind2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdTransform.htm">std::transform</a>(v.begin(),v.end(),v.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdBind2nd.htm">std::bind2nd</a>(<a href="CppStdPlus.htm">std::plus</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(),1));<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachPreIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppInt.htm">int</a></b> &amp;i, v) { <a href="CppOperatorIncrement.htm">++</a>i; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachPostIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppInt.htm">int</a></b> &amp;i, v) { i<a href="CppOperatorIncrement.htm">++</a>; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>Foreach<a href="CppIncrease.htm">Increase</a>(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppInt.htm">int</a></b> &amp;i, v) { i<a href="CppOperatorPlusAssign.htm">+=</a>1; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachAssignment1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppInt.htm">int</a></b> &amp;i, v) { i=1+i; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachAssignment2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppInt.htm">int</a></b> &amp;i, v) { i=i+1; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaPreIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppOperatorIncrement.htm">++</a><a href="CppBoostLambda.htm">boost::lambda</a>::_1);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaPostIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppBoostLambda.htm">boost::lambda</a>::_1<a href="CppOperatorIncrement.htm">++</a>);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>Lambda<a href="CppIncrease.htm">Increase</a>(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppBoostLambda.htm">boost::lambda</a>::_1<a href="CppOperatorPlusAssign.htm">+=</a>1);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppBoostLambda.htm">boost::lambda</a>::_1 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostLambda.htm">boost::lambda</a>::_1 <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppBoostLambda.htm">boost::lambda</a>::_1 <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> <a href="CppBoostLambda.htm">boost::lambda</a>::_1);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xForPreIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { <a href="CppOperatorIncrement.htm">++</a>i; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xForPostIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { i<a href="CppOperatorIncrement.htm">++</a>; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xFor<a href="CppIncrease.htm">Increase</a>(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { i<a href="CppOperatorPlusAssign.htm">+=</a>1; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xForAssignment1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { i=1+i; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xForAssignment2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { i=i+1; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambdaPreIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { <a href="CppOperatorIncrement.htm">++</a>i; } );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambdaPostIncrement(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { i<a href="CppOperatorIncrement.htm">++</a>; } );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambda<a href="CppIncrease.htm">Increase</a>(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { i<a href="CppOperatorPlusAssign.htm">+=</a>1; } );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment1st(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { i <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorPlus.htm">+</a> 1; } );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment2nd(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { i <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> i; } );<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppExercise.htm">CppExercise</a><a href="CppAddOne.htm">AddOne</a>Answer.htm<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppFunction.htm">Function</a><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppVoid.htm">void</a></b> (*FunctionPointer)(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppFunction.htm">Function</a>(FunctionPointer <a href="CppFunction.htm">function</a>, <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; name)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_function(<a href="CppFunction.htm">function</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_name(name),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>(0.0)<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoWork(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostTimer.htm">boost::timer</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_function(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorPlusAssign.htm">+=</a> t.elapsed();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; GetName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_name; }<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> <a href="CppGetTime.htm">GetTime</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppTime.htm">time</a>; }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;FunctionPointer m_function;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_name;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_<a href="CppTime.htm">time</a>;<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppExercise.htm">CppExercise</a><a href="CppAddOne.htm">AddOne</a>Answer.htm<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppFunction.htm">Function</a>&gt; Get<a href="CppFunction.htm">Function</a>s()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppFunction.htm">Function</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>For loop, <b><a href="CppConst.htm">const</a></b> size<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>ForAssignment1stConstSize,"For-loop, assignment 1st, <b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>ForAssignment2ndConstSize,"For-loop, assignment 2nd, <b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>For<a href="CppIncrease.htm">Increase</a>ConstSize,"For-loop, increase, <b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>ForPostIncrementConstSize,"For-loop, post-increment, <b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>ForPreIncrementConstSize,"For-loop, pre-increment, <b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>For loop, non-<b><a href="CppConst.htm">const</a></b> size<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>ForAssignment1stNonConstSize,"For-loop, assignment 1st, non-<b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>ForAssignment2ndNonConstSize,"For-loop, assignment 2nd, non-<b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>For<a href="CppIncrease.htm">Increase</a>NonConstSize,"For-loop, increase, non-<b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>ForPostIncrementNonConstSize,"For-loop, post-increment, non-<b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>ForPreIncrementNonConstSize,"For-loop, pre-increment, non-<b><a href="CppConst.htm">const</a></b> size"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppIterator.htm">Iterator</a>, <b><a href="CppConst.htm">const</a></b> end<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment1stConstEnd,"<a href="CppIterator.htm">Iterator</a>, assignment 1st, <b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment2ndConstEnd,"<a href="CppIterator.htm">Iterator</a>, assignment 2nd, <b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a><a href="CppIncrease.htm">Increase</a>ConstEnd,"<a href="CppIterator.htm">Iterator</a>, increase, <b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PostIncrementConstEnd,"<a href="CppIterator.htm">Iterator</a>, post-increment, <b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PreIncrementConstEnd,"<a href="CppIterator.htm">Iterator</a>, pre-increment, <b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppIterator.htm">Iterator</a>, non-<b><a href="CppConst.htm">const</a></b> end<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment1stNonConstEnd,"<a href="CppIterator.htm">Iterator</a>, assignment 1st, non-<b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment2ndNonConstEnd,"<a href="CppIterator.htm">Iterator</a>, assignment 2nd, non-<b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a><a href="CppIncrease.htm">Increase</a>NonConstEnd,"<a href="CppIterator.htm">Iterator</a>, increase, non-<b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PostIncrementNonConstEnd,"<a href="CppIterator.htm">Iterator</a>, post-increment, non-<b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PreIncrementNonConstEnd,"<a href="CppIterator.htm">Iterator</a>, pre-increment, non-<b><a href="CppConst.htm">const</a></b> end"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAlgorithm.htm">Algorithm</a> to non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a><br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>Assignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>Assignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 2nd"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a><a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>PostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>PreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, pre-increment"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAlgorithm.htm">Algorithm</a> to <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a><br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>Assignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>Assignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 2nd"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a><a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>PostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>PreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, pre-increment"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAlgorithm.htm">Algorithm</a> <b><a href="CppUsing.htm">using</a></b> non-<b><a href="CppInline.htm">inline</a></b>-<b><a href="CppOperatorFunctionCall.htm">operator()</a></b> functor<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, assignment 2nd"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInline<a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlinePostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlinePreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, pre-increment"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAlgorithm.htm">Algorithm</a> <b><a href="CppUsing.htm">using</a></b> <b><a href="CppInline.htm">inline</a></b>-<b><a href="CppOperatorFunctionCall.htm">operator()</a></b> functor<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, assignment 2nd"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInline<a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlinePostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlinePreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, pre-increment"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Binders<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Bind1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, <a href="CppStdPlus.htm">std::plus</a>, <a href="CppStdBind1st.htm">std::bind1st</a>"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Bind2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAlgorithm.htm">Algorithm</a>, <a href="CppStdPlus.htm">std::plus</a>, <a href="CppStdBind2nd.htm">std::bind2nd</a>"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a><br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachPreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, pre-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachPostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>Foreach<a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachAssignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachAssignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, assignment 2nd"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoost.htm">Boost</a> Lambda<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaPreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBoost.htm">Boost</a>.Lambda, pre-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaPostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBoost.htm">Boost</a>.Lambda, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>Lambda<a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBoost.htm">Boost</a>.Lambda, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBoost.htm">Boost</a>.Lambda, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBoost.htm">Boost</a>.Lambda, assignment 2nd"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xForPreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, pre-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xForPostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xFor<a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xForAssignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xForAssignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 2nd"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp0x.htm">C++0x</a> Lambda<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambdaPreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, pre-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambdaPostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambda<a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 2nd"));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Test<a href="CppFunction.htm">Function</a>s(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppFunction.htm">Function</a>&gt;&amp; <a href="CppFunction.htm">function</a>s_original)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppFunction.htm">Function</a>&gt; <a href="CppFunction.htm">function</a>s(<a href="CppFunction.htm">function</a>s_original);<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> value <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;v.push_back(value);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(<a href="CppFunction.htm">function</a>s.begin(),<a href="CppFunction.htm">function</a>s.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;v,&amp;value](<a href="CppFunction.htm">Function</a>&amp; <a href="CppFunction.htm">function</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFunction.htm">function</a>.DoWork(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0] <a href="CppOperatorEqual.htm">==</a> value <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>value;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppExercise.htm">CppExercise</a><a href="CppAddOne.htm">AddOne</a>Answer.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoostTimer.htm">boost::timer</a> t;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 10000000;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n<a href="CppTime.htm">Time</a>s <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppFunction.htm">Function</a>&gt; <a href="CppFunction.htm">function</a>s <a href="CppOperatorAssign.htm">=</a> Get<a href="CppFunction.htm">Function</a>s();<br/>
+&nbsp;&nbsp;Test<a href="CppFunction.htm">Function</a>s(<a href="CppFunction.htm">function</a>s);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(size,0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n<a href="CppTime.htm">Time</a>s; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_UPDATE();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorDivide.htm">/</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n<a href="CppTime.htm">Time</a>s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdRandom_shuffle.htm">std::random_shuffle</a>(<a href="CppFunction.htm">function</a>s.begin(), <a href="CppFunction.htm">function</a>s.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(<a href="CppFunction.htm">function</a>s.begin(),<a href="CppFunction.htm">function</a>s.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&amp;v](<a href="CppFunction.htm">Function</a>&amp; f)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.DoWork(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f.<a href="CppGetTime.htm">GetTime</a>() &gt; 0.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "There must be some <a href="CppTime.htm">time</a> passing <b><a href="CppFor.htm">for</a></b> a test to work"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppIncrease.htm">Increase</a> 'size'");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(<a href="CppFunction.htm">function</a>s.begin(),<a href="CppFunction.htm">function</a>s.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">Function</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">Function</a>&amp; rhs)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.<a href="CppGetTime.htm">GetTime</a>() &lt; rhs.<a href="CppGetTime.htm">GetTime</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Done!\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Size <a href="CppStdVector.htm">std::vector</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> size <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Repeats: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n<a href="CppTime.htm">Time</a>s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppTime.htm">Time</a>r minimal interval: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t.elapsed_min() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Results (best result first):\n";<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(<a href="CppFunction.htm">function</a>s.begin(),<a href="CppFunction.htm">function</a>s.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppFunction.htm">Function</a>&amp; f)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.GetName() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.<a href="CppGetTime.htm">GetTime</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_OUTPUT("shiny_output.txt");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Total running <a href="CppTime.htm">time</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t.elapsed() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a> Screen output:<br/>
+<br/>
+0 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+1 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+2 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+3 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+4 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+5 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+6 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+7 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+8 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+9 <a href="CppOperatorDivide.htm">/</a> 10<br/>
+Done!<br/>
+Size <a href="CppStdVector.htm">std::vector</a>: 10000000<br/>
+Repeats: 10<br/>
+<a href="CppTime.htm">Time</a>r minimal interval: 0.001<br/>
+Results (best result first):<br/>
+For-loop, increase, <b><a href="CppConst.htm">const</a></b> size: 0.428<br/>
+For-loop, post-increment, <b><a href="CppConst.htm">const</a></b> size: 0.429<br/>
+For-loop, pre-increment, <b><a href="CppConst.htm">const</a></b> size: 0.429<br/>
+For-loop, post-increment, non-<b><a href="CppConst.htm">const</a></b> size: 0.645<br/>
+For-loop, increase, non-<b><a href="CppConst.htm">const</a></b> size: 0.646<br/>
+For-loop, assignment 1st, <b><a href="CppConst.htm">const</a></b> size: 0.699<br/>
+For-loop, assignment 2nd, <b><a href="CppConst.htm">const</a></b> size: 0.699<br/>
+For-loop, pre-increment, non-<b><a href="CppConst.htm">const</a></b> size: 0.729<br/>
+For-loop, assignment 2nd, non-<b><a href="CppConst.htm">const</a></b> size: 0.898<br/>
+For-loop, assignment 1st, non-<b><a href="CppConst.htm">const</a></b> size: 0.901<br/>
+<a href="CppIterator.htm">Iterator</a>, post-increment, <b><a href="CppConst.htm">const</a></b> end: 0.975<br/>
+<a href="CppIterator.htm">Iterator</a>, pre-increment, <b><a href="CppConst.htm">const</a></b> end: 0.976<br/>
+<a href="CppIterator.htm">Iterator</a>, increase, <b><a href="CppConst.htm">const</a></b> end: 1.008<br/>
+<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, pre-increment: 1.043<br/>
+<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, post-increment: 1.047<br/>
+<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 1st: 1.05<br/>
+<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 2nd: 1.051<br/>
+<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, increase: 1.055<br/>
+<a href="CppIterator.htm">Iterator</a>, assignment 2nd, <b><a href="CppConst.htm">const</a></b> end: 1.149<br/>
+<a href="CppIterator.htm">Iterator</a>, assignment 1st, <b><a href="CppConst.htm">const</a></b> end: 1.154<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, increase: 1.182<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 1st: 1.184<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 2nd: 1.184<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, increase: 1.187<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 2nd: 1.187<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, post-increment: 1.188<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, pre-increment: 1.191<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, pre-increment: 1.191<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, post-increment: 1.192<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 1st: 1.193<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, assignment 2nd: 1.212<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, increase: 1.212<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, post-increment: 1.212<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, increase: 1.213<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, post-increment: 1.213<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, pre-increment: 1.214<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, pre-increment: 1.215<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, assignment 2nd: 1.215<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, assignment 1st: 1.216<br/>
+<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, post-increment: 1.216<br/>
+<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 1st: 1.216<br/>
+<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, increase: 1.217<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, assignment 1st: 1.217<br/>
+<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, pre-increment: 1.217<br/>
+<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 2nd: 1.227<br/>
+<a href="CppIterator.htm">Iterator</a>, increase, non-<b><a href="CppConst.htm">const</a></b> end: 1.604<br/>
+<a href="CppIterator.htm">Iterator</a>, post-increment, non-<b><a href="CppConst.htm">const</a></b> end: 1.607<br/>
+<a href="CppIterator.htm">Iterator</a>, pre-increment, non-<b><a href="CppConst.htm">const</a></b> end: 1.61<br/>
+<a href="CppIterator.htm">Iterator</a>, assignment 2nd, non-<b><a href="CppConst.htm">const</a></b> end: 1.769<br/>
+<a href="CppIterator.htm">Iterator</a>, assignment 1st, non-<b><a href="CppConst.htm">const</a></b> end: 1.772<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, <a href="CppStdPlus.htm">std::plus</a>, <a href="CppStdBind2nd.htm">std::bind2nd</a>: 1.991<br/>
+<a href="CppAlgorithm.htm">Algorithm</a>, <a href="CppStdPlus.htm">std::plus</a>, <a href="CppStdBind1st.htm">std::bind1st</a>: 1.997<br/>
+<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, post-increment: 2.815<br/>
+<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, pre-increment: 2.823<br/>
+<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, increase: 2.823<br/>
+<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, assignment 1st: 2.875<br/>
+<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, assignment 2nd: 2.903<br/>
+<a href="CppBoost.htm">Boost</a>.Lambda, pre-increment: 3.78<br/>
+<a href="CppBoost.htm">Boost</a>.Lambda, post-increment: 3.808<br/>
+<a href="CppBoost.htm">Boost</a>.Lambda, increase: 5.45<br/>
+<a href="CppBoost.htm">Boost</a>.Lambda, assignment 2nd: 8.69<br/>
+<a href="CppBoost.htm">Boost</a>.Lambda, assignment 1st: 8.699<br/>
+Total running <a href="CppTime.htm">time</a>: 104.192 seconds.<br/>
+Press &lt;RETURN&gt; to close <b><a href="CppThis.htm">this</a></b> window...<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a> Content of shiny_output.txt:<br/>
+<br/>
+flat <a href="CppProFile.htm">profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hits&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self <a href="CppTime.htm">time</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total <a href="CppTime.htm">time</a><br/>
+&lt;root&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.4&nbsp;&nbsp;&nbsp;&nbsp; 11 ms&nbsp;&nbsp;&nbsp;&nbsp;0<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 s&nbsp;&nbsp; 100%<br/>
+<a href="CppAdd.htm">Add</a>ForAssignment1stConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 43 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 43 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>ForAssignment2ndConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 43 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 43 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>For<a href="CppIncrease.htm">Increase</a>ConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0%<br/>
+<a href="CppAdd.htm">Add</a>ForPostIncrementConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0%<br/>
+<a href="CppAdd.htm">Add</a>ForPreIncrementConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0%<br/>
+<a href="CppAdd.htm">Add</a>ForAssignment1stNonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 55 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 55 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>ForAssignment2ndNonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 55 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 55 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>For<a href="CppIncrease.htm">Increase</a>NonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 40 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 40 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>ForPostIncrementNonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 40 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 40 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>ForPreIncrementNonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 45 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 45 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment1stConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 71 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 71 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment2ndConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 71 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 71 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a><a href="CppIncrease.htm">Increase</a>ConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 62 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 62 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PostIncrementConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 60 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 60 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PreIncrementConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 60 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 60 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment1stNonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;108 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;108 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment2ndNonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;109 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;109 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a><a href="CppIncrease.htm">Increase</a>NonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 98 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 98 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PostIncrementNonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 98 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 98 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PreIncrementNonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 99 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 99 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>Assignment1&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>Assignment2&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a><a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 72 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 72 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>PostIncreme&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>PreIncremen&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>Assignment1st&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>Assignment2nd&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a><a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>PostIncrement&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>PreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment1s&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment2n&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlinePostIncremen&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlinePreIncrement&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlinePostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlinePreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Bind1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;122 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;122 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Bind2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;122 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;122 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachPreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;173 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;173 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachPostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;172 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;172 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>Foreach<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;173 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;173 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;176 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;176 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;178 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;178 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaPreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;231 ms&nbsp;&nbsp;&nbsp;&nbsp;4<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;231 ms&nbsp;&nbsp;&nbsp;&nbsp;4%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaPostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;233 ms&nbsp;&nbsp;&nbsp;&nbsp;4<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;233 ms&nbsp;&nbsp;&nbsp;&nbsp;4%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>Lambda<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;334 ms&nbsp;&nbsp;&nbsp;&nbsp;5<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;334 ms&nbsp;&nbsp;&nbsp;&nbsp;5%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;533 ms&nbsp;&nbsp;&nbsp;&nbsp;8<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;533 ms&nbsp;&nbsp;&nbsp;&nbsp;8%<br/>
+<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;532 ms&nbsp;&nbsp;&nbsp;&nbsp;8<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;532 ms&nbsp;&nbsp;&nbsp;&nbsp;8%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xForPreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xForPostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xFor<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xForAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xForAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xLambdaPreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xLambdaPostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xLambda<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<br/>
+call tree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hits&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self <a href="CppTime.htm">time</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total <a href="CppTime.htm">time</a><br/>
+&lt;root&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.4&nbsp;&nbsp;&nbsp;&nbsp; 11 ms&nbsp;&nbsp;&nbsp;&nbsp;0<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 s&nbsp;&nbsp; 100%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>ForAssignment1stConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 43 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 43 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>ForAssignment2ndConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 43 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 43 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>For<a href="CppIncrease.htm">Increase</a>ConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>ForPostIncrementConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>ForPreIncrementConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 26 ms&nbsp;&nbsp;&nbsp;&nbsp;0%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>ForAssignment1stNonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 55 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 55 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>ForAssignment2ndNonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 55 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 55 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>For<a href="CppIncrease.htm">Increase</a>NonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 40 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 40 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>ForPostIncrementNonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 40 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 40 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>ForPreIncrementNonConstSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 45 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 45 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment1stConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 71 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 71 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment2ndConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 71 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 71 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a><a href="CppIncrease.htm">Increase</a>ConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 62 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 62 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PostIncrementConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 60 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 60 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PreIncrementConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 60 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 60 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment1stNonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;108 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;108 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>Assignment2ndNonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;109 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;109 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a><a href="CppIncrease.htm">Increase</a>NonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 98 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 98 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PostIncrementNonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 98 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 98 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppIterator.htm">Iterator</a>PreIncrementNonConstEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 99 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 99 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>Assignmen&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>Assignmen&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a><a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 72 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 72 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>PostIncre&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>NonInline<a href="CppFunction.htm">Function</a>PreIncrem&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>Assignment1s&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>Assignment2n&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a><a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>PostIncremen&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Inline<a href="CppFunction.htm">Function</a>PreIncrement&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 73 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlinePostIncrem&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlinePreIncreme&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlinePostIncrement&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlinePreIncrement&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Bind1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;122 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;122 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>Bind2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;122 ms&nbsp;&nbsp;&nbsp;&nbsp;2<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;122 ms&nbsp;&nbsp;&nbsp;&nbsp;2%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachPreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;173 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;173 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachPostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;172 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;172 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>Foreach<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;173 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;173 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;176 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;176 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>ForeachAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;178 ms&nbsp;&nbsp;&nbsp;&nbsp;3<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;178 ms&nbsp;&nbsp;&nbsp;&nbsp;3%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaPreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;231 ms&nbsp;&nbsp;&nbsp;&nbsp;4<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;231 ms&nbsp;&nbsp;&nbsp;&nbsp;4%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaPostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;233 ms&nbsp;&nbsp;&nbsp;&nbsp;4<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;233 ms&nbsp;&nbsp;&nbsp;&nbsp;4%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>Lambda<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp;334 ms&nbsp;&nbsp;&nbsp;&nbsp;5<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;334 ms&nbsp;&nbsp;&nbsp;&nbsp;5%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;533 ms&nbsp;&nbsp;&nbsp;&nbsp;8<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;533 ms&nbsp;&nbsp;&nbsp;&nbsp;8%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp;532 ms&nbsp;&nbsp;&nbsp;&nbsp;8<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;532 ms&nbsp;&nbsp;&nbsp;&nbsp;8%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xForPreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xForPostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xFor<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xForAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xForAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 64 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xLambdaPreIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xLambdaPostIncrement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xLambda<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment1st&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 74 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+&nbsp;&nbsp;<a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment2nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp; 75 ms&nbsp;&nbsp;&nbsp;&nbsp;1%<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

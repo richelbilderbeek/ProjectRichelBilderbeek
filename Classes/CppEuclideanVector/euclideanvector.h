@@ -1,34 +1,39 @@
 #ifndef EUCLIDEANVECTOR_H
 #define EUCLIDEANVECTOR_H
+
+#ifdef USE_CUSTOM_RIBI_EUCLIDIAN_VECTOR
+
 #include <cassert>
 #include <utility>
+
+namespace ribi {
 
 //A Euclidean vector
 template <class T>
 struct EuclideanVector
 {
-  explicit EuclideanVector(const T& any_x, const T& any_y)
+  explicit EuclideanVector(const T& any_x, const T& any_y) noexcept
     : x { any_x }, y { any_y }
   {
 
   }
-  explicit EuclideanVector(const std::pair<T,T>& p)
+  explicit EuclideanVector(const std::pair<T,T>& p) noexcept
     : x { p.first }, y { p.second }
   {
 
   }
-  explicit EuclideanVector(const EuclideanVector<T>& rhs)
+  explicit EuclideanVector(const EuclideanVector<T>& rhs) noexcept
     : x { rhs.x }, y { rhs.y }
   {
 
   }
-  EuclideanVector& operator+=(const EuclideanVector& rhs)
+  EuclideanVector& operator+=(const EuclideanVector& rhs) noexcept
   {
     x += rhs.x;
     y += rhs.y;
     return *this;
   }
-  EuclideanVector& operator*=(const double f)
+  EuclideanVector& operator*=(const double f) noexcept
   {
     x*=f;
     y*=f;
@@ -40,19 +45,19 @@ struct EuclideanVector
 };
 
 template <class T>
-bool operator==(const EuclideanVector<T>& lhs, const EuclideanVector<T>& rhs)
+bool operator==(const EuclideanVector<T>& lhs, const EuclideanVector<T>& rhs) noexcept
 {
   return lhs.x == rhs.x && lhs.y == rhs.y;
 }
 
 template <class T>
-bool operator!=(const EuclideanVector<T>& lhs, const EuclideanVector<T>& rhs)
+bool operator!=(const EuclideanVector<T>& lhs, const EuclideanVector<T>& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
 template <class T>
-const EuclideanVector<T> operator+(const EuclideanVector<T>& lhs, const EuclideanVector<T>& rhs)
+const EuclideanVector<T> operator+(const EuclideanVector<T>& lhs, const EuclideanVector<T>& rhs) noexcept
 {
   return EuclideanVector<T>(lhs.x + rhs.x, lhs.y + rhs.y);
 }
@@ -67,6 +72,8 @@ const EuclideanVector<T> operator/(const EuclideanVector<U>& lhs, const V& rhs)
   return EuclideanVector<T>(lhs.x / rhs, lhs.y / rhs);
 }
 
+} //~namespace ribi
 
+#endif
 
 #endif // EUCLIDEANVECTOR_H

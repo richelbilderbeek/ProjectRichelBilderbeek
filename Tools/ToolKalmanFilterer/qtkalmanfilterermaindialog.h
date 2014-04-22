@@ -10,7 +10,7 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 
 #include "qwt_plot.h"
@@ -44,7 +44,7 @@ public:
   explicit QtKalmanFiltererMainDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);
-  ~QtKalmanFiltererMainDialog();
+  ~QtKalmanFiltererMainDialog() noexcept;
 
   ///Get the dialog to set the experiment its parameters
   const QtKalmanFilterExperimentDialog * GetExperimentDialog() const { return m_experiment_dialog; }
@@ -115,8 +115,7 @@ private:
   void ShowTable(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 private slots:

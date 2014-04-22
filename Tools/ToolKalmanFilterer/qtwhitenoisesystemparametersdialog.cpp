@@ -34,7 +34,7 @@
 ribi::kalman::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtWhiteNoiseSystemParametersDialog),
     m_model{model},
     m_parameters{}
@@ -89,7 +89,7 @@ ribi::kalman::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDi
   assert(m_model->CreateWhiteNoiseSystem() && "Obtain an empty white noise system (all components have size zero)");
 }
 
-ribi::kalman::QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog()
+ribi::kalman::QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog() noexcept
 {
   delete ui;
 }
@@ -205,7 +205,7 @@ void ribi::kalman::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(c
 
 
 #ifndef NDEBUG
-void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test()
+void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -1,8 +1,12 @@
 #include <cassert>
 #include <cmath>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QGraphicsScene>
 #include <QPainter>
 #include "qtgravitywidgetitem.h"
+#pragma GCC diagnostic pop
 
 QtGravityWidgetItem::QtGravityWidgetItem(
   QGraphicsItem * parent,

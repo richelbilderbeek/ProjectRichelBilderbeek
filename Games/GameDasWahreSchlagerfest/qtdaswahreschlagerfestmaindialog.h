@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Das Wahre Schlagerfest, a simple game
-Copyright (C) 2003-2012 Richel Bilderbeek
+Copyright (C) 2003-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTDASWAHRESCHLAGERFESTMAINDIALOG_H
 #define QTDASWAHRESCHLAGERFESTMAINDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtDasWahreSchlagerfestMainDialog;
@@ -29,16 +32,23 @@ class QtDasWahreSchlagerfestMainDialog;
 
 namespace ribi {
 
-class QtDasWahreSchlagerfestMainDialog : public QDialog
+class QtDasWahreSchlagerfestMainDialog : public QtHideAndShowDialog
 {
-    Q_OBJECT
+  Q_OBJECT
     
 public:
-    explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0);
-    ~QtDasWahreSchlagerfestMainDialog();
+  explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0) noexcept;
+  QtDasWahreSchlagerfestMainDialog(const QtDasWahreSchlagerfestMainDialog&) = delete;
+  QtDasWahreSchlagerfestMainDialog& operator=(const QtDasWahreSchlagerfestMainDialog&) = delete;
+  ~QtDasWahreSchlagerfestMainDialog() noexcept;
 
 private:
-    Ui::QtDasWahreSchlagerfestMainDialog *ui;
+  Ui::QtDasWahreSchlagerfestMainDialog *ui;
+  void closeEvent(QCloseEvent *);
+  void keyPressEvent(QKeyEvent *event);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

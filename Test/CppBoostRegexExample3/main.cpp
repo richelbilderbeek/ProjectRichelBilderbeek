@@ -1,6 +1,10 @@
 #include <cassert>
 #include <string>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/regex.hpp>
+#pragma GCC diagnostic pop
 
 int main()
 {

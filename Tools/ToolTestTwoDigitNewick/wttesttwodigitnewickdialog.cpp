@@ -19,22 +19,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick.htm
 //---------------------------------------------------------------------------
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 #include <Wt/WText>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "binarynewickvector.h"
 #include "encranger.h"
 #include "newick.h"
 //#include "sortedbinarynewick.h"
 #include "twodigitnewick.h"
 #include "wttesttwodigitnewickdialog.h"
-//---------------------------------------------------------------------------
+
 ribi::WtTestTwoDigitNewickDialog::WtTestTwoDigitNewickDialog()
-  : m_edit_newick(new Wt::WLineEdit("((2,2),2)")),
+  : m_signal_about{},
+    m_signal_any_change{},
+    m_edit_newick(new Wt::WLineEdit("((2,2),2)")),
     m_edit_password(new Wt::WLineEdit),
     m_edit_theta(new Wt::WLineEdit("10")),
     m_text(new Wt::WTextArea)
@@ -74,7 +76,7 @@ ribi::WtTestTwoDigitNewickDialog::WtTestTwoDigitNewickDialog()
   //  this,&ribi::WtTestTwoDigitNewickDialog::OnAbout);
 
 }
-//---------------------------------------------------------------------------
+
 const ribi::About ribi::WtTestTwoDigitNewickDialog::GetAbout()
 {
   About about(
@@ -94,12 +96,12 @@ const ribi::About ribi::WtTestTwoDigitNewickDialog::GetAbout()
 
 
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::WtTestTwoDigitNewickDialog::GetVersion()
 {
   return "2.2";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::WtTestTwoDigitNewickDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -107,13 +109,13 @@ const std::vector<std::string> ribi::WtTestTwoDigitNewickDialog::GetVersionHisto
   v.push_back("2011-03-08: version 2.2: minor changes in Newick namespace, added About screen");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestTwoDigitNewickDialog::OnAbout()
 {
   //Emit that about is clicked
   m_signal_about();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestTwoDigitNewickDialog::OnCalculate()
 {
   {
@@ -163,4 +165,4 @@ void ribi::WtTestTwoDigitNewickDialog::OnCalculate()
     return;
   }
 }
-//---------------------------------------------------------------------------
+

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtsketchwidget.h"
 
 #include <cassert>
@@ -5,6 +7,8 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QSysInfo>
+#pragma GCC diagnostic pop
+
 
 QtSketchWidget::QtSketchWidget(QWidget *parent)
   : QWidget(parent)

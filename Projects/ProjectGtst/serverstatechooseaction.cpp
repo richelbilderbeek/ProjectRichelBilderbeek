@@ -47,7 +47,8 @@ ribi::gtst::ServerStateChooseAction::ServerStateChooseAction(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersChooseAction> parameters)
   : ServerState(server,period,cycle),
-  m_parameters(parameters)
+    m_has_chosen_action{},
+    m_parameters(parameters)
 {
 
 }

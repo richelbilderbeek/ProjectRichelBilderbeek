@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 
 #include "qtconnectthreeresources.h"
@@ -26,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 #include <QIcon>
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
@@ -33,9 +36,9 @@ int main(int argc, char *argv[])
 
   START_TRACE();
 
-  ribi::QtConnectThreeMenuDialog w;
+  ribi::con3::QtConnectThreeMenuDialog w;
   {
-    ribi::QtConnectThreeResources resources;
+    ribi::con3::QtConnectThreeResources resources;
     const std::string icon_filename = resources.GetIconFilename();
     assert(QFile::exists(icon_filename.c_str()));
     w.setWindowIcon( QIcon( QPixmap(icon_filename.c_str())));

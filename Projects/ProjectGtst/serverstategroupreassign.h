@@ -87,18 +87,7 @@ struct ServerStateGroupReAssign : public ServerState, StateGroupReAssign
   const std::string ToStr() const { return this->StateGroupReAssign::ToStr(); }
 
   private:
-  ///Only allow a Boost smart pointer to delete ServerStateGroupReAssign
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   ~ServerStateGroupReAssign() {}
-  ///Only allow a Boost smart pointer to delete ServerStateGroupReAssign
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(ServerStateGroupReAssign*);
   friend std::ostream& operator<<(std::ostream& os,const ServerStateGroupReAssign& s);
 
@@ -108,8 +97,6 @@ struct ServerStateGroupReAssign : public ServerState, StateGroupReAssign
   ///Determine which groups are worst and best
   const std::pair<const Group *,const Group *> CalculateWorstAndBestGroup() const;
 
-  ///The ServerStateViewResultsAll its read-only ParametersViewResultsAll
-  const boost::shared_ptr<const ParametersGroupReAssign> m_parameters;
 
   ///\brief
   ///The group its average payoff in the entire last IPGG cycle
@@ -124,6 +111,9 @@ struct ServerStateGroupReAssign : public ServerState, StateGroupReAssign
   ///#3: 3 6
   ///Average = (1 + 2 + 3 + 4 + 5 + 6) / 6 = 3.5
   std::map<const Group *,double> m_group_payoffs;
+
+  ///The ServerStateViewResultsAll its read-only ParametersViewResultsAll
+  const boost::shared_ptr<const ParametersGroupReAssign> m_parameters;
 
   ///The worst and best group
   std::pair<const Group *,const Group *> m_worst_and_best_group;

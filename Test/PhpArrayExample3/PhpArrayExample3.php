@@ -1,0 +1,1 @@
+<?php//Removing an element from an array$v=array(1,4,9,16,25);print_r($v);echo "Remove index 2 (has the value of 9)\n";assert($v[2] == 9);unset($v[2]);print_r($v);/* Screen output:Array(    [0] => 1    [1] => 4    [2] => 9    [3] => 16    [4] => 25)Remove index 2 (has the value of 9)Array(    [0] => 1    [1] => 4    [3] => 16    [4] => 25)*/?>

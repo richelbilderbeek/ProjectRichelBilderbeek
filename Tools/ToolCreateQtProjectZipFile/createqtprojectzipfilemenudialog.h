@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateQtProjectZipFile, tool to create a zip file from a Qt project
-Copyright (C) 2012-2013 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,26 +25,37 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
 #include "about.h"
+#include "menudialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace CreateQtProjectZipFile {
 
-struct MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
-  ///Obtain this class its About information
-  static const About GetAbout();
+  MenuDialog();
+  ~MenuDialog() noexcept {}
 
-  ///Obtain this class its version
-  static const std::string GetVersion();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace CreateQtProjectZipFile
-
 } //~namespace ribi
 
 #endif // CREATEQTPROJECTZIPFILEMENUDIALOG_H

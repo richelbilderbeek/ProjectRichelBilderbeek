@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,36 +18,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-
-
 #include "codetohtmlfooter.h"
 
 #include <cassert>
 
-c2h::Footer::Footer(const PageType page_type)
-  : m_page_type(page_type)
+std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) noexcept
 {
-
-}
-
-const std::vector<std::string> c2h::Footer::ToHtml() const
-{
+  #ifndef NDEBUG
+  //Test();
+  #endif
   std::vector<std::string> v;
-  switch (m_page_type)
+  switch (page_type)
   {
-    case PageType::cpp:
-    case PageType::text:
+    case FooterType::cpp:
       v.push_back("<p><a href=\"Cpp.htm\">Go back to Richel Bilderbeek's C++ page</a>.</p>");
       break;
-    case PageType::music:
-      v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
+    case FooterType::foam:
+      v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
       break;
-    case PageType::tool:
-      v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
-      break;
-    default:
-      assert(!"Should not get here");
-    break;
   }
   v.push_back("<p><a href=\"index.htm\">Go back to Richel Bilderbeek's homepage</a>.</p>");
   v.push_back("<p>&nbsp;</p>");
@@ -55,5 +43,14 @@ const std::vector<std::string> c2h::Footer::ToHtml() const
   v.push_back("<p>This page has been created by the <a href=\"Tools.htm\">tool</a> <a href=\"ToolCodeToHtml.htm\">CodeToHtml</a></p>");
   v.push_back("</body>");
   v.push_back("</html>");
+  return v;
+}
+
+std::vector<std::string> ribi::c2h::Footer::ToMarkdown(const FooterType /*page_type*/) noexcept
+{
+  #ifndef NDEBUG
+  //Test();
+  #endif
+  std::vector<std::string> v;
   return v;
 }

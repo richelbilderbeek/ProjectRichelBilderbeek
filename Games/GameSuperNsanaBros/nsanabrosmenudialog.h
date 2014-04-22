@@ -1,36 +1,43 @@
 #ifndef NSANABROSMENUDIALOG_H
 #define NSANABROSMENUDIALOG_H
-//---------------------------------------------------------------------------
-#include <string>
-#include <vector>
-//---------------------------------------------------------------------------
-#include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
-#include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
-#include "about.h"
-//---------------------------------------------------------------------------
+#include "menudialog.h"
 #include "nsanabrosstlfwdheader.h"
-//---------------------------------------------------------------------------
-struct NsanaBrosMenuDialog : public boost::noncopyable
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
+struct NsanaBrosMenuDialog : public MenuDialog
 {
   NsanaBrosMenuDialog();
+
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
   const NsanaBrosOptionsDialog * GetOptionsDialog() const;
   boost::shared_ptr<NsanaBrosOptionsDialog> UseOptionsDialog();
 
+  ~NsanaBrosMenuDialog() noexcept;
+  //friend void boost::checked_delete<>(NsanaBrosMenuDialog *);
   private:
-  ~NsanaBrosMenuDialog() {}
-  friend void boost::checked_delete<>(NsanaBrosMenuDialog *);
+
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   boost::scoped_ptr<NsanaBrosGameDialog> m_game;
   boost::shared_ptr<NsanaBrosOptionsDialog> m_options;
 
-  public:
-
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // NSANABROSMENUDIALOG_H

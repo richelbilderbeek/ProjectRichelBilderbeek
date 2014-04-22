@@ -9,14 +9,14 @@
 
 
 #ifndef NDEBUG
-void ribi::Chess::Move::Test()
+void ribi::Chess::Move::Test() noexcept
 {
   {
     static bool tested = false;
     if (tested) return;
     tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -42,12 +42,12 @@ void ribi::Chess::Move::Test()
 
       FTRACE("Test Chess::Move parsing of the square the piece is moving from");
 
-      assert(IsEqual(*Move::ParseFrom( "a2 a3"),*SquareFactory::Create(Chess::File("a"),Chess::Rank("2"))));
-      assert(IsEqual(*Move::ParseFrom("Bb3 c5"),*SquareFactory::Create(Chess::File("b"),Chess::Rank("3"))));
-      assert(IsEqual(*Move::ParseFrom("Kc4 d4"),*SquareFactory::Create(Chess::File("c"),Chess::Rank("4"))));
-      assert(IsEqual(*Move::ParseFrom("Nd5 e6"),*SquareFactory::Create(Chess::File("d"),Chess::Rank("5"))));
-      assert(IsEqual(*Move::ParseFrom("Qe6 f7"),*SquareFactory::Create(Chess::File("e"),Chess::Rank("6"))));
-      assert(IsEqual(*Move::ParseFrom("Rf7 h7"),*SquareFactory::Create(Chess::File("f"),Chess::Rank("7"))));
+      assert((*Move::ParseFrom( "a2 a3")==*SquareFactory::Create(Chess::File("a"),Chess::Rank("2"))));
+      assert((*Move::ParseFrom("Bb3 c5")==*SquareFactory::Create(Chess::File("b"),Chess::Rank("3"))));
+      assert((*Move::ParseFrom("Kc4 d4")==*SquareFactory::Create(Chess::File("c"),Chess::Rank("4"))));
+      assert((*Move::ParseFrom("Nd5 e6")==*SquareFactory::Create(Chess::File("d"),Chess::Rank("5"))));
+      assert((*Move::ParseFrom("Qe6 f7")==*SquareFactory::Create(Chess::File("e"),Chess::Rank("6"))));
+      assert((*Move::ParseFrom("Rf7 h7")==*SquareFactory::Create(Chess::File("f"),Chess::Rank("7"))));
       assert(!ribi::Chess::Move::ParseFrom("a3"));
       assert(!ribi::Chess::Move::ParseFrom("0-0"));
       assert(!ribi::Chess::Move::ParseFrom("0-0+"));
@@ -184,13 +184,13 @@ void ribi::Chess::Move::Test()
       FTRACE("Testing ParseTo");
 
       ///Test parsing of the square the piece is moving to
-      assert(IsEqual(*Move::ParseTo("a2 a3"),*SquareFactory::Create(Chess::File("a"),Chess::Rank("3"))));
-      assert(IsEqual(*Move::ParseTo(   "a3"),*SquareFactory::Create(Chess::File("a"),Chess::Rank("3"))));
-      assert(IsEqual(*Move::ParseTo("Bb3 c5"),*SquareFactory::Create(Chess::File("c"),Chess::Rank("5"))));
-      assert(IsEqual(*Move::ParseTo("Kc4 d4"),*SquareFactory::Create(Chess::File("d"),Chess::Rank("4"))));
-      assert(IsEqual(*Move::ParseTo("Nd5 e6"),*SquareFactory::Create(Chess::File("e"),Chess::Rank("6"))));
-      assert(IsEqual(*Move::ParseTo("Qe6 f7"),*SquareFactory::Create(Chess::File("f"),Chess::Rank("7"))));
-      assert(IsEqual(*Move::ParseTo("Rf7 h7"),*SquareFactory::Create(Chess::File("h"),Chess::Rank("7"))));
+      assert((*Move::ParseTo("a2 a3")==*SquareFactory::Create(Chess::File("a"),Chess::Rank("3"))));
+      assert((*Move::ParseTo(   "a3")==*SquareFactory::Create(Chess::File("a"),Chess::Rank("3"))));
+      assert((*Move::ParseTo("Bb3 c5")==*SquareFactory::Create(Chess::File("c"),Chess::Rank("5"))));
+      assert((*Move::ParseTo("Kc4 d4")==*SquareFactory::Create(Chess::File("d"),Chess::Rank("4"))));
+      assert((*Move::ParseTo("Nd5 e6")==*SquareFactory::Create(Chess::File("e"),Chess::Rank("6"))));
+      assert((*Move::ParseTo("Qe6 f7")==*SquareFactory::Create(Chess::File("f"),Chess::Rank("7"))));
+      assert((*Move::ParseTo("Rf7 h7")==*SquareFactory::Create(Chess::File("h"),Chess::Rank("7"))));
       assert(!ribi::Chess::Move::ParseTo("0-0"));
       assert(!ribi::Chess::Move::ParseTo("0-0+"));
       assert(!ribi::Chess::Move::ParseTo("0-0#"));
@@ -296,7 +296,7 @@ void ribi::Chess::Move::Test()
         assert(m.Piece());
         assert(dynamic_cast<Chess::PiecePawn*>(m.Piece().get()));
         assert(!m.PiecePromotion());
-        assert(IsEqual(*m.To().get(),*SquareFactory::Create("a3")));
+        assert((*m.To().get()==*SquareFactory::Create("a3")));
       }
 
 
@@ -321,7 +321,7 @@ void ribi::Chess::Move::Test()
         );
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

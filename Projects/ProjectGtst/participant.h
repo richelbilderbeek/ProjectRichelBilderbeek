@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 //---------------------------------------------------------------------------
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 //---------------------------------------------------------------------------
@@ -40,13 +40,14 @@ namespace gtst {
 ///Participant is a participant.
 ///
 ///During a session there are zero, one or more instances of Participant.
-struct Participant : public boost::noncopyable
+struct Participant
 {
   ///A Participant is constructed by a chat tag and his/her GroupAssigner
   Participant(
-    //boost::shared_ptr<WtShapeWidget> chat_shape,
     boost::shared_ptr<GroupAssigner> group_assigner,
     Server * const server);
+  Participant(const Participant&) = delete;
+  Participant& operator=(const Participant&) = delete;
 
   ///Append the last chat message (from someone in Participants's group)
   ///to this Participant's chat log
@@ -124,18 +125,14 @@ struct Participant : public boost::noncopyable
   void Vote(const boost::shared_ptr<VotingOption>& vote);
 
   private:
-  ///Only allow a Boost smart pointer to delete Administrator
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   ~Participant();
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(Participant*);
+
+  ///m_actions is a log of all actions taken by the participant
+  std::vector<const ChooseActionOption *> m_actions;
+
+  ///m_chat is the participants' chat log, obtained from all participants
+  std::vector<std::vector<boost::shared_ptr<ChatMessage> > > m_chat;
 
   ///The chat tag is the character that is assigned to a participant at chatting
   const boost::shared_ptr<WtShapeWidget> m_chat_shape;
@@ -152,12 +149,6 @@ struct Participant : public boost::noncopyable
   ///if m_ip_address is null, the participant can log in from any IP address.
   ///When the participant logs in, his/her IP address is stored here
   boost::shared_ptr<const SafeIpAddress> m_ip_address;
-
-  ///m_chat is the participants' chat log, obtained from all participants
-  std::vector<std::vector<boost::shared_ptr<ChatMessage> > > m_chat;
-
-  ///m_actions is a log of all actions taken by the participant
-  std::vector<const ChooseActionOption *> m_actions;
 
   ///m_payoffs is a log of all payoffs recieved by the participant
   boost::shared_ptr<Payoffs> m_payoffs;

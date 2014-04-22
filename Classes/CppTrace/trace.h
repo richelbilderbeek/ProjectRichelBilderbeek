@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Trace, some tracing macro's
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,17 +26,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 struct Trace
 {
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "2.6";
   }
-  static const std::vector<std::string> GetVersionHistory()
+  static std::vector<std::string> GetVersionHistory()
   {
     return {
       "2010-xx-xx: Version 1.0: initial version, write trace to std::cout",
-      "2011-06-22: Version 2.0: added versioning, added boost::lexical_cast in TRACE",
+      "2011-06-22: Version 2.0: added versioning, added boost::lexical_cast in //TRACE",
       "2011-08-15: Version 2.1: added all #includes",
-      "2012-01-15: Version 2.2: Moved bracket in TRACE to allow 'if (false) TRACE(true);' without surprises",
+      "2012-01-15: Version 2.2: Moved bracket in //TRACE to allow 'if (false) //TRACE(true);' without surprises",
       "2012-02-01: Version 2.3: put START_TRACE in its own scope",
       "2012-08-11: Version 2.4: put #ifdef _WIN32 on top for cross-compiling",
       "2013-02-24: Version 2.5: added FTRACE for tracing to file only",
@@ -71,10 +71,10 @@ struct Trace
 
   #define TRACE(x)             \
   {                            \
-    std::ofstream f(           \
+    std::ofstream f_314_xyz(   \
       "trace_out.txt",         \
       std::ios::app);          \
-    f                          \
+    f_314_xyz                  \
       << "TRACE \'"            \
       <<  std::string(#x )     \
       <<  "\' line "           \
@@ -86,7 +86,7 @@ struct Trace
           std::string>(x)      \
       <<  "'"                  \
       << std::endl;            \
-    f.close();                 \
+    f_314_xyz.close();         \
     std::clog                  \
       << "TRACE \'"            \
       <<  std::string (#x)     \

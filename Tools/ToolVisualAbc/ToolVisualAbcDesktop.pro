@@ -1,57 +1,19 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+include(../../Libraries/Boost.pri)
 
-LIBS += -lboost_system -lboost_filesystem
-TEMPLATE = app
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppMusic \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppTrace
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-SOURCES += \
-    checkprerequisites.cpp \
-    chords.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppMusic/musicchord.cpp \
-    ../../Classes/CppMusic/musicnote.cpp \
-    ../../Classes/CppMusic/musicscale.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    maindialog.cpp \
-    menudialog.cpp \
-    qtchordsdialog.cpp \
-    qtmain.cpp \
-    qtmaindialog.cpp \
-    qtvisualabcmenudialog.cpp
+#Specific
+include(../../Classes/CppMusic/CppMusic.pri)
+include(../../Tools/ToolVisualAbc/ToolVisualAbcDesktop.pri)
 
-HEADERS  += \
-    checkprerequisites.h \
-    chords.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppMusic/musicchord.h \
-    ../../Classes/CppMusic/musicnote.h \
-    ../../Classes/CppMusic/musicscale.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppTrace/trace.h \
-    maindialog.h \
-    menudialog.h \
-    qtchordsdialog.h \
-    qtmaindialog.h \
-    qtvisualabcmaindialog.h \
-    qtvisualabcmenudialog.h
-
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtchordsdialog.ui \
-    qtmaindialog.ui \
-    qtvisualabcmenudialog.ui
-
-RESOURCES += \
-    ToolVisualAbc.qrc
-
-OTHER_FILES += \
-    ../../Classes/CppMusic/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt
+SOURCES += qtmain.cpp

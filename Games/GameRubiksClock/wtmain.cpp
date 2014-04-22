@@ -26,7 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "wtautoconfig.h"
 #include "wtrubiksclockmenudialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QFile>
+#pragma GCC diagnostic pop
 
 struct WtApplication : public Wt::WApplication
 {
@@ -35,7 +38,7 @@ struct WtApplication : public Wt::WApplication
   {
     this->setTitle("RubiksClock");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new ribi::WtRubiksClockMenuDialog);
+    root()->addWidget(new ribi::ruco::WtRubiksClockMenuDialog);
   }
 };
 

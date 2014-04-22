@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,35 +23,48 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
-#include <QDialog>
+#include "qthideandshowdialog.h"
+#include "tictactoefwd.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTicTacToeGameDialog;
 }
 
 namespace ribi {
+namespace tictactoe {
 
-struct QtTicTacToeWidget;
-
-class QtTicTacToeGameDialog : public QDialog
+class QtTicTacToeGameDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTicTacToeGameDialog(QWidget *parent = 0);
-  ~QtTicTacToeGameDialog();
-  static const std::string GetVersion() { return "1.2"; }
+  explicit QtTicTacToeGameDialog(
+    const boost::shared_ptr<Ai>& player1,
+    const boost::shared_ptr<Ai>& player2,
+    QWidget *parent = 0
+  );
+  QtTicTacToeGameDialog(const QtTicTacToeGameDialog&) = delete;
+  QtTicTacToeGameDialog& operator=(const QtTicTacToeGameDialog&) = delete;
+  ~QtTicTacToeGameDialog() noexcept;
+  static std::string GetVersion() { return "1.2"; }
 
 private:
   Ui::QtTicTacToeGameDialog *ui;
   boost::shared_ptr<QtTicTacToeWidget> m_tictactoe;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void HasWinner();
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEGAMEDIALOG_H

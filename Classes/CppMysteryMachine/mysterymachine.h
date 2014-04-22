@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MysteryMachine, my mystery machine class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,8 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
-#include <boost/scoped_ptr.hpp>
-#include <boost/noncopyable.hpp>
+#include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
@@ -37,69 +36,102 @@ namespace ribi {
 
 struct DialWidget;
 struct LedWidget;
+struct TextCanvas;
 struct ToggleButtonWidget;
 
 ///MysteryMachine contains the logic behind my Mystery Machine
-struct MysteryMachine : public boost::noncopyable
+struct MysteryMachine
 {
-  MysteryMachine();
+  MysteryMachine() noexcept;
+  MysteryMachine(const MysteryMachine&) = delete;
+  MysteryMachine& operator=(const MysteryMachine&) = delete;
 
-  DialWidget * GetDialBack() { return m_dial_back.get(); }
-  DialWidget * GetDialFront() { return m_dial_front.get(); }
-  LedWidget * GetLedBack1() { return m_led_back_1.get(); }
-  LedWidget * GetLedBack2() { return m_led_back_2.get(); }
-  LedWidget * GetLedBack3() { return m_led_back_3.get(); }
-  LedWidget * GetLedFront1() { return m_led_front_1.get(); }
-  LedWidget * GetLedFront2() { return m_led_front_2.get(); }
-  LedWidget * GetLedFront3() { return m_led_front_3.get(); }
-  LedWidget * GetLedTopFront() { return m_led_top_front.get();  }
-  LedWidget * GetLedTopMiddle() { return m_led_top_middle.get(); }
-  LedWidget * GetLedTopBack() { return m_led_top_back.get();   }
-  ToggleButtonWidget * GetToggleButton() { return m_toggle_button.get(); }
+  const boost::shared_ptr<DialWidget> GetDialBack() noexcept { return m_dial_back; }
+  const boost::shared_ptr<DialWidget> GetDialFront() noexcept { return m_dial_front; }
+  const boost::shared_ptr<LedWidget> GetLedBack1() noexcept { return m_led_back_1; }
+  const boost::shared_ptr<LedWidget> GetLedBack2() noexcept { return m_led_back_2; }
+  const boost::shared_ptr<LedWidget> GetLedBack3() noexcept { return m_led_back_3; }
+  const boost::shared_ptr<LedWidget> GetLedFront1() noexcept { return m_led_front_1; }
+  const boost::shared_ptr<LedWidget> GetLedFront2() noexcept { return m_led_front_2; }
+  const boost::shared_ptr<LedWidget> GetLedFront3() noexcept { return m_led_front_3; }
+  const boost::shared_ptr<LedWidget> GetLedTopFront() noexcept { return m_led_top_front;  }
+  const boost::shared_ptr<LedWidget> GetLedTopMiddle() noexcept { return m_led_top_middle; }
+  const boost::shared_ptr<LedWidget> GetLedTopBack() noexcept { return m_led_top_back;   }
+  const boost::shared_ptr<ToggleButtonWidget> GetToggleButton() noexcept { return m_toggle_button; }
 
 
-  const DialWidget * GetDialBack() const { return m_dial_back.get(); }
-  const DialWidget * GetDialFront() const { return m_dial_front.get(); }
-  const LedWidget * GetLedBack1() const { return m_led_back_1.get(); }
-  const LedWidget * GetLedBack2() const { return m_led_back_2.get(); }
-  const LedWidget * GetLedBack3() const { return m_led_back_3.get(); }
-  const LedWidget * GetLedFront1() const { return m_led_front_1.get(); }
-  const LedWidget * GetLedFront2() const { return m_led_front_2.get(); }
-  const LedWidget * GetLedFront3() const { return m_led_front_3.get(); }
-  const LedWidget * GetLedTopFront() const  { return m_led_top_front.get();  }
-  const LedWidget * GetLedTopMiddle() const { return m_led_top_middle.get(); }
-  const LedWidget * GetLedTopBack() const   { return m_led_top_back.get();   }
-  const ToggleButtonWidget * GetToggleButton() const { return m_toggle_button.get(); }
+  const boost::shared_ptr<const DialWidget> GetDialBack() const noexcept { return m_dial_back; }
+  const boost::shared_ptr<const DialWidget> GetDialFront() const noexcept { return m_dial_front; }
+  const boost::shared_ptr<const LedWidget> GetLedBack1() const noexcept { return m_led_back_1; }
+  const boost::shared_ptr<const LedWidget> GetLedBack2() const noexcept { return m_led_back_2; }
+  const boost::shared_ptr<const LedWidget> GetLedBack3() const noexcept { return m_led_back_3; }
+  const boost::shared_ptr<const LedWidget> GetLedFront1() const noexcept { return m_led_front_1; }
+  const boost::shared_ptr<const LedWidget> GetLedFront2() const noexcept { return m_led_front_2; }
+  const boost::shared_ptr<const LedWidget> GetLedFront3() const noexcept { return m_led_front_3; }
+  const boost::shared_ptr<const LedWidget> GetLedTopFront() const noexcept  { return m_led_top_front;  }
+  const boost::shared_ptr<const LedWidget> GetLedTopMiddle() const noexcept { return m_led_top_middle; }
+  const boost::shared_ptr<const LedWidget> GetLedTopBack() const noexcept   { return m_led_top_back;   }
+  const boost::shared_ptr<const ToggleButtonWidget> GetToggleButton() const noexcept { return m_toggle_button; }
+
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
+
+  ///Convert the MysteryMachine to a TextCanvas
+  /*
+
++--------------------------------------------------------+
+|  ***     ***     ***     ____                          |
+|** | ** **hhh** **MMM**  |    |           ***           |
+|*  |  * *hhhhh* *MMMMM*  |____|         **MMM**         |
+|*  |  * *hhhhh* *MMMMM*  |____|         *MMMMM*         |
+|*     * *hhhhh* *MMMMM*                 *MMMMM*         |
+| *   *    ***    *MMM*    ***           *MMMMM*         |
+|  ***   **MMM**   ***   **MMM**           ***           |
+|        *MMMMM*         *MMMMM*         **MMM**         |
+|        *MMMMM*         *MMMMM*         *MMMMM*         |
+|        *MMMMM*         *MMMMM*         *MMMMM*         |
+|          ***            *MMM*    ***   *MMMMM*         |
+|        **MMM**           ***   **MMM**   ***     ***   |
+|        *MMMMM*                 *MMMMM* **hhh** ** | ** |
+|        *MMMMM*                 *MMMMM* *hhhhh* *  |  * |
+|        *MMMMM*                 *MMMMM* *hhhhh* *  |  * |
+|         *MMM*                   *MMM*  *hhhhh* *     * |
+|          ***                     ***    *hhh*   *   *  |
+|                                          ***     ***   |
++--------------------------------------------------------+
+
+  */
+  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   private:
-  ///MysteryMachine can only be deleted by Boost smart pointers
-  virtual ~MysteryMachine() {}
-  ///MysteryMachine can only be deleted by Boost smart pointers
+  virtual ~MysteryMachine() noexcept {}
   friend void boost::checked_delete<>(MysteryMachine*);
 
-  boost::scoped_ptr<DialWidget> m_dial_back;
-  boost::scoped_ptr<DialWidget> m_dial_front;
-  boost::scoped_ptr<LedWidget> m_led_front_1;
-  boost::scoped_ptr<LedWidget> m_led_front_2;
-  boost::scoped_ptr<LedWidget> m_led_front_3;
-  boost::scoped_ptr<LedWidget> m_led_back_1;
-  boost::scoped_ptr<LedWidget> m_led_back_2;
-  boost::scoped_ptr<LedWidget> m_led_back_3;
-  boost::scoped_ptr<LedWidget> m_led_top_front;
-  boost::scoped_ptr<LedWidget> m_led_top_middle;
-  boost::scoped_ptr<LedWidget> m_led_top_back;
-  boost::scoped_ptr<ToggleButtonWidget> m_toggle_button;
+  boost::shared_ptr<DialWidget> m_dial_back;
+  boost::shared_ptr<DialWidget> m_dial_front;
+  boost::shared_ptr<LedWidget> m_led_front_1;
+  boost::shared_ptr<LedWidget> m_led_front_2;
+  boost::shared_ptr<LedWidget> m_led_front_3;
+  boost::shared_ptr<LedWidget> m_led_back_1;
+  boost::shared_ptr<LedWidget> m_led_back_2;
+  boost::shared_ptr<LedWidget> m_led_back_3;
+  boost::shared_ptr<LedWidget> m_led_top_front;
+  boost::shared_ptr<LedWidget> m_led_top_middle;
+  boost::shared_ptr<LedWidget> m_led_top_back;
+  boost::shared_ptr<ToggleButtonWidget> m_toggle_button;
 
-  void Update();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine);
+  void Update() noexcept;
 
-  public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  friend std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine) noexcept;
+
 };
 
-std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine);
+std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine) noexcept;
 
 } //~namespace ribi
 

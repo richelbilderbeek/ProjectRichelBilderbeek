@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShape, tool to test the Shape and ShapeWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,7 +23,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testshapemenudialog.h"
 
-#include <boost/foreach.hpp>
+#include <cassert>
+#include <iostream>
+
 
 #include "shape.h"
 #include "shapewidget.h"
@@ -33,31 +35,46 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
+int ribi::TestShapeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
 ribi::TestShapeMenuDialog::TestShapeMenuDialog()
 {
   const std::vector<std::string> files =
   {
     GetFilenameImageWelcome()
   };
-  BOOST_FOREACH(const std::string& filename,files)
+  for(const std::string& filename: files)
   {
     if (!QFile::exists(filename.c_str()))
     {
-      QFile f( (std::string(":/images/") + filename).c_str() );
+      QFile f( (":/images/" + filename).c_str() );
         f.copy(filename.c_str());
     }
     assert(QFile::exists(filename.c_str()));
   }
 }
 
-const ribi::About ribi::TestShapeMenuDialog::GetAbout() const
+ribi::About ribi::TestShapeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "TestShape",
     "tool to test the Shape and ShapeWidget classes",
     "the 8th of August 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestShape.htm",
     GetVersion(),
     GetVersionHistory());
@@ -69,16 +86,52 @@ const ribi::About ribi::TestShapeMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string ribi::TestShapeMenuDialog::GetVersion()
+ribi::Help ribi::TestShapeMenuDialog::GetHelp() const noexcept
 {
-  return "2.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestShapeMenuDialog::GetVersionHistory()
+boost::shared_ptr<const ribi::Program> ribi::TestShapeMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestShape
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::TestShapeMenuDialog::GetVersion() const noexcept
+{
+  return "2.1";
+}
+
+std::vector<std::string> ribi::TestShapeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-28: Version 1.0: initial version",
-    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget"
+    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget",
+    "2013-11-05: version 2.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
 
+#ifndef NDEBUG
+void ribi::TestShapeMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestShapeMenuDialog::Test");
+  TRACE("Finished ribi::TestShapeMenuDialog::Test successfully");
+}
+#endif

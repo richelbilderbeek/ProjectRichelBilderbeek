@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,13 +22,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTRICHELBILDERBEEKMENUDIALOG_H
 
 #include <map>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/function.hpp>
 #include "qthideandshowdialog.h"
 #include "richelbilderbeekprogramtype.h"
 #include "about.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
-class QtRichelBilderbeekMenuDialog;
+  class QtRichelBilderbeekMenuDialog;
 }
 
 namespace ribi {
@@ -41,9 +45,11 @@ class QtRichelBilderbeekMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtRichelBilderbeekMenuDialog(QWidget *parent = 0);
-  ~QtRichelBilderbeekMenuDialog();
+  QtRichelBilderbeekMenuDialog(const QtRichelBilderbeekMenuDialog&) = delete;
+  QtRichelBilderbeekMenuDialog& operator=(const QtRichelBilderbeekMenuDialog&) = delete;
+  ~QtRichelBilderbeekMenuDialog() noexcept;
 
-  static const About GetAbout();
+  static About GetAbout() noexcept;
 
 private slots:
   void OnAbout();
@@ -53,9 +59,13 @@ private:
 
   void keyPressEvent(QKeyEvent *);
 
+  //void OnShow(const std::string text);
+  void OnShow(const ProgramType program_type);
+
+
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

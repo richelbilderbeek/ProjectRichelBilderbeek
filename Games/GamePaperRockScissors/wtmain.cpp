@@ -1,19 +1,19 @@
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/program_options.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
 #include <Wt/WText>
-//---------------------------------------------------------------------------
+
 #include "trace.h"
 #include "wtpaperrockscissorsdialog.h"
-//---------------------------------------------------------------------------
+
 struct WtPaperRockScissorsApplication : public Wt::WApplication
 {
   WtPaperRockScissorsApplication(const Wt::WEnvironment& env);
 };
-//---------------------------------------------------------------------------
+
 WtPaperRockScissorsApplication::WtPaperRockScissorsApplication(
   const Wt::WEnvironment& env)
   : WApplication(env)
@@ -22,12 +22,12 @@ WtPaperRockScissorsApplication::WtPaperRockScissorsApplication(
   this->useStyleSheet("wt.css");
   root()->addWidget(new ribi::WtPaperRockScissorsDialog);
 }
-//---------------------------------------------------------------------------
+
 Wt::WApplication *createApplication(const Wt::WEnvironment& env)
 {
   return new WtPaperRockScissorsApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
   START_TRACE();
@@ -81,4 +81,4 @@ int main(int argc, char **argv)
   //Give Wt the modified parameters
   return WRun(w.size(), &w[0], &createApplication);
 }
-//---------------------------------------------------------------------------
+

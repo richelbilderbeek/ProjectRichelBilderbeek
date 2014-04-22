@@ -1,8 +1,9 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "musicchord.h"
-
 #include <set>
+#include <boost/make_shared.hpp>
+#pragma GCC diagnostic pop
 
 ribi::Music::Chord::Chord(
   const Note root,
@@ -18,6 +19,8 @@ ribi::Music::Chord::Chord(
 
 int ribi::Music::Chord::CountSameNotes(const boost::shared_ptr<Chord>& lhs, const boost::shared_ptr<Chord>& rhs)
 {
+  assert(lhs);
+  assert(rhs);
   //The indices of the notes
   std::set<int> x;
   {
@@ -37,7 +40,7 @@ int ribi::Music::Chord::CountSameNotes(const boost::shared_ptr<Chord>& lhs, cons
 }
 
 
-std::vector<boost::shared_ptr<ribi::Music::Chord> > ribi::Music::Chord::CreateAllChords()
+std::vector<boost::shared_ptr<ribi::Music::Chord> > ribi::Music::Chord::CreateAllChords() noexcept
 {
   std::vector<boost::shared_ptr<Chord> > v;
   std::vector<Note> notes = Note::GetAllNotes();
@@ -51,22 +54,23 @@ std::vector<boost::shared_ptr<ribi::Music::Chord> > ribi::Music::Chord::CreateAl
   return v;
 }
 
-std::vector<boost::shared_ptr<ribi::Music::Chord> > ribi::Music::Chord::CreateChords(const Note root)
+std::vector<boost::shared_ptr<ribi::Music::Chord> > ribi::Music::Chord::CreateChords(const Note root) noexcept
 {
+
   return
   {
-    boost::shared_ptr<Chord>(new ChordAug(root)),
-    boost::shared_ptr<Chord>(new ChordDim(root)),
-    boost::shared_ptr<Chord>(new ChordMajor(root)),
-    boost::shared_ptr<Chord>(new ChordMinor(root)),
-    boost::shared_ptr<Chord>(new Chord6(root)),
-    boost::shared_ptr<Chord>(new ChordMinor6(root)),
-    boost::shared_ptr<Chord>(new Chord7(root)),
-    boost::shared_ptr<Chord>(new ChordMinor7(root))
+    boost::make_shared<ChordAug   >(root),
+    boost::make_shared<ChordDim   >(root),
+    boost::make_shared<ChordMajor >(root),
+    boost::make_shared<ChordMinor >(root),
+    boost::make_shared<Chord6     >(root),
+    boost::make_shared<ChordMinor6>(root),
+    boost::make_shared<Chord7     >(root),
+    boost::make_shared<ChordMinor7>(root)
   };
 }
 
-boost::shared_ptr<ribi::Music::Chord> ribi::Music::Chord::CreateChord(const std::string& chord_name)
+boost::shared_ptr<ribi::Music::Chord> ribi::Music::Chord::CreateChord(const std::string& chord_name) noexcept
 {
   std::vector<boost::shared_ptr<Chord> > v = CreateAllChords();
   const auto i = std::find_if(v.begin(),v.end(),
@@ -102,7 +106,7 @@ boost::shared_ptr<ribi::Music::Chord> ribi::Music::Chord::CreateChord(const std:
   */
 }
 
-const std::vector<ribi::Music::Note> ribi::Music::Chord::GetNotes() const
+const std::vector<ribi::Music::Note> ribi::Music::Chord::GetNotes() const noexcept
 {
   std::vector<Note> notes;
   Note cur = m_root;
@@ -117,19 +121,19 @@ const std::vector<ribi::Music::Note> ribi::Music::Chord::GetNotes() const
   return notes;
 }
 
-const std::string ribi::Music::Chord::GetVersion()
+std::string ribi::Music::Chord::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Music::Chord::GetVersionHistory()
+std::vector<std::string> ribi::Music::Chord::GetVersionHistory() noexcept
 {
   return {
     "2012-08-10: version 1.0: initial version"
   };
 }
 
-void ribi::Music::Chord::Test()
+void ribi::Music::Chord::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -138,54 +142,54 @@ void ribi::Music::Chord::Test()
   }
 }
 
-const std::string ribi::Music::Chord::ToStr() const
+std::string ribi::Music::Chord::ToStr() const noexcept
 {
   return m_root.ToStr() + m_postfix;
 }
 
-ribi::Music::ChordAug::ChordAug(const Note root)
+ribi::Music::ChordAug::ChordAug(const Note root) noexcept
   : Chord(root,"+",{4,4})
 {
 
 }
 
-ribi::Music::ChordDim::ChordDim(const Note root)
+ribi::Music::ChordDim::ChordDim(const Note root) noexcept
   : Chord(Note(root.ToInt() + 3),"dim",{3,3})
 {
 
 }
 
-ribi::Music::ChordMajor::ChordMajor(const Note root)
+ribi::Music::ChordMajor::ChordMajor(const Note root) noexcept
   : Chord(root,"",{4,3})
 {
 
 }
 
-ribi::Music::ChordMinor::ChordMinor(const Note root)
+ribi::Music::ChordMinor::ChordMinor(const Note root) noexcept
   : Chord(root,"m",{3,4})
 {
 
 }
 
-ribi::Music::Chord6::Chord6(const Note root)
+ribi::Music::Chord6::Chord6(const Note root) noexcept
   : Chord(root,"6",{4,3,2})
 {
 
 }
 
-ribi::Music::ChordMinor6::ChordMinor6(const Note root)
+ribi::Music::ChordMinor6::ChordMinor6(const Note root) noexcept
   : Chord(root,"m6",{3,4,2})
 {
 
 }
 
-ribi::Music::Chord7::Chord7(const Note root)
+ribi::Music::Chord7::Chord7(const Note root) noexcept
   : Chord(Note(root.ToInt() + 4),"7",{3,3})
 {
 
 }
 
-ribi::Music::ChordMinor7::ChordMinor7(const Note root)
+ribi::Music::ChordMinor7::ChordMinor7(const Note root) noexcept
   : Chord(Note(root.ToInt() + 3),"m7",{4,3})
 {
 

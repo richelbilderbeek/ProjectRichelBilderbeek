@@ -1,67 +1,26 @@
-QT       += core gui
-#Support both Qt4 and Qt5
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
 
-TEMPLATE = app
+#Console, general
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+#Desktop, general
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+
+#Console, specific
+include(../../Classes/CppQrcFile/CppQrcFile.pri)
+include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
+
+#Desktop, specific
+include(ToolCreateQtProjectZipFileDesktop.pri)
 
 
-LIBS += \
-    -lboost_filesystem \
-    -lboost_regex \
-    -lboost_system
+SOURCES += qtmain.cpp
 
-
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQrcFile \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtCreatorProFile \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppTrace
-#    ../../Website
-
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQrcFile/qrcfile.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtCreatorProFile/qtcreatorprofile.cpp \
-    ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    createqtprojectzipfilemenudialog.cpp \
-    createqtprojectzipfilepath.cpp \
-    qtcreateqtprojectzipfilemaindialog.cpp \
-    qtcreateqtprojectzipfilemenudialog.cpp \
-    qtmain.cpp
-
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQrcFile/qrcfile.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtCreatorProFile/qtcreatorprofile.h \
-    ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppTrace/trace.h \
-    createqtprojectzipfilemenudialog.h \
-    createqtprojectzipfilepath.h \
-    qtcreateqtprojectzipfilemaindialog.h \
-    qtcreateqtprojectzipfilemenudialog.h
-
-FORMS += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtcreateqtprojectzipfilemaindialog.ui \
-    qtcreateqtprojectzipfilemenudialog.ui
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtCreatorProFile/Licence.txt \
-    ../../Classes/CppQrcFile/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    Licence.txt \
-    zip.sh
-
-RESOURCES += \
-    ToolCreateQtProjectZipFile.qrc
 

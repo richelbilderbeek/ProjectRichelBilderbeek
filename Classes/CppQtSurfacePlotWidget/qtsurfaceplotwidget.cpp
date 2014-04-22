@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtSurfacePlotWidget, Qt widget for displaying a surface plot
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,13 +21,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "qtsurfaceplotwidget.h"
-//---------------------------------------------------------------------------
-QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
-  : QWidget(parent)
+#pragma GCC diagnostic pop
+
+ribi::QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
+  : QWidget(parent),
+    m_surface{}
 {
   std::vector<std::vector<unsigned char> > v(128,std::vector<unsigned char>(128));
   for(int y=0; y!=128; ++y)
@@ -39,20 +45,20 @@ QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
   }
   SetSurfaceGrey(v);
 }
-//---------------------------------------------------------------------------
-const std::string QtSurfacePlotWidget::GetVersion()
+
+std::string ribi::QtSurfacePlotWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> QtSurfacePlotWidget::GetVersionHistory()
+
+std::vector<std::string> ribi::QtSurfacePlotWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-07-14: version 1.0: initial version");
-  return v;
+  return {
+    "2012-07-14: version 1.0: initial version"
+  };
 }
-//---------------------------------------------------------------------------
-void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >& v)
+
+void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >& v)
 {
   //Get the size
   const int maxx = v[0].size();
@@ -94,14 +100,14 @@ void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >
   }
   SetSurfaceGrey(w);
 }
-//---------------------------------------------------------------------------
-void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<unsigned char> >& surface)
+
+void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<unsigned char> >& surface)
 {
   m_surface = surface;
   this->repaint();
 }
-//---------------------------------------------------------------------------
-void QtSurfacePlotWidget::paintEvent(QPaintEvent *)
+
+void ribi::QtSurfacePlotWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   assert(!m_surface.empty());
@@ -124,9 +130,9 @@ void QtSurfacePlotWidget::paintEvent(QPaintEvent *)
   painter.drawPixmap(0,0,this->width(),this->height(),QPixmap::fromImage(image));
 
 }
-//---------------------------------------------------------------------------
-void QtSurfacePlotWidget::resizeEvent(QResizeEvent *)
+
+void ribi::QtSurfacePlotWidget::resizeEvent(QResizeEvent *)
 {
   this->repaint();
 }
-//---------------------------------------------------------------------------
+

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,9 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTQUESTIONMENUDIALOG_H
 #define QTTESTQUESTIONMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
-
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtTestQuestionMenuDialog;
@@ -39,7 +41,9 @@ class QtTestQuestionMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestQuestionMenuDialog(QWidget *parent = 0);
-  ~QtTestQuestionMenuDialog();
+  QtTestQuestionMenuDialog(const QtTestQuestionMenuDialog&) = delete;
+  QtTestQuestionMenuDialog& operator=(const QtTestQuestionMenuDialog&) = delete;
+  ~QtTestQuestionMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* event);
@@ -54,7 +58,7 @@ private:
   boost::scoped_ptr<TestQuestionMenuDialog> m_dialog;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

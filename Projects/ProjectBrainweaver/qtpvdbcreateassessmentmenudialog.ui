@@ -14,7 +14,7 @@
    <string>Geef assessment vorm: wat voor assessment wilt u maken?</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ProjectVanDenBogaart.qrc">
+   <iconset resource="Brainweaver.qrc">
     <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -33,7 +33,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ProjectVanDenBogaart.qrc">:/images/ConceptMapEdit.png</pixmap>
+         <pixmap resource="Brainweaver.qrc">:/images/ConceptMapEdit.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -66,7 +66,7 @@ concept map construeert?</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ProjectVanDenBogaart.qrc">:/images/ConceptMapEdit.png</pixmap>
+         <pixmap resource="Brainweaver.qrc">:/images/ConceptMapEdit.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -85,7 +85,7 @@ concept map construeert?</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ProjectVanDenBogaart.qrc">:/images/ConceptMapEdit.png</pixmap>
+         <pixmap resource="Brainweaver.qrc">:/images/ConceptMapEdit.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -98,7 +98,7 @@ concept map construeert?</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ProjectVanDenBogaart.qrc">:/images/ConceptMapEdit.png</pixmap>
+         <pixmap resource="Brainweaver.qrc">:/images/ConceptMapEdit.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -117,7 +117,7 @@ concept map construeert?</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="ProjectVanDenBogaart.qrc">:/images/ConceptMapEdit.png</pixmap>
+         <pixmap resource="Brainweaver.qrc">:/images/ConceptMapEdit.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -160,7 +160,7 @@ en dan van daaruit zijn/haar complete concept map construeert?</string>
   </layout>
  </widget>
  <resources>
-  <include location="ProjectVanDenBogaart.qrc"/>
+  <include location="Brainweaver.qrc"/>
  </resources>
  <connections/>
 </ui>

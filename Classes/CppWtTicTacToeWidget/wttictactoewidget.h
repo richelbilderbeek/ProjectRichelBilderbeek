@@ -20,20 +20,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTICTACTOEWIDGET_H
 #define WTTICTACTOEWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
-//---------------------------------------------------------------------------
+
 #include "tictactoe.h"
 
 namespace ribi {
 
-//---------------------------------------------------------------------------
+
 struct WtTicTacToeWidget : public Wt::WPaintedWidget
 {
   WtTicTacToeWidget();
@@ -46,7 +46,7 @@ struct WtTicTacToeWidget : public Wt::WPaintedWidget
   protected:
   void paintEvent(Wt::WPaintDevice *paintDevice);
   private:
-  TicTacToe m_tictactoe;
+  boost::shared_ptr<TicTacToe> m_tictactoe;
   int GetWidth() const;
   int GetHeight() const;
   void OnClicked(const Wt::WMouseEvent& e);

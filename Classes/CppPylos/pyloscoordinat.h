@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Coordinat, Pylos/Phyraos coordinat class
-Copyright (C) 2010-2012 Richel Bilderbeek
+pylos::Coordinat, Pylos/Phyraos coordinat class
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace Pylos {
+namespace pylos {
 
 struct Coordinat
 {
@@ -39,31 +39,31 @@ struct Coordinat
 
   ///Obtain the layer or Z-coordinat
   ///0: bottom 4x4 layer, 3: top 1x1 layer
-  int GetLayer() const { return m_layer; }
+  int GetLayer() const noexcept { return m_layer; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain this coordinat its X coordinat
   ///0: Left
-  int GetX() const { return m_x; }
+  int GetX() const noexcept { return m_x; }
 
   ///Obtain this coordinat its Y coordinat
   ///0: Top
-  int GetY() const { return m_y; }
+  int GetY() const noexcept { return m_y; }
 
   ///IsValid returns if the proposed coordinat is a valid Pylos coordinat
-  static bool IsValid(const int layer, const int x, const int y);
+  static bool IsValid(const int layer, const int x, const int y) noexcept;
 
   ///IsValid returns if this coordinat is a valid Pylos coordinat
-  bool IsValid() const;
+  bool IsValid() const noexcept;
 
   ///ToStr() converts the coordinat to a std::string
   ///of the form '(layer,x,y)'.
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
   int m_layer;
@@ -72,14 +72,14 @@ struct Coordinat
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };
 
-bool operator==(const Coordinat& lhs, const Coordinat& rhs);
-bool operator!=(const Coordinat& lhs, const Coordinat& rhs);
-std::ostream& operator<<(std::ostream& os,const Coordinat& c);
+bool operator==(const Coordinat& lhs, const Coordinat& rhs) noexcept;
+bool operator!=(const Coordinat& lhs, const Coordinat& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os,const Coordinat& c) noexcept;
 
 ///GetAbove returns the coordinats physically
 ///above the entered coordinat
@@ -87,7 +87,7 @@ const std::vector<Coordinat> GetAbove(
   const Coordinat& c);
 
 ///GetAllPylosCoordinats returns all possible PylosCoordinats
-const std::vector<Coordinat> GetAllCoordinats();
+const std::vector<Coordinat> GetAllCoordinats() noexcept;
 
 ///GetBelow returns the four coordinats physically
 ///below the entered coordinat
@@ -99,7 +99,7 @@ const std::vector<std::vector<Coordinat> > GetLines(
   const Coordinat& c);
 
 ///GetRandomPylosCoordinat returns a random valid PylosCoordinat
-const Coordinat GetRandomCoordinat();
+const Coordinat GetRandomCoordinat() noexcept;
 
 ///GetSquares returns the possible 2x2 squares around the coordinat
 const std::vector<std::vector<Coordinat> > GetSquares(

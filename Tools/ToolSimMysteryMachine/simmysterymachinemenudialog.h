@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 SimMysteryMachine, simulator of my mystery machine
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,16 +21,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef SIMMYSTERYMACHINEMENUDIALOG_H
 #define SIMMYSTERYMACHINEMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-struct SimMysteryMachineMenuDialog
+struct SimMysteryMachineMenuDialog : public MenuDialog
 {
-  SimMysteryMachineMenuDialog();
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

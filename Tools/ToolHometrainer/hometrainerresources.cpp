@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Hometrainer, exercise and survey suite
-Copyright (C) 2009-2013 Richel Bilderbeek
+Copyright (C) 2009-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
-
+#include <stdexcept>
 #include "trace.h"
 
 #include <QFile>
@@ -89,6 +89,7 @@ ribi::HometrainerResources::HometrainerResources()
       "ToolHometrainerExerciseMultikabelMannetjeConnector.jpg",
       "ToolHometrainerExerciseMultikabelVrouwtjeConnector.jpg",
       "ToolHometrainerExerciseMultimeterMetex.jpg",
+      "ToolHometrainerExerciseMultiplication.txt",
       "ToolHometrainerExerciseMultistekkerdoos.jpg",
       "ToolHometrainerExerciseOn.jpg",
       "ToolHometrainerExerciseOpwindstatief.jpg",
@@ -134,8 +135,12 @@ ribi::HometrainerResources::HometrainerResources()
         const std::string filename = ":/images/" + s;
         QFile f(filename.c_str());
         f.copy(s.c_str());
-        if (!QFile::exists(s.c_str())) { TRACE(s); }
-        assert(QFile::exists(s.c_str()));
+        if (!QFile::exists(s.c_str()))
+        {
+          TRACE(s);
+          const std::string error = "HometrainerResources: file not found: '" + s + "\'";
+          throw std::runtime_error(error.c_str());
+        }
       }
       if (!QFile::exists(s.c_str())) { TRACE(s); }
       assert(QFile::exists(s.c_str()));
@@ -160,7 +165,7 @@ ribi::HometrainerResources::HometrainerResources()
       {
         if (!(QFile::exists(filename.c_str())))
         {
-          QFile f( (std::string(":/textfiles/") + filename).c_str() );
+          QFile f( (":/textfiles/" + filename).c_str() );
           f.copy(filename.c_str());
         }
         if (!QFile::exists(filename.c_str()))
@@ -182,7 +187,7 @@ ribi::HometrainerResources::HometrainerResources()
     {
       if (!(QFile::exists(filename.c_str())))
       {
-        QFile f( (std::string(":/docs/") + filename).c_str() );
+        QFile f( (":/docs/" + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!QFile::exists(filename.c_str()))

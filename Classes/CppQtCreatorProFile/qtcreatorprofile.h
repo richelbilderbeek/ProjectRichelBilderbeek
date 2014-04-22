@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtCreatorProFile, class to parse Qt Project files
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,68 +30,72 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
 #include "about.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///QtCreatorProFile parses .pro files
-struct QtCreatorProFile : public boost::noncopyable
+struct QtCreatorProFile
 {
   ///Parse a .pro file
   explicit QtCreatorProFile(const std::string& filename);
+  QtCreatorProFile(const QtCreatorProFile&) = delete;
+  QtCreatorProFile& operator=(const QtCreatorProFile&) = delete;
 
   ///Obtain this class its About information
-  static const ribi::About GetAbout();
+  static ribi::About GetAbout() noexcept;
 
   ///Obtain the CONFIG
-  const std::set<std::string>& GetConfig() const { return m_config; }
+  const std::set<std::string>& GetConfig() const noexcept { return m_config; }
 
   ///Obtain the DEFINES
-  const std::set<std::string>& GetDefines() const { return m_defines; }
+  const std::set<std::string>& GetDefines() const noexcept { return m_defines; }
 
   ///Obtain the FORMS
-  const std::set<std::string>& GetForms() const { return m_forms; }
+  const std::set<std::string>& GetForms() const noexcept { return m_forms; }
 
   ///Obtain the HEADERS
-  const std::set<std::string>& GetHeaders() const { return m_headers; }
+  const std::set<std::string>& GetHeaders() const noexcept { return m_headers; }
 
   ///Obtain the INCLUDEPATH
-  const std::set<std::string>& GetIncludepath() const { return m_includepath; }
+  const std::set<std::string>& GetIncludepath() const noexcept { return m_includepath; }
 
   ///Obtain the LIBS
-  const std::set<std::string>& GetLibs() const { return m_libs; }
+  const std::set<std::string>& GetLibs() const noexcept { return m_libs; }
 
   ///Obtain the OTHER_FILES
-  const std::set<std::string>& GetOtherFiles() const { return m_other_files; }
+  const std::set<std::string>& GetOtherFiles() const noexcept { return m_other_files; }
+
+  ///Obtain the include(something.pri)
+  const std::set<std::string>& GetPriFiles() const noexcept { return m_pri_files; }
 
   ///Get the project file its file name
-  const std::string& GetQtCreatorProFilename() const { return m_pro_filename; }
+  const std::string& GetQtCreatorProFilename() const noexcept { return m_pro_filename; }
 
   ///Obtain the QMAKE_CXXFLAGS
-  const std::set<std::string>& GetQmakeCxxflags() const { return m_qmake_cxxflags; }
+  const std::set<std::string>& GetQmakeCxxflags() const noexcept { return m_qmake_cxxflags; }
 
   ///Obtain the QT
-  const std::set<std::string>& GetQt() const { return m_qt; }
+  const std::set<std::string>& GetQt() const noexcept { return m_qt; }
 
   ///Obtain the RESOURCES
-  const std::set<std::string>& GetResources() const { return m_resources; }
+  const std::set<std::string>& GetResources() const noexcept { return m_resources; }
 
   ///Obtain the SOURCES
-  const std::set<std::string>& GetSources() const  { return m_sources; }
+  const std::set<std::string>& GetSources() const noexcept { return m_sources; }
 
   ///Obtain the TARGET
-  const std::set<std::string>& GetTarget() const { return m_target; }
+  const std::set<std::string>& GetTarget() const noexcept { return m_target; }
 
   ///Obtain the TEMPLATE
-  const std::set<std::string>& GetTemplate() const { return m_template; }
+  const std::set<std::string>& GetTemplate() const noexcept { return m_template; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the CONFIG
   void SetConfig(const std::set<std::string>& s) { m_config = s; }
@@ -113,6 +117,9 @@ struct QtCreatorProFile : public boost::noncopyable
 
   ///Set the OTHER_FILES
   void SetOtherFiles(const std::set<std::string>& s) { m_other_files = s; }
+
+  ///Set the include(something.pri) files
+  void SetPriFiles(const std::set<std::string>& s) { m_pri_files = s; }
 
   ///Set the project file its file name
   void SetQtCreatorProFilename(const std::string& s) { m_pro_filename = s; }
@@ -137,7 +144,7 @@ struct QtCreatorProFile : public boost::noncopyable
 
   private:
   ///Be sure the class is correctly deleted
-  ~QtCreatorProFile() {}
+  ~QtCreatorProFile() noexcept {}
   friend void boost::checked_delete<>(QtCreatorProFile* x);
 
   ///The items at CONFIG
@@ -161,6 +168,9 @@ struct QtCreatorProFile : public boost::noncopyable
   ///The items at OTHER_FILES
   std::set<std::string> m_other_files;
 
+  ///The include(something.pri) files
+  std::set<std::string> m_pri_files;
+
   ///The .pro file to parse
   std::string m_pro_filename;
 
@@ -182,26 +192,20 @@ struct QtCreatorProFile : public boost::noncopyable
   ///The items at SOURCES
   std::set<std::string> m_sources;
 
-  ///FileToVector reads a file and converts it to a std::vector<std::string>
-  ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& filename);
-
-  #ifndef NDEBUG
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
-  #endif
+  void DoReplacements(std::vector<std::string>& v);
 
   ///Parse the .pro file its content, split into lines
-  void Parse(const std::vector<std::string>& v);
+  void Parse(std::stringstream& data);
+
+  void RemoveComments(std::vector<std::string>& v);
 
   ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input, const char seperator);
 
   #ifndef NDEBUG
   ///Test QtCreatorProFile
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   friend std::ostream& operator<<(std::ostream& os, const QtCreatorProFile& p);
@@ -210,8 +214,6 @@ struct QtCreatorProFile : public boost::noncopyable
 };
 
 std::ostream& operator<<(std::ostream& os, const QtCreatorProFile& p);
-std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p);
-std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<const QtCreatorProFile>& p);
 bool operator==(const QtCreatorProFile& lhs, const QtCreatorProFile& rhs);
 
 } //~namespace ribi

@@ -1,25 +1,31 @@
 #ifndef SECRETMESSAGEMENUDIALOG_H
 #define SECRETMESSAGEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
-#include "about.h"
-//---------------------------------------------------------------------------
-namespace SecretMessage {
-//---------------------------------------------------------------------------
-struct MenuDialog
+
+#include "menudialog.h"
+
+namespace ribi {
+namespace sema {
+
+struct MenuDialog : public ::ribi::MenuDialog
 {
-  ///Obtain this class its About information
-  static const About GetAbout();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its version
-  static const std::string GetVersion();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
-//---------------------------------------------------------------------------
-} //~namespace SecretMessage
-//---------------------------------------------------------------------------
+
+} //~namespace sema
+} //~namespace ribi
+
 #endif // SECRETMESSAGEMENUDIALOG_H

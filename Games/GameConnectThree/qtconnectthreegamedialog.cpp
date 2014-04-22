@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,9 +19,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtconnectthreegamedialog.h"
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QTimer>
@@ -29,16 +29,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthree.h"
 #include "connectthreewidget.h"
 #include "connectthreeresources.h"
+#include "qtconnectthreeresources.h"
 #include "ui_qtconnectthreegamedialog.h"
 #include "qtconnectthreegamedialog.h"
 #include "qtconnectthreewidget.h"
 #include "qtshowwinnerdialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
-ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
+ribi::con3::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   const boost::shared_ptr<const ConnectThreeResources> resources,
   QWidget *parent,
-  const std::bitset<3>& is_player_human)
-  : QDialog(parent, Qt::Window),
+  const std::bitset<3>& is_player_human) noexcept
+  : QtHideAndShowDialog(parent),
+    m_signal_close{},
     ui(new Ui::QtConnectThreeGameDialog),
     m_board(
       new QtConnectThreeWidget(
@@ -47,6 +51,10 @@ ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
     m_is_player_human(is_player_human),
     m_resources(resources)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 
   //Add board widget
@@ -62,7 +70,7 @@ ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
 
   m_board->m_signal_valid_move.connect(
     boost::bind(
-      &ribi::QtConnectThreeGameDialog::OnValidMove,
+      &ribi::con3::QtConnectThreeGameDialog::OnValidMove,
       this));
 
   //Put the dialog in the screen center
@@ -74,38 +82,35 @@ ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   OnValidMove(); //Draw screen
 }
 
-ribi::QtConnectThreeGameDialog::~QtConnectThreeGameDialog()
+ribi::con3::QtConnectThreeGameDialog::~QtConnectThreeGameDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtConnectThreeGameDialog::DoComputerTurn()
+void ribi::con3::QtConnectThreeGameDialog::DoComputerTurn() noexcept
 {
   this->m_board->DoComputerTurn();
   OnValidMove();
 }
 
-///OnValidMove is called after a valid move. The game
-///is either terminated, or the next player can do
-///his/her move.
-void ribi::QtConnectThreeGameDialog::OnValidMove()
+void ribi::con3::QtConnectThreeGameDialog::OnValidMove() noexcept
 {
-  if (m_board->GetWinner() == ConnectThree::no_player)
+  if (m_board->GetWinner() == Winner::no_winner)
   {
-    const int active_player = m_board->GetActivePlayer();
+    const Player active_player = m_board->GetActivePlayer();
     switch(active_player)
     {
-      case ConnectThree::player1:
+      case Player::player1:
         ui->label_player1->setPixmap(QPixmap(m_resources->GetPlayersFilenames()[0].c_str()));
         ui->label_player2->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[1].c_str()));
         ui->label_player3->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[2].c_str()));
         break;
-      case ConnectThree::player2:
+      case Player::player2:
         ui->label_player1->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[0].c_str()));
         ui->label_player2->setPixmap(QPixmap(m_resources->GetPlayersFilenames()[1].c_str()));
         ui->label_player3->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[2].c_str()));
         break;
-      case ConnectThree::player3:
+      case Player::player3:
         ui->label_player1->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[0].c_str()));
         ui->label_player2->setPixmap(QPixmap(m_resources->GetPlayersGreyFilenames()[1].c_str()));
         ui->label_player3->setPixmap(QPixmap(m_resources->GetPlayersFilenames()[2].c_str()));
@@ -128,10 +133,10 @@ void ribi::QtConnectThreeGameDialog::OnValidMove()
     std::string filename;
     switch(m_board->GetWinner())
     {
-        case ConnectThree::player1  : filename = m_resources->GetPlayersFilenames()[0]; break;
-        case ConnectThree::player2  : filename = m_resources->GetPlayersFilenames()[1]; break;
-        case ConnectThree::player3  : filename = m_resources->GetPlayersFilenames()[2]; break;
-        case ConnectThree::no_player: filename = m_resources->GetEmptyFilename(); break;
+        case Winner::player1  : filename = m_resources->GetPlayersFilenames()[0]; break;
+        case Winner::player2  : filename = m_resources->GetPlayersFilenames()[1]; break;
+        case Winner::player3  : filename = m_resources->GetPlayersFilenames()[2]; break;
+        case Winner::no_winner: filename = m_resources->GetEmptyFilename(); break;
         default:
           assert(!"Should not get here");
           throw std::logic_error("Known value of GetCurrentPlayer in WtConnectThreeGameDialog::OnValidMove");
@@ -146,3 +151,21 @@ void ribi::QtConnectThreeGameDialog::OnValidMove()
   this->close();
 }
 
+#ifndef NDEBUG
+void ribi::con3::QtConnectThreeGameDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::con3::QtConnectThreeGameDialog::Test");
+  const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
+  assert(resources);
+  const boost::shared_ptr<const QtConnectThreeGameDialog> d {
+    new QtConnectThreeGameDialog(resources,nullptr,std::bitset<3>(false))
+  };
+  assert(d);
+  TRACE("Finished ribi::con3::QtConnectThreeGameDialog::Test successfully");
+}
+#endif

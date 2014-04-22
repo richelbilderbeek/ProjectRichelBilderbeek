@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Das Wahre Schlagerfest, a simple game
-Copyright (C) 2003-2012 Richel Bilderbeek
+Copyright (C) 2003-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,24 +18,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "daswahreschlagerfestwidget.h"
-#pragma GCC diagnostic pop
 
 #include <numeric>
 
+#include "textcanvas.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
+
 ribi::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(const int width, const int height)
-  : m_v(height,std::vector<Tile>(width,Tile::empty))
+  : m_signal_changed{},
+    m_cursor{Cursor(width / 2,0,Tile::beer)},
+    m_v(height,std::vector<Tile>(width,Tile::empty))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(height == static_cast<int>(m_v.size()));
   assert(width == static_cast<int>(m_v[0].size()));
-  m_cursor.x = width / 2;
-  m_cursor.y = 0;
-  m_cursor.tile = Tile::beer;
 }
 
 void ribi::DasWahreSchlagerfestWidget::CheckThree()
@@ -224,4 +227,56 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
     }
     break;
   }
+}
+
+#ifndef NDEBUG
+void ribi::DasWahreSchlagerfestWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::DasWahreSchlagerfestWidget::Test");
+
+  TRACE("Finished ribi::DasWahreSchlagerfestWidget::Test successfully");
+}
+#endif
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::DasWahreSchlagerfestWidget::ToTextCanvas() const noexcept
+{
+  const int n_rows = static_cast<int>(GetTiles().size());
+  assert(n_rows > 0);
+  const int n_cols = static_cast<int>(GetTiles()[0].size());
+  assert(n_cols > 0);
+
+  boost::shared_ptr<TextCanvas> canvas {
+    new TextCanvas(n_cols,n_rows)
+  };
+
+  for (int row=0; row!=n_rows; ++row)
+  {
+    for (int col=0; col!=n_cols; ++col)
+    {
+      DasWahreSchlagerfestWidget::Tile tile = GetTiles()[row][col];
+      const auto cursor = GetCursor();
+      if (col == cursor.x && row == cursor.y) { tile = cursor.tile; }
+      char c = ' ';
+      switch (tile)
+      {
+        case DasWahreSchlagerfestWidget::Tile::beer     : c = 'V'; break;
+        case DasWahreSchlagerfestWidget::Tile::bratwurst: c = 'U'; break;
+        case DasWahreSchlagerfestWidget::Tile::empty    : c = '.'; break;
+        case DasWahreSchlagerfestWidget::Tile::richel   : c = 'R'; break;
+      }
+      canvas->PutChar(col,row,c);
+    }
+  }
+  return canvas;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const ribi::DasWahreSchlagerfestWidget& w)
+{
+  os << (*w.ToTextCanvas());
+  return os;
 }

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtAboutDialog, Qt dialog for About
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 #include "about.h"
 
@@ -39,22 +39,21 @@ namespace Ui {
 namespace ribi {
 
 ///An About dialog
-class QtAboutDialog : public QDialog
+class QtAboutDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
+  explicit QtAboutDialog(const ribi::About& about) noexcept;
   QtAboutDialog(const QtAboutDialog&) = delete;
   QtAboutDialog& operator=(const QtAboutDialog&) = delete;
-
-  explicit QtAboutDialog(const ribi::About& about);
-  ~QtAboutDialog();
+  ~QtAboutDialog() noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 private:
   Ui::QtAboutDialog *ui;

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateGlossary, tool to create my glossaries
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCREATEGLOSSARYMAINDIALOG_H
 #define QTCREATEGLOSSARYMAINDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtCreateGlossaryMainDialog;
@@ -29,20 +32,22 @@ class QtCreateGlossaryMainDialog;
 
 namespace ribi {
 
-class QtCreateGlossaryMainDialog : public QDialog
+class QtCreateGlossaryMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
   explicit QtCreateGlossaryMainDialog(QWidget *parent = 0);
-  ~QtCreateGlossaryMainDialog();
-
-private slots:
-  void create_glossary();
+  QtCreateGlossaryMainDialog(const QtCreateGlossaryMainDialog&) = delete;
+  QtCreateGlossaryMainDialog& operator=(const QtCreateGlossaryMainDialog&) = delete;
+  ~QtCreateGlossaryMainDialog() noexcept;
 
 private:
-
   Ui::QtCreateGlossaryMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

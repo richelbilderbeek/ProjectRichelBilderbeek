@@ -6,23 +6,27 @@
 #include "qtstateobservermaindialog.h"
 #include "qthideandshowdialog.h"
 #include "stateobservermenudialog.h"
+#include "trace.h"
 #include "ui_qtstateobservermenudialog.h"
 
 #pragma GCC diagnostic pop
 
-ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) :
+ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtStateObserverMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtStateObserverMenuDialog::~QtStateObserverMenuDialog()
+ribi::QtStateObserverMenuDialog::~QtStateObserverMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_start_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_start_clicked() noexcept
 {
   QtStateObserverMainDialog d;
   d.setStyleSheet(this->styleSheet());
@@ -30,20 +34,30 @@ void ribi::QtStateObserverMenuDialog::on_button_start_clicked()
   this->ShowChild(&d);
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_about_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_about_clicked() noexcept
 {
-  this->hide();
-  About a = StateObserverMenuDialog::GetAbout();
+  About a = StateObserverMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_quit_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtStateObserverMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtStateObserverMenuDialog::Test");
+  TRACE("Finished ribi::QtStateObserverMenuDialog::Test successfully");
+}
+#endif

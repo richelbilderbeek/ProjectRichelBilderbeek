@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtToolSimplifyNewickMainDialog</class>
+ <widget class="QDialog" name="QtToolSimplifyNewickMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>844</width>
+    <height>532</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Courier New</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>SimplifyNewick</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ToolSimplifyNewick.qrc">
+    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_newick">
+        <property name="text">
+         <string>Newick</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="edit_newick">
+        <property name="text">
+         <string>(((((((((512,256),128),64),32),16),8),4),2),1)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_max_complexity">
+        <property name="text">
+         <string>Max. complexity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="edit_max_complexity">
+        <property name="text">
+         <string>1000000</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>582</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_start">
+        <property name="text">
+         <string>&amp;Start</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="text_output"/>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>button_start</tabstop>
+  <tabstop>text_output</tabstop>
+  <tabstop>edit_newick</tabstop>
+  <tabstop>edit_max_complexity</tabstop>
+ </tabstops>
+ <resources>
+  <include location="ToolSimplifyNewick.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,40 +21,46 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef RICHELBILDERBEEKGALLERYMENUDIALOG_H
 #define RICHELBILDERBEEKGALLERYMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-namespace RichelBilderbeek {
-
 struct Program;
 
-struct GalleryMenuDialog
+struct GalleryMenuDialog : public MenuDialog
 {
+  GalleryMenuDialog();
+
   ///Create the page CppClassGallery.htm
-  static const std::vector<std::string> CreateHtmlClassGallery();
-
+  std::vector<std::string> CreateHtmlClassGallery() const noexcept;
   ///Create the page GameGallery.htm
-  static const std::vector<std::string> CreateHtmlGameGallery();
-
+  std::vector<std::string> CreateHtmlGameGallery() const noexcept;
   ///Create the page ProjectGallery.htm
-  static const std::vector<std::string> CreateHtmlProjectGallery();
-
+  std::vector<std::string> CreateHtmlProjectGallery() const noexcept;
   ///Create the page CppRichelBilderbeekStatus.htm
-  static const std::vector<std::string> CreateHtmlStatus();
-
+  std::vector<std::string> CreateHtmlStatus() const noexcept;
   ///Create the page ToolGallery.htm
-  static const std::vector<std::string> CreateHtmlToolGallery();
+  std::vector<std::string> CreateHtmlToolGallery() const noexcept;
+
+  ///Create the page CppClassGallery.md
+  std::vector<std::string> CreateMarkdownClassGallery() const noexcept;
+  ///Create the page GameGallery.md
+  std::vector<std::string> CreateMarkdownGameGallery() const noexcept;
+  ///Create the page ProjectGallery.md
+  std::vector<std::string> CreateMarkdownProjectGallery() const noexcept;
+  ///Create the page ToolGallery.md
+  std::vector<std::string> CreateMarkdownToolGallery() const noexcept;
 
 
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Test this class
-  static void Test();
 
   private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   ///Converts a program to a gallery item
   ///Example:
@@ -66,10 +72,13 @@ struct GalleryMenuDialog
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
-  static const std::vector<std::string> ToHtml(const RichelBilderbeek::Program& p);
-};
+  std::vector<std::string> ToHtml(const Program& p) const noexcept;
+  std::vector<std::string> ToMarkdown(const Program& p) const noexcept;
 
-} //~namespace RichelBilderbeek
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+};
 
 } //~namespace ribi
 

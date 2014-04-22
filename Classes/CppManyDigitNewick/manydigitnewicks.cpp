@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ManyDigitNewick, Newick class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "newick.h"
@@ -91,7 +91,7 @@ const ribi::ManyDigitNewick& ribi::ManyDigitNewicks::GetNewick(
   //Check if returned indices are okay
   #ifndef NDEBUG
   const ManyDigitNewick& v = m_v[i];
-  BOOST_FOREACH(const Derivative& j,v.GetDerivatives())
+  for(const Derivative& j: v.GetDerivatives())
   {
     assert(j.m_derived_index >= 0);
     assert(j.m_derived_index < this->Size() );
@@ -115,7 +115,7 @@ void ribi::ManyDigitNewicks::SetNewick(const int i, const ManyDigitNewick& v)
   assert(m_v[i].Empty());
 
   #ifndef NDEBUG
-  BOOST_FOREACH(const Derivative& j, v.GetDerivatives())
+  for(const Derivative& j: v.GetDerivatives())
   {
     assert(j.m_derived_index > 0);
     assert(j.m_derived_index < boost::numeric_cast<int>(m_v.size())

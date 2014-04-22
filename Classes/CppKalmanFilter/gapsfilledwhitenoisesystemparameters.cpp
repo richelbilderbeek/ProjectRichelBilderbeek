@@ -46,7 +46,7 @@ ribi::kalman::GapsFilledWhiteNoiseSystemParameters::GapsFilledWhiteNoiseSystemPa
 }
 
 #ifndef NDEBUG
-void ribi::kalman::GapsFilledWhiteNoiseSystemParameters::Test()
+void ribi::kalman::GapsFilledWhiteNoiseSystemParameters::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtDialWidget, Qt class for displaying a DialWidget
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtDialWidget.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtdialwidget.h"
 
@@ -33,7 +32,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 
 #include "dial.h"
-
 #pragma GCC diagnostic pop
 
 ribi::QtDialWidget::QtDialWidget(QWidget *parent)
@@ -54,15 +52,16 @@ ribi::QtDialWidget::QtDialWidget(QWidget *parent)
 
 void ribi::QtDialWidget::DrawDial(
   QPainter& painter,
-  const DialWidget * const widget)
+  const boost::shared_ptr<const DialWidget> widget)
 {
   DrawDial(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetDial());
+    widget->GetLeft(),
+    widget->GetTop(),
+    widget->GetWidth(),
+    widget->GetHeight(),
+    widget->GetDial()
+  );
 }
 
 void ribi::QtDialWidget::DrawDial(
@@ -108,18 +107,19 @@ void ribi::QtDialWidget::DrawDial(
   painter.setPen(initial_pen);
 }
 
-const std::string ribi::QtDialWidget::GetVersion()
+std::string ribi::QtDialWidget::GetVersion() noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
-const std::vector<std::string> ribi::QtDialWidget::GetVersionHistory()
+std::vector<std::string> ribi::QtDialWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-04-11: Version 1.0: initial version",
     "2011-06-27: Version 1.1: fixed minor bug in displaying the dial its pointer",
     "2011-08-07: Version 2.0: conformized architure for MysteryMachine",
-    "2011-08-31: Version 2.1: removed bloat, fixed bugs"
+    "2011-08-31: Version 2.1: removed bloat, fixed bugs",
+    "2014-03-28: Version 2.2: replaced custom Rect class by Boost.Geometry"
   };
 }
 
@@ -142,5 +142,5 @@ void ribi::QtDialWidget::paintEvent(QPaintEvent *)
 
 void ribi::QtDialWidget::resizeEvent(QResizeEvent *)
 {
-  m_widget->SetGeometry(Rect(0,0,width(),height()));
+  m_widget->SetGeometry(0,0,width(),height());
 }

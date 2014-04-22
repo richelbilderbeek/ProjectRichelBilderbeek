@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="ProjectSearchAndDestroyChess2Vcl.exe"/>
+    <OBJFILES value="ProjectSearchAndDestroyChess2Vcl.obj UnitFormSearchAndDestroyChess2.obj 
+      UnitChessBoard.obj UnitChessGame.obj UnitChessPiece.obj 
+      UnitEnumChessPieceColor.obj UnitEnumChessPieceType.obj UnitChessMove.obj 
+      UnitFormPressKey.obj UnitFormAbout.obj 
+      UnitFormSearchAndDestroyChess2Menu.obj UnitCoordinatGetter.obj"/>
+    <RESFILES value="ProjectSearchAndDestroyChess2Vcl.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) UnitFormSearchAndDestroyChess2.dfm UnitFormPressKey.dfm 
+      UnitFormAbout.dfm UnitFormSearchAndDestroyChess2Menu.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="rtl.lib vcl.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi bcb2kaxserver.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="ProjectSearchAndDestroyChess2Vcl.cpp"/>
+    <INCLUDEPATH value="..\..;..\..\..;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\..;..\..\..;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\.. -I..\..\.. -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp 
+      -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="ProjectSearchAndDestroyChess2Vcl.res" FORMNAME="" UNITNAME="ProjectSearchAndDestroyChess2Vcl.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ProjectSearchAndDestroyChess2Vcl.cpp" FORMNAME="" UNITNAME="ProjectSearchAndDestroyChess2Vcl" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSearchAndDestroyChess2.cpp" FORMNAME="FormSearchAndDestroyChess2" UNITNAME="UnitFormSearchAndDestroyChess2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitChessBoard.cpp" FORMNAME="" UNITNAME="UnitChessBoard.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitChessGame.cpp" FORMNAME="" UNITNAME="UnitChessGame.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitChessPiece.cpp" FORMNAME="" UNITNAME="UnitChessPiece.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumChessPieceColor.cpp" FORMNAME="" UNITNAME="UnitEnumChessPieceColor.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitEnumChessPieceType.cpp" FORMNAME="" UNITNAME="UnitEnumChessPieceType.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitChessMove.cpp" FORMNAME="" UNITNAME="UnitChessMove" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormPressKey.cpp" FORMNAME="FormPressKey" UNITNAME="UnitFormPressKey" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormAbout.cpp" FORMNAME="FormAbout" UNITNAME="UnitFormAbout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitFormSearchAndDestroyChess2Menu.cpp" FORMNAME="FormSearchAndDestroyChessMenu" UNITNAME="UnitFormSearchAndDestroyChess2Menu" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UnitCoordinatGetter.cpp" FORMNAME="" UNITNAME="UnitCoordinatGetter" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Richel Bilderbeek
+FileDescription=SearchAndDestroyChess 2
+FileVersion=1.0.0.0
+InternalName=SearchAndDestroyChess 2
+LegalCopyright=Richel Bilderbeek
+LegalTrademarks=Richel Bilderbeek
+OriginalFilename=SearchAndDestroyChess 2
+ProductName=SearchAndDestroyChess 2
+ProductVersion=1.0.0.0
+Comments=Licenced under GPL 3.0
+Website=http://www.richelbilderbeek.nl
+
+[HistoryLists\hlIncludePath]
+Count=2
+Item0=..\..;..\..\..;$(BCB)\include;$(BCB)\include\vcl
+Item1=..\..\..;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=2
+Item0=..\..;..\..\..;$(BCB)\lib\obj;$(BCB)\lib
+Item1=..\..\..;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=2
+Item0=_DEBUG
+Item1=_DEBUG;DEMO_FOR_YOUTUBE
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

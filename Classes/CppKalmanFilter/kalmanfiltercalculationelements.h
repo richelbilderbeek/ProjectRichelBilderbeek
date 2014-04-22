@@ -21,7 +21,7 @@ struct KalmanFilterCalculationElements
   KalmanFilterCalculationElements& operator=(const KalmanFilterCalculationElements&) = delete;
 
 
-  virtual ~KalmanFilterCalculationElements() {}
+  virtual ~KalmanFilterCalculationElements() noexcept {}
 
   ///Clear the calculation, will set IsComplete to false
   virtual void Clear();

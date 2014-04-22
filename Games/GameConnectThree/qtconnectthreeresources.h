@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreeresources.h"
 
 namespace ribi {
+namespace con3 {
 
 ///QtConnectThreeResources is a class containing
 ///all filenames to be used by the program
@@ -35,6 +36,7 @@ struct QtConnectThreeResources
   QtConnectThreeResources();
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTCONNECTTHREERESOURCES_H

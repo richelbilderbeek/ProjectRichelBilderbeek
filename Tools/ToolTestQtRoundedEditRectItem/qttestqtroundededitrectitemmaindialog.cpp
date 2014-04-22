@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQtRoundedEditRectItem, tool to test QtRoundedEditRectItem
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,27 +18,44 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtRoundedEditRectItem.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestqtroundededitrectitemmaindialog.h"
-
 #include <QKeyEvent>
-#include "ui_qttestqtroundededitrectitemmaindialog.h"
 
-QtTestQtRoundedEditRectItemMainDialog::QtTestQtRoundedEditRectItemMainDialog(QWidget *parent) :
+#include "trace.h"
+#include "ui_qttestqtroundededitrectitemmaindialog.h"
+#pragma GCC diagnostic pop
+
+ribi::QtTestQtRoundedEditRectItemMainDialog::QtTestQtRoundedEditRectItemMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedEditRectItemMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-QtTestQtRoundedEditRectItemMainDialog::~QtTestQtRoundedEditRectItemMainDialog()
+ribi::QtTestQtRoundedEditRectItemMainDialog::~QtTestQtRoundedEditRectItemMainDialog() noexcept
 {
   delete ui;
 }
 
-void QtTestQtRoundedEditRectItemMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtRoundedEditRectItemMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+#ifndef NDEBUG
+void ribi::QtTestQtRoundedEditRectItemMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtRoundedEditRectItemMainDialog::Test");
+  TRACE("Finished ribi::QtTestQtRoundedEditRectItemMainDialog::Test successfully");
+}
+#endif

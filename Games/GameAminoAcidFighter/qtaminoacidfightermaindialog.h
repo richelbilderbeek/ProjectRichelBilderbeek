@@ -1,28 +1,34 @@
 #ifndef QTAMINOACIDFIGHTERMAINDIALOG_H
 #define QTAMINOACIDFIGHTERMAINDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 struct QGraphicsPixmapItem;
 
 namespace Ui {
-  class QtAminoAcidFighterMainDialog;
+  class QtAafMainDialog;
 }
 
 namespace ribi {
 namespace aaf {
 
-class QtAminoAcidFighterMainDialog : public QDialog
+class QtAafMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtAminoAcidFighterMainDialog(QWidget *parent = 0);
-  ~QtAminoAcidFighterMainDialog();
+  explicit QtAafMainDialog(QWidget *parent = 0);
+  QtAafMainDialog(const QtAafMainDialog&) = delete;
+  QtAafMainDialog& operator=(const QtAafMainDialog&) = delete;
+  ~QtAafMainDialog() noexcept;
 
 private:
-  Ui::QtAminoAcidFighterMainDialog *ui;
+  Ui::QtAafMainDialog *ui;
   QTimer * const m_timer;
   QGraphicsScene * const m_scene;
   QGraphicsPixmapItem * const m_sprite;
@@ -36,6 +42,10 @@ private slots:
   void onCheck();
   void onButtonLeft();
   void onButtonRight();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace aaf

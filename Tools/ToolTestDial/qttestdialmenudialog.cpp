@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestDial, tool to test the Dial and DialWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestDial.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "testdialmenudialog.h"
 
 #include "about.h"
@@ -28,46 +28,44 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttestdialmaindialog.h"
 #include "qttestdialmenudialog.h"
 #include "ui_qttestdialmenudialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtTestDialMenuDialog)
+ribi::QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) noexcept
+ : QtHideAndShowDialog(parent),
+   ui(new Ui::QtTestDialMenuDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 }
 
-ribi::QtTestDialMenuDialog::~QtTestDialMenuDialog()
+ribi::QtTestDialMenuDialog::~QtTestDialMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestDialMenuDialog::on_button_start_clicked()
+void ribi::QtTestDialMenuDialog::on_button_start_clicked() noexcept
 {
-  hide();
   QtTestDialMainDialog d;
-  d.exec();
-  show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtTestDialMenuDialog::on_button_about_clicked()
+void ribi::QtTestDialMenuDialog::on_button_about_clicked() noexcept
 {
-  hide();
-  About a = TestDialMenuDialog::GetAbout();
+  About a = TestDialMenuDialog().GetAbout();
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  show();
+  this->ShowChild(&d);
 }
 
-void ribi::QtTestDialMenuDialog::on_button_quit_clicked()
+void ribi::QtTestDialMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
-void ribi::QtTestDialMenuDialog::Test()
+#ifndef NDEBUG
+void ribi::QtTestDialMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -78,4 +76,4 @@ void ribi::QtTestDialMenuDialog::Test()
     QtTestDialMainDialog d;
   }
 }
-
+#endif

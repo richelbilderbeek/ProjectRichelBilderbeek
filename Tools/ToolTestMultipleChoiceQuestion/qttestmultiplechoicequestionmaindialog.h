@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestMultipleChoiceQuestion, tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes
-Copyright (C) 2013 Richel Bilderbeek
+TestMultipleChoiceQuestion, tests multiple choice question classes
+Copyright (C) 2013-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,14 +21,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTMULTIPLECHOICEQUESTIONMAINDIALOG_H
 #define QTTESTMULTIPLECHOICEQUESTIONMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestMultipleChoiceQuestionMainDialog;
 }
+
+namespace ribi {
+
 struct TestMultipleChoiceQuestionMainDialog;
 struct QtMultipleChoiceQuestionDialog;
 
@@ -38,7 +45,9 @@ class QtTestMultipleChoiceQuestionMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestMultipleChoiceQuestionMainDialog(QWidget *parent = 0);
-  ~QtTestMultipleChoiceQuestionMainDialog();
+  QtTestMultipleChoiceQuestionMainDialog(const QtTestMultipleChoiceQuestionMainDialog&) = delete;
+  QtTestMultipleChoiceQuestionMainDialog& operator=(const QtTestMultipleChoiceQuestionMainDialog&) = delete;
+  ~QtTestMultipleChoiceQuestionMainDialog() noexcept;
   const boost::shared_ptr<const QtMultipleChoiceQuestionDialog> GetDialog() const { return m_dialog; }
   void SetQuestion(const std::string& s);
 
@@ -55,8 +64,10 @@ private:
   static boost::shared_ptr<QtMultipleChoiceQuestionDialog> CreateQtMultipleChoiceQuestionDialog(const std::string& s);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTESTMULTIPLECHOICEQUESTIONMAINDIALOG_H

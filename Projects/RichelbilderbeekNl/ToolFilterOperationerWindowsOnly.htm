@@ -42,7 +42,7 @@
 <a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> hdrstop<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("UnitFormFilterOperationer.cpp", FormFilterOperationer);<br/>
+USEFORM("UnitFormFilterOperationer<a href="CppImplementationFile.htm">.cpp</a>", FormFilterOperationer);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
@@ -344,7 +344,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;ImageSource-&gt;Picture-&gt;LoadFromFile(OpenDialog1-&gt;FileName);<br/>
 &nbsp;&nbsp;ImageSource-&gt;Visible <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;OnStringGridFilterChange(0);<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+PageControl-&gt;ActivePageIndex;<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>PageControl-&gt;ActivePageIndex;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormFilterOperationer::OnStringGridFilterChange2(<br/>
@@ -373,9 +373,9 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxy&gt;0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> v[0].size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxx&gt;0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringGridFilter-&gt;Cells[x][y] <a href="CppOperatorAssign.htm">=</a> v[y][x];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -387,7 +387,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;ImageTarget-&gt;Refresh();<br/>
 &nbsp;&nbsp;ButtonSaveResult-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;ButtonEnhance-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+PageControl-&gt;ActivePageIndex;<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>PageControl-&gt;ActivePageIndex;<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -409,7 +409,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;ImageEnhanced-&gt;Visible <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;ImageEnhanced-&gt;Refresh();<br/>
 &nbsp;&nbsp;ButtonSaveEnhanced-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+PageControl-&gt;ActivePageIndex;<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>PageControl-&gt;ActivePageIndex;<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -423,22 +423,22 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormFilterOperationer::Item<a href="CppAdd.htm">Add</a>ColClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+StringGridFilter-&gt;ColCount;<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>StringGridFilter-&gt;ColCount;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormFilterOperationer::Item<a href="CppAdd.htm">Add</a>RowClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+StringGridFilter-&gt;RowCount;<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>StringGridFilter-&gt;RowCount;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormFilterOperationer::ItemRemoveColClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (StringGridFilter-&gt;ColCount &gt; 1) <a href="CppOperatorMinus.htm">-</a>-StringGridFilter-&gt;ColCount;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (StringGridFilter-&gt;ColCount &gt; 1) <a href="CppOperatorDecrement.htm">--</a>StringGridFilter-&gt;ColCount;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormFilterOperationer::ItemRemoveRowClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (StringGridFilter-&gt;RowCount &gt; 1) <a href="CppOperatorMinus.htm">-</a>-StringGridFilter-&gt;RowCount;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (StringGridFilter-&gt;RowCount &gt; 1) <a href="CppOperatorDecrement.htm">--</a>StringGridFilter-&gt;RowCount;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormFilterOperationer::ButtonSaveEnhancedClick(<br/>
@@ -447,7 +447,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (SaveDialog1-&gt;Execute()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;ImageEnhanced-&gt;Picture-&gt;SaveToFile(SaveDialog1-&gt;FileName);<br/>
 &nbsp;&nbsp;ShowMessage("Image saved successfully");<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+PageControl-&gt;ActivePageIndex;<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>PageControl-&gt;ActivePageIndex;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormFilterOperationer::Panel<a href="CppAbout.htm">About</a>3Click(TObject *Sender)<br/>
@@ -463,23 +463,23 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TStringGrid * <b><a href="CppConst.htm">const</a></b> stringGridFilter,<br/>
 &nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageTarget)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageSource <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageSource-&gt;Picture-&gt;Bitmap <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageSource <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageSource-&gt;Picture-&gt;Bitmap <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageSource-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorNotEqual.htm">!=</a> pf24bit) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageTarget <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageTarget-&gt;Picture-&gt;Bitmap <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageTarget <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageTarget-&gt;Picture-&gt;Bitmap <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageTarget-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorNotEqual.htm">!=</a> pf24bit) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter-&gt;ColCount &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter-&gt;RowCount &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter-&gt;ColCount <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> stringGridFilter-&gt;RowCount <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter-&gt;ColCount <a href="CppOperatorEqual.htm">==</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> stringGridFilter-&gt;RowCount <a href="CppOperatorEqual.htm">==</a> 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (CanStringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (CanStringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Does the filter yield a valid filter range?<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; filter <a href="CppOperatorAssign.htm">=</a> StringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; filterRange <a href="CppOperatorAssign.htm">=</a> GetFilterRange(filter);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filterRange.first <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> filterRange.second) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filterRange.first <a href="CppOperatorEqual.htm">==</a> filterRange.second) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -491,7 +491,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageSource must not be <a href="CppNULL.htm">NULL</a>");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageSource-&gt;Picture-&gt;Bitmap <a href="CppOperatorNotEqual.htm">!=</a> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageSource bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageSource-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageSource-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageSource must be a 24-bit bitmap");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(stringGridFilter <a href="CppOperatorNotEqual.htm">!=</a> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter must not be <a href="CppNULL.htm">NULL</a>");<br/>
@@ -499,7 +499,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageTarget must not be <a href="CppNULL.htm">NULL</a>");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageTarget-&gt;Picture-&gt;Bitmap <a href="CppOperatorNotEqual.htm">!=</a> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageSource bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageTarget-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageTarget-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageTarget must be a 24-bit bitmap");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(stringGridFilter-&gt;ColCount <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter must have at least one collumn");<br/>
@@ -507,7 +507,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter must have at least one row");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( (stringGridFilter-&gt;ColCount &gt; 1 <a href="CppOperatorLogicalOr.htm">||</a> stringGridFilter-&gt;RowCount &gt; 1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter must be larger then 1x1 cell");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanStringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanStringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter's content must be <a href="CppConvert.htm">convert</a>able to <b><a href="CppDouble.htm">double</a></b>s");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; source <a href="CppOperatorAssign.htm">=</a> ImageToVector(imageSource);<br/>
@@ -538,14 +538,14 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;RowCount;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;ColCount;<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt; v(height,<a href="CppVector.htm">std::vector</a>&lt;T&gt;(width));<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()) );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; line <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Don't have the guts to <b><a href="CppDo.htm">do</a></b> a line-access on a TStringGrid...<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(line.size()) );<br/>
@@ -568,13 +568,13 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;RowCount;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;ColCount;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst_cast.htm">const_cast</a></b> because the VCL is not <b><a href="CppConst.htm">const</a></b>-correct. Grumble, grumble...<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;TStringGrid*&gt;(stringGrid)-&gt;Cells[x][y]).c_str();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppCanCast.htm">CanCast</a>&lt;T&gt;(s) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppCanCast.htm">CanCast</a>&lt;T&gt;(s) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
@@ -584,7 +584,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> N<a href="CppTRACE.htm">TRACE</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Output<a href="CppDebug.htm">Debug</a>String( v[i].c_str() );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -602,14 +602,14 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 <b><a href="CppVoid.htm">void</a></b> <a href="CppTrace.htm">Trace</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> N<a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>) { Output<a href="CppDebug.htm">Debug</a>String("{empty}"); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) { Output<a href="CppDebug.htm">Debug</a>String("{empty}"); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> v[0].size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; vLine <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(vLine[x]) <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(",");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -622,14 +622,14 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 <b><a href="CppVoid.htm">void</a></b> <a href="CppTrace.htm">Trace</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> N<a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>) { Output<a href="CppDebug.htm">Debug</a>String("{empty}"); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) { Output<a href="CppDebug.htm">Debug</a>String("{empty}"); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> v[0].size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; vLine <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(vLine[x])) <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(",");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -646,21 +646,21 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image must not be <a href="CppNULL.htm">NULL</a>");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; v(height,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(width));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; vLine <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(vLine.size()));<br/>
@@ -681,7 +681,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image must not be <a href="CppNULL.htm">NULL</a>");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> v[0].size();<br/>
@@ -689,14 +689,14 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> height;<br/>
 &nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> width;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; vLine <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(vLine.size()));<br/>
@@ -728,12 +728,12 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; filterRange <a href="CppOperatorAssign.htm">=</a> GetFilterRange(filter);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(filterRange.first &lt; filterRange.second);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> writeY <a href="CppOperatorAssign.htm">=</a> y;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(writeY <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> writeY &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()) );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; vLine <a href="CppOperatorAssign.htm">=</a> v[writeY];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The x and y values are the topleft coordinate of where<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;the filter will be applied to. This coordinat can be out of<br/>
@@ -793,7 +793,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 <br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> result <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> nPixels <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>filterMaxY; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>filterMaxY; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> readY <a href="CppOperatorAssign.htm">=</a> sourceY <a href="CppOperatorPlus.htm">+</a> y;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( readY &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> readY <a href="CppOperatorGreaterEqual.htm">&gt;=</a> sourceMaxY) <b><a href="CppContinue.htm">continue</a></b>;<br/>
@@ -803,7 +803,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(readY <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(readY &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(source.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; lineSource <a href="CppOperatorAssign.htm">=</a> source[readY];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>filterMaxX; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>filterMaxX; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> readX <a href="CppOperatorAssign.htm">=</a> sourceX <a href="CppOperatorPlus.htm">+</a> x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( readX &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> readX <a href="CppOperatorGreaterEqual.htm">&gt;=</a> sourceMaxX) <b><a href="CppContinue.htm">continue</a></b>;<br/>
@@ -812,8 +812,8 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(readX <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(readX &lt; sourceMaxX);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> deltaResult <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(lineSource[readX]) * lineFilter[x];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> deltaResult;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+nPixels;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result <a href="CppOperatorPlusAssign.htm">+=</a> deltaResult;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>nPixels;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nPixels<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
@@ -833,20 +833,20 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxx <a href="CppOperatorPlus.htm">+</a> maxy &gt; 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Filter size must be bigger then 1x1");<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> min <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> max <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y&nbsp;&nbsp;&lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(filter.size()) );<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; lineFilter <a href="CppOperatorAssign.htm">=</a> filter[y];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x&nbsp;&nbsp;&lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(lineFilter.size()) );<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> value <a href="CppOperatorAssign.htm">=</a> lineFilter[x];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value &lt; 0.0) min <a href="CppOperatorPlus.htm">+</a>=value;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (value &gt; 0.0) max <a href="CppOperatorPlus.htm">+</a>=value;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value &lt; 0.0) min <a href="CppOperatorPlusAssign.htm">+=</a>value;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (value &gt; 0.0) max <a href="CppOperatorPlusAssign.htm">+=</a>value;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; range<br/>
@@ -860,7 +860,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Find lowest and highest value<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image must not be <a href="CppNULL.htm">NULL</a>");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must be 24 bit");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the width and height from the source<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
@@ -869,12 +869,12 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 <br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> stretch <a href="CppOperatorAssign.htm">=</a> 1000.0; <a href="CppComment.htm">//</a>Way too much <b><a href="CppFor.htm">for</a></b> nearly all images<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> grey<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(line[x*3+0] <a href="CppOperatorPlus.htm">+</a> line[x*3+1] <a href="CppOperatorPlus.htm">+</a> line[x*3+2])<br/>
@@ -897,12 +897,12 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Enhance the contrast<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> grey<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(line[x*3+0] <a href="CppOperatorPlus.htm">+</a> line[x*3+1] <a href="CppOperatorPlus.htm">+</a> line[x*3+2])<br/>
@@ -925,28 +925,28 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image must not be <a href="CppNULL.htm">NULL</a>");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must be 24 bit");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the width and height from the source<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * line<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> grey<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(line[x*3+0] <a href="CppOperatorPlus.htm">+</a> line[x*3+1] <a href="CppOperatorPlus.htm">+</a> line[x*3+2])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> grey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum <a href="CppOperatorPlusAssign.htm">+=</a> grey;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> surface <a href="CppOperatorAssign.htm">=</a> width * height;<br/>
@@ -969,7 +969,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt;<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppLexicalCast.htm">LexicalCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanCast.htm">CanCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanCast.htm">CanCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAtoi.htm">std::atoi</a>(s.c_str());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -977,7 +977,7 @@ __fastcall TFormFilterOperationer::TFormFilterOperationer(T<a href="CppComponent
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt;<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppLexicalCast.htm">LexicalCast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanCast.htm">CanCast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(s) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanCast.htm">CanCast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(s) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAtof.htm">std::atof</a>(s.c_str());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>

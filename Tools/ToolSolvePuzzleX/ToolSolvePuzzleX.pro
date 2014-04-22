@@ -1,7 +1,5 @@
-QT       += core
-QT       -= gui
-QMAKE_CXXFLAGS += -std=c++0x
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
+include(../../Libraries/GeneralConsole.pri)
+
 SOURCES += main.cpp

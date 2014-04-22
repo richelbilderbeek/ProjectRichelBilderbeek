@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RandomCode, tool to generate random C++ code
-Copyright (C) 2007-2012  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRandomCode.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtrandomcodemenudialog.h"
 
 #include <QDesktopWidget>
@@ -30,16 +30,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtrandomcodemaindialog.h"
 #include "qthideandshowdialog.h"
+#include "trace.h"
 #include "ui_qtrandomcodemenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtRandomCodeMenuDialog::QtRandomCodeMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRandomCodeMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-ribi::QtRandomCodeMenuDialog::~QtRandomCodeMenuDialog()
+ribi::QtRandomCodeMenuDialog::~QtRandomCodeMenuDialog() noexcept
 {
   delete ui;
 }
@@ -51,14 +56,12 @@ void ribi::QtRandomCodeMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtRandomCodeMenuDialog::on_button_about_clicked()
 {
-  About a = RandomCodeMenuDialog::GetAbout();
+  About a = RandomCodeMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtRandomCodeMenuDialog::on_button_quit_clicked()
@@ -69,7 +72,19 @@ void ribi::QtRandomCodeMenuDialog::on_button_quit_clicked()
 void ribi::QtRandomCodeMenuDialog::on_button_start_clicked()
 {
   QtRandomCodeMainDialog d;
-  //d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
+
+#ifndef NDEBUG
+void ribi::QtRandomCodeMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtRandomCodeMenuDialog::Test");
+  TRACE("Finished ribi::QtRandomCodeMenuDialog::Test successfully");
+}
+#endif

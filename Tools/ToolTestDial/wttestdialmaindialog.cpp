@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wttestdialmaindialog.h"
 //---------------------------------------------------------------------------
 ribi::WtTestDialMainDialog::WtTestDialMainDialog()
+  : ui{}
 {
   this->setContentAlignment(Wt::AlignCenter);
   Show();

@@ -1,120 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>boost::bimap example 1: find</title>
-  <meta name="description" content="C++ boost::bimap example 1: find"/>
-  <meta name="keywords" content="C++ boost::bimap example 1: find code snippet"/>
-  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+  <title>Redirection page</title>
+  <meta http-equiv="REFRESH" content="0;url=CppBoostBimapExample1.htm"/>
 </head>
-<!-- End of head, start of body -->
 <body>
-<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBimapExample1.htm">boost::bimap example 1: find</a></h1>
-<p>&nbsp;</p>
-<p><a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="CppBimapExample1.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Technical facts</h2>
-<p>&nbsp;</p>
-<p><a href="CppApplication.htm">Application type(s)</a></p>
-<ul>
-  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
-</ul>
-<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
-<ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
-</ul>
-<p><a href="CppIde.htm">IDE(s)</a>:</p>
-<ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
-</ul>
-<p><a href="CppQtProjectType.htm">Project type</a>:</p>
-<ul>
-  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
-</ul>
-<p><a href="CppStandard.htm">C++ standard</a>:</p>
-<ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
-</ul>
-<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
-<ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
-</ul>
-<p><a href="CppLibrary.htm">Libraries</a> used:</p>
-<ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppBimapExample1.pro</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="CppBimapExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
-#<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>main.cpp</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bimap.hpp&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(1, 1));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(2, 4));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(3, 9));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(4,16));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(5,25));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find( 0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.left.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find( 5) <a href="CppOperatorNotEqual.htm">!=</a> m.left.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find(16) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.left.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find( 0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.right.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find( 5) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.right.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find(16) <a href="CppOperatorNotEqual.htm">!=</a> m.right.end());<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>Redirection...</p>
 <p>&nbsp;</p>
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
-<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
 </html>

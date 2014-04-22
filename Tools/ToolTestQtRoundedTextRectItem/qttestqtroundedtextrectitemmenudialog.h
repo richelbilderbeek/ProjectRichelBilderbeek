@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQtRoundedTextRectItem, tool to test QtRoundedTextRectItem
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,9 @@ class QtTestQtRoundedTextRectItemMenuDialog : public ribi::QtHideAndShowDialog
 
 public:
   explicit QtTestQtRoundedTextRectItemMenuDialog(QWidget *parent = 0);
-  ~QtTestQtRoundedTextRectItemMenuDialog();
+  QtTestQtRoundedTextRectItemMenuDialog(const QtTestQtRoundedTextRectItemMenuDialog&) = delete;
+  QtTestQtRoundedTextRectItemMenuDialog& operator=(const QtTestQtRoundedTextRectItemMenuDialog&) = delete;
+  ~QtTestQtRoundedTextRectItemMenuDialog() noexcept;
 
 protected:
   
@@ -48,6 +50,10 @@ private slots:
   void on_button_about_clicked();
   void on_button_quit_clicked();
   void on_button_start_clicked();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -8,6 +8,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace sadc {
 
 class QtSearchAndDestroyChessMenuDialog : public QtHideAndShowDialog
 {
@@ -15,12 +16,16 @@ class QtSearchAndDestroyChessMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtSearchAndDestroyChessMenuDialog(QWidget *parent = 0);
-  ~QtSearchAndDestroyChessMenuDialog();
-
-  static void Test();
+  QtSearchAndDestroyChessMenuDialog(const QtSearchAndDestroyChessMenuDialog&) = delete;
+  QtSearchAndDestroyChessMenuDialog& operator=(const QtSearchAndDestroyChessMenuDialog&) = delete;
+  ~QtSearchAndDestroyChessMenuDialog() noexcept;
 
 private:
   Ui::QtSearchAndDestroyChessMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
     void on_button_about_clicked();
@@ -29,6 +34,7 @@ private slots:
 
 };
 
+} //~namespace sadc
 } //~namespace ribi
 
 #endif // QTSEARCHANDDESTROYCHESSMENUDIALOG_H

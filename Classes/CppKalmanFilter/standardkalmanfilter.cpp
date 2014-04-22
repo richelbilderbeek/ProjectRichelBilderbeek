@@ -52,18 +52,18 @@ ribi::kalman::StandardKalmanFilter::StandardKalmanFilter(
   #endif
 }
 
-int ribi::kalman::StandardKalmanFilter::GetStateSize() const
+int ribi::kalman::StandardKalmanFilter::GetStateSize() const noexcept
 {
   const int sz = boost::numeric_cast<int>(m_state_estimate.size());
   return sz;
 }
 
-const std::string ribi::kalman::StandardKalmanFilter::GetVersion()
+std::string ribi::kalman::StandardKalmanFilter::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::StandardKalmanFilter::GetVersionHistory()
+std::vector<std::string> ribi::kalman::StandardKalmanFilter::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version"

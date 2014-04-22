@@ -22,27 +22,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 // 
-//---------------------------------------------------------------------------
+
 #include "parametersviewresultsgroup.h"
 #include "repeatassigner.h"
 #include "repeatassignerfixed.h"
 #include "repeatassignerrandomgeometric.h"
 #include "repeatassignerrandomuniform.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersViewResultsGroup::ParametersViewResultsGroup()
   : m_repeat_assigner(new RepeatAssignerFixed(3)),
     m_duration(5)
 {
 }
-//---------------------------------------------------------------------------
+
 int ribi::gtst::ParametersViewResultsGroup::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersViewResultsGroup::Parse(const std::string& s)
 {
@@ -73,7 +73,7 @@ void ribi::gtst::ParametersViewResultsGroup::Parse(const std::string& s)
     ParseCycles(t);
   }
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line starting with cycles=
 void ribi::gtst::ParametersViewResultsGroup::ParseCycles(const std::string& s)
 {
@@ -160,7 +160,7 @@ void ribi::gtst::ParametersViewResultsGroup::ParseCycles(const std::string& s)
     return;
   }
 }
-//---------------------------------------------------------------------------
+
 ///SeperateString splits a std::string
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
 const std::vector<std::string> ribi::gtst::ParametersViewResultsGroup::SeperateString(
@@ -178,19 +178,19 @@ const std::vector<std::string> ribi::gtst::ParametersViewResultsGroup::SeperateS
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersViewResultsGroup::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersViewResultsGroup::SetRepeatAssigner(boost::shared_ptr<RepeatAssigner> assigner)
 {
   assert(assigner);
   m_repeat_assigner = assigner;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersViewResultsGroup& parameters)
 {
   os
@@ -205,5 +205,5 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersViewResult
 
   return os;
 }
-//---------------------------------------------------------------------------
+
 

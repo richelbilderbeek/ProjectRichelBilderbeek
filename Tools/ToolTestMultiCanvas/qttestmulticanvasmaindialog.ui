@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestMultiCanvasMainDialog</class>
+ <widget class="QDialog" name="QtTestMultiCanvasMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>957</width>
+    <height>675</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="2">
+    <widget class="QPlainTextEdit" name="text">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Courier</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" rowspan="2">
+    <widget class="QWidget" name="widget_draw" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_draw">
+        <property name="text">
+         <string>Drawing canvas</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_dot_draw">
+        <item>
+         <widget class="QPushButton" name="button_dot_draw">
+          <property name="text">
+           <string>Draw dot</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_dot_x_draw">
+          <property name="text">
+           <string>(x =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_dot_x_draw">
+          <property name="value">
+           <number>40</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_doy_y_2">
+          <property name="text">
+           <string>, y=</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_dot_y_draw">
+          <property name="value">
+           <number>16</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_dot_close_draw">
+          <property name="text">
+           <string>)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="spacer_dot_draw">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_line_draw">
+        <item>
+         <widget class="QPushButton" name="button_line_draw">
+          <property name="text">
+           <string>Draw line</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_line_x1_draw">
+          <property name="text">
+           <string>(x =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_line_x1_draw"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_line_y1_draw">
+          <property name="text">
+           <string>, y=</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_line_y1_draw"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_line_x2_draw">
+          <property name="text">
+           <string>)-(x =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_line_x2_draw">
+          <property name="value">
+           <number>70</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_line_y2_draw">
+          <property name="text">
+           <string>, y=</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_line_y2_draw">
+          <property name="value">
+           <number>20</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_line_close_draw">
+          <property name="text">
+           <string>)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="spacer_line_draw">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_circle_draw">
+        <item>
+         <widget class="QPushButton" name="button_circle_draw">
+          <property name="text">
+           <string>Draw circle</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_circle_x_draw">
+          <property name="text">
+           <string>(x =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_circle_x_draw">
+          <property name="value">
+           <number>40</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_circle_y_draw">
+          <property name="text">
+           <string>, y=</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_circle_y_draw">
+          <property name="value">
+           <number>16</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_circle_r_draw">
+          <property name="text">
+           <string>, radius=</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_circle_r_draw">
+          <property name="value">
+           <number>10</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_circle_close_draw">
+          <property name="text">
+           <string>)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="spacer_circle_draw">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_color_system_draw">
+        <item>
+         <widget class="QLabel" name="label_color_system_draw">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Color system</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="box_color_system_draw">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>normal</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>invert</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_coordinat_system_draw">
+        <item>
+         <widget class="QLabel" name="label_coordinat_system_draw">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Coordinat system</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="box_coordinat_system_draw">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>screen</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>graph</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_clear_draw">
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="spacer_bottom_left">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QWidget" name="widget_text" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_text">
+        <property name="text">
+         <string>Text canvas</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_char_text">
+        <item>
+         <widget class="QPushButton" name="button_char_text">
+          <property name="text">
+           <string>Set char</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_char_x_text">
+          <property name="text">
+           <string>(x =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_char_x_text">
+          <property name="value">
+           <number>40</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_char_y_text">
+          <property name="text">
+           <string>, y=</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_char_y_text">
+          <property name="value">
+           <number>16</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_char_close_text">
+          <property name="text">
+           <string>)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="edit_char_text"/>
+        </item>
+        <item>
+         <spacer name="char_spacer_text">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_text_text">
+        <item>
+         <widget class="QPushButton" name="button_text_text">
+          <property name="text">
+           <string>Set text</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_text_x_text">
+          <property name="text">
+           <string>(x =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_text_x_text">
+          <property name="value">
+           <number>40</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_text_y_text">
+          <property name="text">
+           <string>, y=</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_text_y_text">
+          <property name="value">
+           <number>16</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_text_close_text">
+          <property name="text">
+           <string>)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="edit_text_text"/>
+        </item>
+        <item>
+         <spacer name="text_spacer_text">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_coordinat_system_text">
+        <item>
+         <widget class="QLabel" name="label_coordinat_system_text">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Coordinat system</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="box_coordinat_system_text">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>screen</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>graph</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_clear_text">
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_image">
+        <property name="text">
+         <string>Image canvas</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_image_image">
+        <item>
+         <widget class="QPushButton" name="button_image_image">
+          <property name="text">
+           <string>Put image</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_image_n_cols_image">
+          <property name="text">
+           <string>(n_cols =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="box_n_cols_image">
+          <property name="minimum">
+           <number>5</number>
+          </property>
+          <property name="maximum">
+           <number>999999999</number>
+          </property>
+          <property name="value">
+           <number>40</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_image_close_image">
+          <property name="text">
+           <string>)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="spacer_image_image">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_color_system_image">
+        <item>
+         <widget class="QLabel" name="label_color_system_image">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Color system</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="box_color_system_image">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>normal</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>invert</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_coordinat_system_image">
+        <item>
+         <widget class="QLabel" name="label_coordinat_system_image">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>Coordinat system</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="box_coordinat_system_image">
+          <property name="font">
+           <font>
+            <family>Courier</family>
+           </font>
+          </property>
+          <item>
+           <property name="text">
+            <string>screen</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>graph</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

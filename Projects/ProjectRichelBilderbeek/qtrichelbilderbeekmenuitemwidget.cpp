@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,18 +18,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtrichelbilderbeekmenuitemwidget.h"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QFontDialog>
 #include <QGraphicsScene>
@@ -47,41 +45,47 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "qtaboutdialog.h"
 #include "qtroundedtextrectitem.h"
+#include "richelbilderbeekprogramtypes.h"
 #include "testqtroundedtextrectitemmenudialog.h"
+#include "qtrichelbilderbeekmenuitem.h"
 
-ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget *parent)
-  : QtKeyboardFriendlyGraphicsView(parent)
+#pragma GCC diagnostic pop
+
+ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
+  QWidget *parent)
+  : QtKeyboardFriendlyGraphicsView(parent),
+    m_signal_show{}
 {
   assert(scene());
   scene()->clear();
 
-  const std::vector<RichelBilderbeek::ProgramType> program_types = RichelBilderbeek::GetAllProgramTypes();
+  const std::vector<ProgramType> program_types {
+    ProgramTypes::GetAll()
+  };
   const int n_program_types = boost::numeric_cast<int>(program_types.size());
-  const int n_cols = 4;
+  const int n_cols = 6;
   const int n_rows = n_program_types / n_cols;
   for (int i = 0; i!=n_program_types; ++i)
   {
-    QtRoundedTextRectItem * const item = new QtRoundedTextRectItem;
+
 
     const int col = i % n_cols;
     const int row = i / n_cols;
-    const double w = item->boundingRect().width();
-    const double h = item->boundingRect().height();
     const double x = -300.0 + (static_cast<double>(col) * 200.0);
     const double y = static_cast<double>(row-(n_rows/2)) * 22.0;
 
     assert(i < boost::numeric_cast<int>(program_types.size()));
-    const boost::shared_ptr<RichelBilderbeek::Program> p
-      = RichelBilderbeek::Program::CreateProgram(
+    const boost::shared_ptr<Program> p
+      = Program::CreateProgram(
         program_types[i]);
-    const std::string s = p->GetName();
 
-    item->SetText(s);
+    QtRichelBilderbeekMenuItem * const item = new QtRichelBilderbeekMenuItem(p->GetType());
+    const double w = item->boundingRect().width();
+    const double h = item->boundingRect().height();
+
+    //const std::string s = p->GetScreenName(); //Set the screen name
+    //item->SetText(s);
     item->setPos(x,y);
-    QPen pen = item->GetFocusPen();
-    pen.setWidth(3);
-    pen.setColor(QColor(255,0,0));
-    item->SetFocusPen(pen);
 
     const double left = x;
     const double top = y;
@@ -114,13 +118,6 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
       brush.setColorAt(1.0,color);
     }
     item->setBrush(brush);
-    //Rotation
-    {
-      const double f = static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX);
-      const double angle = -3.0 + (6.0 * f);
-      item->setRotation(angle);
-
-    }
     if (row == n_rows / 2 && col == 1)
     {
       item->setFocus();
@@ -130,7 +127,7 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
   }
 }
 
-void ribi::QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event) noexcept
 {
 
   switch (event->key())
@@ -141,46 +138,10 @@ void ribi::QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event)
     {
       //Find the text on the item
       QGraphicsItem * const item = this->scene()->focusItem();
-      QtRoundedTextRectItem * const text_item = dynamic_cast<QtRoundedTextRectItem*>(item);
-      assert(text_item);
-      const std::string text = text_item->GetText();
-
-      //Display the dialog
-      const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::GetAllProgramTypes();
-      for (const RichelBilderbeek::ProgramType type: v)
-      {
-        const boost::shared_ptr<RichelBilderbeek::Program> p = RichelBilderbeek::Program::CreateProgram(type);
-        if (p->GetName() == text)
-        {
-          const boost::shared_ptr<QDialog> dialog(
-            QtRichelBilderbeekProgram::CreateQtMenuDialog(type));
-          if (!dialog)
-          {
-            const boost::shared_ptr<QtHideAndShowDialog> placeholder(
-              QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(type));
-            assert(placeholder);
-            //this->ShowChild(placeholder.get());
-            placeholder->exec();
-            return;
-          }
-          else if (boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog))
-          {
-            const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
-              boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
-            assert(hide_and_show_dialog);
-            hide_and_show_dialog->exec();
-            //this->ShowChild(hide_and_show_dialog.get());
-            return;
-          }
-          else
-          {
-            dialog->exec();
-            this->show();
-            return;
-          }
-        }
-      }
-
+      QtRichelBilderbeekMenuItem * const menu_item = dynamic_cast<QtRichelBilderbeekMenuItem*>(item);
+      assert(menu_item);
+      const ProgramType program_type { menu_item->GetProgramType() };
+      m_signal_show(program_type);
     }
     return;
   }

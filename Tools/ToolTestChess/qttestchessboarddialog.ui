@@ -45,7 +45,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QtChessBoardWidget" name="chessboard_widget" native="true">
+  <widget class="ribi::Chess::QtChessBoardWidget" name="chessboard_widget" native="true">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -80,7 +80,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtChessBoardWidget</class>
+   <class>ribi::Chess::QtChessBoardWidget</class>
    <extends>QWidget</extends>
    <header>qtchessboardwidget.h</header>
    <container>1</container>

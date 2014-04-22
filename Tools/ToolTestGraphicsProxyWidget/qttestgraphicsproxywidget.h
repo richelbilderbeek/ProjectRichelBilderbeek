@@ -1,7 +1,10 @@
 #ifndef QTBOUNCINGBALLSWIDGET_H
 #define QTBOUNCINGBALLSWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QGraphicsView>
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 struct SomeDialog;
@@ -15,10 +18,11 @@ struct QtTestGraphicsProxyWidget : public QGraphicsView
   void resizeEvent(QResizeEvent *event);
 
   private:
-  QGraphicsScene * const m_scene;
+  std::vector<SomeDialog *> m_dialogs;
+
   //Proxies of the added widgets
   std::vector<QGraphicsProxyWidget *> m_proxies;
-  std::vector<SomeDialog *> m_dialogs;
+  QGraphicsScene * const m_scene;
 
 };
 

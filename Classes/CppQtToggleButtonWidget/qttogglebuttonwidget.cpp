@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtToggleButtonWidget, Qt widget for displaying the ToggleButtonWidget class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtToggleButtonWidget.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttogglebuttonwidget.h"
 
+#include <cassert>
 #include <iostream>
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
@@ -44,7 +44,8 @@ ribi::QtToggleButtonWidget::QtToggleButtonWidget(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_widget(new ToggleButtonWidget(toggled,red,green,blue))
+  : m_signal_toggled{},
+    m_widget(new ToggleButtonWidget(toggled,red,green,blue))
 {
   assert(m_widget);
   m_widget->GetToggleButton()->m_signal_toggled.connect(
@@ -106,44 +107,46 @@ void ribi::QtToggleButtonWidget::DrawToggleButton(
 
 void ribi::QtToggleButtonWidget::DrawToggleButton(
   QPainter& painter,
-  const ToggleButtonWidget * const widget)
+  const boost::shared_ptr<const ToggleButtonWidget> widget)
 {
   DrawToggleButton(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetToggleButton());
+    widget->GetLeft(),
+    widget->GetTop(),
+    widget->GetWidth(),
+    widget->GetHeight(),
+    widget->GetToggleButton()
+  );
 }
 
-const std::string ribi::QtToggleButtonWidget::GetVersion()
+std::string ribi::QtToggleButtonWidget::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-const std::vector<std::string> ribi::QtToggleButtonWidget::GetVersionHistory()
+std::vector<std::string> ribi::QtToggleButtonWidget::GetVersionHistory() noexcept
 {
   return {
-    "2011-06-16: version 1.0: initial version"
+    "2011-06-16: version 1.0: initial version",
+    "2014-03-28: Version 1.1: replaced custom Rect class by Boost.Geometry"
   };
 }
 
 void ribi::QtToggleButtonWidget::mousePressEvent(QMouseEvent * e)
 {
-  //m_widget its observers for a repaint
+  //m_widget signals its observers for a repaint
   m_widget->Click(e->x(),e->y());
 }
 
 void ribi::QtToggleButtonWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
-  DrawToggleButton(painter,m_widget.get());
+  DrawToggleButton(painter,m_widget);
 }
 
 void ribi::QtToggleButtonWidget::resizeEvent(QResizeEvent *)
 {
-  this->m_widget->SetGeometry(Rect(0,0,this->width(),this->height()));
+  this->m_widget->SetGeometry(0,0,this->width(),this->height());
   repaint();
 }
 

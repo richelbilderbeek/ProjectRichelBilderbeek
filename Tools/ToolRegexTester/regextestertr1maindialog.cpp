@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RegexTester, regular expression tester
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterTr1MainDia
   return d;
 }
 
-const std::vector<std::string> ribi::RegexTesterTr1MainDialog::GetRegexMatches(
+std::vector<std::string> ribi::RegexTesterTr1MainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
 {
@@ -44,7 +44,7 @@ const std::vector<std::string> ribi::RegexTesterTr1MainDialog::GetRegexMatches(
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> ribi::RegexTesterTr1MainDialog::GetRegexMatches(
+std::vector<std::string> ribi::RegexTesterTr1MainDialog::GetRegexMatches(
   const std::string&,
   const std::tr1::regex&)
 {

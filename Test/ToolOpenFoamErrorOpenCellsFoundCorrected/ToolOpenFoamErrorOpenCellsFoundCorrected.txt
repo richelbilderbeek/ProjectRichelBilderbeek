@@ -1,0 +1,7 @@
+This started as the mesh of ToolOpenFoamErrorOpenCellsFound. checkMesh gave two errors. 
+
+Then, the following commands were run:
+renumberMesh
+zipUpMesh
+
+Now, checkMesh gives no errors.

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ManyDigitNewick, Newick class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@ struct ManyDigitNewick
   //An empty ManyDigitNewick
   ManyDigitNewick();
 
-  ///A TwoDogitNewick cannot be created without
+  ///A ManyDigitNewick cannot be created without
   ///its derivatives: a ManyDigitNewick IS its
   ///derivatives in a way.
   ///sum_above_zero and sum_above_one are needed to
@@ -56,13 +56,13 @@ struct ManyDigitNewick
     const int sum_above_one);
 
   ///Empty returns !IsComplete
-  bool Empty() const;
+  bool Empty() const noexcept;
 
-  const std::vector<Derivative>& GetDerivatives() const;
+  const std::vector<Derivative>& GetDerivatives() const noexcept;
   ///IsComplete determines if the ManyDigitNewick is
   ///initialized completely
   bool IsComplete() const;
-  bool IsProbabilityKnown() const;
+  bool IsProbabilityKnown() const noexcept;
   double GetDenominator() const;
   double GetProbability() const;
   int GetSumTermsAboveOne() const;
@@ -70,8 +70,8 @@ struct ManyDigitNewick
   void SetProbability(const double p);
   static void SetTheta(const double theta);
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///m_derivatives contains all the information
@@ -102,7 +102,7 @@ struct ManyDigitNewick
     const std::string& newick,
     const double theta);
 
-  static void Test();
+  static void Test() noexcept;
 
 };
 

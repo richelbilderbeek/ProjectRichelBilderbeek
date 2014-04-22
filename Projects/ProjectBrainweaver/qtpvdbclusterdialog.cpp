@@ -1,10 +1,30 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbclusterdialog.h"
 
 #include <fstream>
-
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
 
 #include <boost/algorithm/string/trim_all.hpp>
 #include <boost/shared_ptr.hpp>
@@ -13,28 +33,29 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-#include "pvdbcenternodefactory.h"
-#include "pvdbcenternode.h"
+#include "conceptmapcenternodefactory.h"
+#include "conceptmapcenternode.h"
 #include "pvdbcluster.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptfactory.h"
+#include "conceptmapconcept.h"
+#include "conceptmapconceptfactory.h"
 #include "qtpvdbfiledialog.h"
 #include "pvdbclusterfactory.h"
-#include "pvdbconceptmap.h"
+#include "conceptmap.h"
 #include "qtpvdbclusterwidget.h"
-#include "pvdbcompetency.h"
-#include "pvdbedge.h"
-#include "pvdbedgefactory.h"
-#include "pvdbnodefactory.h"
-#include "pvdbconceptfactory.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbexamplefactory.h"
+#include "conceptmapcompetency.h"
+#include "conceptmapedge.h"
+#include "conceptmapedgefactory.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapfactory.h"
+#include "conceptmapexamplefactory.h"
 #include "pvdbfile.h"
 #include "pvdbfilefactory.h"
-#include "pvdbnode.h"
+#include "conceptmapnode.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "trace.h"
 #include "ui_qtpvdbclusterdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbClusterDialog::QtPvdbClusterDialog(
   const boost::shared_ptr<pvdb::File> file,
@@ -49,7 +70,7 @@ ribi::pvdb::QtPvdbClusterDialog::QtPvdbClusterDialog(
   #ifndef NDEBUG
   Test();
   assert(file);
-  assert(IsEqual(*file,*m_file));
+  assert(operator==(*file,*m_file));
   assert(m_widget || !m_widget);
   assert( (file->GetCluster() || !file->GetCluster())
     && "The dialog creates a cluster when there is no concept map"
@@ -82,7 +103,7 @@ ribi::pvdb::QtPvdbClusterDialog::QtPvdbClusterDialog(
 }
 
 
-ribi::pvdb::QtPvdbClusterDialog::~QtPvdbClusterDialog()
+ribi::pvdb::QtPvdbClusterDialog::~QtPvdbClusterDialog() noexcept
 {
   ///WARNING: assume ui->widget is not available anymore
   //const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
@@ -121,11 +142,11 @@ void ribi::pvdb::QtPvdbClusterDialog::DoRandomStuff()
   assert(m_file->GetCluster() == this->GetWidget()->GetCluster());
   const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(m_file->GetCluster());
   assert(before != m_file->GetCluster());
-  assert(IsEqual(*before,*GetWidget()->GetCluster()));
+  assert(operator==(*before,*GetWidget()->GetCluster()));
   #endif
   this->GetWidget()->DoRandomStuff();
   #ifndef NDEBUG
-  assert(!IsEqual(*before,*GetWidget()->GetCluster()));
+  assert(!operator==(*before,*GetWidget()->GetCluster()));
   #endif
   //m_file->SetCluster(this->GetWidget()->GetCluster());
   assert(m_file->GetCluster() == this->GetWidget()->GetCluster());
@@ -163,6 +184,10 @@ ribi::pvdb::QtPvdbClusterWidget * ribi::pvdb::QtPvdbClusterDialog::GetWidget()
 
 void ribi::pvdb::QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
 {
+  if (!m_widget)
+  {
+    return;
+  }
   if (e->key()  == Qt::Key_Escape)
   {
     close();
@@ -191,6 +216,20 @@ void ribi::pvdb::QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
     box.exec();
     return;
   }
+  if ( (e->modifiers() & Qt::ControlModifier)
+    && (e->modifiers() & Qt::ShiftModifier)
+    && e->key() == Qt::Key_T)
+  {
+    //Translate
+    this->setWindowTitle("Association screen");
+    ui->label_text_top->setText("If you reflect on the focus statement:");
+    ui->label_text_middle->setText("Which important aspects of knowledge and attitude, examples, experiences and ideals do cross your mind?");
+    ui->label_text_bottom->setText("Make a list and group the items.");
+    ui->button_add->setText("Insert");
+    ui->button_next->setText("Construct concept map");
+    ui->button_save->setText("Save list");
+    return;
+  }
   QDialog::keyPressEvent(e);
 
   #ifndef NDEBUG
@@ -209,7 +248,7 @@ void ribi::pvdb::QtPvdbClusterDialog::on_button_add_clicked()
 {
   assert(m_widget && "This button can only be clicked when there is a widget");
 
-  assert(boost::algorithm::trim_all_copy(std::string(" \t x \t ")) == std::string("x"));
+  assert(boost::algorithm::trim_all_copy(std::string(" \t x \t ")) == "x");
   const std::string text = boost::algorithm::trim_all_copy(ui->edit->text().toStdString());
   if (text.empty()) return;
   //QStringList v;
@@ -226,7 +265,7 @@ void ribi::pvdb::QtPvdbClusterDialog::on_button_add_clicked()
     assert(file != m_file);
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
     file->SetCluster(cluster);
-    assert(IsEqual(*file->GetCluster(),*GetWidget()->GetCluster()));
+    assert(operator==(*file->GetCluster(),*GetWidget()->GetCluster()));
   }
   #endif
 }
@@ -275,21 +314,15 @@ void ribi::pvdb::QtPvdbClusterDialog::on_button_next_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbClusterDialog::Test()
+void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
-
-  typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
-  typedef std::vector<boost::shared_ptr<ribi::pvdb::Node> > Nodes;
+  typedef std::vector<boost::shared_ptr<ribi::cmap::Edge> > Edges;
+  typedef std::vector<boost::shared_ptr<ribi::cmap::Node> > Nodes;
 
   //Regular tests
   {
@@ -333,10 +366,10 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
           const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
           assert(before);
           assert(before != file->GetCluster());
-          assert(IsEqual(*file->GetCluster(),*before));
+          assert(operator==(*file->GetCluster(),*before));
           d->GetWidget()->Add("Modification!");
           //assert(!IsEqual(*file->GetCluster(),*before)); //Does not work, must obtain the cluster from the widget
-          assert(!IsEqual(*d->GetWidget()->GetCluster(),*before)); //Widget updates the cluster
+          assert(!operator==(*d->GetWidget()->GetCluster(),*before)); //Widget updates the cluster
         }
       }
     );
@@ -346,8 +379,8 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<pvdb::File> & file)
       {
-        const bool had_cluster = file->GetCluster();
-        const bool had_concept_map = file->GetConceptMap();
+        const bool had_cluster = file->GetCluster().get(); //.get() needed for crosscompiler
+        const bool had_concept_map = file->GetConceptMap().get(); //.get() needed for crosscompiler
 
         boost::shared_ptr<QtPvdbClusterDialog> d(new QtPvdbClusterDialog(file));
 
@@ -381,12 +414,12 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
           const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
           assert(before);
           assert(before != file->GetCluster());
-          assert(IsEqual(*file->GetCluster(),*before));
+          assert(operator==(*file->GetCluster(),*before));
           d->ui->edit->setText("modification");
           if (d->ui->button_add->isEnabled())
           {
             d->on_button_add_clicked();
-            assert(!IsEqual(*before,*d->GetWidget()->GetCluster()));
+            assert(!operator==(*before,*d->GetWidget()->GetCluster()));
           }
         }
       }
@@ -413,6 +446,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
 
   //QtPvdbClusterDialog must be disabled if there are more nodes in the concept map
   {
+    using namespace cmap;
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
     file->SetQuestion(question);
@@ -421,20 +455,25 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
 
     file->SetCluster(cluster);
 
-    const boost::shared_ptr<ribi::pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("Concept F"));
-    const boost::shared_ptr<ribi::pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(3));
-    const boost::shared_ptr<ribi::pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(4));
-    const boost::shared_ptr<ribi::pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
-    const boost::shared_ptr<ribi::pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<ribi::pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(2));
+    const int index_1 = 1;
+    assert(index_1 < static_cast<int>(ConceptFactory().GetTests().size()));
+    const int index_2 = 2;
+    assert(index_2 < static_cast<int>(ConceptFactory().GetTests().size()));
+
+    const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("Concept F"));
+    const boost::shared_ptr<Concept> concept_e(ConceptFactory().GetTests().at(index_1));
+    const boost::shared_ptr<Concept> concept_f(ConceptFactory().GetTests().at(index_2));
+    const boost::shared_ptr<Node> node_a(CenterNodeFactory().CreateFromStrings(question));
+    const boost::shared_ptr<Node> node_b(cmap::NodeFactory().GetTest(index_1));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().GetTest(index_2));
     const Nodes nodes = { node_a, node_b, node_c };
-    const boost::shared_ptr<ribi::pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<ribi::pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<ribi::pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory().Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<Edge> edge_b(cmap::EdgeFactory().Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<Edge> edge_c(cmap::EdgeFactory().Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
     const Edges edges = { edge_a, edge_b, edge_c };
 
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(
-      ribi::pvdb::ConceptMapFactory::Create(nodes,edges));
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
+      ribi::cmap::ConceptMapFactory::Create(nodes,edges));
     assert(concept_map);
     file->SetConceptMap(concept_map);
 
@@ -445,11 +484,6 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
     assert(!d.GetWidget()->isEnabled()
       && "QtClusterWidget is disabled when there is a filled ConceptMap");
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 
@@ -471,7 +505,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Save()
   const std::string filename
     =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
       || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
-     ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
+     ? filename_raw + "." + pvdb::File::GetFilenameExtension()
      : filename_raw);
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()

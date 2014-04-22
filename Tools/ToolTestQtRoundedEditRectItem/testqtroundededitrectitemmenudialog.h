@@ -1,19 +1,24 @@
 #ifndef TESTQTROUNDEDEDITRECTITEMWIDGETMENUDIALOG_H
 #define TESTQTROUNDEDEDITRECTITEMWIDGETMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-///GUI independent TestQtRoundedEditRectItemWidget menu dialog
-struct TestQtRoundedEditRectItemMenuDialog
+struct TestQtRoundedEditRectItemMenuDialog : public MenuDialog
 {
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

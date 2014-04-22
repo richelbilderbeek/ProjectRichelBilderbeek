@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CreateGlossary, tool to create my glossaries
-Copyright (C) 2011-2012 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,18 +38,10 @@ struct CreateGlossaryMainDialog
     const std::string& page_url,
     const std::string& regex);
 
-  ///Obtain all files in a folder
-  //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-  static const std::vector<std::string> GetFilesInFolder(const std::string& folder);
 
-  ///Obtain the files in a folder with a regex
-  static const std::vector<std::string> GetFilesInFolder(
-    const std::string& folder,
-    const std::string& regex_str);
-
-  ///Returns the path of a filename
-  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
-  static const std::string GetPath(const std::string& filename);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

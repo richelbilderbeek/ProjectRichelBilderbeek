@@ -3,7 +3,7 @@
 #include "multiintegerstateobserver.h"
 
 #include <cassert>
-#include <boost/foreach.hpp>
+
 
 #pragma GCC diagnostic pop
 
@@ -31,12 +31,12 @@ void ribi::MultiIntegerStateObserver::Update(int64_t measurement)
   }
 }
 
-const std::string ribi::MultiIntegerStateObserver::GetVersion()
+std::string ribi::MultiIntegerStateObserver::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MultiIntegerStateObserver::GetVersionHistory()
+std::vector<std::string> ribi::MultiIntegerStateObserver::GetVersionHistory() noexcept
 {
   return {
     "2013-06-04: version 1.0: initial version",

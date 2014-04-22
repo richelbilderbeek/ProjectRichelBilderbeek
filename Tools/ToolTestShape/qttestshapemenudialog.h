@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShape, tool to test the Shape and ShapeWidget classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,9 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTSHAPEMENUDIALOG_H
 #define QTTESTSHAPEMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
-
-#include <QDialog>
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtTestShapeMenuDialog;
@@ -33,13 +35,15 @@ namespace ribi {
 
 struct TestShapeMenuDialog;
 
-class QtTestShapeMenuDialog : public QDialog
+class QtTestShapeMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestShapeMenuDialog(QWidget *parent = 0);
-  ~QtTestShapeMenuDialog();
+  QtTestShapeMenuDialog(const QtTestShapeMenuDialog&) = delete;
+  QtTestShapeMenuDialog& operator=(const QtTestShapeMenuDialog&) = delete;
+  ~QtTestShapeMenuDialog() noexcept;
 
 private slots:
   void on_button_start_clicked();
@@ -51,7 +55,7 @@ private:
   boost::scoped_ptr<TestShapeMenuDialog> m_dialog;
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 };
 
 } //~namespace ribi

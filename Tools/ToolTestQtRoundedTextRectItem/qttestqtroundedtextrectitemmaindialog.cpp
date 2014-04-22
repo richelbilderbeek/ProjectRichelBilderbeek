@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQtRoundedTextRectItem, tool to test QtRoundedTextRectItem
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,27 +18,45 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtRoundedTextRectItem.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestqtroundedtextrectitemmaindialog.h"
 
 #include <QKeyEvent>
-#include "ui_qttestqtroundedtextrectitemmaindialog.h"
 
-QtTestQtRoundedTextRectItemMainDialog::QtTestQtRoundedTextRectItemMainDialog(QWidget *parent) :
+#include "trace.h"
+#include "ui_qttestqtroundedtextrectitemmaindialog.h"
+#pragma GCC diagnostic pop
+
+ribi::QtTestQtRoundedTextRectItemMainDialog::QtTestQtRoundedTextRectItemMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedTextRectItemMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
-QtTestQtRoundedTextRectItemMainDialog::~QtTestQtRoundedTextRectItemMainDialog()
+ribi::QtTestQtRoundedTextRectItemMainDialog::~QtTestQtRoundedTextRectItemMainDialog() noexcept
 {
   delete ui;
 }
 
-void QtTestQtRoundedTextRectItemMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtRoundedTextRectItemMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+#ifndef NDEBUG
+void ribi::QtTestQtRoundedTextRectItemMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtRoundedTextRectItemMainDialog::Test");
+  TRACE("Finished ribi::QtTestQtRoundedTextRectItemMainDialog::Test successfully");
+}
+#endif

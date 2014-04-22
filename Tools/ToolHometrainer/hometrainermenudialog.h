@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Hometrainer, exercise and survey suite
-Copyright (C) 2009-2013 Richel Bilderbeek
+Copyright (C) 2009-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,25 +22,32 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define HOMETRAINERMENUDIALOG_H
 
 #include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///The logic behind the menu dialog
-struct HometrainerMenuDialog
+struct HometrainerMenuDialog : public MenuDialog
 {
-  ///Obtain the about information
-  ///
-  ///\note
-  ///This is a non-static method, to ensure users of this class
-  ///call HometrainerMenuDialog its constructor: this is where
-  ///the resources needed are created
-  const About GetAbout() const;
+  HometrainerMenuDialog();
 
-  ///Obtain the version
-  static const std::string GetVersion();
+  ///Create the example exercises
+  static void CreateExamples() noexcept;
 
-  ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  ///Execute Hometrainer from the command line
+  ///The return code is the error code given back to main
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

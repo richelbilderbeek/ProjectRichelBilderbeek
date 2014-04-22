@@ -20,18 +20,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTCONNECTTHREEWIDGET_H
 #define WTCONNECTTHREEWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <bitset>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WPaintedWidget>
-//---------------------------------------------------------------------------
-//#include "connectthree.h"
-//---------------------------------------------------------------------------
+#include "connectthreefwd.h"
+#include "connectthreeplayer.h"
+#include "connectthreesquare.h"
+#include "connectthreewinner.h"
+
 namespace Wt
 {
   struct WPaintDevice;
@@ -40,11 +42,12 @@ namespace Wt
   #endif
   struct WTimer;
 }
-//---------------------------------------------------------------------------
-namespace ribi {
 
-struct ConnectThreeWidget;
-struct ConnectThreeResources;
+namespace ribi {
+namespace con3 {
+
+//struct ConnectThreeWidget;
+//struct ConnectThreeResources;
 
 ///WtConnectThreeWidget is a Wt widget to display
 ///the area/board of the ConnectThree class.
@@ -57,11 +60,11 @@ struct WtConnectThreeWidget : public Wt::WPaintedWidget
     const int n_rows = 12);
 
   void DoComputerTurn();
-  int GetActivePlayer() const;
+  Player GetActivePlayer() const;
   const std::bitset<3>& GetIsPlayerHuman() const;
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
-  int GetWinner() const;
+  Winner GetWinner() const;
   bool IsComputerTurn() const;
   void Restart();
   void SetIsPlayerHuman(const std::bitset<3>& is_player_human);
@@ -79,9 +82,10 @@ struct WtConnectThreeWidget : public Wt::WPaintedWidget
   const std::vector<boost::shared_ptr<const Wt::WPainter::Image> > m_players;
   const boost::scoped_ptr<const Wt::WPainter::Image> m_empty;
   const boost::scoped_ptr<Wt::WTimer> m_timer;
-  const Wt::WPainter::Image& GetImage(const int sprite) const;
+  const Wt::WPainter::Image& GetImage(const Square sprite) const;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // WTCONNECTTHREEWIDGET_H

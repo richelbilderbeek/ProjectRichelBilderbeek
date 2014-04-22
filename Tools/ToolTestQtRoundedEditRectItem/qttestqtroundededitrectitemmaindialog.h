@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestQtRoundedEditRectItem, tool to test QtRoundedEditRectItem
-Copyright (C) 2012  Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,6 +27,8 @@ namespace Ui {
 class QtTestQtRoundedEditRectItemMainDialog;
 }
 
+namespace ribi {
+
 class QtTestQtRoundedEditRectItemMainDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
@@ -34,12 +36,20 @@ class QtTestQtRoundedEditRectItemMainDialog : public ribi::QtHideAndShowDialog
 public:
 
   explicit QtTestQtRoundedEditRectItemMainDialog(QWidget *parent = 0);
-  ~QtTestQtRoundedEditRectItemMainDialog();
+  QtTestQtRoundedEditRectItemMainDialog(const QtTestQtRoundedEditRectItemMainDialog&) = delete;
+  QtTestQtRoundedEditRectItemMainDialog& operator=(const QtTestQtRoundedEditRectItemMainDialog&) = delete;
+  ~QtTestQtRoundedEditRectItemMainDialog() noexcept;
 protected:
   void keyPressEvent(QKeyEvent * event);
 
 private:
   Ui::QtTestQtRoundedEditRectItemMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTROUNDEDEDITRECTITEMMAINDIALOG_H

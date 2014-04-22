@@ -36,7 +36,13 @@ struct WtTestLedMainDialog : public Wt::WContainerWidget
   private:
   struct Ui
   {
-    Ui() : m_dial_color(0), m_dial_intensity(0), m_dial_size(0), m_led(0) {}
+    Ui()
+      : m_dial_color{}, m_dial_intensity{}, m_dial_size{},
+      m_label_color{}, m_label_intensity{}, m_label_size{},
+      m_led{}
+    {
+
+    }
     WtDialWidget * m_dial_color;
     WtDialWidget * m_dial_intensity;
     WtDialWidget * m_dial_size;

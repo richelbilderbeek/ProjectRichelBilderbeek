@@ -1,84 +1,23 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-TEMPLATE = app
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    daswahreschlagerfestmenudialog.cpp \
-    daswahreschlagerfestwidget.cpp \
-    qtdaswahreschlagerfestmaindialog.cpp \
-    qtdaswahreschlagerfestmenudialog.cpp \
-    qtdaswahreschlagerfestwidget.cpp \
-    qtmain.cpp
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    daswahreschlagerfestwidget.h \
-    qtdaswahreschlagerfestmaindialog.h \
-    qtdaswahreschlagerfestmenudialog.h \
-    qtdaswahreschlagerfestwidget.h \
-    daswahreschlagerfestmenudialog.h
+#Specific
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
 
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtdaswahreschlagerfestmaindialog.ui \
-    qtdaswahreschlagerfestmenudialog.ui
+include(GameDasWahreSchlagerfestDesktop.pri)
 
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt
-
-RESOURCES += \
-    GameDasWahreSchlagerfest.qrc
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
-CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-#
-#
-# Platform specific
-#
-#
-
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
+SOURCES += qtmain.cpp

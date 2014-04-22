@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtboenkenarenadialog.h"
 
 #include <cassert>
@@ -27,23 +29,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 
 #include "ui_qtboenkenarenadialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtBoenkenArenaDialog::QtBoenkenArenaDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtBoenkenArenaDialog::QtBoenkenArenaDialog(QWidget *parent) noexcept :
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtBoenkenArenaDialog)
 {
   ui->setupUi(this);
-  QObject::connect(ui->button_done,SIGNAL(clicked()),this,SLOT(close()));
+  QObject::connect(
+    ui->button_done,&QPushButton::clicked,this,&QtBoenkenArenaDialog::close);
 }
 
-ribi::QtBoenkenArenaDialog::~QtBoenkenArenaDialog()
+ribi::QtBoenkenArenaDialog::~QtBoenkenArenaDialog() noexcept
 {
   delete ui;
 }
 
 ///The purpose of QtBoenkenArenaDialog is to create
 ///an ArenaSettings
-const ribi::Boenken::ArenaSettings ribi::QtBoenkenArenaDialog::GetSettings() const
+const ribi::Boenken::ArenaSettings ribi::QtBoenkenArenaDialog::GetSettings() const noexcept
 {
   Boenken::ArenaSettings s;
   s.formation = this->GetFormation();
@@ -54,7 +58,7 @@ const ribi::Boenken::ArenaSettings ribi::QtBoenkenArenaDialog::GetSettings() con
   return s;
 }
 
-const std::pair<int,int> ribi::QtBoenkenArenaDialog::GetScreenSize() const
+const std::pair<int,int> ribi::QtBoenkenArenaDialog::GetScreenSize() const noexcept
 {
   //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_screen_size;
@@ -82,7 +86,7 @@ const std::pair<int,int> ribi::QtBoenkenArenaDialog::GetScreenSize() const
   }
 }
 
-int ribi::QtBoenkenArenaDialog::GetNballs() const
+int ribi::QtBoenkenArenaDialog::GetNballs() const noexcept
 {
   //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_nballs;
@@ -101,7 +105,7 @@ int ribi::QtBoenkenArenaDialog::GetNballs() const
   }
 }
 
-int ribi::QtBoenkenArenaDialog::GetNobstacles() const
+int ribi::QtBoenkenArenaDialog::GetNobstacles() const noexcept
 {
   //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_obstacles;
@@ -119,7 +123,7 @@ int ribi::QtBoenkenArenaDialog::GetNobstacles() const
   throw std::logic_error("ribi::QtBoenkenArenaDialog::GetNobstacles");
 }
 
-ribi::Boenken::Formation ribi::QtBoenkenArenaDialog::GetFormation() const
+ribi::Boenken::Formation ribi::QtBoenkenArenaDialog::GetFormation() const noexcept
 {
   //Makes the code shorter and copy-pastable
   const QComboBox * const b = ui->box_formation;
@@ -140,7 +144,7 @@ ribi::Boenken::Formation ribi::QtBoenkenArenaDialog::GetFormation() const
   throw std::logic_error("ribi::QtBoenkenArenaDialog::GetFormation");
 }
 
-double ribi::QtBoenkenArenaDialog::GetFriction() const
+double ribi::QtBoenkenArenaDialog::GetFriction() const noexcept
 {
   const QComboBox * const b = ui->box_friction;
   assert(b->count()==2);

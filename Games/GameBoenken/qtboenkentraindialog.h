@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Boenken. A multiplayer soccer/billiards game.
-Copyright (C) 2007-2012 Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,8 +22,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTBOENKENTRAINDIALOG_H
 #define QTBOENKENTRAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenTrainDialog;
@@ -31,13 +34,15 @@ namespace Ui {
 
 namespace ribi {
 
-class QtBoenkenTrainDialog : public QDialog
+class QtBoenkenTrainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtBoenkenTrainDialog(QWidget *parent = 0);
-  ~QtBoenkenTrainDialog();
+  QtBoenkenTrainDialog(const QtBoenkenTrainDialog&) = delete;
+  QtBoenkenTrainDialog& operator=(const QtBoenkenTrainDialog&) = delete;
+  ~QtBoenkenTrainDialog() noexcept;
 
 private:
   Ui::QtBoenkenTrainDialog *ui;

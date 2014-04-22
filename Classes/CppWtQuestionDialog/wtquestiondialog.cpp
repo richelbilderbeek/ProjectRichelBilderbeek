@@ -20,11 +20,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wtquestiondialog.h"
 
-ribi::WtQuestionDialog::WtQuestionDialog(
-  const boost::shared_ptr<QuestionDialog>& dialog)
-  :  m_dialog(dialog)
+ribi::WtQuestionDialog::WtQuestionDialog()
+  : m_signal_submitted{},
 {
-  assert(m_dialog);
+
 }
 
 const std::string ribi::WtQuestionDialog::GetVersion()
@@ -34,9 +33,9 @@ const std::string ribi::WtQuestionDialog::GetVersion()
 
 const std::vector<std::string> ribi::WtQuestionDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-30: version 1.0: initial version");
-  return v;
+  return {
+    "2011-06-30: version 1.0: initial version"
+  };
 }
 
 

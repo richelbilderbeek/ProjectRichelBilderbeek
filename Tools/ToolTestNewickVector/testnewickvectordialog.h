@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestNewickVector, GUI tool to test NewickVector
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,15 +32,15 @@ struct NewickVector;
 
 struct TestNewickVectorDialog
 {
-  TestNewickVectorDialog();
-  void AutoCalculate();
-  void Calculate();
-  void SetAnalyseCalculation(const bool b);
-  void SetCompareToTwoDigitNewick(const bool b);
+  TestNewickVectorDialog() noexcept;
+  void AutoCalculate() noexcept;
+  void Calculate() noexcept;
+  void SetAnalyseCalculation(const bool b) noexcept;
+  void SetCompareToTwoDigitNewick(const bool b) noexcept;
   void SetMaxComplexity(const std::string& s);
   void SetNewick(const std::string& s);
   void SetTheta(const std::string& s);
-  const std::vector<std::string>& GetText() const { return m_text; }
+  const std::vector<std::string>& GetText() const noexcept { return m_text; }
 
   private:
   //Input
@@ -60,21 +60,26 @@ struct TestNewickVectorDialog
 
   std::vector<std::string> m_text;
 
-  void Analyse();
-  void AnalyseArity();
-  void AnalyseCalculation();
-  void AnalyseRootBranches();
-  void AnalyseSimplerNewicks();
-  bool CheckMaxComplexity();
-  bool CheckNewick();
-  bool CheckTheta();
+  void Analyse() noexcept;
+  void AnalyseArity() noexcept;
+  void AnalyseCalculation() noexcept;
+  void AnalyseRootBranches() noexcept;
+  void AnalyseSimplerNewicks() noexcept;
+  bool CheckMaxComplexity() noexcept;
+  bool CheckNewick() noexcept;
+
+  ///Check if theta is valid
+  bool CheckTheta() noexcept;
 
   public:
 
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static About GetAbout() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

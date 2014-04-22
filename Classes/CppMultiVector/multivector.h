@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 MultiVector, any-dimensional std::vector class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@ namespace ribi {
 template <class T>
 struct MultiVector
 {
+  MultiVector() : m_indices{}, m_multivectors{} {}
 
   ///CanRetrieve returns if an index/coordinat can be retrieved
   bool CanRetrieve(const std::vector<int>& indices) const
@@ -126,21 +127,19 @@ struct MultiVector
 
   public:
 
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "1.1";
   }
 
-  const std::vector<std::string> GetVersionHistory()
+  std::vector<std::string> GetVersionHistory()
   {
-    std::vector<std::string> v;
-
-    v.push_back("2011-03-02: version 1.0: initial version");
-    v.push_back("2011-03-02: version 1.1: added CanRetrieve and Peek methods");
-    return v;
+    return {
+      "2011-03-02: version 1.0: initial version",
+      "2011-03-02: version 1.1: added CanRetrieve and Peek methods"
+    };
   }
-
-}; //~MultiVector
+};
 
 } //~namespace ribi
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 QtPathArrowItem, an arrow QGraphicsItem with one or more midpoints
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtPathArrowItem.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtpatharrowitem.h"
 
 #include <cassert>
@@ -33,6 +34,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 
+#include "geometry.h"
+#pragma GCC diagnostic pop
+
 const double ribi::QtPathArrowItem::m_click_easy_width = 10.0;
 
 ribi::QtPathArrowItem::QtPathArrowItem(
@@ -43,6 +47,7 @@ ribi::QtPathArrowItem::QtPathArrowItem(
   const QPointF& head_pos,
   QGraphicsItem *parent)
   : QGraphicsItem(parent),       //New since Qt5
+    m_signal_item_requests_scene_update{},
     m_focus_pen(QPen(Qt::DashLine)),
     m_head(head),
     m_head_pos(head_pos),
@@ -67,18 +72,19 @@ QRectF ribi::QtPathArrowItem::boundingRect() const
   return shape().boundingRect();
 }
 
-double ribi::QtPathArrowItem::GetAngle(const double dx, const double dy)
-{
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan(dx/dy));
-}
+//double ribi::QtPathArrowItem::GetAngle(const double dx, const double dy)
+//{
+// return Geometry().GetAngle(dx,dy);
+  //const double pi = boost::math::constants::pi<double>();
+  //return pi - (std::atan(dx/dy));
+//}
 
-const std::string ribi::QtPathArrowItem::GetVersion()
+std::string ribi::QtPathArrowItem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtPathArrowItem::GetVersionHistory()
+std::vector<std::string> ribi::QtPathArrowItem::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-12-01: version 1.0: initial version");
@@ -169,7 +175,7 @@ void ribi::QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsI
     const double pi = boost::math::constants::pi<double>();
     const double dx = m_mid_pos[0].x() - m_tail_pos.x();
     const double dy = m_mid_pos[0].y() - m_tail_pos.y();
-    double angle = GetAngle(dx,dy);
+    double angle = Geometry().GetAngle(dx,dy);
     if (dy >= 0.0) angle = (1.0 * pi) + angle;
     //const QPointF m_tail_pos(m_tail_x,m_tail_y);
     const QPointF p1
@@ -187,7 +193,7 @@ void ribi::QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsI
     const double pi = boost::math::constants::pi<double>();
     const double dx = m_head_pos.x() - m_mid_pos[m_mid_pos.size() - 1].x();
     const double dy = m_head_pos.y() - m_mid_pos[m_mid_pos.size() - 1].y();
-    double angle = GetAngle(dx,dy);
+    double angle = Geometry().GetAngle(dx,dy);
     if (dy >= 0.0) angle = (1.0 * pi) + angle;
     const QPointF p1
       = m_head_pos + QPointF(

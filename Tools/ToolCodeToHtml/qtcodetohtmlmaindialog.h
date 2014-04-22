@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,13 +24,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //#include <string>
 //#include <vector>
 
-//#include "about.h"
-//#include "codetohtml.h"
-#include "codetohtmlcontenttype.h"
-#include "codetohtmlpagetype.h"
-#include "codetohtmltechinfotype.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "codetohtmlfiletype.h"
+#include "codetohtmlsnippettype.h"
 #include "qthideandshowdialog.h"
-
+#pragma GCC diagnostic pop
 
 struct QPlainTextEdit;
 
@@ -39,52 +38,56 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace c2h {
 
 class QtCodeToHtmlMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtCodeToHtmlMainDialog(QWidget *parent = 0);
-  ~QtCodeToHtmlMainDialog();
+  explicit QtCodeToHtmlMainDialog(QWidget *parent = 0) noexcept;
+  QtCodeToHtmlMainDialog(const QtCodeToHtmlMainDialog&) = delete;
+  QtCodeToHtmlMainDialog& operator=(const QtCodeToHtmlMainDialog&) = delete;
+  ~QtCodeToHtmlMainDialog() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent *);
+  void keyPressEvent(QKeyEvent *) noexcept;
 
 private:
   Ui::QtCodeToHtmlMainDialog *ui;
 
   ///Display the HTML code as web page and plain text
-  void Display(const std::vector<std::string>& v);
+  void Display(const std::vector<std::string>& v) noexcept;
 
   ///Convert a QPlainTextEdit to std::vector<std::string>
-  static const std::vector<std::string> EditToVector(const QPlainTextEdit * const edit);
+  static std::vector<std::string> EditToVector(const QPlainTextEdit * const edit) noexcept;
 
 private slots:
 
   ///Obtain the selected header type
-  c2h::PageType GetPageType() const;
+  //c2h::PageType GetPageType() const noexcept;
 
   ///Obtain the selected technical info type
-  c2h::TechInfoType GetTechInfo() const;
+  //c2h::TechInfoType GetTechInfo() const noexcept;
 
   ///Obtain the selected source type
-  c2h::ContentType GetContentType() const;
+  //c2h::FileType GetContentType() const noexcept;
 
   ///Respond to click on Convert button
-  void on_button_convert_clicked();
+  void on_button_convert_clicked() noexcept;
 
-  void on_tab_source_currentChanged(int index);
+  void on_tab_source_currentChanged(int index) noexcept;
 
   ///Respond to a change in the edit containing the source file or source folder
-  void on_edit_source_textChanged(QString );
+  void on_edit_source_textChanged(QString ) noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };
 
+} //~namespace c2h
 } //~namespace ribi
 
 #endif // QTCODETOHTMLMAINDIALOG_H

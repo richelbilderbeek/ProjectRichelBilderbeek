@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestFunctionParser, tool to demonstrate Warp's FunctionParser class
-Copyright (C) 2010-2013 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,23 +18,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestFunctionParser.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestfunctionparsermaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
 
 #include "fparser.hh"
+#include "trace.h"
 #include "ui_qttestfunctionparsermaindialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestFunctionParserMainDialog)
+ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtTestFunctionParserMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   const double pi = boost::math::constants::pi<double>();
@@ -42,22 +45,22 @@ ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *pa
   Parse();
 }
 
-ribi::QtTestFunctionParserMainDialog::~QtTestFunctionParserMainDialog()
+ribi::QtTestFunctionParserMainDialog::~QtTestFunctionParserMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestFunctionParserMainDialog::on_edit_value_textChanged(QString )
+void ribi::QtTestFunctionParserMainDialog::on_edit_value_textChanged(QString ) noexcept
 {
   Parse();
 }
 
-void ribi::QtTestFunctionParserMainDialog::on_edit_function_textChanged(QString )
+void ribi::QtTestFunctionParserMainDialog::on_edit_function_textChanged(QString ) noexcept
 {
   Parse();
 }
 
-void ribi::QtTestFunctionParserMainDialog::Parse()
+void ribi::QtTestFunctionParserMainDialog::Parse() noexcept
 {
  FunctionParser f;
 
@@ -95,3 +98,15 @@ void ribi::QtTestFunctionParserMainDialog::Parse()
   ui->label_result->setText(boost::lexical_cast<std::string>(y).c_str());
 }
 
+#ifndef NDEBUG
+void ribi::QtTestFunctionParserMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestFunctionParserMainDialog::Test");
+  TRACE("Finished ribi::QtTestFunctionParserMainDialog::Test successfully");
+}
+#endif

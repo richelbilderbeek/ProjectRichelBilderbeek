@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ManyDigitNewick, Newick class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "newickvector.h"
@@ -100,7 +100,7 @@ double ribi::ManyDigitNewick::CalculateProbability(
   return i.GetProbability();
 }
 
-bool ribi::ManyDigitNewick::Empty() const
+bool ribi::ManyDigitNewick::Empty() const noexcept
 {
   return m_derivatives.empty();
 }
@@ -111,7 +111,8 @@ double ribi::ManyDigitNewick::GetDenominator() const
   return m_denominator;
 }
 
-const std::vector<ribi::ManyDigitNewickDerivative>& ribi::ManyDigitNewick::GetDerivatives() const
+const std::vector<ribi::ManyDigitNewickDerivative>&
+  ribi::ManyDigitNewick::GetDerivatives() const noexcept
 {
   return m_derivatives;
 }
@@ -138,12 +139,12 @@ int ribi::ManyDigitNewick::GetSumTermsAboveZero() const
   return m_sum_terms_above_zero;
 }
 
-const std::string ribi::ManyDigitNewick::GetVersion()
+std::string ribi::ManyDigitNewick::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ManyDigitNewick::GetVersionHistory()
+std::vector<std::string> ribi::ManyDigitNewick::GetVersionHistory() noexcept
 {
   return {
     "2010-08-22: version 1.0: initial version",
@@ -161,7 +162,7 @@ bool ribi::ManyDigitNewick::IsComplete() const
     && m_sum_terms_above_one  >= 0);
 }
 
-bool ribi::ManyDigitNewick::IsProbabilityKnown() const
+bool ribi::ManyDigitNewick::IsProbabilityKnown() const noexcept
 {
   return m_probability >= 0.0;
 }
@@ -181,12 +182,12 @@ void ribi::ManyDigitNewick::SetTheta(const double theta)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-void ribi::ManyDigitNewick::Test()
+void ribi::ManyDigitNewick::Test() noexcept
 {
   const double theta = 10.0;
   ribi::ManyDigitNewick::SetTheta(theta);
   const std::vector<std::string> v = Newick::CreateValidNewicks();
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     if ( Newick::CalcComplexity(Newick::StringToNewick(s))
       >  BigInteger(10000) )

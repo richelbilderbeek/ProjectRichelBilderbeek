@@ -75,10 +75,10 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>TicTacToe (C) 2010 Richel Bilderbeek</string>
+   <string>TicTacToe</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="GameTicTacToe.qrc">
+   <iconset resource="../GameAminoAcidFighter/GameAminoAcidFighter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
@@ -96,7 +96,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="GameTicTacToe.qrc"/>
+  <include location="../GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
  </resources>
  <connections/>
 </ui>

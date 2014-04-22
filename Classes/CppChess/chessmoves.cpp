@@ -3,7 +3,7 @@
 
 #include "chessmoves.h"
 
-const std::vector<std::string> ribi::Chess::Moves::GetGameKasparovVersusTheWorld()
+std::vector<std::string> ribi::Chess::Moves::GetGameKasparovVersusTheWorld() noexcept
 {
   return
   {
@@ -72,7 +72,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetGameKasparovVersusTheWorld
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetGameShephardsMate()
+std::vector<std::string> ribi::Chess::Moves::GetGameShephardsMate() noexcept
 {
   return
   {
@@ -83,7 +83,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetGameShephardsMate()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidBishopMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidBishopMoves() noexcept
 {
   return
   {
@@ -96,7 +96,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidBishopMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidCaptureMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidCaptureMoves() noexcept
 {
   return
   {
@@ -104,7 +104,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidCaptureMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidCastlingMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidCastlingMoves() noexcept
 {
   return
   {
@@ -112,7 +112,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidCastlingMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidEnPassantMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidEnPassantMoves() noexcept
 {
   return
   {
@@ -130,7 +130,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidEnPassantMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidKingMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidKingMoves() noexcept
 {
   return
   {
@@ -147,7 +147,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidKingMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidKnightMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidKnightMoves() noexcept
 {
   return
   {
@@ -162,7 +162,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidKnightMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidPawnMoves(const Chess::Color& color)
+std::vector<std::string> ribi::Chess::Moves::GetInvalidPawnMoves(const Chess::Color& color) noexcept
 {
   if (color == Color::indeterminate)
   return
@@ -188,9 +188,10 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidPawnMoves(const Che
      "a2 a3", "a2 a4", "a7 a8Q", "a8Q", "e4 e5", "h5xg6e.p."
   };
   assert(!"Should not get here");
+  throw std::vector<std::string>();
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidPromotionMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidPromotionMoves() noexcept
 {
   return
   {
@@ -198,7 +199,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidPromotionMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidQueenMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidQueenMoves() noexcept
 {
   return
   {
@@ -214,7 +215,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidQueenMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetInvalidRookMoves()
+std::vector<std::string> ribi::Chess::Moves::GetInvalidRookMoves() noexcept
 {
   return
   {
@@ -222,7 +223,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidRookMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidBishopMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidBishopMoves() noexcept
 {
   return
   {
@@ -235,7 +236,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidBishopMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidCaptureMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidCaptureMoves() noexcept
 {
   return
   {
@@ -247,7 +248,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidCaptureMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidCastlingMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidCastlingMoves() noexcept
 {
   return
   {
@@ -256,7 +257,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidCastlingMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidCheckMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidCheckMoves() noexcept
 {
   return
   {
@@ -266,7 +267,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidCheckMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidCheckmateMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidCheckmateMoves() noexcept
 {
   return
   {
@@ -274,7 +275,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidCheckmateMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidEnPassantMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidEnPassantMoves() noexcept
 {
   return
   {
@@ -284,7 +285,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidEnPassantMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidKingMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidKingMoves() noexcept
 {
   return
   {
@@ -298,7 +299,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidKingMoves()
    };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidKnightMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidKnightMoves() noexcept
 {
   return
   {
@@ -314,7 +315,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidKnightMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidPawnMoves(const Chess::Color& color)
+std::vector<std::string> ribi::Chess::Moves::GetValidPawnMoves(const Chess::Color& color) noexcept
 {
   if (color == Color::indeterminate)
   return
@@ -341,9 +342,10 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidPawnMoves(const Chess
     "a2 a1Q", "a1Q", "a3", "a4", "a7 a6", "a7 a5", "e4 e3"
   };
   assert(!"Should not get here");
+  return std::vector<std::string>();
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidPromotionMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidPromotionMoves() noexcept
 {
   return
   {
@@ -354,7 +356,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidPromotionMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidQueenMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidQueenMoves() noexcept
 {
   return
   {
@@ -385,7 +387,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidQueenMoves()
   };
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetValidRookMoves()
+std::vector<std::string> ribi::Chess::Moves::GetValidRookMoves() noexcept
 {
   return
   {
@@ -410,14 +412,14 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidRookMoves()
   };
 }
 
-const std::string ribi::Chess::Moves::GetVersion()
+std::string ribi::Chess::Moves::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Moves::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version"
+  };
 }
