@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iterator>
 #include <iostream>
+
+#include "richelbilderbeekprogram.h"
 #pragma GCC diagnostic pop
 
 std::vector<std::string> ribi::MenuDialog::ConvertArguments(

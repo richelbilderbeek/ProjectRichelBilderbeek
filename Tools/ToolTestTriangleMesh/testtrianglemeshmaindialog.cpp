@@ -40,6 +40,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
   const bool show_mesh,
   const int n_layers,
+  const boost::units::quantity<boost::units::si::length> layer_height,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
   const double quality
 )
@@ -79,9 +80,6 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
 
     //Create cells from this template
     {
-      const boost::units::quantity<boost::units::si::length> layer_height(
-        1.0 * boost::units::si::meter
-      );
       const ribi::trim::CellsCreatorFactory cells_creator_factory;
       assert(t);
       const boost::shared_ptr<ribi::trim::CellsCreator> c
@@ -134,8 +132,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       );
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       std::clog << "Number of strong faces: " << faces.size() << std::endl;
-      const ribi::trim::Helper helper;
-      std::sort(faces.begin(),faces.end(),helper.OrderByIndex());
+      //const ribi::trim::Helper helper;
+      std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
       const auto new_end = std::unique(faces.begin(),faces.end());
       faces.erase(new_end,faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
@@ -446,6 +444,7 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
         shapes,
         show_mesh,
         3,
+        1.0 * boost::units::si::meter,
         strategy,
         quality
       );

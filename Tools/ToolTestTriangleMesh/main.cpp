@@ -70,11 +70,15 @@ int main(int, char* argv[])
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
       const int n_layers = 3;
+      const boost::units::quantity<boost::units::si::length> layer_height(
+        1.0 * boost::units::si::meter
+      );
       const double quality = 5.0;
       const ribi::TestTriangleMeshMainDialog d(
         shapes,
         show_mesh,
         n_layers,
+        layer_height,
         strategy,
         quality
       );
@@ -103,12 +107,15 @@ int main(int, char* argv[])
       //ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0, 4.0)
     };
     const int n_layers = 4;
+    const boost::units::quantity<boost::units::si::length> layer_height(1.0 * boost::units::si::meter);
+
     const double quality = 5.0;
 
     const ribi::TestTriangleMeshMainDialog d(
       shapes,
       show_mesh,
       n_layers,
+      layer_height,
       strategy,
       quality
     );

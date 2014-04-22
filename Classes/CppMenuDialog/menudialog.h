@@ -31,10 +31,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 #include "help.h"
-#include "richelbilderbeekprogram.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct Program;
 
 ///Class for all ProjectRichelBilderbeek menu dialogs
 struct MenuDialog
