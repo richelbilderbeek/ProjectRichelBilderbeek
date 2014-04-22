@@ -27,14 +27,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
-
-
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
 #include "question.h"
 #include "questiondialog.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 #include <QFile>

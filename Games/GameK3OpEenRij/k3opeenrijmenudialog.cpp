@@ -13,6 +13,7 @@
 #include "connectthreewidget.h"
 #include "imagecanvas.h"
 #include "qtk3opeenrijresources.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

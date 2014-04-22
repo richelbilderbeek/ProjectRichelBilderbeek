@@ -13,6 +13,7 @@
 
 #include "fileio.h"
 #include "imagecanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

@@ -15,6 +15,7 @@
 
 #include "reversiboard.h"
 #include "reversiwidget.h"
+#include "richelbilderbeekprogram.h"
 #include "reversimaindialog.h"
 #include "trace.h"
 

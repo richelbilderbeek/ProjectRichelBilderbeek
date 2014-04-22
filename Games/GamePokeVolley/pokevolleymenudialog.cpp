@@ -6,6 +6,7 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::PokeVolleyMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

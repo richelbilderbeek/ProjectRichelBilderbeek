@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "fileio.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "trace.h"
 

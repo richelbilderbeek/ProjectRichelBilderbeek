@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ledwidget.h"
 #include "mysterymachine.h"
 #include "mysterymachinewidget.h"
+#include "richelbilderbeekprogram.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"

@@ -431,14 +431,16 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::Tes
   ;
 }
 
-std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom() noexcept
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(const double p) noexcept
 {
-  return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
+  assert(p >= 0.0);
+  assert(p <= 1.0);
+  return [p](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
   {
     std::random_shuffle(cells.begin(),cells.end());
     std::reverse(cells.begin(),cells.end());
     std::random_shuffle(cells.begin(),cells.end());
-    cells.resize(cells.size() * 3 / 4);
+    cells.resize(static_cast<int>(static_cast<double>(cells.size()) * p));
   }
   ;
 }
@@ -473,7 +475,7 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
         1.0 * boost::units::si::meter,
         strategy,
         quality,
-        TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(),
+        TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(0.75),
         TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction()
       );
     }

@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmap.h"
 #include "fileio.h"
 #include "fuzzy_equal_to.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop

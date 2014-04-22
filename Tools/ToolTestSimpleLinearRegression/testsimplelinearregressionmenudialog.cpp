@@ -5,6 +5,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
 #include "simplelinearregression.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

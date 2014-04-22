@@ -35,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "rubiksclockdialwidget.h"
 #include "rubiksclockside.h"
 #include "rubiksclockwidget.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"

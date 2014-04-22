@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "hometrainerresources.h"
 #include "question.h"
 #include "questiondialog.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 #include <QFile>

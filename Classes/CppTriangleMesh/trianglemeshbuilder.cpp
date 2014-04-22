@@ -202,7 +202,12 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     {
       while (1)
       {
+        assert(i >= 0);
+        assert(i < static_cast<int>(m_cells.size()));
+        assert(m_cells[i]);
         const int this_index = m_cells[i]->GetIndex();
+        assert(this_index >= 0);
+        assert(this_index < static_cast<int>(m_cells.size()));
         if (i == this_index) break;
         std::swap(m_cells[i],m_cells[this_index]);
       }

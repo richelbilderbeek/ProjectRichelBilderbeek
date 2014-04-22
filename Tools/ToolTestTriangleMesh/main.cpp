@@ -1,4 +1,4 @@
-#pragma GCC diagnostic push
+  #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <string>
@@ -80,7 +80,7 @@ int main(int, char* argv[])
         layer_height,
         strategy,
         quality,
-        ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(),
+        ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(0.75),
         ribi::TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction()
       );
       TRACE(checkMesh_command);
@@ -103,12 +103,16 @@ int main(int, char* argv[])
     const bool show_mesh = true;
     const std::vector<Coordinat2D> shapes {
       //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 1.0) //1 cube
-      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 1.0), //1 prism
-      ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0, 2.0) //3 prisms
-      //ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0, 4.0)
+      ribi::TriangleFile::CreateShapePolygon( 3,pi * 0.0 / 6.0,  1.0), //1 prism
+      ribi::TriangleFile::CreateShapePolygon( 3,pi * 0.0 / 6.0,  2.0), //3 prisms
+      ribi::TriangleFile::CreateShapePolygon( 5,pi * 0.0 / 6.0,  4.0),
+      ribi::TriangleFile::CreateShapePolygon(11,pi * 0.0 / 6.0,  6.0),
+      ribi::TriangleFile::CreateShapePolygon(21,pi * 0.0 / 6.0,  8.0)
     };
-    const int n_layers = 4;
-    const boost::units::quantity<boost::units::si::length> layer_height(1.0 * boost::units::si::meter);
+    const int n_layers = 3;
+    const boost::units::quantity<boost::units::si::length> layer_height(
+      1.0 * boost::units::si::meter / static_cast<double>(n_layers)
+    );
 
     const double quality = 5.0;
 
@@ -119,7 +123,7 @@ int main(int, char* argv[])
       layer_height,
       strategy,
       quality,
-      ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(),
+      ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(0.75),
       ribi::TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction()
     );
     PROFILER_UPDATE();

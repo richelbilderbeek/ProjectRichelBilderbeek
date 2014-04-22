@@ -23,7 +23,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
-#include "trace.h"
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
 #include "alphafilter.h"
@@ -32,6 +31,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "integersymmetricalphafilter.h"
 #include "multialphafilter.h"
 #include "multiintegerstateobserver.h"
+#include "richelbilderbeekprogram.h"
+#include "trace.h"
 
 int ribi::StateObserverMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {

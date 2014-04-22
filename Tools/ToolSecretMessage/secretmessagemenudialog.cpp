@@ -10,8 +10,9 @@
 #include <QImage>
 
 #include "fileio.h"
-#include "trace.h"
+#include "richelbilderbeekprogram.h"
 #include "secretmessagemaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 int ribi::sema::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

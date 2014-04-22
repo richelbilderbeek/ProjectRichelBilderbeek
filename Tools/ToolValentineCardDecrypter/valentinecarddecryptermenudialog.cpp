@@ -11,6 +11,7 @@
 #include <QFile>
 
 #include "fileio.h"
+#include "richelbilderbeekprogram.h"
 #include "valentinecarddecryptermaindialog.h"
 #include "valentinecardsymbols.h"
 #include "valentinecardsymbol.h"

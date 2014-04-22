@@ -11,8 +11,9 @@
 #include "drawcanvas.h"
 #include "fileio.h"
 #include "imagecanvas.h"
-#include "textcanvas.h"
 #include "multicanvas.h"
+#include "richelbilderbeekprogram.h"
+#include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

@@ -38,6 +38,7 @@
 #include "chessboard.h"
 #include "chessbitboard.h"
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 #include <QFile>

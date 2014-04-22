@@ -11,6 +11,7 @@
 #include "fileio.h"
 #include "imagecanvas.h"
 #include "histogramequalizationermaindialog.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

@@ -8,6 +8,7 @@
 
 #include "aaffighter.h"
 #include "aaffighterfactory.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "trace.h"
 

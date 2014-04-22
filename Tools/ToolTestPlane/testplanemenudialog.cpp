@@ -12,6 +12,7 @@
 #include "fparser.hh"
 #include "geometry.h"
 #include "plane.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

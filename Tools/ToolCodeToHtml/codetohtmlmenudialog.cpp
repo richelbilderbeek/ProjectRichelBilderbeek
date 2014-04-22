@@ -33,11 +33,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "codetohtml.h"
+#include "codetohtmldialog.h"
+#include "codetohtmlinfo.h"
 #include "fileio.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
-#include "codetohtmldialog.h"
-#include "codetohtmlinfo.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

@@ -39,6 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chesssquare.h"
 #include "chesssquareselector.h"
 #include "chesswidget.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "widget.h"
 

@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h"
 #include "dialwidget.h"
 #include "drawcanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

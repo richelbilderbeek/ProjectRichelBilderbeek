@@ -11,6 +11,7 @@
 #include "approximator.h"
 #include "canvas.h"
 #include "drawcanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop

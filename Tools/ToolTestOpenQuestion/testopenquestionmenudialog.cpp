@@ -27,9 +27,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
+#include "fileio.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
-#include "fileio.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 #include <QFile>

@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iterator>
 
 #include "randomcodemenudialog.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::RandomCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& /*argv*/) noexcept

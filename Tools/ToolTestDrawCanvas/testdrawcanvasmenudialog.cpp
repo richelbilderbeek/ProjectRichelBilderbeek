@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "drawcanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::TestDrawCanvasMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

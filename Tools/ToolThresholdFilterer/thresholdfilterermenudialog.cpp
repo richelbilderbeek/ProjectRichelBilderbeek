@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::ThresholdFiltererMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

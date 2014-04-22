@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "quadraticsolvermenudialog.h"
 
 #include "quadraticsolvermaindialog.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::QuadraticSolverMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

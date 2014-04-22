@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "musicchord.h"
 #include "musicnote.h"
 #include "musicscale.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::MusicTheoryMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

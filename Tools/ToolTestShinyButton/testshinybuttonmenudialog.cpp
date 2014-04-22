@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "rainbow.h"
 #include "rectangle.h"
+#include "richelbilderbeekprogram.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "trace.h"

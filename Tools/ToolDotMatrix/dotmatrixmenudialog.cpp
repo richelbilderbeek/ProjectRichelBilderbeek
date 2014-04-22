@@ -15,6 +15,7 @@
 
 #include "dotmatrixstring.h"
 #include "fileio.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

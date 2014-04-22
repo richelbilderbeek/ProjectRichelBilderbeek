@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "led.h"
 #include "ledwidget.h"
+#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "trace.h"
 

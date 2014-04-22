@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "gaborfilter.h"
 #include "gaborfilterwidget.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 int ribi::ToolGaborFilterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

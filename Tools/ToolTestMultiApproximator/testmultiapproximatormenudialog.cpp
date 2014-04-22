@@ -7,6 +7,7 @@
 
 #include "approximator.h"
 #include "multiapproximator.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop

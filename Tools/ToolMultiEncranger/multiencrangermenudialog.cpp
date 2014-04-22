@@ -11,6 +11,7 @@
 #include "loopreader.h"
 #include "encranger.h"
 #include "fileio.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

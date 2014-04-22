@@ -12,6 +12,7 @@
 #include <boost/lexical_cast.hpp>
 
 #include "binarynewickvector.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

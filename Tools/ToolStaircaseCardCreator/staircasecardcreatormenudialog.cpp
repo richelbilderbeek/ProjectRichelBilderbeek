@@ -15,8 +15,9 @@
 
 #include <QImage>
 
-#include "staircasecard.h"
 #include "fileio.h"
+#include "richelbilderbeekprogram.h"
+#include "staircasecard.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

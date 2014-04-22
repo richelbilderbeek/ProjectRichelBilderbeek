@@ -8,6 +8,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
+#include "richelbilderbeekprogram.h"
 #include "twodigitnewick.h"
 #include "newick.h"
 #pragma GCC diagnostic pop

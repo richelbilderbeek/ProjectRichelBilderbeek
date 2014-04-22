@@ -6,6 +6,7 @@
 //#include "qtrateconceptmap.h"
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 
 ribi::TestConceptMapMenuDialog::TestConceptMapMenuDialog()
