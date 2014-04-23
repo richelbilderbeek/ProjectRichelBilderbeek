@@ -23,9 +23,19 @@ struct QtAthleticLandResources
   const QPixmap m_background;
   const std::map<State,QPixmap> m_player;
 
+  std::map<State,QPixmap> CreatePlayer() const noexcept;
   std::vector<std::string> GetAllFilenames() const noexcept;
+
+  ///Tries to obtain a pixmap from the resources from a filename
+  ///For example, when called with 'PlayerStandLeft.png',
+  ///it might try to load ':/AthleticLand/images/PlayerStandLeft.png'
+  ///and create a QPixmap from it.
+  ///Will terminate if pixmap is not found
+  QPixmap FetchPixmap(const std::string& filename) const noexcept;
+
   std::string GetBackgroundFilename() const noexcept { return "Background1.png"; }
-  std::string GetPlayerFilename() const noexcept { return "MainCharStandRight.png"; }
+  std::string GetPlayerStandLeftFilename() const noexcept { return "MainCharStandLeft.png"; }
+  std::string GetPlayerStandRightFilename() const noexcept { return "MainCharStandRight.png"; }
   std::string GetQtResourcesBasename() const noexcept { return ":/GameAthleticLand/images"; }
 };
 

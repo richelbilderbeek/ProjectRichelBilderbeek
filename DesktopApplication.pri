@@ -2,22 +2,26 @@ win32 {
   # Windows only
   message("Desktop application, built for Windows")
   greaterThan(QT_MAJOR_VERSION, 4): QT += svg
+  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 }
 
 macx {
   # Mac only
   message("Desktop application, built for Mac")
+  QMAKE_CXXFLAGS = -mmacosx-version-min=10.7 -std=gnu0x -stdlib=libc+
+  CONFIG +=c++11
 }
 
 unix:!macx {
   # Linux only
   message("Desktop application, built for Linux")
-  QMAKE_CXXFLAGS += -Werror
+  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 }
 
 cross_compile {
   # Crosscompile only
   message("Desktop application, built for cross-compiling from Linux to Windows")
+  QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 }
 
 
@@ -35,4 +39,3 @@ CONFIG(release, debug|release) {
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++

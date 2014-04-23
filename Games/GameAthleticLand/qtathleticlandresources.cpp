@@ -38,16 +38,43 @@ ribi::athl::QtAthleticLandResources::QtAthleticLandResources()
   }
 }
 
+std::map<ribi::athl::State,QPixmap> ribi::athl::QtAthleticLandResources::CreatePlayer() const noexcept
+{
+  std::map<State,QPixmap> m;
+
+  m.insert(std::make_pair(ribi::athl::State::stand_left,FetchPixmap(GetPlayerStandLeftFilename())));
+  m.insert(std::make_pair(ribi::athl::State::stand_right,FetchPixmap(GetPlayerStandRightFilename())));
+
+  return m;
+}
+
+QPixmap ribi::athl::QtAthleticLandResources::FetchPixmap(const std::string& filename) const noexcept
+{
+  const std::string qtfilename = GetQtResourcesBasename() + "/" + filename;
+  const QPixmap pixmap(qtfilename.c_str());
+  assert(pixmap.height() > 0);
+  assert(pixmap.width() > 0);
+  return pixmap;
+
+}
+
 std::vector<std::string> ribi::athl::QtAthleticLandResources::GetAllFilenames() const noexcept
 {
   return {
     GetBackgroundFilename(),
-    GetPlayerFilename()
+    GetPlayerStandLeftFilename(),
+    GetPlayerStandRightFilename()
   };
 }
 
 const QPixmap& ribi::athl::QtAthleticLandResources::GetPlayer(const State state) const noexcept
 {
+  #ifndef NDEBUG
+  if(m_player.find(state) == m_player.end())
+  {
+    TRACE(state);
+  }
+  #endif
   assert(m_player.find(state) != m_player.end());
   return (*m_player.find(state)).second;
 }

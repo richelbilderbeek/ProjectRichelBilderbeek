@@ -1,7 +1,7 @@
 
 
-#ifndef UnitPlayerStateH
-#define UnitPlayerStateH
+#ifndef ATHLETICLANDPLAYERSTATE_H
+#define ATHLETICLANDPLAYERSTATE_H
 
 #include <boost/shared_ptr.hpp>
 #include "athleticlandfwd.h"
