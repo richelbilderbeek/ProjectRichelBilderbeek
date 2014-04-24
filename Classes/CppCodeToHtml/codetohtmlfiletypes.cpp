@@ -54,6 +54,11 @@ ribi::c2h::FileType ribi::c2h::FileTypes::DeduceFileType(const std::string& file
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(png)\\>") ) )
+  {
+    return FileType::png;
+  }
+  if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(pri)\\>") ) )
   {
     return FileType::pri;
@@ -97,6 +102,7 @@ std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t) noexcept
   {
     case FileType::cpp: return "cpp";
     case FileType::license_txt: return "license_txt";
+    case FileType::png: return "png";
     case FileType::pri: return "pri";
     case FileType::pro: return "pro";
     case FileType::py: return "py";
@@ -127,7 +133,6 @@ std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() noexcep
 
 ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s)
 {
-  //if (s == "code_snippet") return FileType::code_snippet;
   if (s == "cpp") return FileType::cpp;
   if (s == "license_txt") return FileType::license_txt;
   if (s == "pri") return FileType::pri;
@@ -153,6 +158,7 @@ void ribi::c2h::FileTypes::Test() noexcept
   }
   TRACE("Starting ribi::c2h::FileTypes::Test");
   //Be gentle
+  assert(DeduceFileType("tmp.png") == FileType::png);
   assert(DeduceFileType("tmp.pro") == FileType::pro);
   assert(DeduceFileType("tmp.c"  ) == FileType::cpp);
   assert(DeduceFileType("tmp.cpp") == FileType::cpp);

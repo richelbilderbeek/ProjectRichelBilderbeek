@@ -165,6 +165,9 @@ std::vector<std::string> ribi::c2h::Replacer::ToHtml(
     case FileType::pro:
       get_replacements = &ribi::c2h::Replacer::GetReplacementsPro;
       break;
+    case FileType::png:
+      assert(!"Do not HTML-ify FileType::png, display it instead");
+      throw std::logic_error("Never HTML-ify FileType::png, display it instead");
     case FileType::license_txt:
       assert(!"Do not HTML-ify FileType::license_txt");
       throw std::logic_error("Never HTML-ify FileType::license_txt");

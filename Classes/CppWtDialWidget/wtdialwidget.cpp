@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtDialWidget, Wt widget for displaying the Dial class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,26 +18,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtDialWidget.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include "wtdialwidget.h"
 
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBrush>
 #include <Wt/WEvent>
 #include <Wt/WPainter>
 #include <Wt/WPen>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "dialwidget.h"
-//---------------------------------------------------------------------------
+#include "geometry.h"
+#pragma GCC diagnostic pop
+
 ribi::WtDialWidget::WtDialWidget(
   const double intensity,
   const unsigned char red,
@@ -64,14 +64,14 @@ ribi::WtDialWidget::WtDialWidget(
 
   this->clicked().connect(this,&ribi::WtDialWidget::OnClicked);
 
-  m_widget->SetGeometry(Rect(0,0,32,32));
+  m_widget->SetGeometry(0,0,32,32);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtDialWidget::DoRepaint()
 {
   this->update();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtDialWidget::DrawDial(
   Wt::WPainter& painter,
   const int left, const int top,
@@ -99,7 +99,8 @@ void ribi::WtDialWidget::DrawDial(
   const int midx = width / 2;
   const int midy = height / 2;
   const double ray = static_cast<double>(std::min( midx, midy ));
-  const double angle = position * 2.0 * M_PI;
+  const double two_pi = boost::math::constants::two_pi<double>();
+  const double angle = position * two_pi;
   const int pointerX
     = static_cast<int>( static_cast<double>(midx) + (std::sin(angle) * ray) );
   const int pointerY
@@ -112,25 +113,25 @@ void ribi::WtDialWidget::DrawDial(
   }
   painter.drawLine(left+midx,top+midy,left+pointerX,top+pointerY);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtDialWidget::DrawDial(
   Wt::WPainter& painter,
   const DialWidget * const widget)
 {
   DrawDial(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
+    Geometry().GetLeft(widget->GetGeometry()),
+    Geometry().GetTop(widget->GetGeometry()),
+    Geometry().GetWidth(widget->GetGeometry()),
+    Geometry().GetHeight(widget->GetGeometry()),
     widget->GetDial());
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::WtDialWidget::GetVersion()
 {
   return "3.1";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::WtDialWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -142,25 +143,28 @@ const std::vector<std::string> ribi::WtDialWidget::GetVersionHistory()
   v.push_back("2011-08-31: Version 3.1: allow changing the dial its color");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtDialWidget::OnClicked(const Wt::WMouseEvent& e)
 {
   m_widget->Click(e.widget().x,e.widget().y);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtDialWidget::OnResize()
 {
-  resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+  resize(
+    Geometry().GetWidth(m_widget->GetGeometry()),
+    Geometry().GetHeight(m_widget->GetGeometry())
+  );
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtDialWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   this->DrawDial(painter,m_widget.get());
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtDialWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
-//---------------------------------------------------------------------------
+

@@ -1,9 +1,9 @@
 include(../../Tools/ToolEncranger/ToolEncrangerConsole.pri)
 
 SOURCES += \
-    wtencrangermaindialog.cpp \
-    wtencrangermenudialog.cpp
+    ../../Tools/ToolEncranger/wtencrangermaindialog.cpp \
+    ../../Tools/ToolEncranger/wtencrangermenudialog.cpp
 
 HEADERS  += \
-    wtencrangermaindialog.h \
-    wtencrangermenudialog.h
+    ../../Tools/ToolEncranger/wtencrangermaindialog.h \
+    ../../Tools/ToolEncranger/wtencrangermenudialog.h

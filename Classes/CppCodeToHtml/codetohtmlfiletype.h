@@ -29,6 +29,7 @@ enum class FileType
 {
   cpp,          //.cpp file
   license_txt,  //license.txt file
+  png,          //.png image file
   pri,          //.pri file
   pro,          //.pro file
   py,           //.py file

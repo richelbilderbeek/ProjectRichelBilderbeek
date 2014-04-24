@@ -1,5 +1,3 @@
-
-
 #ifndef ATHLETICLANDPLAYERSTATE_H
 #define ATHLETICLANDPLAYERSTATE_H
 
@@ -9,10 +7,12 @@
 namespace ribi {
 namespace athl {
 
-enum class State
+enum class PlayerState
 {
   stand_left,
-  stand_right
+  stand_right,
+
+  n_types //Used for debugging only
 };
 
 /*

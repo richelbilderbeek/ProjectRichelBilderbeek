@@ -18,8 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtOpenQuestionDialog.htm
 //---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
+#include "wtopenquestiondialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WBreak>
 #include <Wt/WImage>
 #include <Wt/WLabel>
@@ -27,10 +31,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPushButton>
 #include <Wt/WStackedWidget>
 
+#include "fileio.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
-#include "wtopenquestiondialog.h"
 //#include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::WtOpenQuestionDialog::Ui::Ui()
   : m_button_submit(new Wt::WPushButton("Submit")),
@@ -40,11 +45,13 @@ ribi::WtOpenQuestionDialog::Ui::Ui()
 
 }
 
-ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(const std::string& question)
+#ifdef TODO
+ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
+  const std::string& question)
   : WtQuestionDialog(
      boost::shared_ptr<QuestionDialog>(new OpenQuestionDialog(
        question))),
-    m_ui{}
+  ) : m_ui{}
 {
   assert(m_dialog);
   SetQuestion(m_dialog->GetQuestion());
@@ -53,12 +60,13 @@ ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(const std::string& question)
 ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog)
   : WtQuestionDialog(dialog),
-    m_ui{}
+  : m_ui{}
 {
   assert(dialog);
   assert(m_dialog);
   SetQuestion(dialog->GetQuestion());
 }
+#endif
 
 const boost::shared_ptr<const ribi::QuestionDialog> ribi::WtOpenQuestionDialog::GetDialog() const noexcept
 {
@@ -77,10 +85,10 @@ const std::string ribi::WtOpenQuestionDialog::GetVersion()
 
 const std::vector<std::string> ribi::WtOpenQuestionDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-29: version 1.0: initial version");
-  v.push_back("2011-09-15: version 1.1: created internal Ui struct");
-  return v;
+  return {
+    "2011-06-29: version 1.0: initial version",
+    "2011-09-15: version 1.1: created internal Ui struct"
+  };
 }
 
 ///Set the Question
@@ -90,13 +98,14 @@ void ribi::WtOpenQuestionDialog::SetQuestion(
   assert(question);
   assert(m_dialog);
 
-  m_dialog->SetQuestion(question);
+  #ifdef TODO
+  m_dialog->SetQuestion(question.get());
+  #endif
 
   clear();
   setContentAlignment(Wt::AlignCenter);
 
-
-  if (boost::filesystem::exists(question->GetFilename()))
+  if (fileio::FileIo().IsRegularFile(question->GetFilename()))
   {
     this->addWidget(
       new Wt::WImage(question->GetFilename().c_str()));
@@ -151,7 +160,8 @@ void ribi::WtOpenQuestionDialog::OnButtonSubmitClicked()
 
   this->m_ui.m_stacked_widget->setCurrentIndex(m_dialog->IsAnswerCorrect()
     ? 1
-    : 2);
+    : 2
+  );
 
   m_signal_submitted(m_dialog->IsAnswerCorrect());
 }

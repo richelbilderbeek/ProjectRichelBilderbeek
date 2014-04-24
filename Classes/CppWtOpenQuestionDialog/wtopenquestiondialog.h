@@ -21,10 +21,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef WTOPENQUESTIONDIALOG_H
 #define WTOPENQUESTIONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "wtquestiondialog.h"
+#pragma GCC diagnostic pop
 
 namespace Wt
 {
@@ -41,9 +46,15 @@ struct OpenQuestionDialog;
 
 struct WtOpenQuestionDialog : public WtQuestionDialog
 {
-  explicit WtOpenQuestionDialog(const std::string& question);
+  explicit WtOpenQuestionDialog(
+#ifdef TODO
+  const std::string& question
+  );
 
-  explicit WtOpenQuestionDialog(const boost::shared_ptr<QuestionDialog>& dialog);
+  explicit WtOpenQuestionDialog(
+    const boost::shared_ptr<QuestionDialog>& dialog
+#endif
+  );
 
   const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
   const boost::shared_ptr<const OpenQuestionDialog> GetOpenQuestionDialog() const noexcept;

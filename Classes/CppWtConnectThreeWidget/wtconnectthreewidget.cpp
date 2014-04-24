@@ -18,6 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtConnectThreeWidget.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include "wtconnectthreewidget.h"
+
+#include <cassert>
+
 #include <Wt/WPaintDevice>
 #include <Wt/WPainter>
 #include <Wt/WTimer>
@@ -26,9 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreewidget.h"
 #include "connectthreeresources.h"
 #include "connectthreemove.h"
-#include "wtconnectthreewidget.h"
-
-#include <cassert>
+#pragma GCC diagnostic pop
 
 ///Yes, naming the filename twice feels dumb, but
 ///I could not find enough documentation about

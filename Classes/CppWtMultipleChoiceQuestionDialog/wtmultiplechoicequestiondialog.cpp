@@ -1,12 +1,15 @@
+#include "wtmultiplechoicequestiondialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/bind.hpp>
-#include <boost/filesystem.hpp>
+
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
-#include "multiplechoicequestion.h"
-#include "multiplechoicequestiondialog.h"
-#include "wtmultiplechoicequestiondialog.h"
 
 #include <Wt/WBreak>
 #include <Wt/WButtonGroup>
@@ -18,6 +21,11 @@
 #include <Wt/WRadioButton>
 #include <Wt/WStackedWidget>
 //#include <Wt/WGroupBox>
+
+#include "fileio.h"
+#include "multiplechoicequestiondialog.h"
+#include "multiplechoicequestion.h"
+#pragma GCC diagnostic pop
 
 ribi::WtMultipleChoiceQuestionDialog::Ui::Ui()
  : m_button_submit(new Wt::WPushButton("Submit")),
@@ -101,20 +109,21 @@ void ribi::WtMultipleChoiceQuestionDialog::Show()
 
   this->setContentAlignment(Wt::AlignCenter);
 
-  if (boost::filesystem::exists(question->GetFilename()))
+
+  if (ribi::fileio::FileIo().IsRegularFile(GetDialog()->GetQuestion()->GetFilename()))
   {
-    this->addWidget(new Wt::WImage(question->GetFilename().c_str()));
+    this->addWidget(new Wt::WImage(GetDialog()->GetQuestion()->GetFilename().c_str()));
   }
 
   const MultipleChoiceQuestion * const q
-    = dynamic_cast<const MultipleChoiceQuestion *>(question.get());
+    = dynamic_cast<const MultipleChoiceQuestion *>(GetDialog()->GetQuestion().get());
   assert(q);
 
   this->addWidget(m_ui.m_stacked_widget);
   //Create the question page
   {
     Wt::WContainerWidget * const page = new Wt::WContainerWidget;
-    page->addWidget(new Wt::WLabel(question->GetQuestion().c_str()));
+    page->addWidget(new Wt::WLabel(GetDialog()->GetQuestion()->GetQuestion().c_str()));
     page->addWidget(new Wt::WBreak);
     //RadioButtons
     {
@@ -151,7 +160,7 @@ void ribi::WtMultipleChoiceQuestionDialog::Show()
     Wt::WContainerWidget * const page = new Wt::WContainerWidget;
     page->addWidget(new Wt::WLabel("Incorrect"));
     page->addWidget(new Wt::WBreak);
-    page->addWidget(new Wt::WLabel(question->GetQuestion().c_str()));
+    page->addWidget(new Wt::WLabel(GetDialog()->GetQuestion()->GetQuestion().c_str()));
     page->addWidget(new Wt::WBreak);
     page->addWidget(new Wt::WLabel(q->GetAnswer().c_str()));
     page->addWidget(new Wt::WBreak);
@@ -159,5 +168,3 @@ void ribi::WtMultipleChoiceQuestionDialog::Show()
   }
   m_ui.m_stacked_widget->setCurrentIndex(0);
 }
-
-

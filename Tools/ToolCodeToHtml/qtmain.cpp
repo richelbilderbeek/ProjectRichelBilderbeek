@@ -56,9 +56,9 @@ int main(int argc, char *argv[])
     #endif
 
     #ifndef NDEBUG
-    ribi::fileio::Test();
-    assert( ribi::fileio::IsRegularFile(argv[0]));
-    assert(!ribi::fileio::IsFolder(argv[0]));
+    ribi::fileio::FileIo();
+    assert( ribi::fileio::FileIo().IsRegularFile(argv[0]));
+    assert(!ribi::fileio::FileIo().IsFolder(argv[0]));
     #endif
 
     ribi::c2h::QtCodeToHtmlMenuDialog w;

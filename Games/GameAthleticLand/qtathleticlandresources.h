@@ -16,14 +16,14 @@ struct QtAthleticLandResources
 {
   QtAthleticLandResources();
   const QPixmap& GetBackground() const noexcept { return m_background; }
-  const QPixmap& GetPlayer(const State state) const noexcept;
+  const QPixmap& GetPlayer(const PlayerState state) const noexcept;
 
   private:
 
   const QPixmap m_background;
-  const std::map<State,QPixmap> m_player;
+  const std::map<PlayerState,QPixmap> m_player;
 
-  std::map<State,QPixmap> CreatePlayer() const noexcept;
+  std::map<PlayerState,QPixmap> CreatePlayer() const noexcept;
   std::vector<std::string> GetAllFilenames() const noexcept;
 
   ///Tries to obtain a pixmap from the resources from a filename

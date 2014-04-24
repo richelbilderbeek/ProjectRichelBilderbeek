@@ -20,6 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wtquestiondialog.h"
 
+
 ribi::WtQuestionDialog::WtQuestionDialog()
   : m_signal_submitted{},
 {

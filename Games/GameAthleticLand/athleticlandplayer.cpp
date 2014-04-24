@@ -10,7 +10,7 @@
 
 ribi::athl::Player::Player()
   :
-    m_state(State::stand_right),
+    m_state(PlayerState::stand_right),
     m_x(0.10),
     m_y(0.60)
     //m_state_left(boost::shared_ptr<PlayerLeft>(new PlayerLeft(*this))),
@@ -26,8 +26,11 @@ void ribi::athl::Player::PressKeyLeft()
 {
   switch (m_state)
   {
-    case State::stand_left: m_x -= 0.01; break;
-    case State::stand_right: m_state = State::stand_right;
+    case PlayerState::stand_left: m_x -= 0.01; break;
+    case PlayerState::stand_right: m_state = PlayerState::stand_right; break;
+    case PlayerState::n_types:
+      assert(!"ribi::athl::Player::PressKeyLeft: never use PlayerState::n_types");
+      throw std::logic_error("ribi::athl::Player::PressKeyLeft: never use PlayerState::n_types");
   }
 }
 

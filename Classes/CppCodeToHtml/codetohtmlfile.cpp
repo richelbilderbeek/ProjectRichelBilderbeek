@@ -73,6 +73,7 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
   switch(file_type)
   {
     case FileType::cpp:
+    case FileType::png:
       v.push_back("<h2>" + m_filename + "</h2>");
     break;
     case FileType::pro:
@@ -81,8 +82,6 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
         + m_filename + "</h2>");
     break;
     case FileType::pri:
-      v.push_back("<h2>" + m_filename + "</h2>");
-    break;
     case FileType::py:
     case FileType::sh:
     case FileType::txt:
@@ -96,32 +95,41 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
       throw std::logic_error("Should never use FileType::n_types");
   }
 
-  //Add end of heading and start of code
+  //Add end of heading
   v.push_back("<p>&nbsp;</p>");
-  v.push_back("<!-- start of code -->");
-  v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
 
-  //Add the HTMLified content
+  //Start of code
+  if (file_type == FileType::png)
   {
-    assert(fileio::FileIo().IsRegularFile(m_filename));
-    const std::vector<std::string> w {
-      Replacer::ToHtml(fileio::FileIo().FileToVector(m_filename),file_type)
-    };
-    std::transform(w.begin(),w.end(),std::back_inserter(v),
-      [](const std::string& s)
-      {
-        return s + "<br/>";
-      }
-    );
+    v.push_back("<p><img src=\"" + m_filename + "\" alt=\"" + m_filename + "\"/></p>");
   }
+  else
+  {
+    v.push_back("<!-- start of code -->");
+    v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
 
-  //Remove empty lines
-  while (v.back() == "<br/>") v.pop_back();
-  assert(v.back()!="<br/>");
+    //Add the HTMLified content
+    {
+      assert(fileio::FileIo().IsRegularFile(m_filename));
+      const std::vector<std::string> w {
+        Replacer::ToHtml(fileio::FileIo().FileToVector(m_filename),file_type)
+      };
+      std::transform(w.begin(),w.end(),std::back_inserter(v),
+        [](const std::string& s)
+        {
+          return s + "<br/>";
+        }
+      );
+    }
 
-  //Add end of code and and end of page
-  v.push_back("</code></td></tr></table>");
-  v.push_back("<!-- end of the code -->");
+    //Remove empty lines
+    while (v.back() == "<br/>") v.pop_back();
+    assert(v.back()!="<br/>");
+
+    //Add end of code and and end of page
+    v.push_back("</code></td></tr></table>");
+    v.push_back("<!-- end of the code -->");
+  }
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");

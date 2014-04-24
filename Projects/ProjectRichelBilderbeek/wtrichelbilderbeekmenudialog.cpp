@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
-#include <boost/filesystem.hpp>
+
 #include <boost/function.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/scoped_ptr.hpp>
