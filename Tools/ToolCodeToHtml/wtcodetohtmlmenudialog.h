@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2011  Richel Bilderbeek
+Copyright (C) 2010-2014  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 
 namespace ribi {
-namespace CodeToHtml {
+namespace c2h {
 
 struct WtMenuDialog : public Wt::WContainerWidget
 {
@@ -35,7 +35,7 @@ struct WtMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
 } //~namespace ribi
 
 #endif // WTCODETOHTMLMENUDIALOG_H

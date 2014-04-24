@@ -40,6 +40,3 @@ HEADERS += \
 FORMS += \
     ../../Games/GameAthleticLand/qtathleticlandmaindialog.ui \
     ../../Games/GameAthleticLand/qtathleticlandmenudialog.ui
-
-RESOURCES += \
-    ../../Games/GameAthleticLand/GameAthleticLand.qrc

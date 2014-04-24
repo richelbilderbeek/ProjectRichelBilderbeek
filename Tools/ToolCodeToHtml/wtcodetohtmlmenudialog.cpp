@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2011  Richel Bilderbeek
+Copyright (C) 2010-2014  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,10 +20,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <cassert>
-
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
 
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
@@ -35,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WMenuItem>
 
 #include "codetohtmlmenudialog.h"
+#include "fileio.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wtcodetohtmldialog.h"
@@ -43,24 +43,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
-ribi::CodeToHtml::WtMenuDialog::WtMenuDialog()
+ribi::c2h::WtMenuDialog::WtMenuDialog()
 {
   {
     std::vector<std::string> image_names;
     image_names.push_back("ToolCodeToHtmlWelcome.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const auto filename: image_names)
     {
       if (!(QFile::exists(filename.c_str())))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
   this->setContentAlignment(Wt::AlignCenter);
@@ -101,23 +101,23 @@ ribi::CodeToHtml::WtMenuDialog::WtMenuDialog()
   }
 }
 
-Wt::WWidget * ribi::CodeToHtml::WtMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::c2h::WtMenuDialog::CreateNewAboutDialog() const
 {
-  About a = CodeToHtmlMenuDialog::GetAbout();
+  About a = c2h::CodeToHtmlMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
 
-Wt::WWidget * ribi::CodeToHtml::WtMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::c2h::WtMenuDialog::CreateNewMainDialog() const
 {
-  c2h::WtDialog * const d = new c2h::WtDialog;
+  WtDialog * const d = new WtDialog;
   assert(d);
   return d;
 }
 
-Wt::WWidget * ribi::CodeToHtml::WtMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::c2h::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

@@ -23,7 +23,6 @@ struct TestTriangleMeshMainDialog
 {
   TestTriangleMeshMainDialog(
     const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
-    const bool show_mesh,
     const int n_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
     const ::ribi::trim::CreateVerticalFacesStrategy strategy,
@@ -36,8 +35,12 @@ struct TestTriangleMeshMainDialog
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateSculptFunctionNone() noexcept;
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateSculptFunctionRemoveRandom(const double p) noexcept;
 
+  ///Obtain the filename of the created mesh
+  std::string GetFilename() const noexcept { return m_filename_result_mesh; }
+
   private:
 
+  const std::string m_filename_result_mesh;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -38,7 +38,6 @@
 
 ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
-  const bool show_mesh,
   const int n_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
@@ -46,13 +45,12 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function
 )
+  : m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"))
 {
   
   #ifndef NDEBUG
   Test();
   #endif
-
-  const auto filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"));
 
   //Write some geometries, let Triangle.exe work on it
   std::string filename_node;
@@ -172,7 +170,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder(
       new ribi::trim::TriangleMeshBuilder(
         cells,
-        filename_result_mesh,
+        m_filename_result_mesh,
         boundary_to_patch_field_type_function,
         strategy
       )
@@ -180,6 +178,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     assert(builder);
   }
 
+  #define ALSO_CREATE_OTHER_FILES_20140424
+  #ifdef  ALSO_CREATE_OTHER_FILES_20140424
   {
     std::ofstream f(ribi::foam::Filenames().GetControlDict().c_str());
     ribi::foam::ControlDictFile file;
@@ -338,7 +338,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   std::clog << std::endl;
   std::cout << std::endl;
 
-  if (show_mesh)
+  #ifdef TEST_TRIANGLEMESH_SHOW_MESH
   {
     std::stringstream s;
     s
@@ -347,6 +347,9 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     const int error = std::system(s.str().c_str());
     if (error) std::cout << "WARNING: cannot display mesh" << '\n';
   }
+  #endif
+
+  #endif
 }
 
 
@@ -463,14 +466,12 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
     try
     {
       const double pi { boost::math::constants::pi<double>() };
-      const bool show_mesh = false;
       const std::vector<Coordinat2D> shapes {
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
       const double quality = 5.0;
       const ribi::TestTriangleMeshMainDialog d(
         shapes,
-        show_mesh,
         3,
         1.0 * boost::units::si::meter,
         strategy,

@@ -41,7 +41,7 @@ int main(int, char* argv[])
     //::ribi::trim::CreateVerticalFacesStrategy::two_faces_per_square
   };
 
-  const bool verbose = false;
+  const bool verbose = true;
 
   const std::string checkMesh_command(
     std::string(
@@ -64,7 +64,6 @@ int main(int, char* argv[])
     try
     {
       const double pi = boost::math::constants::pi<double>();
-      const bool show_mesh = false;
       const std::vector<Coordinat2D> shapes {
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
@@ -75,7 +74,6 @@ int main(int, char* argv[])
       const double quality = 5.0;
       const ribi::TestTriangleMeshMainDialog d(
         shapes,
-        show_mesh,
         n_layers,
         layer_height,
         strategy,
@@ -100,7 +98,7 @@ int main(int, char* argv[])
   try
   {
     const double pi = boost::math::constants::pi<double>();
-    const bool show_mesh = true;
+    const bool show_mesh = false;
     const std::vector<Coordinat2D> shapes {
       //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125, 1.0) //1 cube
       ribi::TriangleFile::CreateShapePolygon( 3,pi * 0.0 / 6.0,  1.0), //1 prism
@@ -109,7 +107,7 @@ int main(int, char* argv[])
       ribi::TriangleFile::CreateShapePolygon(11,pi * 0.0 / 6.0,  6.0),
       ribi::TriangleFile::CreateShapePolygon(21,pi * 0.0 / 6.0,  8.0)
     };
-    const int n_layers = 50;
+    const int n_layers = 5;
     const boost::units::quantity<boost::units::si::length> layer_height(
       10.0 * boost::units::si::meter / static_cast<double>(n_layers)
     );
@@ -118,7 +116,6 @@ int main(int, char* argv[])
 
     const ribi::TestTriangleMeshMainDialog d(
       shapes,
-      show_mesh,
       n_layers,
       layer_height,
       strategy,
@@ -128,6 +125,16 @@ int main(int, char* argv[])
     );
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
+    if (show_mesh)
+    {
+      std::stringstream s;
+      s
+        << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
+        << d.GetFilename();
+      const int error = std::system(s.str().c_str());
+      if (error) std::cout << "WARNING: cannot display mesh" << '\n';
+    }
+
     TRACE(checkMesh_command);
     std::system(checkMesh_command.c_str());
     return 0;

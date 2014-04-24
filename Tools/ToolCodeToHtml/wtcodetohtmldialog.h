@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2011  Richel Bilderbeek
+Copyright (C) 2010-2014  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,15 +24,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WContainerWidget>
-
-#include "codetohtmlcontenttype.h"
-#include "codetohtmlpagetype.h"
-#include "codetohtmltechinfotype.h"
+#pragma GCC diagnostic pop
 
 struct WtDialWidget;
 struct WtCodeToHtmlWidget;
 
+namespace ribi {
 namespace c2h {
 
 struct WtDialog : public Wt::WContainerWidget
@@ -63,13 +64,13 @@ struct WtDialog : public Wt::WContainerWidget
   void Display(const std::vector<std::string>& v);
 
   ///Obtain the selected header type
-  c2h::PageType GetPageType() const;
+  //c2h::PageType GetPageType() const;
 
   ///Obtain the selected technical info type
-  c2h::TechInfoType GetTechInfo() const;
+  //c2h::TechInfoType GetTechInfo() const;
 
   ///Obtain the selected source type
-  c2h::ContentType GetContentType() const;
+  //c2h::ContentType GetContentType() const;
 
   ///Respond to click on Convert button
   void on_button_convert_clicked();
@@ -83,5 +84,6 @@ struct WtDialog : public Wt::WContainerWidget
 };
 
 } //~namespace c2h
+} //~namespace ribi
 
 #endif // WTCODETOHTMLDIALOG_H
