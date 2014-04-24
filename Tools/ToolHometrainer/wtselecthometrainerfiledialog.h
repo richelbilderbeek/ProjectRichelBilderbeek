@@ -33,12 +33,12 @@ struct WtSelectHometrainerFileDialog : public WtSelectFileDialog
   WtSelectHometrainerFileDialog();
 
   ///The virtual method how to select Hometrainer files from a folder
-  const std::vector<std::string> SelectFiles() const;
+  std::vector<std::string> SelectFiles() const noexcept;
 
 
   private:
   ///GetFirstLineFromFile reads the first line from a file
-  static const std::string GetFirstLineFromFile(const std::string& filename);
+  static std::string GetFirstLineFromFile(const std::string& filename);
 
 };
 

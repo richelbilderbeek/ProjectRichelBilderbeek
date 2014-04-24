@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtSelectFileDialog, Wt dialog for selecting a file
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,9 +21,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef WTSELECTFILEDIALOG_H
 #define WTSELECTFILEDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/signals2.hpp>
 
 #include <Wt/WContainerWidget>
+#pragma GCC diagnostic pop
 
 namespace Wt
 {
@@ -50,13 +55,13 @@ struct WtSelectFileDialog : public Wt::WContainerWidget
   static const std::string& GetPath() { return m_path; }
 
   ///Get the currently selected file
-  const std::string GetSelectedFile() const;
+  std::string GetSelectedFile() const;
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Set the regex filter filenames are selected for
   void SetFilter(const std::string& filename_filter);
@@ -88,13 +93,13 @@ protected:
 
   ///Get all the files in a folder
   //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-  static const std::vector<std::string> GetFilesInFolder(const std::string& folder);
+  //static std::vector<std::string> GetFilesInFolder(const std::string& folder);
 
   ///\brief
   ///The method how to select files from a folder
   ///
   ///default behavior: select all files in the folder m_path that match the regex in m_edit_filter
-  virtual const std::vector<std::string> SelectFiles() const;
+  virtual std::vector<std::string> SelectFiles() const noexcept;
 
   ///\brief
   ///OnUpdateDialog updates the list of filenames in the m_selection_box

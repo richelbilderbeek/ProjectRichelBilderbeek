@@ -109,9 +109,9 @@ int main(int, char* argv[])
       ribi::TriangleFile::CreateShapePolygon(11,pi * 0.0 / 6.0,  6.0),
       ribi::TriangleFile::CreateShapePolygon(21,pi * 0.0 / 6.0,  8.0)
     };
-    const int n_layers = 4;
+    const int n_layers = 50;
     const boost::units::quantity<boost::units::si::length> layer_height(
-      1.0 * boost::units::si::meter / static_cast<double>(n_layers)
+      10.0 * boost::units::si::meter / static_cast<double>(n_layers)
     );
 
     const double quality = 5.0;

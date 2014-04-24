@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
-
+#include "richelbilderbeekprogram.h"
 #include "shape.h"
 #include "shapewidget.h"
 #include "trace.h"

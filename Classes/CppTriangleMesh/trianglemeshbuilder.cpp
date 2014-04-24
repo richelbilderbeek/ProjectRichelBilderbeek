@@ -40,7 +40,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   #ifndef NDEBUG
   Test();
   #endif
-
+  const bool verbose = false;
 
   for (const std::string& folder: GetAllFolders())
   {
@@ -186,10 +186,10 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       //|   |   |   |   |   neighbour's index is less than owner's index    |
       //| F |   | N | N | Assign index to owner                             |
       //+---+---+---+---+---------------------------------------------------+
-      // *S) Scenario
-      // *1) Does it have a neighbour?
-      // *2) Assigned owner yes/no?
-      // *3) Assigned neighbour yes/no?
+      // * S = Scenario
+      // * 1 = Does it have a neighbour?
+      // * 2 = Assigned owner index yes/no?
+      // * 3 = Assigned neighbour index yes/no?
 
       if (m_faces[i]->GetNeighbour())
       {
@@ -266,6 +266,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   }
 
   //Show all cells' indices
+  if (verbose)
   {
     const int n_cells = static_cast<int>(m_cells.size());
     TRACE(n_cells);
@@ -333,17 +334,23 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
         {
           assert(this_index >= 0);
           assert(this_index < static_cast<int>(m_cells.size()));
-          std::stringstream s;
-          s << "i != this_index <-> " << i << " != " << this_index;
-          TRACE(s.str());
+          if (verbose)
+          {
+            std::stringstream s;
+            s << "i != this_index <-> " << i << " != " << this_index;
+            TRACE(s.str());
+          }
           std::swap(m_cells[i],m_cells[this_index]);
         }
         else
         {
           assert(i == this_index);
-          std::stringstream s;
-          s << "i == this_index == " << i;
-          TRACE(s.str());
+          if (verbose)
+          {
+            std::stringstream s;
+            s << "i == this_index == " << i;
+            TRACE(s.str());
+          }
           //Everything is OK
           break; //Next
         }
@@ -455,6 +462,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
 
 
   //Show the faces
+  if (verbose)
   {
     const int n_faces = static_cast<int>(m_faces.size());
     TRACE(n_faces);
@@ -520,7 +528,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   }
   #endif
 
-  const bool verbose = false;
   if (verbose) std::cout << "Writing output...\n";
   //Mesh
   {
