@@ -18,17 +18,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolHometrainer.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <fstream>
 
 #include <boost/algorithm/string.hpp>
 
-#include <boost/foreach.hpp>
+
 #include <boost/regex.hpp>
 
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 
 #include "wtselecthometrainerfiledialog.h"
+#pragma GCC diagnostic pop
 
 ribi::WtSelectHometrainerFileDialog::WtSelectHometrainerFileDialog()
 {

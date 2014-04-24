@@ -51,6 +51,7 @@ struct Face
 
   ///nullptr if no neighbour
   boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
+  boost::shared_ptr<      Cell> GetNonConstNeighbour()       noexcept;
 
   FaceOrientation GetOrientation() const noexcept { return m_orientation; }
 
@@ -79,7 +80,7 @@ struct Face
   boost::signals2::signal<void(const Face* const)> m_signal_destroyed;
   #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
-  static const int sm_face_no_index = -1;
+  static const int sm_face_no_index = -2;
 
   private:
   ~Face() noexcept;

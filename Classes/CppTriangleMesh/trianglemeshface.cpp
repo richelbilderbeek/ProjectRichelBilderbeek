@@ -217,6 +217,13 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const
   #endif //#ifdef TRIANGLEMESH_USE_SIGNALS2
 }
 
+boost::shared_ptr<ribi::trim::Cell> ribi::trim::Face::GetNonConstNeighbour() noexcept
+{
+  const boost::shared_ptr<const ribi::trim::Cell> const_cell
+    = const_cast<const ribi::trim::Face*>(this)->GetNeighbour();
+  return boost::const_pointer_cast<Cell>(const_cell);
+}
+
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetConstOwner() const noexcept
 {
   

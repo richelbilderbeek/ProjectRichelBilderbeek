@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtQuestionDialog, Wt dialog for QuestionDialog
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::WtQuestionDialog::WtQuestionDialog()
-  : m_signal_submitted{},
+  : m_signal_submitted{}
 {
 
 }

@@ -21,10 +21,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef WTTICTACTOEGAMEDIALOG_H
 #define WTTICTACTOEGAMEDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/signals2.hpp>
 
 #include <Wt/WContainerWidget>
-
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

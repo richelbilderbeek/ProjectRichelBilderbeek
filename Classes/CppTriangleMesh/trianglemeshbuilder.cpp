@@ -110,9 +110,52 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     m_cells.end()
   );
 
+  //Check that all Faces know they belong to their Cell
+  for (const auto cell: m_cells)
+  {
+    for (const auto face: cell->GetFaces())
+    {
+      assert(face->GetConstOwner() == cell
+        || face->GetNeighbour() == cell
+      );
+    }
+  }
+
+  //Check that all Cells know they own their Faces
+  for (const auto face: m_faces)
+  {
+    assert(face);
+    const auto owner = face->GetConstOwner();
+    assert(owner);
+    const auto neighbour = face->GetNeighbour();
+    if (!neighbour)
+    {
+      const auto owner_faces = owner->GetFaces();
+      assert(std::count(owner_faces.begin(),owner_faces.end(),face) == 1);
+    }
+    else
+    {
+      const auto owner_faces = owner->GetFaces();
+      const auto neighbour_faces = neighbour->GetFaces();
+      assert(
+          std::count(owner_faces.begin(),owner_faces.end(),face)
+        + std::count(neighbour_faces.begin(),neighbour_faces.end(),face)
+        != 0 && "A Face with a neighbour is known by two cells, instead of zero"
+      );
+      assert(
+          std::count(owner_faces.begin(),owner_faces.end(),face)
+        + std::count(neighbour_faces.begin(),neighbour_faces.end(),face)
+        != 1 && "A Face with a neighbour is known by two cells, instead of one"
+      );
+      assert(
+          std::count(owner_faces.begin(),owner_faces.end(),face)
+        + std::count(neighbour_faces.begin(),neighbour_faces.end(),face)
+        == 2
+      );
+    }
+  }
+
   //Start setting the indices
-
-
   //Unset all Cell indices
   for (auto cell: m_cells) { cell->SetIndex(Cell::sm_cell_no_index); }
 
@@ -129,39 +172,93 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     const int n_faces = static_cast<int>(m_faces.size());
     for (int i=0; i!=n_faces; ++i)
     {
+      //+---+---+---+---+---------------------------------------------------+
+      //| S | 1 | 2 | 3 | Action                                            |
+      //+---+---+---+---+---------------------------------------------------+
+      //| A | N | Y | - | Assume owner's index is less then index           |
+      //| B |   | N | - | Assign index to owner                             |
+      //+---+---+---+---+---------------------------------------------------+
+      //| C | Y | Y | N | Assign index to neighbour, transfer ownership if  |
+      //|   |   |   |   |   neighbour's index is less than owner's index    |
+      //| D |   | Y | Y | Assume owner's index is less than neighbour's     |
+      //|   |   |   |   |   index, assume owner's index is less then index  |
+      //| E |   | N | Y | Assign index to owner, transfer ownership if      |
+      //|   |   |   |   |   neighbour's index is less than owner's index    |
+      //| F |   | N | N | Assign index to owner                             |
+      //+---+---+---+---+---------------------------------------------------+
+      // *S) Scenario
+      // *1) Does it have a neighbour?
+      // *2) Assigned owner yes/no?
+      // *3) Assigned neighbour yes/no?
+
       if (m_faces[i]->GetNeighbour())
       {
-        //| 1 | 2 | Action
-        //| Y | N | No action
-        //| Y | Y | No action
-        //| N | Y | Transfer Face ownership from Neighbour to owner, assign index to new owner
-        //| N | N | Assign index to owner
-        // *1) Assigned owner yes/no?
-        // *2) Assigned neighbour yes/no?
-        const int owner_index = m_faces[i]->GetNonConstOwner()->GetIndex();
+        const int owner_index = m_faces[i]->GetConstOwner()->GetIndex();
+        const int neighbour_index = m_faces[i]->GetNeighbour()->GetIndex();
         if (owner_index == Cell::sm_cell_no_index)
         {
-          //const int neighbour_index = m_faces[i]->GetNeighbour()->GetIndex();
-          assert(
-            //No neighbour
-               !m_faces[i]->GetNeighbour()
-            //Neighbour not assigned an index yet
-            || m_faces[i]->GetNeighbour()->GetIndex() == Cell::sm_cell_no_index
-            //Owner and neighbour correctly sorted
-            || m_faces[i]->GetNonConstOwner()->GetIndex() < m_faces[i]->GetNeighbour()->GetIndex()
-          );
-          m_faces[i]->GetNonConstOwner()->SetIndex(cell_index);
-          ++cell_index;
+          //Scenario E or F
+          if (neighbour_index == Cell::sm_cell_no_index)
+          {
+            //Scenario F: No owner index, no neighbour index
+            assert(owner_index == Cell::sm_cell_no_index);
+            //Assign index to owner
+            m_faces[i]->GetNonConstOwner()->SetIndex(cell_index);
+            ++cell_index;
+          }
+          else
+          {
+            //Scenario E: No owner index, a neighbour index
+            assert(owner_index == Cell::sm_cell_no_index);
+            assert(neighbour_index != Cell::sm_cell_no_index);
+            //Assign index to owner, transfer ownership if
+            //neighbour's index is less than owner's index
+            m_faces[i]->GetNonConstOwner()->SetIndex(cell_index);
+            ++cell_index;
+          }
+        }
+        else
+        {
+          //Scenario C or D
+          assert(owner_index != Cell::sm_cell_no_index);
+          if (neighbour_index == Cell::sm_cell_no_index)
+          {
+            //Scenario C: An owner index, no neighbour index
+            //Assign index to neighbour, transfer ownership if
+            //neighbour's index is less than owner's index
+            m_faces[i]->GetNonConstNeighbour()->SetIndex(cell_index);
+            ++cell_index;
+          }
+          else
+          {
+            //Scenario D: An owner index, a neighbour index
+            //Assume owner's index is less than neighbour's
+            //index, assume owner's index is less then index
+            assert(neighbour_index != Cell::sm_cell_no_index);
+            assert(owner_index < neighbour_index);
+          }
         }
       }
       else
       {
+        //Scenario A or B
+        //No neighbour at all
+        assert(!m_faces[i]->GetNeighbour());
+
         auto owner = m_faces[i]->GetNonConstOwner();
         assert(owner);
         if (owner->GetIndex() == Cell::sm_cell_no_index)
         {
+          //Scenario B: no owner index
+          //Assign index to owner
           owner->SetIndex(cell_index);
           ++cell_index;
+        }
+        else
+        {
+          //Scenario A: an owner index
+          //Assume owner's index is less then index
+          assert(owner->GetIndex() < cell_index);
         }
       }
       assert(m_faces[i]->GetConstOwner()->GetIndex() != Cell::sm_cell_no_index);

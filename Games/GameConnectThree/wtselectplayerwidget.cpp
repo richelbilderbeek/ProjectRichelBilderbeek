@@ -18,6 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WImage>
 #include <Wt/WPainter>
 
@@ -26,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtselectplayerwidget.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 ///Yes, naming the filename twice feels dumb, but
 ///I could not find enough documentation about

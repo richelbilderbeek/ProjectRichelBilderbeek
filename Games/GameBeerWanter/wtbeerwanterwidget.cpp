@@ -1,4 +1,9 @@
+#include "wtbeerwanterwidget.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WFileResource>
@@ -11,11 +16,7 @@
 #include <Wt/WTextArea>
 
 #include "beerwantermaindialog.h"
-#include "wtbeerwanterwidget.h"
-//Cannot use assert due to the following error:
-//  http://richelbilderbeek.nl/CppCompileErrorCc1plusInternalCompilerErrorSegmentationFault.htm
-//#define MY_NDEBUG to disable this Assert
-#include "myassert.h"
+#pragma GCC diagnostic pop
 
 ribi::WtBeerWanterWidget::WtBeerWanterWidget(
   Wt::WContainerWidget *parent)
@@ -24,7 +25,7 @@ ribi::WtBeerWanterWidget::WtBeerWanterWidget(
     m_dialog(new BeerWanterMainDialog(600,500,39,102,600,500)),
     m_image(new Wt::WPainter::Image("Beer.png",39,102))
 {
-  Assert(m_image);
+  assert(m_image);
   this->resize(
     m_dialog->GetWindowWidth(),
     m_dialog->GetWindowHeight());

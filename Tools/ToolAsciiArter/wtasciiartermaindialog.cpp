@@ -20,7 +20,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -69,16 +70,16 @@ ribi::WtAsciiArterMainDialog::WtAsciiArterMainDialog()
 
     for(const std::string& filename: image_names)
     {
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/ToolAsciiArter/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " + filename + '\n';
       }
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
 
@@ -210,7 +211,7 @@ Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewWelcomeDialog() const
 void ribi::WtAsciiArterMainDialog::OnAnyChange()
 {
   if (!m_filename.empty()
-    && fileio::IsRegularFile(m_filename)
+    && fileio::FileIo().IsRegularFile(m_filename)
     && m_n_cols > 5)
   {
     m_dialog.reset(new AsciiArterMainDialog(m_filename,m_n_cols));
@@ -257,7 +258,7 @@ void ribi::WtAsciiArterMainDialog::OnUploadDone()
 const std::vector<std::vector<double> >
   ribi::WtAsciiArterMainDialog::ConvertToGreyYx(const std::string& filename)
 {
-  assert(boost::filesystem::exists(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   const QImage * const i = new QImage(filename.c_str());
   const int maxy = i->height();
   const int maxx = i->width();

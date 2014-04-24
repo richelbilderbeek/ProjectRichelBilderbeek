@@ -21,10 +21,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <cassert>
-
-
-#include <boost/foreach.hpp>
 
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
@@ -37,12 +35,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 #include "encrangermenudialog.h"
+#include "fileio.h"
 #include "wtautoconfig.h"
 #include "wtaboutdialog.h"
 #include "wtencrangermaindialog.h"
 #include "wtencrangermenudialog.h"
 
-#include <QFile>
+#include <QFile> //#include QFile after Wt
 #pragma GCC diagnostic pop
 
 ribi::WtEncrangerMenuDialog::WtEncrangerMenuDialog()
@@ -55,18 +54,19 @@ ribi::WtEncrangerMenuDialog::WtEncrangerMenuDialog()
     image_names.push_back("ToolEncrangerArrowUp16x16.png");
     image_names.push_back("ToolEncrangerArrowUp34x34.png");
     image_names.push_back("ToolEncrangerWelcome.png");
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const auto filename: image_names)
     {
       if (!(QFile::exists(filename.c_str())))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+
+      if (!fileio::FileIo().IsRegularFile(filename.c_str()))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename.c_str()));
     }
   }
 

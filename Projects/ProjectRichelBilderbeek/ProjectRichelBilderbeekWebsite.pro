@@ -90,6 +90,7 @@ include(../../Classes/CppWtMultipleChoiceQuestionDialog/CppWtMultipleChoiceQuest
 include(../../Classes/CppWtOpenQuestionDialog/CppWtOpenQuestionDialog.pri)
 include(../../Classes/CppWtQuestionDialog/CppWtQuestionDialog.pri)
 include(../../Classes/CppWtRubiksClockWidget/CppWtRubiksClockWidget.pri)
+include(../../Classes/CppWtSelectFileDialog/CppWtSelectFileDialog.pri)
 include(../../Classes/CppWtTicTacToeWidget/CppWtTicTacToeWidget.pri)
 include(../../Classes/CppWtToggleButtonWidget/CppWtToggleButtonWidget.pri)
 include(../../Classes/CppXml/CppXml.pri)

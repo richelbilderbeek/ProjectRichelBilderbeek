@@ -1,12 +1,14 @@
 #include "k3opeenrijmenudialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <cassert>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
 //#include <QPixmap>
 
 #include "connectthree.h"

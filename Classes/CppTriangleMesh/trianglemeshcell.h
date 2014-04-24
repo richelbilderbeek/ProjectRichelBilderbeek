@@ -39,7 +39,7 @@ struct Cell
   mutable boost::signals2::signal<void(const Cell* const)> m_signal_destroyed;
   #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
-  static const int sm_cell_no_index = -1;
+  static const int sm_cell_no_index = -2;
 
   private:
   ~Cell() noexcept;

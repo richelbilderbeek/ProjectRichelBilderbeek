@@ -47,12 +47,14 @@ struct WtAboutDialog : public Wt::WContainerWidget
   boost::signals2::signal<void ()> m_signal_close;
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
-  static const std::string GetWtVersion();
+  ///GetWtVersion returns the version of the currently installed Wt library
+  ///From http://www.richelbilderbeek.nl/CppGetWtVersion.htm
+  static std::string GetWtVersion();
   private:
   Wt::WPushButton * const m_button_close;
   void OnClose();

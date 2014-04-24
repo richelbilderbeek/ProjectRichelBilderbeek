@@ -18,13 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtAboutDialog.htm
 //---------------------------------------------------------------------------
+#include "wtaboutdialog.h"
+
 #include <string>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
 
 #include <Wt/WBreak>
 #ifndef _WIN32
@@ -32,7 +33,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #endif
 #include <Wt/WLabel>
 #include <Wt/WTextArea>
-#include "wtaboutdialog.h"
 #pragma GCC diagnostic pop
 
 ribi::WtAboutDialog::WtAboutDialog(
@@ -50,7 +50,7 @@ ribi::WtAboutDialog::WtAboutDialog(
   //Display the general about text
   {
     const std::vector<std::string> v = about.CreateAboutText();
-    BOOST_FOREACH(const std::string s,v)
+    for(const auto s: v)
     {
       new Wt::WLabel(s.c_str(),this);
       this->addWidget(new Wt::WBreak);
@@ -63,7 +63,7 @@ ribi::WtAboutDialog::WtAboutDialog(
     {
       const std::vector<std::string> v = about.CreateLibrariesUsedText();
       std::string s;
-      BOOST_FOREACH(const std::string t,v) {  s+=t; s+="\n"; }
+      for(const auto t: v) {  s+=t; s+="\n"; }
       text->setText(s);
     }
     text->setMinimumSize(min_width,100);
@@ -77,7 +77,7 @@ ribi::WtAboutDialog::WtAboutDialog(
     {
       const std::vector<std::string> v = about.CreateVersionHistory();
       std::string s;
-      BOOST_FOREACH(const std::string t,v) {  s+=t; s+="\n"; }
+      for(const auto t: v) {  s+=t; s+="\n"; }
       text->setText(s);
     }
     text->setMinimumSize(min_width,100);
@@ -91,7 +91,7 @@ ribi::WtAboutDialog::WtAboutDialog(
     {
       const std::vector<std::string> v = about.CreateLicenceText();
       std::string s;
-      BOOST_FOREACH(const std::string t,v) {  s+=t; s+="\n"; }
+      for(const auto t: v) {  s+=t; s+="\n"; }
       text->setText(s);
     }
     text->setMinimumSize(min_width,100);
@@ -119,26 +119,24 @@ ribi::WtAboutDialog::WtAboutDialog(
   }
 }
 
-const std::string ribi::WtAboutDialog::GetVersion()
+std::string ribi::WtAboutDialog::GetVersion()
 {
   return "1.5";
 }
 
-const std::vector<std::string> ribi::WtAboutDialog::GetVersionHistory()
+std::vector<std::string> ribi::WtAboutDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-01-07: version 1.0: initial version");
-  v.push_back("2011-04-10: version 1.1: displays version numbers of Wt and WtAboutDialog");
-  v.push_back("2011-04-15: version 1.2: made displayal of Close button optional");
-  v.push_back("2011-05-24: version 1.3: made all text areas read-only");
-  v.push_back("2011-05-30: version 1.4: should build date and time");
-  v.push_back("2011-06-26: version 1.5: added newline for displaying build date and time");
-  return v;
+  return {
+    "2011-01-07: version 1.0: initial version",
+    "2011-04-10: version 1.1: displays version numbers of Wt and WtAboutDialog",
+    "2011-04-15: version 1.2: made displayal of Close button optional",
+    "2011-05-24: version 1.3: made all text areas read-only",
+    "2011-05-30: version 1.4: should build date and time",
+    "2011-06-26: version 1.5: added newline for displaying build date and time"
+  };
 }
 
-///GetWtVersion returns the version of the currently installed Wt library
-///From http://www.richelbilderbeek.nl/CppGetWtVersion.htm
-const std::string ribi::WtAboutDialog::GetWtVersion()
+std::string ribi::WtAboutDialog::GetWtVersion()
 {
   return WT_VERSION_STR;
 }

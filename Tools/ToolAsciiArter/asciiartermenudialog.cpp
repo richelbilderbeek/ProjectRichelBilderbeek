@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermaindialog.h"
 #include "fileio.h"
 #include "imagecanvas.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

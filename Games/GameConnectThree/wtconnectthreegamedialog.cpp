@@ -20,6 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wtconnectthreegamedialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <cassert>
 
 #include <Wt/WBreak>
@@ -33,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreeresources.h"
 #include "trace.h"
 #include "wtconnectthreewidget.h"
-
+#pragma GCC diagnostic pop
 
 ribi::con3::WtConnectThreeGameDialog::WtConnectThreeGameDialog(
   const boost::shared_ptr<const ConnectThreeResources> resources,
