@@ -74,7 +74,8 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const VelocityFieldFile& 
     << "boundaryField\n"
     << "{\n" << '\n'
   ;
-  //<< f.m_boundary_field << '\n'
+  os << f.m_boundary_field << '\n';
+  /*
   for (const auto p: f.m_boundary_field)
   {
     os
@@ -84,6 +85,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const VelocityFieldFile& 
       << "  }\n"
     ;
   }
+  */
   os
     << "}\n";
     return os;
