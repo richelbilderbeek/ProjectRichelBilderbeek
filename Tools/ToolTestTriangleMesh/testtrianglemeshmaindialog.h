@@ -12,6 +12,7 @@
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/si/length.hpp>
 
+#include "openfoampatchfieldtype.h"
 #include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
 
@@ -32,6 +33,9 @@ struct TestTriangleMeshMainDialog
   );
 
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateDefaultAssignBoundaryFunction() noexcept;
+
+  static std::function<ribi::foam::PatchFieldType(const std::string&)> CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept;
+
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateSculptFunctionNone() noexcept;
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateSculptFunctionRemoveRandom(const double p) noexcept;
 

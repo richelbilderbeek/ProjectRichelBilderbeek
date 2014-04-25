@@ -151,6 +151,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   {
+    /*
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function {
       [](const std::string& patch_name)
       {
@@ -165,13 +166,13 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
         throw std::logic_error("boundary_to_patch_field_type: unknown patch name");
       }
     };
-
+    */
     //Build the OpenFOAM files
     const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder(
       new ribi::trim::TriangleMeshBuilder(
         cells,
         m_filename_result_mesh,
-        boundary_to_patch_field_type_function,
+        CreateDefaultBoundaryToPatchFieldTypeFunction(), //boundary_to_patch_field_type_function,
         strategy
       )
     );
@@ -425,7 +426,28 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::Tes
   ;
 }
 
-std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateSculptFunctionNone() noexcept
+std::function<ribi::foam::PatchFieldType(const std::string&)>
+  ribi::TestTriangleMeshMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept
+{
+  const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
+    = [](const std::string& patch_name)
+    {
+      if (patch_name == "inside") return ribi::foam::PatchFieldType::no_patch_field;
+      if (patch_name == "top") return ribi::foam::PatchFieldType::zeroGradient;
+      if (patch_name == "bottom") return ribi::foam::PatchFieldType::zeroGradient;
+      if (patch_name == "front") return ribi::foam::PatchFieldType::zeroGradient;
+      if (patch_name == "back") return ribi::foam::PatchFieldType::zeroGradient;
+      if (patch_name == "left") return ribi::foam::PatchFieldType::zeroGradient;
+      if (patch_name == "right") return ribi::foam::PatchFieldType::zeroGradient;
+      assert(!"Should not get here");
+      throw std::logic_error("CreateDefaultBoundaryToPatchFieldTypeFunction: unknown patch name");
+    }
+  ;
+  return boundary_to_patch_field_type_function;
+}
+
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
+  ribi::TestTriangleMeshMainDialog::CreateSculptFunctionNone() noexcept
 {
   return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
   {
