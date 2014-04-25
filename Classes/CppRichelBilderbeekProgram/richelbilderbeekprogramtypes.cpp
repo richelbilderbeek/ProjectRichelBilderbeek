@@ -215,7 +215,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testTicTacToe,"testTicTacToe"));
   m.insert(Pair(ProgramType::testTimedServerPusher,"testTimedServerPusher"));
   m.insert(Pair(ProgramType::testToggleButton,"testToggleButton"));
-  m.insert(Pair(ProgramType::testTriangleMesh,"testTriangleMesh"));
   m.insert(Pair(ProgramType::testTwoDigitNewick,"testTwoDigitNewick"));
   m.insert(Pair(ProgramType::thorVeen,"thorVeen"));
   m.insert(Pair(ProgramType::thresholdFilterer,"thresholdFilterer"));
@@ -224,6 +223,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::ticTacToeLearner,"ticTacToeLearner"));
   m.insert(Pair(ProgramType::ticTacToeValuer,"ticTacToeValuer"));
   m.insert(Pair(ProgramType::timePoll,"timePoll"));
+  m.insert(Pair(ProgramType::triangleMeshCreator,"triangleMeshCreator"));
   m.insert(Pair(ProgramType::tronCollection,"tronCollection"));
   m.insert(Pair(ProgramType::tronCollectionVcl,"tronCollectionVcl"));
   m.insert(Pair(ProgramType::ubuntuOneWatcher,"ubuntuOneWatcher"));
@@ -432,7 +432,6 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testTicTacToe,"Test TicTacToe"));
   m.insert(Pair(ProgramType::testTimedServerPusher,"Test TimedServerPusher"));
   m.insert(Pair(ProgramType::testToggleButton,"Test ToggleButton"));
-  m.insert(Pair(ProgramType::testTriangleMesh,"Test TriangleMesh"));
   m.insert(Pair(ProgramType::testTwoDigitNewick,"Test TwoDigitNewick"));
   m.insert(Pair(ProgramType::thorVeen,"Thor Veen"));
   m.insert(Pair(ProgramType::thresholdFilterer,"ThresholdFilterer"));
@@ -441,6 +440,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::ticTacToeLearner,"TicTacToe Learner"));
   m.insert(Pair(ProgramType::ticTacToeValuer,"TicTacToe Valuer"));
   m.insert(Pair(ProgramType::timePoll,"TimePoll"));
+  m.insert(Pair(ProgramType::triangleMeshCreator,"TriangleMeshCreator"));
   m.insert(Pair(ProgramType::tronCollection,"Tron Collection"));
   m.insert(Pair(ProgramType::tronCollectionVcl,"Tron Collection (VCL)"));
   m.insert(Pair(ProgramType::ubuntuOneWatcher,"UbuntuOne Watcher"));

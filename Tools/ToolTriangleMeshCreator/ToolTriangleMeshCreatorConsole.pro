@@ -71,7 +71,7 @@ include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppTriangleFile/CppTriangleFile.pri)
 include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)
-include(../../Tools/ToolTestTriangleMesh/ToolTestTriangleMeshConsole.pri)
+include(../../Tools/ToolTriangleMeshCreator/ToolTriangleMeshCreatorConsole.pri)
 include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
 
 SOURCES += main.cpp

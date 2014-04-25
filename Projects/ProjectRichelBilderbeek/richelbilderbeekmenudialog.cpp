@@ -195,7 +195,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testtextcanvasmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
-#include "testtrianglemeshmenudialog.h"
+#include "trianglemeshcreatormenudialog.h"
 #include "testtwodigitnewickmenudialog.h"
 #include "textcanvas.h"
 #include "thresholdfilterermenudialog.h"
@@ -423,7 +423,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("TestShinyButton version: " + TestShinyButtonMenuDialog().GetVersion());
   a.AddLibrary("TestSimpleLinearRegression version: " + ToolTestSimpleLinearRegressionMenuDialog().GetVersion());
   a.AddLibrary("TestToggleButton version: " + TestToggleButtonMenuDialog().GetVersion());
-  a.AddLibrary("TestTriangleMesh version: " + TestTriangleMeshMenuDialog().GetVersion());
+  a.AddLibrary("TriangleMeshCreator version: " + TriangleMeshCreatorMenuDialog().GetVersion());
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("TicTacToe (game) version: " + tictactoe::TicTacToeMenuDialog().GetVersion());
   a.AddLibrary("TicTacToe version: " + tictactoe::Board::GetVersion());
@@ -2689,7 +2689,6 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       }
       break;
       case ProgramType::testToggleButton: p.reset(new TestToggleButtonMenuDialog); break;
-      case ProgramType::testTriangleMesh: p.reset(new TestTriangleMeshMenuDialog); break;
       case ProgramType::testTwoDigitNewick: p.reset(new TestTwoDigitNewickMenuDialog); break;
       case ProgramType::thorVeen:
       {
@@ -2823,6 +2822,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
+      case ProgramType::triangleMeshCreator: p.reset(new TriangleMeshCreatorMenuDialog); break;
       case ProgramType::tronCollection: p.reset(new TronMenuDialog); break;
       case ProgramType::tronCollectionVcl:
       {

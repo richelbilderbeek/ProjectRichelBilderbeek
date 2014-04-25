@@ -1,4 +1,24 @@
-#include "testtrianglemeshmaindialog.h"
+//---------------------------------------------------------------------------
+/*
+TriangleMeshCreator, creates a 3D mesh using Triangle,
+Copyright (C) 2014-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm
+//---------------------------------------------------------------------------
+#include "trianglemeshcreatormaindialog.h"
 
 #include <fstream>
 
@@ -36,14 +56,15 @@
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #pragma GCC diagnostic pop
 
-ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
+ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
   const int n_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
   const double quality,
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
-  const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function
+  const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
+  const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function
 )
   : m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"))
 {
@@ -172,7 +193,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       new ribi::trim::TriangleMeshBuilder(
         cells,
         m_filename_result_mesh,
-        CreateDefaultBoundaryToPatchFieldTypeFunction(), //boundary_to_patch_field_type_function,
+        boundary_to_patch_field_type_function, //
         strategy
       )
     );
@@ -354,7 +375,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
 }
 
 
-std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction() noexcept
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction() noexcept
 {
   return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
   {
@@ -427,7 +448,7 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::Tes
 }
 
 std::function<ribi::foam::PatchFieldType(const std::string&)>
-  ribi::TestTriangleMeshMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept
+  ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept
 {
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
     = [](const std::string& patch_name)
@@ -439,7 +460,8 @@ std::function<ribi::foam::PatchFieldType(const std::string&)>
       if (patch_name == "back") return ribi::foam::PatchFieldType::zeroGradient;
       if (patch_name == "left") return ribi::foam::PatchFieldType::zeroGradient;
       if (patch_name == "right") return ribi::foam::PatchFieldType::zeroGradient;
-      assert(!"Should not get here");
+      TRACE(patch_name);
+      assert(!"CreateDefaultBoundaryToPatchFieldTypeFunction: unknown patch name");
       throw std::logic_error("CreateDefaultBoundaryToPatchFieldTypeFunction: unknown patch name");
     }
   ;
@@ -447,7 +469,7 @@ std::function<ribi::foam::PatchFieldType(const std::string&)>
 }
 
 std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
-  ribi::TestTriangleMeshMainDialog::CreateSculptFunctionNone() noexcept
+  ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionNone() noexcept
 {
   return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
   {
@@ -456,7 +478,7 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
   ;
 }
 
-std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(const double p) noexcept
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(const double p) noexcept
 {
   assert(p >= 0.0);
   assert(p <= 1.0);
@@ -471,14 +493,14 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::Tes
 }
 
 #ifndef NDEBUG
-void ribi::TestTriangleMeshMainDialog::Test() noexcept
+void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestTriangleMeshMainDialog::Test");
+  TRACE("Starting ribi::TriangleMeshCreatorMainDialog::Test");
   typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
   ribi::trim::CellsCreatorFactory();
 
@@ -492,14 +514,15 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
       const double quality = 5.0;
-      const ribi::TestTriangleMeshMainDialog d(
+      const ribi::TriangleMeshCreatorMainDialog d(
         shapes,
         3,
         1.0 * boost::units::si::meter,
         strategy,
         quality,
-        TestTriangleMeshMainDialog::CreateSculptFunctionRemoveRandom(0.75),
-        TestTriangleMeshMainDialog::CreateDefaultAssignBoundaryFunction()
+        TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
+        TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
+        TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction()
       );
     }
     catch (std::exception& e)
@@ -511,6 +534,6 @@ void ribi::TestTriangleMeshMainDialog::Test() noexcept
       assert(!"Should not get here");
     }
   }
-  TRACE("Finished ribi::TestTriangleMeshMainDialog::Test successfully");
+  TRACE("Finished ribi::TriangleMeshCreatorMainDialog::Test successfully");
 }
 #endif

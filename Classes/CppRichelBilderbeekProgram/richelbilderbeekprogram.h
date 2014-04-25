@@ -2742,19 +2742,19 @@ struct ProgramTestToggleButton : public ProgramClass
   std::string GetUrl() const noexcept { return "ToolTestToggleButton.htm"; }
 };
 
-struct ProgramTestTriangleMesh : public ProgramClass
+struct ProgramTriangleMeshCreator : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
   std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  std::string GetScreenName() const noexcept { return "TestTriangleMesh"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  std::string GetScreenName() const noexcept { return "TriangleMeshCreator"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::testTriangleMesh; }
-  std::string GetUrl() const noexcept { return "ToolTestTriangleMesh.htm"; }
+  ProgramType GetType() const noexcept { return ProgramType::triangleMeshCreator; }
+  std::string GetUrl() const noexcept { return "ToolTriangleMeshCreator.htm"; }
 };
 
 struct ProgramTestTwoDigitNewick : public ProgramClass

@@ -210,7 +210,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::testTicTacToe: p.reset(new ProgramTestTicTacToe); break;
     case ProgramType::testTimedServerPusher: p.reset(new ProgramTestTimedServerPusher); break;
     case ProgramType::testToggleButton: p.reset(new ProgramTestToggleButton); break;
-    case ProgramType::testTriangleMesh: p.reset(new ProgramTestTriangleMesh); break;
+    case ProgramType::triangleMeshCreator: p.reset(new ProgramTriangleMeshCreator); break;
     case ProgramType::testTwoDigitNewick: p.reset(new ProgramTestTwoDigitNewick); break;
     case ProgramType::thorVeen: p.reset(new ProgramThorVeen); break;
     case ProgramType::thresholdFilterer: p.reset(new ProgramThresholdFilterer); break;
