@@ -172,28 +172,12 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   }
 
   {
-    /*
-    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function {
-      [](const std::string& patch_name)
-      {
-        if (patch_name == "inside") return ribi::foam::PatchFieldType::no_patch_field;
-        if (patch_name == "top") return ribi::foam::PatchFieldType::zeroGradient;
-        if (patch_name == "bottom") return ribi::foam::PatchFieldType::zeroGradient;
-        if (patch_name == "front") return ribi::foam::PatchFieldType::zeroGradient;
-        if (patch_name == "back") return ribi::foam::PatchFieldType::zeroGradient;
-        if (patch_name == "left") return ribi::foam::PatchFieldType::zeroGradient;
-        if (patch_name == "right") return ribi::foam::PatchFieldType::zeroGradient;
-        assert(!"Should not get here");
-        throw std::logic_error("boundary_to_patch_field_type: unknown patch name");
-      }
-    };
-    */
     //Build the OpenFOAM files
     const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder(
       new ribi::trim::TriangleMeshBuilder(
         cells,
         m_filename_result_mesh,
-        boundary_to_patch_field_type_function, //
+        boundary_to_patch_field_type_function,
         strategy
       )
     );
@@ -202,28 +186,8 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
 
   #define ALSO_CREATE_OTHER_FILES_20140424
   #ifdef  ALSO_CREATE_OTHER_FILES_20140424
-  {
-    std::ofstream f(ribi::foam::Filenames().GetControlDict().c_str());
-    ribi::foam::ControlDictFile file;
-    file.SetAdjustTimeStep(false);
-    file.SetApplication("sonicFoam");
-    file.SetDeltaT(1.0);
-    file.SetEndTime(10.0);
-    file.SetPurgeWrite(0);
-    file.SetRunTimeModifiable(true);
-    file.SetStartFrom("latestTime");
-    file.SetStartTime(0.0);
-    file.SetStopAt("endTime");
-    file.SetTimeFormat("general");
-    file.SetTimePrecision(6);
-    file.SetWriteCompression("uncompressed");
-    file.SetWriteControl("adjustableRunTime");
-    file.SetWriteFormat("ascii");
-    file.SetWriteInterval(1.0);
-    file.SetWritePrecision(6);
-    f << file;
-  }
-
+  CreateDefaultControlDict();
+  /*
   {
     std::ofstream f(ribi::foam::Filenames().GetFvSchemes().c_str());
     ribi::foam::FvSchemesFile file;
@@ -235,80 +199,10 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
     ribi::foam::FvSolutionFile file;
     f << file;
   }
-
-  {
-    std::ofstream f(ribi::foam::Filenames().GetPressureField().c_str());
-    ribi::foam::PressureFile file;
-    file.SetBoundaryField(
-      "  top\n"
-      "  {\n"
-      "    type zeroGradient;\n"
-      "  }\n"
-      "  bottom\n"
-      "  {\n"
-      "    type zeroGradient;\n"
-      "  }\n"
-      "  front\n"
-      "  {\n"
-      "    type zeroGradient;\n"
-      "  }\n"
-      "  back\n"
-      "  {\n"
-      "    type zeroGradient;\n"
-      "  }\n"
-      "  left\n"
-      "  {\n"
-      "    type zeroGradient;\n"
-      "  }\n"
-      "  right\n"
-      "  {\n"
-      "    type zeroGradient;\n"
-      "  }\n"
-      "  \n"
-      "  defaultFaces\n"
-      "  {\n"
-      "    type zeroGradient;\n"
-      "  }"
-    );
-    file.SetDimensions( {1,-1,-2,0,0,0,0} );
-    file.SetInternalField("uniform 1.7e5");
-    f << file;
-  }
-
-  {
-    std::ofstream f(ribi::foam::Filenames().GetTemperatureField().c_str());
-    ribi::foam::TemperatureFile file;
-    file.SetBoundaryField(
-      "top\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "bottom\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "front\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "back\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "left\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "right\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-    );
-    file.SetDimensions( {0,0,0,1,0,0,0} );
-    file.SetInternalField("uniform 293");
-    f << file;
-  }
-
+  */
+  CreateDefaultPressureField();
+  CreateDefaultTemperatureField();
+  /*
   {
     std::ofstream f(ribi::foam::Filenames().GetThermophysicalProperties().c_str());
     ribi::foam::ThermophysicalPropertiesFile file;
@@ -317,45 +211,9 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
     f << file;
 
   }
+  */
 
-  {
-    ribi::foam::VelocityFieldFile file;
-    file.SetDimensions( {0,1,-1,0,0,0,0} );
-    file.SetInternalField("uniform (0 0 0)");
-    file.SetBoundaryField(
-      "inside\n"
-      "{\n"
-      "  type slip;\n"
-      "}\n"
-      "\n"
-      "top\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "bottom\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "front\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "back\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "left\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-      "right\n"
-      "{\n"
-      "  type zeroGradient;\n"
-      "}\n"
-    );
-    std::ofstream f(ribi::foam::Filenames().GetVelocityField().c_str());
-    f << file;
-  }
+  CreateDefaultVelocityField();
 
   std::clog << std::endl;
   std::cout << std::endl;
@@ -466,6 +324,176 @@ std::function<ribi::foam::PatchFieldType(const std::string&)>
     }
   ;
   return boundary_to_patch_field_type_function;
+}
+
+void ribi::TriangleMeshCreatorMainDialog::CreateDefaultControlDict() const noexcept
+{
+  std::ofstream f(ribi::foam::Filenames().GetControlDict().c_str());
+  ribi::foam::ControlDictFile file;
+  file.SetAdjustTimeStep(false);
+  file.SetApplication("sonicFoam");
+  file.SetDeltaT(1.0);
+  file.SetEndTime(10.0);
+  file.SetPurgeWrite(0);
+  file.SetRunTimeModifiable(true);
+  file.SetStartFrom("latestTime");
+  file.SetStartTime(0.0);
+  file.SetStopAt("endTime");
+  file.SetTimeFormat("general");
+  file.SetTimePrecision(6);
+  file.SetWriteCompression("uncompressed");
+  file.SetWriteControl("adjustableRunTime");
+  file.SetWriteFormat("ascii");
+  file.SetWriteInterval(1.0);
+  file.SetWritePrecision(6);
+  f << file;
+}
+
+void ribi::TriangleMeshCreatorMainDialog::CreateDefaultPressureField() const noexcept
+{
+  std::ofstream f(ribi::foam::Filenames().GetPressureField().c_str());
+  ribi::foam::PressureFile file;
+  std::vector<std::pair<std::string,foam::PatchFieldType>> v;
+  v.push_back(std::make_pair("top",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("bottom",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("front",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("back",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("left",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("right",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("defaultFaces",foam::PatchFieldType::zeroGradient));
+  /*
+  file.SetBoundaryField(
+    "  top\n"
+    "  {\n"
+    "    type zeroGradient;\n"
+    "  }\n"
+    "  bottom\n"
+    "  {\n"
+    "    type zeroGradient;\n"
+    "  }\n"
+    "  front\n"
+    "  {\n"
+    "    type zeroGradient;\n"
+    "  }\n"
+    "  back\n"
+    "  {\n"
+    "    type zeroGradient;\n"
+    "  }\n"
+    "  left\n"
+    "  {\n"
+    "    type zeroGradient;\n"
+    "  }\n"
+    "  right\n"
+    "  {\n"
+    "    type zeroGradient;\n"
+    "  }\n"
+    "  \n"
+    "  defaultFaces\n"
+    "  {\n"
+    "    type zeroGradient;\n"
+    "  }"
+  );
+  */
+  file.SetBoundaryField(v);
+  file.SetDimensions( {1,-1,-2,0,0,0,0} );
+  file.SetInternalField("uniform 1.7e5");
+  f << file;
+}
+
+void ribi::TriangleMeshCreatorMainDialog::CreateDefaultTemperatureField() const noexcept
+{
+  std::ofstream f(ribi::foam::Filenames().GetTemperatureField().c_str());
+  ribi::foam::TemperatureFile file;
+  std::vector<std::pair<std::string,foam::PatchFieldType>> v;
+  v.push_back(std::make_pair("top",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("bottom",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("front",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("back",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("left",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("right",foam::PatchFieldType::zeroGradient));
+  file.SetBoundaryField(v);
+  /*
+  file.SetBoundaryField(
+    "top\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "bottom\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "front\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "back\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "left\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "right\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+  );
+  */
+  file.SetDimensions( {0,0,0,1,0,0,0} );
+  file.SetInternalField("uniform 293");
+  f << file;
+}
+
+void ribi::TriangleMeshCreatorMainDialog::CreateDefaultVelocityField() const noexcept
+{
+  ribi::foam::VelocityFieldFile file;
+  file.SetDimensions( {0,1,-1,0,0,0,0} );
+  file.SetInternalField("uniform (0 0 0)");
+  std::vector<std::pair<std::string,foam::PatchFieldType>> v;
+  v.push_back(std::make_pair("inside",foam::PatchFieldType::slip));
+  v.push_back(std::make_pair("top",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("bottom",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("front",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("back",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("left",foam::PatchFieldType::zeroGradient));
+  v.push_back(std::make_pair("right",foam::PatchFieldType::zeroGradient));
+  file.SetBoundaryField(v);
+  /*
+  file.SetBoundaryField(
+    "inside\n"
+    "{\n"
+    "  type slip;\n"
+    "}\n"
+    "\n"
+    "top\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "bottom\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "front\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "back\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "left\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+    "right\n"
+    "{\n"
+    "  type zeroGradient;\n"
+    "}\n"
+  );
+  */
+  std::ofstream f(ribi::foam::Filenames().GetVelocityField().c_str());
+  f << file;
 }
 
 std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>

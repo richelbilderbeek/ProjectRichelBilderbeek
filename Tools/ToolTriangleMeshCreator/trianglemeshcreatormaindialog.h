@@ -55,6 +55,12 @@ struct TriangleMeshCreatorMainDialog
 
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateDefaultAssignBoundaryFunction() noexcept;
   static std::function<ribi::foam::PatchFieldType(const std::string&)> CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept;
+
+  void CreateDefaultControlDict() const noexcept;
+  void CreateDefaultPressureField() const noexcept;
+  void CreateDefaultTemperatureField() const noexcept;
+  void CreateDefaultVelocityField() const noexcept;
+
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateSculptFunctionNone() noexcept;
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateSculptFunctionRemoveRandom(const double p) noexcept;
 

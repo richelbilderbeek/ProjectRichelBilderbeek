@@ -18,6 +18,7 @@
 #include "fileio.h"
 
 #include "openfoamheader.h"
+#include "openfoampatchfieldtypes.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -71,7 +72,18 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const PressureFile& f) no
     << "" << '\n'
     << "boundaryField" << '\n'
     << "{" << '\n'
-    << f.m_boundary_field << '\n'
+  ;
+  //<< f.m_boundary_field << '\n'
+  for (const auto p: f.m_boundary_field)
+  {
+    os
+      << "  " << p.first << '\n'
+      << "  {\n"
+      << "    type " << PatchFieldTypes::ToStr(p.second) << ";\n"
+      << "  }\n"
+    ;
+  }
+  os
     << "}" << '\n'
   ;
   return os;

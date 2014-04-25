@@ -6,6 +6,7 @@
 #include <vector>
 #include "openfoamfwd.h"
 #include "openfoamheader.h"
+#include "openfoampatchfieldtype.h"
 
 namespace ribi {
 namespace foam {
@@ -21,13 +22,15 @@ struct TemperatureFile
   const Header& GetHeader() const noexcept { return m_header; }
         Header& GetHeader()       noexcept { return m_header; }
 
-  void SetBoundaryField(const std::string& boundary_field) noexcept { m_boundary_field = boundary_field; }
+  //void SetBoundaryField(const std::string& boundary_field) noexcept { m_boundary_field = boundary_field; }
+  void SetBoundaryField(const std::vector<std::pair<std::string,PatchFieldType>>& boundary_field) noexcept { m_boundary_field = boundary_field; }
   void SetDimensions(const std::array<int,7>& dimensions) noexcept { m_dimensions = dimensions; }
   void SetInternalField(const std::string& internal_field) noexcept { m_internal_field = internal_field; }
 
   private:
 
-  std::string m_boundary_field;
+  //std::string m_boundary_field;
+  std::vector<std::pair<std::string,PatchFieldType>> m_boundary_field;
   std::array<int,7> m_dimensions;
 
   ///The OpenFOAM header

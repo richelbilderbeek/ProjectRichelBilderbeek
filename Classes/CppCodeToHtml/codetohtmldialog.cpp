@@ -537,6 +537,17 @@ void ribi::c2h::Dialog::Test() noexcept
     const std::size_t q = GetProFilesInFolder("").size();
     assert(n == q);
   }
+  //Check that .PNG files are
+  {
+    const boost::shared_ptr<File> content { new File("tmp.png") };
+    const std::vector<std::string> w = content->GetHtml();
+    assert(w.size() == 8);
+    assert(w[0].substr(0,4) == "<h2>");
+    assert(w[1] == "<p>&nbsp;</p>");
+    assert(w[2].substr(0,11) == "<p><img src");
+    assert(w[3] == "<p>&nbsp;</p>");
+    assert(1==2);
+  }
   //DeduceFolderType
 
   //Check if Info is added
