@@ -98,6 +98,9 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
     case 'g':
     case 'h':
       return CreatePawn(color,square);
+    //Return a nullptr instead
+    //default:
+    //  assert("ribi::Chess::PieceFactory().CreateFromMove exception: unknown piece");
   }
   return piece;
 }
@@ -117,8 +120,12 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromPromo
     case 'N': return CreateKnight(Chess::Color::indeterminate,boost::shared_ptr<Square>());
     case 'Q': return CreateQueen(Chess::Color::indeterminate,boost::shared_ptr<Square>());
     case 'R': return CreateRook(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+    //allow nullptr
+    //default:
+    //  assert(!"ribi::Chess::PieceFactory().CreateFromPromotion: Cannot promote to a pawn, or invalid promotion");
+    //  throw std::logic_error("ribi::Chess::PieceFactory().CreateFromPromotion: Cannot promote to a pawn, or invalid promotion");
   }
-  assert(p);
+  assert( (p || !p) && "If a string is not a promotion, return a nullptr");
   return p;
 }
 

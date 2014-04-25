@@ -113,7 +113,7 @@ ribi::Chess::PieceBishop::PieceBishop(
   //assert(GetColor() != Color::indeterminate);
 }
 
-bool ribi::Chess::PieceBishop::CanDoMove(const boost::shared_ptr<const Chess::Move> move) const noexcept
+bool ribi::Chess::PieceBishop::CanDoMove(const Chess::Move * const move) const noexcept
 {
   if (!move->Piece() || !dynamic_cast<PieceBishop*>(move->Piece().get()))
   {
@@ -295,7 +295,7 @@ ribi::Chess::PieceKing::PieceKing(
 
 }
 
-bool ribi::Chess::PieceKing::CanDoMove(const boost::shared_ptr<const Chess::Move> move) const noexcept
+bool ribi::Chess::PieceKing::CanDoMove(const Chess::Move * const move) const noexcept
 {
   if (!move->Piece() || !dynamic_cast<PieceKing*>(move->Piece().get()))
   {
@@ -383,7 +383,7 @@ ribi::Chess::PieceKnight::PieceKnight(
 
 }
 
-bool ribi::Chess::PieceKnight::CanDoMove(const boost::shared_ptr<const Chess::Move> move) const noexcept
+bool ribi::Chess::PieceKnight::CanDoMove(const Chess::Move * const move) const noexcept
 {
   if (!move->Piece() || !dynamic_cast<PieceKnight*>(move->Piece().get()))
   {
@@ -471,7 +471,7 @@ ribi::Chess::PiecePawn::PiecePawn(
   //assert(GetColor() != Color::indeterminate);
 }
 
-bool ribi::Chess::PiecePawn::CanDoMove(const boost::shared_ptr<const Chess::Move> move) const noexcept
+bool ribi::Chess::PiecePawn::CanDoMove(const Chess::Move * const move) const noexcept
 {
   if (!move->Piece() || !dynamic_cast<PiecePawn*>(move->Piece().get()))
   {
@@ -639,7 +639,7 @@ ribi::Chess::PieceQueen::PieceQueen(
 
 }
 
-bool ribi::Chess::PieceQueen::CanDoMove(const boost::shared_ptr<const Chess::Move> move) const noexcept
+bool ribi::Chess::PieceQueen::CanDoMove(const Chess::Move * const move) const noexcept
 {
   if (!move->Piece() || !dynamic_cast<PieceQueen*>(move->Piece().get()))
   {
@@ -815,7 +815,7 @@ ribi::Chess::PieceRook::PieceRook(
 
 }
 
-bool ribi::Chess::PieceRook::CanDoMove(const boost::shared_ptr<const Chess::Move> move) const noexcept
+bool ribi::Chess::PieceRook::CanDoMove(const Chess::Move * const move) const noexcept
 {
   if (!move->Piece() || !dynamic_cast<PieceRook*>(move->Piece().get()))
   {

@@ -50,7 +50,7 @@ ribi::Chess::Move::Move(const std::string& s)
 
   if (m_is_en_passant && !m_is_capture) throw std::logic_error("Chess::ribi::Chess::Move::Move exception: every en passant capture is a capture");
 
-  if (boost::xpressive::regex_search(s,boost::xpressive::sregex::compile("e.p.")) && !m_is_en_passant)
+  if (boost::xpressive::regex_search(s,boost::xpressive::sregex::compile("(e\\.p\\.)")) && !m_is_en_passant)
   {
     const std::string error = "Chess::ribi::Chess::Move::Move exception: move is an invalid en passant move: " + s;
     throw std::logic_error(error.c_str());
@@ -63,7 +63,7 @@ ribi::Chess::Move::Move(const std::string& s)
       throw std::logic_error("Chess::ribi::Chess::Move::Move exception: m_piece cannot be initialized in a castling move");
     }
     if (m_score) throw std::logic_error("Chess::ribi::Chess::Move::Move exception: m_piece cannot be initialized in a score move");
-    const bool valid = m_piece->CanDoMove(MoveFactory::DeepCopy(*this));
+    const bool valid = m_piece->CanDoMove(this);
     if (!valid)
     {
       const std::string t = "Move " + s + " invalid for " + m_piece->GetName();
@@ -177,17 +177,60 @@ bool ribi::Chess::Move::ParseIsPromotion(const std::string& s)
   return boost::xpressive::regex_match(s,r);
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiece(const std::string& s)
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiece(const std::string& s)
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParsePiece exception: move must not be empty");
-  //BUG: ADDING THE COMMENTED OUT LINE, RESULTS IN A RECURSIVE FUNCTION CALL
-  //#define TODO_ISSUE_176
-  #ifdef TODO_ISSUE_176
-  const boost::shared_ptr<Chess::Piece> p = PieceFactory().CreateFromMove(Color::indeterminate,s);
+  const char namechar = s[0];
+  boost::shared_ptr<ribi::Chess::Square> square;
+  switch (namechar)
+  {
+    case 'B':
+    case 'K':
+    case 'N':
+    case 'Q':
+    case 'R':
+      assert(s.size() >= 3);
+      square = SquareFactory().Create(s.substr(1,2));
+      break;
+    case 'a':
+    case 'b':
+    case 'c':
+    case 'd':
+    case 'e':
+    case 'f':
+    case 'g':
+    case 'h':
+      assert(s.size() >= 2);
+      square = SquareFactory().Create(s.substr(0,2));
+      break;
+    default:
+      throw std::logic_error("ribi::Chess::Move::ParsePiece exception: piece type cannot be determined");
+  }
+
+  const Color color = Color::indeterminate;
+
+
+  boost::shared_ptr<Chess::Piece> p;
+  switch (namechar)
+  {
+    case 'B': p = PieceFactory().CreateBishop(color,square); break;
+    case 'K': p = PieceFactory().CreateKing(color,square); break;
+    case 'N': p = PieceFactory().CreateKnight(color,square); break;
+    case 'Q': p = PieceFactory().CreateQueen(color,square); break;
+    case 'R': p = PieceFactory().CreateRook(color,square); break;
+    case 'a':
+    case 'b':
+    case 'c':
+    case 'd':
+    case 'e':
+    case 'f':
+    case 'g':
+    case 'h':
+      p = PieceFactory().CreatePawn(color,square); break;
+    default:
+      throw std::logic_error("ribi::Chess::Move::ParsePiece exception: piece type cannot be determined");
+  }
   assert(p);
-  #else
-  const boost::shared_ptr<Chess::Piece> p;
-  #endif //~#ifdef TODO_ISSUE_176
   return p;
 }
 
@@ -195,7 +238,7 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiecePromotion(con
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParsePiece exception: move must not be empty");
   const boost::shared_ptr<Chess::Piece> p = PieceFactory().CreateFromPromotion(s);
-  assert(p);
+  assert((p || !p) && "Allow a nullptr if a string cannot be parsed to a promoted piece");
   return p;
 }
 

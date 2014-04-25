@@ -28,7 +28,10 @@ ribi::Chess::Square::Square(const std::string &s)
   Test();
   #endif
   if (s.empty()) throw std::logic_error("An empty string cannot be converted to a chess square");
-  if (s.size() != 2) throw std::logic_error("An string to be converted to a chess square must consist of exactly two characters");
+  if (s.size() != 2)
+  {
+    throw std::logic_error("A string to be converted to a chess square must consist of exactly two characters");
+  }
 }
 
 //ribi::Chess::Square::Square(const char * const s)
@@ -51,9 +54,9 @@ std::string ribi::Chess::Square::GetVersion()
 
 std::vector<std::string> ribi::Chess::Square::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version"
+  };
 }
 
 #ifndef NDEBUG

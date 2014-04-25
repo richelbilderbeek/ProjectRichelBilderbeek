@@ -26,7 +26,8 @@ struct Piece
   virtual ~Piece() noexcept {}
 
   ///Determines if this Piece can possibly do this move
-  virtual bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept = 0;
+  bool CanDoMove(const boost::shared_ptr<const Move>& move) const noexcept { return CanDoMove(move.get()); }
+  virtual bool CanDoMove(const Move * const move) const noexcept = 0;
 
   ///Perform a Move on a Piece
   void DoMove(const boost::shared_ptr<const Move> move);
@@ -96,7 +97,7 @@ struct Piece
 struct PieceBishop : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
+  bool CanDoMove(const Move* const move) const noexcept;
 
   std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
 
@@ -145,7 +146,7 @@ struct PieceKing : public Piece
 {
 
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
+  bool CanDoMove(const Move* const move) const noexcept;
 
   std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
   //void Move(const Square& to);
@@ -187,7 +188,7 @@ struct PieceKing : public Piece
 struct PieceKnight : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
+  bool CanDoMove(const Move* const move) const noexcept;
 
 
   ///Returns all Moves to be done by a Piece.
@@ -225,7 +226,7 @@ struct PieceKnight : public Piece
 struct PiecePawn : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
+  bool CanDoMove(const Move* const move) const noexcept;
 
   std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
   char GetNameChar() const noexcept { return '.'; }
@@ -260,7 +261,7 @@ struct PiecePawn : public Piece
 struct PieceQueen : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
+  bool CanDoMove(const Move* const move) const noexcept;
 
   std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
   char GetNameChar() const noexcept { return 'Q'; }
@@ -295,7 +296,7 @@ struct PieceQueen : public Piece
 struct PieceRook : public Piece
 {
   ///Determines if this Piece can possibly do this move
-  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
+  bool CanDoMove(const Move* const move) const noexcept;
 
   std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
 

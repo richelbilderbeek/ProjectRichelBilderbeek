@@ -72,7 +72,7 @@ struct Move
   static bool ParseIsPromotion(const std::string& s);
 
   ///Parse the Piece from a string
-  static const boost::shared_ptr<Chess::Piece> ParsePiece(const std::string& s);
+  static boost::shared_ptr<Chess::Piece> ParsePiece(const std::string& s);
 
   ///Parse the Piece the pawn is promoted to from a string
   static boost::shared_ptr<Chess::Piece> ParsePiecePromotion(const std::string& s);

@@ -69,3 +69,5 @@ int main()
   ribi::TestChessMenuDialog d;
 }
 
+
+
