@@ -211,17 +211,17 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
   }
 
   //Add paths if needed
-  std::set<std::string> filenames;
+  std::vector<std::string> filenames;
   assert(pro_file);
   assert(ribi::fileio::FileIo().IsRegularFile(pro_file->GetQtCreatorProFilename()));
-  filenames.insert(pro_file->GetQtCreatorProFilename());
+  filenames.push_back(pro_file->GetQtCreatorProFilename());
   for (const std::string filename: v)
   {
     if (!filename.empty() && (filename[0] == '/' || filename[0] == '.'))
     {
       //TRACE(filename);
       assert(ribi::fileio::FileIo().IsRegularFile(filename));
-      filenames.insert(filename);
+      filenames.push_back(filename);
     }
     else if (!filename.empty() && filename[0] != '/' && filename[0] != '.')
     {
@@ -233,11 +233,18 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
       const std::string t = s + "/" + filename;
       //TRACE(t);
       assert(ribi::fileio::FileIo().IsRegularFile(t));
-      filenames.insert(t);
+      filenames.push_back(t);
     }
   }
-  for (auto s: m_filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
-  return filenames;
+  for (const auto s: filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
+  for (std::string& s: filenames) { s = fileio::FileIo().SimplifyPath(s); }
+  for (const auto s: filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
+  std::sort(filenames.begin(),filenames.end());
+  filenames.erase( std::unique(filenames.begin(),filenames.end()), filenames.end() );
+
+  std::set<std::string> s;
+  std::copy(filenames.begin(),filenames.end(),std::inserter(s,s.begin()));
+  return s;
 }
 
 ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
@@ -272,7 +279,7 @@ std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProAndPriFilesInFol
 
 std::string ribi::QtCreatorProFileZipScript::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory() noexcept
@@ -281,6 +288,7 @@ std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory() no
     "2013-05-19: version 1.0: initial version",
     "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive",
     "2013-12-05: version 1.2: add support for .pri files"
+    "2014-04-25: version 1.3: fixed SimplifiedPath bug"
   };
 }
 

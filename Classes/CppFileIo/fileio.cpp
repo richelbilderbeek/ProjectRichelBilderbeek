@@ -1055,6 +1055,8 @@ void ribi::fileio::FileIo::Test() noexcept
     assert(SimplifyPath("Tools/..") == "");
     assert(SimplifyPath("Tools/../A") == "/A");
     assert(SimplifyPath("Tools/../A/B") == "/A/B");
+    assert(SimplifyPath("../../Tools/ToolCreateQtProjectZipFile/../../Libraries/Boost.pri")
+      == "../../Libraries/Boost.pri");
   }
   TRACE("Finished ribi::fileio::FileIo::Test successfully");
 }
