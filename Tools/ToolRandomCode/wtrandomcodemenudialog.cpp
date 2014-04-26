@@ -45,15 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-//---------------------------------------------------------------------------
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-//---------------------------------------------------------------------------
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 ribi::WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
 {
   CheckResources();
@@ -94,14 +85,7 @@ ribi::WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
     this->addWidget(contents);
   }
 }
-<<<<<<< HEAD
 
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 void ribi::WtRandomCodeMenuDialog::CheckResources()
 {
  //Create resources
@@ -123,14 +107,7 @@ void ribi::WtRandomCodeMenuDialog::CheckResources()
     assert(QFile::exists(filename.c_str()));
   }
 }
-<<<<<<< HEAD
 
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 ribi::WtAboutDialog * ribi::WtRandomCodeMenuDialog::CreateNewAboutDialog()
 {
   About a = RandomCodeMenuDialog().GetAbout();
@@ -139,28 +116,14 @@ ribi::WtAboutDialog * ribi::WtRandomCodeMenuDialog::CreateNewAboutDialog()
   assert(d);
   return d;
 }
-<<<<<<< HEAD
 
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 ribi::WtRandomCodeGenerateDialog * ribi::WtRandomCodeMenuDialog::CreateNewGenerateDialog() const
 {
   WtRandomCodeGenerateDialog * const d = new WtRandomCodeGenerateDialog;
   assert(d);
   return d;
 }
-<<<<<<< HEAD
 
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 Wt::WWidget * ribi::WtRandomCodeMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;

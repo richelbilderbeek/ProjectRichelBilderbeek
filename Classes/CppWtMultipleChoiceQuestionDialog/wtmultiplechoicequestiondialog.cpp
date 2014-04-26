@@ -104,15 +104,8 @@ void ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
 
 void ribi::WtMultipleChoiceQuestionDialog::Show()
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
   const auto question = m_dialog->GetMultipleChoiceQuestion();
-=======
   //const auto question = m_dialog->GetMultipleChoiceQuestion();
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-  //const auto question = m_dialog->GetMultipleChoiceQuestion();
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
   //m_dialog->SetQuestion(question);
 
   this->setContentAlignment(Wt::AlignCenter);

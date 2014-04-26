@@ -24,15 +24,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "drawcanvas.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-#include "rectangle.h"
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-#include "rectangle.h"
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "togglebutton.h"

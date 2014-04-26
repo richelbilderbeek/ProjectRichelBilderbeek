@@ -25,14 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include <boost/geometry/geometries/box.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include <boost/signals2.hpp>
 
 #include <Wt/WPaintDevice>

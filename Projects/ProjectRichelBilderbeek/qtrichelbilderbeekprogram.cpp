@@ -97,7 +97,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
 #include "qttesttextcanvasmenudialog.h"
-#include "qttesttrianglemeshmenudialog.h"
+//#include "qttrianglemeshcreatormenudialog.h"
 #include "qttesttogglebuttonmaindialog.h"
 #include "qttesttogglebuttonmenudialog.h"
 #include "qttesttwodigitnewickmenudialog.h"
@@ -306,7 +306,6 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testTextPositionWidget: break;
     case ProgramType::testTicTacToe: break;
     case ProgramType::testTimedServerPusher: break;
-    case ProgramType::testTriangleMesh: p = new QtTestTriangleMeshMenuDialog; break;
     case ProgramType::testToggleButton: p = new QtTestToggleButtonMenuDialog; break;
     case ProgramType::testTwoDigitNewick: p = new QtTestTwoDigitNewickMenuDialog; break;
     case ProgramType::thorVeen: break;
@@ -316,6 +315,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::ticTacToeLearner: break;
     case ProgramType::ticTacToeValuer: break;
     case ProgramType::timePoll: break;
+    case ProgramType::triangleMeshCreator: break; //p = new QtTriangleMeshCreatorMenuDialog; break;
     case ProgramType::tronCollection: new tron::QtTronMenuDialog; break;
     case ProgramType::tronCollectionVcl: break;
     case ProgramType::ubuntuOneWatcher: break;

@@ -22,14 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define WTSIMMYSTERYMACHINEMENUDIALOG_H
 
 #include <Wt/WContainerWidget>
-<<<<<<< HEAD
 
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 namespace ribi {
 
 struct WtSimMysteryMachineMenuDialog : public Wt::WContainerWidget
@@ -41,14 +34,6 @@ struct WtSimMysteryMachineMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewMainDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
-<<<<<<< HEAD
-
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 } //~namespace ribi
 

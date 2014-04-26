@@ -51,16 +51,7 @@ ribi::WtMysteryMachineWidget::WtMysteryMachineWidget(
   const int width, const int height)
   : m_signal_changed{},
     m_widget(new MysteryMachineWidget(
-<<<<<<< HEAD
-<<<<<<< HEAD
       Geometry().CreateRect(0,0,width-1,height-1)))
-=======
-      Rect(0,0,width-1,height-1)))
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-      Rect(0,0,width-1,height-1)))
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-
 {
   assert(m_widget);
 
@@ -88,18 +79,10 @@ void ribi::WtMysteryMachineWidget::DoRepaint()
 
 void ribi::WtMysteryMachineWidget::OnResize()
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
   ribi::WtMysteryMachineWidget::resize(
     Geometry().GetWidth(m_widget->GetGeometry()),
     Geometry().GetHeight(m_widget->GetGeometry())
   );
-=======
-  ribi::WtMysteryMachineWidget::resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-  ribi::WtMysteryMachineWidget::resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 }
 
 const std::string ribi::WtMysteryMachineWidget::GetVersion()

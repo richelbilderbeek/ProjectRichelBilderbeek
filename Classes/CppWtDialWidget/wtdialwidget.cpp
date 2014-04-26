@@ -19,14 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppWtDialWidget.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-#pragma GCC diagnostic push
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-#pragma GCC diagnostic push
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
@@ -131,15 +123,8 @@ void ribi::WtDialWidget::DrawDial(
     Geometry().GetTop(widget->GetGeometry()),
     Geometry().GetWidth(widget->GetGeometry()),
     Geometry().GetHeight(widget->GetGeometry()),
-<<<<<<< HEAD
-<<<<<<< HEAD
     widget->GetDial()
   );
-=======
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-    widget->GetDial());
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 }
 
 const std::string ribi::WtDialWidget::GetVersion()

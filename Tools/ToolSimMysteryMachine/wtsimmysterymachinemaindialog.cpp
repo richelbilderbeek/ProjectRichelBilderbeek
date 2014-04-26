@@ -52,28 +52,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtmysterymachinewidget.h"
 #pragma GCC diagnostic pop
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-//---------------------------------------------------------------------------
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-//---------------------------------------------------------------------------
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 ribi::WtSimMysteryMachineMainDialog::Ui::Ui()
  : m_machine(new WtMysteryMachineWidget(300,600))
 {
 
 }
-<<<<<<< HEAD
 
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 ribi::WtSimMysteryMachineMainDialog::WtSimMysteryMachineMainDialog()
   : ui{}
 {

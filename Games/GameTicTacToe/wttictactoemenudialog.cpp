@@ -40,15 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wttictactoewidget.h"
 #pragma GCC diagnostic pop
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ribi::tictactoe::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
-=======
-ribi::con3::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-ribi::con3::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -82,15 +74,7 @@ ribi::con3::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
   }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ribi::WtAboutDialog * ribi::tictactoe::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
-=======
-ribi::WtAboutDialog * ribi::con3::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-ribi::WtAboutDialog * ribi::con3::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 {
   About a = tictactoe::TicTacToeMenuDialog().GetAbout();
   a.AddLibrary("WtTicTacToeWidget version: " + WtTicTacToeWidget::GetVersion());

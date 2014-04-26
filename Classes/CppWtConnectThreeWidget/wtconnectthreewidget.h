@@ -34,13 +34,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <Wt/WPaintedWidget>
 #include <Wt/WPainter>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "connectthreefwd.h"
 #include "connectthreeplayer.h"
 #include "connectthreesquare.h"

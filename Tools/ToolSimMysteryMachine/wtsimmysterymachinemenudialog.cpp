@@ -20,14 +20,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -51,16 +43,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtsimmysterymachinemaindialog.h"
 #include "wtsimmysterymachinemenudialog.h"
 #include "wttogglebuttonwidget.h"
-<<<<<<< HEAD
 
 #include <QFile> //#include after Wt
-=======
-//---------------------------------------------------------------------------
-#include <QFile>
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #pragma GCC diagnostic pop
 
 ribi::WtSimMysteryMachineMenuDialog::WtSimMysteryMachineMenuDialog()
@@ -121,14 +105,6 @@ ribi::WtSimMysteryMachineMenuDialog::WtSimMysteryMachineMenuDialog()
     this->addWidget(contents);
   }
 }
-<<<<<<< HEAD
-
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewAboutDialog() const
 {
   About a = SimMysteryMachineMenuDialog().GetAbout();
@@ -141,28 +117,14 @@ Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-<<<<<<< HEAD
 
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewMainDialog() const
 {
   WtSimMysteryMachineMainDialog * const d = new WtSimMysteryMachineMainDialog;
   assert(d);
   return d;
 }
-<<<<<<< HEAD
 
-=======
-//---------------------------------------------------------------------------
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;

@@ -41,14 +41,6 @@ struct WtAboutDialog;
 
 namespace con3 {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
-
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 struct WtConnectThreeMenuDialog : public Wt::WContainerWidget
 {
   WtConnectThreeMenuDialog();
