@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dial.h"
 #include "dialwidget.h"
+#include "geometry.h"
 #include "led.h"
 #include "ledwidget.h"
 #include "togglebutton.h"
@@ -50,7 +51,15 @@ ribi::WtMysteryMachineWidget::WtMysteryMachineWidget(
   const int width, const int height)
   : m_signal_changed{},
     m_widget(new MysteryMachineWidget(
+<<<<<<< HEAD
+<<<<<<< HEAD
+      Geometry().CreateRect(0,0,width-1,height-1)))
+=======
       Rect(0,0,width-1,height-1)))
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+      Rect(0,0,width-1,height-1)))
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 {
   assert(m_widget);
@@ -69,7 +78,7 @@ ribi::WtMysteryMachineWidget::WtMysteryMachineWidget(
 
   this->clicked().connect(this,&ribi::WtMysteryMachineWidget::OnClicked);
 
-  this->m_widget->SetGeometry(Rect(0,0,width,height));
+  this->m_widget->SetGeometry(Geometry().CreateRect(0,0,width,height));
 }
 
 void ribi::WtMysteryMachineWidget::DoRepaint()
@@ -79,7 +88,18 @@ void ribi::WtMysteryMachineWidget::DoRepaint()
 
 void ribi::WtMysteryMachineWidget::OnResize()
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
+  ribi::WtMysteryMachineWidget::resize(
+    Geometry().GetWidth(m_widget->GetGeometry()),
+    Geometry().GetHeight(m_widget->GetGeometry())
+  );
+=======
   ribi::WtMysteryMachineWidget::resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+  ribi::WtMysteryMachineWidget::resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 }
 
 const std::string ribi::WtMysteryMachineWidget::GetVersion()
@@ -107,18 +127,18 @@ void ribi::WtMysteryMachineWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   painter.drawRect(0,0,width().toPixels(),height().toPixels());
-  WtDialWidget::DrawDial(painter,GetWidget()->GetMachine()->GetDialBack());
-  WtDialWidget::DrawDial(painter,GetWidget()->GetMachine()->GetDialFront());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedBack1());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedBack2());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedBack3());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedFront1());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedFront2());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedFront3());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedTopBack());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedTopFront());
-  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedTopMiddle());
-  WtToggleButtonWidget::DrawToggleButton(painter,GetWidget()->GetMachine()->GetToggleButton());
+  WtDialWidget::DrawDial(painter,GetWidget()->GetMachine()->GetDialBack().get());
+  WtDialWidget::DrawDial(painter,GetWidget()->GetMachine()->GetDialFront().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedBack1().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedBack2().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedBack3().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedFront1().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedFront2().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedFront3().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedTopBack().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedTopFront().get());
+  WtLedWidget::DrawLed(painter,GetWidget()->GetMachine()->GetLedTopMiddle().get());
+  WtToggleButtonWidget::DrawToggleButton(painter,GetWidget()->GetMachine()->GetToggleButton().get());
 }
 
 void ribi::WtMysteryMachineWidget::resize(const Wt::WLength& width, const Wt::WLength& height)

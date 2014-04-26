@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtConnectThreeWidget, Wt widget for ConnectThree display
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,19 +18,44 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtConnectThreeWidget.htm
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+<<<<<<< HEAD
+#include "wtconnectthreewidget.h"
+
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+<<<<<<< HEAD
+<<<<<<< HEAD
+#include <cassert>
+
+=======
 #include "wtconnectthreewidget.h"
 
 #include <cassert>
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+#include "wtconnectthreewidget.h"
+
+#include <cassert>
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 #include <Wt/WPaintDevice>
 #include <Wt/WPainter>
 #include <Wt/WTimer>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "connectthree.h"
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "connectthreewidget.h"
 #include "connectthreeresources.h"
 #include "connectthreemove.h"
@@ -151,7 +176,6 @@ void ribi::con3::WtConnectThreeWidget::OnClick(const Wt::WMouseEvent& e)
     this->update();
     m_signal_valid_move();
   }
-
 }
 
 void ribi::con3::WtConnectThreeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
@@ -201,6 +225,12 @@ void ribi::con3::WtConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is
   assert(m_widget);
   m_widget->SetIsPlayerHuman(is_player_human);
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 
 
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf

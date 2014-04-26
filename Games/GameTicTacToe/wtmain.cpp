@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,22 +18,33 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
 //---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
-//---------------------------------------------------------------------------
+
+#include "fileio.h"
 #include "wtautoconfig.h"
 #include "wttictactoemenudialog.h"
-//---------------------------------------------------------------------------
+
+#include <QFile>
+#pragma GCC diagnostic pop
+
 struct WtTicTacToeApplication : public Wt::WApplication
 {
   WtTicTacToeApplication(const Wt::WEnvironment& env)
     : Wt::WApplication(env)
   {
     this->setTitle("TicTacToe");
-    const std::string css_filename = "wt.css";
-    if (!boost::filesystem::exists(css_filename))
+    const std::string css_filename = "GameTicTacToe.css";
+    ribi::fileio::FileIo f;
+    if (!f.IsRegularFile(css_filename))
+    {
+      QFile g( (std::string(":/gametictactoe/files/") + css_filename).c_str() );
+      g.copy(css_filename.c_str() );
+      assert(f.IsRegularFile(css_filename));
+    }
+    if (!f.IsRegularFile(css_filename))
     {
       const std::string s
         = std::string("File '")
@@ -42,20 +53,20 @@ struct WtTicTacToeApplication : public Wt::WApplication
       throw std::runtime_error(s);
     }
     this->useStyleSheet(css_filename);
-    root()->addWidget(new WtTicTacToeMenuDialog);
+    root()->addWidget(new ribi::tictactoe::WtTicTacToeMenuDialog);
   }
 
 };
-//---------------------------------------------------------------------------
+
 Wt::WApplication * createApplication(
   const Wt::WEnvironment& env)
 {
   return new WtTicTacToeApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char* argv[])
 {
-  WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig a(argc,argv,createApplication);
   return a.Run();
 }
-//---------------------------------------------------------------------------
+

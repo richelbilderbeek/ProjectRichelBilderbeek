@@ -2,7 +2,15 @@
 
 #include "athleticlandcollisionbehaviour.h"
 #include "athleticlandplayer.h"
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
 #include "rectangle.h"
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+#include "rectangle.h"
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 #ifdef TODO_RICHEL
 void ribi::athl::LethalCollision::OnCollision(Player& p)

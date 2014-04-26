@@ -33,7 +33,15 @@ namespace ribi {
 
 struct WtAboutDialog;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+namespace tictactoe {
+=======
 namespace con3 {
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+namespace con3 {
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 struct WtTicTacToeMenuDialog : public Wt::WContainerWidget
 {
@@ -43,7 +51,15 @@ struct WtTicTacToeMenuDialog : public Wt::WContainerWidget
   WtAboutDialog * CreateNewAboutDialog() const;
 };
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+} //~namespace tictactoe
+=======
 } //~namespace con3
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+} //~namespace con3
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 } //~namespace ribi
 
 #endif // WTTICTACTOEMENUDIALOG_H

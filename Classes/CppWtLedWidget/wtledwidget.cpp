@@ -30,7 +30,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WBrush>
 
 #include "geometry.h"
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "rectangle.h"
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "led.h"
 #include "ledwidget.h"
 #include "wtledwidget.h"
@@ -183,13 +189,22 @@ void ribi::WtLedWidget::DrawLed(
 
 const std::string ribi::WtLedWidget::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> ribi::WtLedWidget::GetVersionHistory()
 {
   return {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "2011-01-06: version 1.0: initial version",
+    "2014-04-23: version 1.1: use of Boost.Geometry its rectangle",
+=======
     "2011-01-06: version 1.0: initial version"
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+    "2011-01-06: version 1.0: initial version"
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
   };
 }
 

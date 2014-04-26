@@ -16,7 +16,10 @@ FORMS += \
     ../../Games/GameTicTacToe/qttictactoewinnerdialog.ui \
     ../../Games/GameTicTacToe/qttictactoemenudialog.ui \
     ../../Games/GameTicTacToe/qttictactoegamedialog.ui
+<<<<<<< HEAD
+=======
 
 RESOURCES += \
     ../../Games/GameTicTacToe/GameTicTacToe.qrc
 
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf

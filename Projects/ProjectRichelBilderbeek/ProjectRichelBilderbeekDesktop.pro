@@ -230,9 +230,15 @@ include(../../Tools/ToolTestShinyButton/ToolTestShinyButtonDesktop.pri)
 include(../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegressionDesktop.pri)
 include(../../Tools/ToolTestTextCanvas/ToolTestTextCanvasDesktop.pri)
 include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonDesktop.pri)
+<<<<<<< HEAD
+include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
+include(../../Tools/ToolThresholdFilterer/ToolThresholdFiltererDesktop.pri)
+include(../../Tools/ToolTriangleMeshCreator/ToolTriangleMeshCreatorConsole.pri)
+=======
 include(../../Tools/ToolTestTriangleMesh/ToolTestTriangleMeshDesktop.pri)
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
 include(../../Tools/ToolThresholdFilterer/ToolThresholdFiltererDesktop.pri)
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Tools/ToolTriangle/ToolTriangleConsole.pri) #NOTE: Console application
 include(../../Tools/ToolValentineCardDecrypter/ToolValentineCardDecrypterDesktop.pri)
 include(../../Tools/ToolVigenereCipher/ToolVigenereCipherDesktop.pri)

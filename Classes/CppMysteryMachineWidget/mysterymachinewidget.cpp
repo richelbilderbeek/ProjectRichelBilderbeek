@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"
 #include "ledwidget.h"
 #include "mysterymachine.h"
-#include "rectangle.h"
+
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -91,6 +91,10 @@ std::string ribi::MysteryMachineWidget::GetVersion() noexcept
 }
 
 std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory() noexcept
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 {
   return {
     "2011-07-03: version 1.0: initial version",
@@ -162,6 +166,82 @@ void ribi::MysteryMachineWidget::PressKey(const MysteryMachineKey key) noexcept
 
 void ribi::MysteryMachineWidget::OnResize() noexcept
 {
+<<<<<<< HEAD
+=======
+{
+  return {
+    "2011-07-03: version 1.0: initial version",
+    "2011-08-20: Version 1.1: added operator<<",
+    "2014-02-28: Version 1.2: added ToTextCanvas and KeyPress",
+  };
+}
+
+void ribi::MysteryMachineWidget::PressKey(const MysteryMachineKey key) noexcept
+{
+  switch (key)
+  {
+    case MysteryMachineKey::back_clockwise:
+    {
+      const double f {
+        GetMachine()->GetDialBack()->GetDial()->GetPosition()
+        + (1.0 / 12.0)
+      };
+      GetMachine()->GetDialBack()->GetDial()->SetPosition(
+        f >= 1.0 ? f - 1.0 : f
+      );
+      m_signal_changed();
+    }
+    break;
+    case MysteryMachineKey::back_counter_clockwise:
+    {
+      const double f {
+        GetMachine()->GetDialBack()->GetDial()->GetPosition()
+        - (1.0 / 12.0)
+      };
+      GetMachine()->GetDialBack()->GetDial()->SetPosition(
+        f < 0.0 ? f + 1.0 : f
+      );
+      m_signal_changed();
+    }
+    break;
+    case MysteryMachineKey::front_clockwise:
+    {
+      const double f {
+        GetMachine()->GetDialFront()->GetDial()->GetPosition()
+        + (1.0 / 12.0)
+      };
+      GetMachine()->GetDialFront()->GetDial()->SetPosition(
+        f >= 1.0 ? f - 1.0 : f
+      );
+      m_signal_changed();
+    }
+    break;
+    case MysteryMachineKey::front_counter_clockwise:
+    {
+      const double f {
+        GetMachine()->GetDialFront()->GetDial()->GetPosition()
+        - (1.0 / 12.0)
+      };
+      GetMachine()->GetDialFront()->GetDial()->SetPosition(
+        f < 0.0 ? f + 1.0 : f
+      );
+      m_signal_changed();
+    }
+    break;
+    case MysteryMachineKey::toggle:
+    {
+      GetMachine()->GetToggleButton()->GetToggleButton()->Toggle();
+      m_signal_changed();
+    }
+    break;
+  }
+}
+
+void ribi::MysteryMachineWidget::OnResize() noexcept
+{
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
   const double w = boost::numeric_cast<double>(GetWidth());
   const double h = boost::numeric_cast<double>(GetHeight());
   const double s = std::min(w/4.0,h/8.0);

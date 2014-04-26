@@ -19,7 +19,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppWtDialWidget.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 #pragma GCC diagnostic push
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+#pragma GCC diagnostic push
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
@@ -124,24 +131,32 @@ void ribi::WtDialWidget::DrawDial(
     Geometry().GetTop(widget->GetGeometry()),
     Geometry().GetWidth(widget->GetGeometry()),
     Geometry().GetHeight(widget->GetGeometry()),
+<<<<<<< HEAD
+<<<<<<< HEAD
+    widget->GetDial()
+  );
+=======
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
     widget->GetDial());
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 }
 
 const std::string ribi::WtDialWidget::GetVersion()
 {
-  return "3.1";
+  return "3.2";
 }
 
 const std::vector<std::string> ribi::WtDialWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-04-10: version 1.0: initial version");
-  v.push_back("2011-04-11: version 1.1: fixed #include guard, fixed initial date, made default dial white");
-  v.push_back("2011-07-03: version 2.0: moved Dial its user interface logic to new class DialWidget");
-  v.push_back("2011-08-07: Version 3.0: conformized architure for MysteryMachine");
-  v.push_back("2011-08-31: Version 3.1: allow changing the dial its color");
-  return v;
+  return {
+    "2011-04-10: version 1.0: initial version",
+    "2011-04-11: version 1.1: fixed #include guard, fixed initial date, made default dial white",
+    "2011-07-03: version 2.0: moved Dial its user interface logic to new class DialWidget",
+    "2011-08-07: Version 3.0: conformized architure for MysteryMachine",
+    "2011-08-31: Version 3.1: allow changing the dial its color",
+    "2014-04-23: Version 3.2: use of Boost.Geometry its rectangle class"
+  };
 }
 
 void ribi::WtDialWidget::OnClicked(const Wt::WMouseEvent& e)

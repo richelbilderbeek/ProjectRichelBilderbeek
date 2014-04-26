@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RubiksClock. Rubik's Clock game.
-Copyright (C) 2007-2011  Richel Bilderbeek
+Copyright (C) 2007-2014  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +27,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 #include <QFile>
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+#include <QFile>
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
@@ -46,6 +53,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "wtrubiksclockmaindialog.h"
 #include "wtrubiksclockwidget.h"
 #include "wttogglebuttonwidget.h"
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+#include <QFile> //#include after Wt
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #pragma GCC diagnostic pop
 
 ribi::ruco::WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()

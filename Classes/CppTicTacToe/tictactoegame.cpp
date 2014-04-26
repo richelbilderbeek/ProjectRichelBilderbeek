@@ -256,7 +256,14 @@ void ribi::tictactoe::Game::Test() noexcept
           TRACE(WinnerToName(g.GetWinner()));
         }
       }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
       assert(1==2);
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+      assert(1==2);
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
     }
   }
   TRACE("Finished ribi::tictactoe::Board::Test successfully");
