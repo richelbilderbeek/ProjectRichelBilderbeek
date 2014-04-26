@@ -1,8 +1,5 @@
 include(../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachine.qrc
-
 FORMS += \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinerealmachinedialog.ui \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinemenudialog.ui \

@@ -91,10 +91,6 @@ std::string ribi::MysteryMachineWidget::GetVersion() noexcept
 }
 
 std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory() noexcept
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 {
   return {
     "2011-07-03: version 1.0: initial version",
@@ -164,18 +160,7 @@ void ribi::MysteryMachineWidget::PressKey(const MysteryMachineKey key) noexcept
   }
 }
 
-void ribi::MysteryMachineWidget::OnResize() noexcept
-{
-<<<<<<< HEAD
-=======
-{
-  return {
-    "2011-07-03: version 1.0: initial version",
-    "2011-08-20: Version 1.1: added operator<<",
-    "2014-02-28: Version 1.2: added ToTextCanvas and KeyPress",
-  };
-}
-
+/*
 void ribi::MysteryMachineWidget::PressKey(const MysteryMachineKey key) noexcept
 {
   switch (key)
@@ -236,12 +221,10 @@ void ribi::MysteryMachineWidget::PressKey(const MysteryMachineKey key) noexcept
     break;
   }
 }
+*/
 
 void ribi::MysteryMachineWidget::OnResize() noexcept
 {
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
   const double w = boost::numeric_cast<double>(GetWidth());
   const double h = boost::numeric_cast<double>(GetHeight());
   const double s = std::min(w/4.0,h/8.0);

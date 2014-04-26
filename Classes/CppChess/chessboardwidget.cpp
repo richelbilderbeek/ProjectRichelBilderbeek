@@ -21,13 +21,6 @@
 #include "chessmovefactory.h"
 #include "chesswidget.h"
 #include "geometry.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-#include "rectangle.h"
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "trace.h"
 #pragma GCC diagnostic pop
 

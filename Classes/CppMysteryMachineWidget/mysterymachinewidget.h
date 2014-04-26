@@ -35,14 +35,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/tuple/tuple.hpp>
 
 #include "widget.h"
-<<<<<<< HEAD
-
-=======
-#include "rectangle.h"
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "mysterymachinekey.h"
 #pragma GCC diagnostic pop
 
@@ -62,10 +54,6 @@ struct MysteryMachineWidget : public Widget
 
   ///Respond to the user clicking on the MysteryMachineWidget
   void Click(const int x, const int y) noexcept;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
   const boost::shared_ptr<const MysteryMachine> GetMachine() const noexcept { return m_machine; }
   const boost::shared_ptr<      MysteryMachine> GetMachine()       noexcept { return m_machine; }
@@ -77,22 +65,6 @@ struct MysteryMachineWidget : public Widget
 
   boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
-<<<<<<< HEAD
-=======
-
-  const boost::shared_ptr<const MysteryMachine> GetMachine() const noexcept { return m_machine; }
-  const boost::shared_ptr<      MysteryMachine> GetMachine()       noexcept { return m_machine; }
-
-  static std::string GetVersion() noexcept;
-  static std::vector<std::string> GetVersionHistory() noexcept;
-
-  void PressKey(const MysteryMachineKey key) noexcept;
-
-  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
-
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
   boost::signals2::signal<void()> m_signal_changed;
 
   private:
@@ -110,25 +82,11 @@ struct MysteryMachineWidget : public Widget
 
   ///Respond to a change in geometry
   void OnResize() noexcept;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
-=======
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
-
-<<<<<<< HEAD
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
   friend std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget) noexcept;
 };
 

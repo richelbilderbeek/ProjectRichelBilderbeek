@@ -5,7 +5,10 @@ include(../../Libraries/Fparser.pri)
 include(../../Libraries/Qwt.pri)
 include(../../Libraries/Wt.pri)
 
-include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralWeb.pri)
+
+
 include(../../Classes/CppApproximator/CppApproximator.pri)
 include(../../Classes/CppBinaryNewickVector/CppBinaryNewickVector.pri)
 include(../../Classes/CppCaesarCipher/CppCaesarCipher.pri)
@@ -14,10 +17,7 @@ include(../../Classes/CppChess/CppChess.pri)
 include(../../Classes/CppChessResources/CppChessResources.pri)
 include(../../Classes/CppCodeBreaker/CppCodeBreaker.pri)
 include(../../Classes/CppCodeToHtml/CppCodeToHtml.pri)
-<<<<<<< HEAD
 include(../../Classes/CppConceptMap/CppConceptMap.pri)
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Classes/CppConnectThree/CppConnectThree.pri)
 include(../../Classes/CppConnectThreeWidget/CppConnectThreeWidget.pri)
 include(../../Classes/CppCoordinat/CppCoordinat.pri)
@@ -29,12 +29,10 @@ include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
 include(../../Classes/CppEncranger/CppEncranger.pri)
 include(../../Classes/CppExercise/CppExercise.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppGaborFilter/CppGaborFilter.pri)
 include(../../Classes/CppGaborFilterWidget/CppGaborFilterWidget.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
 include(../../Classes/CppHtmlPage/CppHtmlPage.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 include(../../Classes/CppIpAddress/CppIpAddress.pri)
@@ -45,7 +43,6 @@ include(../../Classes/CppLedWidget/CppLedWidget.pri)
 include(../../Classes/CppLoopReader/CppLoopReader.pri)
 include(../../Classes/CppManyDigitNewick/CppManyDigitNewick.pri)
 include(../../Classes/CppMatrix/CppMatrix.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppMultiApproximator/CppMultiApproximator.pri)
 include(../../Classes/CppMultipleChoiceQuestion/CppMultipleChoiceQuestion.pri)
 include(../../Classes/CppMultipleChoiceQuestionDialog/CppMultipleChoiceQuestionDialog.pri)
@@ -61,27 +58,15 @@ include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppPolarCoordinat/CppPolarCoordinat.pri)
 include(../../Classes/CppPylos/CppPylos.pri)
 include(../../Classes/CppQrcFile/CppQrcFile.pri)
-<<<<<<< HEAD
 include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
 include(../../Classes/CppQtModel/CppQtModel.pri)
 include(../../Classes/CppQtRichelBilderbeekGalleryDialog/CppQtRichelBilderbeekGalleryDialog.pri)
-=======
-include(../../Classes/CppStateObserver/CppStateObserver.pri)
-include(../../Classes/CppTwoDigitNewick/CppTwoDigitNewick.pri)
-include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
-include(../../Classes/CppQtModel/CppQtModel.pri)
-#include(../../Classes/CppQtRichelBilderbeekGalleryDialog/CppQtRichelBilderbeekGalleryDialog.pri)
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Classes/CppQuestion/CppQuestion.pri)
 include(../../Classes/CppQuestionDialog/CppQuestionDialog.pri)
 include(../../Classes/CppRainbow/CppRainbow.pri)
 include(../../Classes/CppRandomCode/CppRandomCode.pri)
 include(../../Classes/CppRectangle/CppRectangle.pri)
-<<<<<<< HEAD
-include(../../Classes/CppReversi/CppReversie.pri)
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppReversi/CppReversi.pri)
 include(../../Classes/CppRubiksClock/CppRubiksClock.pri)
 include(../../Classes/CppRubiksClockWidget/CppRubiksClockWidget.pri)
 include(../../Classes/CppShape/CppShape.pri)
@@ -90,34 +75,22 @@ include(../../Classes/CppShinyButton/CppShinyButton.pri)
 include(../../Classes/CppShinyButtonWidget/CppShinyButtonWidget.pri)
 include(../../Classes/CppSimpleLinearRegression/CppSimpleLinearRegression.pri)
 include(../../Classes/CppSortedBinaryNewickVector/CppSortedBinaryNewickVector.pri)
-<<<<<<< HEAD
 include(../../Classes/CppStateObserver/CppStateObserver.pri)
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Classes/CppStopwatch/CppStopwatch.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 include(../../Classes/CppTicTacToe/CppTicTacToe.pri)
 include(../../Classes/CppToggleButton/CppToggleButton.pri)
 include(../../Classes/CppToggleButtonWidget/CppToggleButtonWidget.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppTribool/CppTribool.pri)
-<<<<<<< HEAD
 include(../../Classes/CppTwoDigitNewick/CppTwoDigitNewick.pri)
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Classes/CppVigenereCipher/CppVigenereCipher.pri)
 include(../../Classes/CppWidget/CppWidget.pri)
-include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
-include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
 include(../../Classes/CppWtConnectThreeWidget/CppWtConnectThreeWidget.pri)
 include(../../Classes/CppWtDialWidget/CppWtDialWidget.pri)
 include(../../Classes/CppWtExercise/CppWtExercise.pri)
 include(../../Classes/CppWtLedWidget/CppWtLedWidget.pri)
 include(../../Classes/CppWtMultipleChoiceQuestionDialog/CppWtMultipleChoiceQuestionDialog.pri)
-<<<<<<< HEAD
 include(../../Classes/CppWtMysteryMachineWidget/CppWtMysteryMachineWidget.pri)
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Classes/CppWtOpenQuestionDialog/CppWtOpenQuestionDialog.pri)
 include(../../Classes/CppWtQuestionDialog/CppWtQuestionDialog.pri)
 include(../../Classes/CppWtRubiksClockWidget/CppWtRubiksClockWidget.pri)
@@ -132,7 +105,6 @@ include(../../Games/GameBoenken/GameBoenkenWebsite.pri)
 include(../../Games/GameConnectThree/GameConnectThreeWebsite.pri)
 include(../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfestWebsite.pri)
 include(../../Games/GameK3OpEenRij/GameK3OpEenRijWebsite.pri)
-<<<<<<< HEAD
 include(../../Games/GameKnokfighter/GameKnokfighterConsole.pri)
 include(../../Games/GameMaziak/GameMaziakWebsite.pri)
 include(../../Games/GameMetZnDrieen/GameMetZnDrieenConsole.pri)
@@ -150,45 +122,25 @@ include(../../Tools/ToolAsciiArter/ToolAsciiArterWebsite.pri)
 include(../../Tools/ToolCaesarCipher/ToolCaesarCipherWebsite.pri)
 include(../../Tools/ToolCodeBreaker/ToolCodeBreakerWebsite.pri)
 include(../../Tools/ToolCodeToHtml/ToolCodeToHtmlWebsite.pri)
-=======
-include(../../Games/GameMaziak/GameMaziakWebsite.pri)
-include(../../Games/GamePylos/GamePylosWebsite.pri)
-include(../../Games/GameRubiksClock/GameRubiksClockWebsite.pri)
-include(../../Games/GameTicTacToe/GameTicTacToeWebsite.pri)
-include(../../Projects/RichelbilderbeekNl/RichelbilderbeekNlDesktop.pri)
-include(../../Tools/ToolAsciiArter/ToolAsciiArterWebsite.pri)
-include(../../Tools/ToolCaesarCipher/ToolCaesarCipherWebsite.pri)
-include(../../Tools/ToolCodeToHtml/ToolCodeToHtmlWebsite.pri)
-include(../../Tools/ToolCodeBreaker/ToolCodeBreakerWebsite.pri)
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Tools/ToolCreateGlossary/ToolCreateGlossaryWebsite.pri)
 include(../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileWebsite.pri)
 include(../../Tools/ToolDotMatrix/ToolDotMatrixWebsite.pri)
 include(../../Tools/ToolEncranger/ToolEncrangerWebsite.pri)
-<<<<<<< HEAD
 include(../../Tools/ToolFilterOperationer/ToolFilterOperationerConsole.pri)
 include(../../Tools/ToolFunctionPlotter/ToolFunctionPlotterConsole.pri)
 include(../../Tools/ToolGaborFilter/ToolGaborFilterWebsite.pri)
 include(../../Tools/ToolHistogramEqualizationer/ToolHistogramEqualizationerConsole.pri)
 include(../../Tools/ToolHometrainer/ToolHometrainerWebsite.pri)
 include(../../Tools/ToolImageRotater/ToolImageRotaterConsole.pri)
-=======
-include(../../Tools/ToolGaborFilter/ToolGaborFilterWebsite.pri)
-include(../../Tools/ToolHometrainer/ToolHometrainerWebsite.pri)
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Tools/ToolKalmanFilterer/ToolKalmanFiltererWebsite.pri)
 include(../../Tools/ToolMazeCreator/ToolMazeCreatorWebsite.pri)
 include(../../Tools/ToolMusicTheory/ToolMusicTheoryWebsite.pri)
 include(../../Tools/ToolPerfectElasticCollision/ToolPerfectElasticCollisionWebsite.pri)
 include(../../Tools/ToolPicToCode/ToolPicToCodeWebsite.pri)
-<<<<<<< HEAD
 include(../../Tools/ToolPixelator/ToolPixelatorConsole.pri)
 include(../../Tools/ToolPreDickAdvocaTor/ToolPreDickAdvocaTorConsole.pri)
 include(../../Tools/ToolQmakeWatcher/ToolQmakeWatcherWebsite.pri)
 include(../../Tools/ToolQuadraticSolver/ToolQuadraticSolverConsole.pri)
-=======
-include(../../Tools/ToolQmakeWatcher/ToolQmakeWatcherWebsite.pri)
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 include(../../Tools/ToolRandomCode/ToolRandomCodeWebsite.pri)
 include(../../Tools/ToolRegexTester/ToolRegexTesterWebsite.pri)
 include(../../Tools/ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryWebsite.pri)
@@ -214,9 +166,5 @@ include(../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegressio
 include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonWebsite.pri)
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickWebsite.pri)
 include(../../Tools/ToolVigenereCipher/ToolVigenereCipherWebsite.pri)
-<<<<<<< HEAD
-=======
-include(../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekWebsite.pri)
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 SOURCES += wtmain.cpp
