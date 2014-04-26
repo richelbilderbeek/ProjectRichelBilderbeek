@@ -189,16 +189,29 @@ std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& 
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
     [](const std::string& file)
     {
-      const std::string ext = ribi::fileio::FileIo().GetExtension(file);
+      if (file.size() >= 3)
+      {
+        if (file.substr(0,3) == "ui_") return false;
+      }
+      if (file.size() >= 4)
+      {
+        if (file.substr(0,4) == "qrc_") return false;
+        if (file.substr(0,4) == "moc_") return false;
+      }
+      if (file.size() >= 18)
+      {
+        if (file.substr(file.size() - 18, 18) ==  "_plugin_import.cpp") return false;
+      }
+      const std::string ext = ribi::fileio::FileIo().GetExtensionNoDot(file);
       return
-           ext == ".c"
-        || ext == ".cpp"
-        || ext == ".h"
-        || ext == ".hpp"
-        || ext == ".pri"
-        || ext == ".pro"
-        || ext == ".py"
-        || ext == ".sh";
+           ext == "c"
+        || ext == "cpp"
+        || ext == "h"
+        || ext == "hpp"
+        || ext == "pri"
+        || ext == "pro"
+        || ext == "py"
+        || ext == "sh";
     }
   );
   return v;

@@ -16263,7 +16263,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p>",
         "  <a href=\"ToolTriangleMeshCreator.htm\">TriangleMeshCreator</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to create a <a href=\"Cpp3D.htm\"> mesh using Triangle.",
+        "  to create a <a href=\"Cpp3D.htm\">3D</a> mesh using Triangle.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",

@@ -1012,12 +1012,12 @@
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::foam::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> BoundaryFileItem&amp; item) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item.GetName() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;{" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;type " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item.GetType() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;nFaces " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item.GetNfaces() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;startFace " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item.GetStartFace() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;}" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item.GetName() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;{" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item.GetType() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nFaces " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item.GetNfaces() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startFace " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item.GetStartFace() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;}" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
@@ -1313,8 +1313,8 @@
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> AssignOwnedFaces(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; owned_faces);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Cell&gt; GetNeighbour() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; &gt;&nbsp;&nbsp;GetOwnedFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face&gt; &gt;&amp; GetOwnedFaces()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_owned_faces; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&nbsp;&nbsp;GetOwnedFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; GetOwnedFaces()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_owned_faces; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> HasFace(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; face) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> OwnsFace(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; face) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -1331,6 +1331,11 @@
 };<br/>
 <br/>
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Cell&amp; cell) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Cell&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell&gt;&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Cell&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Cell&gt;&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell&gt;&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Cell&gt;&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 <br/>
 } <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -2174,6 +2179,11 @@
 <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::<a href="CppPointer.htm">point</a>&lt;<b><a href="CppDouble.htm">double</a></b>,3,<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::cs::cartesian&gt; CalcCenter(<b><a href="CppConst.htm">const</a></b> Face&amp; face) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Face&amp; face) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face&gt;&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt;&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face&gt;&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt;&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -3626,7 +3636,6 @@
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::Files::CheckMe() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_faces);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppPointer.htm">point</a>s);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceIndex n_faces { FaceIndex(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;m_faces-&gt;GetItems().size())) };<br/>
@@ -5731,7 +5740,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; owner { face-&gt;GetOwner() };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(owner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (!owner) <b><a href="CppContinue.htm">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.find(owner) <a href="CppOperatorEqual.htm">==</a> m.end()) { m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(owner, <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>() ) ); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.find(owner) <a href="CppOperatorEqual.htm">==</a> m.end())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(owner, <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>() ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.find(owner) <a href="CppOperatorNotEqual.htm">!=</a> m.end());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*m.find(owner)).second.push_back(face);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -9110,6 +9122,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfwd.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoampatchfieldtype.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> foam {<br/>
@@ -9126,12 +9139,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Header&amp; GetHeader()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_header; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetBoundaryField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; boundary_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_boundary_field <a href="CppOperatorAssign.htm">=</a> boundary_field; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot use <b><a href="CppThis.htm">this</a></b> variant, as the boundary has very variable form<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetBoundaryField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdString.htm">std::string</a>,PatchFieldType<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; boundary_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_boundary_field <a href="CppOperatorAssign.htm">=</a> boundary_field; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetDimensions(<b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,7&gt;&amp; dimensions) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_dimensions <a href="CppOperatorAssign.htm">=</a> dimensions; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetInternalField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; internal_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_internal_field <a href="CppOperatorAssign.htm">=</a> internal_field; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_boundary_field;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot use <b><a href="CppThis.htm">this</a></b> variant, as the boundary has very variable form<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdString.htm">std::string</a>,PatchFieldType<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_boundary_field;<br/>
 &nbsp;&nbsp;<a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,7&gt; m_dimensions;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The OpenFOAM header<br/>
@@ -9182,6 +9200,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9235,7 +9254,20 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "boundaryField" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "{" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: f.m_boundary_field)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;type " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> PatchFieldTypes::ToStr(p.second) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "}" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
@@ -9385,6 +9417,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfwd.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoampatchfieldtype.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> foam {<br/>
@@ -9401,12 +9434,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Header&amp; GetHeader()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_header; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetBoundaryField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; boundary_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_boundary_field <a href="CppOperatorAssign.htm">=</a> boundary_field; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot use <b><a href="CppThis.htm">this</a></b> variant, as the boundary has very variable form<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetBoundaryField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdString.htm">std::string</a>,PatchFieldType<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; boundary_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_boundary_field <a href="CppOperatorAssign.htm">=</a> boundary_field; }<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetDimensions(<b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,7&gt;&amp; dimensions) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_dimensions <a href="CppOperatorAssign.htm">=</a> dimensions; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetInternalField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; internal_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_internal_field <a href="CppOperatorAssign.htm">=</a> internal_field; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_boundary_field;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot use <b><a href="CppThis.htm">this</a></b> variant, as the boundary has very variable form<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdString.htm">std::string</a>,PatchFieldType<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_boundary_field;<br/>
 &nbsp;&nbsp;<a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,7&gt; m_dimensions;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The OpenFOAM header<br/>
@@ -9457,6 +9495,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9510,7 +9549,20 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "boundaryField" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "{" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: f.m_boundary_field)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;type " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> PatchFieldTypes::ToStr(p.second) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "}" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
@@ -9796,6 +9848,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfwd.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoampatchfieldtype.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> foam {<br/>
@@ -9811,12 +9864,18 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Header&amp; GetHeader() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_header; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetBoundaryField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; boundary_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_boundary_field <a href="CppOperatorAssign.htm">=</a> boundary_field; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot use <b><a href="CppThis.htm">this</a></b> variant, as the boundary has very variable form<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetBoundaryField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdString.htm">std::string</a>,PatchFieldType<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; boundary_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_boundary_field <a href="CppOperatorAssign.htm">=</a> boundary_field; }<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetDimensions(<b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,7&gt;&amp; dimensions) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_dimensions <a href="CppOperatorAssign.htm">=</a> dimensions; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetInternalField(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; internal_field) <b><a href="CppNoexcept.htm">noexcept</a></b> { m_internal_field <a href="CppOperatorAssign.htm">=</a> internal_field; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_boundary_field;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot use <b><a href="CppThis.htm">this</a></b> variant, as the boundary has very variable form<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdString.htm">std::string</a>,PatchFieldType<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_boundary_field;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,7&gt; m_dimensions;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The OpenFOAM header<br/>
@@ -9868,6 +9927,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9922,7 +9982,20 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "boundaryField\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "{\n" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp;f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: f.m_boundary_field)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;&nbsp;&nbsp;type " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> PatchFieldTypes::ToStr(p.second) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "}\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 &nbsp;&nbsp;;<br/>

@@ -288,9 +288,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::Plane::Plane(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p1, <a href="CppComment.htm">//</a><a href="CppOperatorAssign.htm">=</a> Coordinat3D(0.0,0.0,0.0),<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p2, <a href="CppComment.htm">//</a><a href="CppOperatorAssign.htm">=</a> Coordinat3D(0.0,1.0,0.0),<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p3&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorAssign.htm">=</a> Coordinat3D(1.0,0.0,0.0)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D&amp; p3<br/>
 ) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 : m_plane_x(CreatePlaneX(p1,p2,p3)),<br/>
 &nbsp;&nbsp;m_plane_y(CreatePlaneY(p1,p2,p3)),<br/>
@@ -299,6 +299,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Geometry().IsEqual(m_<a href="CppPointer.htm">point</a>s[0],p1));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Geometry().IsEqual(m_<a href="CppPointer.htm">point</a>s[1],p2));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Geometry().IsEqual(m_<a href="CppPointer.htm">point</a>s[2],p3));<br/>
@@ -527,7 +528,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::Plane::Test");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose { <b><a href="CppTrue.htm">true</a></b> };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose { <b><a href="CppFalse.htm">false</a></b> };<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::<a href="CppPointer.htm">point</a>&lt;<b><a href="CppDouble.htm">double</a></b>,3,<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::cs::cartesian&gt; <a href="CppPoint.htm">Point</a>3D;<br/>
 &nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::get;<br/>
 <br/>
@@ -2126,6 +2127,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::<a href="CppPointer.htm">point</a>&lt;<b><a href="CppDouble.htm">double</a></b>,3,<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::cs::cartesian&gt;&amp; p3<br/>
 ) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v(Geometry().CalcPlane(p1,p2,p3));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorEqual.htm">==</a> 4);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>

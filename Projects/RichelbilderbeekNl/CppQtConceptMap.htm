@@ -8190,7 +8190,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanDoCommand(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Command&gt; command) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanUndo() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoCommand(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Command&gt; command) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Undo() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a> intercepts all user interactions and <a href="CppConvert.htm">converts</a> these<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/to commands <b><a href="CppFor.htm">for</a></b> <a href="CppWidget.htm">Widget</a><br/>
@@ -8371,19 +8373,27 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> command-&gt;CanDoCommand(m_<a href="CppWidget.htm">widget</a>.get());<br/>
 }<br/>
 <br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::CanUndo() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>-&gt;CanUndo();<br/>
+}<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::DoCommand(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Command&gt; command) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanDoCommand(command));<br/>
-&nbsp;&nbsp;command-&gt;DoCommand(m_<a href="CppWidget.htm">widget</a>.get());<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;DoCommand(command);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_<a href="CppWidget.htm">widget</a>-&gt;<a href="CppAdd.htm">Add</a>AndDoCommand(command);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>command-&gt;DoCommand(m_<a href="CppWidget.htm">widget</a>.get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanUndo());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Z <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> e-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ControlModifier)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>("UNDO");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.htm">widget</a>-&gt;Undo();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_<a href="CppWidget.htm">widget</a>-&gt;CanUndo()) { m_<a href="CppWidget.htm">widget</a>-&gt;Undo(); }<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
@@ -8611,13 +8621,18 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnSetFocusNodes(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; nodes) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> node: nodes) { OnSetFocusNode(node); }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> node: nodes)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;OnSetFocusNode(node);<br/>
+&nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnSetFocusNode(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtconceptmap);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node.get()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b>(m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node))<br/>
 &nbsp;&nbsp;{<br/>
@@ -8655,7 +8670,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::Test()");<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>Node: Test creation of node from empty concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>Node: Test creation of node from empty concept map, undo via <a href="CppWidget.htm">widget</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; m { ConceptMapFactory::Create() };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m);<br/>
@@ -8666,18 +8681,52 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>&gt; w(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>(c)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!w-&gt;CanUndo());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CommandCreateNewNode&gt; cmd(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CommandCreateNewNode<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m-&gt;GetNodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Tthe concept map must be empty");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m-&gt;GetNodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The concept map must be empty");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The <a href="CppQt.htm">Qt</a>ConceptMap must be empty");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w-&gt;CanDoCommand(cmd));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w-&gt;DoCommand(cmd);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m-&gt;GetNodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "After creation a <b><a href="CppNew.htm">new</a></b> node, the previously empty concept map must have a node");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!c-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "After creation a <b><a href="CppNew.htm">new</a></b> node, the previously empty <a href="CppQt.htm">Qt</a>ConceptMap must have a node");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;cmd-&gt;Undo();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w-&gt;CanUndo());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;Undo(); <a href="CppComment.htm">//</a>Route #1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>cmd-&gt;Undo(); <a href="CppComment.htm">//</a>Route #2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m-&gt;GetNodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "After undoing the creation of a <b><a href="CppNew.htm">new</a></b> node, the concept map must be empty again");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "After undoing the creation of a <b><a href="CppNew.htm">new</a></b> node, the <a href="CppQt.htm">Qt</a>ConceptMap must be empty again");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!w-&gt;CanUndo());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>Node: Test creation of node from empty concept map, undo via command<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; m { ConceptMapFactory::Create() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m-&gt;GetNodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An empty concept map must not have nodes");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; c(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditConceptMap(m,<a href="CppQt.htm">Qt</a>EditConceptMap::Mode::simple));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An empty <a href="CppQt.htm">Qt</a>ConceptMap must not have nodes");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>&gt; w(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>(c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!w-&gt;CanUndo());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CommandCreateNewNode&gt; cmd(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CommandCreateNewNode<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m-&gt;GetNodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The concept map must be empty");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The <a href="CppQt.htm">Qt</a>ConceptMap must be empty");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w-&gt;CanDoCommand(cmd));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;DoCommand(cmd);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m-&gt;GetNodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "After creation a <b><a href="CppNew.htm">new</a></b> node, the previously empty concept map must have a node");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!c-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "After creation a <b><a href="CppNew.htm">new</a></b> node, the previously empty <a href="CppQt.htm">Qt</a>ConceptMap must have a node");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w-&gt;CanUndo());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>w-&gt;Undo(); <a href="CppComment.htm">//</a>Route #1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cmd-&gt;Undo(); <a href="CppComment.htm">//</a>Route #2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m-&gt;GetNodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "After undoing the creation of a <b><a href="CppNew.htm">new</a></b> node, the concept map must be empty again");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "After undoing the creation of a <b><a href="CppNew.htm">new</a></b> node, the <a href="CppQt.htm">Qt</a>ConceptMap must be empty again");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!w-&gt;CanUndo());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>SetFocusRandom: that a 'set random focus' results in something getting a focus<br/>
 <br/>
@@ -8783,6 +8832,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::Test()");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::Undo() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanUndo());<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Undo();<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -9980,7 +10036,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> cursor_pos_approx(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="Tools.htm">tools</a>-&gt;GetBuddyItem()-&gt;pos().x(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="Tools.htm">tools</a>-&gt;GetBuddyItem()-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> 32.0 <a href="CppComment.htm">//</a>TODO_COEN: the <a href="CppQGraphicsItem.htm">QGraphicsItem</a> needs to <b><a href="CppEmit.htm">emit</a></b> that it is clicked, with itself as the argument, so that the <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a> knows the height the of the square to be above<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="Tools.htm">tools</a>-&gt;GetBuddyItem()-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> 32.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> m_<a href="Tools.htm">tools</a>-&gt;GetBuddyItem()-&gt;GetRadiusY()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>TODO_COEN ISSUE_101 the <a href="CppQGraphicsItem.htm">QGraphicsItem</a> needs to <b><a href="CppEmit.htm">emit</a></b> that it is clicked,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>with itself as the argument, so that the <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a> knows the height the of the square to be above<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_arrow <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>NewArrow(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="Tools.htm">tools</a>-&gt;GetBuddyItem(),cursor_pos_approx<br/>

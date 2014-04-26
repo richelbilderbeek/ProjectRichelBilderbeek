@@ -433,7 +433,7 @@ std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
         return t;
       }
     );
-
+    files = FilterFiles(files); //Fix #196
     #ifndef NDEBUG
     for (const std::string& file: files)
     {

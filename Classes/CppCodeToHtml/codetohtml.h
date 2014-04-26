@@ -51,7 +51,7 @@ namespace c2h {
     const FileType file_type);
 
   ///Convert a .pro file
-  std::vector<std::string> ConvertProject(const std::string& filename);
+  //std::vector<std::string> ConvertProject(const std::string& filename);
 
   ///Filter files: only let .pro, .h, .hpp, . cpp, .c and .sh files pass
   std::vector<std::string> FilterFiles(const std::vector<std::string>& files);

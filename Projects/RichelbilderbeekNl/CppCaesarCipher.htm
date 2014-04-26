@@ -86,11 +86,23 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <b><a href="CppStruct.htm">struct</a></b> CaesarCipher<br/>
 {<br/>
 &nbsp;&nbsp;CaesarCipher(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Creates a clean string, which is a<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/lower<b><a href="CppCase.htm">case</a></b>nospaces string<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Clean(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Assumes IsClean, use Clean to <a href="CppMake.htm">make</a> it so<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> Encrypt(<a href="CppStdString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Assumes IsClean, use Clean to <a href="CppMake.htm">make</a> it so<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> Deencrypt(<a href="CppStdString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Checks <b><a href="CppIf.htm">if</a></b> string is clean, which is a<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/lower<b><a href="CppCase.htm">case</a></b>nospaces string. Use Clean to <a href="CppMake.htm">make</a> it so.<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> IsClean(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_key;<br/>
@@ -158,72 +170,107 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Encrypt(<a href="CppStdString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Clean(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b>&amp; c:s)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'A');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'Z');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;c <a href="CppOperatorAssign.htm">=</a> Encrypt(c,m_key);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'A');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'Z');<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> t;<br/>
+&nbsp;&nbsp;<a href="CppStdCopy_if.htm">std::copy_if</a>(s.begin(),s.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(t),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> d <a href="CppOperatorAssign.htm">=</a> <a href="CppStdTolower.htm">std::tolower</a>(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a' <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> d <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppStdFor_each.htm">std::for_each</a>(t.begin(),t.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppChar.htm">char</a></b>&amp; c) { c <a href="CppOperatorAssign.htm">=</a> <a href="CppStdTolower.htm">std::tolower</a>(c); }<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsClean(t));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> t;<br/>
 }<br/>
 <br/>
 <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Deencrypt(<a href="CppStdString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsClean(s));<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b>&amp; c:s)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'A');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'Z');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c <a href="CppOperatorAssign.htm">=</a> Deencrypt(c,m_key);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'A');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'Z');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z');<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppChar.htm">char</a></b> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Encrypt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> d) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'A');<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'Z');<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(c <a href="CppOperatorMinus.htm">-</a> 'A');<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i_new <a href="CppOperatorAssign.htm">=</a> (((i <a href="CppOperatorPlus.htm">+</a> d) <a href="CppOperatorModulus.htm">%</a> 26) <a href="CppOperatorPlus.htm">+</a> 26) <a href="CppOperatorModulus.htm">%</a> 26;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i_new <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i_new &lt; 26);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>&gt;('A' <a href="CppOperatorPlus.htm">+</a> i_new);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d <a href="CppOperatorNotEqual.htm">!=</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> c <a href="CppOperatorEqual.htm">==</a> r);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'A');<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorLessEqual.htm">&lt;=</a> 'Z');<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> r;<br/>
-}<br/>
-<br/>
 <b><a href="CppChar.htm">char</a></b> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Deencrypt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> d) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'A');<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'Z');<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(c <a href="CppOperatorMinus.htm">-</a> 'A');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z');<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(c <a href="CppOperatorMinus.htm">-</a> 'a');<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i_new <a href="CppOperatorAssign.htm">=</a> (((i <a href="CppOperatorMinus.htm">-</a> d) <a href="CppOperatorModulus.htm">%</a> 26) <a href="CppOperatorPlus.htm">+</a> 26) <a href="CppOperatorModulus.htm">%</a> 26;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i_new <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i_new &lt; 26);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>&gt;('A' <a href="CppOperatorPlus.htm">+</a> i_new);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>&gt;('a' <a href="CppOperatorPlus.htm">+</a> i_new);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d <a href="CppOperatorNotEqual.htm">!=</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> c <a href="CppOperatorEqual.htm">==</a> r);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'A');<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorLessEqual.htm">&lt;=</a> 'Z');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z');<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> r;<br/>
 }<br/>
 <br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Encrypt(<a href="CppStdString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(!IsClean(s))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("BREAK");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsClean(s));<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b>&amp; c:s)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;c <a href="CppOperatorAssign.htm">=</a> Encrypt(c,m_key);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z');<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppChar.htm">char</a></b> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Encrypt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> d) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z');<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(c <a href="CppOperatorMinus.htm">-</a> 'a');<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i_new <a href="CppOperatorAssign.htm">=</a> (((i <a href="CppOperatorPlus.htm">+</a> d) <a href="CppOperatorModulus.htm">%</a> 26) <a href="CppOperatorPlus.htm">+</a> 26) <a href="CppOperatorModulus.htm">%</a> 26;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i_new <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i_new &lt; 26);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>&gt;('a' <a href="CppOperatorPlus.htm">+</a> i_new);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d <a href="CppOperatorNotEqual.htm">!=</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> c <a href="CppOperatorEqual.htm">==</a> r);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 'a');<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorLessEqual.htm">&lt;=</a> 'z');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> r;<br/>
+}<br/>
+<br/>
+<br/>
 <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::CaesarCipher::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2014-04-01: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-04-01: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-04-07: <a href="CppVersion.htm">version</a> 1.1: use lower<b><a href="CppCase.htm">case</a></b> <a href="CppChar.htm">character</a>s, added Clean and IsClean <a href="CppMemberFunction.htm">member functions</a>"<br/>
 &nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::CaesarCipher::IsClean(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> c:s) { <b><a href="CppIf.htm">if</a></b> (c &lt; 'a' <a href="CppOperatorLogicalOr.htm">||</a> c &gt; 'z') <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -238,24 +285,31 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CaesarCipher e(0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "ABCDEFGH";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s <a href="CppOperatorEqual.htm">==</a> e.Encrypt(s));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s <a href="CppOperatorEqual.htm">==</a> e.Deencrypt(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!CaesarCipher::IsClean(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> CaesarCipher::Clean(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorEqual.htm">==</a> "abcdefgh");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CaesarCipher::IsClean(t));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorEqual.htm">==</a> e.Encrypt(t));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorEqual.htm">==</a> e.Deencrypt(t));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"A",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"AB"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"AB",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"I am a dirty string"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s: v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key: {0,1,2,4,8,16,257,-13,-12345} )<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CaesarCipher e(key);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(e.Deencrypt(e.Encrypt(s)) <a href="CppOperatorEqual.htm">==</a> s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> CaesarCipher::Clean(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CaesarCipher::IsClean(t));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(e.Deencrypt(e.Encrypt(t)) <a href="CppOperatorEqual.htm">==</a> t);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test encryption with real, decryption with faker<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CaesarCipher faker(key <a href="CppOperatorPlus.htm">+</a> 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faker.Deencrypt(e.Encrypt(s)) <a href="CppOperatorNotEqual.htm">!=</a> s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faker.Deencrypt(e.Encrypt(t)) <a href="CppOperatorNotEqual.htm">!=</a> t);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>

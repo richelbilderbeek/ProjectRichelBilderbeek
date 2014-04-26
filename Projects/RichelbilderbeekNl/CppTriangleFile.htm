@@ -32,6 +32,10 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleFile/CppTriangleFile.pri" border = "1"><tr><td><code>
+#win32 {<br/>
+#&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += USE_TRIANGLE_EXE<br/>
+#}<br/>
+<br/>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleFile<br/>
 <br/>
@@ -111,6 +115,9 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt; m_holes;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt; m_<a href="CppShape.htm">shape</a>s;<br/>
 <br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt; CreateArgv(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> DeleteArgv(<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt;&amp; p) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
@@ -142,6 +149,11 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppIfndef.htm">#ifndef</a> _WIN32<br/>
+<a href="CppInclude.htm">#include</a> "triangle.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppEndif.htm">#endif</a><br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::TriangleFile::TriangleFile(<br/>
@@ -165,6 +177,21 @@
 &nbsp;&nbsp;&nbsp;&nbsp;sum <a href="CppOperatorPlusAssign.htm">+=</a> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::num_<a href="CppPointer.htm">point</a>s(<a href="CppShape.htm">shape</a>);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+}<br/>
+<br/>
+<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt; <a href="CppRibi.htm">ribi</a>::TriangleFile::CreateArgv(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppChar.htm">char</a></b>* String;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> String* Strings;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;Strings <a href="CppArgc.htm">argv</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> String[<a href="CppArgc.htm">argc</a>];<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a><a href="CppArgc.htm">argc</a>; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppArgc.htm">argv</a>[i] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[v[i].size() <a href="CppOperatorPlus.htm">+</a> 1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStrcpy.htm">std::strcpy</a>(<a href="CppArgc.htm">argv</a>[i],&amp;v[i][0]);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt; p <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMake_pair.htm">std::make_pair</a>(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
 <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::Create<a href="CppShape.htm">Shape</a>Heart(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -233,6 +260,16 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::TriangleFile::DeleteArgv(<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt;&amp; p) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> p.first;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppArgc.htm">argc</a>; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] p.second[i];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] p.second;<br/>
+}<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::TriangleFile::ExecuteTriangle(<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; node_filename,<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; ele_filename,<br/>
@@ -250,9 +287,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;ToStr();<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename));<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename));<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> exe_filename { "triangle.exe" };<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> USE_TRIANGLE_EXE<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a>&nbsp;&nbsp;USE_TRIANGLE_EXE<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppIsRegularFile.htm">IsRegularFile</a>(exe_filename))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> file( (":/trianglefile/files/" <a href="CppOperatorPlus.htm">+</a> exe_filename).c_str() );<br/>
@@ -276,7 +316,26 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppDeleteFile.htm">DeleteFile</a>(filename);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>(s.str().c_str());<br/>
 &nbsp;&nbsp;}<br/>
-<br/>
+&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; cmd {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exe_filename,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"-j",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"-z",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"-q",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(quality),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"-a",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(area),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;filename<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!verbose)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;cmd.push_back("-Q");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSwap.htm">std::swap</a>(cmd[cmd.size() <a href="CppOperatorMinus.htm">-</a> 1], cmd[cmd.size() <a href="CppOperatorMinus.htm">-</a> 2]);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt; p <a href="CppOperatorAssign.htm">=</a> CreateArgv(cmd);<br/>
+&nbsp;&nbsp;triangle_main(p.first,p.second);<br/>
+&nbsp;&nbsp;DeleteArgv(p);<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename_base(<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppGetFileBasename.htm">GetFileBasename</a>(filename));<br/>
 &nbsp;&nbsp;node_filename <a href="CppOperatorAssign.htm">=</a> filename_base <a href="CppOperatorPlus.htm">+</a> ".1.node";<br/>
 &nbsp;&nbsp;ele_filename <a href="CppOperatorAssign.htm">=</a> filename_base <a href="CppOperatorPlus.htm">+</a> ".1.ele";<br/>
@@ -289,13 +348,14 @@
 <br/>
 <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TriangleFile::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2014-02-07: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-02-07: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-04-04: <a href="CppVersion.htm">Version</a> 1.1: allow to call Triangle its code directly"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
