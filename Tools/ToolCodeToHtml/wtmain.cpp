@@ -20,13 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
-//---------------------------------------------------------------------------
+
 #include "trace.h"
 #include "wtautoconfig.h"
 #include "wtcodetohtmlmenudialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
+
 struct WtApplication : public Wt::WApplication
 {
   WtApplication(const Wt::WEnvironment& env)
@@ -34,21 +34,21 @@ struct WtApplication : public Wt::WApplication
   {
     this->setTitle("CodeToHtml");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new CodeToHtml::WtMenuDialog);
+    root()->addWidget(new ribi::c2h::WtMenuDialog);
   }
 };
-//---------------------------------------------------------------------------
+
 Wt::WApplication *createApplication(
   const Wt::WEnvironment& env)
 {
   return new WtApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
   START_TRACE();
-  WtAutoConfig a(argc,argv,createApplication);
-  WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
   return a.Run();
 }
-//---------------------------------------------------------------------------
+

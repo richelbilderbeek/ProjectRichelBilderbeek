@@ -321,9 +321,11 @@ void ribi::c2h::WtDialog::on_edit_source_textChanged()
   if (boost::filesystem::is_directory(source))
   {
     const std::vector<std::string> v
-      = c2h::SortFiles(
-          c2h::FilterFiles(
-            c2h::GetFilesInFolder(source)));
+      = SortFiles(
+          FilterFiles(
+            fileio::FileIo().GetFilesInFolder(source)
+          )
+        );
     const std::string s
       = std::string("&Convert (source type: folder, ")
       + std::to_string(v.size())

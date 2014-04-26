@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestLed, tool to test the Led class
-Copyright (C) 2011 Richel Bilderbeek
+SimMysteryMachine, simulator of my mystery machine
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,15 +16,21 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestLed.htm
+//From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
 #include <Wt/WImage>
@@ -33,8 +39,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "about.h"
+#include "fileio.h"
 #include "simmysterymachinemenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
@@ -44,8 +51,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtsimmysterymachinemaindialog.h"
 #include "wtsimmysterymachinemenudialog.h"
 #include "wttogglebuttonwidget.h"
+<<<<<<< HEAD
+
+#include <QFile> //#include after Wt
+=======
 //---------------------------------------------------------------------------
 #include <QFile>
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #pragma GCC diagnostic pop
 
 ribi::WtSimMysteryMachineMenuDialog::WtSimMysteryMachineMenuDialog()
@@ -55,18 +70,18 @@ ribi::WtSimMysteryMachineMenuDialog::WtSimMysteryMachineMenuDialog()
     image_names.push_back("ToolSimMysteryMachine.png");
     image_names.push_back("ToolSimMysteryMachineWelcome.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const auto filename: image_names)
     {
-      if (!(QFile::exists(filename.c_str())))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
   this->setContentAlignment(Wt::AlignCenter);
@@ -106,10 +121,17 @@ ribi::WtSimMysteryMachineMenuDialog::WtSimMysteryMachineMenuDialog()
     this->addWidget(contents);
   }
 }
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewAboutDialog() const
 {
-  About a = SimMysteryMachineMenuDialog::GetAbout();
+  About a = SimMysteryMachineMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtDialWidget version: " + WtDialWidget::GetVersion());
   a.AddLibrary("WtLedWidget version: " + WtLedWidget::GetVersion());
@@ -119,14 +141,28 @@ Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewMainDialog() const
 {
   WtSimMysteryMachineMainDialog * const d = new WtSimMysteryMachineMainDialog;
   assert(d);
   return d;
 }
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -155,4 +191,4 @@ Wt::WWidget * ribi::WtSimMysteryMachineMenuDialog::CreateNewWelcomeDialog() cons
   }
   return dialog;
 }
-//---------------------------------------------------------------------------
+

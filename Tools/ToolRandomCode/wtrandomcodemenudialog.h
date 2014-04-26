@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RandomCode, tool to generate random C++ code
-Copyright (C) 2010-2011  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,23 +21,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTRANDOMCODEMENUDIALOG_H
 #define WTRANDOMCODEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WWidget;
 }
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 
 namespace ribi {
 
 struct WtAboutDialog;
 struct WtRandomCodeGenerateDialog;
-//---------------------------------------------------------------------------
+
 struct WtRandomCodeMenuDialog : public Wt::WContainerWidget
 {
   WtRandomCodeMenuDialog();

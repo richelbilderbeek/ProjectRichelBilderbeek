@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RandomCode, tool to generate random C++ code
-Copyright (C) 2010-2011  Richel Bilderbeek
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,10 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
 #include <Wt/WImage>
@@ -33,19 +33,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WText>
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "randomcodemenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wtrandomcodemenudialog.h"
 #include "wtrandomcodegeneratedialog.h"
-//---------------------------------------------------------------------------
+
 //QFile must be #included after Wt header files
 #include <QFile>
 #pragma GCC diagnostic pop
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+//---------------------------------------------------------------------------
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 ribi::WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
 {
   CheckResources();
@@ -86,7 +94,14 @@ ribi::WtRandomCodeMenuDialog::WtRandomCodeMenuDialog()
     this->addWidget(contents);
   }
 }
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 void ribi::WtRandomCodeMenuDialog::CheckResources()
 {
  //Create resources
@@ -108,23 +123,44 @@ void ribi::WtRandomCodeMenuDialog::CheckResources()
     assert(QFile::exists(filename.c_str()));
   }
 }
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 ribi::WtAboutDialog * ribi::WtRandomCodeMenuDialog::CreateNewAboutDialog()
 {
-  About a = RandomCodeMenuDialog::GetAbout();
+  About a = RandomCodeMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 ribi::WtRandomCodeGenerateDialog * ribi::WtRandomCodeMenuDialog::CreateNewGenerateDialog() const
 {
   WtRandomCodeGenerateDialog * const d = new WtRandomCodeGenerateDialog;
   assert(d);
   return d;
 }
+<<<<<<< HEAD
+
+=======
 //---------------------------------------------------------------------------
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 Wt::WWidget * ribi::WtRandomCodeMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -140,4 +176,4 @@ Wt::WWidget * ribi::WtRandomCodeMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolRandomCodeWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

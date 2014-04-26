@@ -24,7 +24,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "rainbow.h"
+<<<<<<< HEAD
+
+=======
 #include "rectangle.h"
+<<<<<<< HEAD
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 #include "richelbilderbeekprogram.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
@@ -66,6 +73,10 @@ ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
 }
 
 ribi::Help ribi::TestShinyButtonMenuDialog::GetHelp() const noexcept
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -93,6 +104,38 @@ std::string ribi::TestShinyButtonMenuDialog::GetVersion() const noexcept
   return "2.1";
 }
 
+<<<<<<< HEAD
+=======
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+boost::shared_ptr<const ribi::Program> ribi::TestShinyButtonMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestShinyButton
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::TestShinyButtonMenuDialog::GetVersion() const noexcept
+{
+  return "2.1";
+}
+
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
+=======
+>>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
 std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory() const noexcept
 {
   return {
