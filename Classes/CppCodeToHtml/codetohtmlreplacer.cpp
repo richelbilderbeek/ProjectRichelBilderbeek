@@ -156,6 +156,7 @@ std::vector<std::string> ribi::c2h::Replacer::ToHtml(
     case FileType::cpp:
       get_replacements = &ribi::c2h::Replacer::GetReplacementsCpp;
       break;
+    case FileType::foam:
     case FileType::py:
     case FileType::sh:
     case FileType::txt:

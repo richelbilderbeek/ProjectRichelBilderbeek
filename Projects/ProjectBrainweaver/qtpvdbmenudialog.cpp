@@ -159,12 +159,12 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked() noexcept
 {
-  #ifdef TODO_RJCB //TODO RJCB
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(5);
+  const int test = 4;
+  assert(test < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(test);
   assert(file);
   QtPvdbRatingDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-  #endif //TODO RJCB
 }
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked() noexcept
@@ -211,7 +211,6 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked() noexcept
     assert(!file->GetCluster());
     assert( file->GetConceptMap());
 
-    //file->SetQuestion("Wat zal ik als test focusvraag schrijven?");
     assert(file->GetQuestion() == question);
   }
   QtPvdbClusterDialog d(file);
@@ -579,4 +578,14 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmaps_clicked()
 {
   cmap::QtTestConceptMapMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
+}
+
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked()
+{
+  //HIERO
+}
+
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
+{
+  //HIERO
 }

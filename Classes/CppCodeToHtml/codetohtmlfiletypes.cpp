@@ -32,6 +32,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::c2h::FileTypes::FileTypes()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 bool ribi::c2h::FileTypes::CanStrToFileType(const std::string& s) noexcept
 {
   try
@@ -101,6 +108,7 @@ std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t) noexcept
   switch (t)
   {
     case FileType::cpp: return "cpp";
+    case FileType::foam: return "foam";
     case FileType::license_txt: return "license_txt";
     case FileType::png: return "png";
     case FileType::pri: return "pri";
@@ -120,7 +128,9 @@ std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() noexcep
 {
   const std::vector<FileType> v {
     FileType::cpp,
+    FileType::foam,
     FileType::license_txt,
+    FileType::png,
     FileType::pri,
     FileType::pro,
     FileType::py,
@@ -134,6 +144,7 @@ std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() noexcep
 ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s)
 {
   if (s == "cpp") return FileType::cpp;
+  if (s == "foam") return FileType::foam;
   if (s == "license_txt") return FileType::license_txt;
   if (s == "pri") return FileType::pri;
   if (s == "pro") return FileType::pro;
@@ -157,27 +168,37 @@ void ribi::c2h::FileTypes::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::c2h::FileTypes::Test");
+  FileTypes f;
+  //Test conversion between
+  {
+    const auto v = f.GetAllFileTypes();
+    for (auto t:v)
+    {
+       assert(f.StrToFileType(f.FileTypeToStr(t)) == t);
+    }
+  }
+  assert(1==2);
   //Be gentle
-  assert(DeduceFileType("tmp.png") == FileType::png);
-  assert(DeduceFileType("tmp.pro") == FileType::pro);
-  assert(DeduceFileType("tmp.c"  ) == FileType::cpp);
-  assert(DeduceFileType("tmp.cpp") == FileType::cpp);
-  assert(DeduceFileType("tmp.h"  ) == FileType::cpp);
-  assert(DeduceFileType("tmp.hpp") == FileType::cpp);
-  assert(DeduceFileType("tmp.sh" ) == FileType::sh);
-  assert(DeduceFileType("tmp.txt") == FileType::txt);
-  assert(DeduceFileType("tmp.py" ) == FileType::py);
-  assert(DeduceFileType("tmp.xyz") == FileType::txt);
+  assert(f.DeduceFileType("tmp.png") == FileType::png);
+  assert(f.DeduceFileType("tmp.pro") == FileType::pro);
+  assert(f.DeduceFileType("tmp.c"  ) == FileType::cpp);
+  assert(f.DeduceFileType("tmp.cpp") == FileType::cpp);
+  assert(f.DeduceFileType("tmp.h"  ) == FileType::cpp);
+  assert(f.DeduceFileType("tmp.hpp") == FileType::cpp);
+  assert(f.DeduceFileType("tmp.sh" ) == FileType::sh);
+  assert(f.DeduceFileType("tmp.txt") == FileType::txt);
+  assert(f.DeduceFileType("tmp.py" ) == FileType::py);
+  assert(f.DeduceFileType("tmp.xyz") == FileType::txt);
   //Be nasty
-  assert(DeduceFileType("cpp.pro") == FileType::pro);
-  assert(DeduceFileType("h.c"    ) == FileType::cpp);
-  assert(DeduceFileType("hpp.cpp") == FileType::cpp);
-  assert(DeduceFileType("sh.h"   ) == FileType::cpp);
-  assert(DeduceFileType("txt.hpp") == FileType::cpp);
-  assert(DeduceFileType("py.sh"  ) == FileType::sh);
-  assert(DeduceFileType("xyz.txt") == FileType::txt);
-  assert(DeduceFileType("pro.py" ) == FileType::py);
-  assert(DeduceFileType("c.xyz"  ) == FileType::txt);
+  assert(f.DeduceFileType("cpp.pro") == FileType::pro);
+  assert(f.DeduceFileType("h.c"    ) == FileType::cpp);
+  assert(f.DeduceFileType("hpp.cpp") == FileType::cpp);
+  assert(f.DeduceFileType("sh.h"   ) == FileType::cpp);
+  assert(f.DeduceFileType("txt.hpp") == FileType::cpp);
+  assert(f.DeduceFileType("py.sh"  ) == FileType::sh);
+  assert(f.DeduceFileType("xyz.txt") == FileType::txt);
+  assert(f.DeduceFileType("pro.py" ) == FileType::py);
+  assert(f.DeduceFileType("c.xyz"  ) == FileType::txt);
   TRACE("Finished ribi::c2h::FileTypes::Test successfully");
 }
 #endif

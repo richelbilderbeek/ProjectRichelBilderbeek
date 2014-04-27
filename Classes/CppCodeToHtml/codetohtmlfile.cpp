@@ -42,7 +42,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::c2h::File::File(const std::string& filename)
-    : m_html(CreateHtml(filename,FileTypes::DeduceFileType(filename)))
+  : m_html(CreateHtml(filename,FileTypes().DeduceFileType(filename)))
 {
   #ifndef NDEBUG
   Test();
@@ -81,6 +81,7 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
         "<h2><a href=\"CppQtProjectFile.htm\">Qt project file</a>: "
         + m_filename + "</h2>");
     break;
+    case FileType::foam:
     case FileType::pri:
     case FileType::py:
     case FileType::sh:
@@ -111,10 +112,24 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
     //Add the HTMLified content
     {
       assert(fileio::FileIo().IsRegularFile(m_filename));
-      const std::vector<std::string> w {
-        Replacer::ToHtml(fileio::FileIo().FileToVector(m_filename),file_type)
-      };
-      std::transform(w.begin(),w.end(),std::back_inserter(v),
+      auto lines_text = fileio::FileIo().FileToVector(m_filename);
+      if (file_type == FileType::foam)
+      {
+        //Keep lines 0-100 and last-50,last
+        const int n_lines_begin = 100;
+        const int n_lines_end = 50;
+        if (static_cast<int>(lines_text.size() > n_lines_begin + n_lines_end))
+        {
+          std::vector<std::string> lines_shorter;
+          std::copy(lines_text.begin(),lines_text.begin() + n_lines_begin,std::back_inserter(lines_shorter));
+          lines_shorter.push_back("[...]");
+          std::copy(lines_text.end() - n_lines_end,lines_text.end(),std::back_inserter(lines_shorter));
+          std::swap(lines_shorter,lines_text);
+        }
+      }
+      const std::vector<std::string> lines_html
+        = Replacer::ToHtml(lines_text,file_type);
+      std::transform(lines_html.begin(),lines_html.end(),std::back_inserter(v),
         [](const std::string& s)
         {
           return s + "<br/>";

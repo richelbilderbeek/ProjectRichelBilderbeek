@@ -173,7 +173,7 @@ std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
   const std::vector<std::string> v {
     ribi::fileio::FileIo().FileToVector(filename)
   };
-  const FileType file_type = FileTypes::DeduceFileType(filename);
+  const FileType file_type = FileTypes().DeduceFileType(filename);
   return Replacer::ToHtml(v,file_type);
 }
 
@@ -268,7 +268,7 @@ std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
       {
         assert(ribi::fileio::FileIo().IsRegularFile(filename));
         const boost::shared_ptr<File> content {
-          new File(filename,FileType::txt)
+          new File(filename,FileType::foam)
         };
         const std::vector<std::string> w = content->GetHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));

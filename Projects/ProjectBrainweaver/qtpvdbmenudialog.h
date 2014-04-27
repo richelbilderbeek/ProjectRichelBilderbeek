@@ -77,6 +77,10 @@ public slots:
 private slots:
   void keyPressEvent(QKeyEvent* e) noexcept;
 
+  void on_button_test_conceptedit_clicked();
+
+  void on_button_test_conceptmap_clicked();
+
 private:
   Ui::QtPvdbMenuDialog *ui;
 

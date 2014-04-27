@@ -144,7 +144,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   if (IsQtCenterNode(from) || IsQtCenterNode(to))
   {
     assert(qtconcept == qtedge->GetDisplayStrategy());
-    qtconcept->setVisible(false);
+    //qtconcept->setVisible(false); #ISSUE_
   }
 
   //General: inform an Observer that this item has changed
@@ -246,7 +246,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_fro
   if (IsQtCenterNode(qt_from) || IsQtCenterNode(qt_to))
   {
     assert(qtconcept == qtedge->GetDisplayStrategy());
-    qtconcept->setVisible(false);
+    //qtconcept->setVisible(false); //ISSUE_
   }
 
   //General: inform an Observer that this item has changed

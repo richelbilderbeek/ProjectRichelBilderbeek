@@ -39,8 +39,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/function.hpp>
 
-//#include <QDir>
-//#include <QFile>
 #include "fileio.h"
 #include "trace.h"
 
@@ -68,13 +66,6 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   Test();
   #endif
 
-  #ifndef NDEBUG
-  if (!ribi::fileio::FileIo().IsRegularFile(filename))
-  {
-    TRACE(filename);
-    TRACE("BREAK");
-  }
-  #endif
   assert(ribi::fileio::FileIo().IsRegularFile(filename));
 
   std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
@@ -82,7 +73,6 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   DoReplacements(v);
   std::stringstream data;
   std::copy(std::begin(v),std::end(v),std::ostream_iterator<std::string>(data," "));
-  TRACE(data.str());
   Parse(data);
 }
 
@@ -133,7 +123,7 @@ std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
 
 void ribi::QtCreatorProFile::Parse(std::stringstream& data)
 {
-  const bool verbose = true;
+  const bool verbose = false;
   std::set<std::string> * p = nullptr; //A set to write to
   enum class Prefix { none, plus, minus };
   Prefix prefix = Prefix::none;

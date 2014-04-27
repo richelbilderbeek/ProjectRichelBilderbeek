@@ -32,10 +32,11 @@ namespace c2h {
 ///Manages all FileType instances and conversion to std::string
 struct FileTypes
 {
+  FileTypes();
   bool CanStrToFileType(const std::string& s) noexcept;
 
   ///Deduce the content type from a filename
-  static FileType DeduceFileType(const std::string& filename);
+  FileType DeduceFileType(const std::string& filename);
 
   std::string FileTypeToStr(const FileType t) noexcept;
   std::vector<FileType> GetAllFileTypes() noexcept;
