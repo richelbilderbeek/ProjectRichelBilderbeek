@@ -174,13 +174,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="button_test_conceptedit">
-        <property name="text">
-         <string>&amp;3. QtConceptEditDialog</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="button_test_cluster">
         <property name="text">
          <string>&amp;4. QtClusterDialog</string>
@@ -274,7 +267,6 @@
  <tabstops>
   <tabstop>button_student</tabstop>
   <tabstop>button_assessor</tabstop>
-  <tabstop>button_test_conceptedit</tabstop>
   <tabstop>button_test_cluster</tabstop>
   <tabstop>button_test_conceptmap</tabstop>
   <tabstop>button_print_concept_map</tabstop>

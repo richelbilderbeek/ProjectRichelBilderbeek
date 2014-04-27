@@ -580,11 +580,6 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmaps_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked()
-{
-  //HIERO
-}
-
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
 {
   //HIERO
