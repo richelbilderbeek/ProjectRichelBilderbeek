@@ -20,17 +20,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTSHAPEGROUPWIDGET_H
 #define WTSHAPEGROUPWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace ribi {
 
 struct Shape;
-//---------------------------------------------------------------------------
+
 ///WtShapeGroupWidget displays a collection of Shape instances
 struct WtShapeGroupWidget : public Wt::WPaintedWidget
 {

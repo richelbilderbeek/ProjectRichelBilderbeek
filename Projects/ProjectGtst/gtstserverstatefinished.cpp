@@ -61,8 +61,8 @@ void ribi::gtst::ServerStateFinished::OnTimer()
 
 void ribi::gtst::ServerStateFinished::Start()
 {
-  BOOST_FOREACH(
-    const boost::shared_ptr<const Participant>& p,
+  for(
+    const boost::shared_ptr<const Participant>& p:
     this->GetServer()->GetGroups()->CollectParticipants())
   {
     FindParticipant(p)->SetState(new StateFinished);

@@ -17,7 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtGroupWidget.htm
-
+//---------------------------------------------------------------------------
 #include <algorithm>
 #include <iostream>
 #include <numeric>
@@ -72,12 +72,11 @@ const std::string ribi::WtGroupWidget::GetVersion()
 
 const std::vector<std::string> ribi::WtGroupWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-06-12: version 1.0: initial version");
-  v.push_back("2011-06-16: version 1.1: allow display of empty groups");
-  v.push_back("2011-06-22: version 1.2: allow display of zero groups");
-  return v;
+  return {
+    "2011-06-12: version 1.0: initial version",
+    "2011-06-16: version 1.1: allow display of empty groups",
+    "2011-06-22: version 1.2: allow display of zero groups",
+  };
 }
 
 void ribi::WtGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
@@ -172,4 +171,3 @@ void ribi::WtGroupWidget::SetIds(const std::vector<std::vector<int> >& v)
   m_v = v;
   update();
 }
-

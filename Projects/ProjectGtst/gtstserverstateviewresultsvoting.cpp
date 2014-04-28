@@ -76,7 +76,7 @@ const std::vector<boost::shared_ptr<ribi::gtst::Vote> > ribi::gtst::ServerStateV
     = GetServer()->GetGroups()->FindMyGroup(participant);
   assert(group);
 
-  BOOST_FOREACH(const boost::shared_ptr<const Participant>& participant,
+  for(const boost::shared_ptr<const Participant>& participant:
     group->CollectParticipants())
   {
     assert(!participant->GetVotes().empty());
@@ -119,7 +119,7 @@ void ribi::gtst::ServerStateViewResultsVoting::Start()
   ///Setting the group its vote
   m_voted_concensus.clear();
 
-  BOOST_FOREACH(const Group * const group,
+  for(const Group * const group:
     GetServer()->GetGroups()->CollectGroups(false,false,true,false))
   {
     //Only participating groups will have voted
@@ -134,7 +134,7 @@ void ribi::gtst::ServerStateViewResultsVoting::Start()
 
     //Tally all votes
     std::map<std::string,int> vote_tally;
-    BOOST_FOREACH(const boost::shared_ptr<const Participant>& participant,
+    for(const boost::shared_ptr<const Participant>& participant:
       group->CollectParticipants())
     {
       assert(!participant->GetVotes().empty());
@@ -165,7 +165,7 @@ void ribi::gtst::ServerStateViewResultsVoting::Start()
 
     if (max_count == 0)
     {
-      BOOST_FOREACH(const boost::shared_ptr<const Participant>& participant,
+      for(const boost::shared_ptr<const Participant>& participant:
         group->CollectParticipants())
       {
         const int id = participant->GetId();
@@ -201,7 +201,7 @@ void ribi::gtst::ServerStateViewResultsVoting::Start()
     }
 
   }
-  BOOST_FOREACH(const boost::shared_ptr<const Participant>& p,
+  for(const boost::shared_ptr<const Participant>& p:
     GetServer()->GetGroups()->CollectParticipants(false,false,true,false))
   {
     StateViewResultsVoting * const state

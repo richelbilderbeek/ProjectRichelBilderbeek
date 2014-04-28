@@ -22,7 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <numeric>
 
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 //#include <boost/numeric/conversion/bounds.hpp>
 //#include <boost/bind.hpp>
 //#include <boost/lambda/bind.hpp>
@@ -39,6 +42,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtgroupwidget.h"
 #include "wtshapegroupwidget.h"
 #include "wtshapewidget.h"
+#pragma GCC diagnostic pop
 
 ribi::WtShapeGroupWidget::WtShapeGroupWidget()
   : m_v{}

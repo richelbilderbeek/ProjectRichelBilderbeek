@@ -20,13 +20,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTGROUPWIDGET_H
 #define WTGROUPWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 

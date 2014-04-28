@@ -55,7 +55,7 @@ ribi::gtst::ServerStateVoting::ServerStateVoting(
 bool ribi::gtst::ServerStateVoting::CanGoToNextState() const
 {
   typedef std::pair<boost::shared_ptr<const Participant>,bool> Pair;
-  BOOST_FOREACH(const Pair& p,m_has_voted)
+  for(const Pair& p: m_has_voted)
   {
     if (p.second == false) return false;
   }
@@ -109,7 +109,7 @@ void ribi::gtst::ServerStateVoting::Start()
   m_has_voted.clear();
   assert(m_has_voted.empty());
 
-  BOOST_FOREACH(const boost::shared_ptr<const Participant>& p,
+  for(const boost::shared_ptr<const Participant>& p:
     GetServer()->GetGroups()->CollectParticipants(false,false,true,false))
   {
     assert(p);

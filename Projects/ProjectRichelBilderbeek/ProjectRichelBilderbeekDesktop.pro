@@ -184,7 +184,7 @@ include(../../Tools/ToolPrimeExpert/ToolPrimeExpertDesktop.pri)
 include(../../Tools/ToolQmakeWatcher/ToolQmakeWatcherDesktop.pri)
 include(../../Tools/ToolQuadraticSolver/ToolQuadraticSolverDesktop.pri)
 include(../../Tools/ToolRandomCode/ToolRandomCodeDesktop.pri)
-#include(../../Tools/ToolRasper/ToolRasperDesktop.pri)
+#include(../../Tools/ToolRasper/ToolRasperConsole.pri)
 include(../../Tools/ToolRegexTester/ToolRegexTesterDesktop.pri)
 include(../../Tools/ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryDesktop.pri)
 include(../../Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekNlSitemapGeneratorDesktop.pri)
@@ -233,7 +233,7 @@ include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonDesktop.pri)
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
 include(../../Tools/ToolThresholdFilterer/ToolThresholdFiltererDesktop.pri)
 include(../../Tools/ToolTriangleMeshCreator/ToolTriangleMeshCreatorConsole.pri)
-include(../../Tools/ToolTriangle/ToolTriangleConsole.pri) #NOTE: Console application
+include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
 include(../../Tools/ToolValentineCardDecrypter/ToolValentineCardDecrypterDesktop.pri)
 include(../../Tools/ToolVigenereCipher/ToolVigenereCipherDesktop.pri)
 include(../../Tools/ToolVisualAbc/ToolVisualAbcDesktop.pri)
@@ -242,4 +242,3 @@ QT += core gui #svg
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 SOURCES += qtmain.cpp
-b
