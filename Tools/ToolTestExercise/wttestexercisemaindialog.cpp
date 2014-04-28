@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestExercise, tool to test the Exercise class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,17 +20,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cstdio>
 #include <fstream>
-//---------------------------------------------------------------------------
-#include <boost/foreach.hpp>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 #include <Wt/WPushButton>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "exercise.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
@@ -43,7 +46,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtopenquestiondialog.h"
 #include "wtexercise.h"
 #include "wttestexercisemaindialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtTestExerciseMainDialog::Ui::Ui()
   : m_area_input(new Wt::WTextArea),
     m_button_submit(new Wt::WPushButton),
@@ -54,7 +58,7 @@ ribi::WtTestExerciseMainDialog::Ui::Ui()
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::WtTestExerciseMainDialog::WtTestExerciseMainDialog()
   : ui{}
 {
@@ -84,7 +88,7 @@ ribi::WtTestExerciseMainDialog::WtTestExerciseMainDialog()
     "ToolTestExerciseQuestion.png,The solution of this equation is:,2/two/Two\n"
     "ToolTestExerciseQuestion.png,The solution of this equation is:,2,1,3,4");
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestExerciseMainDialog::OnSubmit()
 {
   //Test input
@@ -151,4 +155,4 @@ void ribi::WtTestExerciseMainDialog::OnSubmit()
     ui.m_label_status->setText(s.c_str());
   }
 }
-//---------------------------------------------------------------------------
+

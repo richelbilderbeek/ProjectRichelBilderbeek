@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtBroadcastServer, server to broadcast to all its WtBroadcastServerClients
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,17 +20,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTBROADCASTSERVER_H
 #define WTBROADCASTSERVER_H
-//---------------------------------------------------------------------------
+
 #include <mutex>
 #include <thread>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/any.hpp>
 #include <boost/function.hpp>
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct WtBroadcastServerClient;
-//---------------------------------------------------------------------------
+
 ///A Server that broadcasts its messages
 struct WtBroadcastServer
 {
@@ -40,7 +45,7 @@ struct WtBroadcastServer
   ///Stop a WtBroadcastServerClient have its supplied function called by TimePollServer::Run
   void Disconnect(const WtBroadcastServerClient* const client);
 
-  private:
+  //private:
   ///\brief
   ///Get a _copy_ of the data by reference
   ///
@@ -61,7 +66,7 @@ struct WtBroadcastServer
   ///Post calls all WtBroadcastServerClients' supplied functions
   void Post();
 
-  private:
+  //private:
   ///Set the data
   void SetData(const boost::any& data);
   public:
@@ -124,5 +129,5 @@ private:
   ///The method that is called every 100 msecs
   void Run();
 };
-//---------------------------------------------------------------------------
+
 #endif // WTBROADCASTSERVER_H

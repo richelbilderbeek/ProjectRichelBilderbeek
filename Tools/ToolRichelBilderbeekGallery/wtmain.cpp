@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +18,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
-//---------------------------------------------------------------------------
+
 #include "trace.h"
 #include "wtautoconfig.h"
 #include "wtrichelbilderbeekgallerymenudialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct WtApplication : public Wt::WApplication
 {
   WtApplication(const Wt::WEnvironment& env)
@@ -35,13 +39,13 @@ struct WtApplication : public Wt::WApplication
     root()->addWidget(new WtRichelBilderbeekGalleryMenuDialog);
   }
 };
-//---------------------------------------------------------------------------
+
 Wt::WApplication *createApplication(
   const Wt::WEnvironment& env)
 {
   return new WtApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
   START_TRACE();
@@ -49,4 +53,4 @@ int main(int argc, char **argv)
   WtAutoConfig a(argc,argv,createApplication);
   return a.Run();
 }
-//---------------------------------------------------------------------------
+

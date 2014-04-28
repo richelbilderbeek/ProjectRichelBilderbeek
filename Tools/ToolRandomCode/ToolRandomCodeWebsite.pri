@@ -1,3 +1,5 @@
+include(ToolRandomCodeConsole.pri)
+
 INCLUDEPATH += ../../Tools/ToolRandomCode
 
 SOURCES += \

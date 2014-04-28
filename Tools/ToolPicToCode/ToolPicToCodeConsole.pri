@@ -11,3 +11,7 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolPicToCode/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolPicToCode/ToolPicToCode.qrc
+

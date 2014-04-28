@@ -102,15 +102,16 @@ boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetP
 
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2014-xx-xx: version 1.0: initial version, named 'TestTriangleMesh'"
+    "2014-xx-xx: version 1.0: initial version, named 'TestTriangleMesh'",
     "2014-03-07: version 1.1: initial versioning",
-    "2014-04-25: version 1.2: renamed to 'TriangleMeshCreator'"
+    "2014-04-25: version 1.2: renamed to 'TriangleMeshCreator'",
+    "2014-04-28: version 1.3: bugfixes"
   };
 }
 

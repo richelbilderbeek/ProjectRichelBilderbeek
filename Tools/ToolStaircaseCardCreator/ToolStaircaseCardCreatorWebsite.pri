@@ -1,12 +1,12 @@
-include(../../Tools/ToolCodeToHtml/ToolCodeToHtmlConsole.pri)
+include(../../Tools/ToolStaircaseCardCreator/ToolStaircaseCardCreatorConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolCodeToHtml/wtcodetohtmlmenudialog.cpp \
-    ../../Tools/ToolCodeToHtml/wtcodetohtmldialog.cpp
+    ../../Tools/ToolStaircaseCardCreator/wtstaircasecardcreatormenudialog.cpp \
+    ../../Tools/ToolStaircaseCardCreator/wtstaircasecardcreatordialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolCodeToHtml/wtcodetohtmlmenudialog.h \
-    ../../Tools/ToolCodeToHtml/wtcodetohtmldialog.h
+    ../../Tools/ToolStaircaseCardCreator/wtstaircasecardcreatormenudialog.h \
+    ../../Tools/ToolStaircaseCardCreator/wtstaircasecardcreatordialog.h
 
 RESOURCES += \
-    ../../Tools/ToolCodeToHtml/ToolCodeToHtml.qrc
+    ../../Tools/ToolStaircaseCardCreator/ToolStaircaseCardCreator.qrc

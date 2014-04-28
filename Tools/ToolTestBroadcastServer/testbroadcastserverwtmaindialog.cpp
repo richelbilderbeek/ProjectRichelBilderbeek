@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestBroadcastServer, tool to test WtBroadcastServer
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,36 +18,40 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestBroadcastServer.htm
 //---------------------------------------------------------------------------
+#include "testbroadcastserverwtmaindialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 #include <Wt/WLineEdit>
-//---------------------------------------------------------------------------
+
 #include "testbroadcastservermenudialog.h"
 #include "wtbroadcastserver.h"
 #include "wtaboutdialog.h"
-#include "testbroadcastserverwtmaindialog.h"
-//---------------------------------------------------------------------------
-namespace ToolTestBroadcastServer {
-//---------------------------------------------------------------------------
-WtMainDialog::WtMainDialog()
+#pragma GCC diagnostic pop
+
+ribi::ToolTestBroadcastServer::WtMainDialog::WtMainDialog()
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);
   ui.m_edit = new Wt::WLineEdit(this);
-  ui.m_edit->keyWentUp().connect(this,&WtMainDialog::OnEditChanged);
+  ui.m_edit->keyWentUp().connect(this,&ribi::ToolTestBroadcastServer::WtMainDialog::OnEditChanged);
   ui.m_edit->setMinimumSize(400,Wt::WLength::Auto);
   UpdatePage();
 }
-//---------------------------------------------------------------------------
-void WtMainDialog::OnEditChanged()
+
+void ribi::ToolTestBroadcastServer::WtMainDialog::OnEditChanged()
 {
   WtBroadcastServer::GetInstance()->SetData(
     std::string(ui.m_edit->text().toUTF8()));
 }
-//---------------------------------------------------------------------------
-void WtMainDialog::UpdatePage()
+
+void ribi::ToolTestBroadcastServer::WtMainDialog::UpdatePage()
 {
   boost::any any;
   WtBroadcastServer::GetInstance()->GetData(any);
@@ -62,6 +66,3 @@ void WtMainDialog::UpdatePage()
   }
   ui.m_edit->setText(text.c_str());
 }
-//---------------------------------------------------------------------------
-} //namespace ToolTestBroadcastServer
-//---------------------------------------------------------------------------

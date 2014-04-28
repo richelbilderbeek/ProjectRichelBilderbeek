@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work
-Copyright (C) 2012 Richel Bilderbeek
+Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,11 +18,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm
 //---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
 #include <Wt/WImage>
@@ -31,35 +32,38 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "about.h"
+#include "fileio.h"
 #include "richelbilderbeekgallerymenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
-#include "wtrichelbilderbeekgallerydialog.h"
+//#include "wtrichelbilderbeekgallerydialog.h"
 #include "wtrichelbilderbeekgallerymenudialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
-WtRichelBilderbeekGalleryMenuDialog::WtRichelBilderbeekGalleryMenuDialog()
+#pragma GCC diagnostic pop
+
+ribi::WtRichelBilderbeekGalleryMenuDialog::WtRichelBilderbeekGalleryMenuDialog()
 {
   {
     std::vector<std::string> image_names;
     image_names.push_back("ToolRichelBilderbeekGallery_1_0.png");
     //image_names.push_back("ToolRichelBilderbeekGalleryWelcome.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const auto filename: image_names)
     {
-      if (!(QFile::exists(filename.c_str())))
+
+      if (!ribi::fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+      if (!ribi::fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(ribi::fileio::FileIo().IsRegularFile(filename));
     }
   }
   this->setContentAlignment(Wt::AlignCenter);
@@ -99,24 +103,24 @@ WtRichelBilderbeekGalleryMenuDialog::WtRichelBilderbeekGalleryMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtRichelBilderbeekGalleryMenuDialog::CreateNewAboutDialog() const
+
+Wt::WWidget * ribi::WtRichelBilderbeekGalleryMenuDialog::CreateNewAboutDialog() const
 {
-  About a = RichelBilderbeek::GalleryMenuDialog::GetAbout();
+  About a = ribi::GalleryMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtRichelBilderbeekGalleryMenuDialog::CreateNewMainDialog() const
+
+Wt::WWidget * ribi::WtRichelBilderbeekGalleryMenuDialog::CreateNewMainDialog() const
 {
-  RichelBilderbeek::WtGalleryDialog * const d = new RichelBilderbeek::WtGalleryDialog;
+  ribi::GalleryMainDialog * const d = new ribi::GalleryMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * WtRichelBilderbeekGalleryMenuDialog::CreateNewWelcomeDialog() const
+
+Wt::WWidget * ribi::WtRichelBilderbeekGalleryMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -135,4 +139,4 @@ Wt::WWidget * WtRichelBilderbeekGalleryMenuDialog::CreateNewWelcomeDialog() cons
   new Wt::WBreak(dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
+

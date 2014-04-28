@@ -6,6 +6,7 @@ include(../../Libraries/Wt.pri)
 
 include(../../Classes/CppEncranger/CppEncranger.pri)
 include(../../Classes/CppLoopReader/CppLoopReader.pri)
-include(../../Tools/ToolEncranger/ToolEncrangerWebsite.pri)
+
+include(ToolEncrangerWebsite.pri)
 
 SOURCES += wtmain.cpp

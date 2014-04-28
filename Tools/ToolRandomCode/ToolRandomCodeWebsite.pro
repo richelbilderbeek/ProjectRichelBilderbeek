@@ -6,7 +6,6 @@ include(../../Libraries/GeneralWeb.pri)
 
 #Specific, console
 include(../../Classes/CppRandomCode/CppRandomCode.pri)
-include(ToolRandomCodeConsole.pri)
 
 #Specific, website
 include(ToolRandomCodeWebsite.pri)

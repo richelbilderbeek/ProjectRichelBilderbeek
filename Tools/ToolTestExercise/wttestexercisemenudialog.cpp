@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestExercise, tool to test the Exercise class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,11 +20,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
-//---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -33,7 +32,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
+#include "fileio.h"
 #include "testexercisemenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
@@ -43,7 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtopenquestiondialog.h"
 #include "wtquestiondialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
 #pragma GCC diagnostic pop
 
@@ -57,18 +57,19 @@ ribi::WtTestExerciseMenuDialog::WtTestExerciseMenuDialog()
     image_names.push_back("ToolTestExerciseQuestion.png");
     image_names.push_back("ToolTestExerciseQuestionmark.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const auto filename:image_names)
     {
-      if (!(QFile::exists(filename.c_str())))
+
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename.c_str()));
     }
   }
   this->setContentAlignment(Wt::AlignCenter);
@@ -107,7 +108,7 @@ ribi::WtTestExerciseMenuDialog::WtTestExerciseMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestExerciseMenuDialog::CreateNewAboutDialog() const
 {
   About a = m_dialog->GetAbout();
@@ -120,14 +121,14 @@ Wt::WWidget * ribi::WtTestExerciseMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestExerciseMenuDialog::CreateNewMainDialog() const
 {
   WtTestExerciseMainDialog * const d = new WtTestExerciseMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestExerciseMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -143,4 +144,4 @@ Wt::WWidget * ribi::WtTestExerciseMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolTestExerciseWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

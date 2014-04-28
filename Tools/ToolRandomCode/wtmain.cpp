@@ -19,11 +19,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRandomCode.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WApplication>
 #include <Wt/WContainerWidget>
 
 #include "wtautoconfig.h"
 #include "wtrandomcodemenudialog.h"
+#pragma GCC diagnostic pop
 
 struct WtRandomCodeApplication : public Wt::WApplication
 {

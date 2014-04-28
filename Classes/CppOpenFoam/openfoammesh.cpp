@@ -934,7 +934,7 @@ void ribi::foam::Mesh::Test() noexcept
     const std::vector<boost::shared_ptr<Face>> faces { f0,f1,f2,f3,f4,f5 };
     cell->AssignOwnedFaces( { f0,f1,f2,f3,f4,f5 } );
 
-    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5 },"defaultFaces",PatchFieldType::slip ) };
+    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5 },"defaultFaces",PatchFieldType::wall) };
     const std::vector<boost::shared_ptr<Boundary>> boundaries { boundary };
 
     const Mesh m(

@@ -92,6 +92,7 @@ enum class PatchFieldType {
   uniformDensityHydrostaticPressure,
   uniformFixedValue,
   uniformTotalPressure,
+  wall, //Used for defaultFaces
   wallHeatTransfer,
   waveSurfacePressure,
   waveTransmissive,

@@ -19,13 +19,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRandomCode.htm
 //---------------------------------------------------------------------------
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WPushButton>
 #include <Wt/WTextArea>
 
 #include "wtrandomcodegeneratedialog.h"
 #include "randomcode.h"
+#pragma GCC diagnostic pop
 
 ribi::WtRandomCodeGenerateDialog::WtRandomCodeGenerateDialog()
   : m_button_generate(new Wt::WPushButton),

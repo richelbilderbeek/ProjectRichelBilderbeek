@@ -1,16 +1,11 @@
 include(../../DesktopApplication.pri)
 
 include(../../Libraries/Boost.pri)
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
-
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
 
 include(GameBoenkenDesktop.pri)
 

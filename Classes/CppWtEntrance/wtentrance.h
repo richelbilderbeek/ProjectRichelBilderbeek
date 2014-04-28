@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestEntrance, tool to test WtEntrance
-Copyright (C) 2011 Richel Bilderbeek
+WtEntrance, online entrance
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestEntrance.htm
+//From http://www.richelbilderbeek.nl/CppWtEntrance.htm
 //---------------------------------------------------------------------------
 #ifndef WTENTRANCE_H
 #define WTENTRANCE_H
@@ -24,7 +24,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -37,22 +42,22 @@ struct IpAddress;
 struct WtEntrance
 {
   ///Obtain the one-and-only WtEntrance instance
-  static WtEntrance * Get();
+  static WtEntrance * Get() noexcept;
 
   ///Look up the IP address its name
-  const std::string GetName(const IpAddress * const ip_address) const;
+  std::string GetName(const IpAddress * const ip_address) const;
 
   ///Get all the IP addresses their names
-  const std::vector<std::pair<std::string,std::string> > GetNames() const;
+  std::vector<std::pair<std::string,std::string>> GetNames() const;
 
   ///Obtain the WtEntrance version
-  static const std::string GetVersion();
+  static std::string GetVersion() noexcept;
 
   ///Obtain the WtEntrance version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Get all the IP addresses their visits
-  const std::vector<std::pair<std::string,std::string> > GetVisits() const;
+  std::vector<std::pair<std::string,std::string> > GetVisits() const noexcept;
 
   ///Set the IP address its name
   void SetName(const IpAddress * const ip_address, const std::string& name) const;
@@ -80,26 +85,26 @@ struct WtEntrance
 
   ///Convert a file to a std::vector
   ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& filename);
+  //static const std::vector<std::string> FileToVector(const std::string& filename);
 
   ///Returns date in YYYY-MM-DD format
   //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
-  static const std::string GetDateIso8601();
+  static std::string GetDateIso8601() noexcept;
 
   ///Get the current time
   //From http://www.richelbilderbeek.nl/CppGetTime.htm
-  static const std::string GetTime();
+  static std::string GetTime() noexcept;
 
   ///Returns the current date and time as a YYYY_MM_DD_HH_MM_SS std::string,
   ///for example '2011_07_01_11_35_38'
   //From http://www.richelbilderbeek.nl/CppGetTimestamp.htm
-  static const std::string GetTimestamp();
+  static std::string GetTimestamp() noexcept;
 
   ///Split a std::string
   ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input,
-   const char seperator);
+   const char seperator) noexcept;
 };
 
 } //~namespace ribi

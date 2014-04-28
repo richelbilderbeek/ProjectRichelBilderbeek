@@ -184,35 +184,11 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
     assert(builder);
   }
 
-  #define ALSO_CREATE_OTHER_FILES_20140424
+  //#define ALSO_CREATE_OTHER_FILES_20140424
   #ifdef  ALSO_CREATE_OTHER_FILES_20140424
   CreateDefaultControlDict();
-  /*
-  {
-    std::ofstream f(ribi::foam::Filenames().GetFvSchemes().c_str());
-    ribi::foam::FvSchemesFile file;
-    f << file;
-  }
-
-  {
-    std::ofstream f(ribi::foam::Filenames().GetFvSolution().c_str());
-    ribi::foam::FvSolutionFile file;
-    f << file;
-  }
-  */
   CreateDefaultPressureField();
   CreateDefaultTemperatureField();
-  /*
-  {
-    std::ofstream f(ribi::foam::Filenames().GetThermophysicalProperties().c_str());
-    ribi::foam::ThermophysicalPropertiesFile file;
-    file.SetMixture("air 1 28.9 717 0 1.458e-6 110.4");
-    file.SetThermoType("ePsiThermo<pureMixture<sutherlandTransport<specieThermo<eConstThermo<perfectGas>>>>>");
-    f << file;
-
-  }
-  */
-
   CreateDefaultVelocityField();
 
   std::clog << std::endl;
@@ -318,6 +294,7 @@ std::function<ribi::foam::PatchFieldType(const std::string&)>
       if (patch_name == "back") return ribi::foam::PatchFieldType::zeroGradient;
       if (patch_name == "left") return ribi::foam::PatchFieldType::zeroGradient;
       if (patch_name == "right") return ribi::foam::PatchFieldType::zeroGradient;
+      //if (patch_name == "defaultFaces") return ribi::foam::PatchFieldType::wall;
       TRACE(patch_name);
       assert(!"CreateDefaultBoundaryToPatchFieldTypeFunction: unknown patch name");
       throw std::logic_error("CreateDefaultBoundaryToPatchFieldTypeFunction: unknown patch name");

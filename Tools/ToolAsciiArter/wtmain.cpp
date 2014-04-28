@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/program_options.hpp>
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/signals2.hpp>
 #include <Wt/WApplication>
 #include <Wt/WContainerWidget>
@@ -63,7 +63,7 @@ Wt::WApplication *createApplication(
 
 int main(int argc, char **argv)
 {
-  if (!ribi::fileio::IsRegularFile("RichelbilderbeekNlBackground.png"))
+  if (!ribi::fileio::FileIo().IsRegularFile("RichelbilderbeekNlBackground.png"))
   {
     QFile file(":/ToolAsciiArter/images/RichelbilderbeekNlBackground.png");
     file.copy("RichelbilderbeekNlBackground.png");
