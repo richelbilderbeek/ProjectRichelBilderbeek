@@ -92,9 +92,9 @@ struct Shape
 
   ///The rotation
   ///
-  ///The rotation is a value between 0.0 and 2.0 * M_PI,
-  ///in which  0.0 * M_PI is the equivalent to 12:00 o'clock
-  ///and which 0.5 * M_PI is the equivalent to  3:00 o'clock
+  ///The rotation is a value between 0.0 and 2.0 * pi,
+  ///in which  0.0 * pi is the equivalent to 12:00 o'clock
+  ///and which 0.5 * pi is the equivalent to  3:00 o'clock
   ///Values not in this range are accepted nonetheless
   double m_rotation;
 

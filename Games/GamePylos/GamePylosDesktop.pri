@@ -12,8 +12,6 @@ HEADERS  += \
     ../../Games/GamePylos/qtpylosmaindialog.h \
     ../../Games/GamePylos/qtpylosinstructionsdialog.h
 
-RESOURCES += \
-    ../../Games/GamePylos/GamePylos.qrc
 
 FORMS += \
     ../../Games/GamePylos/qtpyloswondialog.ui \

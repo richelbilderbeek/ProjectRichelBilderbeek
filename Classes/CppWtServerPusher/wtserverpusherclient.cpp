@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtServerPusherClient, client of WtServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,15 +16,21 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/CppWtServerPusherClient.htm
+//From http://www.richelbilderbeek.nl/CppWtServerPusher.htm
 //---------------------------------------------------------------------------
-#include <boost/bind.hpp>
-//---------------------------------------------------------------------------
-#include <Wt/WApplication>
-//---------------------------------------------------------------------------
-#include "wtserverpusher.h"
 #include "wtserverpusherclient.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/bind.hpp>
+
+#include <Wt/WApplication>
+
+#include "wtserverpusher.h"
+#pragma GCC diagnostic pop
+
 ribi::WtServerPusherClient::WtServerPusherClient()
 {
   Wt::WApplication::instance()->enableUpdates(true);
@@ -35,13 +41,13 @@ ribi::WtServerPusherClient::WtServerPusherClient()
   //Scott Meyers, Effective C++, item 9
   //OnServer();
 }
-//---------------------------------------------------------------------------
+
 ribi::WtServerPusherClient::~WtServerPusherClient()
 {
   Wt::WApplication::instance()->enableUpdates(false);
   WtServerPusher::GetInstance()->Disconnect(this);
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::WtServerPusherClient::GetVersion()
 {
   return "1.0";
@@ -49,14 +55,14 @@ const std::string ribi::WtServerPusherClient::GetVersion()
 //---------------------------------------------------------------------------
 const std::vector<std::string> ribi::WtServerPusherClient::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-07-27: version 1.0: initial version");
-  return v;
+  return {
+    "2011-07-27: version 1.0: initial version"
+  };
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtServerPusherClient::OnServer()
 {
   OnServerPush();
   Wt::WApplication::instance()->triggerUpdate();
 }
-//---------------------------------------------------------------------------
+

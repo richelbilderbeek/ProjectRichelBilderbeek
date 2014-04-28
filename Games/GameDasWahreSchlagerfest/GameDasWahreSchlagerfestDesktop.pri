@@ -16,5 +16,3 @@ FORMS += \
     ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmenudialog.ui \
     ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmaindialog.ui
 
-RESOURCES += \
-    ../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfest.qrc

@@ -1,0 +1,65 @@
+//---------------------------------------------------------------------------
+/*
+GTST, Game Theory Server
+Copyright (C) 2011-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectGtst.htm
+//---------------------------------------------------------------------------
+#include <cassert>
+#include <iostream>
+#include <stdexcept>
+
+#include <boost/weak_ptr.hpp>
+
+#include "gtstall_serverstates.h"
+#include "gtstgroupassigner.h"
+#include "gtstgroupfinished.h"
+#include "gtstgrouploggedin.h"
+#include "gtstgroupnotloggedin.h"
+#include "gtstgroups.h"
+#include "gtstlogfile.h"
+#include "gtstserver.h"
+#include "stopwatch.h"
+
+boost::shared_ptr<ribi::gtst::GroupAssigner> ribi::gtst::GroupAssigner::CreateAssigner(
+  const std::string& s)
+{
+  if (s == "?")
+  {
+    boost::shared_ptr<GroupAssigner> a(
+      new GroupAssignerDeterminedByServer(/*m_server*/));
+    return a;
+  }
+  try
+  {
+    std::stoi(s);
+  }
+  catch(std::exception&)
+  {
+    throw std::runtime_error("Invalid group assigner: must be either a number or a question mark");
+  }
+  boost::shared_ptr<GroupAssigner> a(
+    new GroupAssignerPredetermined(
+      std::stoi(s)));
+  return a;
+}
+
+ribi::gtst::GroupAssignerDeterminedByServer::GroupAssignerDeterminedByServer()
+  //const Server * const server)
+  //: m_server(server)
+{
+
+}

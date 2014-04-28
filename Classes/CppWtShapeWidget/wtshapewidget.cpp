@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtShapeWidget, Wt class for displaying a ShapeWidget
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,18 +20,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 #include <cmath>
-//---------------------------------------------------------------------------
+
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WColor>
 #include <Wt/WPainter>
 #include <Wt/WPolygonArea>
-//---------------------------------------------------------------------------
+
+#include "geometry.h"
 #include "shape.h"
 #include "shapewidget.h"
 #include "wtshapewidget.h"
 //#include "trace.h"
-//---------------------------------------------------------------------------
+
 ribi::WtShapeWidget::WtShapeWidget(
   boost::shared_ptr<ShapeWidget> widget)
   : m_widget(widget)
@@ -44,7 +46,7 @@ ribi::WtShapeWidget::WtShapeWidget(
 
   this->OnResize();
 }
-//---------------------------------------------------------------------------
+
 ///Create a deep copy of WtShapeWidget for use with Wt
 ribi::WtShapeWidget * ribi::WtShapeWidget::Clone() const
 {
@@ -54,7 +56,7 @@ ribi::WtShapeWidget * ribi::WtShapeWidget::Clone() const
   assert(*wtwidget == *this);
   return wtwidget;
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShapeWidget::DrawShape(
   Wt::WPainter& painter,
   const ShapeWidget * const widget)
@@ -62,13 +64,14 @@ void ribi::WtShapeWidget::DrawShape(
   assert(widget);
   DrawShape(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetShape());
+    Geometry().GetLeft(widget->GetGeometry()),
+    Geometry().GetTop(widget->GetGeometry()),
+    Geometry().GetWidth(widget->GetGeometry()),
+    Geometry().GetHeight(widget->GetGeometry()),
+    widget->GetShape()
+  );
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShapeWidget::DrawShape(
   Wt::WPainter& painter,
   const int left, const int top,
@@ -101,14 +104,14 @@ void ribi::WtShapeWidget::DrawShape(
     const int y1 = boost::numeric_cast<int>(
       midy + (std::sin(rotation) * midy));
     const int x2 = boost::numeric_cast<int>(
-      midx - (std::cos(rotation + M_PI) * midx));
+      midx - (std::cos(rotation + boost::math::constants::pi<double>()) * midx));
     const int y2 = boost::numeric_cast<int>(
-      midy + (std::sin(rotation + M_PI) * midy));
+      midy + (std::sin(rotation + boost::math::constants::pi<double>()) * midy));
     painter.drawLine(left+x1,top+y1,left+x2,top+y2);
     return;
   }
 
-  const double d_angle = 2.0 * M_PI / boost::numeric_cast<double>(n_corners);
+  const double d_angle = 2.0 * boost::math::constants::pi<double>() / boost::numeric_cast<double>(n_corners);
 
   std::vector<Wt::WPointF> polygon;
 
@@ -125,41 +128,45 @@ void ribi::WtShapeWidget::DrawShape(
   painter.drawPolygon(&(polygon[0]),n_corners);
 
 }
-//---------------------------------------------------------------------------
-const std::string ribi::WtShapeWidget::GetVersion()
+
+std::string ribi::WtShapeWidget::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtShapeWidget::GetVersionHistory()
+
+std::vector<std::string> ribi::WtShapeWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-07-15: Version 1.0: initial version");
-  v.push_back("2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget");
-  return v;
+  return {
+    "2011-07-15: Version 1.0: initial version",
+    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget"
+  };
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShapeWidget::OnResize()
 {
-  resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
+  resize(
+    Geometry().GetWidth(m_widget->GetGeometry()),
+    Geometry().GetHeight(m_widget->GetGeometry())
+  );
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShapeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   DrawShape(
     painter,
     0,0,width().toPixels(),height().toPixels(),
-    this->m_widget->GetShape());
+    this->m_widget->GetShape()
+  );
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtShapeWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
-//---------------------------------------------------------------------------
+
 bool ribi::operator==(const WtShapeWidget& lhs, const WtShapeWidget& rhs)
 {
   return *lhs.m_widget == *rhs.m_widget;
 }
-//---------------------------------------------------------------------------
+

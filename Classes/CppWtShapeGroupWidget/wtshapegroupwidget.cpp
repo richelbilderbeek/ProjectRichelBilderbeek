@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtShapeGroupWidget, Wt widget for displaying Shapes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,11 +22,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <numeric>
 
-#include <boost/foreach.hpp>
+
 //#include <boost/numeric/conversion/bounds.hpp>
 //#include <boost/bind.hpp>
 //#include <boost/lambda/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include <Wt/WBrush>
 #include <Wt/WEvent>
@@ -105,7 +106,7 @@ void ribi::WtShapeGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
       Rainbow(f_group,r,g,b);
       painter.setBrush(Wt::WBrush(Wt::WColor(r*255.0,g*255.0,b*255.0)));
     }
-    const double angle = 2.0 * M_PI * f_group;
+    const double angle = 2.0 * boost::math::constants::pi<double>() * f_group;
     const double group_mid_x = mid_x + (std::sin(angle) * 0.66 * ray_center);
     const double group_mid_y = mid_y - (std::cos(angle) * 0.66 * ray_center);
     //Draw the group ellipse
@@ -122,7 +123,7 @@ void ribi::WtShapeGroupWidget::paintEvent(Wt::WPaintDevice *paintDevice)
        = (n_members != 0
        ? static_cast<double>(member) / static_cast<double>(n_members)
        :  1.0);
-      const double angle = 2.0 * M_PI * f_member;
+      const double angle = 2.0 * boost::math::constants::pi<double>() * f_member;
       const double member_mid_x = group_mid_x + (std::sin(angle) * 0.66 * ray_group);
       const double member_mid_y = group_mid_y - (std::cos(angle) * 0.66 * ray_group);
       //Draw the member his/her Shape ellipse
@@ -145,11 +146,11 @@ void ribi::WtShapeGroupWidget::Rainbow(
 {
   const double f_r = std::max(0.0,
     (x < 0.5
-    ? std::cos(x * 1.5 * M_PI)
-    : -std::sin(x * 1.5 * M_PI)
+    ? std::cos(x * 1.5 * boost::math::constants::pi<double>())
+    : -std::sin(x * 1.5 * boost::math::constants::pi<double>())
     ) );
-  const double f_g = std::max(0.0, std::sin( x * 1.5 * M_PI ) );
-  const double f_b = std::max(0.0, -std::cos( x * 1.5 * M_PI ) );
+  const double f_g = std::max(0.0, std::sin( x * 1.5 * boost::math::constants::pi<double>() ) );
+  const double f_b = std::max(0.0, -std::cos( x * 1.5 * boost::math::constants::pi<double>() ) );
   const double max = std::max(f_r, std::max(f_g,f_b));
   assert(max!=0);
 

@@ -12,5 +12,3 @@ FORMS += \
     ../../Tools/ToolPicToCode/qtpictocodemaindialog.ui \
     ../../Tools/ToolPicToCode/qtpictocodemenudialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolPicToCode/ToolPicToCode.qrc

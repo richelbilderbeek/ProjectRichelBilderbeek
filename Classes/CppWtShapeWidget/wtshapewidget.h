@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 WtShapeWidget, Wt class for displaying a ShapeWidget
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,22 +20,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTSHAPEWIDGET_H
 #define WTSHAPEWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WPaintedWidget>
 #include <Wt/WPaintDevice>
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
 struct Shape;
 struct ShapeWidget;
-//---------------------------------------------------------------------------
+
 ///WtShapeWidget manages and displays a Shape
 struct WtShapeWidget : public Wt::WPaintedWidget
 {
@@ -77,14 +77,14 @@ private:
   void resize(const Wt::WLength& width, const Wt::WLength& height);
 
 public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 bool operator==(const WtShapeWidget& lhs, const WtShapeWidget& rhs);
 
 
 } //~namespace ribi
 
 #endif // QTSHAPEWIDGET_H
-//---------------------------------------------------------------------------
+

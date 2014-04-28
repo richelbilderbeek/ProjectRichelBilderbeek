@@ -270,7 +270,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
       =
       {
         //Duplication of tests, the ones I am most interested in now
-        ui->button_test_conceptedit,
 
         //Normal alphabetical order of tests
         ui->button_about,
@@ -288,7 +287,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
         ui->button_student,
         ui->button_test_arrowitems,
         ui->button_test_cluster,
-        ui->button_test_conceptedit,
         ui->button_test_conceptmap,
         ui->button_test_create_sub_concept_map,
         ui->button_test_conceptmaps,

@@ -22,12 +22,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <chrono>
 #include <numeric>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/bind.hpp>
 
 #include <Wt/WApplication>
 #include <Wt/WServer>
 
 #include "wttimedserverpusher.h"
+#pragma GCC diagnostic pop
 
 boost::scoped_ptr<ribi::WtTimedServerPusher> ribi::WtTimedServerPusher::m_instance;
 
