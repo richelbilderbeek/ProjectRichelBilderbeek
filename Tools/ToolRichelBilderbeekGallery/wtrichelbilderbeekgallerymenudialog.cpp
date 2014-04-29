@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekgallerymenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
-//#include "wtrichelbilderbeekgallerydialog.h"
+#include "wtrichelbilderbeekgallerydialog.h"
 #include "wtrichelbilderbeekgallerymenudialog.h"
 
 #include <QFile>
@@ -115,7 +115,7 @@ Wt::WWidget * ribi::WtRichelBilderbeekGalleryMenuDialog::CreateNewAboutDialog() 
 
 Wt::WWidget * ribi::WtRichelBilderbeekGalleryMenuDialog::CreateNewMainDialog() const
 {
-  ribi::GalleryMainDialog * const d = new ribi::GalleryMainDialog;
+  ribi::RichelBilderbeek::WtGalleryDialog * const d = new ribi::RichelBilderbeek::WtGalleryDialog;
   assert(d);
   return d;
 }

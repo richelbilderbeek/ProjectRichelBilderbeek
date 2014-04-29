@@ -20,7 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 
-//
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/signals2.hpp>
 
@@ -48,6 +51,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtserverpusher.h"
 #include "wtquestiondialog.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ParticipantDialogStateQuiz::ParticipantDialogStateQuiz(
   ParticipantDialog * const dialog,Server * const server)

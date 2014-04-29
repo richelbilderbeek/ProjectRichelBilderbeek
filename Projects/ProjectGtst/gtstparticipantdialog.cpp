@@ -20,6 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WApplication>
 //#include <Wt/WTimer>
 #include <Wt/WGroupBox>
@@ -45,6 +49,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #include "wtledwidget.h"
 #include "wtserverpusher.h"
+#pragma GCC diagnostic pop
 
 ///\note
 ///Do not make m_timer a child of this,

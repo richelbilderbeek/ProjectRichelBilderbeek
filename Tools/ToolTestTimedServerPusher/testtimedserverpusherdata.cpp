@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTimedServerPusher, tool to test WtTimedServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,15 +18,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTimedServerPusher.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include "testtimedserverpusherdata.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
 
-//---------------------------------------------------------------------------
 ribi::ToolTestTimedServerPusher::Data * ribi::ToolTestTimedServerPusher::Data::m_instance = 0;
-//---------------------------------------------------------------------------
+
 std::mutex ribi::ToolTestTimedServerPusher::Data::m_mutex;
-//---------------------------------------------------------------------------
+
 ribi::ToolTestTimedServerPusher::Data::Data()
   : m_time_start(std::time(0)),
   //m_s(std::chrono::system_clock::now()),
@@ -35,12 +38,12 @@ ribi::ToolTestTimedServerPusher::Data::Data()
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::ToolTestTimedServerPusher::Data::~Data()
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::ToolTestTimedServerPusher::Data * ribi::ToolTestTimedServerPusher::Data::GetInstance()
 {
   if (!m_instance)
@@ -54,7 +57,7 @@ ribi::ToolTestTimedServerPusher::Data * ribi::ToolTestTimedServerPusher::Data::G
   }
   return m_instance;
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::ToolTestTimedServerPusher::Data::GetData() const
 {
   std::lock_guard<std::mutex> lock(m_mutex);
@@ -69,4 +72,4 @@ const std::string ribi::ToolTestTimedServerPusher::Data::GetData() const
     + std::string(" requests ");
   return s;
 }
-//---------------------------------------------------------------------------
+

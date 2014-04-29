@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestTimedServerPusher, tool to test WtTimedServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+TimePoll, time polling server
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,30 +16,35 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestTimedServerPusher.htm
+//From http://www.richelbilderbeek.nl/ToolTimePoll.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WLabel>
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
-#include "testtimedserverpushermenudialog.h"
+
+#include "timepollmenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
-#include "testtimedserverpusherwtmaindialog.h"
-#include "testtimedserverpusherwtmenudialog.h"
+#include "wtserverpusher.h"
+#include "wtserverpusherclient.h"
 #include "wttimedserverpusher.h"
 #include "wttimedserverpusherclient.h"
-//---------------------------------------------------------------------------
+#include "wttimepollmaindialog.h"
+#include "wttimepollmenudialog.h"
+#pragma GCC diagnostic pop
 
-//---------------------------------------------------------------------------
-ribi::ToolTestTimedServerPusher::WtMenuDialog::WtMenuDialog()
+ribi::ToolTimePoll::WtTimePollMenuDialog::WtTimePollMenuDialog()
 {
- this->setContentAlignment(Wt::AlignCenter);
+  this->setContentAlignment(Wt::AlignCenter);
   {
-    Wt::WLabel * const title = new Wt::WLabel("TestTimedServerPusher");
+    Wt::WLabel * const title = new Wt::WLabel("TimePoll");
     title->setStyleClass("title");
     this->addWidget(title);
   }
@@ -74,38 +79,38 @@ ribi::ToolTestTimedServerPusher::WtMenuDialog::WtMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * ribi::ToolTestTimedServerPusher::WtMenuDialog::CreateNewAboutDialog()
+
+Wt::WWidget * ribi::ToolTimePoll::WtTimePollMenuDialog::CreateNewAboutDialog()
 {
-  About a = ToolTestTimedServerPusher::MenuDialog::GetAbout();
+  About a = TimePollMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
+  a.AddLibrary("WtServerPusher version: " + WtServerPusher::GetVersion());
+  a.AddLibrary("WtServerPusherClient version: " + WtServerPusherClient::GetVersion());
   a.AddLibrary("WtTimedServerPusher version: " + WtTimedServerPusher::GetVersion());
   a.AddLibrary("WtTimedServerPusherClient version: " + WtTimedServerPusherClient::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * ribi::ToolTestTimedServerPusher::WtMenuDialog::CreateNewMainDialog() const
+
+Wt::WWidget * ribi::ToolTimePoll::WtTimePollMenuDialog::CreateNewMainDialog() const
 {
-  WtMainDialog * const d = new WtMainDialog;
+  WtTimePollMainDialog * const d = new WtTimePollMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * ribi::ToolTestTimedServerPusher::WtMenuDialog::CreateNewWelcomeDialog() const
+
+Wt::WWidget * ribi::ToolTimePoll::WtTimePollMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
   dialog->addWidget(new Wt::WBreak);
-  new Wt::WLabel("Welcome to TestTimedServerPusher",dialog);
+  new Wt::WLabel("Welcome to TimePoll",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  new Wt::WLabel("TestTimedServerPusher demonstrates how to view the same changing info",dialog);
+  new Wt::WLabel("TimePoll demonstrates how to view the same changing info",dialog);
   new Wt::WBreak(dialog);
   new Wt::WLabel("from different browsers and/or computers",dialog);
-  new Wt::WBreak(dialog);
-  new Wt::WLabel("using the WtTimedServerPusher and WtTimedServerPusherClient classes",dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
+

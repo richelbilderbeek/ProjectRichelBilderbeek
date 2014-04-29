@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestServerPusher, tool to test WtServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,21 +18,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestServerPusher.htm
 //---------------------------------------------------------------------------
+#include "wttestserverpushermenudialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WLabel>
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "testserverpushermenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
-#include "testserverpusherwtmaindialog.h"
-#include "testserverpusherwtmenudialog.h"
+#include "wttestserverpushermaindialog.h"
 #include "wtserverpusher.h"
 #include "wtserverpusherclient.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::ToolTestServerPusher::WtMenuDialog::WtMenuDialog()
 {
  this->setContentAlignment(Wt::AlignCenter);
@@ -72,7 +78,7 @@ ribi::ToolTestServerPusher::WtMenuDialog::WtMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::ToolTestServerPusher::WtMenuDialog::CreateNewAboutDialog()
 {
   About a = MenuDialog::GetAbout();
@@ -83,14 +89,14 @@ Wt::WWidget * ribi::ToolTestServerPusher::WtMenuDialog::CreateNewAboutDialog()
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::ToolTestServerPusher::WtMenuDialog::CreateNewMainDialog() const
 {
   WtMainDialog * const d = new WtMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::ToolTestServerPusher::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -106,4 +112,4 @@ Wt::WWidget * ribi::ToolTestServerPusher::WtMenuDialog::CreateNewWelcomeDialog()
   new Wt::WLabel("using the WtServerPusher and WtServerPusherClient classes",dialog);
   return dialog;
 }
-//---------------------------------------------------------------------------
+

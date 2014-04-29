@@ -11,6 +11,3 @@ SOURCES += \
 FORMS += \
     ../../Tools/ToolTestShinyButton/qttestshinybuttonmenudialog.ui \
     ../../Tools/ToolTestShinyButton/qttestshinybuttonmaindialog.ui
-
-RESOURCES += \
-    ../../Tools/ToolTestShinyButton/ToolTestShinyButton.qrc

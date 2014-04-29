@@ -20,6 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 
@@ -39,6 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "gtstparticipantdialogstateassignpayoff.h"
 #include "gtstserver.h"
 #include "wtserverpusher.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ParticipantDialogStateAssignPayoff::ParticipantDialogStateAssignPayoff(
   ParticipantDialog * const dialog,

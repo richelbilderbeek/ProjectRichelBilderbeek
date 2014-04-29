@@ -21,6 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <fstream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WTable>
@@ -46,6 +50,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shapewidget.h"
 #include "wtserverpusher.h"
 #include "wtshapewidget.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ParticipantDialogStateViewResultsGroup::ParticipantDialogStateViewResultsGroup(
   ParticipantDialog * const dialog,Server * const server)

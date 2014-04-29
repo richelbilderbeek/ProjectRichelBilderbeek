@@ -28,6 +28,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <set>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/logic/tribool.hpp>
 #include <boost/weak_ptr.hpp>
@@ -41,6 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #include "gtstserver.h"
 #include "gtstvotingoption.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::Group::Group(Server * const server)
   : m_average_payoffs{},

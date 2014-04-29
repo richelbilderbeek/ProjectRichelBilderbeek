@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTimedServerPusher, tool to test WtTimedServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,37 +18,47 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTimedServerPusher.htm
 //---------------------------------------------------------------------------
-#include <boost/lexical_cast.hpp>
-#include <boost/numeric/conversion/cast.hpp>
+#ifndef WTTESTTIMEDSERVERPUSHERMAINDIALOG_H
+#define WTTESTTIMEDSERVERPUSHERMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WContainerWidget>
-#include <Wt/WText>
 
-#include "testtimedserverpusherdata.h"
-#include "testtimedserverpushermenudialog.h"
-#include "testtimedserverpusherwtmaindialog.h"
-#include "wttimedserverpusher.h"
-#include "wtaboutdialog.h"
+#include "wttimedserverpusherclient.h"
+#pragma GCC diagnostic pop
 
-ribi::ToolTestTimedServerPusher::WtMainDialog::WtMainDialog()
-  : ui{}
+namespace Wt
 {
-  this->clear();
-  this->setContentAlignment(Wt::AlignCenter);
-  ui.m_text= new Wt::WText(this);
-  OnTimedServerPush();
+  struct WLineEdit;
 }
 
-void ribi::ToolTestTimedServerPusher::WtMainDialog::OnTimedServerPush()
-{
-  ui.m_text->setText(ToolTestTimedServerPusher::Data::GetInstance()->GetData());
+namespace ribi {
+namespace ToolTestTimedServerPusher {
 
-  if (std::rand() % 10)
+///TestTimedServerPusher its main dialog
+struct WtMainDialog : public Wt::WContainerWidget, WtTimedServerPusherClient
+{
+  WtMainDialog();
+
+  private:
+  ///The user interface
+  struct Ui
   {
-    const int new_interval = std::rand() % 5000;
-    WtTimedServerPusher::GetInstance()->SetTime(new_interval);
-    std::clog << "new_interval: " << new_interval << '\n';
-  }
-}
+    Ui() : m_text(0) {}
+    Wt::WText * m_text;
+  } ui;
 
 
+  ///The server updates the page
+  void OnTimedServerPush();
+};
+
+} //~namespace ToolTestTimedServerPusher
+
+} //~namespace ribi
+
+
+#endif // WTTESTTIMEDSERVERPUSHERMAINDIALOG_H

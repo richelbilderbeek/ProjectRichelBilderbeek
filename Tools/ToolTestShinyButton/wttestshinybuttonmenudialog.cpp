@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShinyButton, tool to test the ShinyButton class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,12 +20,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "wttestshinybuttonmenudialog.h"
 
 #include <cassert>
 
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
+//#include <boost/filesystem.hpp>
 
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
@@ -38,6 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
+#include "fileio.h"
 #include "rainbow.h"
 #include "testshinybuttonmenudialog.h"
 #include "shinybutton.h"
@@ -56,18 +58,19 @@ ribi::WtTestShinyButtonMenuDialog::WtTestShinyButtonMenuDialog()
     std::vector<std::string> image_names;
     image_names.push_back("ToolTestShinyButtonWelcome.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const std::string& filename: image_names)
     {
-      if (!(QFile::exists(filename.c_str())))
+
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!QFile::exists(filename.c_str()))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
 
@@ -111,7 +114,7 @@ ribi::WtTestShinyButtonMenuDialog::WtTestShinyButtonMenuDialog()
 
 Wt::WWidget * ribi::WtTestShinyButtonMenuDialog::CreateNewAboutDialog() const
 {
-  About a = TestShinyButtonMenuDialog::GetAbout();
+  About a = TestShinyButtonMenuDialog().GetAbout();
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtDialWidget version: " + WtDialWidget::GetVersion());

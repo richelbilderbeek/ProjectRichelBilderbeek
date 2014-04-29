@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestServerPusher, tool to test WtServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,24 +19,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolTestServerPusher.htm
 //---------------------------------------------------------------------------
 #include "testserverpusherdata.h"
-//---------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------
+
+
 ribi::ToolTestServerPusher::Data * ribi::ToolTestServerPusher::Data::m_instance = 0;
-//---------------------------------------------------------------------------
+
 std::mutex ribi::ToolTestServerPusher::Data::m_mutex;
-//---------------------------------------------------------------------------
+
 ribi::ToolTestServerPusher::Data::Data()
   : m_s("TestServerPusher")
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::ToolTestServerPusher::Data::~Data()
 {
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::ToolTestServerPusher::Data::SetData(const std::string& s)
 {
   if (s != m_s)
@@ -49,7 +49,7 @@ void ribi::ToolTestServerPusher::Data::SetData(const std::string& s)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 ribi::ToolTestServerPusher::Data * ribi::ToolTestServerPusher::Data::GetInstance()
 {
   if (!m_instance)
@@ -63,10 +63,10 @@ ribi::ToolTestServerPusher::Data * ribi::ToolTestServerPusher::Data::GetInstance
   }
   return m_instance;
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::ToolTestServerPusher::Data::GetData() const
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   return m_s;
 }
-//---------------------------------------------------------------------------
+

@@ -20,10 +20,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 
 #include "gtststate.h"
 #include "gtsttest.h"
+#pragma GCC diagnostic pop
 
 ///TestStates test State
 void ribi::gtst::Test::TestState()

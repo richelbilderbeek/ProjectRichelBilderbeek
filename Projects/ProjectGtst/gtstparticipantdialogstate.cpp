@@ -24,6 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/filesystem.hpp>
 
 #include "gtstall_participantdialogstates.h"
@@ -42,6 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "gtstserver.h"
 #include "trace.h"
 #include "wtserverpusher.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ParticipantDialogState::ParticipantDialogState(
   ParticipantDialog * const dialog,

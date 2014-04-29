@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TimePoll, time polling server
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,12 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TIMEPOLLWTMENUDIALOG_H
 #define TIMEPOLLWTMENUDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WContainerWidget>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace ToolTimePoll {
-//---------------------------------------------------------------------------
+
 struct WtTimePollMenuDialog : public Wt::WContainerWidget
 {
   WtTimePollMenuDialog();
@@ -35,7 +40,7 @@ struct WtTimePollMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewMainDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
-//---------------------------------------------------------------------------
+
 } //~namespace ToolTimePoll
 
 } //~namespace ribi

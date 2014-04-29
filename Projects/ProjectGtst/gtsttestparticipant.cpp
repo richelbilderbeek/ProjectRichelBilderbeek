@@ -21,9 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <fstream>
 #include <functional>
-//#include <iostream>
 
- 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 
 #include "gtstall_groups.h"
@@ -44,6 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shapewidget.h"
 #include "gtstvotingoption.h"
 #include "wtshapewidget.h"
+#pragma GCC diagnostic pop
 
 void ribi::gtst::Test::TestParticipant()
 {

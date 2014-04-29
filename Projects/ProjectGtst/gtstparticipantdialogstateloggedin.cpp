@@ -20,6 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WBreak>
 #include <Wt/WCheckBox>
 #include <Wt/WLabel>
@@ -38,6 +42,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "gtstparticipantdialogstateloggedin.h"
 #include "gtstparticipantstate.h"
 #include "gtstparticipantstateloggedin.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ParticipantDialogStateLoggedIn::ParticipantDialogStateLoggedIn(
   ParticipantDialog * const dialog,Server * const server)

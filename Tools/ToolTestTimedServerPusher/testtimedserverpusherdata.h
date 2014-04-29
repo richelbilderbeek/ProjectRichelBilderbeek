@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTimedServerPusher, tool to test WtTimedServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,15 +20,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TOOLTESTTIMEDSERVERPUSHERDATA_H
 #define TOOLTESTTIMEDSERVERPUSHERDATA_H
-//---------------------------------------------------------------------------
+
 #include <chrono>
 #include <mutex>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace ToolTestTimedServerPusher {
-//---------------------------------------------------------------------------
+
 ///Data is a Singleton
 struct Data
 {
@@ -60,7 +65,7 @@ struct Data
   mutable int m_requested;
 };
 
-//---------------------------------------------------------------------------
+
 } //~namespace ToolTestTimedServerPusher
 } //~namespace ribi
 

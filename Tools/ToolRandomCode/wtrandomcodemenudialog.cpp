@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
+
 
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
@@ -37,6 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WMenu>
 
 #include "about.h"
+#include "fileio.h"
 #include "randomcodemenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
@@ -94,19 +95,20 @@ void ribi::WtRandomCodeMenuDialog::CheckResources()
   std::vector<std::string> image_names;
   image_names.push_back("ToolRandomCodeWelcome.png");
 
-  BOOST_FOREACH(const std::string& filename,image_names)
+  for(const std::string& filename: image_names)
   {
-    if (!(QFile::exists(filename.c_str())))
+
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       QFile f( (std::string(":/images/") + filename).c_str() );
       f.copy(filename.c_str());
     }
-    if (!QFile::exists(filename.c_str()))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       const std::string s = "File not found: " + filename;
       throw std::logic_error(s.c_str());
     }
-    assert(QFile::exists(filename.c_str()));
+    assert(fileio::FileIo().IsRegularFile(filename));
   }
 }
 

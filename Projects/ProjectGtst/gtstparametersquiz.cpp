@@ -24,6 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 // 
@@ -31,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtstparametersquiz.h"
 #include "gtstvotingoption.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ParametersQuiz::ParametersQuiz()
   : m_duration(10),

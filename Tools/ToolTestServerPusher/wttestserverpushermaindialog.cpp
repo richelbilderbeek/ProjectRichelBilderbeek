@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestServerPusher, tool to test WtServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,20 +18,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestServerPusher.htm
 //---------------------------------------------------------------------------
+#include "wttestserverpushermaindialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 #include <Wt/WLineEdit>
-//---------------------------------------------------------------------------
+
 #include "testserverpusherdata.h"
 #include "testserverpushermenudialog.h"
-#include "testserverpusherwtmaindialog.h"
 #include "wtserverpusher.h"
 #include "wtaboutdialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
 
-//---------------------------------------------------------------------------
 ribi::ToolTestServerPusher::WtMainDialog::WtMainDialog()
   : ui{}
 {
@@ -42,7 +46,7 @@ ribi::ToolTestServerPusher::WtMainDialog::WtMainDialog()
   ui.m_edit->setMinimumSize(400,Wt::WLength::Auto);
   OnServerPush();
 }
-//---------------------------------------------------------------------------
+
 void ribi::ToolTestServerPusher::WtMainDialog::OnEditChanged()
 {
   const std::string s = ui.m_edit->text().toUTF8();
@@ -53,9 +57,9 @@ void ribi::ToolTestServerPusher::WtMainDialog::OnEditChanged()
     WtServerPusher::GetInstance()->Post();
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::ToolTestServerPusher::WtMainDialog::OnServerPush()
 {
   ui.m_edit->setText(ToolTestServerPusher::Data::GetInstance()->GetData());
 }
-//---------------------------------------------------------------------------
+

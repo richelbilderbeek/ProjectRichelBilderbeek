@@ -339,7 +339,7 @@ const ribi::About ribi::gtst::MenuDialog::GetAbout()
     "GTST",
     "game theory experiment server",
     "the 1st of September 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ProjectGtst.htm",
     GetVersion(),
     GetVersionHistory());

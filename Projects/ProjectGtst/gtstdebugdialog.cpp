@@ -21,6 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wcomment"
 #include <Wt/WBreak>
 #include <Wt/WFileUpload>
 #include <Wt/WGroupBox>
@@ -38,6 +43,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "gtstserver.h"
 #include "stopwatch.h"
 #include "wttimedserverpusher.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
 ribi::gtst::DebugDialog::DebugDialog(Server * const server)
   : m_dialogs{},

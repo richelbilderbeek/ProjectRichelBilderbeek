@@ -20,6 +20,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <algorithm>
 #include <cassert>
 #include <iterator>
@@ -27,7 +29,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <vector>
 
-#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -64,4 +65,3 @@ ribi::WtSimMysteryMachineMainDialog::WtSimMysteryMachineMainDialog()
   setContentAlignment(Wt::AlignCenter);
   addWidget(ui.m_machine);
 }
-

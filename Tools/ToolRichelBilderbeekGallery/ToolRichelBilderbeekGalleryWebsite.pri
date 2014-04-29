@@ -1,4 +1,5 @@
 include(../../Tools/ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryConsole.pri)
+
 SOURCES += \
     ../../Tools/ToolRichelBilderbeekGallery/wtrichelbilderbeekgallerymenudialog.cpp
 

@@ -22,6 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <numeric>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "gtstchatshapefactory.h"
@@ -46,6 +50,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shapewidget.h"
 #include "gtststate.h"
 #include "wtshapewidget.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::Participant::Participant(
   boost::shared_ptr<GroupAssigner> group_assigner,

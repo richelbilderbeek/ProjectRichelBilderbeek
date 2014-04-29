@@ -20,6 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
@@ -36,7 +37,7 @@ struct WtApplication : public Wt::WApplication
   {
     this->setTitle("RichelBilderbeekGallery");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new WtRichelBilderbeekGalleryMenuDialog);
+    root()->addWidget(new ribi::WtRichelBilderbeekGalleryMenuDialog);
   }
 };
 
@@ -49,8 +50,8 @@ Wt::WApplication *createApplication(
 int main(int argc, char **argv)
 {
   START_TRACE();
-  WtAutoConfig::SaveDefaultStylesheet();
-  WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
   return a.Run();
 }
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestServerPusher, tool to test WtServerPusher
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,25 +18,48 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestServerPusher.htm
 //---------------------------------------------------------------------------
-#ifndef WTTESTSERVERPUSHERMENUDIALOG_H
-#define WTTESTSERVERPUSHERMENUDIALOG_H
-//---------------------------------------------------------------------------
+#ifndef WTTESTSERVERPUSHERMAINDIALOG_H
+#define WTTESTSERVERPUSHERMAINDIALOG_H
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
+#include "wtserverpusherclient.h"
+#pragma GCC diagnostic pop
+
+namespace Wt
+{
+  struct WLineEdit;
+}
+
 namespace ribi {
 namespace ToolTestServerPusher {
-//---------------------------------------------------------------------------
-struct WtMenuDialog : public Wt::WContainerWidget
+
+///TestServerPusher its main dialog
+struct WtMainDialog : public Wt::WContainerWidget, WtServerPusherClient
 {
-  WtMenuDialog();
+  WtMainDialog();
+
   private:
-  void CheckResources();
-  Wt::WWidget * CreateNewAboutDialog();
-  Wt::WWidget * CreateNewMainDialog() const;
-  Wt::WWidget * CreateNewWelcomeDialog() const;
+  ///The user interface
+  struct Ui
+  {
+    Ui() : m_edit(0) {}
+    Wt::WLineEdit * m_edit;
+  } ui;
+
+  ///The user changes the text in the Wt::WLineEdit
+  void OnEditChanged();
+
+  ///The server updates the page
+  void OnServerPush();
 };
-//---------------------------------------------------------------------------
+
 } //~namespace ToolTestServerPusher
 } //~namespace ribi
-//---------------------------------------------------------------------------
-#endif // WTTESTSERVERPUSHERMENUDIALOG_H
+
+
+#endif // WTTESTSERVERPUSHERMAINDIALOG_H

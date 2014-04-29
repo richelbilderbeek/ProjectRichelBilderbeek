@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 GameConnectThree, connect-three game
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,6 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef WTCONNECTTHREEMENUDIALOG_H
 #define WTCONNECTTHREEMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
 
@@ -28,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthreeresources.h"
 #include "connectthreefwd.h"
+#pragma GCC diagnostic pop
 
 namespace Wt
 {

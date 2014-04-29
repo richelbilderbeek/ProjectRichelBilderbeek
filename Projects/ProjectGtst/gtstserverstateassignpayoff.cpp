@@ -21,8 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <map>
 
-//#include <boost/bind.hpp>
-//
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "gtstadministrator.h"
@@ -42,6 +44,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "gtstserver.h"
 #include "trace.h"
 #include "gtstvotingoption.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ServerStateAssignPayoff::ServerStateAssignPayoff(
   Server * const server,

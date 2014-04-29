@@ -22,6 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
 
 #include <boost/lambda/bind.hpp>
@@ -45,6 +49,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "gtstvote.h"
 #include "gtstvotingoption.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ServerStateViewResultsVoting::ServerStateViewResultsVoting(
   Server * const server, const int period, const int cycle,

@@ -22,6 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/weak_ptr.hpp>
 
 #include "gtstall_serverstates.h"
@@ -33,6 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "gtstlogfile.h"
 #include "gtstserver.h"
 #include "stopwatch.h"
+#pragma GCC diagnostic pop
 
 boost::shared_ptr<ribi::gtst::GroupAssigner> ribi::gtst::GroupAssigner::CreateAssigner(
   const std::string& s)

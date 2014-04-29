@@ -24,10 +24,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "gtstparametersvoting.h"
 #include "gtstvotingoption.h"
+#pragma GCC diagnostic pop
 
 ribi::gtst::ParametersVoting::ParametersVoting()
   : m_duration(10),
