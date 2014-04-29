@@ -148,6 +148,7 @@ int main(int, char* argv[])
     PROFILER_OUTPUT("shiny_output.txt");
     if (show_mesh)
     {
+      assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));
       std::stringstream s;
       s
         << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "

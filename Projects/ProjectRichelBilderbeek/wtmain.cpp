@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
 
+#include "fileio.h"
 #include "ipaddress.h"
 #include "trace.h"
 #include "wtautoconfig.h"
@@ -64,7 +65,8 @@ Wt::WApplication *createApplication(
 int main(int argc, char **argv)
 {
   START_TRACE();
-  ribi::WtSelectFileDialog::SetPath(boost::filesystem::path(argv[0]).parent_path().string());
+
+  ribi::WtSelectFileDialog::SetPath(ribi::fileio::FileIo().GetPath(argv[0]));
   ribi::WtAutoConfig::SaveDefaultStylesheet();
   ribi::WtAutoConfig a(argc,argv,createApplication);
   return a.Run();

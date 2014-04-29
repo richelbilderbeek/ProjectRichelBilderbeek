@@ -1,9 +1,10 @@
 include(../../DesktopApplication.pri)
 
-include(../../Libraries/Boost.pri)
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
 
-include(../../Libraries/GeneralDesktop.pri)
+include(../../Libraries/GeneralWeb.pri)
 
-include(GameAminoAcidFighterDesktop.pri)
+include(GameAminoAcidFighterWebsite.pri)
 
-SOURCES += qtmain.cpp
+SOURCES += wtmain.cpp
