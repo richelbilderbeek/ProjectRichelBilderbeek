@@ -48,10 +48,10 @@ struct WtTimedServerPusher
   static WtTimedServerPusher * GetInstance();
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///\brief
   ///Set the time (in milliseconds) WtTimedServerPusherClient::UpdatePage is to be called

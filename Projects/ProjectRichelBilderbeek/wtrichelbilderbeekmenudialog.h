@@ -87,7 +87,7 @@ struct WtMenuDialog : public Wt::WContainerWidget
 
 
   ///Collect all the submenu items
-  const std::vector<Item_t> CollectSubMenuItems() const;
+  std::vector<Item_t> CollectSubMenuItems() const;
 
   ///Create the 'About' submenu dialog
   Wt::WWidget * CreateNewAboutDialog();
@@ -150,12 +150,12 @@ struct WtMenuDialog : public Wt::WContainerWidget
   void OnMainItemClicked(const ShinyButtonWidget * const widget);
   void OnSubItemClicked(const ShinyButtonWidget * const widget);
 
-  const std::vector<Item_t> CreateAboutMenuItems() const;
-  const std::vector<Item_t> CreateClassesMenuItems() const;
-  const std::vector<Item_t> CreateGamesMenuItems() const;
-  const std::vector<Item_t> CreateMainMenuItems() const;
-  const std::vector<Item_t> CreateProjectsMenuItems() const;
-  const std::vector<Item_t> CreateToolsMenuItems() const;
+  std::vector<Item_t> CreateAboutMenuItems() const;
+  std::vector<Item_t> CreateClassesMenuItems() const;
+  std::vector<Item_t> CreateGamesMenuItems() const;
+  std::vector<Item_t> CreateMainMenuItems() const;
+  std::vector<Item_t> CreateProjectsMenuItems() const;
+  std::vector<Item_t> CreateToolsMenuItems() const;
 };
 
 } //~namespace RichelBilderbeek

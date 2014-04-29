@@ -180,12 +180,12 @@ void ribi::WtLedWidget::DrawLed(
   );
 }
 
-const std::string ribi::WtLedWidget::GetVersion()
+std::string ribi::WtLedWidget::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtLedWidget::GetVersionHistory()
+std::vector<std::string> ribi::WtLedWidget::GetVersionHistory()
 {
   return {
     "2011-01-06: version 1.0: initial version",

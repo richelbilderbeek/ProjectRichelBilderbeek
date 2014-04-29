@@ -44,12 +44,12 @@ ribi::WtAutoConfig::WtAutoConfig(
 
 }
 
-const std::string ribi::WtAutoConfig::GetVersion()
+std::string ribi::WtAutoConfig::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtAutoConfig::GetVersionHistory()
+std::vector<std::string> ribi::WtAutoConfig::GetVersionHistory()
 {
   return {
     "2011-04-16: version 1.0: initial version",
@@ -110,7 +110,7 @@ int ribi::WtAutoConfig::Run()
   return WRun(w.size(), &w[0], m_function);
 }
 
-const std::vector<std::string> ribi::WtAutoConfig::CreateDefaultStylesheet()
+std::vector<std::string> ribi::WtAutoConfig::CreateDefaultStylesheet()
 {
   std::vector<std::string> v;
 

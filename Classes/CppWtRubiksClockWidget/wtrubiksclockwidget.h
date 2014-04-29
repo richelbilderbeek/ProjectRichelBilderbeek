@@ -60,10 +60,10 @@ struct WtClockWidget : public Wt::WPaintedWidget
   ClockWidget * GetWidget() { return m_widget.get(); }
 
   ///Obtain the WtClockWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the WtClockWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///\brief
   ///Draw the Clock

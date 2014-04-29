@@ -160,12 +160,12 @@ void ribi::ruco::WtClockWidget::DrawClock(
   );
 }
 
-const std::string ribi::ruco::WtClockWidget::GetVersion()
+std::string ribi::ruco::WtClockWidget::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::ruco::WtClockWidget::GetVersionHistory()
+std::vector<std::string> ribi::ruco::WtClockWidget::GetVersionHistory()
 {
   return {
     "2011-09-01: version 1.0: initial version",

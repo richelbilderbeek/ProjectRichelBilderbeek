@@ -43,8 +43,8 @@ struct WtShapeGroupWidget : public Wt::WPaintedWidget
 
   void SetShapes(const std::vector<std::vector<const Shape*> >& v);
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
 
   protected:
   void paintEvent(Wt::WPaintDevice *paintDevice);

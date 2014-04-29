@@ -58,7 +58,7 @@ struct WtDialog : public Wt::WContainerWidget
 
 
   ///Read the text from a Wt::WTextArea and convert it to std::vector<std::string>
-  static const std::vector<std::string> AreaToVector(const Wt::WTextArea * const area);
+  static std::vector<std::string> AreaToVector(const Wt::WTextArea * const area);
 
   ///Display the HTML code as web page and plain text
   void Display(const std::vector<std::string>& v);

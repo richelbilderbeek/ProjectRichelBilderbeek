@@ -126,12 +126,12 @@ void ribi::WtToggleButtonWidget::DrawToggleButton(
   );
 }
 
-const std::string ribi::WtToggleButtonWidget::GetVersion()
+std::string ribi::WtToggleButtonWidget::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtToggleButtonWidget::GetVersionHistory()
+std::vector<std::string> ribi::WtToggleButtonWidget::GetVersionHistory()
 {
   return {
     "2011-06-16: version 1.0: initial version",

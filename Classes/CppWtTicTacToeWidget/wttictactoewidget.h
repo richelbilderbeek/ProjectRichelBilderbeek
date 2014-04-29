@@ -45,8 +45,8 @@ struct WtTicTacToeWidget : public Wt::WPaintedWidget
   boost::signals2::signal<void ()> m_signal_has_winner;
   boost::signals2::signal<void ()> m_signal_state_changed;
   tictactoe::Winner GetWinner() const noexcept;
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
   void Restart();
   protected:
   void paintEvent(Wt::WPaintDevice *paintDevice);

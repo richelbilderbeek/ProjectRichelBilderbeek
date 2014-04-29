@@ -33,10 +33,10 @@ struct WtServerPusherClient
   virtual ~WtServerPusherClient();
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///OnServerPush is called when the WtServerPusher is posted to
   virtual void OnServerPush() = 0;

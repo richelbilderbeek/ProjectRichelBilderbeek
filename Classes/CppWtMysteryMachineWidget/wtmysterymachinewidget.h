@@ -62,10 +62,10 @@ struct WtMysteryMachineWidget : public Wt::WPaintedWidget
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
   ///Obtain the WtMysteryMachineWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the WtMysteryMachineWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   protected:
   ///Paint the WtMysteryMachineWidget

@@ -165,7 +165,7 @@ ribi::c2h::WtDialog::WtDialog()
     this,&WtDialog::on_edit_source_textChanged);
 }
 
-const std::vector<std::string> ribi::c2h::WtDialog::AreaToVector(const Wt::WTextArea * const area)
+std::vector<std::string> ribi::c2h::WtDialog::AreaToVector(const Wt::WTextArea * const area)
 {
   assert(area);
   const std::string input = area->text().toUTF8();

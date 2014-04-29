@@ -66,8 +66,8 @@ struct WtDialWidget : public Wt::WPaintedWidget
     Wt::WPainter& painter,
     const DialWidget * const widget);
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
 
   protected:
   void paintEvent(Wt::WPaintDevice *paintDevice);

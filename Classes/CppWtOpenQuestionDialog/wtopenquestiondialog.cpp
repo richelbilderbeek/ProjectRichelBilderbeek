@@ -68,22 +68,22 @@ ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
 }
 #endif
 
-const boost::shared_ptr<const ribi::QuestionDialog> ribi::WtOpenQuestionDialog::GetDialog() const noexcept
+boost::shared_ptr<const ribi::QuestionDialog> ribi::WtOpenQuestionDialog::GetDialog() const noexcept
 {
   return m_dialog;
 }
 
-const boost::shared_ptr<const ribi::OpenQuestionDialog> ribi::WtOpenQuestionDialog::GetOpenQuestionDialog() const noexcept
+boost::shared_ptr<const ribi::OpenQuestionDialog> ribi::WtOpenQuestionDialog::GetOpenQuestionDialog() const noexcept
 {
   return m_dialog;
 }
 
-const std::string ribi::WtOpenQuestionDialog::GetVersion()
+std::string ribi::WtOpenQuestionDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtOpenQuestionDialog::GetVersionHistory()
+std::vector<std::string> ribi::WtOpenQuestionDialog::GetVersionHistory()
 {
   return {
     "2011-06-29: version 1.0: initial version",

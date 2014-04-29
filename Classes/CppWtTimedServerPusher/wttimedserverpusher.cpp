@@ -85,12 +85,12 @@ ribi::WtTimedServerPusher * ribi::WtTimedServerPusher::GetInstance()
   return m_instance.get();
 }
 
-const std::string ribi::WtTimedServerPusher::GetVersion()
+std::string ribi::WtTimedServerPusher::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WtTimedServerPusher::GetVersionHistory()
+std::vector<std::string> ribi::WtTimedServerPusher::GetVersionHistory()
 {
   return {
     "2011-08-05: version 1.0: initial version"

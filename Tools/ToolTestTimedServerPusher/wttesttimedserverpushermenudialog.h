@@ -20,12 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTTIMEDSERVERPUSHERMENUDIALOG_H
 #define WTTESTTIMEDSERVERPUSHERMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 
 namespace ribi {
 namespace ToolTestTimedServerPusher {
-//---------------------------------------------------------------------------
+
 struct WtMenuDialog : public Wt::WContainerWidget
 {
   WtMenuDialog();
@@ -35,7 +35,7 @@ struct WtMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewMainDialog() const;
   Wt::WWidget * CreateNewWelcomeDialog() const;
 };
-//---------------------------------------------------------------------------
+
 } //~namespace ToolTestTimedServerPusher
 
 } //~namespace ribi

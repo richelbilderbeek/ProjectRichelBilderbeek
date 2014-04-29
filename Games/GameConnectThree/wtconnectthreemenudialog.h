@@ -62,7 +62,7 @@ struct WtConnectThreeMenuDialog : public Wt::WContainerWidget
   WtConnectThreeGameDialog * CreateNewGameDialog();
   Wt::WWidget * CreateNewWelcomeDialog() const;
   Wt::WWidget * CreateNewSelectPlayersDialog();
-  static const boost::shared_ptr<const ConnectThreeResources> CreateResources();
+  static boost::shared_ptr<const ConnectThreeResources> CreateResources();
   void OnMenuItemChanged();
   void OnSelectClicked();
   public:

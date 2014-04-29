@@ -55,12 +55,12 @@ int ribi::WtTicTacToeWidget::GetHeight() const
   return 300.0;
 }
 
-const std::string ribi::WtTicTacToeWidget::GetVersion()
+std::string ribi::WtTicTacToeWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WtTicTacToeWidget::GetVersionHistory()
+std::vector<std::string> ribi::WtTicTacToeWidget::GetVersionHistory()
 {
   return {
     "2011-01-06: version 1.0: initial version"

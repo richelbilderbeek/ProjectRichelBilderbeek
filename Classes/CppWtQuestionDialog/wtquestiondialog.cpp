@@ -27,12 +27,12 @@ ribi::WtQuestionDialog::WtQuestionDialog()
 
 }
 
-const std::string ribi::WtQuestionDialog::GetVersion()
+std::string ribi::WtQuestionDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WtQuestionDialog::GetVersionHistory()
+std::vector<std::string> ribi::WtQuestionDialog::GetVersionHistory()
 {
   return {
     "2011-06-30: version 1.0: initial version"

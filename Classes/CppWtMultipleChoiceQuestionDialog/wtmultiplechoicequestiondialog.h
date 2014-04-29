@@ -43,15 +43,15 @@ struct WtMultipleChoiceQuestionDialog : public WtQuestionDialog
 
   explicit WtMultipleChoiceQuestionDialog(const boost::shared_ptr<MultipleChoiceQuestionDialog>& dialog);
 
-  const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
-  const boost::shared_ptr<const MultipleChoiceQuestionDialog> GetMultipleChoiceQuestionDialog() const noexcept;
+  boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
+  boost::shared_ptr<const MultipleChoiceQuestionDialog> GetMultipleChoiceQuestionDialog() const noexcept;
 
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Sets the selected radio button index
   void SetSelectedRadioButton(const int index);

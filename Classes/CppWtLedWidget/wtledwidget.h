@@ -65,8 +65,8 @@ struct WtLedWidget : public Wt::WPaintedWidget
   LedWidget * GetWidget() { return m_widget.get(); }
 
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
 
   protected:
   void paintEvent(Wt::WPaintDevice *paintDevice);

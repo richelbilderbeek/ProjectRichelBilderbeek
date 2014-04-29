@@ -65,8 +65,8 @@ struct WtConnectThreeWidget : public Wt::WPaintedWidget
   void DoComputerTurn();
   Player GetActivePlayer() const;
   const std::bitset<3>& GetIsPlayerHuman() const;
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
   Winner GetWinner() const;
   bool IsComputerTurn() const;
   void Restart();

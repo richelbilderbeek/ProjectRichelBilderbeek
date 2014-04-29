@@ -48,12 +48,12 @@ ribi::WtServerPusherClient::~WtServerPusherClient()
   WtServerPusher::GetInstance()->Disconnect(this);
 }
 
-const std::string ribi::WtServerPusherClient::GetVersion()
+std::string ribi::WtServerPusherClient::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtServerPusherClient::GetVersionHistory()
+
+std::vector<std::string> ribi::WtServerPusherClient::GetVersionHistory()
 {
   return {
     "2011-07-27: version 1.0: initial version"

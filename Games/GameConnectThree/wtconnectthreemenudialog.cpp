@@ -173,7 +173,7 @@ Wt::WWidget * ribi::con3::WtConnectThreeMenuDialog::CreateNewWelcomeDialog() con
   return dialog;
 }
 
-const boost::shared_ptr<const ribi::con3::ConnectThreeResources> ribi::con3::WtConnectThreeMenuDialog::CreateResources()
+boost::shared_ptr<const ribi::con3::ConnectThreeResources> ribi::con3::WtConnectThreeMenuDialog::CreateResources()
 {
   boost::shared_ptr<const ConnectThreeResources> r {
     new QtConnectThreeResources()

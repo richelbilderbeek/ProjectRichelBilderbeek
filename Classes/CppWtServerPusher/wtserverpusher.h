@@ -55,10 +55,10 @@ struct WtServerPusher
   static WtServerPusher * GetInstance();
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Post calls all WtServerPusherClients' supplied functions
   void Post();

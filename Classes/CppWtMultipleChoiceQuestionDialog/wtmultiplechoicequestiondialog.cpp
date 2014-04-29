@@ -55,22 +55,22 @@ ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   Show();
 }
 
-const boost::shared_ptr<const ribi::QuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetDialog() const noexcept
+boost::shared_ptr<const ribi::QuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetDialog() const noexcept
 {
   return m_dialog;
 }
 
-const boost::shared_ptr<const ribi::MultipleChoiceQuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetMultipleChoiceQuestionDialog() const noexcept
+boost::shared_ptr<const ribi::MultipleChoiceQuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetMultipleChoiceQuestionDialog() const noexcept
 {
   return m_dialog;
 }
 
-const std::string ribi::WtMultipleChoiceQuestionDialog::GetVersion()
+std::string ribi::WtMultipleChoiceQuestionDialog::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtMultipleChoiceQuestionDialog::GetVersionHistory()
+std::vector<std::string> ribi::WtMultipleChoiceQuestionDialog::GetVersionHistory()
 {
   return {
     "2011-06-29: version 1.0: initial version",

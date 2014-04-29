@@ -52,10 +52,10 @@ struct WtShinyButtonWidget : public Wt::WPaintedWidget
   ShinyButtonWidget * GetWidget() { return m_widget.get(); }
 
   ///Obtain the WtShinyButtonWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the WtShinyButtonWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Draw the ShinyButton
   static void DrawShinyButton(

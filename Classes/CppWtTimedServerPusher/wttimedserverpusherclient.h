@@ -33,10 +33,10 @@ struct WtTimedServerPusherClient
   virtual ~WtTimedServerPusherClient();
 
   ///Get the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///UpdatePage is called when the WtTimedServerPusher triggers an update by timer
   virtual void OnTimedServerPush() = 0;

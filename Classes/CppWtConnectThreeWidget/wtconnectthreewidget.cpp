@@ -102,12 +102,12 @@ const std::bitset<3>& ribi::con3::WtConnectThreeWidget::GetIsPlayerHuman() const
   return m_widget->GetIsPlayerHuman();
 }
 
-const std::string ribi::con3::WtConnectThreeWidget::GetVersion()
+std::string ribi::con3::WtConnectThreeWidget::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::con3::WtConnectThreeWidget::GetVersionHistory()
+std::vector<std::string> ribi::con3::WtConnectThreeWidget::GetVersionHistory()
 {
   return {
     "2011-01-08: version 1.0: initial version",

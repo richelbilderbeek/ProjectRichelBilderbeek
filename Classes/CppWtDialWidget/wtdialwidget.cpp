@@ -127,12 +127,12 @@ void ribi::WtDialWidget::DrawDial(
   );
 }
 
-const std::string ribi::WtDialWidget::GetVersion()
+std::string ribi::WtDialWidget::GetVersion()
 {
   return "3.2";
 }
 
-const std::vector<std::string> ribi::WtDialWidget::GetVersionHistory()
+std::vector<std::string> ribi::WtDialWidget::GetVersionHistory()
 {
   return {
     "2011-04-10: version 1.0: initial version",

@@ -65,12 +65,12 @@ int ribi::WtGroupWidget::GetMax(const std::vector<std::vector<int> >& v)
   return max;
 }
 
-const std::string ribi::WtGroupWidget::GetVersion()
+std::string ribi::WtGroupWidget::GetVersion()
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::WtGroupWidget::GetVersionHistory()
+std::vector<std::string> ribi::WtGroupWidget::GetVersionHistory()
 {
   return {
     "2011-06-12: version 1.0: initial version",

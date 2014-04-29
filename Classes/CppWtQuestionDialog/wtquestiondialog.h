@@ -42,13 +42,13 @@ struct WtQuestionDialog : public Wt::WContainerWidget
   explicit WtQuestionDialog();
 
   ///Obtain the dialog
-  virtual const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept = 0;
+  virtual boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///This signal is emitted when the client submits an answer, where
   ///the boolean indicates if a correct answer was given

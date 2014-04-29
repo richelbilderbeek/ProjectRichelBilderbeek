@@ -87,18 +87,17 @@ void ribi::WtMysteryMachineWidget::OnResize()
   );
 }
 
-const std::string ribi::WtMysteryMachineWidget::GetVersion()
+std::string ribi::WtMysteryMachineWidget::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtMysteryMachineWidget::GetVersionHistory()
+std::vector<std::string> ribi::WtMysteryMachineWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-06-16: version 1.0: initial version");
-  v.push_back("2011-08-20: Version 1.1: added operator<<");
-  return v;
+  return {
+    "2011-06-16: version 1.0: initial version",
+    "2011-08-20: Version 1.1: added operator<<"
+  };
 }
 
 void ribi::WtMysteryMachineWidget::OnClicked(const Wt::WMouseEvent& e)

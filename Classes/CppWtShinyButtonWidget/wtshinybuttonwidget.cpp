@@ -121,12 +121,12 @@ void ribi::WtShinyButtonWidget::DrawShinyButton(
   );
 }
 
-const std::string ribi::WtShinyButtonWidget::GetVersion()
+std::string ribi::WtShinyButtonWidget::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::WtShinyButtonWidget::GetVersionHistory()
+std::vector<std::string> ribi::WtShinyButtonWidget::GetVersionHistory()
 {
   return {
     "2011-09-21: version 1.0: initial version",

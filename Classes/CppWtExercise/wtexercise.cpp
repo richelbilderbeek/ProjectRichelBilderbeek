@@ -114,16 +114,16 @@ const ribi::Exercise * ribi::WtExercise::GetExercise() const
   return m_exercise.get();
 }
 
-const std::string ribi::WtExercise::GetVersion()
+std::string ribi::WtExercise::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WtExercise::GetVersionHistory()
+std::vector<std::string> ribi::WtExercise::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-26: Version 1.0: initial version");
-  return v;
+  return {
+    "2011-09-26: Version 1.0: initial version"
+  };
 }
 
 void ribi::WtExercise::OnSubmittedAnswer(const bool answered_correct)

@@ -64,10 +64,10 @@ struct WtToggleButtonWidget : public Wt::WPaintedWidget
   //  const unsigned char blue);
 
   ///Obtain the WtToggleButtonWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the WtToggleButtonWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Draw the ToggleButton
   static void DrawToggleButton(

@@ -56,11 +56,11 @@ struct WtOpenQuestionDialog : public WtQuestionDialog
 #endif
   );
 
-  const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
-  const boost::shared_ptr<const OpenQuestionDialog> GetOpenQuestionDialog() const noexcept;
+  boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
+  boost::shared_ptr<const OpenQuestionDialog> GetOpenQuestionDialog() const noexcept;
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
 
 private:
 

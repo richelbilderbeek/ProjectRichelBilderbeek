@@ -166,7 +166,7 @@ ribi::RichelBilderbeek::WtMenuDialog::WtMenuDialog(const std::string& ip_address
 
 }
 
-const std::vector<ribi::RichelBilderbeek::WtMenuDialog::Item_t> ribi::RichelBilderbeek::WtMenuDialog::CollectSubMenuItems() const
+std::vector<ribi::RichelBilderbeek::WtMenuDialog::Item_t> ribi::RichelBilderbeek::WtMenuDialog::CollectSubMenuItems() const
 {
   std::vector<Item_t> v;
   std::copy(m_about_menu_items.begin(),m_about_menu_items.end(),std::back_inserter(v));
@@ -177,7 +177,7 @@ const std::vector<ribi::RichelBilderbeek::WtMenuDialog::Item_t> ribi::RichelBild
   return v;
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> >
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> >
   ribi::RichelBilderbeek::WtMenuDialog::CreateAboutMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_about;
@@ -194,7 +194,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> >
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateClassesMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateClassesMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_classes;
   return {
@@ -243,7 +243,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateGamesMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateGamesMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_games;
 
@@ -260,7 +260,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateMainMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateMainMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_main;
   return {
@@ -285,7 +285,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateProjectsMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateProjectsMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_projects;
 
@@ -302,7 +302,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
   };
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateToolsMenuItems() const
+std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::RichelBilderbeek::WtMenuDialog::CreateToolsMenuItems() const
 {
   Wt::WStackedWidget * const s = ui.m_stack_tools;
 

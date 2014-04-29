@@ -45,16 +45,16 @@ struct WtExercise : public Wt::WContainerWidget
 
   ///Obtain the user its score: its number of correctly answered
   ///questions and the total number of questions answered
-  const std::pair<int,int> GetCurrentScore() const;
+  std::pair<int,int> GetCurrentScore() const;
 
   ///Get the Exercise
   const Exercise * GetExercise() const;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Set the questions
   void SetQuestions(const std::string& filename);
