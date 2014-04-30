@@ -20,8 +20,8 @@ macx {
 unix:!macx{
   # Linux only
   message("Wt, built for Linux")
-  INCLUDEPATH += \
-    ../../Libraries/wt/src
+  #INCLUDEPATH += \
+  #  ../../Libraries/wt/src
   LIBS += -lwt -lwthttp
 }
 

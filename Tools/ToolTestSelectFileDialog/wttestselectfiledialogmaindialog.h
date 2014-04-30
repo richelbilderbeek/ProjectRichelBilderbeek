@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestSelectFileDialog, tool to test the SelectFileDialog class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,12 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTSELECTFILEDIALOGMAINDIALOG_H
 #define WTTESTSELECTFILEDIALOGMAINDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <vector>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Wt { struct WAnchor; }
 
 namespace ribi {

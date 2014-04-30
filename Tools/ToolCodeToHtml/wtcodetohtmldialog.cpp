@@ -275,7 +275,8 @@ void ribi::c2h::WtDialog::Display(const std::vector<std::string>& v)
   ui.m_area_result->setText(text.c_str());
 
   {
-    const std::string filename = std::string(std::tmpnam(0)) + std::string(".htm");
+
+    const std::string filename = fileio::FileIo().GetTempFileName(".htm");
     std::ofstream f(filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     ui.m_anchor->setText((std::string("Download ") + filename).c_str() );

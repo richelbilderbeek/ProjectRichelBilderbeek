@@ -25,8 +25,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/math/constants/constants.hpp>
 
-#include "Shiny.h"
-
 #include "fileio.h"
 #include "geometry.h"
 #include "plane.h"
@@ -42,7 +40,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 int main(int, char* argv[])
 {
   START_TRACE();
-  PROFILE_FUNC();
   typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
   {
     const ribi::Geometry geometry;
@@ -144,8 +141,6 @@ int main(int, char* argv[])
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction()
     );
-    PROFILER_UPDATE();
-    PROFILER_OUTPUT("shiny_output.txt");
     if (show_mesh)
     {
       assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));
@@ -164,15 +159,11 @@ int main(int, char* argv[])
   catch (std::exception& e)
   {
     std::cerr << "ERROR: Exception caught: " << e.what() << std::endl;
-    PROFILER_UPDATE();
-    PROFILER_OUTPUT("shiny_output.txt");
     return 1;
   }
   catch (...)
   {
     std::cerr << "ERROR: Unknown exception caught!" << std::endl;
-    PROFILER_UPDATE();
-    PROFILER_OUTPUT("shiny_output.txt");
     return 1;
   }
 }

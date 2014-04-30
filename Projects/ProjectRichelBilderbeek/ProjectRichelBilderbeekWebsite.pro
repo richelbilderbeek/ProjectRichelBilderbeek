@@ -8,8 +8,6 @@ include(../../Libraries/Wt.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralWeb.pri)
 
-
-#include(../../Classes/CppQtRichelBilderbeekGalleryDialog/CppQtRichelBilderbeekGalleryDialog.pri)
 include(../../Classes/CppApproximator/CppApproximator.pri)
 include(../../Classes/CppBinaryNewickVector/CppBinaryNewickVector.pri)
 include(../../Classes/CppCaesarCipher/CppCaesarCipher.pri)

@@ -213,8 +213,24 @@ void ribi::Chess::Move::Test() noexcept
       assert(ribi::Chess::Move::ParsePiece("Ra1 b1")->GetNameChar() == 'R');
       assert(ribi::Chess::Move::ParsePiece("a2 a4")->GetNameChar() == '.');
 
-      assert(!dynamic_cast<PieceBishop*>(Chess::Move("0-0").Piece().get()));
-      assert(!dynamic_cast<PieceBishop*>(Chess::Move("O-O-O").Piece().get()));
+      try
+      {
+        const auto piece(Chess::Move("0-0").Piece());
+        assert(!"Should not get here");
+      }
+      catch (std::logic_error&)
+      {
+        //OK
+      }
+      try
+      {
+        const auto piece(Chess::Move("O-O-O").Piece());
+        assert(!"Should not get here");
+      }
+      catch (std::logic_error&)
+      {
+        //OK
+      }
 
       FTRACE("Test complete moves for validity");
       //Test valid moves being valid as a move: the history of the chessgame must point out

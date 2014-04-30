@@ -146,6 +146,7 @@ ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s)
   if (s == "cpp") return FileType::cpp;
   if (s == "foam") return FileType::foam;
   if (s == "license_txt") return FileType::license_txt;
+  if (s == "png") return FileType::png;
   if (s == "pri") return FileType::pri;
   if (s == "pro") return FileType::pro;
   if (s == "py") return FileType::py;
@@ -156,6 +157,7 @@ ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s)
     assert(!"Should not use FileType::n_types");
     throw std::logic_error("Must not use FileType::n_types");
   }
+  assert(!"StrToFileType: should not get here");
   throw std::logic_error("Invalid string in StrToFileType");
 }
 
@@ -174,10 +176,9 @@ void ribi::c2h::FileTypes::Test() noexcept
     const auto v = f.GetAllFileTypes();
     for (auto t:v)
     {
-       assert(f.StrToFileType(f.FileTypeToStr(t)) == t);
+      assert(f.StrToFileType(f.FileTypeToStr(t)) == t);
     }
   }
-  assert(1==2);
   //Be gentle
   assert(f.DeduceFileType("tmp.png") == FileType::png);
   assert(f.DeduceFileType("tmp.pro") == FileType::pro);

@@ -37,7 +37,7 @@ unix:!macx{
     -lboost_filesystem \
     -lboost_program_options \
     -lboost_regex \
-  #  -lboost_signals \ #Deprecated
+    -lboost_signals \ #Deprecated
     -lboost_system
 }
 
@@ -52,5 +52,3 @@ cross_compile {
     -lboost_signals \
     -lboost_system
 }
-
-
