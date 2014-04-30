@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestPylos/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestPylos/ToolTestPylos.qrc

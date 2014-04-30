@@ -1,8 +1,5 @@
 include(../../Tools/ToolTestPylos/ToolTestPylosConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolTestPylos/ToolTestPylos.qrc
-
 FORMS += \
     ../../Tools/ToolTestPylos/qttestpylostestgamedialog.ui \
     ../../Tools/ToolTestPylos/qttestpylostestboarddialog.ui \

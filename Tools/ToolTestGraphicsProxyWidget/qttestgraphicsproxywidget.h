@@ -7,7 +7,7 @@
 #pragma GCC diagnostic pop
 
 struct QGraphicsScene;
-struct SomeDialog;
+struct QtSomeDialog;
 
 struct QtTestGraphicsProxyWidget : public QGraphicsView
 {
@@ -18,7 +18,7 @@ struct QtTestGraphicsProxyWidget : public QGraphicsView
   void resizeEvent(QResizeEvent *event);
 
   private:
-  std::vector<SomeDialog *> m_dialogs;
+  std::vector<QtSomeDialog *> m_dialogs;
 
   //Proxies of the added widgets
   std::vector<QGraphicsProxyWidget *> m_proxies;

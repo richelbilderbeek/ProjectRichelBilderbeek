@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/ToolTestQtKeyboardFriendlyGraphicsView.qrc

@@ -18,18 +18,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QApplication>
 #include "pylosboard.h"
 #include "pyloscoordinat.h"
 #include "pyloscurrentmovestate.h"
 #include "pylosgame.h"
 #include "pylosmove.h"
-//#include "pylosplayer.h"
-//#include "pylospositionstate.h"
-//#include "pyloswinner.h"
+
 #include "qttestpylosmenudialog.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ///TODO
 ///- allow a Player to pass turn when he/she has no marble
 ///- add tooltips to widget
@@ -38,16 +41,8 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   START_TRACE();
-  QtTestPylosMenuDialog w;
-
-  Pylos::Board::Test();
-  Pylos::Coordinat::Test();
-  Pylos::CurrentMoveState::Test();
-  Pylos::Game::Test();
-  Pylos::Move::Test();
-
+  ribi::pylos::QtTestPylosMenuDialog w;
   w.show();
-
   return a.exec();
 }
-//---------------------------------------------------------------------------
+

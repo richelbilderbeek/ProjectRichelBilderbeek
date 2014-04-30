@@ -1,13 +1,20 @@
 #ifndef TESTNEWICK_H
 #define TESTNEWICK_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "BigIntegerLibrary.hh"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
 ///TestNewick is the base class for testing Newicks for
 ///their calculated probabilities and its calculation time.
 struct TestNewick
@@ -35,12 +42,10 @@ struct TestNewick
   static const int m_flag_binary_newick_vector;
   static const int m_flag_many_digit_newick;
   static const int m_flag_newick_vector;
-  static const int m_flag_ravindran;
   static const int m_flag_sorted_binary_newick_vector;
   static const int m_flag_two_digit_newick;
-
 };
-//---------------------------------------------------------------------------
+
 struct TestBinaryNewickVector : public TestNewick
 {
   TestBinaryNewickVector() : TestNewick() {}
@@ -49,7 +54,7 @@ struct TestBinaryNewickVector : public TestNewick
   void Calculate(const std::string& newick_str, const double theta);
   const std::string GetTestName() const { return "BinaryNewickVector"; }
 };
-//---------------------------------------------------------------------------
+
 struct TestManyDigitNewick : public TestNewick
 {
   TestManyDigitNewick() : TestNewick() {}
@@ -58,7 +63,7 @@ struct TestManyDigitNewick : public TestNewick
   void Calculate(const std::string& newick_str, const double theta);
   const std::string GetTestName() const { return "ManyDigitNewick"; }
 };
-//---------------------------------------------------------------------------
+
 struct TestNewickVector : public TestNewick
 {
   TestNewickVector() : TestNewick() {}
@@ -67,16 +72,7 @@ struct TestNewickVector : public TestNewick
   void Calculate(const std::string& newick_str, const double theta);
   const std::string GetTestName() const { return "NewickVector"; }
 };
-//---------------------------------------------------------------------------
-struct TestRavindran : public TestNewick
-{
-  TestRavindran() : TestNewick() {}
-  ~TestRavindran() {}
-  bool CanCalculate(const std::string& newick_str, const double theta);
-  void Calculate(const std::string& newick_str, const double theta);
-  const std::string GetTestName() const { return "Ravindran"; }
-};
-//---------------------------------------------------------------------------
+
 struct TestSortedBinaryNewickVector : public TestNewick
 {
   TestSortedBinaryNewickVector() : TestNewick() {}
@@ -85,7 +81,7 @@ struct TestSortedBinaryNewickVector : public TestNewick
   void Calculate(const std::string& newick_str, const double theta);
   const std::string GetTestName() const { return "SortedBinaryNewickVector"; }
 };
-//---------------------------------------------------------------------------
+
 struct TestTwoDigitNewick : public TestNewick
 {
   TestTwoDigitNewick() : TestNewick() {}
@@ -94,5 +90,7 @@ struct TestTwoDigitNewick : public TestNewick
   void Calculate(const std::string& newick_str, const double theta);
   const std::string GetTestName() const { return "TwoDigitNewick"; }
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif //~TESTNEWICK_H

@@ -1,12 +1,20 @@
 #ifndef TESTNEWICKDIALOG_H
 #define TESTNEWICKDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/tuple/tuple.hpp>
 #include "about.h"
 #include "testnewickresult.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
 ///TestNewickDialog is the graphics-independent
 ///part of QtTestNewickDialog (desktop application) and
 ///WtTestNewickDialog (web application)
@@ -32,10 +40,10 @@ struct TestNewickDialog
   void SaveTable(const std::string& filename) const;
 
   private:
-  //Output about the calculations
-  std::string m_text;
   //Results of all calculations
   TableType m_table;
+  //Output about the calculations
+  std::string m_text;
   //The types of classes/algorithms used
   const int m_types;
 
@@ -54,5 +62,7 @@ struct TestNewickDialog
   static const std::vector<std::string> GetManyBinaryNewicks();
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // TESTNEWICKDIALOG_H

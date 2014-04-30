@@ -1,3 +1,5 @@
+DEFINES += DEBUG_SKIP_SAZ_AND_SAO
+
 INCLUDEPATH += \
     ../../Classes/CppManyDigitNewick
 

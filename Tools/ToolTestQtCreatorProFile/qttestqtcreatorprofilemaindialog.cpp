@@ -68,7 +68,7 @@ void ribi::QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
   const boost::shared_ptr<const QtCreatorProFile> p(new QtCreatorProFile(filename));
 
   std::stringstream s;
-  s << p;
+  s << (*p);
 
   ui->text_result->clear();
   ui->text_result->setPlainText(s.str().c_str());

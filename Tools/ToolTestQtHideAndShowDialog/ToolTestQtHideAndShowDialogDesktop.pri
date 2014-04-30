@@ -1,7 +1,4 @@
-#include(ToolTestQtHideAndShowDialogConsole.pri)
-
-INCLUDEPATH += \
-    ../../Tools/ToolTestQtHideAndShowDialog
+include(ToolTestQtHideAndShowDialogConsole.pri)
 
 SOURCES += \
     ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowmaindialog.cpp

@@ -42,7 +42,7 @@ ribi::TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog
   #ifndef NDEBUG
   Test();
   #endif
-  const std::vector<std::string> files = { "question.png" };
+  const std::vector<std::string> files = { "Question.png" };
   for(const std::string& filename: files)
   {
 

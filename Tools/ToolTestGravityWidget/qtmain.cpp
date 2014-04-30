@@ -1,13 +1,13 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
-#include "tooltestgravitywidgetmaindialog.h"
+#include "qttestgravitywidgetmaindialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    ToolTestGravityWidgetMainDialog w;
-    w.show();
-    return a.exec();
+  QApplication a(argc, argv);
+  QtTestGravityWidgetMainDialog w;
+  w.show();
+  return a.exec();
 }

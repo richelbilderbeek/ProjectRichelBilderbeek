@@ -2,11 +2,13 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QTimer>
 #include <QGraphicsScene>
 #include "qttestgraphicsproxyitem.h"
 #include "qttestgraphicsproxywidget.h"
-#include "somedialog.h"
+#include "qtsomedialog.h"
 #pragma GCC diagnostic pop
 
 QtTestGraphicsProxyWidget::QtTestGraphicsProxyWidget(QWidget *parent)
@@ -22,7 +24,7 @@ QtTestGraphicsProxyWidget::QtTestGraphicsProxyWidget(QWidget *parent)
     //QtTestGraphicsProxyItem * const item = new QtTestGraphicsProxyItem(0,0);
     //item->setWidget(new SomeDialog);
     //m_scene->addItem(item);
-    SomeDialog * const dialog = new SomeDialog; //Adding 'this' as parent results in an error!
+    QtSomeDialog * const dialog = new QtSomeDialog; //Adding 'this' as parent results in an error!
     //m_dialogs.push_back(dialog);
     QGraphicsProxyWidget * const proxy = new QGraphicsProxyWidget(0,Qt::Window);
     proxy->setWidget(dialog);

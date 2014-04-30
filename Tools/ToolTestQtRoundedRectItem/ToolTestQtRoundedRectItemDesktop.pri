@@ -14,5 +14,3 @@ FORMS += \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmenudialog.ui \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmaindialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItem.qrc

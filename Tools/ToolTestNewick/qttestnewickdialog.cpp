@@ -1,15 +1,18 @@
-//---------------------------------------------------------------------------
+
 #include <cstdlib>
 #include <ctime>
-//---------------------------------------------------------------------------
-#include <boost/foreach.hpp>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/tuple/tuple.hpp>
-//---------------------------------------------------------------------------
+
 #include "BigInteger.hh"
-//---------------------------------------------------------------------------
+
 #include "binarynewickvector.h"
 #include "newick.h"
 #include "newickvector.h"
@@ -18,10 +21,12 @@
 #include "sortedbinarynewickvector.h"
 #include "twodigitnewick.h"
 #include "ui_qttestnewickdialog.h"
-//---------------------------------------------------------------------------
-QtTestNewickDialog::QtTestNewickDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::QtTestNewickDialog)
+#pragma GCC diagnostic pop
+
+ribi::QtTestNewickDialog::QtTestNewickDialog(QWidget *parent)
+  : QDialog(parent),
+    ui(new Ui::QtTestNewickDialog),
+    m_dialog{}
 {
   ui->setupUi(this);
   #ifdef NDEBUG
@@ -39,25 +44,13 @@ QtTestNewickDialog::QtTestNewickDialog(QWidget *parent) :
     this,SLOT(on_any_change()));
   this->on_button_compare_clicked();
 }
-//---------------------------------------------------------------------------
-QtTestNewickDialog::~QtTestNewickDialog()
+
+ribi::QtTestNewickDialog::~QtTestNewickDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtTestNewickDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
-void QtTestNewickDialog::Display()
+
+void ribi::QtTestNewickDialog::Display()
 {
   //Display text
   ui->text->clear();
@@ -93,8 +86,8 @@ void QtTestNewickDialog::Display()
         boost::lexical_cast<std::string>(table[result].time).c_str())));
   }
 }
-//---------------------------------------------------------------------------
-void QtTestNewickDialog::resizeEvent(QResizeEvent *)
+
+void ribi::QtTestNewickDialog::resizeEvent(QResizeEvent *)
 {
   const int n_cols = ui->table->columnCount();
   const int col_width = ui->table->width() / n_cols;
@@ -103,16 +96,16 @@ void QtTestNewickDialog::resizeEvent(QResizeEvent *)
     ui->table->setColumnWidth(i,col_width);
   }
 }
-//---------------------------------------------------------------------------
-void QtTestNewickDialog::on_button_compare_clicked()
+
+void ribi::QtTestNewickDialog::on_button_compare_clicked()
 {
   m_dialog.DoCalculate(
     ui->edit_newick->text().toStdString(),
     ui->edit_theta->text().toStdString());
   Display();
 }
-//---------------------------------------------------------------------------
-void QtTestNewickDialog::on_any_change()
+
+void ribi::QtTestNewickDialog::on_any_change()
 {
   m_dialog.DoAutoCalculate(
     ui->edit_newick->text().toStdString(),
@@ -120,11 +113,11 @@ void QtTestNewickDialog::on_any_change()
     ui->edit_max_complexity->text().toStdString());
   Display();
 }
-//---------------------------------------------------------------------------
-void QtTestNewickDialog::on_button_about_clicked()
+
+void ribi::QtTestNewickDialog::on_button_about_clicked()
 {
   QtAboutDialog d(TestNewickDialog::GetAbout());
   d.exec();
 }
-//---------------------------------------------------------------------------
+
 

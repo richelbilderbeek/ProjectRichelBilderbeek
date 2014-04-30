@@ -326,7 +326,7 @@ bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) const noexce
   }
 
   assert(answer_1 == answer_2);
-  return answer_1;
+  return answer_2;
 }
 
 bool ribi::trim::Helper::IsPlane(

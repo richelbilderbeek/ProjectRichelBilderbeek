@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
   The Rampal Etienne Project, calculates the probability of a phylogeny
-  (C) 2009 Richel Bilderbeek
+  (C) 2009-2014 Richel Bilderbeek
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,37 +20,40 @@
 //---------------------------------------------------------------------------
 #include <fstream>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/timer.hpp>
-//---------------------------------------------------------------------------
+
 #include "binarynewickvector.h"
 #include "manydigitnewick.h"
 #include "newick.h"
-#include "newickravindran.h"
 #include "newickvector.h"
 #include "sortedbinarynewickvector.h"
 #include "twodigitnewick.h"
 #include "testnewick.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
-const int TestNewick::m_flag_all = 63;
-const int TestNewick::m_flag_binary_newick_vector = 1;
-const int TestNewick::m_flag_many_digit_newick = 2;
-const int TestNewick::m_flag_newick_vector = 4;
-const int TestNewick::m_flag_ravindran = 8;
-const int TestNewick::m_flag_sorted_binary_newick_vector = 16;
-const int TestNewick::m_flag_two_digit_newick = 32;
-//---------------------------------------------------------------------------
-TestNewick::TestNewick()
+#pragma GCC diagnostic pop
+
+const int ribi::TestNewick::m_flag_all = 63;
+const int ribi::TestNewick::m_flag_binary_newick_vector = 1;
+const int ribi::TestNewick::m_flag_many_digit_newick = 2;
+const int ribi::TestNewick::m_flag_newick_vector = 4;
+const int ribi::TestNewick::m_flag_sorted_binary_newick_vector = 8;
+const int ribi::TestNewick::m_flag_two_digit_newick = 16;
+
+ribi::TestNewick::TestNewick()
   : m_time(0.0),
     m_probability(0.0)
 {
   //Do nothing
 }
-//---------------------------------------------------------------------------
+
 ///CreateAllTests creates all tests
-const std::vector<boost::shared_ptr<TestNewick> > TestNewick::CreateTests(const int flags)
+const std::vector<boost::shared_ptr<ribi::TestNewick>> ribi::TestNewick::CreateTests(const int flags)
 {
   std::vector<boost::shared_ptr<TestNewick> > v;
   if (flags & m_flag_binary_newick_vector)
@@ -59,25 +62,23 @@ const std::vector<boost::shared_ptr<TestNewick> > TestNewick::CreateTests(const 
     v.push_back(boost::shared_ptr<TestNewick>(new TestManyDigitNewick));
   if (flags & m_flag_newick_vector)
     v.push_back(boost::shared_ptr<TestNewick>(new TestNewickVector));
-  if (flags & m_flag_ravindran)
-    v.push_back(boost::shared_ptr<TestNewick>(new TestRavindran));
   if (flags & m_flag_sorted_binary_newick_vector)
     v.push_back(boost::shared_ptr<TestNewick>(new TestSortedBinaryNewickVector));
   if (flags & m_flag_two_digit_newick)
     v.push_back(boost::shared_ptr<TestNewick>(new TestTwoDigitNewick));
   return v;
 }
-//---------------------------------------------------------------------------
-void TestNewick::SetProbability(const double probability)
+
+void ribi::TestNewick::SetProbability(const double probability)
 {
   m_probability = probability;
 }
-//---------------------------------------------------------------------------
-void TestNewick::SetTime(const double time)
+
+void ribi::TestNewick::SetTime(const double time)
 {
   m_time = time;
 }
-//---------------------------------------------------------------------------
+
 //Ewensprobability = probability * num_of_combinations
 /*
 const std::string Test::GetEwensProbability() const
@@ -102,8 +103,8 @@ const std::string Test::GetEwensProbability() const
   }
 }
 */
-//---------------------------------------------------------------------------
-bool TestBinaryNewickVector::CanCalculate(const std::string& newick_str, const double theta)
+
+bool ribi::TestBinaryNewickVector::CanCalculate(const std::string& newick_str, const double theta)
 {
   if (theta <= 0.0) return false;
   if (!Newick::IsNewick(newick_str))
@@ -113,8 +114,8 @@ bool TestBinaryNewickVector::CanCalculate(const std::string& newick_str, const d
     return false;
   return true;
 }
-//---------------------------------------------------------------------------
-void TestBinaryNewickVector::Calculate(const std::string& newick_str, const double theta)
+
+void ribi::TestBinaryNewickVector::Calculate(const std::string& newick_str, const double theta)
 {
   assert(CanCalculate(newick_str,theta));
   boost::timer t;
@@ -124,8 +125,8 @@ void TestBinaryNewickVector::Calculate(const std::string& newick_str, const doub
   SetTime(t.elapsed());
   SetProbability(p);
 }
-//---------------------------------------------------------------------------
-bool TestManyDigitNewick::CanCalculate(const std::string& newick_str, const double theta)
+
+bool ribi::TestManyDigitNewick::CanCalculate(const std::string& newick_str, const double theta)
 {
   TRACE("TODO");
   return false;
@@ -134,8 +135,8 @@ bool TestManyDigitNewick::CanCalculate(const std::string& newick_str, const doub
   if (!Newick::IsNewick(newick_str)) return false;
   return true;
 }
-//---------------------------------------------------------------------------
-void TestManyDigitNewick::Calculate(const std::string& newick_str, const double theta)
+
+void ribi::TestManyDigitNewick::Calculate(const std::string& newick_str, const double theta)
 {
   assert(CanCalculate(newick_str,theta));
   boost::timer t;
@@ -145,15 +146,15 @@ void TestManyDigitNewick::Calculate(const std::string& newick_str, const double 
   SetTime(t.elapsed());
   SetProbability(p);
 }
-//---------------------------------------------------------------------------
-bool TestNewickVector::CanCalculate(const std::string& newick_str, const double theta)
+
+bool ribi::TestNewickVector::CanCalculate(const std::string& newick_str, const double theta)
 {
   if (theta <= 0.0) return false;
   if (!Newick::IsNewick(newick_str)) return false;
   return true;
 }
-//---------------------------------------------------------------------------
-void TestNewickVector::Calculate(const std::string& newick_str, const double theta)
+
+void ribi::TestNewickVector::Calculate(const std::string& newick_str, const double theta)
 {
   assert(CanCalculate(newick_str,theta));
   boost::timer t;
@@ -163,33 +164,8 @@ void TestNewickVector::Calculate(const std::string& newick_str, const double the
   SetTime(t.elapsed());
   SetProbability(p);
 }
-//---------------------------------------------------------------------------
-bool TestRavindran::CanCalculate(const std::string& newick_str, const double theta)
-{
-  if (theta <= 0.0) return false;
-  if (!Newick::IsNewick(newick_str))
-    return false;
-  const std::vector<int> newick = Newick::StringToNewick(newick_str);
-  if (Newick::CalcComplexity(newick) > 1000000)
-    return false;
-  if (!Newick::IsUnaryNewick(newick) && !Newick::IsBinaryNewick(newick))
-    return false;
-  return true;
-}
-//---------------------------------------------------------------------------
-void TestRavindran::Calculate(const std::string& newick_str, const double theta)
-{
-  assert(CanCalculate(newick_str,theta));
-  boost::timer t;
-  const double p
-    = NewickRavindran::CalculateProbability(
-      newick_str,
-      theta);
-  SetTime(t.elapsed());
-  SetProbability(p);
-}
-//---------------------------------------------------------------------------
-bool TestSortedBinaryNewickVector::CanCalculate(const std::string& newick_str, const double theta)
+
+bool ribi::TestSortedBinaryNewickVector::CanCalculate(const std::string& newick_str, const double theta)
 {
   if (theta <= 0.0) return false;
   if (!Newick::IsNewick(newick_str))
@@ -199,8 +175,8 @@ bool TestSortedBinaryNewickVector::CanCalculate(const std::string& newick_str, c
     return false;
   return true;
 }
-//---------------------------------------------------------------------------
-void TestSortedBinaryNewickVector::Calculate(const std::string& newick_str, const double theta)
+
+void ribi::TestSortedBinaryNewickVector::Calculate(const std::string& newick_str, const double theta)
 {
   assert(CanCalculate(newick_str,theta));
   boost::timer t;
@@ -211,8 +187,8 @@ void TestSortedBinaryNewickVector::Calculate(const std::string& newick_str, cons
   SetTime(t.elapsed());
   SetProbability(p);
 }
-//---------------------------------------------------------------------------
-bool TestTwoDigitNewick::CanCalculate(const std::string& newick_str, const double theta)
+
+bool ribi::TestTwoDigitNewick::CanCalculate(const std::string& newick_str, const double theta)
 {
   if (theta <= 0.0) return false;
   if (!Newick::IsNewick(newick_str))
@@ -222,8 +198,8 @@ bool TestTwoDigitNewick::CanCalculate(const std::string& newick_str, const doubl
     return false;
   return true;
 }
-//---------------------------------------------------------------------------
-void TestTwoDigitNewick::Calculate(const std::string& newick_str, const double theta)
+
+void ribi::TestTwoDigitNewick::Calculate(const std::string& newick_str, const double theta)
 {
   assert(CanCalculate(newick_str,theta));
   boost::timer t;
@@ -234,4 +210,4 @@ void TestTwoDigitNewick::Calculate(const std::string& newick_str, const double t
   SetTime(t.elapsed());
   SetProbability(p);
 }
-//---------------------------------------------------------------------------
+

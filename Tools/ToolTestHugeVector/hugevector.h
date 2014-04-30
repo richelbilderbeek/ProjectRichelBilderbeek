@@ -1,22 +1,22 @@
 #ifndef HUGEVECTOR_H
 #define HUGEVECTOR_H
-//---------------------------------------------------------------------------
+
 #include <cassert>
 #include <vector>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/bounds.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <cln/cln.h>
-//---------------------------------------------------------------------------
+
 ///IntToStrWithSep converts an integer to std::string
 ///and adds thousands seperators.
 ///From http://www.richelbilderbeek.nl/CppIntToStrWithSep.htm
 const std::string IntToStrWithSep(cln::cl_I i);
-//---------------------------------------------------------------------------
+
 ///SafeIntToCli converts an int to cln::cl_I safely.
 ///From http://www.richelbilderbeek.nl/CppSafeIntToCli.htm
 const cln::cl_I SafeIntToCli(const int i);
-//---------------------------------------------------------------------------
+
 ///HugeVector is a class for storing
 template <class T>
 struct HugeVector
@@ -124,14 +124,14 @@ struct HugeVector
   //The 2D std::vector containing all data
   std::vector<std::vector<T> > m_v;
 };
-//---------------------------------------------------------------------------
+
 ///m_max_index = 2 ^ 27 = 134217728
 ///m_max_index = 2 ^ 28 = 268435456
 ///m_max_index must be less than std::vector<T>::max_size
 ///Measured was 357913941, which equals 2 ^ 28.415
 ///template <class T>
 ///const cln::cl_I HugeVector<T>::m_max_index("134217728");
-//---------------------------------------------------------------------------
+
 ///IntToStrWithSep converts an integer to std::string
 ///and adds thousands seperators.
 ///From http://www.richelbilderbeek.nl/CppIntToStrWithSep.htm
@@ -151,7 +151,7 @@ const std::string IntToStrWithSep(cln::cl_I i)
   }
   return s;
 }
-//---------------------------------------------------------------------------
+
 ///SafeIntToCli converts an int to cln::cl_I safely.
 ///From http://www.richelbilderbeek.nl/CppSafeIntToCli.htm
 const cln::cl_I SafeIntToCli(const int i)
@@ -164,5 +164,5 @@ const cln::cl_I SafeIntToCli(const int i)
   const std::string s = boost::lexical_cast<std::string>(i);
   return cln::cl_I(s.c_str());
 }
-//---------------------------------------------------------------------------
+
 #endif // HUGEVECTOR_H

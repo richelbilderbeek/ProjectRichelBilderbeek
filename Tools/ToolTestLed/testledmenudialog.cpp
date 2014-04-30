@@ -50,8 +50,7 @@ int ribi::TestLedMenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
     new LedWidget(x,y,w,h,intensity)
   );
 
-  std::cout << (*widget->ToCanvas(10))
-    << std::endl;
+  std::cout << (*widget->ToCanvas(10)) << std::endl;
   return 0;
 }
 
@@ -61,7 +60,7 @@ ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestLed",
     "tool to test the Led class",
-    "the 8th of September 2011",
+    "the 5th of November 2013",
     "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestLed.htm",
     GetVersion(),

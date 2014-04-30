@@ -1,10 +1,10 @@
-//---------------------------------------------------------------------------
+
 #ifndef TESTNEWICKRESULT_H
 #define TESTNEWICKRESULT_H
-//---------------------------------------------------------------------------
+
 #include <iosfwd>
 #include <string>
-//---------------------------------------------------------------------------
+
 struct TestNewickResult
 {
   std::string newick;
@@ -13,7 +13,7 @@ struct TestNewickResult
   std::string test_name;
   double time;
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const TestNewickResult& r);
-//---------------------------------------------------------------------------
+
 #endif // TESTNEWICKRESULT_H

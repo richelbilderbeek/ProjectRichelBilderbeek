@@ -1,12 +1,12 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QApplication>
 #include <QDesktopWidget>
-#include "qttestkeyboardfriendlygraphicsviewmenudialog.h"
+#include "qttestqtkeyboardfriendlygraphicsviewmenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
   START_TRACE();
 
-  QtTestKeyboardFriendlyGraphicsViewMenuDialog d;
+  ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog d;
   d.show();
   return a.exec();
 }

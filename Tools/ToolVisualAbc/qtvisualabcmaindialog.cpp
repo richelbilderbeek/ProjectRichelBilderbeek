@@ -4,7 +4,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 
 #include <QDesktopWidget>
@@ -33,7 +33,7 @@ ribi::QtVisualAbcMainDialog::QtVisualAbcMainDialog(QWidget *parent)
   {
     const std::vector<std::string> v = VisualAbcMainDialog::GetAbcFriday();
     std::string t;
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       t+=s;
       t+='\n';

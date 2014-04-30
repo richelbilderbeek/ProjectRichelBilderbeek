@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestQtRoundedTextRectItem/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItem.qrc

@@ -59,7 +59,7 @@ std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestMultipleChoiceQu
       new MultipleChoiceQuestionDialog(
         boost::shared_ptr<MultipleChoiceQuestion>(
           new MultipleChoiceQuestion(
-            "question.png",
+            "Question.png",
             "The solution of this equation is...",
             "2",
             { "1", "3", "4", "5", "6" }

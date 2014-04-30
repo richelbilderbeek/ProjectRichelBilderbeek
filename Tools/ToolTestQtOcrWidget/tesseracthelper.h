@@ -29,4 +29,8 @@
 
 long int Nrand48(unsigned short int xsubi[3]);
 
+#ifndef M_PI
+#define M_PI 3.14159265359
+#endif
+
 #endif // TESSERACTHELPER_H

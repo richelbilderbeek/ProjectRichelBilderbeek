@@ -13,8 +13,3 @@ SOURCES += \
 FORMS += \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.ui \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmaindialog.ui
-
-RESOURCES += \
-    ../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItem.qrc
-
-

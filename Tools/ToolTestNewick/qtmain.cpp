@@ -1,24 +1,28 @@
-//---------------------------------------------------------------------------
 #include <iostream>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 #include <boost/program_options.hpp>
-//---------------------------------------------------------------------------
+
 #include <QApplication>
-//---------------------------------------------------------------------------
+
 #include "newick.h"
 #include "qttestnewickdialog.h"
 #include "testnewick.h"
 #include "testnewickdialog.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 int main(int argc, char *argv[])
 {
   START_TRACE();
   if (argc == 1)
   {
     QApplication a(argc, argv);
-    QtTestNewickDialog w;
+    ribi::QtTestNewickDialog w;
     w.show();
     return a.exec();
   }
@@ -49,8 +53,8 @@ int main(int argc, char *argv[])
       ("types",
          boost::program_options::value<std::string>(&types_str)->default_value(
            boost::lexical_cast<std::string>(
-               TestNewick::m_flag_two_digit_newick
-             | TestNewick::m_flag_newick_vector)),
+               ribi::TestNewick::m_flag_two_digit_newick
+             | ribi::TestNewick::m_flag_newick_vector)),
          "types of algorithms used")
       ;
 
@@ -63,7 +67,7 @@ int main(int argc, char *argv[])
   if (m.count("a") || m.count("about"))
   {
     const std::vector<std::string> v
-      = TestNewickDialog::GetAbout().CreateAboutText();
+      = ribi::TestNewickDialog::GetAbout().CreateAboutText();
     std::copy(
       v.begin(),
       v.end(),
@@ -80,13 +84,12 @@ int main(int argc, char *argv[])
   {
     std::cout
       << "Algorithm types:\n"
-      << TestNewick::m_flag_binary_newick_vector << ": BinaryNewickVector\n"
-      << TestNewick::m_flag_many_digit_newick << ": ManyDigitNewick\n"
-      << TestNewick::m_flag_newick_vector << ": NewickVector (*)\n"
-      << TestNewick::m_flag_ravindran << ": Ravindran\n"
-      << TestNewick::m_flag_sorted_binary_newick_vector << ": SortedBinaryNewickVector\n"
-      << TestNewick::m_flag_two_digit_newick << ": TwoDigitNewick (**)\n"
-      << TestNewick::m_flag_all << ": All\n"
+      << ribi::TestNewick::m_flag_binary_newick_vector << ": BinaryNewickVector\n"
+      << ribi::TestNewick::m_flag_many_digit_newick << ": ManyDigitNewick\n"
+      << ribi::TestNewick::m_flag_newick_vector << ": NewickVector (*)\n"
+      << ribi::TestNewick::m_flag_sorted_binary_newick_vector << ": SortedBinaryNewickVector\n"
+      << ribi::TestNewick::m_flag_two_digit_newick << ": TwoDigitNewick (**)\n"
+      << ribi::TestNewick::m_flag_all << ": All\n"
       << '\n'
       << "(*) Recommended for unary and binary phylogenies\n"
       << "(**) Recommended for phylogenies of higher arities\n"
@@ -97,7 +100,7 @@ int main(int argc, char *argv[])
   if (m.count("l") || m.count("licence"))
   {
     const std::vector<std::string> v
-      = TestNewickDialog::GetAbout().CreateLicenceText();
+      = ribi::TestNewickDialog::GetAbout().CreateLicenceText();
     std::copy(
       v.begin(),
       v.end(),
@@ -107,7 +110,7 @@ int main(int argc, char *argv[])
   if (m.count("v") || m.count("version"))
   {
     const std::vector<std::string> v
-      = TestNewickDialog::GetVersionHistory();
+      = ribi::TestNewickDialog::GetVersionHistory();
     std::copy(
       v.begin(),
       v.end(),
@@ -115,7 +118,7 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-  if (!Newick::IsNewick(newick_str))
+  if (!ribi::Newick::IsNewick(newick_str))
   {
     std::cout << "Invalid phylogeny\n";
     return 1;
@@ -129,17 +132,15 @@ int main(int argc, char *argv[])
     std::cout << "Invalid theta\n";
     return 1;
   }
-  TestNewickDialog dialog(
-      TestNewick::m_flag_two_digit_newick
-    | TestNewick::m_flag_newick_vector);
+  ribi::TestNewickDialog dialog(
+      ribi::TestNewick::m_flag_two_digit_newick
+    | ribi::TestNewick::m_flag_newick_vector);
   dialog.DoCalculate(newick_str,theta_str);
   //Display the results
   std::copy(
     dialog.GetTable().begin(),
     dialog.GetTable().end(),
     std::ostream_iterator<TestNewickResult>(std::cout,"\n"));
-
-
 }
-//---------------------------------------------------------------------------
+
 
