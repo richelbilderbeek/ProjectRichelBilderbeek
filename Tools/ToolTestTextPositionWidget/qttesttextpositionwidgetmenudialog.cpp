@@ -1,15 +1,17 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qttooltesttextpositionwidgetmenudialog.h"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qttesttextpositionwidgetmenudialog.h"
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
-#include "tooltesttextpositionwidgetmenudialog.h"
+#include "testtextpositionwidgetmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttooltesttextpositionwidgetmaindialog.h"
+#include "qttesttextpositionwidgetmaindialog.h"
 #include "qthideandshowdialog.h"
-#include "ui_qttooltesttextpositionwidgetmenudialog.h"
+#include "ui_qttesttextpositionwidgetmenudialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtTestTextPositionWidgetMenuDialog::QtTestTextPositionWidgetMenuDialog(QWidget *parent) :

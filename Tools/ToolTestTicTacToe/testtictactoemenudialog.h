@@ -31,9 +31,9 @@ namespace ribi {
 ///GUI independent TestTicTacToe menu dialog
 struct TestTicTacToeMenuDialog
 {
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static About GetAbout();
+  static std::string GetVersion();
+  static std::vector<std::string> GetVersionHistory();
 };
 
 } //~namespace ribi

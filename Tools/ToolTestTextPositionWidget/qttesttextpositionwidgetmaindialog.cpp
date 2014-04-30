@@ -1,8 +1,10 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttextpositionwidget.h"
-#include "qttooltesttextpositionwidgetmaindialog.h"
-#include "ui_qttooltesttextpositionwidgetmaindialog.h"
+#include "qttesttextpositionwidgetmaindialog.h"
+#include "ui_qttesttextpositionwidgetmaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtTestTextPositionWidgetMainDialog::QtTestTextPositionWidgetMainDialog(QWidget *parent)

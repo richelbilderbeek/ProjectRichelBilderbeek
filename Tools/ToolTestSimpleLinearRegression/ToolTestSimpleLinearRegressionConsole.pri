@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestSimpleLinearRegression/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegression.qrc

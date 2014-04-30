@@ -12,5 +12,3 @@ FORMS += \
     ../../Tools/ToolTestSimpleLinearRegression/qttestsimplelinearregressionmaindialog.ui \
     ../../Tools/ToolTestSimpleLinearRegression/qttestsimplelinearregressionmenudialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegression.qrc

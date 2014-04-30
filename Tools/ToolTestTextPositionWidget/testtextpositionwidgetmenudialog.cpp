@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTextPositionWidget, solver of quadratic equations
-Copyright (C) 2008-2013 Richel Bilderbeek
+Copyright (C) 2008-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolTestTextPositionWidget.htm
 //---------------------------------------------------------------------------
-#include "tooltesttextpositionwidgetmenudialog.h"
+#include "testtextpositionwidgetmenudialog.h"
 
 #include "trace.h"
 

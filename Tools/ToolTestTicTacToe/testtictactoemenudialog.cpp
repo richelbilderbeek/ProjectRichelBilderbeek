@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-const ribi::About ribi::TestTicTacToeMenuDialog::GetAbout()
+ribi::About ribi::TestTicTacToeMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +37,12 @@ const ribi::About ribi::TestTicTacToeMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestTicTacToeMenuDialog::GetVersion()
+std::string ribi::TestTicTacToeMenuDialog::GetVersion()
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::TestTicTacToeMenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::TestTicTacToeMenuDialog::GetVersionHistory()
 {
   return {
     "2010-09-17: version 1.0: initial version, use of QTable as board",

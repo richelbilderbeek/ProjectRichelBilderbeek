@@ -1,8 +1,5 @@
 include(../../Tools/ToolTestTextCanvas/ToolTestTextCanvasConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolTestTextCanvas/ToolTestTextCanvas.qrc
-
 FORMS += \
     ../../Tools/ToolTestTextCanvas/qttesttextcanvasmenudialog.ui \
     ../../Tools/ToolTestTextCanvas/qttesttextcanvasmaindialog.ui

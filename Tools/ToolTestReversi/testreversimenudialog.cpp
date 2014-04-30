@@ -11,6 +11,7 @@
 #include <boost/lexical_cast.hpp>
 
 #include "reversiboard.h"
+#include "richelbilderbeekprogram.h"
 #include "testreversimaindialog.h"
 #include "fileio.h"
 #include "trace.h"
