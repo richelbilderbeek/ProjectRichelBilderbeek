@@ -18,10 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTimedServerPusher.htm
 //---------------------------------------------------------------------------
-#include "about.h"
 #include "testtimedserverpushermenudialog.h"
 
-
+#include "about.h"
 
 const ribi::About ribi::ToolTestTimedServerPusher::MenuDialog::GetAbout()
 {
@@ -37,15 +36,15 @@ const ribi::About ribi::ToolTestTimedServerPusher::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::ToolTestTimedServerPusher::MenuDialog::GetVersion()
+std::string ribi::ToolTestTimedServerPusher::MenuDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::ToolTestTimedServerPusher::MenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::ToolTestTimedServerPusher::MenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-08-05: Version 1.0: initial version, derived from TestBroadcastServer");
-  return v;
+  return {
+    "2011-08-05: Version 1.0: initial version, derived from TestBroadcastServer"
+  };
 }
 

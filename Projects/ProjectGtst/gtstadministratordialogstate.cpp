@@ -67,7 +67,7 @@ const std::vector<std::string> ribi::gtst::AdministratorDialogState::FileToVecto
 }
 
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::gtst::AdministratorDialogState::GetFilesInFolder(const std::string& folder)
 {
   std::vector<std::string> v;
 
@@ -93,7 +93,7 @@ const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetFilesInF
 }
 
 //From http://www.richelbilderbeek.nl/CppGetTextFilesInFolder.htm
-const std::vector<std::string> ribi::gtst::AdministratorDialogState::GetTextFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::gtst::AdministratorDialogState::GetTextFilesInFolder(const std::string& folder)
 {
   //Get all filenames
   const std::vector<std::string> v = GetFilesInFolder(folder);

@@ -58,7 +58,7 @@ ribi::ToolTestTimedServerPusher::Data * ribi::ToolTestTimedServerPusher::Data::G
   return m_instance;
 }
 
-const std::string ribi::ToolTestTimedServerPusher::Data::GetData() const
+std::string ribi::ToolTestTimedServerPusher::Data::GetData() const
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   //std::chrono::system_clock::time_point now = std::chrono::system_clock::now();

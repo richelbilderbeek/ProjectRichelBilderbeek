@@ -92,7 +92,7 @@ boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::ServerState::FindParticip
 }
 
 ///Obtain all Participant's their states relevant for the current ServerState
-const std::vector<std::string> ribi::gtst::ServerState::GetParticipantStates() const
+std::vector<std::string> ribi::gtst::ServerState::GetParticipantStates() const
 {
   assert(GetServer());
   assert(GetServer()->GetGroups());

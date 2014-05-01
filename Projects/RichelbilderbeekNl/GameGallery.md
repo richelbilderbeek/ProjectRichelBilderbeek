@@ -117,17 +117,22 @@ Pong
 Pylos
 -----
  
-![Pylos](GamePylos_1_0.png)
+![Pylos](GamePylos_2_1.png)
  
 Reversi
 -------
  
-![Reversi](GameReversi_1_0.png)
+![Reversi](GameReversi_0_1.png)
+ 
+Reversi (VCL)
+-------------
+ 
+![Reversi (VCL)](GameReversiVcl_1_0.png)
  
 Rubik's Clock
 -------------
  
-![Rubik's Clock](GameRubiksClockDesktop_2_2.png)
+![Rubik's Clock](GameRubiksClock_2_3.png)
  
 ![Rubik's Clock](GameRubiksClock_2_1.png)
  

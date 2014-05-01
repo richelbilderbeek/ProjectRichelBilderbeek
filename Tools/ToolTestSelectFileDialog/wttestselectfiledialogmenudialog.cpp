@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "copy_if.h"
 #include "trace.h"
 #include "wtaboutdialog.h"
@@ -80,7 +80,7 @@ ribi::WtTestSelectFileDialogMenuDialog::WtTestSelectFileDialogMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewAboutDialog() const
 {
    About a(
@@ -101,7 +101,7 @@ Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewAboutDialog() con
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewMainDialog() const
 {
   WtTestSelectFileDialogMainDialog * const d
@@ -109,7 +109,7 @@ Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewMainDialog() cons
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -126,17 +126,17 @@ Wt::WWidget * ribi::WtTestSelectFileDialogMenuDialog::CreateNewWelcomeDialog() c
   box->addWidget(image);
   return dialog;
 }
-//---------------------------------------------------------------------------
-const std::string ribi::WtTestSelectFileDialogMenuDialog::GetVersion()
+
+std::string ribi::WtTestSelectFileDialogMenuDialog::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtTestSelectFileDialogMenuDialog::GetVersionHistory()
+
+std::vector<std::string> ribi::WtTestSelectFileDialogMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-07-01: Version 1.0: initial version");
-  v.push_back("2011-07-15: Version 1.1: added downloading of selected files");
-  return v;
+  return {
+    "2011-07-01: Version 1.0: initial version",
+    "2011-07-15: Version 1.1: added downloading of selected files"
+  };
 }
-//---------------------------------------------------------------------------
+

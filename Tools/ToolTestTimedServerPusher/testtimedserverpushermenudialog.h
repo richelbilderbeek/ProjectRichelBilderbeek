@@ -36,7 +36,7 @@ struct MenuDialog
   static std::string GetVersion();
 
   ///Get this class its version history
-  static TODOnHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Get this class its About
   static const About GetAbout();

@@ -372,12 +372,12 @@ const ribi::About ribi::gtst::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::gtst::MenuDialog::GetVersion()
+std::string ribi::gtst::MenuDialog::GetVersion()
 {
   return "1.02";
 }
 
-const std::vector<std::string> ribi::gtst::MenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::gtst::MenuDialog::GetVersionHistory()
 {
   return {
     "2011-05-09: Version 0.01: initial version, then called ProjectGameTheory",

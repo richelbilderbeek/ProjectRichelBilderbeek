@@ -1757,6 +1757,33 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       break;
       case ProgramType::regexTester: p.reset(new RegexTesterMenuDialog); break;
       case ProgramType::reversi: p.reset(new reversi::MenuDialog); break;
+      case ProgramType::reversiVcl:
+      {
+        const std::string version = "1.0";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: Version 1.0: initial C++ Builder version"
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "Reversi (VCL)",
+          "reversi game",
+          "the 24th of September 2007",
+          "2007-2014",
+          "http://www.richelbilderbeek.nl/GameReversiVcl.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramReversiVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+
       case ProgramType::richelBilderbeekGallery: p.reset(new GalleryMenuDialog); break;
       case ProgramType::richelbilderbeekNlSitemapGenerator: p.reset(new SitemapGeneratorMenuDialog); break;
       case ProgramType::rubiksClock: p.reset(new ruco::MenuDialog); break;

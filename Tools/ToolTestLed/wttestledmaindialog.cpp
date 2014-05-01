@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestLed, tool to test the Led class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,13 +18,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestLed.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "dial.h"
 #include "dialwidget.h"
@@ -36,13 +40,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wtledwidget.h"
 #include "wttestledmaindialog.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 ribi::WtTestLedMainDialog::WtTestLedMainDialog()
   : ui{}
 {
   ShowMain();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestLedMainDialog::OnDialColorChange()
 {
   double r_d,g_d,b_d;
@@ -64,7 +70,7 @@ void ribi::WtTestLedMainDialog::OnDialColorChange()
   );
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestLedMainDialog::OnDialIntensityChange()
 {
   const double intensity = ui.m_dial_intensity->GetWidget()->GetDial()->GetPosition();
@@ -77,7 +83,7 @@ void ribi::WtTestLedMainDialog::OnDialIntensityChange()
     ).c_str()
   );
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestLedMainDialog::OnDialSizeChange()
 {
   const double intensity = ui.m_dial_size->GetWidget()->GetDial()->GetPosition();
@@ -91,16 +97,16 @@ void ribi::WtTestLedMainDialog::OnDialSizeChange()
     + std::string(" (width x height)")
     ).c_str()
   );
-  ui.m_led->GetWidget()->SetGeometry(Rect(0,0,size,size));
+  ui.m_led->GetWidget()->SetGeometry(0,0,size,size);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestLedMainDialog::ShowMain()
 {
   setContentAlignment(Wt::AlignCenter);
   this->clear();
   {
     ui.m_led = new WtLedWidget(0.5,255,255,255);
-    ui.m_led->GetWidget()->SetGeometry(Rect(0,0,100,100));
+    ui.m_led->GetWidget()->SetGeometry(0,0,100,100);
     this->addWidget(ui.m_led);
   }
   {
@@ -109,7 +115,7 @@ void ribi::WtTestLedMainDialog::ShowMain()
   }
   {
     ui.m_dial_color = new WtDialWidget;
-    ui.m_dial_color->GetWidget()->SetGeometry(Rect(0,0,100,100));
+    ui.m_dial_color->GetWidget()->SetGeometry(0,0,100,100);
     ui.m_dial_color->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
         &ribi::WtTestLedMainDialog::OnDialColorChange,
@@ -122,7 +128,7 @@ void ribi::WtTestLedMainDialog::ShowMain()
   }
   {
     ui.m_dial_intensity= new WtDialWidget;
-    ui.m_dial_intensity->GetWidget()->SetGeometry(Rect(0,0,100,100));
+    ui.m_dial_intensity->GetWidget()->SetGeometry(0,0,100,100);
     ui.m_dial_intensity->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
         &ribi::WtTestLedMainDialog::OnDialIntensityChange,
@@ -135,7 +141,7 @@ void ribi::WtTestLedMainDialog::ShowMain()
   }
   {
     ui.m_dial_size = new WtDialWidget;
-    ui.m_dial_size->GetWidget()->SetGeometry(Rect(0,0,100,100));
+    ui.m_dial_size->GetWidget()->SetGeometry(0,0,100,100);
     ui.m_dial_size->GetWidget()->GetDial()->m_signal_position_changed.connect(
       boost::bind(
         &ribi::WtTestLedMainDialog::OnDialSizeChange,
@@ -146,4 +152,4 @@ void ribi::WtTestLedMainDialog::ShowMain()
   ui.m_dial_intensity->GetWidget()->GetDial()->SetPosition(0.9);
   ui.m_dial_size->GetWidget()->GetDial()->SetPosition(0.2);
 }
-//---------------------------------------------------------------------------
+

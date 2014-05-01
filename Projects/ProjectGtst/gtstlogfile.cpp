@@ -81,7 +81,7 @@ void ribi::gtst::LogFile::ClearLogFile()
 
 ///Returns date in YYYY-MM-DD format
 //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
-const std::string ribi::gtst::LogFile::GetDateIso8601()
+std::string ribi::gtst::LogFile::GetDateIso8601()
 {
   const boost::gregorian::date today
     = boost::gregorian::day_clock::local_day();
@@ -95,7 +95,7 @@ const std::string ribi::gtst::LogFile::GetDateIso8601()
 
 ///Get the current time
 //From http://www.richelbilderbeek.nl/CppGetTime.htm
-const std::string ribi::gtst::LogFile::GetTime()
+std::string ribi::gtst::LogFile::GetTime()
 {
   //Get the local time
   boost::posix_time::ptime now
@@ -110,7 +110,7 @@ const std::string ribi::gtst::LogFile::GetTime()
 ///Returns the current date and time as a YYYY_MM_DD_HH_MM_SS std::string,
 ///for example '2011_07_01_11_35_38'
 //From http://www.richelbilderbeek.nl/CppGetTimestamp.htm
-const std::string ribi::gtst::LogFile::GetTimestamp()
+std::string ribi::gtst::LogFile::GetTimestamp()
 {
   std::string s = GetDateIso8601() + '_' + GetTime();
   std::replace(s.begin(),s.end(),':','_');

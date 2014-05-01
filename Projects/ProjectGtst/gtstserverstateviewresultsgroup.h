@@ -29,7 +29,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtstserverstate.h"
 
-
 namespace ribi {
 namespace gtst {
 
@@ -58,8 +57,8 @@ struct ServerStateViewResultsGroup : public ServerState, StateViewResultsGroup
   //void SetParameters(const boost::shared_ptr<const ParametersViewResultsGroup>& parameters);
 
   ///Get the Participant-dependent results
-  TODOs(
-    const Participant * const participant) const;
+  //std::vector<std::string> GetResults(
+  //  const Participant * const participant) const;
 
   ///Start or restart the state
   void Start();

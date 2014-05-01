@@ -226,6 +226,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::refrigeratorPuzzleSolver: break;
     case ProgramType::regexTester: p = new QtRegexTesterMenuDialog; break;
     case ProgramType::reversi: break;
+    case ProgramType::reversiVcl: break;
     case ProgramType::richelBilderbeekGallery: p = new QtRichelBilderbeekGalleryMenuDialog; break;
     case ProgramType::richelbilderbeekNlSitemapGenerator: p = new QtSitemapGeneratorMenuDialog; break;
     case ProgramType::rubiksClock: p = new ruco::QtRubiksClockMenuDialog; break;

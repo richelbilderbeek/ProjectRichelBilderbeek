@@ -188,7 +188,7 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
 
   */
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
-  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+  //typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
 
 
   const std::vector<Coordinat2D> points {

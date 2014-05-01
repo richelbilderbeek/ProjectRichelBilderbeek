@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestShape, tool to test the Shape and ShapeDialog classes
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,6 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShape.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -26,14 +30,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
 #include "testshapemenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wttestshapemaindialog.h"
 #include "wttestshapemenudialog.h"
 #include "wtshapewidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtTestShapeMenuDialog::WtTestShapeMenuDialog()
   : m_dialog(new TestShapeMenuDialog)
 {
@@ -74,7 +79,7 @@ ribi::WtTestShapeMenuDialog::WtTestShapeMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestShapeMenuDialog::CreateNewAboutDialog() const
 {
   About a = m_dialog->GetAbout();
@@ -84,14 +89,14 @@ Wt::WWidget * ribi::WtTestShapeMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestShapeMenuDialog::CreateNewMainDialog() const
 {
   WtTestShapeMainDialog * const d = new WtTestShapeMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestShapeMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -107,4 +112,4 @@ Wt::WWidget * ribi::WtTestShapeMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage(m_dialog->GetFilenameImageWelcome()));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

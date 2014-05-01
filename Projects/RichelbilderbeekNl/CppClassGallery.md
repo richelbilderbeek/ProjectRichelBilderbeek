@@ -41,15 +41,19 @@ Test Chess
 Test ConceptMap
 ---------------
  
+![Test ConceptMap](ToolTestConceptMap_1_0.png)
+ 
 Test Dial
 ---------
  
-![Test Dial](ToolTestDial_1_0.png)
+![Test Dial](ToolTestDial_2_3.png)
  
 ![Test Dial](ToolTestDial_1_1.png)
  
 Test DrawCanvas
 ---------------
+ 
+![Test DrawCanvas](ToolTestDrawCanvas_1_2.png)
  
 Test Entrance
 -------------
@@ -76,8 +80,12 @@ Test GnuplotInterface
 Test GraphicsProxyWidget
 ------------------------
  
+![Test GraphicsProxyWidget](ToolTestGraphicsProxyWidget_0_1.png)
+ 
 Test GravityWidget
 ------------------
+ 
+![Test GravityWidget](ToolTestGravityWidget_0_1.png)
  
 Test GroupWidget
 ----------------
@@ -89,6 +97,8 @@ Test HugeVector
  
 Test ImageCanvas
 ----------------
+ 
+![Test ImageCanvas](ToolTestImageCanvas_1_0.png)
  
 Test Lazy_init
 --------------
@@ -103,6 +113,8 @@ Test Led
 Test ManyDigitNewick
 --------------------
  
+![Test ManyDigitNewick](ToolTestManyDigitNewick_1_0.png)
+ 
 Test MultiApproximator
 ----------------------
  
@@ -111,11 +123,15 @@ Test MultiApproximator
 Test MultiCanvas
 ----------------
  
+![Test MultiCanvas](ToolTestMultiCanvas_1_0.png)
+ 
 Test MultiVector
 ----------------
  
 Test MultipleChoiceQuestion
 ---------------------------
+ 
+![Test MultipleChoiceQuestion](ToolTestMultipleChoiceQuestionDialog_1_0.png)
  
 Test ndsmake
 ------------
@@ -133,11 +149,17 @@ Test Newick
 Test NewickVector
 -----------------
  
+![Test NewickVector](ToolTestNewickVector_3_2.png)
+ 
 Test OpenQuestion
 -----------------
  
+![Test OpenQuestion](ToolTestOpenQuestion_1_0.png)
+ 
 Test Plane
 ----------
+ 
+![Test Plane](ToolTestPlane_1_0.png)
  
 Test Pylos
 ----------
@@ -147,6 +169,8 @@ Test Pylos
 Test QrcFile
 ------------
  
+![Test QrcFile](ToolTestQrcFile_1_3.png)
+ 
 Test QtArrowItems
 -----------------
  
@@ -155,14 +179,22 @@ Test QtArrowItems
 Test QtCreatorProFile
 ---------------------
  
+![Test QtCreatorProFile](ToolTestQtCreatorProFile_1_4.png)
+ 
 Test QtHideAndShowDialog
 ------------------------
+ 
+![Test QtHideAndShowDialog](ToolTestQtHideAndShowDialog_0_1.png)
  
 Test QtKeyboardFriendlyGraphicsView
 -----------------------------------
  
+![Test QtKeyboardFriendlyGraphicsView](ToolTestKeyboardFriendlyGraphicsView_0_4.png)
+ 
 Test QtModels
 -------------
+ 
+![Test QtModels](ToolTestQtModels_1_2.png)
  
 Test QtOcrWidget
 ----------------
@@ -170,25 +202,27 @@ Test QtOcrWidget
 Test QtRoundedEditRectItem
 --------------------------
  
-![Test QtRoundedEditRectItem](ToolTestQtRoundedEditRectItem_1_0.png)
+![Test QtRoundedEditRectItem](ToolTestQtRoundedEditRectItem_1_2.png)
  
 Test QtRoundedRectItem
 ----------------------
  
-![Test QtRoundedRectItem](ToolTestQtRoundedRectItem_1_1.png)
+![Test QtRoundedRectItem](ToolTestQtRoundedRectItem_1_2.png)
  
 Test QtRoundedTextRectItem
 --------------------------
  
-![Test QtRoundedTextRectItem](ToolTestQtRoundedTextRectItem_1_1.png)
+![Test QtRoundedTextRectItem](ToolTestQtRoundedTextRectItem_1_2.png)
  
 Test Question
 -------------
  
-![Test Question](ToolTestQuestion_2_1.png)
+![Test Question](ToolTestQuestion_3_1.png)
  
 Test Reversi
 ------------
+ 
+![Test Reversi](ToolTestReversi_0_1.png)
  
 Test SelectFileDialog
 ---------------------
@@ -201,21 +235,21 @@ Test ServerPusher
 Test Shape
 ----------
  
-![Test Shape](ToolTestShape_1_0_desktop.png)
+![Test Shape](ToolTestShape_2_1.png)
  
 ![Test Shape](ToolTestShape_1_0_web.png)
  
 Test ShinyButton
 ----------------
  
-![Test ShinyButton](ToolTestShinyButton_2_0_desktop.png)
+![Test ShinyButton](ToolTestShinyButton_2_1.png)
  
 ![Test ShinyButton](ToolTestShinyButton_2_0_web.png)
  
 Test SimpleLinearRegression
 ---------------------------
  
-![Test SimpleLinearRegression](ToolTestSimpleLinearRegression_1_0.png)
+![Test SimpleLinearRegression](ToolTestSimpleLinearRegression_1_2.png)
  
 Test Stopwatch
 --------------
@@ -223,8 +257,12 @@ Test Stopwatch
 Test TextCanvas
 ---------------
  
+![Test TextCanvas](ToolTestTextCanvas_1_0.png)
+ 
 Test TextPositionWidget
 -----------------------
+ 
+![Test TextPositionWidget](ToolTestTextPositionWidget_1_4.png)
  
 Test TicTacToe
 --------------
@@ -239,11 +277,10 @@ Test TimedServerPusher
 Test ToggleButton
 -----------------
  
-Test TriangleMesh
------------------
+![Test ToggleButton](ToolTestToggleButton_1_4.png)
  
 Test TwoDigitNewick
 -------------------
  
-![Test TwoDigitNewick](ToolTestTwoDigitNewick_0_6.png)
+![Test TwoDigitNewick](ToolTestTwoDigitNewick_2_2.png)
  

@@ -79,9 +79,9 @@ struct AdministratorDialogState : public Wt::WObject
   ///Convert a file to std::vector<std::string>
   static const std::vector<std::string> FileToVector(const std::string& filename);
   ///Get all files in a folder
-  static TODOnFolder(const std::string& folder);
+  static std::vector<std::string> GetFilesInFolder(const std::string& folder);
   ///Get all .txt files in a folder
-  static TODOlesInFolder(const std::string& folder);
+  static std::vector<std::string> GetTextFilesInFolder(const std::string& folder);
 };
 
 } //~namespace gtst

@@ -69,7 +69,7 @@ struct ServerState : public State
   int GetCycle() const { return m_period; }
 
   ///Obtain all Participant's their states relevant for the current ServerState
-  TODOipantStates() const;
+  std::vector<std::string> GetParticipantStates() const;
 
   ///Obtain the period this ServerState is in
   int GetPeriod() const { return m_period; }

@@ -68,7 +68,7 @@ int ribi::gtst::ParametersVoting::GetDuration() const
 }
 
 ///Get the descriptions of the options to vote for only
-const std::vector<std::string> ribi::gtst::ParametersVoting::GetVoteDescriptions() const
+std::vector<std::string> ribi::gtst::ParametersVoting::GetVoteDescriptions() const
 {
   std::vector<std::string> w;
 

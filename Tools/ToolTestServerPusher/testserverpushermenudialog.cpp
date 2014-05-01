@@ -37,15 +37,15 @@ const ribi::About ribi::ToolTestServerPusher::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::ToolTestServerPusher::MenuDialog::GetVersion()
+std::string ribi::ToolTestServerPusher::MenuDialog::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::ToolTestServerPusher::MenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::ToolTestServerPusher::MenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-08-05: Version 1.0: initial version, derived from TestWtBroadcastServer");
-  return v;
+  return {
+    "2011-08-05: Version 1.0: initial version, derived from TestWtBroadcastServer"
+  };
 }
 

@@ -8942,7 +8942,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <li>2007-09-24: <img src=\"PicVcl.png\" alt=\"Vcl\"/> <a href=\"GameReversiVcl.htm\">Reversi VCL</a></li>",
         "  <li>2008-03-30: <img src=\"PicSpacer.png\" alt=\" \"/> <a href=\"GameReversiConsole.htm\">Reversi Console</a></li>",
         "  <li>2010-09-24: <img src=\"PicQt.png\" alt=\"Qt\"/> Reversi (this page)</li>",
-        "</p>",
+        "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -14712,6 +14712,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestConceptMap_1_0.png\">View a screenshot of 'TestConceptMap' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestConceptMapConsoleExe.zip\">Download the 'TestConceptMap' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestConceptMapDesktopExe.zip\">Download the 'TestConceptMap' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestConceptMapWebsiteExe.zip\">Download the 'TestConceptMap' Windows executable (latest version)(zip)</a></li>",
@@ -14734,6 +14735,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2><a href=\"ToolTestDial.htm\">TestDial</a> downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestDial_2_3.png\">View a screenshot of 'TestDial' (version 2.3)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDial_1_1.png\">View a screenshot of 'TestDial' (version 1.1)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDial_1_0.png\">View a screenshot of 'TestDial' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolTestDialArchitecture.png\">View the architecture of 'TestDial' (version 2.1)(png)</a></li>",
@@ -14777,6 +14779,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestDrawCanvas_1_2.png\">View a screenshot of 'TestDrawCanvas' (version 1.2)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestDrawCanvasConsoleExe.zip\">Download the 'TestDrawCanvas' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDrawCanvasDesktopExe.zip\">Download the 'TestDrawCanvas' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestDrawCanvasWebsiteExe.zip\">Download the 'TestDrawCanvas' Windows executable (latest version)(zip)</a></li>",
@@ -14978,6 +14981,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestGraphicsProxyWidget_0_1.png\">View a screenshot of 'TestGraphicsProxyWidget' (version 0.1)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestGraphicsProxyWidgetConsoleExe.zip\">Download the 'TestGraphicsProxyWidget' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestGraphicsProxyWidgetDesktopExe.zip\">Download the 'TestGraphicsProxyWidget' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGraphicsProxyWidgetWebsiteExe.zip\">Download the 'TestGraphicsProxyWidget' Windows executable (latest version)(zip)</a></li>",
@@ -15002,6 +15006,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestGravityWidget_0_1.png\">View a screenshot of 'TestGravityWidget' (version 0.1)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestGravityWidgetConsoleExe.zip\">Download the 'TestGravityWidget' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestGravityWidgetDesktopExe.zip\">Download the 'TestGravityWidget' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGravityWidgetWebsiteExe.zip\">Download the 'TestGravityWidget' Windows executable (latest version)(zip)</a></li>",
@@ -15073,6 +15078,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestImageCanvas_1_0.png\">View a screenshot of 'TestImageCanvas' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestImageCanvasConsoleExe.zip\">Download the 'TestImageCanvas' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestImageCanvasDesktopExe.zip\">Download the 'TestImageCanvas' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestImageCanvasWebsiteExe.zip\">Download the 'TestImageCanvas' Windows executable (latest version)(zip)</a></li>",
@@ -15150,6 +15156,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestManyDigitNewick_1_0.png\">View a screenshot of 'TestManyDigitNewick' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestManyDigitNewickConsoleExe.zip\">Download the 'TestManyDigitNewick' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestManyDigitNewickDesktopExe.zip\">Download the 'TestManyDigitNewick' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestManyDigitNewickWebsiteExe.zip\">Download the 'TestManyDigitNewick' Windows executable (latest version)(zip)</a></li>",
@@ -15180,15 +15187,11 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
-ToolTestManyDigitNewick_1_0
-ToolTestMultiCanvas_1_0
-ToolTestGraphicsProxyWidget_0_1
-ToolTestImageCanvas_1_0
-ToolTestGravityWidget_0_1
-ToolTestConceptMap_1_0
-ToolTestDial_2_3
-ToolTestDrawCanvas_1_2
-ToolTriangleMeshCreator_1_2
+
+
+
+
+
 
   m.push_back(
     { "ToolTestMultiCanvas",
@@ -15205,6 +15208,7 @@ ToolTriangleMeshCreator_1_2
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTestMultiCanvas_1_0.png\">View a screenshot of 'TestMultiCanvas' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestMultiCanvasConsoleExe.zip\">Download the 'TestMultiCanvas' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestMultiCanvasDesktopExe.zip\">Download the 'TestMultiCanvas' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestMultiCanvasWebsiteExe.zip\">Download the 'TestMultiCanvas' Windows executable (latest version)(zip)</a></li>",
@@ -16381,6 +16385,7 @@ ToolTriangleMeshCreator_1_2
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolTriangleMeshCreator_1_2.png\">View a screenshot of 'TriangleMeshCreator' (version 1.2)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTriangleMeshCreatorConsoleExe.zip\">Download the 'TriangleMeshCreator' Windows executable (latest version)(zip)</a></li>",
         "</ul>"
       }

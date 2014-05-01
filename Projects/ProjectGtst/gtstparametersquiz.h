@@ -55,7 +55,7 @@ struct ParametersQuiz
   //const std::vector<boost::shared_ptr<QuizOption> >& GetOptions() const { return m_options; }
 
   ///Get the descriptions of the options to vote for only
-  TODOscriptions() const;
+  std::vector<std::string> GetVoteDescriptions() const;
 
   ///Does the ServerState and ParticipantDialog wait for all?
   bool GetWait() const { return m_wait; }

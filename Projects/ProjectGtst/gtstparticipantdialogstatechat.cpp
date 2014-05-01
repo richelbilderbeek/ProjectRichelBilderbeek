@@ -81,7 +81,7 @@ void ribi::gtst::ParticipantDialogStateChat::DoSomethingRandom()
   }
 }
 
-const std::string ribi::gtst::ParticipantDialogStateChat::GetRandomDebugString() const
+std::string ribi::gtst::ParticipantDialogStateChat::GetRandomDebugString() const
 {
   static std::vector<std::string> v;
   if (v.empty())

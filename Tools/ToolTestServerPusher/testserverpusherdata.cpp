@@ -64,7 +64,7 @@ ribi::ToolTestServerPusher::Data * ribi::ToolTestServerPusher::Data::GetInstance
   return m_instance;
 }
 
-const std::string ribi::ToolTestServerPusher::Data::GetData() const
+std::string ribi::ToolTestServerPusher::Data::GetData() const
 {
   std::lock_guard<std::mutex> lock(m_mutex);
   return m_s;
