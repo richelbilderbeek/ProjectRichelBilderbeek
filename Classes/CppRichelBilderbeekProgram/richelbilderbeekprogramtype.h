@@ -121,6 +121,7 @@ enum class ProgramType
   refrigeratorPuzzleSolver,
   regexTester,
   reversi,
+  reversiVcl,
   richelBilderbeekGallery,
   richelbilderbeekNlSitemapGenerator,
   rubiksClock,

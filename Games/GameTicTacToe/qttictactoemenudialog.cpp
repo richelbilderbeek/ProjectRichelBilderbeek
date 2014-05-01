@@ -99,6 +99,7 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
     };
     assert(d);
   }
+  QtTicTacToeWidget();
 
   TRACE("Finished ribi::tictactoe::QtTicTacToeMenuDialog::Test successfully");
 }

@@ -58,7 +58,7 @@ struct ServerStateVoting : public ServerState, StateVoting
   //void SetParameters(const boost::shared_ptr<const ParametersVoting>&);
 
   ///Get the Participant-dependent results
-  //const std::vector<std::string> GetResults(const boost::shared_ptr<Participant>& p) const; //TODO
+  //TODOs(const boost::shared_ptr<Participant>& p) const; //TODO
 
   ///Start or restart the state, for example by resetting the timer
   void Start();

@@ -73,7 +73,7 @@ struct ParticipantDialogStateChat
     Wt::WTable * m_table;
   } ui;
 
-  const std::string GetRandomDebugString() const;
+  std::string GetRandomDebugString() const;
   void SubmitChatText();
 };
 

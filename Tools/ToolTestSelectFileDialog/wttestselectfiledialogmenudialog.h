@@ -37,8 +37,8 @@ struct WtTestSelectFileDialogMenuDialog : public Wt::WContainerWidget
 {
   WtTestSelectFileDialogMenuDialog();
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static std::string GetVersion();
+  static TODOnHistory();
 
   private:
   Wt::WWidget * CreateNewAboutDialog() const;

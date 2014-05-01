@@ -34,6 +34,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "exercise.h"
 #include "trace.h"
+#include "question.h"
+#include "questiondialog.h"
 #include "wtexercise.h"
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtopenquestiondialog.h"

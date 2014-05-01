@@ -36,15 +36,15 @@ struct QtResources
   std::string GetBep() const noexcept { return "ProjectWtWebsiteBep.png"; }
   std::string GetBlack() const noexcept { return "PicBlack.png"; }
   std::string GetCl() const noexcept { return "PicCl.png"; }
-  //const std::string GetCppBuilder() const noexcept { return "PicCppBuilder.png"; }
+  //std::string GetCppBuilder() const noexcept { return "PicCppBuilder.png"; }
   std::string GetDesktop() const noexcept { return "PicDesktop.png"; }
   std::string GetGreen() const noexcept { return "PicGreen.png"; }
-  //const std::string GetLinux() const noexcept { return "PicLinux.png"; }
-  //const std::string GetLinuxMacWindows() const noexcept { return "PicLinuxMacWindows.png"; }
-  //const std::string GetMac() const noexcept { return "PicMac.png"; }
+  //std::string GetLinux() const noexcept { return "PicLinux.png"; }
+  //std::string GetLinuxMacWindows() const noexcept { return "PicLinuxMacWindows.png"; }
+  //std::string GetMac() const noexcept { return "PicMac.png"; }
   std::string GetOrange() const noexcept { return "PicOrange.png"; }
-  //const std::string GetQt() const noexcept { return "PicQt.png"; }
-  //const std::string GetR() const noexcept { return "PicR.png"; }
+  //std::string GetQt() const noexcept { return "PicQt.png"; }
+  //std::string GetR() const noexcept { return "PicR.png"; }
   std::string GetRed() const noexcept { return "PicRed.png"; }
   std::string GetYellow() const noexcept { return "PicYellow.png"; }
 

@@ -41,7 +41,7 @@ struct Data
   static Data * GetInstance();
 
   ///Get the data
-  const std::string GetData() const;
+  std::string GetData() const;
 
   private:
   ///Data constructor

@@ -31,8 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <iterator>
 
-#include <boost/math/constants/constants.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <boost/geometry.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include <QString>
 #include <QRegExp>
@@ -41,6 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "canvascoordinatsystems.h"
 #include "dotmatrixstring.h"
 #include "fileio.h"
+#include "geometry.h"
 #include "trace.h"
 #include "xml.h"
 
@@ -266,21 +268,41 @@ void ribi::DrawCanvas::DrawSurface(const std::vector<std::vector<double> >& v)
 void ribi::DrawCanvas::DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept
 {
 
-  const double dX = x2 - x1;
-  const double dY = y2 - y1;
-  const double dist = std::sqrt( (dX * dX) + (dY * dY) );
-  const double stepX = dX / dist;
-  const double stepY = dY / dist;
-  const int nSteps = static_cast<int>(dist + 0.5);
+  const double dx = x2 - x1;
+  const double dy = y2 - y1;
+  const double dist = Geometry().GetDistance(dx,dy);
+  const double step_x = dx / dist;
+  const double step_y = dy / dist;
+  const int n_steps = static_cast<int>(dist + 0.5);
   double x = x1;
   double y = y1;
-  for (int i=0; i!=nSteps; ++i)
+  for (int i=0; i!=n_steps; ++i)
   {
     DrawDot(x,y);
-    x+=stepX;
-    y+=stepY;
+    x+=step_x;
+    y+=step_y;
   }
   m_signal_changed(this);
+}
+
+void ribi::DrawCanvas::DrawLine(
+  const ribi::DrawCanvas::Coordinat from,
+  const ribi::DrawCanvas::Coordinat to
+) noexcept
+{
+  DrawLine(from.x(),from.y(),to.x(),to.y());
+}
+
+void ribi::DrawCanvas::DrawPolygon(
+  const boost::geometry::model::polygon<ribi::DrawCanvas::Coordinat>& polygon
+) noexcept
+{
+  const std::vector<Coordinat> points = polygon.outer();
+  const int n = static_cast<int>(points.size());
+  for (int i=0; i!=n; ++i)
+  {
+    DrawLine(points[i],points[ (i + 1) % n]);
+  }
 }
 
 void ribi::DrawCanvas::DrawText(const double top, const double left, const std::string& text) noexcept
@@ -326,7 +348,7 @@ std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
 }
 std::string ribi::DrawCanvas::GetVersion() noexcept
 {
-  return "3.0";
+  return "3.1";
 }
 
 std::vector<std::string> ribi::DrawCanvas::GetVersionHistory() noexcept
@@ -336,7 +358,8 @@ std::vector<std::string> ribi::DrawCanvas::GetVersionHistory() noexcept
     "2013-08-21: version 2.0: port to C++11 under Qt Creator",
     "2013-08-22: version 2.1: allow two color and coordinat systems"
     "2014-01-07: version 2.2: added the DrawText member function",
-    "2014-01-10: version 3.0: renamed to DrawCanvas, inherits from new class called Canvas"
+    "2014-01-10: version 3.0: renamed to DrawCanvas, inherits from new class called Canvas",
+    "2014-05-10: version 3.1: allow to draw a Boost.Geometry polygon, increase support for Boost.Geometry"
   };
 }
 
@@ -585,7 +608,52 @@ void ribi::DrawCanvas::Test() noexcept
     const std::string str_after {s_after.str() };
     assert(std::count(str_after.begin(),str_after.end(),' ') != maxx * maxy); //Line trly drawn
   }
-  //Draw a smiley is all coordinat- and colorsystem combinations, Clear
+  //Draw a polygon
+  {
+    /*
+
+    6 +
+      |
+    5 +      -C
+      |     - |
+    4 +   --  |
+      |  -    |
+    3 + B     |
+      | |    |
+    2 + |    |
+      | |   |
+    1 + A---D
+      |
+    0 +-+-+-+-+-+-+
+
+      0 1 2 3 4 5 6
+    */
+    const int maxx = 22;
+    const int maxy = 22;
+    const boost::shared_ptr<DrawCanvas> canvas(
+      new DrawCanvas(
+        maxx,
+        maxy,
+        CanvasColorSystem::invert,
+        CanvasCoordinatSystem::graph
+      )
+    );
+    const std::vector<Coordinat> points {
+      {  4.0,  4.0}, //A
+      {  4.0, 12.0}, //B
+      { 16.0, 20.0}, //C
+      { 12.0,  4.0}  //D
+    };
+    boost::geometry::model::polygon<Coordinat> polygon;
+    boost::geometry::append(polygon,points);
+    canvas->DrawPolygon(polygon);
+    {
+      std::stringstream s;
+      s << (*canvas);
+      assert(!s.str().empty());
+    }
+  }
+  //Draw a smiley is all coordinat- and colorsystem combinations
   for (int i=0; i!=4; ++i)
   {
     const int maxx = 79;

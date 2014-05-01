@@ -83,10 +83,10 @@ struct MenuDialog : public Wt::WContainerWidget
   static const About GetAbout();
 
   ///Get the current version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get the program's version history
-  static const std::vector<std::string> GetVersionHistory();
+  static TODOnHistory();
 
 };
 

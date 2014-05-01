@@ -40,52 +40,52 @@ struct Resources
   Resources& operator=(const Resources&) = delete;
 
   ///Get the filename of the background image
-  static const std::string GetImageFilenameBackground() { return "Background.png"; }
+  static std::string GetImageFilenameBackground() { return "Background.png"; }
 
   ///Get the filename of the experiment cycle image
-  static const std::string GetImageFilenameCycle() { return "Cycle_100.png"; }
+  static std::string GetImageFilenameCycle() { return "Cycle_100.png"; }
 
   ///Get the filename of the participant dialog 'Assign Payoff' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogAssignPayoff() { return "ProjectGtstParticipantDialogAssignPayoffParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogAssignPayoff() { return "ProjectGtstParticipantDialogAssignPayoffParameters.png"; }
 
   ///Get the filename of the participant dialog 'Chat' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogChat() { return "ProjectGtstParticipantDialogChatParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogChat() { return "ProjectGtstParticipantDialogChatParameters.png"; }
 
   ///Get the filename of the participant dialog 'Choose Action' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogChooseAction() { return "ProjectGtstParticipantDialogChooseActionParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogChooseAction() { return "ProjectGtstParticipantDialogChooseActionParameters.png"; }
 
   ///Get the filename of the participant dialog 'Finished' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogFinished() { return "ProjectGtstParticipantDialogFinishedParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogFinished() { return "ProjectGtstParticipantDialogFinishedParameters.png"; }
 
   ///Get the filename of the participant dialog 'Group Assign' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogGroupAssign() { return "ProjectGtstParticipantDialogGroupAssign2Parameters.png"; }
+  static std::string GetImageFilenameParticipantDialogGroupAssign() { return "ProjectGtstParticipantDialogGroupAssign2Parameters.png"; }
 
   ///Get the filename of the participant dialog 'Group Re-assign' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogGroupReAssign() { return "ProjectGtstParticipantDialogGroupReAssignParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogGroupReAssign() { return "ProjectGtstParticipantDialogGroupReAssignParameters.png"; }
 
   ///Get the filename of the participant dialog 'Logged-in' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogLoggedIn() { return "ProjectGtstParticipantDialogLoggedInParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogLoggedIn() { return "ProjectGtstParticipantDialogLoggedInParameters.png"; }
 
   ///Get the filename of the participant dialog 'Not logged-in' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogNotLoggedIn() { return "ProjectGtstParticipantDialogNotLoggedInParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogNotLoggedIn() { return "ProjectGtstParticipantDialogNotLoggedInParameters.png"; }
 
   ///Get the filename of the participant dialog 'View results group' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogViewResultsGroup() { return "ProjectGtstParticipantDialogViewResultsGroupParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogViewResultsGroup() { return "ProjectGtstParticipantDialogViewResultsGroupParameters.png"; }
 
   ///Get the filename of the participant dialog 'View results voting' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogViewResultsVoting() { return "ProjectGtstParticipantDialogViewResultsVotingParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogViewResultsVoting() { return "ProjectGtstParticipantDialogViewResultsVotingParameters.png"; }
 
   ///Get the filename of the participant dialog 'Voting' and the parameter file possibilities
-  static const std::string GetImageFilenameParticipantDialogVoting() { return "ProjectGtstParticipantDialogVotingParameters.png"; }
+  static std::string GetImageFilenameParticipantDialogVoting() { return "ProjectGtstParticipantDialogVotingParameters.png"; }
 
   ///Get the filename of the total experiment flow
-  static const std::string GetImageFilenameExperiment() { return "Experiment_100.png"; }
+  static std::string GetImageFilenameExperiment() { return "Experiment_100.png"; }
 
   ///Get the filename of the groups image
-  static const std::string GetImageFilenameGroups() { return "Groups.png"; }
+  static std::string GetImageFilenameGroups() { return "Groups.png"; }
 
   ///Get the filename of the experiment period image
-  static const std::string GetImageFilenamePeriod() { return "Period_100_58.png"; }
+  static std::string GetImageFilenamePeriod() { return "Period_100_58.png"; }
 
   private:
   ///Create the CSS for this application

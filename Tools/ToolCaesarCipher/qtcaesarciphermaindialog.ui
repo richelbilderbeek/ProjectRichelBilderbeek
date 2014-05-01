@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>406</width>
-    <height>104</height>
+    <width>397</width>
+    <height>110</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,12 @@
   <property name="windowIcon">
    <iconset>
     <normaloff>:/images/CaesarCipherArrowDown16x16.png</normaloff>:/images/CaesarCipherArrowDown16x16.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QWidget { font: 14px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="5">
@@ -65,7 +71,7 @@
    <item row="0" column="0" colspan="6">
     <widget class="QLineEdit" name="edit_plaintext">
      <property name="text">
-      <string>THISISPLAINTEXT</string>
+      <string>thisisplaintext</string>
      </property>
     </widget>
    </item>

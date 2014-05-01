@@ -13,7 +13,7 @@ namespace foam {
 ///Filenames used for OpenFOAM
 struct Filenames
 {
-  const std::vector<std::string> GetAll() const noexcept;
+  std::vector<std::string> GetAll() const noexcept;
 
   ///The filename for the OpenFOAM its case its velocity field
   std::string GetAlphat() const noexcept;

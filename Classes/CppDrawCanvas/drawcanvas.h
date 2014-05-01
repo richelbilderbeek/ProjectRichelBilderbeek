@@ -28,6 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/geometry/geometries/polygon.hpp>
 #include <boost/signals2.hpp>
 #include <boost/units/base_units/angle/radian.hpp>
 #include <boost/units/systems/si/io.hpp>
@@ -48,6 +50,8 @@ namespace ribi {
 ///the part that goes through the DrawCanvas is drawn and stored
 struct DrawCanvas : public Canvas
 {
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+
   ///The number of characters the DrawCanvas is heigh and wide
   ///but also the maximum x and y coordinat. The minimum
   ///x and y coordinats are 0.0 and 0.0
@@ -96,9 +100,13 @@ struct DrawCanvas : public Canvas
   ///where (x1,y1) and (x2,y2) are the centers of a dot with radius 1.0 at
   ///the edges of the line
   void DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept;
+  void DrawLine(const Coordinat from, const Coordinat to) noexcept;
+
+  ///Draw (or actually: add) a polygon on the canvas
+  void DrawPolygon(const boost::geometry::model::polygon<Coordinat>& polygon) noexcept;
 
   ///Draw a Y-X-ordered surface to the DrawCanvas
-  void DrawSurface(const std::vector<std::vector<double> >& v);
+  void DrawSurface(const std::vector<std::vector<double>>& v);
 
   ///Draw (or actually: add) text to the DrawCanvas, where (top,left) is the topleft coordinat
   ///of the text. The text will end up as dots drawn for each character its pixel.
@@ -130,7 +138,7 @@ struct DrawCanvas : public Canvas
   ///The DrawCanvas its internal data: a 2D y-x-ordered std::vector
   ///of doubles, where 0.0 denotes empty/non-drawn
   ///and 1.0 denotes full/drawn.
-  const std::vector<std::vector<double> >& GetGreynesses() const noexcept { return m_canvas; }
+  const std::vector<std::vector<double>>& GetGreynesses() const noexcept { return m_canvas; }
 
   ///Obtain the height of the canvas is characters
   int GetHeight() const noexcept { return m_canvas.size(); }

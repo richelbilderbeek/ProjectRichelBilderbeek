@@ -58,7 +58,7 @@ struct ServerStateViewResultsGroup : public ServerState, StateViewResultsGroup
   //void SetParameters(const boost::shared_ptr<const ParametersViewResultsGroup>& parameters);
 
   ///Get the Participant-dependent results
-  const std::vector<std::string> GetResults(
+  TODOs(
     const Participant * const participant) const;
 
   ///Start or restart the state

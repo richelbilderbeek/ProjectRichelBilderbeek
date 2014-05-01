@@ -46,7 +46,7 @@ struct ServerStateQuiz : public ServerState, StateQuiz
   bool CanGoToNextState() const;
 
   ///Obtain all Participant's their states relevant for the current ServerState
-  //const std::vector<std::string> GetParticipantStates() const;
+  //TODOipantStates() const;
 
   ///ServerState dependent response to a timer
   void OnTimer();
@@ -64,7 +64,7 @@ struct ServerStateQuiz : public ServerState, StateQuiz
   //void SetParameters(const boost::shared_ptr<const ParametersQuiz>& parameters);
 
   ///Get the Participant-dependent results
-  //const std::vector<std::string> GetResults(const boost::shared_ptr<Participant>& p) const; //TODO
+  //TODOs(const boost::shared_ptr<Participant>& p) const; //TODO
 
   ///Start or restart the state, for example by resetting the timer
   void Start();

@@ -69,7 +69,7 @@ void ribi::CaesarCipherMainDialog::Test() noexcept
   TRACE("Starting ribi::CaesarCipherMainDialog::Test");
   {
     CaesarCipherMainDialog d;
-    const std::string s = "HELLOWORLD";
+    const std::string s = "helloworld";
     d.SetKey(123);
     d.SetPlainText(s);
     d.Encrypt();

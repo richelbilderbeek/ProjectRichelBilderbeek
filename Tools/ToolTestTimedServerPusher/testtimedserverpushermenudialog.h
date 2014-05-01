@@ -33,10 +33,10 @@ namespace ToolTestTimedServerPusher {
 struct MenuDialog
 {
   ///Get this class its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Get this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static TODOnHistory();
 
   ///Get this class its About
   static const About GetAbout();

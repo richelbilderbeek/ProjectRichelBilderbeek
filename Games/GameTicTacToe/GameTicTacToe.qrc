@@ -7,14 +7,6 @@
         <file>GameTicTacToeX.png</file>
         <file>GameTicTacToeComputer.png</file>
         <file>GameTicTacToeHuman.png</file>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    </qresource>
-    <qresource prefix="/gametictactoe/files">
         <file>GameTicTacToe.css</file>
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
-=======
->>>>>>> f1bf4399a2eb2810d96a09e78b7ffcc78ed368bf
     </qresource>
 </RCC>

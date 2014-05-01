@@ -174,7 +174,7 @@ struct ProgramAthleticLandVcl : public ProgramGame
 struct ProgramAsciiArter : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolAsciiArter_5_1.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolAsciiArter_6_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return "ToolAsciiArter_5_2.png"; }
   std::string GetScreenName() const noexcept { return "AsciiArter"; }
@@ -324,7 +324,7 @@ struct ProgramBristol : public ProgramProject
 struct ProgramCaesarCipher : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolCaesarCipher_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "CaesarCipher"; }
@@ -369,7 +369,7 @@ struct ProgramCodeBreaker : public ProgramTool
 struct ProgramCodeToHtml : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolCodeToHtml_2_3.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolCodeToHtml_3_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return "ToolCodeToHtml_2_0.png"; }
   std::string GetScreenName() const noexcept { return "CodeToHtml"; }
@@ -1331,7 +1331,7 @@ struct ProgramPong : public ProgramGame
 struct ProgramPreDickAdvocaTor : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolPreDickAdvocaTor_2_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "PreDickAdvocaTor"; }
@@ -1377,14 +1377,14 @@ struct ProgramProjectRichelBilderbeek : public ProgramProject
 struct ProgramPylos : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "GamePylos_1_0.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "GamePylos_2_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "Pylos"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }
   ProgramType GetType() const noexcept { return ProgramType::pylos; }
   std::string GetUrl() const noexcept { return "GamePylos.htm"; }
 };
@@ -1392,7 +1392,7 @@ struct ProgramPylos : public ProgramGame
 struct ProgramQmakeWatcher : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolQmakeWatcher_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "QmakeWatcher"; }
@@ -1513,15 +1513,30 @@ struct ProgramReversi : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
   std::string GetFilenameDesktop() const noexcept { return ""; }
-  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameReversi_1_0.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameReversi_0_1.png"; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "Reversi"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }
+  ProgramType GetType() const noexcept { return ProgramType::reversi; }
+  std::string GetUrl() const noexcept { return "GameReversi.htm"; }
+};
+
+struct ProgramReversiVcl : public ProgramGame
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameReversiVcl_1_0.png"; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "Reversi VCL"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::reversi; }
-  std::string GetUrl() const noexcept { return "GameReversi.htm"; }
+  ProgramType GetType() const noexcept { return ProgramType::reversiVcl; }
+  std::string GetUrl() const noexcept { return "GameReversiVcl.htm"; }
 };
 
 
@@ -1558,7 +1573,7 @@ struct ProgramRichelBilderbeekNlSitemapGenerator : public ProgramTool
 struct ProgramRubiksClock : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "GameRubiksClockDesktop_2_2.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "GameRubiksClock_2_3.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return "GameRubiksClock_2_1.png"; }
   std::string GetScreenName() const noexcept { return "Rubik's Clock"; }
@@ -2010,7 +2025,7 @@ struct ProgramTestChess : public ProgramClass
 struct ProgramTestConceptMap : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestConceptMap_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestConceptMap"; }
@@ -2025,7 +2040,7 @@ struct ProgramTestConceptMap : public ProgramClass
 struct ProgramTestDial : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestDial_1_0.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestDial_2_3.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return "ToolTestDial_1_1.png"; }
   std::string GetScreenName() const noexcept { return "TestDial"; }
@@ -2040,7 +2055,7 @@ struct ProgramTestDial : public ProgramClass
 struct ProgramTestDrawCanvas : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestDrawCanvas_1_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestDrawCanvas"; }
@@ -2115,7 +2130,7 @@ struct ProgramTestGnuplotInterface : public ProgramClass
 struct ProgramTestGraphicsProxyWidget : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestGraphicsProxyWidget_0_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestGraphicsProxyWidget"; }
@@ -2130,7 +2145,7 @@ struct ProgramTestGraphicsProxyWidget : public ProgramClass
 struct ProgramTestGravityWidget : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestGravityWidget_0_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestGravityWidget"; }
@@ -2175,7 +2190,7 @@ struct ProgramTestHugeVector : public ProgramClass
 struct ProgramTestImageCanvas : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestImageCanvas_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestImageCanvas"; }
@@ -2220,7 +2235,7 @@ struct ProgramTestLed : public ProgramClass
 struct ProgramTestManyDigitNewick : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestManyDigitNewick_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestManyDigitNewick"; }
@@ -2250,7 +2265,7 @@ struct ProgramTestMultiApproximator : public ProgramClass
 struct ProgramTestMultiCanvas : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestMultiCanvas_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestMultiCanvas"; }
@@ -2265,7 +2280,7 @@ struct ProgramTestMultiCanvas : public ProgramClass
 struct ProgramTestMultipleChoiceQuestion : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestMultipleChoiceQuestionDialog_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestMultipleChoiceQuestion"; }
@@ -2295,7 +2310,7 @@ struct ProgramTestMultiVector : public ProgramClass
 struct ProgramTestPlane : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestPlane_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestPlane"; }
@@ -2355,7 +2370,7 @@ struct ProgramTestNewick : public ProgramClass
 struct ProgramTestNewickVector : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestNewickVector_3_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestNewickVector"; }
@@ -2370,7 +2385,7 @@ struct ProgramTestNewickVector : public ProgramClass
 struct ProgramTestOpenQuestion : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestOpenQuestion_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestOpenQuestion"; }
@@ -2400,7 +2415,7 @@ struct ProgramTestPylos : public ProgramClass
 struct ProgramTestQrcFile : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQrcFile_1_3.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQrcFile"; }
@@ -2430,7 +2445,7 @@ struct ProgramTestQtArrowItems : public ProgramClass
 struct ProgramTestQtCreatorProFile : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtCreatorProFile_1_4.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQtCreatorProFile"; }
@@ -2445,7 +2460,7 @@ struct ProgramTestQtCreatorProFile : public ProgramClass
 struct ProgramTestQtHideAndShowDialog : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtHideAndShowDialog_0_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQtHideAndShowDialog"; }
@@ -2460,7 +2475,7 @@ struct ProgramTestQtHideAndShowDialog : public ProgramClass
 struct ProgramTestQtKeyboardFriendlyGraphicsView : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestKeyboardFriendlyGraphicsView_0_4.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQtKeyboardFriendlyGraphicsView"; }
@@ -2475,7 +2490,7 @@ struct ProgramTestQtKeyboardFriendlyGraphicsView : public ProgramClass
 struct ProgramTestQtModels : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtModels_1_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQtModels"; }
@@ -2505,7 +2520,7 @@ struct ProgramTestQtOcrWidget : public ProgramClass
 struct ProgramTestQtRoundedEditRectItem : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedEditRectItem_1_0.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedEditRectItem_1_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQtRoundedEditRectItem"; }
@@ -2520,7 +2535,7 @@ struct ProgramTestQtRoundedEditRectItem : public ProgramClass
 struct ProgramTestQtRoundedRectItem : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedRectItem_1_1.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedRectItem_1_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQtRoundedRectItem"; }
@@ -2535,7 +2550,7 @@ struct ProgramTestQtRoundedRectItem : public ProgramClass
 struct ProgramTestQtRoundedTextRectItem : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedTextRectItem_1_1.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedTextRectItem_1_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQtRoundedTextRectItem"; }
@@ -2550,7 +2565,7 @@ struct ProgramTestQtRoundedTextRectItem : public ProgramClass
 struct ProgramTestQuestion : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestQuestion_2_1.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestQuestion_3_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestQuestion"; }
@@ -2565,7 +2580,7 @@ struct ProgramTestQuestion : public ProgramClass
 struct ProgramTestReversi : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestReversi_0_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestReversi"; }
@@ -2610,7 +2625,7 @@ struct ProgramTestServerPusher : public ProgramClass
 struct ProgramTestShape : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestShape_1_0_desktop.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestShape_2_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return "ToolTestShape_1_0_web.png"; }
   std::string GetScreenName() const noexcept { return "TestShape"; }
@@ -2625,7 +2640,7 @@ struct ProgramTestShape : public ProgramClass
 struct ProgramTestShinyButton : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestShinyButton_2_0_desktop.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestShinyButton_2_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return "ToolTestShinyButton_2_0_web.png"; }
   std::string GetScreenName() const noexcept { return "TestShinyButton"; }
@@ -2640,7 +2655,7 @@ struct ProgramTestShinyButton : public ProgramClass
 struct ProgramTestSimpleLinearRegression : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestSimpleLinearRegression_1_0.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestSimpleLinearRegression_1_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestSimpleLinearRegression"; }
@@ -2670,7 +2685,7 @@ struct ProgramTestStopwatch : public ProgramClass
 struct ProgramTestTextCanvas : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestTextCanvas_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestTextCanvas"; }
@@ -2685,7 +2700,7 @@ struct ProgramTestTextCanvas : public ProgramClass
 struct ProgramTestTextPositionWidget : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestTextPositionWidget_1_4.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestTextPositionWidget"; }
@@ -2730,7 +2745,7 @@ struct ProgramTestTimedServerPusher : public ProgramClass
 struct ProgramTestToggleButton : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestToggleButton_1_4.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestToggleButton"; }
@@ -2745,7 +2760,7 @@ struct ProgramTestToggleButton : public ProgramClass
 struct ProgramTriangleMeshCreator : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTriangleMeshCreator_1_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TriangleMeshCreator"; }
@@ -2760,7 +2775,7 @@ struct ProgramTriangleMeshCreator : public ProgramTool
 struct ProgramTestTwoDigitNewick : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestTwoDigitNewick_0_6.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestTwoDigitNewick_2_2.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestTwoDigitNewick"; }

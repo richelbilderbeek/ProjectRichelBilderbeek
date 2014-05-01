@@ -128,19 +128,7 @@ void ribi::ruco::ClockWidget::OnResize() noexcept
   m_clock->SetGeometry(this->GetGeometry());
 }
 
-/*
-const boost::shared_ptr<ribi::DrawCanvas> ribi::ruco::RubiksClockWidget::ToDrawCanvas(const int size) const noexcept
-{
-  const boost::shared_ptr<ribi::DrawCanvas> c(
-    new DrawCanvas(size,size)
-  );
-
-  assert(!"TODO");
-  return c;
-}
-*/
-
-const boost::shared_ptr<ribi::TextCanvas> ribi::ruco::ClockWidget::ToTextCanvas() const noexcept
+boost::shared_ptr<ribi::TextCanvas> ribi::ruco::ClockWidget::ToTextCanvas() const noexcept
 {
   const int size = 5;
   const boost::shared_ptr<ribi::TextCanvas> c(

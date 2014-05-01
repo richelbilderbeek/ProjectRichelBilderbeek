@@ -8,7 +8,7 @@
 #include "fileio.h"
 #include "xml.h"
 
-const std::vector<std::string> ribi::foam::Filenames::GetAll() const noexcept
+std::vector<std::string> ribi::foam::Filenames::GetAll() const noexcept
 {
   return {
     this->GetBoundary(),

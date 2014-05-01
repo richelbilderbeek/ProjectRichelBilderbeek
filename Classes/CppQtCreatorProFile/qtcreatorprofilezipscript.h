@@ -94,7 +94,7 @@ struct QtCreatorProFileZipScript
 
   ///Get all the .pro files in a folder
   //From http://www.richelbilderbeek.nl/CppGetProFilesInFolder.htm
-  //static const std::vector<std::string> GetProFilesInFolder(const std::string& folder);
+
   static std::vector<std::string> GetProAndPriFilesInFolder(const std::string& folder);
 
   #ifndef NDEBUG

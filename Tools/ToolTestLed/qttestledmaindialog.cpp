@@ -65,7 +65,10 @@ void ribi::QtTestLedMainDialog::on_slider_valueChanged(int value) noexcept
   {
     leds[i]->GetWidget()->GetLed()->SetIntensity(intensity);
     std::string s;
-    for (const std::string& t: leds[i]->GetWidget()->ToCanvas(5)->ToStrings()) { s += (t + '\n'); }
+    for (const std::string& t: leds[i]->GetWidget()->ToCanvas(5)->ToStrings())
+    {
+      s += (t + '\n');
+    }
     texts[i]->setPlainText(s.c_str());
   }
 }

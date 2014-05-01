@@ -105,16 +105,16 @@ struct LogFile
 
   ///Returns date in YYYY-MM-DD format
   //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
-  static const std::string GetDateIso8601();
+  static std::string GetDateIso8601();
 
   ///Get the current time
   //From http://www.richelbilderbeek.nl/CppGetTime.htm
-  static const std::string GetTime();
+  static std::string GetTime();
 
   ///Returns the current date and time as a YYYY_MM_DD_HH_MM_SS std::string,
   ///for example '2011_07_01_11_35_38'
   //From http://www.richelbilderbeek.nl/CppGetTimestamp.htm
-  static const std::string GetTimestamp();
+  static std::string GetTimestamp();
 };
 
 std::ostream& operator<<(std::ostream& os,const LogFile& logfile);

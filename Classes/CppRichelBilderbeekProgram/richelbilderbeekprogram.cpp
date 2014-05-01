@@ -129,6 +129,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::refrigeratorPuzzleSolver: p.reset(new ProgramRefrigeratorPuzzleSolver); break;
     case ProgramType::regexTester: p.reset(new ProgramRegexTester); break;
     case ProgramType::reversi: p.reset(new ProgramReversi); break;
+    case ProgramType::reversiVcl: p.reset(new ProgramReversiVcl); break;
     case ProgramType::richelBilderbeekGallery: p.reset(new ProgramRichelBilderbeekGallery); break;
     case ProgramType::richelbilderbeekNlSitemapGenerator: p.reset(new ProgramRichelBilderbeekNlSitemapGenerator); break;
     case ProgramType::rubiksClock: p.reset(new ProgramRubiksClock); break;

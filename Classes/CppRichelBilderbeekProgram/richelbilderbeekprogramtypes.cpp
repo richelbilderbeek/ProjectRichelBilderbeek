@@ -134,6 +134,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::refrigeratorPuzzleSolver,"refrigeratorPuzzleSolver"));
   m.insert(Pair(ProgramType::regexTester,"regexTester"));
   m.insert(Pair(ProgramType::reversi,"reversi"));
+  m.insert(Pair(ProgramType::reversiVcl,"reversiVcl"));
   m.insert(Pair(ProgramType::richelBilderbeekGallery,"richelBilderbeekGallery"));
   m.insert(Pair(ProgramType::richelbilderbeekNlSitemapGenerator,"richelbilderbeekNlSitemapGenerator"));
   m.insert(Pair(ProgramType::rubiksClock,"rubiksClock"));
@@ -351,6 +352,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::refrigeratorPuzzleSolver,"RefrigeratorPuzzleSolver"));
   m.insert(Pair(ProgramType::regexTester,"RegexTester"));
   m.insert(Pair(ProgramType::reversi,"Reversi"));
+  m.insert(Pair(ProgramType::reversiVcl,"Reversi (VCL)"));
   m.insert(Pair(ProgramType::richelBilderbeekGallery,"RichelBilderbeekGallery"));
   m.insert(Pair(ProgramType::richelbilderbeekNlSitemapGenerator,"RichelbilderbeekNlSitemapGenerator"));
   m.insert(Pair(ProgramType::rubiksClock,"Rubik's Clock"));

@@ -104,6 +104,9 @@ struct Geometry
     const double height
   ) const noexcept;
 
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+    CreateHouseShape() const noexcept;
+
   ///Functor for X-Y-Z ordering
   std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)> Equals2d() const noexcept;
   std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> Equals() const noexcept;
@@ -304,12 +307,7 @@ struct Geometry
      Convex           Concave
 
   */
-  bool IsConvex(
-    boost::geometry::model::polygon<Coordinat2D> polygon
-    #ifndef NDEBUG
-    ,const std::vector<Coordinat2D>& points
-    #endif
-  ) const noexcept;
+  bool IsConvex(boost::geometry::model::polygon<Coordinat2D> polygon) const noexcept;
   bool IsConvex(const std::vector<Coordinat2D>& points) const noexcept;
   bool IsConvex(const std::vector<Coordinat3D>& points) const noexcept;
 
@@ -334,6 +332,14 @@ struct Geometry
   ///Functor for Z-Y-X ordering
   std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> OrderByZ() const noexcept;
 
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+    Rescale(
+      const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
+      const double scale,
+      const double scale_origin_x = 0.0,
+      const double scale_origin_y = 0.0
+    ) const noexcept;
+
   std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;
 
@@ -344,6 +350,13 @@ struct Geometry
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+    Translate(
+      const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
+      const double dx,
+      const double dy
+    ) const noexcept;
 
 };
 

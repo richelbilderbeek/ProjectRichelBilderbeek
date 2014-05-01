@@ -170,6 +170,40 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcPr
   return coordinats2d;
 }
 
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+  ribi::Geometry::CreateHouseShape() const noexcept
+{
+  /*
+
+    3-
+     |
+    2-    0
+     |   / \
+    1-  4   1
+     |  |   |
+    0-  3---2
+     |
+     +--|---|---|
+        0   1   2
+
+  */
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+
+
+  const std::vector<Coordinat2D> points {
+    {0.5, 2.0}, //0
+    {1.0, 1.0}, //1
+    {1.0, 0.0}, //2
+    {0.0, 0.0}, //3
+    {0.0, 1.0}  //4
+  };
+
+  boost::geometry::model::polygon<Coordinat2D> house;
+  boost::geometry::append(house, points);
+  return house;
+}
+
 ribi::Geometry::Coordinat3D ribi::Geometry::CreatePoint(
   const double x,
   const double y,
@@ -251,6 +285,10 @@ double ribi::Geometry::GetAngle(const Coordinat2D& p) const noexcept
 
 double ribi::Geometry::GetDistance(const double dx, const double dy) const noexcept
 {
+  //return GetDistance(
+  //  boost::geometry::model::d2::point_xy<double>(0.0,0.0),
+  //  boost::geometry::model::d2::point_xy<double>(dx,dy)
+  //);
   return std::sqrt( (dx * dx) + (dy * dy) );
 }
 
@@ -259,12 +297,13 @@ double ribi::Geometry::GetDistance(
   const boost::geometry::model::d2::point_xy<double>& b
   ) const noexcept
 {
-  return GetDistance(a.x() - b.x(),a.y() - b.y());
+  //return GetDistance(a.x() - b.x(),a.y() - b.y());
+  return boost::geometry::distance(a,b);
 }
 
 std::string ribi::Geometry::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
@@ -272,7 +311,8 @@ std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
   return {
     "2014-02-25: version 1.0: initial version",
     "2014-03-11: version 1.1: removed use of custom coordinat classes, use Boost.Geometry instead"
-    "2014-03-25: version 1.2: fixed bug in IsConvex"
+    "2014-03-25: version 1.2: fixed bug in IsConvex",
+    "2014-05-01: version 1.3: minor improments and cleanup"
   };
 }
 
@@ -302,45 +342,6 @@ bool ribi::Geometry::IsClockwise(const std::vector<double>& angles) const noexce
   return true;
 }
 
-/*
-bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept
-{
-  const int n_points { static_cast<int>(points.size()) };
-  assert(n_points == 3 || n_points == 4);
-  if (n_points == 3)
-  {
-    const Coordinat3D a { points[0] };
-    const Coordinat3D b { points[1] };
-    const Coordinat3D c { points[2] };
-    const Coordinat3D normal { CalcNormal(a,b,c) };
-    const double direction { CalcDotProduct(normal,a - observer) };
-    return direction > 0.0;
-  }
-  else
-  {
-    assert(n_points == 4);
-    //See if the points in the projection are in the same direction
-    const std::vector<Coordinat2D> v(
-      Plane().CalcProjection(
-        {
-          points[0].ToBoostGeometryPoint(),
-          points[1].ToBoostGeometryPoint(),
-          points[2].ToBoostGeometryPoint(),
-          points[3].ToBoostGeometryPoint()
-        }
-      )
-    );
-    //If the points are messed up, they cannot be clockwise
-
-    if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
-    //The neatly orderder point have the same winding as the first three
-    std::vector<Coordinat3D> a;
-    std::copy(points.begin() + 0,points.begin() + 3,std::back_inserter(a));
-    return IsClockwise(a,observer);
-  }
-}
-*/
-
 bool ribi::Geometry::IsClockwise(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& observer
@@ -356,27 +357,12 @@ bool ribi::Geometry::IsClockwise(
     const auto normal(CalcNormal(a,b,c));
     const auto direction(CalcDotProduct(normal,a - observer));
     const bool is_clockwise { direction > 0.0 };
-    //#ifndef NDEBUG
-    //if (!is_clockwise)
-    //{
-    //  TRACE(geometry.ToStr(a));
-    //  TRACE(geometry.ToStr(b));
-    //  TRACE(geometry.ToStr(c));
-    //}
-    //#endif
     return is_clockwise;
   }
   else
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
-    #ifndef NDEBUG
-    
-    if(!Geometry().IsPlane(points))
-    {
-      TRACE("ERROR");
-    }
-    #endif
     assert(Geometry().IsPlane(points));
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
@@ -437,11 +423,7 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::mo
   return IsClockwise(angles);
 }
 
-bool ribi::Geometry::IsConvex(Polygon polygon
-  #ifndef NDEBUG
-  ,const std::vector<Coordinat2D>& /* points  */ //Keep it temporarily for debugging
-  #endif
-  ) const noexcept
+bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
 {
   //assert(boost::geometry::num_points(polygon) == points.size()
   //  && "Points and polygon have the same number of points");
@@ -476,46 +458,6 @@ bool ribi::Geometry::IsConvex(Polygon polygon
     if (dist == max_dist) return false;
   }
   return true;
-
-  #ifdef ISCONVEX_STD_REVERSE_APPROACH
-  std::vector<Coordinat2D> v = polygon.outer();
-  std::vector<Coordinat2D> w = hull.outer();
-  //std::sort(v.begin(),v.end(),Order2dByX());
-  //std::sort(w.begin(),w.end(),Order2dByX());
-  v.erase(std::unique(v.begin(),v.end(),Equals2d()),v.end());
-  w.erase(std::unique(w.begin(),w.end(),Equals2d()),w.end());
-  if (verbose) { TRACE(v.size() == w.size()); }
-  if (v.size() != w.size())
-  {
-    return false;
-  }
-
-  bool is_convex_second = false;
-  const int n = static_cast<int>(v.size());
-  for (int i=0; i!=n; ++i)
-  {
-    TRACE(i);
-    TRACE(v.size());
-    for (int j=0; j!=n; ++j)
-    {
-      std::stringstream s;
-      s << j << ": " << ToStr(v[j]) << " " << ToStr(w[j]) << '\n';
-      TRACE(s.str());
-    }
-    if (std::equal(v.begin(),v.end(),w.begin(),Equals2d()))
-    {
-      TRACE("Found match");
-      is_convex_second = true;
-      break;
-    }
-    TRACE("Different, rotate again");
-    std::rotate(v.begin(),v.begin() + 1, v.end());
-  }
-  #ifndef NDEBUG
-  TRACE(is_convex_second);
-  #endif
-  return is_convex_second;
-  #endif
 }
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
@@ -527,13 +469,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
     boost::geometry::append(polygon,point);
   };
   assert(boost::geometry::num_points(polygon) == points.size());
-  //TRACE(points.size());
-  //TRACE(boost::geometry::num_points(polygon));
-  const bool is_convex = IsConvex(polygon
-  #ifndef NDEBUG
-    ,points
-  #endif
-  );
+  const bool is_convex = IsConvex(polygon);
   return is_convex;
 }
 
@@ -726,27 +662,6 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>
   return IsCounterClockwiseHorizontal(points2d);
 }
 
-/*
-bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
-{
-  //Points are determined from their center
-  const auto center(CalcCenter(points));
-  std::vector<double> angles;
-  angles.reserve(points.size());
-  std::transform(points.begin(),points.end(),
-    std::back_inserter(angles),
-    [this,center](const Coordinat2D& coordinat)
-    {
-      return GetAngle(
-        coordinat.x() - center.x(),
-        coordinat.y() - center.y()
-      );
-    }
-  );
-  return IsCounterClockwise(angles);
-}
-*/
-
 std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)>
   ribi::Geometry::Equals2d() const noexcept
 {
@@ -828,6 +743,38 @@ std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry:
     if (get<1>(lhs) > get<1>(rhs)) return false;
     return get<0>(lhs) < get<0>(rhs);
   };
+}
+
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+  ribi::Geometry::Rescale(
+    const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
+    const double scale,
+    const double scale_origin_x,
+    const double scale_origin_y
+  ) const noexcept
+{
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+
+  boost::geometry::model::ring<Coordinat2D> points;
+  boost::geometry::convert(shape,points);
+
+  for (auto& point:points)
+  {
+    const double x = point.x();
+    const double dx = x - scale_origin_x;
+    const double new_x = scale_origin_x + (scale * dx);
+
+    const double y = point.y();
+    const double dy = y - scale_origin_y;
+    const double new_y = scale_origin_y + (scale * dy);
+
+    point = Coordinat2D(new_x,new_y);
+  }
+
+  Polygon new_shape;
+  boost::geometry::append(new_shape, points);
+  return new_shape;
 }
 
 #ifndef NDEBUG
@@ -1134,7 +1081,7 @@ void ribi::Geometry::Test() noexcept
 
       Polygon polygon;
       boost::geometry::append(polygon, points);
-      assert(g.IsConvex(polygon,points));
+      assert(g.IsConvex(polygon));
     }
     //Concave shape
     {
@@ -1148,7 +1095,7 @@ void ribi::Geometry::Test() noexcept
 
       Polygon polygon;
       boost::geometry::append(polygon, points);
-      assert(!g.IsConvex(polygon,points));
+      assert(!g.IsConvex(polygon));
     }
   }
   if (verbose) TRACE("Convex shape, 2D, from error #1");
@@ -1609,6 +1556,102 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
+  if (verbose) TRACE("Translate");
+  {
+    //Translate (0.5,1.0) to origin
+    const auto house = g.CreateHouseShape();
+    const auto translated_house = g.Translate(house,-0.5,-1.0);
+    boost::geometry::model::ring<Coordinat2D> translated_points;
+    boost::geometry::convert(translated_house,translated_points);
+    const std::vector<Coordinat2D> translated_points_expected {
+      { 0.0, 1.0}, //0
+      { 0.5, 0.0}, //1
+      { 0.5,-1.0}, //2
+      {-0.5,-1.0}, //3
+      {-0.5, 0.0}  //4
+    };
+    assert(
+      std::equal(
+        translated_points.begin(),translated_points.end(),
+        translated_points_expected.begin(),
+        [](const Coordinat2D& a,const Coordinat2D& b)
+        {
+          return boost::geometry::equals(a,b);
+        }
+      )
+      && "Points must be translated as expected"
+    );
+  }
+  if (verbose) TRACE("Scale up twice, from origin");
+  {
+    //Scale twice up, from origin
+    const auto house = g.CreateHouseShape();
+    const auto rescaled_house = g.Rescale(house,2.0);
+    boost::geometry::model::ring<Coordinat2D> rescaled_points;
+    boost::geometry::convert(rescaled_house,rescaled_points);
+    const std::vector<Coordinat2D> rescaled_points_expected {
+      {1.0, 4.0}, //0
+      {2.0, 2.0}, //1
+      {2.0, 0.0}, //2
+      {0.0, 0.0}, //3
+      {0.0, 2.0}  //4
+    };
+    assert(
+      std::equal(
+        rescaled_points.begin(),rescaled_points.end(),
+        rescaled_points_expected.begin(),
+        [](const Coordinat2D& a,const Coordinat2D& b)
+        {
+          //std::cout << "(" << a.x() << "," << a.y() << ")-("
+          //  << b.x() << "," << b.y() << ")" << std::endl;
+          return boost::geometry::equals(a,b);
+        }
+      )
+      && "Points must be rescaled as expected"
+    );
+  }
+  if (verbose) TRACE("Scale up twice, from non-origin");
+  {
+    //Scale up, from center at (0.5,1.0)
+    /*
+
+      3-
+       |
+      2-    0
+       |   / \
+      1-  4 * 1
+       |  |   |
+      0-  3---2
+       |
+       +--|---|---|
+          0   1   2
+
+    */
+    const auto house = g.CreateHouseShape();
+    const auto rescaled_house = g.Rescale(house,2.0,0.5,1.0);
+    boost::geometry::model::ring<Coordinat2D> rescaled_points;
+    boost::geometry::convert(rescaled_house,rescaled_points);
+    const std::vector<Coordinat2D> rescaled_points_expected {
+      { 0.5, 3.0}, //0
+      { 1.5, 1.0}, //1
+      { 1.5,-1.0}, //2
+      {-0.5,-1.0}, //3
+      {-0.5, 1.0}  //4
+    };
+    assert(
+      std::equal(
+        rescaled_points.begin(),rescaled_points.end(),
+        rescaled_points_expected.begin(),
+        [](const Coordinat2D& a,const Coordinat2D& b)
+        {
+          //std::cout << "(" << a.x() << "," << a.y() << ")-("
+          //  << b.x() << "," << b.y() << ")" << std::endl;
+          return boost::geometry::equals(a,b);
+        }
+      )
+      && "Points must be rescaled as expected"
+    );
+  }
   if (verbose) TRACE("GetLineLineIntersections");
   #ifdef TODO_RICHEL
   {
@@ -1731,6 +1774,29 @@ std::string ribi::Geometry::ToStr(const boost::geometry::model::point<double,3,b
   return s.str();
 }
 
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+  ribi::Geometry::Translate(
+    const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
+    const double dx,
+    const double dy
+  ) const noexcept
+{
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+
+  boost::geometry::model::ring<Coordinat2D> points;
+  boost::geometry::convert(shape,points);
+
+  for (auto& point:points)
+  {
+    point = Coordinat2D(point.x() + dx, point.y() + dy);
+  }
+
+  Polygon new_shape;
+  boost::geometry::append(new_shape, points);
+  return new_shape;
+}
+
 boost::geometry::model::d2::point_xy<double> ribi::operator-(
   const boost::geometry::model::d2::point_xy<double>& a,
   const boost::geometry::model::d2::point_xy<double>& b
@@ -1749,7 +1815,6 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>
   ) noexcept
 {
   return std::remove_const<std::remove_reference<decltype(a)>::type>::type(
-  //return boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(
     boost::geometry::get<0>(a) - boost::geometry::get<0>(b),
     boost::geometry::get<1>(a) - boost::geometry::get<1>(b),
     boost::geometry::get<2>(a) - boost::geometry::get<2>(b)

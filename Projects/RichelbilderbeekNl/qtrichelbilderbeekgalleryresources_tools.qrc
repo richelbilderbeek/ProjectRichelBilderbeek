@@ -128,5 +128,12 @@
         <file>ToolFunctionPlotter_2_0.png</file>
         <file>ToolCreateGlossary_1_2.png</file>
         <file>ToolAsciiArter_5_2.png</file>
+        <file>ToolCodeToHtml_3_1.png</file>
+        <file>ToolCaesarCipher_1_0.png</file>
+        <file>ToolAsciiArter_6_0.png</file>
+        <file>ToolQmakeWatcher_1_0.png</file>
+        <file>ToolPreDickAdvocaTor_2_1.png</file>
+        <file>ToolPreDickAdvocaTor_1_0.png</file>
+        <file>ToolTriangleMeshCreator_1_2.png</file>
     </qresource>
 </RCC>
