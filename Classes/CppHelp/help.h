@@ -48,7 +48,7 @@ struct Help
     const std::string& program_description,
     const std::vector<Option>& options,
     const std::vector<std::string> example_uses
-    );
+  );
 
   const std::vector<std::string>& GetExampleUses() const noexcept { return m_example_uses; }
   const std::vector<Option>& GetOptions() const noexcept { return  m_options; }

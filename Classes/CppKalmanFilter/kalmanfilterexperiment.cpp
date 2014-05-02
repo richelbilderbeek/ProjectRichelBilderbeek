@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "kalmanfilterexperiment.h"
 
 #include <cassert>
@@ -116,7 +118,7 @@ void ribi::kalman::KalmanFilterExperiment::AppendRealState(const boost::numeric:
   this->m_real_states.push_back(real_state);
 }
 
-const std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFilterExperiment::GetMeasuredStates() const
+std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFilterExperiment::GetMeasuredStates() const
 {
   std::vector<boost::numeric::ublas::vector<double> > v;
   v.reserve(m_calculation_elements.size());
@@ -128,7 +130,7 @@ const std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFi
   return v;
 }
 
-const std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFilterExperiment::GetPredictedStates() const
+std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFilterExperiment::GetPredictedStates() const
 {
   std::vector<boost::numeric::ublas::vector<double> > v;
   v.reserve(m_calculation_elements.size());
@@ -154,7 +156,7 @@ bool ribi::kalman::KalmanFilterExperiment::IsValid() const
       && n_real_states == n_measured_states;
 }
 
-const std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFilterExperiment::ParseInput(
+std::vector<boost::numeric::ublas::vector<double> > ribi::kalman::KalmanFilterExperiment::ParseInput(
   const std::vector<std::string>& input,
   const int n_timesteps)
 {

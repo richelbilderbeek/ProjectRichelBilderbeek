@@ -20,7 +20,7 @@ ribi::DotMatrixChar::DotMatrixChar(const char c)
   assert(GetMatrixWidth()  == static_cast<int>(m_matrix[0].size()));
 }
 
-const boost::shared_ptr<QImage> ribi::DotMatrixChar::CreateImage() const noexcept
+boost::shared_ptr<QImage> ribi::DotMatrixChar::CreateImage() const noexcept
 {
   const int height = GetMatrixHeight();
   const int width  = GetMatrixWidth();
@@ -40,7 +40,7 @@ const boost::shared_ptr<QImage> ribi::DotMatrixChar::CreateImage() const noexcep
   return image;
 }
 
-const boost::array<boost::array<int,5> ,7> ribi::DotMatrixChar::GetChar(const char c) noexcept
+boost::array<boost::array<int,5> ,7> ribi::DotMatrixChar::GetChar(const char c) noexcept
 {
   //Create a 5 (width) x 7 (height) 2D array
   boost::array<boost::array<int,5> ,7> v;

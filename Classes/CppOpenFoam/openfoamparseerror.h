@@ -15,7 +15,7 @@ struct ParseError : public std::runtime_error
   const std::string m_filename;
   const int m_line;
 
-  const std::string CreateErrorMsg(
+  std::string CreateErrorMsg(
     const std::string& filename,
     const int line) noexcept;
 };

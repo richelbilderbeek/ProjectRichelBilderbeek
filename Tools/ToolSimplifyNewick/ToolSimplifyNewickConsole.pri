@@ -11,3 +11,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolSimplifyNewick/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolSimplifyNewick/ToolSimplifyNewick.qrc

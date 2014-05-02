@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "kalmanfiltercalculationelementsfactory.h"
 #pragma GCC diagnostic pop
 
@@ -10,7 +12,7 @@
 #include "fixedlagsmootherkalmanfiltercalculationelements.h"
 
 
-const boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements>
+boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements>
   ribi::kalman::KalmanFilterCalculationElementsFactory::Create(
   const KalmanFilterType type)
 {
@@ -34,7 +36,7 @@ const boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements>
   return p;
 }
 
-const boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements> ribi::kalman::KalmanFilterCalculationElementsFactory::DeepCopy(
+boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements> ribi::kalman::KalmanFilterCalculationElementsFactory::DeepCopy(
   const boost::shared_ptr<KalmanFilterCalculationElements>& original)
 {
   assert(original);

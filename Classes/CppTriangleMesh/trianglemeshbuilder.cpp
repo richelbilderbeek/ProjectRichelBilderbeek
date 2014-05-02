@@ -30,9 +30,9 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   const std::vector<boost::shared_ptr<Cell>>& cells,
   const std::string& mesh_filename,
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function,
-  const CreateVerticalFacesStrategy strategy
-  )
-  : m_cells(cells),
+  const CreateVerticalFacesStrategy strategy,
+  const bool verbose
+) : m_cells(cells),
     //#1: Partition faces in boundaries
     m_faces(SortByBoundary(ExtractFaces(cells),boundary_to_patch_field_type_function)),
     m_points(ExtractPoints(cells))
@@ -40,8 +40,6 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   #ifndef NDEBUG
   Test();
   #endif
-  const bool verbose = false;
-
   for (const std::string& folder: GetAllFolders())
   {
     if (!ribi::fileio::FileIo().IsFolder(folder))

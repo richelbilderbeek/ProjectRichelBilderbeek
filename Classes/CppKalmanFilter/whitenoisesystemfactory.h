@@ -14,7 +14,7 @@ namespace kalman {
 
 struct WhiteNoiseSystemFactory
 {
-  static const boost::shared_ptr<WhiteNoiseSystem> Create(
+  static boost::shared_ptr<WhiteNoiseSystem> Create(
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
 };
 

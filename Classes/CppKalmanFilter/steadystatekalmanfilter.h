@@ -26,11 +26,11 @@ struct SteadyStateKalmanFilter : public KalmanFilter
   //void Clear();
 
   ///Get the Kalman filter last calculation elements
-  const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const noexcept
+  boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const noexcept
   { return m_last_calculation; }
 
   ///Obtain the Kalman filter parameters
-  const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const noexcept
+  boost::shared_ptr<const KalmanFilterParameters> GetParameters() const noexcept
   { return m_parameters; }
 
   ///Obtain the number of values a state consists of
@@ -55,7 +55,7 @@ struct SteadyStateKalmanFilter : public KalmanFilter
     const boost::numeric::ublas::vector<double>& input);
 
   ///Let the filter estimate the next state
-  const boost::numeric::ublas::vector<double> PredictState(
+  boost::numeric::ublas::vector<double> PredictState(
     const boost::numeric::ublas::vector<double>& input) const;
 
   private:

@@ -50,7 +50,8 @@ struct TriangleMeshCreatorMainDialog
     const double quality,
     const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
     const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
-    const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function
+    const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
+    const bool verbose
   );
 
   static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateDefaultAssignBoundaryFunction() noexcept;
@@ -67,9 +68,14 @@ struct TriangleMeshCreatorMainDialog
   ///Obtain the filename of the created mesh
   std::string GetFilename() const noexcept { return m_filename_result_mesh; }
 
+  int GetNcells() const noexcept { return m_n_cells; }
+  int GetNfaces() const noexcept { return m_n_faces; }
+
   private:
 
   const std::string m_filename_result_mesh;
+  int m_n_cells;
+  int m_n_faces;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -64,16 +64,19 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   const double quality,
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
-  const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function
+  const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
+  const bool verbose
 )
-  : m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"))
+  : m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply")),
+    m_n_cells{0},
+    m_n_faces{0}
 {
   
   #ifndef NDEBUG
   Test();
   #endif
 
-  //Write some geometries, let Triangle.exe work on it
+  if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
   std::string filename_node;
   std::string filename_ele;
   std::string filename_poly;
@@ -89,7 +92,8 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
     );
   }
 
-  //Read data from Triangle.exe output
+  if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
+
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
     const boost::shared_ptr<const ribi::trim::Template> t
@@ -118,9 +122,11 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
     }
 
     //Sculpting
-    std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
+    if (verbose) { std::clog << "Number of cells before sculpting: " << cells.size() << std::endl; }
     sculpt_function(cells);
-    std::clog << "Number of cells after sculpting: " << cells.size() << std::endl;
+
+    m_n_cells = static_cast<int>(cells.size());
+    if (verbose) { std::clog << "Number of cells after sculpting: " << m_n_cells << std::endl; }
 
     //Remove weak faces
     {
@@ -130,7 +136,7 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
         const std::vector<boost::shared_ptr<ribi::trim::Face>> w { cell->GetFaces() };
         std::copy(w.begin(),w.end(),std::back_inserter(faces));
       }
-      std::clog << "Number of weak faces: " << faces.size() << std::endl;
+      if (verbose) { std::clog << "Number of weak faces: " << faces.size() << std::endl; }
       assert(std::unique(faces.begin(),faces.end()) == faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       //Clean all weakened faces
@@ -144,7 +150,9 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
         faces.end()
       );
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
-      std::clog << "Number of strong faces: " << faces.size() << std::endl;
+
+      m_n_faces = static_cast<int>(faces.size());
+      if (verbose) { std::clog << "Number of strong faces: " << m_n_faces << std::endl; }
       //const ribi::trim::Helper helper;
       std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
       const auto new_end = std::unique(faces.begin(),faces.end());
@@ -155,7 +163,8 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
     //Assign boundaries to the strong faces
     assign_boundary_function(cells);
   }
-  //Check the cells
+
+  if (verbose) { std::clog << "Checking the cells" << std::endl; }
   {
     for (const auto cell: cells)
     {
@@ -171,41 +180,19 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
     }
   }
 
+  if (verbose) { std::clog << "Build the OpenFOAM files" << std::endl; }
   {
-    //Build the OpenFOAM files
     const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder(
       new ribi::trim::TriangleMeshBuilder(
         cells,
         m_filename_result_mesh,
         boundary_to_patch_field_type_function,
-        strategy
+        strategy,
+        verbose
       )
     );
     assert(builder);
   }
-
-  //#define ALSO_CREATE_OTHER_FILES_20140424
-  #ifdef  ALSO_CREATE_OTHER_FILES_20140424
-  CreateDefaultControlDict();
-  CreateDefaultPressureField();
-  CreateDefaultTemperatureField();
-  CreateDefaultVelocityField();
-
-  std::clog << std::endl;
-  std::cout << std::endl;
-
-  #ifdef TEST_TRIANGLEMESH_SHOW_MESH
-  {
-    std::stringstream s;
-    s
-      << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
-      << filename_result_mesh;
-    const int error = std::system(s.str().c_str());
-    if (error) std::cout << "WARNING: cannot display mesh" << '\n';
-  }
-  #endif
-
-  #endif
 }
 
 
@@ -515,6 +502,7 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
       const double quality = 5.0;
+      const bool verbose = false;
       const ribi::TriangleMeshCreatorMainDialog d(
         shapes,
         3,
@@ -523,7 +511,8 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
         quality,
         TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
         TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
-        TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction()
+        TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+        verbose
       );
     }
     catch (std::exception& e)

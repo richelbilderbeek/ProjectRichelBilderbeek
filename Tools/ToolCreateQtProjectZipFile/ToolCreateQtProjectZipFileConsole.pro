@@ -8,4 +8,3 @@ include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
 include(../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileConsole.pri)
 
 SOURCES += main.cpp
-

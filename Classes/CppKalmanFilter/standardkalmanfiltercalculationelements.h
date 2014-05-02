@@ -28,7 +28,7 @@ struct StandardKalmanFilterCalculationElements : public KalmanFilterCalculationE
   void Clear();
 
   ///Produce a deep copy of the derived class
-  const boost::shared_ptr<KalmanFilterCalculationElements> Clone() const;
+  boost::shared_ptr<KalmanFilterCalculationElements> Clone() const;
 
   ///Obtain the innovation ('y_squiggle')
   const boost::numeric::ublas::vector<double>& GetInnovation() const

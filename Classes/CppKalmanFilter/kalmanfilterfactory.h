@@ -14,7 +14,7 @@ namespace kalman {
 ///Factory for KalmanFilter
 struct KalmanFilterFactory
 {
-  static const boost::shared_ptr<KalmanFilter> Create(
+  static boost::shared_ptr<KalmanFilter> Create(
     const boost::shared_ptr<const KalmanFilterParameters>& parameters);
 };
 

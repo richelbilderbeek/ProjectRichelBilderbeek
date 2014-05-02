@@ -61,12 +61,12 @@ struct fuzzy_equal_to
   }
   static std::vector<std::string> GetVersionHistory()
   {
-    std::vector<std::string> v;
-    v.push_back("2011-02-24: version 1.0: initial version");
-    v.push_back("2012-11-14: version 1.1: set default tolerance to std::numeric_limits<double>::epsilon()");
-    v.push_back("2012-11-18: version 1.2: added #pragma's to file to suppress -Weffc++ warnings");
-    v.push_back("2012-11-18: version 1.3: added #include <limits>");
-    return v;
+    return {
+      "2011-02-24: version 1.0: initial version",
+      "2012-11-14: version 1.1: set default tolerance to std::numeric_limits<double>::epsilon()",
+      "2012-11-18: version 1.2: added #pragma's to file to suppress -Weffc++ warnings",
+      "2012-11-18: version 1.3: added #include <limits>"
+    };
   }
 };
 

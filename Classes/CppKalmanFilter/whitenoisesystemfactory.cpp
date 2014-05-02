@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "whitenoisesystemfactory.h"
 #pragma GCC diagnostic pop
 
@@ -8,7 +10,7 @@
 #include "laggedwhitenoisesystemfactory.h"
 #include "standardwhitenoisesystemfactory.h"
 
-const boost::shared_ptr<ribi::kalman::WhiteNoiseSystem> ribi::kalman::WhiteNoiseSystemFactory::Create(
+boost::shared_ptr<ribi::kalman::WhiteNoiseSystem> ribi::kalman::WhiteNoiseSystemFactory::Create(
   const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters)
 {
   boost::shared_ptr<WhiteNoiseSystem> p;

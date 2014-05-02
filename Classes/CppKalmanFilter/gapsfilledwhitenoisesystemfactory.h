@@ -18,7 +18,7 @@ namespace kalman {
 struct GapsFilledWhiteNoiseSystemFactory
 {
   ///Create a GapsFilledWhiteNoiseSystem from the loose parameters
-  static const boost::shared_ptr<GapsFilledWhiteNoiseSystem> Create(
+  static boost::shared_ptr<GapsFilledWhiteNoiseSystem> Create(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const boost::numeric::ublas::vector<int>& measurement_frequency,
@@ -27,7 +27,7 @@ struct GapsFilledWhiteNoiseSystemFactory
     const boost::numeric::ublas::matrix<double>& state_transition);
 
   ///Create a GapsFilledWhiteNoiseSystem from the parameters
-  static const boost::shared_ptr<GapsFilledWhiteNoiseSystem> Create(
+  static boost::shared_ptr<GapsFilledWhiteNoiseSystem> Create(
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
 };
 

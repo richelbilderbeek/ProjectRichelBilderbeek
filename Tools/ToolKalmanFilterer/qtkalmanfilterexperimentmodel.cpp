@@ -1,6 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtkalmanfilterexperimentmodel.h"
 
 #include <cassert>
@@ -334,7 +335,7 @@ const boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKa
   return p;
 }
 
-const boost::shared_ptr<ribi::kalman::KalmanFilter> ribi::kalman::QtKalmanFilterExperimentModel::CreateKalmanFilter() const
+boost::shared_ptr<ribi::kalman::KalmanFilter> ribi::kalman::QtKalmanFilterExperimentModel::CreateKalmanFilter() const
 {
   const boost::shared_ptr<const KalmanFilterParameters> parameters = CreateKalmanFilterParameters();
   assert(parameters);

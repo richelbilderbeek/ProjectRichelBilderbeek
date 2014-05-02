@@ -1,8 +1,5 @@
 include(../../Tools/ToolSimplifyNewick/ToolSimplifyNewickConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolSimplifyNewick/ToolSimplifyNewick.qrc
-
 FORMS += \
     ../../Tools/ToolSimplifyNewick/qtsimplifynewickmaindialog.ui \
     ../../Tools/ToolSimplifyNewick/qtsimplifynewickmenudialog.ui

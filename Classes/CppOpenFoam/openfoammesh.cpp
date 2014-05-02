@@ -669,7 +669,7 @@ std::vector<boost::shared_ptr<boost::geometry::model::point<double,3,boost::geom
   return v;
 }
 
-const boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimilarFace(
+boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimilarFace(
   const std::vector<Coordinat3D>& coordinats
   ) const
 {

@@ -22,7 +22,7 @@ struct DotMatrixChar
 {
   DotMatrixChar(const char c);
 
-  const boost::shared_ptr<QImage> CreateImage() const noexcept;
+  boost::shared_ptr<QImage> CreateImage() const noexcept;
 
   ///Read back the character
   char GetChar() const noexcept { return m_c; }
@@ -54,7 +54,7 @@ struct DotMatrixChar
   ///Dot-matrix characters are
   ///size 5 (width) x 7 (height) pixels, excluding empty spacer pixels
   ///size 6 (width) x 8 (height) pixels, including empty spacer pixels
-  static const boost::array<boost::array<int,5> ,7> GetChar(const char c) noexcept;
+  static boost::array<boost::array<int,5> ,7> GetChar(const char c) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

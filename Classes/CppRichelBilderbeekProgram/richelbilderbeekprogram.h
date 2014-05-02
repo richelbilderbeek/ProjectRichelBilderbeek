@@ -850,7 +850,7 @@ struct ProgramK3OpEenRijVcl : public ProgramGame
 struct ProgramKalmanFilterer : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolKalmanFilterer_1_11.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolKalmanFilterer_1_15.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "KalmanFilterer"; }
@@ -1361,7 +1361,7 @@ struct ProgramPrimeExpert : public ProgramTool
 struct ProgramProjectRichelBilderbeek : public ProgramProject
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ProjectRichelBilderbeek_1_14.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "ProjectRichelBilderbeek"; }

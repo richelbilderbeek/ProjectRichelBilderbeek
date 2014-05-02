@@ -23,7 +23,7 @@ struct FixedLagSmootherKalmanFilterCalculationElements : public KalmanFilterCalc
   void Clear();
 
   ///Produce a deep copy of the derived class
-  const boost::shared_ptr<KalmanFilterCalculationElements> Clone() const;
+  boost::shared_ptr<KalmanFilterCalculationElements> Clone() const;
 
   ///Obtain the Kalman filter type as an enum
   KalmanFilterType GetType() const { return KalmanFilterType::fixed_lag_smoother; }

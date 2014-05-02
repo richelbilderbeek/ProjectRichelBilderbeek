@@ -520,6 +520,22 @@ std::vector<std::string> ribi::fileio::FileIo::GetVersionHistory() const noexcep
   };
 }
 
+bool ribi::fileio::FileIo::HasRightPathSeperators(const std::string& path) const noexcept
+{
+  #ifdef _WIN32
+  const char wrong = '/';
+  #else
+  const char wrong = '\\';
+  #endif
+  return path.find(wrong) == std::string::npos;
+}
+
+bool ribi::fileio::FileIo::HasTwoPathSeperators(const std::string& path) const noexcept
+{
+  return path.find('/') != std::string::npos
+    && path.find('\\') != std::string::npos;
+}
+
 bool ribi::fileio::FileIo::IsFolder(const std::string& filename) const noexcept
 {
   return QDir(filename.c_str()).exists();
@@ -528,6 +544,15 @@ bool ribi::fileio::FileIo::IsFolder(const std::string& filename) const noexcept
 bool ribi::fileio::FileIo::IsRegularFile(const std::string& filename) const noexcept
 {
   return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
+}
+
+bool ribi::fileio::FileIo::IsUnixPath(const std::string& path) const noexcept
+{
+  if (path.find('\\') != std::string::npos)
+  {
+    return false;
+  }
+  return true;
 }
 
 std::string ribi::fileio::FileIo::RemovePath(const std::string& filename) const
@@ -587,6 +612,7 @@ void ribi::fileio::FileIo::RenameFile(
 std::string ribi::fileio::FileIo::SimplifyPath(const std::string& s) const noexcept
 {
   std::string t = s;
+  //UNIX
   while (1)
   {
     static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(R"((/\w*/\.\./))");
@@ -599,9 +625,36 @@ std::string ribi::fileio::FileIo::SimplifyPath(const std::string& s) const noexc
     if (t == new_t) break;
     t = new_t;
   }
+  //Win32
+  while (1)
+  {
+    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(R"((\\\w*\\\.\.\\))");
+
+    const std::string new_t = boost::xpressive::regex_replace(
+      t,
+      regex,
+      "\\"
+    );
+    if (t == new_t) break;
+    t = new_t;
+  }
+  //UNIX
   while (1)
   {
     static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(R"((^\w*/\.\.))");
+
+    const std::string new_t = boost::xpressive::regex_replace(
+      t,
+      regex,
+      ""
+    );
+    if (t == new_t) break;
+    t = new_t;
+  }
+  //Win32
+  while (1)
+  {
+    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(R"((^\w*\\\.\.))");
 
     const std::string new_t = boost::xpressive::regex_replace(
       t,
@@ -1048,15 +1101,59 @@ void ribi::fileio::FileIo::Test() noexcept
   {
     assert(SimplifyPath("/home/richel/Projects/Tools/ToolTestProFile/../../Classes/CppQtAboutDialog/qtaboutdialog.ui")
       == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    assert(SimplifyPath("\\home\\richel\\Projects\\Tools\\ToolTestProFile\\..\\..\\Classes\\CppQtAboutDialog\\qtaboutdialog.ui")
+      == "\\home\\richel\\Projects\\Classes\\CppQtAboutDialog\\qtaboutdialog.ui");
     assert(SimplifyPath("/home/richel/Projects/Tools/../Classes/CppQtAboutDialog/qtaboutdialog.ui")
       == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    assert(SimplifyPath("\\home\\richel\\Projects\\Tools\\..\\Classes\\CppQtAboutDialog\\qtaboutdialog.ui")
+      == "\\home\\richel\\Projects\\Classes\\CppQtAboutDialog\\qtaboutdialog.ui");
     assert(SimplifyPath("/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui")
       == "/home/richel/Projects/Classes/CppQtAboutDialog/qtaboutdialog.ui");
+    assert(SimplifyPath("\\home\\richel\\Projects\\Classes\\CppQtAboutDialog\\qtaboutdialog.ui")
+      == "\\home\\richel\\Projects\\Classes\\CppQtAboutDialog\\qtaboutdialog.ui");
     assert(SimplifyPath("Tools/..") == "");
+    assert(SimplifyPath("Tools\\..") == "");
     assert(SimplifyPath("Tools/../A") == "/A");
+    assert(SimplifyPath("Tools\\..\\A") == "\\A");
     assert(SimplifyPath("Tools/../A/B") == "/A/B");
+    assert(SimplifyPath("Tools\\..\\A\\B") == "\\A\\B");
     assert(SimplifyPath("../../Tools/ToolCreateQtProjectZipFile/../../Libraries/Boost.pri")
       == "../../Libraries/Boost.pri");
+    assert(SimplifyPath("..\\..\\Tools\\ToolCreateQtProjectZipFile\\..\\..\\Libraries\\Boost.pri")
+      == "..\\..\\Libraries\\Boost.pri");
+  }
+  //HasRightPathSeperators
+  {
+    #ifdef _WIN32
+    assert( HasRightPathSeperators("\\A\\B\\text.txt"));
+    assert(!HasRightPathSeperators("/A/B/text.txt"));
+    #else
+    assert(!HasRightPathSeperators("\\A\\B\\text.txt"));
+    assert( HasRightPathSeperators("/A/B/text.txt"));
+    #endif
+  }
+  //HasTwoPathSeperators
+  {
+    assert(!HasTwoPathSeperators("\\A\\B\\text.txt"));
+    assert(!HasTwoPathSeperators("/A/B/text.txt"));
+
+    assert( HasTwoPathSeperators("/A\\B/text.txt"));
+    assert( HasTwoPathSeperators("\\A/B/text.txt"));
+    assert( HasTwoPathSeperators("/A/B\\text.txt"));
+    assert( HasTwoPathSeperators("/A\\B\\text.txt"));
+    assert( HasTwoPathSeperators("\\A\\B/text.txt"));
+    assert( HasTwoPathSeperators("\\A/B\\text.txt"));
+  }
+  //IsUnixPath
+  {
+    assert(!IsUnixPath("\\A\\B\\text.txt"));
+    assert( IsUnixPath("/A/B/text.txt"));
+    assert(!IsUnixPath("/A\\B/text.txt"));
+    assert(!IsUnixPath("\\A/B/text.txt"));
+    assert(!IsUnixPath("/A/B\\text.txt"));
+    assert(!IsUnixPath("/A\\B\\text.txt"));
+    assert(!IsUnixPath("\\A\\B/text.txt"));
+    assert(!IsUnixPath("\\A/B\\text.txt"));
   }
   TRACE("Finished ribi::fileio::FileIo::Test successfully");
 }

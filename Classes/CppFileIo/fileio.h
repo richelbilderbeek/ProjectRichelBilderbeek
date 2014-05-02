@@ -148,6 +148,14 @@ struct FileIo
   ///Obtain the version history
   std::vector<std::string> GetVersionHistory() const noexcept;
 
+  ///Checks if the path has only the right path seperators
+  ///A Linux path should not contain Windows backslashes
+  ///A Windows path should not contain Linux slashes
+  bool HasRightPathSeperators(const std::string& path) const noexcept;
+
+  ///Checks if the path has both Linux and Windows path seperators
+  bool HasTwoPathSeperators(const std::string& path) const noexcept;
+
   ///Returns if the name is a folder name
   ///From http://www.richelbilderbeek.nl/CppIsFolder.htm
   bool IsFolder(const std::string& filename) const noexcept;
@@ -155,6 +163,9 @@ struct FileIo
   ///Determines if a filename is a regular file
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
   bool IsRegularFile(const std::string& filename) const noexcept;
+
+  ///Checks if the path is a valid UNIX path
+  bool IsUnixPath(const std::string& path) const noexcept;
 
 
   ///Removes the path of a filename

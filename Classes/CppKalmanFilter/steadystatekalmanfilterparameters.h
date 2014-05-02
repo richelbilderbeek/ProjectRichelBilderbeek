@@ -23,7 +23,7 @@ struct SteadyStateKalmanFilterParameters : public KalmanFilterParameters
   );
 
   ///Calculate the optimal Kalman gain
-  static const boost::numeric::ublas::matrix<double> CalculateOptimalKalmanGain(
+  static boost::numeric::ublas::matrix<double> CalculateOptimalKalmanGain(
     const boost::numeric::ublas::matrix<double>& initial_covariance,
     const boost::numeric::ublas::matrix<double>& measurement_noise,
     const boost::numeric::ublas::matrix<double>& observation,

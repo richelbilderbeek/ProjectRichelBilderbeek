@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "gapsfilledwhitenoisesystem.h"
 
 #include <cassert>
@@ -71,7 +73,7 @@ void ribi::kalman::GapsFilledWhiteNoiseSystem::GoToNextState(const boost::numeri
   SetNewCurrentState(new_state);
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::GapsFilledWhiteNoiseSystem::Measure() const
+boost::numeric::ublas::vector<double> ribi::kalman::GapsFilledWhiteNoiseSystem::Measure() const
 {
   const boost::numeric::ublas::vector<int>& fs
     = this->GetGapsFilledWhiteNoiseSystemParameters()->GetMeasurementFrequency();

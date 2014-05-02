@@ -29,7 +29,8 @@ struct TriangleMeshBuilder
     const std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells,
     const std::string& mesh_filename,
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function,
-    const CreateVerticalFacesStrategy strategy
+    const CreateVerticalFacesStrategy strategy,
+    const bool verbose
   );
 
   int CountCells() const noexcept { return static_cast<int>(m_cells.size()); }

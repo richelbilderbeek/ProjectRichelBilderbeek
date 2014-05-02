@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "laggedwhitenoisesystem.h"
 
 #include <cassert>
@@ -61,7 +63,7 @@ void ribi::kalman::LaggedWhiteNoiseSystem::GoToNextState(const boost::numeric::u
   m_system->GoToNextState(input);
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::LaggedWhiteNoiseSystem::Measure() const noexcept
+boost::numeric::ublas::vector<double> ribi::kalman::LaggedWhiteNoiseSystem::Measure() const noexcept
 {
   assert(m_parameters->GetLag() == boost::numeric_cast<int>(m_measuments.size()));
   m_measuments.push(m_system->Measure());

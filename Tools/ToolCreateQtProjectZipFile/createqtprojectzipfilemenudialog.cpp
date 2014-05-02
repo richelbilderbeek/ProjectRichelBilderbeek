@@ -20,6 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "createqtprojectzipfilemenudialog.h"
 
 #include <iostream>
@@ -79,6 +81,18 @@ int ribi::CreateQtProjectZipFile::MenuDialog::ExecuteSpecific(const std::vector<
     }
     return 1;
   }
+  #ifdef _WIN32
+  if (folder.substr(0,6) != "..\\..\\" && folder.substr(0,6) != "../../")
+  {
+    if (!silent)
+    {
+      std::cout
+        << "Folder must start with '..\\..\\' or '..//..//'\n"
+        << "Please supply a folder name starting with '\\..\\..' or '//..//..'\n";
+    }
+    return 1;
+  }
+  #else
   if (folder.substr(0,6) != "../../")
   {
     if (!silent)
@@ -89,7 +103,14 @@ int ribi::CreateQtProjectZipFile::MenuDialog::ExecuteSpecific(const std::vector<
     }
     return 1;
   }
-  const std::string script = CreateQtProjectZipFileMainDialog(folder).GetScript();
+  #endif
+
+  //Call the script with UNIX line endings, as
+  //all Qt Creator file works with these as well
+  std::string folder_unix;
+  std::replace_copy(folder.begin(),folder.end(),std::back_inserter(folder_unix),'\\','/');
+
+  const std::string script = CreateQtProjectZipFileMainDialog(folder_unix).GetScript();
   assert(!script.empty());
   if (!silent) { std::cout << script << '\n'; }
   return 0;
@@ -142,7 +163,7 @@ boost::shared_ptr<const ribi::Program> ribi::CreateQtProjectZipFile::MenuDialog:
 
 std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() const noexcept
 {
-  return "2.3";
+  return "3.0";
 }
 
 std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory() const noexcept
@@ -155,7 +176,8 @@ std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHis
     "2013-05-19: version 2.0: support for any depth of folder tree",
     "2014-01-27: version 2.1: also copies the included .pri files' content",
     "2014-04-12: version 2.2: added 'silent' flag",
-    "2014-04-25: version 2.3: fixed SimplifyPath bug"
+    "2014-04-25: version 2.3: fixed SimplifyPath bug",
+    "2014-05-02: version 3.0: internally use UNIX path seperators only, fixed bug"
   };
 }
 
@@ -169,7 +191,11 @@ void ribi::CreateQtProjectZipFile::MenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::CreateQtProjectZipFile::MenuDialog::Test()");
   MenuDialog d;
+  #ifdef _WIN32
+  d.Execute( { "CreateQtProjectZipFile", "-f", "..\\..\\Tools\\ToolCreateQtProjectZipFile", "-s" } );
+  #else
   d.Execute( { "CreateQtProjectZipFile", "-f", "../../Tools/ToolCreateQtProjectZipFile", "-s" } );
+  #endif
   TRACE("Finished ribi::CreateQtProjectZipFile::MenuDialog::Test() successfully");
 }
 #endif

@@ -1,12 +1,14 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "steadystatekalmanfilterfactory.h"
 
 #include <cassert>
 #include "kalmanfiltercalculationelementsfactory.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::kalman::SteadyStateKalmanFilter> ribi::kalman::SteadyStateKalmanFilterFactory::Create(
+boost::shared_ptr<ribi::kalman::SteadyStateKalmanFilter> ribi::kalman::SteadyStateKalmanFilterFactory::Create(
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
 {
   assert(parameters);

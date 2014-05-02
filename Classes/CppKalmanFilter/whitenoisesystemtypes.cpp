@@ -1,5 +1,3 @@
-
-
 #include "whitenoisesystemtypes.h"
 
 boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::m_map;

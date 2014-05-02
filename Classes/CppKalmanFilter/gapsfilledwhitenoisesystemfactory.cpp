@@ -1,9 +1,11 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "gapsfilledwhitenoisesystemfactory.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::kalman::GapsFilledWhiteNoiseSystem> ribi::kalman::GapsFilledWhiteNoiseSystemFactory::Create(
+boost::shared_ptr<ribi::kalman::GapsFilledWhiteNoiseSystem> ribi::kalman::GapsFilledWhiteNoiseSystemFactory::Create(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state,
   const boost::numeric::ublas::vector<int>& measurement_frequency,
@@ -29,7 +31,7 @@ const boost::shared_ptr<ribi::kalman::GapsFilledWhiteNoiseSystem> ribi::kalman::
   return system;
 }
 
-const boost::shared_ptr<ribi::kalman::GapsFilledWhiteNoiseSystem> ribi::kalman::GapsFilledWhiteNoiseSystemFactory::Create(
+boost::shared_ptr<ribi::kalman::GapsFilledWhiteNoiseSystem> ribi::kalman::GapsFilledWhiteNoiseSystemFactory::Create(
   const boost::shared_ptr<WhiteNoiseSystemParameters>& general_parameters)
 {
   assert(general_parameters);

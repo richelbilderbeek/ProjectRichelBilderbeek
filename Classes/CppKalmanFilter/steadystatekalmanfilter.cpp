@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "steadystatekalmanfilter.h"
 
 #include <boost/numeric/conversion/cast.hpp>
@@ -64,7 +66,7 @@ std::vector<std::string> ribi::kalman::SteadyStateKalmanFilter::GetVersionHistor
   };
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::SteadyStateKalmanFilter::PredictState(
+boost::numeric::ublas::vector<double> ribi::kalman::SteadyStateKalmanFilter::PredictState(
   const boost::numeric::ublas::vector<double>& input) const
 {
   const boost::numeric::ublas::matrix<double> term_a

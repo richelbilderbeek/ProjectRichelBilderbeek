@@ -64,9 +64,9 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  #endif
-
   assert(ribi::fileio::FileIo().IsRegularFile(filename));
+  assert(ribi::fileio::FileIo().IsUnixPath(filename));
+  #endif
 
   std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
   RemoveComments(v);
@@ -100,7 +100,7 @@ ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
 
 std::string ribi::QtCreatorProFile::GetVersion() noexcept
 {
-  return "2.1";
+  return "3.0";
 }
 
 std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
@@ -117,7 +117,8 @@ std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
     "2012-12-23: version 1.8: renamed to QtCreatorProFile due to naming conflicts when cross-compiling",
     "2013-05-18: version 2.0: simplified architecture by removing file I/O",
     "2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem",
-    "2014-01-27: version 2.2: removes all comments, can detect includes of .pri files"
+    "2014-01-27: version 2.2: removes all comments, can detect includes of .pri files",
+    "2014-05-02: version 3.0: use UNIX path seperators only"
   };
 }
 

@@ -18,7 +18,7 @@ namespace kalman {
 struct LaggedWhiteNoiseSystemFactory
 {
   ///Create a LaggedWhiteNoiseSystem from the loose parameters
-  static const boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
+  static boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const int lag,
@@ -27,7 +27,7 @@ struct LaggedWhiteNoiseSystemFactory
     const boost::numeric::ublas::matrix<double>& state_transition);
 
   ///Create a LaggedWhiteNoiseSystem from the parameters
-  static const boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
+  static boost::shared_ptr<LaggedWhiteNoiseSystem> Create(
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
 };
 

@@ -50,6 +50,7 @@ ribi::QrcFile::QrcFile(const std::string& filename)
   if(!ribi::fileio::FileIo().IsRegularFile(filename)) TRACE(filename);
   assert(ribi::fileio::FileIo().IsRegularFile(filename)
     && "QrcFile::QrcFile error: .qrc file must exist");
+  assert(ribi::fileio::FileIo().IsUnixPath(filename));
   #endif
 
   std::ifstream file(filename.c_str());
@@ -89,14 +90,15 @@ ribi::About ribi::QrcFile::GetAbout() noexcept
 
 std::string ribi::QrcFile::GetVersion() noexcept
 {
-  return "1.1";
+  return "2.0";
 }
 
 std::vector<std::string> ribi::QrcFile::GetVersionHistory() noexcept
 {
   return {
     "2012-06-13: version 1.0: initial version",
-    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive"
+    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive",
+    "2014-05-02: version 2.0: use UNIX path seperators only"
   };
 }
 

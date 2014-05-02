@@ -14,11 +14,11 @@ namespace kalman {
 struct KalmanFilterCalculationElementsFactory
 {
   ///Create a KalmanFilterCalculationElements of a certain type
-  static const boost::shared_ptr<KalmanFilterCalculationElements> Create(
+  static boost::shared_ptr<KalmanFilterCalculationElements> Create(
     const KalmanFilterType type);
 
   ///Deep copy
-  static const boost::shared_ptr<KalmanFilterCalculationElements> DeepCopy(
+  static boost::shared_ptr<KalmanFilterCalculationElements> DeepCopy(
     const boost::shared_ptr<KalmanFilterCalculationElements>& elements);
 };
 

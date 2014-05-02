@@ -19,8 +19,6 @@ struct WhiteNoiseSystem
   WhiteNoiseSystem(const WhiteNoiseSystem&) = delete;
   WhiteNoiseSystem& operator=(const WhiteNoiseSystem&) = delete;
 
-
-
   virtual ~WhiteNoiseSystem() noexcept {}
 
   ///The parameters
@@ -39,7 +37,7 @@ struct WhiteNoiseSystem
   virtual void GoToNextState(const boost::numeric::ublas::vector<double>& input) = 0;
 
   ///Measure a value from this system with normally distributed noise
-  virtual const boost::numeric::ublas::vector<double> Measure() const = 0;
+  virtual boost::numeric::ublas::vector<double> Measure() const = 0;
 
   ///Peek what the real value is
   virtual const boost::numeric::ublas::vector<double>& PeekAtRealState() const noexcept { return m_current_state; }

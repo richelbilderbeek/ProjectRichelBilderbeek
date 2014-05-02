@@ -1,9 +1,11 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "standardwhitenoisesystemfactory.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystem>
+boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystem>
   ribi::kalman::StandardWhiteNoiseSystemFactory::Create(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
@@ -29,7 +31,7 @@ const boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystem>
   return system;
 }
 
-const boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystem>
+boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystem>
   ribi::kalman::StandardWhiteNoiseSystemFactory::Create(
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters
   )

@@ -13,6 +13,14 @@
   <property name="windowTitle">
    <string>KalmanFilterer</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+
+QWidget { font: bold, &quot;Courier New&quot;, courier, monospace }
+</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QSplitter" name="splitter">
@@ -34,7 +42,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>339</width>
+         <width>250</width>
          <height>275</height>
         </rect>
        </property>
@@ -126,8 +134,10 @@
              <widget class="QPlainTextEdit" name="edit_context">
               <property name="font">
                <font>
-                <family>Courier</family>
-                <pointsize>14</pointsize>
+                <family>Courier New,courier,monospace</family>
+                <weight>75</weight>
+                <italic>false</italic>
+                <bold>true</bold>
                </font>
               </property>
              </widget>
@@ -153,8 +163,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>80</width>
+             <height>16</height>
             </rect>
            </property>
           </widget>
@@ -177,8 +187,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>604</width>
-             <height>191</height>
+             <width>80</width>
+             <height>16</height>
             </rect>
            </property>
           </widget>
@@ -221,8 +231,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>80</width>
+             <height>16</height>
             </rect>
            </property>
           </widget>
@@ -245,8 +255,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>80</width>
+             <height>16</height>
             </rect>
            </property>
           </widget>

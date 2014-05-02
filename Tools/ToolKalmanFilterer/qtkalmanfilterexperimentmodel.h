@@ -39,7 +39,7 @@ struct QtKalmanFilterExperimentModel : public QObject
   const boost::shared_ptr<KalmanFilterExperiment> CreateExperiment() const;
 
   ///Create a Kalman filter
-  const boost::shared_ptr<KalmanFilter> CreateKalmanFilter() const;
+  boost::shared_ptr<KalmanFilter> CreateKalmanFilter() const;
 
   ///Create a Kalman filter its parameters
   const boost::shared_ptr<KalmanFilterParameters> CreateKalmanFilterParameters() const;

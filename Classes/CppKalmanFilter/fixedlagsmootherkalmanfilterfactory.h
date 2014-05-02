@@ -12,7 +12,7 @@ namespace kalman {
 ///Factory for FixedLagSmootherKalmanFilter
 struct FixedLagSmootherKalmanFilterFactory
 {
-  static const boost::shared_ptr<FixedLagSmootherKalmanFilter> Create(
+  static boost::shared_ptr<FixedLagSmootherKalmanFilter> Create(
     const boost::shared_ptr<const KalmanFilterParameters>& parameters);
 };
 

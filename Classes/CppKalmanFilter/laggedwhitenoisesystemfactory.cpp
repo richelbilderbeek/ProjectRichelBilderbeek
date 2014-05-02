@@ -1,9 +1,11 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "laggedwhitenoisesystemfactory.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::kalman::LaggedWhiteNoiseSystem> ribi::kalman::LaggedWhiteNoiseSystemFactory::Create(
+boost::shared_ptr<ribi::kalman::LaggedWhiteNoiseSystem> ribi::kalman::LaggedWhiteNoiseSystemFactory::Create(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state,
   const int lag,
@@ -29,7 +31,7 @@ const boost::shared_ptr<ribi::kalman::LaggedWhiteNoiseSystem> ribi::kalman::Lagg
   return system;
 }
 
-const boost::shared_ptr<ribi::kalman::LaggedWhiteNoiseSystem> ribi::kalman::LaggedWhiteNoiseSystemFactory::Create(
+boost::shared_ptr<ribi::kalman::LaggedWhiteNoiseSystem> ribi::kalman::LaggedWhiteNoiseSystemFactory::Create(
   const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters)
 {
   assert(parameters);

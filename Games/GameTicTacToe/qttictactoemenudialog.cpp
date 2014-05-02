@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoemenudialog.h"
 
 #include <cassert>
+#include <boost/make_shared.hpp>
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -34,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoegamedialog.h"
 #include "qttictactoewidget.h"
 #include "tictactoemenudialog.h"
+#include "tictactoeai.h"
 #include "trace.h"
 #include "ui_qttictactoemenudialog.h"
 #pragma GCC diagnostic pop
@@ -99,7 +101,9 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
     };
     assert(d);
   }
-  QtTicTacToeWidget();
+  const auto player1 = boost::make_shared<AiEnforceDraw>();
+  const auto player2 = boost::make_shared<AiPlayRandom>();
+  QtTicTacToeWidget(player1,player2);
 
   TRACE("Finished ribi::tictactoe::QtTicTacToeMenuDialog::Test successfully");
 }

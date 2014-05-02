@@ -44,7 +44,7 @@ struct Mesh
   ///Write the Mesh to a Files
   Files CreateFiles() const noexcept;
 
-  const boost::shared_ptr<const Face> FindMostSimilarFace(
+  boost::shared_ptr<const Face> FindMostSimilarFace(
     const std::vector<Coordinat3D>& coordinats
   ) const;
 

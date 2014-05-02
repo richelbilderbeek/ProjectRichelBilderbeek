@@ -78,7 +78,7 @@ struct KalmanFilterCalculationElements
 
   private:
   ///Produce a deep copy of the derived class
-  virtual const boost::shared_ptr<KalmanFilterCalculationElements> Clone() const = 0;
+  virtual boost::shared_ptr<KalmanFilterCalculationElements> Clone() const = 0;
   friend class KalmanFilterCalculationElementsFactory;
 
   private:

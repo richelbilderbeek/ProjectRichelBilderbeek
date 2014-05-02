@@ -135,5 +135,6 @@
         <file>ToolPreDickAdvocaTor_2_1.png</file>
         <file>ToolPreDickAdvocaTor_1_0.png</file>
         <file>ToolTriangleMeshCreator_1_2.png</file>
+        <file>ToolKalmanFilterer_1_15.png</file>
     </qresource>
 </RCC>

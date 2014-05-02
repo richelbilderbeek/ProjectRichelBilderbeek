@@ -25,10 +25,10 @@ struct KalmanFilter
   virtual KalmanFilterType GetType() const = 0;
 
   ///Get the Kalman filter last calculation elements
-  virtual const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const = 0;
+  virtual boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const = 0;
 
   ///Obtain the Kalman filter parameters
-  virtual const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const = 0;
+  virtual boost::shared_ptr<const KalmanFilterParameters> GetParameters() const = 0;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
