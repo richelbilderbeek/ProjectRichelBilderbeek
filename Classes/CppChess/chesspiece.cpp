@@ -478,7 +478,6 @@ bool ribi::Chess::PiecePawn::CanDoMove(const Chess::Move * const move) const noe
     //Not a Pawn move
     return false;
   }
-
   assert(
     (
          (!move->From() && !GetSquare())

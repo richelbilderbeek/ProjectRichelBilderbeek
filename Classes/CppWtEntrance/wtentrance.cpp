@@ -18,15 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtEntrance.htm
 //---------------------------------------------------------------------------
-#include "wtentrance.h"
-
-#include <cassert>
-#include <fstream>
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include "wtentrance.h"
+
+#include <cassert>
+#include <fstream>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/filesystem.hpp>

@@ -1,6 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "multiencrangermenudialog.h"
 
 #include <fstream>
@@ -171,7 +172,7 @@ boost::shared_ptr<const ribi::Program> ribi::MultiEncrangerMenuDialog::GetProgra
 
 std::string ribi::MultiEncrangerMenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
 std::vector<std::string> ribi::MultiEncrangerMenuDialog::GetVersionHistory() const noexcept
@@ -179,7 +180,8 @@ std::vector<std::string> ribi::MultiEncrangerMenuDialog::GetVersionHistory() con
   return {
     "20xx-xx-xx: Version 1.0: initial version programmed in C++ Builder",
     "2013-09-30: Version 2.0: port to Qt Creator, renamed application to ToolMultiEncranger"
-    "2013-11-04: Version 2.1: conformized to ProjectRichelBilderbeekConsole"
+    "2013-11-04: Version 2.1: conformized to ProjectRichelBilderbeekConsole",
+    "2013-11-04: Version 2.2: really use multiple lines"
   };
 }
 

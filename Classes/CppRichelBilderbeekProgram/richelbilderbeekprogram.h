@@ -1121,7 +1121,7 @@ struct ProgramMorpher : public ProgramTool
 struct ProgramMultiEncranger : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolMultiEncranger_2_3.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "MultiEncranger"; }

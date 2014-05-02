@@ -5,8 +5,7 @@ win32 {
     ../../Libraries/wt/src \
     ../../Libraries/wt/build
   LIBS += \
-    -L/../../Libraries/wt/src \
-    -lwt -lwthttp
+    -L/../../Libraries/wt/src
 }
 
 macx {

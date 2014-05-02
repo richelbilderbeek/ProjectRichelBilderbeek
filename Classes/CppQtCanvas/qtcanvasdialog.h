@@ -4,12 +4,14 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/checked_delete.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/checked_delete.hpp>
-#pragma GCC diagnostic pop
 
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
+
 
 namespace ribi {
 
@@ -35,6 +37,8 @@ public:
   ~QtCanvasDialog() noexcept;
   friend void boost::checked_delete<>(QtCanvasDialog* x);
   friend void boost::checked_delete<>(const QtCanvasDialog* x);
+  friend class boost::detail::sp_ms_deleter<QtCanvasDialog>;
+  friend class boost::detail::sp_ms_deleter<const QtCanvasDialog>;
 
   QtCanvas * const m_qtcanvas;
 
