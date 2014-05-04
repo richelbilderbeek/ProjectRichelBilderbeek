@@ -3105,7 +3105,7 @@
 <a href="CppComment.htm">///</a>Filenames used <b><a href="CppFor.htm">for</a></b> OpenFOAM<br/>
 <b><a href="CppStruct.htm">struct</a></b> Filenames<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; GetAll() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; GetAll() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The filename <b><a href="CppFor.htm">for</a></b> the OpenFOAM its <b><a href="CppCase.htm">case</a></b> its velocity field<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> GetAlphat() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -3215,7 +3215,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "xml.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::foam::Filenames::GetAll() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::foam::Filenames::GetAll() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetBoundary(),<br/>
@@ -6564,7 +6564,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces { f0,f1,f2,f3,f4,f5 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;cell-&gt;AssignOwnedFaces( { f0,f1,f2,f3,f4,f5 } );<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Boundary&gt; boundary { <b><a href="CppNew.htm">new</a></b> Boundary(&nbsp;&nbsp;{f0,f1,f2,f3,f4,f5 },"<b><a href="CppDefault.htm">default</a></b>Faces",PatchFieldType::slip ) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Boundary&gt; boundary { <b><a href="CppNew.htm">new</a></b> Boundary(&nbsp;&nbsp;{f0,f1,f2,f3,f4,f5 },"<b><a href="CppDefault.htm">default</a></b>Faces",PatchFieldType::wall) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Boundary<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> boundaries { boundary };<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Mesh m(<br/>
@@ -7956,6 +7956,7 @@
 &nbsp;&nbsp;uniformDensityHydro<b><a href="CppStatic.htm">static</a></b>Pressure,<br/>
 &nbsp;&nbsp;uniformFixedValue,<br/>
 &nbsp;&nbsp;uniformTotalPressure,<br/>
+&nbsp;&nbsp;wall, <a href="CppComment.htm">//</a>Used <b><a href="CppFor.htm">for</a></b> <b><a href="CppDefault.htm">default</a></b>Faces<br/>
 &nbsp;&nbsp;wallHeatTransfer,<br/>
 &nbsp;&nbsp;waveSurfacePressure,<br/>
 &nbsp;&nbsp;waveTransmissive,<br/>
@@ -8145,6 +8146,7 @@
 &nbsp;&nbsp;m.insert(<a href="CppBoostBimap.htm">boost::bimap</a>&lt;PatchFieldType,<a href="CppStdString.htm">std::string</a>&gt;::value_type(PatchFieldType::uniformDensityHydro<b><a href="CppStatic.htm">static</a></b>Pressure,"uniformDensityHydro<b><a href="CppStatic.htm">static</a></b>Pressure"));<br/>
 &nbsp;&nbsp;m.insert(<a href="CppBoostBimap.htm">boost::bimap</a>&lt;PatchFieldType,<a href="CppStdString.htm">std::string</a>&gt;::value_type(PatchFieldType::uniformFixedValue,"uniformFixedValue"));<br/>
 &nbsp;&nbsp;m.insert(<a href="CppBoostBimap.htm">boost::bimap</a>&lt;PatchFieldType,<a href="CppStdString.htm">std::string</a>&gt;::value_type(PatchFieldType::uniformTotalPressure,"uniformTotalPressure"));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppBoostBimap.htm">boost::bimap</a>&lt;PatchFieldType,<a href="CppStdString.htm">std::string</a>&gt;::value_type(PatchFieldType::wall,"wall"));<br/>
 &nbsp;&nbsp;m.insert(<a href="CppBoostBimap.htm">boost::bimap</a>&lt;PatchFieldType,<a href="CppStdString.htm">std::string</a>&gt;::value_type(PatchFieldType::wallHeatTransfer,"wallHeatTransfer"));<br/>
 &nbsp;&nbsp;m.insert(<a href="CppBoostBimap.htm">boost::bimap</a>&lt;PatchFieldType,<a href="CppStdString.htm">std::string</a>&gt;::value_type(PatchFieldType::waveSurfacePressure,"waveSurfacePressure"));<br/>
 &nbsp;&nbsp;m.insert(<a href="CppBoostBimap.htm">boost::bimap</a>&lt;PatchFieldType,<a href="CppStdString.htm">std::string</a>&gt;::value_type(PatchFieldType::waveTransmissive,"waveTransmissive"));<br/>
@@ -8237,6 +8239,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;PatchFieldType::uniformDensityHydro<b><a href="CppStatic.htm">static</a></b>Pressure,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PatchFieldType::uniformFixedValue,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PatchFieldType::uniformTotalPressure,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PatchFieldType::wall,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PatchFieldType::wallHeatTransfer,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PatchFieldType::waveSurfacePressure,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PatchFieldType::waveTransmissive,<br/>

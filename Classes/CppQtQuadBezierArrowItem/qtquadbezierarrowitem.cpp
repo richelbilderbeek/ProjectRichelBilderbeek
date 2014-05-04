@@ -202,6 +202,14 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
 {
   assert(from); assert(to);
   assert((mid || !mid) && "No mid results in a straight arrow");
+
+  #ifdef TODO_ISSUE_192
+  if (!mid)
+  {
+    TRACE("BREAK");
+  }
+  #endif
+
   assert(from != to); assert(from != mid); assert(mid != to);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable

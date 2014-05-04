@@ -1,70 +1,27 @@
-QT       += core
-QT       -= gui
-LIBS += \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_signals \
-  -lboost_system \
-  -lwt \
-  -lwthttp
+include(../../WebApplication.pri)
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralWeb.pri)
 
-#QMAKE_CXXFLAGS += -DNDEBUG
 
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppMultipleChoiceQuestion/CppMultipleChoiceQuestion.pri)
+include(../../Classes/CppMultipleChoiceQuestionDialog/CppMultipleChoiceQuestionDialog.pri)
+include(../../Classes/CppOpenQuestion/CppOpenQuestion.pri)
+include(../../Classes/CppOpenQuestionDialog/CppOpenQuestionDialog.pri)
+include(../../Classes/CppQuestion/CppQuestion.pri)
+include(../../Classes/CppQuestionDialog/CppQuestionDialog.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppMultipleChoiceQuestion \
-    ../../Classes/CppMultipleChoiceQuestionDialog \
-    ../../Classes/CppOpenQuestion \
-    ../../Classes/CppOpenQuestionDialog \
-    ../../Classes/CppWtAboutDialog \
-    ../../Classes/CppWtAutoConfig \
-    ../../Classes/CppWtMultipleChoiceQuestionDialog \
-    ../../Classes/CppWtOpenQuestionDialog \
-    ../../Classes/CppWtQuestionDialog \
-    ../../Classes/CppQuestion \
-    ../../Classes/CppQuestionDialog
+include(../../Classes/CppWtMultipleChoiceQuestionDialog/CppWtMultipleChoiceQuestionDialog.pri)
+include(../../Classes/CppWtOpenQuestionDialog/CppWtOpenQuestionDialog.pri)
+include(../../Classes/CppWtQuestionDialog/CppWtQuestionDialog.pri)
 
-SOURCES += wtmain.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.cpp \
-    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.cpp \
-    ../../Classes/CppOpenQuestion/openquestion.cpp \
-    ../../Classes/CppOpenQuestionDialog/openquestiondialog.cpp \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp \
-    ../../Classes/CppWtMultipleChoiceQuestionDialog/wtmultiplechoicequestiondialog.cpp \
-    ../../Classes/CppWtOpenQuestionDialog/wtopenquestiondialog.cpp \
-    ../../Classes/CppWtQuestionDialog/wtquestiondialog.cpp \
-    ../../Classes/CppQuestion/question.cpp \
-    ../../Classes/CppQuestionDialog/questiondialog.cpp \
-    wttestquestionmaindialog.cpp \
-    wttestquestionmenudialog.cpp \
-    testquestionmenudialog.cpp \
-    testquestionmaindialog.cpp
+include(ToolTestQuestionWebsite.pri)
 
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.h \
-    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.h \
-    ../../Classes/CppOpenQuestion/openquestion.h \
-    ../../Classes/CppOpenQuestionDialog/openquestiondialog.h \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h \
-    ../../Classes/CppWtMultipleChoiceQuestionDialog/wtmultiplechoicequestiondialog.h \
-    ../../Classes/CppWtOpenQuestionDialog/wtopenquestiondialog.h \
-    ../../Classes/CppWtQuestionDialog/wtquestiondialog.h \
-    ../../Classes/CppQuestion/question.h \
-    ../../Classes/CppQuestionDialog/questiondialog.h \
-    wttestquestionmaindialog.h \
-    wttestquestionmenudialog.h \
-    testquestionmenudialog.h \
-    testquestionmaindialog.h
+SOURCES += wtmain.cpp
 
-RESOURCES += \
-    ToolTestQuestion.qrc

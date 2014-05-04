@@ -78,7 +78,7 @@ const std::vector<boost::numeric::ublas::matrix<double> > ribi::Matrix::Chop(
   return v;
 }
 
-const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
+boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
   const std::size_t n_rows,
   const std::size_t n_cols,
   const std::vector<double>& v) noexcept
@@ -95,7 +95,7 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
   return m;
 }
 
-const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(
+boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(
   const std::size_t n_rows, const std::size_t n_cols) noexcept
 {
   boost::numeric::ublas::matrix<double> m(n_rows,n_cols);
@@ -109,7 +109,7 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(
   return m;
 }
 
-const boost::numeric::ublas::vector<double> ribi::Matrix::CreateVector(
+boost::numeric::ublas::vector<double> ribi::Matrix::CreateVector(
   const std::vector<double>& v) noexcept
 {
   boost::numeric::ublas::vector<double> w(v.size());

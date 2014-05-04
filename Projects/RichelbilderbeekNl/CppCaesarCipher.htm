@@ -159,8 +159,13 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppLoopReader.htm">loopreader</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::CaesarCipher::CaesarCipher(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key)<br/>
 &nbsp;&nbsp;: m_key(key)<br/>

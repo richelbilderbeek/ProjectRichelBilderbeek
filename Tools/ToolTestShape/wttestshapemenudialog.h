@@ -41,4 +41,4 @@ struct WtTestShapeMenuDialog : public Wt::WContainerWidget
 
 } //~namespace ribi
 
-#endif // WTTESTQUESTIONMENUDIALOG_H
+#endif // WTTESTSHAPEMENUDIALOG_H

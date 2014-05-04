@@ -4,7 +4,6 @@ include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
-
 #Specific
 include(../../Classes/CppRectangle/CppRectangle.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)

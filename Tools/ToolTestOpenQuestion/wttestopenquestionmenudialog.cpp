@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestQuestion, tool to test the Question and QuestionDialog classes
-Copyright (C) 2011 Richel Bilderbeek
+TestOpenQuestion, tool to test the Question and QuestionDialog classes
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,8 +16,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
+//From http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cassert>
 //---------------------------------------------------------------------------
 #include <boost/filesystem.hpp>
@@ -42,13 +46,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtquestiondialog.h"
 //---------------------------------------------------------------------------
 #include <QFile>
+#pragma GCC diagnostic pop
+
 //---------------------------------------------------------------------------
-WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
-  : m_dialog(new TestQuestionMenuDialog)
+WtTestOpenQuestionMenuDialog::WtTestOpenQuestionMenuDialog()
+  : m_dialog(new TestOpenQuestionMenuDialog)
 {
  {
     std::vector<std::string> image_names;
-    image_names.push_back("ToolTestQuestionWelcome.png");
+    image_names.push_back("ToolTestOpenQuestionWelcome.png");
 
     BOOST_FOREACH(const std::string& filename,image_names)
     {
@@ -66,7 +72,7 @@ WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
   }
   this->setContentAlignment(Wt::AlignCenter);
   {
-    Wt::WLabel * const title = new Wt::WLabel("TestQuestion");
+    Wt::WLabel * const title = new Wt::WLabel("TestOpenQuestion");
     title->setStyleClass("title");
     this->addWidget(title);
   }
@@ -101,7 +107,7 @@ WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
   }
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * WtTestOpenQuestionMenuDialog::CreateNewAboutDialog() const
 {
   About a = m_dialog->GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -113,26 +119,26 @@ Wt::WWidget * WtTestQuestionMenuDialog::CreateNewAboutDialog() const
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * WtTestOpenQuestionMenuDialog::CreateNewMainDialog() const
 {
-  WtTestQuestionMainDialog * const d = new WtTestQuestionMainDialog;
+  WtTestOpenQuestionMainDialog * const d = new WtTestOpenQuestionMainDialog;
   assert(d);
   return d;
 }
 //---------------------------------------------------------------------------
-Wt::WWidget * WtTestQuestionMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * WtTestOpenQuestionMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
   dialog->addWidget(new Wt::WBreak);
-  new Wt::WLabel("Welcome to TestQuestion",dialog);
+  new Wt::WLabel("Welcome to TestOpenQuestion",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  new Wt::WLabel("TestQuestion tests the QuestionDialog classes",dialog);
+  new Wt::WLabel("TestOpenQuestion tests the QuestionDialog classes",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
    Wt::WGroupBox * const box = new Wt::WGroupBox("Explanation",dialog);
-  box->addWidget(new Wt::WImage("ToolTestQuestionWelcome.png"));
+  box->addWidget(new Wt::WImage("ToolTestOpenQuestionWelcome.png"));
   return dialog;
 }
 //---------------------------------------------------------------------------

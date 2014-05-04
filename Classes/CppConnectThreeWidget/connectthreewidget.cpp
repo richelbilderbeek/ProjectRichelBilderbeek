@@ -61,6 +61,15 @@ bool ribi::con3::ConnectThreeWidget::CanSelect(const int x, const int y) const n
     && GetGame()->GetSquare(x,y) == Square::empty;
 }
 
+std::bitset<3> ribi::con3::ConnectThreeWidget::CreateDefaultIsPlayerHuman() noexcept
+{
+  std::bitset<3> b;
+  b[0] = true;
+  b[1] = true;
+  b[2] = true;
+  return b;
+}
+
 void ribi::con3::ConnectThreeWidget::DoComputerMove() noexcept
 {
   const auto move = SuggestMove();
@@ -190,7 +199,6 @@ void ribi::con3::ConnectThreeWidget::Test() noexcept
       case 4: widget->OnKeyPress(Key::select); break;
     }
   }
-  assert(1==2);
   TRACE("Finished ribi::con3::ConnectThreeWidget::Test successfully");
 }
 #endif

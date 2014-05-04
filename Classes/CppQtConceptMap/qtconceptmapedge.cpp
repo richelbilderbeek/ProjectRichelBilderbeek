@@ -75,7 +75,13 @@ ribi::cmap::QtEdge::QtEdge(
   //if 'from' or 'to' are CenterNodes, then no item must be put at the center
   if (dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to))
   {
+    #ifdef TODO_ISSUE_192
+    m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
+    m_display_strategy->GetConcept()->SetName(" ");
+    #else
     m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),nullptr,edge->HasHeadArrow(),to));
+    #endif
+
   }
   else
   {
@@ -148,6 +154,23 @@ ribi::cmap::QtEdge::QtEdge(
     boost::bind(
       &ribi::cmap::QtEdge::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
+  #ifdef TODO_ISSUE_192
+  if (!(dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to)))
+  {
+    //Only allow edges not connected to the center node to be edited
+    assert(display_strategy);
+    QtEditStrategy * const edit_concept = dynamic_cast<QtEditStrategy*>(display_strategy.get());
+    if (edit_concept)
+    {
+      edit_concept->m_signal_request_edit.connect(
+        boost::bind(
+          &QtConceptMapElement::OnConceptRequestsEdit,
+          this
+        )
+      );
+    }
+  }
+  #else
   if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(display_strategy.get()))
   {
     edit_concept->m_signal_request_edit.connect(
@@ -157,6 +180,7 @@ ribi::cmap::QtEdge::QtEdge(
       )
     );
   }
+  #endif
   assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
   assert(this->m_display_strategy->acceptHoverEvents());
   assert(this->m_arrow->acceptHoverEvents()); //Must remove the 's' in Qt5?
