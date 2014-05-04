@@ -60,7 +60,9 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
     assert(ui->frame_concept_map->layout());
     ui->frame_concept_map->layout()->addWidget(m_widget);
   }
-
+  #ifdef TODO_ISSUE_205
+  m_widget->RemoveExamplesItem();
+  #endif
 
   ui->label_student_name->setText(
     ("Concept map van "

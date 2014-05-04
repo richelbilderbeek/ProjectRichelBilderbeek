@@ -77,6 +77,9 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
     assert(ui->frame_concept_map->layout());
     ui->frame_concept_map->layout()->addWidget(m_widget);
   }
+  #ifdef TODO_ISSUE_205
+  m_widget->RemoveExamplesItem();
+  #endif
 
 
   {

@@ -259,6 +259,10 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtDisplay
 
 void ribi::cmap::QtDisplayConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
+  #ifdef TODO_ISSUE_205
+  if (!GetExamplesItem()) return;
+  #endif
+
   assert(GetExamplesItem());
   assert(item);
   assert(dynamic_cast<const QtConceptMapElement*>(item));

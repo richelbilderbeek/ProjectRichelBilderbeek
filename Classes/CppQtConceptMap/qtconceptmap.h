@@ -72,6 +72,8 @@ public:
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  void RemoveExamplesItem() noexcept { SetExamplesItem(nullptr); }
+
   #ifndef NDEBUG
   ///Shuffle the concepts (used in debugging)
   void Shuffle() noexcept;
