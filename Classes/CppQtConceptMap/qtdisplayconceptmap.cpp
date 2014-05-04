@@ -259,9 +259,9 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtDisplay
 
 void ribi::cmap::QtDisplayConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
-  #ifdef TODO_ISSUE_205
+  //Allow a QtConceptMapWidget to have no QtExamplesItem
+  //This allows to omit showing these in the PDF versions used for printing (#205)
   if (!GetExamplesItem()) return;
-  #endif
 
   assert(GetExamplesItem());
   assert(item);

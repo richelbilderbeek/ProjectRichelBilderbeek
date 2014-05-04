@@ -1,5 +1,3 @@
-DEFINES += TODO_ISSUE_205
-
 #Don't enable Effective C++ warnings when using Qwt
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)

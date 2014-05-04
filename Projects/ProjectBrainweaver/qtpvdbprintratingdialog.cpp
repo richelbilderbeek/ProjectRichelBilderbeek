@@ -77,10 +77,10 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
     assert(ui->frame_concept_map->layout());
     ui->frame_concept_map->layout()->addWidget(m_widget);
   }
-  #ifdef TODO_ISSUE_205
-  m_widget->RemoveExamplesItem();
-  #endif
 
+  //Allow a QtConceptMapWidget to have no QtExamplesItem
+  //This allows to omit showing these in the PDF versions used for printing (#205)
+  m_widget->RemoveExamplesItem();
 
   {
     std::time_t my_time;
