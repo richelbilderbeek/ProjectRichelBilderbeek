@@ -75,13 +75,8 @@ ribi::cmap::QtEdge::QtEdge(
   //if 'from' or 'to' are CenterNodes, then no item must be put at the center
   if (dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to))
   {
-    #ifdef TODO_ISSUE_192
     m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
     m_display_strategy->GetConcept()->SetName(" ");
-    #else
-    m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),nullptr,edge->HasHeadArrow(),to));
-    #endif
-
   }
   else
   {
