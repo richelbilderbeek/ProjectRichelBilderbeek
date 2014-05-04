@@ -340,6 +340,10 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtRateCon
 
 void ribi::cmap::QtRateConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
+  //Allow a QtConceptMapWidget to have no QtExamplesItem
+  //This allows to omit showing these in the PDF versions used for printing (#205)
+  if (!GetExamplesItem()) return;
+
   GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
   scene()->update();
 }
