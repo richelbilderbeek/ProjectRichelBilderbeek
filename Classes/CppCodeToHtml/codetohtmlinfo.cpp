@@ -5480,8 +5480,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
          "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQTableWidgetExample1.htm\">QTableWidget example 1: display text</a> is a",
-        "<a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQTableWidgetExample1.htm\">QTableWidget example 1: display text</a> is a",
+        "  <a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>",
@@ -5495,12 +5497,14 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQTableWidgetExample2.htm\">QTableWidget example 2: checkboxes and text</a> is a",
-        "<a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQTableWidgetExample2.htm\">QTableWidget example 2: checkboxes and text</a> is a",
+        "  <a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>",
-        "  <li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>",
+        "  <li><a href=\"CppQTableWidgetExample2.png\">View a screenshot of 'QTableWidgetExample2' (png)</a></li>",
+        "  <li><a href=\"CppQTableWidgetExample2.zip\">Download the Qt Creator project 'QTableWidgetExample2' (zip)</a></li>",
         "</ul>"
       }
     }
@@ -5510,8 +5514,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQTableWidgetExample3.htm\">QTableWidget example 3: checkboxes and text modifying external data</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQTableWidgetExample3.htm\">QTableWidget example 3: checkboxes and text modifying external data</a> is a",
+        "  <a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample3.png\">View a screenshot of 'QTableWidgetExample3' (png)</a></li>",
