@@ -51,7 +51,7 @@ ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
     "Brainweaver",
     "tool to create and assess concept maps",
-    "the 31st of December 2013",
+    "the 4th of May 2014",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
     GetVersion(),
@@ -89,7 +89,7 @@ boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() cons
 
 std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
 {
-  return "0.47";
+  return "0.48";
 }
 
 std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
@@ -138,7 +138,8 @@ std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexc
     "2013-12-29: Version 0.43: bugfixes, renaming, refactoring, preparing for undo functionality",
     "2013-12-31: Version 0.44: when tallying the relevancies of a concept its connected examples, the node names connected to the edges are displayed",
     "2013-12-31: Version 0.45: sub concept map creation bug fixes",
-    "2013-xx-xx: Version 0.46: misc",
-    "2014-04-19: Version 0.47: hotfix"
+    "2013-xx-xx: Version 0.46: edges connected to center node have no center node",
+    "2014-04-19: Version 0.47: hotfix",
+    "2014-05-04: Version 0.48: edges connected to center node have center node again"
   };
 }
