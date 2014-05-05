@@ -1,5 +1,5 @@
-#ifndef OPENFOAMTEMPERATUREFILE_H
-#define OPENFOAMTEMPERATUREFILE_H
+#ifndef RIBI_OPENFOAMTEMPERATUREFILE_H
+#define RIBI_OPENFOAMTEMPERATUREFILE_H
 
 #include <array>
 #include <iosfwd>
@@ -52,4 +52,4 @@ std::ostream& operator<<(std::ostream& os, const TemperatureFile& f) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMTEMPERATUREFILE_H
+#endif // RIBI_OPENFOAMTEMPERATUREFILE_H

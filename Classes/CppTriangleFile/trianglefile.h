@@ -1,5 +1,5 @@
-#ifndef TRIANGLEFILE_H
-#define TRIANGLEFILE_H
+#ifndef RIBI_TRIANGLEFILE_H
+#define RIBI_TRIANGLEFILE_H
 
 #include <string>
 #include <vector>
@@ -62,4 +62,4 @@ struct TriangleFile
 
 } //~namespace ribi
 
-#endif // TRIANGLEFILE_H
+#endif // RIBI_TRIANGLEFILE_H

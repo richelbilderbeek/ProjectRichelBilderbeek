@@ -18,13 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPlane.htm
 //---------------------------------------------------------------------------
-#ifndef PLANEX_H
-#define PLANEX_H
+#ifndef RIBI_PLANEX_H
+#define RIBI_PLANEX_H
 
 #include <vector>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "planez.h"
 #pragma GCC diagnostic pop
 
@@ -127,4 +128,4 @@ struct PlaneX
 
 } //~namespace ribi
 
-#endif // PLANEX_H
+#endif // RIBI_PLANEX_H

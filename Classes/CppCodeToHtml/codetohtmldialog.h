@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#ifndef CODETOHTMLDIALOG_H
-#define CODETOHTMLDIALOG_H
+#ifndef RIBI_CODETOHTMLDIALOG_H
+#define RIBI_CODETOHTMLDIALOG_H
 
 #include <string>
 #include <vector>
@@ -95,4 +95,4 @@ struct Dialog
 } //~namespace c2h
 } //~namespace ribi
 
-#endif // CODETOHTMLDIALOG_H
+#endif // RIBI_CODETOHTMLDIALOG_H

@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm
 //---------------------------------------------------------------------------
-#ifndef TOOLTRIANGLEMESHCREATORMENUDIALOG_H
-#define TOOLTRIANGLEMESHCREATORMENUDIALOG_H
+#ifndef RIBI_TOOLTRIANGLEMESHCREATORMENUDIALOG_H
+#define RIBI_TOOLTRIANGLEMESHCREATORMENUDIALOG_H
 
 #include <string>
 #include <vector>
@@ -47,4 +47,4 @@ struct TriangleMeshCreatorMenuDialog : public MenuDialog
 
 } //namespace ribi
 
-#endif // TOOLTRIANGLEMESHCREATORMENUDIALOG_H
+#endif // RIBI_TOOLTRIANGLEMESHCREATORMENUDIALOG_H

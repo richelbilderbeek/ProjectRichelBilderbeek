@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHPOINTFACTORY_H
-#define TRIANGLEMESHPOINTFACTORY_H
+#ifndef RIBI_TRIANGLEMESHPOINTFACTORY_H
+#define RIBI_TRIANGLEMESHPOINTFACTORY_H
 
 #include <iosfwd>
 #include <vector>
@@ -140,4 +140,4 @@ struct PointFactory
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHPOINTFACTORY_H
+#endif // RIBI_TRIANGLEMESHPOINTFACTORY_H

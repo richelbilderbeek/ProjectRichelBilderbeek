@@ -5230,6 +5230,43 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppQListWidgetExample1",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQListWidgetExample1.htm\">QListWidget example 1</a> is a",
+        "  <a href=\"CppQListWidgetExample.htm\">QListWidget</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQListWidgetExample1.png\">View a screenshot of 'CppQListWidgetExample1' (png)</a></li>",
+        "  <li><a href=\"CppQListWidgetExample1.zip\">Download the Qt Creator project 'CppQListWidgetExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQListWidgetExample2",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQListWidgetExample2.htm\">QListWidget example 2</a> is a",
+        "  <a href=\"CppQListWidget.htm\">QListWidget</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQListWidgetExample2.png\">View a screenshot of 'CppQListWidgetExample2' (png)</a></li>",
+        "  <li><a href=\"CppQListWidgetExample2.zip\">Download the Qt Creator project 'CppQListWidgetExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppQmakeErrorUnknownModulesInQtLocationSensors",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",

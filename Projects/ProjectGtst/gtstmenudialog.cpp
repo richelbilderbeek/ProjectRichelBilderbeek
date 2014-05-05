@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "gtstmenudialog.h"
 
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>

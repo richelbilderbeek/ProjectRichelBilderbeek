@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHCELLFACTORY_H
-#define TRIANGLEMESHCELLFACTORY_H
+#ifndef RIBI_TRIANGLEMESHCELLFACTORY_H
+#define RIBI_TRIANGLEMESHCELLFACTORY_H
 
 #include <iosfwd>
 //#include <set>
@@ -8,6 +8,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 #include "trianglemeshfwd.h"
@@ -66,4 +67,4 @@ struct CellFactory
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHCELLFACTORY_H
+#endif // RIBI_TRIANGLEMESHCELLFACTORY_H

@@ -18,15 +18,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm
 //---------------------------------------------------------------------------
-#ifndef WTTESTOPENQUESTIONMENUDIALOG_H
-#define WTTESTOPENQUESTIONMENUDIALOG_H
-//---------------------------------------------------------------------------
+#ifndef RIBI_WTTESTOPENQUESTIONMENUDIALOG_H
+#define RIBI_WTTESTOPENQUESTIONMENUDIALOG_H
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct TestOpenQuestionMenuDialog;
-//---------------------------------------------------------------------------
+
 struct WtTestOpenQuestionMenuDialog : public Wt::WContainerWidget
 {
   WtTestOpenQuestionMenuDialog();
@@ -37,5 +39,7 @@ struct WtTestOpenQuestionMenuDialog : public Wt::WContainerWidget
 
   boost::scoped_ptr<TestOpenQuestionMenuDialog> m_dialog;
 };
-//---------------------------------------------------------------------------
-#endif // WTTESTOPENQUESTIONMENUDIALOG_H
+
+} //~namespace ribi
+
+#endif // RIBI_WTTESTOPENQUESTIONMENUDIALOG_H

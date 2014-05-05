@@ -35,7 +35,7 @@ ribi::QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
   : QWidget(parent),
     m_surface{}
 {
-  std::vector<std::vector<unsigned char> > v(128,std::vector<unsigned char>(128));
+  std::vector<std::vector<unsigned char>> v(128,std::vector<unsigned char>(128));
   for(int y=0; y!=128; ++y)
   {
     for (int x=0; x!=128; ++x)
@@ -58,7 +58,7 @@ std::vector<std::string> ribi::QtSurfacePlotWidget::GetVersionHistory()
   };
 }
 
-void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >& v)
+void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double>>& v)
 {
   //Get the size
   const int maxx = v[0].size();
@@ -74,7 +74,7 @@ void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<dou
     if (local_max_val > max_val) max_val = local_max_val;
   }
   //Create a black surface of type unsigned char
-  std::vector<std::vector<unsigned char> > w(maxy,std::vector<unsigned char>(maxx,0));
+  std::vector<std::vector<unsigned char>> w(maxy,std::vector<unsigned char>(maxx,0));
   if (min_val == max_val)
   {
     //Keep black surface in w black
@@ -101,7 +101,7 @@ void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<dou
   SetSurfaceGrey(w);
 }
 
-void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<unsigned char> >& surface)
+void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<unsigned char>>& surface)
 {
   m_surface = surface;
   this->repaint();

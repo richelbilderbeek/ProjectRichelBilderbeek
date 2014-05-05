@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include "questiondialog.h"
 #pragma GCC diagnostic pop
@@ -54,6 +55,9 @@ struct OpenQuestionDialog : public QuestionDialog
 
   private:
   friend void boost::checked_delete<>(OpenQuestionDialog*);
+  friend void boost::checked_delete<>(const OpenQuestionDialog*);
+  friend class boost::detail::sp_ms_deleter<OpenQuestionDialog>;
+  friend class boost::detail::sp_ms_deleter<const OpenQuestionDialog>;
   ~OpenQuestionDialog() noexcept {}
 
   const boost::shared_ptr<const OpenQuestion> m_question;

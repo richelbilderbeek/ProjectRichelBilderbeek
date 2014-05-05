@@ -1,5 +1,5 @@
-#ifndef OPENFOAMNEIGHBOURFILEITEM_H
-#define OPENFOAMNEIGHBOURFILEITEM_H
+#ifndef RIBI_OPENFOAMNEIGHBOURFILEITEM_H
+#define RIBI_OPENFOAMNEIGHBOURFILEITEM_H
 
 #include <vector>
 #include <iosfwd>
@@ -55,4 +55,4 @@ std::istream& operator>>(std::istream& is, NeighbourFileItem& f);
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMNEIGHBOURFILEITEM_H
+#endif // RIBI_OPENFOAMNEIGHBOURFILEITEM_H

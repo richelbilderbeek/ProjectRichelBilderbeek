@@ -42,12 +42,12 @@ void ribi::Chess::Move::Test() noexcept
 
       FTRACE("Test Chess::Move parsing of the square the piece is moving from");
 
-      assert((*Move::ParseFrom( "a2 a3")==*SquareFactory::Create(Chess::File("a"),Chess::Rank("2"))));
-      assert((*Move::ParseFrom("Bb3 c5")==*SquareFactory::Create(Chess::File("b"),Chess::Rank("3"))));
-      assert((*Move::ParseFrom("Kc4 d4")==*SquareFactory::Create(Chess::File("c"),Chess::Rank("4"))));
-      assert((*Move::ParseFrom("Nd5 e6")==*SquareFactory::Create(Chess::File("d"),Chess::Rank("5"))));
-      assert((*Move::ParseFrom("Qe6 f7")==*SquareFactory::Create(Chess::File("e"),Chess::Rank("6"))));
-      assert((*Move::ParseFrom("Rf7 h7")==*SquareFactory::Create(Chess::File("f"),Chess::Rank("7"))));
+      assert((*Move::ParseFrom( "a2 a3")==*SquareFactory().Create(Chess::File("a"),Chess::Rank("2"))));
+      assert((*Move::ParseFrom("Bb3 c5")==*SquareFactory().Create(Chess::File("b"),Chess::Rank("3"))));
+      assert((*Move::ParseFrom("Kc4 d4")==*SquareFactory().Create(Chess::File("c"),Chess::Rank("4"))));
+      assert((*Move::ParseFrom("Nd5 e6")==*SquareFactory().Create(Chess::File("d"),Chess::Rank("5"))));
+      assert((*Move::ParseFrom("Qe6 f7")==*SquareFactory().Create(Chess::File("e"),Chess::Rank("6"))));
+      assert((*Move::ParseFrom("Rf7 h7")==*SquareFactory().Create(Chess::File("f"),Chess::Rank("7"))));
       assert(!ribi::Chess::Move::ParseFrom("a3"));
       assert(!ribi::Chess::Move::ParseFrom("0-0"));
       assert(!ribi::Chess::Move::ParseFrom("0-0+"));
@@ -184,13 +184,13 @@ void ribi::Chess::Move::Test() noexcept
       FTRACE("Testing ParseTo");
 
       ///Test parsing of the square the piece is moving to
-      assert((*Move::ParseTo("a2 a3")==*SquareFactory::Create(Chess::File("a"),Chess::Rank("3"))));
-      assert((*Move::ParseTo(   "a3")==*SquareFactory::Create(Chess::File("a"),Chess::Rank("3"))));
-      assert((*Move::ParseTo("Bb3 c5")==*SquareFactory::Create(Chess::File("c"),Chess::Rank("5"))));
-      assert((*Move::ParseTo("Kc4 d4")==*SquareFactory::Create(Chess::File("d"),Chess::Rank("4"))));
-      assert((*Move::ParseTo("Nd5 e6")==*SquareFactory::Create(Chess::File("e"),Chess::Rank("6"))));
-      assert((*Move::ParseTo("Qe6 f7")==*SquareFactory::Create(Chess::File("f"),Chess::Rank("7"))));
-      assert((*Move::ParseTo("Rf7 h7")==*SquareFactory::Create(Chess::File("h"),Chess::Rank("7"))));
+      assert((*Move::ParseTo("a2 a3")==*SquareFactory().Create(Chess::File("a"),Chess::Rank("3"))));
+      assert((*Move::ParseTo(   "a3")==*SquareFactory().Create(Chess::File("a"),Chess::Rank("3"))));
+      assert((*Move::ParseTo("Bb3 c5")==*SquareFactory().Create(Chess::File("c"),Chess::Rank("5"))));
+      assert((*Move::ParseTo("Kc4 d4")==*SquareFactory().Create(Chess::File("d"),Chess::Rank("4"))));
+      assert((*Move::ParseTo("Nd5 e6")==*SquareFactory().Create(Chess::File("e"),Chess::Rank("6"))));
+      assert((*Move::ParseTo("Qe6 f7")==*SquareFactory().Create(Chess::File("f"),Chess::Rank("7"))));
+      assert((*Move::ParseTo("Rf7 h7")==*SquareFactory().Create(Chess::File("h"),Chess::Rank("7"))));
       assert(!ribi::Chess::Move::ParseTo("0-0"));
       assert(!ribi::Chess::Move::ParseTo("0-0+"));
       assert(!ribi::Chess::Move::ParseTo("0-0#"));
@@ -242,6 +242,7 @@ void ribi::Chess::Move::Test() noexcept
           "a2xb3", "a3xb4", "a4xb5", "a5xb6", "a6xb7",          //white pawn at A file all its captures without promotion
           "a7 a6", "a7 a5", "a6 a5", "a5 a4", "a4 a3", "a3 a2", //black pawn at A file all its movements without promotion
           //Short notation
+          #ifdef RIBI_CHESS_ALLOW_SHORT_NOTATION
           "a2", "a3", "a4", "a4", "a5", "a6", "a7", //pawn at A file all its movements without promotion
           "b2", "b3", "b4", "b4", "b5", "b6", "b7", //pawn at B file all its movements without promotion
           "c2", "c3", "c4", "c4", "c5", "c6", "c7", //pawn at C file all its movements without promotion
@@ -250,6 +251,7 @@ void ribi::Chess::Move::Test() noexcept
           "f2", "f3", "f4", "f4", "f5", "f6", "f7", //pawn at F file all its movements without promotion
           "g2", "g3", "g4", "g4", "g5", "g6", "g7", //pawn at G file all its movements without promotion
           "h2", "h3", "h4", "h4", "h5", "h6", "h7", //pawn at H file all its movements without promotion
+          #endif
           "O-O","O-O-O","0-0","0-0-0",     //Castling
           "O-O+","O-O-O+","0-0+","0-0-0+", //Castling
           "O-O#","O-O-O#","0-0#","0-0-0#", //Castling
@@ -312,7 +314,7 @@ void ribi::Chess::Move::Test() noexcept
         assert(m.Piece());
         assert(dynamic_cast<Chess::PiecePawn*>(m.Piece().get()));
         assert(!m.PiecePromotion());
-        assert((*m.To().get()==*SquareFactory::Create("a3")));
+        assert((*m.To().get()==*SquareFactory().Create("a3")));
       }
 
 

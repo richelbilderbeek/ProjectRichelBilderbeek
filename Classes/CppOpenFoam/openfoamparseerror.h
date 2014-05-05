@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPARSEERROR_H
-#define OPENFOAMPARSEERROR_H
+#ifndef RIBI_OPENFOAMPARSEERROR_H
+#define RIBI_OPENFOAMPARSEERROR_H
 
 #include <stdexcept>
 
@@ -23,4 +23,4 @@ struct ParseError : public std::runtime_error
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMPARSEERROR_H
+#endif // RIBI_OPENFOAMPARSEERROR_H

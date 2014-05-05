@@ -229,7 +229,6 @@ boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Group::RemoveParticipant(
     )
   );
 
-  //BOOST_FOREACH(boost::shared_ptr<Participant>& p,m_participants)
   /*
   std::for_each(m_participants.begin(),m_participants.end(),
     [this,participant](boost::shared_ptr<Participant>& p)

@@ -1,5 +1,5 @@
-#ifndef CANVASCOLORSYSTEMS_H
-#define CANVASCOLORSYSTEMS_H
+#ifndef RIBI_CANVASCOLORSYSTEMS_H
+#define RIBI_CANVASCOLORSYSTEMS_H
 
 #include <string>
 #include <vector>
@@ -31,4 +31,4 @@ struct CanvasColorSystems
 
 } //~namespace ribi
 
-#endif // CANVASCOLORSYSTEMS_H
+#endif // RIBI_CANVASCOLORSYSTEMS_H

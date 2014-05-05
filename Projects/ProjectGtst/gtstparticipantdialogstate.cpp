@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 
 #include "gtstall_participantdialogstates.h"
 #include "gtstall_participantstates.h"
@@ -64,22 +64,6 @@ const std::string ribi::gtst::ParticipantDialogState::CurrencyToStr(const double
   s << std::setprecision(2) << std::fixed;
   s << value;
   return s.str();
-}
-
-///FileToVector reads a file and converts it to a std::vector<std::string>
-///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> ribi::gtst::ParticipantDialogState::FileToVector(const std::string& filename)
-{
-  assert(boost::filesystem::exists(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
 }
 
 ribi::gtst::ParticipantDialog * ribi::gtst::ParticipantDialogState::GetDialog()

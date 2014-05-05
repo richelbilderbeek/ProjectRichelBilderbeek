@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPOINTSFILE_H
-#define OPENFOAMPOINTSFILE_H
+#ifndef RIBI_OPENFOAMPOINTSFILE_H
+#define RIBI_OPENFOAMPOINTSFILE_H
 
 #include <iosfwd>
 #include <string>
@@ -51,4 +51,4 @@ std::istream& operator>>(std::istream& is, PointsFile& f);
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMPOINTSFILE_H
+#endif // RIBI_OPENFOAMPOINTSFILE_H

@@ -25,9 +25,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 
+#include "fileio.h"
 #include "gtstall_parameters.h"
 #include "gtstall_serverstates.h"
 #include "gtstadministrator.h"
@@ -50,53 +50,12 @@ ribi::gtst::AdministratorDialogState::AdministratorDialogState(
   assert(m_server);
 }
 
-///FileToVector reads a file and converts it to a std::vector<std::string>
-///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> ribi::gtst::AdministratorDialogState::FileToVector(const std::string& filename)
-{
-  assert(boost::filesystem::exists(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
-}
-
-//From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-std::vector<std::string> ribi::gtst::AdministratorDialogState::GetFilesInFolder(const std::string& folder)
-{
-  std::vector<std::string> v;
-
-  const boost::filesystem::path my_folder
-    = boost::filesystem::system_complete(
-        boost::filesystem::path(folder));
-
-  if (!boost::filesystem::is_directory(my_folder)) return v;
-
-  const boost::filesystem::directory_iterator j;
-  for ( boost::filesystem::directory_iterator i(my_folder);
-        i != j;
-        ++i)
-  {
-    if ( boost::filesystem::is_regular_file( i->status() ) )
-    {
-      const std::string filename = i->path().filename().string();
-      //const std::string full_filename = folder + "/" + filename;
-      v.push_back(filename);
-    }
-  }
-  return v;
-}
-
 //From http://www.richelbilderbeek.nl/CppGetTextFilesInFolder.htm
-std::vector<std::string> ribi::gtst::AdministratorDialogState::GetTextFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::gtst::AdministratorDialogState::GetTextFilesInFolder(const std::string& folder) noexcept
 {
   //Get all filenames
-  const std::vector<std::string> v = GetFilesInFolder(folder);
+  const std::vector<std::string> v
+    = fileio::FileIo().GetFilesInFolder(folder);
 
   //Create the regex for a text file
   const boost::regex txt_file_regex(".*\\.txt\\z");

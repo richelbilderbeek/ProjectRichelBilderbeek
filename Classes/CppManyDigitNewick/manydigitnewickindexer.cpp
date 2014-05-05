@@ -461,7 +461,7 @@ const ManyDigitNewick ribi::ManyDigitNewickIndexer::CreateManyDigitDerivativesSi
   assert(!m_newicks.Empty(y));
   //\todo: Find out why 'const ManyDigitDerivativesData&' does not work
   const ManyDigitNewick v_derived = m_newicks.GetNewick(y);
-  BOOST_FOREACH(const ManyDigitDerivative& i,v_derived.GetDerivatives())
+  for(const ManyDigitDerivative& i: v_derived.GetDerivatives())
   {
     assert(i.m_derived_index < m_newicks.Size()
       && "ManyDigitDerivative index must be smaller than the number of derivatives");
@@ -507,7 +507,7 @@ const ManyDigitNewick
     assert(!m_newicks.Empty(x));
     //\todo: Find out why 'const ManyDigitDerivativesData&' does not work
     const ManyDigitNewick v_derived = m_newicks.GetNewick(x);
-    BOOST_FOREACH(const ManyDigitDerivative& i,v_derived.GetDerivatives())
+    for(const ManyDigitDerivative& i: v_derived.GetDerivatives())
     {
       //dsaz = delta sum above zero
       const int dsaz = GetDeltaSumAboveZero(i.m_value_changed);
@@ -537,7 +537,7 @@ const ManyDigitNewick
     assert(!m_newicks.Empty(y));
     //\todo: Find out why 'const ManyDigitDerivativesData&' does not work
     const ManyDigitNewick v_derived = m_newicks.GetNewick(y);
-    BOOST_FOREACH(const ManyDigitDerivative& i,v_derived.GetDerivatives())
+    for(const ManyDigitDerivative& i: v_derived.GetDerivatives())
     {
       //dsaz = delta sum above zero
       const int dsaz = GetDeltaSumAboveZero(i.m_value_changed);

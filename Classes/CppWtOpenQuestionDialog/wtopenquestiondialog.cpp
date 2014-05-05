@@ -18,12 +18,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtOpenQuestionDialog.htm
 //---------------------------------------------------------------------------
-#include "wtopenquestiondialog.h"
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include "wtopenquestiondialog.h"
+
+#include <boost/make_shared.hpp>
+
 #include <Wt/WBreak>
 #include <Wt/WImage>
 #include <Wt/WLabel>
@@ -45,13 +47,11 @@ ribi::WtOpenQuestionDialog::Ui::Ui()
 
 }
 
-#ifdef TODO
 ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
   const std::string& question)
-  : WtQuestionDialog(
-     boost::shared_ptr<QuestionDialog>(new OpenQuestionDialog(
-       question))),
-  ) : m_ui{}
+  : WtQuestionDialog(),
+    m_ui{},
+    m_dialog(boost::make_shared<ribi::OpenQuestionDialog>(question))
 {
   assert(m_dialog);
   SetQuestion(m_dialog->GetQuestion());
@@ -59,14 +59,17 @@ ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
 
 ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog)
-  : WtQuestionDialog(dialog),
-  : m_ui{}
+  : WtQuestionDialog(),
+    m_ui{},
+    m_dialog(boost::dynamic_pointer_cast<OpenQuestionDialog>(dialog))
 {
-  assert(dialog);
+  if (!m_dialog)
+  {
+    throw std::logic_error("WtOpenQuestionDialog must be supplied an OpenQuestionDialog");
+  }
   assert(m_dialog);
   SetQuestion(dialog->GetQuestion());
 }
-#endif
 
 boost::shared_ptr<const ribi::QuestionDialog> ribi::WtOpenQuestionDialog::GetDialog() const noexcept
 {

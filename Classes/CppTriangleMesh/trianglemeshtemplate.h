@@ -1,11 +1,12 @@
-#ifndef TRIANGLEMESHTEMPLATE_H
-#define TRIANGLEMESHTEMPLATE_H
+#ifndef RIBI_TRIANGLEMESHTEMPLATE_H
+#define RIBI_TRIANGLEMESHTEMPLATE_H
 
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
@@ -80,4 +81,4 @@ struct Template
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHTEMPLATE_H
+#endif // RIBI_TRIANGLEMESHTEMPLATE_H

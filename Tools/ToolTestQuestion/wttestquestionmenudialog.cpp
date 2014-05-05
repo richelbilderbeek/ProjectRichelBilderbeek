@@ -23,10 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cassert>
-//---------------------------------------------------------------------------
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -35,7 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
+#include "fileio.h"
 #include "testquestionmenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
@@ -44,7 +42,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtopenquestiondialog.h"
 #include "wtquestiondialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
 #pragma GCC diagnostic pop
 
@@ -55,18 +53,19 @@ ribi::WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
     std::vector<std::string> image_names;
     image_names.push_back("ToolTestQuestionWelcome.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const std::string& filename: image_names)
     {
-      if (!(QFile::exists(filename.c_str())))
+
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!boost::filesystem::exists(filename.c_str()))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         std::cerr << "File not found: " << filename << '\n';
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
   this->setContentAlignment(Wt::AlignCenter);
@@ -105,7 +104,7 @@ ribi::WtTestQuestionMenuDialog::WtTestQuestionMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestQuestionMenuDialog::CreateNewAboutDialog() const
 {
   About a = m_dialog->GetAbout();
@@ -117,14 +116,14 @@ Wt::WWidget * ribi::WtTestQuestionMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestQuestionMenuDialog::CreateNewMainDialog() const
 {
   WtTestQuestionMainDialog * const d = new WtTestQuestionMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestQuestionMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -140,4 +139,3 @@ Wt::WWidget * ribi::WtTestQuestionMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolTestQuestionWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------

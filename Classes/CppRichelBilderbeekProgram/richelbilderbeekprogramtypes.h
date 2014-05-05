@@ -1,9 +1,10 @@
-#ifndef RICHELBILDERBEEKPROGRAMTYPES_H
-#define RICHELBILDERBEEKPROGRAMTYPES_H
+#ifndef RIBI_RICHELBILDERBEEKPROGRAMTYPES_H
+#define RIBI_RICHELBILDERBEEKPROGRAMTYPES_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/bimap.hpp>
 #include "richelbilderbeekprogramtype.h"
 #pragma GCC diagnostic pop
@@ -43,4 +44,4 @@ struct ProgramTypes
 
 } //~namespace ribi
 
-#endif // RICHELBILDERBEEKPROGRAMTYPES_H
+#endif // RIBI_RICHELBILDERBEEKPROGRAMTYPES_H

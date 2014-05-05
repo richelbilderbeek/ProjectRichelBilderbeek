@@ -1,5 +1,5 @@
-#ifndef OPENFOAMNEIGHBOURFILE_H
-#define OPENFOAMNEIGHBOURFILE_H
+#ifndef RIBI_OPENFOAMNEIGHBOURFILE_H
+#define RIBI_OPENFOAMNEIGHBOURFILE_H
 
 #include <iosfwd>
 #include <string>
@@ -67,4 +67,4 @@ std::istream& operator>>(std::istream& is, NeighbourFile& f);
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMNEIGHBOURFILE_H
+#endif // RIBI_OPENFOAMNEIGHBOURFILE_H

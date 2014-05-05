@@ -2,7 +2,7 @@ exists (../../DesktopApplication.pri) {
   include(../../DesktopApplication.pri)
 }
 !exists (../../DesktopApplication.pri) {
-  QT += core
+  QT += core sql
   QT += gui
   greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
   CONFIG   += console

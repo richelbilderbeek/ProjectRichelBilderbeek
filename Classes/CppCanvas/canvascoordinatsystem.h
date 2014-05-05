@@ -1,5 +1,5 @@
-#ifndef CANVASCOORDINATSYSTEM_H
-#define CANVASCOORDINATSYSTEM_H
+#ifndef RIBI_CANVASCOORDINATSYSTEM_H
+#define RIBI_CANVASCOORDINATSYSTEM_H
 
 namespace ribi {
 
@@ -18,4 +18,4 @@ enum class CanvasCoordinatSystem
 
 } //~namespace ribi
 
-#endif // CANVASCOORDINATSYSTEM_H
+#endif // RIBI_CANVASCOORDINATSYSTEM_H

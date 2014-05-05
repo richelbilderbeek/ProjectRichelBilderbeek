@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppTrace.htm
 //---------------------------------------------------------------------------
-#ifndef TRACE_H
-#define TRACE_H
+#ifndef RIBI_TRACE_H
+#define RIBI_TRACE_H
 
 #include <string>
 #include <vector>
@@ -148,4 +148,4 @@ struct Trace
 
 #endif
 
-#endif // TRACE_H
+#endif // RIBI_TRACE_H

@@ -1,5 +1,5 @@
-#ifndef CHESSPLAYER_H
-#define CHESSPLAYER_H
+#ifndef RIBI_CHESSPLAYER_H
+#define RIBI_CHESSPLAYER_H
 
 #include <string>
 #include <vector>
@@ -14,4 +14,4 @@ std::string PlayerToStr(const Player player) noexcept;
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSPLAYER_H
+#endif // RIBI_CHESSPLAYER_H

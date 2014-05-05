@@ -264,10 +264,10 @@ std::string ribi::Program::GetScreenName() const noexcept
   return ribi::ProgramTypes::ProgramTypeToScreenName(this->GetType());
 }
 
-std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllPrograms() noexcept
+std::vector<boost::shared_ptr<ribi::Program>> ribi::Program::GetAllPrograms() noexcept
 {
   const std::vector<ProgramType> types = ProgramTypes::GetAll();
-  std::vector<boost::shared_ptr<Program> > v;
+  std::vector<boost::shared_ptr<Program>> v;
 
   for (const ProgramType type: types)
   {

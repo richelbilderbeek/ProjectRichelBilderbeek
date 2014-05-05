@@ -107,10 +107,10 @@ const std::string ribi::WtTestTwoDigitNewickDialog::GetVersion()
 
 const std::vector<std::string> ribi::WtTestTwoDigitNewickDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-03-06: version 2.1: initial version, same versioning as QtTestTwoDigitNewickDialog");
-  v.push_back("2011-03-08: version 2.2: minor changes in Newick namespace, added About screen");
-  return v;
+  return {
+    "2011-03-06: version 2.1: initial version, same versioning as QtTestTwoDigitNewickDialog",
+    "2011-03-08: version 2.2: minor changes in Newick namespace, added About screen"
+  };
 }
 
 void ribi::WtTestTwoDigitNewickDialog::OnAbout()

@@ -28,10 +28,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/filesystem.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/algorithm/string/trim.hpp>
 
+#include "fileio.h"
 #include "gtstall_parameters.h"
 #include "gtstchatshapefactory.h"
 #include "gtstgroupassigner.h"
@@ -117,7 +117,8 @@ void ribi::gtst::Parameters::DeleteParticipants()
 
 void ribi::gtst::Parameters::ReadFromFile(const std::string& filename)
 {
-  if (!boost::filesystem::exists(filename))
+
+  if (!fileio::FileIo().IsRegularFile(filename))
   {
     const std::string error
       = std::string("File ")
@@ -125,9 +126,9 @@ void ribi::gtst::Parameters::ReadFromFile(const std::string& filename)
       + std::string(" not found");
     throw std::runtime_error(error);
   }
-  assert(boost::filesystem::exists(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
 
-  const std::vector<std::string> v = FileToVector(filename);
+  const std::vector<std::string> v = fileio::FileIo().FileToVector(filename);
   std::for_each(v.begin(),v.end(),
     [this](const std::string& s)
     {
@@ -192,22 +193,6 @@ void ribi::gtst::Parameters::ReadFromFile(const std::string& filename)
   {
     throw std::runtime_error("Please specify at least two voting_options");
   }
-}
-
-///FileToVector reads a file and converts it to a std::vector<std::string>
-///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> ribi::gtst::Parameters::FileToVector(const std::string& filename)
-{
-  assert(boost::filesystem::exists(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
 }
 
 ///Parse a line in a Parameter file.

@@ -9,7 +9,7 @@
 
 #include "drawcanvas.h"
 #include "functionplottermaindialog.h"
-#include "qtcreatorprofile.h"
+//#include "qtcreatorprofile.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

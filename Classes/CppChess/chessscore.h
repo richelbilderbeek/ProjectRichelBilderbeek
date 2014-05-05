@@ -1,5 +1,5 @@
-#ifndef CHESSSCORE_H
-#define CHESSSCORE_H
+#ifndef RIBI_CHESSSCORE_H
+#define RIBI_CHESSSCORE_H
 
 #include <iosfwd>
 #include <string>
@@ -45,4 +45,4 @@ bool operator!=(const Score& lhs, const Score& rhs);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSSCORE_H
+#endif // RIBI_CHESSSCORE_H

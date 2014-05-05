@@ -1,11 +1,12 @@
-#ifndef TRIANGLEMESHBUILDER_H
-#define TRIANGLEMESHBUILDER_H
+#ifndef RIBI_TRIANGLEMESHBUILDER_H
+#define RIBI_TRIANGLEMESHBUILDER_H
 
 #include <string>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-variable"
 #include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -112,4 +113,4 @@ struct TriangleMeshBuilder
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHBUILDER_H
+#endif // RIBI_TRIANGLEMESHBUILDER_H

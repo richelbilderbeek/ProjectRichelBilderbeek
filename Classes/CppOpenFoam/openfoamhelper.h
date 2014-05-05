@@ -1,5 +1,5 @@
-#ifndef OPENFOAMHELPER_H
-#define OPENFOAMHELPER_H
+#ifndef RIBI_OPENFOAMHELPER_H
+#define RIBI_OPENFOAMHELPER_H
 
 //#include <iosfwd>
 //#include <string>
@@ -8,6 +8,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
@@ -25,10 +26,10 @@ namespace foam {
 
 ///Help adding constness a bit
 template <class T>
-std::vector<boost::shared_ptr<const T> > AddConst(
-  const std::vector<boost::shared_ptr<T> > v)
+std::vector<boost::shared_ptr<const T>> AddConst(
+  const std::vector<boost::shared_ptr<T>> v)
 {
-  return std::vector<boost::shared_ptr<const T> >(v.begin(),v.end());
+  return std::vector<boost::shared_ptr<const T>>(v.begin(),v.end());
 }
 
 std::string ToStr(const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) noexcept;
@@ -68,4 +69,4 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Add(
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMHELPER_H
+#endif // RIBI_OPENFOAMHELPER_H

@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppCanvas.htm
 //---------------------------------------------------------------------------
-#ifndef CANVAS_H
-#define CANVAS_H
+#ifndef RIBI_CANVAS_H
+#define RIBI_CANVAS_H
 
 #include <iosfwd>
 #include <string>
@@ -73,7 +73,8 @@ struct Canvas
   ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
   static std::vector<std::string> GetRegexMatches(
     const std::string& s,
-    const QRegExp& r);
+    const QRegExp& r
+  ) noexcept;
 
   ///Check if a coordinat is in the range of the Canvas
   bool IsInRange(const int x, const int y) const;
@@ -99,4 +100,4 @@ struct Canvas
 
 } //~namespace ribi
 
-#endif
+#endif // RIBI_CANVAS_H

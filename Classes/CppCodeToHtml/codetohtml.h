@@ -18,14 +18,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#ifndef CODETOHTML_H
-#define CODETOHTML_H
+#ifndef RIBI_CODETOHTML_H
+#define RIBI_CODETOHTML_H
 
 #include <string>
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <boost/shared_ptr.hpp>
 #include "codetohtmlfiletype.h"
 #include "codetohtmlsnippettype.h"
@@ -77,4 +79,4 @@ namespace c2h {
 } //~namespace c2h
 } //~namespace ribi
 
-#endif // CODETOHTML_H
+#endif // RIBI_CODETOHTML_H

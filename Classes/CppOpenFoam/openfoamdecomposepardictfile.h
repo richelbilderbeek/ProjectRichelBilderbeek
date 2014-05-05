@@ -1,5 +1,5 @@
-#ifndef OPENFOAMDECOMPOSEPARDICTFILE_H
-#define OPENFOAMDECOMPOSEPARDICTFILE_H
+#ifndef RIBI_OPENFOAMDECOMPOSEPARDICTFILE_H
+#define RIBI_OPENFOAMDECOMPOSEPARDICTFILE_H
 
 #include <iosfwd>
 #include <vector>
@@ -36,4 +36,4 @@ std::ostream& operator<<(std::ostream& os, const DecomposeParDictFile& f) noexce
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMDECOMPOSEPARDICTFILE_H
+#endif // RIBI_OPENFOAMDECOMPOSEPARDICTFILE_H

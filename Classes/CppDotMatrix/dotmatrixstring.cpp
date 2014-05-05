@@ -23,10 +23,10 @@ ribi::DotMatrixString::DotMatrixString(const std::string& s,
   assert(GetString() == s);
 }
 
-std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
+std::vector<boost::shared_ptr<const ribi::DotMatrixChar>>
   ribi::DotMatrixString::CreateDotMatrixChars(const std::string& s) noexcept
 {
-  std::vector<boost::shared_ptr<const DotMatrixChar> > v;
+  std::vector<boost::shared_ptr<const DotMatrixChar>> v;
   for (const char c: s)
   {
     boost::shared_ptr<const DotMatrixChar> p {

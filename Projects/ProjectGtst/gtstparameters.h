@@ -150,10 +150,6 @@ struct Parameters
   ///Parse a line in a Parameter file
   void Parse(const std::string& s);
 
-  ///Convert a file to a std::vector
-  ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& filename);
-
   ///Split a std::string
   ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
   static const std::vector<std::string> SeperateString(

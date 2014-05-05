@@ -1,5 +1,5 @@
-#ifndef CHESSBITBOARD_H
-#define CHESSBITBOARD_H
+#ifndef RIBI_CHESSBITBOARD_H
+#define RIBI_CHESSBITBOARD_H
 
 #include <iosfwd>
 #include <vector>
@@ -38,7 +38,7 @@ struct BitBoard
 
   private:
   ///An 8x8 std::vector of bools
-  std::vector<std::vector<bool> > m_v;
+  std::vector<std::vector<bool>> m_v;
 
   friend std::ostream& operator<<(std::ostream& os, const BitBoard& b);
 };
@@ -48,4 +48,4 @@ std::ostream& operator<<(std::ostream& os, const BitBoard& b);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSBITBOARD_H
+#endif // RIBI_CHESSBITBOARD_H

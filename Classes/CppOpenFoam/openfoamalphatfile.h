@@ -1,5 +1,5 @@
-#ifndef OPENFOAMALPHATFILE_H
-#define OPENFOAMALPHATFILE_H
+#ifndef RIBI_OPENFOAMALPHATFILE_H
+#define RIBI_OPENFOAMALPHATFILE_H
 
 #include <array>
 #include <iosfwd>
@@ -45,4 +45,4 @@ std::ostream& operator<<(std::ostream& os, const AlphatFile& f) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMALPHATFILE_H
+#endif // RIBI_OPENFOAMALPHATFILE_H

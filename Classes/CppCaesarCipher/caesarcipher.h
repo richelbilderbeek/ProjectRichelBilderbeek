@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppCaesarCipher.htm
 //---------------------------------------------------------------------------
-#ifndef CAESARCIPHER_H
-#define CAESARCIPHER_H
+#ifndef RIBI_CAESARCIPHER_H
+#define RIBI_CAESARCIPHER_H
 
 #include <string>
 #include <vector>
@@ -61,4 +61,4 @@ struct CaesarCipher
 
 } //~namespace ribi
 
-#endif // CAESARCIPHER_H
+#endif // RIBI_CAESARCIPHER_H

@@ -1,5 +1,5 @@
-#ifndef DOTMATRIXSTRING_H
-#define DOTMATRIXSTRING_H
+#ifndef RIBI_DOTMATRIXSTRING_H
+#define RIBI_DOTMATRIXSTRING_H
 
 #include <string>
 #include <vector>
@@ -7,6 +7,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #pragma GCC diagnostic pop
 
@@ -41,9 +42,9 @@ struct DotMatrixString
 
   private:
   const int m_spacing;
-  const std::vector<boost::shared_ptr<const DotMatrixChar> > m_v;
+  const std::vector<boost::shared_ptr<const DotMatrixChar>> m_v;
 
-  static std::vector<boost::shared_ptr<const DotMatrixChar> >
+  static std::vector<boost::shared_ptr<const DotMatrixChar>>
     CreateDotMatrixChars(const std::string& s) noexcept;
 
   #ifndef NDEBUG
@@ -55,4 +56,4 @@ std::ostream& operator<<(std::ostream& os, const DotMatrixString& m) noexcept;
 
 } //~namespace ribi
 
-#endif // DOTMATRIXSTRING_H
+#endif // RIBI_DOTMATRIXSTRING_H

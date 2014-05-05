@@ -1,5 +1,5 @@
-#ifndef OPENFOAMBOUNDARYINDEX_H
-#define OPENFOAMBOUNDARYINDEX_H
+#ifndef RIBI_OPENFOAMBOUNDARYINDEX_H
+#define RIBI_OPENFOAMBOUNDARYINDEX_H
 
 #include <iosfwd>
 
@@ -37,4 +37,4 @@ bool operator<=(const BoundaryIndex& lhs, const BoundaryIndex& rhs) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMBOUNDARYINDEX_H
+#endif // RIBI_OPENFOAMBOUNDARYINDEX_H

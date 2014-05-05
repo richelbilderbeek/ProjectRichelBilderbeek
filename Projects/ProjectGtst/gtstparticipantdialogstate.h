@@ -96,8 +96,6 @@ struct ParticipantDialogState : public State, Wt::WObject
   Server * const m_server;
 
   public:
-  static const std::vector<std::string> FileToVector(const std::string& filename);
-
   ///\brief
   ///Converts a currency to std::string
   ///

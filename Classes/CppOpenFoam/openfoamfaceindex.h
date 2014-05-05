@@ -1,5 +1,5 @@
-#ifndef OPENFOAMFACEINDEX_H
-#define OPENFOAMFACEINDEX_H
+#ifndef RIBI_OPENFOAMFACEINDEX_H
+#define RIBI_OPENFOAMFACEINDEX_H
 
 #include <iosfwd>
 
@@ -40,4 +40,4 @@ bool operator<=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFACEINDEX_H
+#endif // RIBI_OPENFOAMFACEINDEX_H

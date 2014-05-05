@@ -1,5 +1,5 @@
-#ifndef CHESSPIECEFACTORY_H
-#define CHESSPIECEFACTORY_H
+#ifndef RIBI_CHESSPIECEFACTORY_H
+#define RIBI_CHESSPIECEFACTORY_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -13,7 +13,7 @@ namespace Chess {
 
 struct PieceFactory
 {
-  PieceFactory() {}
+  PieceFactory();
 
   boost::shared_ptr<Piece> Create(
     const char namechar,
@@ -66,9 +66,14 @@ struct PieceFactory
   boost::shared_ptr<Piece> CreateFromPromotion(const std::string& s) const noexcept;
 
   boost::shared_ptr<Piece> DeepCopy(const boost::shared_ptr<const Piece> piece) const noexcept;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSPIECEFACTORY_H
+#endif // RIBI_CHESSPIECEFACTORY_H

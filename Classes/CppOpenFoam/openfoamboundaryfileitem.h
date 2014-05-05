@@ -1,5 +1,5 @@
-#ifndef OPENFOAMBOUNDARYFILEITEM_H
-#define OPENFOAMBOUNDARYFILEITEM_H
+#ifndef RIBI_OPENFOAMBOUNDARYFILEITEM_H
+#define RIBI_OPENFOAMBOUNDARYFILEITEM_H
 
 #include <string>
 #include <iosfwd>
@@ -55,4 +55,4 @@ std::istream& operator>>(std::istream& is, BoundaryFileItem& f);
 } //~namespace ribi
 
 
-#endif // OPENFOAMBOUNDARYFILEITEM_H
+#endif // RIBI_OPENFOAMBOUNDARYFILEITEM_H

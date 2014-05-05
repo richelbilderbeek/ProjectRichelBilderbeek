@@ -8,9 +8,6 @@ FORMS += \
     ../../Tools/ToolFunctionPlotter/qtfunctionplottermenudialog.ui \
     ../../Tools/ToolFunctionPlotter/qtfunctionplottermaindialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolFunctionPlotter/ToolFunctionPlotter.qrc
-
 HEADERS += \
     ../../Tools/ToolFunctionPlotter/qtfunctionplottermenudialog.h \
     ../../Tools/ToolFunctionPlotter/qtfunctionplottermaindialog.h

@@ -22,11 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
-#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WAnchor>
 #include <Wt/WApplication>
 #include <Wt/WBreak>
@@ -35,11 +34,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WLabel>
 #include <Wt/WPushButton>
 #include <Wt/WFileResource>
-//---------------------------------------------------------------------------
+
+#include "fileio.h"
 #include "wtaboutdialog.h"
 #include "wttestselectfiledialogmaindialog.h"
 #include "wtselectfiledialog.h"
-//---------------------------------------------------------------------------
+
 #include <QFile>
 #pragma GCC diagnostic pop
 
@@ -49,7 +49,7 @@ ribi::WtTestSelectFileDialogMainDialog::WtTestSelectFileDialogMainDialog()
   {
     std::vector<std::string> v;
     v.push_back("ToolTestSelectFileDialogWelcome.png");
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       if (!(QFile::exists(s.c_str())))
       {
@@ -62,13 +62,13 @@ ribi::WtTestSelectFileDialogMainDialog::WtTestSelectFileDialogMainDialog()
 
   Show();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestSelectFileDialogMainDialog::OnSelect()
 {
   ui.m_anchor->setText((std::string("Download ") + ui.m_dialog->GetSelectedFile()).c_str() );
   ui.m_anchor->setResource(new Wt::WFileResource(ui.m_dialog->GetSelectedFile(),ui.m_dialog->GetSelectedFile()));
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestSelectFileDialogMainDialog::Show()
 {
   clear();
@@ -84,4 +84,3 @@ void ribi::WtTestSelectFileDialogMainDialog::Show()
   ui.m_dialog->m_signal_selected.connect(
     boost::bind(&ribi::WtTestSelectFileDialogMainDialog::OnSelect,this));
 }
-//---------------------------------------------------------------------------

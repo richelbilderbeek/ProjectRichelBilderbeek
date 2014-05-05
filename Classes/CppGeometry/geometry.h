@@ -343,14 +343,6 @@ struct Geometry
   std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;
 
-  private:
-  ///Take the floating point modulus
-  double Fmod(const double x, const double mod) const noexcept;
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
-
   boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
     Translate(
       const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
@@ -358,6 +350,13 @@ struct Geometry
       const double dy
     ) const noexcept;
 
+  private:
+  ///Take the floating point modulus
+  double Fmod(const double x, const double mod) const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 boost::geometry::model::d2::point_xy<double> operator-(

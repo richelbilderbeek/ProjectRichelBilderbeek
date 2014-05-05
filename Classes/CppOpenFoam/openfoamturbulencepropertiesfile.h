@@ -1,5 +1,5 @@
-#ifndef OPENFOAMTURBULENCEPROPERTIESFILE_H
-#define OPENFOAMTURBULENCEPROPERTIESFILE_H
+#ifndef RIBI_OPENFOAMTURBULENCEPROPERTIESFILE_H
+#define RIBI_OPENFOAMTURBULENCEPROPERTIESFILE_H
 
 #include <iosfwd>
 #include <vector>
@@ -40,4 +40,4 @@ std::ostream& operator<<(std::ostream& os, const TurbulencePropertiesFile& f) no
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMTURBULENCEPROPERTIESFILE_H
+#endif // RIBI_OPENFOAMTURBULENCEPROPERTIESFILE_H

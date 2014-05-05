@@ -1,5 +1,5 @@
-#ifndef CHESSRESOURCES_H
-#define CHESSRESOURCES_H
+#ifndef RIBI_CHESSRESOURCES_H
+#define RIBI_CHESSRESOURCES_H
 
 #include <boost/shared_ptr.hpp>
 #include "chessfwd.h"
@@ -55,4 +55,4 @@ struct Resources
 } //~ namespace Chess
 } //~namespace ribi
 
-#endif // CHESSRESOURCES_H
+#endif // RIBI_CHESSRESOURCES_H

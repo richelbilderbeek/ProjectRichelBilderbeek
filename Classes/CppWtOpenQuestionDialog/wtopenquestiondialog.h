@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtOpenQuestionDialog.htm
 //---------------------------------------------------------------------------
-#ifndef WTOPENQUESTIONDIALOG_H
-#define WTOPENQUESTIONDIALOG_H
+#ifndef RIBI_WTOPENQUESTIONDIALOG_H
+#define RIBI_WTOPENQUESTIONDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -43,18 +43,10 @@ namespace ribi {
 struct Question;
 struct OpenQuestion;
 struct OpenQuestionDialog;
-
 struct WtOpenQuestionDialog : public WtQuestionDialog
 {
-  explicit WtOpenQuestionDialog(
-#ifdef TODO
-  const std::string& question
-  );
-
-  explicit WtOpenQuestionDialog(
-    const boost::shared_ptr<QuestionDialog>& dialog
-#endif
-  );
+  explicit WtOpenQuestionDialog(const std::string& question);
+  explicit WtOpenQuestionDialog(const boost::shared_ptr<QuestionDialog>& dialog);
 
   boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
   boost::shared_ptr<const OpenQuestionDialog> GetOpenQuestionDialog() const noexcept;
@@ -82,4 +74,4 @@ private:
 
 } //~namespace ribi
 
-#endif // WTOPENQUESTIONDIALOG_H
+#endif // RIBI_WTOPENQUESTIONDIALOG_H

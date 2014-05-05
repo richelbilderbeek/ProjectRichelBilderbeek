@@ -1,5 +1,5 @@
-#ifndef CHESSBOARDFACTORY_H
-#define CHESSBOARDFACTORY_H
+#ifndef RIBI_CHESSBOARDFACTORY_H
+#define RIBI_CHESSBOARDFACTORY_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -26,4 +26,4 @@ struct BoardFactory
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSBOARDFACTORY_H
+#endif // RIBI_CHESSBOARDFACTORY_H

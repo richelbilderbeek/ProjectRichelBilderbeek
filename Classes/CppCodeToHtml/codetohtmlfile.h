@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#ifndef CODETOHTMLCONTENT_H
-#define CODETOHTMLCONTENT_H
+#ifndef RIBI_CODETOHTMLCONTENT_H
+#define RIBI_CODETOHTMLCONTENT_H
 
 #include <string>
 #include <vector>
@@ -76,4 +76,4 @@ struct File
 } //~namespace c2h
 } //~namespace ribi
 
-#endif // CODETOHTMLCONTENT_H
+#endif // RIBI_CODETOHTMLCONTENT_H

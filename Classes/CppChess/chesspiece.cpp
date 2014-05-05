@@ -6,6 +6,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 #include <boost/make_shared.hpp>
 
@@ -33,10 +34,10 @@ ribi::Chess::Piece::Piece(
   #endif
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> >
-  ribi::Chess::Piece::AddCheckAndCheckmate(const std::vector<boost::shared_ptr<Move> >& v)
+const std::vector<boost::shared_ptr<ribi::Chess::Move>>
+  ribi::Chess::Piece::AddCheckAndCheckmate(const std::vector<boost::shared_ptr<Move>>& v)
 {
-  std::vector<boost::shared_ptr<Move> > w;
+  std::vector<boost::shared_ptr<Move>> w;
   std::for_each(v.begin(),v.end(),
     [&w](const boost::shared_ptr<Move>& move)
     {
@@ -120,6 +121,24 @@ bool ribi::Chess::PieceBishop::CanDoMove(const Chess::Move * const move) const n
     //Not a Bishop move
     return false;
   }
+  #ifndef NDEBUG
+  if(!
+    (
+         (!move->From() && !GetSquare())
+      || (move->From() && !GetSquare())
+      || (move->From() && GetSquare() && *move->From() == *this->GetSquare()  )
+    )
+  )
+  {
+    TRACE(move);
+    TRACE(move->From());
+    TRACE(GetSquare());
+    if (move->From()) TRACE(*move->From());
+    if (GetSquare()) TRACE(*GetSquare());
+    TRACE("BREAK");
+  }
+  #endif
+
   assert(
     (
          (!move->From() && !GetSquare())
@@ -156,15 +175,15 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceBishop::Clone() const
   return p;
 }
 
-std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceBishop::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceBishop::GetMoves() const noexcept
 {
-  std::vector<boost::shared_ptr<Move> > v;
+  std::vector<boost::shared_ptr<Move>> v;
   for (int i=1; i!=8; ++i)
   {
     //North-east
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i)
       );
@@ -217,7 +236,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceBishop::Get
     //South-east
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i)
       );
@@ -232,7 +251,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceBishop::Get
     //South-west
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -245,7 +264,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceBishop::Get
     //North-west
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i)
       );
@@ -339,17 +358,17 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKing::Clone() const
   return p;
 }
 
-std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKing::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceKing::GetMoves() const noexcept
 {
-  std::vector<boost::shared_ptr<Move> > v;
-  std::vector<std::pair<int,int> > ds
+  std::vector<boost::shared_ptr<Move>> v;
+  std::vector<std::pair<int,int>> ds
     = { {0,-1}, {1,-1}, {1,0}, {1,1}, {0,1}, {-1,1}, {-1,0}, {-1,-1} };
   std::for_each(ds.begin(), ds.end(),
     [&v,this](const std::pair<int,int>& p)
     {
       try
       {
-        const boost::shared_ptr<Square> s = SquareFactory::Create(
+        const boost::shared_ptr<Square> s = SquareFactory().Create(
           Chess::File(this->GetSquare()->GetFile().ToInt() + p.first),
           Chess::Rank(this->GetSquare()->GetRank().ToInt() + p.second)
         );
@@ -428,17 +447,17 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKnight::Clone() const
   return p;
 }
 
-std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKnight::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceKnight::GetMoves() const noexcept
 {
-  std::vector<boost::shared_ptr<Move> > v;
-  std::vector<std::pair<int,int> > ds
+  std::vector<boost::shared_ptr<Move>> v;
+  std::vector<std::pair<int,int>> ds
     = { {1,2}, {2,1}, {-1,2}, {-2,1}, {1,-2}, {2,-1}, {-1,-2}, {-2,-1} };
   std::for_each(ds.begin(), ds.end(),
     [&v,this](const std::pair<int,int>& p)
     {
       try
       {
-        const boost::shared_ptr<Square> s = SquareFactory::Create(
+        const boost::shared_ptr<Square> s = SquareFactory().Create(
           Chess::File(this->GetSquare()->GetFile().ToInt() + p.first),
           Chess::Rank(this->GetSquare()->GetRank().ToInt() + p.second)
         );
@@ -478,6 +497,20 @@ bool ribi::Chess::PiecePawn::CanDoMove(const Chess::Move * const move) const noe
     //Not a Pawn move
     return false;
   }
+
+  if (!(
+    (
+         (!move->From() && !GetSquare())
+      || (move->From() && !GetSquare())
+      || (move->From() && GetSquare() && (*move->From() == *this->GetSquare()))
+    )))
+  {
+    TRACE(move);
+    TRACE(move->From());
+    TRACE(GetSquare());
+    TRACE("BREAK");
+  }
+
   assert(
     (
          (!move->From() && !GetSquare())
@@ -576,11 +609,11 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PiecePawn::Clone() const
   return p;
 }
 
-std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PiecePawn::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PiecePawn::GetMoves() const noexcept
 {
-  std::vector<boost::shared_ptr<Move> > v;
+  std::vector<boost::shared_ptr<Move>> v;
 
-  std::vector<std::pair<int,int> > ds;
+  std::vector<std::pair<int,int>> ds;
   if (GetColor() != Color::black)
   {
     //Add white moves
@@ -603,7 +636,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PiecePawn::GetMo
     {
       try
       {
-        const boost::shared_ptr<Square> s = SquareFactory::Create(
+        const boost::shared_ptr<Square> s = SquareFactory().Create(
           Chess::File(this->GetSquare()->GetFile().ToInt() + p.first),
           Chess::Rank(this->GetSquare()->GetRank().ToInt() + p.second)
         );
@@ -681,15 +714,15 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceQueen::Clone() const
   return p;
 }
 
-std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceQueen::GetMoves() const noexcept
 {
-  std::vector<boost::shared_ptr<Move> > v;
+  std::vector<boost::shared_ptr<Move>> v;
   for (int i=1; i!=8; ++i)
   {
     //North
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + 0),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i)
       );
@@ -703,7 +736,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetM
     //North-east
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -716,7 +749,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetM
     //East
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + 0));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -730,7 +763,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetM
     try
     {
 
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -744,7 +777,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetM
     try
     {
 
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + 0),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -758,7 +791,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetM
     try
     {
 
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -772,7 +805,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetM
     try
     {
 
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + 0));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -785,7 +818,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetM
     //North-west
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -859,15 +892,15 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceRook::Clone() const
   return p;
 }
 
-std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceRook::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move>> ribi::Chess::PieceRook::GetMoves() const noexcept
 {
-  std::vector<boost::shared_ptr<Move> > v;
+  std::vector<boost::shared_ptr<Move>> v;
   for (int i=1; i!=8; ++i)
   {
     //North
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + 0),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() - i));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -880,7 +913,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceRook::GetMo
     //East
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + 0));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -893,7 +926,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceRook::GetMo
     //South
     try
     {
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() + 0),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + i));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());
@@ -907,7 +940,7 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceRook::GetMo
     try
     {
 
-      const boost::shared_ptr<Square> s = SquareFactory::Create(
+      const boost::shared_ptr<Square> s = SquareFactory().Create(
         Chess::File(this->GetSquare()->GetFile().ToInt() - i),
         Chess::Rank(this->GetSquare()->GetRank().ToInt() + 0));
       const boost::shared_ptr<Move> m = MoveFactory::Create(boost::lexical_cast<std::string>(this->GetNameChar()) + this->GetSquare()->ToStr() + " " + s->ToStr());

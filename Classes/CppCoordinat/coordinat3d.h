@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppCoordinat.htm
 //---------------------------------------------------------------------------
-#ifndef COORDINAT3D_H
-#define COORDINAT3D_H
+#ifndef RIBI_COORDINAT3D_H
+#define RIBI_COORDINAT3D_H
 
 //typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
@@ -155,4 +155,4 @@ double Length(const Coordinat3D& v) noexcept;
 
 #endif
 
-#endif // COORDINAT3D_H
+#endif // RIBI_COORDINAT3D_H
