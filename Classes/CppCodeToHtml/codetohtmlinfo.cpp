@@ -9695,7 +9695,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver_0_33.png\">View a screenshot of 'Brainweaver' (version 0.33)(png)</a></li>",
         "  <li><img src=\"PicWine.png\" alt=\"Wine\"/> <a href=\"ProjectBrainweaver_0_28Wine.png\">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectBrainweaverDesktopExe.zip\">Download the 'ToolAsciiArter' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectBrainweaverDesktopExe.zip\">Download the 'Brainweaver' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ProjectBrainweaverExe_0_43.zip\">Download the 'Brainweaver' windows executable (version 0.43)(zip)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver20130725.mp4\">View Brainweaver being tested by libcvautomation (mp4)</a></li>",
         "</ul>",
