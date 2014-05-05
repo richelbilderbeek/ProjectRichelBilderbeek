@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>CppQGraphicsSvgItemExample1.svg</file>
+    </qresource>
+</RCC>

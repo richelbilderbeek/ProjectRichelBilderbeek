@@ -1,7 +1,7 @@
 win32 {
   # Windows only
   message("Desktop application, built for Windows")
-  greaterThan(QT_MAJOR_VERSION, 4): QT += svg sql printsupport
+  greaterThan(QT_MAJOR_VERSION, 4): QT += svg sql printsupport webkit
   QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 }
 
