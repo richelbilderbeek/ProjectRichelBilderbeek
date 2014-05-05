@@ -135,14 +135,14 @@ void ribi::ToolSimplifyNewickMainDialog::TestNewicksFromFile()
 
   std::ofstream f("subs_out.txt");
 
-  BOOST_FOREACH(const std::string& s, newicks)
+  for(const std::string& s: newicks)
   {
     if (s.empty()) continue;
     f << s;
     NewickVector n(s);
 
     const std::vector<NewickVector> simplers = n.GetSimplerNewicks();
-    BOOST_FOREACH(const NewickVector& simple,simplers)
+    for(const NewickVector& simple: simplers)
     {
       f << '\t' << simple.ToStr();
     }

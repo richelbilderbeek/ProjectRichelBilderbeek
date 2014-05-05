@@ -89,7 +89,7 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::CreateTestPrism(
   const CreateVerticalFacesStrategy strategy
 ) const noexcept
 {
-  const std::vector<boost::shared_ptr<Face> > faces {
+  const std::vector<boost::shared_ptr<Face>> faces {
     FaceFactory().CreateTestPrism(strategy)
   };
   const boost::shared_ptr<Cell> prism {

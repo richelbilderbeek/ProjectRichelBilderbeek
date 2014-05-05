@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 //#include <boost/property_tree/ptree.hpp>
 //#include <boost/property_tree/xml_parser.hpp>

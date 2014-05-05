@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHFACE_H
-#define TRIANGLEMESHFACE_H
+#ifndef RIBI_TRIANGLEMESHFACE_H
+#define RIBI_TRIANGLEMESHFACE_H
 
 #include <iosfwd>
 #include <set>
@@ -8,6 +8,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
@@ -159,4 +160,4 @@ bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHFACE_H
+#endif // RIBI_TRIANGLEMESHFACE_H

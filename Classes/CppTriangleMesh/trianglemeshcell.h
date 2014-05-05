@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHCELL_H
-#define TRIANGLEMESHCELL_H
+#ifndef RIBI_TRIANGLEMESHCELL_H
+#define RIBI_TRIANGLEMESHCELL_H
 
 #include <iosfwd>
 #include <vector>
@@ -7,6 +7,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
@@ -78,4 +79,4 @@ bool operator<(const boost::shared_ptr<      Cell>& lhs, const boost::shared_ptr
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHCELL_H
+#endif // RIBI_TRIANGLEMESHCELL_H

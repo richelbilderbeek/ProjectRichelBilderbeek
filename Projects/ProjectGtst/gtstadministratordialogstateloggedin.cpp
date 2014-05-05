@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wcomment"
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 
 #include <Wt/WAnchor>
 #include <Wt/WApplication>
@@ -47,6 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WTextArea>
 
+#include "fileio.h"
 #include "gtstadministrator.h"
 #include "gtstadministratordialog.h"
 #include "gtstadministratordialogstateloggedin.h"
@@ -67,6 +68,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtselectfiledialog.h"
 #include "wtshapegroupwidget.h"
 #include "wtshapewidget.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 ribi::gtst::AdministratorDialogStateLoggedIn::AdministratorDialogStateLoggedIn(
@@ -357,7 +359,7 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::OnTimer()
   {
     std::stringstream s;
     s << (*m_server->GetParameters());
-    const std::vector<std::string> v = XmlToPretty(s.str());
+    const std::vector<std::string> v = xml::XmlToPretty(s.str());
     std::string text;
     std::for_each(v.begin(),v.end(),
       [&text](const std::string& t)
@@ -447,11 +449,11 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::ShowPage(AdministratorDialog 
 
 void ribi::gtst::AdministratorDialogStateLoggedIn::OnUploadDone()
 {
-   
-  assert(boost::filesystem::exists(m_ui.m_fileupload->spoolFileName()));
+
+  assert(fileio::FileIo().IsRegularFile(m_ui.m_fileupload->spoolFileName()));
   //Display parameter file
   {
-    const std::vector<std::string> v = FileToVector(m_ui.m_fileupload->spoolFileName());
+    const std::vector<std::string> v = fileio::FileIo().FileToVector(m_ui.m_fileupload->spoolFileName());
     std::string text;
     std::for_each(v.begin(),v.end(),[&text](const std::string& s) { text+=(s+'\n'); } );
     //Pop trailing newline
@@ -464,7 +466,7 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::OnUploadDone()
   assert(parameters);
   try
   {
-    assert(boost::filesystem::exists(m_ui.m_fileupload->spoolFileName()));
+    assert(fileio::FileIo().IsRegularFile(m_ui.m_fileupload->spoolFileName()));
     parameters->ReadFromFile(m_ui.m_fileupload->spoolFileName());
   }
   catch (std::runtime_error& e)
@@ -486,51 +488,3 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::OnViewLogFile()
   m_ui.m_server_anchor->setText((std::string("Download ") + m_ui.m_server_select_file_dialog->GetSelectedFile()).c_str() );
   m_ui.m_server_anchor->setResource(new Wt::WFileResource(m_ui.m_server_select_file_dialog->GetSelectedFile(),m_ui.m_server_select_file_dialog->GetSelectedFile()));
 }
-
-std::vector<std::string> ribi::gtst::AdministratorDialogStateLoggedIn::SplitXml(const std::string& s)
-{
-  std::vector<std::string> v;
-  std::string::const_iterator i = s.begin();
-  std::string::const_iterator j = s.begin();
-  const std::string::const_iterator end = s.end();
-  while (j!=end)
-  {
-    ++j;
-    if ((*j=='>' || *j == '<') && std::distance(i,j) > 1)
-    {
-      std::string t;
-      std::copy(
-        *i=='<' ? i   : i+1,
-        *j=='>' ? j+1 : j,
-        std::back_inserter(t));
-      v.push_back(t);
-      i = j;
-    }
-  }
-  return v;
-}
-
-///Pretty-print an XML std::string
-//From http://www.richelbilderbeek.nl/CppXmlToPretty.htm
-std::vector<std::string> ribi::gtst::AdministratorDialogStateLoggedIn::XmlToPretty(const std::string& s)
-{
-  std::vector<std::string> v = SplitXml(s);
-  int n = -2;
-  std::for_each(v.begin(),v.end(),
-    [&n](std::string& s)
-    {
-      assert(!s.empty());
-      if (s[0] == '<' && s[1] != '/')
-      {
-        n+=2;
-      }
-      s = std::string(n,' ') + s;
-      if (s[n+0] == '<' && s[n+1] == '/')
-      {
-        n-=2;
-      }
-    }
-  );
-  return v;
-}
-

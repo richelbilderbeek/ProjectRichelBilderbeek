@@ -1,5 +1,5 @@
-#ifndef CHESSGAME_H
-#define CHESSGAME_H
+#ifndef RIBI_CHESSGAME_H
+#define RIBI_CHESSGAME_H
 
 #include <iosfwd>
 //#include <set>
@@ -65,10 +65,10 @@ struct Game
 
   ///Collect all moves that are possible for a Piece at a certain Square.
   ///If there is no Piece at that Square, no Moves are returned
-  const std::vector<boost::shared_ptr<Move> > GetMoves(const boost::shared_ptr<const Square> square) const;
+  const std::vector<boost::shared_ptr<Move>> GetMoves(const boost::shared_ptr<const Square> square) const;
 
   ///Collect all moves that are possible
-  const std::vector<boost::shared_ptr<Move> > GetMoves() const;
+  const std::vector<boost::shared_ptr<Move>> GetMoves() const;
 
   ///Find a Piece at a certain Square.
   ///If there is no Piece at that Square, an empty Piece is returned
@@ -104,7 +104,7 @@ struct Game
   ///The Chess::Board used for the Game
   const boost::shared_ptr<Chess::Board> m_board;
 
-  std::vector<boost::shared_ptr<const Chess::Move> > m_moves;
+  std::vector<boost::shared_ptr<const Chess::Move>> m_moves;
 
   ///The Score if the game has ended by agreement (instead of by checkmate)
   boost::shared_ptr<Chess::Score> m_score;
@@ -118,4 +118,4 @@ bool operator!=(const Game& lhs, const Game& rhs);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSGAME_H
+#endif // RIBI_CHESSGAME_H

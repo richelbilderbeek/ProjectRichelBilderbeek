@@ -1,5 +1,5 @@
-#ifndef OPENFOAMVELOCITYFIELDFILE_H
-#define OPENFOAMVELOCITYFIELDFILE_H
+#ifndef RIBI_OPENFOAMVELOCITYFIELDFILE_H
+#define RIBI_OPENFOAMVELOCITYFIELDFILE_H
 
 #include <array>
 #include <iosfwd>
@@ -53,4 +53,4 @@ std::ostream& operator<<(std::ostream& os, const VelocityFieldFile& f) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMVELOCITYFIELDFILE_H
+#endif // RIBI_OPENFOAMVELOCITYFIELDFILE_H

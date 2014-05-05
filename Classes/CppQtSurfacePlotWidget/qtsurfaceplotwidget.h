@@ -39,12 +39,12 @@ public:
 
   ///Sets the image of the surface plot to the values of the vector
   ///The doubles can be in any range
-  void SetSurfaceGrey(const std::vector<std::vector<double> >& surface);
+  void SetSurfaceGrey(const std::vector<std::vector<double>>& surface);
 
   //Sets the image of the surface plot to the values of the vector
   //Assumes that the chars are in the range [0,255] (a char's range)
   //If the chars are in a shorter range, they will NOT be rescaled to [0,255]
-  void SetSurfaceGrey(const std::vector<std::vector<unsigned char> >& surface);
+  void SetSurfaceGrey(const std::vector<std::vector<unsigned char>>& surface);
 
   ///Obtain the version of this class
   static std::string GetVersion();
@@ -57,7 +57,7 @@ protected:
   void resizeEvent(QResizeEvent *);
 
 private:
-  std::vector<std::vector<unsigned char> > m_surface;
+  std::vector<std::vector<unsigned char>> m_surface;
 };
 
 } //~namespace ribi

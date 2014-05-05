@@ -68,11 +68,11 @@ void ribi::Chess::BitBoard::Test() noexcept
       FTRACE("Test Chess::BitBoard");
       BitBoard b;
 
-      assert(!b.Get(SquareFactory::Create("g8")));
-      b.Set(SquareFactory::Create("g8"),true);
-      assert( b.Get(SquareFactory::Create(("g8"))));
-      b.Set(SquareFactory::Create("g8"),false);
-      assert(!b.Get(SquareFactory::Create(("g8"))));
+      assert(!b.Get(SquareFactory().Create("g8")));
+      b.Set(SquareFactory().Create("g8"),true);
+      assert( b.Get(SquareFactory().Create(("g8"))));
+      b.Set(SquareFactory().Create("g8"),false);
+      assert(!b.Get(SquareFactory().Create(("g8"))));
     }
   #ifdef MXE_SUPPORTS_THREADS
   );

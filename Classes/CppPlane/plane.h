@@ -18,13 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPlane.htm
 //---------------------------------------------------------------------------
-#ifndef PLANE_H
-#define PLANE_H
+#ifndef RIBI_PLANE_H
+#define RIBI_PLANE_H
 
 #include <vector>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
@@ -179,4 +180,4 @@ struct Plane
 
 } //~namespace ribi
 
-#endif // PLANE_H
+#endif // RIBI_PLANE_H

@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHPOINT_H
-#define TRIANGLEMESHPOINT_H
+#ifndef RIBI_TRIANGLEMESHPOINT_H
+#define RIBI_TRIANGLEMESHPOINT_H
 
 #include <iosfwd>
 #include <vector>
@@ -7,6 +7,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
@@ -128,4 +129,4 @@ std::ostream& operator<<(std::ostream& os, const Point& n);
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHPOINT_H
+#endif // RIBI_TRIANGLEMESHPOINT_H

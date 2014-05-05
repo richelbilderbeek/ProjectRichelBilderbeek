@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHWINDING_H
-#define TRIANGLEMESHWINDING_H
+#ifndef RIBI_TRIANGLEMESHWINDING_H
+#define RIBI_TRIANGLEMESHWINDING_H
 
 namespace ribi {
 namespace trim {
@@ -16,4 +16,4 @@ enum class Winding
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHWINDING_H
+#endif // RIBI_TRIANGLEMESHWINDING_H

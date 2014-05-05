@@ -1,6 +1,5 @@
-
-#ifndef CHESSRANK_H
-#define CHESSRANK_H
+#ifndef RIBI_CHESSRANK_H
+#define RIBI_CHESSRANK_H
 
 #include <string>
 #include <vector>
@@ -50,4 +49,4 @@ bool operator==(const Rank& lhs, const Rank& rhs);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSRANK_H
+#endif // RIBI_CHESSRANK_H

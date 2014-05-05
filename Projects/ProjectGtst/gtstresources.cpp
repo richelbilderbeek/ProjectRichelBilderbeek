@@ -28,9 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
-#include <boost/filesystem.hpp>
 #include <QFile>
 
+#include "fileio.h"
 #include "gtstresources.h"
 #include "trace.h"
 
@@ -44,11 +44,12 @@ ribi::gtst::Resources::Resources()
   //Create the default parameters file
   {
     const std::string filename  = "wt.css";
-    if (!boost::filesystem::exists(filename))
+
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       SaveStylesheet();
     }
-    assert(boost::filesystem::exists(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
   }
   const std::vector<std::string> image_names
     =
@@ -73,11 +74,11 @@ ribi::gtst::Resources::Resources()
   std::for_each(image_names.begin(),image_names.end(),
     [](const std::string& filename)
     {
-      if (!boost::filesystem::exists(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
-        if (!boost::filesystem::exists(filename.c_str()))
+        if (!fileio::FileIo().IsRegularFile(filename))
         {
           const std::string s = "File not found: " + filename;
           std::cerr << s << '\n';
@@ -85,7 +86,7 @@ ribi::gtst::Resources::Resources()
           std::cout << s << '\n';
         }
       }
-      assert(boost::filesystem::exists(filename.c_str()));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   );
 }

@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include <boost/algorithm/string/split.hpp>
-#include <boost/filesystem.hpp>
+//#include <boost/filesystem.hpp>
 
 #include <Wt/WAnchor>
 #include <Wt/WBreak>
@@ -296,7 +296,8 @@ void ribi::c2h::WtDialog::on_tab_source_currentChanged()
   {
     //assert(ui->tab_source->currentWidget() == ui->tab_source_snippet);
     const std::string source = ui.m_edit_source->text().toUTF8();
-    if (!boost::filesystem::exists(source))
+
+    if (!fileio::FileIo().IsRegularFile(source))
     {
       ui.m_button_convert->setText("Source (file or folder) does not exist");
       ui.m_button_convert->setEnabled(false);
@@ -313,13 +314,14 @@ void ribi::c2h::WtDialog::on_edit_source_textChanged()
 {
   const std::string source = ui.m_edit_source->text().toUTF8();
 
-  if (!boost::filesystem::exists(source))
+  if (!fileio::FileIo().IsRegularFile(source))
   {
     ui.m_button_convert->setText("Source does not exist");
     ui.m_button_convert->setEnabled(false);
     return;
   }
-  if (boost::filesystem::is_directory(source))
+
+  if (fileio::FileIo().IsFolder(source))
   {
     const std::vector<std::string> v
       = SortFiles(
@@ -337,7 +339,7 @@ void ribi::c2h::WtDialog::on_edit_source_textChanged()
   }
   else
   {
-    assert(boost::filesystem::exists(source));
+    assert(fileio::FileIo().IsFolder(source));
     ui.m_button_convert->setText("&Convert (source type: file)");
     ui.m_button_convert->setEnabled(true);
   }

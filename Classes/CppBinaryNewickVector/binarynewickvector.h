@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppBinaryNewickVector.htm
 //---------------------------------------------------------------------------
-#ifndef BINARYNEWICKVECTOR_H
-#define BINARYNEWICKVECTOR_H
+#ifndef RIBI_BINARYNEWICKVECTOR_H
+#define RIBI_BINARYNEWICKVECTOR_H
 
 #include <string>
 #include <vector>
@@ -91,4 +91,4 @@ bool operator<(
 
 } //~namespace ribi
 
-#endif // BINARYNEWICKVECTOR_H
+#endif // RIBI_BINARYNEWICKVECTOR_H

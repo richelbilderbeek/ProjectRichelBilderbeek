@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-//#include <boost/filesystem.hpp>
+////#include <boost/filesystem.hpp>
 
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>

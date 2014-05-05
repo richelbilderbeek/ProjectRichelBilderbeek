@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPOINTSFILEITEM_H
-#define OPENFOAMPOINTSFILEITEM_H
+#ifndef RIBI_OPENFOAMPOINTSFILEITEM_H
+#define RIBI_OPENFOAMPOINTSFILEITEM_H
 
 #include <array>
 #include <vector>
@@ -8,6 +8,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry.hpp>
 #pragma GCC diagnostic pop
 
@@ -48,4 +49,4 @@ std::istream& operator>>(std::istream& is, PointsFileItem& f);
 
 
 
-#endif // OPENFOAMPOINTSFILEITEM_H
+#endif // RIBI_OPENFOAMPOINTSFILEITEM_H

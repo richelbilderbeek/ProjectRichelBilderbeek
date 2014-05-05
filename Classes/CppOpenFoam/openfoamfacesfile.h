@@ -1,5 +1,5 @@
-#ifndef OPENFOAMFACESFILE_H
-#define OPENFOAMFACESFILE_H
+#ifndef RIBI_OPENFOAMFACESFILE_H
+#define RIBI_OPENFOAMFACESFILE_H
 
 #include <iosfwd>
 #include <string>
@@ -59,4 +59,4 @@ std::istream& operator>>(std::istream& is, FacesFile& f);
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFACESFILE_H
+#endif // RIBI_OPENFOAMFACESFILE_H

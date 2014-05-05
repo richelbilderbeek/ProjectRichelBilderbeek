@@ -57,7 +57,7 @@ std::vector<char> ribi::Canvas::GetAsciiArtGradient() noexcept
 
 std::vector<std::string> ribi::Canvas::GetRegexMatches(
   const std::string& s,
-  const QRegExp& r_original)
+  const QRegExp& r_original) noexcept
 {
   QRegExp r(r_original);
   r.setMinimal(true); //QRegExp must be non-greedy

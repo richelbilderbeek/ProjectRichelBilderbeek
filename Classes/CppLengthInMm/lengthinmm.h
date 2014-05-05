@@ -1,5 +1,5 @@
-#ifndef LENGTHINMM_H
-#define LENGTHINMM_H
+#ifndef RIBI_LENGTHINMM_H
+#define RIBI_LENGTHINMM_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -24,4 +24,4 @@ typedef boost::units::quantity<millimeter_unit> LengthInMm;
 
 } //~namespace ribi
 
-#endif // LENGTHINMM_H
+#endif // RIBI_LENGTHINMM_H

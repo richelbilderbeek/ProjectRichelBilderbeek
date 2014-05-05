@@ -7,7 +7,6 @@ include(../../Classes/CppChessResources/CppChessResources.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppWidget/CppWidget.pri)
-include(../../Classes/CppRectangle/CppRectangle.pri)
 include(../../Tools/ToolTestChess/ToolTestChessConsole.pri)
 
 SOURCES += main.cpp

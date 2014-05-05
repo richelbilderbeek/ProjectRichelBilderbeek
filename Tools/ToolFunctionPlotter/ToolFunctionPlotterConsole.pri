@@ -11,3 +11,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolFunctionPlotter/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolFunctionPlotter/ToolFunctionPlotter.qrc

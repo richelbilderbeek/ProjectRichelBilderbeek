@@ -108,16 +108,6 @@ struct AdministratorDialogStateLoggedIn : public AdministratorDialogState
   ///Assumes that the filename has an extension
   ///From http://www.richelbilderbeek.nl/CppGetExtension.htm
   static std::string GetExtension(const std::string& filename);
-
-  ///Split an XML std::string into its parts
-  //From http://www.richelbilderbeek.nl/CppSplitXml.htm
-  static std::vector<std::string> SplitXml(const std::string& s);
-
-  ///Pretty-print an XML std::string
-  //From http://www.richelbilderbeek.nl/CppXmlToPretty.htm
-  static std::vector<std::string> XmlToPretty(const std::string& s);
-
-
 };
 
 } //~namespace gtst

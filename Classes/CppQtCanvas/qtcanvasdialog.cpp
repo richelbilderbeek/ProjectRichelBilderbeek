@@ -35,6 +35,7 @@ ribi::QtCanvasDialog::QtCanvasDialog(QtCanvas * const qtcanvas)
 
 ribi::QtCanvasDialog::~QtCanvasDialog() noexcept
 {
+
 }
 
 void ribi::QtCanvasDialog::keyPressEvent(QKeyEvent* event)

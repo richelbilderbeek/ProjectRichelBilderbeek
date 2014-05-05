@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHCELLSCREATORFACTORY_H
-#define TRIANGLEMESHCELLSCREATORFACTORY_H
+#ifndef RIBI_TRIANGLEMESHCELLSCREATORFACTORY_H
+#define RIBI_TRIANGLEMESHCELLSCREATORFACTORY_H
 
 #include <iosfwd>
 //#include <set>
@@ -8,6 +8,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/units/systems/si/length.hpp>
@@ -70,4 +71,4 @@ struct CellsCreatorFactory
 } //~namespace ribi
 
 
-#endif // TRIANGLEMESHCELLSCREATORFACTORY_H
+#endif // RIBI_TRIANGLEMESHCELLSCREATORFACTORY_H

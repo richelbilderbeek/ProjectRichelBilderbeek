@@ -11,6 +11,7 @@
 
 #include "drawcanvas.h"
 #include "qtcanvas.h"
+#include "qtsurfaceplotwidget.h"
 #include "trace.h"
 #include "ui_qttestdrawcanvasmaindialog.h"
 #pragma GCC diagnostic pop
@@ -18,7 +19,8 @@
 ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestDrawCanvasMainDialog),
-  m_canvas(CreateCanvas())
+  m_canvas(CreateCanvas()),
+  m_surface_plot(new ribi::QtSurfacePlotWidget)
 {
   #ifndef NDEBUG
   Test();
@@ -31,6 +33,7 @@ ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
       new QtCanvas(m_canvas)
     };
     ui->verticalLayout->addWidget(qtcanvas);
+    ui->verticalLayout->addWidget(m_surface_plot);
   }
 
   {
@@ -46,6 +49,11 @@ ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
     ui->box_line_x2->setValue(0.75 * w);
     ui->box_line_y2->setValue(0.75 * h);
   }
+
+  m_canvas->m_signal_changed.connect(
+    boost::bind(&ribi::QtTestDrawCanvasMainDialog::OnChanged,this)
+  );
+  OnChanged();
 }
 
 ribi::QtTestDrawCanvasMainDialog::~QtTestDrawCanvasMainDialog() noexcept
@@ -163,6 +171,11 @@ void ribi::QtTestDrawCanvasMainDialog::on_button_line_clicked()
     ui->box_line_x2->value(),
     ui->box_line_y2->value()
   );
+}
+
+void ribi::QtTestDrawCanvasMainDialog::OnChanged() noexcept
+{
+  m_surface_plot->SetSurfaceGrey(m_canvas->GetGreynesses());
 }
 
 #ifndef NDEBUG

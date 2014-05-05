@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppDrawCanvas.htm
 //---------------------------------------------------------------------------
-#ifndef DRAWCANVAS_H
-#define DRAWCANVAS_H
+#ifndef RIBI_DRAWCANVAS_H
+#define RIBI_DRAWCANVAS_H
 
 #include <iosfwd>
 #include <string>
@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/signals2.hpp>
@@ -204,7 +205,7 @@ struct DrawCanvas : public Canvas
   //From http://www.richelbilderbeek.nl/CppPlotSurface.htm
   static void PlotSurface(
     std::ostream& os,
-    const std::vector<std::vector<double> >& v,
+    const std::vector<std::vector<double>>& v,
     const bool use_normal_color_system,
     const bool as_screen_coordinat_system);
 
@@ -233,4 +234,4 @@ bool IsAboutEqual(const DrawCanvas& lhs, const DrawCanvas& rhs) noexcept;
 
 } //~namespace ribi
 
-#endif
+#endif // RIBI_DRAWCANVAS_H

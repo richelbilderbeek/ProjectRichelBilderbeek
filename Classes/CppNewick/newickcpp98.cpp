@@ -773,7 +773,7 @@ void ribi::NewickCpp98::Test()
     const std::vector<std::vector<int> > n = Newick::GetSimplerNewicks(Newick::StringToNewick(s));
     //#define DEBUG_1_BO_1_2_3_BC
     #ifdef  DEBUG_1_BO_1_2_3_BC
-    BOOST_FOREACH(const auto& t,n)
+    for(const auto& t: n)
     {
       TRACE(Newick::NewickToString(t));
     }
@@ -801,7 +801,7 @@ void ribi::NewickCpp98::Test()
     //#define DEBUG_1_BO_1_3_4_BC
     #ifdef  DEBUG_1_BO_1_3_4_BC
     TRACE(boost::lexical_cast<std::string>(n.size()));
-    BOOST_FOREACH(const auto& t,n)
+    for(const auto& t: n)
     {
       TRACE(Newick::NewickToString(t));
     }
@@ -822,7 +822,7 @@ void ribi::NewickCpp98::Test()
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_1_134
     typedef std::pair<std::vector<int>,int> Pair;
-    BOOST_FOREACH(const Pair& p, n)
+    for(const Pair& p: n)
     {
       std::cout << Newick::NewickToString(p.first) << '\n';
     }
@@ -847,7 +847,7 @@ void ribi::NewickCpp98::Test()
       Newick::StringToNewick(s));
     //#define DEBUG_BO_1_1_BC_2
     #ifdef  DEBUG_BO_1_1_BC_2
-    BOOST_FOREACH(const auto& t,n)
+    for(const auto& t: n)
     {
       TRACE(Newick::NewickToString(t));
     }
@@ -866,7 +866,7 @@ void ribi::NewickCpp98::Test()
     const std::vector<Pair> n
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_11_2
-    BOOST_FOREACH(const Pair& p, n)
+    for(const Pair& p: n)
     {
       std::clog << Newick::NewickToString(p.first) << '\n';
     }
@@ -900,7 +900,7 @@ void ribi::NewickCpp98::Test()
     const std::vector<Pair> n
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_21_2
-    BOOST_FOREACH(const Pair& p, n)
+    for(const Pair& p: n)
     {
       TRACE(Newick::NewickToString(p.first));
     }
@@ -937,7 +937,7 @@ void ribi::NewickCpp98::Test()
     const std::vector<Pair> n
       = GetSimplerNewicksFrequencyPairs(Newick::StringToNewick(s));
     #ifdef TRACE_GETSIMPLERNEWICKSFREQUENCYPAIRS_23_4
-    BOOST_FOREACH(const Pair& p, n)
+    for(const Pair& p: n)
     {
       std::cout << Newick::NewickToString(p.first) << '\n';
     }

@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppFileIo.htm
 //---------------------------------------------------------------------------
-#ifndef FILEIO_H
-#define FILEIO_H
+#ifndef RIBI_FILEIO_H
+#define RIBI_FILEIO_H
 
 #include <string>
 #include <vector>
@@ -206,4 +206,4 @@ struct FileIo
 } //~namespace fileio
 } //~namespace ribi
 
-#endif // FILEIO_H
+#endif // RIBI_FILEIO_H

@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppMenuDialog.htm
 //---------------------------------------------------------------------------
-#ifndef MENUDIALOG_H
-#define MENUDIALOG_H
+#ifndef RIBI_MENUDIALOG_H
+#define RIBI_MENUDIALOG_H
 
 #include <vector>
 #include <string>
@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 
 #include "about.h"
@@ -80,4 +81,4 @@ struct MenuDialog
 
 } //namespace ribi
 
-#endif // MENUDIALOG_H
+#endif // RIBI_MENUDIALOG_H

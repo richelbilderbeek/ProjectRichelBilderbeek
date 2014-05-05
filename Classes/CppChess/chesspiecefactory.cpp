@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "chesspiecefactory.h"
 
 #include <stdexcept>
@@ -10,7 +12,15 @@
 #include "chessmovefactory.h"
 #include "chesspiece.h"
 #include "chesssquarefactory.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
+
+ribi::Chess::PieceFactory::PieceFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   const char namechar,
@@ -40,7 +50,7 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
 ) const noexcept
 {
   const boost::shared_ptr<const Square> square {
-    SquareFactory::Create(square_str)
+    SquareFactory().Create(square_str)
   };
   assert(square);
   boost::shared_ptr<Piece> p;
@@ -215,3 +225,24 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::DeepCopy(
   assert(original_piece != cloned_piece && "Must be a deep copy");
   return cloned_piece;
 }
+
+#ifndef NDEBUG
+void ribi::Chess::PieceFactory::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Chess::PieceFactory::Test");
+  PieceFactory f;
+  {
+    const boost::shared_ptr<Piece> piece = f.CreateFromMove(Color::indeterminate,"Na3 b4");
+    assert(piece);
+    assert(piece->GetSquare());
+    assert(piece->GetSquare() == SquareFactory().Create("a3"));
+  }
+  assert(1==2);
+  TRACE("Finished ribi::Chess::PieceFactory::Test successfully");
+}
+#endif

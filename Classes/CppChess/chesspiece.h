@@ -1,5 +1,5 @@
-#ifndef CHESSPIECE_H
-#define CHESSPIECE_H
+#ifndef RIBI_CHESSPIECE_H
+#define RIBI_CHESSPIECE_H
 
 #include <vector>
 
@@ -40,7 +40,7 @@ struct Piece
 
   ///Returns all Moves to be done by a Piece.
   ///These moves are all valid (for example, on an empty board), but might be invalid in the current chessgame.
-  virtual std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept = 0;
+  virtual std::vector<boost::shared_ptr<Move>> GetMoves() const noexcept = 0;
 
   ///Obtain the Square the piece is standing on
   boost::shared_ptr<const Square> GetSquare() const noexcept;
@@ -75,7 +75,7 @@ struct Piece
     const boost::shared_ptr<const Square>& square);
 
   ///Triple number of moves by adding check and checkmate
-  static const std::vector<boost::shared_ptr<Move> > AddCheckAndCheckmate(const std::vector<boost::shared_ptr<Move> >& v);
+  static const std::vector<boost::shared_ptr<Move>> AddCheckAndCheckmate(const std::vector<boost::shared_ptr<Move>>& v);
 
   ///Clone a Piece
   virtual boost::shared_ptr<Piece> Clone() const = 0;
@@ -99,7 +99,7 @@ struct PieceBishop : public Piece
   ///Determines if this Piece can possibly do this move
   bool CanDoMove(const Move* const move) const noexcept;
 
-  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetMoves() const noexcept;
 
   ///Convert a Piece type to a its notational character, e.g 'N'
   char GetNameChar() const noexcept { return 'B'; }
@@ -148,7 +148,7 @@ struct PieceKing : public Piece
   ///Determines if this Piece can possibly do this move
   bool CanDoMove(const Move* const move) const noexcept;
 
-  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetMoves() const noexcept;
   //void Move(const Square& to);
 
   ///Convert a Piece type to a its notational character, e.g 'N'
@@ -193,7 +193,7 @@ struct PieceKnight : public Piece
 
   ///Returns all Moves to be done by a Piece.
   ///These moves are all valid, but might be invalid in the current chessgame.
-  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetMoves() const noexcept;
 
   char GetNameChar() const noexcept { return 'N'; }
 
@@ -228,7 +228,7 @@ struct PiecePawn : public Piece
   ///Determines if this Piece can possibly do this move
   bool CanDoMove(const Move* const move) const noexcept;
 
-  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetMoves() const noexcept;
   char GetNameChar() const noexcept { return '.'; }
 
   ///Convert a Piece type to a its full name, e.g. 'knight'
@@ -263,7 +263,7 @@ struct PieceQueen : public Piece
   ///Determines if this Piece can possibly do this move
   bool CanDoMove(const Move* const move) const noexcept;
 
-  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetMoves() const noexcept;
   char GetNameChar() const noexcept { return 'Q'; }
 
   ///Convert a Piece type to a its full name, e.g. 'king'
@@ -298,7 +298,7 @@ struct PieceRook : public Piece
   ///Determines if this Piece can possibly do this move
   bool CanDoMove(const Move* const move) const noexcept;
 
-  std::vector<boost::shared_ptr<Move> > GetMoves() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetMoves() const noexcept;
 
   char GetNameChar() const noexcept { return 'R'; }
 
@@ -306,7 +306,6 @@ struct PieceRook : public Piece
   std::string GetName() const noexcept { return "rook"; }
 
   #ifndef NDEBUG
-  ///Test PieceRook
   static void Test() noexcept;
   #endif
 
@@ -340,4 +339,4 @@ std::ostream& operator<<(std::ostream& os, const Piece& piece);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSPIECE_H
+#endif // RIBI_CHESSPIECE_H

@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppApproximator.htm
 //---------------------------------------------------------------------------
-#ifndef EXCEPTIONNOEXTRAPOLATION_H
-#define EXCEPTIONNOEXTRAPOLATION_H
+#ifndef RIBI_EXCEPTIONNOEXTRAPOLATION_H
+#define RIBI_EXCEPTIONNOEXTRAPOLATION_H
 
 #include <stdexcept>
 #include <boost/lexical_cast.hpp>
@@ -72,4 +72,4 @@ struct ExceptionNoExtrapolation : public std::exception
 } //~namespace ribi
 
 
-#endif // EXCEPTIONNOEXTRAPOLATION_H
+#endif // RIBI_EXCEPTIONNOEXTRAPOLATION_H

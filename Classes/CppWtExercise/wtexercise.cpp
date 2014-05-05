@@ -80,11 +80,7 @@ void ribi::WtExercise::DisplayCurrentQuestion()
   WtQuestionDialog * question = 0;
   try
   {
-    question = new WtOpenQuestionDialog(
-    #ifdef TODO
-      s
-    #endif
-    );
+    question = new WtOpenQuestionDialog(s);
   }
   catch(std::exception&) {}
   if (!question)

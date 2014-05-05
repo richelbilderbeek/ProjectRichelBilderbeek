@@ -47,7 +47,9 @@ struct AdministratorDialogState : public Wt::WObject
   ///An AdministratorDialogState needs its AdministratorDialog
   AdministratorDialogState(
     Server * const server,
-    AdministratorDialog * const dialog);
+    AdministratorDialog * const dialog
+  );
+
   AdministratorDialogState(const AdministratorDialogState&) = delete;
   AdministratorDialogState& operator=(const AdministratorDialogState&) = delete;
 
@@ -61,7 +63,7 @@ struct AdministratorDialogState : public Wt::WObject
   virtual void ShowPage(AdministratorDialog * const base_dialog) = 0;
 
   ///Obtain the AdministratorDialogState its AdministratorDialog
-  AdministratorDialog * GetDialog() const { return m_dialog; }
+  AdministratorDialog * GetDialog() const noexcept { return m_dialog; }
 
   protected:
   virtual ~AdministratorDialogState() {}
@@ -76,12 +78,8 @@ struct AdministratorDialogState : public Wt::WObject
   Server * const m_server;
 
   public:
-  ///Convert a file to std::vector<std::string>
-  static const std::vector<std::string> FileToVector(const std::string& filename);
-  ///Get all files in a folder
-  static std::vector<std::string> GetFilesInFolder(const std::string& folder);
   ///Get all .txt files in a folder
-  static std::vector<std::string> GetTextFilesInFolder(const std::string& folder);
+  static std::vector<std::string> GetTextFilesInFolder(const std::string& folder) noexcept;
 };
 
 } //~namespace gtst

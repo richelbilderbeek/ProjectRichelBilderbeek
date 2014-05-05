@@ -1,5 +1,5 @@
-#ifndef DOTMATRIXCHAR_H
-#define DOTMATRIXCHAR_H
+#ifndef RIBI_DOTMATRIXCHAR_H
+#define RIBI_DOTMATRIXCHAR_H
 
 #include <iosfwd>
 #include <string>
@@ -8,6 +8,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/array.hpp>
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
@@ -65,4 +66,4 @@ std::ostream& operator<<(std::ostream& os, const DotMatrixChar& m);
 
 } //~namespace ribi
 
-#endif // DOTMATRIXCHAR_H
+#endif // RIBI_DOTMATRIXCHAR_H

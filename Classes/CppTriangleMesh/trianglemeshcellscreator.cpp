@@ -178,7 +178,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 )
 {
   
-  std::vector<boost::shared_ptr<Face> > v;
+  std::vector<boost::shared_ptr<Face>> v;
   assert(t);
   assert(!all_points.empty());
 
@@ -236,7 +236,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   return v;
 }
 
-std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreator::CreatePoints(
+std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::CellsCreator::CreatePoints(
   const boost::shared_ptr<const Template> t,
   const int n_layers,
   const boost::units::quantity<boost::units::si::length> layer_height

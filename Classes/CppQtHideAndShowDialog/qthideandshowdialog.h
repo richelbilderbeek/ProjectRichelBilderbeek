@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtHideAndShowDialog.htm
 //---------------------------------------------------------------------------
-#ifndef QTHIDEANDSHOWDIALOG_H
-#define QTHIDEANDSHOWDIALOG_H
+#ifndef RIBI_QTHIDEANDSHOWDIALOG_H
+#define RIBI_QTHIDEANDSHOWDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -76,4 +76,4 @@ protected slots:
 
 } //~namespace ribi
 
-#endif // QTHIDEANDSHOWDIALOG_H
+#endif // RIBI_QTHIDEANDSHOWDIALOG_H

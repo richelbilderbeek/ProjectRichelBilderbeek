@@ -168,7 +168,7 @@ void ribi::gtst::ParticipantDialogStateQuiz::OnSubmitClick()
 
   m_button_vote->setEnabled(false);
 
-  BOOST_FOREACH(Wt::WRadioButton * const r,m_group->buttons())
+  for(Wt::WRadioButton * const r: m_group->buttons())
   {
     r->setEnabled(false);
   }

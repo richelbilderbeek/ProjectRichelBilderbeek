@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPOINT_H
-#define OPENFOAMPOINT_H
+#ifndef RIBI_OPENFOAMPOINT_H
+#define RIBI_OPENFOAMPOINT_H
 
 #include "openfoampointsfileitem.h"
 
@@ -12,4 +12,4 @@ typedef PointsFileItem Point;
 } //~namespace ribi
 
 
-#endif // OPENFOAMPOINT_H
+#endif // RIBI_OPENFOAMPOINT_H

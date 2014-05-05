@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppCoordinat.htm
 //---------------------------------------------------------------------------
-#ifndef COORDINAT_H
-#define COORDINAT_H
+#ifndef RIBI_COORDINAT_H
+#define RIBI_COORDINAT_H
 
 #ifdef USE_CUSTOM_RIBI_COORDINAT
 
@@ -111,4 +111,4 @@ void Coordinat::Test() noexcept
 
 #endif // USE_CUSTOM_RIBI_COORDINAT
 
-#endif // COORDINAT_H
+#endif // RIBI_COORDINAT_H

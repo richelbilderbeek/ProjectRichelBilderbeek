@@ -1,5 +1,5 @@
-#ifndef QTCANVAS_H
-#define QTCANVAS_H
+#ifndef RIBI_QTCANVAS_H
+#define RIBI_QTCANVAS_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -59,4 +59,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTCANVAS_H
+#endif // RIBI_QTCANVAS_H

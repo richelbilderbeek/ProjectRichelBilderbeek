@@ -18,13 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeekProgram.htm
 //---------------------------------------------------------------------------
-#ifndef RICHELBILDERBEEKPROGRAM_H
-#define RICHELBILDERBEEKPROGRAM_H
+#ifndef RIBI_RICHELBILDERBEEKPROGRAM_H
+#define RIBI_RICHELBILDERBEEKPROGRAM_H
 
 #include <string>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "richelbilderbeekprogramstatus.h"
 #include "richelbilderbeekprogramtype.h"
@@ -41,7 +43,7 @@ struct Program
   static boost::shared_ptr<Program> CreateProgram(const ProgramType type) noexcept;
 
   ///Create a std::vector with all different Program instances in it
-  static std::vector<boost::shared_ptr<Program> > GetAllPrograms() noexcept;
+  static std::vector<boost::shared_ptr<Program>> GetAllPrograms() noexcept;
 
   ///Get the filename of a console version screenshot
   virtual std::string GetFilenameConsole() const noexcept = 0;
@@ -3119,4 +3121,4 @@ bool operator<(const Program& lhs, const Program& rhs) noexcept;
 
 } //~namespace ribi
 
-#endif // RICHELBILDERBEEKPROGRAM_H
+#endif // RIBI_RICHELBILDERBEEKPROGRAM_H

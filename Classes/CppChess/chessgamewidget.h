@@ -1,5 +1,5 @@
-#ifndef CHESSGAMEWIDGET_H
-#define CHESSGAMEWIDGET_H
+#ifndef RIBI_CHESSGAMEWIDGET_H
+#define RIBI_CHESSGAMEWIDGET_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -52,4 +52,4 @@ struct GameWidget : public Chess::ChessWidget
 } //~ namespace Chess
 } //~ namespace ribi
 
-#endif // CHESSGAMEWIDGET_H
+#endif // RIBI_CHESSGAMEWIDGET_H

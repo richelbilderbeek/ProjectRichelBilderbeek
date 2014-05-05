@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPRESSUREFILE_H
-#define OPENFOAMPRESSUREFILE_H
+#ifndef RIBI_OPENFOAMPRESSUREFILE_H
+#define RIBI_OPENFOAMPRESSUREFILE_H
 
 #include <array>
 #include <iosfwd>
@@ -52,4 +52,4 @@ std::ostream& operator<<(std::ostream& os, const PressureFile& f) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMPRESSUREFILE_H
+#endif // RIBI_OPENFOAMPRESSUREFILE_H

@@ -1,5 +1,5 @@
-#ifndef CANVASCOORDINATSYSTEMS_H
-#define CANVASCOORDINATSYSTEMS_H
+#ifndef RIBI_CANVASCOORDINATSYSTEMS_H
+#define RIBI_CANVASCOORDINATSYSTEMS_H
 
 #include <string>
 #include <vector>
@@ -32,4 +32,4 @@ struct CanvasCoordinatSystems
 
 } //~namespace ribi
 
-#endif // CANVASCOORDINATSYSTEMS_H
+#endif // RIBI_CANVASCOORDINATSYSTEMS_H

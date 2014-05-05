@@ -1,5 +1,5 @@
-#ifndef OPENFOAMFILENAMES_H
-#define OPENFOAMFILENAMES_H
+#ifndef RIBI_OPENFOAMFILENAMES_H
+#define RIBI_OPENFOAMFILENAMES_H
 
 #include <string>
 #include <vector>
@@ -101,4 +101,4 @@ std::ostream& operator<<(std::ostream& os, const Filenames& filenames) noexcept;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFILENAMES_H
+#endif // RIBI_OPENFOAMFILENAMES_H

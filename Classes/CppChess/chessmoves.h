@@ -1,5 +1,5 @@
-#ifndef CHESSMOVES_H
-#define CHESSMOVES_H
+#ifndef RIBI_CHESSMOVES_H
+#define RIBI_CHESSMOVES_H
 
 #include <string>
 #include <vector>
@@ -102,4 +102,4 @@ struct Moves
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSMOVES_H
+#endif // RIBI_CHESSMOVES_H

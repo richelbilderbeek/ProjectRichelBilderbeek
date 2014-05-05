@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHWINDINGS_H
-#define TRIANGLEMESHWINDINGS_H
+#ifndef RIBI_TRIANGLEMESHWINDINGS_H
+#define RIBI_TRIANGLEMESHWINDINGS_H
 
 #include <string>
 #include <vector>
@@ -18,4 +18,4 @@ struct Windings
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHWINDINGS_H
+#endif // RIBI_TRIANGLEMESHWINDINGS_H

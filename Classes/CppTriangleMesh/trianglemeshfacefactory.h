@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHFACEFACTORY_H
-#define TRIANGLEMESHFACEFACTORY_H
+#ifndef RIBI_TRIANGLEMESHFACEFACTORY_H
+#define RIBI_TRIANGLEMESHFACEFACTORY_H
 
 #include <iosfwd>
 #include <vector>
@@ -7,6 +7,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
@@ -93,4 +94,4 @@ struct FaceFactory
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHFACEFACTORY_H
+#endif // RIBI_TRIANGLEMESHFACEFACTORY_H

@@ -43,7 +43,7 @@ void ribi::Chess::ChessWidget::ClickPixel(const int x,const int y)
   try
   {
     const boost::shared_ptr<Square> square {
-      SquareFactory::Create(
+      SquareFactory().Create(
         File(8 * x / Geometry().GetWidth( GetGeometry())),
         Rank(8 * y / Geometry().GetHeight(GetGeometry()))
       )

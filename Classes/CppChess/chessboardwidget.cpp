@@ -10,6 +10,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 
 #include "chessboard.h"
@@ -177,69 +178,69 @@ void ribi::Chess::BoardWidget::Test() noexcept
           for (int y=0;y!=8;++y)
           {
             const boost::shared_ptr<const Square> square {
-              SquareFactory::Create(File(x),Rank(y))
+              SquareFactory().Create(File(x),Rank(y))
             };
             widget->Click(square);
-            assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create(File(x),Rank(y)));
+            assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create(File(x),Rank(y)));
           }
         }
         //Check selection: Board::Widget will select any Chess::Piece, Board::Game only those of the active player
         //Click on own piece, selecting it
-        widget->Click(SquareFactory::Create("b1"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("b1"));
+        widget->Click(SquareFactory().Create("b1"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("b1"));
         assert(widget->GetSelector()->GetSelected());
-        assert(*widget->GetSelector()->GetSelected() == *SquareFactory::Create("b1"));
+        assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("b1"));
 
         //Click on empty square, selection is removed
-        widget->Click(SquareFactory::Create("d4"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("d4"));
+        widget->Click(SquareFactory().Create("d4"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("d4"));
         assert(!widget->GetSelector()->GetSelected());
         //assert(*widget->GetSelector()->GetSelected() == Chess::Square("b1"));
 
         //Click on own piece again, selecting it
-        widget->Click(SquareFactory::Create("b1"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("b1"));
+        widget->Click(SquareFactory().Create("b1"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("b1"));
         assert(widget->GetSelector()->GetSelected());
-        assert(*widget->GetSelector()->GetSelected() == *SquareFactory::Create("b1"));
+        assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("b1"));
 
         //Click on selected square, undoing selection
-        widget->Click(SquareFactory::Create("b1"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("b1"));
+        widget->Click(SquareFactory().Create("b1"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("b1"));
         assert(!widget->GetSelector()->GetSelected());
 
         //Click on square with black piece. Note: a Widget can select every piece
-        widget->Click(SquareFactory::Create("h8"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("h8"));
+        widget->Click(SquareFactory().Create("h8"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("h8"));
         assert( widget->GetSelector()->GetSelected());
-        assert(*widget->GetSelector()->GetSelected() == *SquareFactory::Create("h8"));
+        assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("h8"));
 
         //Playing e7-e5 must succeed for a Board, must fail for a Game
-        assert( board->GetPiece(SquareFactory::Create("e7")));
-        assert(!board->GetPiece(SquareFactory::Create("e5")));
-        widget->Click(SquareFactory::Create("e7"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("e7"));
+        assert( board->GetPiece(SquareFactory().Create("e7")));
+        assert(!board->GetPiece(SquareFactory().Create("e5")));
+        widget->Click(SquareFactory().Create("e7"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e7"));
         assert(widget->GetSelector()->GetSelected());
-        assert(*widget->GetSelector()->GetSelected() == *SquareFactory::Create("e7"));
+        assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("e7"));
 
-        widget->Click(SquareFactory::Create("e5"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("e5"));
+        widget->Click(SquareFactory().Create("e5"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e5"));
         assert(!widget->GetSelector()->GetSelected());
-        assert(!board->GetPiece(SquareFactory::Create("e7")));
-        assert( board->GetPiece(SquareFactory::Create("e5")));
+        assert(!board->GetPiece(SquareFactory().Create("e7")));
+        assert( board->GetPiece(SquareFactory().Create("e5")));
 
         //Playing e2-e4 must succeed for both Board and Game
-        assert( board->GetPiece(SquareFactory::Create("e2")));
-        assert(!board->GetPiece(SquareFactory::Create("e4")));
-        widget->Click(SquareFactory::Create("e2"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("e2"));
+        assert( board->GetPiece(SquareFactory().Create("e2")));
+        assert(!board->GetPiece(SquareFactory().Create("e4")));
+        widget->Click(SquareFactory().Create("e2"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e2"));
         assert(widget->GetSelector()->GetSelected());
-        assert(*widget->GetSelector()->GetSelected() == *SquareFactory::Create("e2"));
+        assert(*widget->GetSelector()->GetSelected() == *SquareFactory().Create("e2"));
 
-        widget->Click(SquareFactory::Create("e4"));
-        assert(*widget->GetSelector()->GetCursor() == *SquareFactory::Create("e4"));
+        widget->Click(SquareFactory().Create("e4"));
+        assert(*widget->GetSelector()->GetCursor() == *SquareFactory().Create("e4"));
         assert(!widget->GetSelector()->GetSelected());
-        assert(!board->GetPiece(SquareFactory::Create("e2")));
-        assert( board->GetPiece(SquareFactory::Create("e4")));
+        assert(!board->GetPiece(SquareFactory().Create("e2")));
+        assert( board->GetPiece(SquareFactory().Create("e4")));
       }
 
     }

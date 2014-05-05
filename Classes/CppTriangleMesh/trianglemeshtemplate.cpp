@@ -242,7 +242,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
     { 1,2,3 }
   };
 
-  const std::vector<std::pair<int,int> > edges {
+  const std::vector<std::pair<int,int>> edges {
     { 0,1 },
     { 0,2 },
     { 1,2 },
@@ -368,7 +368,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
     { 0,1,2 }
   };
 
-  const std::vector<std::pair<int,int> > edges {
+  const std::vector<std::pair<int,int>> edges {
     { 0,1 },
     { 0,2 },
     { 1,2 }
@@ -503,7 +503,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     { 2,4,5 }
   };
 
-  const std::vector<std::pair<int,int> > edges {
+  const std::vector<std::pair<int,int>> edges {
     { 0,1 },
     { 0,3 },
     { 1,2 },
@@ -647,7 +647,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
     { 5,7,8 }
   };
 
-  const std::vector<std::pair<int,int> > edges {
+  const std::vector<std::pair<int,int>> edges {
     { 0,1 },
     { 0,3 },
     { 1,2 },

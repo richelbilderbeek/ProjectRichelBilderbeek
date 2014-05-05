@@ -1,5 +1,5 @@
-#ifndef OPENFOAMFWD_H
-#define OPENFOAMFWD_H
+#ifndef RIBI_OPENFOAMFWD_H
+#define RIBI_OPENFOAMFWD_H
 
 namespace ribi {
 
@@ -32,4 +32,4 @@ struct PointsFileItem;
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFWD_H
+#endif // RIBI_OPENFOAMFWD_H

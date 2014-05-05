@@ -8,7 +8,7 @@
 #include "openfoampatchfieldtypes.h"
 
 ribi::foam::Boundary::Boundary(
-  const std::vector<boost::shared_ptr<Face> >& faces,
+  const std::vector<boost::shared_ptr<Face>>& faces,
   const std::string& name,
   const PatchFieldType type
   ) noexcept
@@ -19,7 +19,7 @@ ribi::foam::Boundary::Boundary(
 
 }
 
-std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Boundary::GetFaces() const noexcept
+std::vector<boost::shared_ptr<const ribi::foam::Face>> ribi::foam::Boundary::GetFaces() const noexcept
 {
   std::vector<boost::shared_ptr<const ribi::foam::Face>> v;
   std::transform(

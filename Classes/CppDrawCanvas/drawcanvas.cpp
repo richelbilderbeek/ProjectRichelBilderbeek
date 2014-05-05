@@ -55,7 +55,7 @@ ribi::DrawCanvas::DrawCanvas(
   const CanvasColorSystem color_system,
   const CanvasCoordinatSystem coordinat_system)
   :
-    m_canvas(std::vector<std::vector<double> >(height,std::vector<double>(width,0.0))),
+    m_canvas(std::vector<std::vector<double>>(height,std::vector<double>(width,0.0))),
     m_color_system(color_system),
     m_coordinat_system(coordinat_system)
 {
@@ -257,7 +257,7 @@ void ribi::DrawCanvas::DrawEllipse(const double left, const double top, const do
   m_signal_changed(this);
 }
 
-void ribi::DrawCanvas::DrawSurface(const std::vector<std::vector<double> >& v)
+void ribi::DrawCanvas::DrawSurface(const std::vector<std::vector<double>>& v)
 {
   if (m_canvas != v)
   {
@@ -377,7 +377,7 @@ bool ribi::DrawCanvas::IsInRange(const int x, const int y) const
 
 void ribi::DrawCanvas::PlotSurface(
   std::ostream& os,
-  const std::vector<std::vector<double> >& v,
+  const std::vector<std::vector<double>>& v,
   const bool use_normal_color_system,
   const bool as_screen_coordinat_system)
 {

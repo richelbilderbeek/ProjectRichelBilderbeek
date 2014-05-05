@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppApproximator.htm
 //---------------------------------------------------------------------------
-
-#ifndef APPROXIMATOR_H
-#define APPROXIMATOR_H
+#ifndef RIBI_APPROXIMATOR_H
+#define RIBI_APPROXIMATOR_H
 
 #include <cassert>
 #include <stdexcept>
@@ -202,4 +201,4 @@ void Approximator<Key,Value,Container>::Test() noexcept
 
 } //~namespace ribi
 
-#endif // APPROXIMATOR_H
+#endif // RIBI_APPROXIMATOR_H

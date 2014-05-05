@@ -1,9 +1,10 @@
-#ifndef QTCANVASDIALOG_H
-#define QTCANVASDIALOG_H
+#ifndef RIBI_QTCANVASDIALOG_H
+#define RIBI_QTCANVASDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/scoped_ptr.hpp>
@@ -47,4 +48,4 @@ public:
 
 } //~namespace ribi
 
-#endif // QTCANVASDIALOG_H
+#endif // RIBI_QTCANVASDIALOG_H

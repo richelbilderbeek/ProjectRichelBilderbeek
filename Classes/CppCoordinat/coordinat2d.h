@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppCoordinat.htm
 //---------------------------------------------------------------------------
-#ifndef COORDINAT2D_H
-#define COORDINAT2D_H
+#ifndef RIBI_COORDINAT2D_H
+#define RIBI_COORDINAT2D_H
 
 //typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
 
@@ -98,4 +98,4 @@ Coordinat2D operator-(
 
 #endif
 
-#endif // COORDINAT2D_H
+#endif // RIBI_COORDINAT2D_H

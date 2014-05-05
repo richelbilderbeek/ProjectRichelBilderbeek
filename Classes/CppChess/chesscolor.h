@@ -1,5 +1,5 @@
-#ifndef CHESSCOLOR_H
-#define CHESSCOLOR_H
+#ifndef RIBI_CHESSCOLOR_H
+#define RIBI_CHESSCOLOR_H
 
 #include <iosfwd>
 #include <string>
@@ -37,4 +37,4 @@ bool operator!=(const Player player, const Color color);
 } //~namespace Chess
 } //~namespace ribi
 
-#endif // CHESSCOLOR_H
+#endif // RIBI_CHESSCOLOR_H

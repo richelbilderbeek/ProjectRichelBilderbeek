@@ -30,7 +30,7 @@ void ribi::foam::Cell::AssignOwnedFaces(const std::vector<boost::shared_ptr<Face
   m_owned_faces = owned_faces;
 }
 
-std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Cell::GetOwnedFaces() const noexcept
+std::vector<boost::shared_ptr<const ribi::foam::Face>> ribi::foam::Cell::GetOwnedFaces() const noexcept
 {
   std::vector<boost::shared_ptr<const ribi::foam::Face>> v;
   std::transform(

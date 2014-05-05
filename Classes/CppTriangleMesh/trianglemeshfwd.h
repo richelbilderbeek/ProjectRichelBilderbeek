@@ -1,5 +1,5 @@
-#ifndef TRIANGLEMESHFWD_H
-#define TRIANGLEMESHFWD_H
+#ifndef RIBI_TRIANGLEMESHFWD_H
+#define RIBI_TRIANGLEMESHFWD_H
 
 namespace ribi {
 
@@ -18,4 +18,4 @@ struct Template;
 } //~namespace trim
 } //~namespace ribi
 
-#endif // TRIANGLEMESHFWD_H
+#endif // RIBI_TRIANGLEMESHFWD_H
