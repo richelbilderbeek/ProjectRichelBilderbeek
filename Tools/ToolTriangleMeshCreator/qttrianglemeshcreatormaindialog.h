@@ -59,6 +59,7 @@ private slots:
   void on_edit_shapes_textChanged();
 
   static std::vector<std::string> SeperateString(const std::string& input) noexcept;
+  void on_button_create_clicked();
 };
 
 } //~namespace ribi

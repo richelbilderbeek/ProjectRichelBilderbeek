@@ -41,7 +41,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTriangleMeshCreatorMainDialog)
-//    ,m_view(new QtNavigationableGraphicsView(this))
 {
   #ifndef NDEBUG
   Test();
@@ -53,6 +52,8 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
     const QRect scr = QApplication::desktop()->screenGeometry();
     move( scr.center() - rect().center() );
   }
+
+  on_edit_shapes_textChanged();
 }
 
 ribi::QtTriangleMeshCreatorMainDialog::~QtTriangleMeshCreatorMainDialog() noexcept
@@ -63,6 +64,11 @@ ribi::QtTriangleMeshCreatorMainDialog::~QtTriangleMeshCreatorMainDialog() noexce
 void ribi::QtTriangleMeshCreatorMainDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+}
+
+void ribi::QtTriangleMeshCreatorMainDialog::on_button_create_clicked()
+{
+  //
 }
 
 void ribi::QtTriangleMeshCreatorMainDialog::on_edit_shapes_textChanged()
@@ -125,4 +131,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
   TRACE("Finished QtTriangleMeshCreatorMainDialog::Test successfully");
 }
 #endif
+
+
 

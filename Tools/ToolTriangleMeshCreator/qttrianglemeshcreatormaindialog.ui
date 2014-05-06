@@ -60,7 +60,9 @@ QPlainTextEdit { font: 10px }
       </sizepolicy>
      </property>
      <property name="plainText">
-      <string>POLYGON((0.5 2.0 , 1.0 1.0 , 1.0 0.0 , 0.0 0.0 , 0.0 1.0))</string>
+      <string>POLYGON((50 200 , 100 100 , 100 0 , 0 0 , 0 100))
+POLYGON((50 170 , 90 90 , 90 10 , 10 10 , 10 90))
+</string>
      </property>
     </widget>
    </item>
