@@ -9,7 +9,7 @@
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-
+#include <boost/make_shared.hpp>
 
 #include <Wt/WBreak>
 #include <Wt/WButtonGroup>
@@ -35,17 +35,14 @@ ribi::WtMultipleChoiceQuestionDialog::Ui::Ui()
 
 }
 
-/*
+
 ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   const std::string& s)
-  : WtQuestionDialog(
-    boost::shared_ptr<QuestionDialog>(
-      new MultipleChoiceQuestionDialog(s))),
-    m_ui{}
+  : m_ui{},
+    m_dialog(boost::make_shared<MultipleChoiceQuestionDialog>(s))
 {
   Show();
 }
-*/
 
 ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   const boost::shared_ptr<MultipleChoiceQuestionDialog>& dialog)

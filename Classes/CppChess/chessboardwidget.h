@@ -57,6 +57,7 @@ struct BoardWidget : public Chess::ChessWidget
   Player m_player;
 
   friend void boost::checked_delete<>(BoardWidget* x);
+  friend void boost::checked_delete<>(const BoardWidget* x);
   friend class boost::detail::sp_ms_deleter<      BoardWidget>;
   friend class boost::detail::sp_ms_deleter<const BoardWidget>;
 };

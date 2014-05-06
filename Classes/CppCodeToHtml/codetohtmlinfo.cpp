@@ -5183,24 +5183,28 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppQGraphicsPixmapItemExample5",
       {
-         "<p><a href=\"CppQGraphicsPixmapItemExample5.htm\">QGraphicsPixmapItem example 5: respond to cursor moving over pixmap</a> is a",
-         "<a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
-         "example. This example shows how to let the <a href=\"CppQGraphicsPixmapItem.png\">QGraphicsPixmapItem</a> <a href=\"CppEmit.htm\">emit<a>",
-         "a <a href=\"CppBoostSignal.htm\">(Boost) signal</a> so that the <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> can rotate it. It is usefull",
-         "to be able to send signals to the <a href=\"CppQGraphicsView.htm\">QGraphicsView</a>, because <a href=\"CppQGraphicsView.htm\">QGraphicsView</a>",
-         "is a <a href=\"CppQObject.htm\">QObject</a>, where <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a> is not. Due to this,",
-         "the <a href=\"CppQGraphicsPixmapItem.htm\">item</a> cannot work with <a href=\"CppQtSignal.htm\">Qt signals</a>, but the",
-         "<a href=\"CppQGraphicsView.htm\">view</a> can (note that <a href=\"CppQGraphicsObject.htm\">QGraphicsObject</a> is a",
-         "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> that can work with signals and slots).</p>",
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample5.htm\">QGraphicsPixmapItem example 5: respond to cursor moving over pixmap</a> is a",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+         "  example. This example shows how to let the <a href=\"CppQGraphicsPixmapItem.png\">QGraphicsPixmapItem</a> <a href=\"CppEmit.htm\">emit</a>",
+         "  a <a href=\"CppBoostSignal.htm\">(Boost) signal</a> so that the <a href=\"CppQGraphicsView.htm\">QGraphicsView</a> can rotate it. It is usefull",
+         "  to be able to send signals to the <a href=\"CppQGraphicsView.htm\">QGraphicsView</a>, because <a href=\"CppQGraphicsView.htm\">QGraphicsView</a>",
+         "  is a <a href=\"CppQObject.htm\">QObject</a>, where <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a> is not. Due to this,",
+         "  the <a href=\"CppQGraphicsPixmapItem.htm\">item</a> cannot work with <a href=\"CppQtSignal.htm\">Qt signals</a>, but the",
+         "  <a href=\"CppQGraphicsView.htm\">view</a> can (note that <a href=\"CppQGraphicsObject.htm\">QGraphicsObject</a> is a",
+         "  <a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> that can work with signals and slots).",
+         "</p>",
          "<p>&nbsp;</p>",
          "<ul>",
          "  <li><a href=\"CppQGraphicsPixmapItemExample5.png\">View a screenshot of 'CppQGraphicsPixmapItemExample5' (png)</a></li>",
          "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample5.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample5' (zip)</a></li>",
          "</ul>",
          "<p>&nbsp;</p>",
-         "<p><a href=\"CppQGraphicsPixmapItemExample5.htm\">QGraphicsPixmapItem example 5: respond to cursor moving over pixmap</a> is the predecessor of",
-         "<a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a>, which is",
-         "the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.</p>"
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample5.htm\">QGraphicsPixmapItem example 5: respond to cursor moving over pixmap</a> is the predecessor of",
+         "  <a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a>, which is",
+         "  the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.",
+         "</p>"
       }
     }
   );
@@ -5208,18 +5212,22 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppQGraphicsPixmapItemExample6",
       {
-         "<p><a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is a",
-         "<a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
-         "example. This example shows how to let the <a href=\"CppQGraphicsView.png\">QGraphicsView</a> responds to the cursor being moved over the",
-         "<a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>.</p>",
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is a",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+         "  example. This example shows how to let the <a href=\"CppQGraphicsView.png\">QGraphicsView</a> responds to the cursor being moved over the",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>.",
+         "</p>",
          "<p>&nbsp;</p>",
          "<ul>",
          "  <li><a href=\"CppQGraphicsPixmapItemExample6.png\">View a screenshot of 'CppQGraphicsPixmapItemExample6' (png)</a></li>",
          "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample6.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample6' (zip)</a></li>",
          "</ul>",
          "<p>&nbsp;</p>",
-         "<p><a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is",
-         "the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.</p>"
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is",
+         "  the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.",
+         "</p>"
       }
     }
   );
@@ -5227,20 +5235,23 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppQGraphicsPixmapItemExample7",
       {
-         "<p><a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example example 7: respond to cursor moving over pixmap while holding the cursor still</a> is a",
-         "<a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
-         "example. This example shows how to let the <a href=\"CppQGraphicsView.png\">QGraphicsView</a> responds to the cursor being moved over the",
-         "<a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>, where the <a href=\"CppQGraphicsPixmapItem.htm\">pixmap</a> keeps",
-         "responding even when the mouse cursor is held still.</p>",
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example example 7: respond to cursor moving over pixmap while holding the cursor still</a> is a",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>",
+         "  example. This example shows how to let the <a href=\"CppQGraphicsView.png\">QGraphicsView</a> responds to the cursor being moved over the",
+         "  <a href=\"CppQGraphicsPixmapItem.htm\">QGraphicsPixmapItem</a>, where the <a href=\"CppQGraphicsPixmapItem.htm\">pixmap</a> keeps",
+         "  responding even when the mouse cursor is held still.",
+         "</p>",
          "<p>&nbsp;</p>",
          "<ul>",
          "  <li><a href=\"CppQGraphicsPixmapItemExample7.png\">View a screenshot of 'CppQGraphicsPixmapItemExample7' (png)</a></li>",
          "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsPixmapItemExample7.zip\">Download the Qt Creator project 'CppQGraphicsPixmapItemExample7' (zip)</a></li>",
          "</ul>",
          "<p>&nbsp;</p>",
-         "<p><a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is",
-         "the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.</p>",
-         "<p>&nbsp;</p>"
+         "<p>",
+         "  <a href=\"CppQGraphicsPixmapItemExample6.htm\">QGraphicsPixmapItem example 6: let the view respond to cursor moving over pixmap</a> is",
+         "  the predecessor of <a href=\"CppQGraphicsPixmapItemExample7.htm\">QGraphicsPixmapItem example 7: respond to cursor moving over pixmap while holding the cursor still</a>.",
+         "</p>"
       }
     }
   );
