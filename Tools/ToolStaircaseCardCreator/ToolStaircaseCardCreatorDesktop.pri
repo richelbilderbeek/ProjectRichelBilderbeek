@@ -12,5 +12,3 @@ FORMS += \
     ../../Tools/ToolStaircaseCardCreator/qtstaircasecardcreatormaindialog.ui \
     ../../Tools/ToolStaircaseCardCreator/qtstaircasecardcreatormenudialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolStaircaseCardCreator/ToolStaircaseCardCreator.qrc

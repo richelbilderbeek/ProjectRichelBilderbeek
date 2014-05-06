@@ -160,6 +160,7 @@ ribi::trim::Template::Template(
   auto new_end = std::unique(m_edges.begin(),m_edges.end());
   m_edges.erase(new_end,m_edges.end());
   assert(!m_edges.empty());
+  TRACE("Done checking the result");
 }
 
 ribi::trim::Template::Template(

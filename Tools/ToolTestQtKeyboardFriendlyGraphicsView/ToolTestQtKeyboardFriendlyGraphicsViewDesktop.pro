@@ -19,5 +19,4 @@ include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
 
 include(ToolTestQtKeyboardFriendlyGraphicsViewDesktop.pri)
 
-SOURCES += \
-    qtmain.cpp
+SOURCES += qtmain.cpp

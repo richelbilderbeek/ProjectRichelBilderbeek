@@ -137,5 +137,7 @@
         <file>ToolTriangleMeshCreator_1_2.png</file>
         <file>ToolKalmanFilterer_1_15.png</file>
         <file>ToolMultiEncranger_2_3.png</file>
+        <file>ToolQuadraticSolver_2_1.png</file>
+        <file>ToolSecretMessage_2_1.png</file>
     </qresource>
 </RCC>

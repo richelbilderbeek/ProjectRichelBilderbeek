@@ -343,6 +343,11 @@ struct Geometry
   std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;
 
+  std::string ToSvgStr(
+    const std::vector<Polygon>& shapes,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
   boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
     Translate(
       const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,

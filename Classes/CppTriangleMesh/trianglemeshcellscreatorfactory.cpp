@@ -26,6 +26,7 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
 ) const noexcept
 {
   assert(t);
+  assert(n_layers != 0);
   const boost::shared_ptr<CellsCreator> creator(
     new CellsCreator(t,n_layers,layer_height,strategy,*this)
   );

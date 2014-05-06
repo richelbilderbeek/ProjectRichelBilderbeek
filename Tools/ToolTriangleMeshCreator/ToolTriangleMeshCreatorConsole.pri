@@ -8,5 +8,9 @@ SOURCES += \
     ../../Tools/ToolTriangleMeshCreator/trianglemeshcreatormaindialog.cpp \
     ../../Tools/ToolTriangleMeshCreator/trianglemeshcreatormenudialog.cpp
 
+RESOURCES += \
+    ../../Tools/ToolTriangleMeshCreator/ToolTriangleMeshCreator.qrc
+
 OTHER_FILES += \
     ../../Tools/ToolTriangleMeshCreator/Licence.txt
+

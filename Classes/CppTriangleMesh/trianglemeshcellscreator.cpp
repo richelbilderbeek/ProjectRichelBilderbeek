@@ -36,7 +36,6 @@ ribi::trim::CellsCreator::CellsCreator(
   #ifndef NDEBUG
   Test();
   assert(t);
-  assert(n_layers >= 2);
   assert(strategy == m_strategy);
   #endif
 }
@@ -57,13 +56,27 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   const CreateVerticalFacesStrategy strategy
 ) noexcept
 {
-  
   assert(t);
-  const bool verbose = false;
+  #ifndef NDEBUG
+  if (n_layers == 0)
+  {
+    TRACE("BREAK");
+  }
+  #endif
+  assert(n_layers != 0);
+  const bool verbose = true;
 
   if (verbose) { TRACE("Create points"); }
   const std::vector<boost::shared_ptr<Point>> all_points
     = CreatePoints(t,n_layers,layer_height);
+  /*
+  if (all_points.empty())
+  {
+    if (verbose) { TRACE("No points created"); }
+    std::vector<boost::shared_ptr<ribi::trim::Cell>> v;
+    return v;
+  }
+  */
 
   if (verbose) { TRACE("Create horizontal faces"); }
   const std::vector<boost::shared_ptr<Face>> hor_faces
@@ -74,7 +87,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   const std::vector<boost::shared_ptr<Face>> ver_faces
     = CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy);
 
-  assert(!ver_faces.empty());
+  assert(!ver_faces.empty() || ver_faces.empty());
   #ifndef NDEBUG
   for(auto f:ver_faces) { assert(f); }
   #endif
@@ -166,8 +179,9 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
       }
     }
   }
-
+  if (verbose) { TRACE("Checking cells"); }
   CheckCells(cells);
+  if (verbose) { TRACE("Done creating cells"); }
   return cells;
 }
 
@@ -187,7 +201,6 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   const int n_faces_per_layer = static_cast<int>(t->GetFaces().size());
   assert(n_layers > 0);
   #endif
-  if (n_layers < 2) { TRACE("WARNING: NEED AT LEAST TWO HORIZONTAL PLANES TO CREATE CELLS"); }
   v.reserve(n_layers * n_points_per_layer);
 
   for (int layer=0; layer!=n_layers; ++layer)
@@ -267,16 +280,27 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   const CreateVerticalFacesStrategy strategy
 ) noexcept
 {
-  
   assert(t);
+  const bool verbose = true;
+
+  assert(n_layers > 0);
+  if (n_layers >= 1)
+  {
+    if (verbose) { TRACE("To few layers to create vertical faces"); }
+    std::vector<boost::shared_ptr<ribi::trim::Face>>  no_faces;
+    return no_faces;
+  }
   #ifndef NDEBUG
   const FaceFactory face_factory;
+  if (verbose) { TRACE("Checking points"); }
 
-  const bool verbose = false;
   for (const auto point: all_points) { assert(point); }
+
   if (verbose) { TRACE("Get edges"); }
   #endif
   const std::vector<std::pair<int,int>> edges = t->GetEdges();
+
+
   assert(!edges.empty());
   const int n_edges = static_cast<int>(edges.size());
   const int n_points_per_layer = static_cast<int>(t->GetPoints().size());
@@ -296,7 +320,11 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   v.reserve(n_ver_faces * (n_layers - 1));
 
   assert(n_layers > 0);
-  if (n_layers < 2) { TRACE("WARNING: NEED AT LEAST TWO HORIZONTAL PLANES TO CREATE CELLS"); }
+  if (n_layers == 1)
+  {
+    std::vector<boost::shared_ptr<ribi::trim::Face>> no_faces;
+    return no_faces;
+  }
 
   #ifndef NDEBUG
   if (verbose) { TRACE("Start building layers"); }

@@ -1775,6 +1775,45 @@ std::string ribi::Geometry::ToStr(const boost::geometry::model::point<double,3,b
   return s.str();
 }
 
+std::string ribi::Geometry::ToSvgStr(
+  const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
+  const double stroke_width
+) const noexcept
+{
+  std::string s;
+  s += R"*(<svg xmlns="http://www.w3.org/2000/svg" version="1.1">)*";
+  s += '\n';
+  for (const Polygon& polygon: shapes)
+  {
+    const std::vector<Coordinat2D> points = polygon.outer();
+    const int n_points = static_cast<int>(points.size());
+    if(n_points < 3) continue;
+    //Move to first point
+    s += R"*(  <path d="M )*";
+    s += boost::lexical_cast<std::string>(points[0].x());
+    s += " ";
+    s += boost::lexical_cast<std::string>(points[0].y());
+    //Draw lines to others
+    s += " L ";
+    for (int i=1; i!=n_points; ++i)
+    {
+      s += boost::lexical_cast<std::string>(points[i].x());
+      s += " ";
+      s += boost::lexical_cast<std::string>(points[i].y());
+      s += " ,";
+    }
+    //Remove trailing comma
+    s.pop_back();
+    s += R"*(z" stroke="black" fill="none" stroke-width=")*";
+    s += boost::lexical_cast<std::string>(stroke_width);
+    s += R"*("/>)*";
+    s += '\n';
+  }
+
+  s += R"*(</svg>)*";
+  return s;
+}
+
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
   ribi::Geometry::Translate(
     const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
