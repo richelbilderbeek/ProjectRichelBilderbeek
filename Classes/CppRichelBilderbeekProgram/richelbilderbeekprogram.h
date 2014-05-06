@@ -1409,7 +1409,7 @@ struct ProgramQmakeWatcher : public ProgramTool
 struct ProgramQuadraticSolver : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return "ToolQuadraticSolver_1_0.png"; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolQuadraticSolver_2_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "QuadraticSolver"; }
@@ -1635,7 +1635,7 @@ struct ProgramSearchAndDestroyChessVcl : public ProgramGame
 struct ProgramSecretMessage : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolSecretMessage_2_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "SecretMessage"; }

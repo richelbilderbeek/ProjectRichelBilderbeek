@@ -168,7 +168,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
         else
         {
           const boost::shared_ptr<Square> square {
-            SquareFactory::Create(move->To()->GetFile(),move->To()->GetRank())
+            SquareFactory().Create(move->To()->GetFile(),move->To()->GetRank())
           };
           const std::string filename
             = Chess::Resources::Find(
@@ -225,7 +225,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
       const int x_co = x * square_w;
       const int y_co = y * square_h;
       const boost::shared_ptr<Square> square {
-        SquareFactory::Create(File(x),Rank(y))
+        SquareFactory().Create(File(x),Rank(y))
       };
       if (board->GetPiece(square))
       {
