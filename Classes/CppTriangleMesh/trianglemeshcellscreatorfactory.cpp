@@ -20,15 +20,15 @@ ribi::trim::CellsCreatorFactory::CellsCreatorFactory() noexcept
 
 boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Create(
   const boost::shared_ptr<const Template> t,
-  const int n_layers,
+  const int n_cell_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const CreateVerticalFacesStrategy strategy
 ) const noexcept
 {
   assert(t);
-  assert(n_layers != 0);
+  assert(n_cell_layers != 0);
   const boost::shared_ptr<CellsCreator> creator(
-    new CellsCreator(t,n_layers,layer_height,strategy,*this)
+    new CellsCreator(t,n_cell_layers,layer_height,strategy,*this)
   );
   assert(creator);
   return creator;
@@ -42,11 +42,11 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
     Template::CreateTest(1)
   };
   assert(my_template->CountFaces() == 2);
-  const int n_layers = 2;
+  const int n_cell_layers = 1;
   const boost::shared_ptr<CellsCreator> cells_creator {
     CellsCreatorFactory().Create(
       my_template,
-      n_layers,
+      n_cell_layers,
       1.0 * boost::units::si::meter,
       strategy
     )
@@ -75,11 +75,11 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
    = Template::CreateTest(0);
   assert(my_template);
   assert(my_template->CountFaces() == 1);
-  const int n_layers = 2;
+  const int n_cell_layers = 1;
   const boost::shared_ptr<CellsCreator> cells_creator
     = cells_creator_factory.Create(
       my_template,
-      n_layers,
+      n_cell_layers,
       1.0 * boost::units::si::meter,
       strategy
   );

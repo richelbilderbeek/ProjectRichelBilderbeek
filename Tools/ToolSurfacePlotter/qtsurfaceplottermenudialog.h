@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
-#ifndef QtSurfacePlotterMENUDIALOG_H
-#define QtSurfacePlotterMENUDIALOG_H
+#ifndef QTSURFACEPLOTTERMENUDIALOG_H
+#define QTSURFACEPLOTTERMENUDIALOG_H
 
 #include "qthideandshowdialog.h"
 
@@ -54,4 +54,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QtSurfacePlotterMENUDIALOG_H
+#endif // QTSURFACEPLOTTERMENUDIALOG_H

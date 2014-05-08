@@ -1,10 +1,13 @@
 include(ToolTestQtHideAndShowDialogConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowmaindialog.cpp
+    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmaindialog.cpp \
+    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowmaindialog.h
+    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmaindialog.h \
+    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmenudialog.h
 
 FORMS += \
-    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowmaindialog.ui
+    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmaindialog.ui
+    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmenudialog.ui

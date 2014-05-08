@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 
 #include "fileio.h"
@@ -34,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "plane.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "trianglefile.h"
 #pragma GCC diagnostic pop
 
 int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -57,7 +59,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TriangleMeshCreator",
     "Create a 3D mesh using Triangle",
-    "the 25th of April 2014",
+    "the 8th of May 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm",
     GetVersion(),
@@ -74,6 +76,8 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
   );
   assert(plane);
   a.AddLibrary("Plane version: " + plane->GetVersion());
+  a.AddLibrary("Triangle version 1.6, by Jonathan Richard Shewchuk (http://www.cs.cmu.edu/~quake/triangle.html)");
+  a.AddLibrary("TriangleFile version: " + TriangleFile::GetVersion());
   return a;
 }
 
@@ -102,7 +106,7 @@ boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetP
 
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory() const noexcept
@@ -113,6 +117,7 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory(
     "2014-04-25: version 1.2: renamed to 'TriangleMeshCreator'",
     "2014-04-28: version 1.3: bugfixes",
     "2014-05-06: version 1.4: added desktop version"
+    "2014-05-08: version 1.5: preview of shape, use both TRIANGLE.EXE area and quality parameter, preview of Triangle.exe output"
   };
 }
 

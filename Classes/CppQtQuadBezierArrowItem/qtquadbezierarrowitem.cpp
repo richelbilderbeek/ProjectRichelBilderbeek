@@ -46,6 +46,7 @@ bool operator==(
   const boost::geometry::model::d2::point_xy<T>& a,
   const boost::geometry::model::d2::point_xy<T>& b)
 {
+  return boost::geometry::equals(a,b);
   return a.x() == b.x() && a.y() == b.y();
 }
 
@@ -111,7 +112,7 @@ CreateLine(const std::vector<boost::geometry::model::d2::point_xy<T> >& v)
 //From www.richelbilderbeek.nl/CppGetDistance.htm
 double GetDistance(const double delta_x, const double delta_y)
 {
-  return std::sqrt( (delta_x * delta_x) + (delta_y * delta_y) );
+  return ribi::Geometry().GetDistance(delta_x,delta_y);
 }
 
 ///Obtain the Pythagorian distance from two coordinats

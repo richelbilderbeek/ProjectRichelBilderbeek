@@ -25,17 +25,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttrianglemeshcreatormaindialog.h"
 
 #include <boost/math/constants/constants.hpp>
-
+#include <boost/units/systems/si/prefixes.hpp>
 #include <QDesktopWidget>
 #include <QGraphicsSvgItem>
 #include <QKeyEvent>
 
 #include "fileio.h"
 #include "geometry.h"
-#include "trace.h"
-#include "trianglefile.h"
 #include "qtnavigationablegraphicsview.h"
+#include "trace.h"
+#include "trianglemeshface.h"
+#include "trianglemeshpoint.h"
+#include "trianglefile.h"
+#include "trianglemeshcreatormaindialog.h"
+#include "trianglemeshtemplate.h"
 #include "ui_qttrianglemeshcreatormaindialog.h"
+
 #pragma GCC diagnostic pop
 
 ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *parent) noexcept
@@ -46,6 +51,10 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
   Test();
   #endif
   ui->setupUi(this);
+
+  connect(ui->box_triangle_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
+  connect(ui->box_triangle_quality,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
+
 
   {
     //Put this dialog in the screen center
@@ -61,24 +70,153 @@ ribi::QtTriangleMeshCreatorMainDialog::~QtTriangleMeshCreatorMainDialog() noexce
   delete ui;
 }
 
-void ribi::QtTriangleMeshCreatorMainDialog::keyPressEvent(QKeyEvent * event) noexcept
+void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
 {
-  if (event->key() == Qt::Key_Escape) { close(); return; }
+  try
+  {
+    const ribi::TriangleMeshCreatorMainDialog d(
+      GetShapes(),
+      GetNumberOfCellLayers(),
+      GetLayerHeight(),
+      GetCreateVerticalFacesStrategy(),
+      GetTriangleQuality(),
+      GetTriangleArea(),
+      ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(GetFraction()),
+      ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
+      ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+      GetVerbose()
+    );
+    if (GetShowMesh())
+    {
+      assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));
+      std::stringstream s;
+      s
+        << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
+        << d.GetFilename()
+      ;
+      const int error = std::system(s.str().c_str());
+      if (error) std::cout << "WARNING: cannot display mesh" << '\n';
+    }
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "ERROR: Exception caught: " << e.what() << std::endl;
+  }
+  catch (...)
+  {
+    std::cerr << "ERROR: Unknown exception caught!" << std::endl;
+  }
 }
 
-void ribi::QtTriangleMeshCreatorMainDialog::on_button_create_clicked()
+void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
 {
-  //
-}
-
-void ribi::QtTriangleMeshCreatorMainDialog::on_edit_shapes_textChanged()
-{
-  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
-  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
-
   const std::string text = ui->edit_shapes->toPlainText().toStdString();
   const std::vector<std::string> lines = SeperateString(text);
+
+  std::vector<Polygon> polygons = GetShapes();
+
+  const std::string svg_filename = fileio::FileIo().GetTempFileName(".svg");
+  {
+    std::ofstream f(svg_filename.c_str());
+    f << Geometry().ToSvgStr(polygons,0.1);
+  }
+  {
+    QGraphicsSvgItem * const item = new QGraphicsSvgItem(svg_filename.c_str());
+    item->setScale(10.0);
+    assert(ui->view->scene());
+    ui->view->scene()->clear();
+    ui->view->scene()->addItem(item);
+  }
+  fileio::FileIo().DeleteFile(svg_filename);
+
+  DisplayTriangleMesh();
+}
+
+void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
+{
+  const bool verbose = GetVerbose();
+  if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
+
+  std::string filename_node;
+  std::string filename_ele;
+  std::string filename_poly;
+  {
+    ribi::TriangleFile f(GetShapes());
+    f.ExecuteTriangle(
+      filename_node,
+      filename_ele,
+      filename_poly,
+      GetTriangleQuality(),
+      GetTriangleArea()
+    );
+  }
+
+  if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
+
+  const boost::shared_ptr<const ribi::trim::Template> t
+    = boost::make_shared<ribi::trim::Template>(
+      filename_node,
+      filename_ele
+  );
+  assert(t);
+
+  if (verbose) { std::clog << "Convert Triangle.exe output to polygons" << std::endl; }
   std::vector<Polygon> polygons;
+  for (const boost::shared_ptr<trim::Face> face: t->GetFaces())
+  {
+    std::vector<Coordinat2D> coordinats;
+    for (const boost::shared_ptr<trim::Point> point: face->GetPoints())
+    {
+      coordinats.push_back(*point->GetCoordinat());
+    }
+    Polygon polygon;
+    boost::geometry::append(polygon, coordinats);
+    polygons.push_back(polygon);
+  }
+
+  if (verbose) { std::clog << "Convert to polygons to SVG" << std::endl; }
+  const std::string svg_text = Geometry().ToSvgStr(polygons,0.1);
+
+  const std::string filename = fileio::FileIo().GetTempFileName(".svg");
+  if (verbose) { std::clog << "Write SVG to file '" << filename << "'" << std::endl; }
+  {
+    std::ofstream f(filename.c_str());
+    f << svg_text;
+  }
+  {
+    QGraphicsSvgItem * const item = new QGraphicsSvgItem(filename.c_str());
+    item->setScale(10.0);
+    assert(ui->view_triangle_mesh->scene());
+    ui->view_triangle_mesh->scene()->clear();
+    ui->view_triangle_mesh->scene()->addItem(item);
+  }
+  fileio::FileIo().DeleteFile(filename);
+}
+
+double ribi::QtTriangleMeshCreatorMainDialog::GetFraction() const noexcept
+{
+  return ui->box_fraction->value();
+}
+
+boost::units::quantity<boost::units::si::length>
+  ribi::QtTriangleMeshCreatorMainDialog::GetLayerHeight() const noexcept
+{
+  return boost::units::quantity<boost::units::si::length>(
+    ui->box_layer_height->value() * boost::units::si::meter
+  );
+}
+
+int ribi::QtTriangleMeshCreatorMainDialog::GetNumberOfCellLayers() const noexcept
+{
+  return ui->box_n_cell_layers->value();
+}
+
+std::vector<ribi::QtTriangleMeshCreatorMainDialog::Polygon>
+  ribi::QtTriangleMeshCreatorMainDialog::GetShapes() const noexcept
+{
+  std::vector<Polygon> polygons;
+  const std::string text = ui->edit_shapes->toPlainText().toStdString();
+  const std::vector<std::string> lines = SeperateString(text);
   for (const std::string line: lines)
   {
     Polygon polygon;
@@ -89,23 +227,62 @@ void ribi::QtTriangleMeshCreatorMainDialog::on_edit_shapes_textChanged()
     }
     catch (boost::geometry::read_wkt_exception& e)
     {
-      TRACE(e.what());
-      continue;
+      //No problem
     }
   }
+  return polygons;
+}
 
-  const std::string svg_filename = fileio::FileIo().GetTempFileName(".svg");
-  {
-    std::ofstream f(svg_filename.c_str());
-    f << Geometry().ToSvgStr(polygons);
-  }
-  {
-    QGraphicsSvgItem * const i = new QGraphicsSvgItem(svg_filename.c_str());
-    assert(ui->view->scene());
-    ui->view->scene()->clear();
-    ui->view->scene()->addItem(i);
-  }
-  fileio::FileIo().DeleteFile(svg_filename);
+bool ribi::QtTriangleMeshCreatorMainDialog::GetShowMesh() const noexcept
+{
+  return ui->check_show_mesh->isChecked();
+}
+
+double ribi::QtTriangleMeshCreatorMainDialog::GetTriangleArea() const noexcept
+{
+  return ui->box_triangle_area->value();
+}
+
+
+double ribi::QtTriangleMeshCreatorMainDialog::GetTriangleQuality() const noexcept
+{
+  return ui->box_triangle_quality->value();
+}
+
+bool ribi::QtTriangleMeshCreatorMainDialog::GetVerbose() const noexcept
+{
+  return ui->check_verbose->isChecked();
+}
+
+ribi::trim::CreateVerticalFacesStrategy
+  ribi::QtTriangleMeshCreatorMainDialog::GetCreateVerticalFacesStrategy() const noexcept
+{
+  assert(ui->box_vertical_faces_strategy->currentText() == "One square"
+    || ui->box_vertical_faces_strategy->currentText() == "Two triangles"
+  );
+
+  const ribi::trim::CreateVerticalFacesStrategy create_vertical_faces_strategy
+    = ui->box_vertical_faces_strategy->currentText() == "One square"
+    ? ribi::trim::CreateVerticalFacesStrategy::one_face_per_square
+    : ribi::trim::CreateVerticalFacesStrategy::two_faces_per_square
+  ;
+
+  return create_vertical_faces_strategy;
+}
+
+void ribi::QtTriangleMeshCreatorMainDialog::keyPressEvent(QKeyEvent * event) noexcept
+{
+  if (event->key() == Qt::Key_Escape) { close(); return; }
+}
+
+void ribi::QtTriangleMeshCreatorMainDialog::on_button_create_clicked()
+{
+  CreateMesh();
+}
+
+void ribi::QtTriangleMeshCreatorMainDialog::on_edit_shapes_textChanged()
+{
+  DisplayPolygons();
 }
 
 std::vector<std::string> ribi::QtTriangleMeshCreatorMainDialog::SeperateString(
@@ -119,6 +296,11 @@ std::vector<std::string> ribi::QtTriangleMeshCreatorMainDialog::SeperateString(
   return v;
 }
 
+void ribi::QtTriangleMeshCreatorMainDialog::SetShowMesh(const bool show_mesh) noexcept
+{
+  ui->check_show_mesh->setChecked(show_mesh);
+}
+
 #ifndef NDEBUG
 void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
 {
@@ -128,6 +310,10 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting QtTriangleMeshCreatorMainDialog::Test");
+  QtTriangleMeshCreatorMainDialog d;
+  d.SetShowMesh(false);
+  d.on_edit_shapes_textChanged();
+  d.on_button_create_clicked();
   TRACE("Finished QtTriangleMeshCreatorMainDialog::Test successfully");
 }
 #endif

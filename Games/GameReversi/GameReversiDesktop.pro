@@ -17,3 +17,4 @@ include(../../Classes/CppQtReversi/CppQtReversi.pri)
 include(GameReversiDesktop.pri)
 
 SOURCES += qtmain.cpp
+

@@ -15,3 +15,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolVisualAbc/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolVisualAbc/ToolVisualAbc.qrc

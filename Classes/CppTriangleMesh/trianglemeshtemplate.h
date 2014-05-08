@@ -16,7 +16,7 @@
 namespace ribi {
 namespace trim {
 
-///Template is a bare-bone layer, consisting of Points and Faces only
+///Template is a two-dimensional mesh, consisting of Points, Edges and Faces only
 ///It constructs itself from a TemplateFile its output (.node and .ele) files
 ///
 ///The next step will be to create a multiple layers of Cells by CellsCreator
@@ -41,10 +41,10 @@ struct Template
 
   private:
   Template(
-    std::vector<std::pair<int,int>> edges,
-    std::vector<boost::shared_ptr<Face>> faces,
-    std::vector<std::vector<int>> face_point_indices,
-    std::vector<boost::shared_ptr<Point>> points
+    const std::vector<std::pair<int,int>>& edges,
+    const std::vector<boost::shared_ptr<Face>>& faces,
+    const std::vector<std::vector<int>>& face_point_indices,
+    const std::vector<boost::shared_ptr<Point>>& points
   );
   Template(const Template& ) = delete;
   Template(      Template&&) = delete;

@@ -26,11 +26,18 @@
 
 ribi::trim::CellsCreator::CellsCreator(
   const boost::shared_ptr<const Template> t,
-  const int n_layers,
+  const int n_cell_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const CreateVerticalFacesStrategy strategy,
   const CellsCreatorFactory&
-) : m_cells(CreateCells(t,n_layers,layer_height,strategy)),
+) : m_cells(
+      CreateCells(
+        t,
+        n_cell_layers + 1, //n_face_layers - 1 == n_cell_layers
+        layer_height,
+        strategy
+      )
+    ),
     m_strategy(strategy)
 {
   #ifndef NDEBUG
@@ -51,43 +58,37 @@ void ribi::trim::CellsCreator::CheckCells(const std::vector<boost::shared_ptr<Ce
 
 std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::CreateCells(
   const boost::shared_ptr<const Template> t,
-  const int n_layers,
+  const int n_face_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const CreateVerticalFacesStrategy strategy
 ) noexcept
 {
   assert(t);
-  #ifndef NDEBUG
-  if (n_layers == 0)
+  if (n_face_layers < 2)
   {
-    TRACE("BREAK");
+    std::vector<boost::shared_ptr<ribi::trim::Cell>> no_cells; return no_cells;
   }
-  #endif
-  assert(n_layers != 0);
+  assert(n_face_layers >= 2);
   const bool verbose = true;
 
   if (verbose) { TRACE("Create points"); }
   const std::vector<boost::shared_ptr<Point>> all_points
-    = CreatePoints(t,n_layers,layer_height);
-  /*
-  if (all_points.empty())
-  {
-    if (verbose) { TRACE("No points created"); }
-    std::vector<boost::shared_ptr<ribi::trim::Cell>> v;
-    return v;
-  }
-  */
+    = CreatePoints(t,n_face_layers,layer_height);
 
   if (verbose) { TRACE("Create horizontal faces"); }
   const std::vector<boost::shared_ptr<Face>> hor_faces
-    = CreateHorizontalFaces(t,all_points,n_layers);
+    = CreateHorizontalFaces(t,all_points,n_face_layers);
 
   if (verbose) { TRACE("Create vertical faces"); }
 
   const std::vector<boost::shared_ptr<Face>> ver_faces
-    = CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy);
+    = CreateVerticalFaces(t,all_points,n_face_layers,layer_height,strategy);
 
-  assert(!ver_faces.empty() || ver_faces.empty());
+  if (ver_faces.empty())
+  {
+    std::vector<boost::shared_ptr<ribi::trim::Cell>> no_cells; return no_cells;
+  }
+
   #ifndef NDEBUG
   for(auto f:ver_faces) { assert(f); }
   #endif
@@ -97,7 +98,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 
   if (verbose) { TRACE("Creating cells"); }
   std::vector<boost::shared_ptr<Cell>> cells;
-  for (int layer=0; layer!=n_layers-1; ++layer) //-1 because there are no points above the top layer
+  for (int layer=0; layer!=n_face_layers-1; ++layer) //-1 because there are no points above the top layer
   {
     std::clog << ".";
     for (int i=0; i!=n_cells_per_layer; ++i)
@@ -118,6 +119,12 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 
       if (strategy == CreateVerticalFacesStrategy::one_face_per_square )
       {
+        #ifndef NDEBUG
+        if (these_ver_faces.size() != 3)
+        {
+          TRACE("BREAK");
+        }
+        #endif
         assert(these_ver_faces.size() == 3);
         assert(hor_faces[bottom_face_index]);
         assert(hor_faces[top_face_index]);
@@ -188,7 +195,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::CreateHorizontalFaces(
   const boost::shared_ptr<const Template> t,
   const std::vector<boost::shared_ptr<Point>>& all_points,
-  const int n_layers
+  const int n_face_layers
 )
 {
   
@@ -199,11 +206,11 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   const int n_points_per_layer = static_cast<int>(t->GetPoints().size());
   #ifndef NDEBUG
   const int n_faces_per_layer = static_cast<int>(t->GetFaces().size());
-  assert(n_layers > 0);
+  assert(n_face_layers > 0);
   #endif
-  v.reserve(n_layers * n_points_per_layer);
+  v.reserve(n_face_layers * n_points_per_layer);
 
-  for (int layer=0; layer!=n_layers; ++layer)
+  for (int layer=0; layer!=n_face_layers; ++layer)
   {
     const int point_offset = n_points_per_layer * layer;
     for (const std::vector<int>& face_point_indices: t->GetFacePointIndices())
@@ -251,13 +258,13 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 
 std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::CellsCreator::CreatePoints(
   const boost::shared_ptr<const Template> t,
-  const int n_layers,
+  const int n_face_layers,
   const boost::units::quantity<boost::units::si::length> layer_height
 )
 {
   std::vector<boost::shared_ptr<Point>> v;
 
-  for (int i=0; i!=n_layers; ++i)
+  for (int i=0; i!=n_face_layers; ++i)
   {
     for (const boost::shared_ptr<const Point> point: t->GetPoints())
     {
@@ -267,7 +274,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::CellsCreator::Crea
       v.push_back(new_point);
     }
   }
-  assert(static_cast<int>(v.size()) == static_cast<int>(t->GetPoints().size()) * n_layers);
+  assert(static_cast<int>(v.size()) == static_cast<int>(t->GetPoints().size()) * n_face_layers);
 
   return v;
 }
@@ -275,7 +282,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::CellsCreator::Crea
 std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::CreateVerticalFaces(
   const boost::shared_ptr<const Template> t,
   const std::vector<boost::shared_ptr<Point>>& all_points,
-  const int n_layers,
+  const int n_face_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const CreateVerticalFacesStrategy strategy
 ) noexcept
@@ -283,11 +290,11 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   assert(t);
   const bool verbose = true;
 
-  assert(n_layers > 0);
-  if (n_layers >= 1)
+  assert(n_face_layers > 0);
+  if (n_face_layers < 2)
   {
     if (verbose) { TRACE("To few layers to create vertical faces"); }
-    std::vector<boost::shared_ptr<ribi::trim::Face>>  no_faces;
+    std::vector<boost::shared_ptr<ribi::trim::Face>> no_faces;
     return no_faces;
   }
   #ifndef NDEBUG
@@ -313,14 +320,14 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 
   std::vector<boost::shared_ptr<Face>> v;
   #ifndef NDEBUG
-  const int n_reserve = n_ver_faces * (n_layers - 1);
+  const int n_reserve = n_ver_faces * (n_face_layers - 1);
   #endif
   assert(n_reserve > 0);
   assert(n_reserve < static_cast<int>(v.max_size()));
-  v.reserve(n_ver_faces * (n_layers - 1));
+  v.reserve(n_ver_faces * (n_face_layers - 1));
 
-  assert(n_layers > 0);
-  if (n_layers == 1)
+  assert(n_face_layers > 0);
+  if (n_face_layers == 1)
   {
     std::vector<boost::shared_ptr<ribi::trim::Face>> no_faces;
     return no_faces;
@@ -330,7 +337,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   if (verbose) { TRACE("Start building layers"); }
   #endif
 
-  for (int layer=0; layer!=n_layers-1; ++layer) //-1 because there are no points above the top layer
+  for (int layer=0; layer!=n_face_layers-1; ++layer) //-1 because there are no points above the top layer
   {
     #ifndef NDEBUG
     if (verbose) { TRACE(layer); }
@@ -460,7 +467,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
     }
   }
 
-  assert(n_ver_faces * (n_layers - 1) == static_cast<int>(v.size()));
+  assert(n_ver_faces * (n_face_layers - 1) == static_cast<int>(v.size()));
   return v;
 }
 
@@ -573,11 +580,11 @@ void ribi::trim::CellsCreator::Test() noexcept
         Template::CreateTest(i)
       };
 
-      const int n_layers = 3;
+      const int n_cell_layers = 2;
       const boost::shared_ptr<CellsCreator> cells_creator {
         CellsCreatorFactory().Create(
           my_template,
-          n_layers,
+          n_cell_layers,
           1.0 * boost::units::si::meter,
           strategy
         )
@@ -594,11 +601,11 @@ void ribi::trim::CellsCreator::Test() noexcept
       Template::CreateTest(1)
     };
     assert(my_template->CountFaces() == 2);
-    const int n_layers = 2;
+    const int n_cell_layers = 1;
     const boost::shared_ptr<CellsCreator> cells_creator {
       CellsCreatorFactory().Create(
         my_template,
-        n_layers,
+        n_cell_layers,
         1.0 * boost::units::si::meter,
         strategy
       )

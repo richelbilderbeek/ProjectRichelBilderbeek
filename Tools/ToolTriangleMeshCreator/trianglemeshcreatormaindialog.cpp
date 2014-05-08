@@ -18,13 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm
 //---------------------------------------------------------------------------
-#include "trianglemeshcreatormaindialog.h"
-
-#include <fstream>
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "trianglemeshcreatormaindialog.h"
+
+#include <fstream>
 
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
@@ -58,10 +58,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
-  const int n_layers,
+  const int n_cell_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
-  const double quality,
+  const double triangle_area,
+  const double triangle_quality,
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
   const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
@@ -82,13 +83,13 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   std::string filename_poly;
   {
     ribi::TriangleFile f(shapes);
-    const double area = 2.0;
+    //const double area = 2.0;
     f.ExecuteTriangle(
       filename_node,
       filename_ele,
       filename_poly,
-      quality,
-      area
+      triangle_quality,
+      triangle_area
     );
   }
 
@@ -110,7 +111,7 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
       const boost::shared_ptr<ribi::trim::CellsCreator> c
         = cells_creator_factory.Create(
           t,
-          n_layers,
+          n_cell_layers,
           layer_height,
           strategy
       );
@@ -501,14 +502,17 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
       const std::vector<Coordinat2D> shapes {
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
-      const double quality = 5.0;
+      const double triangle_quality = 5.0;
+      const double triangle_area = 2.0;
+      const int n_cell_layers = 1;
       const bool verbose = false;
       const ribi::TriangleMeshCreatorMainDialog d(
         shapes,
-        3,
+        n_cell_layers,
         1.0 * boost::units::si::meter,
         strategy,
-        quality,
+        triangle_quality,
+        triangle_area,
         TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
         TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
         TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),

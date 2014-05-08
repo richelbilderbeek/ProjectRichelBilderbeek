@@ -36,14 +36,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtbeerwantermenudialog.h"
 #include "qtboenkenmenudialog.h"
 #include "qtcaesarciphermenudialog.h"
-//#include "qtcodebreakermenudialog.h"
 #include "qtcodetohtmlmenudialog.h"
 #include "qtconnectthreemenudialog.h"
 #include "qtcreateglossarymenudialog.h"
 #include "qtcreateqtprojectzipfilemenudialog.h"
 #include "qtdaswahreschlagerfestmenudialog.h"
+#include "qtdotmatrixmenudialog.h"
+#include "qtencrangermaindialog.h"
+#include "qtencrangermenudialog.h"
 #include "qtfilteroperationermenudialog.h"
 #include "qtfunctionplottermenudialog.h"
+#include "qtgaborfiltermenudialog.h"
+#include "qtgraycodermenudialog.h"
 #include "qthistogramequalizationermenudialog.h"
 #include "qthometrainermenudialog.h"
 #include "qtimagerotatermenudialog.h"
@@ -52,36 +56,50 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtkalmanfilterermenudialog.h"
 #include "qtmazecreatormenudialog.h"
 #include "qtmaziakmenudialog2.h"
+#include "qtmultiencrangermaindialog.h"
+#include "qtmultiencrangermenudialog.h"
 #include "qtmusictheorymenudialog.h"
 #include "qtperfectelasticcollisionmenudialog.h"
 #include "qtpictocodemenudialog.h"
 #include "qtpixelatormenudialog.h"
 #include "qtpredickadvocatormenudialog.h"
+#include "qtprimeexpertmenudialog.h"
 #include "qtpvdbmenudialog.h"
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
-#include "qtvalentinecarddecryptermenudialog.h"
 #include "qtquadraticsolvermenudialog.h"
 #include "qtrandomcodemenudialog.h"
 #include "qtregextestermenudialog.h"
+#include "qtreversimaindialog.h"
+#include "qtreversimenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
 #include "qtrichelbilderbeekmenudialog.h"
 #include "qtrubiksclockmenudialog.h"
 #include "qtsecretmessagemenudialog.h"
 #include "qtsimmysterymachinemenudialog.h"
+#include "qtsimplifynewickmenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtstateobservermenudialog.h"
 #include "qtstylesheetsettermenudialog.h"
+#include "qtsurfaceplottermenudialog.h"
 #include "qttestaboutmenudialog.h"
+#include "qttestapproximatormenudialog.h"
 #include "qttestbinarynewickvectormenudialog.h"
+#include "qttestchessmenudialog.h"
 #include "qttestconceptmapmenudialog.h"
 #include "qttestdialmenudialog.h"
 #include "qttestdrawcanvasmenudialog.h"
 #include "qttestfunctionparsermenudialog.h"
 #include "qttestimagecanvasmenudialog.h"
+#include "qttestledmaindialog.h"
+#include "qttestledmenudialog.h"
+#include "qttestmanydigitnewickmaindialog.h"
+#include "qttestmanydigitnewickmenudialog.h"
+#include "qttestmultiapproximatormenudialog.h"
 #include "qttestmulticanvasmenudialog.h"
 #include "qttestmultiplechoicequestionmenudialog.h"
+#include "qttestnewickvectordialog.h"
 #include "qttestopenquestionmenudialog.h"
 #include "qttestplanemenudialog.h"
 #include "qttestpylosmenudialog.h"
@@ -90,36 +108,29 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtcreatorprofilemenudialog.h"
 #include "qttestqtcreatorprofilemenudialog.h"
 #include "qttestqtkeyboardfriendlygraphicsviewmenudialog.h"
+#include "qttestqtmodelsmenudialog.h"
 #include "qttestqtroundededitrectitemmenudialog.h"
 #include "qttestqtroundedrectitemmenudialog.h"
 #include "qttestqtroundedtextrectitemmenudialog.h"
 #include "qttestquestionmenudialog.h"
+#include "qttestreversimaindialog.h"
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
+#include "qttestsimplelinearregressionmenudialog.h"
 #include "qttesttextcanvasmenudialog.h"
-//#include "qttrianglemeshcreatormenudialog.h"
+#include "qttesttictactoemenudialog.h"
 #include "qttesttogglebuttonmaindialog.h"
 #include "qttesttogglebuttonmenudialog.h"
 #include "qttesttwodigitnewickmenudialog.h"
 #include "qtthresholdfilterermenudialog.h"
 #include "qttictactoemenudialog.h"
-#include "qtdotmatrixmenudialog.h"
-#include "qtencrangermaindialog.h"
-#include "qtencrangermenudialog.h"
-#include "qtgaborfiltermenudialog.h"
-#include "qtgraycodermenudialog.h"
-#include "qtmultiencrangermaindialog.h"
-#include "qtmultiencrangermenudialog.h"
-#include "qtprimeexpertmenudialog.h"
-#include "qtsimplifynewickmenudialog.h"
-#include "qttestapproximatormenudialog.h"
-#include "qttestledmaindialog.h"
-#include "qttestmultiapproximatormenudialog.h"
-#include "qttestqtmodelsmenudialog.h"
-#include "qttestsimplelinearregressionmenudialog.h"
+#include "qttrianglemeshcreatormenudialog.h"
 #include "qttronmenudialog.h"
+#include "qtvalentinecarddecryptermenudialog.h"
 #include "qtvigenereciphermenudialog.h"
+#include "qtvisualabcmenudialog.h"
 #include "richelbilderbeekprogram.h"
+
 
 #pragma GCC diagnostic pop
 
@@ -225,7 +236,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::randomCodeVcl: break;
     case ProgramType::refrigeratorPuzzleSolver: break;
     case ProgramType::regexTester: p = new QtRegexTesterMenuDialog; break;
-    case ProgramType::reversi: break;
+    case ProgramType::reversi: p = new reversi::QtReversiMenuDialog; break;
     case ProgramType::reversiVcl: break;
     case ProgramType::richelBilderbeekGallery: p = new QtRichelBilderbeekGalleryMenuDialog; break;
     case ProgramType::richelbilderbeekNlSitemapGenerator: p = new QtSitemapGeneratorMenuDialog; break;
@@ -249,7 +260,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::stateObserver: p = new QtStateObserverMenuDialog; break;
     case ProgramType::styleSheetSetter: p = new QtStyleSheetSetterMenuDialog; break;
     case ProgramType::superNsanaBros: break;
-    case ProgramType::surfacePlotter: break;
+    case ProgramType::surfacePlotter: p = new QtSurfacePlotterMenuDialog; break;
     case ProgramType::surfacePlotterVcl: break;
     case ProgramType::tankBattalion: break;
     case ProgramType::testAbout: p = new QtTestAboutMenuDialog; break;
@@ -258,7 +269,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testBouncingRectsWidget: break;
     case ProgramType::testBroadcastServer: break;
     case ProgramType::testBinaryNewickVector: p = new QtTestBinaryNewickVectorMenuDialog; break;
-    case ProgramType::testChess: break;
+    case ProgramType::testChess: p = new QtTestChessMenuDialog; break;
     case ProgramType::testConceptMap: p = new cmap::QtTestConceptMapMenuDialog; break;
     case ProgramType::testDial: p = new QtTestDialMenuDialog; break;
     case ProgramType::testDrawCanvas: p = new QtTestDrawCanvasMenuDialog; break;
@@ -272,8 +283,8 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testHugeVector: break;
     case ProgramType::testImageCanvas: p = new QtTestImageCanvasMenuDialog; break;
     case ProgramType::testLazy_init: break;
-    case ProgramType::testLed: p = new QtTestLedMainDialog; break;
-    case ProgramType::testManyDigitNewick: break;
+    case ProgramType::testLed: p = new QtTestLedMenuDialog; break;
+    case ProgramType::testManyDigitNewick: p = new QtTestManyDigitNewickMenuDialog; break;
     case ProgramType::testMultiApproximator: p = new QtToolTestMultiApproximatorMenuDialog; break;
     case ProgramType::testMultiCanvas: p = new QtTestMultiCanvasMenuDialog; break;
     case ProgramType::testMultipleChoiceQuestion: p = new QtTestMultipleChoiceQuestionMenuDialog; break;
@@ -281,7 +292,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testNdsmake: break;
     case ProgramType::testNeuralNet: /* p = new QtTestNeuralNetMenuDialog; */ break;
     case ProgramType::testNewick: break;
-    case ProgramType::testNewickVector: break;
+    case ProgramType::testNewickVector: p = new QtTestNewickVectorDialog; break;
     case ProgramType::testOpenQuestion: p = new QtTestOpenQuestionMenuDialog;  break;
     case ProgramType::testPlane: p = new QtTestPlaneMenuDialog; break;
     case ProgramType::testPylos: p = new pylos::QtTestPylosMenuDialog; break;
@@ -293,7 +304,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testQtRoundedRectItem: p = new QtTestQtRoundedRectItemMenuDialog; break;
     case ProgramType::testQtRoundedTextRectItem: p = new QtTestQtRoundedTextRectItemMenuDialog; break;
     case ProgramType::testQuestion: p = new QtTestQuestionMenuDialog; break;
-    case ProgramType::testReversi: break;
+    case ProgramType::testReversi: p = new QtTestReversiMainDialog; break;
     case ProgramType::testSelectFileDialog: break;
     case ProgramType::testServerPusher: break;
     case ProgramType::testShape: p = new QtTestShapeMenuDialog; break;
@@ -305,7 +316,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testQtModels: p = new QtToolTestQtModelsMenuDialog; break;
     case ProgramType::testTextCanvas: p = new QtTestTextCanvasMenuDialog; break;
     case ProgramType::testTextPositionWidget: break;
-    case ProgramType::testTicTacToe: break;
+    case ProgramType::testTicTacToe: p = new tictactoe::QtTestTicTacToeMenuDialog; break;
     case ProgramType::testTimedServerPusher: break;
     case ProgramType::testToggleButton: p = new QtTestToggleButtonMenuDialog; break;
     case ProgramType::testTwoDigitNewick: p = new QtTestTwoDigitNewickMenuDialog; break;
@@ -316,7 +327,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::ticTacToeLearner: break;
     case ProgramType::ticTacToeValuer: break;
     case ProgramType::timePoll: break;
-    case ProgramType::triangleMeshCreator: break; //p = new QtTriangleMeshCreatorMenuDialog; break;
+    case ProgramType::triangleMeshCreator: break; p = new QtTriangleMeshCreatorMenuDialog; break;
     case ProgramType::tronCollection: new tron::QtTronMenuDialog; break;
     case ProgramType::tronCollectionVcl: break;
     case ProgramType::ubuntuOneWatcher: break;
@@ -324,7 +335,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::vanDenBogaart: break;
     case ProgramType::vigenereCipher: p = new QtVigenereCipherMenuDialog; break;
     case ProgramType::virtualBastard: break;
-    case ProgramType::visualAbc: break;
+    case ProgramType::visualAbc: p = new QtVisualAbcMenuDialog; break;
     case ProgramType::xeNonZero: break;
     case ProgramType::zork: break;
     case ProgramType::n_types:

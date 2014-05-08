@@ -276,9 +276,10 @@ bool ribi::trim::Helper::IsCounterClockwise(
 
 bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) const noexcept
 {
-  using boost::geometry::get;
   const bool answer_1 = face.GetOrientation() == FaceOrientation::horizontal;
 
+  /*
+  using boost::geometry::get;
   const auto coordinats(ExtractCoordinats(face));
 
   typedef std::set<Coordinat3D>::iterator Iterator;
@@ -327,6 +328,8 @@ bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) const noexce
 
   assert(answer_1 == answer_2);
   return answer_2;
+  */
+  return answer_1;
 }
 
 bool ribi::trim::Helper::IsPlane(

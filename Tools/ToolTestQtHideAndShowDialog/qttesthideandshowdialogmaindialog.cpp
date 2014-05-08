@@ -2,11 +2,11 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qttesthideandshowmaindialog.h"
+#include "qttesthideandshowdialogmaindialog.h"
 
 #include <boost/lexical_cast.hpp>
 #include <QKeyEvent>
-#include "ui_qttesthideandshowmaindialog.h"
+#include "ui_qttesthideandshowdialogmaindialog.h"
 #pragma GCC diagnostic pop
 
 QtTestHideAndShowMainDialog::QtTestHideAndShowMainDialog(QWidget *parent)

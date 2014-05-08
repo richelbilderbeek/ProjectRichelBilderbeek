@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTriangleMeshCreatorMenuDialog</class>
- <widget class="QDialog" name="QtTriangleMeshCreatorMenuDialog">
+ <class>QtTestTicTacToeMenuDialog</class>
+ <widget class="QDialog" name="QtTestTicTacToeMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>412</width>
-    <height>519</height>
+    <width>334</width>
+    <height>219</height>
    </rect>
   </property>
   <property name="font">
@@ -16,11 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>TriangleMeshCreator</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="ToolTriangleMeshCreator.qrc">
-    <normaloff>:/ToolTriangleMeshCreator/ToolTriangleMeshCreatorIcon.png</normaloff>:/ToolTriangleMeshCreator/ToolTriangleMeshCreatorIcon.png</iconset>
+   <string>TestTicTacToe</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -28,10 +24,10 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, 
 }
 QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
-QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
+QPushButton { font: 48px, &quot;monospace&quot; }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
+   <item row="3" column="0">
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>About</string>
@@ -41,7 +37,7 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="4" column="0">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>
@@ -51,26 +47,13 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="0" column="0">
     <widget class="QPushButton" name="button_start">
      <property name="text">
       <string>Start</string>
      </property>
      <property name="flat">
       <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="ToolTriangleMeshCreator.qrc">:/ToolTriangleMeshCreator/ToolTriangleMeshCreatorWelcome.png</pixmap>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -81,8 +64,6 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>
- <resources>
-  <include location="ToolTriangleMeshCreator.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

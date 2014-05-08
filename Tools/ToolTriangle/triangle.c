@@ -1431,7 +1431,6 @@ void triexit(int status)
 void triexit(status)
 int status;
 #endif /* not ANSI_DECLARATORS */
-
 {
   exit(status);
 }
@@ -1449,7 +1448,8 @@ int size;
   memptr = (VOID *) malloc((unsigned int) size);
   if (memptr == (VOID *) NULL) {
     printf("Error:  Out of memory.\n");
-    triexit(1);
+    throw std::runtime HIEERO
+    //triexit(1);
   }
   return(memptr);
 }

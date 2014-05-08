@@ -44,9 +44,10 @@ struct CellsCreator
   private:
   friend class CellsCreatorFactory;
 
+  //n_face_layers - 1 == n_cell_layers
   CellsCreator(
     const boost::shared_ptr<const Template> t,
-    const int n_layers,
+    const int n_cell_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
     const CreateVerticalFacesStrategy strategy,
     const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
@@ -60,9 +61,10 @@ struct CellsCreator
   static void CheckCells(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept;
 
   //Must be static: it is used in the constructor
+  //n_face_layers - 1 == n_cell_layers
   static std::vector<boost::shared_ptr<Cell>> CreateCells(
     const boost::shared_ptr<const Template> t,
-    const int n_layers,
+    const int n_face_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
     const CreateVerticalFacesStrategy strategy
   ) noexcept;
@@ -70,21 +72,20 @@ struct CellsCreator
   static std::vector<boost::shared_ptr<Face>> CreateHorizontalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
-    const int n_layers
+    const int n_face_layers
   );
 
   static std::vector<boost::shared_ptr<Point>> CreatePoints(
     const boost::shared_ptr<const Template> t,
-    const int n_layers,
+    const int n_face_layers,
     const boost::units::quantity<boost::units::si::length> layer_height
   );
-
 
   //Must be static: it is used in the constructor
   static std::vector<boost::shared_ptr<Face>> CreateVerticalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
-    const int n_layers,
+    const int n_face_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
     const CreateVerticalFacesStrategy strategy
   ) noexcept;

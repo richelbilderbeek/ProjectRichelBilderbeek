@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 
@@ -35,7 +35,7 @@ namespace Ui {
 
 namespace ribi {
 
-class QtTestManyDigitNewickMainDialog : public QDialog
+class QtTestManyDigitNewickMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -44,8 +44,6 @@ public:
   QtTestManyDigitNewickMainDialog(const QtTestManyDigitNewickMainDialog&) = delete;
   QtTestManyDigitNewickMainDialog& operator=(const QtTestManyDigitNewickMainDialog&) = delete;
   ~QtTestManyDigitNewickMainDialog();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
 
 private:
   Ui::QtTestManyDigitNewickMainDialog *ui;
@@ -53,7 +51,6 @@ private:
 private slots:
   void on_button_calculate_clicked();
   void OnAnyChange();
-  void OnAboutClick();
 
   static double GetRandomUniform();
 };

@@ -23,7 +23,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/geometry/geometries/polygon.hpp>
+#include <boost/units/quantity.hpp>
+#include <boost/units/systems/si/length.hpp>
 #include "qthideandshowdialog.h"
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
 
 struct QPlainTextEdit;
@@ -44,22 +51,39 @@ public:
   QtTriangleMeshCreatorMainDialog& operator=(const QtTriangleMeshCreatorMainDialog&) = delete;
   ~QtTriangleMeshCreatorMainDialog() noexcept;
 
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+
+  void CreateMesh() noexcept;
+  void DisplayPolygons() noexcept;
+  ribi::trim::CreateVerticalFacesStrategy GetCreateVerticalFacesStrategy() const noexcept;
+  double GetFraction() const noexcept;
+  boost::units::quantity<boost::units::si::length> GetLayerHeight() const noexcept;
+  int GetNumberOfCellLayers() const noexcept;
+  std::vector<Polygon> GetShapes() const noexcept;
+  bool GetShowMesh() const noexcept;
+  double GetTriangleArea() const noexcept;
+  double GetTriangleQuality() const noexcept;
+  bool GetVerbose() const noexcept;
+
+  void SetShowMesh(const bool show_mesh) noexcept;
+
 protected:
   void keyPressEvent(QKeyEvent *) noexcept;
 
 private:
   Ui::QtTriangleMeshCreatorMainDialog *ui;
 
-private slots:
-
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+  static std::vector<std::string> SeperateString(const std::string& input) noexcept;
+
+private slots:
 
   void on_edit_shapes_textChanged();
-
-  static std::vector<std::string> SeperateString(const std::string& input) noexcept;
   void on_button_create_clicked();
+  void DisplayTriangleMesh() noexcept;
 };
 
 } //~namespace ribi

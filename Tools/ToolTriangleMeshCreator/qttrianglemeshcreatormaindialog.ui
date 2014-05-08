@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>753</width>
-    <height>561</height>
+    <width>866</width>
+    <height>667</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -40,18 +40,8 @@ QPlainTextEdit { font: 10px }
 
 </string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <item row="1" column="0">
-    <widget class="ribi::QtNavigationableGraphicsView" name="view">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>3</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QPlainTextEdit" name="edit_shapes">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -60,13 +50,227 @@ QPlainTextEdit { font: 10px }
       </sizepolicy>
      </property>
      <property name="plainText">
-      <string>POLYGON((50 200 , 100 100 , 100 0 , 0 0 , 0 100))
-POLYGON((50 170 , 90 90 , 90 10 , 10 10 , 10 90))
+      <string>POLYGON((-1 -1 ,  1 -1 ,  1  1 , -1  1))
+POLYGON((-2 -2 ,  2 -2 ,  2  2 , -2  2))
+POLYGON((-3 -3 ,  3 -3 ,  3  3 , -3  3))
+POLYGON((-4 -4 ,  4 -4 ,  4  4 , -4  4))
+#POLYGON((50 200 , 100 100 , 100 0 , 0 0 , 0 100))
+#POLYGON((50 170 , 90 90 , 90 10 , 10 10 , 10 90))
+#POLYGON((5 20 , 10 10 , 10 0 , 0 0 , 0 10))
+#POLYGON((5 17 ,  9  9 ,  9 1 , 1 1 , 1  9))
 </string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="ribi::QtNavigationableGraphicsView" name="view">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>3</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>400</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ribi::QtNavigationableGraphicsView" name="view_triangle_mesh">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>3</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>400</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QGroupBox" name="box_parameters">
+       <property name="title">
+        <string>2D</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_triangle_quality">
+          <property name="text">
+           <string>Triangle.exe quality</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="box_triangle_quality">
+          <property name="maximum">
+           <double>10000.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>5.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_triangle_area">
+          <property name="text">
+           <string>Triangle.exe area</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="box_triangle_area">
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <double>1000.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>2.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>3D</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_layer_height">
+          <property name="text">
+           <string># cell layers</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="box_n_cell_layers">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_n_layers">
+          <property name="text">
+           <string>Layer height (m)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="box_layer_height">
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <double>10.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>10.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_fraction">
+          <property name="text">
+           <string>Fraction of cells to keep</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDoubleSpinBox" name="box_fraction">
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <double>1.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.900000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_vertical_faces_strategy">
+          <property name="text">
+           <string>Vertical faces are:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="box_vertical_faces_strategy">
+          <item>
+           <property name="text">
+            <string>One square</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Two traingles</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string>Misc</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="check_show_mesh">
+          <property name="text">
+           <string>Show mesh</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="check_verbose">
+          <property name="text">
+           <string>Verbose</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QPushButton" name="button_create">
      <property name="text">
       <string>Create</string>

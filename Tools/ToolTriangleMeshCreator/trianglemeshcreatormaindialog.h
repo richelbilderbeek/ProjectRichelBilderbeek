@@ -44,10 +44,11 @@ struct TriangleMeshCreatorMainDialog
 {
   TriangleMeshCreatorMainDialog(
     const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
-    const int n_layers,
+    const int n_cell_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
     const ::ribi::trim::CreateVerticalFacesStrategy strategy,
-    const double quality,
+    const double triangle_area,
+    const double triangle_quality,
     const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
     const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
     const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,

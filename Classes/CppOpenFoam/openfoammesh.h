@@ -48,16 +48,18 @@ struct Mesh
     const std::vector<Coordinat3D>& coordinats
   ) const;
 
-  int GetNumberOfBoundaries() const noexcept;
-  int GetNumberOfCells() const noexcept;
-  int GetNumberOfFaces() const noexcept;
-  int GetNumberOfPoints() const noexcept;
 
   const std::vector<boost::shared_ptr<Boundary>>& GetBoundaries() noexcept { return m_boundaries; }
   const std::vector<boost::shared_ptr<Cell>>& GetCells() noexcept { return  m_cells; }
   const std::vector<boost::shared_ptr<      Face>>& GetFaces()       noexcept { return m_faces; }
   const std::vector<boost::shared_ptr<const Face>>  GetFaces() const noexcept;
+  int GetNumberOfBoundaries() const noexcept;
+  int GetNumberOfCells() const noexcept;
+  int GetNumberOfFaces() const noexcept;
+  int GetNumberOfPoints() const noexcept;
   const std::vector<boost::shared_ptr<Coordinat3D>>& GetPoints() noexcept { return m_points; }
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:
 

@@ -164,10 +164,10 @@ ribi::trim::Template::Template(
 }
 
 ribi::trim::Template::Template(
-  std::vector<std::pair<int,int>> edges,
-  std::vector<boost::shared_ptr<Face>> faces,
-  std::vector<std::vector<int>> face_point_indices,
-  std::vector<boost::shared_ptr<Point>> points
+  const std::vector<std::pair<int,int>>& edges,
+  const std::vector<boost::shared_ptr<Face>>& faces,
+  const std::vector<std::vector<int>>& face_point_indices,
+  const std::vector<boost::shared_ptr<Point>>& points
 ) : m_edges{edges}, m_faces{faces}, m_face_point_indices{face_point_indices}, m_points{points}
 {
 

@@ -89,14 +89,16 @@ int main(int, char* argv[])
       const boost::units::quantity<boost::units::si::length> layer_height(
         1.0 * boost::units::si::meter
       );
-      const double quality = 5.0;
+      const double triangle_area = 2.0;
+      const double triangle_quality = 5.0;
       const bool verbose = true;
       const ribi::TriangleMeshCreatorMainDialog d(
         shapes,
         n_layers,
         layer_height,
         strategy,
-        quality,
+        triangle_quality,
+        triangle_area,
         ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
         ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
         ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
@@ -132,14 +134,16 @@ int main(int, char* argv[])
       10.0 * boost::units::si::meter / static_cast<double>(n_layers)
     );
 
-    const double quality = 5.0;
+    const double triangle_quality = 5.0;
+    const double triangle_area = 2.0;
     const bool verbose = true;
     const ribi::TriangleMeshCreatorMainDialog d(
       shapes,
       n_layers,
       layer_height,
       strategy,
-      quality,
+      triangle_quality,
+      triangle_area,
       ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),

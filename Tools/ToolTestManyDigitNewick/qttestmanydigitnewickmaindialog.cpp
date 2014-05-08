@@ -46,7 +46,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtTestManyDigitNewickMainDialog::QtTestManyDigitNewickMainDialog(QWidget *parent) :
-    QDialog(parent,Qt::Window),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTestManyDigitNewickMainDialog)
 {
   ui->setupUi(this);
@@ -149,18 +149,6 @@ ribi::QtTestManyDigitNewickMainDialog::~QtTestManyDigitNewickMainDialog()
 double ribi::QtTestManyDigitNewickMainDialog::GetRandomUniform()
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
-}
-
-const std::string ribi::QtTestManyDigitNewickMainDialog::GetVersion()
-{
-  return "1.0";
-}
-
-const std::vector<std::string> ribi::QtTestManyDigitNewickMainDialog::GetVersionHistory()
-{
-  return {
-    "2011-03-02: version 1.0: initial version copied and from TestTwoDigitNewick"
-  };
 }
 
 void ribi::QtTestManyDigitNewickMainDialog::OnAnyChange()
@@ -325,27 +313,6 @@ void ribi::QtTestManyDigitNewickMainDialog::OnAnyChange()
   }
   */
 }
-
-void ribi::QtTestManyDigitNewickMainDialog::OnAboutClick()
-{
-  About about(
-    "Richel Bilderbeek",
-    "TestManyDigitNewick",
-    "tool to test the two-digit-Newick architecture",
-    "the 20th of February 2011",
-    "2010-2014",
-    "http://www.richelbilderbeek.nl/ToolTestManyDigitNewick",
-    GetVersion(),
-    GetVersionHistory());
-
-  about.AddLibrary("BigInt: version 2010.04.30");
-  about.AddLibrary("NewickVector: version " + NewickVector::GetVersion());
-  about.AddLibrary("ManyDigitNewick: version " + ManyDigitNewick::GetVersion());
-
-  QtAboutDialog d(about);
-  d.exec();
-}
-
 
 void ribi::QtTestManyDigitNewickMainDialog::on_button_calculate_clicked()
 {

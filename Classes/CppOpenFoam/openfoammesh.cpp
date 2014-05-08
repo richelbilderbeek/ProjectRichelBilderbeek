@@ -740,6 +740,19 @@ int ribi::foam::Mesh::GetNumberOfPoints() const noexcept
   return static_cast<int>(m_points.size());
 }
 
+std::string ribi::foam::Mesh::GetVersion() const noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::foam::Mesh::GetVersionHistory() const noexcept
+{
+  return {
+    "2014-xx-xx: version 1.0: initial version",
+    "2014-05-08: version 1.1: initial versioning"
+  };
+}
+
 void ribi::foam::Mesh::ReorderFaces()
 {
   assert(!this->AreFacesOrdered());
