@@ -45,7 +45,7 @@ ribi::trim::Template::Template(
       if (n % percent == 0) std::clog << '%';
       const std::string line = v[n];
       if(n==0) continue; //No idea why this has to be skipped
-      const std::vector<std::string> w { SeperateString(line) };
+      const std::vector<std::string> w { SeperateString(ConvertNumbersToEnglish(line)) };
       if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
@@ -54,6 +54,18 @@ ribi::trim::Template::Template(
       assert(w.size() == 4);
       assert(CanLexicalCast<int>(w[0]));
       assert(CanLexicalCast<double>(w[1]));
+      #ifndef NDEBUG
+      if (!CanLexicalCast<double>(w[2]))
+      {
+        TRACE("ERROR");
+        TRACE(line);
+        TRACE(w[0]);
+        TRACE(w[1]);
+        TRACE(w[2]);
+        TRACE(w[3]);
+        TRACE("BREAK");
+      }
+      #endif
       assert(CanLexicalCast<double>(w[2]));
       assert(CanLexicalCast<int>(w[3]));
       const double x = boost::lexical_cast<double>(w[1]);
@@ -171,6 +183,11 @@ ribi::trim::Template::Template(
 ) : m_edges{edges}, m_faces{faces}, m_face_point_indices{face_point_indices}, m_points{points}
 {
 
+}
+
+std::string ribi::trim::Template::ConvertNumbersToEnglish(const std::string& s) noexcept
+{
+  return boost::algorithm::replace_all_copy(s,",",".");
 }
 
 const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(const int i) noexcept

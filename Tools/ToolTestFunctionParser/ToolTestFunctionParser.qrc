@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/ToolTestFunctionParser/images">
         <file>ToolTestFunctionParserWelcome.png</file>
     </qresource>
 </RCC>

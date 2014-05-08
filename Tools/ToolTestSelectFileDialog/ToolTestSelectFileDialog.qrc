@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/ToolTestSelectFileDialog/images">
         <file>ToolTestSelectFileDialogWelcome.png</file>
     </qresource>
 </RCC>

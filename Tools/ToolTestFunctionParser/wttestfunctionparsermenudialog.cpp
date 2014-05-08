@@ -54,7 +54,7 @@ ribi::WtTestFunctionParserMenuDialog::WtTestFunctionParserMenuDialog()
 
       if (!(ribi::fileio::FileIo().IsRegularFile(filename)))
       {
-        QFile f( (std::string(":/images/") + filename).c_str() );
+        QFile f( (std::string(":/ToolTestFunctionParser/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!ribi::fileio::FileIo().IsRegularFile(filename))

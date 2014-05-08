@@ -1,4 +1,10 @@
 include(../../Tools/ToolTestNewickVector/ToolTestNewickVectorConsole.pri)
-SOURCES +=
-HEADERS +=
+
+SOURCES += \
+    ../../Tools/ToolTestNewickVector/wtdialogtestnewickvector.cpp \
+    ../../Tools/ToolTestNewickVector/wttestnewickvectordialog.cpp
+
+HEADERS += \
+    ../../Tools/ToolTestNewickVector/wtdialogtestnewickvector.h \
+    ../../Tools/ToolTestNewickVector/wttestnewickvectordialog.h
 

@@ -1448,8 +1448,10 @@ int size;
   memptr = (VOID *) malloc((unsigned int) size);
   if (memptr == (VOID *) NULL) {
     printf("Error:  Out of memory.\n");
-    throw std::runtime HIEERO
-    //triexit(1);
+    #ifdef TODO_206
+    throw std::runtime_error("Triangle: out of memory");
+    #endif
+    triexit(1);
   }
   return(memptr);
 }

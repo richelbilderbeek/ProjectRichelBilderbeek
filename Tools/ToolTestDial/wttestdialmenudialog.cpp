@@ -56,7 +56,7 @@ ribi::WtTestDialMenuDialog::WtTestDialMenuDialog()
       {
         if (!(QFile::exists(filename.c_str())))
         {
-          QFile f( (std::string(":/images/") + filename).c_str() );
+          QFile f( (std::string(":/ToolTestDial/images/") + filename).c_str() );
           f.copy(filename.c_str());
         }
         if (!QFile::exists(filename.c_str()))

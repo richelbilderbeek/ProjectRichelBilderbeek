@@ -59,7 +59,7 @@ ribi::WtTestLedMenuDialog::WtTestLedMenuDialog()
 
       if (!fileio::FileIo().IsRegularFile(filename))
       {
-        QFile f( (std::string(":/images/") + filename).c_str() );
+        QFile f( (std::string(":/ToolTestLed/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!fileio::FileIo().IsRegularFile(filename))

@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestGroupWidget/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestGroupWidget/ToolTestGroupWidget.qrc

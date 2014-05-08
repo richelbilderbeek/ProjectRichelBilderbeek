@@ -1,5 +1,9 @@
 include(../../Tools/ToolTestEntrance/ToolTestEntranceConsole.pri)
 
-HEADERS +=
+HEADERS += \
+    ../../Tools/ToolTestEntrance/wttestentrancemaindialog.h \
+    ../../Tools/ToolTestEntrance/wttestentrancemenudialog.h
 
-SOURCES +=
+SOURCES += \
+    ../../Tools/ToolTestEntrance/wttestentrancemaindialog.cpp \
+    ../../Tools/ToolTestEntrance/wttestentrancemenudialog.cpp

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestGroupWidget, tool to test the GroupWidget class
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #include <cassert>
 
 #include <boost/filesystem.hpp>
@@ -55,7 +57,7 @@ ribi::WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
     {
       if (!(QFile::exists(filename.c_str())))
       {
-        QFile f( (std::string(":/images/") + filename).c_str() );
+        QFile f( (std::string(":/ToolTestGroupWidget/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!boost::filesystem::exists(filename.c_str()))
@@ -105,7 +107,7 @@ ribi::WtTestGroupWidgetMenuDialog::WtTestGroupWidgetMenuDialog()
 
 Wt::WWidget * ribi::WtTestGroupWidgetMenuDialog::CreateNewAboutDialog() const
 {
-  About a = TestGroupWidgetMenuDialog::GetAbout();
+  About a = TestGroupWidgetMenuDialog().GetAbout();
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtGroupWidget version: " + WtGroupWidget::GetVersion());

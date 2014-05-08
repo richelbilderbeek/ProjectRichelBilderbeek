@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestNewickVector, GUI tool to test NewickVector
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestNewickVector.htm
 //---------------------------------------------------------------------------
+/*
 #include <algorithm>
 #include <cassert>
 #include <cstdlib>
@@ -175,3 +176,4 @@ void QtDialogTestNewickVector::on_box_compare_clicked()
   m_dialog->SetCompareToTwoDigitNewick(ui->box_compare->isChecked());
 }
 //---------------------------------------------------------------------------
+*/

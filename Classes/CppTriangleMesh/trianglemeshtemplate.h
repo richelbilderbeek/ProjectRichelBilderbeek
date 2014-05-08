@@ -58,6 +58,9 @@ struct Template
   std::vector<std::vector<int>> m_face_point_indices;
   std::vector<boost::shared_ptr<Point>> m_points;
 
+  //No idea why Triangle started using the Dutch numbering system...
+  static std::string ConvertNumbersToEnglish(const std::string& s) noexcept;
+
   static const boost::shared_ptr<Template> CreateTest2x3() noexcept;
   static const boost::shared_ptr<Template> CreateTest3x3() noexcept;
   static const boost::shared_ptr<Template> CreateTestSquare2x2() noexcept;

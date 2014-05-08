@@ -53,8 +53,12 @@ ribi::WtTestSelectFileDialogMainDialog::WtTestSelectFileDialogMainDialog()
     {
       if (!(QFile::exists(s.c_str())))
       {
-        QFile f( (std::string(":/images/") + s).c_str() );
+        QFile f( (std::string(":/ToolTestSelectFileDialog/images/") + s).c_str() );
         f.copy(s.c_str());
+      }
+      if (!(QFile::exists(s.c_str())))
+      {
+        std::cerr << "Missing file " << s << std::endl;
       }
       assert(QFile::exists(s.c_str()));
     }
