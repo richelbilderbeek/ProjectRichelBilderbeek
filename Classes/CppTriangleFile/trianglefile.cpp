@@ -13,6 +13,7 @@
 
 //#ifndef _WIN32
 #include "triangle.h"
+#include "triangle_cpp.h"
 //#endif
 
 #pragma GCC diagnostic pop
@@ -45,11 +46,16 @@ std::pair<int,char **> ribi::TriangleFile::CreateArgv(const std::vector<std::str
   typedef char* String;
   typedef String* Strings;
   const int argc = static_cast<int>(v.size());
-  Strings argv = new String[argc];
+  const int buffer_sz = 256; //Will leak
+  Strings argv = new String[256];
   for (int i=0; i!=argc; ++i)
   {
     argv[i] = new char[v[i].size() + 1];
     std::strcpy(argv[i],&v[i][0]);
+  }
+  for (int i=argc; i!=buffer_sz; ++i)
+  {
+    argv[i] = nullptr;
   }
   std::pair<int,char **> p = std::make_pair(argc,argv);
   return p;
@@ -152,8 +158,109 @@ void ribi::TriangleFile::ExecuteTriangle(
   assert(fileio::FileIo().IsRegularFile(filename));
   const std::string exe_filename { "triangle.exe" };
 
-  //#define USE_TRIANGLE_EXE
-  #ifdef  USE_TRIANGLE_EXE
+  //Specific
+  std::vector<std::string> cmd {
+    exe_filename,
+    "-j",
+    "-z",
+    "-q",
+    boost::lexical_cast<std::string>(quality),
+    "-a",
+    boost::lexical_cast<std::string>(area),
+    filename
+  };
+  if (!verbose)
+  {
+    cmd.push_back("-Q");
+    std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
+  }
+  const std::pair<int,char **> p = CreateArgv(cmd);
+  triangle_main(p.first,p.second);
+  DeleteArgv(p);
+  //End of specific part
+
+  const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
+  node_filename = filename_base + ".1.node";
+  ele_filename = filename_base + ".1.ele";
+  poly_filename = filename_base + ".1.poly";
+  assert(fileio::FileIo().IsRegularFile(node_filename));
+  assert(fileio::FileIo().IsRegularFile(ele_filename));
+  assert(fileio::FileIo().IsRegularFile(poly_filename));
+  fileio::FileIo().DeleteFile(filename);
+}
+
+void ribi::TriangleFile::ExecuteTriangleCpp(
+  std::string& node_filename,
+  std::string& ele_filename,
+  std::string& poly_filename,
+  const double quality,
+  const double area,
+  const bool verbose) const noexcept
+{
+  const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
+  node_filename = "";
+  ele_filename = "";
+  poly_filename = "";
+
+  {
+    std::ofstream f(filename.c_str());
+    f << this->ToStr();
+  }
+
+  assert(fileio::FileIo().IsRegularFile(filename));
+  const std::string exe_filename { "triangle.exe" };
+
+  //Specific
+  std::vector<std::string> cmd {
+    exe_filename,
+    "-j",
+    "-z",
+    "-q",
+    boost::lexical_cast<std::string>(quality),
+    "-a",
+    boost::lexical_cast<std::string>(area),
+    filename
+  };
+  if (!verbose)
+  {
+    cmd.push_back("-Q");
+    std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
+  }
+  triangle_cpp_main(cmd);
+  //End of specific part
+
+  const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
+  node_filename = filename_base + ".1.node";
+  ele_filename = filename_base + ".1.ele";
+  poly_filename = filename_base + ".1.poly";
+  assert(fileio::FileIo().IsRegularFile(node_filename));
+  assert(fileio::FileIo().IsRegularFile(ele_filename));
+  assert(fileio::FileIo().IsRegularFile(poly_filename));
+  fileio::FileIo().DeleteFile(filename);
+}
+
+void ribi::TriangleFile::ExecuteTriangleExe(
+  std::string& node_filename,
+  std::string& ele_filename,
+  std::string& poly_filename,
+  const double quality,
+  const double area,
+  const bool verbose) const noexcept
+{
+  const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
+  node_filename = "";
+  ele_filename = "";
+  poly_filename = "";
+
+  {
+    std::ofstream f(filename.c_str());
+    f << this->ToStr();
+  }
+
+  assert(fileio::FileIo().IsRegularFile(filename));
+  const std::string exe_filename { "triangle.exe" };
+
+  //Specific
   if (!fileio::FileIo().IsRegularFile(exe_filename))
   {
     QFile file( (":/trianglefile/files/" + exe_filename).c_str() );
@@ -177,26 +284,8 @@ void ribi::TriangleFile::ExecuteTriangle(
     fileio::FileIo().DeleteFile(filename);
     throw std::runtime_error(s.str().c_str());
   }
-  #else
-  std::vector<std::string> cmd {
-    exe_filename,
-    "-j",
-    "-z",
-    "-q",
-    boost::lexical_cast<std::string>(quality),
-    "-a",
-    boost::lexical_cast<std::string>(area),
-    filename
-  };
-  if (!verbose)
-  {
-    cmd.push_back("-Q");
-    std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
-  }
-  const std::pair<int,char **> p = CreateArgv(cmd);
-  triangle_main(p.first,p.second);
-  DeleteArgv(p);
-  #endif
+  //End of specific
+
   const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
   node_filename = filename_base + ".1.node";
   ele_filename = filename_base + ".1.ele";

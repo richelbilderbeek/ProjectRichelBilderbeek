@@ -31,6 +31,9 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  void keyPressEvent(QKeyEvent *);
+  void keyReleaseEvent(QKeyEvent *);
 };
 
 #endif // QTTANKBATTALIONGAMEDIALOG

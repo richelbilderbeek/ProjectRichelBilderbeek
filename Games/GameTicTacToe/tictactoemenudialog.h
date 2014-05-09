@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace tictactoe {
 
-struct TicTacToeMenuDialog : public MenuDialog
+struct TicTacToeMenuDialog : public ::ribi::MenuDialog
 {
   TicTacToeMenuDialog();
   About GetAbout() const noexcept;

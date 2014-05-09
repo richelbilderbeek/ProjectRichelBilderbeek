@@ -203,6 +203,7 @@ enum class ProgramType
   testTicTacToe,
   testTimedServerPusher,
   testToggleButton,
+  testTriangle,
   testTwoDigitNewick,
   thorVeen,
   thresholdFilterer,

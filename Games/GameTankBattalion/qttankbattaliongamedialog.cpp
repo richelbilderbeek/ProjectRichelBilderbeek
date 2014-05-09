@@ -19,3 +19,13 @@ QtTankBattalionGameDialog::~QtTankBattalionGameDialog()
 {
   delete ui;
 }
+
+void QtTankBattalionGameDialog::keyPressEvent(QKeyEvent * e)
+{
+  m_game->keyPressEvent(e);
+}
+
+void QtTankBattalionGameDialog::keyReleaseEvent(QKeyEvent * e)
+{
+  m_game->keyReleaseEvent(e);
+}

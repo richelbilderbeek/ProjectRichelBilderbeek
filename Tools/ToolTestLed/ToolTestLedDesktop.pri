@@ -1,8 +1,5 @@
 include(../../Tools/ToolTestLed/ToolTestLedConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolTestLed/ToolTestLed.qrc
-
 FORMS += \
     ../../Tools/ToolTestLed/qttestledmaindialog.ui \
     ../../Tools/ToolTestLed/qttestledmenudialog.ui

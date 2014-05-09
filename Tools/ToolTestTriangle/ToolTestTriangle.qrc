@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ToolTestTriangle">
+        <file>ToolTestTriangleIcon.png</file>
+        <file>ToolTestTriangleWelcome.png</file>
+    </qresource>
+</RCC>

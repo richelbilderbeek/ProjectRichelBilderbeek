@@ -2759,20 +2759,21 @@ struct ProgramTestToggleButton : public ProgramClass
   std::string GetUrl() const noexcept { return "ToolTestToggleButton.htm"; }
 };
 
-struct ProgramTriangleMeshCreator : public ProgramTool
+struct ProgramTestTriangle : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTriangleMeshCreator_1_2.png"; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  std::string GetScreenName() const noexcept { return "TriangleMeshCreator"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  std::string GetScreenName() const noexcept { return "TestTriangle"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::triangleMeshCreator; }
-  std::string GetUrl() const noexcept { return "ToolTriangleMeshCreator.htm"; }
+  ProgramType GetType() const noexcept { return ProgramType::testTriangle; }
+  std::string GetUrl() const noexcept { return "ToolTestTriangle.htm"; }
 };
+
 
 struct ProgramTestTwoDigitNewick : public ProgramClass
 {
@@ -2892,6 +2893,21 @@ struct ProgramTimePoll : public ProgramTool
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::timePoll; }
   std::string GetUrl() const noexcept { return "ToolTimePoll.htm"; }
+};
+
+struct ProgramTriangleMeshCreator : public ProgramTool
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTriangleMeshCreator_1_2.png"; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TriangleMeshCreator"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::triangleMeshCreator; }
+  std::string GetUrl() const noexcept { return "ToolTriangleMeshCreator.htm"; }
 };
 
 struct ProgramTronCollection : public ProgramGame

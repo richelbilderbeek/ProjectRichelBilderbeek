@@ -216,6 +216,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testTicTacToe,"testTicTacToe"));
   m.insert(Pair(ProgramType::testTimedServerPusher,"testTimedServerPusher"));
   m.insert(Pair(ProgramType::testToggleButton,"testToggleButton"));
+  m.insert(Pair(ProgramType::testTriangle,"testTriangle"));
   m.insert(Pair(ProgramType::testTwoDigitNewick,"testTwoDigitNewick"));
   m.insert(Pair(ProgramType::thorVeen,"thorVeen"));
   m.insert(Pair(ProgramType::thresholdFilterer,"thresholdFilterer"));
@@ -434,6 +435,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testTicTacToe,"Test TicTacToe"));
   m.insert(Pair(ProgramType::testTimedServerPusher,"Test TimedServerPusher"));
   m.insert(Pair(ProgramType::testToggleButton,"Test ToggleButton"));
+  m.insert(Pair(ProgramType::testTriangle,"Test Triangle"));
   m.insert(Pair(ProgramType::testTwoDigitNewick,"Test TwoDigitNewick"));
   m.insert(Pair(ProgramType::thorVeen,"Thor Veen"));
   m.insert(Pair(ProgramType::thresholdFilterer,"ThresholdFilterer"));

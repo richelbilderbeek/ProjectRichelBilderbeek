@@ -30,17 +30,19 @@ public:
   typedef std::map<TankBattalion::SpriteType,boost::shared_ptr<QImage>> SpriteMap;
   explicit QtGameWidget(QWidget *parent = 0);
 
-protected:
+
   void keyPressEvent(QKeyEvent *);
   void keyReleaseEvent(QKeyEvent *);
+
+protected:
   void paintEvent(QPaintEvent *);
 
 private:
   Direction m_direction;
   std::set<Key> m_keys;
   const SpriteMap m_sprites;
-  double m_x;
-  double m_y;
+  int m_x;
+  int m_y;
 
   const SpriteMap CreateSprites() const;
   const boost::shared_ptr<QImage> GetImage(const TankBattalion::SpriteType& s) const;

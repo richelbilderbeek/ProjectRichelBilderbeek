@@ -187,7 +187,11 @@ ribi::trim::Template::Template(
 
 std::string ribi::trim::Template::ConvertNumbersToEnglish(const std::string& s) noexcept
 {
+  #ifndef _WIN32
   return boost::algorithm::replace_all_copy(s,",",".");
+  #else
+  return s;
+  #endif
 }
 
 const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(const int i) noexcept

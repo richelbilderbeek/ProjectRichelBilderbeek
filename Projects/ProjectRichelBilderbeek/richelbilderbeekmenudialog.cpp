@@ -210,6 +210,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testtwodigitnewickmenudialog.h"
 #include "textcanvas.h"
 #include "thresholdfilterermenudialog.h"
+#include "testtrianglemenudialog.h"
 #include "tictactoeboard.h"
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
@@ -2716,6 +2717,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::testToggleButton: p.reset(new TestToggleButtonMenuDialog); break;
+      case ProgramType::testTriangle: p.reset(new TestTriangleMenuDialog); break;
       case ProgramType::testTwoDigitNewick: p.reset(new TestTwoDigitNewickMenuDialog); break;
       case ProgramType::thorVeen:
       {

@@ -5,6 +5,7 @@
 #include "qttankbattaliongamewidget.h"
 
 #include <cassert>
+#include <iostream>
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -13,6 +14,8 @@
 #include <QTimer>
 #include <QImage>
 #include <QPainter>
+
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 QtGameWidget::QtGameWidget(QWidget *parent)
@@ -20,8 +23,8 @@ QtGameWidget::QtGameWidget(QWidget *parent)
    m_direction{Direction::down},
    m_keys{},
    m_sprites(CreateSprites()),
-   m_x{0.0},
-   m_y{0.0}
+   m_x{0},
+   m_y{0}
 {
   {
     QTimer * const timer = new QTimer(this);
@@ -62,16 +65,25 @@ void QtGameWidget::keyPressEvent(QKeyEvent * e)
   switch (e->key())
   {
     case Qt::Key_Up:
+      TRACE("Pressed up");
       m_keys.insert(Key::up);
       m_direction = Direction::up;
       break;
     case Qt::Key_Right:
+      TRACE("Pressed right");
       m_keys.insert(Key::right);
       m_direction = Direction::right;
       break;
     case Qt::Key_Down:
-      m_keys.insert(Key::down); m_direction = Direction::down;break;
-    case Qt::Key_Left: m_keys.insert(Key::left); m_direction = Direction::left; break;
+      TRACE("Pressed down");
+      m_keys.insert(Key::down);
+      m_direction = Direction::down;
+      break;
+    case Qt::Key_Left:
+      TRACE("Pressed left");
+      m_keys.insert(Key::left);
+      m_direction = Direction::left;
+      break;
   }
 }
 
@@ -113,9 +125,11 @@ void QtGameWidget::paintEvent(QPaintEvent *)
     case Direction::down : s += "Down.png"; break;
     case Direction::left : s += "Left.png"; break;
   }
-
+  std::cout << s << std::endl;
   QPixmap p(s.c_str());
-  painter.drawPixmap(m_x,m_y,34,34,p);
+  assert(p.height() > 0);
+  assert(p.width() > 0);
+  painter.drawPixmap(m_x,m_y,16,16,p);
 
   /*
   QPainter painter(this);
