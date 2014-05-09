@@ -11,6 +11,3 @@ HEADERS  += \
 FORMS += \
     ../../Games/GameTankBattalion/qttankbattaliongamedialog.ui
 
-RESOURCES += \
-    ../../Games/GameTankBattalion/GameTankBattalion.qrc
-

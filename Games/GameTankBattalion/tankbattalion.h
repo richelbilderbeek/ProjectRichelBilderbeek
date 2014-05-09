@@ -1,7 +1,6 @@
-//---------------------------------------------------------------------------
 #ifndef TANKBATTALION_H
 #define TANKBATTALION_H
-//---------------------------------------------------------------------------
+
 struct TankBattalion
 {
   enum SpriteType
@@ -34,5 +33,5 @@ struct TankBattalion
   private:
 
 };
-//---------------------------------------------------------------------------
+
 #endif // TANKBATTALION_H

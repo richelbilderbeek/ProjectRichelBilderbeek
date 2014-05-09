@@ -18,12 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtSelectFileDialog.htm
 //---------------------------------------------------------------------------
-#include "wtselectfiledialog.h"
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#include "wtselectfiledialog.h"
+
 #include <boost/xpressive/xpressive.hpp>
 
 #include <Wt/WBreak>

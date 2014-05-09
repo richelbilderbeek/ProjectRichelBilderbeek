@@ -40,6 +40,7 @@ include(../../Classes/CppShapeWidget/CppShapeWidget.pri)
 include(../../Classes/CppStopwatch/CppStopwatch.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 include(../../Classes/CppWidget/CppWidget.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
 #Web
 include(../../Classes/CppWtGroupWidget/CppWtGroupWidget.pri)

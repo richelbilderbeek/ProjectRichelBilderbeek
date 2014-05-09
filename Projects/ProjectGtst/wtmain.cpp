@@ -54,6 +54,8 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/filesystem.hpp>
+
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
 
@@ -80,9 +82,9 @@ struct WtGtstApplication : public Wt::WApplication
   {
     this->setTitle("GTST");
     this->useStyleSheet("wt.css");
-    const boost::scoped_ptr<SafeIpAddress> ip_address(
-      new SafeIpAddress(env.clientAddress()));
-    root()->addWidget(new ProjectGtst::MenuDialog(ip_address.get()));
+    const boost::scoped_ptr<ribi::SafeIpAddress> ip_address(
+      new ribi::SafeIpAddress(env.clientAddress()));
+    root()->addWidget(new ribi::gtst::MenuDialog(ip_address.get()));
   }
 };
 

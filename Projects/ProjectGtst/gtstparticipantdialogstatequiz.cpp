@@ -185,15 +185,7 @@ void ribi::gtst::ParticipantDialogStateQuiz::ShowPage(ParticipantDialog * const 
   ui.m_label_time_left = new Wt::WLabel("Time left: ... seconds");
   ui.m_label_status = new Wt::WLabel("Waiting for your vote");
 
-  #ifdef TODO_ISSUE_199
-  ui.m_mc_dialog
-    = new WtMultipleChoiceQuestionDialog(
-      boost::shared_ptr<QuestionDialog>(
-        new MultipleChoiceQuestionDialog(
-          boost::shared_ptr<MultipleChoiceQuestion>(
-            new MultipleChoiceQuestion(
-              "*","Test","Good",{ "Wrong1" , "Wrong2" } )))));
-  #endif
+  ui.m_mc_dialog = new WtMultipleChoiceQuestionDialog("*,Test,Good,Wrong1,Wrong2");
   assert(ui.m_label_time_left);
   assert(ui.m_label_status);
   assert(ui.m_mc_dialog);

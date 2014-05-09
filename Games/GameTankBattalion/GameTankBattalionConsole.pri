@@ -10,3 +10,6 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Games/GameTankBattalion/Licence.txt
 
+RESOURCES += \
+    ../../Games/GameTankBattalion/GameTankBattalion.qrc
+
