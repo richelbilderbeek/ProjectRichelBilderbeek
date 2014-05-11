@@ -28,6 +28,7 @@ public:
   QtConceptMapTestEdgeItemDialog(const QtConceptMapTestEdgeItemDialog&) = delete;
   QtConceptMapTestEdgeItemDialog& operator=(const QtConceptMapTestEdgeItemDialog&) = delete;
   ~QtConceptMapTestEdgeItemDialog() noexcept;
+  int GetTestIndex() const noexcept;
 protected:
 
   void keyPressEvent(QKeyEvent *);
@@ -45,6 +46,8 @@ private slots:
 
   void on_box_arrow_tail_currentIndexChanged(int index);
 
+  void on_button_load_test_clicked();
+
 private:
 
   Ui::QtConceptMapTestEdgeItemDialog *ui;
@@ -57,10 +60,12 @@ private:
   static const boost::shared_ptr<Node> CreateTo();
 
   ///Get the Edge via the route chosen by box_edit
-  const boost::shared_ptr<Edge> GetEdgeCurrentWay();
+  boost::shared_ptr<Edge> GetEdgeCurrentWay();
 
   ///Get the Edge from a route
-  const boost::shared_ptr<Edge> GetEdge(const int index);
+  boost::shared_ptr<Edge> GetEdge(const int index);
+
+  void SetEdge(const boost::shared_ptr<Edge>& edge) noexcept;
 
   ///Called whenever an item requests a scene update
   void OnRequestSceneUpdate();

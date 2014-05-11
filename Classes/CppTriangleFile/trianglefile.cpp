@@ -159,14 +159,18 @@ void ribi::TriangleFile::ExecuteTriangle(
   const std::string exe_filename { "triangle.exe" };
 
   //Specific
+  const std::string quality_str = boost::lexical_cast<std::string>(quality);
+  const std::string area_str = boost::lexical_cast<std::string>(area);
+  assert(quality_str.find(',') == std::string::npos && "No Dutch please");
+  assert(area_str.find(',')    == std::string::npos && "No Dutch please");
   std::vector<std::string> cmd {
     exe_filename,
     "-j",
     "-z",
     "-q",
-    boost::lexical_cast<std::string>(quality),
+    quality_str,
     "-a",
-    boost::lexical_cast<std::string>(area),
+    area_str,
     filename
   };
   if (!verbose)
@@ -211,14 +215,18 @@ void ribi::TriangleFile::ExecuteTriangleCpp(
   const std::string exe_filename { "triangle.exe" };
 
   //Specific
+  const std::string quality_str = boost::lexical_cast<std::string>(quality);
+  const std::string area_str = boost::lexical_cast<std::string>(area);
+  assert(quality_str.find(',') == std::string::npos && "No Dutch please");
+  assert(area_str.find(',')    == std::string::npos && "No Dutch please");
   std::vector<std::string> cmd {
     exe_filename,
     "-j",
     "-z",
     "-q",
-    boost::lexical_cast<std::string>(quality),
+    quality_str,
     "-a",
-    boost::lexical_cast<std::string>(area),
+    area_str,
     filename
   };
   if (!verbose)
@@ -261,6 +269,10 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   const std::string exe_filename { "triangle.exe" };
 
   //Specific
+  const std::string quality_str = boost::lexical_cast<std::string>(quality);
+  const std::string area_str = boost::lexical_cast<std::string>(area);
+  assert(quality_str.find(',') == std::string::npos && "No Dutch please");
+  assert(area_str.find(',')    == std::string::npos && "No Dutch please");
   if (!fileio::FileIo().IsRegularFile(exe_filename))
   {
     QFile file( (":/trianglefile/files/" + exe_filename).c_str() );
@@ -272,9 +284,9 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   s
     << exe_filename
     << " -j -z -q"
-    << quality
+    << quality_str
     << " -a"
-    << area
+    << area_str
     << (verbose ? "" : " -Q")
     << " "
     << filename;

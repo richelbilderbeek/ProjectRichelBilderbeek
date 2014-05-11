@@ -23,7 +23,7 @@ include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
 include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
 include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
 include(../../Classes/CppQtScopedDisable/CppQtScopedDisable.pri)
-include(../../Tools/ToolTestConceptMap/ToolTestConceptMapDesktop.pri)
+include(ToolTestConceptMapDesktop.pri)
 
 SOURCES += qtmain.cpp
 

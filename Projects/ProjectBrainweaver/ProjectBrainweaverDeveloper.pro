@@ -1,3 +1,5 @@
+#DEFINES += BRAINWEAVER_MOVE_ITEMS_ON_COLLISION
+
 #Don't enable Effective C++ warnings when using Qwt
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)

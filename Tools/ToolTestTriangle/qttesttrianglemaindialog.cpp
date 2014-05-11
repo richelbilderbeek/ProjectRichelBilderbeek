@@ -98,7 +98,12 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
 {
   const bool verbose = GetVerbose();
 
-  for (int i=0; i!=1; ++i)
+  for (int i=0; i!=
+    1
+  #ifdef TODO_ISSUE_207
+    2
+  #endif // TODO_ISSUE_207
+  ; ++i)
   {
     std::string filename_node;
     std::string filename_ele;

@@ -195,12 +195,12 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDi
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDialog::GetEdgeCurrentWay()
+boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDialog::GetEdgeCurrentWay()
 {
   return GetEdge(ui->box_edit->currentIndex());
 }
 
-const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDialog::GetEdge(const int index)
+boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDialog::GetEdge(const int index)
 {
   switch(index)
   {
@@ -231,6 +231,12 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDi
 void ribi::cmap::QtConceptMapTestEdgeItemDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+}
+
+int ribi::cmap::QtConceptMapTestEdgeItemDialog::GetTestIndex() const noexcept
+{
+  //return ui->box_index->value();
+  return 1;
 }
 
 void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_competency_currentIndexChanged(int index)
@@ -305,6 +311,11 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate()
   assert(ui->view);
   assert(ui->view->scene());
   ui->view->scene()->update();
+}
+
+void ribi::cmap::QtConceptMapTestEdgeItemDialog::SetEdge(const boost::shared_ptr<ribi::cmap::Edge>& /* edge */) noexcept
+{
+  //
 }
 
 #ifndef NDEBUG
@@ -415,3 +426,8 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::Test() noexcept
   TRACE("ribi::cmap::QtConceptMapTestEdgeItemDialog::Test finished successfully");
 }
 #endif
+
+void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_button_load_test_clicked()
+{
+  //
+}

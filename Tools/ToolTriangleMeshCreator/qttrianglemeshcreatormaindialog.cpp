@@ -91,7 +91,11 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
       assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));
       std::stringstream s;
       s
+        #ifdef WIN32_
         << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
+        #else
+        << "meshlab "
+        #endif
         << d.GetFilename()
       ;
       const int error = std::system(s.str().c_str());

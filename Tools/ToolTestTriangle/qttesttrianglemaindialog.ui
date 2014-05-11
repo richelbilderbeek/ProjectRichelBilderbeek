@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>866</width>
-    <height>542</height>
+    <width>868</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -90,7 +90,7 @@ POLYGON((-5 -5 , -4 -5, -3 -5, -2 -5, -1 -5, 0 -5, 1 -5, 2 -5, 3 -5, 4 -5, 5 -5,
    <item row="1" column="2">
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>Triangle C++ its equivalent</string>
+      <string>Triangle its C++ equivalent</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

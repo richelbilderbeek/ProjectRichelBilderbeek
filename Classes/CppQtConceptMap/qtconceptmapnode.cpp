@@ -269,6 +269,7 @@ void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem
   m_display_strategy->paint(painter,item,widget);
 
   //Check if item can move (as the center node cannot)
+  #ifdef BRAINWEAVER_MOVE_ITEMS_ON_COLLISION
   if (this->flags() & QGraphicsItem::ItemIsMovable)
   {
     //Item can move, check for collision
@@ -287,6 +288,7 @@ void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem
       }
     );
   }
+  #endif
 }
 
 void ribi::cmap::QtNode::SetConcept(const boost::shared_ptr<Concept> concept)
