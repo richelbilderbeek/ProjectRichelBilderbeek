@@ -16342,6 +16342,27 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+  m.push_back(
+    { "ToolTestTriangle",
+      {
+        "<p>",
+        "<a href=\"ToolTestTriangle.htm\">TestTriangle</a> is a <a href=\"Tools.htm\">tool</a> to test ",
+        "the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTriangle.htm\">Triangle</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"ToolTestTriangle.htm\">TestTriangle</a> downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestTriangleConsoleExe.zip\">Download the 'TestTriangle' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestTriangleDesktopExe.zip\">Download the 'TestTriangle' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestTriangleWebsiteExe.zip\">Download the 'TestTriangle' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
 
 
   m.push_back(

@@ -1,4 +1,4 @@
-include(../../Tools/ToolTriangleMeshCreator/ToolTriangleMeshCreatorConsole.pri)
+include(../../Tools/ToolTestTriangle/ToolTestTriangleConsole.pri)
 
 HEADERS +=
 

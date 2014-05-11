@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTriangle.htm
 //---------------------------------------------------------------------------
-#ifndef QTTRIANGLEMESHCREATORMENUDIALOG_H
-#define QTTRIANGLEMESHCREATORMENUDIALOG_H
+#ifndef QTTESTTRIANGLEMENUDIALOG_H
+#define QTTESTTRIANGLEMENUDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -62,4 +62,4 @@ private slots:
 
 } //~namespace ribi
 
-#endif // QTTRIANGLEMESHCREATORMENUDIALOG_H
+#endif // QTTESTTRIANGLEMENUDIALOG_H

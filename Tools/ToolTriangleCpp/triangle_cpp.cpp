@@ -81,10 +81,10 @@ const int max_inputline_size = 1024;
 
 #define SAMPLERATE 10
 
-char *readline();
-char * readline(char *string, FILE * const infile,  char * const infilename);
-char *findfield();
-char *findfield(const char * const string);
+//char *readline();
+char * readline(char *string, FILE * const infile,  const char * const infilename);
+//char *findfield();
+char *findfield(char * const string);
 
 /* Labels that signify the result of point location.  The result of a        */
 /*   search indicates that the point falls in the interior of a triangle, on */
@@ -9375,10 +9375,10 @@ long delaunay(
 long reconstruct(
   Mesh * const m,
   const Behavior * const b,
-  const char * const elefilename,
+  char * const elefilename,
   const char * const areafilename,
   const char * const polyfilename,
-  const FILE * const polyfile
+  FILE * const polyfile
 )
 {
   FILE *elefile;
@@ -10579,7 +10579,7 @@ void markhull(
 void formskeleton(
   Mesh * const m,
   const Behavior * const b,
-  const FILE * const polyfile,
+  FILE * const polyfile,
   const char * const polyfilename)
 {
   char inputline[max_inputline_size];
@@ -11886,7 +11886,7 @@ void highorder(
 /*                                                                           */
 /*****************************************************************************/
 
-char * readline(char * const string, FILE * const infile, char * /* infilename */)
+char * readline(char * const string, FILE * const infile, const char * const /* infilename */)
 {
   char *result = NULL;
 

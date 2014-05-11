@@ -1,1 +1,1 @@
-include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
+include(../../Tools/ToolTriangleCpp/ToolTriangleCppConsole.pri)

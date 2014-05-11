@@ -1,448 +1,99 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttesthideandshowdialogmenudialog.h"
+#include "testhideandshowdialogmenudialog.h"
 
 #include <cassert>
 #include <iostream>
 
-#include <boost/numeric/conversion/cast.hpp>
 #include <boost/lexical_cast.hpp>
 
-#include "binarynewickvector.h"
-#include "newick.h"
-#include "newickvector.h"
-#include "twodigitnewick.h"
-
+#include "fileio.h"
+#include "fparser.hh"
+#include "geometry.h"
+#include "plane.h"
+#include "richelbilderbeekprogram.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::TestNewickVectorDialog::TestNewickVectorDialog() noexcept
-  : m_analyse_calculation{false},
-    m_compare{false},
-    m_max_complexity_str{},
-    m_newick_str{},
-    m_theta_str{},
-    m_newick{},
-    m_theta{},
-    m_complexity{},
-    m_denominator{},
-    m_n_combinations{},
-    m_n_symmetries{},
-    m_text{}
+ribi::TestHideAndShowDialogMenuDialog::TestHideAndShowDialogMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
-  #ifndef NDEBUG
-  Newick::Test();
-  BinaryNewickVector::Test();
-  #endif
 }
 
-void ribi::TestNewickVectorDialog::Analyse() noexcept
+int ribi::TestHideAndShowDialogMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
-  //Store the data
-  m_newick.reset(new NewickVector(m_newick_str));
-  m_theta = boost::lexical_cast<double>(m_theta_str);
-  m_complexity = bigIntegerToString(m_newick->CalcComplexity());
-  m_denominator = m_newick->CalcDenominator(m_theta);
-
-  m_text.push_back("Newick complexity: "
-      + m_complexity);
-
-  AnalyseArity();
-  AnalyseSimplerNewicks();
-  AnalyseCalculation();
-
-  AnalyseRootBranches();
-
-  if (Newick::IsBinaryNewick(m_newick->Peek()))
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
   {
-    m_n_combinations = bigIntegerToString(m_newick->CalcNumOfCombinations());
-    m_n_symmetries = bigIntegerToString(m_newick->CalcNumOfSymmetries());
+    std::cout << GetHelp() << '\n';
+    return 1;
   }
-  else
-  {
-    m_n_combinations = "N/A (not a binary Newick)";
-    m_n_symmetries = "N/A (not a binary Newick)";
-  }
-  m_text.push_back("Number of combinations: " + m_n_combinations);
-  m_text.push_back("Number of symmetries: " + m_n_symmetries);
-  m_text.push_back("Denominator: " + boost::lexical_cast<std::string>(m_denominator));
+  return 0;
 }
 
-void ribi::TestNewickVectorDialog::AnalyseArity() noexcept
+ribi::About ribi::TestHideAndShowDialogMenuDialog::GetAbout() const noexcept
 {
-  //Check if simple Newick
-  if (Newick::IsSimple(m_newick->Peek()))
-  {
-    m_text.push_back("Simple Newick: Yes");
-    m_text.push_back("Ewens probability: "
-      + boost::lexical_cast<std::string>(
-        m_newick->CalcProbabilitySimpleNewick(m_theta)));
-  }
-  else
-  {
-    m_text.push_back("Simple Newick: No");
-  }
-  //Check if binary Newick
-  if (Newick::IsBinaryNewick(m_newick->Peek()))
-  {
-    m_text.push_back("Binary Newick: Yes");
-  }
-  else
-  {
-    m_text.push_back("Binary Newick: No");
-  }
-  if (Newick::IsTrinaryNewick(m_newick->Peek()))
-  {
-    m_text.push_back("Trinary Newick: Yes");
-  }
-  else
-  {
-    m_text.push_back("Trinary Newick: No");
-  }
-}
-
-void ribi::TestNewickVectorDialog::AnalyseCalculation() noexcept
-{
-  if (!m_analyse_calculation) return;
-
-  typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
-  const std::vector<NewickFrequencyPair> simpler
-    = Newick::GetSimplerNewicksFrequencyPairs(m_newick->Peek());
-  //Collect cooeficients
-  std::vector<double> coefficients;
-  for(const NewickFrequencyPair& p: simpler)
-  {
-    const int f = p.second;
-    coefficients.push_back(f == 1
-      ? m_theta / m_denominator
-      : boost::numeric_cast<double>(f*(f-1)) / m_denominator);
-  }
-  assert(coefficients.size() == simpler.size());
-  //Collect probabilities
-  std::vector<double> probabilities;
-  for(const NewickFrequencyPair& p: simpler)
-  {
-    const NewickVector n(p.first);
-    probabilities.push_back(n.CalculateProbability(n.ToStr(),m_theta));
-  }
-  assert(probabilities.size() == simpler.size());
-
-  //Display general info
-  m_text.push_back(std::string(80,'-'));
-  m_text.push_back("Calculation");
-  m_text.push_back(std::string(80,'-'));
-  m_text.push_back("N = the phylogeny = " + m_newick_str);
-  m_text.push_back("t = theta = " + m_theta_str);
-  m_text.push_back("p(N,t) = probability = SUM(c_i * p_i)");
-  m_text.push_back("c(N,t) = coefficient");
-  m_text.push_back("D(N,t) = denominator = "
-    + boost::lexical_cast<std::string>(m_denominator));
-
-  //Display derived Newicks
-  const int n_simpler = boost::numeric_cast<int>(simpler.size());
-  for (int i=0; i!=n_simpler; ++i)
-  {
-    m_text.push_back(
-      "N'"
-      + boost::lexical_cast<std::string>(i+1)
-      + " = "
-      + Newick::NewickToString(simpler[i].first));
-  }
-  m_text.push_back(" ");
-  m_text.push_back("For t = "
-    + boost::lexical_cast<std::string>(m_theta)
-    + ":");
-  m_text.push_back(" ");
-  //Display probabilities
-  for (int i=0; i!=n_simpler; ++i)
-  {
-    m_text.push_back(
-      "p'"
-      + boost::lexical_cast<std::string>(i+1)
-      + " = "
-      + boost::lexical_cast<std::string>(probabilities[i])
-      + " (calculated at once with NewickVector)"
-    );
-  }
-  //Display coefficients
-  for (int i=0; i!=n_simpler; ++i)
-  {
-    const int f = simpler[i].second;
-    m_text.push_back(
-      "c'"
-      + boost::lexical_cast<std::string>(i+1)
-      + " = "
-      + std::string(f == 1 ? "t / d" : "(f*(f-1)) / d")
-      + " = "
-      + boost::lexical_cast<std::string>(f == 1
-        ? m_theta
-        : boost::lexical_cast<double>(f*(f-1)))
-      + " / "
-      + boost::lexical_cast<std::string>(m_denominator)
-      + " = "
-      + boost::lexical_cast<std::string>(coefficients[i])
-      + " (as f equals "
-      + boost::lexical_cast<std::string>(f)
-      + ")"
-    );
-  }
-  m_text.push_back("p(N,t) = SUM(c_i * p_i)");
-  {
-
-    for (int i=0; i!=n_simpler; ++i)
-    {
-      std::string s = (i==0
-        ? "       =  "
-        : "         +");
-      s += " ( "
-        + boost::lexical_cast<std::string>(coefficients[i])
-        + " * "
-        + boost::lexical_cast<std::string>(probabilities[i])
-        + " )";
-      m_text.push_back(s);
-    }
-    //Hand-calculate probability
-    double p_by_hand = 0.0;
-    for (int i=0; i!=n_simpler; ++i)
-    {
-      p_by_hand += (coefficients[i] * probabilities[i]);
-    }
-    //p_by_hand/=m_denominator;
-    m_text.push_back(
-      "       = "
-      + boost::lexical_cast<std::string>(p_by_hand)
-      + " (hand-calculated)"
-    );
-    const double p_at_once = m_newick->CalculateProbability(m_newick->ToStr(),m_theta);
-    m_text.push_back(
-      std::string(Newick::fuzzy_equal_to()(p_by_hand,p_at_once)
-        ? "       = "
-        : "       != ")
-      + boost::lexical_cast<std::string>(p_at_once)
-      + " (calculated at once by NewickVector)"
-    );
-    if (m_compare
-      && (  Newick::IsUnaryNewick(m_newick->Peek())
-         || Newick::IsBinaryNewick(m_newick->Peek()) ) )
-    {
-      const double p_two_digit_newick = TwoDigitNewick::CalculateProbability(m_newick->ToStr(),m_theta);
-      m_text.push_back(
-        std::string(Newick::fuzzy_equal_to()(p_two_digit_newick,p_at_once)
-          ? "       = "
-          : "       != ")
-        + boost::lexical_cast<std::string>(p_two_digit_newick)
-        + " (calculated at once by TwoDigitNewick)"
-      );
-    }
-  }
-  m_text.push_back(std::string(80,'-'));
-}
-
-void ribi::TestNewickVectorDialog::AnalyseRootBranches() noexcept
-{
-  if(!Newick::IsUnaryNewick(m_newick->Peek()))
-  {
-    std::string text = "(X,Y) =\n";
-    const std::vector<std::vector<int> > b
-      = Newick::GetRootBranches(m_newick->Peek());
-    try
-    {
-      for(const std::vector<int>& c: b)
-      {
-        Newick::CheckNewick(c);
-        text+="  " + Newick::NewickToString(c);
-      }
-    }
-    catch (std::exception& e)
-    {
-      text+=std::string(e.what());
-    }
-    text+="\n";
-    m_text.push_back(text);
-  }
-}
-
-void ribi::TestNewickVectorDialog::AnalyseSimplerNewicks() noexcept
-{
-  typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
-  const std::vector<NewickFrequencyPair> simpler
-    = Newick::GetSimplerNewicksFrequencyPairs(m_newick->Peek());
-  std::string text = "Simpler Newicks:\n";
-  for(const NewickFrequencyPair& simple_pair: simpler)
-  {
-    const std::vector<int>& simple = simple_pair.first;
-    const int f = simple_pair.second;
-    try
-    {
-      Newick::CheckNewick(simple);
-      text+="  ";
-      text+=Newick::NewickToString(simple);
-      text+=" (from f = ";
-      text+=boost::lexical_cast<std::string>(f);
-      text+=")\n";
-    }
-    catch (std::exception& e)
-    {
-
-      //Should not get here
-      text += std::string(e.what()) + "\n";
-    }
-  }
-  if (simpler.empty()) text+=" [none]\n";
-  //Pop the trailing '\n'
-  text.resize(text.size() - 1);
-  m_text.push_back(text.c_str());
-}
-
-void ribi::TestNewickVectorDialog::AutoCalculate() noexcept
-{
-  m_text.resize(0);
-
-  if (!CheckNewick()) return;
-  if (!CheckTheta()) return;
-  if (!CheckMaxComplexity()) return;
-
-  const BigInteger max_complexity
-    = stringToBigInteger(m_max_complexity_str);
-  if (Newick::CalcComplexity(Newick::StringToNewick(m_newick_str))
-    > max_complexity)
-  {
-    m_text.push_back("Newick too complex to auto-calculate. Press 'Calculate' or increase the value for auto-calculate");
-    return;
-  }
-  Analyse();
-}
-
-void ribi::TestNewickVectorDialog::Calculate() noexcept
-{
-  m_text.resize(0);
-  if (!CheckNewick()) return;
-  if (!CheckTheta()) return;
-  Analyse();
-
-}
-
-bool ribi::TestNewickVectorDialog::CheckMaxComplexity() noexcept
-{
-  try
-  {
-    boost::lexical_cast<int>(m_max_complexity_str);
-  }
-  catch (boost::bad_lexical_cast&)
-  {
-    m_text.push_back("Valid maximum autocalc complexity: No");
-    return false;
-  }
-  m_text.push_back("Valid maximum autocalc complexity: Yes");
-  return true;
-}
-
-bool ribi::TestNewickVectorDialog::CheckNewick() noexcept
-{
-  if (!Newick::IsNewick(m_newick_str))
-  {
-    m_text.push_back("Valid Newick: No");
-    //No Newick, why not?
-    try
-    {
-      Newick::CheckNewick(m_newick_str);
-    }
-    catch (std::exception& e)
-    {
-      //Must get here
-      m_text.push_back(std::string("Exception: ") + e.what());
-    }
-    return false;
-  }
-  m_text.push_back("Valid Newick: Yes");
-  return true;
-}
-
-bool ribi::TestNewickVectorDialog::CheckTheta() noexcept
-{
-  try
-  {
-    boost::lexical_cast<double>(m_theta_str);
-  }
-  catch (boost::bad_lexical_cast&)
-  {
-    m_text.push_back("Valid theta: No");
-    return false;
-  }
-  m_text.push_back("Valid theta: Yes");
-  return true;
-}
-
-ribi::About ribi::TestNewickVectorDialog::GetAbout() noexcept
-{
-  About about(
+  About a(
     "Richel Bilderbeek",
-    "TestNewickVector",
-    "tool to test the NewickVector class",
-    "at the 25th of April 2011",
-    "2011-2014",
-    "http://www.richelbilderbeek.nl/ToolTestNewickVector.htm",
+    "TestHideAndShowDialog",
+    "tests the TestHideAndShowDialog class",
+    "the 9th of May 2014",
+    "2014",
+    "http://www.richelbilderbeek.nl/ToolTestHideAndShowDialog.htm",
     GetVersion(),
     GetVersionHistory());
-  about.AddLibrary("BigInt: version 2010.04.30");
-  about.AddLibrary("BinaryNewickVector: " + BinaryNewickVector::GetVersion());
-  about.AddLibrary("NewickVector: " + NewickVector::GetVersion());
-  return about;
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
+  return a;
 }
 
-std::string ribi::TestNewickVectorDialog::GetVersion() noexcept
+ribi::Help ribi::TestHideAndShowDialogMenuDialog::GetHelp() const noexcept
 {
-  return "3.2";
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-std::vector<std::string> ribi::TestNewickVectorDialog::GetVersionHistory() noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestHideAndShowDialogMenuDialog::GetProgram() const noexcept
+{
+  boost::shared_ptr<const ribi::Program> p {
+    new ribi::ProgramTestQtHideAndShowDialog
+  };
+  assert(p);
+  return p;
+}
+
+std::string ribi::TestHideAndShowDialogMenuDialog::GetVersion() const noexcept
+{
+  return "1.0";
+}
+
+std::vector<std::string> ribi::TestHideAndShowDialogMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2011-02-20: Version 1.0: initial version",
-    "2011-03-09: Version 2.0: calculates Newick probabilities",
-    "2011-03-26: Version 3.0: seperated GUI from logic, added web version",
-    "2011-04-25: Version 3.1: removed web version\'s Close button",
-    "2011-06-07: Version 3.2: added command-line call"
+    "2013-xx-xx: version 1.0: initial version",
+    "2014-05-09: version 1.1: started versioning"
   };
 }
 
-void ribi::TestNewickVectorDialog::SetAnalyseCalculation(const bool b) noexcept
-{
-  m_analyse_calculation = b;
-}
-
-void ribi::TestNewickVectorDialog::SetCompareToTwoDigitNewick(const bool b) noexcept
-{
-  m_compare = b;
-}
-
-void ribi::TestNewickVectorDialog::SetMaxComplexity(const std::string& s)
-{
-  m_max_complexity_str = s;
-}
-
-void ribi::TestNewickVectorDialog::SetNewick(const std::string& s)
-{
-  m_newick_str = s;
-}
-
-void ribi::TestNewickVectorDialog::SetTheta(const std::string& s)
-{
-  m_theta_str = s;
-}
-
 #ifndef NDEBUG
-void ribi::TestNewickVectorDialog::Test() noexcept
+void ribi::TestHideAndShowDialogMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestNewickVectorDialog::Test");
-  TRACE("Finished ribi::TestNewickVectorDialog::Test successfully");
+  TRACE("Starting ribi::TestHideAndShowDialogMenuDialog::Test");
+  TRACE("Finished ribi::TestHideAndShowDialogMenuDialog::Test successfully");
 }
 #endif

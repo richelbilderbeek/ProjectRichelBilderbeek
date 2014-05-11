@@ -4,27 +4,27 @@
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-  class QtTestQtHideAndShowDialogMenuDialog;
+  class QtTestHideAndShowDialogMenuDialog;
 }
 
 namespace ribi {
 
-class QtTestQtHideAndShowDialogMenuDialog : public QtHideAndShowDialog
+class QtTestHideAndShowDialogMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestQtHideAndShowDialogMenuDialog(QWidget *parent = 0);
-  QtTestQtHideAndShowDialogMenuDialog(const QtTestQtHideAndShowDialogMenuDialog&) = delete;
-  QtTestQtHideAndShowDialogMenuDialog& operator=(const QtTestQtHideAndShowDialogMenuDialog&) = delete;
-  ~QtTestQtHideAndShowDialogMenuDialog() noexcept;
+  explicit QtTestHideAndShowDialogMenuDialog(QWidget *parent = 0);
+  QtTestHideAndShowDialogMenuDialog(const QtTestHideAndShowDialogMenuDialog&) = delete;
+  QtTestHideAndShowDialogMenuDialog& operator=(const QtTestHideAndShowDialogMenuDialog&) = delete;
+  ~QtTestHideAndShowDialogMenuDialog() noexcept;
 
 protected:
   
   void keyPressEvent(QKeyEvent *);
 
 private:
-  Ui::QtTestQtHideAndShowDialogMenuDialog *ui;
+  Ui::QtTestHideAndShowDialogMenuDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;

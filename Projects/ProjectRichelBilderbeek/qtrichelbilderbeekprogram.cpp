@@ -60,6 +60,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtmultiencrangermenudialog.h"
 #include "qtmusictheorymenudialog.h"
 #include "qtperfectelasticcollisionmenudialog.h"
+#include "qttesttrianglemenudialog.h"
 #include "qtpictocodemenudialog.h"
 #include "qtpixelatormenudialog.h"
 #include "qtpredickadvocatormenudialog.h"
@@ -319,6 +320,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testTicTacToe: p = new tictactoe::QtTestTicTacToeMenuDialog; break;
     case ProgramType::testTimedServerPusher: break;
     case ProgramType::testToggleButton: p = new QtTestToggleButtonMenuDialog; break;
+    case ProgramType::testTriangle: p = new QtTestTriangleMenuDialog; break;
     case ProgramType::testTwoDigitNewick: p = new QtTestTwoDigitNewickMenuDialog; break;
     case ProgramType::thorVeen: break;
     case ProgramType::thresholdFilterer: p = new QtThresholdFiltererMenuDialog; break;

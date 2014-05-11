@@ -13,9 +13,9 @@
 #include "ui_qttesthideandshowdialogmenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestQtHideAndShowDialogMenuDialog::QtTestQtHideAndShowDialogMenuDialog(QWidget *parent) :
+ribi::QtTestHideAndShowDialogMenuDialog::QtTestHideAndShowDialogMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestQtHideAndShowDialogMenuDialog)
+    ui(new Ui::QtTestHideAndShowDialogMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -24,17 +24,17 @@ ribi::QtTestQtHideAndShowDialogMenuDialog::QtTestQtHideAndShowDialogMenuDialog(Q
   ui->setupUi(this);
 }
 
-ribi::QtTestQtHideAndShowDialogMenuDialog::~QtTestQtHideAndShowDialogMenuDialog() noexcept
+ribi::QtTestHideAndShowDialogMenuDialog::~QtTestHideAndShowDialogMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestQtHideAndShowDialogMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestHideAndShowDialogMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtTestQtHideAndShowDialogMenuDialog::on_button_about_clicked()
+void ribi::QtTestHideAndShowDialogMenuDialog::on_button_about_clicked()
 {
   About a = TestQtHideAndShowDialogMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -44,12 +44,12 @@ void ribi::QtTestQtHideAndShowDialogMenuDialog::on_button_about_clicked()
   this->ShowChild(&d);
 }
 
-void ribi::QtTestQtHideAndShowDialogMenuDialog::on_button_quit_clicked()
+void ribi::QtTestHideAndShowDialogMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void ribi::QtTestQtHideAndShowDialogMenuDialog::on_button_start_clicked()
+void ribi::QtTestHideAndShowDialogMenuDialog::on_button_start_clicked()
 {
   QtTestQtHideAndShowDialogMainDialog d(nullptr,nullptr);
   d.setStyleSheet(this->styleSheet());
@@ -57,19 +57,19 @@ void ribi::QtTestQtHideAndShowDialogMenuDialog::on_button_start_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtTestQtHideAndShowDialogMenuDialog::Test() noexcept
+void ribi::QtTestHideAndShowDialogMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtHideAndShowDialogMenuDialog::Test");
+  TRACE("Starting ribi::QtTestHideAndShowDialogMenuDialog::Test");
   for (auto ai: Ais().GetAll())
   {
     QtTestQtHideAndShowDialogMainDialog(nullptr,ai);
   }
   assert(TestQtHideAndShowDialogMenuDialog().GetVersion().empty());
-  TRACE("Finished ribi::QtTestQtHideAndShowDialogMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtTestHideAndShowDialogMenuDialog::Test successfully");
 }
 #endif

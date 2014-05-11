@@ -98,7 +98,7 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
 {
   const bool verbose = GetVerbose();
 
-  for (int i=0; i!=2; ++i)
+  for (int i=0; i!=1; ++i)
   {
     std::string filename_node;
     std::string filename_ele;
@@ -118,6 +118,7 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
           );
         break;
         case 1:
+
           if (verbose) { std::clog << "Write some geometries, call Triangle its C++ equivalent to work on it" << std::endl; }
           f.ExecuteTriangleCpp(
             filename_node,

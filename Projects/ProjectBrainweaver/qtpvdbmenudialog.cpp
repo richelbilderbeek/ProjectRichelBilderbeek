@@ -464,14 +464,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
 }
 #endif
 
-/*
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked() noexcept
-{
-  cmap::QtConceptMapTestNodeItemDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
-}
-*/
-
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked() noexcept
 {
   QtTestQtRoundedTextRectItemMenuDialog d;
@@ -580,5 +572,10 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmaps_clicked()
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
 {
-  //HIERO
+  const int test = 4;
+  assert(test < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(test);
+  assert(file);
+  QtPvdbConceptMapDialog d(file);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
