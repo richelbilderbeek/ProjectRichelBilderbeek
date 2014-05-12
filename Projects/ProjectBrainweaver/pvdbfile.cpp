@@ -177,9 +177,6 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string 
 {
   assert(s.size() >= 13);
   assert(s.substr(0,6) == "<file>");
-  TRACE(s);
-  TRACE(s.size());
-  TRACE(s.substr(s.size()-7,7));
   assert(s.substr(s.size() - 7,7) == "</file>");
 
   boost::shared_ptr<pvdb::File> f(new File);

@@ -34,7 +34,10 @@
    <item row="1" column="1" colspan="3">
     <widget class="QTableWidget" name="table">
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>28</number>
+      <number>32</number>
+     </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>64</number>
      </attribute>
      <column>
       <property name="text">

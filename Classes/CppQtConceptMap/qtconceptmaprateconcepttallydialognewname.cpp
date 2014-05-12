@@ -66,6 +66,14 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
   const int n_cols = 4;
   ui->table->setRowCount(n_rows);
   ui->table->setWordWrap(true);
+
+  //From https://stackoverflow.com/questions/9544122/how-to-word-wrap-text-in-the-rows-and-columns-of-a-qtablewidget
+  connect(
+    ui->table->horizontalHeader(),
+    SIGNAL(sectionResized(int, int, int)),
+    ui->table,
+    SLOT(resizeRowsToContents()));
+
   for (int row_index=0; row_index!=n_rows; ++row_index)
   {
     const Row& row = m_data[row_index];
@@ -115,12 +123,13 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
           center_is_from ? edge->GetTo() : edge->GetFrom()
         };
         const std::string s {
-            "via "
-          + concept->GetName() + " verbonden met '"
+            "via '"
+          + concept->GetName() + "' verbonden met '"
           + other->GetConcept()->GetName()
           + "'"
         };
         i->setText(s.c_str());
+
         const int column = 3;
         ui->table->setItem(row_index, column, i);
       }
@@ -239,20 +248,23 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   // - edge with a concept with (1) text 'TextEdge' (2) one example with text 'TextExampleEdge'
   // - node with a concept with (1) text 'TextDontCare'
 
-  const boost::shared_ptr<Concept> concept_node_focal(ConceptFactory().Create("TextNode",
+  const boost::shared_ptr<Concept> concept_node_focal(ConceptFactory().Create(
+    "Node_focal: This is displayed at the top of the dialog and should have line wrapping",
     {
-      {"TextExampleNode",Competency::misc}
+      {"Node_focal example",Competency::misc}
     },
     0,1,2));
-  const boost::shared_ptr<Concept> concept_node_other(ConceptFactory().Create("TextDontCare",
+  const boost::shared_ptr<Concept> concept_node_other(ConceptFactory().Create(
+    "Node_other: Issue #206 is about line wrapping in this dialog. Before this issue was resolved, this long line trailed with a ... to indicate that there was even more text at the right",
     {
-      { }
+      { "Example that won't be displayed here",Competency::misc }
     },
     0,1,2));
 
-  const boost::shared_ptr<Concept> concept_edge(ConceptFactory().Create("TextEdge",
+  const boost::shared_ptr<Concept> concept_edge(ConceptFactory().Create(
+    "Edge: Issue #206 is about line wrapping in this dialog. Before this issue was resolved, this long line trailed with a ... to indicate that there was even more text at the right",
     {
-      {"TextExampleEdge",Competency::misc}
+      {"Edge example",Competency::misc}
     },
     2,1,0));
   const boost::shared_ptr<Node> node_focal(NodeFactory().Create(concept_node_focal));
