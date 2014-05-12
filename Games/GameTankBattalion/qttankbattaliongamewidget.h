@@ -13,7 +13,10 @@
 
 #include <QWidget>
 
-#include "tankbattalion.h"
+#include "tankbattaliondirection.h"
+#include "tankbattalionkey.h"
+#include "tankbattalionspritetype.h"
+
 #pragma GCC diagnostic pop
 
 namespace Qt
@@ -21,15 +24,16 @@ namespace Qt
   struct QImage;
 }
 
+namespace ribi {
+namespace taba {
+
 class QtGameWidget : public QWidget
 {
     Q_OBJECT
 public:
-  enum class Direction { up, right, down, left };
-  enum class Key { up, right, down, left };
-  typedef std::map<TankBattalion::SpriteType,boost::shared_ptr<QImage>> SpriteMap;
-  explicit QtGameWidget(QWidget *parent = 0);
 
+  typedef std::map<SpriteType,boost::shared_ptr<QPixmap>> SpriteMap;
+  explicit QtGameWidget(QWidget *parent = 0);
 
   void keyPressEvent(QKeyEvent *);
   void keyReleaseEvent(QKeyEvent *);
@@ -44,12 +48,15 @@ private:
   int m_x;
   int m_y;
 
-  const SpriteMap CreateSprites() const;
-  const boost::shared_ptr<QImage> GetImage(const TankBattalion::SpriteType& s) const;
+  SpriteMap CreateSprites() const;
+  boost::shared_ptr<QPixmap> GetPixmap(const SpriteType& s) const;
 
 private slots:
   void OnTimer();
 
 };
+
+} //~namespace taba
+} //~namespace ribi
 
 #endif // QTGAMEWIDGET_H

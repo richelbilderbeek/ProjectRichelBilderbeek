@@ -18,15 +18,15 @@ SOURCES += \
     ../../Tools/ToolTriangleCpp/trianglecppevent.cpp \
     ../../Tools/ToolTriangleCpp/trianglecppsplaynode.cpp \
     ../../Tools/ToolTriangleCpp/trianglecppsyntax.cpp \
-    ../ToolTriangleCpp/trianglecpptriangulateio.cpp \
-    ../ToolTriangleCpp/trianglecpptrimalloc.cpp \
-    ../ToolTriangleCpp/trianglecpplocateresult.cpp \
-    ../ToolTriangleCpp/trianglecppinsertvertexresult.cpp \
-    ../ToolTriangleCpp/trianglecppfinddirectionresult.cpp \
-    ../ToolTriangleCpp/trianglecppfile.cpp \
-    ../ToolTriangleCpp/trianglecppstring.cpp \
-    ../ToolTriangleCpp/trianglecppglobals.cpp \
-    ../ToolTriangleCpp/trianglecppdefines.cpp
+    ../../Tools/ToolTriangleCpp/trianglecpptriangulateio.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecpptrimalloc.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecpplocateresult.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecppinsertvertexresult.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecppfinddirectionresult.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecppfile.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecppstring.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecppglobals.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecppdefines.cpp
 
 HEADERS += \
     ../../Tools/ToolTriangleCpp/trianglecppmain.h \
@@ -45,13 +45,13 @@ HEADERS += \
     ../../Tools/ToolTriangleCpp/trianglecppevent.h \
     ../../Tools/ToolTriangleCpp/trianglecppsplaynode.h \
     ../../Tools/ToolTriangleCpp/trianglecppsyntax.h \
-    ../ToolTriangleCpp/trianglecpptriangulateio.h \
-    ../ToolTriangleCpp/trianglecppglobals.h \
-    ../ToolTriangleCpp/trianglecpptrimalloc.h \
-    ../ToolTriangleCpp/trianglecppfwd.h \
-    ../ToolTriangleCpp/trianglecppdefines.h \
-    ../ToolTriangleCpp/trianglecpplocateresult.h \
-    ../ToolTriangleCpp/trianglecppinsertvertexresult.h \
-    ../ToolTriangleCpp/trianglecppfinddirectionresult.h \
-    ../ToolTriangleCpp/trianglecppfile.h \
-    ../ToolTriangleCpp/trianglecppstring.h
+    ../../Tools/ToolTriangleCpp/trianglecpptriangulateio.h \
+    ../../Tools/ToolTriangleCpp/trianglecppglobals.h \
+    ../../Tools/ToolTriangleCpp/trianglecpptrimalloc.h \
+    ../../Tools/ToolTriangleCpp/trianglecppfwd.h \
+    ../../Tools/ToolTriangleCpp/trianglecppdefines.h \
+    ../../Tools/ToolTriangleCpp/trianglecpplocateresult.h \
+    ../../Tools/ToolTriangleCpp/trianglecppinsertvertexresult.h \
+    ../../Tools/ToolTriangleCpp/trianglecppfinddirectionresult.h \
+    ../../Tools/ToolTriangleCpp/trianglecppfile.h \
+    ../../Tools/ToolTriangleCpp/trianglecppstring.h

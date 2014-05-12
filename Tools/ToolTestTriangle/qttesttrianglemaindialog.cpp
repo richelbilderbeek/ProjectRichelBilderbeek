@@ -99,7 +99,7 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
   const bool verbose = GetVerbose();
 
   for (int i=0; i!=
-  #define TODO_ISSUE_207
+  //#define TODO_ISSUE_207
   #ifndef TODO_ISSUE_207
     1
   #else
@@ -124,6 +124,7 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
             GetTriangleArea()
           );
         break;
+        #ifdef TODO_ISSUE_207
         case 1:
 
           if (verbose) { std::clog << "Write some geometries, call Triangle its C++ equivalent to work on it" << std::endl; }
@@ -134,6 +135,7 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
             GetTriangleQuality(),
             GetTriangleArea()
           );
+        #endif // TODO_ISSUE_207
         break;
         default:
           assert(!"Should not get here");

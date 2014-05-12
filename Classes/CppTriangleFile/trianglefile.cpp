@@ -11,10 +11,11 @@
 #include "fileio.h"
 #include "trace.h"
 
-//#ifndef _WIN32
 #include "triangle.h"
-#include "triangle_cpp.h"
-//#endif
+
+#ifdef TODO_ISSUE_207
+#include "trianglecppmain.h"
+#endif
 
 #pragma GCC diagnostic pop
 
@@ -193,6 +194,7 @@ void ribi::TriangleFile::ExecuteTriangle(
   fileio::FileIo().DeleteFile(filename);
 }
 
+#ifdef TODO_ISSUE_207
 void ribi::TriangleFile::ExecuteTriangleCpp(
   std::string& node_filename,
   std::string& ele_filename,
@@ -246,6 +248,7 @@ void ribi::TriangleFile::ExecuteTriangleCpp(
   assert(fileio::FileIo().IsRegularFile(poly_filename));
   fileio::FileIo().DeleteFile(filename);
 }
+#endif // TODO_ISSUE_207
 
 void ribi::TriangleFile::ExecuteTriangleExe(
   std::string& node_filename,

@@ -12,7 +12,12 @@
 namespace Ui {
   class QtTankBattalionGameDialog;
 }
+
+namespace ribi {
+namespace taba {
+
 struct QtGameWidget;
+
 
 class QtTankBattalionGameDialog : public QDialog
 {
@@ -34,6 +39,10 @@ private:
 
   void keyPressEvent(QKeyEvent *);
   void keyReleaseEvent(QKeyEvent *);
+  void paintEvent(QPaintEvent *);
 };
+
+} //~namespace taba
+} //~namespace ribi
 
 #endif // QTTANKBATTALIONGAMEDIALOG

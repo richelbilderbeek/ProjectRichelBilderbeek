@@ -16,7 +16,7 @@ include(../../Classes/CppTriangleFile/CppTriangleFile.pri)
 include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)
 include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
-include(../../Tools/ToolTriangleCpp/ToolTriangleCppConsole.pri)
+#include(../../Tools/ToolTriangleCpp/ToolTriangleCppConsole.pri)
 
 #Desktop
 include(../../Classes/CppQtNavigationableGraphicsView/CppQtNavigationableGraphicsView.pri)

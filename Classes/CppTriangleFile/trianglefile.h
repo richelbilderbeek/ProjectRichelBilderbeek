@@ -43,6 +43,7 @@ struct TriangleFile
     const bool verbose = false
   ) const noexcept;
 
+  #ifdef TODO_ISSUE_207
   ///Call Triangle its C++ equivalent
   void ExecuteTriangleCpp(
     std::string& node_filename,
@@ -52,7 +53,7 @@ struct TriangleFile
     const double area = 2.0,
     const bool verbose = false
   ) const noexcept;
-
+  #endif
   ///Executes Triangle.exe from a Windows command line
   void ExecuteTriangleExe(
     std::string& node_filename,

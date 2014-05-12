@@ -7,6 +7,8 @@
 #include <cassert>
 #include <iostream>
 
+#include <boost/make_shared.hpp>
+
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QKeyEvent>
@@ -15,10 +17,11 @@
 #include <QImage>
 #include <QPainter>
 
+#include "tankbattalionhelper.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-QtGameWidget::QtGameWidget(QWidget *parent)
+ribi::taba::QtGameWidget::QtGameWidget(QWidget *parent)
  : QWidget(parent),
    m_direction{Direction::down},
    m_keys{},
@@ -41,18 +44,22 @@ QtGameWidget::QtGameWidget(QWidget *parent)
   }
 }
 
-const QtGameWidget::SpriteMap QtGameWidget::CreateSprites() const
+ribi::taba::QtGameWidget::SpriteMap ribi::taba::QtGameWidget::CreateSprites() const
 {
   SpriteMap m;
-  m[TankBattalion::arena] = boost::shared_ptr<QImage>(new QImage(":/GameTankBattalion/images/GameTankBattalion/Arena.png"));
-  m[TankBattalion::player_down] = boost::shared_ptr<QImage>(new QImage(":/GameTankBattalion/images/GameTankBattalionPlayerDown.png"));
-  m[TankBattalion::player_left] = boost::shared_ptr<QImage>(new QImage(":/GameTankBattalion/images/GameTankBattalionPlayerLeft.png"));
-  m[TankBattalion::player_right] = boost::shared_ptr<QImage>(new QImage(":/GameTankBattalion/images/GameTankBattalionPlayerRight.png"));
-  m[TankBattalion::player_up] = boost::shared_ptr<QImage>(new QImage(":/GameTankBattalion/images/GameTankBattalionPlayerUp.png"));
+  m[SpriteType::arena       ] = boost::make_shared<QPixmap>(":/GameTankBattalion/images/GameTankBattalionArena.png"     );
+  m[SpriteType::player_down ] = boost::make_shared<QPixmap>(":/GameTankBattalion/images/GameTankBattalionPlayerDown.png" );
+  m[SpriteType::player_left ] = boost::make_shared<QPixmap>(":/GameTankBattalion/images/GameTankBattalionPlayerLeft.png" );
+  m[SpriteType::player_right] = boost::make_shared<QPixmap>(":/GameTankBattalion/images/GameTankBattalionPlayerRight.png");
+  m[SpriteType::player_up   ] = boost::make_shared<QPixmap>(":/GameTankBattalion/images/GameTankBattalionPlayerUp.png"   );
+  assert(static_cast<int>(m.size()) == static_cast<int>(SpriteType::n_types));
+  #ifndef NDEBUG
+  for (auto p:m) { assert(p.second->width() > 0 && "Picture must exist"); }
+  #endif
   return m;
 }
 
-const boost::shared_ptr<QImage> QtGameWidget::GetImage(const TankBattalion::SpriteType& s) const
+boost::shared_ptr<QPixmap> ribi::taba::QtGameWidget::GetPixmap(const SpriteType& s) const
 {
   const SpriteMap::const_iterator i
     = m_sprites.find(s);
@@ -60,7 +67,7 @@ const boost::shared_ptr<QImage> QtGameWidget::GetImage(const TankBattalion::Spri
   return i->second;
 }
 
-void QtGameWidget::keyPressEvent(QKeyEvent * e)
+void ribi::taba::QtGameWidget::keyPressEvent(QKeyEvent * e)
 {
   switch (e->key())
   {
@@ -87,7 +94,7 @@ void QtGameWidget::keyPressEvent(QKeyEvent * e)
   }
 }
 
-void QtGameWidget::keyReleaseEvent(QKeyEvent * e)
+void ribi::taba::QtGameWidget::keyReleaseEvent(QKeyEvent * e)
 {
   switch (e->key())
   {
@@ -98,7 +105,7 @@ void QtGameWidget::keyReleaseEvent(QKeyEvent * e)
   }
 }
 
-void QtGameWidget::OnTimer()
+void ribi::taba::QtGameWidget::OnTimer()
 {
   for (auto k: m_keys)
   {
@@ -113,23 +120,21 @@ void QtGameWidget::OnTimer()
   repaint();
 }
 
-void QtGameWidget::paintEvent(QPaintEvent *)
+void ribi::taba::QtGameWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
 
-  std::string s = ":/GameTankBattalion/images/GameTankBattalionPlayer";
-  switch (m_direction)
   {
-    case Direction::up   : s += "Up.png"; break;
-    case Direction::right: s += "Right.png"; break;
-    case Direction::down : s += "Down.png"; break;
-    case Direction::left : s += "Left.png"; break;
+    const auto arena = GetPixmap(SpriteType::arena);
+    painter.drawPixmap(0,0,arena->width(),arena->height(),*arena);
   }
-  std::cout << s << std::endl;
-  QPixmap p(s.c_str());
-  assert(p.height() > 0);
-  assert(p.width() > 0);
-  painter.drawPixmap(m_x,m_y,16,16,p);
+
+
+
+  const auto p = GetPixmap(Helper().ToPlayerSpriteType(m_direction));
+  assert(p->height() > 0);
+  assert(p->width() > 0);
+  painter.drawPixmap(m_x,m_y,16,16,*p);
 
   /*
   QPainter painter(this);

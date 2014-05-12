@@ -1,16 +1,10 @@
 #ifndef TANKBATTALION_H
 #define TANKBATTALION_H
 
+
+
 struct TankBattalion
 {
-  enum SpriteType
-  {
-    arena,
-    player_down,
-    player_left,
-    player_right,
-    player_up
-  };
   struct Sprite
   {
     double x;

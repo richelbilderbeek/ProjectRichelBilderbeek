@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtTankBattalionGameDialog w;
+  ribi::taba::QtTankBattalionGameDialog w;
   w.show();
 
   return a.exec();

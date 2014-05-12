@@ -2,11 +2,14 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttankbattaliongamedialog.h"
+
+#include <QPainter>
+
 #include "qttankbattaliongamewidget.h"
 #include "ui_qttankbattaliongamedialog.h"
 #pragma GCC diagnostic pop
 
-QtTankBattalionGameDialog::QtTankBattalionGameDialog(QWidget *parent)
+ribi::taba::QtTankBattalionGameDialog::QtTankBattalionGameDialog(QWidget *parent)
   : QDialog(parent),
     m_game(new QtGameWidget),
     ui(new Ui::QtTankBattalionGameDialog)
@@ -15,17 +18,26 @@ QtTankBattalionGameDialog::QtTankBattalionGameDialog(QWidget *parent)
   ui->layout->addWidget(m_game.get());
 }
 
-QtTankBattalionGameDialog::~QtTankBattalionGameDialog()
+ribi::taba::QtTankBattalionGameDialog::~QtTankBattalionGameDialog()
 {
   delete ui;
 }
 
-void QtTankBattalionGameDialog::keyPressEvent(QKeyEvent * e)
+void ribi::taba::QtTankBattalionGameDialog::keyPressEvent(QKeyEvent * e)
 {
   m_game->keyPressEvent(e);
 }
 
-void QtTankBattalionGameDialog::keyReleaseEvent(QKeyEvent * e)
+void ribi::taba::QtTankBattalionGameDialog::keyReleaseEvent(QKeyEvent * e)
 {
   m_game->keyReleaseEvent(e);
+}
+
+void ribi::taba::QtTankBattalionGameDialog::paintEvent(QPaintEvent *)
+{
+  QPainter painter(this);
+  QPixmap p;
+
+  m_game->render(&p);
+  painter.drawPixmap(rect(),p);
 }
