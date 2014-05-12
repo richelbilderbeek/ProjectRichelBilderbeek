@@ -1,11 +1,7 @@
-#ifndef TRIANGLE_CPP_H
-#define TRIANGLE_CPP_H
-#include <string>
-#include <vector>
+#ifndef TRIANGLECPPTRIANGULATEIO_H
+#define TRIANGLECPPTRIANGULATEIO_H
 
-int triangle_cpp_main(
-  const std::vector<std::string>& args
-);
+namespace tricpp {
 
 struct triangulateio_cpp {
   double *pointlist;                                               /* In / out */
@@ -38,11 +34,6 @@ struct triangulateio_cpp {
   int numberofedges;                                             /* Out only */
 };
 
-void triangulate(
-  const char * const ,
-  const triangulateio_cpp * const ,
-  const triangulateio_cpp * const ,
-  const triangulateio_cpp * const
-);
+} //~namespace tricpp
 
-#endif // TRIANGLE_CPP_H
+#endif // TRIANGLECPPTRIANGULATEIO_H

@@ -234,7 +234,7 @@ void ribi::TriangleFile::ExecuteTriangleCpp(
     cmd.push_back("-Q");
     std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
   }
-  triangle_cpp_main(cmd);
+  tricpp::triangle_cpp_main(cmd);
   //End of specific part
 
   const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
