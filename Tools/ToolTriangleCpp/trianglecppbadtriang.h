@@ -4,6 +4,7 @@
 #include "trianglecpptriangle.h"
 #include "trianglecppvertex.h"
 
+namespace ribi {
 namespace tricpp {
 
 /* A queue used to store bad triangles.  The key is the square of the cosine */
@@ -23,5 +24,6 @@ struct BadTriang
 };
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPBADTRIANG_H

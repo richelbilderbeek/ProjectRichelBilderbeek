@@ -1,6 +1,7 @@
 #include "tankbattalionhelper.h"
 
 #include <cassert>
+#include <stdexcept>
 
 ribi::taba::SpriteType ribi::taba::Helper::ToPlayerSpriteType(const Direction d) const noexcept
 {
@@ -12,4 +13,6 @@ ribi::taba::SpriteType ribi::taba::Helper::ToPlayerSpriteType(const Direction d)
     case Direction::left: return SpriteType::player_left;
     default: assert(!"ribi::taba::Helper::ToPlayerSpriteType: should not get here");
   }
+  assert(!"ribi::taba::Helper::ToPlayerSpriteType: should not get here");
+  throw std::logic_error("ribi::taba::Helper::ToPlayerSpriteType: unknown direction");
 }

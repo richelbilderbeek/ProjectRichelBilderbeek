@@ -3,6 +3,7 @@
 
 #include "trianglecpptriangle.h"
 
+namespace ribi {
 namespace tricpp {
 
 /* A stack of triangles flipped during the most recent vertex insertion.     */
@@ -17,5 +18,6 @@ struct FlipStacker
 };
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPFLIPSTACKER_H

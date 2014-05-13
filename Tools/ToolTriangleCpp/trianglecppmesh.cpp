@@ -3,7 +3,7 @@
 #include "trianglecppglobals.h"
 #include "trianglecppdefines.h"
 
-tricpp::Mesh::Mesh()
+ribi::tricpp::Mesh::Mesh()
   :
     m_areaboundindex{0},
     m_badsubsegs{},
@@ -56,7 +56,32 @@ tricpp::Mesh::Mesh()
 
 }
 
-tricpp::Vertex tricpp::vertextraverse(Mesh& m)
+const Vertex& ribi::tricpp::Mesh::GetVertex(const int index) const noexcept
+{
+  assert(index >= 0);
+  assert(index < static_cast<int>(m_vertices));
+  return m_vertices[index];
+}
+
+/*
+Vertex& ribi::tricpp::Mesh::GetVertex(const int index) noexcept
+{
+  assert(index >= 0);
+  assert(index < static_cast<int>(m_vertices));
+  return m_vertices[index];
+}
+*/
+
+void ribi::tricpp::Mesh::KillVertex(const int index) noexcept
+{
+  assert(index >= 0);
+  assert(index < static_cast<int>(m_vertices));
+  assert(!m_vertices.empty());
+  std::swap(m_vertices[index],m_vertices[m_vertices.size() - 1]);
+  m_vertices.pop_back();
+}
+
+ribi::tricpp::Vertex ribi::tricpp::vertextraverse(Mesh& m)
 {
   Vertex newvertex;
 
@@ -67,7 +92,7 @@ tricpp::Vertex tricpp::vertextraverse(Mesh& m)
     {
       return nullptr;
     }
-  } while (vertextype(newvertex,m) == DEADVERTEX);          /* Skip dead ones. */
+  } while (IsDeadVertexType(newvertex)); // Skip dead ones
   return newvertex;
 }
 

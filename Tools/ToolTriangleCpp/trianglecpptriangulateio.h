@@ -1,6 +1,7 @@
 #ifndef TRIANGLECPPTRIANGULATEIO_H
 #define TRIANGLECPPTRIANGULATEIO_H
 
+namespace ribi {
 namespace tricpp {
 
 struct TriangulateIo
@@ -32,5 +33,6 @@ struct TriangulateIo
 };
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPTRIANGULATEIO_H

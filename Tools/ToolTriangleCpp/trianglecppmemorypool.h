@@ -1,6 +1,10 @@
 #ifndef TRIANGLECPPMEMORYPOOL_H
 #define TRIANGLECPPMEMORYPOOL_H
 
+#include <vector>
+#include "trianglecppvertex.h"
+
+namespace ribi {
 namespace tricpp {
 
 /* A type used to allocate memory.  firstblock is the first block of items.  */
@@ -56,8 +60,15 @@ void PoolDealloc(
   void * const dyingitem
 );
 
+void PoolDealloc(
+  std::vector<Vertex>& vertices,
+  Vertex& dyingitem
+);
+
 ///  pooldeinit()   Free to the operating system all memory taken by a pool.
 void PoolDeinit(MemoryPool * const pool);
+
+void PoolDeinit(std::vector<Vertex>& vertices);
 
 ///  poolinit()   Initialize a pool of memory for allocation of items.
 ///
@@ -111,5 +122,6 @@ void TraversalInit(MemoryPool * const pool);
 void * Traverse(MemoryPool * const pool);
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPMEMORYPOOL_H

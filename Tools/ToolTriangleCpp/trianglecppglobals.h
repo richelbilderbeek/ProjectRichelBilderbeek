@@ -3,8 +3,9 @@
 
 #include <utility>
 
-///TODO: Remove these
+namespace ribi {
 namespace tricpp {
+///TODO: Remove these
 
 struct Global
 {
@@ -58,16 +59,6 @@ const int FLIPSTACKERPERBLOCK = 252;
 /* Number of splay tree nodes allocated at once. */
 const int SPLAYNODEPERBLOCK = 508;
 
-/* The vertex types.   A DEADVERTEX has been deleted entirely.  An           */
-/*   UNDEADVERTEX is not part of the mesh, but is written to the output      */
-/*   .node file and affects the node indexing in the other output files.     */
-
-const int INPUTVERTEX = 0;
-#define SEGMENTVERTEX 1
-#define FREEVERTEX 2
-#define DEADVERTEX -32768
-#define UNDEADVERTEX -32767
-
 /* Two constants for algorithms based on random sampling.  Both constants    */
 /*   have been chosen empirically to optimize their respective algorithms.   */
 
@@ -83,5 +74,6 @@ const int INPUTVERTEX = 0;
 #define SAMPLERATE 10
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPGLOBALS_H

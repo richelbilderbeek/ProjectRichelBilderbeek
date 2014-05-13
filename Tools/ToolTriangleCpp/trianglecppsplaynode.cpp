@@ -1,6 +1,6 @@
 #include "trianglecppsplaynode.h"
 
-tricpp::SplayNode::SplayNode()
+ribi::tricpp::SplayNode::SplayNode()
   : m_keydest{},
     m_keyedge{},
     m_lchild{nullptr},

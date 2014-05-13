@@ -3,6 +3,7 @@
 
 #include "trianglecppsubseg.h"
 
+namespace ribi {
 namespace tricpp {
 
 /* An oriented subsegment:  includes a pointer to a subsegment and an        */
@@ -18,5 +19,6 @@ struct Osub
 };
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPOSUB_H

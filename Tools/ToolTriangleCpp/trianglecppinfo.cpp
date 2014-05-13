@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-void tricpp::info()
+void ribi::tricpp::info()
 {
   std::stringstream s;
   s

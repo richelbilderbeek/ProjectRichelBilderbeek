@@ -29,8 +29,10 @@
 #include "trianglecppotri.h"
 #include "trianglecppsplaynode.h"
 #include "trianglecppstring.h"
+#include "trianglecppsubseg.h"
 #include "trianglecpptrimalloc.h"
 #include "trianglecppvertex.h"
+#include "trianglecppvertextype.h"
 
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
 std::vector<std::string> SeperateString(
@@ -44,7 +46,7 @@ std::vector<std::string> SeperateString(
   return v;
 }
 
-void tricpp::dummyinit(
+void ribi::tricpp::dummyinit(
   Mesh& m,
   const Behavior& b,
   const int trianglebytes,
@@ -53,318 +55,93 @@ void tricpp::dummyinit(
 {
   //unsigned long alignptr;
 
-  /* Set up `dummytri', the `triangle' that occupies "outer space." */
+  //Set up `dummytri', the `triangle' that occupies "outer space."
   m.m_dummytribase = (Triangle *) TriMalloc(trianglebytes +
                                            m.m_triangles.m_alignbytes);
-  /* Align `dummytri' on a `triangles.alignbytes'-byte boundary. */
+  //Align `dummytri' on a `triangles.alignbytes'-byte boundary.
   unsigned long alignptr = (unsigned long) m.m_dummytribase;
   m.m_dummytri = (Triangle *)
     (alignptr + (unsigned long) m.m_triangles.m_alignbytes -
      (alignptr % (unsigned long) m.m_triangles.m_alignbytes));
-  /* Initialize the three adjoining triangles to be "outer space."  These  */
-  /*   will eventually be changed by various bonding operations, but their */
-  /*   values don't really matter, as long as they can legally be          */
-  /*   dereferenced.                                                       */
-  m.m_dummytri[0] = (Triangle) m.m_dummytri;
-  m.m_dummytri[1] = (Triangle) m.m_dummytri;
-  m.m_dummytri[2] = (Triangle) m.m_dummytri;
-  /* Three NULL vertices. */
-  m.m_dummytri[3] = nullptr;
-  m.m_dummytri[4] = nullptr;
-  m.m_dummytri[5] = nullptr;
+  //Initialize the three adjoining triangles to be "outer space."  These
+  //  will eventually be changed by various bonding operations, but their
+  //  values don't really matter, as long as they can legally be
+  //  dereferenced.
+  m.m_dummytri->SetTriangle(m.m_dummytri,0);
+  m.m_dummytri->SetTriangle(m.m_dummytri,1);
+  m.m_dummytri->SetTriangle(m.m_dummytri,2);
+  //Three NULL vertices.
+  m.m_dummytri->SetTriangle(nullptr,3);
+  m.m_dummytri->SetTriangle(nullptr,4);
+  m.m_dummytri->SetTriangle(nullptr,5);
 
   if (b.m_usesegments) {
-    /* Set up `dummysub', the omnipresent subsegment pointed to by any */
-    /*   triangle side or subsegment end that isn't attached to a real */
-    /*   subsegment.                                                   */
+    //Set up `dummysub', the omnipresent subsegment pointed to by any
+    //  triangle side or subsegment end that isn't attached to a real
+    //  subsegment.
 
     m.m_dummysubbase = (SubSeg *) TriMalloc(subsegbytes + m.m_subsegs.m_alignbytes);
-    /* Align `dummysub' on a `subsegs.alignbytes'-byte boundary. */
+    //Align `dummysub' on a `subsegs.alignbytes'-byte boundary.
     alignptr = (unsigned long) m.m_dummysubbase;
     m.m_dummysub = (SubSeg *)
       (alignptr + (unsigned long) m.m_subsegs.m_alignbytes -
        (alignptr % (unsigned long) m.m_subsegs.m_alignbytes));
-    /* Initialize the two adjoining subsegments to be the omnipresent      */
-    /*   subsegment.  These will eventually be changed by various bonding  */
-    /*   operations, but their values don't really matter, as long as they */
-    /*   can legally be dereferenced.                                      */
-    m.m_dummysub[0] = (SubSeg) m.m_dummysub;
-    m.m_dummysub[1] = (SubSeg) m.m_dummysub;
-    /* Four NULL vertices. */
-    m.m_dummysub[2] = nullptr;
-    m.m_dummysub[3] = nullptr;
-    m.m_dummysub[4] = nullptr;
-    m.m_dummysub[5] = nullptr;
-    /* Initialize the two adjoining triangles to be "outer space." */
-    m.m_dummysub[6] = (SubSeg) m.m_dummytri;
-    m.m_dummysub[7] = (SubSeg) m.m_dummytri;
-    /* Set the boundary marker to zero. */
+    //Initialize the two adjoining subsegments to be the omnipresent
+    //  subsegment.  These will eventually be changed by various bonding
+    //  operations, but their values don't really matter, as long as they
+    //  can legally be dereferenced.
+    m.m_dummysub->SetSubSeg(m.m_dummysub,0);
+    m.m_dummysub->SetSubSeg(m.m_dummysub,1);
+    //Four NULL vertices.
+    m.m_dummysub->SetSubSeg(nullptr,2);
+    m.m_dummysub->SetSubSeg(nullptr,3);
+    m.m_dummysub->SetSubSeg(nullptr,4);
+    m.m_dummysub->SetSubSeg(nullptr,5);
+    //Initialize the two adjoining triangles to be "outer space."
+    m.m_dummysub->SetTriangle(m.m_dummytri,6);
+    m.m_dummysub->SetTriangle(m.m_dummytri,7);
+    //Set the boundary marker to zero.
     * (int *) (m.m_dummysub + 8) = 0;
 
-    /* Initialize the three adjoining subsegments of `dummytri' to be */
-    /*   the omnipresent subsegment.                                  */
-    m.m_dummytri[6] = (Triangle) m.m_dummysub;
-    m.m_dummytri[7] = (Triangle) m.m_dummysub;
-    m.m_dummytri[8] = (Triangle) m.m_dummysub;
+    //Initialize the three adjoining subsegments of `dummytri' to be
+    //  the omnipresent subsegment.
+
+    m.m_dummytri->SetSubSeg(m.m_dummysub,6);
+    m.m_dummytri->SetSubSeg(m.m_dummysub,7);
+    m.m_dummytri->SetSubSeg(m.m_dummysub,8);
   }
 }
 
-
-
-
-/*****************************************************************************/
-/*                                                                           */
-/*  The basic mesh data structures                                           */
-/*                                                                           */
-/*  There are three:  vertices, triangles, and subsegments (abbreviated      */
-/*  `subseg').  These three data structures, linked by pointers, comprise    */
-/*  the mesh.  A vertex simply represents a mesh vertex and its properties.  */
-/*  A triangle is a triangle.  A subsegment is a special data structure used */
-/*  to represent an impenetrable edge of the mesh (perhaps on the outer      */
-/*  boundary, on the boundary of a hole, or part of an internal boundary     */
-/*  separating two triangulated regions).  Subsegments represent boundaries, */
-/*  defined by the user, that triangles may not lie across.                  */
-/*                                                                           */
-/*  A triangle consists of a list of three vertices, a list of three         */
-/*  adjoining triangles, a list of three adjoining subsegments (when         */
-/*  segments exist), an arbitrary number of optional user-defined            */
-/*  floating-point attributes, and an optional area constraint.  The latter  */
-/*  is an upper bound on the permissible area of each triangle in a region,  */
-/*  used for mesh refinement.                                                */
-/*                                                                           */
-/*  For a triangle on a boundary of the mesh, some or all of the neighboring */
-/*  triangles may not be present.  For a triangle in the interior of the     */
-/*  mesh, often no neighboring subsegments are present.  Such absent         */
-/*  triangles and subsegments are never represented by NULL pointers; they   */
-/*  are represented by two special records:  `dummytri', the triangle that   */
-/*  fills "outer space", and `dummysub', the omnipresent subsegment.         */
-/*  `dummytri' and `dummysub' are used for several reasons; for instance,    */
-/*  they can be dereferenced and their contents examined without violating   */
-/*  protected memory.                                                        */
-/*                                                                           */
-/*  However, it is important to understand that a triangle includes other    */
-/*  information as well.  The pointers to adjoining vertices, triangles, and */
-/*  subsegments are ordered in a way that indicates their geometric relation */
-/*  to each other.  Furthermore, each of these pointers contains orientation */
-/*  information.  Each pointer to an adjoining triangle indicates which face */
-/*  of that triangle is contacted.  Similarly, each pointer to an adjoining  */
-/*  subsegment indicates which side of that subsegment is contacted, and how */
-/*  the subsegment is oriented relative to the triangle.                     */
-/*                                                                           */
-/*  The data structure representing a subsegment may be thought to be        */
-/*  abutting the edge of one or two triangle data structures:  either        */
-/*  sandwiched between two triangles, or resting against one triangle on an  */
-/*  exterior boundary or hole boundary.                                      */
-/*                                                                           */
-/*  A subsegment consists of a list of four vertices--the vertices of the    */
-/*  subsegment, and the vertices of the segment it is a part of--a list of   */
-/*  two adjoining subsegments, and a list of two adjoining triangles.  One   */
-/*  of the two adjoining triangles may not be present (though there should   */
-/*  always be one), and neighboring subsegments might not be present.        */
-/*  Subsegments also store a user-defined integer "boundary marker".         */
-/*  Typically, this integer is used to indicate what boundary conditions are */
-/*  to be applied at that location in a finite element simulation.           */
-/*                                                                           */
-/*  Like triangles, subsegments maintain information about the relative      */
-/*  orientation of neighboring objects.                                      */
-/*                                                                           */
-/*  Vertices are relatively simple.  A vertex is a list of floating-point    */
-/*  numbers, starting with the x, and y coordinates, followed by an          */
-/*  arbitrary number of optional user-defined floating-point attributes,     */
-/*  followed by an integer boundary marker.  During the segment insertion    */
-/*  phase, there is also a pointer from each vertex to a triangle that may   */
-/*  contain it.  Each pointer is not always correct, but when one is, it     */
-/*  speeds up segment insertion.  These pointers are assigned values once    */
-/*  at the beginning of the segment insertion phase, and are not used or     */
-/*  updated except during this phase.  Edge flipping during segment          */
-/*  insertion will render some of them incorrect.  Hence, don't rely upon    */
-/*  them for anything.                                                       */
-/*                                                                           */
-/*  Other than the exception mentioned above, vertices have no information   */
-/*  about what triangles, subfacets, or subsegments they are linked to.      */
-/*                                                                           */
-/*****************************************************************************/
-
-/*****************************************************************************/
-/*                                                                           */
-/*  Handles                                                                  */
-/*                                                                           */
-/*  The oriented triangle (`otri') and oriented subsegment (`osub') data     */
-/*  structures defined below do not themselves store any part of the mesh.   */
-/*  The mesh itself is made of `triangle's, `subseg's, and `vertex's.        */
-/*                                                                           */
-/*  Oriented triangles and oriented subsegments will usually be referred to  */
-/*  as "handles."  A handle is essentially a pointer into the mesh; it       */
-/*  allows you to "hold" one particular part of the mesh.  Handles are used  */
-/*  to specify the regions in which one is traversing and modifying the mesh.*/
-/*  A single `triangle' may be held by many handles, or none at all.  (The   */
-/*  latter case is not a memory leak, because the triangle is still          */
-/*  connected to other triangles in the mesh.)                               */
-/*                                                                           */
-/*  An `otri' is a handle that holds a triangle.  It holds a specific edge   */
-/*  of the triangle.  An `osub' is a handle that holds a subsegment.  It     */
-/*  holds either the left or right side of the subsegment.                   */
-/*                                                                           */
-/*  Navigation about the mesh is accomplished through a set of mesh          */
-/*  manipulation primitives, further below.  Many of these primitives take   */
-/*  a handle and produce a new handle that holds the mesh near the first     */
-/*  handle.  Other primitives take two handles and glue the corresponding    */
-/*  parts of the mesh together.  The orientation of the handles is           */
-/*  important.  For instance, when two triangles are glued together by the   */
-/*  bond() primitive, they are glued at the edges on which the handles lie.  */
-/*                                                                           */
-/*  Because vertices have no information about which triangles they are      */
-/*  attached to, I commonly represent a vertex by use of a handle whose      */
-/*  origin is the vertex.  A single handle can simultaneously represent a    */
-/*  triangle, an edge, and a vertex.                                         */
-/*                                                                           */
-/*****************************************************************************/
-
-
-
-
-
-/*****************************************************************************/
-/*                                                                           */
-/*  Mesh manipulation primitives.  Each triangle contains three pointers to  */
-/*  other triangles, with orientations.  Each pointer points not to the      */
-/*  first byte of a triangle, but to one of the first three bytes of a       */
-/*  triangle.  It is necessary to extract both the triangle itself and the   */
-/*  orientation.  To save memory, I keep both pieces of information in one   */
-/*  pointer.  To make this possible, I assume that all triangles are aligned */
-/*  to four-byte boundaries.  The decode() routine below decodes a pointer,  */
-/*  extracting an orientation (in the range 0 to 2) and a pointer to the     */
-/*  beginning of a triangle.  The encode() routine compresses a pointer to a */
-/*  triangle and an orientation into a single pointer.  My assumptions that  */
-/*  triangles are four-byte-aligned and that the `unsigned long' type is     */
-/*  long enough to hold a pointer are two of the few kludges in this program.*/
-/*                                                                           */
-/*  Subsegments are manipulated similarly.  A pointer to a subsegment        */
-/*  carries both an address and an orientation in the range 0 to 1.          */
-/*                                                                           */
-/*  The other primitives take an oriented triangle or oriented subsegment,   */
-/*  and return an oriented triangle or oriented subsegment or vertex; or     */
-/*  they change the connections in the data structure.                       */
-/*                                                                           */
-/*  Below, triangles and subsegments are denoted by their vertices.  The     */
-/*  triangle abc has origin (org) a, destination (dest) b, and apex (apex)   */
-/*  c.  These vertices occur in counterclockwise order about the triangle.   */
-/*  The handle abc may simultaneously denote vertex a, edge ab, and triangle */
-/*  abc.                                                                     */
-/*                                                                           */
-/*  Similarly, the subsegment ab has origin (sorg) a and destination (sdest) */
-/*  b.  If ab is thought to be directed upward (with b directly above a),    */
-/*  then the handle ab is thought to grasp the right side of ab, and may     */
-/*  simultaneously denote vertex a and edge ab.                              */
-/*                                                                           */
-/*  An asterisk (*) denotes a vertex whose identity is unknown.              */
-/*                                                                           */
-/*  Given this notation, a partial list of mesh manipulation primitives      */
-/*  follows.                                                                 */
-/*                                                                           */
-/*                                                                           */
-/*  For triangles:                                                           */
-/*                                                                           */
-/*  sym:  Find the abutting triangle; same edge.                             */
-/*  sym(abc) -> ba*                                                          */
-/*                                                                           */
-/*  lnext:  Find the next edge (counterclockwise) of a triangle.             */
-/*  lnext(abc) -> bca                                                        */
-/*                                                                           */
-/*  lprev:  Find the previous edge (clockwise) of a triangle.                */
-/*  lprev(abc) -> cab                                                        */
-/*                                                                           */
-/*  onext:  Find the next edge counterclockwise with the same origin.        */
-/*  onext(abc) -> ac*                                                        */
-/*                                                                           */
-/*  oprev:  Find the next edge clockwise with the same origin.               */
-/*  oprev(abc) -> a*b                                                        */
-/*                                                                           */
-/*  dnext:  Find the next edge counterclockwise with the same destination.   */
-/*  dnext(abc) -> *ba                                                        */
-/*                                                                           */
-/*  dprev:  Find the next edge clockwise with the same destination.          */
-/*  dprev(abc) -> cb*                                                        */
-/*                                                                           */
-/*  rnext:  Find the next edge (counterclockwise) of the adjacent triangle.  */
-/*  rnext(abc) -> *a*                                                        */
-/*                                                                           */
-/*  rprev:  Find the previous edge (clockwise) of the adjacent triangle.     */
-/*  rprev(abc) -> b**                                                        */
-/*                                                                           */
-/*  org:  Origin          dest:  Destination          apex:  Apex            */
-/*  org(abc) -> a         dest(abc) -> b              apex(abc) -> c         */
-/*                                                                           */
-/*  bond:  Bond two triangles together at the resepective handles.           */
-/*  bond(abc, bad)                                                           */
-/*                                                                           */
-/*                                                                           */
-/*  For subsegments:                                                         */
-/*                                                                           */
-/*  ssym:  Reverse the orientation of a subsegment.                          */
-/*  ssym(ab) -> ba                                                           */
-/*                                                                           */
-/*  spivot:  Find adjoining subsegment with the same origin.                 */
-/*  spivot(ab) -> a*                                                         */
-/*                                                                           */
-/*  snext:  Find next subsegment in sequence.                                */
-/*  snext(ab) -> b*                                                          */
-/*                                                                           */
-/*  sorg:  Origin                      sdest:  Destination                   */
-/*  sorg(ab) -> a                      sdest(ab) -> b                        */
-/*                                                                           */
-/*  sbond:  Bond two subsegments together at the respective origins.         */
-/*  sbond(ab, ac)                                                            */
-/*                                                                           */
-/*                                                                           */
-/*  For interacting tetrahedra and subfacets:                                */
-/*                                                                           */
-/*  tspivot:  Find a subsegment abutting a triangle.                         */
-/*  tspivot(abc) -> ba                                                       */
-/*                                                                           */
-/*  stpivot:  Find a triangle abutting a subsegment.                         */
-/*  stpivot(ab) -> ba*                                                       */
-/*                                                                           */
-/*  tsbond:  Bond a triangle to a subsegment.                                */
-/*  tsbond(abc, ba)                                                          */
-/*                                                                           */
-/*****************************************************************************/
-
-/********* Mesh manipulation primitives begin here                   *********/
-/**                                                                         **/
-/**                                                                         **/
-
-/* Fast lookup arrays to speed some of the mesh manipulation primitives.     */
-
+//Fast lookup arrays to speed some of the mesh manipulation primitives.
 const int plus1mod3_cpp[3] = {1, 2, 0};
 const int minus1mod3_cpp[3] = {2, 0, 1};
 
 /********* Primitives for triangles                                  *********/
-/*                                                                           */
-/*                                                                           */
+//
+//
 
-/* decode() converts a pointer to an oriented triangle.  The orientation is  */
-/*   extracted from the two least significant bits of the pointer.           */
+//decode() converts a pointer to an oriented triangle.  The orientation is
+//  extracted from the two least significant bits of the pointer.
 
 #define decode(ptr, otri)                                                     \
   (otri).m_orient = (int) ((unsigned long) (ptr) & (unsigned long) 3l);         \
   (otri).m_tri = (Triangle *)                                                   \
                   ((unsigned long) (ptr) ^ (unsigned long) (otri).m_orient)
 
-/* encode() compresses an oriented triangle into a single pointer.  It       */
-/*   relies on the assumption that all triangles are aligned to four-byte    */
-/*   boundaries, so the two least significant bits of (otri).m_tri are zero.   */
+//encode() compresses an oriented triangle into a single pointer.  It
+//  relies on the assumption that all triangles are aligned to four-byte
+//  boundaries, so the two least significant bits of (otri).m_tri are zero.
 
 #define encode(otri)                                                          \
   (Triangle) ((unsigned long) (otri).m_tri | (unsigned long) (otri).m_orient)
 
-/* The following handle manipulation primitives are all described by Guibas  */
-/*   and Stolfi.  However, Guibas and Stolfi use an edge-based data          */
-/*   structure, whereas I use a triangle-based data structure.               */
+//The following handle manipulation primitives are all described by Guibas
+//  and Stolfi.  However, Guibas and Stolfi use an edge-based data
+//  structure, whereas I use a triangle-based data structure.
 
-/* sym() finds the abutting triangle, on the same edge.  Note that the edge  */
-/*   direction is necessarily reversed, because the handle specified by an   */
-/*   oriented triangle is directed counterclockwise around the triangle.     */
+//sym() finds the abutting triangle, on the same edge.  Note that the edge
+//  direction is necessarily reversed, because the handle specified by an
+//  oriented triangle is directed counterclockwise around the triangle.
 
 #define sym(otri1, otri2)                                                     \
   ptr = (otri1).m_tri[(otri1).m_orient];                                          \
@@ -374,7 +151,7 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
   ptr = (otri).m_tri[(otri).m_orient];                                            \
   decode(ptr, otri);
 
-/* lnext() finds the next edge (counterclockwise) of a triangle.             */
+//lnext() finds the next edge (counterclockwise) of a triangle.
 
 #define lnext(otri1, otri2)                                                   \
   (otri2).m_tri = (otri1).m_tri;                                                  \
@@ -383,7 +160,7 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
 #define lnextself(otri)                                                       \
   (otri).m_orient = plus1mod3_cpp[(otri).m_orient]
 
-/* lprev() finds the previous edge (clockwise) of a triangle.                */
+//lprev() finds the previous edge (clockwise) of a triangle.
 
 #define lprev(otri1, otri2)                                                   \
   (otri2).m_tri = (otri1).m_tri;                                                  \
@@ -392,9 +169,9 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
 #define lprevself(otri)                                                       \
   (otri).m_orient = minus1mod3_cpp[(otri).m_orient]
 
-/* onext() spins counterclockwise around a vertex; that is, it finds the     */
-/*   next edge with the same origin in the counterclockwise direction.  This */
-/*   edge is part of a different triangle.                                   */
+//onext() spins counterclockwise around a vertex; that is, it finds the
+//  next edge with the same origin in the counterclockwise direction.  This
+//  edge is part of a different triangle.
 
 #define onext(otri1, otri2)                                                   \
   lprev(otri1, otri2);                                                        \
@@ -404,9 +181,9 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
   lprevself(otri);                                                            \
   symself(otri);
 
-/* oprev() spins clockwise around a vertex; that is, it finds the next edge  */
-/*   with the same origin in the clockwise direction.  This edge is part of  */
-/*   a different triangle.                                                   */
+//oprev() spins clockwise around a vertex; that is, it finds the next edge
+//  with the same origin in the clockwise direction.  This edge is part of
+//  a different triangle.
 
 #define oprev(otri1, otri2)                                                   \
   sym(otri1, otri2);                                                          \
@@ -416,9 +193,9 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
   symself(otri);                                                              \
   lnextself(otri);
 
-/* dnext() spins counterclockwise around a vertex; that is, it finds the     */
-/*   next edge with the same destination in the counterclockwise direction.  */
-/*   This edge is part of a different triangle.                              */
+//dnext() spins counterclockwise around a vertex; that is, it finds the
+//  next edge with the same destination in the counterclockwise direction.
+//  This edge is part of a different triangle.
 
 #define dnext(otri1, otri2)                                                   \
   sym(otri1, otri2);                                                          \
@@ -428,9 +205,9 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
   symself(otri);                                                              \
   lprevself(otri);
 
-/* dprev() spins clockwise around a vertex; that is, it finds the next edge  */
-/*   with the same destination in the clockwise direction.  This edge is     */
-/*   part of a different triangle.                                           */
+//dprev() spins clockwise around a vertex; that is, it finds the next edge
+//  with the same destination in the clockwise direction.  This edge is
+//  part of a different triangle.
 
 #define dprev(otri1, otri2)                                                   \
   lnext(otri1, otri2);                                                        \
@@ -440,9 +217,9 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
   lnextself(otri);                                                            \
   symself(otri);
 
-/* rnext() moves one edge counterclockwise about the adjacent triangle.      */
-/*   (It's best understood by reading Guibas and Stolfi.  It involves        */
-/*   changing triangles twice.)                                              */
+//rnext() moves one edge counterclockwise about the adjacent triangle.
+//  (It's best understood by reading Guibas and Stolfi.  It involves
+//  changing triangles twice.)
 
 #define rnext(otri1, otri2)                                                   \
   sym(otri1, otri2);                                                          \
@@ -454,9 +231,9 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
   lnextself(otri);                                                            \
   symself(otri);
 
-/* rprev() moves one edge clockwise about the adjacent triangle.             */
-/*   (It's best understood by reading Guibas and Stolfi.  It involves        */
-/*   changing triangles twice.)                                              */
+//rprev() moves one edge clockwise about the adjacent triangle.
+//  (It's best understood by reading Guibas and Stolfi.  It involves
+//  changing triangles twice.)
 
 #define rprev(otri1, otri2)                                                   \
   sym(otri1, otri2);                                                          \
@@ -468,284 +245,50 @@ const int minus1mod3_cpp[3] = {2, 0, 1};
   lprevself(otri);                                                            \
   symself(otri);
 
-/* These primitives determine or set the origin, destination, or apex of a   */
-/* triangle.                                                                 */
 
-#define org(otri, vertexptr)                                                  \
-  vertexptr = (Vertex) (otri).m_tri[plus1mod3_cpp[(otri).m_orient] + 3]
-
-#define dest(otri, vertexptr)                                                 \
-  vertexptr = (Vertex) (otri).m_tri[minus1mod3_cpp[(otri).m_orient] + 3]
-
-#define apex(otri, vertexptr)                                                 \
-  vertexptr = (Vertex) (otri).m_tri[(otri).m_orient + 3]
-
-#define setorg(otri, vertexptr)                                               \
-  (otri).m_tri[plus1mod3_cpp[(otri).m_orient] + 3] = (Triangle) vertexptr
-
-#define setdest(otri, vertexptr)                                              \
-  (otri).m_tri[minus1mod3_cpp[(otri).m_orient] + 3] = (Triangle) vertexptr
-
-#define setapex(otri, vertexptr)                                              \
-  (otri).m_tri[(otri).m_orient + 3] = (Triangle) vertexptr
-
-/* Bond two triangles together.                                              */
-
-#define bond(otri1, otri2)                                                    \
-  (otri1).m_tri[(otri1).m_orient] = encode(otri2);                                \
-  (otri2).m_tri[(otri2).m_orient] = encode(otri1)
-
-/* Dissolve a bond (from one side).  Note that the other triangle will still */
-/*   think it's connected to this triangle.  Usually, however, the other     */
-/*   triangle is being deleted entirely, or bonded to another triangle, so   */
-/*   it doesn't matter.                                                      */
-
-#define dissolve(otri)                                                        \
-  (otri).m_tri[(otri).m_orient] = (Triangle) m.m_dummytri
-
-/* Copy an oriented triangle.                                                */
-
-#define otricopy(otri1, otri2)                                                \
-  (otri2).m_tri = (otri1).m_tri;                                                  \
-  (otri2).m_orient = (otri1).m_orient
-
-/* Test for equality of oriented triangles.                                  */
-
-#define otriequal(otri1, otri2)                                               \
-  (((otri1).m_tri == (otri2).m_tri) &&                                            \
-   ((otri1).m_orient == (otri2).m_orient))
-
-/* Primitives to infect or cure a triangle with the virus.  These rely on    */
-/*   the assumption that all subsegments are aligned to four-byte boundaries.*/
-
-#define infect(otri)                                                          \
-  (otri).m_tri[6] = (Triangle)                                                  \
-                    ((unsigned long) (otri).m_tri[6] | (unsigned long) 2l)
-
-#define uninfect(otri)                                                        \
-  (otri).m_tri[6] = (Triangle)                                                  \
-                    ((unsigned long) (otri).m_tri[6] & ~ (unsigned long) 2l)
-
-/* Test a triangle for viral infection.                                      */
-
-#define infected(otri)                                                        \
-  (((unsigned long) (otri).m_tri[6] & (unsigned long) 2l) != 0l)
-
-/* Check or set a triangle's attributes.                                     */
-
-///Returns the attnum-th attribute, the double at m.m_elemattribindex + attnum
-#define elemattribute(otri, attnum)                                           \
-  ((double *) (otri).m_tri)[m.m_elemattribindex + (attnum)]
-
-///Set the attnum-th attribute with a value
-#define setelemattribute(otri, attnum, value)                                 \
-  ((double *) (otri).m_tri)[m.m_elemattribindex + (attnum)] = value
-
-/* Check or set a triangle's maximum area bound.                             */
-
-#define areabound(otri)  ((double *) (otri).m_tri)[m.m_areaboundindex]
-
-#define setareabound(otri, value)                                             \
-  ((double *) (otri).m_tri)[m.m_areaboundindex] = value
-
-/* Check or set a triangle's deallocation.  Its second pointer is set to     */
-/*   NULL to indicate that it is not allocated.  (Its first pointer is used  */
-/*   for the stack of dead items.)  Its fourth pointer (its first vertex)    */
-/*   is set to NULL in case a `badtriang' structure points to it.            */
-
-//#define deadtri(tria)  ((tria)[1] == (Triangle) NULL)
-template <class T> bool deadtri(const T& t) { return t[1] == nullptr; }
-
-template <class T> void killtri(const T& t) { t[1] = nullptr; t[3] = nullptr; }
-
-/*
-#define killtri(tria)                                                         \
-  (tria)[1] = (Triangle) NULL;                                                \
-  (tria)[3] = (Triangle) NULL
-*/
-
-/********* Primitives for subsegments                                *********/
-/*                                                                           */
-/*                                                                           */
-
-/* sdecode() converts a pointer to an oriented subsegment.  The orientation  */
-/*   is extracted from the least significant bit of the pointer.  The two    */
-/*   least significant bits (one for orientation, one for viral infection)   */
-/*   are masked out to produce the real pointer.                             */
-
-#define sdecode(sptr, osub)                                                   \
-  (osub).m_subseg_orient = (int) ((unsigned long) (sptr) & (unsigned long) 1l);      \
-  (osub).m_subseg = (SubSeg *)                                                      \
-              ((unsigned long) (sptr) & ~ (unsigned long) 3l)
-
-/* sencode() compresses an oriented subsegment into a single pointer.  It    */
-/*   relies on the assumption that all subsegments are aligned to two-byte   */
-/*   boundaries, so the least significant bit of (osub).m_subseg is zero.          */
-
-#define sencode(osub)                                                         \
-  (SubSeg) ((unsigned long) (osub).m_subseg | (unsigned long) (osub).m_subseg_orient)
-
-/* ssym() toggles the orientation of a subsegment.                           */
-
-#define ssym(osub1, osub2)                                                    \
-  (osub2).m_subseg = (osub1).m_subseg;                                                    \
-  (osub2).m_subseg_orient = 1 - (osub1).m_subseg_orient
-
-#define ssymself(osub)                                                        \
-  (osub).m_subseg_orient = 1 - (osub).m_subseg_orient
-
-/* spivot() finds the other subsegment (from the same segment) that shares   */
-/*   the same origin.                                                        */
-
-#define spivot(osub1, osub2)                                                  \
-  sptr = (osub1).m_subseg[(osub1).m_subseg_orient];                                        \
-  sdecode(sptr, osub2)
-
-#define spivotself(osub)                                                      \
-  sptr = (osub).m_subseg[(osub).m_subseg_orient];                                          \
-  sdecode(sptr, osub)
-
-/* snext() finds the next subsegment (from the same segment) in sequence;    */
-/*   one whose origin is the input subsegment's destination.                 */
-
-#define snext(osub1, osub2)                                                   \
-  sptr = (osub1).ss[1 - (osub1).m_subseg_orient];                                    \
-  sdecode(sptr, osub2)
-
-#define snextself(osub)                                                       \
-  sptr = (osub).m_subseg[1 - (osub).m_subseg_orient];                                      \
-  sdecode(sptr, osub)
-
-/* These primitives determine or set the origin or destination of a          */
-/*   subsegment or the segment that includes it.                             */
-
-#define sorg(osub, vertexptr)                                                 \
-  vertexptr = (Vertex) (osub).m_subseg[2 + (osub).m_subseg_orient]
-
-#define sdest(osub, vertexptr)                                                \
-  vertexptr = (Vertex) (osub).m_subseg[3 - (osub).m_subseg_orient]
-
-#define setsorg(osub, vertexptr)                                              \
-  (osub).m_subseg[2 + (osub).m_subseg_orient] = (SubSeg) vertexptr
-
-#define setsdest(osub, vertexptr)                                             \
-  (osub).m_subseg[3 - (osub).m_subseg_orient] = (SubSeg) vertexptr
-
-#define segorg(osub, vertexptr)                                               \
-  vertexptr = (Vertex) (osub).m_subseg[4 + (osub).m_subseg_orient]
-
-#define segdest(osub, vertexptr)                                              \
-  vertexptr = (Vertex) (osub).m_subseg[5 - (osub).m_subseg_orient]
-
-#define setsegorg(osub, vertexptr)                                            \
-  (osub).m_subseg[4 + (osub).m_subseg_orient] = (SubSeg) vertexptr
-
-#define setsegdest(osub, vertexptr)                                           \
-  (osub).m_subseg[5 - (osub).m_subseg_orient] = (SubSeg) vertexptr
-
-/* These primitives read or set a boundary marker.  Boundary markers are     */
-/*   used to hold user-defined tags for setting boundary conditions in       */
-/*   finite element solvers.                                                 */
-
-#define mark(osub)  (* (int *) ((osub).m_subseg + 8))
-
-#define setmark(osub, value)                                                  \
-  * (int *) ((osub).m_subseg + 8) = value
-
-/* Bond two subsegments together.                                            */
-
-#define sbond(osub1, osub2)                                                   \
-  (osub1).m_subseg[(osub1).m_subseg_orient] = sencode(osub2);                              \
-  (osub2).m_subseg[(osub2).m_subseg_orient] = sencode(osub1)
-
-/* Dissolve a subsegment bond (from one side).  Note that the other          */
-/*   subsegment will still think it's connected to this subsegment.          */
-
-#define sdissolve(osub)                                                       \
-  (osub).m_subseg[(osub).m_subseg_orient] = (SubSeg) m.m_dummysub
-
-/* Copy a subsegment.                                                        */
-
-/*
-#define subsegcopy(osub1, osub2)                                              \
-  (osub2).m_subseg = (osub1).m_subseg;                                                    \
-  (osub2).m_subseg_orient = (osub1).m_subseg_orient
-*/
-
-template <class T> void subsegcopy(const T& osub1, const T& osub2) { osub2 = osub1; }
-
-/* Test for equality of subsegments.                                         */
-
-template <class T> bool subsegequal(const T& osub1, const T& osub2) { return osub1 == osub2; }
-
-/*
-#define subsegequal(osub1, osub2)                                             \
-  (((osub1).ss == (osub2).ss) &&                                              \
-   ((osub1).m_subseg_orient == (osub2).m_subseg_orient))
-*/
-
-/* Check or set a subsegment's deallocation.  Its second pointer is set to   */
-/*   NULL to indicate that it is not allocated.  (Its first pointer is used  */
-/*   for the stack of dead items.)  Its third pointer (its first vertex)     */
-/*   is set to NULL in case a `badsubseg' structure points to it.            */
-
-//#define deadsubseg(sub)  ((sub)[1] == (SubSeg) NULL)
-template <class T> bool deadsubseg(const T& t) { return t[1] == nullptr; }
-
-template <class T> void killsubseg(const T& t) { t[1] = nullptr; t[2] = nullptr; }
-
-/*
-#define killsubseg(sub)                                                       \
-  (sub)[1] = nullptr;                                                         \
-  (sub)[2] = nullptr
-*/
 
 /********* Primitives for interacting triangles and subsegments      *********/
-/*                                                                           */
-/*                                                                           */
+//
+//
 
-/* tspivot() finds a subsegment abutting a triangle.                         */
+//tspivot() finds a subsegment abutting a triangle.
 
 #define tspivot(otri, osub)                                                   \
   sptr = (SubSeg) (otri).m_tri[6 + (otri).m_orient];                              \
   sdecode(sptr, osub)
 
-/* stpivot() finds a triangle abutting a subsegment.  It requires that the   */
-/*   variable `ptr' of type `triangle' be defined.                           */
+//stpivot() finds a triangle abutting a subsegment.  It requires that the
+//  variable `ptr' of type `triangle' be defined.
 
 #define stpivot(osub, otri)                                                   \
   ptr = (Triangle) (osub).m_subseg[6 + (osub).m_subseg_orient];                            \
   decode(ptr, otri)
 
-/* Bond a triangle to a subsegment.                                          */
+//Bond a triangle to a subsegment.
 
 #define tsbond(otri, osub)                                                    \
   (otri).m_tri[6 + (otri).m_orient] = (Triangle) sencode(osub);                   \
   (osub).m_subseg[6 + (osub).m_subseg_orient] = (SubSeg) encode(otri)
 
-/* Dissolve a bond (from the triangle side).                                 */
+//Dissolve a bond (from the triangle side).
 
 #define tsdissolve(otri)                                                      \
   (otri).m_tri[6 + (otri).m_orient] = (Triangle) m.m_dummysub
 
-/* Dissolve a bond (from the subsegment side).                               */
+//Dissolve a bond (from the subsegment side).
 
 #define stdissolve(osub)                                                      \
   (osub).m_subseg[6 + (osub).m_subseg_orient] = (SubSeg) m.m_dummytri
 
 /********* Primitives for vertices                                   *********/
-/*                                                                           */
-/*                                                                           */
+//
+//
 
 #define vertexmark(vx)  ((int *) (vx))[m.m_vertexmarkindex]
 
 #define setvertexmark(vx, value)                                              \
   ((int *) (vx))[m.m_vertexmarkindex] = value
 
-#define vertextype(vx)  ((int *) (vx))[m.m_vertexmarkindex + 1]
-
-#define setvertextype(vx, value)                                              \
-  ((int *) (vx))[m.m_vertexmarkindex + 1] = value
 
 #define vertex2tri(vx)  ((Triangle *) (vx))[m.m_vertex2triindex]
 
@@ -754,28 +297,29 @@ template <class T> void killsubseg(const T& t) { t[1] = nullptr; t[2] = nullptr;
 
 
 /*****************************************************************************/
-/*                                                                           */
-/*  triunsuitable()   Determine if a triangle is unsuitable, and thus must   */
-/*                    be further refined.                                    */
-/*                                                                           */
-/*  You may write your own procedure that decides whether or not a selected  */
-/*  triangle is too big (and needs to be refined).  There are two ways to do */
-/*  this.                                                                    */
-/*                                                                           */
-/*  (1)  Modify the procedure `triunsuitable' below, then recompile          */
-/*  Triangle.                                                                */
-/*                                                                           */
-/*  (2)  Define the symbol EXTERNAL_TEST (either by adding the definition    */
-/*  to this file, or by using the appropriate compiler switch).  This way,   */
-/*  you can compile triangle.c separately from your test.  Write your own    */
-/*  `triunsuitable' procedure in a separate C file (using the same prototype */
-/*  as below).  Compile it and link the object code with triangle.o.         */
-/*                                                                           */
-/*  This procedure returns 1 if the triangle is too large and should be      */
-/*  refined; 0 otherwise.                                                    */
-/*                                                                           */
+//
+// triunsuitable()   Determine if a triangle is unsuitable, and thus must
+//                   be further refined.
+//
+// You may write your own procedure that decides whether or not a selected
+// triangle is too big (and needs to be refined).  There are two ways to do
+// this.
+//
+// (1)  Modify the procedure `triunsuitable' below, then recompile
+// Triangle.
+//
+// (2)  Define the symbol EXTERNAL_TEST (either by adding the definition
+// to this file, or by using the appropriate compiler switch).  This way,
+// you can compile triangle.c separately from your test.  Write your own
+// `triunsuitable' procedure in a separate C file (using the same prototype
+// as below).  Compile it and link the object code with triangle.o.
+//
+// This procedure returns 1 if the triangle is too large and should be
+// refined; 0 otherwise.
+//
 /*****************************************************************************/
-void tricpp::initializevertexpool(
+/*
+void ribi::tricpp::initializevertexpool(
   Mesh& m,
   const Behavior& b
 )
@@ -806,78 +350,80 @@ void tricpp::initializevertexpool(
     m.m_invertices > VERTEXPERBLOCK ? m.m_invertices : VERTEXPERBLOCK,
     sizeof(double)
   );
+
 }
+*/
 
 
-
-void tricpp::initializetrisubpools(
+void ribi::tricpp::initializetrisubpools(
   Mesh& m,
   const Behavior& b
 )
 {
-  /* The index within each triangle at which the extra nodes (above three)  */
-  /*   associated with high order elements are found.  There are three      */
-  /*   pointers to other triangles, three pointers to corners, and possibly */
-  /*   three pointers to subsegments before the extra nodes.                */
+  //The index within each triangle at which the extra nodes (above three)
+  //  associated with high order elements are found.  There are three
+  //  pointers to other triangles, three pointers to corners, and possibly
+  //  three pointers to subsegments before the extra nodes.
   m.m_highorderindex = 6 + (b.m_usesegments * 3);
-  /* The number of bytes occupied by a triangle. */
+  //The number of bytes occupied by a triangle.
   int trisize = ((b.m_order + 1) * (b.m_order + 2) / 2 + (m.m_highorderindex - 3)) *
             sizeof(Triangle);
-  /* The index within each triangle at which its attributes are found, */
-  /*   where the index is measured in doubles.                           */
+  //The index within each triangle at which its attributes are found,
+  //  where the index is measured in doubles.
   m.m_elemattribindex = (trisize + sizeof(double) - 1) / sizeof(double);
-  /* The index within each triangle at which the maximum area constraint  */
-  /*   is found, where the index is measured in doubles.  Note that if the  */
-  /*   `regionattrib' flag is set, an additional attribute will be added. */
+  //The index within each triangle at which the maximum area constraint
+  //  is found, where the index is measured in doubles.  Note that if the
+  //  `regionattrib' flag is set, an additional attribute will be added.
   m.m_areaboundindex = m.m_elemattribindex + m.m_eextras + b.m_regionattrib;
-  /* If triangle attributes or an area bound are needed, increase the number */
-  /*   of bytes occupied by a triangle.                                      */
+  //If triangle attributes or an area bound are needed, increase the number
+  //  of bytes occupied by a triangle.
   if (b.m_vararea) {
     trisize = (m.m_areaboundindex + 1) * sizeof(double);
   } else if (m.m_eextras + b.m_regionattrib > 0) {
     trisize = m.m_areaboundindex * sizeof(double);
   }
-  /* If a Voronoi diagram or triangle neighbor graph is requested, make    */
-  /*   sure there's room to store an integer index in each triangle.  This */
-  /*   integer index can occupy the same space as the subsegment pointers  */
-  /*   or attributes or area constraint or extra nodes.                    */
+  //If a Voronoi diagram or triangle neighbor graph is requested, make
+  //  sure there's room to store an integer index in each triangle.  This
+  //  integer index can occupy the same space as the subsegment pointers
+  //  or attributes or area constraint or extra nodes.
   if ((b.m_voronoi || b.m_neighbors) &&
       (trisize < 6 * static_cast<int>(sizeof(Triangle)) + static_cast<int>(sizeof(int)))) {
     trisize = 6 * sizeof(Triangle) + sizeof(int);
   }
 
-  /* Having determined the memory size of a triangle, initialize the pool. */
+  //Having determined the memory size of a triangle, initialize the pool.
   PoolInit(&m.m_triangles, trisize, g_triangles_per_block,
            (2 * m.m_invertices - 2) > g_triangles_per_block ? (2 * m.m_invertices - 2) :
            g_triangles_per_block, 4);
 
   if (b.m_usesegments) {
-    /* Initialize the pool of subsegments.  Take into account all eight */
-    /*   pointers and one boundary marker.                              */
+    //Initialize the pool of subsegments.  Take into account all eight
+    //  pointers and one boundary marker.
     PoolInit(&m.m_subsegs, 8 * sizeof(Triangle) + sizeof(int),
              SUBSEGPERBLOCK, SUBSEGPERBLOCK, 4);
 
-    /* Initialize the "outer space" triangle and omnipresent subsegment. */
+    //Initialize the "outer space" triangle and omnipresent subsegment.
     dummyinit(m, b, m.m_triangles.m_itembytes, m.m_subsegs.m_itembytes);
   } else {
-    /* Initialize the "outer space" triangle. */
+    //Initialize the "outer space" triangle.
     dummyinit(m, b, m.m_triangles.m_itembytes, 0);
   }
 }
 
-void tricpp::triangledealloc(
+void ribi::tricpp::triangledealloc(
   Mesh& m,
   Triangle * const dyingtriangle
 )
 {
-  /* Mark the triangle as dead.  This makes it possible to detect dead */
-  /*   triangles when traversing the list of all triangles.            */
-  killtri(dyingtriangle);
+  //Mark the triangle as dead.  This makes it possible to detect dead
+  //  triangles when traversing the list of all triangles.
+  dyingtriangle->KillMe();
+  //killtri(dyingtriangle);
   PoolDealloc(&m.m_triangles, (void *) dyingtriangle);
 }
 
 
-tricpp::Triangle * tricpp::triangletraverse(Mesh& m)
+ribi::tricpp::Triangle * ribi::tricpp::triangletraverse(Mesh& m)
 {
   Triangle *newtriangle = nullptr;
 
@@ -886,22 +432,25 @@ tricpp::Triangle * tricpp::triangletraverse(Mesh& m)
     if (newtriangle == (Triangle *) NULL) {
       return (Triangle *) NULL;
     }
-  } while (deadtri(newtriangle));                         /* Skip dead ones. */
+  } while (newtriangle->IsDead()); // Skip dead ones
   return newtriangle;
 }
 
-void tricpp::subsegdealloc(
+void ribi::tricpp::subsegdealloc(
   Mesh& m,
   SubSeg * const dyingsubseg
 )
 {
-  /* Mark the subsegment as dead.  This makes it possible to detect dead */
-  /*   subsegments when traversing the list of all subsegments.          */
+  //Mark the subsegment as dead.  This makes it possible to detect dead
+  //  subsegments when traversing the list of all subsegments.
+  /*
   killsubseg(dyingsubseg);
   PoolDealloc(&m.m_subsegs, (void *) dyingsubseg);
+  */
+  m.KillSubSeg(dyingsubseg);
 }
 
-tricpp::SubSeg * tricpp::subsegtraverse(
+ribi::tricpp::SubSeg * ribi::tricpp::subsegtraverse(
   Mesh& m
 )
 {
@@ -909,82 +458,90 @@ tricpp::SubSeg * tricpp::subsegtraverse(
 
   do {
     newsubseg = (SubSeg *) Traverse(&m.m_subsegs);
-    if (newsubseg == (SubSeg *) NULL) {
-      return (SubSeg *) NULL;
+    if (newsubseg == nullptr {
+      return nullptr;
     }
-  } while (deadsubseg(newsubseg));                        /* Skip dead ones. */
+  } while (newsubseg->IsDead()); //Skip dead ones.
   return newsubseg;
 }
 
 
-void tricpp::vertexdealloc(
-  Mesh& m,
-  const Vertex& dyingvertex
+void ribi::tricpp::vertexdealloc(
+  std::vector<Vertex>& vertices,
+  Vertex& dyingvertex
 )
 {
-  /* Mark the vertex as dead.  This makes it possible to detect dead */
-  /*   vertices when traversing the list of all vertices.            */
-  setvertextype(dyingvertex, DEADVERTEX);
-  PoolDealloc(&m.m_vertices, (void *) dyingvertex);
+  //Mark the vertex as dead.  This makes it possible to detect dead
+  //  vertices when traversing the list of all vertices.
+  dyingvertex.SetVertexType(VertexType::DEADVERTEX);
+  //PoolDealloc(&m.m_vertices, (void *) &dyingvertex[0]);
+  PoolDealloc(vertices, dyingvertex);
 }
 
 
 
-void tricpp::badsubsegdealloc(
+void ribi::tricpp::badsubsegdealloc(
   Mesh& m,
   BadSubSeg * const dyingseg
 )
 {
-  /* Set subsegment's origin to NULL.  This makes it possible to detect dead */
-  /*   badsubsegs when traversing the list of all badsubsegs             .   */
-  dyingseg->m_subsegorg = nullptr;
+  //Set subsegment's origin to NULL.  This makes it possible to detect dead
+  //  badsubsegs when traversing the list of all badsubsegs             .
+  dyingseg->m_subsegorg.Clear();
   PoolDealloc(&m.m_badsubsegs, (void *) dyingseg);
 }
 
 
 
-tricpp::BadSubSeg * tricpp::badsubsegtraverse(Mesh& m)
+ribi::tricpp::BadSubSeg * ribi::tricpp::badsubsegtraverse(Mesh& m)
 {
-  struct BadSubSeg *newseg;
+  BadSubSeg *newseg = nullptr;
 
-  do {
+  do
+  {
     newseg = (BadSubSeg *) Traverse(&m.m_badsubsegs);
     if (newseg == nullptr)
     {
       return nullptr;
     }
-  } while (newseg->m_subsegorg == nullptr);           /* Skip dead ones. */
+  } while (newseg->m_subsegorg.IsEmpty()); // Skip dead ones.
   return newseg;
 }
 
 
-tricpp::Vertex tricpp::getvertex(
-  const Mesh& m,
-  const Behavior& b,
-  const int number
+/*
+ribi::tricpp::Vertex ribi::tricpp::getvertex(
+  const std::vector<Vertex>& vertices,
+  const Behavior&,
+  const int index
 )
 {
-  void **getblock = m.m_vertices.m_firstblock;
+  assert(index >= 0);
+  assert(index < static_cast<int>(vertices.size()));
+  return vertices[index];
+
+  void **getblock = vertices.m_firstblock;
   int current = b.m_firstnumber;
 
-  /* Find the right block. */
-  if (current + m.m_vertices.m_itemsfirstblock <= number) {
+  // Find the right block.
+  if (current + vertices.m_itemsfirstblock <= number) {
     getblock = (void **) *getblock;
-    current += m.m_vertices.m_itemsfirstblock;
-    while (current + m.m_vertices.m_itemsperblock <= number) {
+    current += vertices.m_itemsfirstblock;
+    while (current + vertices.m_itemsperblock <= number) {
       getblock = (void **) *getblock;
-      current += m.m_vertices.m_itemsperblock;
+      current += vertices.m_itemsperblock;
     }
   }
 
-  /* Now find the right vertex. */
+  // Now find the right vertex.
   const unsigned long alignptr = (unsigned long) (getblock + 1);
-  const char * const foundvertex = (char *) (alignptr + (unsigned long) m.m_vertices.m_alignbytes -
-                          (alignptr % (unsigned long) m.m_vertices.m_alignbytes));
-  return (Vertex) (foundvertex + m.m_vertices.m_itembytes * (number - current));
+  const char * const foundvertex = (char *) (alignptr + (unsigned long) vertices.m_alignbytes -
+                          (alignptr % (unsigned long) vertices.m_alignbytes));
+  return (Vertex)(foundvertex + vertices.m_itembytes * (number - current));
 }
+*/
 
-void tricpp::triangledeinit(
+void ribi::tricpp::triangledeinit(
   Mesh& m,
   const Behavior& b
 )
@@ -997,7 +554,7 @@ void tricpp::triangledeinit(
     delete m.m_dummysubbase;
     m.m_dummysubbase = nullptr;
   }
-  PoolDeinit(&m.m_vertices);
+  PoolDeinit(m.m_vertices);
   if (b.m_quality) {
     PoolDeinit(&m.m_badsubsegs);
     if ((b.m_minangle > 0.0) || b.m_vararea || b.m_fixedarea || b.m_usertest)
@@ -1009,7 +566,7 @@ void tricpp::triangledeinit(
 }
 
 
-void tricpp::maketriangle(
+void ribi::tricpp::maketriangle(
   Mesh& m,
   const Behavior& b,
   Otri * const newotri
@@ -1018,17 +575,17 @@ void tricpp::maketriangle(
 
 
   newotri->m_tri = (Triangle *) PoolAlloc(&m.m_triangles);
-  /* Initialize the three adjoining triangles to be "outer space". */
+  //Initialize the three adjoining triangles to be "outer space".
   newotri->m_tri[0] = (Triangle) m.m_dummytri;
   newotri->m_tri[1] = (Triangle) m.m_dummytri;
   newotri->m_tri[2] = (Triangle) m.m_dummytri;
-  /* Three NULL vertices. */
+  //Three NULL vertices.
   newotri->m_tri[3] = nullptr;
   newotri->m_tri[4] = nullptr;
   newotri->m_tri[5] = nullptr;
   if (b.m_usesegments) {
-    /* Initialize the three adjoining subsegments to be the omnipresent */
-    /*   subsegment.                                                    */
+    //Initialize the three adjoining subsegments to be the omnipresent
+    //  subsegment.
     newotri->m_tri[6] = (Triangle) m.m_dummysub;
     newotri->m_tri[7] = (Triangle) m.m_dummysub;
     newotri->m_tri[8] = (Triangle) m.m_dummysub;
@@ -1044,31 +601,31 @@ void tricpp::maketriangle(
 }
 
 
-void tricpp::makesubseg(
+void ribi::tricpp::makesubseg(
   Mesh& m,
   Osub * const newsubseg
 )
 {
   newsubseg->m_subseg = (SubSeg *) PoolAlloc(&m.m_subsegs);
-  /* Initialize the two adjoining subsegments to be the omnipresent */
-  /*   subsegment.                                                  */
+  //Initialize the two adjoining subsegments to be the omnipresent
+  //  subsegment.
   newsubseg->m_subseg[0] = (SubSeg) m.m_dummysub;
   newsubseg->m_subseg[1] = (SubSeg) m.m_dummysub;
-  /* Four NULL vertices. */
+  //Four NULL vertices.
   newsubseg->m_subseg[2] = nullptr;
   newsubseg->m_subseg[3] = nullptr;
   newsubseg->m_subseg[4] = nullptr;
   newsubseg->m_subseg[5] = nullptr;
-  /* Initialize the two adjoining triangles to be "outer space." */
+  //Initialize the two adjoining triangles to be "outer space."
   newsubseg->m_subseg[6] = (SubSeg) m.m_dummytri;
   newsubseg->m_subseg[7] = (SubSeg) m.m_dummytri;
-  /* Set the boundary marker to zero. */
+  //Set the boundary marker to zero.
   setmark(*newsubseg, 0);
 
   newsubseg->m_subseg_orient = 0;
 }
 
-int tricpp::fast_expansion_sum_zeroelim(
+int ribi::tricpp::fast_expansion_sum_zeroelim(
   const int elen,
   const double * const e,
   const int flen,
@@ -1140,7 +697,7 @@ int tricpp::fast_expansion_sum_zeroelim(
 }
 
 
-int tricpp::scale_expansion_zeroelim(
+int ribi::tricpp::scale_expansion_zeroelim(
   const int elen,
   const double * const e,
   const double b,
@@ -1180,11 +737,11 @@ int tricpp::scale_expansion_zeroelim(
 }
 
 /*****************************************************************************/
-/*                                                                           */
-/*  estimate()   Produce a one-word estimate of an expansion's value.        */
-/*                                                                           */
-/*  See my Robust Predicates paper for details.                              */
-/*                                                                           */
+//
+// estimate()   Produce a one-word estimate of an expansion's value.
+//
+// See my Robust Predicates paper for details.
+//
 /*****************************************************************************/
 double estimate(
   const int elen,
@@ -1200,7 +757,7 @@ double estimate(
 }
 
 
-double tricpp::counterclockwiseadapt(
+double ribi::tricpp::counterclockwiseadapt(
   const Vertex& pa,
   const Vertex& pb,
   const Vertex& pc,
@@ -1277,7 +834,7 @@ double tricpp::counterclockwiseadapt(
   return(D[Dlength - 1]);
 }
 
-double tricpp::counterclockwise(
+double ribi::tricpp::counterclockwise(
   Mesh& m,
   const Behavior& b,
   const Vertex& pa,
@@ -1325,7 +882,7 @@ double tricpp::counterclockwise(
   return counterclockwiseadapt(pa, pb, pc, detsum);
 }
 
-double tricpp::incircleadapt(
+double ribi::tricpp::incircleadapt(
   const Vertex& pa,
   const Vertex& pb,
   const Vertex& pc,
@@ -1895,7 +1452,7 @@ double tricpp::incircleadapt(
   return finnow[finlength - 1];
 }
 
-double tricpp::incircle(
+double ribi::tricpp::incircle(
   Mesh& m,
   const Behavior& b,
   const Vertex& pa,
@@ -1952,7 +1509,7 @@ double tricpp::incircle(
 
 
 
-double tricpp::orient3dadapt(
+double ribi::tricpp::orient3dadapt(
   const Vertex& pa,
   const Vertex& pb,
   const Vertex& pc,
@@ -2355,7 +1912,7 @@ double tricpp::orient3dadapt(
   return finnow[finlength - 1];
 }
 
-double tricpp::orient3d(
+double ribi::tricpp::orient3d(
   Mesh& m,
   const Behavior& b,
   const Vertex& pa,
@@ -2415,7 +1972,7 @@ double tricpp::orient3d(
                        permanent);
 }
 
-double tricpp::nonregular(
+double ribi::tricpp::nonregular(
   Mesh& m,
   const Behavior& b,
   const Vertex& pa,
@@ -2438,13 +1995,13 @@ double tricpp::nonregular(
 }
 
 
-void tricpp::findcircumcenter(
+void ribi::tricpp::findcircumcenter(
   Mesh& m,
   const Behavior& b,
   const Vertex& torg,
   const Vertex& tdest,
   const Vertex& tapex,
-  const Vertex& circumcenter,
+  Vertex& circumcenter,
   double * const xi,
   double * const eta,
   const int offcenter
@@ -2457,7 +2014,7 @@ void tricpp::findcircumcenter(
 
   m.m_circumcentercount++;
 
-  /* Compute the circumcenter of the triangle. */
+  //Compute the circumcenter of the triangle.
   const double xdo = tdest[0] - torg[0];
   const double ydo = tdest[1] - torg[1];
   const double xao = tapex[0] - torg[0];
@@ -2469,28 +2026,28 @@ void tricpp::findcircumcenter(
   if (b.m_noexact) {
     denominator = 0.5 / (xdo * yao - xao * ydo);
   } else {
-    /* Use the counterclockwise() routine to ensure a positive (and */
-    /*   reasonably accurate) result, avoiding any possibility of   */
-    /*   division by zero.                                          */
+    //Use the counterclockwise() routine to ensure a positive (and
+    //  reasonably accurate) result, avoiding any possibility of
+    //  division by zero.
     denominator = 0.5 / counterclockwise(m, b, tdest, tapex, torg);
-    /* Don't count the above as an orientation test. */
+    //Don't count the above as an orientation test.
     m.m_counterclockcount--;
   }
   double dx = (yao * dodist - ydo * aodist) * denominator;
   double dy = (xdo * aodist - xao * dodist) * denominator;
 
-  /* Find the (squared) length of the triangle's shortest edge.  This   */
-  /*   serves as a conservative estimate of the insertion radius of the */
-  /*   circumcenter's parent.  The estimate is used to ensure that      */
-  /*   the algorithm terminates even if very small angles appear in     */
-  /*   the input PSLG.                                                  */
+  //Find the (squared) length of the triangle's shortest edge.  This
+  //  serves as a conservative estimate of the insertion radius of the
+  //  circumcenter's parent.  The estimate is used to ensure that
+  //  the algorithm terminates even if very small angles appear in
+  //  the input PSLG.
   if ((dodist < aodist) && (dodist < dadist)) {
     if (offcenter && (b.m_offconstant > 0.0)) {
-      /* Find the position of the off-center, as described by Alper Ungor. */
+      //Find the position of the off-center, as described by Alper Ungor.
       const double dxoff = 0.5 * xdo - b.m_offconstant * ydo;
       const double dyoff = 0.5 * ydo + b.m_offconstant * xdo;
-      /* If the off-center is closer to the origin than the */
-      /*   circumcenter, use the off-center instead.        */
+      //If the off-center is closer to the origin than the
+      //  circumcenter, use the off-center instead.
       if (dxoff * dxoff + dyoff * dyoff < dx * dx + dy * dy) {
         dx = dxoff;
         dy = dyoff;
@@ -2500,8 +2057,8 @@ void tricpp::findcircumcenter(
     if (offcenter && (b.m_offconstant > 0.0)) {
       const double dxoff = 0.5 * xao + b.m_offconstant * yao;
       const double dyoff = 0.5 * yao - b.m_offconstant * xao;
-      /* If the off-center is closer to the origin than the */
-      /*   circumcenter, use the off-center instead.        */
+      //If the off-center is closer to the origin than the
+      //  circumcenter, use the off-center instead.
       if (dxoff * dxoff + dyoff * dyoff < dx * dx + dy * dy) {
         dx = dxoff;
         dy = dyoff;
@@ -2513,8 +2070,8 @@ void tricpp::findcircumcenter(
               b.m_offconstant * (tapex[1] - tdest[1]);
       const double dyoff = 0.5 * (tapex[1] - tdest[1]) +
               b.m_offconstant * (tapex[0] - tdest[0]);
-      /* If the off-center is closer to the destination than the */
-      /*   circumcenter, use the off-center instead.             */
+      //If the off-center is closer to the destination than the
+      //  circumcenter, use the off-center instead.
       if (dxoff * dxoff + dyoff * dyoff <
           (dx - xdo) * (dx - xdo) + (dy - ydo) * (dy - ydo)) {
         dx = xdo + dxoff;
@@ -2526,23 +2083,23 @@ void tricpp::findcircumcenter(
   circumcenter[0] = torg[0] + dx;
   circumcenter[1] = torg[1] + dy;
 
-  /* To interpolate vertex attributes for the new vertex inserted at */
-  /*   the circumcenter, define a coordinate system with a xi-axis,  */
-  /*   directed from the triangle's origin to its destination, and   */
-  /*   an eta-axis, directed from its origin to its apex.            */
-  /*   Calculate the xi and eta coordinates of the circumcenter.     */
+  //To interpolate vertex attributes for the new vertex inserted at
+  //  the circumcenter, define a coordinate system with a xi-axis,
+  //  directed from the triangle's origin to its destination, and
+  //  an eta-axis, directed from its origin to its apex.
+  //  Calculate the xi and eta coordinates of the circumcenter.
   *xi = (yao * dx - xao * dy) * (2.0 * denominator);
   *eta = (xdo * dy - ydo * dx) * (2.0 * denominator);
 }
 
-unsigned long tricpp::randomnation(const unsigned int choices)
+unsigned long ribi::tricpp::randomnation(const unsigned int choices)
 {
   static int s_randomseed = 1;
   s_randomseed = (s_randomseed * 1366l + 150889l) % 714025l;
   return s_randomseed / (714025l / choices + 1);
 }
 
-void tricpp::checkmesh(
+void ribi::tricpp::checkmesh(
   Mesh& m,
   Behavior& b
 )
@@ -2551,27 +2108,27 @@ void tricpp::checkmesh(
   Otri oppotri, oppooppotri;
   Vertex triorg, tridest, triapex;
   Vertex oppoorg, oppodest;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
-  /* Temporarily turn on exact arithmetic if it's off. */
+  //Temporarily turn on exact arithmetic if it's off.
   const int saveexact = b.m_noexact;
   b.m_noexact = 0;
   if (!b.m_quiet) {
     std::cout << "  Checking consistency of mesh...\n";
   }
   int flaws = 0;
-  /* Run through the list of triangles, checking each one. */
+  //Run through the list of triangles, checking each one.
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
   while (triangleloop.m_tri != nullptr)
   {
-    /* Check all three edges of the triangle. */
+    //Check all three edges of the triangle.
     for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
          triangleloop.m_orient++) {
       org(triangleloop, triorg);
       dest(triangleloop, tridest);
-      if (triangleloop.m_orient == 0) {       /* Only test for inversion once. */
-        /* Test if the triangle is flat or inverted. */
+      if (triangleloop.m_orient == 0) {       //Only test for inversion once.
+        //Test if the triangle is flat or inverted.
         apex(triangleloop, triapex);
         if (counterclockwise(m, b, triorg, tridest, triapex) <= 0.0) {
           printf("  !! !! Inverted ");
@@ -2579,10 +2136,10 @@ void tricpp::checkmesh(
           flaws++;
         }
       }
-      /* Find the neighboring triangle on this edge. */
+      //Find the neighboring triangle on this edge.
       sym(triangleloop, oppotri);
       if (oppotri.m_tri != m.m_dummytri) {
-        /* Check that the triangle's neighbor knows it's a neighbor. */
+        //Check that the triangle's neighbor knows it's a neighbor.
         sym(oppotri, oppooppotri);
         if ((triangleloop.m_tri != oppooppotri.m_tri)
             || (triangleloop.m_orient != oppooppotri.m_orient))
@@ -2598,8 +2155,8 @@ void tricpp::checkmesh(
           printtriangle(m, b, &oppotri);
           flaws++;
         }
-        /* Check that both triangles agree on the identities */
-        /*   of their shared vertices.                       */
+        //Check that both triangles agree on the identities
+        //  of their shared vertices.
         org(oppotri, oppoorg);
         dest(oppotri, oppodest);
         if ((triorg != oppodest) || (tridest != oppoorg))
@@ -2625,12 +2182,12 @@ void tricpp::checkmesh(
   } else {
     std::cout << "  mesh has multiple flaws.\n";
   }
-  /* Restore the status of exact arithmetic. */
+  //Restore the status of exact arithmetic.
   b.m_noexact = saveexact;
 }
 
 
-void tricpp::checkdelaunay(Mesh& m, Behavior& b)
+void ribi::tricpp::checkdelaunay(Mesh& m, Behavior& b)
 {
   Otri triangleloop;
   Otri oppotri;
@@ -2638,21 +2195,21 @@ void tricpp::checkdelaunay(Mesh& m, Behavior& b)
   Vertex triorg, tridest, triapex;
   Vertex oppoapex;
   //int shouldbedelaunay;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  /* Temporarily turn on exact arithmetic if it's off. */
+  //Temporarily turn on exact arithmetic if it's off.
   const int saveexact = b.m_noexact;
   b.m_noexact = 0;
   if (!b.m_quiet) {
     printf("  Checking Delaunay property of mesh...\n");
   }
   int horrors = 0;
-  /* Run through the list of triangles, checking each one. */
+  //Run through the list of triangles, checking each one.
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
   while (triangleloop.m_tri != (Triangle *) NULL) {
-    /* Check all three edges of the triangle. */
+    //Check all three edges of the triangle.
     for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
          triangleloop.m_orient++)
     {
@@ -2661,9 +2218,9 @@ void tricpp::checkdelaunay(Mesh& m, Behavior& b)
       apex(triangleloop, triapex);
       sym(triangleloop, oppotri);
       apex(oppotri, oppoapex);
-      /* Only test that the edge is locally Delaunay if there is an   */
-      /*   adjoining triangle whose pointer is larger (to ensure that */
-      /*   each pair isn't tested twice).                             */
+      //Only test that the edge is locally Delaunay if there is an
+      //  adjoining triangle whose pointer is larger (to ensure that
+      //  each pair isn't tested twice).
       bool shouldbedelaunay
         =    oppotri.m_tri != m.m_dummytri
           && !deadtri(oppotri.m_tri)
@@ -2682,8 +2239,8 @@ void tricpp::checkdelaunay(Mesh& m, Behavior& b)
           && oppoapex != m.m_infvertex3
         ;
       if (m.m_checksegments && shouldbedelaunay) {
-        /* If a subsegment separates the triangles, then the edge is */
-        /*   constrained, so no local Delaunay test should be done.  */
+        //If a subsegment separates the triangles, then the edge is
+        //  constrained, so no local Delaunay test should be done.
         tspivot(triangleloop, opposubseg);
         if (opposubseg.m_subseg != m.m_dummysub){
           shouldbedelaunay = false;
@@ -2730,11 +2287,11 @@ void tricpp::checkdelaunay(Mesh& m, Behavior& b)
   {
     printf("  Mesh has multiple flaws keeping it from being Delauney.\n");
   }
-  /* Restore the status of exact arithmetic. */
+  //Restore the status of exact arithmetic.
   b.m_noexact = saveexact;
 }
 
-void tricpp::enqueuebadtriang(
+void ribi::tricpp::enqueuebadtriang(
   Mesh& m,
   const Behavior& b,
   BadTriang * const badtri
@@ -2754,75 +2311,75 @@ void tricpp::enqueuebadtriang(
            badtri->m_triangapex[0], badtri->m_triangapex[1]);
   }
 
-  /* Determine the appropriate queue to put the bad triangle into.    */
-  /*   Recall that the key is the square of its shortest edge length. */
+  //Determine the appropriate queue to put the bad triangle into.
+  //  Recall that the key is the square of its shortest edge length.
   if (badtri->m_key >= 1.0) {
     length = badtri->m_key;
     posexponent = 1;
   } else {
-    /* `badtri->key' is 2.0 to a negative exponent, so we'll record that */
-    /*   fact and use the reciprocal of `badtri->key', which is > 1.0.   */
+    //`badtri->key' is 2.0 to a negative exponent, so we'll record that
+    //  fact and use the reciprocal of `badtri->key', which is > 1.0.
     length = 1.0 / badtri->m_key;
     posexponent = 0;
   }
-  /* `length' is approximately 2.0 to what exponent?  The following code */
-  /*   determines the answer in time logarithmic in the exponent.        */
+  //`length' is approximately 2.0 to what exponent?  The following code
+  //  determines the answer in time logarithmic in the exponent.
   exponent = 0;
   while (length > 2.0) {
-    /* Find an approximation by repeated squaring of two. */
+    //Find an approximation by repeated squaring of two.
     expincrement = 1;
     multiplier = 0.5;
     while (length * multiplier * multiplier > 1.0) {
       expincrement *= 2;
       multiplier *= multiplier;
     }
-    /* Reduce the value of `length', then iterate if necessary. */
+    //Reduce the value of `length', then iterate if necessary.
     exponent += expincrement;
     length *= multiplier;
   }
-  /* `length' is approximately squareroot(2.0) to what exponent? */
+  //`length' is approximately squareroot(2.0) to what exponent?
   exponent = 2.0 * exponent + (length > boost::math::constants::root_two<double>());
-  /* `exponent' is now in the range 0...2047 for IEEE double precision.   */
-  /*   Choose a queue in the range 0...4095.  The shortest edges have the */
-  /*   highest priority (queue 4095).                                     */
+  //`exponent' is now in the range 0...2047 for IEEE double precision.
+  //  Choose a queue in the range 0...4095.  The shortest edges have the
+  //  highest priority (queue 4095).
   if (posexponent) {
     queuenumber = 2047 - exponent;
   } else {
     queuenumber = 2048 + exponent;
   }
 
-  /* Are we inserting into an empty queue? */
+  //Are we inserting into an empty queue?
   if (m.m_queuefront[queuenumber] == (struct BadTriang *) NULL) {
-    /* Yes, we are inserting into an empty queue.     */
-    /*   Will this become the highest-priority queue? */
+    //Yes, we are inserting into an empty queue.
+    //  Will this become the highest-priority queue?
     if (queuenumber > m.m_firstnonemptyq) {
-      /* Yes, this is the highest-priority queue. */
+      //Yes, this is the highest-priority queue.
       m.m_nextnonemptyq[queuenumber] = m.m_firstnonemptyq;
       m.m_firstnonemptyq = queuenumber;
     } else {
-      /* No, this is not the highest-priority queue. */
-      /*   Find the queue with next higher priority. */
+      //No, this is not the highest-priority queue.
+      //  Find the queue with next higher priority.
       int i = queuenumber + 1;
       while (m.m_queuefront[i] == (struct BadTriang *) NULL) {
         i++;
       }
-      /* Mark the newly nonempty queue as following a higher-priority queue. */
+      //Mark the newly nonempty queue as following a higher-priority queue.
       m.m_nextnonemptyq[queuenumber] = m.m_nextnonemptyq[i];
       m.m_nextnonemptyq[i] = queuenumber;
     }
-    /* Put the bad triangle at the beginning of the (empty) queue. */
+    //Put the bad triangle at the beginning of the (empty) queue.
     m.m_queuefront[queuenumber] = badtri;
   } else {
-    /* Add the bad triangle to the end of an already nonempty queue. */
+    //Add the bad triangle to the end of an already nonempty queue.
     m.m_queuetail[queuenumber]->m_nexttriang = badtri;
   }
-  /* Maintain a pointer to the last triangle of the queue. */
+  //Maintain a pointer to the last triangle of the queue.
   m.m_queuetail[queuenumber] = badtri;
-  /* Newly enqueued bad triangle has no successor in the queue. */
+  //Newly enqueued bad triangle has no successor in the queue.
   badtri->m_nexttriang = (struct BadTriang *) NULL;
 }
 
-void tricpp::enqueuebadtri(
+void ribi::tricpp::enqueuebadtri(
   Mesh& m,
   const Behavior& b,
   const Otri * const enqtri,
@@ -2834,7 +2391,7 @@ void tricpp::enqueuebadtri(
 {
   BadTriang *newbad = nullptr;
 
-  /* Allocate space for the bad triangle. */
+  //Allocate space for the bad triangle.
   newbad = (struct BadTriang *) PoolAlloc(&m.m_badtriangles);
   newbad->m_poortri = encode(*enqtri);
   newbad->m_key = minedge;
@@ -2844,29 +2401,29 @@ void tricpp::enqueuebadtri(
   enqueuebadtriang(m, b, newbad);
 }
 
-tricpp::BadTriang * tricpp::dequeuebadtriang(
+ribi::tricpp::BadTriang * ribi::tricpp::dequeuebadtriang(
   Mesh& m
 )
 {
   BadTriang *result = nullptr;
 
-  /* If no queues are nonempty, return NULL. */
+  //If no queues are nonempty, return NULL.
   if (m.m_firstnonemptyq < 0) {
     return (struct BadTriang *) NULL;
   }
-  /* Find the first triangle of the highest-priority queue. */
+  //Find the first triangle of the highest-priority queue.
   result = m.m_queuefront[m.m_firstnonemptyq];
-  /* Remove the triangle from the queue. */
+  //Remove the triangle from the queue.
   m.m_queuefront[m.m_firstnonemptyq] = result->m_nexttriang;
-  /* If this queue is now empty, note the new highest-priority */
-  /*   nonempty queue.                                         */
+  //If this queue is now empty, note the new highest-priority
+  //  nonempty queue.
   if (result == m.m_queuetail[m.m_firstnonemptyq]) {
     m.m_firstnonemptyq = m.m_nextnonemptyq[m.m_firstnonemptyq];
   }
   return result;
 }
 
-int tricpp::checkseg4encroach(
+int ribi::tricpp::checkseg4encroach(
   Mesh& m,
   const Behavior& b,
   const Osub * const testsubseg
@@ -2879,25 +2436,25 @@ int tricpp::checkseg4encroach(
   int encroached;
   int sides;
   Vertex eorg, edest, eapex;
-  Triangle ptr;                     /* Temporary variable used by stpivot(). */
+  Triangle ptr;                     //Temporary variable used by stpivot().
 
   encroached = 0;
   sides = 0;
 
   sorg(*testsubseg, eorg);
   sdest(*testsubseg, edest);
-  /* Check one neighbor of the subsegment. */
+  //Check one neighbor of the subsegment.
   stpivot(*testsubseg, neighbortri);
-  /* Does the neighbor exist, or is this a boundary edge? */
+  //Does the neighbor exist, or is this a boundary edge?
   if (neighbortri.m_tri != m.m_dummytri) {
     sides++;
-    /* Find a vertex opposite this subsegment. */
+    //Find a vertex opposite this subsegment.
     apex(neighbortri, eapex);
-    /* Check whether the apex is in the diametral lens of the subsegment */
-    /*   (the diametral circle if `conformdel' is set).  A dot product   */
-    /*   of two sides of the triangle is used to check whether the angle */
-    /*   at the apex is greater than (180 - 2 `minangle') degrees (for   */
-    /*   lenses; 90 degrees for diametral circles).                      */
+    //Check whether the apex is in the diametral lens of the subsegment
+    //  (the diametral circle if `conformdel' is set).  A dot product
+    //  of two sides of the triangle is used to check whether the angle
+    //  at the apex is greater than (180 - 2 `minangle') degrees (for
+    //  lenses; 90 degrees for diametral circles).
     dotproduct = (eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                  (eorg[1] - eapex[1]) * (edest[1] - eapex[1]);
     if (dotproduct < 0.0) {
@@ -2912,16 +2469,16 @@ int tricpp::checkseg4encroach(
       }
     }
   }
-  /* Check the other neighbor of the subsegment. */
+  //Check the other neighbor of the subsegment.
   ssym(*testsubseg, testsym);
   stpivot(testsym, neighbortri);
-  /* Does the neighbor exist, or is this a boundary edge? */
+  //Does the neighbor exist, or is this a boundary edge?
   if (neighbortri.m_tri != m.m_dummytri) {
     sides++;
-    /* Find the other vertex opposite this subsegment. */
+    //Find the other vertex opposite this subsegment.
     apex(neighbortri, eapex);
-    /* Check whether the apex is in the diametral lens of the subsegment */
-    /*   (or the diametral circle, if `conformdel' is set).              */
+    //Check whether the apex is in the diametral lens of the subsegment
+    //  (or the diametral circle, if `conformdel' is set).
     dotproduct = (eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                  (eorg[1] - eapex[1]) * (edest[1] - eapex[1]);
     if (dotproduct < 0.0) {
@@ -2943,8 +2500,8 @@ int tricpp::checkseg4encroach(
         "  Queueing encroached subsegment (%.12g, %.12g) (%.12g, %.12g).\n",
         eorg[0], eorg[1], edest[0], edest[1]);
     }
-    /* Add the subsegment to the list of encroached subsegments. */
-    /*   Be sure to get the orientation right.                   */
+    //Add the subsegment to the list of encroached subsegments.
+    //  Be sure to get the orientation right.
     encroachedseg = (struct BadSubSeg *) PoolAlloc(&m.m_badsubsegs);
     if (encroached == 1) {
       encroachedseg->m_encsubseg = sencode(*testsubseg);
@@ -2960,7 +2517,7 @@ int tricpp::checkseg4encroach(
   return encroached;
 }
 
-void tricpp::testtriangle(
+void ribi::tricpp::testtriangle(
   Mesh& m,
   const Behavior& b,
   const Otri * const testtri
@@ -2979,8 +2536,8 @@ void tricpp::testtriangle(
   double angle;
   double area;
   double dist1, dist2;
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
-  Triangle ptr;           /* Temporary variable used by oprev() and dnext(). */
+  SubSeg sptr;                      //Temporary variable used by tspivot().
+  Triangle ptr;           //Temporary variable used by oprev() and dnext().
 
   org(*testtri, torg);
   dest(*testtri, tdest);
@@ -2997,33 +2554,33 @@ void tricpp::testtriangle(
   const double dyda2 = dyda * dyda;
   const double dxao2 = dxao * dxao;
   const double dyao2 = dyao * dyao;
-  /* Find the lengths of the triangle's three edges. */
+  //Find the lengths of the triangle's three edges.
   const double apexlen = dxod2 + dyod2;
   const double orglen = dxda2 + dyda2;
   const double destlen = dxao2 + dyao2;
 
   if ((apexlen < orglen) && (apexlen < destlen)) {
-    /* The edge opposite the apex is shortest. */
+    //The edge opposite the apex is shortest.
     minedge = apexlen;
-    /* Find the square of the cosine of the angle at the apex. */
+    //Find the square of the cosine of the angle at the apex.
     angle = dxda * dxao + dyda * dyao;
     angle = angle * angle / (orglen * destlen);
     base1 = torg;
     base2 = tdest;
     otricopy(*testtri, tri1);
   } else if (orglen < destlen) {
-    /* The edge opposite the origin is shortest. */
+    //The edge opposite the origin is shortest.
     minedge = orglen;
-    /* Find the square of the cosine of the angle at the origin. */
+    //Find the square of the cosine of the angle at the origin.
     angle = dxod * dxao + dyod * dyao;
     angle = angle * angle / (apexlen * destlen);
     base1 = tdest;
     base2 = tapex;
     lnext(*testtri, tri1);
   } else {
-    /* The edge opposite the destination is shortest. */
+    //The edge opposite the destination is shortest.
     minedge = destlen;
-    /* Find the square of the cosine of the angle at the destination. */
+    //Find the square of the cosine of the angle at the destination.
     angle = dxod * dxda + dyod * dyda;
     angle = angle * angle / (apexlen * orglen);
     base1 = tapex;
@@ -3032,66 +2589,66 @@ void tricpp::testtriangle(
   }
 
   if (b.m_vararea || b.m_fixedarea || b.m_usertest) {
-    /* Check whether the area is larger than permitted. */
+    //Check whether the area is larger than permitted.
     area = 0.5 * (dxod * dyda - dyod * dxda);
     if (b.m_fixedarea && (area > b.m_maxarea)) {
-      /* Add this triangle to the list of bad triangles. */
+      //Add this triangle to the list of bad triangles.
       enqueuebadtri(m, b, testtri, minedge, tapex, torg, tdest);
       return;
     }
 
-    /* Nonpositive area constraints are treated as unconstrained. */
+    //Nonpositive area constraints are treated as unconstrained.
     if ((b.m_vararea) && (area > areabound(*testtri)) &&
         (areabound(*testtri) > 0.0)) {
-      /* Add this triangle to the list of bad triangles. */
+      //Add this triangle to the list of bad triangles.
       enqueuebadtri(m, b, testtri, minedge, tapex, torg, tdest);
       return;
     }
 
     if (b.m_usertest) {
-      /* Check whether the user thinks this triangle is too large. */
-      if (triunsuitable(torg, tdest, tapex)) {
+      //Check whether the user thinks this triangle is too large.
+      if (IsTriangleUnsuitable(torg, tdest, tapex)) {
         enqueuebadtri(m, b, testtri, minedge, tapex, torg, tdest);
         return;
       }
     }
   }
 
-  /* Check whether the angle is smaller than permitted. */
+  //Check whether the angle is smaller than permitted.
   if (angle > b.m_goodangle) {
-    /* Use the rules of Miller, Pav, and Walkington to decide that certain */
-    /*   triangles should not be split, even if they have bad angles.      */
-    /*   A skinny triangle is not split if its shortest edge subtends a    */
-    /*   small input angle, and both endpoints of the edge lie on a        */
-    /*   concentric circular shell.  For convenience, I make a small       */
-    /*   adjustment to that rule:  I check if the endpoints of the edge    */
-    /*   both lie in segment interiors, equidistant from the apex where    */
-    /*   the two segments meet.                                            */
-    /* First, check if both points lie in segment interiors.               */
-    if ((vertextype(base1) == SEGMENTVERTEX) &&
-        (vertextype(base2) == SEGMENTVERTEX)) {
-      /* Check if both points lie in a common segment.  If they do, the */
-      /*   skinny triangle is enqueued to be split as usual.            */
+    //Use the rules of Miller, Pav, and Walkington to decide that certain
+    //  triangles should not be split, even if they have bad angles.
+    //  A skinny triangle is not split if its shortest edge subtends a
+    //  small input angle, and both endpoints of the edge lie on a
+    //  concentric circular shell.  For convenience, I make a small
+    //  adjustment to that rule:  I check if the endpoints of the edge
+    //  both lie in segment interiors, equidistant from the apex where
+    //  the two segments meet.
+    //First, check if both points lie in segment interiors.
+    if ((vertextype(base1) == VertexType::SEGMENTVERTEX) &&
+        (vertextype(base2) == VertexType::SEGMENTVERTEX)) {
+      //Check if both points lie in a common segment.  If they do, the
+      //  skinny triangle is enqueued to be split as usual.
       tspivot(tri1, testsub);
       if (testsub.m_subseg == m.m_dummysub) {
-        /* No common segment.  Find a subsegment that contains `torg'. */
+        //No common segment.  Find a subsegment that contains `torg'.
         otricopy(tri1, tri2);
         do {
           oprevself(tri1);
           tspivot(tri1, testsub);
         } while (testsub.m_subseg == m.m_dummysub);
-        /* Find the endpoints of the containing segment. */
+        //Find the endpoints of the containing segment.
         segorg(testsub, org1);
         segdest(testsub, dest1);
-        /* Find a subsegment that contains `tdest'. */
+        //Find a subsegment that contains `tdest'.
         do {
           dnextself(tri2);
           tspivot(tri2, testsub);
         } while (testsub.m_subseg == m.m_dummysub);
-        /* Find the endpoints of the containing segment. */
+        //Find the endpoints of the containing segment.
         segorg(testsub, org2);
         segdest(testsub, dest2);
-        /* Check if the two containing segments have an endpoint in common. */
+        //Check if the two containing segments have an endpoint in common.
         joinvertex = nullptr;
         if ((dest1[0] == org2[0]) && (dest1[1] == org2[1])) {
           joinvertex = dest1;
@@ -3099,27 +2656,27 @@ void tricpp::testtriangle(
           joinvertex = org1;
         }
         if (joinvertex != nullptr) {
-          /* Compute the distance from the common endpoint (of the two  */
-          /*   segments) to each of the endpoints of the shortest edge. */
+          //Compute the distance from the common endpoint (of the two
+          //  segments) to each of the endpoints of the shortest edge.
           dist1 = ((base1[0] - joinvertex[0]) * (base1[0] - joinvertex[0]) +
                    (base1[1] - joinvertex[1]) * (base1[1] - joinvertex[1]));
           dist2 = ((base2[0] - joinvertex[0]) * (base2[0] - joinvertex[0]) +
                    (base2[1] - joinvertex[1]) * (base2[1] - joinvertex[1]));
-          /* If the two distances are equal, don't split the triangle. */
+          //If the two distances are equal, don't split the triangle.
           if ((dist1 < 1.001 * dist2) && (dist1 > 0.999 * dist2)) {
-            /* Return now to avoid enqueueing the bad triangle. */
+            //Return now to avoid enqueueing the bad triangle.
             return;
           }
         }
       }
     }
 
-    /* Add this triangle to the list of bad triangles. */
+    //Add this triangle to the list of bad triangles.
     enqueuebadtri(m, b, testtri, minedge, tapex, torg, tdest);
   }
 }
 
-void tricpp::makevertexmap(
+void ribi::tricpp::makevertexmap(
   Mesh& m,
   const Behavior& b
 )
@@ -3133,7 +2690,7 @@ void tricpp::makevertexmap(
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
   while (triangleloop.m_tri != (Triangle *) NULL) {
-    /* Check all three vertices of the triangle. */
+    //Check all three vertices of the triangle.
     for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
          triangleloop.m_orient++) {
       org(triangleloop, triorg);
@@ -3143,7 +2700,7 @@ void tricpp::makevertexmap(
   }
 }
 
-tricpp::LocateResult tricpp::preciselocate(
+ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
   Mesh& m,
   const Behavior& b,
   const Vertex& searchpoint,
@@ -3156,14 +2713,14 @@ tricpp::LocateResult tricpp::preciselocate(
   Vertex forg, fdest, fapex;
   double orgorient, destorient;
   int moveleft;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   if (b.m_verbosity > 2) {
     printf("  Searching for point (%.12g, %.12g).\n",
            searchpoint[0], searchpoint[1]);
   }
-  /* Where are we? */
+  //Where are we?
   org(*searchtri, forg);
   dest(*searchtri, fdest);
   apex(*searchtri, fapex);
@@ -3172,24 +2729,24 @@ tricpp::LocateResult tricpp::preciselocate(
       printf("    At (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              forg[0], forg[1], fdest[0], fdest[1], fapex[0], fapex[1]);
     }
-    /* Check whether the apex is the point we seek. */
+    //Check whether the apex is the point we seek.
     if ((fapex[0] == searchpoint[0]) && (fapex[1] == searchpoint[1])) {
       lprevself(*searchtri);
       return ONVERTEX;
     }
-    /* Does the point lie on the other side of the line defined by the */
-    /*   triangle edge opposite the triangle's destination?            */
+    //Does the point lie on the other side of the line defined by the
+    //  triangle edge opposite the triangle's destination?
     destorient = counterclockwise(m, b, forg, fapex, searchpoint);
-    /* Does the point lie on the other side of the line defined by the */
-    /*   triangle edge opposite the triangle's origin?                 */
+    //Does the point lie on the other side of the line defined by the
+    //  triangle edge opposite the triangle's origin?
     orgorient = counterclockwise(m, b, fapex, fdest, searchpoint);
     if (destorient > 0.0) {
       if (orgorient > 0.0) {
-        /* Move left if the inner product of (fapex - searchpoint) and  */
-        /*   (fdest - forg) is positive.  This is equivalent to drawing */
-        /*   a line perpendicular to the line (forg, fdest) and passing */
-        /*   through `fapex', and determining which side of this line   */
-        /*   `searchpoint' falls on.                                    */
+        //Move left if the inner product of (fapex - searchpoint) and
+        //  (fdest - forg) is positive.  This is equivalent to drawing
+        //  a line perpendicular to the line (forg, fdest) and passing
+        //  through `fapex', and determining which side of this line
+        //  `searchpoint' falls on.
         moveleft = (fapex[0] - searchpoint[0]) * (fdest[0] - forg[0]) +
                    (fapex[1] - searchpoint[1]) * (fdest[1] - forg[1]) > 0.0;
       } else {
@@ -3199,8 +2756,8 @@ tricpp::LocateResult tricpp::preciselocate(
       if (orgorient > 0.0) {
         moveleft = 0;
       } else {
-        /* The point we seek must be on the boundary of or inside this */
-        /*   triangle.                                                 */
+        //The point we seek must be on the boundary of or inside this
+        //  triangle.
         if (destorient == 0.0) {
           lprevself(*searchtri);
           return ONEDGE;
@@ -3213,9 +2770,9 @@ tricpp::LocateResult tricpp::preciselocate(
       }
     }
 
-    /* Move to another triangle.  Leave a trace `backtracktri' in case */
-    /*   floating-point roundoff or some such bogey causes us to walk  */
-    /*   off a boundary of the triangulation.                          */
+    //Move to another triangle.  Leave a trace `backtracktri' in case
+    //  floating-point roundoff or some such bogey causes us to walk
+    //  off a boundary of the triangulation.
     if (moveleft) {
       lprev(*searchtri, backtracktri);
       fdest = fapex;
@@ -3226,17 +2783,17 @@ tricpp::LocateResult tricpp::preciselocate(
     sym(backtracktri, *searchtri);
 
     if (m.m_checksegments && stopatsubsegment) {
-      /* Check for walking through a subsegment. */
+      //Check for walking through a subsegment.
       tspivot(backtracktri, checkedge);
       if (checkedge.m_subseg != m.m_dummysub) {
-        /* Go back to the last triangle. */
+        //Go back to the last triangle.
         otricopy(backtracktri, *searchtri);
         return OUTSIDE;
       }
     }
-    /* Check for walking right out of the triangulation. */
+    //Check for walking right out of the triangulation.
     if (searchtri->m_tri == m.m_dummytri) {
-      /* Go back to the last triangle. */
+      //Go back to the last triangle.
       otricopy(backtracktri, *searchtri);
       return OUTSIDE;
     }
@@ -3246,7 +2803,7 @@ tricpp::LocateResult tricpp::preciselocate(
 }
 
 
-tricpp::LocateResult tricpp::locate(
+ribi::tricpp::LocateResult ribi::tricpp::locate(
   Mesh& m,
   const Behavior& b,
   const Vertex& searchpoint,
@@ -3262,14 +2819,14 @@ tricpp::LocateResult tricpp::locate(
   double ahead;
   long samplesperblock, totalsamplesleft, samplesleft;
   long population, totalpopulation;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
   if (b.m_verbosity > 2) {
     printf("  Randomly sampling for a triangle near point (%.12g, %.12g).\n",
            searchpoint[0], searchpoint[1]);
   }
-  /* Record the distance from the suggested starting triangle to the */
-  /*   point we seek.                                                */
+  //Record the distance from the suggested starting triangle to the
+  //  point we seek.
   org(*searchtri, torg);
   searchdist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
                (searchpoint[1] - torg[1]) * (searchpoint[1] - torg[1]);
@@ -3278,8 +2835,8 @@ tricpp::LocateResult tricpp::locate(
            torg[0], torg[1]);
   }
 
-  /* If a recently encountered triangle has been recorded and has not been */
-  /*   deallocated, test it as a good starting point.                      */
+  //If a recently encountered triangle has been recorded and has not been
+  //  deallocated, test it as a good starting point.
   if (m.m_recenttri.m_tri != (Triangle *) NULL) {
     if (!deadtri(m.m_recenttri.m_tri)) {
       org(m.m_recenttri, torg);
@@ -3300,22 +2857,22 @@ tricpp::LocateResult tricpp::locate(
     }
   }
 
-  /* The number of random samples taken is proportional to the cube root of */
-  /*   the number of triangles in the mesh.  The next bit of code assumes   */
-  /*   that the number of triangles increases monotonically (or at least    */
-  /*   doesn't decrease enough to matter).                                  */
+  //The number of random samples taken is proportional to the cube root of
+  //  the number of triangles in the mesh.  The next bit of code assumes
+  //  that the number of triangles increases monotonically (or at least
+  //  doesn't decrease enough to matter).
   while (SAMPLEFACTOR * m.m_samples * m.m_samples * m.m_samples <
          m.m_triangles.m_items) {
     m.m_samples++;
   }
 
-  /* We'll draw ceiling(samples * triangles_per_block / maxitems) random samples  */
-  /*   from each block of triangles (except the first)--until we meet the */
-  /*   sample quota.  The ceiling means that blocks at the end might be   */
-  /*   neglected, but I don't care.                                       */
+  //We'll draw ceiling(samples * triangles_per_block / maxitems) random samples
+  //  from each block of triangles (except the first)--until we meet the
+  //  sample quota.  The ceiling means that blocks at the end might be
+  //  neglected, but I don't care.
   samplesperblock = (m.m_samples * g_triangles_per_block - 1) / m.m_triangles.m_maxitems + 1;
-  /* We'll draw ceiling(samples * itemsfirstblock / maxitems) random samples */
-  /*   from the first block of triangles.                                    */
+  //We'll draw ceiling(samples * itemsfirstblock / maxitems) random samples
+  //  from the first block of triangles.
   samplesleft = (m.m_samples * m.m_triangles.m_itemsfirstblock - 1) /
                 m.m_triangles.m_maxitems + 1;
   totalsamplesleft = m.m_samples;
@@ -3324,18 +2881,18 @@ tricpp::LocateResult tricpp::locate(
   sampleblock = m.m_triangles.m_firstblock;
   sampletri.m_orient = 0;
   while (totalsamplesleft > 0) {
-    /* If we're in the last block, `population' needs to be corrected. */
+    //If we're in the last block, `population' needs to be corrected.
     if (population > totalpopulation) {
       population = totalpopulation;
     }
-    /* Find a pointer to the first triangle in the block. */
+    //Find a pointer to the first triangle in the block.
     alignptr = (unsigned long) (sampleblock + 1);
     firsttri = (char *) (alignptr +
                          (unsigned long) m.m_triangles.m_alignbytes -
                          (alignptr %
                           (unsigned long) m.m_triangles.m_alignbytes));
 
-    /* Choose `samplesleft' randomly sampled triangles in this block. */
+    //Choose `samplesleft' randomly sampled triangles in this block.
     do {
       sampletri.m_tri = (Triangle *) (firsttri +
                                     (randomnation((unsigned int) population) *
@@ -3366,10 +2923,10 @@ tricpp::LocateResult tricpp::locate(
     }
   }
 
-  /* Where are we? */
+  //Where are we?
   org(*searchtri, torg);
   dest(*searchtri, tdest);
-  /* Check the starting triangle's vertices. */
+  //Check the starting triangle's vertices.
   if ((torg[0] == searchpoint[0]) && (torg[1] == searchpoint[1])) {
     return ONVERTEX;
   }
@@ -3377,14 +2934,14 @@ tricpp::LocateResult tricpp::locate(
     lnextself(*searchtri);
     return ONVERTEX;
   }
-  /* Orient `searchtri' to fit the preconditions of calling preciselocate(). */
+  //Orient `searchtri' to fit the preconditions of calling preciselocate().
   ahead = counterclockwise(m, b, torg, tdest, searchpoint);
   if (ahead < 0.0) {
-    /* Turn around so that `searchpoint' is to the left of the */
-    /*   edge specified by `searchtri'.                        */
+    //Turn around so that `searchpoint' is to the left of the
+    //  edge specified by `searchtri'.
     symself(*searchtri);
   } else if (ahead == 0.0) {
-    /* Check if `searchpoint' is between `torg' and `tdest'. */
+    //Check if `searchpoint' is between `torg' and `tdest'.
     if (((torg[0] < searchpoint[0]) == (searchpoint[0] < tdest[0])) &&
         ((torg[1] < searchpoint[1]) == (searchpoint[1] < tdest[1]))) {
       return ONEDGE;
@@ -3393,7 +2950,7 @@ tricpp::LocateResult tricpp::locate(
   return preciselocate(m, b, searchpoint, searchtri, 0);
 }
 
-void tricpp::insertsubseg(
+void ribi::tricpp::insertsubseg(
   Mesh& m,
   const Behavior& b,
   const Otri * const tri,
@@ -3403,31 +2960,31 @@ void tricpp::insertsubseg(
   Otri oppotri;
   Osub newsubseg;
   Vertex triorg, tridest;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   org(*tri, triorg);
   dest(*tri, tridest);
-  /* Mark vertices if possible. */
+  //Mark vertices if possible.
   if (vertexmark(triorg) == 0) {
     setvertexmark(triorg, subsegmark);
   }
   if (vertexmark(tridest) == 0) {
     setvertexmark(tridest, subsegmark);
   }
-  /* Check if there's already a subsegment here. */
+  //Check if there's already a subsegment here.
   tspivot(*tri, newsubseg);
   if (newsubseg.m_subseg == m.m_dummysub) {
-    /* Make new subsegment and initialize its vertices. */
+    //Make new subsegment and initialize its vertices.
     makesubseg(m, &newsubseg);
     setsorg(newsubseg, tridest);
     setsdest(newsubseg, triorg);
     setsegorg(newsubseg, tridest);
     setsegdest(newsubseg, triorg);
-    /* Bond new subsegment to the two triangles it is sandwiched between. */
-    /*   Note that the facing triangle `oppotri' might be equal to        */
-    /*   `dummytri' (outer space), but the new subsegment is bonded to it */
-    /*   all the same.                                                    */
+    //Bond new subsegment to the two triangles it is sandwiched between.
+    //  Note that the facing triangle `oppotri' might be equal to
+    //  `dummytri' (outer space), but the new subsegment is bonded to it
+    //  all the same.
     tsbond(*tri, newsubseg);
     sym(*tri, oppotri);
     ssymself(newsubseg);
@@ -3445,24 +3002,24 @@ void tricpp::insertsubseg(
 }
 
 /*****************************************************************************/
-/*                                                                           */
-/*  Terminology                                                              */
-/*                                                                           */
-/*  A "local transformation" replaces a small set of triangles with another  */
-/*  set of triangles.  This may or may not involve inserting or deleting a   */
-/*  vertex.                                                                  */
-/*                                                                           */
-/*  The term "casing" is used to describe the set of triangles that are      */
-/*  attached to the triangles being transformed, but are not transformed     */
-/*  themselves.  Think of the casing as a fixed hollow structure inside      */
-/*  which all the action happens.  A "casing" is only defined relative to    */
-/*  a single transformation; each occurrence of a transformation will        */
-/*  involve a different casing.                                              */
-/*                                                                           */
+//
+// Terminology
+//
+// A "local transformation" replaces a small set of triangles with another
+// set of triangles.  This may or may not involve inserting or deleting a
+// vertex.
+//
+// The term "casing" is used to describe the set of triangles that are
+// attached to the triangles being transformed, but are not transformed
+// themselves.  Think of the casing as a fixed hollow structure inside
+// which all the action happens.  A "casing" is only defined relative to
+// a single transformation; each occurrence of a transformation will
+// involve a different casing.
+//
 /*****************************************************************************/
 
 
-void tricpp::flip(
+void ribi::tricpp::flip(
   const Mesh& m,
   const Behavior& b,
   const Otri * const flipedge
@@ -3477,10 +3034,10 @@ void tricpp::flip(
   Osub toplsubseg, toprsubseg;
   Vertex leftvertex, rightvertex, botvertex;
   Vertex farvertex;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  /* Identify the vertices of the quadrilateral. */
+  //Identify the vertices of the quadrilateral.
   org(*flipedge, rightvertex);
   dest(*flipedge, leftvertex);
   apex(*flipedge, botvertex);
@@ -3499,10 +3056,10 @@ void tricpp::flip(
       return;
     }
   }
-#endif /* SELF_CHECK */
+#endif //SELF_CHECK
   apex(top, farvertex);
 
-  /* Identify the casing of the quadrilateral. */
+  //Identify the casing of the quadrilateral.
   lprev(top, topleft);
   sym(topleft, toplcasing);
   lnext(top, topright);
@@ -3511,14 +3068,14 @@ void tricpp::flip(
   sym(botleft, botlcasing);
   lprev(*flipedge, botright);
   sym(botright, botrcasing);
-  /* Rotate the quadrilateral one-quarter turn counterclockwise. */
+  //Rotate the quadrilateral one-quarter turn counterclockwise.
   bond(topleft, botlcasing);
   bond(botleft, botrcasing);
   bond(botright, toprcasing);
   bond(topright, toplcasing);
 
   if (m.m_checksegments) {
-    /* Check for subsegments and rebond them to the quadrilateral. */
+    //Check for subsegments and rebond them to the quadrilateral.
     tspivot(topleft, toplsubseg);
     tspivot(botleft, botlsubseg);
     tspivot(botright, botrsubseg);
@@ -3545,7 +3102,7 @@ void tricpp::flip(
     }
   }
 
-  /* New vertex assignments for the rotated quadrilateral. */
+  //New vertex assignments for the rotated quadrilateral.
   setorg(*flipedge, farvertex);
   setdest(*flipedge, botvertex);
   setapex(*flipedge, rightvertex);
@@ -3560,7 +3117,7 @@ void tricpp::flip(
   }
 }
 
-void tricpp::unflip(
+void ribi::tricpp::unflip(
   const Mesh& m,
   const Behavior& b,
   const Otri * const flipedge
@@ -3575,10 +3132,10 @@ void tricpp::unflip(
   Osub toplsubseg, toprsubseg;
   Vertex leftvertex, rightvertex, botvertex;
   Vertex farvertex;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  /* Identify the vertices of the quadrilateral. */
+  //Identify the vertices of the quadrilateral.
   org(*flipedge, rightvertex);
   dest(*flipedge, leftvertex);
   apex(*flipedge, botvertex);
@@ -3597,10 +3154,10 @@ void tricpp::unflip(
       return;
     }
   }
-#endif /* SELF_CHECK */
+#endif //SELF_CHECK
   apex(top, farvertex);
 
-  /* Identify the casing of the quadrilateral. */
+  //Identify the casing of the quadrilateral.
   lprev(top, topleft);
   sym(topleft, toplcasing);
   lnext(top, topright);
@@ -3609,14 +3166,14 @@ void tricpp::unflip(
   sym(botleft, botlcasing);
   lprev(*flipedge, botright);
   sym(botright, botrcasing);
-  /* Rotate the quadrilateral one-quarter turn clockwise. */
+  //Rotate the quadrilateral one-quarter turn clockwise.
   bond(topleft, toprcasing);
   bond(botleft, toplcasing);
   bond(botright, botlcasing);
   bond(topright, botrcasing);
 
   if (m.m_checksegments) {
-    /* Check for subsegments and rebond them to the quadrilateral. */
+    //Check for subsegments and rebond them to the quadrilateral.
     tspivot(topleft, toplsubseg);
     tspivot(botleft, botlsubseg);
     tspivot(botright, botrsubseg);
@@ -3643,7 +3200,7 @@ void tricpp::unflip(
     }
   }
 
-  /* New vertex assignments for the rotated quadrilateral. */
+  //New vertex assignments for the rotated quadrilateral.
   setorg(*flipedge, botvertex);
   setdest(*flipedge, farvertex);
   setapex(*flipedge, leftvertex);
@@ -3658,7 +3215,7 @@ void tricpp::unflip(
   }
 }
 
-tricpp::InsertVertexResult tricpp::insertvertex(
+ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
   Mesh& m,
   const Behavior& b,
   const Vertex& newvertex,
@@ -3696,59 +3253,59 @@ tricpp::InsertVertexResult tricpp::insertvertex(
   int mirrorflag;
   int enq;
 
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;         /* Temporary variable used by spivot() and tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;         //Temporary variable used by spivot() and tspivot().
 
   if (b.m_verbosity > 1) {
     printf("  Inserting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
   }
 
   if (splitseg == nullptr) {
-    /* Find the location of the vertex to be inserted.  Check if a good */
-    /*   starting triangle has already been provided by the caller.     */
+    //Find the location of the vertex to be inserted.  Check if a good
+    //  starting triangle has already been provided by the caller.
     if (searchtri->m_tri == m.m_dummytri) {
-      /* Find a boundary triangle. */
+      //Find a boundary triangle.
       horiz.m_tri = m.m_dummytri;
       horiz.m_orient = 0;
       symself(horiz);
-      /* Search for a triangle containing `newvertex'. */
+      //Search for a triangle containing `newvertex'.
       intersect = locate(m, b, newvertex, &horiz);
     } else {
-      /* Start searching from the triangle provided by the caller. */
+      //Start searching from the triangle provided by the caller.
       otricopy(*searchtri, horiz);
       intersect = preciselocate(m, b, newvertex, &horiz, 1);
     }
   } else {
-    /* The calling routine provides the subsegment in which */
-    /*   the vertex is inserted.                             */
+    //The calling routine provides the subsegment in which
+    //  the vertex is inserted.
     otricopy(*searchtri, horiz);
     intersect = ONEDGE;
   }
 
   if (intersect == ONVERTEX) {
-    /* There's already a vertex there.  Return in `searchtri' a triangle */
-    /*   whose origin is the existing vertex.                            */
+    //There's already a vertex there.  Return in `searchtri' a triangle
+    //  whose origin is the existing vertex.
     otricopy(horiz, *searchtri);
     otricopy(horiz, m.m_recenttri);
     return DUPLICATEVERTEX;
   }
   if ((intersect == ONEDGE) || (intersect == OUTSIDE)) {
-    /* The vertex falls on an edge or boundary. */
+    //The vertex falls on an edge or boundary.
     if (m.m_checksegments && (splitseg == nullptr)) {
-      /* Check whether the vertex falls on a subsegment. */
+      //Check whether the vertex falls on a subsegment.
       tspivot(horiz, brokensubseg);
       if (brokensubseg.m_subseg != m.m_dummysub) {
-        /* The vertex falls on a subsegment, and hence will not be inserted. */
+        //The vertex falls on a subsegment, and hence will not be inserted.
         if (segmentflaws) {
           enq = b.m_nobisect != 2;
           if (enq && (b.m_nobisect == 1)) {
-            /* This subsegment may be split only if it is an */
-            /*   internal boundary.                          */
+            //This subsegment may be split only if it is an
+            //  internal boundary.
             sym(horiz, testtri);
             enq = testtri.m_tri != m.m_dummytri;
           }
           if (enq) {
-            /* Add the subsegment to the list of encroached subsegments. */
+            //Add the subsegment to the list of encroached subsegments.
             encroached = (struct BadSubSeg *) PoolAlloc(&m.m_badsubsegs);
             encroached->m_encsubseg = sencode(brokensubseg);
             sorg(brokensubseg, encroached->m_subsegorg);
@@ -3761,32 +3318,32 @@ tricpp::InsertVertexResult tricpp::insertvertex(
             }
           }
         }
-        /* Return a handle whose primary edge contains the vertex, */
-        /*   which has not been inserted.                          */
+        //Return a handle whose primary edge contains the vertex,
+        //  which has not been inserted.
         otricopy(horiz, *searchtri);
         otricopy(horiz, m.m_recenttri);
         return VIOLATINGVERTEX;
       }
     }
 
-    /* Insert the vertex on an edge, dividing one triangle into two (if */
-    /*   the edge lies on a boundary) or two triangles into four.       */
+    //Insert the vertex on an edge, dividing one triangle into two (if
+    //  the edge lies on a boundary) or two triangles into four.
     lprev(horiz, botright);
     sym(botright, botrcasing);
     sym(horiz, topright);
-    /* Is there a second triangle?  (Or does this edge lie on a boundary?) */
+    //Is there a second triangle?  (Or does this edge lie on a boundary?)
     mirrorflag = topright.m_tri != m.m_dummytri;
     if (mirrorflag) {
       lnextself(topright);
       sym(topright, toprcasing);
       maketriangle(m, b, &newtopright);
     } else {
-      /* Splitting a boundary edge increases the number of boundary edges. */
+      //Splitting a boundary edge increases the number of boundary edges.
       m.m_hullsize++;
     }
     maketriangle(m, b, &newbotright);
 
-    /* Set the vertices of changed and new triangles. */
+    //Set the vertices of changed and new triangles.
     org(horiz, rightvertex);
     dest(horiz, leftvertex);
     apex(horiz, botvertex);
@@ -3795,11 +3352,11 @@ tricpp::InsertVertexResult tricpp::insertvertex(
     setapex(newbotright, newvertex);
     setorg(horiz, newvertex);
     for (int i = 0; i < m.m_eextras; i++) {
-      /* Set the element attributes of a new triangle. */
+      //Set the element attributes of a new triangle.
       setelemattribute(newbotright, i, elemattribute(botright, i));
     }
     if (b.m_vararea) {
-      /* Set the area constraint of a new triangle. */
+      //Set the area constraint of a new triangle.
       setareabound(newbotright, areabound(botright));
     }
     if (mirrorflag) {
@@ -3809,17 +3366,17 @@ tricpp::InsertVertexResult tricpp::insertvertex(
       setapex(newtopright, newvertex);
       setorg(topright, newvertex);
       for (int i = 0; i < m.m_eextras; i++) {
-        /* Set the element attributes of another new triangle. */
+        //Set the element attributes of another new triangle.
         setelemattribute(newtopright, i, elemattribute(topright, i));
       }
       if (b.m_vararea) {
-        /* Set the area constraint of another new triangle. */
+        //Set the area constraint of another new triangle.
         setareabound(newtopright, areabound(topright));
       }
     }
 
-    /* There may be subsegments that need to be bonded */
-    /*   to the new triangle(s).                       */
+    //There may be subsegments that need to be bonded
+    //  to the new triangle(s).
     if (m.m_checksegments) {
       tspivot(botright, botrsubseg);
       if (botrsubseg.m_subseg != m.m_dummysub) {
@@ -3835,7 +3392,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
       }
     }
 
-    /* Bond the new triangle(s) to the surrounding triangles. */
+    //Bond the new triangle(s) to the surrounding triangles.
     bond(newbotright, botrcasing);
     lprevself(newbotright);
     bond(newbotright, botright);
@@ -3849,7 +3406,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
     }
 
     if (splitseg != nullptr) {
-      /* Split the subsegment into two. */
+      //Split the subsegment into two.
       setsdest(*splitseg, newvertex);
       segorg(*splitseg, segmentorg);
       segdest(*splitseg, segmentdest);
@@ -3863,8 +3420,8 @@ tricpp::InsertVertexResult tricpp::insertvertex(
       ssymself(newsubseg);
       sbond(newsubseg, rightsubseg);
       ssymself(*splitseg);
-      /* Transfer the subsegment's boundary marker to the vertex */
-      /*   if required.                                          */
+      //Transfer the subsegment's boundary marker to the vertex
+      //  if required.
       if (vertexmark(newvertex) == 0) {
         setvertexmark(newvertex, mark(*splitseg));
       }
@@ -3909,7 +3466,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
       printf(
         "  Clockwise triangle after edge vertex insertion (bottom right).\n");
     }
-#endif /* SELF_CHECK */
+#endif //SELF_CHECK
     if (b.m_verbosity > 2) {
       printf("  Updating bottom left ");
       printtriangle(m, b, &botright);
@@ -3923,11 +3480,11 @@ tricpp::InsertVertexResult tricpp::insertvertex(
       printtriangle(m, b, &newbotright);
     }
 
-    /* Position `horiz' on the first edge to check for */
-    /*   the Delaunay property.                        */
+    //Position `horiz' on the first edge to check for
+    //  the Delaunay property.
     lnextself(horiz);
   } else {
-    /* Insert the vertex in a triangle, splitting it into three. */
+    //Insert the vertex in a triangle, splitting it into three.
     lnext(horiz, botleft);
     lprev(horiz, botright);
     sym(botleft, botlcasing);
@@ -3935,7 +3492,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
     maketriangle(m, b, &newbotleft);
     maketriangle(m, b, &newbotright);
 
-    /* Set the vertices of changed and new triangles. */
+    //Set the vertices of changed and new triangles.
     org(horiz, rightvertex);
     dest(horiz, leftvertex);
     apex(horiz, botvertex);
@@ -3947,20 +3504,20 @@ tricpp::InsertVertexResult tricpp::insertvertex(
     setapex(newbotright, newvertex);
     setapex(horiz, newvertex);
     for (int i = 0; i < m.m_eextras; i++) {
-      /* Set the element attributes of the new triangles. */
+      //Set the element attributes of the new triangles.
       attrib = elemattribute(horiz, i);
       setelemattribute(newbotleft, i, attrib);
       setelemattribute(newbotright, i, attrib);
     }
     if (b.m_vararea) {
-      /* Set the area constraint of the new triangles. */
+      //Set the area constraint of the new triangles.
       area = areabound(horiz);
       setareabound(newbotleft, area);
       setareabound(newbotright, area);
     }
 
-    /* There may be subsegments that need to be bonded */
-    /*   to the new triangles.                         */
+    //There may be subsegments that need to be bonded
+    //  to the new triangles.
     if (m.m_checksegments) {
       tspivot(botleft, botlsubseg);
       if (botlsubseg.m_subseg != m.m_dummysub) {
@@ -3974,7 +3531,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
       }
     }
 
-    /* Bond the new triangles to the surrounding triangles. */
+    //Bond the new triangles to the surrounding triangles.
     bond(newbotleft, botlcasing);
     bond(newbotright, botrcasing);
     lnextself(newbotleft);
@@ -4009,7 +3566,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
       printf("Internal error in insertvertex():\n");
       printf("  Clockwise triangle after vertex insertion (right).\n");
     }
-#endif /* SELF_CHECK */
+#endif //SELF_CHECK
     if (b.m_verbosity > 2) {
       printf("  Updating top ");
       printtriangle(m, b, &horiz);
@@ -4020,29 +3577,29 @@ tricpp::InsertVertexResult tricpp::insertvertex(
     }
   }
 
-  /* The insertion is successful by default, unless an encroached */
-  /*   subsegment is found.                                       */
+  //The insertion is successful by default, unless an encroached
+  //  subsegment is found.
   success = SUCCESSFULVERTEX;
-  /* Circle around the newly inserted vertex, checking each edge opposite */
-  /*   it for the Delaunay property.  Non-Delaunay edges are flipped.     */
-  /*   `horiz' is always the edge being checked.  `first' marks where to  */
-  /*   stop circling.                                                     */
+  //Circle around the newly inserted vertex, checking each edge opposite
+  //  it for the Delaunay property.  Non-Delaunay edges are flipped.
+  //  `horiz' is always the edge being checked.  `first' marks where to
+  //  stop circling.
   org(horiz, first);
   rightvertex = first;
   dest(horiz, leftvertex);
-  /* Circle until finished. */
+  //Circle until finished.
   while (1) {
-    /* By default, the edge will be flipped. */
+    //By default, the edge will be flipped.
     doflip = 1;
 
     if (m.m_checksegments) {
-      /* Check for a subsegment, which cannot be flipped. */
+      //Check for a subsegment, which cannot be flipped.
       tspivot(horiz, checksubseg);
       if (checksubseg.m_subseg != m.m_dummysub) {
-        /* The edge is a subsegment and cannot be flipped. */
+        //The edge is a subsegment and cannot be flipped.
         doflip = 0;
         if (segmentflaws) {
-          /* Does the new vertex encroach upon this subsegment? */
+          //Does the new vertex encroach upon this subsegment?
           if (checkseg4encroach(m, b, &checksubseg)) {
             success = ENCROACHINGVERTEX;
           }
@@ -4051,51 +3608,51 @@ tricpp::InsertVertexResult tricpp::insertvertex(
     }
 
     if (doflip) {
-      /* Check if the edge is a boundary edge. */
+      //Check if the edge is a boundary edge.
       sym(horiz, top);
       if (top.m_tri == m.m_dummytri) {
-        /* The edge is a boundary edge and cannot be flipped. */
+        //The edge is a boundary edge and cannot be flipped.
         doflip = 0;
       } else {
-        /* Find the vertex on the other side of the edge. */
+        //Find the vertex on the other side of the edge.
         apex(top, farvertex);
-        /* In the incremental Delaunay triangulation algorithm, any of      */
-        /*   `leftvertex', `rightvertex', and `farvertex' could be vertices */
-        /*   of the triangular bounding box.  These vertices must be        */
-        /*   treated as if they are infinitely distant, even though their   */
-        /*   "coordinates" are not.                                         */
+        //In the incremental Delaunay triangulation algorithm, any of
+        //  `leftvertex', `rightvertex', and `farvertex' could be vertices
+        //  of the triangular bounding box.  These vertices must be
+        //  treated as if they are infinitely distant, even though their
+        //  "coordinates" are not.
         if ((leftvertex == m.m_infvertex1) || (leftvertex == m.m_infvertex2) ||
             (leftvertex == m.m_infvertex3)) {
-          /* `leftvertex' is infinitely distant.  Check the convexity of  */
-          /*   the boundary of the triangulation.  'farvertex' might be   */
-          /*   infinite as well, but trust me, this same condition should */
-          /*   be applied.                                                */
+          //`leftvertex' is infinitely distant.  Check the convexity of
+          //  the boundary of the triangulation.  'farvertex' might be
+          //  infinite as well, but trust me, this same condition should
+          //  be applied.
           doflip = counterclockwise(m, b, newvertex, rightvertex, farvertex)
                    > 0.0;
         } else if ((rightvertex == m.m_infvertex1) ||
                    (rightvertex == m.m_infvertex2) ||
                    (rightvertex == m.m_infvertex3)) {
-          /* `rightvertex' is infinitely distant.  Check the convexity of */
-          /*   the boundary of the triangulation.  'farvertex' might be   */
-          /*   infinite as well, but trust me, this same condition should */
-          /*   be applied.                                                */
+          //`rightvertex' is infinitely distant.  Check the convexity of
+          //  the boundary of the triangulation.  'farvertex' might be
+          //  infinite as well, but trust me, this same condition should
+          //  be applied.
           doflip = counterclockwise(m, b, farvertex, leftvertex, newvertex)
                    > 0.0;
         } else if ((farvertex == m.m_infvertex1) ||
                    (farvertex == m.m_infvertex2) ||
                    (farvertex == m.m_infvertex3)) {
-          /* `farvertex' is infinitely distant and cannot be inside */
-          /*   the circumcircle of the triangle `horiz'.            */
+          //`farvertex' is infinitely distant and cannot be inside
+          //  the circumcircle of the triangle `horiz'.
           doflip = 0;
         } else {
-          /* Test whether the edge is locally Delaunay. */
+          //Test whether the edge is locally Delaunay.
           doflip = incircle(m, b, leftvertex, newvertex, rightvertex,
                             farvertex) > 0.0;
         }
         if (doflip) {
-          /* We made it!  Flip the edge `horiz' by rotating its containing */
-          /*   quadrilateral (the two triangles adjacent to `horiz').      */
-          /* Identify the casing of the quadrilateral. */
+          //We made it!  Flip the edge `horiz' by rotating its containing
+          //  quadrilateral (the two triangles adjacent to `horiz').
+          //Identify the casing of the quadrilateral.
           lprev(top, topleft);
           sym(topleft, toplcasing);
           lnext(top, topright);
@@ -4104,13 +3661,13 @@ tricpp::InsertVertexResult tricpp::insertvertex(
           sym(botleft, botlcasing);
           lprev(horiz, botright);
           sym(botright, botrcasing);
-          /* Rotate the quadrilateral one-quarter turn counterclockwise. */
+          //Rotate the quadrilateral one-quarter turn counterclockwise.
           bond(topleft, botlcasing);
           bond(botleft, botrcasing);
           bond(botright, toprcasing);
           bond(topright, toplcasing);
           if (m.m_checksegments) {
-            /* Check for subsegments and rebond them to the quadrilateral. */
+            //Check for subsegments and rebond them to the quadrilateral.
             tspivot(topleft, toplsubseg);
             tspivot(botleft, botlsubseg);
             tspivot(botright, botrsubseg);
@@ -4136,7 +3693,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
               tsbond(botright, toprsubseg);
             }
           }
-          /* New vertex assignments for the rotated quadrilateral. */
+          //New vertex assignments for the rotated quadrilateral.
           setorg(horiz, farvertex);
           setdest(horiz, newvertex);
           setapex(horiz, rightvertex);
@@ -4144,7 +3701,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
           setdest(top, farvertex);
           setapex(top, leftvertex);
           for (int i = 0; i < m.m_eextras; i++) {
-            /* Take the average of the two triangles' attributes. */
+            //Take the average of the two triangles' attributes.
             attrib = 0.5 * (elemattribute(top, i) + elemattribute(horiz, i));
             setelemattribute(top, i, attrib);
             setelemattribute(horiz, i, attrib);
@@ -4153,9 +3710,9 @@ tricpp::InsertVertexResult tricpp::insertvertex(
             if ((areabound(top) <= 0.0) || (areabound(horiz) <= 0.0)) {
               area = -1.0;
             } else {
-              /* Take the average of the two triangles' area constraints.    */
-              /*   This prevents small area constraints from migrating a     */
-              /*   long, long way from their original location due to flips. */
+              //Take the average of the two triangles' area constraints.
+              //  This prevents small area constraints from migrating a
+              //  long, long way from their original location due to flips.
               area = 0.5 * (areabound(top) + areabound(horiz));
             }
             setareabound(top, area);
@@ -4176,9 +3733,9 @@ tricpp::InsertVertexResult tricpp::insertvertex(
               printf("Internal error in insertvertex():\n");
               printf("  Clockwise triangle prior to edge flip (bottom).\n");
             }
-            /* The following test has been removed because constrainededge() */
-            /*   sometimes generates inverted triangles that insertvertex()  */
-            /*   removes.                                                    */
+            //The following test has been removed because constrainededge()
+            //  sometimes generates inverted triangles that insertvertex()
+            //  removes.
 /*
             if (counterclockwise(m, b, rightvertex, farvertex, leftvertex) <
                 0.0) {
@@ -4197,7 +3754,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
               printf("  Clockwise triangle after edge flip (right).\n");
             }
           }
-#endif /* SELF_CHECK */
+#endif //SELF_CHECK
           if (b.m_verbosity > 2) {
             printf("  Edge flip results in left ");
             lnextself(topleft);
@@ -4205,33 +3762,33 @@ tricpp::InsertVertexResult tricpp::insertvertex(
             printf("  and right ");
             printtriangle(m, b, &horiz);
           }
-          /* On the next iterations, consider the two edges that were  */
-          /*   exposed (this is, are now visible to the newly inserted */
-          /*   vertex) by the edge flip.                               */
+          //On the next iterations, consider the two edges that were
+          //  exposed (this is, are now visible to the newly inserted
+          //  vertex) by the edge flip.
           lprevself(horiz);
           leftvertex = farvertex;
         }
       }
     }
     if (!doflip) {
-      /* The handle `horiz' is accepted as locally Delaunay. */
+      //The handle `horiz' is accepted as locally Delaunay.
       if (triflaws) {
-        /* Check the triangle `horiz' for quality. */
+        //Check the triangle `horiz' for quality.
         testtriangle(m, b, &horiz);
       }
-      /* Look for the next edge around the newly inserted vertex. */
+      //Look for the next edge around the newly inserted vertex.
       lnextself(horiz);
       sym(horiz, testtri);
-      /* Check for finishing a complete revolution about the new vertex, or */
-      /*   falling outside  of the triangulation.  The latter will happen   */
-      /*   when a vertex is inserted at a boundary.                         */
+      //Check for finishing a complete revolution about the new vertex, or
+      //  falling outside  of the triangulation.  The latter will happen
+      //  when a vertex is inserted at a boundary.
       if ((leftvertex == first) || (testtri.m_tri == m.m_dummytri)) {
-        /* We're done.  Return a triangle whose origin is the new vertex. */
+        //We're done.  Return a triangle whose origin is the new vertex.
         lnext(horiz, *searchtri);
         lnext(horiz, m.m_recenttri);
         return success;
       }
-      /* Finish finding the next edge around the newly inserted vertex. */
+      //Finish finding the next edge around the newly inserted vertex.
       lnext(testtri, horiz);
       rightvertex = leftvertex;
       dest(horiz, leftvertex);
@@ -4239,7 +3796,7 @@ tricpp::InsertVertexResult tricpp::insertvertex(
   }
 }
 
-void tricpp::triangulatepolygon(
+void ribi::tricpp::triangulatepolygon(
   Mesh& m,
   const Behavior& b,
   const Otri * const firstedge,
@@ -4257,9 +3814,9 @@ void tricpp::triangulatepolygon(
   Vertex bestvertex;
   //int bestnumber;
 
-  Triangle ptr;   /* Temporary variable used by sym(), onext(), and oprev(). */
+  Triangle ptr;   //Temporary variable used by sym(), onext(), and oprev().
 
-  /* Identify the base vertices. */
+  //Identify the base vertices.
   apex(*lastedge, leftbasevertex);
   dest(*firstedge, rightbasevertex);
   if (b.m_verbosity > 2) {
@@ -4267,7 +3824,7 @@ void tricpp::triangulatepolygon(
     printf("    (%.12g, %.12g) (%.12g, %.12g)\n", leftbasevertex[0],
            leftbasevertex[1], rightbasevertex[0], rightbasevertex[1]);
   }
-  /* Find the best vertex to connect the base to. */
+  //Find the best vertex to connect the base to.
   onext(*firstedge, besttri);
   dest(besttri, bestvertex);
   otricopy(besttri, testtri);
@@ -4275,7 +3832,7 @@ void tricpp::triangulatepolygon(
   for (int i = 2; i <= edgecount - 2; i++) {
     onextself(testtri);
     dest(testtri, testvertex);
-    /* Is this a better vertex? */
+    //Is this a better vertex?
     if (incircle(m, b, leftbasevertex, rightbasevertex, bestvertex,testvertex) > 0.0) {
       otricopy(testtri, besttri);
       bestvertex = testvertex;
@@ -4287,34 +3844,34 @@ void tricpp::triangulatepolygon(
            bestvertex[1]);
   }
   if (bestnumber > 1) {
-    /* Recursively triangulate the smaller polygon on the right. */
+    //Recursively triangulate the smaller polygon on the right.
     oprev(besttri, tempedge);
     triangulatepolygon(m, b, firstedge, &tempedge, bestnumber + 1, 1,
                        triflaws);
   }
   if (bestnumber < edgecount - 2) {
-    /* Recursively triangulate the smaller polygon on the left. */
+    //Recursively triangulate the smaller polygon on the left.
     sym(besttri, tempedge);
     triangulatepolygon(m, b, &besttri, lastedge, edgecount - bestnumber, 1,
                        triflaws);
-    /* Find `besttri' again; it may have been lost to edge flips. */
+    //Find `besttri' again; it may have been lost to edge flips.
     sym(tempedge, besttri);
   }
   if (doflip) {
-    /* Do one final edge flip. */
+    //Do one final edge flip.
     flip(m, b, &besttri);
     if (triflaws) {
-      /* Check the quality of the newly committed triangle. */
+      //Check the quality of the newly committed triangle.
       sym(besttri, testtri);
       testtriangle(m, b, &testtri);
     }
   }
-  /* Return the base triangle. */
+  //Return the base triangle.
   otricopy(besttri, *lastedge);
 }
 
 
-void tricpp::deletevertex(
+void ribi::tricpp::deletevertex(
   Mesh& m,
   const Behavior& b,
   const Otri * const deltri
@@ -4329,8 +3886,8 @@ void tricpp::deletevertex(
   Vertex delvertex;
   Vertex neworg;
   //int edgecount;
-  Triangle ptr;   /* Temporary variable used by sym(), onext(), and oprev(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;   //Temporary variable used by sym(), onext(), and oprev().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   org(*deltri, delvertex);
   if (b.m_verbosity > 1) {
@@ -4338,7 +3895,7 @@ void tricpp::deletevertex(
   }
   vertexdealloc(m, delvertex);
 
-  /* Count the degree of the vertex being deleted. */
+  //Count the degree of the vertex being deleted.
   onext(*deltri, countingtri);
   int edgecount = 1;
   while (!otriequal(*deltri, countingtri)) {
@@ -4349,7 +3906,7 @@ void tricpp::deletevertex(
       throw std::logic_error(s.str().c_str());
 
     }
-#endif /* SELF_CHECK */
+#endif //SELF_CHECK
     edgecount++;
     onextself(countingtri);
   }
@@ -4361,17 +3918,17 @@ void tricpp::deletevertex(
     throw std::logic_error(s.str().c_str());
 
   }
-#endif /* SELF_CHECK */
+#endif //SELF_CHECK
   if (edgecount > 3) {
-    /* Triangulate the polygon defined by the union of all triangles */
-    /*   adjacent to the vertex being deleted.  Check the quality of */
-    /*   the resulting triangles.                                    */
+    //Triangulate the polygon defined by the union of all triangles
+    //  adjacent to the vertex being deleted.  Check the quality of
+    //  the resulting triangles.
     onext(*deltri, firstedge);
     oprev(*deltri, lastedge);
     triangulatepolygon(m, b, &firstedge, &lastedge, edgecount, 0,
                        !b.m_nobisect);
   }
-  /* Splice out two triangles. */
+  //Splice out two triangles.
   lprev(*deltri, deltriright);
   dnext(*deltri, lefttri);
   sym(lefttri, leftcasing);
@@ -4388,19 +3945,21 @@ void tricpp::deletevertex(
     tsbond(deltriright, rightsubseg);
   }
 
-  /* Set the new origin of `deltri' and check its quality. */
+  //Set the new origin of `deltri' and check its quality.
   org(lefttri, neworg);
   setorg(*deltri, neworg);
   if (!b.m_nobisect) {
     testtriangle(m, b, deltri);
   }
 
-  /* Delete the two spliced-out triangles. */
-  triangledealloc(m, lefttri.m_tri);
-  triangledealloc(m, righttri.m_tri);
+  //Delete the two spliced-out triangles.
+  m.KillTriange(lefttri.m_tri);
+  m.KillTriange(righttri.m_tri);
+  //triangledealloc(m, lefttri.m_tri);
+  //triangledealloc(m, righttri.m_tri);
 }
 
-void tricpp::undovertex(
+void ribi::tricpp::undovertex(
   Mesh& m,
   const Behavior& b
 )
@@ -4411,22 +3970,22 @@ void tricpp::undovertex(
   Otri gluetri;
   Osub botlsubseg, botrsubseg, toprsubseg;
   Vertex botvertex, rightvertex;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  /* Walk through the list of transformations (flips and a vertex insertion) */
-  /*   in the reverse of the order in which they were done, and undo them.   */
+  //Walk through the list of transformations (flips and a vertex insertion)
+  //  in the reverse of the order in which they were done, and undo them.
   while (m.m_lastflip != (FlipStacker *) NULL) {
-    /* Find a triangle involved in the last unreversed transformation. */
+    //Find a triangle involved in the last unreversed transformation.
     decode(m.m_lastflip->m_flippedtri, fliptri);
 
-    /* We are reversing one of three transformations:  a trisection of one */
-    /*   triangle into three (by inserting a vertex in the triangle), a    */
-    /*   bisection of two triangles into four (by inserting a vertex in an */
-    /*   edge), or an edge flip.                                           */
+    //We are reversing one of three transformations:  a trisection of one
+    //  triangle into three (by inserting a vertex in the triangle), a
+    //  bisection of two triangles into four (by inserting a vertex in an
+    //  edge), or an edge flip.
     if (m.m_lastflip->m_prevflip == (FlipStacker *) NULL) {
-      /* Restore a triangle that was split into three triangles, */
-      /*   so it is again one triangle.                          */
+      //Restore a triangle that was split into three triangles,
+      //  so it is again one triangle.
       dprev(fliptri, botleft);
       lnextself(botleft);
       onext(fliptri, botright);
@@ -4445,12 +4004,14 @@ void tricpp::undovertex(
       tspivot(botright, botrsubseg);
       tsbond(fliptri, botrsubseg);
 
-      /* Delete the two spliced-out triangles. */
-      triangledealloc(m, botleft.m_tri);
-      triangledealloc(m, botright.m_tri);
+      //Delete the two spliced-out triangles.
+      m.KillTriangle(botleft.m_tri);
+      m.KillTriangle(botright.m_tri);
+      //triangledealloc(m, botleft.m_tri);
+      //triangledealloc(m, botright.m_tri);
     } else if (m.m_lastflip->m_prevflip == (struct FlipStacker *) &insertvertex) {
-      /* Restore two triangles that were split into four triangles, */
-      /*   so they are again two triangles.                         */
+      //Restore two triangles that were split into four triangles,
+      //  so they are again two triangles.
       lprev(fliptri, gluetri);
       sym(gluetri, botright);
       lnextself(botright);
@@ -4462,8 +4023,9 @@ void tricpp::undovertex(
       tspivot(botright, botrsubseg);
       tsbond(gluetri, botrsubseg);
 
-      /* Delete the spliced-out triangle. */
-      triangledealloc(m, botright.m_tri);
+      //Delete the spliced-out triangle.
+      m.KillTriangle(botright.m_tri);
+      //triangledealloc(m, botright.m_tri);
 
       sym(fliptri, gluetri);
       if (gluetri.m_tri != m.m_dummytri) {
@@ -4476,55 +4038,56 @@ void tricpp::undovertex(
         tspivot(topright, toprsubseg);
         tsbond(gluetri, toprsubseg);
 
-        /* Delete the spliced-out triangle. */
-        triangledealloc(m, topright.m_tri);
+        //Delete the spliced-out triangle.
+        m.KillTriangle(topright.m_tri);
+        //triangledealloc(m, topright.m_tri);
       }
 
-      /* This is the end of the list, sneakily encoded. */
+      //This is the end of the list, sneakily encoded.
       m.m_lastflip->m_prevflip = (struct FlipStacker *) NULL;
     } else {
-      /* Undo an edge flip. */
+      //Undo an edge flip.
       unflip(m, b, &fliptri);
     }
 
-    /* Go on and process the next transformation. */
+    //Go on and process the next transformation.
     m.m_lastflip = m.m_lastflip->m_prevflip;
   }
 }
 
 /*****************************************************************************/
-/*                                                                           */
-/*  The divide-and-conquer bounding box                                      */
-/*                                                                           */
-/*  I originally implemented the divide-and-conquer and incremental Delaunay */
-/*  triangulations using the edge-based data structure presented by Guibas   */
-/*  and Stolfi.  Switching to a triangle-based data structure doubled the    */
-/*  speed.  However, I had to think of a few extra tricks to maintain the    */
-/*  elegance of the original algorithms.                                     */
-/*                                                                           */
-/*  The "bounding box" used by my variant of the divide-and-conquer          */
-/*  algorithm uses one triangle for each edge of the convex hull of the      */
-/*  triangulation.  These bounding triangles all share a common apical       */
-/*  vertex, which is represented by NULL and which represents nothing.       */
-/*  The bounding triangles are linked in a circular fan about this NULL      */
-/*  vertex, and the edges on the convex hull of the triangulation appear     */
-/*  opposite the NULL vertex.  You might find it easiest to imagine that     */
-/*  the NULL vertex is a point in 3D space behind the center of the          */
-/*  triangulation, and that the bounding triangles form a sort of cone.      */
-/*                                                                           */
-/*  This bounding box makes it easy to represent degenerate cases.  For      */
-/*  instance, the triangulation of two vertices is a single edge.  This edge */
-/*  is represented by two bounding box triangles, one on each "side" of the  */
-/*  edge.  These triangles are also linked together in a fan about the NULL  */
-/*  vertex.                                                                  */
-/*                                                                           */
-/*  The bounding box also makes it easy to traverse the convex hull, as the  */
-/*  divide-and-conquer algorithm needs to do.                                */
-/*                                                                           */
+//
+// The divide-and-conquer bounding box
+//
+// I originally implemented the divide-and-conquer and incremental Delaunay
+// triangulations using the edge-based data structure presented by Guibas
+// and Stolfi.  Switching to a triangle-based data structure doubled the
+// speed.  However, I had to think of a few extra tricks to maintain the
+// elegance of the original algorithms.
+//
+// The "bounding box" used by my variant of the divide-and-conquer
+// algorithm uses one triangle for each edge of the convex hull of the
+// triangulation.  These bounding triangles all share a common apical
+// vertex, which is represented by NULL and which represents nothing.
+// The bounding triangles are linked in a circular fan about this NULL
+// vertex, and the edges on the convex hull of the triangulation appear
+// opposite the NULL vertex.  You might find it easiest to imagine that
+// the NULL vertex is a point in 3D space behind the center of the
+// triangulation, and that the bounding triangles form a sort of cone.
+//
+// This bounding box makes it easy to represent degenerate cases.  For
+// instance, the triangulation of two vertices is a single edge.  This edge
+// is represented by two bounding box triangles, one on each "side" of the
+// edge.  These triangles are also linked together in a fan about the NULL
+// vertex.
+//
+// The bounding box also makes it easy to traverse the convex hull, as the
+// divide-and-conquer algorithm needs to do.
+//
 /*****************************************************************************/
 
 //Use vertex*, because a quicksort is used
-void tricpp::vertexsort(
+void ribi::tricpp::vertexsort(
   Vertex * const sortarray,
   const int arraysize
 )
@@ -4535,7 +4098,7 @@ void tricpp::vertexsort(
   //Vertex temp;
 
   if (arraysize == 2) {
-    /* Recursive base case. */
+    //Recursive base case.
     if ((sortarray[0][0] > sortarray[1][0]) ||
         ((sortarray[0][0] == sortarray[1][0]) &&
          (sortarray[0][1] > sortarray[1][1]))) {
@@ -4543,21 +4106,21 @@ void tricpp::vertexsort(
     }
     return;
   }
-  /* Choose a random pivot to split the array. */
+  //Choose a random pivot to split the array.
   pivot = (int) randomnation((unsigned int) arraysize);
   pivotx = sortarray[pivot][0];
   pivoty = sortarray[pivot][1];
-  /* Split the array. */
+  //Split the array.
   left = -1;
   right = arraysize;
   while (left < right) {
-    /* Search for a vertex whose x-coordinate is too large for the left. */
+    //Search for a vertex whose x-coordinate is too large for the left.
     do {
       left++;
     } while ((left <= right) && ((sortarray[left][0] < pivotx) ||
                                  ((sortarray[left][0] == pivotx) &&
                                   (sortarray[left][1] < pivoty))));
-    /* Search for a vertex whose x-coordinate is too small for the right. */
+    //Search for a vertex whose x-coordinate is too small for the right.
     do {
       right--;
     } while ((left <= right) && ((sortarray[right][0] > pivotx) ||
@@ -4568,16 +4131,16 @@ void tricpp::vertexsort(
     }
   }
   if (left > 1) {
-    /* Recursively sort the left subset. */
+    //Recursively sort the left subset.
     vertexsort(sortarray, left);
   }
   if (right < arraysize - 2) {
-    /* Recursively sort the right subset. */
+    //Recursively sort the right subset.
     vertexsort(&sortarray[right + 1], arraysize - right - 1);
   }
 }
 
-void tricpp::vertexmedian(
+void ribi::tricpp::vertexmedian(
   Vertex * const sortarray,
   const int arraysize,
   const int median,
@@ -4589,7 +4152,7 @@ void tricpp::vertexmedian(
   //double pivot1, pivot2;
 
   if (arraysize == 2) {
-    /* Recursive base case. */
+    //Recursive base case.
     if ((sortarray[0][axis] > sortarray[1][axis]) ||
         ((sortarray[0][axis] == sortarray[1][axis]) &&
          (sortarray[0][1 - axis] > sortarray[1][1 - axis])))
@@ -4598,21 +4161,21 @@ void tricpp::vertexmedian(
     }
     return;
   }
-  /* Choose a random pivot to split the array. */
+  //Choose a random pivot to split the array.
   int pivot = (int) randomnation((unsigned int) arraysize);
   double pivot1 = sortarray[pivot][axis];
   double pivot2 = sortarray[pivot][1 - axis];
-  /* Split the array. */
+  //Split the array.
   int left = -1;
   int right = arraysize;
   while (left < right) {
-    /* Search for a vertex whose x-coordinate is too large for the left. */
+    //Search for a vertex whose x-coordinate is too large for the left.
     do {
       left++;
     } while ((left <= right) && ((sortarray[left][axis] < pivot1) ||
                                  ((sortarray[left][axis] == pivot1) &&
                                   (sortarray[left][1 - axis] < pivot2))));
-    /* Search for a vertex whose x-coordinate is too small for the right. */
+    //Search for a vertex whose x-coordinate is too small for the right.
     do {
       right--;
     } while ((left <= right) && ((sortarray[right][axis] > pivot1) ||
@@ -4623,21 +4186,21 @@ void tricpp::vertexmedian(
       std::swap(sortarray[left],sortarray[right]);
     }
   }
-  /* Unlike in vertexsort(), at most one of the following */
-  /*   conditionals is true.                             */
+  //Unlike in vertexsort(), at most one of the following
+  //  conditionals is true.
   if (left > median) {
-    /* Recursively shuffle the left subset. */
+    //Recursively shuffle the left subset.
     vertexmedian(sortarray, left, median, axis);
   }
   if (right < median - 1) {
-    /* Recursively shuffle the right subset. */
+    //Recursively shuffle the right subset.
     vertexmedian(&sortarray[right + 1], arraysize - right - 1,
                  median - right - 1, axis);
   }
 }
 
 
-void tricpp::alternateaxes(
+void ribi::tricpp::alternateaxes(
   Vertex * const sortarray,
   const int arraysize,
   int axis
@@ -4646,13 +4209,13 @@ void tricpp::alternateaxes(
   //int divider;
   int divider = arraysize >> 1;
   if (arraysize <= 3) {
-    /* Recursive base case:  subsets of two or three vertices will be    */
-    /*   handled specially, and should always be sorted by x-coordinate. */
+    //Recursive base case:  subsets of two or three vertices will be
+    //  handled specially, and should always be sorted by x-coordinate.
     axis = 0;
   }
-  /* Partition with a horizontal or vertical cut. */
+  //Partition with a horizontal or vertical cut.
   vertexmedian(sortarray, arraysize, divider, axis);
-  /* Recursively partition the subsets with a cross cut. */
+  //Recursively partition the subsets with a cross cut.
   if (arraysize - divider >= 2) {
     if (divider >= 2) {
       alternateaxes(sortarray, divider, 1 - axis);
@@ -4661,7 +4224,7 @@ void tricpp::alternateaxes(
   }
 }
 
-void tricpp::mergehulls(
+void ribi::tricpp::mergehulls(
   Mesh& m,
   const Behavior& b,
   Otri * const farleft,
@@ -4688,21 +4251,21 @@ void tricpp::mergehulls(
   int changemade;
   int badedge;
   int leftfinished, rightfinished;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
   dest(*innerleft, innerleftdest);
   apex(*innerleft, innerleftapex);
   org(*innerright, innerrightorg);
   apex(*innerright, innerrightapex);
-  /* Special treatment for horizontal cuts. */
+  //Special treatment for horizontal cuts.
   if (b.m_dwyer && (axis == 1)) {
     org(*farleft, farleftpt);
     apex(*farleft, farleftapex);
     dest(*farright, farrightpt);
     apex(*farright, farrightapex);
-    /* The pointers to the extremal vertices are shifted to point to the */
-    /*   topmost and bottommost vertex of each hull, rather than the     */
-    /*   leftmost and rightmost vertices.                                */
+    //The pointers to the extremal vertices are shifted to point to the
+    //  topmost and bottommost vertex of each hull, rather than the
+    //  leftmost and rightmost vertices.
     while (farleftapex[1] < farleftpt[1]) {
       lnextself(*farleft);
       symself(*farleft);
@@ -4734,10 +4297,10 @@ void tricpp::mergehulls(
       apex(checkedge, checkvertex);
     }
   }
-  /* Find a line tangent to and below both hulls. */
+  //Find a line tangent to and below both hulls.
   do {
     changemade = 0;
-    /* Make innerleftdest the "bottommost" vertex of the left hull. */
+    //Make innerleftdest the "bottommost" vertex of the left hull.
     if (counterclockwise(m, b, innerleftdest, innerleftapex, innerrightorg) >
         0.0) {
       lprevself(*innerleft);
@@ -4746,7 +4309,7 @@ void tricpp::mergehulls(
       apex(*innerleft, innerleftapex);
       changemade = 1;
     }
-    /* Make innerrightorg the "bottommost" vertex of the right hull. */
+    //Make innerrightorg the "bottommost" vertex of the right hull.
     if (counterclockwise(m, b, innerrightapex, innerrightorg, innerleftdest) >
         0.0) {
       lnextself(*innerright);
@@ -4756,24 +4319,24 @@ void tricpp::mergehulls(
       changemade = 1;
     }
   } while (changemade);
-  /* Find the two candidates to be the next "gear tooth." */
+  //Find the two candidates to be the next "gear tooth."
   sym(*innerleft, leftcand);
   sym(*innerright, rightcand);
-  /* Create the bottom new bounding triangle. */
+  //Create the bottom new bounding triangle.
   maketriangle(m, b, &baseedge);
-  /* Connect it to the bounding boxes of the left and right triangulations. */
+  //Connect it to the bounding boxes of the left and right triangulations.
   bond(baseedge, *innerleft);
   lnextself(baseedge);
   bond(baseedge, *innerright);
   lnextself(baseedge);
   setorg(baseedge, innerrightorg);
   setdest(baseedge, innerleftdest);
-  /* Apex is intentionally left NULL. */
+  //Apex is intentionally left NULL.
   if (b.m_verbosity > 2) {
     printf("  Creating base bounding ");
     printtriangle(m, b, &baseedge);
   }
-  /* Fix the extreme triangles if necessary. */
+  //Fix the extreme triangles if necessary.
   org(*farleft, farleftpt);
   if (innerleftdest == farleftpt) {
     lnext(baseedge, *farleft);
@@ -4782,29 +4345,29 @@ void tricpp::mergehulls(
   if (innerrightorg == farrightpt) {
     lprev(baseedge, *farright);
   }
-  /* The vertices of the current knitting edge. */
+  //The vertices of the current knitting edge.
   lowerleft = innerleftdest;
   lowerright = innerrightorg;
-  /* The candidate vertices for knitting. */
+  //The candidate vertices for knitting.
   apex(leftcand, upperleft);
   apex(rightcand, upperright);
-  /* Walk up the gap between the two triangulations, knitting them together. */
+  //Walk up the gap between the two triangulations, knitting them together.
   while (1) {
-    /* Have we reached the top?  (This isn't quite the right question,       */
-    /*   because even though the left triangulation might seem finished now, */
-    /*   moving up on the right triangulation might reveal a new vertex of   */
-    /*   the left triangulation.  And vice-versa.)                           */
+    //Have we reached the top?  (This isn't quite the right question,
+    //  because even though the left triangulation might seem finished now,
+    //  moving up on the right triangulation might reveal a new vertex of
+    //  the left triangulation.  And vice-versa.)
     leftfinished = counterclockwise(m, b, upperleft, lowerleft, lowerright) <=
                    0.0;
     rightfinished = counterclockwise(m, b, upperright, lowerleft, lowerright)
                  <= 0.0;
     if (leftfinished && rightfinished) {
-      /* Create the top new bounding triangle. */
+      //Create the top new bounding triangle.
       maketriangle(m, b, &nextedge);
       setorg(nextedge, lowerleft);
       setdest(nextedge, lowerright);
-      /* Apex is intentionally left NULL. */
-      /* Connect it to the bounding boxes of the two triangulations. */
+      //Apex is intentionally left NULL.
+      //Connect it to the bounding boxes of the two triangulations.
       bond(nextedge, baseedge);
       lnextself(nextedge);
       bond(nextedge, rightcand);
@@ -4814,7 +4377,7 @@ void tricpp::mergehulls(
         printf("  Creating top bounding ");
         printtriangle(m, b, &nextedge);
       }
-      /* Special treatment for horizontal cuts. */
+      //Special treatment for horizontal cuts.
       if (b.m_dwyer && (axis == 1)) {
         org(*farleft, farleftpt);
         apex(*farleft, farleftapex);
@@ -4822,9 +4385,9 @@ void tricpp::mergehulls(
         apex(*farright, farrightapex);
         sym(*farleft, checkedge);
         apex(checkedge, checkvertex);
-        /* The pointers to the extremal vertices are restored to the  */
-        /*   leftmost and rightmost vertices (rather than topmost and */
-        /*   bottommost).                                             */
+        //The pointers to the extremal vertices are restored to the
+        //  leftmost and rightmost vertices (rather than topmost and
+        //  bottommost).
         while (checkvertex[0] < farleftpt[0]) {
           lprev(checkedge, *farleft);
           farleftapex = farleftpt;
@@ -4841,21 +4404,21 @@ void tricpp::mergehulls(
       }
       return;
     }
-    /* Consider eliminating edges from the left triangulation. */
+    //Consider eliminating edges from the left triangulation.
     if (!leftfinished) {
-      /* What vertex would be exposed if an edge were deleted? */
+      //What vertex would be exposed if an edge were deleted?
       lprev(leftcand, nextedge);
       symself(nextedge);
       apex(nextedge, nextapex);
-      /* If nextapex is NULL, then no vertex would be exposed; the */
-      /*   triangulation would have been eaten right through.      */
+      //If nextapex is NULL, then no vertex would be exposed; the
+      //  triangulation would have been eaten right through.
       if (nextapex != nullptr) {
-        /* Check whether the edge is Delaunay. */
+        //Check whether the edge is Delaunay.
         badedge = incircle(m, b, lowerleft, lowerright, upperleft, nextapex) >
                   0.0;
         while (badedge) {
-          /* Eliminate the edge with an edge flip.  As a result, the    */
-          /*   left triangulation will have one more boundary triangle. */
+          //Eliminate the edge with an edge flip.  As a result, the
+          //  left triangulation will have one more boundary triangle.
           lnextself(nextedge);
           sym(nextedge, topcasing);
           lnextself(nextedge);
@@ -4866,44 +4429,44 @@ void tricpp::mergehulls(
           sym(leftcand, outercasing);
           lprevself(nextedge);
           bond(nextedge, outercasing);
-          /* Correct the vertices to reflect the edge flip. */
+          //Correct the vertices to reflect the edge flip.
           setorg(leftcand, lowerleft);
           setdest(leftcand, NULL);
           setapex(leftcand, nextapex);
           setorg(nextedge, NULL);
           setdest(nextedge, upperleft);
           setapex(nextedge, nextapex);
-          /* Consider the newly exposed vertex. */
+          //Consider the newly exposed vertex.
           upperleft = nextapex;
-          /* What vertex would be exposed if another edge were deleted? */
+          //What vertex would be exposed if another edge were deleted?
           otricopy(sidecasing, nextedge);
           apex(nextedge, nextapex);
           if (nextapex != nullptr) {
-            /* Check whether the edge is Delaunay. */
+            //Check whether the edge is Delaunay.
             badedge = incircle(m, b, lowerleft, lowerright, upperleft,
                                nextapex) > 0.0;
           } else {
-            /* Avoid eating right through the triangulation. */
+            //Avoid eating right through the triangulation.
             badedge = 0;
           }
         }
       }
     }
-    /* Consider eliminating edges from the right triangulation. */
+    //Consider eliminating edges from the right triangulation.
     if (!rightfinished) {
-      /* What vertex would be exposed if an edge were deleted? */
+      //What vertex would be exposed if an edge were deleted?
       lnext(rightcand, nextedge);
       symself(nextedge);
       apex(nextedge, nextapex);
-      /* If nextapex is NULL, then no vertex would be exposed; the */
-      /*   triangulation would have been eaten right through.      */
+      //If nextapex is NULL, then no vertex would be exposed; the
+      //  triangulation would have been eaten right through.
       if (nextapex != nullptr) {
-        /* Check whether the edge is Delaunay. */
+        //Check whether the edge is Delaunay.
         badedge = incircle(m, b, lowerleft, lowerright, upperright, nextapex) >
                   0.0;
         while (badedge) {
-          /* Eliminate the edge with an edge flip.  As a result, the     */
-          /*   right triangulation will have one more boundary triangle. */
+          //Eliminate the edge with an edge flip.  As a result, the
+          //  right triangulation will have one more boundary triangle.
           lprevself(nextedge);
           sym(nextedge, topcasing);
           lprevself(nextedge);
@@ -4914,24 +4477,24 @@ void tricpp::mergehulls(
           sym(rightcand, outercasing);
           lnextself(nextedge);
           bond(nextedge, outercasing);
-          /* Correct the vertices to reflect the edge flip. */
+          //Correct the vertices to reflect the edge flip.
           setorg(rightcand, NULL);
           setdest(rightcand, lowerright);
           setapex(rightcand, nextapex);
           setorg(nextedge, upperright);
           setdest(nextedge, NULL);
           setapex(nextedge, nextapex);
-          /* Consider the newly exposed vertex. */
+          //Consider the newly exposed vertex.
           upperright = nextapex;
-          /* What vertex would be exposed if another edge were deleted? */
+          //What vertex would be exposed if another edge were deleted?
           otricopy(sidecasing, nextedge);
           apex(nextedge, nextapex);
           if (nextapex != nullptr) {
-            /* Check whether the edge is Delaunay. */
+            //Check whether the edge is Delaunay.
             badedge = incircle(m, b, lowerleft, lowerright, upperright,
                                nextapex) > 0.0;
           } else {
-            /* Avoid eating right through the triangulation. */
+            //Avoid eating right through the triangulation.
             badedge = 0;
           }
         }
@@ -4940,8 +4503,8 @@ void tricpp::mergehulls(
     if (leftfinished || (!rightfinished &&
            (incircle(m, b, upperleft, lowerleft, lowerright, upperright) >
             0.0))) {
-      /* Knit the triangulations, adding an edge from `lowerleft' */
-      /*   to `upperright'.                                       */
+      //Knit the triangulations, adding an edge from `lowerleft'
+      //  to `upperright'.
       bond(baseedge, rightcand);
       lprev(rightcand, baseedge);
       setdest(baseedge, lowerleft);
@@ -4949,8 +4512,8 @@ void tricpp::mergehulls(
       sym(baseedge, rightcand);
       apex(rightcand, upperright);
     } else {
-      /* Knit the triangulations, adding an edge from `upperleft' */
-      /*   to `lowerright'.                                       */
+      //Knit the triangulations, adding an edge from `upperleft'
+      //  to `lowerright'.
       bond(baseedge, leftcand);
       lnext(leftcand, baseedge);
       setorg(baseedge, lowerright);
@@ -4965,7 +4528,7 @@ void tricpp::mergehulls(
   }
 }
 
-void tricpp::divconqrecurse(
+void ribi::tricpp::divconqrecurse(
   Mesh& m,
   const Behavior& b,
   const Vertex * const sortarray,
@@ -4984,16 +4547,16 @@ void tricpp::divconqrecurse(
     printf("  Triangulating %d vertices.\n", vertices);
   }
   if (vertices == 2) {
-    /* The triangulation of two vertices is an edge.  An edge is */
-    /*   represented by two bounding triangles.                  */
+    //The triangulation of two vertices is an edge.  An edge is
+    //  represented by two bounding triangles.
     maketriangle(m, b, farleft);
     setorg(*farleft, sortarray[0]);
     setdest(*farleft, sortarray[1]);
-    /* The apex is intentionally left NULL. */
+    //The apex is intentionally left NULL.
     maketriangle(m, b, farright);
     setorg(*farright, sortarray[1]);
     setdest(*farright, sortarray[0]);
-    /* The apex is intentionally left NULL. */
+    //The apex is intentionally left NULL.
     bond(*farleft, *farright);
     lprevself(*farleft);
     lnextself(*farright);
@@ -5007,20 +4570,20 @@ void tricpp::divconqrecurse(
       printf("  Creating ");
       printtriangle(m, b, farright);
     }
-    /* Ensure that the origin of `farleft' is sortarray[0]. */
+    //Ensure that the origin of `farleft' is sortarray[0].
     lprev(*farright, *farleft);
     return;
   } else if (vertices == 3) {
-    /* The triangulation of three vertices is either a triangle (with */
-    /*   three bounding triangles) or two edges (with four bounding   */
-    /*   triangles).  In either case, four triangles are created.     */
+    //The triangulation of three vertices is either a triangle (with
+    //  three bounding triangles) or two edges (with four bounding
+    //  triangles).  In either case, four triangles are created.
     maketriangle(m, b, &midtri);
     maketriangle(m, b, &tri1);
     maketriangle(m, b, &tri2);
     maketriangle(m, b, &tri3);
     area = counterclockwise(m, b, sortarray[0], sortarray[1], sortarray[2]);
     if (area == 0.0) {
-      /* Three collinear vertices; the triangulation is two edges. */
+      //Three collinear vertices; the triangulation is two edges.
       setorg(midtri, sortarray[0]);
       setdest(midtri, sortarray[1]);
       setorg(tri1, sortarray[1]);
@@ -5029,7 +4592,7 @@ void tricpp::divconqrecurse(
       setdest(tri2, sortarray[1]);
       setorg(tri3, sortarray[1]);
       setdest(tri3, sortarray[2]);
-      /* All apices are intentionally left NULL. */
+      //All apices are intentionally left NULL.
       bond(midtri, tri1);
       bond(tri2, tri3);
       lnextself(midtri);
@@ -5044,19 +4607,19 @@ void tricpp::divconqrecurse(
       lprevself(tri3);
       bond(midtri, tri1);
       bond(tri2, tri3);
-      /* Ensure that the origin of `farleft' is sortarray[0]. */
+      //Ensure that the origin of `farleft' is sortarray[0].
       otricopy(tri1, *farleft);
-      /* Ensure that the destination of `farright' is sortarray[2]. */
+      //Ensure that the destination of `farright' is sortarray[2].
       otricopy(tri2, *farright);
     } else {
-      /* The three vertices are not collinear; the triangulation is one */
-      /*   triangle, namely `midtri'.                                   */
+      //The three vertices are not collinear; the triangulation is one
+      //  triangle, namely `midtri'.
       setorg(midtri, sortarray[0]);
       setdest(tri1, sortarray[0]);
       setorg(tri3, sortarray[0]);
-      /* Apices of tri1, tri2, and tri3 are left NULL. */
+      //Apices of tri1, tri2, and tri3 are left NULL.
       if (area > 0.0) {
-        /* The vertices are in counterclockwise order. */
+        //The vertices are in counterclockwise order.
         setdest(midtri, sortarray[1]);
         setorg(tri1, sortarray[1]);
         setdest(tri2, sortarray[1]);
@@ -5064,7 +4627,7 @@ void tricpp::divconqrecurse(
         setorg(tri2, sortarray[2]);
         setdest(tri3, sortarray[2]);
       } else {
-        /* The vertices are in clockwise order. */
+        //The vertices are in clockwise order.
         setdest(midtri, sortarray[2]);
         setorg(tri1, sortarray[2]);
         setdest(tri2, sortarray[2]);
@@ -5072,7 +4635,7 @@ void tricpp::divconqrecurse(
         setorg(tri2, sortarray[1]);
         setdest(tri3, sortarray[1]);
       }
-      /* The topology does not depend on how the vertices are ordered. */
+      //The topology does not depend on how the vertices are ordered.
       bond(midtri, tri1);
       lnextself(midtri);
       bond(midtri, tri2);
@@ -5087,9 +4650,9 @@ void tricpp::divconqrecurse(
       lnextself(tri2);
       lprevself(tri3);
       bond(tri2, tri3);
-      /* Ensure that the origin of `farleft' is sortarray[0]. */
+      //Ensure that the origin of `farleft' is sortarray[0].
       otricopy(tri1, *farleft);
-      /* Ensure that the destination of `farright' is sortarray[2]. */
+      //Ensure that the destination of `farright' is sortarray[2].
       if (area > 0.0) {
         otricopy(tri2, *farright);
       } else {
@@ -5108,9 +4671,9 @@ void tricpp::divconqrecurse(
     }
     return;
   } else {
-    /* Split the vertices in half. */
+    //Split the vertices in half.
     divider = vertices >> 1;
-    /* Recursively triangulate each half. */
+    //Recursively triangulate each half.
     divconqrecurse(m, b, sortarray, divider, 1 - axis, farleft, &innerleft);
     divconqrecurse(m, b, &sortarray[divider], vertices - divider, 1 - axis,
                    &innerright, farright);
@@ -5118,12 +4681,12 @@ void tricpp::divconqrecurse(
       printf("  Joining triangulations with %d and %d vertices.\n", divider,
              vertices - divider);
     }
-    /* Merge the two triangulations into one. */
+    //Merge the two triangulations into one.
     mergehulls(m, b, farleft, &innerleft, &innerright, farright, axis);
   }
 }
 
-long tricpp::removeghosts(
+long ribi::tricpp::removeghosts(
   Mesh& m,
   const Behavior& b,
   Otri * const startghost
@@ -5134,16 +4697,16 @@ long tricpp::removeghosts(
   Otri deadtriangle;
   Vertex markorg;
   long hullsize;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
   if (b.m_verbosity) {
     printf("  Removing ghost triangles.\n");
   }
-  /* Find an edge on the convex hull to start point location from. */
+  //Find an edge on the convex hull to start point location from.
   lprev(*startghost, searchedge);
   symself(searchedge);
   m.m_dummytri[0] = encode(searchedge);
-  /* Remove the bounding box and count the convex hull edges. */
+  //Remove the bounding box and count the convex hull edges.
   otricopy(*startghost, dissolveedge);
   hullsize = 0;
   do {
@@ -5151,10 +4714,10 @@ long tricpp::removeghosts(
     lnext(dissolveedge, deadtriangle);
     lprevself(dissolveedge);
     symself(dissolveedge);
-    /* If no PSLG is involved, set the boundary markers of all the vertices */
-    /*   on the convex hull.  If a PSLG is used, this step is done later.   */
+    //If no PSLG is involved, set the boundary markers of all the vertices
+    //  on the convex hull.  If a PSLG is used, this step is done later.
     if (!b.m_poly) {
-      /* Watch out for the case where all the input vertices are collinear. */
+      //Watch out for the case where all the input vertices are collinear.
       if (dissolveedge.m_tri != m.m_dummytri) {
         org(dissolveedge, markorg);
         if (vertexmark(markorg) == 0) {
@@ -5162,17 +4725,18 @@ long tricpp::removeghosts(
         }
       }
     }
-    /* Remove a bounding triangle from a convex hull triangle. */
+    //Remove a bounding triangle from a convex hull triangle.
     dissolve(dissolveedge);
-    /* Find the next bounding triangle. */
+    //Find the next bounding triangle.
     sym(deadtriangle, dissolveedge);
-    /* Delete the bounding triangle. */
-    triangledealloc(m, deadtriangle.m_tri);
+    //Delete the bounding triangle.
+    //triangledealloc(m, deadtriangle.m_tri);
+    m.KillTriangle(deadtriangle.m_tri);
   } while (!otriequal(dissolveedge, *startghost));
   return hullsize;
 }
 
-long tricpp::divconqdelaunay(
+long ribi::tricpp::divconqdelaunay(
   Mesh& m,
   const Behavior& b
 )
@@ -5188,7 +4752,7 @@ long tricpp::divconqdelaunay(
     printf("  Sorting vertices.\n");
   }
 
-  /* Allocate an array of pointers to vertices for sorting. */
+  //Allocate an array of pointers to vertices for sorting.
   //sortarray = (vertex *) trimalloc(m.invertices * (int) sizeof(vertex));
   sortarray.resize(m.m_invertices);
 
@@ -5196,9 +4760,9 @@ long tricpp::divconqdelaunay(
   for (i = 0; i < m.m_invertices; i++) {
     sortarray[i] = vertextraverse(m);
   }
-  /* Sort the vertices. */
+  //Sort the vertices.
   vertexsort(&sortarray[0], m.m_invertices);
-  /* Discard duplicate vertices, which can really mess up the algorithm. */
+  //Discard duplicate vertices, which can really mess up the algorithm.
   i = 0;
   for (int j = 1; j < m.m_invertices; j++) {
     if ((sortarray[i][0] == sortarray[j][0])
@@ -5210,7 +4774,7 @@ long tricpp::divconqdelaunay(
           << sortarray[j][1] << ") appeared and was ignored.\n"
         ;
       }
-      setvertextype(sortarray[j], UNDEADVERTEX);
+      setvertextype(sortarray[j], VertexType::UNDEADVERTEX);
       m.m_undeads++;
     } else {
       i++;
@@ -5219,7 +4783,7 @@ long tricpp::divconqdelaunay(
   }
   i++;
   if (b.m_dwyer) {
-    /* Re-sort the array of vertices to accommodate alternating cuts. */
+    //Re-sort the array of vertices to accommodate alternating cuts.
     divider = i >> 1;
     if (i - divider >= 2) {
       if (divider >= 2) {
@@ -5233,7 +4797,7 @@ long tricpp::divconqdelaunay(
     std::cout << "  Forming triangulation.\n";
   }
 
-  /* Form the Delaunay triangulation. */
+  //Form the Delaunay triangulation.
   divconqrecurse(m, b, &sortarray[0], i, 0, &hullleft, &hullright);
 
   //delete sortarray;
@@ -5243,18 +4807,18 @@ long tricpp::divconqdelaunay(
 }
 
 
-void tricpp::boundingbox(
+void ribi::tricpp::boundingbox(
   Mesh& m,
   const Behavior& b
 )
 {
-  Otri inftri;          /* Handle for the triangular bounding box. */
+  Otri inftri;          //Handle for the triangular bounding box.
 
   if (b.m_verbosity)
   {
     std::cout << "  Creating triangular bounding box.\n";
   }
-  /* Find the width (or height, whichever is larger) of the triangulation. */
+  //Find the width (or height, whichever is larger) of the triangulation.
   double width = m.m_xmax - m.m_xmin;
   if (m.m_ymax - m.m_ymin > width) {
     width = m.m_ymax - m.m_ymin;
@@ -5262,7 +4826,7 @@ void tricpp::boundingbox(
   if (width == 0.0) {
     width = 1.0;
   }
-  /* Create the vertices of the bounding box. */
+  //Create the vertices of the bounding box.
   m.m_infvertex1 = (Vertex) TriMalloc(m.m_vertices.m_itembytes);
   m.m_infvertex2 = (Vertex) TriMalloc(m.m_vertices.m_itembytes);
   m.m_infvertex3 = (Vertex) TriMalloc(m.m_vertices.m_itembytes);
@@ -5273,13 +4837,13 @@ void tricpp::boundingbox(
   m.m_infvertex3[0] = 0.5 * (m.m_xmin + m.m_xmax);
   m.m_infvertex3[1] = m.m_ymax + 60.0 * width;
 
-  /* Create the bounding box. */
+  //Create the bounding box.
   maketriangle(m, b, &inftri);
   setorg(inftri, m.m_infvertex1);
   setdest(inftri, m.m_infvertex2);
   setapex(inftri, m.m_infvertex3);
-  /* Link dummytri to the bounding box so we can always find an */
-  /*   edge to begin searching (point location) from.           */
+  //Link dummytri to the bounding box so we can always find an
+  //  edge to begin searching (point location) from.
   m.m_dummytri[0] = (Triangle) inftri.m_tri;
   if (b.m_verbosity > 2)
   {
@@ -5289,7 +4853,7 @@ void tricpp::boundingbox(
 }
 
 
-long tricpp::removebox(
+long ribi::tricpp::removebox(
   Mesh& m,
   const Behavior& b
 )
@@ -5300,65 +4864,53 @@ long tricpp::removebox(
   Otri nextedge, finaledge, dissolveedge;
   Vertex markorg;
   long hullsize;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
   if (b.m_verbosity) {
     printf("  Removing triangular bounding box.\n");
   }
-  /* Find a boundary triangle. */
+  //Find a boundary triangle.
   nextedge.m_tri = m.m_dummytri;
   nextedge.m_orient = 0;
   symself(nextedge);
-  /* Mark a place to stop. */
+  //Mark a place to stop.
   lprev(nextedge, finaledge);
   lnextself(nextedge);
   symself(nextedge);
-  /* Find a triangle (on the boundary of the vertex set) that isn't */
-  /*   a bounding box triangle.                                     */
+  //Find a triangle (on the boundary of the vertex set) that isn't
+  //  a bounding box triangle.
   lprev(nextedge, searchedge);
   symself(searchedge);
-  /* Check whether nextedge is another boundary triangle */
-  /*   adjacent to the first one.                        */
+  //Check whether nextedge is another boundary triangle
+  //  adjacent to the first one.
   lnext(nextedge, checkedge);
   symself(checkedge);
   if (checkedge.m_tri == m.m_dummytri) {
-    /* Go on to the next triangle.  There are only three boundary   */
-    /*   triangles, and this next triangle cannot be the third one, */
-    /*   so it's safe to stop here.                                 */
+    //Go on to the next triangle.  There are only three boundary
+    //  triangles, and this next triangle cannot be the third one,
+    //  so it's safe to stop here.
     lprevself(searchedge);
     symself(searchedge);
   }
-  /* Find a new boundary edge to search from, as the current search */
-  /*   edge lies on a bounding box triangle and will be deleted.    */
+  //Find a new boundary edge to search from, as the current search
+  //  edge lies on a bounding box triangle and will be deleted.
   m.m_dummytri[0] = encode(searchedge);
   hullsize = -2l;
   while (!otriequal(nextedge, finaledge)) {
     hullsize++;
     lprev(nextedge, dissolveedge);
     symself(dissolveedge);
-    /* If not using a PSLG, the vertices should be marked now. */
-    /*   (If using a PSLG, markhull() will do the job.)        */
-    if (!b.m_poly) {
-      /* Be careful!  One must check for the case where all the input     */
-      /*   vertices are collinear, and thus all the triangles are part of */
-      /*   the bounding box.  Otherwise, the setvertexmark() call below   */
-      /*   will cause a bad pointer reference.                            */
-      if (dissolveedge.m_tri != m.m_dummytri) {
-        org(dissolveedge, markorg);
-        if (vertexmark(markorg) == 0) {
-          setvertexmark(markorg, 1);
-        }
-      }
-    }
-    /* Disconnect the bounding box triangle from the mesh triangle. */
+    //If not using a PSLG, the vertices should be marked now.
+    //  (If using a PSLG, markhull() will do the job.)
+    //Disconnect the bounding box triangle from the mesh triangle.
     dissolve(dissolveedge);
     lnext(nextedge, deadtriangle);
     sym(deadtriangle, nextedge);
-    /* Get rid of the bounding box triangle. */
+    //Get rid of the bounding box triangle.
     triangledealloc(m, deadtriangle.m_tri);
-    /* Do we need to turn the corner? */
+    //Do we need to turn the corner?
     if (nextedge.m_tri == m.m_dummytri) {
-      /* Turn the corner. */
+      //Turn the corner.
       otricopy(dissolveedge, nextedge);
     }
   }
@@ -5375,12 +4927,12 @@ long tricpp::removebox(
 }
 
 
-int tricpp::incrementaldelaunay(Mesh& m,const Behavior& b)
+int ribi::tricpp::incrementaldelaunay(Mesh& m,const Behavior& b)
 {
   Otri starttri;
   Vertex vertexloop;
 
-  /* Create a triangular bounding box. */
+  //Create a triangular bounding box.
   boundingbox(m, b);
   if (b.m_verbosity) {
     printf("  Incrementally inserting vertices.\n");
@@ -5398,18 +4950,18 @@ int tricpp::incrementaldelaunay(Mesh& m,const Behavior& b)
           << ", " << vertexloop[1] << ") appeared and was ignored.\n"
         ;
       }
-      setvertextype(vertexloop, UNDEADVERTEX);
+      setvertextype(vertexloop, VertexType::UNDEADVERTEX);
       m.m_undeads++;
     }
     vertexloop = vertextraverse(m);
   }
-  /* Remove the bounding box. */
+  //Remove the bounding box.
   return removebox(m, b);
 }
 
 
 
-void tricpp::createeventheap(
+void ribi::tricpp::createeventheap(
   Mesh& m,
   Event *** eventheap,
   Event ** events,
@@ -5442,7 +4994,7 @@ void tricpp::createeventheap(
 }
 
 
-bool tricpp::rightofhyperbola(
+bool ribi::tricpp::rightofhyperbola(
   Mesh& m,
   const Otri * const fronttri,
   const Vertex& newsite
@@ -5476,7 +5028,7 @@ bool tricpp::rightofhyperbola(
   return dya * (dxb * dxb + dyb * dyb) > dyb * (dxa * dxa + dya * dya);
 }
 
-double tricpp::circletop(
+double ribi::tricpp::circletop(
   Mesh& m,
   const Vertex& pa,
   const Vertex& pb,
@@ -5498,9 +5050,9 @@ double tricpp::circletop(
                / (2.0 * ccwabc);
 }
 
-void tricpp::check4deadevent(
+void ribi::tricpp::check4deadevent(
   const Otri * const checktri,
-  /* const */ Event ** const freeevents,
+  //const Event ** const freeevents,
   Event ** const eventheap,
   int * const heapsize
 )
@@ -5520,7 +5072,7 @@ void tricpp::check4deadevent(
   }
 }
 
-tricpp::SplayNode * tricpp::splay(
+ribi::tricpp::SplayNode * ribi::tricpp::splay(
   Mesh& m,
   SplayNode * const splaytree,
   const Vertex& searchpoint,
@@ -5629,7 +5181,7 @@ tricpp::SplayNode * tricpp::splay(
       lefttree->m_rchild = righttree;
       return lefttree;
     } else {
-/*      printf("Holy Toledo!!!\n"); */
+//     printf("Holy Toledo!!!\n");
       leftright = lefttree->m_rchild;
       while (leftright->m_rchild != nullptr) {
         leftright = leftright->m_rchild;
@@ -5640,7 +5192,7 @@ tricpp::SplayNode * tricpp::splay(
   }
 }
 
-tricpp::SplayNode * tricpp::splayinsert(
+ribi::tricpp::SplayNode * ribi::tricpp::splayinsert(
   Mesh& m,
   SplayNode * const splayroot,
   const Otri * const newkey,
@@ -5667,7 +5219,7 @@ tricpp::SplayNode * tricpp::splayinsert(
   return newsplaynode;
 }
 
-tricpp::SplayNode * tricpp::circletopinsert(
+ribi::tricpp::SplayNode * ribi::tricpp::circletopinsert(
   Mesh& m,
   const Behavior& b,
   SplayNode * const splayroot,
@@ -5697,7 +5249,7 @@ tricpp::SplayNode * tricpp::circletopinsert(
                      newkey, (Vertex) searchpoint);
 }
 
-tricpp::SplayNode * tricpp::frontlocate(
+ribi::tricpp::SplayNode * ribi::tricpp::frontlocate(
   Mesh& m,
   SplayNode * splayroot,
   const Otri * const bottommost,
@@ -5707,7 +5259,7 @@ tricpp::SplayNode * tricpp::frontlocate(
 )
 {
   //int farrightflag;
-  Triangle ptr;                       /* Temporary variable used by onext(). */
+  Triangle ptr;                       //Temporary variable used by onext().
 
   otricopy(*bottommost, *searchtri);
   splayroot = splay(m, splayroot, searchvertex, searchtri);
@@ -5722,7 +5274,7 @@ tricpp::SplayNode * tricpp::frontlocate(
   return splayroot;
 }
 
-long tricpp::sweeplinedelaunay(
+long ribi::tricpp::sweeplinedelaunay(
   Mesh& m,
   const Behavior& b
 )
@@ -5745,7 +5297,7 @@ long tricpp::sweeplinedelaunay(
   double lefttest, righttest;
   int heapsize;
   int check4events, farrightflag;
-  Triangle ptr;   /* Temporary variable used by sym(), onext(), and oprev(). */
+  Triangle ptr;   //Temporary variable used by sym(), onext(), and oprev().
 
   PoolInit(&m.m_splaynodes, sizeof(struct SplayNode), SPLAYNODEPERBLOCK,
            SPLAYNODEPERBLOCK, 0);
@@ -5791,7 +5343,7 @@ long tricpp::sweeplinedelaunay(
           secondvertex[1]
         );
       }
-      setvertextype(secondvertex, UNDEADVERTEX);
+      setvertextype(secondvertex, VertexType::UNDEADVERTEX);
       m.m_undeads++;
     }
   } while ((firstvertex[0] == secondvertex[0]) &&
@@ -5842,7 +5394,7 @@ long tricpp::sweeplinedelaunay(
             nextvertex[1]
           );
         }
-        setvertextype(nextvertex, UNDEADVERTEX);
+        setvertextype(nextvertex, VertexType::UNDEADVERTEX);
         m.m_undeads++;
         check4events = 0;
       } else {
@@ -5932,7 +5484,7 @@ long tricpp::sweeplinedelaunay(
   return removeghosts(m, b, &bottommost);
 }
 
-long tricpp::delaunay(Mesh& m,const Behavior& b)
+long ribi::tricpp::delaunay(Mesh& m,const Behavior& b)
 {
   long hulledges;
 
@@ -5959,19 +5511,19 @@ long tricpp::delaunay(Mesh& m,const Behavior& b)
 
   if (m.m_triangles.m_items == 0)
   {
-    /* The input vertices were all collinear, so there are no triangles. */
+    //The input vertices were all collinear, so there are no triangles.
     return 0l;
   } else {
     return hulledges;
   }
 }
 
-long tricpp::reconstruct(
+long ribi::tricpp::reconstruct(
   Mesh& m,
   const Behavior& b,
-  char * const elefilename,
-  const char * const areafilename,
-  const char * const polyfilename,
+  std::string& elefilename,
+  const std::string& areafilename,
+  const std::string& polyfilename,
   FILE * const polyfile
 )
 {
@@ -5992,7 +5544,6 @@ long tricpp::reconstruct(
   Vertex tdest, tapex;
   Vertex checkdest, checkapex;
   Vertex shorg;
-  Vertex killvertex;
   Vertex segmentorg, segmentdest;
   double area;
   int corner[3];
@@ -6006,20 +5557,17 @@ long tricpp::reconstruct(
   int notfound;
   long elementnumber, segmentnumber;
   int i, j;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
-  /* Read the triangles from an .ele file. */
-  if (!b.m_quiet) {
-    printf("Opening %s.\n", elefilename);
-  }
-  elefile = fopen(elefilename, "r");
+  //Read the triangles from an .ele file.
+  elefile = fopen(elefilename.c_str(), "r");
   if (elefile == nullptr) {
     std::stringstream s;
     s << "Triangle: Cannot access file '" << elefilename << "'";
     throw std::runtime_error(s.str().c_str());
   }
-  /* Read number of triangles, number of vertices per triangle, and */
-  /*   number of triangle attributes from .ele file.                */
+  //Read number of triangles, number of vertices per triangle, and
+  //  number of triangle attributes from .ele file.
   stringptr = readline(inputline, elefile);
   m.m_inelements = (int) strtol(stringptr, &stringptr, 0);
   stringptr = FindField(stringptr);
@@ -6041,37 +5589,34 @@ long tricpp::reconstruct(
   }
   initializetrisubpools(m, b);
 
-  /* Create the triangles. */
+  //Create the triangles.
   for (elementnumber = 1; elementnumber <= m.m_inelements; elementnumber++) {
     maketriangle(m, b, &triangleloop);
-    /* Mark the triangle as living. */
+    //Mark the triangle as living.
     triangleloop.m_tri[3] = (Triangle) triangleloop.m_tri;
   }
 
   segmentmarkers = 0;
   if (b.m_poly) {
-    /* Read number of segments and number of segment */
-    /*   boundary markers from .poly file.           */
+    //Read number of segments and number of segment
+    //  boundary markers from .poly file.
     stringptr = readline(inputline, polyfile);
     m.m_insegments = (int) strtol(stringptr, &stringptr, 0);
     stringptr = FindField(stringptr);
     if (*stringptr != '\0') {
       segmentmarkers = (int) strtol(stringptr, &stringptr, 0);
     }
-    /* Create the subsegments. */
+    //Create the subsegments.
     for (segmentnumber = 1; segmentnumber <= m.m_insegments; segmentnumber++) {
       makesubseg(m, &subsegloop);
-      /* Mark the subsegment as living. */
+      //Mark the subsegment as living.
       subsegloop.m_subseg[2] = (SubSeg) subsegloop.m_subseg;
     }
   }
 
   if (b.m_vararea) {
-    /* Open an .area file, check for consistency with the .ele file. */
-    if (!b.m_quiet) {
-      printf("Opening %s.\n", areafilename);
-    }
-    areafile = fopen(areafilename, "r");
+    //Open an .area file, check for consistency with the .ele file.
+    areafile = fopen(areafilename.c_str(), "r");
     if (areafile == nullptr) {
       std::stringstream s;
       s << "Triangle: Cannot access file "
@@ -6094,12 +5639,12 @@ long tricpp::reconstruct(
   if (!b.m_quiet) {
     printf("Reconstructing mesh.\n");
   }
-  /* Allocate a temporary array that maps each vertex to some adjacent */
-  /*   triangle.  I took care to allocate all the permanent memory for */
-  /*   triangles and subsegments first.                                */
+  //Allocate a temporary array that maps each vertex to some adjacent
+  //  triangle.  I took care to allocate all the permanent memory for
+  //  triangles and subsegments first.
   vertexarray = (Triangle *) TriMalloc(m.m_vertices.m_items *
                                        (int) sizeof(Triangle));
-  /* Each vertex is initially unrepresented. */
+  //Each vertex is initially unrepresented.
   for (i = 0; i < m.m_vertices.m_items; i++) {
     vertexarray[i] = (Triangle) m.m_dummytri;
   }
@@ -6107,13 +5652,13 @@ long tricpp::reconstruct(
   if (b.m_verbosity) {
     printf("  Assembling triangles.\n");
   }
-  /* Read the triangles from the .ele file, and link */
-  /*   together those that share an edge.            */
+  //Read the triangles from the .ele file, and link
+  //  together those that share an edge.
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
   elementnumber = b.m_firstnumber;
   while (triangleloop.m_tri != (Triangle *) NULL) {
-    /* Read triangle number and the triangle's three corners. */
+    //Read triangle number and the triangle's three corners.
     stringptr = readline(inputline, elefile);
     for (j = 0; j < 3; j++) {
       stringptr = FindField(stringptr);
@@ -6135,23 +5680,25 @@ long tricpp::reconstruct(
       }
     }
 
-    /* Find out about (and throw away) extra nodes. */
+    //Find out about (and throw away) extra nodes.
     for (j = 3; j < incorners; j++) {
       stringptr = FindField(stringptr);
       if (*stringptr != '\0') {
         killvertexindex = (int) strtol(stringptr, &stringptr, 0);
         if ((killvertexindex >= b.m_firstnumber) &&
-            (killvertexindex < b.m_firstnumber + m.m_invertices)) {
-          /* Delete the non-corner vertex if it's not already deleted. */
-          killvertex = getvertex(m, b, killvertexindex);
-          if (vertextype(killvertex) != DEADVERTEX) {
-            vertexdealloc(m, killvertex);
-          }
+            (killvertexindex < b.m_firstnumber + m.m_invertices))
+        {
+          //Delete the non-corner vertex if it's not already deleted.
+          m.KillVertex(killvertexindex);
+          //const auto& killvertex = m.GetVertex(killvertexindex);
+          //if (vertextype(killvertex) != VertexType::DEADVERTEX) {
+          //  vertexdealloc(m, killvertex);
+          // }
         }
       }
     }
 
-    /* Read the triangle's attributes. */
+    //Read the triangle's attributes.
     for (j = 0; j < m.m_eextras; j++) {
       stringptr = FindField(stringptr);
       if (*stringptr == '\0') {
@@ -6163,52 +5710,52 @@ long tricpp::reconstruct(
     }
 
     if (b.m_vararea) {
-      /* Read an area constraint from the .area file. */
+      //Read an area constraint from the .area file.
       stringptr = readline(inputline, areafile);
       stringptr = FindField(stringptr);
       if (*stringptr == '\0') {
-        area = -1.0;                      /* No constraint on this triangle. */
+        area = -1.0;                      //No constraint on this triangle.
       } else {
         area = (double) strtod(stringptr, &stringptr);
       }
       setareabound(triangleloop, area);
     }
 
-    /* Set the triangle's vertices. */
+    //Set the triangle's vertices.
     triangleloop.m_orient = 0;
-    setorg(triangleloop, getvertex(m, b, corner[0]));
-    setdest(triangleloop, getvertex(m, b, corner[1]));
-    setapex(triangleloop, getvertex(m, b, corner[2]));
-    /* Try linking the triangle to others that share these vertices. */
+    setorg(triangleloop, getvertex(m.m_vertices, b, corner[0]));
+    setdest(triangleloop, getvertex(m.m_vertices, b, corner[1]));
+    setapex(triangleloop, getvertex(m.m_vertices, b, corner[2]));
+    //Try linking the triangle to others that share these vertices.
     for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
          triangleloop.m_orient++) {
-      /* Take the number for the origin of triangleloop. */
+      //Take the number for the origin of triangleloop.
       aroundvertex = corner[triangleloop.m_orient];
-      /* Look for other triangles having this vertex. */
+      //Look for other triangles having this vertex.
       nexttri = vertexarray[aroundvertex - b.m_firstnumber];
-      /* Link the current triangle to the next one in the stack. */
+      //Link the current triangle to the next one in the stack.
       triangleloop.m_tri[6 + triangleloop.m_orient] = nexttri;
-      /* Push the current triangle onto the stack. */
+      //Push the current triangle onto the stack.
       vertexarray[aroundvertex - b.m_firstnumber] = encode(triangleloop);
       decode(nexttri, checktri);
       if (checktri.m_tri != m.m_dummytri) {
         dest(triangleloop, tdest);
         apex(triangleloop, tapex);
-        /* Look for other triangles that share an edge. */
+        //Look for other triangles that share an edge.
         do {
           dest(checktri, checkdest);
           apex(checktri, checkapex);
           if (tapex == checkdest) {
-            /* The two triangles share an edge; bond them together. */
+            //The two triangles share an edge; bond them together.
             lprev(triangleloop, triangleleft);
             bond(triangleleft, checktri);
           }
           if (tdest == checkapex) {
-            /* The two triangles share an edge; bond them together. */
+            //The two triangles share an edge; bond them together.
             lprev(checktri, checkleft);
             bond(triangleloop, checkleft);
           }
-          /* Find the next triangle in the stack. */
+          //Find the next triangle in the stack.
           nexttri = checktri.m_tri[6 + checktri.m_orient];
           decode(nexttri, checktri);
         } while (checktri.m_tri != m.m_dummytri);
@@ -6223,21 +5770,21 @@ long tricpp::reconstruct(
     fclose(areafile);
   }
 
-  hullsize = 0;                      /* Prepare to count the boundary edges. */
+  hullsize = 0;                      //Prepare to count the boundary edges.
   if (b.m_poly) {
     if (b.m_verbosity) {
       printf("  Marking segments in triangulation.\n");
     }
-    /* Read the segments from the .poly file, and link them */
-    /*   to their neighboring triangles.                    */
+    //Read the segments from the .poly file, and link them
+    //  to their neighboring triangles.
     boundmarker = 0;
     TraversalInit(&m.m_subsegs);
     subsegloop.m_subseg = subsegtraverse(m);
     segmentnumber = b.m_firstnumber;
     while (subsegloop.m_subseg != (SubSeg *) NULL) {
-      /* Read the endpoints of each segment, and possibly a boundary marker. */
+      //Read the endpoints of each segment, and possibly a boundary marker.
       stringptr = readline(inputline, polyfile);
-      /* Skip the first (segment number) field. */
+      //Skip the first (segment number) field.
       stringptr = FindField(stringptr);
       if (*stringptr == '\0') {
         std::stringstream s;
@@ -6282,52 +5829,52 @@ long tricpp::reconstruct(
         }
       }
 
-      /* set the subsegment's vertices. */
+      //set the subsegment's vertices.
       subsegloop.m_subseg_orient = 0;
-      segmentorg = getvertex(m, b, end[0]);
-      segmentdest = getvertex(m, b, end[1]);
+      segmentorg = getvertex(m.m_vertices, b, end[0]);
+      segmentdest = getvertex(m.m_vertices, b, end[1]);
       setsorg(subsegloop, segmentorg);
       setsdest(subsegloop, segmentdest);
       setsegorg(subsegloop, segmentorg);
       setsegdest(subsegloop, segmentdest);
       setmark(subsegloop, boundmarker);
-      /* Try linking the subsegment to triangles that share these vertices. */
+      //Try linking the subsegment to triangles that share these vertices.
       for (subsegloop.m_subseg_orient = 0; subsegloop.m_subseg_orient < 2;
            subsegloop.m_subseg_orient++) {
-        /* Take the number for the destination of subsegloop. */
+        //Take the number for the destination of subsegloop.
         aroundvertex = end[1 - subsegloop.m_subseg_orient];
-        /* Look for triangles having this vertex. */
+        //Look for triangles having this vertex.
         prevlink = &vertexarray[aroundvertex - b.m_firstnumber];
         nexttri = vertexarray[aroundvertex - b.m_firstnumber];
         decode(nexttri, checktri);
         sorg(subsegloop, shorg);
         notfound = 1;
-        /* Look for triangles having this edge.  Note that I'm only       */
-        /*   comparing each triangle's destination with the subsegment;   */
-        /*   each triangle's apex is handled through a different vertex.  */
-        /*   Because each triangle appears on three vertices' lists, each */
-        /*   occurrence of a triangle on a list can (and does) represent  */
-        /*   an edge.  In this way, most edges are represented twice, and */
-        /*   every triangle-subsegment bond is represented once.          */
+        //Look for triangles having this edge.  Note that I'm only
+        //  comparing each triangle's destination with the subsegment;
+        //  each triangle's apex is handled through a different vertex.
+        //  Because each triangle appears on three vertices' lists, each
+        //  occurrence of a triangle on a list can (and does) represent
+        //  an edge.  In this way, most edges are represented twice, and
+        //  every triangle-subsegment bond is represented once.
         while (notfound && (checktri.m_tri != m.m_dummytri)) {
           dest(checktri, checkdest);
           if (shorg == checkdest) {
-            /* We have a match.  Remove this triangle from the list. */
+            //We have a match.  Remove this triangle from the list.
             *prevlink = checktri.m_tri[6 + checktri.m_orient];
-            /* Bond the subsegment to the triangle. */
+            //Bond the subsegment to the triangle.
             tsbond(checktri, subsegloop);
-            /* Check if this is a boundary edge. */
+            //Check if this is a boundary edge.
             sym(checktri, checkneighbor);
             if (checkneighbor.m_tri == m.m_dummytri) {
-              /* The next line doesn't insert a subsegment (because there's */
-              /*   already one there), but it sets the boundary markers of  */
-              /*   the existing subsegment and its vertices.                */
+              //The next line doesn't insert a subsegment (because there's
+              //  already one there), but it sets the boundary markers of
+              //  the existing subsegment and its vertices.
               insertsubseg(m, b, &checktri, 1);
               hullsize++;
             }
             notfound = 0;
           }
-          /* Find the next triangle in the stack. */
+          //Find the next triangle in the stack.
           prevlink = &checktri.m_tri[6 + checktri.m_orient];
           nexttri = checktri.m_tri[6 + checktri.m_orient];
           decode(nexttri, checktri);
@@ -6338,17 +5885,17 @@ long tricpp::reconstruct(
     }
   }
 
-  /* Mark the remaining edges as not being attached to any subsegment. */
-  /* Also, count the (yet uncounted) boundary edges.                   */
+  //Mark the remaining edges as not being attached to any subsegment.
+  //Also, count the (yet uncounted) boundary edges.
   for (i = 0; i < m.m_vertices.m_items; i++) {
-    /* Search the stack of triangles adjacent to a vertex. */
+    //Search the stack of triangles adjacent to a vertex.
     nexttri = vertexarray[i];
     decode(nexttri, checktri);
     while (checktri.m_tri != m.m_dummytri) {
-      /* Find the next triangle in the stack before this */
-      /*   information gets overwritten.                 */
+      //Find the next triangle in the stack before this
+      //  information gets overwritten.
       nexttri = checktri.m_tri[6 + checktri.m_orient];
-      /* No adjacent subsegment.  (This overwrites the stack info.) */
+      //No adjacent subsegment.  (This overwrites the stack info.)
       tsdissolve(checktri);
       sym(checktri, checkneighbor);
       if (checkneighbor.m_tri == m.m_dummytri) {
@@ -6364,7 +5911,7 @@ long tricpp::reconstruct(
   return hullsize;
 }
 
-tricpp::FindDirectionResult tricpp::finddirection(
+ribi::tricpp::FindDirectionResult ribi::tricpp::finddirection(
   Mesh& m,
   const Behavior& b,
   Otri * const searchtri,
@@ -6374,22 +5921,20 @@ tricpp::FindDirectionResult tricpp::finddirection(
   Otri checktri;
   Vertex startvertex;
   Vertex leftvertex, rightvertex;
-  //double leftccw, rightccw;
-  //int leftflag, rightflag;
-  Triangle ptr;           /* Temporary variable used by onext() and oprev(). */
+  Triangle ptr;  // Temporary variable used by onext() and oprev().
 
   org(*searchtri, startvertex);
   dest(*searchtri, rightvertex);
   apex(*searchtri, leftvertex);
-  /* Is `searchpoint' to the left? */
+  //Is `searchpoint' to the left?
   double leftccw = counterclockwise(m, b, searchpoint, startvertex, leftvertex);
   int leftflag = leftccw > 0.0;
-  /* Is `searchpoint' to the right? */
+  //Is `searchpoint' to the right?
   double rightccw = counterclockwise(m, b, startvertex, searchpoint, rightvertex);
   int rightflag = rightccw > 0.0;
   if (leftflag && rightflag) {
-    /* `searchtri' faces directly away from `searchpoint'.  We could go left */
-    /*   or right.  Ask whether it's a triangle or a boundary on the left.   */
+    //`searchtri' faces directly away from `searchpoint'.  We could go left
+    //  or right.  Ask whether it's a triangle or a boundary on the left.
     onext(*searchtri, checktri);
     if (checktri.m_tri == m.m_dummytri) {
       leftflag = 0;
@@ -6398,7 +5943,7 @@ tricpp::FindDirectionResult tricpp::finddirection(
     }
   }
   while (leftflag) {
-    /* Turn left until satisfied. */
+    //Turn left until satisfied.
     onextself(*searchtri);
     if (searchtri->m_tri == m.m_dummytri) {
       std::stringstream s;
@@ -6415,7 +5960,7 @@ tricpp::FindDirectionResult tricpp::finddirection(
     leftflag = leftccw > 0.0;
   }
   while (rightflag) {
-    /* Turn right until satisfied. */
+    //Turn right until satisfied.
     oprevself(*searchtri);
     if (searchtri->m_tri == m.m_dummytri) {
       std::stringstream s;
@@ -6439,7 +5984,7 @@ tricpp::FindDirectionResult tricpp::finddirection(
   }
 }
 
-void tricpp::segmentintersection(
+void ribi::tricpp::segmentintersection(
   Mesh& m,
   const Behavior& b,
   Otri * const splittri,
@@ -6459,14 +6004,14 @@ void tricpp::segmentintersection(
   double etx, ety;
   double split, denom;
 
-  Triangle ptr;                       /* Temporary variable used by onext(). */
-  SubSeg sptr;                        /* Temporary variable used by snext(). */
+  Triangle ptr;                       //Temporary variable used by onext().
+  SubSeg sptr;                        //Temporary variable used by snext().
 
-  /* Find the other three segment endpoints. */
+  //Find the other three segment endpoints.
   apex(*splittri, endpoint1);
   org(*splittri, torg);
   dest(*splittri, tdest);
-  /* Segment intersection formulae; see the Antonio reference. */
+  //Segment intersection formulae; see the Antonio reference.
   tx = tdest[0] - torg[0];
   ty = tdest[1] - torg[1];
   ex = endpoint2[0] - endpoint1[0];
@@ -6481,20 +6026,20 @@ void tricpp::segmentintersection(
     throw std::logic_error(s.str().c_str());
   }
   split = (ey * etx - ex * ety) / denom;
-  /* Create the new vertex. */
+  //Create the new vertex.
   newvertex = (Vertex) PoolAlloc(&m.m_vertices);
-  /* Interpolate its coordinate and attributes. */
+  //Interpolate its coordinate and attributes.
   for (int i = 0; i < 2 + m.m_nextras; i++) {
     newvertex[i] = torg[i] + split * (tdest[i] - torg[i]);
   }
   setvertexmark(newvertex, mark(*splitsubseg));
-  setvertextype(newvertex, INPUTVERTEX);
+  setvertextype(newvertex, VertexType::INPUTVERTEX);
   if (b.m_verbosity > 1) {
     printf(
   "  Splitting subsegment (%.12g, %.12g) (%.12g, %.12g) at (%.12g, %.12g).\n",
            torg[0], torg[1], tdest[0], tdest[1], newvertex[0], newvertex[1]);
   }
-  /* Insert the intersection vertex.  This should always succeed. */
+  //Insert the intersection vertex.  This should always succeed.
   const InsertVertexResult success = insertvertex(m, b, newvertex, splittri, splitsubseg, 0, 0);
   if (success != SUCCESSFULVERTEX) {
     std::stringstream s;
@@ -6503,13 +6048,13 @@ void tricpp::segmentintersection(
     throw std::logic_error(s.str().c_str());
 
   }
-  /* Record a triangle whose origin is the new vertex. */
+  //Record a triangle whose origin is the new vertex.
   setvertex2tri(newvertex, encode(*splittri));
   if (m.m_steinerleft > 0) {
     m.m_steinerleft--;
   }
 
-  /* Divide the segment into two, and correct the segment endpoints. */
+  //Divide the segment into two, and correct the segment endpoints.
   ssymself(*splitsubseg);
   spivot(*splitsubseg, opposubseg);
   sdissolve(*splitsubseg);
@@ -6523,9 +6068,9 @@ void tricpp::segmentintersection(
     snextself(opposubseg);
   } while (opposubseg.m_subseg != m.m_dummysub);
 
-  /* Inserting the vertex may have caused edge flips.  We wish to rediscover */
-  /*   the edge connecting endpoint1 to the new intersection vertex.         */
-  /* enum finddirectionresult collinear = */finddirection(m, b, splittri, endpoint1);
+  //Inserting the vertex may have caused edge flips.  We wish to rediscover
+  //  the edge connecting endpoint1 to the new intersection vertex.
+  //enum finddirectionresult collinear =finddirection(m, b, splittri, endpoint1);
   dest(*splittri, rightvertex);
   apex(*splittri, leftvertex);
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1])) {
@@ -6538,10 +6083,10 @@ void tricpp::segmentintersection(
     throw std::logic_error(s.str().c_str());
 
   }
-  /* `splittri' should have destination endpoint1. */
+  //`splittri' should have destination endpoint1.
 }
 
-int tricpp::scoutsegment(
+int ribi::tricpp::scoutsegment(
   Mesh& m,
   const Behavior& b,
   Otri * const searchtri,
@@ -6553,52 +6098,52 @@ int tricpp::scoutsegment(
   Osub crosssubseg;
   Vertex leftvertex, rightvertex;
   //enum finddirectionresult collinear;
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   const FindDirectionResult collinear = finddirection(m, b, searchtri, endpoint2);
   dest(*searchtri, rightvertex);
   apex(*searchtri, leftvertex);
   if (((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) ||
       ((rightvertex[0] == endpoint2[0]) && (rightvertex[1] == endpoint2[1]))) {
-    /* The segment is already an edge in the mesh. */
+    //The segment is already an edge in the mesh.
     if ((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) {
       lprevself(*searchtri);
     }
-    /* Insert a subsegment, if there isn't already one there. */
+    //Insert a subsegment, if there isn't already one there.
     insertsubseg(m, b, searchtri, newmark);
     return 1;
   } else if (collinear == LEFTCOLLINEAR) {
-    /* We've collided with a vertex between the segment's endpoints. */
-    /* Make the collinear vertex be the triangle's origin. */
+    //We've collided with a vertex between the segment's endpoints.
+    //Make the collinear vertex be the triangle's origin.
     lprevself(*searchtri);
     insertsubseg(m, b, searchtri, newmark);
-    /* Insert the remainder of the segment. */
+    //Insert the remainder of the segment.
     return scoutsegment(m, b, searchtri, endpoint2, newmark);
   } else if (collinear == RIGHTCOLLINEAR) {
-    /* We've collided with a vertex between the segment's endpoints. */
+    //We've collided with a vertex between the segment's endpoints.
     insertsubseg(m, b, searchtri, newmark);
-    /* Make the collinear vertex be the triangle's origin. */
+    //Make the collinear vertex be the triangle's origin.
     lnextself(*searchtri);
-    /* Insert the remainder of the segment. */
+    //Insert the remainder of the segment.
     return scoutsegment(m, b, searchtri, endpoint2, newmark);
   } else {
     lnext(*searchtri, crosstri);
     tspivot(crosstri, crosssubseg);
-    /* Check for a crossing segment. */
+    //Check for a crossing segment.
     if (crosssubseg.m_subseg == m.m_dummysub) {
       return 0;
     } else {
-      /* Insert a vertex at the intersection. */
+      //Insert a vertex at the intersection.
       segmentintersection(m, b, &crosstri, &crosssubseg, endpoint2);
       otricopy(crosstri, *searchtri);
       insertsubseg(m, b, searchtri, newmark);
-      /* Insert the remainder of the segment. */
+      //Insert the remainder of the segment.
       return scoutsegment(m, b, searchtri, endpoint2, newmark);
     }
   }
 }
 
-void tricpp::conformingedge(
+void ribi::tricpp::conformingedge(
   Mesh& m,
   const Behavior& b,
   const Vertex& endpoint1,
@@ -6612,24 +6157,24 @@ void tricpp::conformingedge(
   Vertex midvertex1, midvertex2;
   //InsertVertexResult success;
 
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   if (b.m_verbosity > 2) {
     printf("Forcing segment into triangulation by recursive splitting:\n");
     printf("  (%.12g, %.12g) (%.12g, %.12g)\n", endpoint1[0], endpoint1[1],
            endpoint2[0], endpoint2[1]);
   }
-  /* Create a new vertex to insert in the middle of the segment. */
+  //Create a new vertex to insert in the middle of the segment.
   newvertex = (Vertex) PoolAlloc(&m.m_vertices);
-  /* Interpolate coordinates and attributes. */
+  //Interpolate coordinates and attributes.
   for (int i = 0; i < 2 + m.m_nextras; i++) {
     newvertex[i] = 0.5 * (endpoint1[i] + endpoint2[i]);
   }
   setvertexmark(newvertex, newmark);
-  setvertextype(newvertex, SEGMENTVERTEX);
-  /* No known triangle to search from. */
+  setvertextype(newvertex, VertexType::SEGMENTVERTEX);
+  //No known triangle to search from.
   searchtri1.m_tri = m.m_dummytri;
-  /* Attempt to insert the new vertex. */
+  //Attempt to insert the new vertex.
   InsertVertexResult success = insertvertex(m, b, newvertex, &searchtri1, nullptr,
                          0, 0);
   if (success == DUPLICATEVERTEX) {
@@ -6637,7 +6182,7 @@ void tricpp::conformingedge(
       printf("  Segment intersects existing vertex (%.12g, %.12g).\n",
              newvertex[0], newvertex[1]);
     }
-    /* Use the vertex that's already there. */
+    //Use the vertex that's already there.
     vertexdealloc(m, newvertex);
     org(searchtri1, newvertex);
   } else {
@@ -6646,7 +6191,7 @@ void tricpp::conformingedge(
         printf("  Two segments intersect at (%.12g, %.12g).\n",
                newvertex[0], newvertex[1]);
       }
-      /* By fluke, we've landed right on another segment.  Split it. */
+      //By fluke, we've landed right on another segment.  Split it.
       tspivot(searchtri1, brokensubseg);
       success = insertvertex(m, b, newvertex, &searchtri1, &brokensubseg,
                              0, 0);
@@ -6658,33 +6203,33 @@ void tricpp::conformingedge(
 
       }
     }
-    /* The vertex has been inserted successfully. */
+    //The vertex has been inserted successfully.
     if (m.m_steinerleft > 0) {
       m.m_steinerleft--;
     }
   }
   otricopy(searchtri1, searchtri2);
-  /* `searchtri1' and `searchtri2' are fastened at their origins to         */
-  /*   `newvertex', and will be directed toward `endpoint1' and `endpoint2' */
-  /*   respectively.  First, we must get `searchtri2' out of the way so it  */
-  /*   won't be invalidated during the insertion of the first half of the   */
-  /*   segment.                                                             */
+  //`searchtri1' and `searchtri2' are fastened at their origins to
+  //  `newvertex', and will be directed toward `endpoint1' and `endpoint2'
+  //  respectively.  First, we must get `searchtri2' out of the way so it
+  //  won't be invalidated during the insertion of the first half of the
+  //  segment.
   finddirection(m, b, &searchtri2, endpoint2);
   if (!scoutsegment(m, b, &searchtri1, endpoint1, newmark)) {
-    /* The origin of searchtri1 may have changed if a collision with an */
-    /*   intervening vertex on the segment occurred.                    */
+    //The origin of searchtri1 may have changed if a collision with an
+    //  intervening vertex on the segment occurred.
     org(searchtri1, midvertex1);
     conformingedge(m, b, midvertex1, endpoint1, newmark);
   }
   if (!scoutsegment(m, b, &searchtri2, endpoint2, newmark)) {
-    /* The origin of searchtri2 may have changed if a collision with an */
-    /*   intervening vertex on the segment occurred.                    */
+    //The origin of searchtri2 may have changed if a collision with an
+    //  intervening vertex on the segment occurred.
     org(searchtri2, midvertex2);
     conformingedge(m, b, midvertex2, endpoint2, newmark);
   }
 }
 
-void tricpp::delaunayfixup(
+void ribi::tricpp::delaunayfixup(
   Mesh& m,
   const Behavior& b,
   Otri * const fixuptri,
@@ -6695,12 +6240,12 @@ void tricpp::delaunayfixup(
   Otri fartri;
   Osub faredge;
   Vertex nearvertex, leftvertex, rightvertex, farvertex;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   lnext(*fixuptri, neartri);
   sym(neartri, fartri);
-  /* Check if the edge opposite the origin of fixuptri can be flipped. */
+  //Check if the edge opposite the origin of fixuptri can be flipped.
   if (fartri.m_tri == m.m_dummytri) {
     return;
   }
@@ -6708,44 +6253,44 @@ void tricpp::delaunayfixup(
   if (faredge.m_subseg != m.m_dummysub) {
     return;
   }
-  /* Find all the relevant vertices. */
+  //Find all the relevant vertices.
   apex(neartri, nearvertex);
   org(neartri, leftvertex);
   dest(neartri, rightvertex);
   apex(fartri, farvertex);
-  /* Check whether the previous polygon vertex is a reflex vertex. */
+  //Check whether the previous polygon vertex is a reflex vertex.
   if (leftside) {
     if (counterclockwise(m, b, nearvertex, leftvertex, farvertex) <= 0.0) {
-      /* leftvertex is a reflex vertex too.  Nothing can */
-      /*   be done until a convex section is found.      */
+      //leftvertex is a reflex vertex too.  Nothing can
+      //  be done until a convex section is found.
       return;
     }
   } else {
     if (counterclockwise(m, b, farvertex, rightvertex, nearvertex) <= 0.0) {
-      /* rightvertex is a reflex vertex too.  Nothing can */
-      /*   be done until a convex section is found.       */
+      //rightvertex is a reflex vertex too.  Nothing can
+      //  be done until a convex section is found.
       return;
     }
   }
   if (counterclockwise(m, b, rightvertex, leftvertex, farvertex) > 0.0) {
-    /* fartri is not an inverted triangle, and farvertex is not a reflex */
-    /*   vertex.  As there are no reflex vertices, fixuptri isn't an     */
-    /*   inverted triangle, either.  Hence, test the edge between the    */
-    /*   triangles to ensure it is locally Delaunay.                     */
+    //fartri is not an inverted triangle, and farvertex is not a reflex
+    //  vertex.  As there are no reflex vertices, fixuptri isn't an
+    //  inverted triangle, either.  Hence, test the edge between the
+    //  triangles to ensure it is locally Delaunay.
     if (incircle(m, b, leftvertex, farvertex, rightvertex, nearvertex) <=
         0.0) {
       return;
     }
-    /* Not locally Delaunay; go on to an edge flip. */
-  }        /* else fartri is inverted; remove it from the stack by flipping. */
+    //Not locally Delaunay; go on to an edge flip.
+  }        //else fartri is inverted; remove it from the stack by flipping.
   flip(m, b, &neartri);
-  lprevself(*fixuptri);    /* Restore the origin of fixuptri after the flip. */
-  /* Recursively process the two triangles that result from the flip. */
+  lprevself(*fixuptri);    //Restore the origin of fixuptri after the flip.
+  //Recursively process the two triangles that result from the flip.
   delaunayfixup(m, b, fixuptri, leftside);
   delaunayfixup(m, b, &fartri, leftside);
 }
 
-void tricpp::constrainededge(
+void ribi::tricpp::constrainededge(
   Mesh& m,
   const Behavior& b,
   const Otri * const starttri,
@@ -6760,83 +6305,83 @@ void tricpp::constrainededge(
   double area;
   //int collision;
   //int done;
-  Triangle ptr;             /* Temporary variable used by sym() and oprev(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;             //Temporary variable used by sym() and oprev().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   org(*starttri, endpoint1);
   lnext(*starttri, fixuptri);
   flip(m, b, &fixuptri);
-  /* `collision' indicates whether we have found a vertex directly */
-  /*   between endpoint1 and endpoint2.                            */
+  //`collision' indicates whether we have found a vertex directly
+  //  between endpoint1 and endpoint2.
   int collision = 0;
   int done = 0;
   do {
     org(fixuptri, farvertex);
-    /* `farvertex' is the extreme point of the polygon we are "digging" */
-    /*   to get from endpoint1 to endpoint2.                           */
+    //`farvertex' is the extreme point of the polygon we are "digging"
+    //  to get from endpoint1 to endpoint2.
     if ((farvertex[0] == endpoint2[0]) && (farvertex[1] == endpoint2[1])) {
       oprev(fixuptri, fixuptri2);
-      /* Enforce the Delaunay condition around endpoint2. */
+      //Enforce the Delaunay condition around endpoint2.
       delaunayfixup(m, b, &fixuptri, 0);
       delaunayfixup(m, b, &fixuptri2, 1);
       done = 1;
     } else {
-      /* Check whether farvertex is to the left or right of the segment */
-      /*   being inserted, to decide which edge of fixuptri to dig      */
-      /*   through next.                                                */
+      //Check whether farvertex is to the left or right of the segment
+      //  being inserted, to decide which edge of fixuptri to dig
+      //  through next.
       area = counterclockwise(m, b, endpoint1, endpoint2, farvertex);
       if (area == 0.0) {
-        /* We've collided with a vertex between endpoint1 and endpoint2. */
+        //We've collided with a vertex between endpoint1 and endpoint2.
         collision = 1;
         oprev(fixuptri, fixuptri2);
-        /* Enforce the Delaunay condition around farvertex. */
+        //Enforce the Delaunay condition around farvertex.
         delaunayfixup(m, b, &fixuptri, 0);
         delaunayfixup(m, b, &fixuptri2, 1);
         done = 1;
       } else {
-        if (area > 0.0) {        /* farvertex is to the left of the segment. */
+        if (area > 0.0) {        //farvertex is to the left of the segment.
           oprev(fixuptri, fixuptri2);
-          /* Enforce the Delaunay condition around farvertex, on the */
-          /*   left side of the segment only.                        */
+          //Enforce the Delaunay condition around farvertex, on the
+          //  left side of the segment only.
           delaunayfixup(m, b, &fixuptri2, 1);
-          /* Flip the edge that crosses the segment.  After the edge is */
-          /*   flipped, one of its endpoints is the fan vertex, and the */
-          /*   destination of fixuptri is the fan vertex.               */
+          //Flip the edge that crosses the segment.  After the edge is
+          //  flipped, one of its endpoints is the fan vertex, and the
+          //  destination of fixuptri is the fan vertex.
           lprevself(fixuptri);
-        } else {                /* farvertex is to the right of the segment. */
+        } else {                //farvertex is to the right of the segment.
           delaunayfixup(m, b, &fixuptri, 0);
-          /* Flip the edge that crosses the segment.  After the edge is */
-          /*   flipped, one of its endpoints is the fan vertex, and the */
-          /*   destination of fixuptri is the fan vertex.               */
+          //Flip the edge that crosses the segment.  After the edge is
+          //  flipped, one of its endpoints is the fan vertex, and the
+          //  destination of fixuptri is the fan vertex.
           oprevself(fixuptri);
         }
-        /* Check for two intersecting segments. */
+        //Check for two intersecting segments.
         tspivot(fixuptri, crosssubseg);
         if (crosssubseg.m_subseg == m.m_dummysub) {
-          flip(m, b, &fixuptri);    /* May create inverted triangle at left. */
+          flip(m, b, &fixuptri);    //May create inverted triangle at left.
         } else {
-          /* We've collided with a segment between endpoint1 and endpoint2. */
+          //We've collided with a segment between endpoint1 and endpoint2.
           collision = 1;
-          /* Insert a vertex at the intersection. */
+          //Insert a vertex at the intersection.
           segmentintersection(m, b, &fixuptri, &crosssubseg, endpoint2);
           done = 1;
         }
       }
     }
   } while (!done);
-  /* Insert a subsegment to make the segment permanent. */
+  //Insert a subsegment to make the segment permanent.
   insertsubseg(m, b, &fixuptri, newmark);
-  /* If there was a collision with an interceding vertex, install another */
-  /*   segment connecting that vertex with endpoint2.                     */
+  //If there was a collision with an interceding vertex, install another
+  //  segment connecting that vertex with endpoint2.
   if (collision) {
-    /* Insert the remainder of the segment. */
+    //Insert the remainder of the segment.
     if (!scoutsegment(m, b, &fixuptri, endpoint2, newmark)) {
       constrainededge(m, b, &fixuptri, endpoint2, newmark);
     }
   }
 }
 
-void tricpp::insertsegment(
+void ribi::tricpp::insertsegment(
   Mesh& m,
   const Behavior& b,
   Vertex endpoint1,
@@ -6847,14 +6392,14 @@ void tricpp::insertsegment(
   Otri searchtri1, searchtri2;
   Triangle encodedtri;
   Vertex checkvertex;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
   if (b.m_verbosity > 1) {
     printf("  Connecting (%.12g, %.12g) to (%.12g, %.12g).\n",
            endpoint1[0], endpoint1[1], endpoint2[0], endpoint2[1]);
   }
 
-  /* Find a triangle whose origin is the segment's first endpoint. */
+  //Find a triangle whose origin is the segment's first endpoint.
   checkvertex = nullptr;
   encodedtri = vertex2tri(endpoint1);
   if (encodedtri != (Triangle) NULL) {
@@ -6862,11 +6407,11 @@ void tricpp::insertsegment(
     org(searchtri1, checkvertex);
   }
   if (checkvertex != endpoint1) {
-    /* Find a boundary triangle to search from. */
+    //Find a boundary triangle to search from.
     searchtri1.m_tri = m.m_dummytri;
     searchtri1.m_orient = 0;
     symself(searchtri1);
-    /* Search for the segment's first endpoint by point location. */
+    //Search for the segment's first endpoint by point location.
     if (locate(m, b, endpoint1, &searchtri1) != ONVERTEX) {
       std::stringstream s;
       printf(
@@ -6877,19 +6422,19 @@ void tricpp::insertsegment(
 
     }
   }
-  /* Remember this triangle to improve subsequent point location. */
+  //Remember this triangle to improve subsequent point location.
   otricopy(searchtri1, m.m_recenttri);
-  /* Scout the beginnings of a path from the first endpoint */
-  /*   toward the second.                                   */
+  //Scout the beginnings of a path from the first endpoint
+  //  toward the second.
   if (scoutsegment(m, b, &searchtri1, endpoint2, newmark)) {
-    /* The segment was easily inserted. */
+    //The segment was easily inserted.
     return;
   }
-  /* The first endpoint may have changed if a collision with an intervening */
-  /*   vertex on the segment occurred.                                      */
+  //The first endpoint may have changed if a collision with an intervening
+  //  vertex on the segment occurred.
   org(searchtri1, endpoint1);
 
-  /* Find a triangle whose origin is the segment's second endpoint. */
+  //Find a triangle whose origin is the segment's second endpoint.
   checkvertex = nullptr;
   encodedtri = vertex2tri(endpoint2);
   if (encodedtri != (Triangle) NULL) {
@@ -6897,11 +6442,11 @@ void tricpp::insertsegment(
     org(searchtri2, checkvertex);
   }
   if (checkvertex != endpoint2) {
-    /* Find a boundary triangle to search from. */
+    //Find a boundary triangle to search from.
     searchtri2.m_tri = m.m_dummytri;
     searchtri2.m_orient = 0;
     symself(searchtri2);
-    /* Search for the segment's second endpoint by point location. */
+    //Search for the segment's second endpoint by point location.
     if (locate(m, b, endpoint2, &searchtri2) != ONVERTEX) {
       std::stringstream s;
       printf(
@@ -6912,29 +6457,29 @@ void tricpp::insertsegment(
 
     }
   }
-  /* Remember this triangle to improve subsequent point location. */
+  //Remember this triangle to improve subsequent point location.
   otricopy(searchtri2, m.m_recenttri);
-  /* Scout the beginnings of a path from the second endpoint */
-  /*   toward the first.                                     */
+  //Scout the beginnings of a path from the second endpoint
+  //  toward the first.
   if (scoutsegment(m, b, &searchtri2, endpoint1, newmark)) {
-    /* The segment was easily inserted. */
+    //The segment was easily inserted.
     return;
   }
-  /* The second endpoint may have changed if a collision with an intervening */
-  /*   vertex on the segment occurred.                                       */
+  //The second endpoint may have changed if a collision with an intervening
+  //  vertex on the segment occurred.
   org(searchtri2, endpoint2);
 
   if (b.m_splitseg) {
-    /* Insert vertices to force the segment into the triangulation. */
+    //Insert vertices to force the segment into the triangulation.
     conformingedge(m, b, endpoint1, endpoint2, newmark);
   } else {
-    /* Insert the segment directly into the triangulation. */
+    //Insert the segment directly into the triangulation.
     constrainededge(m, b, &searchtri1, endpoint2, newmark);
   }
 }
 
 
-void tricpp::markhull(
+void ribi::tricpp::markhull(
   Mesh& m,
   const Behavior& b
 )
@@ -6942,19 +6487,19 @@ void tricpp::markhull(
   Otri hulltri;
   Otri nexttri;
   Otri starttri;
-  Triangle ptr;             /* Temporary variable used by sym() and oprev(). */
+  Triangle ptr;             //Temporary variable used by sym() and oprev().
 
-  /* Find a triangle handle on the hull. */
+  //Find a triangle handle on the hull.
   hulltri.m_tri = m.m_dummytri;
   hulltri.m_orient = 0;
   symself(hulltri);
-  /* Remember where we started so we know when to stop. */
+  //Remember where we started so we know when to stop.
   otricopy(hulltri, starttri);
-  /* Go once counterclockwise around the convex hull. */
+  //Go once counterclockwise around the convex hull.
   do {
-    /* Create a subsegment if there isn't already one here. */
+    //Create a subsegment if there isn't already one here.
     insertsubseg(m, b, &hulltri, 1);
-    /* To find the next hull edge, go clockwise around the next vertex. */
+    //To find the next hull edge, go clockwise around the next vertex.
     lnextself(hulltri);
     oprev(hulltri, nexttri);
     while (nexttri.m_tri != m.m_dummytri) {
@@ -6964,11 +6509,11 @@ void tricpp::markhull(
   } while (!otriequal(hulltri, starttri));
 }
 
-void tricpp::formskeleton(
+void ribi::tricpp::formskeleton(
   Mesh& m,
   const Behavior& b,
   FILE * const polyfile,
-  const char * const polyfilename
+  const std::string& polyfilename
 )
 {
   char inputline[g_max_inputline_size];
@@ -6982,8 +6527,8 @@ void tricpp::formskeleton(
     if (!b.m_quiet) {
       printf("Recovering segments in Delaunay triangulation.\n");
     }
-    /* Read the segments from a .poly file. */
-    /* Read number of segments and number of boundary markers. */
+    //Read the segments from a .poly file.
+    //Read number of segments and number of boundary markers.
     char * stringptr = readline(inputline, polyfile); //RJCB
     m.m_insegments = (int) strtol(stringptr, &stringptr, 0);
     stringptr = FindField(stringptr);
@@ -6992,14 +6537,14 @@ void tricpp::formskeleton(
     } else {
       segmentmarkers = (int) strtol(stringptr, &stringptr, 0);
     }
-    /* If the input vertices are collinear, there is no triangulation, */
-    /*   so don't try to insert segments.                              */
+    //If the input vertices are collinear, there is no triangulation,
+    //  so don't try to insert segments.
     if (m.m_triangles.m_items == 0) {
       return;
     }
 
-    /* If segments are to be inserted, compute a mapping */
-    /*   from vertices to triangles.                     */
+    //If segments are to be inserted, compute a mapping
+    //  from vertices to triangles.
     if (m.m_insegments > 0) {
       makevertexmap(m, b);
       if (b.m_verbosity) {
@@ -7008,24 +6553,25 @@ void tricpp::formskeleton(
     }
 
     boundmarker = 0;
-    /* Read and insert the segments. */
+    //Read and insert the segments.
     for (int i = 0; i < m.m_insegments; i++) {
       stringptr = readline(inputline, polyfile);
       stringptr = FindField(stringptr);
       if (*stringptr == '\0') {
         std::stringstream s;
-        printf("Error:  Segment %d has no endpoints in %s.\n",
-               b.m_firstnumber + i, polyfilename);
+        s << "Error:  Segment " << (b.m_firstnumber + i) << " has no endpoints in " << polyfilename << ".\n",
         throw std::logic_error(s.str().c_str());
-
-      } else {
+      }
+      else
+      {
         end1 = (int) strtol(stringptr, &stringptr, 0);
       }
       stringptr = FindField(stringptr);
       if (*stringptr == '\0') {
         std::stringstream s;
-        printf("Error:  Segment %d is missing its second endpoint in %s.\n",
-               b.m_firstnumber + i, polyfilename);
+        s << "Error:  Segment " << (b.m_firstnumber + i)
+          << " is missing its second endpoint in " << polyfilename
+          << ".\n";
         throw std::logic_error(s.str().c_str());
 
       } else {
@@ -7039,45 +6585,64 @@ void tricpp::formskeleton(
           boundmarker = (int) strtol(stringptr, &stringptr, 0);
         }
       }
-      if ((end1 < b.m_firstnumber) ||
-          (end1 >= b.m_firstnumber + m.m_invertices)) {
-        if (!b.m_quiet) {
-          printf("Warning:  Invalid first endpoint of segment %d in %s.\n",
-                 b.m_firstnumber + i, polyfilename);
+      if (end1 < b.m_firstnumber || end1 >= b.m_firstnumber + m.m_invertices)
+      {
+        if (!b.m_quiet)
+        {
+          std::cout
+            << "Warning:  Invalid first endpoint of segment "
+            << (b.m_firstnumber + i) << " in "
+            << polyfilename << ".\n"
+          ;
         }
       } else if ((end2 < b.m_firstnumber) ||
                  (end2 >= b.m_firstnumber + m.m_invertices)) {
-        if (!b.m_quiet) {
-          printf("Warning:  Invalid second endpoint of segment %d in %s.\n",
-                 b.m_firstnumber + i, polyfilename);
+        if (!b.m_quiet)
+        {
+          std::cout
+            << "Warning:  Invalid second endpoint of segment "
+            << (b.m_firstnumber + i) << " in "
+            << polyfilename << ".\n"
+          ;
         }
-      } else {
-        /* Find the vertices numbered `end1' and `end2'. */
-        endpoint1 = getvertex(m, b, end1);
-        endpoint2 = getvertex(m, b, end2);
-        if ((endpoint1[0] == endpoint2[0]) && (endpoint1[1] == endpoint2[1])) {
-          if (!b.m_quiet) {
-            printf("Warning:  Endpoints of segment %d are coincident in %s.\n",
-                   b.m_firstnumber + i, polyfilename);
+      }
+      else
+      {
+        //Find the vertices numbered `end1' and `end2'.
+        endpoint1 = getvertex(m.m_vertices, b, end1);
+        endpoint2 = getvertex(m.m_vertices, b, end2);
+        if ((endpoint1[0] == endpoint2[0]) && (endpoint1[1] == endpoint2[1]))
+        {
+          if (!b.m_quiet)
+          {
+            std::cout << "Warning:  Endpoints of segment "
+              <<(b.m_firstnumber + i) << " are coincident in "
+              << polyfilename << ".\n"
+            ;
           }
-        } else {
+        }
+        else
+        {
           insertsegment(m, b, endpoint1, endpoint2, boundmarker);
         }
       }
     }
-  } else {
+  }
+  else
+  {
     m.m_insegments = 0;
   }
-  if (b.m_convex || !b.m_poly) {
-    /* Enclose the convex hull with subsegments. */
-    if (b.m_verbosity) {
-      printf("  Enclosing convex hull with segments.\n");
+  if (b.m_convex || !b.m_poly)
+  {
+    if (b.m_verbosity > 0)
+    {
+      std::cout << "  Enclosing convex hull with segments.\n";
     }
     markhull(m, b);
   }
 }
 
-void tricpp::infecthull(
+void ribi::tricpp::infecthull(
   Mesh& m,
   const Behavior& b
 )
@@ -7088,33 +6653,33 @@ void tricpp::infecthull(
   Osub hullsubseg;
   Triangle **deadtriangle;
   Vertex horg, hdest;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   if (b.m_verbosity) {
     printf("  Marking concavities (external triangles) for elimination.\n");
   }
-  /* Find a triangle handle on the hull. */
+  //Find a triangle handle on the hull.
   hulltri.m_tri = m.m_dummytri;
   hulltri.m_orient = 0;
   symself(hulltri);
-  /* Remember where we started so we know when to stop. */
+  //Remember where we started so we know when to stop.
   otricopy(hulltri, starttri);
-  /* Go once counterclockwise around the convex hull. */
+  //Go once counterclockwise around the convex hull.
   do {
-    /* Ignore triangles that are already infected. */
+    //Ignore triangles that are already infected.
     if (!infected(hulltri)) {
-      /* Is the triangle protected by a subsegment? */
+      //Is the triangle protected by a subsegment?
       tspivot(hulltri, hullsubseg);
       if (hullsubseg.m_subseg == m.m_dummysub) {
-        /* The triangle is not protected; infect it. */
+        //The triangle is not protected; infect it.
         if (!infected(hulltri)) {
           infect(hulltri);
           deadtriangle = (Triangle **) PoolAlloc(&m.m_viri);
           *deadtriangle = hulltri.m_tri;
         }
       } else {
-        /* The triangle is protected; set boundary markers if appropriate. */
+        //The triangle is protected; set boundary markers if appropriate.
         if (mark(hullsubseg) == 0) {
           setmark(hullsubseg, 1);
           org(hulltri, horg);
@@ -7128,7 +6693,7 @@ void tricpp::infecthull(
         }
       }
     }
-    /* To find the next hull edge, go clockwise around the next vertex. */
+    //To find the next hull edge, go clockwise around the next vertex.
     lnextself(hulltri);
     oprev(hulltri, nexttri);
     while (nexttri.m_tri != m.m_dummytri) {
@@ -7139,7 +6704,7 @@ void tricpp::infecthull(
 }
 
 
-void tricpp::plague(
+void ribi::tricpp::plague(
   Mesh& m,
   const Behavior& b
 )
@@ -7153,26 +6718,26 @@ void tricpp::plague(
   Vertex norg, ndest;
   Vertex deadorg, deaddest, deadapex;
   int killorg;
-  Triangle ptr;             /* Temporary variable used by sym() and onext(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;             //Temporary variable used by sym() and onext().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   if (b.m_verbosity) {
     printf("  Marking neighbors of marked triangles.\n");
   }
-  /* Loop through all the infected triangles, spreading the virus to */
-  /*   their neighbors, then to their neighbors' neighbors.          */
+  //Loop through all the infected triangles, spreading the virus to
+  //  their neighbors, then to their neighbors' neighbors.
   TraversalInit(&m.m_viri);
   virusloop = (Triangle **) Traverse(&m.m_viri);
   while (virusloop != nullptr) {
     testtri.m_tri = *virusloop;
-    /* A triangle is marked as infected by messing with one of its pointers */
-    /*   to subsegments, setting it to an illegal value.  Hence, we have to */
-    /*   temporarily uninfect this triangle so that we can examine its      */
-    /*   adjacent subsegments.                                              */
+    //A triangle is marked as infected by messing with one of its pointers
+    //  to subsegments, setting it to an illegal value.  Hence, we have to
+    //  temporarily uninfect this triangle so that we can examine its
+    //  adjacent subsegments.
     uninfect(testtri);
     if (b.m_verbosity > 2) {
-      /* Assign the triangle an orientation for convenience in */
-      /*   checking its vertices.                              */
+      //Assign the triangle an orientation for convenience in
+      //  checking its vertices.
       testtri.m_orient = 0;
       org(testtri, deadorg);
       dest(testtri, deaddest);
@@ -7181,31 +6746,31 @@ void tricpp::plague(
              deadorg[0], deadorg[1], deaddest[0], deaddest[1],
              deadapex[0], deadapex[1]);
     }
-    /* Check each of the triangle's three neighbors. */
+    //Check each of the triangle's three neighbors.
     for (testtri.m_orient = 0; testtri.m_orient < 3; testtri.m_orient++) {
-      /* Find the neighbor. */
+      //Find the neighbor.
       sym(testtri, neighbor);
-      /* Check for a subsegment between the triangle and its neighbor. */
+      //Check for a subsegment between the triangle and its neighbor.
       tspivot(testtri, neighborsubseg);
-      /* Check if the neighbor is nonexistent or already infected. */
+      //Check if the neighbor is nonexistent or already infected.
       if ((neighbor.m_tri == m.m_dummytri) || infected(neighbor)) {
         if (neighborsubseg.m_subseg != m.m_dummysub) {
-          /* There is a subsegment separating the triangle from its      */
-          /*   neighbor, but both triangles are dying, so the subsegment */
-          /*   dies too.                                                 */
+          //There is a subsegment separating the triangle from its
+          //  neighbor, but both triangles are dying, so the subsegment
+          //  dies too.
           subsegdealloc(m, neighborsubseg.m_subseg);
           if (neighbor.m_tri != m.m_dummytri) {
-            /* Make sure the subsegment doesn't get deallocated again */
-            /*   later when the infected neighbor is visited.         */
+            //Make sure the subsegment doesn't get deallocated again
+            //  later when the infected neighbor is visited.
             uninfect(neighbor);
             tsdissolve(neighbor);
             infect(neighbor);
           }
         }
-      } else {                   /* The neighbor exists and is not infected. */
+      } else {                   //The neighbor exists and is not infected.
         if (neighborsubseg.m_subseg == m.m_dummysub) {
-          /* There is no subsegment protecting the neighbor, so */
-          /*   the neighbor becomes infected.                   */
+          //There is no subsegment protecting the neighbor, so
+          //  the neighbor becomes infected.
           if (b.m_verbosity > 2) {
             org(neighbor, deadorg);
             dest(neighbor, deaddest);
@@ -7216,13 +6781,13 @@ void tricpp::plague(
                    deadapex[0], deadapex[1]);
           }
           infect(neighbor);
-          /* Ensure that the neighbor's neighbors will be infected. */
+          //Ensure that the neighbor's neighbors will be infected.
           deadtriangle = (Triangle **) PoolAlloc(&m.m_viri);
           *deadtriangle = neighbor.m_tri;
-        } else {               /* The neighbor is protected by a subsegment. */
-          /* Remove this triangle from the subsegment. */
+        } else {               //The neighbor is protected by a subsegment.
+          //Remove this triangle from the subsegment.
           stdissolve(neighborsubseg);
-          /* The subsegment becomes a boundary.  Set markers accordingly. */
+          //The subsegment becomes a boundary.  Set markers accordingly.
           if (mark(neighborsubseg) == 0) {
             setmark(neighborsubseg, 1);
           }
@@ -7237,8 +6802,8 @@ void tricpp::plague(
         }
       }
     }
-    /* Remark the triangle as infected, so it doesn't get added to the */
-    /*   virus pool again.                                             */
+    //Remark the triangle as infected, so it doesn't get added to the
+    //  virus pool again.
     infect(testtri);
     virusloop = (Triangle **) Traverse(&m.m_viri);
   }
@@ -7252,45 +6817,45 @@ void tricpp::plague(
   while (virusloop != nullptr) {
     testtri.m_tri = *virusloop;
 
-    /* Check each of the three corners of the triangle for elimination. */
-    /*   This is done by walking around each vertex, checking if it is  */
-    /*   still connected to at least one live triangle.                 */
+    //Check each of the three corners of the triangle for elimination.
+    //  This is done by walking around each vertex, checking if it is
+    //  still connected to at least one live triangle.
     for (testtri.m_orient = 0; testtri.m_orient < 3; testtri.m_orient++) {
       org(testtri, testvertex);
-      /* Check if the vertex has already been tested. */
+      //Check if the vertex has already been tested.
       if (testvertex != nullptr) {
         killorg = 1;
-        /* Mark the corner of the triangle as having been tested. */
+        //Mark the corner of the triangle as having been tested.
         setorg(testtri, NULL);
-        /* Walk counterclockwise about the vertex. */
+        //Walk counterclockwise about the vertex.
         onext(testtri, neighbor);
-        /* Stop upon reaching a boundary or the starting triangle. */
+        //Stop upon reaching a boundary or the starting triangle.
         while ((neighbor.m_tri != m.m_dummytri) &&
                (!otriequal(neighbor, testtri))) {
           if (infected(neighbor)) {
-            /* Mark the corner of this triangle as having been tested. */
+            //Mark the corner of this triangle as having been tested.
             setorg(neighbor, NULL);
           } else {
-            /* A live triangle.  The vertex survives. */
+            //A live triangle.  The vertex survives.
             killorg = 0;
           }
-          /* Walk counterclockwise about the vertex. */
+          //Walk counterclockwise about the vertex.
           onextself(neighbor);
         }
-        /* If we reached a boundary, we must walk clockwise as well. */
+        //If we reached a boundary, we must walk clockwise as well.
         if (neighbor.m_tri == m.m_dummytri) {
-          /* Walk clockwise about the vertex. */
+          //Walk clockwise about the vertex.
           oprev(testtri, neighbor);
-          /* Stop upon reaching a boundary. */
+          //Stop upon reaching a boundary.
           while (neighbor.m_tri != m.m_dummytri) {
             if (infected(neighbor)) {
-            /* Mark the corner of this triangle as having been tested. */
+            //Mark the corner of this triangle as having been tested.
               setorg(neighbor, NULL);
             } else {
-              /* A live triangle.  The vertex survives. */
+              //A live triangle.  The vertex survives.
               killorg = 0;
             }
-            /* Walk clockwise about the vertex. */
+            //Walk clockwise about the vertex.
             oprevself(neighbor);
           }
         }
@@ -7299,38 +6864,38 @@ void tricpp::plague(
             printf("    Deleting vertex (%.12g, %.12g)\n",
                    testvertex[0], testvertex[1]);
           }
-          setvertextype(testvertex, UNDEADVERTEX);
+          setvertextype(testvertex, VertexType::UNDEADVERTEX);
           m.m_undeads++;
         }
       }
     }
 
-    /* Record changes in the number of boundary edges, and disconnect */
-    /*   dead triangles from their neighbors.                         */
+    //Record changes in the number of boundary edges, and disconnect
+    //  dead triangles from their neighbors.
     for (testtri.m_orient = 0; testtri.m_orient < 3; testtri.m_orient++) {
       sym(testtri, neighbor);
       if (neighbor.m_tri == m.m_dummytri) {
-        /* There is no neighboring triangle on this edge, so this edge    */
-        /*   is a boundary edge.  This triangle is being deleted, so this */
-        /*   boundary edge is deleted.                                    */
+        //There is no neighboring triangle on this edge, so this edge
+        //  is a boundary edge.  This triangle is being deleted, so this
+        //  boundary edge is deleted.
         m.m_hullsize--;
       } else {
-        /* Disconnect the triangle from its neighbor. */
+        //Disconnect the triangle from its neighbor.
         dissolve(neighbor);
-        /* There is a neighboring triangle on this edge, so this edge */
-        /*   becomes a boundary edge when this triangle is deleted.   */
+        //There is a neighboring triangle on this edge, so this edge
+        //  becomes a boundary edge when this triangle is deleted.
         m.m_hullsize++;
       }
     }
-    /* Return the dead triangle to the pool of triangles. */
+    //Return the dead triangle to the pool of triangles.
     triangledealloc(m, testtri.m_tri);
     virusloop = (Triangle **) Traverse(&m.m_viri);
   }
-  /* Empty the virus pool. */
+  //Empty the virus pool.
   PoolRestart(&m.m_viri);
 }
 
-void tricpp::regionplague(
+void ribi::tricpp::regionplague(
   Mesh& m,
   const Behavior& b,
   const double attribute,
@@ -7343,35 +6908,35 @@ void tricpp::regionplague(
   Triangle **regiontri;
   Osub neighborsubseg;
   Vertex regionorg, regiondest, regionapex;
-  Triangle ptr;             /* Temporary variable used by sym() and onext(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;             //Temporary variable used by sym() and onext().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   if (b.m_verbosity > 1) {
     printf("  Marking neighbors of marked triangles.\n");
   }
-  /* Loop through all the infected triangles, spreading the attribute      */
-  /*   and/or area constraint to their neighbors, then to their neighbors' */
-  /*   neighbors.                                                          */
+  //Loop through all the infected triangles, spreading the attribute
+  //  and/or area constraint to their neighbors, then to their neighbors'
+  //  neighbors.
   TraversalInit(&m.m_viri);
   virusloop = (Triangle **) Traverse(&m.m_viri);
   while (virusloop != nullptr) {
     testtri.m_tri = *virusloop;
-    /* A triangle is marked as infected by messing with one of its pointers */
-    /*   to subsegments, setting it to an illegal value.  Hence, we have to */
-    /*   temporarily uninfect this triangle so that we can examine its      */
-    /*   adjacent subsegments.                                              */
+    //A triangle is marked as infected by messing with one of its pointers
+    //  to subsegments, setting it to an illegal value.  Hence, we have to
+    //  temporarily uninfect this triangle so that we can examine its
+    //  adjacent subsegments.
     uninfect(testtri);
     if (b.m_regionattrib) {
-      /* Set an attribute. */
+      //Set an attribute.
       setelemattribute(testtri, m.m_eextras, attribute);
     }
     if (b.m_vararea) {
-      /* Set an area constraint. */
+      //Set an area constraint.
       setareabound(testtri, area);
     }
     if (b.m_verbosity > 2) {
-      /* Assign the triangle an orientation for convenience in */
-      /*   checking its vertices.                              */
+      //Assign the triangle an orientation for convenience in
+      //  checking its vertices.
       testtri.m_orient = 0;
       org(testtri, regionorg);
       dest(testtri, regiondest);
@@ -7380,14 +6945,14 @@ void tricpp::regionplague(
              regionorg[0], regionorg[1], regiondest[0], regiondest[1],
              regionapex[0], regionapex[1]);
     }
-    /* Check each of the triangle's three neighbors. */
+    //Check each of the triangle's three neighbors.
     for (testtri.m_orient = 0; testtri.m_orient < 3; testtri.m_orient++) {
-      /* Find the neighbor. */
+      //Find the neighbor.
       sym(testtri, neighbor);
-      /* Check for a subsegment between the triangle and its neighbor. */
+      //Check for a subsegment between the triangle and its neighbor.
       tspivot(testtri, neighborsubseg);
-      /* Make sure the neighbor exists, is not already infected, and */
-      /*   isn't protected by a subsegment.                          */
+      //Make sure the neighbor exists, is not already infected, and
+      //  isn't protected by a subsegment.
       if ((neighbor.m_tri != m.m_dummytri) && !infected(neighbor)
           && (neighborsubseg.m_subseg == m.m_dummysub)) {
         if (b.m_verbosity > 2) {
@@ -7398,20 +6963,20 @@ void tricpp::regionplague(
                  regionorg[0], regionorg[1], regiondest[0], regiondest[1],
                  regionapex[0], regionapex[1]);
         }
-        /* Infect the neighbor. */
+        //Infect the neighbor.
         infect(neighbor);
-        /* Ensure that the neighbor's neighbors will be infected. */
+        //Ensure that the neighbor's neighbors will be infected.
         regiontri = (Triangle **) PoolAlloc(&m.m_viri);
         *regiontri = neighbor.m_tri;
       }
     }
-    /* Remark the triangle as infected, so it doesn't get added to the */
-    /*   virus pool again.                                             */
+    //Remark the triangle as infected, so it doesn't get added to the
+    //  virus pool again.
     infect(testtri);
     virusloop = (Triangle **) Traverse(&m.m_viri);
   }
 
-  /* Uninfect all triangles. */
+  //Uninfect all triangles.
   if (b.m_verbosity > 1) {
     printf("  Unmarking marked triangles.\n");
   }
@@ -7422,11 +6987,11 @@ void tricpp::regionplague(
     uninfect(testtri);
     virusloop = (Triangle **) Traverse(&m.m_viri);
   }
-  /* Empty the virus pool. */
+  //Empty the virus pool.
   PoolRestart(&m.m_viri);
 }
 
-void tricpp::carveholes(
+void ribi::tricpp::carveholes(
   Mesh& m,
   const Behavior& b,
   double * const holelist,
@@ -7443,7 +7008,7 @@ void tricpp::carveholes(
   Vertex searchorg, searchdest;
   LocateResult intersect;
 
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
   if (!(b.m_quiet || (b.m_noholes && b.m_convex))) {
     printf("Removing unwanted triangles.\n");
@@ -7453,7 +7018,7 @@ void tricpp::carveholes(
   }
 
   if (regions > 0) {
-    /* Allocate storage for the triangles in which region points fall. */
+    //Allocate storage for the triangles in which region points fall.
     regiontris = (struct Otri *) TriMalloc(regions *
                                            (int) sizeof(struct Otri));
   } else {
@@ -7461,39 +7026,39 @@ void tricpp::carveholes(
   }
 
   if (((holes > 0) && !b.m_noholes) || !b.m_convex || (regions > 0)) {
-    /* Initialize a pool of viri to be used for holes, concavities, */
-    /*   regional attributes, and/or regional area constraints.     */
+    //Initialize a pool of viri to be used for holes, concavities,
+    //  regional attributes, and/or regional area constraints.
     PoolInit(&m.m_viri, sizeof(Triangle *), VIRUSPERBLOCK, VIRUSPERBLOCK, 0);
   }
 
   if (!b.m_convex) {
-    /* Mark as infected any unprotected triangles on the boundary. */
-    /*   This is one way by which concavities are created.         */
+    //Mark as infected any unprotected triangles on the boundary.
+    //  This is one way by which concavities are created.
     infecthull(m, b);
   }
 
   if ((holes > 0) && !b.m_noholes) {
-    /* Infect each triangle in which a hole lies. */
+    //Infect each triangle in which a hole lies.
     for (int i = 0; i < 2 * holes; i += 2) {
-      /* Ignore holes that aren't within the bounds of the mesh. */
+      //Ignore holes that aren't within the bounds of the mesh.
       if ((holelist[i] >= m.m_xmin) && (holelist[i] <= m.m_xmax)
           && (holelist[i + 1] >= m.m_ymin) && (holelist[i + 1] <= m.m_ymax)) {
-        /* Start searching from some triangle on the outer boundary. */
+        //Start searching from some triangle on the outer boundary.
         searchtri.m_tri = m.m_dummytri;
         searchtri.m_orient = 0;
         symself(searchtri);
-        /* Ensure that the hole is to the left of this boundary edge; */
-        /*   otherwise, locate() will falsely report that the hole    */
-        /*   falls within the starting triangle.                      */
+        //Ensure that the hole is to the left of this boundary edge;
+        //  otherwise, locate() will falsely report that the hole
+        //  falls within the starting triangle.
         org(searchtri, searchorg);
         dest(searchtri, searchdest);
         if (counterclockwise(m, b, searchorg, searchdest, &holelist[i]) >
             0.0) {
-          /* Find a triangle that contains the hole. */
+          //Find a triangle that contains the hole.
           intersect = locate(m, b, &holelist[i], &searchtri);
           if ((intersect != OUTSIDE) && (!infected(searchtri))) {
-            /* Infect the triangle.  This is done by marking the triangle  */
-            /*   as infected and including the triangle in the virus pool. */
+            //Infect the triangle.  This is done by marking the triangle
+            //  as infected and including the triangle in the virus pool.
             infect(searchtri);
             holetri = (Triangle **) PoolAlloc(&m.m_viri);
             *holetri = searchtri.m_tri;
@@ -7503,36 +7068,36 @@ void tricpp::carveholes(
     }
   }
 
-  /* Now, we have to find all the regions BEFORE we carve the holes, because */
-  /*   locate() won't work when the triangulation is no longer convex.       */
-  /*   (Incidentally, this is the reason why regional attributes and area    */
-  /*   constraints can't be used when refining a preexisting mesh, which     */
-  /*   might not be convex; they can only be used with a freshly             */
-  /*   triangulated PSLG.)                                                   */
+  //Now, we have to find all the regions BEFORE we carve the holes, because
+  //  locate() won't work when the triangulation is no longer convex.
+  //  (Incidentally, this is the reason why regional attributes and area
+  //  constraints can't be used when refining a preexisting mesh, which
+  //  might not be convex; they can only be used with a freshly
+  //  triangulated PSLG.)
   if (regions > 0) {
-    /* Find the starting triangle for each region. */
+    //Find the starting triangle for each region.
     for (int i = 0; i < regions; i++) {
       regiontris[i].m_tri = m.m_dummytri;
-      /* Ignore region points that aren't within the bounds of the mesh. */
+      //Ignore region points that aren't within the bounds of the mesh.
       if ((regionlist[4 * i] >= m.m_xmin) && (regionlist[4 * i] <= m.m_xmax) &&
           (regionlist[4 * i + 1] >= m.m_ymin) &&
           (regionlist[4 * i + 1] <= m.m_ymax)) {
-        /* Start searching from some triangle on the outer boundary. */
+        //Start searching from some triangle on the outer boundary.
         searchtri.m_tri = m.m_dummytri;
         searchtri.m_orient = 0;
         symself(searchtri);
-        /* Ensure that the region point is to the left of this boundary */
-        /*   edge; otherwise, locate() will falsely report that the     */
-        /*   region point falls within the starting triangle.           */
+        //Ensure that the region point is to the left of this boundary
+        //  edge; otherwise, locate() will falsely report that the
+        //  region point falls within the starting triangle.
         org(searchtri, searchorg);
         dest(searchtri, searchdest);
         if (counterclockwise(m, b, searchorg, searchdest, &regionlist[4 * i]) >
             0.0) {
-          /* Find a triangle that contains the region point. */
+          //Find a triangle that contains the region point.
           intersect = locate(m, b, &regionlist[4 * i], &searchtri);
           if ((intersect != OUTSIDE) && (!infected(searchtri))) {
-            /* Record the triangle for processing after the */
-            /*   holes have been carved.                    */
+            //Record the triangle for processing after the
+            //  holes have been carved.
             otricopy(searchtri, regiontris[i]);
           }
         }
@@ -7541,10 +7106,10 @@ void tricpp::carveholes(
   }
 
   if (m.m_viri.m_items > 0) {
-    /* Carve the holes and concavities. */
+    //Carve the holes and concavities.
     plague(m, b);
   }
-  /* The virus pool should be empty now. */
+  //The virus pool should be empty now.
 
   if (regions > 0) {
     if (!b.m_quiet) {
@@ -7559,7 +7124,7 @@ void tricpp::carveholes(
       }
     }
     if (b.m_regionattrib && !b.m_do_refine) {
-      /* Assign every triangle a regional attribute of zero. */
+      //Assign every triangle a regional attribute of zero.
       TraversalInit(&m.m_triangles);
       triangleloop.m_orient = 0;
       triangleloop.m_tri = triangletraverse(m);
@@ -7570,26 +7135,26 @@ void tricpp::carveholes(
     }
     for (int i = 0; i < regions; i++) {
       if (regiontris[i].m_tri != m.m_dummytri) {
-        /* Make sure the triangle under consideration still exists. */
-        /*   It may have been eaten by the virus.                   */
+        //Make sure the triangle under consideration still exists.
+        //  It may have been eaten by the virus.
         if (!deadtri(regiontris[i].m_tri)) {
-          /* Put one triangle in the virus pool. */
+          //Put one triangle in the virus pool.
           infect(regiontris[i]);
           regiontri = (Triangle **) PoolAlloc(&m.m_viri);
           *regiontri = regiontris[i].m_tri;
-          /* Apply one region's attribute and/or area constraint. */
+          //Apply one region's attribute and/or area constraint.
           regionplague(m, b, regionlist[4 * i + 2], regionlist[4 * i + 3]);
-          /* The virus pool should be empty now. */
+          //The virus pool should be empty now.
         }
       }
     }
     if (b.m_regionattrib && !b.m_do_refine) {
-      /* Note the fact that each triangle has an additional attribute. */
+      //Note the fact that each triangle has an additional attribute.
       m.m_eextras++;
     }
   }
 
-  /* Free up memory. */
+  //Free up memory.
   if (((holes > 0) && !b.m_noholes) || !b.m_convex || (regions > 0)) {
     PoolDeinit(&m.m_viri);
   }
@@ -7599,7 +7164,7 @@ void tricpp::carveholes(
   }
 }
 
-void tricpp::tallyencs(
+void ribi::tricpp::tallyencs(
   Mesh& m,
   const Behavior& b
 )
@@ -7611,26 +7176,13 @@ void tricpp::tallyencs(
   subsegloop.m_subseg_orient = 0;
   subsegloop.m_subseg = subsegtraverse(m);
   while (subsegloop.m_subseg != (SubSeg *) NULL) {
-    /* If the segment is encroached, add it to the list. */
-    /*dummy = */checkseg4encroach(m, b, &subsegloop);
+    //If the segment is encroached, add it to the list.
+    checkseg4encroach(m, b, &subsegloop);
     subsegloop.m_subseg = subsegtraverse(m);
   }
 }
 
-/*****************************************************************************/
-/*                                                                           */
-/*  precisionerror()  Print an error message for precision problems.         */
-/*                                                                           */
-/*****************************************************************************/
-/*
-void precisionerror()
-{
-  printf("Try increasing the area criterion and/or reducing the minimum\n");
-  printf("  allowable angle so that tiny triangles are not created.\n");
-}
-*/
-
-void tricpp::splitencsegs(
+void ribi::tricpp::splitencsegs(
   Mesh& m,
   const Behavior& b,
   const int triflaws
@@ -7648,57 +7200,57 @@ void tricpp::splitencsegs(
   double split;
   double multiplier, divisor;
   int acuteorg, acuteorg2, acutedest, acutedest2;
-  //int dummy;
 
-  Triangle ptr;                     /* Temporary variable used by stpivot(). */
-  SubSeg sptr;                        /* Temporary variable used by snext(). */
+  Triangle ptr;                     //Temporary variable used by stpivot().
+  SubSeg sptr;                        //Temporary variable used by snext().
 
-  /* Note that steinerleft == -1 if an unlimited number */
-  /*   of Steiner points is allowed.                    */
-  while ((m.m_badsubsegs.m_items > 0) && (m.m_steinerleft != 0)) {
+  //Note that steinerleft == -1 if an unlimited number
+  //  of Steiner points is allowed.
+  while ((m.m_badsubsegs.m_items > 0) && (m.m_steinerleft != 0))
+  {
     TraversalInit(&m.m_badsubsegs);
     encloop = badsubsegtraverse(m);
     while ((encloop != (struct BadSubSeg *) NULL) && (m.m_steinerleft != 0)) {
       sdecode(encloop->m_encsubseg, currentenc);
       sorg(currentenc, eorg);
       sdest(currentenc, edest);
-      /* Make sure that this segment is still the same segment it was   */
-      /*   when it was determined to be encroached.  If the segment was */
-      /*   enqueued multiple times (because several newly inserted      */
-      /*   vertices encroached it), it may have already been split.     */
+      //Make sure that this segment is still the same segment it was
+      //  when it was determined to be encroached.  If the segment was
+      //  enqueued multiple times (because several newly inserted
+      //  vertices encroached it), it may have already been split.
       if (!deadsubseg(currentenc.m_subseg) &&
           (eorg == encloop->m_subsegorg) && (edest == encloop->m_subsegdest)) {
-        /* To decide where to split a segment, we need to know if the   */
-        /*   segment shares an endpoint with an adjacent segment.       */
-        /*   The concern is that, if we simply split every encroached   */
-        /*   segment in its center, two adjacent segments with a small  */
-        /*   angle between them might lead to an infinite loop; each    */
-        /*   vertex added to split one segment will encroach upon the   */
-        /*   other segment, which must then be split with a vertex that */
-        /*   will encroach upon the first segment, and so on forever.   */
-        /* To avoid this, imagine a set of concentric circles, whose    */
-        /*   radii are powers of two, about each segment endpoint.      */
-        /*   These concentric circles determine where the segment is    */
-        /*   split.  (If both endpoints are shared with adjacent        */
-        /*   segments, split the segment in the middle, and apply the   */
-        /*   concentric circles for later splittings.)                  */
+        //To decide where to split a segment, we need to know if the
+        //  segment shares an endpoint with an adjacent segment.
+        //  The concern is that, if we simply split every encroached
+        //  segment in its center, two adjacent segments with a small
+        //  angle between them might lead to an infinite loop; each
+        //  vertex added to split one segment will encroach upon the
+        //  other segment, which must then be split with a vertex that
+        //  will encroach upon the first segment, and so on forever.
+        //To avoid this, imagine a set of concentric circles, whose
+        //  radii are powers of two, about each segment endpoint.
+        //  These concentric circles determine where the segment is
+        //  split.  (If both endpoints are shared with adjacent
+        //  segments, split the segment in the middle, and apply the
+        //  concentric circles for later splittings.)
 
-        /* Is the origin shared with another segment? */
+        //Is the origin shared with another segment?
         stpivot(currentenc, enctri);
         lnext(enctri, testtri);
         tspivot(testtri, testsh);
         acuteorg = testsh.m_subseg != m.m_dummysub;
-        /* Is the destination shared with another segment? */
+        //Is the destination shared with another segment?
         lnextself(testtri);
         tspivot(testtri, testsh);
         acutedest = testsh.m_subseg != m.m_dummysub;
 
-        /* If we're using Chew's algorithm (rather than Ruppert's) */
-        /*   to define encroachment, delete free vertices from the */
-        /*   subsegment's diametral circle.                        */
+        //If we're using Chew's algorithm (rather than Ruppert's)
+        //  to define encroachment, delete free vertices from the
+        //  subsegment's diametral circle.
         if (!b.m_conformdel && !acuteorg && !acutedest) {
           apex(enctri, eapex);
-          while ((vertextype(eapex) == FREEVERTEX) &&
+          while ((vertextype(eapex) == VertexType::FREEVERTEX) &&
                  ((eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                   (eorg[1] - eapex[1]) * (edest[1] - eapex[1]) < 0.0)) {
             deletevertex(m, b, &testtri);
@@ -7708,25 +7260,25 @@ void tricpp::splitencsegs(
           }
         }
 
-        /* Now, check the other side of the segment, if there's a triangle */
-        /*   there.                                                        */
+        //Now, check the other side of the segment, if there's a triangle
+        //  there.
         sym(enctri, testtri);
         if (testtri.m_tri != m.m_dummytri) {
-          /* Is the destination shared with another segment? */
+          //Is the destination shared with another segment?
           lnextself(testtri);
           tspivot(testtri, testsh);
           acutedest2 = testsh.m_subseg != m.m_dummysub;
           acutedest = acutedest || acutedest2;
-          /* Is the origin shared with another segment? */
+          //Is the origin shared with another segment?
           lnextself(testtri);
           tspivot(testtri, testsh);
           acuteorg2 = testsh.m_subseg != m.m_dummysub;
           acuteorg = acuteorg || acuteorg2;
 
-          /* Delete free vertices from the subsegment's diametral circle. */
+          //Delete free vertices from the subsegment's diametral circle.
           if (!b.m_conformdel && !acuteorg2 && !acutedest2) {
             org(testtri, eapex);
-            while ((vertextype(eapex) == FREEVERTEX) &&
+            while ((vertextype(eapex) == VertexType::FREEVERTEX) &&
                    ((eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                     (eorg[1] - eapex[1]) * (edest[1] - eapex[1]) < 0.0)) {
               deletevertex(m, b, &testtri);
@@ -7737,13 +7289,13 @@ void tricpp::splitencsegs(
           }
         }
 
-        /* Use the concentric circles if exactly one endpoint is shared */
-        /*   with another adjacent segment.                             */
+        //Use the concentric circles if exactly one endpoint is shared
+        //  with another adjacent segment.
         if (acuteorg || acutedest) {
           segmentlength = sqrt((edest[0] - eorg[0]) * (edest[0] - eorg[0]) +
                                (edest[1] - eorg[1]) * (edest[1] - eorg[1]));
-          /* Find the power of two that most evenly splits the segment.  */
-          /*   The worst case is a 2:1 ratio between subsegment lengths. */
+          //Find the power of two that most evenly splits the segment.
+          //  The worst case is a 2:1 ratio between subsegment lengths.
           nearestpoweroftwo = 1.0;
           while (segmentlength > 3.0 * nearestpoweroftwo) {
             nearestpoweroftwo *= 2.0;
@@ -7751,34 +7303,34 @@ void tricpp::splitencsegs(
           while (segmentlength < 1.5 * nearestpoweroftwo) {
             nearestpoweroftwo *= 0.5;
           }
-          /* Where do we split the segment? */
+          //Where do we split the segment?
           split = nearestpoweroftwo / segmentlength;
           if (acutedest) {
             split = 1.0 - split;
           }
         } else {
-          /* If we're not worried about adjacent segments, split */
-          /*   this segment in the middle.                       */
+          //If we're not worried about adjacent segments, split
+          //  this segment in the middle.
           split = 0.5;
         }
 
-        /* Create the new vertex. */
+        //Create the new vertex.
         newvertex = (Vertex) PoolAlloc(&m.m_vertices);
-        /* Interpolate its coordinate and attributes. */
+        //Interpolate its coordinate and attributes.
         for (int i = 0; i < 2 + m.m_nextras; i++) {
           newvertex[i] = eorg[i] + split * (edest[i] - eorg[i]);
         }
 
         if (!b.m_noexact) {
-          /* Roundoff in the above calculation may yield a `newvertex'   */
-          /*   that is not precisely collinear with `eorg' and `edest'.  */
-          /*   Improve collinearity by one step of iterative refinement. */
+          //Roundoff in the above calculation may yield a `newvertex'
+          //  that is not precisely collinear with `eorg' and `edest'.
+          //  Improve collinearity by one step of iterative refinement.
           multiplier = counterclockwise(m, b, eorg, edest, newvertex);
           divisor = ((eorg[0] - edest[0]) * (eorg[0] - edest[0]) +
                      (eorg[1] - edest[1]) * (eorg[1] - edest[1]));
           if ((multiplier != 0.0) && (divisor != 0.0)) {
             multiplier = multiplier / divisor;
-            /* Watch out for NANs. */
+            //Watch out for NANs.
             if (multiplier == multiplier) {
               newvertex[0] += multiplier * (edest[1] - eorg[1]);
               newvertex[1] += multiplier * (eorg[0] - edest[0]);
@@ -7787,7 +7339,7 @@ void tricpp::splitencsegs(
         }
 
         setvertexmark(newvertex, mark(currentenc));
-        setvertextype(newvertex, SEGMENTVERTEX);
+        setvertextype(newvertex, VertexType::SEGMENTVERTEX);
         if (b.m_verbosity > 1)
         {
           printf(
@@ -7796,7 +7348,7 @@ void tricpp::splitencsegs(
             newvertex[0], newvertex[1]
           );
         }
-        /* Check whether the new vertex lies on an endpoint. */
+        //Check whether the new vertex lies on an endpoint.
         if (((newvertex[0] == eorg[0]) && (newvertex[1] == eorg[1])) ||
             ((newvertex[0] == edest[0]) && (newvertex[1] == edest[1]))) {
           std::stringstream s;
@@ -7810,7 +7362,7 @@ void tricpp::splitencsegs(
           ;
           throw std::logic_error(s.str().c_str());
         }
-        /* Insert the splitting vertex.  This should always succeed. */
+        //Insert the splitting vertex.  This should always succeed.
         success = insertvertex(m, b, newvertex, &enctri, &currentenc,
                                1, triflaws);
         if ((success != SUCCESSFULVERTEX) && (success != ENCROACHINGVERTEX)) {
@@ -7823,7 +7375,7 @@ void tricpp::splitencsegs(
         if (m.m_steinerleft > 0) {
           m.m_steinerleft--;
         }
-        /* Check the two new subsegments to see if they're encroached. */
+        //Check the two new subsegments to see if they're encroached.
         checkseg4encroach(m, b, &currentenc);
         snextself(currentenc);
         checkseg4encroach(m, b, &currentenc);
@@ -7835,7 +7387,7 @@ void tricpp::splitencsegs(
   }
 }
 
-void tricpp::tallyfaces(
+void ribi::tricpp::tallyfaces(
   Mesh& m,
   const Behavior& b
 )
@@ -7849,13 +7401,13 @@ void tricpp::tallyfaces(
   triangleloop.m_orient = 0;
   triangleloop.m_tri = triangletraverse(m);
   while (triangleloop.m_tri != (Triangle *) NULL) {
-    /* If the triangle is bad, enqueue it. */
+    //If the triangle is bad, enqueue it.
     testtriangle(m, b, &triangleloop);
     triangleloop.m_tri = triangletraverse(m);
   }
 }
 
-void tricpp::splittriangle(
+void ribi::tricpp::splittriangle(
   Mesh& m,
   const Behavior& b,
   const BadTriang * const badtri
@@ -7873,9 +7425,9 @@ void tricpp::splittriangle(
   org(badotri, borg);
   dest(badotri, bdest);
   apex(badotri, bapex);
-  /* Make sure that this triangle is still the same triangle it was      */
-  /*   when it was tested and determined to be of bad quality.           */
-  /*   Subsequent transformations may have made it a different triangle. */
+  //Make sure that this triangle is still the same triangle it was
+  //  when it was tested and determined to be of bad quality.
+  //  Subsequent transformations may have made it a different triangle.
   if (!deadtri(badotri.m_tri) && (borg == badtri->m_triangorg) &&
       (bdest == badtri->m_triangdest) && (bapex == badtri->m_triangapex)) {
     if (b.m_verbosity > 1) {
@@ -7885,11 +7437,11 @@ void tricpp::splittriangle(
     }
 
     errorflag = 0;
-    /* Create a new vertex at the triangle's circumcenter. */
+    //Create a new vertex at the triangle's circumcenter.
     newvertex = (Vertex) PoolAlloc(&m.m_vertices);
     findcircumcenter(m, b, borg, bdest, bapex, newvertex, &xi, &eta, 1);
 
-    /* Check whether the new vertex lies on a triangle vertex. */
+    //Check whether the new vertex lies on a triangle vertex.
     if (((newvertex[0] == borg[0]) && (newvertex[1] == borg[1])) ||
         ((newvertex[0] == bdest[0]) && (newvertex[1] == bdest[1])) ||
         ((newvertex[0] == bapex[0]) && (newvertex[1] == bapex[1]))) {
@@ -7902,28 +7454,28 @@ void tricpp::splittriangle(
       vertexdealloc(m, newvertex);
     } else {
       for (int i = 2; i < 2 + m.m_nextras; i++) {
-        /* Interpolate the vertex attributes at the circumcenter. */
+        //Interpolate the vertex attributes at the circumcenter.
         newvertex[i] = borg[i] + xi * (bdest[i] - borg[i])
                               + eta * (bapex[i] - borg[i]);
       }
-      /* The new vertex must be in the interior, and therefore is a */
-      /*   free vertex with a marker of zero.                       */
+      //The new vertex must be in the interior, and therefore is a
+      //  free vertex with a marker of zero.
       setvertexmark(newvertex, 0);
-      setvertextype(newvertex, FREEVERTEX);
+      setvertextype(newvertex, VertexType::FREEVERTEX);
 
-      /* Ensure that the handle `badotri' does not represent the longest  */
-      /*   edge of the triangle.  This ensures that the circumcenter must */
-      /*   fall to the left of this edge, so point location will work.    */
-      /*   (If the angle org-apex-dest exceeds 90 degrees, then the       */
-      /*   circumcenter lies outside the org-dest edge, and eta is        */
-      /*   negative.  Roundoff error might prevent eta from being         */
-      /*   negative when it should be, so I test eta against xi.)         */
+      //Ensure that the handle `badotri' does not represent the longest
+      //  edge of the triangle.  This ensures that the circumcenter must
+      //  fall to the left of this edge, so point location will work.
+      //  (If the angle org-apex-dest exceeds 90 degrees, then the
+      //  circumcenter lies outside the org-dest edge, and eta is
+      //  negative.  Roundoff error might prevent eta from being
+      //  negative when it should be, so I test eta against xi.)
       if (eta < xi) {
         lprevself(badotri);
       }
 
-      /* Insert the circumcenter, searching from the edge of the triangle, */
-      /*   and maintain the Delaunay property of the triangulation.        */
+      //Insert the circumcenter, searching from the edge of the triangle,
+      //  and maintain the Delaunay property of the triangulation.
       success = insertvertex(m, b, newvertex, &badotri, nullptr,
                              1, 1);
       if (success == SUCCESSFULVERTEX) {
@@ -7931,19 +7483,19 @@ void tricpp::splittriangle(
           m.m_steinerleft--;
         }
       } else if (success == ENCROACHINGVERTEX) {
-        /* If the newly inserted vertex encroaches upon a subsegment, */
-        /*   delete the new vertex.                                   */
+        //If the newly inserted vertex encroaches upon a subsegment,
+        //  delete the new vertex.
         undovertex(m, b);
         if (b.m_verbosity > 1) {
           printf("  Rejecting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
         }
         vertexdealloc(m, newvertex);
       } else if (success == VIOLATINGVERTEX) {
-        /* Failed to insert the new vertex, but some subsegment was */
-        /*   marked as being encroached.                            */
+        //Failed to insert the new vertex, but some subsegment was
+        //  marked as being encroached.
         vertexdealloc(m, newvertex);
-      } else {                                 /* success == DUPLICATEVERTEX */
-        /* Couldn't insert the new vertex because a vertex is already there. */
+      } else {                                 //success == DUPLICATEVERTEX
+        //Couldn't insert the new vertex because a vertex is already there.
         if (!b.m_quiet) {
           printf(
             "Warning:  New vertex (%.12g, %.12g) falls on existing vertex.\n",
@@ -7975,7 +7527,7 @@ void tricpp::splittriangle(
   }
 }
 
-void tricpp::enforcequality(
+void ribi::tricpp::enforcequality(
   Mesh& m,
   const Behavior& b
 )
@@ -7986,35 +7538,35 @@ void tricpp::enforcequality(
   if (!b.m_quiet) {
     printf("Adding Steiner points to enforce quality.\n");
   }
-  /* Initialize the pool of encroached subsegments. */
+  //Initialize the pool of encroached subsegments.
   PoolInit(&m.m_badsubsegs, sizeof(struct BadSubSeg), BADSUBSEGPERBLOCK,
            BADSUBSEGPERBLOCK, 0);
   if (b.m_verbosity) {
     printf("  Looking for encroached subsegments.\n");
   }
-  /* Test all segments to see if they're encroached. */
+  //Test all segments to see if they're encroached.
   tallyencs(m, b);
   if (b.m_verbosity && (m.m_badsubsegs.m_items > 0)) {
     printf("  Splitting encroached subsegments.\n");
   }
-  /* Fix encroached subsegments without noting bad triangles. */
+  //Fix encroached subsegments without noting bad triangles.
   splitencsegs(m, b, 0);
-  /* At this point, if we haven't run out of Steiner points, the */
-  /*   triangulation should be (conforming) Delaunay.            */
+  //At this point, if we haven't run out of Steiner points, the
+  //  triangulation should be (conforming) Delaunay.
 
-  /* Next, we worry about enforcing triangle quality. */
+  //Next, we worry about enforcing triangle quality.
   if ((b.m_minangle > 0.0) || b.m_vararea || b.m_fixedarea || b.m_usertest) {
-    /* Initialize the pool of bad triangles. */
+    //Initialize the pool of bad triangles.
     PoolInit(&m.m_badtriangles, sizeof(struct BadTriang), g_bad_triangles_per_block,
              g_bad_triangles_per_block, 0);
-    /* Initialize the queues of bad triangles. */
+    //Initialize the queues of bad triangles.
     for (int i = 0; i < 4096; i++) {
       m.m_queuefront[i] = (struct BadTriang *) NULL;
     }
     m.m_firstnonemptyq = -1;
-    /* Test all triangles to see if they're bad. */
+    //Test all triangles to see if they're bad.
     tallyfaces(m, b);
-    /* Initialize the pool of recently flipped triangles. */
+    //Initialize the pool of recently flipped triangles.
     PoolInit(&m.m_flipstackers, sizeof(struct FlipStacker), FLIPSTACKERPERBLOCK,
              FLIPSTACKERPERBLOCK, 0);
     m.m_checkquality = 1;
@@ -8022,26 +7574,26 @@ void tricpp::enforcequality(
       printf("  Splitting bad triangles.\n");
     }
     while ((m.m_badtriangles.m_items > 0) && (m.m_steinerleft != 0)) {
-      /* Fix one bad triangle by inserting a vertex at its circumcenter. */
+      //Fix one bad triangle by inserting a vertex at its circumcenter.
       badtri = dequeuebadtriang(m);
       splittriangle(m, b, badtri);
       if (m.m_badsubsegs.m_items > 0) {
-        /* Put bad triangle back in queue for another try later. */
+        //Put bad triangle back in queue for another try later.
         enqueuebadtriang(m, b, badtri);
-        /* Fix any encroached subsegments that resulted. */
-        /*   Record any new bad triangles that result.   */
+        //Fix any encroached subsegments that resulted.
+        //  Record any new bad triangles that result.
         splitencsegs(m, b, 1);
       } else {
-        /* Return the bad triangle to the pool. */
+        //Return the bad triangle to the pool.
         PoolDealloc(&m.m_badtriangles, (void *) badtri);
       }
     }
   }
-  /* At this point, if the "-D" switch was selected and we haven't run out  */
-  /*   of Steiner points, the triangulation should be (conforming) Delaunay */
-  /*   and have no low-quality triangles.                                   */
+  //At this point, if the "-D" switch was selected and we haven't run out
+  //  of Steiner points, the triangulation should be (conforming) Delaunay
+  //  and have no low-quality triangles.
 
-  /* Might we have run out of Steiner points too soon? */
+  //Might we have run out of Steiner points too soon?
   if (!b.m_quiet && b.m_conformdel && (m.m_badsubsegs.m_items > 0) &&
       (m.m_steinerleft == 0)) {
     printf("\nWarning:  I ran out of Steiner points, but the mesh has\n");
@@ -8060,7 +7612,7 @@ void tricpp::enforcequality(
 
 
 
-void tricpp::highorder(
+void ribi::tricpp::highorder(
   Mesh& m,
   const Behavior& b
 )
@@ -8070,27 +7622,27 @@ void tricpp::highorder(
   Vertex newvertex;
   Vertex torg, tdest;
 
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
   if (!b.m_quiet) {
     printf("Adding vertices for second-order triangles.\n");
   }
-  /* The following line ensures that dead items in the pool of nodes    */
-  /*   cannot be allocated for the extra nodes associated with high     */
-  /*   order elements.  This ensures that the primary nodes (at the     */
-  /*   corners of elements) will occur earlier in the output files, and */
-  /*   have lower indices, than the extra nodes.                        */
+  //The following line ensures that dead items in the pool of nodes
+  //  cannot be allocated for the extra nodes associated with high
+  //  order elements.  This ensures that the primary nodes (at the
+  //  corners of elements) will occur earlier in the output files, and
+  //  have lower indices, than the extra nodes.
   m.m_vertices.m_deaditemstack = nullptr; //(void *) NULL;
 
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
-  /* To loop over the set of edges, loop over all triangles, and look at   */
-  /*   the three edges of each triangle.  If there isn't another triangle  */
-  /*   adjacent to the edge, operate on the edge.  If there is another     */
-  /*   adjacent triangle, operate on the edge only if the current triangle */
-  /*   has a smaller pointer than its neighbor.  This way, each edge is    */
-  /*   considered only once.                                               */
+  //To loop over the set of edges, loop over all triangles, and look at
+  //  the three edges of each triangle.  If there isn't another triangle
+  //  adjacent to the edge, operate on the edge.  If there is another
+  //  adjacent triangle, operate on the edge only if the current triangle
+  //  has a smaller pointer than its neighbor.  This way, each edge is
+  //  considered only once.
   while (triangleloop.m_tri != (Triangle *) NULL) {
     for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
          triangleloop.m_orient++) {
@@ -8098,29 +7650,31 @@ void tricpp::highorder(
       if ((triangleloop.m_tri < trisym.m_tri) || (trisym.m_tri == m.m_dummytri)) {
         org(triangleloop, torg);
         dest(triangleloop, tdest);
-        /* Create a new node in the middle of the edge.  Interpolate */
-        /*   its attributes.                                         */
+        //Create a new node in the middle of the edge.  Interpolate
+        //  its attributes.
         newvertex = (Vertex) PoolAlloc(&m.m_vertices);
         for (int i = 0; i < 2 + m.m_nextras; i++) {
           newvertex[i] = 0.5 * (torg[i] + tdest[i]);
         }
-        /* Set the new node's marker to zero or one, depending on */
-        /*   whether it lies on a boundary.                       */
+        //Set the new node's marker to zero or one, depending on
+        //  whether it lies on a boundary.
         setvertexmark(newvertex, trisym.m_tri == m.m_dummytri);
         setvertextype(newvertex,
-                      trisym.m_tri == m.m_dummytri ? FREEVERTEX : SEGMENTVERTEX);
+          trisym.m_tri == m.m_dummytri
+          ? VertexType::FREEVERTEX : VertexType::SEGMENTVERTEX
+        );
         if (b.m_usesegments) {
           tspivot(triangleloop, checkmark);
-          /* If this edge is a segment, transfer the marker to the new node. */
+          //If this edge is a segment, transfer the marker to the new node.
           if (checkmark.m_subseg != m.m_dummysub) {
             setvertexmark(newvertex, mark(checkmark));
-            setvertextype(newvertex, SEGMENTVERTEX);
+            setvertextype(newvertex, VertexType::SEGMENTVERTEX);
           }
         }
         if (b.m_verbosity > 1) {
           printf("  Creating (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
         }
-        /* Record the new node in the (one or two) adjacent elements. */
+        //Record the new node in the (one or two) adjacent elements.
         triangleloop.m_tri[m.m_highorderindex + triangleloop.m_orient] =
                 (Triangle) newvertex;
         if (trisym.m_tri != m.m_dummytri) {
@@ -8132,10 +7686,10 @@ void tricpp::highorder(
   }
 }
 
-void tricpp::ReadNodes(
+void ribi::tricpp::ReadNodes(
   Mesh& m,
   const Behavior& b,
-  const char * const polyfilename
+  const std::string& polyfilename
 )
 {
   const auto v = ribi::fileio::FileIo().FileToVector(polyfilename);
@@ -8184,7 +7738,7 @@ void tricpp::ReadNodes(
       assert(currentmarker == 1);
       setvertexmark(vertexloop, currentmarker);
     }
-    setvertextype(vertexloop, INPUTVERTEX);
+    setvertextype(vertexloop, VertexType::INPUTVERTEX);
     // Determine the smallest and largest x and y coordinates
     if (i == 0)
     {
@@ -8206,7 +7760,7 @@ void tricpp::ReadNodes(
 }
 
 
-void tricpp::readholes(
+void ribi::tricpp::readholes(
   const Behavior& b,
   FILE * const polyfile,
   //const char * const polyfilename,
@@ -8222,7 +7776,7 @@ void tricpp::readholes(
   int index;
   //
 
-  /* Read the holes. */
+  //Read the holes.
   char * stringptr = readline(inputline, polyfile);
   *holes = (int) strtol(stringptr, &stringptr, 0);
   if (*holes > 0) {
@@ -8256,7 +7810,7 @@ void tricpp::readholes(
   }
 
   if ((b.m_regionattrib || b.m_vararea) && !b.m_do_refine) {
-    /* Read the area constraints. */
+    //Read the area constraints.
     stringptr = readline(inputline, polyfile);
 
     if (stringptr == 0) goto my_end; //RJCB
@@ -8314,17 +7868,17 @@ void tricpp::readholes(
     my_end: ;//RJCB
 
   } else {
-    /* Set `*regions' to zero to avoid an accidental free() later. */
+    //Set `*regions' to zero to avoid an accidental free() later.
     *regions = 0;
     *rlist = (double *) NULL;
   }
   fclose(polyfile);
 }
 /*****************************************************************************/
-/*                                                                           */
-/*  finishfile()   Write the command line to the output file so the user     */
-/*                 can remember how the file was generated.  Close the file. */
-/*                                                                           */
+//
+// finishfile()   Write the command line to the output file so the user
+//                can remember how the file was generated.  Close the file.
+//
 /*****************************************************************************/
 void finishfile(
   FILE * const outfile,
@@ -8341,10 +7895,10 @@ void finishfile(
   std::fclose(outfile);
 }
 
-void tricpp::writenodes(
+void ribi::tricpp::writenodes(
   Mesh& m,
   const Behavior& b,
-  const char * const nodefilename,
+  const std::string& nodefilename,
   const std::vector<std::string>& args
 )
 {
@@ -8361,18 +7915,9 @@ void tricpp::writenodes(
   }
 
 
-  if (!b.m_quiet) {
-    printf("Writing %s.\n", nodefilename);
-  }
-  FILE * const outfile = fopen(nodefilename, "w");
-  if (outfile == nullptr) {
-    std::stringstream s;
-    printf("  Error:  Cannot create file %s.\n", nodefilename);
-    throw std::logic_error(s.str().c_str());
-
-  }
-  /* Number of vertices, number of dimensions, number of vertex attributes, */
-  /*   and number of boundary markers (zero or one).                        */
+  FILE * const outfile = fopen(nodefilename.c_str(),"w");
+  //Number of vertices, number of dimensions, number of vertex attributes,
+  //  and number of boundary markers (zero or one).
   fprintf(
     outfile,
     "%ld  %d  %d  %d\n",
@@ -8387,20 +7932,20 @@ void tricpp::writenodes(
   vertexloop = vertextraverse(m);
   while (vertexloop != nullptr)
   {
-    if (!b.m_jettison || (vertextype(vertexloop) != UNDEADVERTEX))
+    if (!b.m_jettison || (vertextype(vertexloop) != VertexType::UNDEADVERTEX))
     {
 
-      /* Vertex number, x and y coordinates. */
+      //Vertex number, x and y coordinates.
       fprintf(outfile, "%4d    %.17g  %.17g", vertexnumber, vertexloop[0],
               vertexloop[1]);
       for (int i = 0; i < m.m_nextras; i++) {
-        /* Write an attribute. */
+        //Write an attribute.
         fprintf(outfile, "  %.17g", vertexloop[i + 2]);
       }
       if (b.m_nobound) {
         fprintf(outfile, "\n");
       } else {
-        /* Write the boundary marker. */
+        //Write the boundary marker.
         fprintf(outfile, "    %d\n", vertexmark(vertexloop));
       }
 
@@ -8413,7 +7958,7 @@ void tricpp::writenodes(
   finishfile(outfile, args);
 }
 
-void tricpp::numbernodes(Mesh& m, const Behavior& b)
+void ribi::tricpp::numbernodes(Mesh& m, const Behavior& b)
 {
   //Vertex vertexloop;
   //int vertexnumber;
@@ -8423,17 +7968,17 @@ void tricpp::numbernodes(Mesh& m, const Behavior& b)
   Vertex vertexloop = vertextraverse(m);
   while (vertexloop != nullptr) {
     setvertexmark(vertexloop, vertexnumber);
-    if (!b.m_jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
+    if (!b.m_jettison || (vertextype(vertexloop) != VertexType::UNDEADVERTEX)) {
       vertexnumber++;
     }
     vertexloop = vertextraverse(m);
   }
 }
 
-void tricpp::writeelements(
+void ribi::tricpp::writeelements(
   Mesh& m,
   const Behavior& b,
-  const char * const elefilename,
+  const std::string& elefilename,
   const std::vector<std::string>& args
 )
 {
@@ -8444,17 +7989,8 @@ void tricpp::writeelements(
   long elementnumber;
 
 
-  if (!b.m_quiet) {
-    printf("Writing %s.\n", elefilename);
-  }
-  FILE * const outfile = fopen(elefilename, "w");
-  if (outfile == nullptr) {
-    std::stringstream s;
-    printf("  Error:  Cannot create file %s.\n", elefilename);
-    throw std::logic_error(s.str().c_str());
-
-  }
-  /* Number of triangles, vertices per triangle, attributes per triangle. */
+  FILE * const outfile = fopen(elefilename.c_str(), "w");
+  //Number of triangles, vertices per triangle, attributes per triangle.
   fprintf(outfile, "%ld  %d  %d\n", m.m_triangles.m_items,
           (b.m_order + 1) * (b.m_order + 2) / 2, m.m_eextras);
 
@@ -8467,14 +8003,14 @@ void tricpp::writeelements(
     dest(triangleloop, p2);
     apex(triangleloop, p3);
     if (b.m_order == 1) {
-      /* Triangle number, indices for three vertices. */
+      //Triangle number, indices for three vertices.
       fprintf(outfile, "%4ld    %4d  %4d  %4d", elementnumber,
               vertexmark(p1), vertexmark(p2), vertexmark(p3));
     } else {
       mid1 = (Vertex) triangleloop.m_tri[m.m_highorderindex + 1];
       mid2 = (Vertex) triangleloop.m_tri[m.m_highorderindex + 2];
       mid3 = (Vertex) triangleloop.m_tri[m.m_highorderindex];
-      /* Triangle number, indices for six vertices. */
+      //Triangle number, indices for six vertices.
       fprintf(outfile, "%4ld    %4d  %4d  %4d  %4d  %4d  %4d", elementnumber,
               vertexmark(p1), vertexmark(p2), vertexmark(p3), vertexmark(mid1),
               vertexmark(mid2), vertexmark(mid3));
@@ -8492,10 +8028,10 @@ void tricpp::writeelements(
   finishfile(outfile, args);
 }
 
-void tricpp::writepoly(
+void ribi::tricpp::writepoly(
   Mesh& m,
   const Behavior& b,
-  const char * const polyfilename,
+  const std::string& polyfilename,
   const double * const holelist,
   const int holes,
   const double * const regionlist,
@@ -8510,22 +8046,13 @@ void tricpp::writepoly(
   long subsegnumber;
 
 
-  if (!b.m_quiet) {
-    printf("Writing %s.\n", polyfilename);
-  }
-  FILE * const outfile = fopen(polyfilename, "w");
-  if (outfile == nullptr) {
-    std::stringstream s;
-    printf("  Error:  Cannot create file %s.\n", polyfilename);
-    throw std::logic_error(s.str().c_str());
-
-  }
-  /* The zero indicates that the vertices are in a separate .node file. */
-  /*   Followed by number of dimensions, number of vertex attributes,   */
-  /*   and number of boundary markers (zero or one).                    */
+  FILE * const outfile = fopen(polyfilename.c_str(), "w");
+  //The zero indicates that the vertices are in a separate .node file.
+  //  Followed by number of dimensions, number of vertex attributes,
+  //  and number of boundary markers (zero or one).
   fprintf(outfile, "%d  %d  %d  %d\n", 0, m.m_mesh_dim, m.m_nextras,
           1 - b.m_nobound);
-  /* Number of segments, number of boundary markers (zero or one). */
+  //Number of segments, number of boundary markers (zero or one).
   fprintf(outfile, "%ld  %d\n", m.m_subsegs.m_items, 1 - b.m_nobound);
 
   TraversalInit(&m.m_subsegs);
@@ -8535,7 +8062,7 @@ void tricpp::writepoly(
   while (subsegloop.m_subseg != (SubSeg *) NULL) {
     sorg(subsegloop, endpoint1);
     sdest(subsegloop, endpoint2);
-    /* Segment number, indices of its two endpoints, and possibly a marker. */
+    //Segment number, indices of its two endpoints, and possibly a marker.
     if (b.m_nobound) {
       fprintf(outfile, "%4ld    %4d  %4d\n", subsegnumber,
               vertexmark(endpoint1), vertexmark(endpoint2));
@@ -8551,7 +8078,7 @@ void tricpp::writepoly(
   fprintf(outfile, "%d\n", holes);
   if (holes > 0) {
     for (holenumber = 0; holenumber < holes; holenumber++) {
-      /* Hole number, x and y coordinates. */
+      //Hole number, x and y coordinates.
       fprintf(outfile, "%4ld   %.17g  %.17g\n", b.m_firstnumber + holenumber,
               holelist[2 * holenumber], holelist[2 * holenumber + 1]);
     }
@@ -8559,7 +8086,7 @@ void tricpp::writepoly(
   if (regions > 0) {
     fprintf(outfile, "%d\n", regions);
     for (regionnumber = 0; regionnumber < regions; regionnumber++) {
-      /* Region number, x and y coordinates, attribute, maximum area. */
+      //Region number, x and y coordinates, attribute, maximum area.
       fprintf(outfile, "%4ld   %.17g  %.17g  %.17g  %.17g\n",
               b.m_firstnumber + regionnumber,
               regionlist[4 * regionnumber], regionlist[4 * regionnumber + 1],
@@ -8572,10 +8099,10 @@ void tricpp::writepoly(
 }
 
 
-void tricpp::writeedges(
+void ribi::tricpp::writeedges(
   Mesh& m,
   const Behavior& b,
-  const char * const edgefilename,
+  const std::string& edgefilename,
   const std::vector<std::string>& args
 )
 {
@@ -8584,31 +8111,22 @@ void tricpp::writeedges(
   Osub checkmark;
   Vertex p1, p2;
   long edgenumber;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
-  SubSeg sptr;                      /* Temporary variable used by tspivot(). */
+  Triangle ptr;                         //Temporary variable used by sym().
+  SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  if (!b.m_quiet) {
-    printf("Writing %s.\n", edgefilename);
-  }
-  FILE * const outfile = fopen(edgefilename, "w");
-  if (outfile == nullptr) {
-    std::stringstream s;
-    printf("  Error:  Cannot create file %s.\n", edgefilename);
-    throw std::logic_error(s.str().c_str());
-
-  }
-  /* Number of edges, number of boundary markers (zero or one). */
+  FILE * const outfile = fopen(edgefilename.c_str(), "w");
+  //Number of edges, number of boundary markers (zero or one).
   fprintf(outfile, "%ld  %d\n", m.m_edges, 1 - b.m_nobound);
 
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
   edgenumber = b.m_firstnumber;
-  /* To loop over the set of edges, loop over all triangles, and look at   */
-  /*   the three edges of each triangle.  If there isn't another triangle  */
-  /*   adjacent to the edge, operate on the edge.  If there is another     */
-  /*   adjacent triangle, operate on the edge only if the current triangle */
-  /*   has a smaller pointer than its neighbor.  This way, each edge is    */
-  /*   considered only once.                                               */
+  //To loop over the set of edges, loop over all triangles, and look at
+  //  the three edges of each triangle.  If there isn't another triangle
+  //  adjacent to the edge, operate on the edge.  If there is another
+  //  adjacent triangle, operate on the edge only if the current triangle
+  //  has a smaller pointer than its neighbor.  This way, each edge is
+  //  considered only once.
   while (triangleloop.m_tri != (Triangle *) NULL) {
     for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
          triangleloop.m_orient++) {
@@ -8617,12 +8135,12 @@ void tricpp::writeedges(
         org(triangleloop, p1);
         dest(triangleloop, p2);
         if (b.m_nobound) {
-          /* Edge number, indices of two endpoints. */
+          //Edge number, indices of two endpoints.
           fprintf(outfile, "%4ld   %d  %d\n", edgenumber,
                   vertexmark(p1), vertexmark(p2));
         } else {
-          /* Edge number, indices of two endpoints, and a boundary marker. */
-          /*   If there's no subsegment, the boundary marker is zero.      */
+          //Edge number, indices of two endpoints, and a boundary marker.
+          //  If there's no subsegment, the boundary marker is zero.
           if (b.m_usesegments) {
             tspivot(triangleloop, checkmark);
             if (checkmark.m_subseg == m.m_dummysub) {
@@ -8646,37 +8164,27 @@ void tricpp::writeedges(
   finishfile(outfile, args);
 }
 
-void tricpp::writevoronoi(
+void ribi::tricpp::writevoronoi(
   Mesh& m,
   const Behavior& b,
-  const char * const vnodefilename,
-  const char * const vedgefilename,
+  const std::string& vnodefilename,
+  const std::string& vedgefilename,
   const std::vector<std::string>& args
 )
 {
-  //FILE *outfile;
-  struct Otri triangleloop, trisym;
+  Otri triangleloop, trisym;
   Vertex torg, tdest, tapex;
   double circumcenter[2];
   double xi, eta;
   long vnodenumber, vedgenumber;
   int p1, p2;
 
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
 
-  if (!b.m_quiet) {
-    printf("Writing %s.\n", vnodefilename);
-  }
-  FILE * outfile = fopen(vnodefilename, "w");
-  if (outfile == nullptr) {
-    std::stringstream s;
-    printf("  Error:  Cannot create file %s.\n", vnodefilename);
-    throw std::logic_error(s.str().c_str());
-
-  }
-  /* Number of triangles, two dimensions, number of vertex attributes, */
-  /*   no markers.                                                     */
+  FILE * outfile = fopen(vnodefilename.c_str(), "w");
+  //Number of triangles, two dimensions, number of vertex attributes,
+  //  no markers.
   fprintf(outfile, "%ld  %d  %d  %d\n", m.m_triangles.m_items, 2, m.m_nextras, 0);
 
   TraversalInit(&m.m_triangles);
@@ -8688,11 +8196,11 @@ void tricpp::writevoronoi(
     dest(triangleloop, tdest);
     apex(triangleloop, tapex);
     findcircumcenter(m, b, torg, tdest, tapex, circumcenter, &xi, &eta, 0);
-    /* Voronoi vertex number, x and y coordinates. */
+    //Voronoi vertex number, x and y coordinates.
     fprintf(outfile, "%4ld    %.17g  %.17g", vnodenumber, circumcenter[0],
             circumcenter[1]);
     for (int i = 2; i < 2 + m.m_nextras; i++) {
-      /* Interpolate the vertex attributes at the circumcenter. */
+      //Interpolate the vertex attributes at the circumcenter.
       fprintf(outfile, "  %.17g", torg[i] + xi * (tdest[i] - torg[i])
                                          + eta * (tapex[i] - torg[i]));
     }
@@ -8706,46 +8214,37 @@ void tricpp::writevoronoi(
   finishfile(outfile, args);
 
 
-  if (!b.m_quiet) {
-    printf("Writing %s.\n", vedgefilename);
-  }
-  outfile = fopen(vedgefilename, "w");
-  if (outfile == nullptr) {
-    std::stringstream s;
-    printf("  Error:  Cannot create file %s.\n", vedgefilename);
-    throw std::logic_error(s.str().c_str());
-
-  }
-  /* Number of edges, zero boundary markers. */
+  outfile = fopen(vedgefilename.c_str(), "w");
+  //Number of edges, zero boundary markers.
   fprintf(outfile, "%ld  %d\n", m.m_edges, 0);
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
   vedgenumber = b.m_firstnumber;
-  /* To loop over the set of edges, loop over all triangles, and look at   */
-  /*   the three edges of each triangle.  If there isn't another triangle  */
-  /*   adjacent to the edge, operate on the edge.  If there is another     */
-  /*   adjacent triangle, operate on the edge only if the current triangle */
-  /*   has a smaller pointer than its neighbor.  This way, each edge is    */
-  /*   considered only once.                                               */
+  //To loop over the set of edges, loop over all triangles, and look at
+  //  the three edges of each triangle.  If there isn't another triangle
+  //  adjacent to the edge, operate on the edge.  If there is another
+  //  adjacent triangle, operate on the edge only if the current triangle
+  //  has a smaller pointer than its neighbor.  This way, each edge is
+  //  considered only once.
   while (triangleloop.m_tri != (Triangle *) NULL) {
     for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
          triangleloop.m_orient++) {
       sym(triangleloop, trisym);
       if ((triangleloop.m_tri < trisym.m_tri) || (trisym.m_tri == m.m_dummytri)) {
-        /* Find the number of this triangle (and Voronoi vertex). */
+        //Find the number of this triangle (and Voronoi vertex).
         p1 = * (int *) (triangleloop.m_tri + 6);
         if (trisym.m_tri == m.m_dummytri) {
           org(triangleloop, torg);
           dest(triangleloop, tdest);
-          /* Write an infinite ray.  Edge number, index of one endpoint, -1, */
-          /*   and x and y coordinates of a vector representing the          */
-          /*   direction of the ray.                                         */
+          //Write an infinite ray.  Edge number, index of one endpoint, -1,
+          //  and x and y coordinates of a vector representing the
+          //  direction of the ray.
           fprintf(outfile, "%4ld   %d  %d   %.17g  %.17g\n", vedgenumber,
                   p1, -1, tdest[1] - torg[1], torg[0] - tdest[0]);
         } else {
-          /* Find the number of the adjacent triangle (and Voronoi vertex). */
+          //Find the number of the adjacent triangle (and Voronoi vertex).
           p2 = * (int *) (trisym.m_tri + 6);
-          /* Finite edge.  Write indices of two endpoints. */
+          //Finite edge.  Write indices of two endpoints.
           fprintf(outfile, "%4ld   %d  %d\n", vedgenumber, p1, p2);
         }
         vedgenumber++;
@@ -8757,10 +8256,10 @@ void tricpp::writevoronoi(
   finishfile(outfile, args);
 }
 
-void tricpp::writeneighbors(
+void ribi::tricpp::writeneighbors(
   Mesh& m,
   const Behavior& b,
-  const char * const neighborfilename,
+  const std::string& neighborfilename,
   const std::vector<std::string>& args
 )
 {
@@ -8768,19 +8267,11 @@ void tricpp::writeneighbors(
   Otri triangleloop, trisym;
   long elementnumber;
   int neighbor1, neighbor2, neighbor3;
-  Triangle ptr;                         /* Temporary variable used by sym(). */
+  Triangle ptr;                         //Temporary variable used by sym().
 
-  if (!b.m_quiet) {
-    printf("Writing %s.\n", neighborfilename);
-  }
-  FILE * const outfile = fopen(neighborfilename, "w");
-  if (outfile == nullptr) {
-    std::stringstream s;
-    printf("  Error:  Cannot create file %s.\n", neighborfilename);
-    throw std::logic_error(s.str().c_str());
+  FILE * const outfile = fopen(neighborfilename.c_str(), "w");
 
-  }
-  /* Number of triangles, three neighbors per triangle. */
+  //Number of triangles, three neighbors per triangle.
   fprintf(outfile, "%ld  %d\n", m.m_triangles.m_items, 3);
 
   TraversalInit(&m.m_triangles);
@@ -8807,7 +8298,7 @@ void tricpp::writeneighbors(
     triangleloop.m_orient = 0;
     sym(triangleloop, trisym);
     neighbor3 = * (int *) (trisym.m_tri + 6);
-    /* Triangle number, neighboring triangle numbers. */
+    //Triangle number, neighboring triangle numbers.
     fprintf(outfile, "%4ld    %d  %d  %d\n", elementnumber,
             neighbor1, neighbor2, neighbor3);
 
@@ -8819,10 +8310,10 @@ void tricpp::writeneighbors(
 }
 
 
-void tricpp::writeoff(
+void ribi::tricpp::writeoff(
   Mesh& m,
   const Behavior& b,
-  const char * const offfilename,
+  const std::string& offfilename,
   const std::vector<std::string>& args
 )
 {
@@ -8832,48 +8323,40 @@ void tricpp::writeoff(
   Vertex p1, p2, p3;
   long outvertices;
 
-  if (!b.m_quiet) {
-    printf("Writing %s.\n", offfilename);
-  }
-
   if (b.m_jettison) {
     outvertices = m.m_vertices.m_items - m.m_undeads;
   } else {
     outvertices = m.m_vertices.m_items;
   }
 
-  FILE * const outfile = fopen(offfilename, "w");
-  if (outfile == nullptr) {
-    std::stringstream s;
-    printf("  Error:  Cannot create file %s.\n", offfilename);
-    throw std::logic_error(s.str().c_str());
+  FILE * const outfile = fopen(offfilename.c_str(), "w");
 
-  }
-  /* Number of vertices, triangles, and edges. */
+  //Number of vertices, triangles, and edges.
   fprintf(outfile, "OFF\n%ld  %ld  %ld\n", outvertices, m.m_triangles.m_items,
           m.m_edges);
 
-  /* Write the vertices. */
+  //Write the vertices.
   TraversalInit(&m.m_vertices);
   vertexloop = vertextraverse(m);
   while (vertexloop != nullptr) {
-    if (!b.m_jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
-      /* The "0.0" is here because the OFF format uses 3D coordinates. */
+    if (!b.m_jettison || (vertextype(vertexloop) != VertexType::UNDEADVERTEX)) {
+      //The "0.0" is here because the OFF format uses 3D coordinates.
       fprintf(outfile, " %.17g  %.17g  %.17g\n", vertexloop[0], vertexloop[1],
               0.0);
     }
     vertexloop = vertextraverse(m);
   }
 
-  /* Write the triangles. */
+  //Write the triangles.
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
   triangleloop.m_orient = 0;
-  while (triangleloop.m_tri != (Triangle *) NULL) {
+  while (triangleloop.m_tri != nullptr)
+  {
     org(triangleloop, p1);
     dest(triangleloop, p2);
     apex(triangleloop, p3);
-    /* The "3" means a three-vertex polygon. */
+    //The "3" means a three-vertex polygon.
     fprintf(outfile, " 3   %4d  %4d  %4d\n", vertexmark(p1) - b.m_firstnumber,
             vertexmark(p2) - b.m_firstnumber, vertexmark(p3) - b.m_firstnumber);
     triangleloop.m_tri = triangletraverse(m);
@@ -8881,7 +8364,7 @@ void tricpp::writeoff(
   finishfile(outfile, args);
 }
 
-void tricpp::quality_statistics(
+void ribi::tricpp::quality_statistics(
   Mesh& m,
   const Behavior& b
 )
@@ -9079,7 +8562,7 @@ void tricpp::quality_statistics(
 }
 
 
-void tricpp::statistics(
+void ribi::tricpp::statistics(
   Mesh& m,
   const Behavior& b
 )
@@ -9168,12 +8651,12 @@ void tricpp::statistics(
   }
 }
 
-int tricpp::triangle_cpp_main(const std::vector<std::string>& args)
+int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
 {
   Mesh m;
   Behavior b(args);
-  double *holearray;                                        /* Array of holes. */
-  double *regionarray;   /* Array of regional attributes and area constraints. */
+  double *holearray;                                        //Array of holes.
+  double *regionarray;   //Array of regional attributes and area constraints.
   FILE *polyfile = nullptr;
   m.m_steinerleft = b.m_steiner;
 
@@ -9185,7 +8668,7 @@ int tricpp::triangle_cpp_main(const std::vector<std::string>& args)
 
   if (b.m_do_refine)
   {
-    /* Read and reconstruct a mesh. */
+    //Read and reconstruct a mesh.
     m.m_hullsize
       = reconstruct(
       m,
@@ -9198,19 +8681,19 @@ int tricpp::triangle_cpp_main(const std::vector<std::string>& args)
   }
   else
   {
-    m.m_hullsize = delaunay(m, b);              /* Triangulate the vertices. */
+    m.m_hullsize = delaunay(m, b);              //Triangulate the vertices.
   }
 
-  /* Ensure that no vertex can be mistaken for a triangular bounding */
-  /*   box vertex in insertvertex().                                 */
+  //Ensure that no vertex can be mistaken for a triangular bounding
+  //  box vertex in insertvertex().
   m.m_infvertex1 = nullptr;
   m.m_infvertex2 = nullptr;
   m.m_infvertex3 = nullptr;
 
   if (b.m_usesegments) {
-    m.m_checksegments = 1;                /* Segments will be introduced next. */
+    m.m_checksegments = 1;                //Segments will be introduced next.
     if (!b.m_do_refine) {
-      /* Insert PSLG segments and/or convex hull segments. */
+      //Insert PSLG segments and/or convex hull segments.
       formskeleton(m, b, polyfile, b.m_inpolyfilename);
     }
   }
@@ -9220,40 +8703,40 @@ int tricpp::triangle_cpp_main(const std::vector<std::string>& args)
       /*&m,*/ b, polyfile, /*b.inpolyfilename,*/ &holearray, &m.m_holes,
               &regionarray, &m.m_regions);
     if (!b.m_do_refine) {
-      /* Carve out holes and concavities. */
+      //Carve out holes and concavities.
       carveholes(m, b, holearray, m.m_holes, regionarray, m.m_regions);
     }
   }
   else
   {
-    /* Without a PSLG, there can be no holes or regional attributes   */
-    /*   or area constraints.  The following are set to zero to avoid */
-    /*   an accidental free() later.                                  */
+    //Without a PSLG, there can be no holes or regional attributes
+    //  or area constraints.  The following are set to zero to avoid
+    //  an accidental free() later.
     m.m_holes = 0;
     m.m_regions = 0;
   }
 
   if (b.m_quality && m.m_triangles.m_items > 0)
   {
-    enforcequality(m, b);           /* Enforce angle and area constraints. */
+    enforcequality(m, b);           //Enforce angle and area constraints.
   }
 
-  /* Calculate the number of edges. */
+  //Calculate the number of edges.
   m.m_edges = (3l * m.m_triangles.m_items + m.m_hullsize) / 2l;
 
   if (b.m_order > 1)
   {
-    highorder(m, b);       /* Promote elements to higher polynomial order. */
+    highorder(m, b);       //Promote elements to higher polynomial order.
   }
-  /* If not using iteration numbers, don't write a .node file if one was */
-  /*   read, because the original one would be overwritten!              */
+  //If not using iteration numbers, don't write a .node file if one was
+  //  read, because the original one would be overwritten!
   if (b.m_nonodewritten || (b.m_noiterationnum && m.m_do_readnodefile))
   {
     if (!b.m_quiet)
     {
       std::cout << "NOT writing a .node file.\n";
     }
-    numbernodes(m, b);         /* We must remember to number the vertices. */
+    numbernodes(m, b);         //We must remember to number the vertices.
   }
   else
   {
@@ -9270,11 +8753,11 @@ int tricpp::triangle_cpp_main(const std::vector<std::string>& args)
   {
     writeelements(m, b, b.m_outelefilename, args);
   }
-  /* The -c switch (convex switch) causes a PSLG to be written */
-  /*   even if none was read.                                  */
+  //The -c switch (convex switch) causes a PSLG to be written
+  //  even if none was read.
   if (b.m_poly || b.m_convex)
   {
-    /* If not using iteration numbers, don't overwrite the .poly file. */
+    //If not using iteration numbers, don't overwrite the .poly file.
     if (b.m_nopolywritten || b.m_noiterationnum)
     {
       if (!b.m_quiet) {
@@ -9327,7 +8810,7 @@ int tricpp::triangle_cpp_main(const std::vector<std::string>& args)
   return 0;
 }
 
-void tricpp::printtriangle(
+void ribi::tricpp::printtriangle(
   const Mesh& m,
   const Behavior& b,
   const Otri * const t
@@ -9413,9 +8896,9 @@ void tricpp::printtriangle(
 }
 
 
-void tricpp::printsubseg(
+void ribi::tricpp::printsubseg(
   const Mesh& m,
-  //const Behavior * const /* b */,
+  //const Behavior * const //b,
   const Osub * const s
 )
 {

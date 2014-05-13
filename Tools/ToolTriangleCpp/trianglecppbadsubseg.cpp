@@ -1,6 +1,6 @@
 #include "trianglecppbadsubseg.h"
 
-tricpp::BadSubSeg::BadSubSeg()
+ribi::tricpp::BadSubSeg::BadSubSeg()
   :
     m_encsubseg{},
     m_subsegdest{},

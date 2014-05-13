@@ -3,12 +3,8 @@
 
 #include "trianglecppmesh.h"
 
-int tricpp::vertextype(const double * const vx, const Mesh& m)
-{
-  return static_cast<int>(vx[m.m_vertexmarkindex + 1]);
-}
 
-void tricpp::Split(const double a, double& ahi, double& alo)
+void ribi::tricpp::Split(const double a, double& ahi, double& alo)
 {
   static const double splitter = Global().m_splitter;
   const double c = splitter * a;
@@ -25,7 +21,7 @@ void tricpp::Split(const double a, double& ahi, double& alo)
   alo = a - ahi
 */
 
-void tricpp::Two_Diff(const double a, const double b, double& x, double& y)
+void ribi::tricpp::Two_Diff(const double a, const double b, double& x, double& y)
 {
   x = a - b;
   Two_Diff_Tail(a, b, x, y);
@@ -37,7 +33,7 @@ void tricpp::Two_Diff(const double a, const double b, double& x, double& y)
   Two_Diff_Tail(a, b, x, y)
 */
 
-void tricpp::Two_Diff_Tail(const double a, const double b, const double x, double& y)
+void ribi::tricpp::Two_Diff_Tail(const double a, const double b, const double x, double& y)
 {
   const double bvirt = a - x;
   const double avirt = x + bvirt;
@@ -57,7 +53,7 @@ void tricpp::Two_Diff_Tail(const double a, const double b, const double x, doubl
 
 */
 
-void tricpp::Fast_Two_Sum(const double a, const double b, double& x, double& y)
+void ribi::tricpp::Fast_Two_Sum(const double a, const double b, double& x, double& y)
 {
   x = a + b;
   Fast_Two_Sum_Tail(a, b, x, y);
@@ -66,10 +62,10 @@ void tricpp::Fast_Two_Sum(const double a, const double b, double& x, double& y)
 /*
 #define Fast_Two_Sum(a, b, x, y) \
   x = (double) (a + b); \
-  tricpp::Fast_Two_Sum_Tail(a, b, x, y)
+  ribi::tricpp::Fast_Two_Sum_Tail(a, b, x, y)
 */
 
-void tricpp::Fast_Two_Sum_Tail(const double a, const double b, const double x, double& y)
+void ribi::tricpp::Fast_Two_Sum_Tail(const double a, const double b, const double x, double& y)
 {
   const double bvirt = x - a;
   y = b - bvirt;
@@ -81,7 +77,7 @@ void tricpp::Fast_Two_Sum_Tail(const double a, const double b, const double x, d
   y = b - bvirt
 */
 
-void tricpp::Square(const double a, double& x, double& y)
+void ribi::tricpp::Square(const double a, double& x, double& y)
 {
   // Square() can be done more quickly than Two_Product()
   x = a * a;
@@ -94,7 +90,7 @@ void tricpp::Square(const double a, double& x, double& y)
   Square_Tail(a, x, y)
 */
 
-void tricpp::Square_Tail(const double a, const double x, double& y)
+void ribi::tricpp::Square_Tail(const double a, const double x, double& y)
 {
   double ahi = 0.0;
   double alo = 0.0;
@@ -112,7 +108,7 @@ void tricpp::Square_Tail(const double a, const double x, double& y)
   y = (alo * alo) - err3
 */
 
-void tricpp::Two_One_Diff(const double a1, const double a0, const double b, double& x2, double& x1, double& x0)
+void ribi::tricpp::Two_One_Diff(const double a1, const double a0, const double b, double& x2, double& x1, double& x0)
 {
   double i = 0.0;
   Two_Diff(a0, b , i, x0);
@@ -125,7 +121,7 @@ void tricpp::Two_One_Diff(const double a1, const double a0, const double b, doub
   Two_Sum( a1, _i, x2, x1)
 */
 
-void tricpp::Two_One_Product(const double a1, const double a0, const double b, double& x3, double& x2, double& x1, double& x0)
+void ribi::tricpp::Two_One_Product(const double a1, const double a0, const double b, double& x3, double& x2, double& x1, double& x0)
 {
   double zero = 0.0;
   double i = 0.0;
@@ -150,7 +146,7 @@ void tricpp::Two_One_Product(const double a1, const double a0, const double b, d
 */
 
 
-void tricpp::Two_One_Sum(const double a1, const double a0, const double b, double& x2, double& x1, double& x0)
+void ribi::tricpp::Two_One_Sum(const double a1, const double a0, const double b, double& x2, double& x1, double& x0)
 {
   double i = 0.0;
   Two_Sum(a0, b , i, x0);
@@ -165,7 +161,7 @@ void tricpp::Two_One_Sum(const double a1, const double a0, const double b, doubl
 
 */
 
-void tricpp::Two_Product(const double a, const double b, double& x, double& y)
+void ribi::tricpp::Two_Product(const double a, const double b, double& x, double& y)
 {
   x = a * b;
   Two_Product_Tail(a, b, x, y);
@@ -177,7 +173,7 @@ void tricpp::Two_Product(const double a, const double b, double& x, double& y)
   Two_Product_Tail(a, b, x, y)
 */
 
-void tricpp::Two_Product_Presplit(const double a, const double b, const double bhi, const double blo, double& x, double& y)
+void ribi::tricpp::Two_Product_Presplit(const double a, const double b, const double bhi, const double blo, double& x, double& y)
 {
   // Two_Product_Presplit() is Two_Product() where one of the inputs has
   //   already been split.  Avoids redundant splitting.
@@ -201,7 +197,7 @@ void tricpp::Two_Product_Presplit(const double a, const double b, const double b
   y = (alo * blo) - err3
 */
 
-void tricpp::Two_Product_Tail(const double a, const double b, const double x, double& y)
+void ribi::tricpp::Two_Product_Tail(const double a, const double b, const double x, double& y)
 {
   double ahi = 0.0;
   double alo = 0.0;
@@ -225,7 +221,7 @@ void tricpp::Two_Product_Tail(const double a, const double b, const double x, do
   y = (alo * blo) - err3
 */
 
-void tricpp::Two_Sum(const double a, const double b, double& x, double& y)
+void ribi::tricpp::Two_Sum(const double a, const double b, double& x, double& y)
 {
   x = a + b;
   Two_Sum_Tail(a, b, x, y);
@@ -237,7 +233,7 @@ void tricpp::Two_Sum(const double a, const double b, double& x, double& y)
   Two_Sum_Tail(a, b, x, y)
 */
 
-void tricpp::Two_Sum_Tail(const double a, const double b, const double x, double& y)
+void ribi::tricpp::Two_Sum_Tail(const double a, const double b, const double x, double& y)
 {
   const double bvirt = static_cast<double>(x - a);
   const double avirt = x - bvirt;
@@ -255,7 +251,7 @@ void tricpp::Two_Sum_Tail(const double a, const double b, const double x, double
   y = around + bround
 */
 
-void tricpp::Two_Two_Diff(const double a1, const double a0, const double b1, const double b0, double& x3, double& x2, double& x1, double& x0)
+void ribi::tricpp::Two_Two_Diff(const double a1, const double a0, const double b1, const double b0, double& x3, double& x2, double& x1, double& x0)
 {
   double zero = 0.0;
   double j = 0.0;
@@ -269,7 +265,7 @@ void tricpp::Two_Two_Diff(const double a1, const double a0, const double b1, con
   Two_One_Diff(_j, _0, b1, x3, x2, x1)
 */
 
-void tricpp::Two_Two_Sum(const double a1, const double a0, const double b1, const double b0, double& x3, double& x2, double& x1, double& x0)
+void ribi::tricpp::Two_Two_Sum(const double a1, const double a0, const double b1, const double b0, double& x3, double& x2, double& x1, double& x0)
 {
   double zero = 0.0;
   double j = 0.0;

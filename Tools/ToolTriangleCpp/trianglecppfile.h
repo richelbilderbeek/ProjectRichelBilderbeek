@@ -3,6 +3,7 @@
 
 struct _iobuf;
 
+namespace ribi {
 namespace tricpp {
 
 /*****************************************************************************/
@@ -16,5 +17,6 @@ namespace tricpp {
 char * readline(char * const string, _iobuf * const infile);
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPFILE_H

@@ -1,6 +1,7 @@
 #ifndef TRIANGLECPPEVENT_H
 #define TRIANGLECPPEVENT_H
 
+namespace ribi {
 namespace tricpp {
 
 /// A node in a heap used to store events for the sweepline Delaunay
@@ -43,5 +44,6 @@ void eventheapinsert(
 );
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPEVENT_H

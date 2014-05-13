@@ -1,6 +1,6 @@
 #include "trianglecpptrimalloc.h"
 
-void * tricpp::TriMalloc(const int size)
+void * ribi::tricpp::TriMalloc(const int size)
 {
   void * const memptr = new int(size);
   return memptr;

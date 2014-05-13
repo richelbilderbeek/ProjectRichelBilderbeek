@@ -13,6 +13,7 @@
 #include "trianglecppvertex.h"
 #include "trianglecppinsertvertexresult.h"
 
+namespace ribi {
 namespace tricpp {
 
 /// alternateaxes()   Sorts the vertices as appropriate for the divide-and-
@@ -440,15 +441,13 @@ int fast_expansion_sum_zeroelim(
 /// xi axis; and the apex of the triangle is one unit along the eta axis.
 /// This procedure also returns the square of the length of the triangle's
 /// shortest edge.
-
-
 void findcircumcenter(
   Mesh& m,
   const Behavior& b,
   const Vertex& torg,
   const Vertex& tdest,
   const Vertex& tapex,
-  const Vertex& circumcenter,
+  Vertex& circumcenter,
   double * const xi,
   double * const eta,
   const int offcenter
@@ -509,20 +508,16 @@ void flip(
   const Otri * const flipedge
 );
 
-
-
 /// formskeleton()   Create the segments of a triangulation, including PSLG
 ///                  segments and edges on the convex hull.
-
+///
 /// The PSLG segments are read from a .poly file.  The return value is the
 /// number of segments in the file.
-
-
 void formskeleton(
   Mesh& m,
   const Behavior& b,
   FILE * const polyfile,
-  const char * const polyfilename
+  const std::string& polyfilename
 );
 
 SplayNode * frontlocate(
@@ -535,18 +530,19 @@ SplayNode * frontlocate(
 );
 
 /// getvertex()   Get a specific vertex, by number, from the list.
-
+///
 /// The first vertex is number 'firstnumber'.
-
+///
 /// Note that this takes O(n) time (with a small constant, if VERTEXPERBLOCK
 /// is large).  I don't care to take the trouble to make it work in constant
 /// time.
+/*
 Vertex getvertex(
-  const Mesh& m,
+  const std::vector<Vertex>& vertices, //m_vertices
   const Behavior& b,
   const int number
 );
-
+*/
 
 
 /// highorder()   Create extra nodes for quadratic subparametric elements.
@@ -625,10 +621,12 @@ void initializetrisubpools(
 ///
 /// This routine also computes the `vertexmarkindex' and `vertex2triindex'
 /// indices used to find values within each vertex.
+/*
 void initializevertexpool(
   Mesh& m,
   const Behavior& b
 );
+*/
 
 /// insertsegment()   Insert a PSLG segment into a triangulation.
 void insertsegment(
@@ -1039,7 +1037,7 @@ void readholes(
 void ReadNodes(
   Mesh& m,
   const Behavior& b,
-  const char * const polyfilename
+  const std::string& polyfilename
 );
 
 
@@ -1067,9 +1065,9 @@ void ReadNodes(
 long reconstruct(
   Mesh& m,
   const Behavior& b,
-  char * const elefilename,
-  const char * const areafilename,
-  const char * const polyfilename,
+  std::string& elefilename,
+  const std::string& areafilename,
+  const std::string& polyfilename,
   FILE * const polyfile
 );
 
@@ -1435,7 +1433,12 @@ void unflip(
 /// vertexdealloc()   Deallocate space for a vertex, marking it dead.
 void vertexdealloc(
   Mesh& m,
-  const Vertex& dyingvertex
+  Vertex& dyingvertex
+);
+
+void vertexdealloc(
+  std::vector<Vertex>& vertices,
+  Vertex& dyingvertex
 );
 
 /// vertexmedian()   An order statistic algorithm, almost.  Shuffles an
@@ -1467,7 +1470,7 @@ void vertexsort(
 void writeedges(
   Mesh& m,
   const Behavior& b,
-  const char * const edgefilename,
+  const std::string& edgefilename,
   const std::vector<std::string>& args
 );
 
@@ -1475,14 +1478,14 @@ void writeedges(
 void writeelements(
   Mesh& m,
   const Behavior& b,
-  const char * const elefilename,
+  const std::string& elefilename,
   const std::vector<std::string>& args
 );
 
 void writeneighbors(
   Mesh& m,
   const Behavior& b,
-  const char * const neighborfilename,
+  const std::string& neighborfilename,
   const std::vector<std::string>& args
 );
 
@@ -1493,7 +1496,7 @@ void writeneighbors(
 void writenodes(
   Mesh& m,
   const Behavior& b,
-  const char * const nodefilename,
+  const std::string& nodefilename,
   const std::vector<std::string>& args
 );
 
@@ -1503,7 +1506,7 @@ void writenodes(
 void writeoff(
   Mesh& m,
   const Behavior& b,
-  const char * const offfilename,
+  const std::string& offfilename,
   const std::vector<std::string>& args
 );
 
@@ -1511,7 +1514,7 @@ void writeoff(
 void writepoly(
   Mesh& m,
   const Behavior& b,
-  const char * const polyfilename,
+  const std::string& polyfilename,
   const double * const holelist,
   const int holes,
   const double * const regionlist,
@@ -1533,11 +1536,12 @@ void writepoly(
 void writevoronoi(
   Mesh& m,
   const Behavior& b,
-  const char * const vnodefilename,
-  const char * const vedgefilename,
+  const std::string& vnodefilename,
+  const std::string& vedgefilename,
   const std::vector<std::string>& args
 );
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLE_CPP_H

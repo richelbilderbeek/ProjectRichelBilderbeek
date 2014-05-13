@@ -4,7 +4,7 @@
 #include <cstdio>
 
 #include "trianglecppglobals.h"
-char * tricpp::readline(char * const string, FILE * const infile)
+char * ribi::tricpp::readline(char * const string, FILE * const infile)
 {
   char *result = nullptr;
 

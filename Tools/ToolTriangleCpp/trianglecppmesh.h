@@ -1,20 +1,29 @@
 #ifndef TRIANGLECPPMESH_H
 #define TRIANGLECPPMESH_H
 
+#include <vector>
+
 #include "trianglecppmemorypool.h"
 #include "trianglecppbadtriang.h"
 #include "trianglecppflipstacker.h"
 #include "trianglecppsubseg.h"
 #include "trianglecppotri.h"
+#include "trianglecppfwd.h"
 
+namespace ribi {
 namespace tricpp {
 
 /// Mesh data structure.  Triangle operates on only one mesh, but the mesh
 ///   structure is used (instead of global variables) to allow reentrancy.
-
 struct Mesh
 {
   Mesh();
+
+  const Vertex& GetVertex(const int index) const noexcept;
+  //Vertex& GetVertex(const int index) noexcept;
+  void KillSubSeg(SubSeg * const subseg) noexcept;
+  void KillTriangle(Triangle * triangle) noexcept;
+  void KillVertex(const int index) noexcept;
 
   int m_areaboundindex; //REPLACE BY CONST            /// Index to find area bound of a triangle.
   MemoryPool m_badsubsegs; /// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
@@ -57,12 +66,15 @@ struct Mesh
   long m_samples;              /// Number of random samples for point location.
   MemoryPool m_splaynodes;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   int m_steinerleft;                 /// Number of Steiner points not yet used.
-  MemoryPool m_subsegs;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
-  MemoryPool m_triangles;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
+  //MemoryPool m_subsegs;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
+  std::vector<SubSeg> m_subsegs;
+  //MemoryPool m_triangles;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
+  std::vector<Triangle> m_triangles;
   int m_undeads;    /// Number of input vertices that don't appear in the mesh.
   static const int m_vertex2triindex = 3; //TODO: REMOVE    /// Index to find a triangle adjacent to a vertex.
   static const int m_vertexmarkindex = 1; //TODO: REMOVE        /// Index to find boundary marker of a vertex.
-  MemoryPool m_vertices;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
+  //MemoryPool m_vertices;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
+  std::vector<Vertex> m_vertices;
   MemoryPool m_viri;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   double m_xmax; /// x and y bounds
   double m_xmin; /// x and y bounds
@@ -78,5 +90,6 @@ struct Mesh
 Vertex vertextraverse(Mesh& m);
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPMESH_H

@@ -26,7 +26,8 @@ SOURCES += \
     ../../Tools/ToolTriangleCpp/trianglecppfile.cpp \
     ../../Tools/ToolTriangleCpp/trianglecppstring.cpp \
     ../../Tools/ToolTriangleCpp/trianglecppglobals.cpp \
-    ../../Tools/ToolTriangleCpp/trianglecppdefines.cpp
+    ../../Tools/ToolTriangleCpp/trianglecppdefines.cpp \
+    ../ToolTriangleCpp/trianglecppvertextype.cpp
 
 HEADERS += \
     ../../Tools/ToolTriangleCpp/trianglecppmain.h \
@@ -54,4 +55,8 @@ HEADERS += \
     ../../Tools/ToolTriangleCpp/trianglecppinsertvertexresult.h \
     ../../Tools/ToolTriangleCpp/trianglecppfinddirectionresult.h \
     ../../Tools/ToolTriangleCpp/trianglecppfile.h \
-    ../../Tools/ToolTriangleCpp/trianglecppstring.h
+    ../../Tools/ToolTriangleCpp/trianglecppstring.h \
+    ../ToolTriangleCpp/trianglecppvertextype.h
+
+OTHER_FILES += \
+    ../ToolTriangleCpp/ToolTriangleCpp.txt

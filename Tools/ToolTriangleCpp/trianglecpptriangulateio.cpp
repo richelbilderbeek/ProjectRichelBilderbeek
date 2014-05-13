@@ -1,6 +1,6 @@
 #include "trianglecpptriangulateio.h"
 
-tricpp::TriangulateIo::TriangulateIo()
+ribi::tricpp::TriangulateIo::TriangulateIo()
   : m_edgelist{nullptr},
     m_edgemarkerlist{nullptr},
     m_holelist{nullptr},

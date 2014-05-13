@@ -11,30 +11,35 @@
 
 #include <boost/math/constants/constants.hpp>
 
+#include "fileio.h"
 #include "trianglecppinfo.h"
 #include "trianglecppsyntax.h"
 
 #pragma GCC diagnostic pop
 
-tricpp::Behavior::Behavior(
+ribi::tricpp::Behavior::Behavior(
   const std::vector<std::string>& args
 )
-  :
+  : m_areafilename{},
     m_conformdel{0},
     m_convex{0},
     m_do_check{false},
     m_do_refine{false},
     m_dwyer{1},
+    m_edgefilename{},
     m_edgesout{0},
-    m_firstnumber{1},
+    //m_firstnumber{1},
     m_fixedarea{0},
     m_geomview{0},
     m_goodangle{0.0},
     m_incremental{0},
+    m_inelefilename{},
     m_innodefilename{},
+    m_inpolyfilename{},
     m_jettison{0},
     m_maxarea{-1.0},
     m_minangle{0.0},
+    m_neighborfilename{},
     m_neighbors{0},
     m_nobisect{0},
     m_nobound{0},
@@ -45,7 +50,11 @@ tricpp::Behavior::Behavior(
     m_nonodewritten{0},
     m_nopolywritten{0},
     m_offconstant{0.0},
+    m_offfilename{},
     m_order{1},
+    m_outelefilename{},
+    m_outnodefilename{},
+    m_outpolyfilename{},
     //m_poly{false},
     m_quality{0},
     m_quiet{0},
@@ -54,17 +63,20 @@ tricpp::Behavior::Behavior(
     m_steiner{-1},
     m_sweepline{0},
     m_usertest{0},
-    m_usesegments{0},
+    //m_usesegments{0},
     m_vararea{0},
+    m_vedgefilename{},
     m_verbosity{0},
-    m_voronoi{0},
-    m_weighted{0}
+    m_vnodefilename{},
+    m_voronoi{0}
+    //m_weighted{0}
 {
   const int argc = static_cast<int>(args.size());
   const int start_index = 1; //Because args[0] contains the filename
   int increment;
   int meshnumber;
-  char workstring[max_filename_size];
+  //static const int max_filename_size = 2048;
+  std::string workstring; //[max_filename_size];
 
   for (int i = start_index; i < argc; i++)
   {
@@ -92,7 +104,7 @@ tricpp::Behavior::Behavior(
               k++;
             }
             workstring[k] = '\0';
-            this->m_minangle = (double) strtod(workstring, (char **) NULL);
+            this->m_minangle = boost::lexical_cast<double>(workstring);
           } else {
             this->m_minangle = 20.0;
           }
@@ -111,7 +123,7 @@ tricpp::Behavior::Behavior(
               k++;
             }
             workstring[k] = '\0';
-            this->m_maxarea = (double) strtod(workstring, (char **) NULL);
+            this->m_maxarea = boost::lexical_cast<double>(workstring);
             if (this->m_maxarea <= 0.0) {
               throw std::logic_error("Triangle:  Maximum area must be greater than zero.\n");
             }
@@ -129,18 +141,18 @@ tricpp::Behavior::Behavior(
         if (args[i][j] == 'c') {
           this->m_convex = 1;
         }
-        if (args[i][j] == 'w') {
-          this->m_weighted = 1;
-        }
-        if (args[i][j] == 'W') {
-          this->m_weighted = 2;
-        }
+        //if (args[i][j] == 'w') {
+        //  this->m_weighted = 1;
+        //}
+        //if (args[i][j] == 'W') {
+        //  this->m_weighted = 2;
+        //}
         if (args[i][j] == 'j') {
           this->m_jettison = 1;
         }
-        if (args[i][j] == 'z') {
-          this->m_firstnumber = 0;
-        }
+        //if (args[i][j] == 'z') {
+        //  this->m_firstnumber = 0;
+        //}
         if (args[i][j] == 'e') {
           this->m_edgesout = 1;
         }
@@ -222,32 +234,54 @@ tricpp::Behavior::Behavior(
       }
     } else {
       assert(i < argc); //RJCB
-      strncpy(this->m_innodefilename, args[i].c_str(), max_filename_size - 1);
-      this->m_innodefilename[max_filename_size - 1] = '\0';
+      m_innodefilename = args[i];
+      //this->m_innodefilename[max_filename_size - 1] = '\0';
     }
   }
-  if (this->m_innodefilename[0] == '\0') {
+  if (this->m_innodefilename[0] == '\0')
+  {
     Syntax();
   }
-  if (!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 5], ".node")) {
-    this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
+  if (ribi::fileio::FileIo().GetExtensionNoDot(m_innodefilename) == "node"
+    //!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 5], ".node")
+  )
+  {
+    m_innodefilename = ribi::fileio::FileIo().GetFileBasename(m_innodefilename);
+    //this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
   }
-  if (!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 5], ".poly")) {
-    this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
+  if (ribi::fileio::FileIo().GetExtensionNoDot(m_innodefilename) == "poly"
+    //!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 5], ".poly")
+  )
+  {
+    m_innodefilename = ribi::fileio::FileIo().GetFileBasename(m_innodefilename);
+    //this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
     static_assert(m_poly == true,"");
     //this->m_poly = true;
   }
-  if (!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 4], ".ele")) {
-    this->m_innodefilename[strlen(this->m_innodefilename) - 4] = '\0';
+  if (ribi::fileio::FileIo().GetExtensionNoDot(m_innodefilename) == "ele"
+    //!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 4], ".ele")
+  )
+  {
+    m_innodefilename = ribi::fileio::FileIo().GetFileBasename(m_innodefilename);
+    //this->m_innodefilename[strlen(this->m_innodefilename) - 4] = '\0';
     this->m_do_refine = 1;
   }
-  if (!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 5], ".area")) {
-    this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
+  if (
+    ribi::fileio::FileIo().GetExtensionNoDot(m_innodefilename) == "area"
+    //!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 5], ".area")
+  )
+  {
+    m_innodefilename = ribi::fileio::FileIo().GetFileBasename(m_innodefilename);
+    //this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
     this->m_do_refine = 1;
     this->m_quality = 1;
     this->m_vararea = 1;
   }
-  this->m_usesegments = this->m_poly || this->m_do_refine || this->m_quality || this->m_convex;
+  static_assert(this->m_poly,"");
+  static_assert(this->m_poly || this->m_do_refine || this->m_quality || this->m_convex,"");
+  static_assert(this->m_usesegments,"");
+  //this->m_usesegments = this->m_poly || this->m_do_refine || this->m_quality || this->m_convex;
+
   this->m_goodangle = cos(this->m_minangle * boost::math::constants::pi<double>() / 180.0);
   if (this->m_goodangle == 1.0) {
     this->m_offconstant = 0.0;
@@ -260,9 +294,13 @@ tricpp::Behavior::Behavior(
   }
   /* Be careful not to allocate space for element area constraints that */
   /*   will never be assigned any value (other than the default -1.0).  */
-  if (!this->m_do_refine && !this->m_poly) {
-    this->m_vararea = 0;
+  static_assert(this->m_poly,"");
+  static_assert( (!this->m_do_refine && !this->m_poly) == false,"");
+  if (!this->m_do_refine && !this->m_poly)
+  {
+    //this->m_vararea = 0;
   }
+
   /* Be careful not to add an extra attribute to each element unless the */
   /*   input supports it (PSLG in, but not refining a preexisting mesh). */
   if (this->m_do_refine || !this->m_poly) {
@@ -270,13 +308,16 @@ tricpp::Behavior::Behavior(
   }
   /* Regular/weighted triangulations are incompatible with PSLGs */
   /*   and meshing.                                              */
-  if (this->m_weighted && (this->m_poly || this->m_quality)) {
-    this->m_weighted = 0;
-    if (!this->m_quiet) {
-      printf("Warning:  weighted triangulations (-w, -W) are incompatible\n");
-      printf("  with PSLGs (-p) and meshing (-q, -a, -u).  Weights ignored.\n"
-             );
-    }
+
+  static_assert((this->m_weighted && (this->m_poly || this->m_quality)) == false,"");
+  if (this->m_weighted && (this->m_poly || this->m_quality))
+  {
+    //this->m_weighted = 0;
+    //if (!this->m_quiet) {
+    //  printf("Warning:  weighted triangulations (-w, -W) are incompatible\n");
+    //  printf("  with PSLGs (-p) and meshing (-q, -a, -u).  Weights ignored.\n"
+    //         );
+    //}
   }
   if (this->m_jettison && this->m_nonodewritten && !this->m_quiet) {
     printf("Warning:  -j and -N switches are somewhat incompatible.\n");
@@ -284,11 +325,12 @@ tricpp::Behavior::Behavior(
     printf("  .node file to reconstruct the new node indices.");
   }
 
-  strcpy(this->m_inpolyfilename, this->m_innodefilename);
-  strcpy(this->m_inelefilename, this->m_innodefilename);
-  strcpy(this->m_areafilename, this->m_innodefilename);
+  m_inpolyfilename = m_innodefilename;
+  m_inelefilename = m_innodefilename;
+  m_areafilename = m_innodefilename;
+
   increment = 0;
-  strcpy(workstring, this->m_innodefilename);
+  workstring = m_innodefilename;
   int j = 1;
   while (workstring[j] != '\0') {
     if ((workstring[j] == '.') && (workstring[j + 1] != '\0')) {
@@ -297,10 +339,13 @@ tricpp::Behavior::Behavior(
     j++;
   }
   meshnumber = 0;
-  if (increment > 0) {
+  if (increment > 0)
+  {
     j = increment;
-    do {
-      if ((workstring[j] >= '0') && (workstring[j] <= '9')) {
+    do
+    {
+      if ((workstring[j] >= '0') && (workstring[j] <= '9'))
+      {
         meshnumber = meshnumber * 10 + (int) (workstring[j] - '0');
       } else {
         increment = 0;
@@ -308,63 +353,41 @@ tricpp::Behavior::Behavior(
       j++;
     } while (workstring[j] != '\0');
   }
-  if (this->m_noiterationnum) {
-    strcpy(this->m_outnodefilename, this->m_innodefilename);
-    strcpy(this->m_outelefilename, this->m_innodefilename);
-    strcpy(this->m_edgefilename, this->m_innodefilename);
-    strcpy(this->m_vnodefilename, this->m_innodefilename);
-    strcpy(this->m_vedgefilename, this->m_innodefilename);
-    strcpy(this->m_neighborfilename, this->m_innodefilename);
-    strcpy(this->m_offfilename, this->m_innodefilename);
-    strcat(this->m_outnodefilename, ".node");
-    strcat(this->m_outelefilename, ".ele");
-    strcat(this->m_edgefilename, ".edge");
-    strcat(this->m_vnodefilename, ".v.node");
-    strcat(this->m_vedgefilename, ".v.edge");
-    strcat(this->m_neighborfilename, ".neigh");
-    strcat(this->m_offfilename, ".off");
+  if (this->m_noiterationnum)
+  {
+    m_outnodefilename = m_innodefilename + ".node";
+    m_outelefilename = m_innodefilename + ".ele";
+    m_edgefilename = m_innodefilename + ".edge";
+    m_vnodefilename = m_innodefilename + ".v.node";
+    m_vedgefilename = m_innodefilename + ".v.edge";
+    m_neighborfilename = m_innodefilename + ".neigh";
+    m_offfilename = m_innodefilename + ".off";
   }
   else if (increment == 0)
   {
-    strcpy(this->m_outnodefilename, this->m_innodefilename);
-    strcpy(this->m_outpolyfilename, this->m_innodefilename);
-    strcpy(this->m_outelefilename, this->m_innodefilename);
-    strcpy(this->m_edgefilename, this->m_innodefilename);
-    strcpy(this->m_vnodefilename, this->m_innodefilename);
-    strcpy(this->m_vedgefilename, this->m_innodefilename);
-    strcpy(this->m_neighborfilename, this->m_innodefilename);
-    strcpy(this->m_offfilename, this->m_innodefilename);
-    strcat(this->m_outnodefilename, ".1.node");
-    strcat(this->m_outpolyfilename, ".1.poly");
-    strcat(this->m_outelefilename, ".1.ele");
-    strcat(this->m_edgefilename, ".1.edge");
-    strcat(this->m_vnodefilename, ".1.v.node");
-    strcat(this->m_vedgefilename, ".1.v.edge");
-    strcat(this->m_neighborfilename, ".1.neigh");
-    strcat(this->m_offfilename, ".1.off");
-  } else {
-    workstring[increment] = '%';
-    workstring[increment + 1] = 'd';
-    workstring[increment + 2] = '\0';
-    sprintf(this->m_outnodefilename, workstring, meshnumber + 1);
-    strcpy(this->m_outpolyfilename, this->m_outnodefilename);
-    strcpy(this->m_outelefilename, this->m_outnodefilename);
-    strcpy(this->m_edgefilename, this->m_outnodefilename);
-    strcpy(this->m_vnodefilename, this->m_outnodefilename);
-    strcpy(this->m_vedgefilename, this->m_outnodefilename);
-    strcpy(this->m_neighborfilename, this->m_outnodefilename);
-    strcpy(this->m_offfilename, this->m_outnodefilename);
-    strcat(this->m_outnodefilename, ".node");
-    strcat(this->m_outpolyfilename, ".poly");
-    strcat(this->m_outelefilename, ".ele");
-    strcat(this->m_edgefilename, ".edge");
-    strcat(this->m_vnodefilename, ".v.node");
-    strcat(this->m_vedgefilename, ".v.edge");
-    strcat(this->m_neighborfilename, ".neigh");
-    strcat(this->m_offfilename, ".off");
+    m_outnodefilename = m_innodefilename + ".1.node";
+    m_outpolyfilename = m_innodefilename + ".1.poly";
+    m_outelefilename = m_innodefilename + ".1.ele";
+    m_edgefilename = m_innodefilename + ".1.edge";
+    m_vnodefilename = m_innodefilename + ".1.v.node";
+    m_vedgefilename = m_innodefilename + ".1.v.edge";
+    m_neighborfilename = m_innodefilename + ".1.neigh";
+    m_offfilename = m_innodefilename + ".1.off";
   }
-  strcat(this->m_innodefilename, ".node");
-  strcat(this->m_inpolyfilename, ".poly");
-  strcat(this->m_inelefilename, ".ele");
-  strcat(this->m_areafilename, ".area");
+  else
+  {
+    const std::string s = boost::lexical_cast<std::string>(meshnumber + 1);
+    m_outnodefilename = m_innodefilename + "." + s + ".node";
+    m_outpolyfilename = m_innodefilename + "." + s + ".poly";
+    m_outelefilename = m_innodefilename + "." + s + ".ele";
+    m_edgefilename = m_innodefilename + "." + s + ".edge";
+    m_vnodefilename = m_innodefilename + "." + s + ".v.node";
+    m_vedgefilename = m_innodefilename + "." + s + ".v.edge";
+    m_neighborfilename = m_innodefilename + "." + s + ".neigh";
+    m_offfilename = m_innodefilename + "." + s + ".off";
+  }
+  m_innodefilename += ".node";
+  m_inpolyfilename += ".poly";
+  m_inelefilename += ".ele";
+  m_areafilename += ".area";
 }

@@ -1,6 +1,7 @@
 #ifndef TRIANGLECPPINSERTVERTEXRESULT_H
 #define TRIANGLECPPINSERTVERTEXRESULT_H
 
+namespace ribi {
 namespace tricpp {
 
 /* Labels that signify the result of vertex insertion.  The result indicates */
@@ -17,5 +18,6 @@ enum InsertVertexResult {
 };
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPINSERTVERTEXRESULT_H

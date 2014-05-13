@@ -1,7 +1,7 @@
 #include "trianglecppstring.h"
 
 
-char * tricpp::FindField(char * const string)
+char * ribi::tricpp::FindField(char * const string)
 {
   char * result = string;
   /* Skip the current field.  Stop upon reaching whitespace. */

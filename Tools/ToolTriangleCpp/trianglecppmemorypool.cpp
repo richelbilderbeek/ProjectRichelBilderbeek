@@ -1,8 +1,10 @@
 #include "trianglecppmemorypool.h"
 
+#include <algorithm>
+
 #include "trianglecpptrimalloc.h"
 
-tricpp::MemoryPool::MemoryPool()
+ribi::tricpp::MemoryPool::MemoryPool()
   :
     m_alignbytes{0},
     m_deaditemstack{nullptr},
@@ -22,7 +24,7 @@ tricpp::MemoryPool::MemoryPool()
 
 }
 
-void * tricpp::PoolAlloc(MemoryPool * const pool)
+void * ribi::tricpp::PoolAlloc(MemoryPool * const pool)
 {
   void *newitem;
   void **newblock;
@@ -74,7 +76,7 @@ void * tricpp::PoolAlloc(MemoryPool * const pool)
   return newitem;
 }
 
-void tricpp::PoolDealloc(
+void ribi::tricpp::PoolDealloc(
   MemoryPool * const pool,
   void * const dyingitem
 )
@@ -85,7 +87,24 @@ void tricpp::PoolDealloc(
   --pool->m_items;
 }
 
-void tricpp::PoolDeinit(MemoryPool * const pool)
+void ribi::tricpp::PoolDealloc(
+  std::vector<Vertex>& vertices,
+  Vertex& dyingitem
+)
+{
+  /// Push freshly killed item onto stack.
+  //*((void **) dyingitem) = pool->m_deaditemstack;
+  //pool->m_deaditemstack = dyingitem;
+  //--pool->m_items;
+  std::swap(
+    *std::find(vertices.begin(),vertices.end(),dyingitem),
+    vertices.back();
+  );
+  vertices.pop_back();
+
+}
+
+void ribi::tricpp::PoolDeinit(MemoryPool * const pool)
 {
   while (pool->m_firstblock != nullptr) {
     pool->m_nowblock = (void **) *(pool->m_firstblock);
@@ -95,7 +114,12 @@ void tricpp::PoolDeinit(MemoryPool * const pool)
   }
 }
 
-void tricpp::PoolInit(
+void ribi::tricpp::PoolDeinit(std::vector<Vertex>& vertices)
+{
+  vertices.resize(0);
+}
+
+void ribi::tricpp::PoolInit(
   MemoryPool * const pool,
   const int bytecount,
   const int itemcount,
@@ -134,7 +158,7 @@ void tricpp::PoolInit(
   PoolRestart(pool);
 }
 
-void tricpp::PoolRestart(MemoryPool * const pool)
+void ribi::tricpp::PoolRestart(MemoryPool * const pool)
 {
   pool->m_items = 0;
   pool->m_maxitems = 0;
@@ -153,7 +177,7 @@ void tricpp::PoolRestart(MemoryPool * const pool)
   pool->m_deaditemstack = nullptr;
 }
 
-void tricpp::TraversalInit(MemoryPool * const pool)
+void ribi::tricpp::TraversalInit(MemoryPool * const pool)
 {
   /// Begin the traversal in the first block.
   pool->m_pathblock = pool->m_firstblock;
@@ -167,7 +191,7 @@ void tricpp::TraversalInit(MemoryPool * const pool)
   pool->m_pathitemsleft = pool->m_itemsfirstblock;
 }
 
-void * tricpp::Traverse(MemoryPool * const pool)
+void * ribi::tricpp::Traverse(MemoryPool * const pool)
 {
   /// Stop upon exhausting the list of items.
   if (pool->m_pathitem == pool->m_nextitem)

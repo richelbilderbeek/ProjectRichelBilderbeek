@@ -1,6 +1,6 @@
 #include "trianglecppbadtriang.h"
 
-tricpp::BadTriang::BadTriang()
+ribi::tricpp::BadTriang::BadTriang()
   : m_key{0.0},
     m_nexttriang{nullptr},
     m_poortri{},

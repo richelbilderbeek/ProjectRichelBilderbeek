@@ -4,6 +4,7 @@
 #include "trianglecppvertex.h"
 #include "trianglecppotri.h"
 
+namespace ribi {
 namespace tricpp {
 
 /// A node in the splay tree.  Each node holds an oriented ghost triangle
@@ -30,5 +31,6 @@ struct SplayNode
 };
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPSPLAYNODE_H

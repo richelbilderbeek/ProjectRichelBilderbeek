@@ -1,6 +1,7 @@
 #ifndef TRIANGLECPPLOCATERESULT_H
 #define TRIANGLECPPLOCATERESULT_H
 
+namespace ribi {
 namespace tricpp {
 
 /* Labels that signify the result of point location.  The result of a        */
@@ -10,5 +11,6 @@ namespace tricpp {
 enum LocateResult {INTRIANGLE, ONEDGE, ONVERTEX, OUTSIDE};
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPLOCATERESULT_H

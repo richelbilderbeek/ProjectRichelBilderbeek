@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
 namespace tricpp {
 
 /// Data structure for command line switches and file names.  This structure
@@ -43,32 +44,32 @@ namespace tricpp {
 /// Read the instructions to find out the meaning of these switches.
 struct Behavior {
   /// Maximum number of characters in a file name (including the null).
-  static const int max_filename_size = 2048;
+  //static const int max_filename_size = 2048;
 
   /// Read the command line, identify switches, and set
   /// up options and file names.
   Behavior(const std::vector<std::string>& args);
 
-  char m_areafilename[max_filename_size];
+  std::string m_areafilename;
   int m_conformdel;
   int m_convex;
   bool m_do_check;
   bool m_do_refine;
   int m_dwyer;
-  char m_edgefilename[max_filename_size];
+  std::string m_edgefilename;
   int m_edgesout;
   static const int m_firstnumber = 1;
   int m_fixedarea;
   int m_geomview;
   double m_goodangle;
   int m_incremental;
-  char m_inelefilename[max_filename_size];
-  char m_innodefilename[max_filename_size];
-  char m_inpolyfilename[max_filename_size];
+  std::string m_inelefilename;
+  std::string m_innodefilename;
+  std::string m_inpolyfilename;
   int m_jettison;
   double m_maxarea;
   double m_minangle;
-  char m_neighborfilename[max_filename_size];
+  std::string m_neighborfilename;
   int m_neighbors;
   int m_nobisect;
   int m_nobound;
@@ -79,11 +80,11 @@ struct Behavior {
   int m_nonodewritten;
   int m_nopolywritten;
   double m_offconstant;
-  char m_offfilename[max_filename_size];
+  std::string m_offfilename;
   int m_order;
-  char m_outelefilename[max_filename_size];
-  char m_outnodefilename[max_filename_size];
-  char m_outpolyfilename[max_filename_size];
+  std::string m_outelefilename;
+  std::string m_outnodefilename;
+  std::string m_outpolyfilename;
   static const bool m_poly = true;
   int m_quality;
   int m_quiet;
@@ -92,15 +93,16 @@ struct Behavior {
   int m_steiner;
   int m_sweepline;
   int m_usertest;
-  int m_usesegments;
+  static const bool m_usesegments = true;
   int m_vararea;
-  char m_vedgefilename[max_filename_size];
+  std::string m_vedgefilename;
   int m_verbosity; ///0: no verbosity, 1: verbose, +1: more verbose
-  char m_vnodefilename[max_filename_size];
+  std::string m_vnodefilename;
   int m_voronoi;
   static const int m_weighted = 0;
 };
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPBEHAVIOR_H

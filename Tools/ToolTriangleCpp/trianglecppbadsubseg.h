@@ -6,6 +6,7 @@
 #include "trianglecppvertex.h"
 
 
+namespace ribi {
 namespace tricpp {
 
 /* A queue used to store encroached subsegments.  Each subsegment's vertices */
@@ -20,5 +21,6 @@ struct BadSubSeg
 };
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPBADSUBSEG_H

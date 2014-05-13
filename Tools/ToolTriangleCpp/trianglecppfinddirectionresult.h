@@ -1,6 +1,7 @@
 #ifndef TRIANGLECPPFINDDIRECTIONRESULT_H
 #define TRIANGLECPPFINDDIRECTIONRESULT_H
 
+namespace ribi {
 namespace tricpp {
 
 /* Labels that signify the result of direction finding.  The result          */
@@ -11,5 +12,6 @@ namespace tricpp {
 enum FindDirectionResult {WITHIN, LEFTCOLLINEAR, RIGHTCOLLINEAR};
 
 } //~namespace tricpp
+} //~namespace ribi
 
 #endif // TRIANGLECPPFINDDIRECTIONRESULT_H

@@ -2,7 +2,7 @@
 
 //p.first = epsilon
 //p.second = splitter
-tricpp::Global::Global(const std::pair<double,double>& p)
+ribi::tricpp::Global::Global(const std::pair<double,double>& p)
   :
     m_ccwerrboundA{( 3.0 +  16.0 * p.first) * p.first},
     m_ccwerrboundB{( 2.0 +  12.0 * p.first) * p.first},
@@ -20,7 +20,7 @@ tricpp::Global::Global(const std::pair<double,double>& p)
 
 }
 
-std::pair<double,double> tricpp::Global::CreateEpsilonAndSplitter() noexcept
+std::pair<double,double> ribi::tricpp::Global::CreateEpsilonAndSplitter() noexcept
 {
   double lastcheck = 0.0;
   int every_other = 1;

@@ -1,0 +1,217 @@
+/*****************************************************************************/
+/*                                                                           */
+/*  The basic mesh data structures                                           */
+/*                                                                           */
+/*  There are three:  vertices, triangles, and subsegments (abbreviated      */
+/*  `subseg').  These three data structures, linked by pointers, comprise    */
+/*  the mesh.  A vertex simply represents a mesh vertex and its properties.  */
+/*  A triangle is a triangle.  A subsegment is a special data structure used */
+/*  to represent an impenetrable edge of the mesh (perhaps on the outer      */
+/*  boundary, on the boundary of a hole, or part of an internal boundary     */
+/*  separating two triangulated regions).  Subsegments represent boundaries, */
+/*  defined by the user, that triangles may not lie across.                  */
+/*                                                                           */
+/*  A triangle consists of a list of three vertices, a list of three         */
+/*  adjoining triangles, a list of three adjoining subsegments (when         */
+/*  segments exist), an arbitrary number of optional user-defined            */
+/*  floating-point attributes, and an optional area constraint.  The latter  */
+/*  is an upper bound on the permissible area of each triangle in a region,  */
+/*  used for mesh refinement.                                                */
+/*                                                                           */
+/*  For a triangle on a boundary of the mesh, some or all of the neighboring */
+/*  triangles may not be present.  For a triangle in the interior of the     */
+/*  mesh, often no neighboring subsegments are present.  Such absent         */
+/*  triangles and subsegments are never represented by NULL pointers; they   */
+/*  are represented by two special records:  `dummytri', the triangle that   */
+/*  fills "outer space", and `dummysub', the omnipresent subsegment.         */
+/*  `dummytri' and `dummysub' are used for several reasons; for instance,    */
+/*  they can be dereferenced and their contents examined without violating   */
+/*  protected memory.                                                        */
+/*                                                                           */
+/*  However, it is important to understand that a triangle includes other    */
+/*  information as well.  The pointers to adjoining vertices, triangles, and */
+/*  subsegments are ordered in a way that indicates their geometric relation */
+/*  to each other.  Furthermore, each of these pointers contains orientation */
+/*  information.  Each pointer to an adjoining triangle indicates which face */
+/*  of that triangle is contacted.  Similarly, each pointer to an adjoining  */
+/*  subsegment indicates which side of that subsegment is contacted, and how */
+/*  the subsegment is oriented relative to the triangle.                     */
+/*                                                                           */
+/*  The data structure representing a subsegment may be thought to be        */
+/*  abutting the edge of one or two triangle data structures:  either        */
+/*  sandwiched between two triangles, or resting against one triangle on an  */
+/*  exterior boundary or hole boundary.                                      */
+/*                                                                           */
+/*  A subsegment consists of a list of four vertices--the vertices of the    */
+/*  subsegment, and the vertices of the segment it is a part of--a list of   */
+/*  two adjoining subsegments, and a list of two adjoining triangles.  One   */
+/*  of the two adjoining triangles may not be present (though there should   */
+/*  always be one), and neighboring subsegments might not be present.        */
+/*  Subsegments also store a user-defined integer "boundary marker".         */
+/*  Typically, this integer is used to indicate what boundary conditions are */
+/*  to be applied at that location in a finite element simulation.           */
+/*                                                                           */
+/*  Like triangles, subsegments maintain information about the relative      */
+/*  orientation of neighboring objects.                                      */
+/*                                                                           */
+/*  Vertices are relatively simple.  A vertex is a list of floating-point    */
+/*  numbers, starting with the x, and y coordinates, followed by an          */
+/*  arbitrary number of optional user-defined floating-point attributes,     */
+/*  followed by an integer boundary marker.  During the segment insertion    */
+/*  phase, there is also a pointer from each vertex to a triangle that may   */
+/*  contain it.  Each pointer is not always correct, but when one is, it     */
+/*  speeds up segment insertion.  These pointers are assigned values once    */
+/*  at the beginning of the segment insertion phase, and are not used or     */
+/*  updated except during this phase.  Edge flipping during segment          */
+/*  insertion will render some of them incorrect.  Hence, don't rely upon    */
+/*  them for anything.                                                       */
+/*                                                                           */
+/*  Other than the exception mentioned above, vertices have no information   */
+/*  about what triangles, subfacets, or subsegments they are linked to.      */
+/*                                                                           */
+/*****************************************************************************/
+
+/*****************************************************************************/
+/*                                                                           */
+/*  Handles                                                                  */
+/*                                                                           */
+/*  The oriented triangle (`otri') and oriented subsegment (`osub') data     */
+/*  structures defined below do not themselves store any part of the mesh.   */
+/*  The mesh itself is made of `triangle's, `subseg's, and `vertex's.        */
+/*                                                                           */
+/*  Oriented triangles and oriented subsegments will usually be referred to  */
+/*  as "handles."  A handle is essentially a pointer into the mesh; it       */
+/*  allows you to "hold" one particular part of the mesh.  Handles are used  */
+/*  to specify the regions in which one is traversing and modifying the mesh.*/
+/*  A single `triangle' may be held by many handles, or none at all.  (The   */
+/*  latter case is not a memory leak, because the triangle is still          */
+/*  connected to other triangles in the mesh.)                               */
+/*                                                                           */
+/*  An `otri' is a handle that holds a triangle.  It holds a specific edge   */
+/*  of the triangle.  An `osub' is a handle that holds a subsegment.  It     */
+/*  holds either the left or right side of the subsegment.                   */
+/*                                                                           */
+/*  Navigation about the mesh is accomplished through a set of mesh          */
+/*  manipulation primitives, further below.  Many of these primitives take   */
+/*  a handle and produce a new handle that holds the mesh near the first     */
+/*  handle.  Other primitives take two handles and glue the corresponding    */
+/*  parts of the mesh together.  The orientation of the handles is           */
+/*  important.  For instance, when two triangles are glued together by the   */
+/*  bond() primitive, they are glued at the edges on which the handles lie.  */
+/*                                                                           */
+/*  Because vertices have no information about which triangles they are      */
+/*  attached to, I commonly represent a vertex by use of a handle whose      */
+/*  origin is the vertex.  A single handle can simultaneously represent a    */
+/*  triangle, an edge, and a vertex.                                         */
+/*                                                                           */
+/*****************************************************************************/
+
+
+
+
+
+/*****************************************************************************/
+/*                                                                           */
+/*  Mesh manipulation primitives.  Each triangle contains three pointers to  */
+/*  other triangles, with orientations.  Each pointer points not to the      */
+/*  first byte of a triangle, but to one of the first three bytes of a       */
+/*  triangle.  It is necessary to extract both the triangle itself and the   */
+/*  orientation.  To save memory, I keep both pieces of information in one   */
+/*  pointer.  To make this possible, I assume that all triangles are aligned */
+/*  to four-byte boundaries.  The decode() routine below decodes a pointer,  */
+/*  extracting an orientation (in the range 0 to 2) and a pointer to the     */
+/*  beginning of a triangle.  The encode() routine compresses a pointer to a */
+/*  triangle and an orientation into a single pointer.  My assumptions that  */
+/*  triangles are four-byte-aligned and that the `unsigned long' type is     */
+/*  long enough to hold a pointer are two of the few kludges in this program.*/
+/*                                                                           */
+/*  Subsegments are manipulated similarly.  A pointer to a subsegment        */
+/*  carries both an address and an orientation in the range 0 to 1.          */
+/*                                                                           */
+/*  The other primitives take an oriented triangle or oriented subsegment,   */
+/*  and return an oriented triangle or oriented subsegment or vertex; or     */
+/*  they change the connections in the data structure.                       */
+/*                                                                           */
+/*  Below, triangles and subsegments are denoted by their vertices.  The     */
+/*  triangle abc has origin (org) a, destination (dest) b, and apex (apex)   */
+/*  c.  These vertices occur in counterclockwise order about the triangle.   */
+/*  The handle abc may simultaneously denote vertex a, edge ab, and triangle */
+/*  abc.                                                                     */
+/*                                                                           */
+/*  Similarly, the subsegment ab has origin (sorg) a and destination (sdest) */
+/*  b.  If ab is thought to be directed upward (with b directly above a),    */
+/*  then the handle ab is thought to grasp the right side of ab, and may     */
+/*  simultaneously denote vertex a and edge ab.                              */
+/*                                                                           */
+/*  An asterisk (*) denotes a vertex whose identity is unknown.              */
+/*                                                                           */
+/*  Given this notation, a partial list of mesh manipulation primitives      */
+/*  follows.                                                                 */
+/*                                                                           */
+/*                                                                           */
+/*  For triangles:                                                           */
+/*                                                                           */
+/*  sym:  Find the abutting triangle; same edge.                             */
+/*  sym(abc) -> ba*                                                          */
+/*                                                                           */
+/*  lnext:  Find the next edge (counterclockwise) of a triangle.             */
+/*  lnext(abc) -> bca                                                        */
+/*                                                                           */
+/*  lprev:  Find the previous edge (clockwise) of a triangle.                */
+/*  lprev(abc) -> cab                                                        */
+/*                                                                           */
+/*  onext:  Find the next edge counterclockwise with the same origin.        */
+/*  onext(abc) -> ac*                                                        */
+/*                                                                           */
+/*  oprev:  Find the next edge clockwise with the same origin.               */
+/*  oprev(abc) -> a*b                                                        */
+/*                                                                           */
+/*  dnext:  Find the next edge counterclockwise with the same destination.   */
+/*  dnext(abc) -> *ba                                                        */
+/*                                                                           */
+/*  dprev:  Find the next edge clockwise with the same destination.          */
+/*  dprev(abc) -> cb*                                                        */
+/*                                                                           */
+/*  rnext:  Find the next edge (counterclockwise) of the adjacent triangle.  */
+/*  rnext(abc) -> *a*                                                        */
+/*                                                                           */
+/*  rprev:  Find the previous edge (clockwise) of the adjacent triangle.     */
+/*  rprev(abc) -> b**                                                        */
+/*                                                                           */
+/*  org:  Origin          dest:  Destination          apex:  Apex            */
+/*  org(abc) -> a         dest(abc) -> b              apex(abc) -> c         */
+/*                                                                           */
+/*  bond:  Bond two triangles together at the resepective handles.           */
+/*  bond(abc, bad)                                                           */
+/*                                                                           */
+/*                                                                           */
+/*  For subsegments:                                                         */
+/*                                                                           */
+/*  ssym:  Reverse the orientation of a subsegment.                          */
+/*  ssym(ab) -> ba                                                           */
+/*                                                                           */
+/*  spivot:  Find adjoining subsegment with the same origin.                 */
+/*  spivot(ab) -> a*                                                         */
+/*                                                                           */
+/*  snext:  Find next subsegment in sequence.                                */
+/*  snext(ab) -> b*                                                          */
+/*                                                                           */
+/*  sorg:  Origin                      sdest:  Destination                   */
+/*  sorg(ab) -> a                      sdest(ab) -> b                        */
+/*                                                                           */
+/*  sbond:  Bond two subsegments together at the respective origins.         */
+/*  sbond(ab, ac)                                                            */
+/*                                                                           */
+/*                                                                           */
+/*  For interacting tetrahedra and subfacets:                                */
+/*                                                                           */
+/*  tspivot:  Find a subsegment abutting a triangle.                         */
+/*  tspivot(abc) -> ba                                                       */
+/*                                                                           */
+/*  stpivot:  Find a triangle abutting a subsegment.                         */
+/*  stpivot(ab) -> ba*                                                       */
+/*                                                                           */
+/*  tsbond:  Bond a triangle to a subsegment.                                */
+/*  tsbond(abc, ba)                                                          */
+/*                                                                           */
+/*****************************************************************************/

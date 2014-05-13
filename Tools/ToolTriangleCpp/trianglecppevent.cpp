@@ -1,6 +1,6 @@
 #include "trianglecppevent.h"
 
-tricpp::Event::Event()
+ribi::tricpp::Event::Event()
   :
     m_eventptr{nullptr},
     m_heapposition{0},
@@ -11,7 +11,7 @@ tricpp::Event::Event()
 }
 
 
-void tricpp::eventheapinsert(
+void ribi::tricpp::eventheapinsert(
   Event ** const heap,
   const int heapsize,
   Event * const newevent)
@@ -42,7 +42,7 @@ void tricpp::eventheapinsert(
   newevent->m_heapposition = eventnum;
 }
 
-void tricpp::eventheapify(
+void ribi::tricpp::eventheapify(
   Event ** const heap,
   const int heapsize,
   int eventnum
@@ -91,7 +91,7 @@ void tricpp::eventheapify(
   }
 }
 
-void tricpp::eventheapdelete(
+void ribi::tricpp::eventheapdelete(
   Event ** const heap,
   const int heapsize,
   int eventnum
