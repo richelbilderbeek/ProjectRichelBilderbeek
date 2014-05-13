@@ -13,7 +13,8 @@ namespace tricpp {
 
 struct BadSubSeg {
   SubSeg encsubseg;                             /* An encroached subsegment. */
-  Vertex subsegorg, subsegdest;                         /* Its two vertices. */
+  Vertex subsegorg;
+  Vertex subsegdest;
 };
 
 } //~namespace tricpp

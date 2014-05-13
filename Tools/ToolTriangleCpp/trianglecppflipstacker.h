@@ -9,7 +9,9 @@ namespace tricpp {
 /*   The stack is used to undo the vertex insertion if the vertex encroaches */
 /*   upon a subsegment.                                                      */
 
-struct FlipStacker {
+struct FlipStacker
+{
+  FlipStacker();
   Triangle flippedtri;                       /* A recently flipped triangle. */
   FlipStacker *prevflip;               /* Previous flip in the stack. */
 };

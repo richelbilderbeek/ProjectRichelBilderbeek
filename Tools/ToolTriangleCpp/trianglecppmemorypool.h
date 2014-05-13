@@ -29,19 +29,20 @@ namespace tricpp {
 struct MemoryPool
 {
   MemoryPool();
-
-  void **firstblock, **nowblock;
-  void *nextitem;
+  int alignbytes;
   void *deaditemstack;
+  void **firstblock;
+  int itembytes;
+  long items;
+  int itemsfirstblock;
+  int itemsperblock;
+  long maxitems;
+  void *nextitem;
+  void **nowblock;
   void **pathblock;
   void *pathitem;
-  int alignbytes;
-  int itembytes;
-  int itemsperblock;
-  int itemsfirstblock;
-  long items, maxitems;
-  int unallocateditems;
   int pathitemsleft;
+  int unallocateditems;
 };
 
 ///  poolalloc()   Allocate space for an item.

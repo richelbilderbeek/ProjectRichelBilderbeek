@@ -3,21 +3,23 @@
 #include "trianglecpptrimalloc.h"
 
 tricpp::MemoryPool::MemoryPool()
+  :
+    alignbytes{0},
+    deaditemstack{nullptr},
+    firstblock{nullptr},
+    itembytes{0},
+    items{0},
+    itemsfirstblock{0},
+    itemsperblock{0},
+    maxitems{0},
+    nextitem{nullptr},
+    nowblock{nullptr},
+    pathblock{nullptr},
+    pathitem{nullptr},
+    pathitemsleft{0},
+    unallocateditems{0}
 {
-  firstblock = nullptr;
-  nowblock = nullptr;
-  nextitem = nullptr;
-  deaditemstack = nullptr;
-  pathblock = nullptr;
-  pathitem = nullptr;
-  alignbytes = 0;
-  itembytes = 0;
-  itemsperblock = 0;
-  itemsfirstblock = 0;
-  items = 0;
-  maxitems = 0;
-  unallocateditems = 0;
-  pathitemsleft = 0;
+
 }
 
 void * tricpp::poolalloc(MemoryPool * const pool)
@@ -28,10 +30,13 @@ void * tricpp::poolalloc(MemoryPool * const pool)
 
   /// First check the linked list of dead items.  If the list is not
   ///   empty, allocate an item from the list rather than a fresh one.
-  if (pool->deaditemstack != nullptr) {
+  if (pool->deaditemstack != nullptr)
+  {
     newitem = pool->deaditemstack;               /// Take first item in list.
     pool->deaditemstack = * (void **) pool->deaditemstack;
-  } else {
+  }
+  else
+  {
     /// Check if there are any free items left in the current block.
     if (pool->unallocateditems == 0) {
       /// Check if another block must be allocated.
@@ -77,7 +82,7 @@ void tricpp::pooldealloc(
   /// Push freshly killed item onto stack.
   *((void **) dyingitem) = pool->deaditemstack;
   pool->deaditemstack = dyingitem;
-  pool->items--;
+  --pool->items;
 }
 
 void tricpp::pooldeinit(MemoryPool * const pool)
@@ -110,9 +115,11 @@ void tricpp::poolinit(
   pool->itembytes = ((bytecount - 1) / pool->alignbytes + 1) *
                     pool->alignbytes;
   pool->itemsperblock = itemcount;
-  if (firstitemcount == 0) {
+  if (firstitemcount == 0)
+  {
     pool->itemsfirstblock = itemcount;
-  } else {
+  } else
+  {
     pool->itemsfirstblock = firstitemcount;
   }
 
@@ -129,15 +136,13 @@ void tricpp::poolinit(
 
 void tricpp::poolrestart(MemoryPool * const pool)
 {
-  unsigned long alignptr;
-
   pool->items = 0;
   pool->maxitems = 0;
 
   /// Set the currently active block.
   pool->nowblock = pool->firstblock;
   /// Find the first item in the pool.  Increment by the size of (void *).
-  alignptr = (unsigned long) (pool->nowblock + 1);
+  const unsigned long alignptr = (unsigned long) (pool->nowblock + 1);
   /// Align the item on an `alignbytes'-byte boundary.
   pool->nextitem = (void *)
     (alignptr + (unsigned long) pool->alignbytes -
@@ -148,34 +153,12 @@ void tricpp::poolrestart(MemoryPool * const pool)
   pool->deaditemstack = nullptr;
 }
 
-/*
-void tricpp::poolzero(MemoryPool * const pool)
-{
-  pool->firstblock = nullptr;
-  pool->nowblock = nullptr;
-  pool->nextitem = nullptr;
-  pool->deaditemstack = nullptr;
-  pool->pathblock = nullptr;
-  pool->pathitem = nullptr;
-  pool->alignbytes = 0;
-  pool->itembytes = 0;
-  pool->itemsperblock = 0;
-  pool->itemsfirstblock = 0;
-  pool->items = 0;
-  pool->maxitems = 0;
-  pool->unallocateditems = 0;
-  pool->pathitemsleft = 0;
-}
-*/
-
 void tricpp::traversalinit(MemoryPool * const pool)
 {
-  unsigned long alignptr;
-
   /// Begin the traversal in the first block.
   pool->pathblock = pool->firstblock;
   /// Find the first item in the block.  Increment by the size of (void *).
-  alignptr = (unsigned long) (pool->pathblock + 1);
+  const unsigned long alignptr = (unsigned long) (pool->pathblock + 1);
   /// Align with item on an `alignbytes'-byte boundary.
   pool->pathitem = (void *)
     (alignptr + (unsigned long) pool->alignbytes -
@@ -186,20 +169,19 @@ void tricpp::traversalinit(MemoryPool * const pool)
 
 void * tricpp::traverse(MemoryPool * const pool)
 {
-  void *newitem;
-  unsigned long alignptr;
-
   /// Stop upon exhausting the list of items.
-  if (pool->pathitem == pool->nextitem) {
+  if (pool->pathitem == pool->nextitem)
+  {
     return nullptr;
   }
 
   /// Check whether any untraversed items remain in the current block.
-  if (pool->pathitemsleft == 0) {
+  if (pool->pathitemsleft == 0)
+  {
     /// Find the next block.
     pool->pathblock = (void **) *(pool->pathblock);
     /// Find the first item in the block.  Increment by the size of (void *).
-    alignptr = (unsigned long) (pool->pathblock + 1);
+    unsigned long alignptr = (unsigned long)pool->pathblock + 1;
     /// Align with item on an `alignbytes'-byte boundary.
     pool->pathitem = (void *)
       (alignptr + (unsigned long) pool->alignbytes -
@@ -208,9 +190,9 @@ void * tricpp::traverse(MemoryPool * const pool)
     pool->pathitemsleft = pool->itemsperblock;
   }
 
-  newitem = pool->pathitem;
+  void * const newitem = pool->pathitem;
   /// Find the next item in the block.
   pool->pathitem = (void *) ((char *) pool->pathitem + pool->itembytes);
-  pool->pathitemsleft--;
+  --pool->pathitemsleft;
   return newitem;
 }

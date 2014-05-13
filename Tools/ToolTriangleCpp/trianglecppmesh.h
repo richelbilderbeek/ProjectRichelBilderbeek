@@ -39,6 +39,9 @@ struct Mesh
   long hyperbolacount;      /// Number of right-of-hyperbola tests performed.
   long incirclecount;                 /// Number of incircle tests performed.
   int inelements;                              /// Number of input triangles.
+  Vertex infvertex1; /// Triangular bounding box vertices.
+  Vertex infvertex2; /// Triangular bounding box vertices.
+  Vertex infvertex3; /// Triangular bounding box vertices.
   int insegments;                               /// Number of input segments.
   int invertices;                               /// Number of input vertices.
   FlipStacker *lastflip; /// Variable that maintains the stack of recently flipped triangles.
@@ -67,9 +70,6 @@ struct Mesh
   double ymax; /// x and y bounds
   double ymin; /// x and y bounds
 
-  Vertex infvertex1; /// Triangular bounding box vertices.
-  Vertex infvertex2; /// Triangular bounding box vertices.
-  Vertex infvertex3; /// Triangular bounding box vertices.
 };
 
 //void triangleinit(Mesh& m);

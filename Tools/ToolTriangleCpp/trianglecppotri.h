@@ -10,7 +10,9 @@ namespace tricpp {
 /*   three possible orientations.  By convention, each edge always points    */
 /*   counterclockwise about the corresponding triangle.                      */
 
-struct Otri {
+struct Otri
+{
+  Otri();
   Triangle *tri;
   int orient;                                         /* Ranges from 0 to 2. */
 };

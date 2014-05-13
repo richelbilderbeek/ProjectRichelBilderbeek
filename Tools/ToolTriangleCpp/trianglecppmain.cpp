@@ -8094,12 +8094,13 @@ void tricpp::readnodes(
   FILE ** const polyfile
 )
 {
-  FILE *infile;
-  Vertex vertexloop;
+  FILE *infile = nullptr;
+  //Vertex vertexloop;
   char inputline[g_max_inputline_size];
   //char *stringptr = 0; //RJCB
   const char *infilename = nullptr;
-  double x, y;
+  assert(!infilename); //To satisfy the compiler
+  //double x, y;
   int firstnode;
   int nodemarkers;
   int currentmarker;
@@ -8219,7 +8220,7 @@ void tricpp::readnodes(
   /* Read the vertices. */
   for (int i = 0; i < m.invertices; i++)
   {
-    vertexloop = (Vertex) poolalloc(&m.vertices);
+    Vertex vertexloop = (Vertex) poolalloc(&m.vertices);
     char * stringptr = readline(inputline, infile); //RJCB
     if (i == 0)
     {
@@ -8235,7 +8236,7 @@ void tricpp::readnodes(
       throw std::logic_error(s.str().c_str());
 
     }
-    x = (double) strtod(stringptr, &stringptr);
+    const double x = strtod(stringptr, &stringptr);
     stringptr = findfield(stringptr);
     if (*stringptr == '\0') {
       std::stringstream s;
@@ -8243,15 +8244,18 @@ void tricpp::readnodes(
       throw std::logic_error(s.str().c_str());
 
     }
-    y = (double) strtod(stringptr, &stringptr);
+    const double y = strtod(stringptr, &stringptr);
     vertexloop[0] = x;
     vertexloop[1] = y;
     /* Read the vertex attributes. */
-    for (int j = 2; j < 2 + m.nextras; j++) {
+    for (int j = 2; j < 2 + m.nextras; j++)
+    {
       stringptr = findfield(stringptr);
-      if (*stringptr == '\0') {
+      if (*stringptr == '\0')
+      {
         vertexloop[j] = 0.0;
-      } else {
+      } else
+      {
         vertexloop[j] = (double) strtod(stringptr, &stringptr);
       }
     }
