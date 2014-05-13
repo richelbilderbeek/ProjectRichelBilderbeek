@@ -24,7 +24,7 @@ struct Mesh
   long m_circletopcount;       /// Number of circle top calculations performed.
   long m_circumcentercount;  /// Number of circumcenter calculations performed.
   long m_counterclockcount;     /// Number of counterclockwise tests performed.
-  bool m_do_readnodefile;          /// Has a .node file been read?
+  static const bool m_do_readnodefile = false;          /// Has a .node file been read?
   SubSeg * m_dummysub; /// Pointer to the omnipresent subsegment.  Referenced by any triangle or ///   subsegment that isn't really connected to a subsegment at that ///   location.
   SubSeg * m_dummysubbase;      /// Keep base address so we can free() it later.
   Triangle *m_dummytri; /// Pointer to the `triangle' that occupies all of "outer space."

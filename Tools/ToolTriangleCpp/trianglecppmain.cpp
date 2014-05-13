@@ -8136,128 +8136,37 @@ void tricpp::highorder(
   }
 }
 
-void tricpp::readnodes(
+void tricpp::ReadNodes(
   Mesh& m,
-  Behavior& b,
-  const char * const nodefilename,
-  const char * const polyfilename,
-  FILE ** const polyfile
+  const Behavior& b,
+  const char * const polyfilename
 )
 {
-  FILE *infile = nullptr;
-  //char inputline[g_max_inputline_size];
-  const char *infilename = nullptr;
-  assert(!infilename); //To satisfy the compiler
-  //int firstnode;
-  //int n_nodemarkers;
-  //int currentmarker;
   const auto v = ribi::fileio::FileIo().FileToVector(polyfilename);
 
-  if (b.m_poly)
-  {
-    /* Read the vertices from a .poly file. */
-    if (!b.m_quiet) { std::cout << "Opening file '" << polyfilename << "'"; }
-    std::ifstream f(polyfilename);
-    assert(f);
-    f >> m.m_invertices;
-    assert(f);
-    {
-      int mesh_dimensionality = -1;
-      f >> mesh_dimensionality;
-      assert(mesh_dimensionality == 2);
-      assert(f);
-    }
-    {
-      int n_extras = -1;
-      f >> n_extras;
-      assert(n_extras == 0);
-      assert(f);
-    }
-    {
-      int n_nodemarkers = -1;
-      f >> n_nodemarkers;
-      assert(n_nodemarkers == 1);
-      assert(f);
-    }
+  if (!b.m_quiet) { std::cout << "Opening file '" << polyfilename << "'"; }
+  const auto first_line_strings = SeperateString(v[0],' ');
+  assert(first_line_strings.size() == 4);
+  const int n_vertices = boost::lexical_cast<int>(first_line_strings[0]);
+  const int mesh_dimensionality = boost::lexical_cast<int>(first_line_strings[1]);
+  const int n_extras = boost::lexical_cast<int>(first_line_strings[2]);
+  const int n_nodemarkers = boost::lexical_cast<int>(first_line_strings[3]);
 
-
-    /*
-    *polyfile = fopen(polyfilename, "r");
-    if (*polyfile == nullptr) {
-      std::stringstream s;
-      s << "  Error:  Cannot access file " << polyfilename << ".";
-      throw std::logic_error(s.str().c_str());
-
-    }
-    // Read number of vertices, number of dimensions, number of vertex
-    //   attributes, and number of boundary markers.
-    char * stringptr = readline(inputline, *polyfile); //RJCB
-    m.m_invertices = (int) strtol(stringptr, &stringptr, 0);
-    stringptr = FindField(stringptr);
-    if (*stringptr == '\0')
-    {
-      assert(m.m_mesh_dim == 2);
-      //m.m_mesh_dim = 2;
-    }
-    else
-    {
-      assert(!"Triangle only works with two-dimensional meshes");
-      //m.m_mesh_dim = (int) strtol(stringptr, &stringptr, 0);
-    }
-    stringptr = FindField(stringptr);
-    if (*stringptr == '\0') {
-      m.m_nextras = 0;
-    } else {
-      m.m_nextras = (int) strtol(stringptr, &stringptr, 0);
-    }
-    stringptr = FindField(stringptr);
-    if (*stringptr == '\0') {
-      nodemarkers = 0;
-    } else {
-      nodemarkers = (int) strtol(stringptr, &stringptr, 0);
-    }
-    */
-    if (m.m_invertices > 0)
-    {
-      infile = *polyfile;
-      infilename = polyfilename;
-      m.m_do_readnodefile = false;
-      assert(!m.m_do_readnodefile);
-    }
-    else
-    {
-      // If the .poly file claims there are zero vertices, that means that
-      //   the vertices should be read from a separate .node file.
-      assert(!"Should not get here");
-      m.m_do_readnodefile = true;
-      infilename = nodefilename;
-    }
-  }
-  else
-  {
-    m.m_do_readnodefile = true;
-    infilename = nodefilename;
-    *polyfile = nullptr;
-    assert(!"Should not get here");
-  }
-  assert(!m.m_do_readnodefile);
-
-
-  if (m.m_invertices < 3)
+  if (n_vertices < 3)
   {
     std::stringstream s;
     s << "Error:  Input must have at least three input vertices.\n";
     throw std::logic_error(s.str().c_str());
   }
-  if (m.m_nextras == 0)
-  {
-    b.m_weighted = 0;
-  }
+  m.m_invertices = n_vertices;
+
+  assert(mesh_dimensionality == 2);
+  assert(n_extras == 0);
+  assert(n_nodemarkers == 1);
 
   initializevertexpool(m, b);
 
-  /* Read the vertices. */
-  for (int i = 0; i < m.m_invertices; i++)
+  for (int i = 0; i != n_vertices; ++i)
   {
     const int index = i + 1;
     assert(index < static_cast<int>(v.size()));
@@ -8270,10 +8179,6 @@ void tricpp::readnodes(
     {
       const int firstnode = boost::lexical_cast<int>(w[0]);
       assert(firstnode == 1);
-      if ((firstnode == 0) || (firstnode == 1))
-      {
-        b.m_firstnumber = firstnode;
-      }
     }
     const double x = boost::lexical_cast<double>(w[1]);
     const double y = boost::lexical_cast<double>(w[2]);
@@ -8284,89 +8189,24 @@ void tricpp::readnodes(
       assert(currentmarker == 1);
       setvertexmark(vertexloop, currentmarker);
     }
-    /*
-    char * stringptr = readline(inputline, infile); //RJCB
+    setvertextype(vertexloop, INPUTVERTEX);
+    // Determine the smallest and largest x and y coordinates
     if (i == 0)
     {
-      firstnode = (int) strtol(stringptr, &stringptr, 0);
-      if ((firstnode == 0) || (firstnode == 1)) {
-        b.m_firstnumber = firstnode;
-      }
-    }
-    stringptr = FindField(stringptr);
-    if (*stringptr == '\0') {
-      std::stringstream s;
-      printf("Error:  Vertex %d has no x coordinate.\n", b.m_firstnumber + i);
-      throw std::logic_error(s.str().c_str());
-
-    }
-    const double x = strtod(stringptr, &stringptr);
-    stringptr = FindField(stringptr);
-    if (*stringptr == '\0') {
-      std::stringstream s;
-      printf("Error:  Vertex %d has no y coordinate.\n", b.m_firstnumber + i);
-      throw std::logic_error(s.str().c_str());
-
-    }
-    const double y = strtod(stringptr, &stringptr);
-    vertexloop[0] = x;
-    vertexloop[1] = y;
-    // Read the vertex attributes.
-    assert(m.m_nextras == 0);
-    for (int j = 2; j < 2 + m.m_nextras; j++)
-    {
-      stringptr = FindField(stringptr);
-      if (*stringptr == '\0')
-      {
-        vertexloop[j] = 0.0;
-      } else
-      {
-        vertexloop[j] = (double) strtod(stringptr, &stringptr);
-      }
-    }
-
-    {
-      // Read a vertex marker.
-      stringptr = FindField(stringptr);
-      if (*stringptr == '\0')
-      {
-        assert(!"Should not get here");
-        setvertexmark(vertexloop, 0);
-      }
-      else
-      {
-        const int currentmarker = (int) strtol(stringptr, &stringptr, 0);
-        assert(currentmarker == 1);
-        setvertexmark(vertexloop, currentmarker);
-      }
+      m.m_xmin = m.m_xmax = x;
+      m.m_ymin = m.m_ymax = y;
     }
     else
     {
-      // If no markers are specified in the file, they default to zero.
-      setvertexmark(vertexloop, 0);
-    }
-    */
-    setvertextype(vertexloop, INPUTVERTEX);
-    /* Determine the smallest and largest x and y coordinates. */
-    if (i == 0) {
-      m.m_xmin = m.m_xmax = x;
-      m.m_ymin = m.m_ymax = y;
-    } else {
       m.m_xmin = (x < m.m_xmin) ? x : m.m_xmin;
       m.m_xmax = (x > m.m_xmax) ? x : m.m_xmax;
       m.m_ymin = (y < m.m_ymin) ? y : m.m_ymin;
       m.m_ymax = (y > m.m_ymax) ? y : m.m_ymax;
     }
   }
-  assert(!m.m_do_readnodefile);
-  if (m.m_do_readnodefile)
-  {
-    assert(!"Should not get here");
-    fclose(infile);
-  }
 
-  /* Nonexistent x value used as a flag to mark circle events in sweepline */
-  /*   Delaunay algorithm.                                                 */
+  // Nonexistent x value used as a flag to mark circle events in sweepline
+  //   Delaunay algorithm.
   m.m_xminextreme = 10 * m.m_xmin - 9 * m.m_xmax;
 }
 
@@ -9339,17 +9179,27 @@ int tricpp::triangle_cpp_main(const std::vector<std::string>& args)
   Behavior b(args);
   double *holearray;                                        /* Array of holes. */
   double *regionarray;   /* Array of regional attributes and area constraints. */
-  FILE *polyfile;
-  //triangleinit(m);
+  FILE *polyfile = nullptr;
   m.m_steinerleft = b.m_steiner;
 
-  readnodes(m, b, b.m_innodefilename, b.m_inpolyfilename, &polyfile);
+  ReadNodes(
+    m,
+    b,
+    b.m_inpolyfilename
+  );
 
   if (b.m_do_refine)
   {
     /* Read and reconstruct a mesh. */
-    m.m_hullsize = reconstruct(m, b, b.m_inelefilename, b.m_areafilename,
-                             b.m_inpolyfilename, polyfile);
+    m.m_hullsize
+      = reconstruct(
+      m,
+      b,
+      b.m_inelefilename,
+      b.m_areafilename,
+      b.m_inpolyfilename,
+      polyfile
+    );
   }
   else
   {

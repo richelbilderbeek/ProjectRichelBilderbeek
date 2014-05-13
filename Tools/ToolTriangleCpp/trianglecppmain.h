@@ -1036,14 +1036,10 @@ void readholes(
 
 /// readnodes()   Read the vertices from a file, which may be a .node or
 ///               .poly file.
-
-
-void readnodes(
+void ReadNodes(
   Mesh& m,
-  Behavior& b,
-  const char * const nodefilename,
-  const char * const polyfilename,
-  FILE ** const polyfile
+  const Behavior& b,
+  const char * const polyfilename
 );
 
 

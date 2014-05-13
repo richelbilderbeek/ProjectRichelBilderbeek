@@ -46,7 +46,7 @@ tricpp::Behavior::Behavior(
     m_nopolywritten{0},
     m_offconstant{0.0},
     m_order{1},
-    m_poly{false},
+    //m_poly{false},
     m_quality{0},
     m_quiet{0},
     m_regionattrib{0},
@@ -74,7 +74,8 @@ tricpp::Behavior::Behavior(
       {
         if (args[i][j] == 'p')
         {
-          this->m_poly = true;
+          static_assert(m_poly == true,"");
+          //this->m_poly = true;
         }
         if (args[i][j] == 'r') {
           this->m_do_refine = 1;
@@ -233,7 +234,8 @@ tricpp::Behavior::Behavior(
   }
   if (!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 5], ".poly")) {
     this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
-    this->m_poly = 1;
+    static_assert(m_poly == true,"");
+    //this->m_poly = true;
   }
   if (!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 4], ".ele")) {
     this->m_innodefilename[strlen(this->m_innodefilename) - 4] = '\0';

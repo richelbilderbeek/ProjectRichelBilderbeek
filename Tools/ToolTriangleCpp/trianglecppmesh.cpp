@@ -13,7 +13,7 @@ tricpp::Mesh::Mesh()
     m_circletopcount{0},
     m_circumcentercount{0},
     m_counterclockcount{0},
-    m_do_readnodefile{false},
+    //m_do_readnodefile{false},
     m_dummysub{nullptr},
     m_dummysubbase{nullptr},
     m_dummytri{nullptr},

@@ -57,7 +57,7 @@ struct Behavior {
   int m_dwyer;
   char m_edgefilename[max_filename_size];
   int m_edgesout;
-  int m_firstnumber;
+  static const int m_firstnumber = 1;
   int m_fixedarea;
   int m_geomview;
   double m_goodangle;
@@ -84,7 +84,7 @@ struct Behavior {
   char m_outelefilename[max_filename_size];
   char m_outnodefilename[max_filename_size];
   char m_outpolyfilename[max_filename_size];
-  bool m_poly;
+  static const bool m_poly = true;
   int m_quality;
   int m_quiet;
   int m_regionattrib;
@@ -98,7 +98,7 @@ struct Behavior {
   int m_verbosity; ///0: no verbosity, 1: verbose, +1: more verbose
   char m_vnodefilename[max_filename_size];
   int m_voronoi;
-  int m_weighted;
+  static const int m_weighted = 0;
 };
 
 } //~namespace tricpp

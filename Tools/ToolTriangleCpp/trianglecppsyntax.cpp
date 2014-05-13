@@ -7,8 +7,10 @@ void tricpp::Syntax()
 {
   std::stringstream s;
   s
-    << "triangle [-prq__a__uAcDjevngBPNEIOXzo_YS__iFlsCQVh] input_file\n"
-    << "    -p  Triangulates a Planar Straight Line Graph (.poly file).\n"
+    << "triangle [-rq__a__uAcDjevngBPNEIOXzo_YS__iFlsCQVh] input_file\n"
+    << "\n"
+    << "input_file must be a .poly file\n"
+    << "\n"
     << "    -r  Refines a previously generated mesh.\n"
     << "    -q  Quality mesh generation.  A minimum angle may be specified.\n"
     << "    -a  Applies a maximum triangle area constraint.\n"
