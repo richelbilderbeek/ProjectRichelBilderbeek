@@ -780,29 +780,25 @@ void tricpp::initializevertexpool(
   const Behavior& b
 )
 {
-  // The index within each vertex at which the boundary marker is found,    */
-  //   followed by the vertex type.                                         */
-  //m.m_vertexmarkindex
-  //  = ((m.m_mesh_dim + m.m_nextras) * sizeof(double)
-  //  + sizeof(int) - 1) / sizeof(int);
   static_assert(
     (m.m_mesh_dim + m.m_nextras * sizeof(double) + sizeof(int) - 1) / sizeof(int)
-    == 1,"m.m_vertexmarkindex is determined here");
+    == 1,"m.m_vertexmarkindex is determined here"
+  );
   static_assert(
     m.m_vertexmarkindex == (m.m_mesh_dim + m.m_nextras * sizeof(double) + sizeof(int) - 1) / sizeof(int)
-    ,"m.m_vertexmarkindex is determined here");
-
-  int vertexsize = (m.m_vertexmarkindex + 2) * sizeof(int);
-  if (b.m_poly)
-  {
-    /* The index within each vertex at which a triangle pointer is found.  */
-    /*   Ensure the pointer is aligned to a sizeof(triangle)-byte address. */
-    m.m_vertex2triindex = (vertexsize + sizeof(Triangle) - 1) /
-                         sizeof(Triangle);
-    vertexsize = (m.m_vertex2triindex + 1) * sizeof(Triangle);
-  }
-
-  /* Initialize the pool of vertices. */
+    ,"m.m_vertexmarkindex is determined here"
+  );
+  static_assert((m.m_vertexmarkindex + 2) * sizeof(int) == 12,"");
+  static const int vertexsize_first = (m.m_vertexmarkindex + 2) * sizeof(int);
+  static_assert(vertexsize_first  == 12,"");
+  static_assert(b.m_poly,"");
+  // The index within each vertex at which a triangle pointer is found.
+  //   Ensure the pointer is aligned to a sizeof(triangle)-byte address.
+  static_assert((vertexsize_first + sizeof(Triangle) - 1) /sizeof(Triangle) == 3,"");
+  static_assert(m.m_vertex2triindex == (vertexsize_first + sizeof(Triangle) - 1) /sizeof(Triangle),"");
+  static const int vertexsize = (m.m_vertex2triindex + 1) * sizeof(Triangle);
+  static_assert(vertexsize == 16,"");
+  // Initialize the pool of vertices.
   PoolInit(
     &m.m_vertices,
     vertexsize,
@@ -8143,8 +8139,6 @@ void tricpp::ReadNodes(
 )
 {
   const auto v = ribi::fileio::FileIo().FileToVector(polyfilename);
-
-  if (!b.m_quiet) { std::cout << "Opening file '" << polyfilename << "'"; }
   const auto first_line_strings = SeperateString(v[0],' ');
   assert(first_line_strings.size() == 4);
   const int n_vertices = boost::lexical_cast<int>(first_line_strings[0]);
@@ -8169,6 +8163,7 @@ void tricpp::ReadNodes(
   for (int i = 0; i != n_vertices; ++i)
   {
     const int index = i + 1;
+    assert(index >= 0);
     assert(index < static_cast<int>(v.size()));
     const std::string& line = v[index];
     Vertex vertexloop = (Vertex) PoolAlloc(&m.m_vertices);

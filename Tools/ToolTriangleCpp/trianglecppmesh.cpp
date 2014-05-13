@@ -44,7 +44,7 @@ tricpp::Mesh::Mesh()
     m_subsegs{},
     m_triangles{},
     m_undeads{0},
-    m_vertex2triindex{0},
+    //m_vertex2triindex{0},
     m_vertices{},
     m_viri{},
     m_xmax{0.0},

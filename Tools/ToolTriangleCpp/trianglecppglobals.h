@@ -46,17 +46,17 @@ const int g_max_inputline_size = 1024;
 /*   at once.                                                                */
 
 const int g_triangles_per_block = 4092;           /* Number of triangles allocated at once. */
-#define SUBSEGPERBLOCK 508       /* Number of subsegments allocated at once. */
-#define VERTEXPERBLOCK 4092         /* Number of vertices allocated at once. */
-#define VIRUSPERBLOCK 1020   /* Number of virus triangles allocated at once. */
+const int SUBSEGPERBLOCK = 508;       /* Number of subsegments allocated at once. */
+const int VERTEXPERBLOCK = 4092;         /* Number of vertices allocated at once. */
+const int VIRUSPERBLOCK = 1020;   /* Number of virus triangles allocated at once. */
 /* Number of encroached subsegments allocated at once. */
-#define BADSUBSEGPERBLOCK 252
+const int BADSUBSEGPERBLOCK = 252;
 /* Number of skinny triangles allocated at once. */
 const int g_bad_triangles_per_block = 4092;
 /* Number of flipped triangles allocated at once. */
-#define FLIPSTACKERPERBLOCK 252
+const int FLIPSTACKERPERBLOCK = 252;
 /* Number of splay tree nodes allocated at once. */
-#define SPLAYNODEPERBLOCK 508
+const int SPLAYNODEPERBLOCK = 508;
 
 /* The vertex types.   A DEADVERTEX has been deleted entirely.  An           */
 /*   UNDEADVERTEX is not part of the mesh, but is written to the output      */

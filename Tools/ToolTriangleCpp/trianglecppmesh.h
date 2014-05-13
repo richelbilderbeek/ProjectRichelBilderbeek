@@ -60,7 +60,7 @@ struct Mesh
   MemoryPool m_subsegs;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   MemoryPool m_triangles;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   int m_undeads;    /// Number of input vertices that don't appear in the mesh.
-  int m_vertex2triindex; //TODO: REMOVE    /// Index to find a triangle adjacent to a vertex.
+  static const int m_vertex2triindex = 3; //TODO: REMOVE    /// Index to find a triangle adjacent to a vertex.
   static const int m_vertexmarkindex = 1; //TODO: REMOVE        /// Index to find boundary marker of a vertex.
   MemoryPool m_vertices;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   MemoryPool m_viri;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.

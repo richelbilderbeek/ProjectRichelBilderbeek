@@ -8,13 +8,14 @@
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/split.hpp>
 #include <boost/function.hpp>
 #pragma GCC diagnostic pop
 
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> SeperateString1(
+std::vector<std::string> SeperateString1(
   const std::string& input,
   const char seperator)
 {
@@ -26,7 +27,7 @@ const std::vector<std::string> SeperateString1(
 }
 
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> SeperateString2(
+std::vector<std::string> SeperateString2(
   const std::string& input,
   const char seperator)
 {
@@ -43,7 +44,7 @@ const std::vector<std::string> SeperateString2(
 }
 
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> SeperateString3(const std::string& input, const char& seperator)
+std::vector<std::string> SeperateString3(const std::string& input, const char& seperator)
 {
   std::vector<std::string> v;
   typedef std::string::const_iterator Iterator;
@@ -73,9 +74,9 @@ const std::vector<std::string> SeperateString3(const std::string& input, const c
 }
 
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> SeperateString4(std::string input, const char& seperator)
+std::vector<std::string> SeperateString4(std::string input, const char& seperator)
 {
-  assert(input.empty()==false);
+  assert(!input.empty());
   assert(input[0]!=seperator);
   assert(input[input.size()-1]!=seperator);
 
@@ -97,7 +98,7 @@ const std::vector<std::string> SeperateString4(std::string input, const char& se
 }
 
 //From //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> SeperateString5(
+std::vector<std::string> SeperateString5(
   const std::string& input,
   const std::string& seperator)
 {
@@ -129,9 +130,9 @@ const std::vector<std::string> SeperateString5(
 }
 
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-const std::vector<std::string> SeperateString6(std::string input, const std::string& seperator)
+std::vector<std::string> SeperateString6(std::string input, const std::string& seperator)
 {
-  assert(input.empty()==false);
+  assert(!input.empty());
   assert(input.substr(0,seperator.size()) != seperator);
   assert(input.substr(input.size()-seperator.size(),seperator.size())!=seperator);
   std::vector<std::string> result;
