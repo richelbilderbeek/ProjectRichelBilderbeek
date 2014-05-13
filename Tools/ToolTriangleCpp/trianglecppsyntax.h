@@ -3,7 +3,7 @@
 
 namespace tricpp {
 
-void syntax();
+void Syntax();
 
 } //~namespace tricpp
 

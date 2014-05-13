@@ -5,67 +5,66 @@
 
 tricpp::Mesh::Mesh()
   :
-    areaboundindex{0},
-    badsubsegs{},
-    badtriangles{},
-    checkquality{0},
-    checksegments{0},
-    circletopcount{0},
-    circumcentercount{0},
-    counterclockcount{0},
-    dummysub{nullptr},
-    dummysubbase{nullptr},
-    dummytri{nullptr},
-    dummytribase{nullptr},
-    edges{0},
-    eextras{0},
-    elemattribindex{0},
-    firstnonemptyq{0},
-    flipstackers{},
-    highorderindex{0},
-    holes{0},
-    hullsize{0},
-    hyperbolacount{0},
-    incirclecount{0},
-    inelements{0},
-    infvertex1{},
-    infvertex2{},
-    infvertex3{},
-    insegments{0},
-    invertices{0},
-    lastflip{nullptr},
-    mesh_dim{0},
-    nextras{0},
-    orient3dcount{0},
-    readnodefile{0},
-    recenttri{},
-    regions{0},
-    samples{1}, //Point location should take at least one sample
-    splaynodes{},
-    steinerleft{0},
-    subsegs{},
-    triangles{},
-    undeads{0},
-    vertex2triindex{0},
-    vertexmarkindex{0},
-    vertices{},
-    viri{},
-    xmax{0.0},
-    xmin{0.0},
-    xminextreme{0.0},
-    ymax{0.0},
-    ymin{0.0}
+    m_areaboundindex{0},
+    m_badsubsegs{},
+    m_badtriangles{},
+    m_checkquality{0},
+    m_checksegments{0},
+    m_circletopcount{0},
+    m_circumcentercount{0},
+    m_counterclockcount{0},
+    m_do_readnodefile{false},
+    m_dummysub{nullptr},
+    m_dummysubbase{nullptr},
+    m_dummytri{nullptr},
+    m_dummytribase{nullptr},
+    m_edges{0},
+    m_eextras{0},
+    m_elemattribindex{0},
+    m_firstnonemptyq{0},
+    m_flipstackers{},
+    m_highorderindex{0},
+    m_holes{0},
+    m_hullsize{0},
+    m_hyperbolacount{0},
+    m_incirclecount{0},
+    m_inelements{0},
+    m_infvertex1{},
+    m_infvertex2{},
+    m_infvertex3{},
+    m_insegments{0},
+    m_invertices{0},
+    m_lastflip{nullptr},
+    m_orient3dcount{0},
+    m_recenttri{},
+    m_regions{0},
+    m_samples{1}, //Point location should take at least one sample
+    m_splaynodes{},
+    m_steinerleft{0},
+    m_subsegs{},
+    m_triangles{},
+    m_undeads{0},
+    m_vertex2triindex{0},
+    m_vertices{},
+    m_viri{},
+    m_xmax{0.0},
+    m_xmin{0.0},
+    m_xminextreme{0.0},
+    m_ymax{0.0},
+    m_ymin{0.0}
 {
-  recenttri.tri = nullptr; //(Triangle *) NULL; /* No triangle has been visited yet. */
+
 }
 
 tricpp::Vertex tricpp::vertextraverse(Mesh& m)
 {
   Vertex newvertex;
 
-  do {
-    newvertex = (Vertex) traverse(&m.vertices);
-    if (newvertex == nullptr) {
+  do
+  {
+    newvertex = (Vertex) Traverse(&m.m_vertices);
+    if (newvertex == nullptr)
+    {
       return nullptr;
     }
   } while (vertextype(newvertex,m) == DEADVERTEX);          /* Skip dead ones. */

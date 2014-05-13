@@ -13,8 +13,8 @@ namespace tricpp {
 struct Otri
 {
   Otri();
-  Triangle *tri;
-  int orient;                                         /* Ranges from 0 to 2. */
+  Triangle * m_tri;
+  int m_orient;                                         /* Ranges from 0 to 2. */
 };
 
 } //~namespace tricpp

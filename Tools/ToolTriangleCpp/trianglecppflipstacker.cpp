@@ -1,8 +1,8 @@
 #include "trianglecppflipstacker.h"
 
 tricpp::FlipStacker::FlipStacker()
-  : flippedtri{},
-    prevflip{nullptr}
+  : m_flippedtri{},
+    m_prevflip{nullptr}
 {
 
 }

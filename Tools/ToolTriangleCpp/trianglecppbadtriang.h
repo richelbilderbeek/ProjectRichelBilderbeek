@@ -10,11 +10,16 @@ namespace tricpp {
 /*   of the smallest angle of the triangle.  Each triangle's vertices are    */
 /*   stored so that one can check whether a triangle is still the same.      */
 
-struct BadTriang {
-  Triangle poortri;                       /* A skinny or too-large triangle. */
-  double key;                             /* cos^2 of smallest (apical) angle. */
-  Vertex triangorg, triangdest, triangapex;           /* Its three vertices. */
-  BadTriang *nexttriang;             /* Pointer to next bad triangle. */
+struct BadTriang
+{
+  BadTriang();
+
+  double m_key; ///cos^2 of smallest (apical) angle
+  BadTriang * m_nexttriang; /// Pointer to next bad triangle
+  Triangle m_poortri;  /// A skinny or too-large triangle.
+  Vertex m_triangorg;
+  Vertex m_triangdest;
+  Vertex m_triangapex;           /// Its three vertices
 };
 
 } //~namespace tricpp

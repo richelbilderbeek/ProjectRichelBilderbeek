@@ -3,35 +3,32 @@
 
 namespace tricpp {
 
-struct triangulateio_cpp {
-  double *pointlist;                                               /* In / out */
-  double *pointattributelist;                                      /* In / out */
-  int *pointmarkerlist;                                          /* In / out */
-  int numberofpoints;                                            /* In / out */
-  int numberofpointattributes;                                   /* In / out */
-
-  int *trianglelist;                                             /* In / out */
-  double *triangleattributelist;                                   /* In / out */
-  double *trianglearealist;                                         /* In only */
-  int *neighborlist;                                             /* Out only */
-  int numberoftriangles;                                         /* In / out */
-  int numberofcorners;                                           /* In / out */
-  int numberoftriangleattributes;                                /* In / out */
-
-  int *segmentlist;                                              /* In / out */
-  int *segmentmarkerlist;                                        /* In / out */
-  int numberofsegments;                                          /* In / out */
-
-  double *holelist;                        /* In / pointer to array copied out */
-  int numberofholes;                                      /* In / copied out */
-
-  double *regionlist;                      /* In / pointer to array copied out */
-  int numberofregions;                                    /* In / copied out */
-
-  int *edgelist;                                                 /* Out only */
-  int *edgemarkerlist;            /* Not used with Voronoi diagram; out only */
-  double *normlist;                /* Used only with Voronoi diagram; out only */
-  int numberofedges;                                             /* Out only */
+struct TriangulateIo
+{
+  TriangulateIo();
+  int *m_edgelist; /// Out only
+  int *m_edgemarkerlist; /// Not used with Voronoi diagram; out only
+  double *m_holelist;/// In / pointer to array copied out
+  int *m_neighborlist;/// Out only
+  double *m_normlist; /// Used only with Voronoi diagram; out only
+  double *m_pointattributelist;  /// In / out
+  double *m_pointlist;  /// In / out
+  int *m_pointmarkerlist;/// In / out
+  double *m_regionlist; /// In / pointer to array copied out
+  int *m_segmentlist; /// In / out
+  int *m_segmentmarkerlist; /// In / out
+  double *m_trianglearealist;  /// In only
+  double *m_triangleattributelist;  /// In / out
+  int *m_trianglelist;/// In / out
+  int m_numberofcorners; /// In / out
+  int m_numberofedges; /// Out only
+  int m_numberofholes; /// In / copied out
+  int m_numberofpointattributes;  /// In / out
+  int m_numberofpoints;  /// In / out
+  int m_numberofregions; /// In / copied out
+  int m_numberofsegments;/// In / out
+  int m_numberoftriangleattributes;  /// In / out
+  int m_numberoftriangles;  /// In / out
 };
 
 } //~namespace tricpp

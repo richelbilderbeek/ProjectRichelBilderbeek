@@ -10,11 +10,19 @@ namespace tricpp {
 
 typedef double *Vertex;
 
-int triunsuitable(
-  const Vertex triorg,
-  const Vertex tridest,
-  const Vertex triapex,
-  double /* area */
+#ifdef TODO_ISSUE_206_IMPROVE_VERTEX
+struct Vertex
+{
+  double& operator[](const int index) noexcept;
+  const double& operator[](const int index) const noexcept;
+};
+#endif //#ifdef TODO_ISSUE_206_IMPROVE_VERTEX
+
+
+bool triunsuitable(
+  const Vertex& triorg,
+  const Vertex& tridest,
+  const Vertex& triapex
 );
 
 } //~namespace tricpp

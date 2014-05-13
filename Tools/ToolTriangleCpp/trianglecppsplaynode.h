@@ -18,12 +18,15 @@ namespace tricpp {
 ///   boundary edge and should be deleted.
 struct SplayNode
 {
-  /// Lprev of an edge on the front.
-  Otri keyedge;
+  SplayNode();
+
   /// Used to verify that splay node is still live.
-  Vertex keydest;
+  Vertex m_keydest;
+  /// Lprev of an edge on the front.
+  Otri m_keyedge;
   /// Children in splay tree.
-  SplayNode *lchild, *rchild;
+  SplayNode * m_lchild;
+  SplayNode * m_rchild;
 };
 
 } //~namespace tricpp

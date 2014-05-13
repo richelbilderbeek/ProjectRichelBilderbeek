@@ -4,7 +4,7 @@
 namespace tricpp {
 
 //TODO: Remove this function
-void *trimalloc(const int size);
+void * TriMalloc(const int size);
 
 } //~namespace tricpp
 

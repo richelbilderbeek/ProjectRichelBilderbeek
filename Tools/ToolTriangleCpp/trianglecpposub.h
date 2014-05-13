@@ -10,9 +10,11 @@ namespace tricpp {
 /*   are two possible orientations.  By convention, the edge is always       */
 /*   directed so that the "side" denoted is the right side of the edge.      */
 
-struct Osub {
-  SubSeg *ss;
-  int ssorient;                                       /* Ranges from 0 to 1. */
+struct Osub
+{
+  Osub();
+  SubSeg *m_subseg;
+  int m_subseg_orient; /* Ranges from 0 to 1. */
 };
 
 } //~namespace tricpp

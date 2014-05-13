@@ -1118,7 +1118,7 @@ long removeghosts(
   Otri * const startghost
 );
 
-int rightofhyperbola(
+bool rightofhyperbola(
   Mesh& m,
   const Otri * const fronttri,
   const Vertex& newsite
@@ -1313,9 +1313,9 @@ Triangle * triangletraverse(Mesh& m);
 
 void triangulate(
   const char * const ,
-  const triangulateio_cpp * const ,
-  const triangulateio_cpp * const ,
-  const triangulateio_cpp * const
+  const TriangulateIo * const ,
+  const TriangulateIo * const ,
+  const TriangulateIo * const
 );
 
 

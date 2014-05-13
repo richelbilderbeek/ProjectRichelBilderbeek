@@ -11,7 +11,7 @@ namespace tricpp {
 /*  past the whitespace to find the next field.                              */
 /*                                                                           */
 /*****************************************************************************/
-char *findfield(char * const string);
+char * FindField(char * const string);
 
 } //~namespace tricpp
 

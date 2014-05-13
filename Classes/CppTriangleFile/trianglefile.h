@@ -43,7 +43,8 @@ struct TriangleFile
     const bool verbose = false
   ) const noexcept;
 
-  #ifdef TODO_ISSUE_207
+  #define TODO_ISSUE_207
+  #ifdef  TODO_ISSUE_207
   ///Call Triangle its C++ equivalent
   void ExecuteTriangleCpp(
     std::string& node_filename,

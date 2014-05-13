@@ -2,8 +2,8 @@
 
 tricpp::Otri::Otri()
   :
-    tri{nullptr},
-    orient{0}
+    m_tri{nullptr},
+    m_orient{0}
 {
 
 }

@@ -5,7 +5,7 @@
 
 int tricpp::vertextype(const double * const vx, const Mesh& m)
 {
-  return static_cast<int>(vx[m.vertexmarkindex + 1]);
+  return static_cast<int>(vx[m.m_vertexmarkindex + 1]);
 }
 
 void tricpp::Split(const double a, double& ahi, double& alo)

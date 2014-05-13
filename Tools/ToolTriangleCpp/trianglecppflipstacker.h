@@ -12,8 +12,8 @@ namespace tricpp {
 struct FlipStacker
 {
   FlipStacker();
-  Triangle flippedtri;                       /* A recently flipped triangle. */
-  FlipStacker *prevflip;               /* Previous flip in the stack. */
+  Triangle m_flippedtri;                       /* A recently flipped triangle. */
+  FlipStacker *m_prevflip;               /* Previous flip in the stack. */
 };
 
 } //~namespace tricpp

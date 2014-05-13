@@ -29,35 +29,35 @@ namespace tricpp {
 struct MemoryPool
 {
   MemoryPool();
-  int alignbytes;
-  void *deaditemstack;
-  void **firstblock;
-  int itembytes;
-  long items;
-  int itemsfirstblock;
-  int itemsperblock;
-  long maxitems;
-  void *nextitem;
-  void **nowblock;
-  void **pathblock;
-  void *pathitem;
-  int pathitemsleft;
-  int unallocateditems;
+  int m_alignbytes;
+  void *m_deaditemstack;
+  void **m_firstblock;
+  int m_itembytes;
+  long m_items;
+  int m_itemsfirstblock;
+  int m_itemsperblock;
+  long m_maxitems;
+  void *m_nextitem;
+  void **m_nowblock;
+  void **m_pathblock;
+  void *m_pathitem;
+  int m_pathitemsleft;
+  int m_unallocateditems;
 };
 
 ///  poolalloc()   Allocate space for an item.
-void * poolalloc(MemoryPool * const pool);
+void * PoolAlloc(MemoryPool * const pool);
 
 ///  pooldealloc()   Deallocate space for an item.
 ///
 ///  The deallocated space is stored in a queue for later reuse.
-void pooldealloc(
+void PoolDealloc(
   MemoryPool * const pool,
   void * const dyingitem
 );
 
 ///  pooldeinit()   Free to the operating system all memory taken by a pool.
-void pooldeinit(MemoryPool * const pool);
+void PoolDeinit(MemoryPool * const pool);
 
 ///  poolinit()   Initialize a pool of memory for allocation of items.
 ///
@@ -74,7 +74,7 @@ void pooldeinit(MemoryPool * const pool);
 ///
 ///  Don't change this routine unless you understand it.
 ///
-void poolinit(
+void PoolInit(
   MemoryPool * const pool,
   const int bytecount,
   const int itemcount,
@@ -87,7 +87,7 @@ void poolinit(
 ///  The pool is returned to its starting state, except that no memory is
 ///  freed to the operating system.  Rather, the previously allocated blocks
 ///  are ready to be reused.
-void poolrestart(MemoryPool * const pool);
+void PoolRestart(MemoryPool * const pool);
 
 ///  poolzero()   Set all of a pool's fields to zero.
 ///  This procedure should never be called on a pool that has any memory
@@ -97,7 +97,7 @@ void poolrestart(MemoryPool * const pool);
 ///  traversalinit()   Prepare to traverse the entire list of items.
 ///
 ///  This routine is used in conjunction with traverse().
-void traversalinit(MemoryPool * const pool);
+void TraversalInit(MemoryPool * const pool);
 
 ///  traverse()   Find the next item in the list.
 ///
@@ -108,7 +108,7 @@ void traversalinit(MemoryPool * const pool);
 ///  space just to demarcate dead items.  It can usually be done more
 ///  space-efficiently by a routine that knows something about the structure
 ///  of the item.
-void *traverse(MemoryPool * const pool);
+void * Traverse(MemoryPool * const pool);
 
 } //~namespace tricpp
 

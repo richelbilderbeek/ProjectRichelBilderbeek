@@ -14,12 +14,14 @@ namespace tricpp {
 ///   events are given an invalid (smaller than `xmin') x-coordinate `xkey'.
 struct Event
 {
-  /// Coordinates of the event
-  double xkey, ykey;
+  Event();
   /// Can be a vertex or the location of a circle event
-  void *eventptr;
+  void *m_eventptr;
   /// Marks this event's position in the heap.
-  int heapposition;
+  int m_heapposition;
+  /// Coordinates of the event
+  double m_xkey;
+  double m_ykey;
 };
 
 void eventheapdelete(

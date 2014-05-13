@@ -1,10 +1,9 @@
 #include "trianglecppvertex.h"
 
-int tricpp::triunsuitable(
-  const Vertex triorg,
-  const Vertex tridest,
-  const Vertex triapex,
-  double /* area */
+bool tricpp::triunsuitable(
+  const Vertex& triorg,
+  const Vertex& tridest,
+  const Vertex& triapex
 )
 {
   const double dxoa = triorg[0] - triapex[0];
@@ -21,9 +20,5 @@ int tricpp::triunsuitable(
   double maxlen = (dalen > oalen) ? dalen : oalen;
   maxlen = (odlen > maxlen) ? odlen : maxlen;
 
-  if (maxlen > 0.05 * (triorg[0] * triorg[0] + triorg[1] * triorg[1]) + 0.02) {
-    return 1;
-  } else {
-    return 0;
-  }
+  return maxlen > 0.05 * (triorg[0] * triorg[0] + triorg[1] * triorg[1]) + 0.02;
 }

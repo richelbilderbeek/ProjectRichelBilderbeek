@@ -9,8 +9,12 @@ namespace tricpp {
 /*   segment, or was not inserted because another vertex occupies the same   */
 /*   location.                                                               */
 
-enum InsertVertexResult {SUCCESSFULVERTEX, ENCROACHINGVERTEX, VIOLATINGVERTEX,
-                         DUPLICATEVERTEX};
+enum InsertVertexResult {
+  SUCCESSFULVERTEX,
+  ENCROACHINGVERTEX,
+  VIOLATINGVERTEX,
+  DUPLICATEVERTEX
+};
 
 } //~namespace tricpp
 

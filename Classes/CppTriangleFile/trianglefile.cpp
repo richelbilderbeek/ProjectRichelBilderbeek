@@ -13,7 +13,8 @@
 
 #include "triangle.h"
 
-#ifdef TODO_ISSUE_207
+#define TODO_ISSUE_207
+#ifdef  TODO_ISSUE_207
 #include "trianglecppmain.h"
 #endif
 
@@ -194,7 +195,8 @@ void ribi::TriangleFile::ExecuteTriangle(
   fileio::FileIo().DeleteFile(filename);
 }
 
-#ifdef TODO_ISSUE_207
+#define TODO_ISSUE_207
+#ifdef  TODO_ISSUE_207
 void ribi::TriangleFile::ExecuteTriangleCpp(
   std::string& node_filename,
   std::string& ele_filename,
@@ -373,7 +375,10 @@ std::string ribi::TriangleFile::ToStr() const noexcept
 
     {
       const int sz = static_cast<int>(points.size());
-      s << sz << " 2 0 1" << '\n';
+      const int dimensionality = 2; //All points are 2 dimensional
+      const int n_extras = 0; //Points have zero extras
+      const int n_node_markers = 1;
+      s << sz << " " << dimensionality << " " << n_extras << " " << n_node_markers << '\n';
 
       for(int n=0; n !=sz; ++n)
       {

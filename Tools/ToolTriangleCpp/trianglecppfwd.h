@@ -14,7 +14,7 @@ struct Mesh;
 struct Osub;
 struct Otri;
 struct SplayNode;
-struct triangulateio_cpp;
+struct TriangulateIo;
 
 } //~namespace tricpp
 

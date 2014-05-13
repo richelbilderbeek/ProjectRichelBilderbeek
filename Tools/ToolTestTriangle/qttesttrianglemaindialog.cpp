@@ -99,7 +99,7 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
   const bool verbose = GetVerbose();
 
   for (int i=0; i!=
-  //#define TODO_ISSUE_207
+  #define TODO_ISSUE_207
   #ifndef TODO_ISSUE_207
     1
   #else
