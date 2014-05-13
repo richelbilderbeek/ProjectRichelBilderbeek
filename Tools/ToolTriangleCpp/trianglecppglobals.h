@@ -62,7 +62,7 @@ const int g_bad_triangles_per_block = 4092;
 /*   UNDEADVERTEX is not part of the mesh, but is written to the output      */
 /*   .node file and affects the node indexing in the other output files.     */
 
-#define INPUTVERTEX 0
+const int INPUTVERTEX = 0;
 #define SEGMENTVERTEX 1
 #define FREEVERTEX 2
 #define DEADVERTEX -32768

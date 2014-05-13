@@ -16,7 +16,8 @@
 #include <stdexcept>
 #include <string>
 #include <boost/math/constants/constants.hpp>
-
+#include <boost/algorithm/string/split.hpp>
+#include "fileio.h"
 #include "trianglecppbadsubseg.h"
 #include "trianglecppbehavior.h"
 #include "trianglecppdefines.h"
@@ -31,6 +32,17 @@
 #include "trianglecpptrimalloc.h"
 #include "trianglecppvertex.h"
 
+//From http://www.richelbilderbeek.nl/CppSeperateString.htm
+std::vector<std::string> SeperateString(
+  const std::string& input,
+  const char seperator)
+{
+  std::vector<std::string> v;
+  boost::algorithm::split(v,input,
+    std::bind2nd(std::equal_to<char>(),seperator),
+    boost::algorithm::token_compress_on);
+  return v;
+}
 
 void tricpp::dummyinit(
   Mesh& m,
@@ -8133,12 +8145,13 @@ void tricpp::readnodes(
 )
 {
   FILE *infile = nullptr;
-  char inputline[g_max_inputline_size];
+  //char inputline[g_max_inputline_size];
   const char *infilename = nullptr;
   assert(!infilename); //To satisfy the compiler
-  int firstnode;
+  //int firstnode;
   //int n_nodemarkers;
   //int currentmarker;
+  const auto v = ribi::fileio::FileIo().FileToVector(polyfilename);
 
   if (b.m_poly)
   {
@@ -8209,11 +8222,13 @@ void tricpp::readnodes(
       infile = *polyfile;
       infilename = polyfilename;
       m.m_do_readnodefile = false;
+      assert(!m.m_do_readnodefile);
     }
     else
     {
       // If the .poly file claims there are zero vertices, that means that
       //   the vertices should be read from a separate .node file.
+      assert(!"Should not get here");
       m.m_do_readnodefile = true;
       infilename = nodefilename;
     }
@@ -8223,15 +8238,16 @@ void tricpp::readnodes(
     m.m_do_readnodefile = true;
     infilename = nodefilename;
     *polyfile = nullptr;
+    assert(!"Should not get here");
   }
   assert(!m.m_do_readnodefile);
 
 
-  if (m.m_invertices < 3) {
+  if (m.m_invertices < 3)
+  {
     std::stringstream s;
     s << "Error:  Input must have at least three input vertices.\n";
     throw std::logic_error(s.str().c_str());
-
   }
   if (m.m_nextras == 0)
   {
@@ -8243,7 +8259,32 @@ void tricpp::readnodes(
   /* Read the vertices. */
   for (int i = 0; i < m.m_invertices; i++)
   {
+    const int index = i + 1;
+    assert(index < static_cast<int>(v.size()));
+    const std::string& line = v[index];
     Vertex vertexloop = (Vertex) PoolAlloc(&m.m_vertices);
+    const std::vector<std::string> w = SeperateString(line,' ');
+    assert(w.size() == 4);
+    assert(index == boost::lexical_cast<int>(w[0]));
+    if (i == 0)
+    {
+      const int firstnode = boost::lexical_cast<int>(w[0]);
+      assert(firstnode == 1);
+      if ((firstnode == 0) || (firstnode == 1))
+      {
+        b.m_firstnumber = firstnode;
+      }
+    }
+    const double x = boost::lexical_cast<double>(w[1]);
+    const double y = boost::lexical_cast<double>(w[2]);
+    vertexloop[0] = x;
+    vertexloop[1] = y;
+    {
+      const int currentmarker = boost::lexical_cast<int>(w[3]);
+      assert(currentmarker == 1);
+      setvertexmark(vertexloop, currentmarker);
+    }
+    /*
     char * stringptr = readline(inputline, infile); //RJCB
     if (i == 0)
     {
@@ -8270,7 +8311,7 @@ void tricpp::readnodes(
     const double y = strtod(stringptr, &stringptr);
     vertexloop[0] = x;
     vertexloop[1] = y;
-    /* Read the vertex attributes. */
+    // Read the vertex attributes.
     assert(m.m_nextras == 0);
     for (int j = 2; j < 2 + m.m_nextras; j++)
     {
@@ -8284,9 +8325,8 @@ void tricpp::readnodes(
       }
     }
 
-    if (true) //n_nodemarkers)
     {
-      /* Read a vertex marker. */
+      // Read a vertex marker.
       stringptr = FindField(stringptr);
       if (*stringptr == '\0')
       {
@@ -8299,10 +8339,13 @@ void tricpp::readnodes(
         assert(currentmarker == 1);
         setvertexmark(vertexloop, currentmarker);
       }
-    } else {
-      /* If no markers are specified in the file, they default to zero. */
+    }
+    else
+    {
+      // If no markers are specified in the file, they default to zero.
       setvertexmark(vertexloop, 0);
     }
+    */
     setvertextype(vertexloop, INPUTVERTEX);
     /* Determine the smallest and largest x and y coordinates. */
     if (i == 0) {
@@ -8315,8 +8358,10 @@ void tricpp::readnodes(
       m.m_ymax = (y > m.m_ymax) ? y : m.m_ymax;
     }
   }
+  assert(!m.m_do_readnodefile);
   if (m.m_do_readnodefile)
   {
+    assert(!"Should not get here");
     fclose(infile);
   }
 
