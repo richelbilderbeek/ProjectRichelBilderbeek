@@ -23,7 +23,6 @@ ribi::tricpp::Mesh::Mesh()
     m_elemattribindex{0},
     m_firstnonemptyq{0},
     m_flipstackers{},
-    m_highorderindex{0},
     m_holes{0},
     m_hullsize{0},
     m_hyperbolacount{0},

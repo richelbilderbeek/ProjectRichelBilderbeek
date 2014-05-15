@@ -31,12 +31,13 @@ void alternateaxes(
 /// badsubsegdealloc()   Deallocate space for a bad subsegment, marking it
 ///                      dead.
 void badsubsegdealloc(
-  Mesh& m,
-  BadSubSeg * const dyingseg
+  //Mesh& m,
+  std::vector<BadSubSeg>& m_badsubsegs,
+  BadSubSeg& dyingseg
 );
 
 /// badsubsegtraverse()   Traverse the bad subsegments, skipping dead ones.
-BadSubSeg * badsubsegtraverse(Mesh& m);
+//BadSubSeg * badsubsegtraverse(Mesh& m);
 
 /// boundingbox()   Form an "infinite" bounding triangle to insert vertices
 ///                 into.
@@ -207,8 +208,8 @@ void constrainededge(
 );
 
 double counterclockwise(
-  Mesh& m,
-  const Behavior& b,
+  int& m_m_counterclockcount,
+  const bool b_m_noexact,
   const Vertex& pa,
   const Vertex& pb,
   const Vertex& pc
@@ -368,10 +369,10 @@ void divconqrecurse(
 /// `dummytri' and `dummysub' as if they were real mesh entities, with no
 /// harm done.
 void dummyinit(
-  Mesh& m,
-  const Behavior& b,
-  const int trianglebytes,
-  const int subsegbytes
+  Mesh& m
+  //const Behavior& b,
+  //const int trianglebytes,
+  //const int subsegbytes
 );
 
 /// enforcequality()   Remove all the encroached subsegments and bad
@@ -442,8 +443,11 @@ int fast_expansion_sum_zeroelim(
 /// This procedure also returns the square of the length of the triangle's
 /// shortest edge.
 void findcircumcenter(
-  Mesh& m,
-  const Behavior& b,
+  int& m_m_circumcentercount,
+  int& m_m_counterclockcount,
+  //Mesh& m,
+  bool b_m_noexact,
+  //const Behavior& b,
   const Vertex& torg,
   const Vertex& tdest,
   const Vertex& tapex,
@@ -546,16 +550,18 @@ Vertex getvertex(
 
 
 /// highorder()   Create extra nodes for quadratic subparametric elements.
-
-
+/*
 void highorder(
   Mesh& m,
   const Behavior& b
 );
+*/
 
 double incircle(
-  Mesh& m,
-  const Behavior& b,
+  int& m_m_incirclecount,
+  //Mesh& m,
+  const bool b_m_noexact,
+  //const Behavior& b,
   const Vertex& pa,
   const Vertex& pb,
   const Vertex& pc,
@@ -611,10 +617,12 @@ void infecthull(
 ///                           their memory pools.
 /// This routine also computes the `highorderindex', `elemattribindex', and
 /// `areaboundindex' indices used to find values within each triangle.
+/*
 void initializetrisubpools(
   Mesh& m,
   const Behavior& b
 );
+*/
 
 /// initializevertexpool()   Calculate the size of the vertex data structure
 ///                          and initialize its memory pool.
@@ -742,15 +750,21 @@ LocateResult locate(
 
 ///Create a new subsegment with orientation zero.
 void makesubseg(
-  Mesh& m,
-  Osub * const newsubseg
+  //Mesh& m,
+  Triangle& m_m_dummytri,
+  SubSeg& m_m_dummysub,
+  Osub& newsubseg
 );
 
 ///Create a new triangle with orientation zero.
 void maketriangle(
-  Mesh& m,
-  const Behavior& b,
-  Otri * const newotri
+  //Mesh& m,
+  Triangle * m_m_dummytri,
+  SubSeg * m_m_dummysub,
+  const int m_m_eextras,
+  //const Behavior& b,
+  const bool b_m_vararea,
+  Otri& newotri
 );
 
 
@@ -845,7 +859,8 @@ double nonregular(
 void numbernodes(Mesh& m, const Behavior& b);
 
 double orient3d(
-  Mesh& m,
+  //Mesh& m,
+  int& m_m_orient3dcount,
   const Behavior& b,
   const Vertex& pa,
   const Vertex& pb,
@@ -986,9 +1001,9 @@ LocateResult preciselocate(
 /// oriented subsegment in digestible form.  It's also used when the highest
 /// level of verbosity (`-VVV') is specified.
 void printsubseg(
-  const Mesh& m,
-  //const Behavior * const /* b */,
-  const Osub * const s
+  const SubSeg * const m_dummysub,
+  const Triangle * const m_dummytri,
+  const Osub& s
 );
 
 /// printtriangle()   Print out the details of an oriented triangle.
@@ -1008,12 +1023,6 @@ void quality_statistics(
   const Behavior& b
 );
 
-/// randomnation()   Generate a random number between 0 and `choices' - 1.
-///
-/// This is a simple linear congruential random number generator.  Hence, it
-/// is a bad random number generator, but good enough for most randomized
-/// geometric algorithms.
-unsigned long randomnation(const unsigned int choices);
 
 
 
@@ -1231,11 +1240,11 @@ void statistics(
 /// subsegdealloc()   Deallocate space for a subsegment, marking it dead.
 void subsegdealloc(
   Mesh& m,
-  SubSeg * const dyingsubseg
+  SubSeg& dyingsubseg
 );
 
 /// subsegtraverse()   Traverse the subsegments, skipping dead ones.
-SubSeg *subsegtraverse(Mesh& m);
+//SubSeg *subsegtraverse(Mesh& m);
 
 long sweeplinedelaunay(
   Mesh& m,
@@ -1292,8 +1301,9 @@ int triangle_cpp_main(
 
 /// triangledealloc()   Deallocate space for a triangle, marking it dead.
 void triangledealloc(
-  Mesh& m,
-  Triangle * const dyingtriangle
+  std::vector<Triangle>& m_m_triangles,
+  //Mesh& m,
+  Triangle& dyingtriangle
 );
 
 /// triangledeinit()   Free all remaining allocated memory.
@@ -1303,7 +1313,7 @@ void triangledeinit(
 );
 
 /// triangletraverse()   Traverse the triangles, skipping dead ones.
-Triangle * triangletraverse(Mesh& m);
+//Triangle * triangletraverse(Mesh& m);
 
 void triangulate(
   const char * const ,

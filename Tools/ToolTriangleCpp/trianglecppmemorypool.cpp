@@ -4,6 +4,7 @@
 
 #include "trianglecpptrimalloc.h"
 
+/*
 ribi::tricpp::MemoryPool::MemoryPool()
   :
     m_alignbytes{0},
@@ -86,10 +87,22 @@ void ribi::tricpp::PoolDealloc(
   pool->m_deaditemstack = dyingitem;
   --pool->m_items;
 }
+*/
 
 void ribi::tricpp::PoolDealloc(
-  std::vector<Vertex>& vertices,
-  Vertex& dyingitem
+  std::vector<Triangle>& triangles,
+  Triangle& dying_triangle
+)
+{
+  std::swap(
+    *std::find(triangles.begin(),triangles.end(),dying_triangle),
+    triangles.back();
+  );
+  triangles.pop_back();
+}
+
+void ribi::tricpp::PoolDealloc(
+  std::vector<Vertex>& vertices,Vertex& dyingitem
 )
 {
   /// Push freshly killed item onto stack.
@@ -104,6 +117,7 @@ void ribi::tricpp::PoolDealloc(
 
 }
 
+/*
 void ribi::tricpp::PoolDeinit(MemoryPool * const pool)
 {
   while (pool->m_firstblock != nullptr) {
@@ -113,12 +127,14 @@ void ribi::tricpp::PoolDeinit(MemoryPool * const pool)
     pool->m_firstblock = pool->m_nowblock;
   }
 }
-
+*/
+/*
 void ribi::tricpp::PoolDeinit(std::vector<Vertex>& vertices)
 {
   vertices.resize(0);
 }
-
+*/
+/*
 void ribi::tricpp::PoolInit(
   MemoryPool * const pool,
   const int bytecount,
@@ -220,3 +236,4 @@ void * ribi::tricpp::Traverse(MemoryPool * const pool)
   --pool->m_pathitemsleft;
   return newitem;
 }
+*/

@@ -3,6 +3,14 @@
 #include "trianglecppmesh.h"
 #include "trianglecppvertextype.h"
 
+ribi::tricpp::Vertex::Vertex()
+  : m_is_dead{false},
+    m_mark{0},
+    m_type{VertexType::INPUTVERTEX} //Guess
+{
+
+}
+/*
 int ribi::tricpp::GetVertexType(const Vertex& vx) noexcept
 {
   return static_cast<int>(vx[Mesh::m_vertexmarkindex + 1]);
@@ -12,6 +20,7 @@ bool ribi::tricpp::IsDeadVertexType(const Vertex& vx) noexcept
 {
   return GetVertexType(vx) == VertexType::DEADVERTEX;
 }
+*/
 
 bool ribi::tricpp::IsTriangleUnsuitable(
   const Vertex& triorg,
@@ -36,6 +45,7 @@ bool ribi::tricpp::IsTriangleUnsuitable(
   return maxlen > 0.05 * (triorg[0] * triorg[0] + triorg[1] * triorg[1]) + 0.02;
 }
 
+/*
 int ribi::tricpp::vertextype(const Vertex& vertex) noexcept
 {
   return static_cast<int*>(vertex)[m.m_vertexmarkindex + 1];
@@ -49,6 +59,26 @@ void ribi::tricpp::setvertextype(Vertex& vertex, const int value) noexcept
   assert(vertextype(vertex) == value);
 }
 
-//#define setvertextype(vx, value)                                              \
+//#define setvertextype(vx, value) \
 //  ((int *) (vx))[m.m_vertexmarkindex + 1] = value
 
+
+int ribi::tricpp::vertexmark(const Vertex& vx)
+{
+  return vx.GetVertexMark();
+}
+*/
+
+/*
+#define vertexmark(vx)  ((int *) (vx))[m.m_vertexmarkindex]
+*/
+/*
+void ribi::tricpp::setvertexmark(Vertex& vx, const int value)
+{
+  vx.SetMark(value);
+}
+*/
+/*
+#define setvertexmark(vx, value)                                        \
+  ((int *) (vx))[m.m_vertexmarkindex] = value
+*/

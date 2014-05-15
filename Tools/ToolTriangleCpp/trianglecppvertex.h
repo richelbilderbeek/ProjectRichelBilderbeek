@@ -21,24 +21,29 @@ namespace tricpp {
 struct Vertex
 {
   Vertex();
-  Vertex(double * begin);
+  //Vertex(double * begin);
   double& operator[](const int index) noexcept;
   const double& operator[](const int index) const noexcept;
   void Clear() noexcept; //Set size to zero
+  bool IsDead() { return m_is_dead; }
   bool IsEmpty() const noexcept;
 
+  int GetMark() const noexcept { return m_mark; }
   VertexType GetVertexType() const noexcept { return m_type; }
+  void SetMark(const int mark) noexcept { m_mark = mark; }
   void SetVertexType(const VertexType type) noexcept { m_type = type; }
 
   private:
+  bool m_is_dead;
+  int m_mark;
   VertexType m_type;
 };
 #else
 typedef double *Vertex;
 #endif //#ifdef TODO_ISSUE_206_IMPROVE_VERTEX
 
-int GetVertexType(const Vertex& vx) noexcept;
-bool IsDeadVertexType(const Vertex& vx) noexcept;
+//int GetVertexType(const Vertex& vx) noexcept;
+//bool IsDeadVertexType(const Vertex& vx) noexcept;
 
 bool IsTriangleUnsuitable(
   const Vertex& triorg,
@@ -46,11 +51,16 @@ bool IsTriangleUnsuitable(
   const Vertex& triapex
 ) noexcept;
 
-int vertextype(const Vertex& vertex) noexcept;
-void setvertextype(Vertex& vertex, const int value);
+//int vertextype(const Vertex& vertex) noexcept;
+//void setvertextype(Vertex& vertex, const int value);
 
 bool operator==(const Vertex& lhs,const Vertex& rhs) noexcept;
 bool operator!=(const Vertex& lhs,const Vertex& rhs) noexcept;
+
+//int vertexmark(const Vertex& vx);
+//void setvertexmark(Vertex& vx, const int value);
+
+
 
 } //~namespace tricpp
 } //~namespace ribi

@@ -44,7 +44,7 @@ ribi::tricpp::Behavior::Behavior(
     m_nobisect{0},
     m_nobound{0},
     m_noelewritten{0},
-    m_noexact{0},
+    m_noexact{false},
     m_noholes{0},
     m_noiterationnum{0},
     m_nonodewritten{0},
@@ -64,7 +64,7 @@ ribi::tricpp::Behavior::Behavior(
     m_sweepline{0},
     m_usertest{0},
     //m_usesegments{0},
-    m_vararea{0},
+    m_vararea{false},
     m_vedgefilename{},
     m_verbosity{0},
     m_vnodefilename{},
@@ -86,11 +86,10 @@ ribi::tricpp::Behavior::Behavior(
       {
         if (args[i][j] == 'p')
         {
-          static_assert(m_poly == true,"");
-          //this->m_poly = true;
+          TRACE("p is a useless flag, always set to on");
         }
         if (args[i][j] == 'r') {
-          this->m_do_refine = 1;
+          this->m_do_refine = true;
         }
         if (args[i][j] == 'q') {
           this->m_quality = 1;
@@ -156,7 +155,8 @@ ribi::tricpp::Behavior::Behavior(
         if (args[i][j] == 'e') {
           this->m_edgesout = 1;
         }
-        if (args[i][j] == 'v') {
+        if (args[i][j] == 'v')
+        {
           this->m_voronoi = 1;
         }
         if (args[i][j] == 'n') {
@@ -255,8 +255,6 @@ ribi::tricpp::Behavior::Behavior(
   {
     m_innodefilename = ribi::fileio::FileIo().GetFileBasename(m_innodefilename);
     //this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
-    static_assert(m_poly == true,"");
-    //this->m_poly = true;
   }
   if (ribi::fileio::FileIo().GetExtensionNoDot(m_innodefilename) == "ele"
     //!strcmp(&this->m_innodefilename[strlen(this->m_innodefilename) - 4], ".ele")
@@ -264,7 +262,7 @@ ribi::tricpp::Behavior::Behavior(
   {
     m_innodefilename = ribi::fileio::FileIo().GetFileBasename(m_innodefilename);
     //this->m_innodefilename[strlen(this->m_innodefilename) - 4] = '\0';
-    this->m_do_refine = 1;
+    this->m_do_refine = true;
   }
   if (
     ribi::fileio::FileIo().GetExtensionNoDot(m_innodefilename) == "area"
@@ -273,12 +271,10 @@ ribi::tricpp::Behavior::Behavior(
   {
     m_innodefilename = ribi::fileio::FileIo().GetFileBasename(m_innodefilename);
     //this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
-    this->m_do_refine = 1;
+    this->m_do_refine = true;
     this->m_quality = 1;
     this->m_vararea = 1;
   }
-  static_assert(this->m_poly,"");
-  static_assert(this->m_poly || this->m_do_refine || this->m_quality || this->m_convex,"");
   static_assert(this->m_usesegments,"");
   //this->m_usesegments = this->m_poly || this->m_do_refine || this->m_quality || this->m_convex;
 
@@ -294,23 +290,16 @@ ribi::tricpp::Behavior::Behavior(
   }
   /* Be careful not to allocate space for element area constraints that */
   /*   will never be assigned any value (other than the default -1.0).  */
-  static_assert(this->m_poly,"");
-  static_assert( (!this->m_do_refine && !this->m_poly) == false,"");
-  if (!this->m_do_refine && !this->m_poly)
-  {
-    //this->m_vararea = 0;
-  }
 
   /* Be careful not to add an extra attribute to each element unless the */
   /*   input supports it (PSLG in, but not refining a preexisting mesh). */
-  if (this->m_do_refine || !this->m_poly) {
+  if (this->m_do_refine) {
     this->m_regionattrib = 0;
   }
   /* Regular/weighted triangulations are incompatible with PSLGs */
   /*   and meshing.                                              */
 
-  static_assert((this->m_weighted && (this->m_poly || this->m_quality)) == false,"");
-  if (this->m_weighted && (this->m_poly || this->m_quality))
+  //if (this->m_weighted)
   {
     //this->m_weighted = 0;
     //if (!this->m_quiet) {

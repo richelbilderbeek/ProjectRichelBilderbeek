@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "trianglecppvertex.h"
+#include "trianglecpptriangle.h"
 
 namespace ribi {
 namespace tricpp {
@@ -29,7 +30,7 @@ namespace tricpp {
 /*   allocated items.  maxitems is the maximum number of items that have     */
 /*   been allocated at once; it is the current number of items plus the      */
 /*   number of records kept on deaditemstack.                                */
-
+/*
 struct MemoryPool
 {
   MemoryPool();
@@ -48,27 +49,28 @@ struct MemoryPool
   int m_pathitemsleft;
   int m_unallocateditems;
 };
-
 ///  poolalloc()   Allocate space for an item.
 void * PoolAlloc(MemoryPool * const pool);
 
 ///  pooldealloc()   Deallocate space for an item.
 ///
-///  The deallocated space is stored in a queue for later reuse.
 void PoolDealloc(
   MemoryPool * const pool,
   void * const dyingitem
 );
+*/
 
-void PoolDealloc(
-  std::vector<Vertex>& vertices,
-  Vertex& dyingitem
-);
+///  The deallocated space is stored in a queue for later reuse.
+void PoolDealloc(std::vector<Vertex>& vertices,Vertex& dyingitem);
+void PoolDealloc(std::vector<Triangle>& triangles,Triangle& dyingtriangle);
+void PoolDealloc(std::vector<SubSeg>& subseg,SubSeg& dyingsubseg);
 
 ///  pooldeinit()   Free to the operating system all memory taken by a pool.
+///
+/*
 void PoolDeinit(MemoryPool * const pool);
-
-void PoolDeinit(std::vector<Vertex>& vertices);
+*/
+template <class T> void PoolDeinit(std::vector<T>& v) { v.resize(0); }
 
 ///  poolinit()   Initialize a pool of memory for allocation of items.
 ///
@@ -85,6 +87,7 @@ void PoolDeinit(std::vector<Vertex>& vertices);
 ///
 ///  Don't change this routine unless you understand it.
 ///
+/*
 void PoolInit(
   MemoryPool * const pool,
   const int bytecount,
@@ -120,6 +123,7 @@ void TraversalInit(MemoryPool * const pool);
 ///  space-efficiently by a routine that knows something about the structure
 ///  of the item.
 void * Traverse(MemoryPool * const pool);
+*/
 
 } //~namespace tricpp
 } //~namespace ribi

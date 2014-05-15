@@ -1,8 +1,10 @@
 #ifndef TRIANGLECPPOTRI_H
 #define TRIANGLECPPOTRI_H
 
+#include <string>
 #include "trianglecpptriangle.h"
 #include "trianglecppfwd.h"
+#include "trianglecppvertex.h"
 
 namespace ribi {
 namespace tricpp {
@@ -11,100 +13,84 @@ namespace tricpp {
 /*   The orientation denotes an edge of the triangle.  Hence, there are      */
 /*   three possible orientations.  By convention, each edge always points    */
 /*   counterclockwise about the corresponding triangle.                      */
-
 struct Otri
 {
   Otri();
-  Triangle * m_tri;
-  int m_orient; /* Ranges from 0 to 2. */
+  //Triangle * operator[](const int index) noexcept;
+  const Vertex& GetApex() const noexcept;
+  double GetAreaBound() const noexcept { return m_area_bound; }
+  const Vertex& GetDest() const noexcept;
+  double GetElemAttrib(const int index);
+  const Vertex& GetOrigin() const noexcept;
+  void GetDest(const Vertex& dest) noexcept;
+  void GetOrigin(const Vertex& origin) noexcept;
+
+  void SetApex(const Vertex& apex) noexcept { m_apex = apex; }
+  void SetAreaBound(const double area_bound) noexcept { m_area_bound = area_bound; }
+  void SetDest(const Vertex& dest) noexcept { m_dest = dest; }
+  void SetElemAttrib(const double value, const int index);
+  void SetOrigin(const Vertex& origin) noexcept { m_origin = origin; }
+  void SetSubSeg(SubSeg * subseg, const int index) noexcept;
+  void SetTriangle(Triangle * triangle, const int index) noexcept;
+  //operator[](const int index) const noexcept;
+  std::vector<double> m_attributes;
+  std::vector<SubSeg*> m_subsegs;
+  std::vector<Triangle*> m_tri;
+  double m_area_bound;
+  int GetOrient() const noexcept { return m_orient; }
+  void SetOrient(const int orient) noexcept;
+  private:
+  /// Ranges from 0 to 2
+  int m_orient;
+  Vertex m_apex;
+  Vertex m_dest;
+  Vertex m_origin;
 };
 
-//Vertex * GetOrg(const Otri& otri)
-//{
-//  return otri.m_tri[0][((otri.m_orient + 1) % 3) + 3];
-//}
-
-/*
-#define org(otri, vertexptr)                                                  \
-  vertexptr = (Vertex) (otri).m_tri[plus1mod3_cpp[(otri).m_orient] + 3]
-*/
-
-//Vertex GetDest(const Otri& otri) { return otri.m_tri[0][((otri.m_orient - 1 + 3) % 3) + 3]; }
-
-#define dest(otri, vertexptr)                                                 \
-  vertexptr = (Vertex) (otri).m_tri[minus1mod3_cpp[(otri).m_orient] + 3]
-
-#define apex(otri, vertexptr)                                                 \
-  vertexptr = (Vertex) (otri).m_tri[(otri).m_orient + 3]
-
-#define setorg(otri, vertexptr)                                               \
-  (otri).m_tri[plus1mod3_cpp[(otri).m_orient] + 3] = (Triangle) vertexptr
-
-#define setdest(otri, vertexptr)                                              \
-  (otri).m_tri[minus1mod3_cpp[(otri).m_orient] + 3] = (Triangle) vertexptr
-
-#define setapex(otri, vertexptr)                                              \
-  (otri).m_tri[(otri).m_orient + 3] = (Triangle) vertexptr
-
-/* Bond two triangles together.                                              */
-
-#define bond(otri1, otri2)                                                    \
-  (otri1).m_tri[(otri1).m_orient] = encode(otri2);                                \
-  (otri2).m_tri[(otri2).m_orient] = encode(otri1)
-
-/* Dissolve a bond (from one side).  Note that the other triangle will still */
-/*   think it's connected to this triangle.  Usually, however, the other     */
-/*   triangle is being deleted entirely, or bonded to another triangle, so   */
-/*   it doesn't matter.                                                      */
-
-#define dissolve(otri)                                                        \
-  (otri).m_tri[(otri).m_orient] = (Triangle) m.m_dummytri
-
-/* Copy an oriented triangle.                                                */
-
-#define otricopy(otri1, otri2)                                                \
-  (otri2).m_tri = (otri1).m_tri;                                                  \
-  (otri2).m_orient = (otri1).m_orient
-
-/* Test for equality of oriented triangles.                                  */
-
-#define otriequal(otri1, otri2)                                               \
-  (((otri1).m_tri == (otri2).m_tri) &&                                            \
-   ((otri1).m_orient == (otri2).m_orient))
-
-/* Primitives to infect or cure a triangle with the virus.  These rely on    */
-/*   the assumption that all subsegments are aligned to four-byte boundaries.*/
-
-#define infect(otri)                                                          \
-  (otri).m_tri[6] = (Triangle)                                                  \
-                    ((unsigned long) (otri).m_tri[6] | (unsigned long) 2l)
-
-#define uninfect(otri)                                                        \
-  (otri).m_tri[6] = (Triangle)                                                  \
-                    ((unsigned long) (otri).m_tri[6] & ~ (unsigned long) 2l)
-
-/* Test a triangle for viral infection.                                      */
-
-#define infected(otri)                                                        \
-  (((unsigned long) (otri).m_tri[6] & (unsigned long) 2l) != 0l)
-
-/* Check or set a triangle's attributes.                                     */
-
-///Returns the attnum-th attribute, the double at m.m_elemattribindex + attnum
-#define elemattribute(otri, attnum)                                           \
-  ((double *) (otri).m_tri)[m.m_elemattribindex + (attnum)]
-
-///Set the attnum-th attribute with a value
-#define setelemattribute(otri, attnum, value)                                 \
-  ((double *) (otri).m_tri)[m.m_elemattribindex + (attnum)] = value
-
-/* Check or set a triangle's maximum area bound.                             */
-
-#define areabound(otri)  ((double *) (otri).m_tri)[m.m_areaboundindex]
-
-#define setareabound(otri, value)                                             \
-  ((double *) (otri).m_tri)[m.m_areaboundindex] = value
-
+void GetOrigin(Otri& otri, Vertex& vertexptr);
+void dest(Otri& otri, Vertex& vertexptr);
+void apex(Otri& otri, Vertex& vertexptr);
+void setorg(Otri& otri, Vertex& vertexptr);
+void setdest(Otri& otri, const Vertex& vertexptr);
+void setapex(Otri& otri, Vertex& vertexptr);
+// Bond two triangles together
+void bond(Otri& otri1, Otri& otri2);
+// Dissolve a bond (from one side).  Note that the other triangle will still
+//   think it's connected to this triangle.  Usually, however, the other
+//   triangle is being deleted entirely, or bonded to another triangle, so
+//   it doesn't matter.
+void dissolve(Otri& otri, Triangle * m_m_dummytri);
+void otricopy(const Otri& otri1, Otri& otri2);
+bool otriequal(const Otri& otri1, const Otri& otri2);
+void infect(Otri& otri);
+void uninfect(Otri& otri);
+bool infected(Otri& otri);
+double elemattribute(Otri& otri, int attnum);
+void setelemattribute(Otri& otri, const int attnum, const double value);
+double areabound(Otri& otri);
+void setareabound(Otri& otri, const double value);
+bool operator==(const Otri& lhs, const Otri& rhs) noexcept;
+bool operator!=(const Otri& lhs, const Otri& rhs) noexcept;
+void decode(const std::string& s, Otri& otri);
+std::string encode(const Otri& /*otri*/);
+void sym(const Otri& otri1, Otri& otri2);
+void symself(Otri& otri);
+void lnext(Otri& otri1, Otri& otri2);
+void lnextself(Otri& otri);
+void lprev(Otri& otri1, Otri& otri2);
+void lprevself(Otri& otri);
+void onext(Otri& otri1, Otri& otri2);
+void onextself(Otri& otri);
+void oprev(Otri& otri1, Otri& otri2);
+void oprevself(Otri& otri);
+void dnext(Otri& otri1, Otri& otri2);
+void dnextself(Otri& otri);
+void dprev(Otri& otri1, Otri& otri2);
+void dprevself(Otri& otri);
+void rnext(Otri& otri1, Otri& otri2);
+void rnextself(Otri& otri);
+void rprev(Otri& otri1, Otri& otri2);
+void rprevself(Otri& otri);
 
 } //~namespace tricpp
 } //~namespace ribi

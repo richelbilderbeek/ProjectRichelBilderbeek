@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "trianglecppfwd.h"
+#include "trianglecpptriangle.h"
+#include "trianglecppsubseg.h"
 
 namespace ribi {
 namespace tricpp {
@@ -19,16 +21,16 @@ namespace tricpp {
 //typedef double **Triangle;
 struct Triangle
 {
-  void SetTriangle(Triangle * triangle, const int index); //If the lvalue of operator[] needed to be used
-  void SetSubSeg(SubSeg * subseg, const int index); //If the lvalue of operator[] needed to be used
-  Triangle * operator[](const int i);
-  const Triangle * operator[](const int i) const;
+  void SetTriangle(Triangle& triangle, const int index); //If the lvalue of operator[] needed to be used
+  void SetSubSeg(SubSeg& subseg, const int index); //If the lvalue of operator[] needed to be used
+  Triangle& operator[](const int i) noexcept;
+  const Triangle& operator[](const int i) const noexcept;
   Vertex GetOrg();
   bool IsDead() const noexcept;
   void KillMe() const noexcept;
 
-  std::vector<Triangle *> m_triangles;
-  std::vector<SubSeg *> m_subsegs;
+  std::vector<Triangle> m_triangles;
+  std::vector<SubSeg> m_subsegs;
 };
 
 //These primitives determine or set the origin, destination, or apex of a
@@ -44,6 +46,9 @@ struct Triangle
 //bool deadtri(const Triangle& t) { return t[1] == nullptr; }
 
 //void killtri(const Triangle& t) { t[1] = nullptr; t[3] = nullptr; }
+
+Triangle& vertex2tri(Vertex& vx);
+void setvertex2tri(Vertex& vx, const Triangle& value);
 
 } //~namespace tricpp
 } //~namespace ribi

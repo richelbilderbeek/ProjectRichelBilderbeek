@@ -3,16 +3,16 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Games/GameTankBattalion/tankbattalionmenudialog.cpp \
-    tankbattalionspritetypes.cpp \
-    tankbattalionhelper.cpp
+    ../../Games/GameTankBattalion/tankbattalionspritetypes.cpp \
+    ../../Games/GameTankBattalion/tankbattalionhelper.cpp
 
 HEADERS  += \
     ../../Games/GameTankBattalion/tankbattalionmenudialog.h \
-    tankbattalionspritetype.h \
-    tankbattalionspritetypes.h \
-    tankbattalionkey.h \
-    tankbattaliondirection.h \
-    tankbattalionhelper.h
+    ../../Games/GameTankBattalion/tankbattalionspritetype.h \
+    ../../Games/GameTankBattalion/tankbattalionspritetypes.h \
+    ../../Games/GameTankBattalion/tankbattalionkey.h \
+    ../../Games/GameTankBattalion/tankbattaliondirection.h \
+    ../../Games/GameTankBattalion/tankbattalionhelper.h
 
 OTHER_FILES += \
     ../../Games/GameTankBattalion/Licence.txt

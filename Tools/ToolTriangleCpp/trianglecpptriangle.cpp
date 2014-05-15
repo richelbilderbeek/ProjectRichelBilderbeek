@@ -17,7 +17,7 @@ void ribi::tricpp::Triangle::KillMe()
 }
 
 void ribi::tricpp::Triangle::SetTriangle(
-  Triangle * triangle,
+  Triangle& triangle,
   const int i
 )
 {
@@ -53,3 +53,47 @@ const ribi::tricpp::Triangle * ribi::tricpp::Triangle::operator[](const int i) c
   assert(i < static_cast<int>(m_triangles.size()));
   return m_triangles[i];
 }
+
+
+Triangle& ribi::tricpp::vertex2tri(Vertex& vx)
+{
+  return vx.GetTriangle();
+}
+
+/*
+#define vertex2tri(vx)  ((Triangle *) (vx))[m.m_vertex2triindex]
+*/
+
+void ribi::tricpp::setvertex2tri(Vertex& vx, const Triangle& value)
+{
+  vx.SetTriangle(value);
+}
+
+/*
+#define setvertex2tri(vx, value)                                        \
+  ((Triangle *) (vx))[m.m_vertex2triindex] = value
+*/
+
+/*****************************************************************************/
+//
+// triunsuitable()   Determine if a triangle is unsuitable, and thus must
+//                   be further refined.
+//
+// You may write your own procedure that decides whether or not a selected
+// triangle is too big (and needs to be refined).  There are two ways to do
+// this.
+//
+// (1)  Modify the procedure `triunsuitable' below, then recompile
+// Triangle.
+//
+// (2)  Define the symbol EXTERNAL_TEST (either by adding the definition
+// to this file, or by using the appropriate compiler switch).  This way,
+// you can compile triangle.c separately from your test.  Write your own
+// `triunsuitable' procedure in a separate C file (using the same prototype
+// as below).  Compile it and link the object code with triangle.o.
+//
+// This procedure returns 1 if the triangle is too large and should be
+// refined; 0 otherwise.
+//
+/*****************************************************************************/
+

@@ -74,7 +74,7 @@ struct Behavior {
   int m_nobisect;
   int m_nobound;
   int m_noelewritten;
-  int m_noexact;
+  bool m_noexact;
   int m_noholes;
   int m_noiterationnum;
   int m_nonodewritten;
@@ -85,7 +85,6 @@ struct Behavior {
   std::string m_outelefilename;
   std::string m_outnodefilename;
   std::string m_outpolyfilename;
-  static const bool m_poly = true;
   int m_quality;
   int m_quiet;
   int m_regionattrib;
@@ -94,12 +93,12 @@ struct Behavior {
   int m_sweepline;
   int m_usertest;
   static const bool m_usesegments = true;
-  int m_vararea;
+  bool m_vararea;
   std::string m_vedgefilename;
   int m_verbosity; ///0: no verbosity, 1: verbose, +1: more verbose
   std::string m_vnodefilename;
   int m_voronoi;
-  static const int m_weighted = 0;
+  //static const int m_weighted = 0;
 };
 
 } //~namespace tricpp
