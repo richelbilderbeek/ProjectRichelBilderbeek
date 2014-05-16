@@ -67,6 +67,12 @@ void Two_Sum_Tail_Smartass(const double a, const double b, const double x, doubl
 
 //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
 //void Two_Two_Diff(const double a1, const double a0, const double b1, const double b0, double& x3, double& x2, double& x1, double& x0);
+
+  //x3 = a1 + a0 + b1 + b0;
+  //x3 = j + zero + b1;
+//x2 = 0.0;
+//x1 = 0.0;
+//Two_Two_Sum(a1, const double a0, const double b1, const double b0, double& x3, double& x2, double& x1, double& x0);
 void Two_Two_Sum(const double a1, const double a0, const double b1, const double b0, double& x3, double& x2, double& x1, double& x0);
 
 } //~namespace tricpp

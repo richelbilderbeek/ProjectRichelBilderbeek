@@ -487,8 +487,17 @@ void ribi::tricpp::Two_Two_Sum(const double a1, const double a0, const double b1
 {
   double zero = 0.0;
   double j = 0.0;
-  Two_One_Sum(a1, a0, b0,  j, zero, x0);
-  Two_One_Sum( j, zero, b1, x3, x2, x1);
+
+  //j = a1 + a0 + b0; zero = 0.0; x0 = 0.0;
+  //Two_One_Sum(a1,a0,b,x2,x1,x0): x2 = a1 + a0 + b0n, x1 = 0.0, x0 = 0.0
+  //Two_One_Sum(a1, a0, b0,  j, zero, x0);
+
+  //x3 = a1 + a0 + b1 + b0;
+  //x3 = j + zero + b1;
+  x2 = 0.0;
+  x1 = 0.0;
+  //Two_One_Sum(a1,a0,b,x2,x1,x0): x2 = a1 + a0 + b0, x1 = 0.0, x0 = 0.0
+  //Two_One_Sum( j, zero, b1, x3, x2, x1);
 }
 
 /*
