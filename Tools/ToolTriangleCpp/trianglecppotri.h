@@ -1,10 +1,16 @@
 #ifndef TRIANGLECPPOTRI_H
 #define TRIANGLECPPOTRI_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <string>
+#include <boost/shared_ptr.hpp>
 #include "trianglecpptriangle.h"
 #include "trianglecppfwd.h"
 #include "trianglecppvertex.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -22,7 +28,7 @@ struct Otri
   const Vertex& GetDest() const noexcept;
   double GetElemAttrib(const int index);
   const Vertex& GetOrigin() const noexcept;
-  void GetDest(const Vertex& dest) noexcept;
+  void GetDest(const Vertex& GetDest) noexcept;
   void GetOrigin(const Vertex& origin) noexcept;
 
   void SetApex(const Vertex& apex) noexcept { m_apex = apex; }
@@ -30,29 +36,28 @@ struct Otri
   void SetDest(const Vertex& dest) noexcept { m_dest = dest; }
   void SetElemAttrib(const double value, const int index);
   void SetOrigin(const Vertex& origin) noexcept { m_origin = origin; }
-  void SetSubSeg(SubSeg * subseg, const int index) noexcept;
-  void SetTriangle(Triangle * triangle, const int index) noexcept;
+  void SetSubSeg(const boost::shared_ptr<SubSeg>& subseg, const int index) noexcept;
+  void SetTriangle(const boost::shared_ptr<Triangle>& triangle, const int index) noexcept;
   //operator[](const int index) const noexcept;
-  std::vector<double> m_attributes;
-  std::vector<SubSeg*> m_subsegs;
-  std::vector<Triangle*> m_tri;
-  double m_area_bound;
   int GetOrient() const noexcept { return m_orient; }
   void SetOrient(const int orient) noexcept;
-  private:
-  /// Ranges from 0 to 2
-  int m_orient;
+
   Vertex m_apex;
+  double m_area_bound;
+  std::vector<double> m_attributes;
   Vertex m_dest;
+  int m_orient; /// Ranges from 0 to 2
   Vertex m_origin;
+  std::vector<boost::shared_ptr<SubSeg>> m_subsegs;
+  std::vector<boost::shared_ptr<Triangle>> m_tri;
 };
 
-void GetOrigin(Otri& otri, Vertex& vertexptr);
-void dest(Otri& otri, Vertex& vertexptr);
-void apex(Otri& otri, Vertex& vertexptr);
-void setorg(Otri& otri, Vertex& vertexptr);
-void setdest(Otri& otri, const Vertex& vertexptr);
-void setapex(Otri& otri, Vertex& vertexptr);
+void GetOrigin(const Otri& otri, Vertex& vertexptr);
+void GetDest(const Otri& otri, Vertex& vertexptr);
+//void GetApex(const Otri& otri, Vertex& vertexptr);
+//void SetOrigin(Otri& otri, const Vertex& vertexptr);
+void SetDest(Otri& otri, const Vertex& vertexptr);
+void SetApex(Otri& otri, const Vertex& vertexptr);
 // Bond two triangles together
 void bond(Otri& otri1, Otri& otri2);
 // Dissolve a bond (from one side).  Note that the other triangle will still
@@ -60,8 +65,8 @@ void bond(Otri& otri1, Otri& otri2);
 //   triangle is being deleted entirely, or bonded to another triangle, so
 //   it doesn't matter.
 void dissolve(Otri& otri, Triangle * m_m_dummytri);
-void otricopy(const Otri& otri1, Otri& otri2);
-bool otriequal(const Otri& otri1, const Otri& otri2);
+//void otricopy(const Otri& otri1, Otri& otri2);
+//bool otriequal(const Otri& otri1, const Otri& otri2);
 void infect(Otri& otri);
 void uninfect(Otri& otri);
 bool infected(Otri& otri);

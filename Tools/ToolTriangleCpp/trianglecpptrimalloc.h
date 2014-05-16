@@ -5,7 +5,7 @@ namespace ribi {
 namespace tricpp {
 
 //TODO: Remove this function
-void * TriMalloc(const int size);
+//void * TriMalloc(const int size);
 
 } //~namespace tricpp
 } //~namespace ribi

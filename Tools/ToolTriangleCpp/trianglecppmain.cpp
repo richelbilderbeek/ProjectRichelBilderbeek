@@ -53,14 +53,17 @@ void ribi::tricpp::dummyinit(
   //  will eventually be changed by various bonding operations, but their
   //  values don't really matter, as long as they can legally be
   //  dereferenced.
-  assert(m.m_dummytri);
-  m.m_dummytri->SetTriangle(m.m_dummytri,0);
-  m.m_dummytri->SetTriangle(m.m_dummytri,1);
-  m.m_dummytri->SetTriangle(m.m_dummytri,2);
+  //assert(m.m_dummytri);
+  m.m_dummytri.m_triangles.push_back(Triangle());
+  m.m_dummytri.m_triangles.push_back(Triangle());
+  m.m_dummytri.m_triangles.push_back(Triangle());
+  //SetTriangle(*m.m_dummytri,0);
+  //m.m_dummytri->SetTriangle(*m.m_dummytri,1);
+  //m.m_dummytri->SetTriangle(*m.m_dummytri,2);
   //Three NULL vertices.
-  m.m_dummytri->SetTriangle(nullptr,3);
-  m.m_dummytri->SetTriangle(nullptr,4);
-  m.m_dummytri->SetTriangle(nullptr,5);
+  //m.m_dummytri->SetTriangle(nullptr,3);
+  //m.m_dummytri->SetTriangle(nullptr,4);
+  //m.m_dummytri->SetTriangle(nullptr,5);
 
   {
     //Set up `dummysub', the omnipresent subsegment pointed to by any
@@ -77,28 +80,34 @@ void ribi::tricpp::dummyinit(
     //  subsegment.  These will eventually be changed by various bonding
     //  operations, but their values don't really matter, as long as they
     //  can legally be dereferenced.
-    assert(m.m_dummysub);
-    m.m_dummysub->SetSubSeg(m.m_dummysub,0);
-    m.m_dummysub->SetSubSeg(m.m_dummysub,1);
+    //assert(m.m_dummysub);
+    m.m_dummysub.m_subsegs.push_back(SubSeg());
+    m.m_dummysub.m_subsegs.push_back(SubSeg());
+    //m.m_dummysub->SetSubSeg(m.m_dummysub,0);
+    //m.m_dummysub->SetSubSeg(m.m_dummysub,1);
     //Four NULL vertices.
-    m.m_dummysub->SetSubSeg(nullptr,2);
-    m.m_dummysub->SetSubSeg(nullptr,3);
-    m.m_dummysub->SetSubSeg(nullptr,4);
-    m.m_dummysub->SetSubSeg(nullptr,5);
+    //m.m_dummysub->SetSubSeg(nullptr,2);
+    //m.m_dummysub->SetSubSeg(nullptr,3);
+    //m.m_dummysub->SetSubSeg(nullptr,4);
+    //m.m_dummysub->SetSubSeg(nullptr,5);
     //Initialize the two adjoining triangles to be "outer space."
-    assert(m.m_dummytri);
-    m.m_dummysub->SetTriangle(m.m_dummytri,6);
-    m.m_dummysub->SetTriangle(m.m_dummytri,7);
+    //assert(m.m_dummytri);
+    m.m_dummysub.m_triangles.push_back(Triangle());
+    m.m_dummysub.m_triangles.push_back(Triangle());
+    //m.m_dummysub->SetTriangle(m.m_dummytri,6);
+    //m.m_dummysub->SetTriangle(m.m_dummytri,7);
     //Set the boundary marker to zero.
-    m.m_dummysub->SetBoundaryMarker(0);
+    m.m_dummysub.SetBoundaryMarker(0);
     //* (int *) (m.m_dummysub + 8) = 0;
 
     //Initialize the three adjoining subsegments of `dummytri' to be
     //  the omnipresent subsegment.
-
-    m.m_dummytri->SetSubSeg(m.m_dummysub,6);
-    m.m_dummytri->SetSubSeg(m.m_dummysub,7);
-    m.m_dummytri->SetSubSeg(m.m_dummysub,8);
+    m.m_dummytri.m_subsegs.push_back(m.m_dummysub);
+    m.m_dummytri.m_subsegs.push_back(m.m_dummysub);
+    m.m_dummytri.m_subsegs.push_back(m.m_dummysub);
+    //m.m_dummytri->SetSubSeg(m.m_dummysub,6);
+    //m.m_dummytri->SetSubSeg(m.m_dummysub,7);
+    //m.m_dummytri->SetSubSeg(m.m_dummysub,8);
   }
 }
 
@@ -265,7 +274,7 @@ void ribi::tricpp::vertexdealloc(
 
 void ribi::tricpp::badsubsegdealloc(
   //Mesh& m,
-  std::vector<BadSubSeg>& m_badsubsegs,
+  std::vector<BadSubSeg>& m_m_badsubsegs,
   BadSubSeg& dyingseg
 )
 {
@@ -325,6 +334,7 @@ ribi::tricpp::Vertex ribi::tricpp::getvertex(
 }
 */
 
+/*
 void ribi::tricpp::triangledeinit(
   Mesh& m,
   const Behavior& b
@@ -348,12 +358,12 @@ void ribi::tricpp::triangledeinit(
     }
   }
 }
-
+*/
 
 void ribi::tricpp::maketriangle(
   //Mesh& m,
-  Triangle * m_m_dummytri,
-  SubSeg * m_m_dummysub,
+  const boost::shared_ptr<Triangle>& m_m_dummytri,
+  const boost::shared_ptr<SubSeg>& m_m_dummysub,
   const int m_m_eextras,
   //const Behavior& b,
   const bool b_m_vararea,
@@ -397,7 +407,7 @@ void ribi::tricpp::makesubseg(
   //Initialize the two adjoining subsegments to be the omnipresent
   //  subsegment.
   newsubseg.m_subseg.push_back(m_m_dummysub);
-  newsubseg.m_subseg.push_back(m_m_dummysub;
+  newsubseg.m_subseg.push_back(m_m_dummysub);
   //Four NULL vertices.
   //newsubseg.m_subseg[2] = nullptr;
   //newsubseg.m_subseg[3] = nullptr;
@@ -414,13 +424,20 @@ void ribi::tricpp::makesubseg(
 }
 
 int ribi::tricpp::fast_expansion_sum_zeroelim(
-  const int elen,
-  const double * const e,
-  const int flen,
-  const double * const f,
-  double * const h
+  const int elen_original,
+  const std::vector<double>& e,
+  //const double * const e,
+  const int flen_original,
+  const std::vector<double>& f,
+  //const double * const f,
+  std::vector<double>& h
+  //double * const h
 )
 {
+  const int elen = static_cast<int>(e.size());
+  const int flen = static_cast<int>(f.size());
+  assert(elen_original == elen);
+  assert(flen_original == flen);
   double Q;
   double Qnew;
   double hh;
@@ -432,54 +449,89 @@ int ribi::tricpp::fast_expansion_sum_zeroelim(
   {
     Q = enow;
     enow = e[++eindex];
-  } else {
+  }
+  else
+  {
     Q = fnow;
     fnow = f[++findex];
   }
   int hindex = 0;
-  if ((eindex < elen) && (findex < flen)) {
-    if ((fnow > enow) == (fnow > -enow)) {
-      Fast_Two_Sum(enow, Q, Qnew, hh);
+  if (eindex < elen && findex < flen)
+  {
+    if ((fnow > enow) == (fnow > -enow))
+    {
+      Qnew = enow + Q; hh = 0.0;
+      //Fast_Two_Sum(a,b,x,y) : x = a + b, y = 0.0;
+      //Fast_Two_Sum(enow, Q, Qnew, hh);
       enow = e[++eindex];
-    } else {
-      Fast_Two_Sum(fnow, Q, Qnew, hh);
+    }
+    else
+    {
+      Qnew = fnow + Q; hh = 0.0;
+      //Fast_Two_Sum(a,b,x,y) : x = a + b, y = 0.0;
+      //Fast_Two_Sum(fnow, Q, Qnew, hh);
+
       fnow = f[++findex];
     }
     Q = Qnew;
-    if (hh != 0.0) {
+    if (hh != 0.0)
+    {
       h[hindex++] = hh;
     }
-    while ((eindex < elen) && (findex < flen)) {
-      if ((fnow > enow) == (fnow > -enow)) {
-        Two_Sum(Q, enow, Qnew, hh);
+    while (eindex < elen && findex < flen)
+    {
+      if ((fnow > enow) == (fnow > -enow))
+      {
+        Qnew = Q + enow;
+        hh = 0.0;
+        //x = a + b, y = 0.0;
+        //Two_Sum(Q, enow, Qnew, hh);
         enow = e[++eindex];
-      } else {
-        Two_Sum(Q, fnow, Qnew, hh);
+      }
+      else
+      {
+        Qnew = Q + fnow;
+        hh = 0.0;
+        //x = a + b, y = 0.0;
+        //Two_Sum(Q, fnow, Qnew, hh);
         fnow = f[++findex];
       }
       Q = Qnew;
-      if (hh != 0.0) {
+      if (hh != 0.0)
+      {
         h[hindex++] = hh;
       }
     }
   }
-  while (eindex < elen) {
-    Two_Sum(Q, enow, Qnew, hh);
+  while (eindex < elen)
+  {
+    Qnew = Q + enow;
+    hh = 0.0;
+    //x = a + b, y = 0.0;
+    //Two_Sum(Q, enow, Qnew, hh);
     enow = e[++eindex];
     Q = Qnew;
-    if (hh != 0.0) {
+    if (hh != 0.0)
+    {
       h[hindex++] = hh;
     }
   }
-  while (findex < flen) {
-    Two_Sum(Q, fnow, Qnew, hh);
+  while (findex < flen)
+  {
+    Qnew = Q + fnow;
+    hh = 0.0;
+    //x = a + b, y = 0.0;
+    //Two_Sum(Q, fnow, Qnew, hh);
+
     fnow = f[++findex];
     Q = Qnew;
-    if (hh != 0.0) {
+    if (hh != 0.0)
+    {
       h[hindex++] = hh;
     }
   }
-  if ((Q != 0.0) || (hindex == 0)) {
+  if (Q != 0.0 || hindex == 0)
+  {
     h[hindex++] = Q;
   }
   return hindex;
@@ -487,21 +539,26 @@ int ribi::tricpp::fast_expansion_sum_zeroelim(
 
 
 int ribi::tricpp::scale_expansion_zeroelim(
-  const int elen,
-  const double * const e,
+  const int elen_original,
+  const std::vector<double>& e,
+  //const double * const e,
   const double b,
-  double * const h
+  std::vector<double>& h
+  //double * const h
 )
 {
+  const int elen = static_cast<int>(e.size());
+  assert(elen == elen_original);
   double Q, sum;
   double hh;
   double product1;
   double product0;
   int hindex;
   double enow;
-  double bhi, blo;
 
-  Split(b, bhi, blo);
+  double bhi = b;
+  double blo =0.0;
+  //Split(b, bhi, blo);
   Two_Product_Presplit(e[0], b, bhi, blo, Q, hh);
   hindex = 0;
   if (hh != 0) {
@@ -510,11 +567,20 @@ int ribi::tricpp::scale_expansion_zeroelim(
   for (int eindex = 1; eindex < elen; eindex++) {
     enow = e[eindex];
     Two_Product_Presplit(enow, b, bhi, blo, product1, product0);
-    Two_Sum(Q, product0, sum, hh);
+
+    sum = Q + product0;
+    hh = 0.0;
+    //x = a + b, y = 0.0;
+    //Two_Sum(Q, product0, sum, hh);
+
     if (hh != 0) {
       h[hindex++] = hh;
     }
-    Fast_Two_Sum(product1, sum, Q, hh);
+
+    Q = product1 + sum; hh = 0.0;
+    //Fast_Two_Sum(a,b,x,y) : x = a + b, y = 0.0;
+    //Fast_Two_Sum(product1, sum, Q, hh);
+
     if (hh != 0) {
       h[hindex++] = hh;
     }
@@ -526,22 +592,24 @@ int ribi::tricpp::scale_expansion_zeroelim(
 }
 
 // estimate()   Produce a one-word estimate of an expansion's value.
+/*
 double estimate(
-  const int elen,
-  const double * const e
+  //const int elen,
+  //const double * const e
+  const std::vector<double>& v
 )
 {
-  return std::accumulate(std::begin(e),std::begin(e)+elen,0.0);
-  /*
-  double Q = e[0];
-  for (int eindex = 1; eindex < elen; ++eindex)
-  {
-    Q += e[eindex];
-  }
-  return Q;
-  */
-}
+  return std::accumulate(v.begin(),v.end(),0.0);
 
+  /double Q = e[0];
+  /for (int eindex = 1; eindex < elen; ++eindex)
+  /{
+  /  Q += e[eindex];
+  /}
+  /return Q;
+
+}
+*/
 
 double ribi::tricpp::counterclockwiseadapt(
   const Vertex& pa,
@@ -550,41 +618,70 @@ double ribi::tricpp::counterclockwiseadapt(
   const double detsum
 )
 {
-  double acxtail, acytail, bcxtail, bcytail;
-  double detleft, detright;
-  double detlefttail, detrighttail;
+  //double acxtail, acytail, bcxtail, bcytail;
+  //double detleft, detright;
+  const double detlefttail = 0.0;
+  const double detrighttail = 0.0;
   //double det, errbound;
-  double B[4], C1[8], C2[12], D[16];
-  double B3;
+  std::vector<double> B(4,0.0);
+  //double B[4];
+  std::vector<double> C1(8,0.0);
+  std::vector<double> C2(12,0.0);
+  std::vector<double> D(16,0.0);
+  //double C1[8], C2[12], D[16];
+  //double B3;
   //int C1length, C2length, Dlength;
-  double u[4];
+  std::vector<double> u(4,0.0);
+  //double u[4];
   double u3;
   double s1, t1;
-  double s0, t0;
+  const double s0 = 0.0;
+  const double t0 = 0.0;
 
   const double acx = pa[0] - pc[0];
   const double bcx = pb[0] - pc[0];
   const double acy = pa[1] - pc[1];
   const double bcy = pb[1] - pc[1];
 
-  Two_Product(acx, bcy, detleft, detlefttail);
-  Two_Product(acy, bcx, detright, detrighttail);
+  const double detleft = acx * bcy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(acx, bcy, detleft, detlefttail);
 
-  Two_Two_Diff(detleft, detlefttail, detright, detrighttail,
-               B3, B[2], B[1], B[0]);
+  const double detright = acy * bcx;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(acy, bcx, detright, detrighttail);
+
+  const double B3 = detleft + detlefttail - detright - detrighttail;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(detleft, detlefttail, detright, detrighttail,B3, B[2], B[1], B[0]);
+
   B[3] = B3;
 
-  double det = estimate(4, B);
+
+  double det = std::accumulate(B.begin(),B.end(),0.0);
+  //double det = estimate(B);
+
   double errbound = Global().m_ccwerrboundB * detsum;
   if (det >= errbound || -det >= errbound)
   {
     return det;
   }
 
-  Two_Diff_Tail(pa[0], pc[0], acx, acxtail);
-  Two_Diff_Tail(pb[0], pc[0], bcx, bcxtail);
-  Two_Diff_Tail(pa[1], pc[1], acy, acytail);
-  Two_Diff_Tail(pb[1], pc[1], bcy, bcytail);
+  const double acxtail = -acx + pa[0] - pc[0];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pa[0], pc[0], acx, acxtail);
+
+  const double bcxtail = -bcx + pb[0] - pc[0];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pb[0], pc[0], bcx, bcxtail);
+
+  const double acytail = -acy + pa[1] - pc[1];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pa[1], pc[1], acy, acytail);
+
+  const double bcytail = -bcy + pb[1] - pc[1];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pb[1], pc[1], bcy, bcytail);
 
   if (acxtail == 0.0 && acytail == 0.0 && bcxtail == 0.0 && bcytail == 0.0)
   {
@@ -599,21 +696,48 @@ double ribi::tricpp::counterclockwiseadapt(
     return det;
   }
 
-  Two_Product(acxtail, bcy, s1, s0);
-  Two_Product(acytail, bcx, t1, t0);
-  Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
+  s1 = acxtail * bcy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(acxtail, bcy, s1, s0);
+
+  t1 = acytail * bcx;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(acytail, bcx, t1, t0);
+
+  u3 = s1 + s0 - t1 - t0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
+
   u[3] = u3;
   const int C1length = fast_expansion_sum_zeroelim(4, B, 4, u, C1);
 
-  Two_Product(acx, bcytail, s1, s0);
-  Two_Product(acy, bcxtail, t1, t0);
-  Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
+  s1 = acx * bcytail;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(acx, bcytail, s1, s0);
+
+  t1 = acy * bcxtail;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(acy, bcxtail, t1, t0);
+
+  u3 = s1 + s0 - t1 - t0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
+
   u[3] = u3;
   const int C2length = fast_expansion_sum_zeroelim(C1length, C1, 4, u, C2);
 
-  Two_Product(acxtail, bcytail, s1, s0);
-  Two_Product(acytail, bcxtail, t1, t0);
-  Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
+  s1 = acxtail * bcytail;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(acxtail, bcytail, s1, s0);
+
+  t1 = acytail * bcxtail;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(acytail, bcxtail, t1, t0);
+
+  u3 = s1 + s0 - t1 - t0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
+
   u[3] = u3;
   const int Dlength = fast_expansion_sum_zeroelim(C2length, C2, 4, u, D);
 
@@ -630,9 +754,9 @@ double ribi::tricpp::counterclockwise(
 {
   double detsum = 0.0;
 
-  m_m_counterclockcount++;
+  ++m_m_counterclockcount;
 
-  const double detleft = (pa[0] - pc[0]) * (pb[1] - pc[1]);
+  const double detleft  = (pa[0] - pc[0]) * (pb[1] - pc[1]);
   const double detright = (pa[1] - pc[1]) * (pb[0] - pc[0]);
   const double det = detleft - detright;
 
@@ -643,25 +767,34 @@ double ribi::tricpp::counterclockwise(
 
   if (detleft > 0.0)
   {
-    if (detright <= 0.0) {
+    if (detright <= 0.0)
+    {
       return det;
-    } else {
+    }
+    else
+    {
       detsum = detleft + detright;
     }
-  } else if (detleft < 0.0)
+  }
+  else if (detleft < 0.0)
   {
-    if (detright >= 0.0) {
+    if (detright >= 0.0)
+    {
       return det;
-    } else {
+    }
+    else
+    {
       detsum = -detleft - detright;
     }
-  } else
+  }
+  else
   {
     return det;
   }
 
   const double errbound = Global().m_ccwerrboundA * detsum;
-  if ((det >= errbound) || (-det >= errbound)) {
+  if ((det >= errbound) || (-det >= errbound))
+  {
     return det;
   }
 
@@ -677,65 +810,137 @@ double ribi::tricpp::incircleadapt(
 )
 {
   double bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;
-  double bdxcdy0, cdxbdy0, cdxady0, adxcdy0, adxbdy0, bdxady0;
-  double bc[4], ca[4], ab[4];
+  const double bdxcdy0 = 0.0;
+  const double cdxbdy0 = 0.0;
+  const double cdxady0 = 0.0;
+  const double adxcdy0 = 0.0;
+  const double adxbdy0 = 0.0;
+  const double bdxady0 = 0.0;
+  std::vector<double> bc(4,0.0);
+  std::vector<double> ca(4,0.0);
+  std::vector<double> ab(4,0.0);
   double bc3, ca3, ab3;
-  double axbc[8], axxbc[16], aybc[8], ayybc[16], adet[32];
+  std::vector<double> axbc(8,0.0);
+  std::vector<double> axxbc(16,0.0);
+  std::vector<double> aybc(8,0.0);
+  std::vector<double> ayybc(16,0.0);
+  std::vector<double> adet(32,0.0);
   //int axbclen, axxbclen, aybclen, ayybclen, alen;
-  double bxca[8], bxxca[16], byca[8], byyca[16], bdet[32];
-  double cxab[8], cxxab[16], cyab[8], cyyab[16], cdet[32];
+  std::vector<double> bxca(8,0.0);
+  std::vector<double> bxxca(16,0.0);
+  std::vector<double> byca(8,0.0);
+  std::vector<double> byyca(16,0.0);
+  std::vector<double> bdet(32,0.0);
+  std::vector<double> cxab(8,0.0);
+  std::vector<double> cxxab(16,0.0);
+  std::vector<double> cyab(8,0.0);
+  std::vector<double> cyyab(16,0.0);
+  std::vector<double> cdet(32,0.0);
   //int cxablen, cxxablen, cyablen, cyyablen, clen;
-  double abdet[64];
+  std::vector<double> abdet(64,0.0);
   //int ablen;
-  double fin1[1152], fin2[1152];
+  std::vector<double> fin1(1152,0.0);
+  std::vector<double> fin2(1152,0.0);
+  //double fin1(1152], fin2(1152];
   //double *finnow,
   //double *finother;
-  double *finswap = nullptr;
+  //double *finswap = nullptr;
   //int finlength;
 
   double adxtail, bdxtail, cdxtail, adytail, bdytail, cdytail;
   double adxadx1, adyady1, bdxbdx1, bdybdy1, cdxcdx1, cdycdy1;
-  double adxadx0, adyady0, bdxbdx0, bdybdy0, cdxcdx0, cdycdy0;
-  double aa[4], bb[4], cc[4];
+  const double adxadx0 = 0.0;
+  const double adyady0 = 0.0;
+  const double bdxbdx0 = 0.0;
+  const double bdybdy0 = 0.0;
+  const double cdxcdx0 = 0.0;
+  const double cdycdy0 = 0.0;
+  std::vector<double> aa(4,0.0);
+  std::vector<double> bb(4,0.0);
+  std::vector<double> cc(4,0.0);
   double aa3, bb3, cc3;
   double ti1, tj1;
-  double ti0, tj0;
-  double u[4], v[4];
+  const double ti0 = 0.0;
+  const double tj0 = 0.0;
+  std::vector<double> u(4,0.0);
+  std::vector<double> v(4,0.0);
   double u3, v3;
-  double temp8[8], temp16a[16], temp16b[16], temp16c[16];
-  double temp32a[32], temp32b[32], temp48[48], temp64[64];
+  std::vector<double> temp8(8,0.0);
+  std::vector<double> temp16a(16,0.0);
+  std::vector<double> temp16b(16,0.0);
+  std::vector<double> temp16c(16,0.0);
+  std::vector<double> temp32a(32,0.0);
+  std::vector<double> temp32b(32,0.0);
+  std::vector<double> temp48(48,0.0);
+  std::vector<double> temp64(64,0.0);
   int temp8len, temp16alen, temp16blen, temp16clen;
   int temp32alen, temp32blen, temp48len, temp64len;
-  double axtbb[8], axtcc[8], aytbb[8], aytcc[8];
+  std::vector<double> axtbb(8,0.0);
+  std::vector<double> axtcc(8,0.0);
+  std::vector<double> aytbb(8,0.0);
+  std::vector<double> aytcc(8,0.0);
   int axtbblen, axtcclen, aytbblen, aytcclen;
-  double bxtaa[8], bxtcc[8], bytaa[8], bytcc[8];
+  std::vector<double> bxtaa(8,0.0);
+  std::vector<double> bxtcc(8,0.0);
+  std::vector<double> bytaa(8,0.0);
+  std::vector<double> bytcc(8,0.0);
   int bxtaalen, bxtcclen, bytaalen, bytcclen;
-  double cxtaa[8], cxtbb[8], cytaa[8], cytbb[8];
+  std::vector<double> cxtaa(8,0.0);
+  std::vector<double> cxtbb(8,0.0);
+  std::vector<double> cytaa(8,0.0);
+  std::vector<double> cytbb(8,0.0);
   int cxtaalen, cxtbblen, cytaalen, cytbblen;
-  double axtbc[8], aytbc[8], bxtca[8], bytca[8], cxtab[8], cytab[8];
+  std::vector<double> axtbc(8,0.0);
+  std::vector<double> aytbc(8,0.0);
+  std::vector<double> bxtca(8,0.0);
+  std::vector<double> bytca(8,0.0);
+  std::vector<double> cxtab(8,0.0);
+  std::vector<double> cytab(8,0.0);
   int axtbclen, aytbclen, bxtcalen, bytcalen, cxtablen, cytablen;
-  double axtbct[16], aytbct[16], bxtcat[16], bytcat[16], cxtabt[16], cytabt[16];
+  std::vector<double> axtbct(16,0.0);
+  std::vector<double> aytbct(16,0.0);
+  std::vector<double> bxtcat(16,0.0);
+  std::vector<double> bytcat(16,0.0);
+  std::vector<double> cxtabt(16,0.0);
+  std::vector<double> cytabt(16,0.0);
   int axtbctlen, aytbctlen, bxtcatlen, bytcatlen, cxtabtlen, cytabtlen;
-  double axtbctt[8], aytbctt[8], bxtcatt[8];
-  double bytcatt[8], cxtabtt[8], cytabtt[8];
+  std::vector<double> axtbctt(8,0.0);
+  std::vector<double> aytbctt(8,0.0);
+  std::vector<double> bxtcatt(8,0.0);
+  std::vector<double> bytcatt(8,0.0);
+  std::vector<double> cxtabtt(8,0.0);
+  std::vector<double> cytabtt(8,0.0);
   int axtbcttlen, aytbcttlen, bxtcattlen, bytcattlen, cxtabttlen, cytabttlen;
-  double abt[8], bct[8], cat[8];
+  std::vector<double> abt(8,0.0);
+  std::vector<double> bct(8,0.0);
+  std::vector<double> cat(8,0.0);
   int abtlen, bctlen, catlen;
-  double abtt[4], bctt[4], catt[4];
+  std::vector<double> abtt(4,0.0);
+  std::vector<double> bctt(4,0.0);
+  std::vector<double> catt(4,0.0);
   int abttlen, bcttlen, cattlen;
   double abtt3, bctt3, catt3;
   double negate;
 
-  const double adx = (double) (pa[0] - pd[0]);
-  const double bdx = (double) (pb[0] - pd[0]);
-  const double cdx = (double) (pc[0] - pd[0]);
-  const double ady = (double) (pa[1] - pd[1]);
-  const double bdy = (double) (pb[1] - pd[1]);
-  const double cdy = (double) (pc[1] - pd[1]);
+  const double adx = pa[0] - pd[0];
+  const double bdx = pb[0] - pd[0];
+  const double cdx = pc[0] - pd[0];
+  const double ady = pa[1] - pd[1];
+  const double bdy = pb[1] - pd[1];
+  const double cdy = pc[1] - pd[1];
 
-  Two_Product(bdx, cdy, bdxcdy1, bdxcdy0);
-  Two_Product(cdx, bdy, cdxbdy1, cdxbdy0);
-  Two_Two_Diff(bdxcdy1, bdxcdy0, cdxbdy1, cdxbdy0, bc3, bc[2], bc[1], bc[0]);
+  bdxcdy1 = bdx * cdy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(bdx, cdy, bdxcdy1, bdxcdy0);
+
+  cdxbdy1 = cdx * bdy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(cdx, bdy, cdxbdy1, cdxbdy0);
+
+  bc3 = bdxcdy1 + bdxcdy0 - cdxbdy1 - cdxbdy0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(bdxcdy1, bdxcdy0, cdxbdy1, cdxbdy0, bc3, bc[2], bc[1], bc[0]);
+
   bc[3] = bc3;
   const int axbclen = scale_expansion_zeroelim(4, bc, adx, axbc);
   const int axxbclen = scale_expansion_zeroelim(axbclen, axbc, adx, axxbc);
@@ -743,9 +948,18 @@ double ribi::tricpp::incircleadapt(
   const int ayybclen = scale_expansion_zeroelim(aybclen, aybc, ady, ayybc);
   const int alen = fast_expansion_sum_zeroelim(axxbclen, axxbc, ayybclen, ayybc, adet);
 
-  Two_Product(cdx, ady, cdxady1, cdxady0);
-  Two_Product(adx, cdy, adxcdy1, adxcdy0);
-  Two_Two_Diff(cdxady1, cdxady0, adxcdy1, adxcdy0, ca3, ca[2], ca[1], ca[0]);
+  cdxady1 = cdx * ady;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(cdx, ady, cdxady1, cdxady0);
+
+  adxcdy1 = adx * cdy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(adx, cdy, adxcdy1, adxcdy0);
+
+  ca3 = cdxady1 + cdxady0 - adxcdy1 - adxcdy0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(cdxady1, cdxady0, adxcdy1, adxcdy0, ca3, ca[2], ca[1], ca[0]);
+
   ca[3] = ca3;
   const int bxcalen = scale_expansion_zeroelim(4, ca, bdx, bxca);
   const int bxxcalen = scale_expansion_zeroelim(bxcalen, bxca, bdx, bxxca);
@@ -753,9 +967,18 @@ double ribi::tricpp::incircleadapt(
   const int byycalen = scale_expansion_zeroelim(bycalen, byca, bdy, byyca);
   const int blen = fast_expansion_sum_zeroelim(bxxcalen, bxxca, byycalen, byyca, bdet);
 
-  Two_Product(adx, bdy, adxbdy1, adxbdy0);
-  Two_Product(bdx, ady, bdxady1, bdxady0);
-  Two_Two_Diff(adxbdy1, adxbdy0, bdxady1, bdxady0, ab3, ab[2], ab[1], ab[0]);
+  adxbdy1 = adx * bdy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(adx, bdy, adxbdy1, adxbdy0);
+
+  bdxady1 = bdx * ady;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(bdx, ady, bdxady1, bdxady0);
+
+  ab3 = adxbdy1 + adxbdy0 - bdxady1 - bdxady0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(adxbdy1, adxbdy0, bdxady1, bdxady0, ab3, ab[2], ab[1], ab[0]);
+
   ab[3] = ab3;
   const int cxablen = scale_expansion_zeroelim(4, ab, cdx, cxab);
   const int cxxablen = scale_expansion_zeroelim(cxablen, cxab, cdx, cxxab);
@@ -765,20 +988,40 @@ double ribi::tricpp::incircleadapt(
 
   const int ablen = fast_expansion_sum_zeroelim(alen, adet, blen, bdet, abdet);
   int finlength = fast_expansion_sum_zeroelim(ablen, abdet, clen, cdet, fin1);
+  assert(finlength == static_cast<int>(fin1.size()));
+  double det = std::accumulate(fin1.begin(),fin1.end(),0.0);
+  //double det = estimate(fin1);
 
-  double det = estimate(finlength, fin1);
   double errbound = Global().m_iccerrboundB * permanent;
   if (det >= errbound || -det >= errbound)
   {
     return det;
   }
 
-  Two_Diff_Tail(pa[0], pd[0], adx, adxtail);
-  Two_Diff_Tail(pa[1], pd[1], ady, adytail);
-  Two_Diff_Tail(pb[0], pd[0], bdx, bdxtail);
-  Two_Diff_Tail(pb[1], pd[1], bdy, bdytail);
-  Two_Diff_Tail(pc[0], pd[0], cdx, cdxtail);
-  Two_Diff_Tail(pc[1], pd[1], cdy, cdytail);
+  adxtail = -adx + pa[0] - pd[0];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pa[0], pd[0], adx, adxtail);
+
+  adytail = -ady + pa[1] - pd[1];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pa[1], pd[1], , adytail);
+
+  bdxtail = -bdx + pb[0] - pd[0];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pb[0], pd[0], bdx, bdxtail);
+
+  bdytail = -bdy + pb[1] - pd[1];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pb[1], pd[1], bdy, bdytail);
+
+  cdxtail = -cdx + pc[0] - pd[0];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pc[0], pd[0], cdx, cdxtail);
+
+  cdytail = -cdy + pc[1] - pd[1];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pc[1], pd[1], cdy, cdytail);
+
   if ( adxtail == 0.0 && bdxtail == 0.0 && cdxtail == 0.0
     && adytail == 0.0 && bdytail == 0.0 && cdytail == 0.0
   )
@@ -787,48 +1030,63 @@ double ribi::tricpp::incircleadapt(
   }
 
   errbound = Global().m_iccerrboundC * permanent + Global().m_resulterrbound * std::abs(det);
-  det += ((adx * adx + ady * ady) * ((bdx * cdytail + cdy * bdxtail)
-                                     - (bdy * cdxtail + cdx * bdytail))
-          + 2.0 * (adx * adxtail + ady * adytail) * (bdx * cdy - bdy * cdx))
-       + ((bdx * bdx + bdy * bdy) * ((cdx * adytail + ady * cdxtail)
-                                     - (cdy * adxtail + adx * cdytail))
-          + 2.0 * (bdx * bdxtail + bdy * bdytail) * (cdx * ady - cdy * adx))
-       + ((cdx * cdx + cdy * cdy) * ((adx * bdytail + bdy * adxtail)
-                                     - (ady * bdxtail + bdx * adytail))
-          + 2.0 * (cdx * cdxtail + cdy * cdytail) * (adx * bdy - ady * bdx));
-  if ((det >= errbound) || (-det >= errbound)) {
+  det +=
+    ((adx * adx + ady * ady) * ((bdx * cdytail + cdy * bdxtail)
+    - (bdy * cdxtail + cdx * bdytail))
+    + 2.0 * (adx * adxtail + ady * adytail) * (bdx * cdy - bdy * cdx))
+    + ((bdx * bdx + bdy * bdy) * ((cdx * adytail + ady * cdxtail)
+    - (cdy * adxtail + adx * cdytail))
+    + 2.0 * (bdx * bdxtail + bdy * bdytail) * (cdx * ady - cdy * adx))
+    + ((cdx * cdx + cdy * cdy) * ((adx * bdytail + bdy * adxtail)
+    - (ady * bdxtail + bdx * adytail))
+    + 2.0 * (cdx * cdxtail + cdy * cdytail) * (adx * bdy - ady * bdx)
+  );
+  if ((det >= errbound) || (-det >= errbound))
+  {
     return det;
   }
 
-  double * finnow = fin1;
-  double * finother = fin2;
+  std::vector<double> finnow = fin1;
+  std::vector<double> finother = fin2;
 
-  if ((bdxtail != 0.0) || (bdytail != 0.0)
-      || (cdxtail != 0.0) || (cdytail != 0.0)) {
-    Square(adx, adxadx1, adxadx0);
-    Square(ady, adyady1, adyady0);
+  if (bdxtail != 0.0 || bdytail != 0.0 || (cdxtail != 0.0) || (cdytail != 0.0))
+  {
+    adxadx1 = adx * adx;
+    //Square(adx, adxadx1, adxadx0); //x = a * a, y = 0.0
+
+    adyady1 = ady * ady;
+    //Square(ady, adyady1, adyady0); //x = a * a, y = 0.0
+
     Two_Two_Sum(adxadx1, adxadx0, adyady1, adyady0, aa3, aa[2], aa[1], aa[0]);
     aa[3] = aa3;
   }
-  if ((cdxtail != 0.0) || (cdytail != 0.0)
-      || (adxtail != 0.0) || (adytail != 0.0)) {
-    Square(bdx, bdxbdx1, bdxbdx0);
-    Square(bdy, bdybdy1, bdybdy0);
+  if (cdxtail != 0.0 || cdytail != 0.0 || adxtail != 0.0 || adytail != 0.0)
+  {
+    bdxbdx1 = bdx * bdx;
+    //Square(bdx, bdxbdx1, bdxbdx0); //x = a * a, y = 0.0
+
+    bdybdy1 = bdy * bdy;
+    //Square(bdy, bdybdy1, bdybdy0); //x = a * a, y = 0.0
+
     Two_Two_Sum(bdxbdx1, bdxbdx0, bdybdy1, bdybdy0, bb3, bb[2], bb[1], bb[0]);
     bb[3] = bb3;
   }
-  if ((adxtail != 0.0) || (adytail != 0.0)
-      || (bdxtail != 0.0) || (bdytail != 0.0)) {
-    Square(cdx, cdxcdx1, cdxcdx0);
-    Square(cdy, cdycdy1, cdycdy0);
+  if (adxtail != 0.0 || adytail != 0.0 || bdxtail != 0.0 || bdytail != 0.0)
+  {
+    cdxcdx1 = cdx * cdx;
+    //Square(cdx, cdxcdx1, cdxcdx0); //x = a * a, y = 0.0
+
+    cdycdy1 = cdy * cdy;
+    //Square(cdy, cdycdy1, cdycdy0); //x = a * a, y = 0.0
+
     Two_Two_Sum(cdxcdx1, cdxcdx0, cdycdy1, cdycdy0, cc3, cc[2], cc[1], cc[0]);
     cc[3] = cc3;
   }
 
-  if (adxtail != 0.0) {
+  if (adxtail != 0.0)
+  {
     axtbclen = scale_expansion_zeroelim(4, bc, adxtail, axtbc);
-    temp16alen = scale_expansion_zeroelim(axtbclen, axtbc, 2.0 * adx,
-                                          temp16a);
+    temp16alen = scale_expansion_zeroelim(axtbclen, axtbc, 2.0 * adx,temp16a);
 
     axtcclen = scale_expansion_zeroelim(4, cc, adxtail, axtcc);
     temp16blen = scale_expansion_zeroelim(axtcclen, axtcc, bdy, temp16b);
@@ -836,18 +1094,17 @@ double ribi::tricpp::incircleadapt(
     axtbblen = scale_expansion_zeroelim(4, bb, adxtail, axtbb);
     temp16clen = scale_expansion_zeroelim(axtbblen, axtbb, -cdy, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
+    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
-  if (adytail != 0.0) {
+  if (adytail != 0.0)
+  {
     aytbclen = scale_expansion_zeroelim(4, bc, adytail, aytbc);
-    temp16alen = scale_expansion_zeroelim(aytbclen, aytbc, 2.0 * ady,
-                                          temp16a);
+    temp16alen = scale_expansion_zeroelim(aytbclen, aytbc, 2.0 * ady,temp16a);
 
     aytbblen = scale_expansion_zeroelim(4, bb, adytail, aytbb);
     temp16blen = scale_expansion_zeroelim(aytbblen, aytbb, cdx, temp16b);
@@ -855,18 +1112,17 @@ double ribi::tricpp::incircleadapt(
     aytcclen = scale_expansion_zeroelim(4, cc, adytail, aytcc);
     temp16clen = scale_expansion_zeroelim(aytcclen, aytcc, -bdx, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
+    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
-  if (bdxtail != 0.0) {
+  if (bdxtail != 0.0)
+  {
     bxtcalen = scale_expansion_zeroelim(4, ca, bdxtail, bxtca);
-    temp16alen = scale_expansion_zeroelim(bxtcalen, bxtca, 2.0 * bdx,
-                                          temp16a);
+    temp16alen = scale_expansion_zeroelim(bxtcalen, bxtca, 2.0 * bdx,temp16a);
 
     bxtaalen = scale_expansion_zeroelim(4, aa, bdxtail, bxtaa);
     temp16blen = scale_expansion_zeroelim(bxtaalen, bxtaa, cdy, temp16b);
@@ -874,18 +1130,17 @@ double ribi::tricpp::incircleadapt(
     bxtcclen = scale_expansion_zeroelim(4, cc, bdxtail, bxtcc);
     temp16clen = scale_expansion_zeroelim(bxtcclen, bxtcc, -ady, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
+    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
-  if (bdytail != 0.0) {
+  if (bdytail != 0.0)
+  {
     bytcalen = scale_expansion_zeroelim(4, ca, bdytail, bytca);
-    temp16alen = scale_expansion_zeroelim(bytcalen, bytca, 2.0 * bdy,
-                                          temp16a);
+    temp16alen = scale_expansion_zeroelim(bytcalen, bytca, 2.0 * bdy,temp16a);
 
     bytcclen = scale_expansion_zeroelim(4, cc, bdytail, bytcc);
     temp16blen = scale_expansion_zeroelim(bytcclen, bytcc, adx, temp16b);
@@ -893,19 +1148,17 @@ double ribi::tricpp::incircleadapt(
     bytaalen = scale_expansion_zeroelim(4, aa, bdytail, bytaa);
     temp16clen = scale_expansion_zeroelim(bytaalen, bytaa, -cdx, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
+    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
   if (cdxtail != 0.0)
   {
     cxtablen = scale_expansion_zeroelim(4, ab, cdxtail, cxtab);
-    temp16alen = scale_expansion_zeroelim(cxtablen, cxtab, 2.0 * cdx,
-                                          temp16a);
+    temp16alen = scale_expansion_zeroelim(cxtablen, cxtab, 2.0 * cdx,temp16a);
 
     cxtbblen = scale_expansion_zeroelim(4, bb, cdxtail, cxtbb);
     temp16blen = scale_expansion_zeroelim(cxtbblen, cxtbb, ady, temp16b);
@@ -913,19 +1166,17 @@ double ribi::tricpp::incircleadapt(
     cxtaalen = scale_expansion_zeroelim(4, aa, cdxtail, cxtaa);
     temp16clen = scale_expansion_zeroelim(cxtaalen, cxtaa, -bdy, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
+    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
   if (cdytail != 0.0)
   {
     cytablen = scale_expansion_zeroelim(4, ab, cdytail, cytab);
-    temp16alen = scale_expansion_zeroelim(cytablen, cytab, 2.0 * cdy,
-                                          temp16a);
+    temp16alen = scale_expansion_zeroelim(cytablen, cytab, 2.0 * cdy,temp16a);
 
     cytaalen = scale_expansion_zeroelim(4, aa, cdytail, cytaa);
     temp16blen = scale_expansion_zeroelim(cytaalen, cytaa, bdx, temp16b);
@@ -933,35 +1184,58 @@ double ribi::tricpp::incircleadapt(
     cytbblen = scale_expansion_zeroelim(4, bb, cdytail, cytbb);
     temp16clen = scale_expansion_zeroelim(cytbblen, cytbb, -adx, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
+    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
 
-  if ((adxtail != 0.0) || (adytail != 0.0))
+  if (adxtail != 0.0 || adytail != 0.0)
   {
-    if ((bdxtail != 0.0) || (bdytail != 0.0)
-        || (cdxtail != 0.0) || (cdytail != 0.0))
+    if (bdxtail != 0.0 || bdytail != 0.0 || cdxtail != 0.0 || cdytail != 0.0)
     {
-      Two_Product(bdxtail, cdy, ti1, ti0);
-      Two_Product(bdx, cdytail, tj1, tj0);
+      ti1 = bdxtail * cdy,
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdxtail, cdy, ti1, ti0);
+
+      tj1 = bdx * cdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdx, cdytail, tj1, tj0);
+
       Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
       u[3] = u3;
       negate = -bdy;
-      Two_Product(cdxtail, negate, ti1, ti0);
+
+      ti1 = cdxtail * negate;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdxtail, negate, ti1, ti0);
+
       negate = -bdytail;
-      Two_Product(cdx, negate, tj1, tj0);
+
+      tj1 = cdx * negate;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdx, negate, tj1, tj0);
+
+
       Two_Two_Sum(ti1, ti0, tj1, tj0, v3, v[2], v[1], v[0]);
+
       v[3] = v3;
       bctlen = fast_expansion_sum_zeroelim(4, u, 4, v, bct);
 
-      Two_Product(bdxtail, cdytail, ti1, ti0);
-      Two_Product(cdxtail, bdytail, tj1, tj0);
-      Two_Two_Diff(ti1, ti0, tj1, tj0, bctt3, bctt[2], bctt[1], bctt[0]);
+      ti1 = bdxtail * cdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdxtail, cdytail, ti1, ti0);
+
+      tj1 = cdxtail * bdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdxtail, bdytail, tj1, tj0);
+
+      bctt3 = ti1 + ti0 - tj1 - tj0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(ti1, ti0, tj1, tj0, bctt3, bctt[2], bctt[1], bctt[0]);
+
       bctt[3] = bctt3;
       bcttlen = 4;
     }
@@ -973,273 +1247,306 @@ double ribi::tricpp::incircleadapt(
       bcttlen = 1;
     }
 
-    if (adxtail != 0.0) {
+    if (adxtail != 0.0)
+    {
       temp16alen = scale_expansion_zeroelim(axtbclen, axtbc, adxtail, temp16a);
       axtbctlen = scale_expansion_zeroelim(bctlen, bct, adxtail, axtbct);
-      temp32alen = scale_expansion_zeroelim(axtbctlen, axtbct, 2.0 * adx,
-                                            temp32a);
-      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp32alen, temp32a, temp48);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                              temp48, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
-      if (bdytail != 0.0) {
+      temp32alen = scale_expansion_zeroelim(axtbctlen, axtbct, 2.0 * adx,temp32a);
+      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
+      if (bdytail != 0.0)
+      {
         temp8len = scale_expansion_zeroelim(4, cc, adxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,
-                                              temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,temp16a);
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
+
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
-      if (cdytail != 0.0) {
+      if (cdytail != 0.0)
+      {
         temp8len = scale_expansion_zeroelim(4, bb, -adxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,
-                                              temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,temp16a);
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
 
-      temp32alen = scale_expansion_zeroelim(axtbctlen, axtbct, adxtail,
-                                            temp32a);
+      temp32alen = scale_expansion_zeroelim(axtbctlen, axtbct, adxtail,temp32a);
       axtbcttlen = scale_expansion_zeroelim(bcttlen, bctt, adxtail, axtbctt);
-      temp16alen = scale_expansion_zeroelim(axtbcttlen, axtbctt, 2.0 * adx,
-                                            temp16a);
-      temp16blen = scale_expansion_zeroelim(axtbcttlen, axtbctt, adxtail,
-                                            temp16b);
-      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp16blen, temp16b, temp32b);
-      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
-                                              temp32blen, temp32b, temp64);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
-                                              temp64, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp16alen = scale_expansion_zeroelim(axtbcttlen, axtbctt, 2.0 * adx,temp16a);
+      temp16blen = scale_expansion_zeroelim(axtbcttlen, axtbctt, adxtail,temp16b);
+      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
+      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
     }
-    if (adytail != 0.0) {
+    if (adytail != 0.0)
+    {
       temp16alen = scale_expansion_zeroelim(aytbclen, aytbc, adytail, temp16a);
       aytbctlen = scale_expansion_zeroelim(bctlen, bct, adytail, aytbct);
-      temp32alen = scale_expansion_zeroelim(aytbctlen, aytbct, 2.0 * ady,
-                                            temp32a);
-      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp32alen, temp32a, temp48);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                              temp48, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp32alen = scale_expansion_zeroelim(aytbctlen, aytbct, 2.0 * ady,temp32a);
+      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
 
 
-      temp32alen = scale_expansion_zeroelim(aytbctlen, aytbct, adytail,
-                                            temp32a);
+      temp32alen = scale_expansion_zeroelim(aytbctlen, aytbct, adytail,temp32a);
       aytbcttlen = scale_expansion_zeroelim(bcttlen, bctt, adytail, aytbctt);
-      temp16alen = scale_expansion_zeroelim(aytbcttlen, aytbctt, 2.0 * ady,
-                                            temp16a);
-      temp16blen = scale_expansion_zeroelim(aytbcttlen, aytbctt, adytail,
-                                            temp16b);
-      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp16blen, temp16b, temp32b);
-      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
-                                              temp32blen, temp32b, temp64);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
-                                              temp64, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp16alen = scale_expansion_zeroelim(aytbcttlen, aytbctt, 2.0 * ady,temp16a);
+      temp16blen = scale_expansion_zeroelim(aytbcttlen, aytbctt, adytail,temp16b);
+      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
+      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
     }
   }
-  if ((bdxtail != 0.0) || (bdytail != 0.0)) {
-    if ((cdxtail != 0.0) || (cdytail != 0.0)
-        || (adxtail != 0.0) || (adytail != 0.0)) {
-      Two_Product(cdxtail, ady, ti1, ti0);
-      Two_Product(cdx, adytail, tj1, tj0);
+  if (bdxtail != 0.0 || bdytail != 0.0)
+  {
+    if (cdxtail != 0.0 || cdytail != 0.0 || adxtail != 0.0 || adytail != 0.0)
+    {
+      ti1 = cdxtail * ady;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdxtail, ady, ti1, ti0);
+
+      tj1 = cdx * adytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdx, adytail, tj1, tj0);
+
       Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
       u[3] = u3;
       negate = -cdy;
-      Two_Product(adxtail, negate, ti1, ti0);
+
+      ti1 = adxtail * negate;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adxtail, negate, ti1, ti0);
+
       negate = -cdytail;
-      Two_Product(adx, negate, tj1, tj0);
+
+      tj1 = adx * negate;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adx, negate, tj1, tj0);
+
       Two_Two_Sum(ti1, ti0, tj1, tj0, v3, v[2], v[1], v[0]);
       v[3] = v3;
       catlen = fast_expansion_sum_zeroelim(4, u, 4, v, cat);
 
-      Two_Product(cdxtail, adytail, ti1, ti0);
-      Two_Product(adxtail, cdytail, tj1, tj0);
-      Two_Two_Diff(ti1, ti0, tj1, tj0, catt3, catt[2], catt[1], catt[0]);
+      ti1 = cdxtail * adytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdxtail, adytail, ti1, ti0);
+
+      tj1 = adxtail * cdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adxtail, cdytail, tj1, tj0);
+
+      catt3 = ti1 + ti0 - tj1 - tj0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(ti1, ti0, tj1, tj0, catt3, catt[2], catt[1], catt[0]);
+
       catt[3] = catt3;
       cattlen = 4;
-    } else {
+    }
+    else
+    {
       cat[0] = 0.0;
       catlen = 1;
       catt[0] = 0.0;
       cattlen = 1;
     }
 
-    if (bdxtail != 0.0) {
+    if (bdxtail != 0.0)
+    {
       temp16alen = scale_expansion_zeroelim(bxtcalen, bxtca, bdxtail, temp16a);
       bxtcatlen = scale_expansion_zeroelim(catlen, cat, bdxtail, bxtcat);
-      temp32alen = scale_expansion_zeroelim(bxtcatlen, bxtcat, 2.0 * bdx,
-                                            temp32a);
-      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp32alen, temp32a, temp48);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                              temp48, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
-      if (cdytail != 0.0) {
+      temp32alen = scale_expansion_zeroelim(bxtcatlen, bxtcat, 2.0 * bdx,temp32a);
+      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
+      if (cdytail != 0.0)
+      {
         temp8len = scale_expansion_zeroelim(4, aa, bdxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,
-                                              temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,temp16a);
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
+
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
-      if (adytail != 0.0) {
+      if (adytail != 0.0)
+      {
         temp8len = scale_expansion_zeroelim(4, cc, -bdxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,
-                                              temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,temp16a);
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
+
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
 
-      temp32alen = scale_expansion_zeroelim(bxtcatlen, bxtcat, bdxtail,
-                                            temp32a);
+      temp32alen = scale_expansion_zeroelim(bxtcatlen, bxtcat, bdxtail,temp32a);
       bxtcattlen = scale_expansion_zeroelim(cattlen, catt, bdxtail, bxtcatt);
-      temp16alen = scale_expansion_zeroelim(bxtcattlen, bxtcatt, 2.0 * bdx,
-                                            temp16a);
-      temp16blen = scale_expansion_zeroelim(bxtcattlen, bxtcatt, bdxtail,
-                                            temp16b);
-      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp16blen, temp16b, temp32b);
-      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
-                                              temp32blen, temp32b, temp64);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
-                                              temp64, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp16alen = scale_expansion_zeroelim(bxtcattlen, bxtcatt, 2.0 * bdx,temp16a);
+      temp16blen = scale_expansion_zeroelim(bxtcattlen, bxtcatt, bdxtail,temp16b);
+      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
+      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
     }
-    if (bdytail != 0.0) {
+    if (bdytail != 0.0)
+    {
       temp16alen = scale_expansion_zeroelim(bytcalen, bytca, bdytail, temp16a);
       bytcatlen = scale_expansion_zeroelim(catlen, cat, bdytail, bytcat);
-      temp32alen = scale_expansion_zeroelim(bytcatlen, bytcat, 2.0 * bdy,
-                                            temp32a);
-      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp32alen, temp32a, temp48);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                              temp48, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp32alen = scale_expansion_zeroelim(bytcatlen, bytcat, 2.0 * bdy,temp32a);
+      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
 
-      temp32alen = scale_expansion_zeroelim(bytcatlen, bytcat, bdytail,
-                                            temp32a);
+      temp32alen = scale_expansion_zeroelim(bytcatlen, bytcat, bdytail,temp32a);
       bytcattlen = scale_expansion_zeroelim(cattlen, catt, bdytail, bytcatt);
-      temp16alen = scale_expansion_zeroelim(bytcattlen, bytcatt, 2.0 * bdy,
-                                            temp16a);
-      temp16blen = scale_expansion_zeroelim(bytcattlen, bytcatt, bdytail,
-                                            temp16b);
-      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp16blen, temp16b, temp32b);
-      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
-                                              temp32blen, temp32b, temp64);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
-                                              temp64, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp16alen = scale_expansion_zeroelim(bytcattlen, bytcatt, 2.0 * bdy,temp16a);
+      temp16blen = scale_expansion_zeroelim(bytcattlen, bytcatt, bdytail,temp16b);
+      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
+      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
     }
   }
-  if ((cdxtail != 0.0) || (cdytail != 0.0)) {
-    if ((adxtail != 0.0) || (adytail != 0.0)
-        || (bdxtail != 0.0) || (bdytail != 0.0)) {
-      Two_Product(adxtail, bdy, ti1, ti0);
-      Two_Product(adx, bdytail, tj1, tj0);
+  if (cdxtail != 0.0 || cdytail != 0.0)
+  {
+    if (adxtail != 0.0 || adytail != 0.0 || bdxtail != 0.0 || bdytail != 0.0)
+    {
+      ti1 = adxtail * bdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adxtail, bdy, ti1, ti0);
+
+      tj1 = adx * bdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adx, bdytail, tj1, tj0);
+
       Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
       u[3] = u3;
       negate = -ady;
-      Two_Product(bdxtail, negate, ti1, ti0);
+
+      ti1 = bdxtail * negate;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdxtail, negate, ti1, ti0);
+
       negate = -adytail;
-      Two_Product(bdx, negate, tj1, tj0);
+
+      tj1 = bdx * negate;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdx, negate, tj1, tj0);
+
       Two_Two_Sum(ti1, ti0, tj1, tj0, v3, v[2], v[1], v[0]);
       v[3] = v3;
       abtlen = fast_expansion_sum_zeroelim(4, u, 4, v, abt);
 
-      Two_Product(adxtail, bdytail, ti1, ti0);
-      Two_Product(bdxtail, adytail, tj1, tj0);
-      Two_Two_Diff(ti1, ti0, tj1, tj0, abtt3, abtt[2], abtt[1], abtt[0]);
+      ti1 = adxtail * bdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adxtail, bdytail, ti1, ti0);
+
+      tj1 = bdxtail * adytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdxtail, adytail, tj1, tj0);
+
+      abtt3 = ti1 + ti0 - tj1 - tj0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(ti1, ti0, tj1, tj0, abtt3, abtt[2], abtt[1], abtt[0]);
+
       abtt[3] = abtt3;
       abttlen = 4;
-    } else {
+    }
+    else
+    {
       abt[0] = 0.0;
       abtlen = 1;
       abtt[0] = 0.0;
       abttlen = 1;
     }
 
-    if (cdxtail != 0.0) {
+    if (cdxtail != 0.0)
+    {
       temp16alen = scale_expansion_zeroelim(cxtablen, cxtab, cdxtail, temp16a);
       cxtabtlen = scale_expansion_zeroelim(abtlen, abt, cdxtail, cxtabt);
-      temp32alen = scale_expansion_zeroelim(cxtabtlen, cxtabt, 2.0 * cdx,
-                                            temp32a);
-      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp32alen, temp32a, temp48);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                              temp48, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
-      if (adytail != 0.0) {
+      temp32alen = scale_expansion_zeroelim(cxtabtlen, cxtabt, 2.0 * cdx,temp32a);
+      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
+      if (adytail != 0.0)
+      {
         temp8len = scale_expansion_zeroelim(4, bb, cdxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,
-                                              temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,temp16a);
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
+
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
-      if (bdytail != 0.0) {
+      if (bdytail != 0.0)
+      {
         temp8len = scale_expansion_zeroelim(4, aa, -cdxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,
-                                              temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,temp16a);
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
+
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
 
-      temp32alen = scale_expansion_zeroelim(cxtabtlen, cxtabt, cdxtail,
-                                            temp32a);
+      temp32alen = scale_expansion_zeroelim(cxtabtlen, cxtabt, cdxtail,temp32a);
       cxtabttlen = scale_expansion_zeroelim(abttlen, abtt, cdxtail, cxtabtt);
-      temp16alen = scale_expansion_zeroelim(cxtabttlen, cxtabtt, 2.0 * cdx,
-                                            temp16a);
-      temp16blen = scale_expansion_zeroelim(cxtabttlen, cxtabtt, cdxtail,
-                                            temp16b);
-      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp16blen, temp16b, temp32b);
-      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
-                                              temp32blen, temp32b, temp64);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
-                                              temp64, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp16alen = scale_expansion_zeroelim(cxtabttlen, cxtabtt, 2.0 * cdx,temp16a);
+      temp16blen = scale_expansion_zeroelim(cxtabttlen, cxtabtt, cdxtail,temp16b);
+      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
+      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
     }
-    if (cdytail != 0.0) {
+    if (cdytail != 0.0)
+    {
       temp16alen = scale_expansion_zeroelim(cytablen, cytab, cdytail, temp16a);
       cytabtlen = scale_expansion_zeroelim(abtlen, abt, cdytail, cytabt);
-      temp32alen = scale_expansion_zeroelim(cytabtlen, cytabt, 2.0 * cdy,
-                                            temp32a);
-      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp32alen, temp32a, temp48);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                              temp48, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp32alen = scale_expansion_zeroelim(cytabtlen, cytabt, 2.0 * cdy,temp32a);
+      temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
 
 
-      temp32alen = scale_expansion_zeroelim(cytabtlen, cytabt, cdytail,
-                                            temp32a);
+      temp32alen = scale_expansion_zeroelim(cytabtlen, cytabt, cdytail,temp32a);
       cytabttlen = scale_expansion_zeroelim(abttlen, abtt, cdytail, cytabtt);
-      temp16alen = scale_expansion_zeroelim(cytabttlen, cytabtt, 2.0 * cdy,
-                                            temp16a);
-      temp16blen = scale_expansion_zeroelim(cytabttlen, cytabtt, cdytail,
-                                            temp16b);
-      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                              temp16blen, temp16b, temp32b);
-      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
-                                              temp32blen, temp32b, temp64);
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
-                                              temp64, finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      temp16alen = scale_expansion_zeroelim(cytabttlen, cytabtt, 2.0 * cdy,temp16a);
+      temp16blen = scale_expansion_zeroelim(cytabttlen, cytabtt, cdytail,temp16b);
+      temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
+      temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
     }
   }
 
   return finnow[finlength - 1];
 }
+
 
 double ribi::tricpp::incircle(
   int& m_m_incirclecount,
@@ -1309,38 +1616,73 @@ double ribi::tricpp::orient3dadapt(
   const double permanent
 )
 {
-  double det, errbound;
-  double bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;
-  double bdxcdy0, cdxbdy0, cdxady0, adxcdy0, adxbdy0, bdxady0;
-  double bc[4], ca[4], ab[4];
-  double bc3, ca3, ab3;
-  double adet[8], bdet[8], cdet[8];
-  double abdet[16];
-  double *finnow, *finother, *finswap;
-  double fin1[192], fin2[192];
+  //double det, errbound;
+  //double bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;
+  const double bdxcdy0 = 0.0;
+  const double cdxbdy0 = 0.0;
+  const double cdxady0 = 0.0;
+  const double adxcdy0 = 0.0;
+  const double adxbdy0 = 0.0;
+  const double bdxady0 = 0.0;
+  //double bc[4], ca[4], ab[4];
+  std::vector<double> bc(4,0.0);
+  std::vector<double> ca(4,0.0);
+  std::vector<double> ab(4,0.0);
+  //double bc3, ca3, ab3;
+  std::vector<double> adet(8,0.0);
+  std::vector<double> bdet(8,0.0);
+  std::vector<double> cdet(8,0.0);
+  //double adet(8,0.0), bdet(8,0.0), cdet(8,0.0);
+  std::vector<double> abdet(16,0.0);
+  //double abdet[16];
+  //double *finnow, *finother, *finswap;
+  std::vector<double> fin1(192,0.0);
+  std::vector<double> fin2(192,0.0);
+  //double fin1[192], fin2[192];
   double adxtail, bdxtail, cdxtail;
   double adytail, bdytail, cdytail;
   double adheighttail, bdheighttail, cdheighttail;
   double at_blarge, at_clarge;
   double bt_clarge, bt_alarge;
   double ct_alarge, ct_blarge;
-  double at_b[4], at_c[4], bt_c[4], bt_a[4], ct_a[4], ct_b[4];
+  std::vector<double> at_b(4,0.0);
+  std::vector<double> at_c(4,0.0);
+  std::vector<double> bt_c(4,0.0);
+  std::vector<double> bt_a(4,0.0);
+  std::vector<double> ct_a(4,0.0);
+  std::vector<double> ct_b(4,0.0);
   int at_blen, at_clen, bt_clen, bt_alen, ct_alen, ct_blen;
   double bdxt_cdy1, cdxt_bdy1, cdxt_ady1;
   double adxt_cdy1, adxt_bdy1, bdxt_ady1;
-  double bdxt_cdy0, cdxt_bdy0, cdxt_ady0;
-  double adxt_cdy0, adxt_bdy0, bdxt_ady0;
+  const double bdxt_cdy0 = 0.0;
+  const double cdxt_bdy0 = 0.0;
+  const double cdxt_ady0 = 0.0;
+  const double adxt_cdy0 = 0.0;
+  const double adxt_bdy0 = 0.0;
+  const double bdxt_ady0 = 0.0;
   double bdyt_cdx1, cdyt_bdx1, cdyt_adx1;
   double adyt_cdx1, adyt_bdx1, bdyt_adx1;
-  double bdyt_cdx0, cdyt_bdx0, cdyt_adx0;
-  double adyt_cdx0, adyt_bdx0, bdyt_adx0;
-  double bct[8], cat[8], abt[8];
+  const double bdyt_cdx0 = 0.0;
+  const double cdyt_bdx0 = 0.0;
+  const double cdyt_adx0 = 0.0;
+  const double adyt_cdx0 = 0.0;
+  const double adyt_bdx0 = 0.0;
+  const double bdyt_adx0 = 0.0;
+  std::vector<double> bct(8,0.0);
+  std::vector<double> cat(8,0.0);
+  std::vector<double> abt(8,0.0);
   int bctlen, catlen, abtlen;
   double bdxt_cdyt1, cdxt_bdyt1, cdxt_adyt1;
   double adxt_cdyt1, adxt_bdyt1, bdxt_adyt1;
-  double bdxt_cdyt0, cdxt_bdyt0, cdxt_adyt0;
-  double adxt_cdyt0, adxt_bdyt0, bdxt_adyt0;
-  double u[4], v[12], w[16];
+  const double bdxt_cdyt0 = 0.0;
+  const double cdxt_bdyt0 = 0.0;
+  const double cdxt_adyt0 = 0.0;
+  const double adxt_cdyt0 = 0.0;
+  const double adxt_bdyt0 = 0.0;
+  const double bdxt_adyt0 = 0.0;
+  std::vector<double> u(4,0.0);
+  std::vector<double> v(12,0.0);
+  std::vector<double> w(16,0.0);
   double u3;
   int vlength, wlength;
   double negate;
@@ -1355,181 +1697,360 @@ double ribi::tricpp::orient3dadapt(
   const double bdheight = bheight - dheight;
   const double cdheight = cheight - dheight;
 
-  Two_Product(bdx, cdy, bdxcdy1, bdxcdy0);
-  Two_Product(cdx, bdy, cdxbdy1, cdxbdy0);
-  Two_Two_Diff(bdxcdy1, bdxcdy0, cdxbdy1, cdxbdy0, bc3, bc[2], bc[1], bc[0]);
+  double bdxcdy1 = bdx * cdy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(bdx, cdy, bdxcdy1, bdxcdy0);
+
+  double cdxbdy1 = cdx * bdy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(cdx, bdy, cdxbdy1, cdxbdy0);
+
+  double bc3 = bdxcdy1 + bdxcdy0 - cdxbdy1 - cdxbdy0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(bdxcdy1, bdxcdy0, cdxbdy1, cdxbdy0, bc3, bc[2], bc[1], bc[0]);
+
   bc[3] = bc3;
   const int alen = scale_expansion_zeroelim(4, bc, adheight, adet);
 
-  Two_Product(cdx, ady, cdxady1, cdxady0);
-  Two_Product(adx, cdy, adxcdy1, adxcdy0);
-  Two_Two_Diff(cdxady1, cdxady0, adxcdy1, adxcdy0, ca3, ca[2], ca[1], ca[0]);
+  double cdxady1 = cdx * ady;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(cdx, ady, cdxady1, cdxady0);
+
+  double adxcdy1 = adx * cdy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(adx, cdy, adxcdy1, adxcdy0);
+
+  double ca3 = cdxady1 + cdxady0 - adxcdy1 - adxcdy0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(cdxady1, cdxady0, adxcdy1, adxcdy0, ca3, ca[2], ca[1], ca[0]);
+
   ca[3] = ca3;
   const int blen = scale_expansion_zeroelim(4, ca, bdheight, bdet);
 
-  Two_Product(adx, bdy, adxbdy1, adxbdy0);
-  Two_Product(bdx, ady, bdxady1, bdxady0);
-  Two_Two_Diff(adxbdy1, adxbdy0, bdxady1, bdxady0, ab3, ab[2], ab[1], ab[0]);
+  double adxbdy1 = adx * bdy;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(adx, bdy, adxbdy1, adxbdy0);
+
+  double bdxady1 = bdx * ady;
+  //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+  //Two_Product(bdx, ady, bdxady1, bdxady0);
+
+  double ab3 = adxbdy1 + adxbdy0 - bdxady1 - bdxady0;
+  //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+  //Two_Two_Diff(adxbdy1, adxbdy0, bdxady1, bdxady0, ab3, ab[2], ab[1], ab[0]);
+
   ab[3] = ab3;
   const int clen = scale_expansion_zeroelim(4, ab, cdheight, cdet);
 
   const int ablen = fast_expansion_sum_zeroelim(alen, adet, blen, bdet, abdet);
   int finlength = fast_expansion_sum_zeroelim(ablen, abdet, clen, cdet, fin1);
 
-  det = estimate(finlength, fin1);
-  errbound = Global().m_o3derrboundB * permanent;
+  double det = std::accumulate(fin1.begin(),fin1.end(),0.0);
+  //double det = estimate(fin1);
+  double errbound = Global().m_o3derrboundB * permanent;
   if ((det >= errbound) || (-det >= errbound)) {
     return det;
   }
 
-  Two_Diff_Tail(pa[0], pd[0], adx, adxtail);
-  Two_Diff_Tail(pb[0], pd[0], bdx, bdxtail);
-  Two_Diff_Tail(pc[0], pd[0], cdx, cdxtail);
-  Two_Diff_Tail(pa[1], pd[1], ady, adytail);
-  Two_Diff_Tail(pb[1], pd[1], bdy, bdytail);
-  Two_Diff_Tail(pc[1], pd[1], cdy, cdytail);
-  Two_Diff_Tail(aheight, dheight, adheight, adheighttail);
-  Two_Diff_Tail(bheight, dheight, bdheight, bdheighttail);
-  Two_Diff_Tail(cheight, dheight, cdheight, cdheighttail);
+  adxtail = -adx + pa[0] - pd[0];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pa[0], pd[0], adx, adxtail);
 
-  if ((adxtail == 0.0) && (bdxtail == 0.0) && (cdxtail == 0.0) &&
-      (adytail == 0.0) && (bdytail == 0.0) && (cdytail == 0.0) &&
-      (adheighttail == 0.0) &&
-      (bdheighttail == 0.0) &&
-      (cdheighttail == 0.0)) {
+  bdxtail = -bdx + pb[0] - pd[0];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pb[0], pd[0], bdx, bdxtail);
+
+  cdxtail = -cdx + pc[0] - pd[0];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pc[0], pd[0], cdx, cdxtail);
+
+  adytail = -ady + pa[1] - pd[1];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pa[1], pd[1], ady, adytail);
+
+  bdytail = -bdy + pb[1] - pd[1];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pb[1], pd[1], bdy, bdytail);
+
+  cdytail = -cdy + pc[1] - pd[1];
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(pc[1], pd[1], cdy, cdytail);
+
+  adheighttail = -adheight + aheight - dheight;
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(aheight, dheight, adheight, adheighttail);
+
+  bdheighttail = -bdheight + bheight - dheight;
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(bheight, dheight, bdheight, bdheighttail);
+
+  cdheighttail = -cdheight + cheight - dheight;
+  //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
+  //Two_Diff_Tail(cheight, dheight, cdheight, cdheighttail);
+
+  if (adxtail == 0.0 && bdxtail == 0.0 && cdxtail == 0.0
+    && adytail == 0.0 && bdytail == 0.0 && cdytail == 0.0
+    && adheighttail == 0.0 && bdheighttail == 0.0 && cdheighttail == 0.0
+  )
+  {
     return det;
   }
 
   errbound = Global().m_o3derrboundC * permanent + Global().m_resulterrbound * std::abs(det);
-  det += (adheight * ((bdx * cdytail + cdy * bdxtail) -
-                      (bdy * cdxtail + cdx * bdytail)) +
-          adheighttail * (bdx * cdy - bdy * cdx)) +
-         (bdheight * ((cdx * adytail + ady * cdxtail) -
-                      (cdy * adxtail + adx * cdytail)) +
-          bdheighttail * (cdx * ady - cdy * adx)) +
-         (cdheight * ((adx * bdytail + bdy * adxtail) -
-                      (ady * bdxtail + bdx * adytail)) +
-          cdheighttail * (adx * bdy - ady * bdx));
-  if ((det >= errbound) || (-det >= errbound)) {
+  det += (adheight * ((bdx * cdytail + cdy * bdxtail)
+    - (bdy * cdxtail + cdx * bdytail))
+    + adheighttail * (bdx * cdy - bdy * cdx))
+    + (bdheight * ((cdx * adytail + ady * cdxtail)
+    - (cdy * adxtail + adx * cdytail))
+    + bdheighttail * (cdx * ady - cdy * adx))
+    + (cdheight * ((adx * bdytail + bdy * adxtail)
+    - (ady * bdxtail + bdx * adytail))
+    + cdheighttail * (adx * bdy - ady * bdx))
+  ;
+  if (det >= errbound || -det >= errbound)
+  {
     return det;
   }
 
-  double * finnow = fin1;
-  double * finother = fin2;
+  std::vector<double> finnow = fin1;
+  std::vector<double> finother = fin2;
 
-  if (adxtail == 0.0) {
-    if (adytail == 0.0) {
+  if (adxtail == 0.0)
+  {
+    if (adytail == 0.0)
+    {
       at_b[0] = 0.0;
       at_blen = 1;
       at_c[0] = 0.0;
       at_clen = 1;
-    } else {
+    }
+    else
+    {
       negate = -adytail;
-      Two_Product(negate, bdx, at_blarge, at_b[0]);
+
+      at_blarge = negate * bdx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, bdx, at_blarge, at_b[0]);
+
       at_b[1] = at_blarge;
       at_blen = 2;
-      Two_Product(adytail, cdx, at_clarge, at_c[0]);
+
+      at_clarge = adytail * cdx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adytail, cdx, at_clarge, at_c[0]);
+
       at_c[1] = at_clarge;
       at_clen = 2;
     }
-  } else {
-    if (adytail == 0.0) {
-      Two_Product(adxtail, bdy, at_blarge, at_b[0]);
+  }
+  else
+  {
+    if (adytail == 0.0)
+    {
+      at_blarge = adxtail * bdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adxtail, bdy, at_blarge, at_b[0]);
+
       at_b[1] = at_blarge;
       at_blen = 2;
       negate = -adxtail;
-      Two_Product(negate, cdy, at_clarge, at_c[0]);
+
+      at_clarge = negate * cdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, cdy, at_clarge, at_c[0]);
+
       at_c[1] = at_clarge;
       at_clen = 2;
-    } else {
-      Two_Product(adxtail, bdy, adxt_bdy1, adxt_bdy0);
-      Two_Product(adytail, bdx, adyt_bdx1, adyt_bdx0);
-      Two_Two_Diff(adxt_bdy1, adxt_bdy0, adyt_bdx1, adyt_bdx0,
-                   at_blarge, at_b[2], at_b[1], at_b[0]);
+    }
+    else
+    {
+      adxt_bdy1 = adxtail * bdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adxtail, bdy, adxt_bdy1, adxt_bdy0);
+
+      adyt_bdx1 = adytail * bdx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adytail, bdx, adyt_bdx1, adyt_bdx0);
+
+      at_blarge = adxt_bdy1 + adxt_bdy0 - adyt_bdx1 - adyt_bdx0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(adxt_bdy1, adxt_bdy0, adyt_bdx1, adyt_bdx0,at_blarge, at_b[2], at_b[1], at_b[0]);
+
       at_b[3] = at_blarge;
       at_blen = 4;
-      Two_Product(adytail, cdx, adyt_cdx1, adyt_cdx0);
-      Two_Product(adxtail, cdy, adxt_cdy1, adxt_cdy0);
-      Two_Two_Diff(adyt_cdx1, adyt_cdx0, adxt_cdy1, adxt_cdy0,
-                   at_clarge, at_c[2], at_c[1], at_c[0]);
+
+      adyt_cdx1 = adytail * cdx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adytail, cdx, adyt_cdx1, adyt_cdx0);
+
+      adxt_cdy1 = adxtail * cdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adxtail, cdy, adxt_cdy1, adxt_cdy0);
+
+      at_clarge = adyt_cdx1 + adyt_cdx0 - adxt_cdy1 - adxt_cdy0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(adyt_cdx1, adyt_cdx0, adxt_cdy1, adxt_cdy0,at_clarge, at_c[2], at_c[1], at_c[0]);
+
       at_c[3] = at_clarge;
       at_clen = 4;
     }
   }
-  if (bdxtail == 0.0) {
-    if (bdytail == 0.0) {
+  if (bdxtail == 0.0)
+  {
+    if (bdytail == 0.0)
+    {
       bt_c[0] = 0.0;
       bt_clen = 1;
       bt_a[0] = 0.0;
       bt_alen = 1;
-    } else {
+    }
+    else
+    {
       negate = -bdytail;
-      Two_Product(negate, cdx, bt_clarge, bt_c[0]);
+
+      bt_clarge = negate * cdx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, cdx, bt_clarge, bt_c[0]);
+
       bt_c[1] = bt_clarge;
       bt_clen = 2;
-      Two_Product(bdytail, adx, bt_alarge, bt_a[0]);
+
+      bt_alarge = bdytail * adx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdytail, adx, bt_alarge, bt_a[0]);
+
       bt_a[1] = bt_alarge;
       bt_alen = 2;
     }
-  } else {
-    if (bdytail == 0.0) {
-      Two_Product(bdxtail, cdy, bt_clarge, bt_c[0]);
+  }
+  else
+  {
+    if (bdytail == 0.0)
+    {
+      bt_clarge = bdxtail * cdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdxtail, cdy, bt_clarge, bt_c[0]);
+
       bt_c[1] = bt_clarge;
       bt_clen = 2;
       negate = -bdxtail;
-      Two_Product(negate, ady, bt_alarge, bt_a[0]);
+
+      bt_alarge = negate * ady;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, ady, bt_alarge, bt_a[0]);
+
       bt_a[1] = bt_alarge;
       bt_alen = 2;
-    } else {
-      Two_Product(bdxtail, cdy, bdxt_cdy1, bdxt_cdy0);
-      Two_Product(bdytail, cdx, bdyt_cdx1, bdyt_cdx0);
-      Two_Two_Diff(bdxt_cdy1, bdxt_cdy0, bdyt_cdx1, bdyt_cdx0,
-                   bt_clarge, bt_c[2], bt_c[1], bt_c[0]);
+    }
+    else
+    {
+      bdxt_cdy1 = bdxtail * cdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdxtail, cdy, bdxt_cdy1, bdxt_cdy0);
+
+      bdyt_cdx1 = bdytail * cdx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdytail, cdx, bdyt_cdx1, bdyt_cdx0);
+
+      bt_clarge = bdxt_cdy1 + bdxt_cdy0 - bdyt_cdx1 - bdyt_cdx0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(bdxt_cdy1, bdxt_cdy0, bdyt_cdx1, bdyt_cdx0,bt_clarge, bt_c[2], bt_c[1], bt_c[0]);
+
       bt_c[3] = bt_clarge;
       bt_clen = 4;
-      Two_Product(bdytail, adx, bdyt_adx1, bdyt_adx0);
-      Two_Product(bdxtail, ady, bdxt_ady1, bdxt_ady0);
-      Two_Two_Diff(bdyt_adx1, bdyt_adx0, bdxt_ady1, bdxt_ady0,
-                  bt_alarge, bt_a[2], bt_a[1], bt_a[0]);
+
+      bdyt_adx1 = bdytail * adx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdytail, adx, bdyt_adx1, bdyt_adx0);
+
+      bdxt_ady1 = bdxtail * ady;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdxtail, ady, bdxt_ady1, bdxt_ady0);
+
+      bt_alarge = bdyt_adx1 + bdyt_adx0 - bdxt_ady1 - bdxt_ady0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(bdyt_adx1, bdyt_adx0, bdxt_ady1, bdxt_ady0,bt_alarge, bt_a[2], bt_a[1], bt_a[0]);
+
       bt_a[3] = bt_alarge;
       bt_alen = 4;
     }
   }
-  if (cdxtail == 0.0) {
-    if (cdytail == 0.0) {
+  if (cdxtail == 0.0)
+  {
+    if (cdytail == 0.0)
+    {
       ct_a[0] = 0.0;
       ct_alen = 1;
       ct_b[0] = 0.0;
       ct_blen = 1;
-    } else {
+    }
+    else
+    {
       negate = -cdytail;
-      Two_Product(negate, adx, ct_alarge, ct_a[0]);
+
+      ct_alarge = negate * adx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, adx, ct_alarge, ct_a[0]);
+
       ct_a[1] = ct_alarge;
       ct_alen = 2;
-      Two_Product(cdytail, bdx, ct_blarge, ct_b[0]);
+
+      ct_blarge = cdytail * bdx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdytail, bdx, ct_blarge, ct_b[0]);
+
       ct_b[1] = ct_blarge;
       ct_blen = 2;
     }
-  } else {
-    if (cdytail == 0.0) {
-      Two_Product(cdxtail, ady, ct_alarge, ct_a[0]);
+  }
+  else
+  {
+    if (cdytail == 0.0)
+    {
+      ct_alarge = cdxtail * ady;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdxtail, ady, ct_alarge, ct_a[0]);
+
       ct_a[1] = ct_alarge;
       ct_alen = 2;
       negate = -cdxtail;
-      Two_Product(negate, bdy, ct_blarge, ct_b[0]);
+
+      ct_blarge = negate * bdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, bdy, ct_blarge, ct_b[0]);
+
       ct_b[1] = ct_blarge;
       ct_blen = 2;
-    } else {
-      Two_Product(cdxtail, ady, cdxt_ady1, cdxt_ady0);
-      Two_Product(cdytail, adx, cdyt_adx1, cdyt_adx0);
-      Two_Two_Diff(cdxt_ady1, cdxt_ady0, cdyt_adx1, cdyt_adx0,
-                   ct_alarge, ct_a[2], ct_a[1], ct_a[0]);
+    }
+    else
+    {
+      cdxt_ady1 = cdxtail * ady;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdxtail, ady, cdxt_ady1, cdxt_ady0);
+
+      cdyt_adx1 = cdytail * adx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdytail, adx, cdyt_adx1, cdyt_adx0);
+
+      ct_alarge = cdxt_ady1 + cdxt_ady0 - cdyt_adx1 - cdyt_adx0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(cdxt_ady1, cdxt_ady0, cdyt_adx1, cdyt_adx0,ct_alarge, ct_a[2], ct_a[1], ct_a[0]);
+
       ct_a[3] = ct_alarge;
       ct_alen = 4;
-      Two_Product(cdytail, bdx, cdyt_bdx1, cdyt_bdx0);
-      Two_Product(cdxtail, bdy, cdxt_bdy1, cdxt_bdy0);
-      Two_Two_Diff(cdyt_bdx1, cdyt_bdx0, cdxt_bdy1, cdxt_bdy0,
-                   ct_blarge, ct_b[2], ct_b[1], ct_b[0]);
+
+      cdyt_bdx1 = cdytail * bdx;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdytail, bdx, cdyt_bdx1, cdyt_bdx0);
+
+      cdxt_bdy1 = cdxtail * bdy;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdxtail, bdy, cdxt_bdy1, cdxt_bdy0);
+
+      ct_blarge = cdyt_bdx1 + cdyt_bdx0 - cdxt_bdy1 - cdxt_bdy0;
+      //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
+      //Two_Two_Diff(cdyt_bdx1, cdyt_bdx0, cdxt_bdy1, cdxt_bdy0,ct_blarge, ct_b[2], ct_b[1], ct_b[0]);
+
       ct_b[3] = ct_blarge;
       ct_blen = 4;
     }
@@ -1537,168 +2058,213 @@ double ribi::tricpp::orient3dadapt(
 
   bctlen = fast_expansion_sum_zeroelim(bt_clen, bt_c, ct_blen, ct_b, bct);
   wlength = scale_expansion_zeroelim(bctlen, bct, adheight, w);
-  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                          finother);
-  finswap = finnow; finnow = finother; finother = finswap;
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,finother);
+  //finswap = finnow; finnow = finother; finother = finswap;
+  std::swap(finnow,finother);
 
   catlen = fast_expansion_sum_zeroelim(ct_alen, ct_a, at_clen, at_c, cat);
   wlength = scale_expansion_zeroelim(catlen, cat, bdheight, w);
-  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                          finother);
-  finswap = finnow; finnow = finother; finother = finswap;
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,finother);
+
+  std::swap(finnow,finother);
+  //finswap = finnow; finnow = finother; finother = finswap;
 
   abtlen = fast_expansion_sum_zeroelim(at_blen, at_b, bt_alen, bt_a, abt);
   wlength = scale_expansion_zeroelim(abtlen, abt, cdheight, w);
-  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                          finother);
-  finswap = finnow; finnow = finother; finother = finswap;
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,finother);
+  std::swap(finnow,finother);
+  //finswap = finnow; finnow = finother; finother = finswap;
 
-  if (adheighttail != 0.0) {
+  if (adheighttail != 0.0)
+  {
     vlength = scale_expansion_zeroelim(4, bc, adheighttail, v);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,finother);
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
-  if (bdheighttail != 0.0) {
+  if (bdheighttail != 0.0)
+  {
     vlength = scale_expansion_zeroelim(4, ca, bdheighttail, v);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,finother);
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
-  if (cdheighttail != 0.0) {
+  if (cdheighttail != 0.0)
+  {
     vlength = scale_expansion_zeroelim(4, ab, cdheighttail, v);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,finother);
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
 
-  if (adxtail != 0.0) {
-    if (bdytail != 0.0) {
-      Two_Product(adxtail, bdytail, adxt_bdyt1, adxt_bdyt0);
+  if (adxtail != 0.0)
+  {
+    if (bdytail != 0.0)
+    {
+      adxt_bdyt1 = adxtail * bdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(adxtail, bdytail, adxt_bdyt1, adxt_bdyt0);
+
       Two_One_Product(adxt_bdyt1, adxt_bdyt0, cdheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                              finother);
-      finswap = finnow; finnow = finother; finother = finswap;
-      if (cdheighttail != 0.0) {
-        Two_One_Product(adxt_bdyt1, adxt_bdyt0, cdheighttail,
-                        u3, u[2], u[1], u[0]);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
+      if (cdheighttail != 0.0)
+      {
+        Two_One_Product(adxt_bdyt1, adxt_bdyt0, cdheighttail,u3, u[2], u[1], u[0]);
         u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
     }
-    if (cdytail != 0.0) {
+    if (cdytail != 0.0)
+    {
       negate = -adxtail;
-      Two_Product(negate, cdytail, adxt_cdyt1, adxt_cdyt0);
+
+      adxt_cdyt1 = negate * cdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, cdytail, adxt_cdyt1, adxt_cdyt0);
+
       Two_One_Product(adxt_cdyt1, adxt_cdyt0, bdheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                              finother);
-      finswap = finnow; finnow = finother; finother = finswap;
-      if (bdheighttail != 0.0) {
-        Two_One_Product(adxt_cdyt1, adxt_cdyt0, bdheighttail,
-                        u3, u[2], u[1], u[0]);
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
+      if (bdheighttail != 0.0)
+      {
+        Two_One_Product(adxt_cdyt1, adxt_cdyt0, bdheighttail,u3, u[2], u[1], u[0]);
         u[3] = u3;
         finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
                                                 finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
     }
   }
-  if (bdxtail != 0.0) {
-    if (cdytail != 0.0) {
-      Two_Product(bdxtail, cdytail, bdxt_cdyt1, bdxt_cdyt0);
+  if (bdxtail != 0.0)
+  {
+    if (cdytail != 0.0)
+    {
+      bdxt_cdyt1 = bdxtail * cdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(bdxtail, cdytail, bdxt_cdyt1, bdxt_cdyt0);
       Two_One_Product(bdxt_cdyt1, bdxt_cdyt0, adheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                              finother);
-      finswap = finnow; finnow = finother; finother = finswap;
-      if (adheighttail != 0.0) {
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
+      if (adheighttail != 0.0)
+      {
         Two_One_Product(bdxt_cdyt1, bdxt_cdyt0, adheighttail,
                         u3, u[2], u[1], u[0]);
         u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
     }
-    if (adytail != 0.0) {
+    if (adytail != 0.0)
+    {
       negate = -bdxtail;
-      Two_Product(negate, adytail, bdxt_adyt1, bdxt_adyt0);
+
+      bdxt_adyt1 = negate * adytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, adytail, bdxt_adyt1, bdxt_adyt0);
+
       Two_One_Product(bdxt_adyt1, bdxt_adyt0, cdheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                              finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
       if (cdheighttail != 0.0) {
         Two_One_Product(bdxt_adyt1, bdxt_adyt0, cdheighttail,
                         u3, u[2], u[1], u[0]);
         u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
     }
   }
-  if (cdxtail != 0.0) {
-    if (adytail != 0.0) {
-      Two_Product(cdxtail, adytail, cdxt_adyt1, cdxt_adyt0);
+  if (cdxtail != 0.0)
+  {
+    if (adytail != 0.0)
+    {
+      cdxt_adyt1 = cdxtail * adytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(cdxtail, adytail, cdxt_adyt1, cdxt_adyt0);
+
       Two_One_Product(cdxt_adyt1, cdxt_adyt0, bdheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                              finother);
-      finswap = finnow; finnow = finother; finother = finswap;
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
       if (bdheighttail != 0.0) {
-        Two_One_Product(cdxt_adyt1, cdxt_adyt0, bdheighttail,
-                        u3, u[2], u[1], u[0]);
+        Two_One_Product(cdxt_adyt1, cdxt_adyt0, bdheighttail,u3, u[2], u[1], u[0]);
         u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
     }
-    if (bdytail != 0.0) {
+    if (bdytail != 0.0)
+    {
       negate = -cdxtail;
-      Two_Product(negate, bdytail, cdxt_bdyt1, cdxt_bdyt0);
+
+      cdxt_bdyt1 = negate * bdytail;
+      //Two_Product(a,b,x,y): x = a*b, y = 0.0;
+      //Two_Product(negate, bdytail, cdxt_bdyt1, cdxt_bdyt0);
+
       Two_One_Product(cdxt_bdyt1, cdxt_bdyt0, adheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
-      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                              finother);
-      finswap = finnow; finnow = finother; finother = finswap;
-      if (adheighttail != 0.0) {
+      finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+
+      std::swap(finnow,finother);
+      //finswap = finnow; finnow = finother; finother = finswap;
+      if (adheighttail != 0.0)
+      {
         Two_One_Product(cdxt_bdyt1, cdxt_bdyt0, adheighttail,
                         u3, u[2], u[1], u[0]);
         u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
+
+        std::swap(finnow,finother);
+        //finswap = finnow; finnow = finother; finother = finswap;
       }
     }
   }
 
-  if (adheighttail != 0.0) {
+  if (adheighttail != 0.0)
+  {
     wlength = scale_expansion_zeroelim(bctlen, bct, adheighttail, w);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
   if (bdheighttail != 0.0) {
     wlength = scale_expansion_zeroelim(catlen, cat, bdheighttail, w);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
   if (cdheighttail != 0.0) {
     wlength = scale_expansion_zeroelim(abtlen, abt, cdheighttail, w);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,finother);
+
+    std::swap(finnow,finother);
+    //finswap = finnow; finnow = finother; finother = finswap;
   }
 
   return finnow[finlength - 1];
 }
+
 
 double ribi::tricpp::orient3d(
   //Mesh& m,
@@ -1796,6 +2362,7 @@ void ribi::tricpp::findcircumcenter(
   int& m_m_counterclockcount,
   //Mesh& m,
   bool b_m_noexact,
+  const double b_m_offconstant,
   //const Behavior& b,
   const Vertex& torg,
   const Vertex& tdest,
@@ -1820,8 +2387,8 @@ void ribi::tricpp::findcircumcenter(
   const double yao = tapex[1] - torg[1];
   const double dodist = xdo * xdo + ydo * ydo;
   const double aodist = xao * xao + yao * yao;
-  const double dadist = (tdest[0] - tapex[0]) * (tdest[0] - tapex[0]) +
-           (tdest[1] - tapex[1]) * (tdest[1] - tapex[1]);
+  const double dadist = (tdest[0] - tapex[0]) * (tdest[0] - tapex[0])
+    + (tdest[1] - tapex[1]) * (tdest[1] - tapex[1]);
   if (b_m_noexact)
   {
     denominator = 0.5 / (xdo * yao - xao * ydo);
@@ -1843,14 +2410,17 @@ void ribi::tricpp::findcircumcenter(
   //  circumcenter's parent.  The estimate is used to ensure that
   //  the algorithm terminates even if very small angles appear in
   //  the input PSLG.
-  if ((dodist < aodist) && (dodist < dadist)) {
-    if (offcenter && (b.m_offconstant > 0.0)) {
+  if (dodist < aodist && dodist < dadist)
+  {
+    if (offcenter && b_m_offconstant > 0.0)
+    {
       //Find the position of the off-center, as described by Alper Ungor.
-      const double dxoff = 0.5 * xdo - b.m_offconstant * ydo;
-      const double dyoff = 0.5 * ydo + b.m_offconstant * xdo;
+      const double dxoff = 0.5 * xdo - b_m_offconstant * ydo;
+      const double dyoff = 0.5 * ydo + b_m_offconstant * xdo;
       //If the off-center is closer to the origin than the
       //  circumcenter, use the off-center instead.
-      if (dxoff * dxoff + dyoff * dyoff < dx * dx + dy * dy) {
+      if (dxoff * dxoff + dyoff * dyoff < dx * dx + dy * dy)
+      {
         dx = dxoff;
         dy = dyoff;
       }
@@ -1858,26 +2428,29 @@ void ribi::tricpp::findcircumcenter(
   }
   else if (aodist < dadist)
   {
-    if (offcenter && (b.m_offconstant > 0.0)) {
-      const double dxoff = 0.5 * xao + b.m_offconstant * yao;
-      const double dyoff = 0.5 * yao - b.m_offconstant * xao;
+    if (offcenter && (b_m_offconstant > 0.0))
+    {
+      const double dxoff = 0.5 * xao + b_m_offconstant * yao;
+      const double dyoff = 0.5 * yao - b_m_offconstant * xao;
       //If the off-center is closer to the origin than the
       //  circumcenter, use the off-center instead.
-      if (dxoff * dxoff + dyoff * dyoff < dx * dx + dy * dy) {
+      if (dxoff * dxoff + dyoff * dyoff < dx * dx + dy * dy)
+      {
         dx = dxoff;
         dy = dyoff;
       }
     }
-  } else {
-    if (offcenter && (b.m_offconstant > 0.0)) {
-      const double dxoff = 0.5 * (tapex[0] - tdest[0]) -
-              b.m_offconstant * (tapex[1] - tdest[1]);
-      const double dyoff = 0.5 * (tapex[1] - tdest[1]) +
-              b.m_offconstant * (tapex[0] - tdest[0]);
+  }
+  else
+  {
+    if (offcenter && (b_m_offconstant > 0.0))
+    {
+      const double dxoff = 0.5 * (tapex[0] - tdest[0]) - b_m_offconstant * (tapex[1] - tdest[1]);
+      const double dyoff = 0.5 * (tapex[1] - tdest[1]) + b_m_offconstant * (tapex[0] - tdest[0]);
       //If the off-center is closer to the destination than the
       //  circumcenter, use the off-center instead.
-      if (dxoff * dxoff + dyoff * dyoff <
-          (dx - xdo) * (dx - xdo) + (dy - ydo) * (dy - ydo)) {
+      if (dxoff * dxoff + dyoff * dyoff < (dx - xdo) * (dx - xdo) + (dy - ydo) * (dy - ydo))
+      {
         dx = xdo + dxoff;
         dy = ydo + dyoff;
       }
@@ -1905,7 +2478,6 @@ void ribi::tricpp::checkmesh(
 {
   Otri oppotri, oppooppotri;
   Vertex triorg, tridest, triapex;
-  //Vertex oppoorg, oppodest;
   Triangle ptr;                         //Temporary variable used by sym().
 
   //Temporarily turn on exact arithmetic if it's off.
@@ -2025,7 +2597,10 @@ void ribi::tricpp::checkdelaunay(
       const auto tridest = triangleloop.GetDest();
       const auto triapex = triangleloop.GetApex();
       sym(triangleloop, oppotri);
-      apex(oppotri, oppoapex);
+
+      oppoapex = oppotri.GetApex();
+      //GetApex(oppotri, oppoapex);
+
       //Only test that the edge is locally Delaunay if there is an
       //  adjoining triangle whose pointer is larger (to ensure that
       //  each pair isn't tested twice).
@@ -2058,6 +2633,8 @@ void ribi::tricpp::checkdelaunay(
       {
         if (nonregular(m, b, triorg, tridest, triapex, oppoapex) > 0.0)
         {
+          assert(!"Should not get here");
+          /*
           //if (!b.m_weighted)
           {
             std::cout
@@ -2078,6 +2655,7 @@ void ribi::tricpp::checkdelaunay(
           }
           printtriangle(m, b, &oppotri);
           horrors++;
+          */
         }
       }
     }
@@ -2109,10 +2687,13 @@ void ribi::tricpp::enqueuebadtriang(
   */
   //Determine the appropriate queue to put the bad triangle into.
   //  Recall that the key is the square of its shortest edge length.
-  if (badtri->m_key >= 1.0) {
+  if (badtri->m_key >= 1.0)
+  {
     length = badtri->m_key;
     posexponent = 1;
-  } else {
+  }
+  else
+  {
     //`badtri->key' is 2.0 to a negative exponent, so we'll record that
     //  fact and use the reciprocal of `badtri->key', which is > 1.0.
     length = 1.0 / badtri->m_key;
@@ -2121,11 +2702,13 @@ void ribi::tricpp::enqueuebadtriang(
   //`length' is approximately 2.0 to what exponent?  The following code
   //  determines the answer in time logarithmic in the exponent.
   exponent = 0;
-  while (length > 2.0) {
+  while (length > 2.0)
+  {
     //Find an approximation by repeated squaring of two.
     expincrement = 1;
     multiplier = 0.5;
-    while (length * multiplier * multiplier > 1.0) {
+    while (length * multiplier * multiplier > 1.0)
+    {
       expincrement *= 2;
       multiplier *= multiplier;
     }
@@ -2138,25 +2721,33 @@ void ribi::tricpp::enqueuebadtriang(
   //`exponent' is now in the range 0...2047 for IEEE double precision.
   //  Choose a queue in the range 0...4095.  The shortest edges have the
   //  highest priority (queue 4095).
-  if (posexponent) {
+  if (posexponent)
+  {
     queuenumber = 2047 - exponent;
-  } else {
+  }
+  else
+  {
     queuenumber = 2048 + exponent;
   }
 
   //Are we inserting into an empty queue?
-  if (m.m_queuefront[queuenumber] == (struct BadTriang *) NULL) {
+  if (m.m_queuefront[queuenumber] == nullptr)
+  {
     //Yes, we are inserting into an empty queue.
     //  Will this become the highest-priority queue?
-    if (queuenumber > m.m_firstnonemptyq) {
+    if (queuenumber > m.m_firstnonemptyq)
+    {
       //Yes, this is the highest-priority queue.
       m.m_nextnonemptyq[queuenumber] = m.m_firstnonemptyq;
       m.m_firstnonemptyq = queuenumber;
-    } else {
+    }
+    else
+    {
       //No, this is not the highest-priority queue.
       //  Find the queue with next higher priority.
       int i = queuenumber + 1;
-      while (m.m_queuefront[i] == (struct BadTriang *) NULL) {
+      while (m.m_queuefront[i] == nullptr)
+      {
         i++;
       }
       //Mark the newly nonempty queue as following a higher-priority queue.
@@ -2165,14 +2756,16 @@ void ribi::tricpp::enqueuebadtriang(
     }
     //Put the bad triangle at the beginning of the (empty) queue.
     m.m_queuefront[queuenumber] = badtri;
-  } else {
+  }
+  else
+  {
     //Add the bad triangle to the end of an already nonempty queue.
     m.m_queuetail[queuenumber]->m_nexttriang = badtri;
   }
   //Maintain a pointer to the last triangle of the queue.
   m.m_queuetail[queuenumber] = badtri;
   //Newly enqueued bad triangle has no successor in the queue.
-  badtri->m_nexttriang = (struct BadTriang *) NULL;
+  badtri->m_nexttriang = nullptr;
 }
 
 void ribi::tricpp::enqueuebadtri(
@@ -2214,7 +2807,8 @@ ribi::tricpp::BadTriang * ribi::tricpp::dequeuebadtriang(
   m.m_queuefront[m.m_firstnonemptyq] = result->m_nexttriang;
   //If this queue is now empty, note the new highest-priority
   //  nonempty queue.
-  if (result == m.m_queuetail[m.m_firstnonemptyq]) {
+  if (result == m.m_queuetail[m.m_firstnonemptyq])
+  {
     m.m_firstnonemptyq = m.m_nextnonemptyq[m.m_firstnonemptyq];
   }
   return result;
@@ -2238,8 +2832,12 @@ int ribi::tricpp::checkseg4encroach(
   encroached = 0;
   sides = 0;
 
-  sorg(*testsubseg, eorg);
-  sdest(*testsubseg, edest);
+  eorg = testsubseg->GetOrigin();
+  //GetOrigin(*testsubseg, eorg);
+
+  edest = testsubseg->GetDest();
+  //GetDest(*testsubseg, edest);
+
   //Check one neighbor of the subsegment.
   stpivot(*testsubseg, neighbortri);
   //Does the neighbor exist, or is this a boundary edge?
@@ -2247,23 +2845,27 @@ int ribi::tricpp::checkseg4encroach(
   {
     sides++;
     //Find a vertex opposite this subsegment.
-    apex(neighbortri, eapex);
+    eapex = neighbortri->GetApex();
+    //GetApex(neighbortri, eapex);
     //Check whether the apex is in the diametral lens of the subsegment
     //  (the diametral circle if `conformdel' is set).  A dot product
     //  of two sides of the triangle is used to check whether the angle
     //  at the apex is greater than (180 - 2 `minangle') degrees (for
     //  lenses; 90 degrees for diametral circles).
-    dotproduct = (eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
-                 (eorg[1] - eapex[1]) * (edest[1] - eapex[1]);
+    dotproduct
+      = (eorg[0] - eapex[0]) * (edest[0] - eapex[0])
+      + (eorg[1] - eapex[1]) * (edest[1] - eapex[1])
+    ;
     if (dotproduct < 0.0)
     {
-      if (b.m_conformdel ||
-          (dotproduct * dotproduct >=
-           (2.0 * b.m_goodangle - 1.0) * (2.0 * b.m_goodangle - 1.0) *
-           ((eorg[0] - eapex[0]) * (eorg[0] - eapex[0]) +
-            (eorg[1] - eapex[1]) * (eorg[1] - eapex[1])) *
-           ((edest[0] - eapex[0]) * (edest[0] - eapex[0]) +
-            (edest[1] - eapex[1]) * (edest[1] - eapex[1])))) {
+      if (b.m_conformdel
+        || (dotproduct * dotproduct >= (2.0 * b.m_goodangle - 1.0) * (2.0 * b.m_goodangle - 1.0)
+          * ((eorg[0] - eapex[0]) * (eorg[0] - eapex[0])
+          +  (eorg[1] - eapex[1]) * (eorg[1] - eapex[1]))
+          * ((edest[0] - eapex[0]) * (edest[0] - eapex[0])
+          +  (edest[1] - eapex[1]) * (edest[1] - eapex[1])))
+      )
+      {
         encroached = 1;
       }
     }
@@ -2276,11 +2878,15 @@ int ribi::tricpp::checkseg4encroach(
   {
     sides++;
     //Find the other vertex opposite this subsegment.
-    apex(neighbortri, eapex);
+    eapex = neighbortri->GetApex();
+    //GetApex(neighbortri, eapex);
+
     //Check whether the apex is in the diametral lens of the subsegment
     //  (or the diametral circle, if `conformdel' is set).
-    dotproduct = (eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
-                 (eorg[1] - eapex[1]) * (edest[1] - eapex[1]);
+    dotproduct
+      = (eorg[0] - eapex[0]) * (edest[0] - eapex[0])
+      + (eorg[1] - eapex[1]) * (edest[1] - eapex[1])
+    ;
     if (dotproduct < 0.0)
     {
       if (b.m_conformdel ||
@@ -2308,7 +2914,8 @@ int ribi::tricpp::checkseg4encroach(
     */
     //Add the subsegment to the list of encroached subsegments.
     //  Be sure to get the orientation right.
-    encroachedseg = (struct BadSubSeg *) PoolAlloc(&m.m_badsubsegs);
+    BadSubSeg encroachedseg;
+    //encroachedseg = (struct BadSubSeg *) PoolAlloc(&m.m_badsubsegs);
     if (encroached == 1)
     {
       encroachedseg->m_encsubseg = sencode(*testsubseg);
@@ -2368,7 +2975,7 @@ void ribi::tricpp::testtriangle(
   const double orglen = dxda2 + dyda2;
   const double destlen = dxao2 + dyao2;
 
-  if ((apexlen < orglen) && (apexlen < destlen))
+  if (apexlen < orglen && apexlen < destlen)
   {
     //The edge opposite the apex is shortest.
     minedge = apexlen;
@@ -2380,7 +2987,8 @@ void ribi::tricpp::testtriangle(
     //otricopy(*testtri, tri1);
     tri1 = *testtri;
   }
-  else if (orglen < destlen) {
+  else if (orglen < destlen)
+  {
     //The edge opposite the origin is shortest.
     minedge = orglen;
     //Find the square of the cosine of the angle at the origin.
@@ -2389,7 +2997,9 @@ void ribi::tricpp::testtriangle(
     base1 = tdest;
     base2 = tapex;
     lnext(*testtri, tri1);
-  } else {
+  }
+  else
+  {
     //The edge opposite the destination is shortest.
     minedge = destlen;
     //Find the square of the cosine of the angle at the destination.
@@ -2400,24 +3010,28 @@ void ribi::tricpp::testtriangle(
     lprev(*testtri, tri1);
   }
 
-  if (b.m_vararea || b.m_fixedarea || b.m_usertest) {
+  if (b.m_vararea || b.m_fixedarea || b.m_usertest)
+  {
     //Check whether the area is larger than permitted.
     area = 0.5 * (dxod * dyda - dyod * dxda);
-    if (b.m_fixedarea && (area > b.m_maxarea)) {
+    if (b.m_fixedarea && (area > b.m_maxarea))
+    {
       //Add this triangle to the list of bad triangles.
       enqueuebadtri(m, b, testtri, minedge, tapex, torg, tdest);
       return;
     }
 
     //Nonpositive area constraints are treated as unconstrained.
-    if ((b.m_vararea) && (area > areabound(*testtri)) &&
-        (areabound(*testtri) > 0.0)) {
+    if ((b.m_vararea) && area > areabound(*testtri) &&
+        (areabound(*testtri) > 0.0))
+    {
       //Add this triangle to the list of bad triangles.
       enqueuebadtri(m, b, testtri, minedge, tapex, torg, tdest);
       return;
     }
 
-    if (b.m_usertest) {
+    if (b.m_usertest)
+    {
       //Check whether the user thinks this triangle is too large.
       if (IsTriangleUnsuitable(torg, tdest, tapex)) {
         enqueuebadtri(m, b, testtri, minedge, tapex, torg, tdest);
@@ -2438,8 +3052,9 @@ void ribi::tricpp::testtriangle(
     //  both lie in segment interiors, equidistant from the apex where
     //  the two segments meet.
     //First, check if both points lie in segment interiors.
-    if ((vertextype(base1) == VertexType::SEGMENTVERTEX) &&
-        (vertextype(base2) == VertexType::SEGMENTVERTEX)) {
+    if (base1.GetVertexType() == VertexType::SEGMENTVERTEX &&
+        base2.GetVertexType() == VertexType::SEGMENTVERTEX)
+    {
       //Check if both points lie in a common segment.  If they do, the
       //  skinny triangle is enqueued to be split as usual.
       tspivot(tri1, testsub);
@@ -2454,24 +3069,38 @@ void ribi::tricpp::testtriangle(
           tspivot(tri1, testsub);
         } while (testsub.m_subseg == m.m_dummysub);
         //Find the endpoints of the containing segment.
-        segorg(testsub, org1);
-        segdest(testsub, dest1);
+        org1 = testsub.GetOrg();
+        //GetOrg(testsub, org1);
+
+        dest1 = testsub.GetDest();
+        //GetDest(testsub, dest1);
+
         //Find a subsegment that contains `tdest'.
-        do {
+        do
+        {
           dnextself(tri2);
           tspivot(tri2, testsub);
         } while (testsub.m_subseg == m.m_dummysub);
         //Find the endpoints of the containing segment.
-        segorg(testsub, org2);
-        segdest(testsub, dest2);
+
+        org2 = testsub.GetOrigin();
+        //GetOrg(testsub, org2);
+
+        dest2 = testsub.GetDest();
+        //GetDest(testsub, dest2);
+
         //Check if the two containing segments have an endpoint in common.
         joinvertex = nullptr;
-        if ((dest1[0] == org2[0]) && (dest1[1] == org2[1])) {
+        if ((dest1[0] == org2[0]) && (dest1[1] == org2[1]))
+        {
           joinvertex = dest1;
-        } else if ((org1[0] == dest2[0]) && (org1[1] == dest2[1])) {
+        }
+        else if ((org1[0] == dest2[0]) && (org1[1] == dest2[1]))
+        {
           joinvertex = org1;
         }
-        if (joinvertex != nullptr) {
+        if (joinvertex != nullptr)
+        {
           //Compute the distance from the common endpoint (of the two
           //  segments) to each of the endpoints of the shortest edge.
           dist1 = ((base1[0] - joinvertex[0]) * (base1[0] - joinvertex[0]) +
@@ -2479,7 +3108,8 @@ void ribi::tricpp::testtriangle(
           dist2 = ((base2[0] - joinvertex[0]) * (base2[0] - joinvertex[0]) +
                    (base2[1] - joinvertex[1]) * (base2[1] - joinvertex[1]));
           //If the two distances are equal, don't split the triangle.
-          if ((dist1 < 1.001 * dist2) && (dist1 > 0.999 * dist2)) {
+          if ((dist1 < 1.001 * dist2) && (dist1 > 0.999 * dist2))
+          {
             //Return now to avoid enqueueing the bad triangle.
             return;
           }
@@ -2499,23 +3129,25 @@ void ribi::tricpp::makevertexmap(
 {
   //Otri triangleloop;
   //Vertex triorg;
-
+  /*
   if (b.m_verbosity)
   {
     std::cout << "    Constructing mapping from vertices to triangles.\n";
   }
+  */
   //TraversalInit(&m.m_triangles);
   for (auto my_triangle: m.m_triangles)
   {
     if (my_triangle.IsDead()) continue;
     Otri triangleloop;
     triangleloop.tri = my_triangle;
-    for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
-         triangleloop.m_orient++)
+    for (triangleloop.m_orient = 0; triangleloop.m_orient != 3; ++triangleloop.m_orient)
     {
       Vertex triorg = triangleloop.GetOrigin();
       //org(triangleloop, triorg);
-      setvertex2tri(triorg, encode(triangleloop));
+
+      triorg = triangleloop.m_tri;
+      //setvertex2tri(triorg, encode(triangleloop));
     }
 
   }
@@ -2543,38 +3175,54 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
 {
   Otri backtracktri;
   Osub checkedge;
-  Vertex forg, fdest, fapex;
-  double orgorient, destorient;
+  //Vertex forg, fdest, fapex;
+  //double orgorient, destorient;
   int moveleft;
   Triangle ptr;                         //Temporary variable used by sym().
   SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  if (b.m_verbosity > 2) {
+  /*
+  if (b.m_verbosity > 2)
+  {
     std::cout << "  Searching for point (%.12g, %.12g).\n",
            searchpoint[0], searchpoint[1]);
   }
+  */
   //Where are we?
-  GetOrigin(*searchtri, forg);
-  dest(*searchtri, fdest);
-  apex(*searchtri, fapex);
-  while (1) {
+
+  Vertex forg = searchtri->GetOrigin();
+  //org(*searchtri, forg);
+
+  Vertex fdest = searchtri->GetDest();
+  //dest(*searchtri, fdest);
+
+  Vertex fapex = searchtri->GetApex();
+  //apex(*searchtri, fapex);
+
+  while (1)
+  {
+    /*
     if (b.m_verbosity > 2) {
       std::cout << "    At (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              forg[0], forg[1], fdest[0], fdest[1], fapex[0], fapex[1]);
     }
+    */
     //Check whether the apex is the point we seek.
-    if ((fapex[0] == searchpoint[0]) && (fapex[1] == searchpoint[1])) {
+    if (fapex[0] == searchpoint[0] && fapex[1] == searchpoint[1])
+    {
       lprevself(*searchtri);
       return ONVERTEX;
     }
     //Does the point lie on the other side of the line defined by the
     //  triangle edge opposite the triangle's destination?
-    destorient = counterclockwise(m.m_counterclockcount, b.m_noexact, forg, fapex, searchpoint);
+    const double destorient = counterclockwise(m.m_counterclockcount, b.m_noexact, forg, fapex, searchpoint);
     //Does the point lie on the other side of the line defined by the
     //  triangle edge opposite the triangle's origin?
-    orgorient = counterclockwise(m.m_counterclockcount, b.m_noexact, fapex, fdest, searchpoint);
-    if (destorient > 0.0) {
-      if (orgorient > 0.0) {
+    const double orgorient = counterclockwise(m.m_counterclockcount, b.m_noexact, fapex, fdest, searchpoint);
+    if (destorient > 0.0)
+    {
+      if (orgorient > 0.0)
+      {
         //Move left if the inner product of (fapex - searchpoint) and
         //  (fdest - forg) is positive.  This is equivalent to drawing
         //  a line perpendicular to the line (forg, fdest) and passing
@@ -2582,20 +3230,29 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
         //  `searchpoint' falls on.
         moveleft = (fapex[0] - searchpoint[0]) * (fdest[0] - forg[0]) +
                    (fapex[1] - searchpoint[1]) * (fdest[1] - forg[1]) > 0.0;
-      } else {
+      }
+      else
+      {
         moveleft = 1;
       }
-    } else {
-      if (orgorient > 0.0) {
+    }
+    else
+    {
+      if (orgorient > 0.0)
+      {
         moveleft = 0;
-      } else {
+      }
+      else
+      {
         //The point we seek must be on the boundary of or inside this
         //  triangle.
-        if (destorient == 0.0) {
+        if (destorient == 0.0)
+        {
           lprevself(*searchtri);
           return ONEDGE;
         }
-        if (orgorient == 0.0) {
+        if (orgorient == 0.0)
+        {
           lnextself(*searchtri);
           return ONEDGE;
         }
@@ -2606,19 +3263,24 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
     //Move to another triangle.  Leave a trace `backtracktri' in case
     //  floating-point roundoff or some such bogey causes us to walk
     //  off a boundary of the triangulation.
-    if (moveleft) {
+    if (moveleft)
+    {
       lprev(*searchtri, backtracktri);
       fdest = fapex;
-    } else {
+    }
+    else
+    {
       lnext(*searchtri, backtracktri);
       forg = fapex;
     }
     sym(backtracktri, *searchtri);
 
-    if (m.m_checksegments && stopatsubsegment) {
+    if (m.m_checksegments && stopatsubsegment)
+    {
       //Check for walking through a subsegment.
       tspivot(backtracktri, checkedge);
-      if (checkedge.m_subseg != m.m_dummysub) {
+      if (checkedge.m_subseg != m.m_dummysub)
+      {
         //Go back to the last triangle.
         *searchtri = backtracktri;
         //otricopy(backtracktri, *searchtri);
@@ -2626,14 +3288,16 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
       }
     }
     //Check for walking right out of the triangulation.
-    if (searchtri->m_tri == m.m_dummytri) {
+    if (searchtri->m_tri == m.m_dummytri)
+    {
       //Go back to the last triangle.
       *searchtri = backtracktri;
       //otricopy(backtracktri, *searchtri);
       return OUTSIDE;
     }
 
-    apex(*searchtri, fapex);
+    fapex = searchtri->GetApex();
+    //GetApex(*searchtri, fapex);
   }
 }
 
@@ -2655,15 +3319,19 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
   long samplesperblock, totalsamplesleft, samplesleft;
   long population, totalpopulation;
   Triangle ptr;                         //Temporary variable used by sym().
-
+  /*
   if (b.m_verbosity > 2) {
     std::cout << "  Randomly sampling for a triangle near point (%.12g, %.12g).\n",
            searchpoint[0], searchpoint[1]);
   }
+  */
   //Record the distance from the suggested starting triangle to the
   //  point we seek.
-  GetOrigin(*searchtri, torg);
-  searchdist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
+
+  Vertex torg = searchtri->GetOrigin();
+  //org(*searchtri, torg);
+
+  double searchdist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
                (searchpoint[1] - torg[1]) * (searchpoint[1] - torg[1]);
   /*
   if (b.m_verbosity > 2) {
@@ -2673,10 +3341,14 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
   */
   //If a recently encountered triangle has been recorded and has not been
   //  deallocated, test it as a good starting point.
-  if (m.m_recenttri.m_tri != nullptr) {
-    if (!deadtri(m.m_recenttri.m_tri)) {
-      GetOrigin(m.m_recenttri, torg);
-      if ((torg[0] == searchpoint[0]) && (torg[1] == searchpoint[1]))
+  if (m.m_recenttri.m_tri != nullptr)
+  {
+    if (!deadtri(m.m_recenttri.m_tri))
+    {
+      torg = m.m_recenttri.GetOrigin();
+      //org(m.m_recenttri, torg);
+
+      if (torg[0] == searchpoint[0] && torg[1] == searchpoint[1])
       {
         *searchtri = m.m_recenttri;
         //otricopy(m.m_recenttri, *searchtri);
@@ -2703,8 +3375,8 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
   //  the number of triangles in the mesh.  The next bit of code assumes
   //  that the number of triangles increases monotonically (or at least
   //  doesn't decrease enough to matter).
-  while (SAMPLEFACTOR * m.m_samples * m.m_samples * m.m_samples <
-         m.m_triangles.m_items) {
+  while (SAMPLEFACTOR * m.m_samples * m.m_samples * m.m_samples < m.m_triangles.m_items)
+  {
     m.m_samples++;
   }
 
@@ -2722,9 +3394,11 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
   totalpopulation = m.m_triangles.m_maxitems;
   sampleblock = m.m_triangles.m_firstblock;
   sampletri.m_orient = 0;
-  while (totalsamplesleft > 0) {
+  while (totalsamplesleft > 0)
+  {
     //If we're in the last block, `population' needs to be corrected.
-    if (population > totalpopulation) {
+    if (population > totalpopulation)
+    {
       population = totalpopulation;
     }
     //Find a pointer to the first triangle in the block.
@@ -2739,8 +3413,11 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
       sampletri.m_tri = (Triangle *) (firsttri +
                                     (DumbRand(population) *
                                      m.m_triangles.m_itembytes));
-      if (!deadtri(sampletri.m_tri)) {
-        GetOrigin(sampletri, torg);
+      if (!deadtri(sampletri.m_tri))
+      {
+        torg = sampletri.GetOrigin();
+        //GetOrigin(sampletri, torg);
+
         dist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
                (searchpoint[1] - torg[1]) * (searchpoint[1] - torg[1]);
         if (dist < searchdist)
@@ -2759,9 +3436,10 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
 
       samplesleft--;
       totalsamplesleft--;
-    } while ((samplesleft > 0) && (totalsamplesleft > 0));
+    } while (samplesleft > 0 && totalsamplesleft > 0);
 
-    if (totalsamplesleft > 0) {
+    if (totalsamplesleft > 0)
+    {
       sampleblock = (void **) *sampleblock;
       samplesleft = samplesperblock;
       totalpopulation -= population;
@@ -2776,23 +3454,29 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
   const auto tdest = searchtri->GetDest();
   //dest(*searchtri, tdest);
   //Check the starting triangle's vertices.
-  if (torg[0] == searchpoint[0] && (torg[1] == searchpoint[1])) {
+  if (torg[0] == searchpoint[0] && torg[1] == searchpoint[1])
+  {
     return ONVERTEX;
   }
-  if ((tdest[0] == searchpoint[0]) && (tdest[1] == searchpoint[1])) {
+  if (tdest[0] == searchpoint[0] && tdest[1] == searchpoint[1])
+  {
     lnextself(*searchtri);
     return ONVERTEX;
   }
   //Orient `searchtri' to fit the preconditions of calling preciselocate().
   ahead = counterclockwise(m.m_counterclockcount, b.m_noexact, torg, tdest, searchpoint);
-  if (ahead < 0.0) {
+  if (ahead < 0.0)
+  {
     //Turn around so that `searchpoint' is to the left of the
     //  edge specified by `searchtri'.
     symself(*searchtri);
-  } else if (ahead == 0.0) {
+  }
+  else if (ahead == 0.0)
+  {
     //Check if `searchpoint' is between `torg' and `tdest'.
-    if (((torg[0] < searchpoint[0]) == (searchpoint[0] < tdest[0])) &&
-        ((torg[1] < searchpoint[1]) == (searchpoint[1] < tdest[1]))) {
+    if (((torg[0] < searchpoint[0]) == (searchpoint[0] < tdest[0]))
+      &&((torg[1] < searchpoint[1]) == (searchpoint[1] < tdest[1])))
+    {
       return ONEDGE;
     }
   }
@@ -2830,11 +3514,17 @@ void ribi::tricpp::insertsubseg(
   }
   //Check if there's already a subsegment here.
   tspivot(*tri, newsubseg);
-  if (newsubseg.m_subseg == m.m_dummysub) {
+  if (newsubseg.m_subseg == m.m_dummysub)
+  {
     //Make new subsegment and initialize its vertices.
     makesubseg(m, &newsubseg);
-    setsorg(newsubseg, tridest);
-    setsdest(newsubseg, triorg);
+
+    newsubseg.SetOrigin(tridest);
+    //SetsOrigin(newsubseg, tridest);
+
+    newsubseg.SetDest(triorg);
+    //SetDest(newsubseg, triorg);
+
     setsegorg(newsubseg, tridest);
     setsegdest(newsubseg, triorg);
     //Bond new subsegment to the two triangles it is sandwiched between.
@@ -2927,7 +3617,9 @@ void ribi::tricpp::flip(
     }
   }
 #endif //SELF_CHECK
-  apex(top, farvertex);
+
+  farvertex = top.GetApex();
+  //GetApex(top, farvertex);
 
   //Identify the casing of the quadrilateral.
   lprev(top, topleft);
@@ -3044,7 +3736,9 @@ void ribi::tricpp::unflip(
     }
   }
 #endif //SELF_CHECK
-  apex(top, farvertex);
+
+  farvertex = top.GetApex();
+  //GetApex(top, farvertex);
 
   //Identify the casing of the quadrilateral.
   lprev(top, topleft);
@@ -3192,34 +3886,46 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
     //otricopy(horiz, m.m_recenttri);
     return DUPLICATEVERTEX;
   }
-  if ((intersect == ONEDGE) || (intersect == OUTSIDE))
+  if (intersect == ONEDGE || intersect == OUTSIDE)
   {
     //The vertex falls on an edge or boundary.
-    if (m.m_checksegments && (splitseg == nullptr)) {
+    if (m.m_checksegments && (splitseg == nullptr))
+    {
       //Check whether the vertex falls on a subsegment.
       tspivot(horiz, brokensubseg);
-      if (brokensubseg.m_subseg != m.m_dummysub) {
+      if (brokensubseg.m_subseg != m.m_dummysub)
+      {
         //The vertex falls on a subsegment, and hence will not be inserted.
-        if (segmentflaws) {
+        if (segmentflaws)
+        {
           enq = b.m_nobisect != 2;
-          if (enq && (b.m_nobisect == 1)) {
+          if (enq && (b.m_nobisect == 1))
+          {
             //This subsegment may be split only if it is an
             //  internal boundary.
             sym(horiz, testtri);
             enq = testtri.m_tri != m.m_dummytri;
           }
-          if (enq) {
+          if (enq)
+          {
             //Add the subsegment to the list of encroached subsegments.
-            encroached = (struct BadSubSeg *) PoolAlloc(&m.m_badsubsegs);
+            //encroached = (struct BadSubSeg *) PoolAlloc(&m.m_badsubsegs);
+            BadSubSeg encroached;
             encroached->m_encsubseg = sencode(brokensubseg);
-            sorg(brokensubseg, encroached->m_subsegorg);
-            sdest(brokensubseg, encroached->m_subsegdest);
+            encroached->m_subsegorg = brokensubseg.GetOrigin();
+            //GetOrigin(brokensubseg, encroached->m_subsegorg);
+
+            encroached->m_subsegdest = brokensubseg.GetDest();
+            //GetDest(brokensubseg, encroached->m_subsegdest);
+
+            /*
             if (b.m_verbosity > 2) {
               std::cout <<
           "  Queueing encroached subsegment (%.12g, %.12g) (%.12g, %.12g).\n",
                      encroached->m_subsegorg[0], encroached->m_subsegorg[1],
                      encroached->m_subsegdest[0], encroached->m_subsegdest[1]);
             }
+            */
           }
         }
         //Return a handle whose primary edge contains the vertex,
@@ -3349,9 +4055,15 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
     if (splitseg != nullptr)
     {
       //Split the subsegment into two.
-      setsdest(*splitseg, newvertex);
-      segorg(*splitseg, segmentorg);
-      segdest(*splitseg, segmentdest);
+      splitseg->SetDest(newvertex);
+      //SetDest(*splitseg, newvertex);
+
+      segmentorg = splitseg->GetOrigin();
+      //GetOrg(*splitseg, segmentorg);
+
+      segmentdest = splitseg->GetDest();
+      //GetDest(*splitseg, segmentdest);
+
       ssymself(*splitseg);
       spivot(*splitseg, rightsubseg);
       insertsubseg(m, b, &newbotright, mark(*splitseg));
@@ -3540,9 +4252,15 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
   //  it for the Delaunay property.  Non-Delaunay edges are flipped.
   //  `horiz' is always the edge being checked.  `first' marks where to
   //  stop circling.
-  GetOrigin(horiz, first);
+
+  first = horiz.GetOrigin();
+  //GetOrigin(horiz, first);
+
   rightvertex = first;
-  dest(horiz, leftvertex);
+
+  leftvertex = horiz.GetDest();
+  //GetDest(horiz, leftvertex);
+
   //Circle until finished.
   while (1) {
     //By default, the edge will be flipped.
@@ -3566,12 +4284,18 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
     if (doflip) {
       //Check if the edge is a boundary edge.
       sym(horiz, top);
-      if (top.m_tri == m.m_dummytri) {
+      if (top.m_tri == m.m_dummytri)
+      {
         //The edge is a boundary edge and cannot be flipped.
         doflip = 0;
-      } else {
+      }
+      else
+      {
         //Find the vertex on the other side of the edge.
-        apex(top, farvertex);
+
+        farvertex = top.GetApex();
+        //GetApex(top, farvertex);
+
         //In the incremental Delaunay triangulation algorithm, any of
         //  `leftvertex', `rightvertex', and `farvertex' could be vertices
         //  of the triangular bounding box.  These vertices must be
@@ -3651,12 +4375,24 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
             }
           }
           //New vertex assignments for the rotated quadrilateral.
-          setorg(horiz, farvertex);
-          setdest(horiz, newvertex);
-          setapex(horiz, rightvertex);
-          setorg(top, newvertex);
-          setdest(top, farvertex);
-          setapex(top, leftvertex);
+          horiz.SetOrigin(farvertex);
+          //SetOrigin(horiz, farvertex);
+
+          horiz.SetDest(newvertex);
+          //SetDest(horiz, newvertex);
+
+          horiz.SetApex(rightvertex);
+          //SetApex(horiz, rightvertex);
+
+          top.SetOrigin(bewvertex);
+          //SetOrigin(top, newvertex);
+
+          top.SetDest(farvertex);
+          //SetDest(top, farvertex);
+
+          top.SetApex(leftvertex);
+          //SetApex(top, leftvertex);
+
           for (int i = 0; i < m.m_eextras; i++) {
             //Take the average of the two triangles' attributes.
             attrib = 0.5 * (elemattribute(top, i) + elemattribute(horiz, i));
@@ -3748,7 +4484,9 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
       //Finish finding the next edge around the newly inserted vertex.
       lnext(testtri, horiz);
       rightvertex = leftvertex;
-      dest(horiz, leftvertex);
+
+      leftvertex = horiz.GetDest();
+      //GetDest(horiz, leftvertex);
     }
   }
 }
@@ -3774,32 +4512,51 @@ void ribi::tricpp::triangulatepolygon(
   Triangle ptr;   //Temporary variable used by sym(), onext(), and oprev().
 
   //Identify the base vertices.
-  apex(*lastedge, leftbasevertex);
-  dest(*firstedge, rightbasevertex);
+
+  leftbasevertex = lastedge->GetApex();
+  //GetApex(*lastedge, leftbasevertex);
+
+  rightbasevertex = firstedge->GetDest();
+  //GetDest(*firstedge, rightbasevertex);
+
+  /*
   if (b.m_verbosity > 2) {
     std::cout << "  Triangulating interior polygon at edge\n");
     std::cout << "    (%.12g, %.12g) (%.12g, %.12g)\n", leftbasevertex[0],
            leftbasevertex[1], rightbasevertex[0], rightbasevertex[1]);
   }
+  */
   //Find the best vertex to connect the base to.
   onext(*firstedge, besttri);
-  dest(besttri, bestvertex);
-  otricopy(besttri, testtri);
+
+  bestvertex = besttri.GetDest();
+  //GetDest(besttri, bestvertex);
+
+  testtri = besttri;
+  //otricopy(besttri, testtri);
   int bestnumber = 1;
-  for (int i = 2; i <= edgecount - 2; i++) {
+  for (int i = 2; i <= edgecount - 2; i++)
+  {
     onextself(testtri);
-    dest(testtri, testvertex);
+
+    testvertex = testtri.GetDest();
+    //GetDest(testtri, testvertex);
+
     //Is this a better vertex?
-    if (incircle(m, b, leftbasevertex, rightbasevertex, bestvertex,testvertex) > 0.0) {
-      otricopy(testtri, besttri);
+    if (incircle(m, b, leftbasevertex, rightbasevertex, bestvertex,testvertex) > 0.0)
+    {
+      besttri = testtri;
+      //otricopy(testtri, besttri);
       bestvertex = testvertex;
       bestnumber = i;
     }
   }
+  /*
   if (b.m_verbosity > 2) {
     std::cout << "    Connecting edge to (%.12g, %.12g)\n", bestvertex[0],
            bestvertex[1]);
   }
+  */
   if (bestnumber > 1) {
     //Recursively triangulate the smaller polygon on the right.
     oprev(besttri, tempedge);
@@ -3814,17 +4571,20 @@ void ribi::tricpp::triangulatepolygon(
     //Find `besttri' again; it may have been lost to edge flips.
     sym(tempedge, besttri);
   }
-  if (doflip) {
+  if (doflip)
+  {
     //Do one final edge flip.
     flip(m, b, &besttri);
-    if (triflaws) {
+    if (triflaws)
+    {
       //Check the quality of the newly committed triangle.
       sym(besttri, testtri);
       testtriangle(m, b, &testtri);
     }
   }
   //Return the base triangle.
-  otricopy(besttri, *lastedge);
+  lastedge = besttri;
+  //otricopy(besttri, *lastedge);
 }
 
 
@@ -3846,16 +4606,21 @@ void ribi::tricpp::deletevertex(
   Triangle ptr;   //Temporary variable used by sym(), onext(), and oprev().
   SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  GetOrigin(*deltri, delvertex);
+  delvertex = deltri->GetOrigin();
+  //GetOrigin(*deltri, delvertex);
+  /*
   if (b.m_verbosity > 1) {
     std::cout << "  Deleting (%.12g, %.12g).\n", delvertex[0], delvertex[1]);
   }
+  */
   vertexdealloc(m, delvertex);
 
   //Count the degree of the vertex being deleted.
   onext(*deltri, countingtri);
   int edgecount = 1;
-  while (!otriequal(*deltri, countingtri)) {
+  while (*deltri != countingtri)
+  //while (!otriequal(*deltri, countingtri))
+  {
 #ifdef SELF_CHECK
     if (countingtri.tri == m.dummytri) {
       std::cout << "Internal error in deletevertex():\n");
@@ -3903,8 +4668,12 @@ void ribi::tricpp::deletevertex(
   }
 
   //Set the new origin of `deltri' and check its quality.
-  GetOrigin(lefttri, neworg);
-  setorg(*deltri, neworg);
+  neworg = lefttri.GetOrigin();
+  //GetOrigin(lefttri, neworg);
+
+  deltri->SetOrigin(neworg);
+  //SetOrigin(*deltri, neworg);
+
   if (!b.m_nobisect) {
     testtriangle(m, b, deltri);
   }
@@ -3949,9 +4718,11 @@ void ribi::tricpp::undovertex(
       lprevself(botright);
       sym(botleft, botlcasing);
       sym(botright, botrcasing);
-      dest(botleft, botvertex);
 
-      setapex(fliptri, botvertex);
+      botvertex = botleft.GetDest();
+      //GetDest(botleft, botvertex);
+
+      SetApex(fliptri, botvertex);
       lnextself(fliptri);
       bond(fliptri, botlcasing);
       tspivot(botleft, botlsubseg);
@@ -3973,9 +4744,13 @@ void ribi::tricpp::undovertex(
       sym(gluetri, botright);
       lnextself(botright);
       sym(botright, botrcasing);
-      dest(botright, rightvertex);
 
-      setorg(fliptri, rightvertex);
+      rightvertex = botright.GetDest();
+      //GetDest(botright, rightvertex);
+
+      fliptri.SetOrigin(rightvertex);
+      //SetOrigin(fliptri, rightvertex);
+
       bond(gluetri, botrcasing);
       tspivot(botright, botrsubseg);
       tsbond(gluetri, botrsubseg);
@@ -3990,7 +4765,9 @@ void ribi::tricpp::undovertex(
         dnext(gluetri, topright);
         sym(topright, toprcasing);
 
-        setorg(gluetri, rightvertex);
+        gluetri.SetOrigin(rightvertex);
+        //SetOrigin(gluetri, rightvertex);
+
         bond(gluetri, toprcasing);
         tspivot(topright, toprsubseg);
         tsbond(gluetri, toprsubseg);
@@ -4212,48 +4989,83 @@ void ribi::tricpp::mergehulls(
   int leftfinished, rightfinished;
   Triangle ptr;                         //Temporary variable used by sym().
 
-  dest(*innerleft, innerleftdest);
-  apex(*innerleft, innerleftapex);
-  GetOrigin(*innerright, innerrightorg);
-  apex(*innerright, innerrightapex);
+  innerleftdest = innerleft->GetDest();
+  //GetDest(*innerleft, innerleftdest);
+
+  innerleftapex = innerleft->GetApex();
+  //GetApex(*innerleft, innerleftapex);
+
+  innerrightorg = innerright->GetOrigin();
+  //GetOrigin(*innerright, innerrightorg);
+
+  innerrightapex = innerright->GetApex();
+  //GetApex(*innerright, innerrightapex);
+
   //Special treatment for horizontal cuts.
-  if (b.m_dwyer && (axis == 1)) {
-    GetOrigin(*farleft, farleftpt);
-    apex(*farleft, farleftapex);
-    dest(*farright, farrightpt);
-    apex(*farright, farrightapex);
+  if (b.m_dwyer && (axis == 1))
+  {
+    farleftpt = farleft->GetOrigin();
+    //GetOrigin(*farleft, farleftpt);
+
+    farleftapex = farleft->GetApex();
+    //GetApex(*farleft, farleftapex);
+
+    farrightpt = farright->GetDest();
+    //GetDest(*farright, farrightpt);
+
+    farrightapex = farright->GetApex();
+    //GetApex(*farright, farrightapex);
+
     //The pointers to the extremal vertices are shifted to point to the
     //  topmost and bottommost vertex of each hull, rather than the
     //  leftmost and rightmost vertices.
-    while (farleftapex[1] < farleftpt[1]) {
+    while (farleftapex[1] < farleftpt[1])
+    {
       lnextself(*farleft);
       symself(*farleft);
       farleftpt = farleftapex;
-      apex(*farleft, farleftapex);
+
+      farleftapex = farleft->GetApex();
+      //GetApex(*farleft, farleftapex);
     }
     sym(*innerleft, checkedge);
-    apex(checkedge, checkvertex);
-    while (checkvertex[1] > innerleftdest[1]) {
+
+    checkvertex = checkedge.GetApex();
+    //GetApex(checkedge, checkvertex);
+
+    while (checkvertex[1] > innerleftdest[1])
+    {
       lnext(checkedge, *innerleft);
       innerleftapex = innerleftdest;
       innerleftdest = checkvertex;
       sym(*innerleft, checkedge);
-      apex(checkedge, checkvertex);
+
+      checkvertex = checkedge->GetApex();
+      //GetApex(checkedge, checkvertex);
     }
-    while (innerrightapex[1] < innerrightorg[1]) {
+    while (innerrightapex[1] < innerrightorg[1])
+    {
       lnextself(*innerright);
       symself(*innerright);
       innerrightorg = innerrightapex;
-      apex(*innerright, innerrightapex);
+
+      innerrightapex = innerright->GetApex();
+      //GetApex(*innerright, innerrightapex);
     }
     sym(*farright, checkedge);
-    apex(checkedge, checkvertex);
-    while (checkvertex[1] > farrightpt[1]) {
+
+    checkvertex = checkedge.GetApex();
+    //GetApex(checkedge, checkvertex);
+
+    while (checkvertex[1] > farrightpt[1])
+    {
       lnext(checkedge, *farright);
       farrightapex = farrightpt;
       farrightpt = checkvertex;
       sym(*farright, checkedge);
-      apex(checkedge, checkvertex);
+
+      checkvertex = checkedge.GetApex();
+      //GetApex(checkedge, checkvertex);
     }
   }
   //Find a line tangent to and below both hulls.
@@ -4265,7 +5077,10 @@ void ribi::tricpp::mergehulls(
       lprevself(*innerleft);
       symself(*innerleft);
       innerleftdest = innerleftapex;
-      apex(*innerleft, innerleftapex);
+
+      innerleftapex = innerleft->GetApex();
+      //GetApex(*innerleft, innerleftapex);
+
       changemade = 1;
     }
     //Make innerrightorg the "bottommost" vertex of the right hull.
@@ -4274,7 +5089,10 @@ void ribi::tricpp::mergehulls(
       lnextself(*innerright);
       symself(*innerright);
       innerrightorg = innerrightapex;
-      apex(*innerright, innerrightapex);
+
+      innerrightapex = innerright->GetApex();
+      //GetApex(*innerright, innerrightapex);
+
       changemade = 1;
     }
   } while (changemade);
@@ -4288,28 +5106,45 @@ void ribi::tricpp::mergehulls(
   lnextself(baseedge);
   bond(baseedge, *innerright);
   lnextself(baseedge);
-  setorg(baseedge, innerrightorg);
-  setdest(baseedge, innerleftdest);
+
+  baseedge.SetOrigin(innerrightorg);
+  //SetOrigin(baseedge, innerrightorg);
+
+  baseedge.SetDest(innerleftdest);
+  //SetDest(baseedge, innerleftdest);
+
   //Apex is intentionally left NULL.
   if (b.m_verbosity > 2) {
-    std::cout << "  Creating base bounding ");
+    std::cout << "  Creating base bounding ";
     printtriangle(m, b, &baseedge);
   }
   //Fix the extreme triangles if necessary.
-  GetOrigin(*farleft, farleftpt);
-  if (innerleftdest == farleftpt) {
+    farleftpt = farleft->GetOrigin()
+  //GetOrigin(*farleft, farleftpt);
+
+  if (innerleftdest == farleftpt)
+  {
     lnext(baseedge, *farleft);
   }
-  dest(*farright, farrightpt);
-  if (innerrightorg == farrightpt) {
+
+  farrightpt = farright->GetDest();
+  //GetDest(*farright, farrightpt);
+
+  if (innerrightorg == farrightpt)
+  {
     lprev(baseedge, *farright);
   }
   //The vertices of the current knitting edge.
   lowerleft = innerleftdest;
   lowerright = innerrightorg;
   //The candidate vertices for knitting.
-  apex(leftcand, upperleft);
-  apex(rightcand, upperright);
+
+  upperleft = leftcand.GetApex();
+  //GetApex(leftcand, upperleft);
+
+  upperright = rightcand.GetApex();
+  //GetApex(rightcand, upperright);
+
   //Walk up the gap between the two triangulations, knitting them together.
   while (1) {
     //Have we reached the top?  (This isn't quite the right question,
@@ -4323,8 +5158,13 @@ void ribi::tricpp::mergehulls(
     if (leftfinished && rightfinished) {
       //Create the top new bounding triangle.
       maketriangle(m, b, &nextedge);
-      setorg(nextedge, lowerleft);
-      setdest(nextedge, lowerright);
+
+      nextedge.SetOrigin(lowerleft);
+      //SetOrigin(nextedge, lowerleft);
+
+      nextedge.SetDest(lowerright);
+      //SetDest(nextedge, lowerright);
+
       //Apex is intentionally left NULL.
       //Connect it to the bounding boxes of the two triangulations.
       bond(nextedge, baseedge);
@@ -4337,13 +5177,25 @@ void ribi::tricpp::mergehulls(
         printtriangle(m, b, &nextedge);
       }
       //Special treatment for horizontal cuts.
-      if (b.m_dwyer && (axis == 1)) {
-        GetOrigin(*farleft, farleftpt);
-        apex(*farleft, farleftapex);
-        dest(*farright, farrightpt);
-        apex(*farright, farrightapex);
+      if (b.m_dwyer && (axis == 1))
+      {
+        farleftpt = farleft->GetOrigin();
+        //GetOrigin(*farleft, farleftpt);
+
+        farleftapex = farleft->GetApex();
+        //GetApex(*farleft, farleftapex);
+
+        farrightpt = farright->GetDest();
+        //GetDest(*farright, farrightpt);
+
+        farrightapex = farright->GetApex();
+        //GetApex(*farright, farrightapex);
+
         sym(*farleft, checkedge);
-        apex(checkedge, checkvertex);
+
+        checkvertex = checkedge.GetApex();
+        //GetApex(checkedge, checkvertex);
+
         //The pointers to the extremal vertices are restored to the
         //  leftmost and rightmost vertices (rather than topmost and
         //  bottommost).
@@ -4352,13 +5204,18 @@ void ribi::tricpp::mergehulls(
           farleftapex = farleftpt;
           farleftpt = checkvertex;
           sym(*farleft, checkedge);
-          apex(checkedge, checkvertex);
+
+          checkvertex = checkedge.GetApex();
+          //GetApex(checkedge, checkvertex);
         }
-        while (farrightapex[0] > farrightpt[0]) {
+        while (farrightapex[0] > farrightpt[0])
+        {
           lprevself(*farright);
           symself(*farright);
           farrightpt = farrightapex;
-          apex(*farright, farrightapex);
+
+          farrightapex = farright->GetApex();
+          //GetApex(*farright, farrightapex);
         }
       }
       return;
@@ -4368,7 +5225,10 @@ void ribi::tricpp::mergehulls(
       //What vertex would be exposed if an edge were deleted?
       lprev(leftcand, nextedge);
       symself(nextedge);
-      apex(nextedge, nextapex);
+
+      nextapex = nextedge.GetApex();
+      //GetApex(nextedge, nextapex);
+
       //If nextapex is NULL, then no vertex would be exposed; the
       //  triangulation would have been eaten right through.
       if (nextapex != nullptr) {
@@ -4389,17 +5249,34 @@ void ribi::tricpp::mergehulls(
           lprevself(nextedge);
           bond(nextedge, outercasing);
           //Correct the vertices to reflect the edge flip.
-          setorg(leftcand, lowerleft);
-          setdest(leftcand, NULL);
-          setapex(leftcand, nextapex);
-          setorg(nextedge, NULL);
-          setdest(nextedge, upperleft);
-          setapex(nextedge, nextapex);
+
+          leftcand.SetOrigin(lowerleft);
+          //SetOrigin(leftcand, lowerleft);
+
+          leftcand.SetDest(nullptr);
+          //SetDest(leftcand, NULL);
+
+          leftcand.SetApex(nextapex);
+          //SetApex(leftcand, nextapex);
+
+          nextedge.SetOrigin(nullptr);
+          //SetOrigin(nextedge, NULL);
+
+          nextedge.SetDest(upperleft);
+          //SetDest(nextedge, upperleft);
+
+          nextedge.SetApex(nextapex);
+          //SetApex(nextedge, nextapex);
+
           //Consider the newly exposed vertex.
           upperleft = nextapex;
           //What vertex would be exposed if another edge were deleted?
-          otricopy(sidecasing, nextedge);
-          apex(nextedge, nextapex);
+          nextedge = sidecasing;
+          //otricopy(sidecasing, nextedge);
+
+          nextapex = nextedge.GetApex();
+          //GetApex(nextedge, nextapex);
+
           if (nextapex != nullptr) {
             //Check whether the edge is Delaunay.
             badedge = incircle(m, b, lowerleft, lowerright, upperleft,
@@ -4416,7 +5293,10 @@ void ribi::tricpp::mergehulls(
       //What vertex would be exposed if an edge were deleted?
       lnext(rightcand, nextedge);
       symself(nextedge);
-      apex(nextedge, nextapex);
+
+      nextapex = nextedge.GetApex();
+      //GetApex(nextedge, nextapex);
+
       //If nextapex is NULL, then no vertex would be exposed; the
       //  triangulation would have been eaten right through.
       if (nextapex != nullptr) {
@@ -4437,53 +5317,85 @@ void ribi::tricpp::mergehulls(
           lnextself(nextedge);
           bond(nextedge, outercasing);
           //Correct the vertices to reflect the edge flip.
-          setorg(rightcand, NULL);
-          setdest(rightcand, lowerright);
-          setapex(rightcand, nextapex);
-          setorg(nextedge, upperright);
-          setdest(nextedge, NULL);
-          setapex(nextedge, nextapex);
+          rightcand.SetOrigin(nullptr);
+          //setorg(rightcand, NULL);
+
+          rightcand.SetDest(lowwerright);
+          //setdest(rightcand, lowerright);
+
+          rightcand.SetApex(nextapex);
+          //setapex(rightcand, nextapex);
+
+          nextedge.SetOrigin(upperright);
+          //setorg(nextedge, upperright);
+
+          nextedge.SetDest(nullptr);
+          //setdest(nextedge, NULL);
+
+          nextedge.SetApex(nextapex);
+          //setapex(nextedge, nextapex);
+
           //Consider the newly exposed vertex.
           upperright = nextapex;
           //What vertex would be exposed if another edge were deleted?
-          otricopy(sidecasing, nextedge);
-          apex(nextedge, nextapex);
-          if (nextapex != nullptr) {
+
+          nextedge = sidecasing;
+          //otricopy(sidecasing, nextedge);
+
+          nextapex = nextedge.GetApex();
+          //apex(nextedge, nextapex);
+
+          if (nextapex)
+          {
             //Check whether the edge is Delaunay.
-            badedge = incircle(m, b, lowerleft, lowerright, upperright,
-                               nextapex) > 0.0;
-          } else {
+            badedge = incircle(m.m_incirclecount, b.m_noexact, lowerleft, lowerright, upperright,nextapex) > 0.0;
+          }
+          else
+          {
             //Avoid eating right through the triangulation.
             badedge = 0;
           }
         }
       }
     }
-    if (leftfinished || (!rightfinished &&
-           (incircle(m, b, upperleft, lowerleft, lowerright, upperright) >
-            0.0))) {
+    if (leftfinished || (!rightfinished && (incircle(m.m_incirclecount, b.m_noexact, upperleft, lowerleft, lowerright, upperright) > 0.0)))
+    {
       //Knit the triangulations, adding an edge from `lowerleft'
       //  to `upperright'.
       bond(baseedge, rightcand);
       lprev(rightcand, baseedge);
-      setdest(baseedge, lowerleft);
+
+      baseedge.SetDest(lowerleft);
+      //setdest(baseedge, lowerleft);
+
       lowerright = upperright;
       sym(baseedge, rightcand);
-      apex(rightcand, upperright);
-    } else {
+
+      rightcand.SetApex(upperight);
+      //apex(rightcand, upperright);
+    }
+    else
+    {
       //Knit the triangulations, adding an edge from `upperleft'
       //  to `lowerright'.
       bond(baseedge, leftcand);
       lnext(leftcand, baseedge);
-      setorg(baseedge, lowerright);
+
+      baseedge->SetOrigin(lowerright);
+      //setorg(baseedge, lowerright);
+
       lowerleft = upperleft;
       sym(baseedge, leftcand);
-      apex(leftcand, upperleft);
+
+      leftcand.SetApex(upperleft);
+      //apex(leftcand, upperleft);
     }
+    /*
     if (b.m_verbosity > 2) {
       std::cout << "  Connecting ");
       printtriangle(m, b, &baseedge);
     }
+    */
   }
 }
 
@@ -4501,21 +5413,36 @@ void ribi::tricpp::divconqrecurse(
   Otri innerleft, innerright;
   double area;
   int divider;
-
+  /*
   if (b.m_verbosity > 2) {
     std::cout << "  Triangulating %d vertices.\n", vertices);
   }
+  */
   if (vertices == 2) {
     //The triangulation of two vertices is an edge.  An edge is
     //  represented by two bounding triangles.
     maketriangle(m, b, farleft);
-    setorg(*farleft, sortarray[0]);
-    setdest(*farleft, sortarray[1]);
+
+    farleft->SetOrigin(sortarray[0]);
+    //setorg(*farleft, sortarray[0]);
+
+    farleft->SetDest(sortarray[1]);
+    //setdest(*farleft, sortarray[1]);
+
     //The apex is intentionally left NULL.
+    farleft->SetApex(nullptr);
+
     maketriangle(m, b, farright);
-    setorg(*farright, sortarray[1]);
-    setdest(*farright, sortarray[0]);
+
+    farright->SetOrigin(sortarray[1]);
+    //setorg(*farright, sortarray[1]);
+
+    farright->SetDest(sortarray[0]);
+    //setdest(*farright, sortarray[0]);
+
     //The apex is intentionally left NULL.
+    farright->SetApex(nullptr);
+
     bond(*farleft, *farright);
     lprevself(*farleft);
     lnextself(*farright);
@@ -4523,16 +5450,20 @@ void ribi::tricpp::divconqrecurse(
     lprevself(*farleft);
     lnextself(*farright);
     bond(*farleft, *farright);
+    /*
     if (b.m_verbosity > 2) {
       std::cout << "  Creating ");
       printtriangle(m, b, farleft);
       std::cout << "  Creating ");
       printtriangle(m, b, farright);
     }
+    */
     //Ensure that the origin of `farleft' is sortarray[0].
     lprev(*farright, *farleft);
     return;
-  } else if (vertices == 3) {
+  }
+  else if (vertices == 3)
+  {
     //The triangulation of three vertices is either a triangle (with
     //  three bounding triangles) or two edges (with four bounding
     //  triangles).  In either case, four triangles are created.
@@ -4541,16 +5472,33 @@ void ribi::tricpp::divconqrecurse(
     maketriangle(m, b, &tri2);
     maketriangle(m, b, &tri3);
     area = counterclockwise(m.m_counterclockcount, b.m_noexact, sortarray[0], sortarray[1], sortarray[2]);
-    if (area == 0.0) {
+    if (area == 0.0)
+    {
       //Three collinear vertices; the triangulation is two edges.
-      setorg(midtri, sortarray[0]);
-      setdest(midtri, sortarray[1]);
-      setorg(tri1, sortarray[1]);
-      setdest(tri1, sortarray[0]);
-      setorg(tri2, sortarray[2]);
-      setdest(tri2, sortarray[1]);
-      setorg(tri3, sortarray[1]);
-      setdest(tri3, sortarray[2]);
+      midtri.SetOrigin(sortarray[0]);
+      //SetOrigin(midtri, sortarray[0]);
+
+      midtri.SetDest(sortarray[1]);
+      //SetDest(midtri, sortarray[1]);
+
+      tri1.SetOrigin(sortarray[1]);
+      //SetOrigin(tri1, sortarray[1]);
+
+      tri1.SetDest(sortarray[0]);
+      //SetDest(tri1, sortarray[0]);
+
+      tri2.SetOrigin(sortarray[2]);
+      //SetOrigin(tri2, sortarray[2]);
+
+      tri2.SetDest(sortarray[1]);
+      //SetDest(tri2, sortarray[1]);
+
+      tri3.SetOrigin(sortarray[1]);
+      //SetOrigin(tri3, sortarray[1]);
+
+      tri3.SetDest(sortarray[2]);
+      //SetDest(tri3, sortarray[2]);
+
       //All apices are intentionally left NULL.
       bond(midtri, tri1);
       bond(tri2, tri3);
@@ -4567,32 +5515,68 @@ void ribi::tricpp::divconqrecurse(
       bond(midtri, tri1);
       bond(tri2, tri3);
       //Ensure that the origin of `farleft' is sortarray[0].
-      otricopy(tri1, *farleft);
+      farleft = tri1;
+      //otricopy(tri1, *farleft);
       //Ensure that the destination of `farright' is sortarray[2].
-      otricopy(tri2, *farright);
-    } else {
+      farright = tri2;
+      //otricopy(tri2, *farright);
+    }
+    else
+    {
       //The three vertices are not collinear; the triangulation is one
       //  triangle, namely `midtri'.
-      setorg(midtri, sortarray[0]);
-      setdest(tri1, sortarray[0]);
-      setorg(tri3, sortarray[0]);
+
+      midtri.SetOrigin(sortarray[0]);
+      //SetOrigin(midtri, sortarray[0]);
+
+      tri1.SetDest(sortarray[0]);
+      //SetDest(tri1, sortarray[0]);
+
+      tri3.SetOrigin(sortarray[0]);
+      //SetOrigin(tri3, sortarray[0]);
+
       //Apices of tri1, tri2, and tri3 are left NULL.
-      if (area > 0.0) {
+      if (area > 0.0)
+      {
         //The vertices are in counterclockwise order.
-        setdest(midtri, sortarray[1]);
-        setorg(tri1, sortarray[1]);
-        setdest(tri2, sortarray[1]);
-        setapex(midtri, sortarray[2]);
-        setorg(tri2, sortarray[2]);
-        setdest(tri3, sortarray[2]);
-      } else {
+        midtri.SetDest(sortarray[1]);
+        //SetDest(midtri, sortarray[1]);
+
+        tri1.SetOrigin(sortarray[1]);
+        //SetOrigin(tri1, sortarray[1]);
+
+        tri2.SetDest(sortarray[1]);
+        //SetDest(tri2, sortarray[1]);
+
+        midtri.SetApex(sortarray[2]);
+        //SetApex(midtri, sortarray[2]);
+
+        tri2.SetOrigin(sortarray[2]);
+        //SetOrigin(tri2, sortarray[2]);
+
+        tri3.SetDest(sortarray[2]);
+        //SetDest(tri3, sortarray[2]);
+      }
+      else
+      {
         //The vertices are in clockwise order.
-        setdest(midtri, sortarray[2]);
-        setorg(tri1, sortarray[2]);
-        setdest(tri2, sortarray[2]);
-        setapex(midtri, sortarray[1]);
-        setorg(tri2, sortarray[1]);
-        setdest(tri3, sortarray[1]);
+        midtri.SetOrigin(sortarray[2]);
+        //SetDest(midtri, sortarray[2]);
+
+        tri1.SetOrigin(sortarray[2]);
+        //SetOrigin(tri1, sortarray[2]);
+
+        tri2.SetDest(sortarray[2]);
+        //SetDest(tri2, sortarray[2]);
+
+        midtri.SetApex(sortarray[1]);
+        //SetApex(midtri, sortarray[1]);
+
+        tri2.SetOrigin(sortarray[1]);
+        //SetOrigin(tri2, sortarray[1]);
+
+        tri3.SetDest(sortarray[1]);
+        //SetDest(tri3, sortarray[1]);
       }
       //The topology does not depend on how the vertices are ordered.
       bond(midtri, tri1);
@@ -4610,14 +5594,21 @@ void ribi::tricpp::divconqrecurse(
       lprevself(tri3);
       bond(tri2, tri3);
       //Ensure that the origin of `farleft' is sortarray[0].
-      otricopy(tri1, *farleft);
+      farleft = tri1;
+      //otricopy(tri1, *farleft);
+
       //Ensure that the destination of `farright' is sortarray[2].
-      if (area > 0.0) {
-        otricopy(tri2, *farright);
-      } else {
+      if (area > 0.0)
+      {
+        farright = tri2;
+        //otricopy(tri2, *farright);
+      }
+      else
+      {
         lnext(*farleft, *farright);
       }
     }
+    /*
     if (b.m_verbosity > 2) {
       std::cout << "  Creating ");
       printtriangle(m, b, &midtri);
@@ -4628,19 +5619,21 @@ void ribi::tricpp::divconqrecurse(
       std::cout << "  Creating ");
       printtriangle(m, b, &tri3);
     }
+    */
     return;
   } else {
     //Split the vertices in half.
     divider = vertices >> 1;
     //Recursively triangulate each half.
     divconqrecurse(m, b, sortarray, divider, 1 - axis, farleft, &innerleft);
-    divconqrecurse(m, b, &sortarray[divider], vertices - divider, 1 - axis,
-                   &innerright, farright);
+    divconqrecurse(m, b, &sortarray[divider], vertices - divider, 1 - axis,&innerright, farright);
+    /*
     if (b.m_verbosity > 1)
     {
       std::cout << "  Joining triangulations with %d and %d vertices.\n", divider,
              vertices - divider);
     }
+    */
     //Merge the two triangulations into one.
     mergehulls(m, b, farleft, &innerleft, &innerright, farright, axis);
   }
@@ -4658,18 +5651,23 @@ long ribi::tricpp::removeghosts(
   Vertex markorg;
   long hullsize;
   Triangle ptr;                         //Temporary variable used by sym().
-
+  /*
   if (b.m_verbosity) {
     std::cout << "  Removing ghost triangles.\n");
   }
+  */
   //Find an edge on the convex hull to start point location from.
   lprev(*startghost, searchedge);
   symself(searchedge);
   m.m_dummytri[0] = encode(searchedge);
   //Remove the bounding box and count the convex hull edges.
-  otricopy(*startghost, dissolveedge);
+
+  dissolveedge = startghost;
+  //otricopy(*startghost, dissolveedge);
+
   hullsize = 0;
-  do {
+  do
+  {
     hullsize++;
     lnext(dissolveedge, deadtriangle);
     lprevself(dissolveedge);
@@ -4681,7 +5679,9 @@ long ribi::tricpp::removeghosts(
     //Delete the bounding triangle.
     //triangledealloc(m, deadtriangle.m_tri);
     m.KillTriangle(deadtriangle.m_tri);
-  } while (!otriequal(dissolveedge, *startghost));
+  }
+  while (dissolveedge != *startghost);
+  //while (!otriequal(dissolveedge, *startghost));
   return hullsize;
 }
 
@@ -4697,10 +5697,11 @@ long ribi::tricpp::divconqdelaunay(
   int i = 0;
   //int j = 0;
 
+  /*
   if (b.m_verbosity) {
     std::cout << "  Sorting vertices.\n");
   }
-
+  */
   //Allocate an array of pointers to vertices for sorting.
   //sortarray = (vertex *) trimalloc(m.invertices * (int) sizeof(vertex));
   sortarray.resize(m.m_invertices);
@@ -4713,9 +5714,11 @@ long ribi::tricpp::divconqdelaunay(
   vertexsort(&sortarray[0], m.m_invertices);
   //Discard duplicate vertices, which can really mess up the algorithm.
   i = 0;
-  for (int j = 1; j < m.m_invertices; j++) {
-    if ((sortarray[i][0] == sortarray[j][0])
-        && (sortarray[i][1] == sortarray[j][1])) {
+  for (int j = 1; j < m.m_invertices; j++)
+  {
+    if ((sortarray[i][0] == sortarray[j][0]) && (sortarray[i][1] == sortarray[j][1]))
+    {
+      /*
       if (!b.m_quiet)
       {
         std::cout << "Warning:  A duplicate vertex at ("
@@ -4723,7 +5726,9 @@ long ribi::tricpp::divconqdelaunay(
           << sortarray[j][1] << ") appeared and was ignored.\n"
         ;
       }
-      setvertextype(sortarray[j], VertexType::UNDEADVERTEX);
+      */
+      sortarray[j]->SetVertexType(VertexType::UNDEADVERTEX);
+      //setvertextype(sortarray[j], VertexType::UNDEADVERTEX);
       m.m_undeads++;
     } else {
       i++;
@@ -4731,7 +5736,8 @@ long ribi::tricpp::divconqdelaunay(
     }
   }
   i++;
-  if (b.m_dwyer) {
+  if (b.m_dwyer)
+  {
     //Re-sort the array of vertices to accommodate alternating cuts.
     divider = i >> 1;
     if (i - divider >= 2) {
@@ -4741,11 +5747,11 @@ long ribi::tricpp::divconqdelaunay(
       alternateaxes(&sortarray[divider], i - divider, 1);
     }
   }
-
+  /*
   if (b.m_verbosity) {
     std::cout << "  Forming triangulation.\n";
   }
-
+  */
   //Form the Delaunay triangulation.
   divconqrecurse(m, b, &sortarray[0], i, 0, &hullleft, &hullright);
 
@@ -4763,10 +5769,12 @@ void ribi::tricpp::boundingbox(
 {
   Otri inftri;          //Handle for the triangular bounding box.
 
+  /*
   if (b.m_verbosity)
   {
     std::cout << "  Creating triangular bounding box.\n";
   }
+  */
   //Find the width (or height, whichever is larger) of the triangulation.
   double width = m.m_xmax - m.m_xmin;
   if (m.m_ymax - m.m_ymin > width) {
@@ -4776,9 +5784,9 @@ void ribi::tricpp::boundingbox(
     width = 1.0;
   }
   //Create the vertices of the bounding box.
-  m.m_infvertex1 = (Vertex) TriMalloc(m.m_vertices.m_itembytes);
-  m.m_infvertex2 = (Vertex) TriMalloc(m.m_vertices.m_itembytes);
-  m.m_infvertex3 = (Vertex) TriMalloc(m.m_vertices.m_itembytes);
+  m.m_infvertex1 = Vertex(); //(Vertex) TriMalloc(m.m_vertices.m_itembytes);
+  m.m_infvertex2 = Vertex() //TriMalloc(m.m_vertices.m_itembytes);
+  m.m_infvertex3 = Vertex() //TriMalloc(m.m_vertices.m_itembytes);
   m.m_infvertex1[0] = m.m_xmin - 50.0 * width;
   m.m_infvertex1[1] = m.m_ymin - 40.0 * width;
   m.m_infvertex2[0] = m.m_xmax + 50.0 * width;
@@ -4788,17 +5796,26 @@ void ribi::tricpp::boundingbox(
 
   //Create the bounding box.
   maketriangle(m, b, &inftri);
-  setorg(inftri, m.m_infvertex1);
-  setdest(inftri, m.m_infvertex2);
-  setapex(inftri, m.m_infvertex3);
+
+  inftri.SetOrigin(m.m_infvertex1);
+  //setorg(inftri, m.m_infvertex1);
+
+  inftri.SetDest(m.m_infvertex2);
+  ///setdest(inftri, m.m_infvertex2);
+
+  inftri.SetApex(m.m_infvertex3);
+  //setapex(inftri, m.m_infvertex3);
+
   //Link dummytri to the bounding box so we can always find an
   //  edge to begin searching (point location) from.
-  m.m_dummytri[0] = (Triangle) inftri.m_tri;
+  m.m_dummytri[0] = inftri.m_tri;
+  /*
   if (b.m_verbosity > 2)
   {
     std::cout << "  Creating ";
     printtriangle(m, b, &inftri);
   }
+  */
 }
 
 
@@ -4846,7 +5863,9 @@ long ribi::tricpp::removebox(
   //  edge lies on a bounding box triangle and will be deleted.
   m.m_dummytri[0] = encode(searchedge);
   hullsize = -2l;
-  while (!otriequal(nextedge, finaledge)) {
+  while (nextedge != finaledge)
+  //while (!otriequal(nextedge, finaledge))
+  {
     hullsize++;
     lprev(nextedge, dissolveedge);
     symself(dissolveedge);
@@ -4859,9 +5878,11 @@ long ribi::tricpp::removebox(
     //Get rid of the bounding box triangle.
     triangledealloc(m, deadtriangle.m_tri);
     //Do we need to turn the corner?
-    if (nextedge.m_tri == m.m_dummytri) {
+    if (nextedge.m_tri == m.m_dummytri)
+    {
       //Turn the corner.
-      otricopy(dissolveedge, nextedge);
+      nextedge = dissolveedge;
+      //otricopy(dissolveedge, nextedge);
     }
   }
   triangledealloc(m, finaledge.m_tri);
@@ -4891,7 +5912,8 @@ int ribi::tricpp::incrementaldelaunay(Mesh& m,const Behavior& b)
   */
   TraversalInit(&m.m_vertices);
   vertexloop = vertextraverse(m);
-  while (vertexloop != nullptr) {
+  while (vertexloop != nullptr)
+  {
     starttri.m_tri = m.m_dummytri;
     if (insertvertex(m, b, vertexloop, &starttri, nullptr, 0, 0) == DUPLICATEVERTEX)
     {
@@ -4949,31 +5971,31 @@ void ribi::tricpp::createeventheap(
 
 
 bool ribi::tricpp::rightofhyperbola(
-  Mesh& m,
+  //Mesh& m,
+  int& m_m_hyperbolacount,
   const Otri * const fronttri,
   const Vertex& newsite
 )
 {
-  Vertex leftvertex, rightvertex;
 
-  m.m_hyperbolacount++;
 
-  dest(*fronttri, leftvertex);
-  apex(*fronttri, rightvertex);
+  ++m_m_hyperbolacount;
+
+  const Vertex leftvertex = fronttri->GetDest();
+  //dest(*fronttri, leftvertex);
+
+  const Vertex rightvertex = fronttri->GetApex();
+  //apex(*fronttri, rightvertex);
+
   if ( leftvertex[1] < rightvertex[1]
     || (leftvertex[1] == rightvertex[1] && leftvertex[0] < rightvertex[0])
   )
   {
-    if (newsite[0] >= rightvertex[0])
-    {
-      return true;
-    }
+    if (newsite[0] >= rightvertex[0]) { return true; }
   }
   else
   {
-    if (newsite[0] <= leftvertex[0]) {
-      return false;
-    }
+    if (newsite[0] <= leftvertex[0]) { return false; }
   }
   const double dxa = leftvertex[0] - newsite[0];
   const double dya = leftvertex[1] - newsite[1];
@@ -5011,9 +6033,9 @@ void ribi::tricpp::check4deadevent(
   int * const heapsize
 )
 {
-  Vertex eventvertex;
+  const Vertex eventvertex = checktri->GetOrigon();
+  //org(*checktri, eventvertex);
 
-  GetOrigin(*checktri, eventvertex);
   if (eventvertex != nullptr)
   {
     Event * deadevent = (Event *) eventvertex;
@@ -5022,7 +6044,9 @@ void ribi::tricpp::check4deadevent(
     *freeevents = deadevent;
     eventheapdelete(eventheap, *heapsize, eventnum);
     (*heapsize)--;
-    setorg(*checktri,nullptr);
+
+    checktri->SetOrigin(nullptr);
+    //SetOrigin(*checktri,nullptr);
   }
 }
 
@@ -5041,17 +6065,20 @@ ribi::tricpp::SplayNode * ribi::tricpp::splay(
   SplayNode *child, *grandchild;
   SplayNode *lefttree, *righttree;
   SplayNode *leftright;
-  Vertex checkvertex;
 
-  dest(splaytree->m_keyedge, checkvertex);
+  Vertex checkvertex = splaytree->m_keyedge->GetDest();
+
+  //dest(splaytree->m_keyedge, checkvertex);
   if (checkvertex == splaytree->m_keydest)
   {
     const int rightofroot = rightofhyperbola(m, &splaytree->m_keyedge, searchpoint);
     if (rightofroot)
     {
-      otricopy(splaytree->m_keyedge, *searchtri);
+      *searchtri = splaytree->m_keyedge
+      //otricopy(splaytree->m_keyedge, *searchtri);
       child = splaytree->m_rchild;
-    } else
+    }
+    else
     {
       child = splaytree->m_lchild;
     }
@@ -5059,14 +6086,20 @@ ribi::tricpp::SplayNode * ribi::tricpp::splay(
     {
       return splaytree;
     }
-    dest(child->m_keyedge, checkvertex);
+    checkvertex = child->m_keyedge->GetDest();
+    //dest(child->m_keyedge, checkvertex);
+
     if (checkvertex != child->m_keydest)
     {
       child = splay(m, child, searchpoint, searchtri);
-      if (child == nullptr) {
-        if (rightofroot) {
+      if (child == nullptr)
+      {
+        if (rightofroot)
+        {
           splaytree->m_rchild = nullptr;
-        } else {
+        }
+        else
+        {
           splaytree->m_lchild = nullptr;
         }
         return splaytree;
@@ -5075,10 +6108,14 @@ ribi::tricpp::SplayNode * ribi::tricpp::splay(
     const int rightofchild = rightofhyperbola(m, &child->m_keyedge, searchpoint);
     if (rightofchild)
     {
-      otricopy(child->m_keyedge, *searchtri);
+      searchtri = child->m_keyedge;
+      //otricopy(child->m_keyedge, *searchtri);
+
       grandchild = splay(m, child->m_rchild, searchpoint, searchtri);
       child->m_rchild = grandchild;
-    } else {
+    }
+    else
+    {
       grandchild = splay(m, child->m_lchild, searchpoint, searchtri);
       child->m_lchild = grandchild;
     }
@@ -5156,8 +6193,13 @@ ribi::tricpp::SplayNode * ribi::tricpp::splayinsert(
   //SplayNode *newsplaynode;
 
   SplayNode *newsplaynode = (SplayNode *) PoolAlloc(&m.m_splaynodes);
-  otricopy(*newkey, newsplaynode->m_keyedge);
-  dest(*newkey, newsplaynode->m_keydest);
+
+  newsplaynode->m_keyedge = newkey;
+  //otricopy(*newkey, newsplaynode->m_keyedge);
+
+  newsplaynode->m_keydest = newkey->GetDest();
+  //GetDest(*newkey, newsplaynode->m_keydest);
+
   if (splayroot == nullptr) {
     newsplaynode->m_lchild = nullptr;
     newsplaynode->m_rchild = nullptr;
@@ -5215,14 +6257,17 @@ ribi::tricpp::SplayNode * ribi::tricpp::frontlocate(
   //int farrightflag;
   Triangle ptr;                       //Temporary variable used by onext().
 
-  otricopy(*bottommost, *searchtri);
+  searchtri = bottommost;
+  //otricopy(*bottommost, *searchtri);
+
   splayroot = splay(m, splayroot, searchvertex, searchtri);
 
   int farrightflag = 0;
   while (!farrightflag && rightofhyperbola(m, searchtri, searchvertex))
   {
     onextself(*searchtri);
-    farrightflag = otriequal(*searchtri, *bottommost);
+    farrightflag = *searchtri == *bottommost;
+    //farrightflag = otriequal(*searchtri, *bottommost);
   }
   *farright = farrightflag;
   return splayroot;
@@ -5256,16 +6301,18 @@ long ribi::tricpp::sweeplinedelaunay(
   PoolInit(&m.m_splaynodes, sizeof(struct SplayNode), SPLAYNODEPERBLOCK,
            SPLAYNODEPERBLOCK, 0);
   splayroot = nullptr;
-
+  /*
   if (b.m_verbosity) {
     std::cout << "  Placing vertices in event heap.\n");
   }
+  */
   createeventheap(m, &eventheap, &events, &freeevents);
   heapsize = m.m_invertices;
-
+  /*
   if (b.m_verbosity) {
     std::cout << "  Forming triangulation.\n");
   }
+  */
   maketriangle(m, b, &lefttri);
   maketriangle(m, b, &righttri);
   bond(lefttri, righttri);
@@ -5275,79 +6322,112 @@ long ribi::tricpp::sweeplinedelaunay(
   lnextself(lefttri);
   lprevself(righttri);
   bond(lefttri, righttri);
-  firstvertex = (Vertex) eventheap[0]->m_eventptr;
-  eventheap[0]->m_eventptr = (void *) freeevents;
+  firstvertex = eventheap[0]->m_eventptr;
+  eventheap[0]->m_eventptr = freeevents;
   freeevents = eventheap[0];
   eventheapdelete(eventheap, heapsize, 0);
-  heapsize--;
-  do {
-    if (heapsize == 0) {
+  --heapsize;
+  do
+  {
+    if (heapsize == 0)
+    {
       throw std::runtime_error("Triangle: Input vertices are all identical");
     }
-    secondvertex = (Vertex) eventheap[0]->m_eventptr;
-    eventheap[0]->m_eventptr = (void *) freeevents;
+    secondvertex = eventheap[0]->m_eventptr;
+    eventheap[0]->m_eventptr = freeevents;
     freeevents = eventheap[0];
     eventheapdelete(eventheap, heapsize, 0);
-    heapsize--;
-    if ((firstvertex[0] == secondvertex[0]) &&
-        (firstvertex[1] == secondvertex[1])) {
+    --heapsize;
+    if (firstvertex[0] == secondvertex[0] && firstvertex[1] == secondvertex[1])
+    {
+      /*
       if (!b.m_quiet) {
         std::cout << "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
           secondvertex[0],
           secondvertex[1]
         );
       }
-      setvertextype(secondvertex, VertexType::UNDEADVERTEX);
+      */
+      secondvertex.SetVertexType(VertexType::UNDEADVERTEX);
+      //setvertextype(secondvertex, VertexType::UNDEADVERTEX);
       m.m_undeads++;
     }
   } while ((firstvertex[0] == secondvertex[0]) &&
            (firstvertex[1] == secondvertex[1]));
-  setorg(lefttri, firstvertex);
-  setdest(lefttri, secondvertex);
-  setorg(righttri, secondvertex);
-  setdest(righttri, firstvertex);
+
+  lefttri.SetOrigin(firstvertex);
+  //setorg(lefttri, firstvertex);
+
+  lefttri.SetDest(secondvertex);
+  //setdest(lefttri, secondvertex);
+
+  righttri.SetOrigin(secondvertex);
+  //setorg(righttri, secondvertex);
+
+  righttri.SetDest(firstvertex);
+  //setdest(righttri, firstvertex);
   lprev(lefttri, bottommost);
   lastvertex = secondvertex;
-  while (heapsize > 0) {
+  while (heapsize > 0)
+  {
     nextevent = eventheap[0];
     eventheapdelete(eventheap, heapsize, 0);
     heapsize--;
     check4events = 1;
-    if (nextevent->m_xkey < m.m_xmin) {
+    if (nextevent->m_xkey < m.m_xmin)
+    {
       decode(nextevent->m_eventptr, fliptri);
       oprev(fliptri, farlefttri);
       check4deadevent(&farlefttri, &freeevents, eventheap, &heapsize);
       onext(fliptri, farrighttri);
       check4deadevent(&farrighttri, &freeevents, eventheap, &heapsize);
 
-      if (otriequal(farlefttri, bottommost)) {
+      if (farlefttri == bottommost))
+      //if (otriequal(farlefttri, bottommost))
+      {
         lprev(fliptri, bottommost);
       }
       flip(m, b, &fliptri);
-      setapex(fliptri, NULL);
+
+      fliptri.SetApex(nullptr);
+      //setapex(fliptri, NULL);
+
       lprev(fliptri, lefttri);
       lnext(fliptri, righttri);
       sym(lefttri, farlefttri);
 
-      if (DumbRand(SAMPLERATE) == 0) {
+      if (std::rand() % SAMPLERATE == 0)
+      {
         symself(fliptri);
-        dest(fliptri, leftvertex);
-        apex(fliptri, midvertex);
-        GetOrigin(fliptri, rightvertex);
-        splayroot = circletopinsert(m, b, splayroot, &lefttri, leftvertex,
-                                    midvertex, rightvertex, nextevent->m_ykey);
+
+        leftvertex = fliptri.GetDest();
+        //GetDest(fliptri, leftvertex);
+
+        midvertex = fliptri.GetApex();
+        //GetApex(fliptri, midvertex);
+
+        rightvertex = fliptri.GetOrigin();
+        //GetOrigin(fliptri, rightvertex);
+
+        splayroot
+          = circletopinsert(m, b, splayroot, &lefttri, leftvertex, midvertex, rightvertex, nextevent->m_ykey);
       }
-    } else {
-      nextvertex = (Vertex) nextevent->m_eventptr;
-      if ((nextvertex[0] == lastvertex[0]) &&
-          (nextvertex[1] == lastvertex[1])) {
-        if (!b.m_quiet) {
+    }
+    else
+    {
+      nextvertex = nextevent->m_eventptr;
+      if (nextvertex[0] == lastvertex[0] && nextvertex[1] == lastvertex[1])
+      {
+        /*
+        if (!b.m_quiet)
+        {
           std::cout <<
             "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
             nextvertex[0],
             nextvertex[1]
           );
         }
+        */
         setvertextype(nextvertex, VertexType::UNDEADVERTEX);
         m.m_undeads++;
         check4events = 0;
@@ -5356,26 +6436,31 @@ long ribi::tricpp::sweeplinedelaunay(
 
         splayroot = frontlocate(m, splayroot, &bottommost, nextvertex,
                                 &searchtri, &farrightflag);
-/*
-        otricopy(bottommost, searchtri);
-        farrightflag = 0;
-        while (!farrightflag && rightofhyperbola(m, &searchtri, nextvertex)) {
-          onextself(searchtri);
-          farrightflag = otriequal(searchtri, bottommost);
-        }
-*/
 
         check4deadevent(&searchtri, &freeevents, eventheap, &heapsize);
 
-        otricopy(searchtri, farrighttri);
+        farrighttri = searchtri;
+        //otricopy(searchtri, farrighttri);
+
         sym(searchtri, farlefttri);
         maketriangle(m, b, &lefttri);
         maketriangle(m, b, &righttri);
-        dest(farrighttri, connectvertex);
-        setorg(lefttri, connectvertex);
-        setdest(lefttri, nextvertex);
-        setorg(righttri, nextvertex);
-        setdest(righttri, connectvertex);
+
+        connectvertex = farrighttri.GetDest();
+        //dest(farrighttri, connectvertex);
+
+        lefttri.SetOrigin(connectvertex);
+        //setorg(lefttri, connectvertex);
+
+        lefttri.SetDest(nextvertex);
+        //setdest(lefttri, nextvertex);
+
+        righttri.SetOrigin(nextvertex);
+        //setorg(righttri, nextvertex);
+
+        righttri.SetDest(connectvertex);
+        //setdest(righttri, connectvertex);
+
         bond(lefttri, righttri);
         lnextself(lefttri);
         lprevself(righttri);
@@ -5384,42 +6469,65 @@ long ribi::tricpp::sweeplinedelaunay(
         lprevself(righttri);
         bond(lefttri, farlefttri);
         bond(righttri, farrighttri);
-        if (!farrightflag && otriequal(farrighttri, bottommost)) {
-          otricopy(lefttri, bottommost);
+        if (!farrightflag && farrighttri == bottommost)
+        //if (!farrightflag && otriequal(farrighttri, bottommost))
+        {
+          bottommost = lefttri;
+          //otricopy(lefttri, bottommost);
         }
 
-        if (DumbRand(SAMPLERATE) == 0) {
+        if (std::rand() % SAMPLERATE == 0)
+        {
           splayroot = splayinsert(m, splayroot, &lefttri, nextvertex);
-        } else if (DumbRand(SAMPLERATE) == 0) {
+        }
+        else if (std::rand() % SAMPLERATE == 0)
+        {
           lnext(righttri, inserttri);
           splayroot = splayinsert(m, splayroot, &inserttri, nextvertex);
         }
       }
     }
-    nextevent->m_eventptr = (void *) freeevents;
+    nextevent->m_eventptr = freeevents;
     freeevents = nextevent;
 
-    if (check4events) {
-      apex(farlefttri, leftvertex);
-      dest(lefttri, midvertex);
-      apex(lefttri, rightvertex);
+    if (check4events)
+    {
+      leftvertex = farlefttri.GetApex();
+      //GetApex(farlefttri, leftvertex);
+
+      midvertex = lefttri.GetDest();
+      //GetDest(lefttri, midvertex);
+
+      rightvertex = lefttri.GetApex();
+      //GetApex(lefttri, rightvertex);
+
       lefttest = counterclockwise(m.m_counterclockcount, b.m_noexact, leftvertex, midvertex, rightvertex);
-      if (lefttest > 0.0) {
+      if (lefttest > 0.0)
+      {
         newevent = freeevents;
         freeevents = (struct Event *) freeevents->m_eventptr;
         newevent->m_xkey = m.m_xminextreme;
-        newevent->m_ykey = circletop(m, leftvertex, midvertex, rightvertex,
-                                   lefttest);
+        newevent->m_ykey = circletop(m, leftvertex, midvertex, rightvertex,lefttest);
         newevent->m_eventptr = (void *) encode(lefttri);
         eventheapinsert(eventheap, heapsize, newevent);
         heapsize++;
-        setorg(lefttri, newevent);
+
+        lefttri.SetOrigin(newevent);
+        //SetOrigin(lefttri, newevent);
       }
-      apex(righttri, leftvertex);
-      GetOrigin(righttri, midvertex);
-      apex(farrighttri, rightvertex);
-      righttest = counterclockwise(m.m_counterclockcount, b.m_noexact, leftvertex, midvertex, rightvertex);
-      if (righttest > 0.0) {
+
+      leftvertex = righttri.GetApex();
+      //apex(righttri, leftvertex);
+
+      midvertex = righttri.GetOrigin();
+      //org(righttri, midvertex);
+
+      rightvertex = farrighttri.GetApex();
+      //apex(farrighttri, rightvertex);
+
+      double righttest = counterclockwise(m.m_counterclockcount, b.m_noexact, leftvertex, midvertex, rightvertex);
+      if (righttest > 0.0)
+      {
         newevent = freeevents;
         freeevents = (struct Event *) freeevents->m_eventptr;
         newevent->m_xkey = m.m_xminextreme;
@@ -5428,7 +6536,8 @@ long ribi::tricpp::sweeplinedelaunay(
         newevent->m_eventptr = (void *) encode(farrighttri);
         eventheapinsert(eventheap, heapsize, newevent);
         heapsize++;
-        setorg(farrighttri, newevent);
+        farrighttri.SetOrigin(newevent);
+        //SetOrigin(farrighttri, newevent);
       }
     }
   }
@@ -5456,11 +6565,16 @@ long ribi::tricpp::delaunay(Mesh& m,const Behavior& b)
     }
   }
   */
-  if (b.m_incremental) {
+  if (b.m_incremental)
+  {
     hulledges = incrementaldelaunay(m, b);
-  } else if (b.m_sweepline) {
+  }
+  else if (b.m_sweepline)
+  {
     hulledges = sweeplinedelaunay(m, b);
-  } else {
+  }
+  else
+  {
     hulledges = divconqdelaunay(m, b);
   }
 
@@ -5468,7 +6582,9 @@ long ribi::tricpp::delaunay(Mesh& m,const Behavior& b)
   {
     //The input vertices were all collinear, so there are no triangles.
     return 0l;
-  } else {
+  }
+  else
+  {
     return hulledges;
   }
 }
@@ -5510,19 +6626,32 @@ long ribi::tricpp::reconstruct(
   int aroundvertex;
   long hullsize;
   int notfound;
-  long elementnumber, segmentnumber;
+  long i, i;
   int i, j;
   Triangle ptr;                         //Temporary variable used by sym().
 
   //Read the triangles from an .ele file.
-  elefile = fopen(elefilename.c_str(), "r");
+  //elefile = fopen(elefilename.c_str(), "r");
+  std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(elefilename);
+  assert(!v.empty());
+  {
+    const std::vector<std::string> w = SeperateString(v[0],' ');
+    assert(w.size() == 3);
+    m.m_inelements = boost::lexical_cast<int>(w[0]);
+    incorners = boost::lexical_cast<int>(w[1]);
+    m.m_eextras = boost::lexical_cast<int>(w[2]);
+  }
+  //std::ifstream elefile(elefilename.c_str());
+  /*
   if (elefile == nullptr) {
     std::stringstream s;
     s << "Triangle: Cannot access file '" << elefilename << "'";
     throw std::runtime_error(s.str().c_str());
   }
+  */
   //Read number of triangles, number of vertices per triangle, and
   //  number of triangle attributes from .ele file.
+  /*
   stringptr = readline(inputline, elefile);
   m.m_inelements = (int) strtol(stringptr, &stringptr, 0);
   stringptr = FindField(stringptr);
@@ -5530,7 +6659,8 @@ long ribi::tricpp::reconstruct(
     incorners = 3;
   } else {
     incorners = (int) strtol(stringptr, &stringptr, 0);
-    if (incorners < 3) {
+    if (incorners < 3)
+    {
       std::stringstream s;
       s << "Triangle: Triangles in " << elefilename << " must have at least 3 vertices";
       throw std::logic_error(s.str().c_str());
@@ -5543,12 +6673,15 @@ long ribi::tricpp::reconstruct(
     m.m_eextras = (int) strtol(stringptr, &stringptr, 0);
   }
   initializetrisubpools(m, b);
-
+  */
   //Create the triangles.
-  for (elementnumber = 1; elementnumber <= m.m_inelements; elementnumber++) {
-    maketriangle(m, b, &triangleloop);
+  for (int i = 0; i != m.m_inelements; ++i)
+  {
+    Triangle triangle;
+    m.m_triangles.push_back(triangle);
+    //maketriangle(m, b, &triangleloop);
     //Mark the triangle as living.
-    triangleloop.m_tri[3] = (Triangle) triangleloop.m_tri;
+    //triangleloop.m_tri[3] = (Triangle) triangleloop.m_tri;
   }
 
   segmentmarkers = 0;
@@ -5558,17 +6691,21 @@ long ribi::tricpp::reconstruct(
   stringptr = readline(inputline, polyfile);
   m.m_insegments = (int) strtol(stringptr, &stringptr, 0);
   stringptr = FindField(stringptr);
-  if (*stringptr != '\0') {
+  if (*stringptr != '\0')
+  {
     segmentmarkers = (int) strtol(stringptr, &stringptr, 0);
   }
   //Create the subsegments.
-  for (segmentnumber = 1; segmentnumber <= m.m_insegments; segmentnumber++) {
+  for (int i = 0; i != m.m_insegments; ++i)
+  {
+
     makesubseg(m, &subsegloop);
     //Mark the subsegment as living.
     subsegloop.m_subseg[2] = (SubSeg) subsegloop.m_subseg;
   }
 
-  if (b.m_vararea) {
+  if (b.m_vararea)
+  {
     //Open an .area file, check for consistency with the .ele file.
     areafile = fopen(areafilename.c_str(), "r");
     if (areafile == nullptr) {
@@ -5589,58 +6726,69 @@ long ribi::tricpp::reconstruct(
       throw std::runtime_error(s.str().c_str());
     }
   }
-
-  if (!b.m_quiet) {
-    std::cout << "Reconstructing mesh.\n");
+  /*
+  if (!b.m_quiet)
+  {
+    std::cout << "Reconstructing mesh.\n";
   }
+  */
   //Allocate a temporary array that maps each vertex to some adjacent
   //  triangle.  I took care to allocate all the permanent memory for
   //  triangles and subsegments first.
   vertexarray = (Triangle *) TriMalloc(m.m_vertices.m_items *
                                        (int) sizeof(Triangle));
   //Each vertex is initially unrepresented.
-  for (i = 0; i < m.m_vertices.m_items; i++) {
+  for (int i = 0; i < m.m_vertices.m_items; i++)
+  {
     vertexarray[i] = (Triangle) m.m_dummytri;
   }
-
-  if (b.m_verbosity) {
+  /*
+  if (b.m_verbosity)
+   {
     std::cout << "  Assembling triangles.\n");
   }
+  */
   //Read the triangles from the .ele file, and link
   //  together those that share an edge.
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
-  elementnumber = b.m_firstnumber;
-  while (triangleloop.m_tri != (Triangle *) NULL) {
+  i = b.m_firstnumber;
+  while (triangleloop.m_tri != nullptr)
+  {
     //Read triangle number and the triangle's three corners.
     stringptr = readline(inputline, elefile);
-    for (j = 0; j < 3; j++) {
+    for (j = 0; j < 3; j++)
+    {
       stringptr = FindField(stringptr);
-      if (*stringptr == '\0') {
+      if (*stringptr == '\0')
+      {
         std::stringstream s;
         s << "Triangle: Triangle "
-          << elementnumber
+          << i
           << " is missing vertex "
           << (j + 1) << " in " << elefilename;
         throw std::logic_error(s.str().c_str());
-      } else {
+      }
+      else
+      {
         corner[j] = (int) strtol(stringptr, &stringptr, 0);
-        if ((corner[j] < b.m_firstnumber) ||
-            (corner[j] >= b.m_firstnumber + m.m_invertices)) {
+        if (corner[j] < b.m_firstnumber || corner[j] >= b.m_firstnumber + m.m_invertices)
+        {
           std::stringstream s;
-          s << "Triangle: Triangle " << elementnumber << " has an invalid vertex index";
+          s << "Triangle: Triangle " << i << " has an invalid vertex index";
           throw std::logic_error(s.str().c_str());
         }
       }
     }
 
     //Find out about (and throw away) extra nodes.
-    for (j = 3; j < incorners; j++) {
+    for (int j = 3; j < incorners; j++)
+    {
       stringptr = FindField(stringptr);
-      if (*stringptr != '\0') {
+      if (*stringptr != '\0')
+      {
         killvertexindex = (int) strtol(stringptr, &stringptr, 0);
-        if ((killvertexindex >= b.m_firstnumber) &&
-            (killvertexindex < b.m_firstnumber + m.m_invertices))
+        if (killvertexindex >= b.m_firstnumber && killvertexindex < b.m_firstnumber + m.m_invertices)
         {
           //Delete the non-corner vertex if it's not already deleted.
           m.KillVertex(killvertexindex);
@@ -5653,36 +6801,52 @@ long ribi::tricpp::reconstruct(
     }
 
     //Read the triangle's attributes.
-    for (j = 0; j < m.m_eextras; j++) {
+    for (int j = 0; j != m.m_eextras; ++j)
+    {
       stringptr = FindField(stringptr);
-      if (*stringptr == '\0') {
-        setelemattribute(triangleloop, j, 0);
-      } else {
-        setelemattribute(triangleloop, j,
-                         (double) strtod(stringptr, &stringptr));
+      if (*stringptr == '\0')
+      {
+        triangleloop.SetElemAttrib(j,0);
+        //setelemattribute(triangleloop, j, 0);
+      }
+      else
+      {
+        triangleloop.SetElemAttrib(j,strtod(stringptr, &stringptr));
+        //setelemattribute(triangleloop, j,strtod(stringptr, &stringptr));
       }
     }
 
-    if (b.m_vararea) {
+    if (b.m_vararea)
+    {
       //Read an area constraint from the .area file.
       stringptr = readline(inputline, areafile);
       stringptr = FindField(stringptr);
-      if (*stringptr == '\0') {
+      if (*stringptr == '\0')
+      {
         area = -1.0;                      //No constraint on this triangle.
-      } else {
-        area = (double) strtod(stringptr, &stringptr);
+      }
+      else
+      {
+        area = strtod(stringptr, &stringptr);
       }
       setareabound(triangleloop, area);
     }
 
     //Set the triangle's vertices.
     triangleloop.m_orient = 0;
-    setorg(triangleloop, getvertex(m.m_vertices, b, corner[0]));
-    setdest(triangleloop, getvertex(m.m_vertices, b, corner[1]));
-    setapex(triangleloop, getvertex(m.m_vertices, b, corner[2]));
+
+    triangleloop.SetOrigin(getvertex(m.m_vertices, b, corner[0]));
+    //setorg(triangleloop, getvertex(m.m_vertices, b, corner[0]));
+
+    triangleloop.SetDest(getvertex(m.m_vertices, b, corner[1]));
+    //setdest(triangleloop, getvertex(m.m_vertices, b, corner[1]));
+
+    triangleloop.SetApex(getvertex(m.m_vertices, b, corner[2]));
+    //setapex(triangleloop, getvertex(m.m_vertices, b, corner[2]));
+
     //Try linking the triangle to others that share these vertices.
-    for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
-         triangleloop.m_orient++) {
+    for (triangleloop.m_orient = 0; triangleloop.m_orient != 3; ++triangleloop.m_orient)
+    {
       //Take the number for the origin of triangleloop.
       aroundvertex = corner[triangleloop.m_orient];
       //Look for other triangles having this vertex.
@@ -5692,19 +6856,31 @@ long ribi::tricpp::reconstruct(
       //Push the current triangle onto the stack.
       vertexarray[aroundvertex - b.m_firstnumber] = encode(triangleloop);
       decode(nexttri, checktri);
-      if (checktri.m_tri != m.m_dummytri) {
-        dest(triangleloop, tdest);
-        apex(triangleloop, tapex);
+      if (checktri.m_tri != m.m_dummytri)
+      {
+        tdest = triangleloop.GetDest();
+        //dest(triangleloop, tdest);
+
+        tapex = triangleloop.GetApex();
+        //apex(triangleloop, tapex);
+
         //Look for other triangles that share an edge.
-        do {
-          dest(checktri, checkdest);
-          apex(checktri, checkapex);
-          if (tapex == checkdest) {
+        do
+        {
+          checkdest = checktri.GetDest();
+          //dest(checktri, checkdest);
+
+          checkapex = checktri.GetApex();
+          //apex(checktri, checkapex);
+
+          if (tapex == checkdest)
+          {
             //The two triangles share an edge; bond them together.
             lprev(triangleloop, triangleleft);
             bond(triangleleft, checktri);
           }
-          if (tdest == checkapex) {
+          if (tdest == checkapex)
+          {
             //The two triangles share an edge; bond them together.
             lprev(checktri, checkleft);
             bond(triangleloop, checkleft);
@@ -5716,14 +6892,15 @@ long ribi::tricpp::reconstruct(
       }
     }
     triangleloop.m_tri = triangletraverse(m);
-    elementnumber++;
+    i++;
   }
-
+  /*
   fclose(elefile);
-  if (b.m_vararea) {
+  if (b.m_vararea)
+  {
     fclose(areafile);
   }
-
+  */
   hullsize = 0;                      //Prepare to count the boundary edges.
   {
     /*
@@ -5736,8 +6913,9 @@ long ribi::tricpp::reconstruct(
     boundmarker = 0;
     TraversalInit(&m.m_subsegs);
     subsegloop.m_subseg = subsegtraverse(m);
-    segmentnumber = b.m_firstnumber;
-    while (subsegloop.m_subseg != (SubSeg *) NULL) {
+    i = b.m_firstnumber;
+    while (subsegloop.m_subseg != nullptr)
+    {
       //Read the endpoints of each segment, and possibly a boundary marker.
       stringptr = readline(inputline, polyfile);
       //Skip the first (segment number) field.
@@ -5745,7 +6923,7 @@ long ribi::tricpp::reconstruct(
       if (*stringptr == '\0') {
         std::stringstream s;
         s << "Triangle: Segment "
-          << segmentnumber
+          << i
           << " has no endpoints in "
           << polyfilename
         ;
@@ -5757,15 +6935,18 @@ long ribi::tricpp::reconstruct(
       stringptr = FindField(stringptr);
       if (*stringptr == '\0') {
         std::stringstream s;
-        s << "Triangle: Segment " << segmentnumber
+        s << "Triangle: Segment " << i
           << " is missing its second endpoint in "
           << polyfilename
         ;
         throw std::logic_error(s.str().c_str());
-      } else {
+      }
+      else
+      {
         end[1] = (int) strtol(stringptr, &stringptr, 0);
       }
-      if (segmentmarkers) {
+      if (segmentmarkers)
+      {
         stringptr = FindField(stringptr);
         if (*stringptr == '\0') {
           boundmarker = 0;
@@ -5773,12 +6954,13 @@ long ribi::tricpp::reconstruct(
           boundmarker = (int) strtol(stringptr, &stringptr, 0);
         }
       }
-      for (j = 0; j < 2; j++) {
-        if ((end[j] < b.m_firstnumber) ||
-            (end[j] >= b.m_firstnumber + m.m_invertices)) {
+      for (int j = 0; j < 2; j++)
+      {
+        if (end[j] < b.m_firstnumber || end[j] >= b.m_firstnumber + m.m_invertices)
+        {
           std::stringstream s;
           s << "Triangle: Segment "
-            << segmentnumber
+            << i
             << " has an invalid vertex index"
           ;
           throw std::logic_error(s.str().c_str());
@@ -5789,21 +6971,30 @@ long ribi::tricpp::reconstruct(
       subsegloop.m_subseg_orient = 0;
       segmentorg = getvertex(m.m_vertices, b, end[0]);
       segmentdest = getvertex(m.m_vertices, b, end[1]);
-      setsorg(subsegloop, segmentorg);
-      setsdest(subsegloop, segmentdest);
+
+      subsegloop.SetsOrigin(segmentorg);
+      //SetsOrigin(subsegloop, segmentorg);
+
+      subsegloop.SetDest(segmentdest);
+      //SetDest(subsegloop, segmentdest);
+
       setsegorg(subsegloop, segmentorg);
       setsegdest(subsegloop, segmentdest);
       setmark(subsegloop, boundmarker);
       //Try linking the subsegment to triangles that share these vertices.
       for (subsegloop.m_subseg_orient = 0; subsegloop.m_subseg_orient < 2;
-           subsegloop.m_subseg_orient++) {
+           subsegloop.m_subseg_orient++)
+      {
         //Take the number for the destination of subsegloop.
         aroundvertex = end[1 - subsegloop.m_subseg_orient];
         //Look for triangles having this vertex.
         prevlink = &vertexarray[aroundvertex - b.m_firstnumber];
         nexttri = vertexarray[aroundvertex - b.m_firstnumber];
         decode(nexttri, checktri);
-        sorg(subsegloop, shorg);
+
+        shorg = subsegloop.GetOrigin();
+        //GetOrigin(subsegloop, shorg);
+
         notfound = 1;
         //Look for triangles having this edge.  Note that I'm only
         //  comparing each triangle's destination with the subsegment;
@@ -5812,9 +7003,14 @@ long ribi::tricpp::reconstruct(
         //  occurrence of a triangle on a list can (and does) represent
         //  an edge.  In this way, most edges are represented twice, and
         //  every triangle-subsegment bond is represented once.
-        while (notfound && (checktri.m_tri != m.m_dummytri)) {
-          dest(checktri, checkdest);
-          if (shorg == checkdest) {
+        while (notfound && (checktri.m_tri != m.m_dummytri))
+        {
+
+          checkdest = checktri.GetDest();
+          //GetDest(checktri, checkdest);
+
+          if (shorg == checkdest)
+          {
             //We have a match.  Remove this triangle from the list.
             *prevlink = checktri.m_tri[6 + checktri.m_orient];
             //Bond the subsegment to the triangle.
@@ -5837,7 +7033,7 @@ long ribi::tricpp::reconstruct(
         }
       }
       subsegloop.m_subseg = subsegtraverse(m);
-      segmentnumber++;
+      i++;
     }
   }
 
@@ -5879,9 +7075,15 @@ ribi::tricpp::FindDirectionResult ribi::tricpp::finddirection(
   Vertex leftvertex, rightvertex;
   Triangle ptr;  // Temporary variable used by onext() and oprev().
 
-  GetOrigin(*searchtri, startvertex);
-  dest(*searchtri, rightvertex);
-  apex(*searchtri, leftvertex);
+  startvertex = searchtri->GetOrigin();
+  //GetOrigin(*searchtri, startvertex);
+
+  rightvertex = searchtri->GetDest();
+  //GetDest(*searchtri, rightvertex);
+
+  leftvertex = searchtri->GetApex();
+  //GetApex(*searchtri, leftvertex);
+
   //Is `searchpoint' to the left?
   double leftccw = counterclockwise(m.m_counterclockcount, b.m_noexact, searchpoint, startvertex, leftvertex);
   int leftflag = leftccw > 0.0;
@@ -5910,7 +7112,10 @@ ribi::tricpp::FindDirectionResult ribi::tricpp::finddirection(
       ;
       throw std::logic_error(s.str().c_str());
     }
-    apex(*searchtri, leftvertex);
+
+    leftvertex = searchtri->GetApex();
+    //GetApex(*searchtri, leftvertex);
+
     rightccw = leftccw;
     leftccw = counterclockwise(m.m_counterclockcount, b.m_noexact, searchpoint, startvertex, leftvertex);
     leftflag = leftccw > 0.0;
@@ -5926,7 +7131,10 @@ ribi::tricpp::FindDirectionResult ribi::tricpp::finddirection(
       ;
       throw std::logic_error(s.str().c_str());
     }
-    dest(*searchtri, rightvertex);
+
+    rightvertex = searchtri->GetDest();
+    //GetDest(*searchtri, rightvertex);
+
     leftccw = rightccw;
     rightccw = counterclockwise(m.m_counterclockcount, b.m_noexact, startvertex, searchpoint, rightvertex);
     rightflag = rightccw > 0.0;
@@ -5964,9 +7172,15 @@ void ribi::tricpp::segmentintersection(
   SubSeg sptr;                        //Temporary variable used by snext().
 
   //Find the other three segment endpoints.
-  apex(*splittri, endpoint1);
-  GetOrigin(*splittri, torg);
-  dest(*splittri, tdest);
+  endpoint1 = splittri->GetApex();
+  //GetApex(*splittri, endpoint1);
+
+  torg = splittri->GetOrigin();
+  //GetOrigin(*splittri, torg);
+
+  tdest = splittri->GetDest();
+  //GetDest(*splittri, tdest);
+
   //Segment intersection formulae; see the Antonio reference.
   tx = tdest[0] - torg[0];
   ty = tdest[1] - torg[1];
@@ -6031,8 +7245,12 @@ void ribi::tricpp::segmentintersection(
   //Inserting the vertex may have caused edge flips.  We wish to rediscover
   //  the edge connecting endpoint1 to the new intersection vertex.
   //enum finddirectionresult collinear =finddirection(m, b, splittri, endpoint1);
-  dest(*splittri, rightvertex);
-  apex(*splittri, leftvertex);
+  rightvertex = splittri->GetDest();
+  //GetDest(*splittri, rightvertex);
+
+  leftvertex = splittri->GetApex();
+  //GetApex(*splittri, leftvertex);
+
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1])) {
     onextself(*splittri);
   } else if ((rightvertex[0] != endpoint1[0]) ||
@@ -6063,10 +7281,16 @@ int ribi::tricpp::scoutsegment(
   SubSeg sptr;                      //Temporary variable used by tspivot().
 
   const FindDirectionResult collinear = finddirection(m, b, searchtri, endpoint2);
-  dest(*searchtri, rightvertex);
-  apex(*searchtri, leftvertex);
+
+  rightvertex = searchtri->GetDest();
+  //GetDest(*searchtri, rightvertex);
+
+  leftvertex = searchtri->GetApex();
+  //GetApex(*searchtri, leftvertex);
+
   if (((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) ||
-      ((rightvertex[0] == endpoint2[0]) && (rightvertex[1] == endpoint2[1]))) {
+      ((rightvertex[0] == endpoint2[0]) && (rightvertex[1] == endpoint2[1])))
+  {
     //The segment is already an edge in the mesh.
     if ((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) {
       lprevself(*searchtri);
@@ -6092,12 +7316,18 @@ int ribi::tricpp::scoutsegment(
     lnext(*searchtri, crosstri);
     tspivot(crosstri, crosssubseg);
     //Check for a crossing segment.
-    if (crosssubseg.m_subseg == m.m_dummysub) {
+    if (crosssubseg.m_subseg == m.m_dummysub)
+    {
       return 0;
-    } else {
+    }
+    else
+    {
       //Insert a vertex at the intersection.
       segmentintersection(m, b, &crosstri, &crosssubseg, endpoint2);
-      otricopy(crosstri, *searchtri);
+
+      searchtri = crosstri;
+      //otricopy(crosstri, *searchtri);
+
       insertsubseg(m, b, searchtri, newmark);
       //Insert the remainder of the segment.
       return scoutsegment(m, b, searchtri, endpoint2, newmark);
@@ -6150,7 +7380,10 @@ void ribi::tricpp::conformingedge(
     */
     //Use the vertex that's already there.
     vertexdealloc(m, newvertex);
-    GetOrigin(searchtri1, newvertex);
+
+    newvertex = searchtri1.GetOrigin();
+    //GetOrigin(searchtri1, newvertex);
+
   } else {
     if (success == VIOLATINGVERTEX)
     {
@@ -6176,11 +7409,15 @@ void ribi::tricpp::conformingedge(
       }
     }
     //The vertex has been inserted successfully.
-    if (m.m_steinerleft > 0) {
+    if (m.m_steinerleft > 0)
+    {
       m.m_steinerleft--;
     }
   }
-  otricopy(searchtri1, searchtri2);
+
+  searchtri2 = searchtri1;
+  //otricopy(searchtri1, searchtri2);
+
   //`searchtri1' and `searchtri2' are fastened at their origins to
   //  `newvertex', and will be directed toward `endpoint1' and `endpoint2'
   //  respectively.  First, we must get `searchtri2' out of the way so it
@@ -6190,13 +7427,19 @@ void ribi::tricpp::conformingedge(
   if (!scoutsegment(m, b, &searchtri1, endpoint1, newmark)) {
     //The origin of searchtri1 may have changed if a collision with an
     //  intervening vertex on the segment occurred.
-    GetOrigin(searchtri1, midvertex1);
+
+    midvertex1 = searchtri1.GetOrigin();
+    //GetOrigin(searchtri1, midvertex1);
+
     conformingedge(m, b, midvertex1, endpoint1, newmark);
   }
   if (!scoutsegment(m, b, &searchtri2, endpoint2, newmark)) {
     //The origin of searchtri2 may have changed if a collision with an
     //  intervening vertex on the segment occurred.
-    GetOrigin(searchtri2, midvertex2);
+
+    midvertex2 = searchtri2.GetOrigin();
+    //GetOrigin(searchtri2, midvertex2);
+
     conformingedge(m, b, midvertex2, endpoint2, newmark);
   }
 }
@@ -6227,10 +7470,18 @@ void ribi::tricpp::delaunayfixup(
     return;
   }
   //Find all the relevant vertices.
-  apex(neartri, nearvertex);
-  GetOrigin(neartri, leftvertex);
-  dest(neartri, rightvertex);
-  apex(fartri, farvertex);
+  nearvertex = neartri.GetApex();
+  //GetApex(neartri, nearvertex);
+
+  leftvertex = neartri.GetOrigin();
+  //GetOrigin(neartri, leftvertex);
+
+  rightvertex = neartri.GetDest();
+  //GetDest(neartri, rightvertex);
+
+  farvertex = fartri.GetApex();
+  //GetApex(fartri, farvertex);
+
   //Check whether the previous polygon vertex is a reflex vertex.
   if (leftside) {
     if (counterclockwise(m.m_counterclockcount, b.m_noexact, nearvertex, leftvertex, farvertex) <= 0.0) {
@@ -6281,15 +7532,21 @@ void ribi::tricpp::constrainededge(
   Triangle ptr;             //Temporary variable used by sym() and oprev().
   SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  GetOrigin(*starttri, endpoint1);
+
+  endpoint1 = starttri->GetOrigin();
+  //GetOrigin(*starttri, endpoint1);
+
   lnext(*starttri, fixuptri);
   flip(m, b, &fixuptri);
   //`collision' indicates whether we have found a vertex directly
   //  between endpoint1 and endpoint2.
   int collision = 0;
   int done = 0;
-  do {
-    GetOrigin(fixuptri, farvertex);
+  do
+  {
+    farvertex = fixuptri.GetOrigin();
+    //GetOrigin(fixuptri, farvertex);
+
     //`farvertex' is the extreme point of the polygon we are "digging"
     //  to get from endpoint1 to endpoint2.
     if ((farvertex[0] == endpoint2[0]) && (farvertex[1] == endpoint2[1])) {
@@ -6375,9 +7632,12 @@ void ribi::tricpp::insertsegment(
   //Find a triangle whose origin is the segment's first endpoint.
   checkvertex = nullptr;
   encodedtri = vertex2tri(endpoint1);
-  if (encodedtri != nullptr) {
+  if (encodedtri != nullptr)
+  {
     decode(encodedtri, searchtri1);
-    GetOrigin(searchtri1, checkvertex);
+
+    checkvertex = searchtri1.GetOrigin();
+    //GetOrigin(searchtri1, checkvertex);
   }
   if (checkvertex != endpoint1) {
     //Find a boundary triangle to search from.
@@ -6409,14 +7669,18 @@ void ribi::tricpp::insertsegment(
   }
   //The first endpoint may have changed if a collision with an intervening
   //  vertex on the segment occurred.
-  GetOrigin(searchtri1, endpoint1);
+  endpoint1 = searchtri1.GetOrigin();
+  //GetOrigin(searchtri1, endpoint1);
 
   //Find a triangle whose origin is the segment's second endpoint.
   checkvertex = nullptr;
   encodedtri = vertex2tri(endpoint2);
-  if (encodedtri != nullptr) {
+  if (encodedtri != nullptr)
+  {
     decode(encodedtri, searchtri2);
-    GetOrigin(searchtri2, checkvertex);
+
+    checkvertex = searchtri2.GetOrigin();
+    //GetOrigin(searchtri2, checkvertex);
   }
   if (checkvertex != endpoint2) {
     //Find a boundary triangle to search from.
@@ -6655,7 +7919,9 @@ void ribi::tricpp::infecthull(
   hulltri.m_orient = 0;
   symself(hulltri);
   //Remember where we started so we know when to stop.
-  otricopy(hulltri, starttri);
+  starttri = hulltri;
+  //otricopy(hulltri, starttri);
+
   //Go once counterclockwise around the convex hull.
   do {
     //Ignore triangles that are already infected.
@@ -6671,14 +7937,20 @@ void ribi::tricpp::infecthull(
         }
       } else {
         //The triangle is protected; set boundary markers if appropriate.
-        if (mark(hullsubseg) == 0) {
+        if (mark(hullsubseg) == 0)
+        {
           setmark(hullsubseg, 1);
-          GetOrigin(hulltri, horg);
-          dest(hulltri, hdest);
-          if (vertexmark(horg) == 0) {
+
+          horg = hulltri.GetOrigin();
+          //GetOrigin(hulltri, horg);
+
+          GetDest(hulltri, hdest);
+          if (vertexmark(horg) == 0)
+          {
             setvertexmark(horg, 1);
           }
-          if (vertexmark(hdest) == 0) {
+          if (vertexmark(hdest) == 0)
+          {
             setvertexmark(hdest, 1);
           }
         }
@@ -6687,11 +7959,15 @@ void ribi::tricpp::infecthull(
     //To find the next hull edge, go clockwise around the next vertex.
     lnextself(hulltri);
     oprev(hulltri, nexttri);
-    while (nexttri.m_tri != m.m_dummytri) {
-      otricopy(nexttri, hulltri);
+    while (nexttri.m_tri != m.m_dummytri)
+    {
+      hulltri = nexttri;
+      //otricopy(nexttri, hulltri);
       oprev(hulltri, nexttri);
     }
-  } while (!otriequal(hulltri, starttri));
+  }
+  while (hulltri != starttri);
+  //while (!otriequal(hulltri, starttri));
 }
 
 
@@ -6726,17 +8002,21 @@ void ribi::tricpp::plague(
     //  temporarily uninfect this triangle so that we can examine its
     //  adjacent subsegments.
     uninfect(testtri);
+    /*
     if (b.m_verbosity > 2) {
       //Assign the triangle an orientation for convenience in
       //  checking its vertices.
       testtri.m_orient = 0;
       GetOrigin(testtri, deadorg);
-      dest(testtri, deaddest);
-      apex(testtri, deadapex);
+
+      GetDest(testtri, deaddest);
+
+      GetApex(testtri, deadapex);
       std::cout << "    Checking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              deadorg[0], deadorg[1], deaddest[0], deaddest[1],
              deadapex[0], deadapex[1]);
     }
+    */
     //Check each of the triangle's three neighbors.
     for (testtri.m_orient = 0; testtri.m_orient < 3; testtri.m_orient++) {
       //Find the neighbor.
@@ -6758,19 +8038,25 @@ void ribi::tricpp::plague(
             infect(neighbor);
           }
         }
-      } else {                   //The neighbor exists and is not infected.
+      }
+      else
+      {
+        //The neighbor exists and is not infected.
         if (neighborsubseg.m_subseg == m.m_dummysub) {
           //There is no subsegment protecting the neighbor, so
           //  the neighbor becomes infected.
-          if (b.m_verbosity > 2) {
+          /*
+          if (b.m_verbosity > 2)
+          {
             GetOrigin(neighbor, deadorg);
-            dest(neighbor, deaddest);
-            apex(neighbor, deadapex);
+            GetDest(neighbor, deaddest);
+            GetApex(neighbor, deadapex);
             std::cout <<
               "    Marking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
                    deadorg[0], deadorg[1], deaddest[0], deaddest[1],
-                   deadapex[0], deadapex[1]);
+                   deadapex[0], deadapex[1];
           }
+          */
           infect(neighbor);
           //Ensure that the neighbor's neighbors will be infected.
           deadtriangle = (Triangle **) PoolAlloc(&m.m_viri);
@@ -6779,15 +8065,23 @@ void ribi::tricpp::plague(
           //Remove this triangle from the subsegment.
           stdissolve(neighborsubseg);
           //The subsegment becomes a boundary.  Set markers accordingly.
-          if (mark(neighborsubseg) == 0) {
+          if (mark(neighborsubseg) == 0)
+          {
             setmark(neighborsubseg, 1);
           }
-          GetOrigin(neighbor, norg);
-          dest(neighbor, ndest);
-          if (vertexmark(norg) == 0) {
+
+          norg = neighbor.GetOrigin();
+          //GetOrigin(neighbor, norg);
+
+          ndest = neighbor.GetDest();
+          //GetDest(neighbor, ndest);
+
+          if (vertexmark(norg) == 0)
+          {
             setvertexmark(norg, 1);
           }
-          if (vertexmark(ndest) == 0) {
+          if (vertexmark(ndest) == 0)
+          {
             setvertexmark(ndest, 1);
           }
         }
@@ -6811,22 +8105,34 @@ void ribi::tricpp::plague(
     //Check each of the three corners of the triangle for elimination.
     //  This is done by walking around each vertex, checking if it is
     //  still connected to at least one live triangle.
-    for (testtri.m_orient = 0; testtri.m_orient < 3; testtri.m_orient++) {
-      GetOrigin(testtri, testvertex);
+    for (testtri.m_orient = 0; testtri.m_orient < 3; testtri.m_orient++)
+    {
+      testvertex = testtri.GetOrigin();
+      //GetOrigin(testtri, testvertex);
+
       //Check if the vertex has already been tested.
-      if (testvertex != nullptr) {
+      if (testvertex != nullptr)
+      {
         killorg = 1;
         //Mark the corner of the triangle as having been tested.
-        setorg(testtri, NULL);
+
+        testtri.SetOrigin(nullptr);
+        //SetOrigin(testtri, NULL);
+
         //Walk counterclockwise about the vertex.
         onext(testtri, neighbor);
         //Stop upon reaching a boundary or the starting triangle.
-        while ((neighbor.m_tri != m.m_dummytri) &&
-               (!otriequal(neighbor, testtri))) {
-          if (infected(neighbor)) {
+        while (neighbor.m_tri != m.m_dummytri && neighbor != testtri)
+        //while (neighbor.m_tri != m.m_dummytri && !otriequal(neighbor, testtri))
+        {
+          if (infected(neighbor))
+          {
             //Mark the corner of this triangle as having been tested.
-            setorg(neighbor, NULL);
-          } else {
+            neighbor.SetOrigin(nullptr);
+            //SetOrigin(neighbor, NULL);
+          }
+          else
+          {
             //A live triangle.  The vertex survives.
             killorg = 0;
           }
@@ -6838,10 +8144,12 @@ void ribi::tricpp::plague(
           //Walk clockwise about the vertex.
           oprev(testtri, neighbor);
           //Stop upon reaching a boundary.
-          while (neighbor.m_tri != m.m_dummytri) {
+          while (neighbor.m_tri != m.m_dummytri)
+          {
             if (infected(neighbor)) {
-            //Mark the corner of this triangle as having been tested.
-              setorg(neighbor, NULL);
+              //Mark the corner of this triangle as having been tested.
+              neighbor.SetOrigin(nullptr);
+              //SetOrigin(neighbor, NULL);
             } else {
               //A live triangle.  The vertex survives.
               killorg = 0;
@@ -6945,15 +8253,24 @@ void ribi::tricpp::regionplague(
       //Make sure the neighbor exists, is not already infected, and
       //  isn't protected by a subsegment.
       if ((neighbor.m_tri != m.m_dummytri) && !infected(neighbor)
-          && (neighborsubseg.m_subseg == m.m_dummysub)) {
-        if (b.m_verbosity > 2) {
+          && (neighborsubseg.m_subseg == m.m_dummysub))
+      {
+        /*
+        if (b.m_verbosity > 2)
+        {
           GetOrigin(neighbor, regionorg);
-          dest(neighbor, regiondest);
-          apex(neighbor, regionapex);
+
+          regiondest = neighbor.GetDest();
+          //GetDest(neighbor, regiondest);
+
+          regionapex = neighbor.GetApex();
+          //GetApex(neighbor, regionapex);
+
           std::cout << "    Marking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
                  regionorg[0], regionorg[1], regiondest[0], regiondest[1],
                  regionapex[0], regionapex[1]);
         }
+        */
         //Infect the neighbor.
         infect(neighbor);
         //Ensure that the neighbor's neighbors will be infected.
@@ -7039,8 +8356,13 @@ void ribi::tricpp::carveholes(
         //Ensure that the hole is to the left of this boundary edge;
         //  otherwise, locate() will falsely report that the hole
         //  falls within the starting triangle.
-        GetOrigin(searchtri, searchorg);
-        dest(searchtri, searchdest);
+
+        searchorg = searchtri.GetOrigin();
+        //GetOrigin(searchtri, searchorg);
+
+        searchdest = searchtri.GetDest();
+        //GetDest(searchtri, searchdest);
+
         if (counterclockwise(m.m_counterclockcount, b.m_noexact, searchorg, searchdest, &holelist[i]) >
             0.0) {
           //Find a triangle that contains the hole.
@@ -7070,7 +8392,8 @@ void ribi::tricpp::carveholes(
       //Ignore region points that aren't within the bounds of the mesh.
       if ((regionlist[4 * i] >= m.m_xmin) && (regionlist[4 * i] <= m.m_xmax) &&
           (regionlist[4 * i + 1] >= m.m_ymin) &&
-          (regionlist[4 * i + 1] <= m.m_ymax)) {
+          (regionlist[4 * i + 1] <= m.m_ymax))
+      {
         //Start searching from some triangle on the outer boundary.
         searchtri.m_tri = m.m_dummytri;
         searchtri.m_orient = 0;
@@ -7078,16 +8401,23 @@ void ribi::tricpp::carveholes(
         //Ensure that the region point is to the left of this boundary
         //  edge; otherwise, locate() will falsely report that the
         //  region point falls within the starting triangle.
-        GetOrigin(searchtri, searchorg);
-        dest(searchtri, searchdest);
+        searchorg = searchtri.GetOrigin();
+        //org(searchtri, searchorg);
+
+        searchdest = searchtri.GetDest();
+        //dest(searchtri, searchdest);
+
         if (counterclockwise(m.m_counterclockcount, b.m_noexact, searchorg, searchdest, &regionlist[4 * i]) >
-            0.0) {
+            0.0)
+        {
           //Find a triangle that contains the region point.
           intersect = locate(m, b, &regionlist[4 * i], &searchtri);
-          if ((intersect != OUTSIDE) && (!infected(searchtri))) {
+          if (intersect != OUTSIDE && !infected(searchtri)))
+          {
             //Record the triangle for processing after the
             //  holes have been carved.
-            otricopy(searchtri, regiontris[i]);
+            regiontris[i] = searchtri;
+            //otricopy(searchtri, regiontris[i]);
           }
         }
       }
@@ -7203,10 +8533,16 @@ void ribi::tricpp::splitencsegs(
   {
     TraversalInit(&m.m_badsubsegs);
     encloop = badsubsegtraverse(m);
-    while ((encloop != (struct BadSubSeg *) NULL) && (m.m_steinerleft != 0)) {
+    while ((encloop != nullptr) && (m.m_steinerleft != 0))
+    {
       sdecode(encloop->m_encsubseg, currentenc);
-      sorg(currentenc, eorg);
-      sdest(currentenc, edest);
+
+      eorg = currentenc.GetOrigin();
+      //GetOrigin(currentenc, eorg);
+
+      edest = currentenc.GetDest();
+      //GetDest(currentenc, edest);
+
       //Make sure that this segment is still the same segment it was
       //  when it was determined to be encroached.  If the segment was
       //  enqueued multiple times (because several newly inserted
@@ -7241,14 +8577,20 @@ void ribi::tricpp::splitencsegs(
         //If we're using Chew's algorithm (rather than Ruppert's)
         //  to define encroachment, delete free vertices from the
         //  subsegment's diametral circle.
-        if (!b.m_conformdel && !acuteorg && !acutedest) {
-          apex(enctri, eapex);
+        if (!b.m_conformdel && !acuteorg && !acutedest)
+        {
+          eapex = enctri.GetApex();
+          //GetApex(enctri, eapex);
+
           while ((vertextype(eapex) == VertexType::FREEVERTEX) &&
                  ((eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                   (eorg[1] - eapex[1]) * (edest[1] - eapex[1]) < 0.0)) {
             deletevertex(m, b, &testtri);
             stpivot(currentenc, enctri);
-            apex(enctri, eapex);
+
+            eapex = enctri.GetApex();
+            //GetApex(enctri, eapex);
+
             lprev(enctri, testtri);
           }
         }
@@ -7269,14 +8611,20 @@ void ribi::tricpp::splitencsegs(
           acuteorg = acuteorg || acuteorg2;
 
           //Delete free vertices from the subsegment's diametral circle.
-          if (!b.m_conformdel && !acuteorg2 && !acutedest2) {
-            GetOrigin(testtri, eapex);
+          if (!b.m_conformdel && !acuteorg2 && !acutedest2)
+          {
+            eapex = testtri.GetOrigin();
+            //GetOrigin(testtri, eapex);
+
             while ((vertextype(eapex) == VertexType::FREEVERTEX) &&
                    ((eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                     (eorg[1] - eapex[1]) * (edest[1] - eapex[1]) < 0.0)) {
               deletevertex(m, b, &testtri);
               sym(enctri, testtri);
-              apex(testtri, eapex);
+
+              eapex = testtri.GetApex();
+              //GetApex(testtri, eapex);
+
               lprevself(testtri);
             }
           }
@@ -7687,9 +9035,14 @@ void ribi::tricpp::highorder(
     for (triangleloop.m_orient = 0; triangleloop.m_orient < 3;
          triangleloop.m_orient++) {
       sym(triangleloop, trisym);
-      if ((triangleloop.m_tri < trisym.m_tri) || (trisym.m_tri == m.m_dummytri)) {
-        GetOrigin(triangleloop, torg);
-        dest(triangleloop, tdest);
+      if ((triangleloop.m_tri < trisym.m_tri) || (trisym.m_tri == m.m_dummytri))
+      {
+        torg = triangleloop.GetOrigin();
+        //GetOrigin(triangleloop, torg);
+
+        tdest = triangleloop.GetDest();
+        //GetDest(triangleloop, tdest);
+
         //Create a new node in the middle of the edge.  Interpolate
         //  its attributes.
         newvertex = (Vertex) PoolAlloc(&m.m_vertices);
@@ -8043,15 +9396,21 @@ void ribi::tricpp::writeelements(
   triangleloop.m_tri = triangletraverse(m);
   triangleloop.m_orient = 0;
   elementnumber = b.m_firstnumber;
-  while (triangleloop.m_tri != (Triangle *) NULL) {
-    GetOrigin(triangleloop, p1);
-    dest(triangleloop, p2);
-    apex(triangleloop, p3);
+  while (triangleloop.m_tri != nullptr)
+  {
+    p1 = triangleloop.GetOrigin();
+    //GetOrigin(triangleloop, p1);
+
+    GetDest(triangleloop, p2);
+
+    p3 = triangleloop.GetApex();
+    //GetApex(triangleloop, p3);
+
     if (b.m_order == 1)
     {
       //Triangle number, indices for three vertices.
       fstd::cout << outfile, "%4ld    %4d  %4d  %4d", elementnumber,
-              vertexmark(p1), vertexmark(p2), vertexmark(p3));
+              vertexmark(p1), vertexmark(p2), vertexmark(p3);
     }
     else
     {
@@ -8061,13 +9420,13 @@ void ribi::tricpp::writeelements(
       //Triangle number, indices for six vertices.
       fstd::cout << outfile, "%4ld    %4d  %4d  %4d  %4d  %4d  %4d", elementnumber,
               vertexmark(p1), vertexmark(p2), vertexmark(p3), vertexmark(mid1),
-              vertexmark(mid2), vertexmark(mid3));
+              vertexmark(mid2), vertexmark(mid3);
     }
 
     for (int i = 0; i < m.m_eextras; i++) {
-      fstd::cout << outfile, "  %.17g", elemattribute(triangleloop, i));
+      fstd::cout << outfile, "  %.17g", elemattribute(triangleloop, i);
     }
-    fstd::cout << outfile, "\n");
+    fstd::cout << outfile, "\n";
 
     triangleloop.m_tri = triangletraverse(m);
     elementnumber++;
@@ -8117,8 +9476,12 @@ void ribi::tricpp::writepoly(
   subsegnumber = b.m_firstnumber;
   while (subsegloop.m_subseg != nullptr)
   {
-    sorg(subsegloop, endpoint1);
-    sdest(subsegloop, endpoint2);
+    endpoint1 = subsegloop.GetOrigin();
+    //GetOrigin(subsegloop, endpoint1);
+
+    endpoint2 = subsegloop.GetDest();
+    //GetDest(subsegloop, endpoint2);
+
     //Segment number, indices of its two endpoints, and possibly a marker.
     if (b.m_nobound)
     {
@@ -8318,20 +9681,27 @@ void ribi::tricpp::writevoronoi(
   triangleloop.m_tri = triangletraverse(m);
   triangleloop.m_orient = 0;
   vnodenumber = b.m_firstnumber;
-  while (triangleloop.m_tri != nullptr) {
-    GetOrigin(triangleloop, torg);
-    dest(triangleloop, tdest);
-    apex(triangleloop, tapex);
+  while (triangleloop.m_tri != nullptr)
+  {
+    torg = triangleloop.GetOrigin();
+    //GetOrigin(triangleloop, torg);
+
+    tdest = triangleloop.GetDest();
+    //GetDest(triangleloop, tdest);
+
+    tapex = triangleloop.GetApex();
+    //GetApex(triangleloop, tapex);
+
     findcircumcenter(m, b, torg, tdest, tapex, circumcenter, &xi, &eta, 0);
     //Voronoi vertex number, x and y coordinates.
     fstd::cout << outfile, "%4ld    %.17g  %.17g", vnodenumber, circumcenter[0],
-            circumcenter[1]);
+            circumcenter[1];
     for (int i = 2; i < 2 + m.m_nextras; i++) {
       //Interpolate the vertex attributes at the circumcenter.
       fstd::cout << outfile, "  %.17g", torg[i] + xi * (tdest[i] - torg[i])
                                          + eta * (tapex[i] - torg[i]));
     }
-    fstd::cout << outfile, "\n");
+    fstd::cout << outfile, "\n";
 
     * (int *) (triangleloop.m_tri + 6) = (int) vnodenumber;
     triangleloop.m_tri = triangletraverse(m);
@@ -8360,19 +9730,26 @@ void ribi::tricpp::writevoronoi(
       if ((triangleloop.m_tri < trisym.m_tri) || (trisym.m_tri == m.m_dummytri)) {
         //Find the number of this triangle (and Voronoi vertex).
         p1 = * (int *) (triangleloop.m_tri + 6);
-        if (trisym.m_tri == m.m_dummytri) {
-          GetOrigin(triangleloop, torg);
-          dest(triangleloop, tdest);
+        if (trisym.m_tri == m.m_dummytri)
+        {
+          torg = triangleloop.GetOrigin();
+          //GetOrigin(triangleloop, torg);
+
+          tdest = triangleloop.GetDest();
+          //GetDest(triangleloop, tdest);
+
           //Write an infinite ray.  Edge number, index of one endpoint, -1,
           //  and x and y coordinates of a vector representing the
           //  direction of the ray.
           fstd::cout << outfile, "%4ld   %d  %d   %.17g  %.17g\n", vedgenumber,
-                  p1, -1, tdest[1] - torg[1], torg[0] - tdest[0]);
-        } else {
+                  p1, -1, tdest[1] - torg[1], torg[0] - tdest[0];
+        }
+        else
+        {
           //Find the number of the adjacent triangle (and Voronoi vertex).
           p2 = * (int *) (trisym.m_tri + 6);
           //Finite edge.  Write indices of two endpoints.
-          fstd::cout << outfile, "%4ld   %d  %d\n", vedgenumber, p1, p2);
+          fstd::cout << outfile, "%4ld   %d  %d\n", vedgenumber, p1, p2;
         }
         vedgenumber++;
       }
@@ -8399,7 +9776,7 @@ void ribi::tricpp::writeneighbors(
   std::ofstream outfile(neighborfilename.c_str());
 
   //Number of triangles, three neighbors per triangle.
-  outfile << "%ld  %d\n", m.m_triangles.m_items, 3);
+  outfile << "%ld  %d\n", m.m_triangles.m_items, 3;
 
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
@@ -8482,9 +9859,15 @@ void ribi::tricpp::writeoff(
   triangleloop.m_orient = 0;
   while (triangleloop.m_tri != nullptr)
   {
-    GetOrigin(triangleloop, p1);
-    dest(triangleloop, p2);
-    apex(triangleloop, p3);
+    p1 = triangleloop.GetOrigin();
+    //GetOrigin(triangleloop, p1);
+
+    p2 = triangleloop.GetDest();
+    //GetDest(triangleloop, p2);
+
+    p3 = triangleloop.GetApex();
+    //GetApex(triangleloop, p3);
+
     //The "3" means a three-vertex polygon.
     fstd::cout << outfile, " 3   %4d  %4d  %4d\n", vertexmark(p1) - b.m_firstnumber,
             vertexmark(p2) - b.m_firstnumber, vertexmark(p3) - b.m_firstnumber);
@@ -8523,7 +9906,6 @@ void ribi::tricpp::quality_statistics(
   int acutebiggest;
   int i, ii, j, k;
 
-  std::cout << "Mesh quality statistics:\n\n");
   radconst = boost::math::constants::pi<double>() / 18.0;
   degconst = 180.0 / boost::math::constants::pi<double>();
   for (i = 0; i < 8; i++) {
@@ -8561,19 +9943,28 @@ void ribi::tricpp::quality_statistics(
   TraversalInit(&m.m_triangles);
   triangleloop.m_tri = triangletraverse(m);
   triangleloop.m_orient = 0;
-  while (triangleloop.m_tri != nullptr) {
-    GetOrigin(triangleloop, p[0]);
-    dest(triangleloop, p[1]);
-    apex(triangleloop, p[2]);
+  while (triangleloop.m_tri != nullptr)
+  {
+    p[0] = triangleloop.GetOrigin();
+    //GetOrigin(triangleloop, p[0]);
+
+    p[1] = triangleloop.GetDest();
+    //GetDest(triangleloop, p[1]);
+
+    p[2] = triangleloop.GetApex();
+    //GetApex(triangleloop, p[2]);
+
     trilongest2 = 0.0;
 
-    for (i = 0; i < 3; i++) {
-      j = plus1mod3_cpp[i];
-      k = minus1mod3_cpp[i];
+    for (i = 0; i < 3; i++)
+    {
+      j = i + 1 % 3; //plus1mod3_cpp[i];
+      k = i + 2 % 3; //minus1mod3_cpp[i];
       dx[i] = p[j][0] - p[k][0];
       dy[i] = p[j][1] - p[k][1];
       edgelength[i] = dx[i] * dx[i] + dy[i] * dy[i];
-      if (edgelength[i] > trilongest2) {
+      if (edgelength[i] > trilongest2)
+      {
         trilongest2 = edgelength[i];
       }
       if (edgelength[i] > longest) {
@@ -8656,7 +10047,7 @@ void ribi::tricpp::quality_statistics(
       biggestangle = 180.0 - degconst * acos(sqrt(biggestangle));
     }
   }
-
+  /*
   std::cout << "  Smallest area: %16.5g   |  Largest area: %16.5g\n",
          smallestarea, biggestarea;
   std::cout << "  Shortest edge: %16.5g   |  Longest edge: %16.5g\n",
@@ -8688,9 +10079,10 @@ void ribi::tricpp::quality_statistics(
            i * 10 + 90, i * 10 + 100, angletable[i + 9]);
   }
   std::cout << "\n");
+  */
 }
 
-
+/*
 void ribi::tricpp::statistics(
   Mesh& m,
   const Behavior& b
@@ -8763,12 +10155,6 @@ void ribi::tricpp::statistics(
     {
       std::cout << "  Number of incircle tests: %ld\n", m.m_incirclecount);
     }
-    /*
-    else
-    {
-      std::cout << "  Number of 3D orientation tests: %ld\n", m.m_orient3dcount);
-    }
-    */
     std::cout << "  Number of 2D orientation tests: %ld\n", m.m_counterclockcount);
     if (m.m_hyperbolacount > 0) {
       std::cout << "  Number of right-of-hyperbola tests: %ld\n",
@@ -8785,6 +10171,7 @@ void ribi::tricpp::statistics(
     std::cout << "\n");
   }
 }
+*/
 
 int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
 {
@@ -8952,6 +10339,7 @@ int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
   return 0;
 }
 
+/*
 void ribi::tricpp::printtriangle(
   const Mesh& m,
   const Behavior& b,
@@ -8999,14 +10387,14 @@ void ribi::tricpp::printtriangle(
     std::cout << "    Origin[%d] = x%lx  (%.12g, %.12g)\n",
            (t->m_orient + 1) % 3 + 3, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
-  dest(*t, printvertex);
+  GetDest(*t, printvertex);
   if (printvertex == nullptr)
     std::cout << "    Dest  [%d] = NULL\n", (t->m_orient + 2) % 3 + 3);
   else
     std::cout << "    Dest  [%d] = x%lx  (%.12g, %.12g)\n",
            (t->m_orient + 2) % 3 + 3, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
-  apex(*t, printvertex);
+  GetApex(*t, printvertex);
   if (printvertex == nullptr)
     std::cout << "    Apex  [%d] = NULL\n", t->m_orient + 3);
   else
@@ -9036,8 +10424,9 @@ void ribi::tricpp::printtriangle(
     std::cout << "    Area constraint:  %.4g\n", areabound(*t));
   }
 }
+*/
 
-
+/*
 void ribi::tricpp::printsubseg(
   const SubSeg * const m_dummysub,
   const Triangle * const m_dummytri,
@@ -9077,7 +10466,7 @@ void ribi::tricpp::printsubseg(
     s << "    [1] = " << printsh.m_subseg << " " << printsh.m_subseg_orient << '\n';
   }
 
-  sorg(*osub, printvertex);
+  GetOrigin(*osub, printvertex);
   if (printvertex == nullptr)
   {
     s << "    Origin[" << (2 + osub.m_subseg_orient) << "] = NULL\n";
@@ -9088,7 +10477,7 @@ void ribi::tricpp::printsubseg(
       << printvertex << "  (" << printvertex[0] << ", " << printvertex[1] << ")\n"
     ;
   }
-  sdest(*osub, printvertex);
+  GetDest(*osub, printvertex);
   if (printvertex == nullptr)
   {
     s << "    Dest  [%d] = NULL\n", 3 - osub.m_subseg_orient);
@@ -9122,7 +10511,7 @@ void ribi::tricpp::printsubseg(
     );
   }
 
-  segorg(*osub, printvertex);
+  GetOrg(*osub, printvertex);
   if (printvertex == nullptr)
   {
     s << "    Segment origin[%d] = NULL\n", 4 + osub.m_subseg_orient);
@@ -9134,7 +10523,7 @@ void ribi::tricpp::printsubseg(
       printvertex[0], printvertex[1]
     );
   }
-  segdest(*osub, printvertex);
+  GetDest(*osub, printvertex);
   if (printvertex == nullptr)
   {
     s << "    Segment dest  [%d] = NULL\n", 5 - osub.m_subseg_orient);
@@ -9147,5 +10536,6 @@ void ribi::tricpp::printsubseg(
     );
   }
 }
+*/
 
 #pragma GCC diagnostic pop //RJCB

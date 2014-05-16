@@ -1,7 +1,10 @@
 #include "trianglecppsubseg.h"
 
 ribi::tricpp::SubSeg::SubSeg()
-  : m_boundary_marker{8}
+  :
+    m_subsegs{},
+    m_triangles{},
+    m_boundary_marker{8}
 {
 
 }
@@ -65,7 +68,7 @@ void ribi::tricpp::ssymself(Osub& osub1)
   */
 }
 
-void ribi::tricpp::sdest(Osub& osub, Vertex * vertexptr)
+void ribi::tricpp::GetDest(Osub& osub, Vertex * vertexptr)
 {
   //Does not do anything yet
   vertexptr = osub.m_subseg[3 - osub.m_subseg_orient];
@@ -76,41 +79,49 @@ void ribi::tricpp::sdest(Osub& osub, Vertex * vertexptr)
   vertexptr = (Vertex) (osub).m_subseg[3 - (osub).m_subseg_orient]
 */
 
-void ribi::tricpp::setsorg(Osub& osub, SubSeg * subsegptr)
+/*
+void ribi::tricpp::SetsOrigin(Osub& osub, const SubSeg & subsegptr)
 {
-  osub.m_subseg[2 + osub.m_subseg_orient] = subsegptr;
+  osub.SetOrigin(subsegptr);
+  //osub.m_subseg[2 + osub.m_subseg_orient] = subsegptr;
 }
+*/
 
 /*
 #define setsorg(osub, vertexptr) \
   (osub).m_subseg[2 + (osub).m_subseg_orient] = (SubSeg) vertexptr
 */
 
-void ribi::tricpp::setsdest(Osub& osub, SubSeg * subsegptr)
+/*
+void ribi::tricpp::SetDest(Osub& osub, const SubSeg & subsegptr)
 {
-  osub.m_subseg[3 - (osub).m_subseg_orient] = subsegptr;
+  osub.SetDest(subsegptr);
+  //osub.m_subseg[3 - (osub).m_subseg_orient] = subsegptr;
 }
-
+*/
 /*
 #define setsdest(osub, vertexptr) \
   (osub).m_subseg[3 - (osub).m_subseg_orient] = (SubSeg) vertexptr
 */
 
-void ribi::tricpp::segorg(Osub& osub, Vertex * vertexptr)
+/*
+void ribi::tricpp::GetOrg(const Osub& osub, Vertex& vertexptr)
 {
-  vertexptr = osub.m_subseg[4 + (osub).m_subseg_orient];
+  vertexptr = osub.GetOrigin();
+  //vertexptr = osub.m_subseg[4 + (osub).m_subseg_orient];
 }
-
+*/
 /*
 #define segorg(osub, vertexptr) \
   vertexptr = (Vertex) (osub).m_subseg[4 + (osub).m_subseg_orient]
 */
-
-void ribi::tricpp::segdest(Osub& osub, Vertex * vertexptr)
+/*
+void ribi::tricpp::GetDest(const Osub& osub, Vertex& vertexptr)
 {
-  vertexptr = osub.m_subseg[5 - (osub).m_subseg_orient];
+  vertexptr = osub.GetDest();
+  //vertexptr = osub.m_subseg[5 - (osub).m_subseg_orient];
 }
-
+*/
 /*
 #define segdest(osub, vertexptr) \
   vertexptr = (Vertex) (osub).m_subseg[5 - (osub).m_subseg_orient]
@@ -153,11 +164,11 @@ void ribi::tricpp::sdissolve(const Osub& osub, SubSeg m_m_dummysub)
   (osub2).m_subseg_orient = (osub1).m_subseg_orient
 */
 
-void ribi::tricpp::subsegcopy(const SubSeg& osub1, SubSeg& osub2) { osub2 = osub1; }
+//void ribi::tricpp::subsegcopy(const SubSeg& osub1, SubSeg& osub2) { osub2 = osub1; }
 
 //Test for equality of subsegments.
 
-bool ribi::tricpp::subsegequal(const SubSeg& osub1, const SubSeg& osub2) { return osub1 == osub2; }
+//bool ribi::tricpp::subsegequal(const SubSeg& osub1, const SubSeg& osub2) { return osub1 == osub2; }
 
 /*
 #define subsegequal(osub1, osub2) \

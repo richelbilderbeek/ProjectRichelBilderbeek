@@ -71,7 +71,7 @@ const int SPLAYNODEPERBLOCK = 508;
 /*   of boundary edges should be maintained in the splay tree for point      */
 /*   location on the front.                                                  */
 
-#define SAMPLERATE 10
+const int SAMPLERATE = 10;
 
 } //~namespace tricpp
 } //~namespace ribi

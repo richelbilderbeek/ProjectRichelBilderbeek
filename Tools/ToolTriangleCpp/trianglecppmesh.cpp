@@ -1,11 +1,20 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "trianglecppmesh.h"
 
-#include "trianglecppglobals.h"
+#include <cassert>
+
+#include "trianglecppbadsubseg.h"
 #include "trianglecppdefines.h"
+#include "trianglecppglobals.h"
+#include "trianglecppsubseg.h"
+#pragma GCC diagnostic pop
 
 ribi::tricpp::Mesh::Mesh()
   :
-    m_areaboundindex{0},
+    //m_areaboundindex{0},
     m_badsubsegs{},
     m_badtriangles{},
     m_checkquality{0},
@@ -14,10 +23,10 @@ ribi::tricpp::Mesh::Mesh()
     m_circumcentercount{0},
     m_counterclockcount{0},
     //m_do_readnodefile{false},
-    m_dummysub{nullptr},
-    m_dummysubbase{nullptr},
-    m_dummytri{nullptr},
-    m_dummytribase{nullptr},
+    m_dummysub{},
+    //m_dummysubbase{nullptr},
+    m_dummytri{},
+    //m_dummytribase{nullptr},
     m_edges{0},
     m_eextras{0},
     m_elemattribindex{0},
@@ -33,8 +42,11 @@ ribi::tricpp::Mesh::Mesh()
     m_infvertex3{},
     m_insegments{0},
     m_invertices{0},
-    m_lastflip{nullptr},
+    m_lastflip{},
+    m_nextnonemptyq{},
     m_orient3dcount{0},
+    m_queuefront{},
+    m_queuetail{},
     m_recenttri{},
     m_regions{0},
     m_samples{1}, //Point location should take at least one sample
@@ -55,10 +67,10 @@ ribi::tricpp::Mesh::Mesh()
 
 }
 
-const Vertex& ribi::tricpp::Mesh::GetVertex(const int index) const noexcept
+const ribi::tricpp::Vertex& ribi::tricpp::Mesh::GetVertex(const int index) const noexcept
 {
   assert(index >= 0);
-  assert(index < static_cast<int>(m_vertices));
+  assert(index < static_cast<int>(m_vertices.size()));
   return m_vertices[index];
 }
 
@@ -74,12 +86,13 @@ Vertex& ribi::tricpp::Mesh::GetVertex(const int index) noexcept
 void ribi::tricpp::Mesh::KillVertex(const int index) noexcept
 {
   assert(index >= 0);
-  assert(index < static_cast<int>(m_vertices));
+  assert(index < static_cast<int>(m_vertices.size()));
   assert(!m_vertices.empty());
   std::swap(m_vertices[index],m_vertices[m_vertices.size() - 1]);
   m_vertices.pop_back();
 }
 
+/*
 ribi::tricpp::Vertex ribi::tricpp::vertextraverse(Mesh& m)
 {
   Vertex newvertex;
@@ -94,4 +107,4 @@ ribi::tricpp::Vertex ribi::tricpp::vertextraverse(Mesh& m)
   } while (IsDeadVertexType(newvertex)); // Skip dead ones
   return newvertex;
 }
-
+*/

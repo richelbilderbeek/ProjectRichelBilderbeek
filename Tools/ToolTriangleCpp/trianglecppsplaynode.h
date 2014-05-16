@@ -1,8 +1,13 @@
 #ifndef TRIANGLECPPSPLAYNODE_H
 #define TRIANGLECPPSPLAYNODE_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "trianglecppvertex.h"
 #include "trianglecppotri.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -20,6 +25,8 @@ namespace tricpp {
 struct SplayNode
 {
   SplayNode();
+  SplayNode(const SplayNode&) = delete;
+  SplayNode& operator=(const SplayNode&) = delete;
 
   /// Used to verify that splay node is still live.
   Vertex m_keydest;

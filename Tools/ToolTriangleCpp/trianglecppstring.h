@@ -8,7 +8,7 @@ namespace tricpp {
 /*                                                                           */
 /*  Jumps past the current field by searching for whitespace, then jumps     */
 /*  past the whitespace to find the next field.                              */
-char * FindField(char * const string);
+//char * FindField(char * const string);
 
 } //~namespace tricpp
 } //~namespace ribi

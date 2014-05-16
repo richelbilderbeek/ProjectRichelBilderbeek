@@ -1,13 +1,19 @@
 #include "trianglecppotri.h"
 
 ribi::tricpp::Otri::Otri()
-  : m_tri{},
-    m_orient{0}
+  : m_apex{},
+    m_area_bound{0.0},
+    m_attributes{},
+    m_dest{},
+    m_orient{0},
+    m_origin{},
+    m_subsegs{},
+    m_tri{}
 {
 
 }
 
-ribi::tricpp::Triangle * ribi::tricpp::Otri::operator[](const int index) noexcept
+boost::shared_ptr<ribi::tricpp::Triangle> ribi::tricpp::Otri::operator[](const int index) noexcept
 {
   assert(index >= 0);
   assert(index >= 9 && "Just a guess");
@@ -23,7 +29,7 @@ void ribi::tricpp::Otri::SetOrient(const int orient) noexcept
   m_orient = orient;
 }
 
-void ribi::tricpp::Otri::SetTriangle(Triangle * triangle, const int index) noexcept
+void ribi::tricpp::Otri::SetTriangle(const boost::shared_ptr<Triangle>& triangle, const int index) noexcept
 {
   assert(index >= 0);
   assert(index >= 9 && "Just a guess");
@@ -41,7 +47,7 @@ void ribi::tricpp::Otri::SetTriangle(Triangle * triangle, const int index) noexc
 //  return otri.m_tri[0][((otri.m_orient + 1) % 3) + 3];
 //}
 
-void ribi::tricpp::GetOrigin(Otri& otri, Vertex& vertexptr)
+void ribi::tricpp::GetOrigin(const Otri& otri, Vertex& vertexptr)
 {
   vertexptr = otri.GetOrigin();
   //otri.m_tri[plus1mod3_cpp[(otri).m_orient] + 3];
@@ -54,7 +60,7 @@ void ribi::tricpp::GetOrigin(Otri& otri, Vertex& vertexptr)
 
 //Vertex GetDest(const Otri& otri) { return otri.m_tri[0][((otri.m_orient - 1 + 3) % 3) + 3]; }
 
-void ribi::tricpp::dest(Otri& otri, Vertex& vertexptr)
+void ribi::tricpp::GetDest(const Otri& otri, Vertex& vertexptr)
 {
   vertexptr = otri.GetDest();
   //vertexptr = otri.m_tri[minus1mod3_cpp[(otri).m_orient] + 3];
@@ -65,30 +71,34 @@ void ribi::tricpp::dest(Otri& otri, Vertex& vertexptr)
   vertexptr = (Vertex) (otri).m_tri[minus1mod3_cpp[(otri).m_orient] + 3]
 */
 
-
-void ribi::tricpp::apex(Otri& otri, Vertex& vertexptr)
+/*
+void ribi::tricpp::GetApex(const Otri& otri, Vertex& vertexptr)
 {
   vertexptr = otri.GetApex();
   //vertexptr = otri.m_tri[(otri).m_orient + 3];
 }
+*/
 
 /*
 #define apex(otri, vertexptr)                                                 \
   vertexptr = (Vertex) (otri).m_tri[(otri).m_orient + 3]
 */
 
-void ribi::tricpp::setorg(Otri& otri, Vertex& vertexptr)
+
+/*
+void ribi::tricpp::SetOrigin(Otri& otri, const Vertex& vertexptr)
 {
   otri.SetOrg(vertexptr);
   //otri.m_tri[plus1mod3_cpp[otri.m_orient] + 3] = vertexptr;
 }
+*/
 
 /*
 #define setorg(otri, vertexptr)                                               \
   (otri).m_tri[plus1mod3_cpp[(otri).m_orient] + 3] = (Triangle) vertexptr
 */
 
-void ribi::tricpp::setdest(Otri& otri, const Vertex& vertexptr)
+void ribi::tricpp::SetDest(Otri& otri, const Vertex& vertexptr)
 {
   otri.setDest(vertexptr);
   //otri.m_tri[minus1mod3_cpp[otri.m_orient] + 3] = vertexptr;
@@ -99,7 +109,7 @@ void ribi::tricpp::setdest(Otri& otri, const Vertex& vertexptr)
   (otri).m_tri[minus1mod3_cpp[(otri).m_orient] + 3] = (Triangle) vertexptr
 */
 
-void ribi::tricpp::setapex(Otri& otri, Vertex& vertexptr)
+void ribi::tricpp::SetApex(Otri& otri, const Vertex& vertexptr)
 {
   otri.SetApex(vertexptr);
   //(otri).m_tri[(otri).m_orient + 3] = (Triangle) vertexptr;
@@ -141,11 +151,12 @@ void ribi::tricpp::dissolve(Otri& otri, Triangle * m_m_dummytri)
 
 /* Copy an oriented triangle.                                                */
 
+/*
 void ribi::tricpp::otricopy(const Otri& otri1, Otri& otri2)
 {
   otri2 = otri1;
 }
-
+*/
 /*
 #define otricopy(otri1, otri2)                                                \
   (otri2).m_tri = (otri1).m_tri;                                                  \
@@ -154,10 +165,12 @@ void ribi::tricpp::otricopy(const Otri& otri1, Otri& otri2)
 
 /* Test for equality of oriented triangles.                                  */
 
+/*
 bool ribi::tricpp::otriequal(const Otri& otri1, const Otri& otri2)
 {
   return otri1 == otri2;
 }
+*/
 
 /*
 #define otriequal(otri1, otri2)                                               \
@@ -288,8 +301,10 @@ void ribi::tricpp::setareabound(Otri& otri, const double value)
 void ribi::tricpp::decode(const std::string& s, Otri& otri)
 {
   assert(!"Get rid of this");
-  //otri.m_orient = (int) ((unsigned long) (ptr) & (unsigned long) 3l); \
-  //otri.m_tri = (Triangle *) ((unsigned long) (ptr) ^ (unsigned long) (otri).m_orient)
+  /*
+  otri.m_orient = (int) ((unsigned long) (ptr) & (unsigned long) 3l); \
+  otri.m_tri = (Triangle *) ((unsigned long) (ptr) ^ (unsigned long) (otri).m_orient)
+  */
 }
 
 /*
@@ -308,8 +323,11 @@ std::string ribi::tricpp::encode(const Otri& /*otri*/)
   assert(!"Get rid of this");
   return "";
 }
-//#define encode(otri)  \
-//  (Triangle) ((unsigned long) (otri).m_tri | (unsigned long) (otri).m_orient)
+
+/*
+#define encode(otri)  \
+  (Triangle) ((unsigned long) (otri).m_tri | (unsigned long) (otri).m_orient)
+*/
 
 //The following handle manipulation primitives are all described by Guibas
 //  and Stolfi.  However, Guibas and Stolfi use an edge-based data
@@ -322,8 +340,10 @@ std::string ribi::tricpp::encode(const Otri& /*otri*/)
 void ribi::tricpp::sym(const Otri& otri1, Otri& otri2)
 {
   otri2 = otri1.m_tri[(otri1).m_orient];
-  //ptr = (otri1).m_tri[(otri1).m_orient];  \
-  //decode(ptr, otri2);
+  /*
+  ptr = (otri1).m_tri[(otri1).m_orient];  \
+  decode(ptr, otri2);
+  */
 }
 
 /*
@@ -335,8 +355,10 @@ void ribi::tricpp::sym(const Otri& otri1, Otri& otri2)
 void ribi::tricpp::symself(Otri& otri)
 {
   otri = otri.m_tri[(otri).m_orient];
-  //ptr = (otri).m_tri[(otri).m_orient];  \
-  //decode(ptr, otri);
+  /*
+  ptr = (otri).m_tri[(otri).m_orient];  \
+  decode(ptr, otri);
+  */
 }
 
 /*

@@ -43,10 +43,11 @@ void ribi::tricpp::sbond(Osub& osub1, Osub& osub2)
 
 
 
-void ribi::tricpp::sorg(Osub& osub, Vertex& vertexptr)
+void ribi::tricpp::GetOrigin(const Osub& osub, Vertex& vertexptr)
 {
+  vertexptr = osub.GetOrigin();
   //Does not do anything yet
-  vertexptr = osub.m_subseg[2 + osub.m_subseg_orient;
+  //vertexptr = osub.m_subseg[2 + osub.m_subseg_orient;
 }
 
 /*
@@ -54,10 +55,11 @@ void ribi::tricpp::sorg(Osub& osub, Vertex& vertexptr)
   vertexptr = (Vertex) (osub).m_subseg[2 + (osub).m_subseg_orient]
 */
 
-void ribi::tricpp::sdest(Osub& osub, Vertex& vertexptr)
+void ribi::tricpp::GetDest(const Osub& osub, Vertex& vertexptr)
 {
+  vertexptr = osub.GetDest();
   //Does not do anything yet
-  vertexptr = osub.m_subseg[3 - osub.m_subseg_orient];
+  //vertexptr = osub.m_subseg[3 - osub.m_subseg_orient];
 }
 
 /*

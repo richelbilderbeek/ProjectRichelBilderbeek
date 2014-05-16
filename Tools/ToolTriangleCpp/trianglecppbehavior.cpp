@@ -14,6 +14,7 @@
 #include "fileio.h"
 #include "trianglecppinfo.h"
 #include "trianglecppsyntax.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 

@@ -1,9 +1,14 @@
 #ifndef TRIANGLECPPMEMORYPOOL_H
 #define TRIANGLECPPMEMORYPOOL_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <vector>
 #include "trianglecppvertex.h"
 #include "trianglecpptriangle.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -61,9 +66,10 @@ void PoolDealloc(
 */
 
 ///  The deallocated space is stored in a queue for later reuse.
-void PoolDealloc(std::vector<Vertex>& vertices,Vertex& dyingitem);
-void PoolDealloc(std::vector<Triangle>& triangles,Triangle& dyingtriangle);
+void PoolDealloc(std::vector<BadSubSeg>& subseg,BadSubSeg& dyingsubseg);
 void PoolDealloc(std::vector<SubSeg>& subseg,SubSeg& dyingsubseg);
+void PoolDealloc(std::vector<Triangle>& triangles,Triangle& dyingtriangle);
+void PoolDealloc(std::vector<Vertex>& vertices,Vertex& dyingitem);
 
 ///  pooldeinit()   Free to the operating system all memory taken by a pool.
 ///

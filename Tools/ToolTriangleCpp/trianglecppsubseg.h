@@ -1,8 +1,13 @@
 #ifndef TRIANGLECPPSUBSEG_H
 #define TRIANGLECPPSUBSEG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <vector>
 #include "trianglecppfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -15,16 +20,17 @@ namespace tricpp {
 //typedef double **SubSeg; /* Really:  typedef subseg *subseg   */
 struct SubSeg
 {
+  SubSeg();
   bool IsDead() const noexcept;
   void KillMe() noexcept;
   void SetBoundaryMarker(const int value) noexcept;
   void SetSubSeg(SubSeg * const subseg, const int index);
   void SetTriangle(Triangle * const triangle, const int index);
+  std::vector<SubSeg> m_subsegs;
+  std::vector<Triangle> m_triangles;
 
   private:
   int m_boundary_marker;
-  std::vector<SubSeg*> m_subsegs;
-  std::vector<Triangle*> m_triangles;
 };
 
 bool operator==(const SubSeg& lhs, const SubSeg& rhs) noexcept;
@@ -51,18 +57,18 @@ bool operator==(const SubSeg& lhs, const SubSeg& rhs) noexcept;
 ///ssym() toggles the orientation of a subsegment.
 void ssym(const Osub& osub1, Osub& osub2);
 void ssymself(Osub& osub1);
-void setsorg(Osub& osub, SubSeg * subsegptr);
-void setsdest(Osub& osub, SubSeg * subsegptr);
-void segorg(Osub& osub, Vertex * vertexptr);
-void segdest(Osub& osub, Vertex * vertexptr);
+//void SetsOrigin(Osub& osub, const SubSeg& subsegptr);
+//void SetDest(Osub& osub, const SubSeg& subsegptr);
+//void GetOrg(const Osub& osub, Vertex& vertexptr);
+//void GetDest(const Osub& osub, Vertex& vertexptr);
 void setsegorg(Osub& osub, SubSeg * subsegptr);
 void setsegdest(Osub& osub, SubSeg * subsegptr);
 
 ///Dissolve a subsegment bond (from one side).  Note that the other
 ///  subsegment will still think it's connected to this subsegment.
 void sdissolve(const Osub& osub, SubSeg m_m_dummysub);
-void subsegcopy(const SubSeg& osub1, SubSeg& osub2) { osub2 = osub1; }
-bool subsegequal(const SubSeg& osub1, const SubSeg& osub2);
+//void subsegcopy(const SubSeg& osub1, SubSeg& osub2) { osub2 = osub1; }
+//bool subsegequal(const SubSeg& osub1, const SubSeg& osub2);
 bool deadsubseg(const SubSeg& t);
 void killsubseg(SubSeg& t);
 

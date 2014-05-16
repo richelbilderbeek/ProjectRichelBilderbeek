@@ -1,7 +1,12 @@
 #ifndef TRIANGLECPPFLIPSTACKER_H
 #define TRIANGLECPPFLIPSTACKER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "trianglecpptriangle.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -13,6 +18,9 @@ namespace tricpp {
 struct FlipStacker
 {
   FlipStacker();
+  FlipStacker(const FlipStacker&) = delete;
+  FlipStacker& operator=(const FlipStacker&) = delete;
+
   Triangle m_flippedtri;                       /* A recently flipped triangle. */
   FlipStacker *m_prevflip;               /* Previous flip in the stack. */
 };

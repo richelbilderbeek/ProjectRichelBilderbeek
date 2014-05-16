@@ -96,7 +96,7 @@ void ribi::tricpp::PoolDealloc(
 {
   std::swap(
     *std::find(triangles.begin(),triangles.end(),dying_triangle),
-    triangles.back();
+    triangles.back()
   );
   triangles.pop_back();
 }
@@ -111,7 +111,7 @@ void ribi::tricpp::PoolDealloc(
   //--pool->m_items;
   std::swap(
     *std::find(vertices.begin(),vertices.end(),dyingitem),
-    vertices.back();
+    vertices.back()
   );
   vertices.pop_back();
 

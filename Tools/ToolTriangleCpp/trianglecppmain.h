@@ -1,6 +1,10 @@
 #ifndef TRIANGLE_CPP_H
 #define TRIANGLE_CPP_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <string>
 #include <vector>
 
@@ -12,6 +16,7 @@
 #include "trianglecpptriangle.h"
 #include "trianglecppvertex.h"
 #include "trianglecppinsertvertexresult.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -414,21 +419,20 @@ void enqueuebadtriang(
 
 /// fast_expansion_sum_zeroelim()   Sum two expansions, eliminating zero
 ///                                 components from the output expansion.
-
 /// Sets h = e + f.  See my Robust Predicates paper for details.
-
 /// If round-to-even is used (as with IEEE 754), maintains the strongly
 /// nonoverlapping property.  (That is, if e is strongly nonoverlapping, h
 /// will be also.)  Does NOT maintain the nonoverlapping or nonadjacent
 /// properties.
-
-
 int fast_expansion_sum_zeroelim(
   const int elen,
-  const double * const e,
+  const std::vector<double>& e,
+  //const double * const e,
   const int flen,
-  const double * const f,
-  double * const h
+  const std::vector<double>& f,
+  //const double * const f,
+  std::vector<double>& h
+  //double * const h
 );
 
 
@@ -447,6 +451,7 @@ void findcircumcenter(
   int& m_m_counterclockcount,
   //Mesh& m,
   bool b_m_noexact,
+  const double b_m_offconstant,
   //const Behavior& b,
   const Vertex& torg,
   const Vertex& tdest,
@@ -759,8 +764,8 @@ void makesubseg(
 ///Create a new triangle with orientation zero.
 void maketriangle(
   //Mesh& m,
-  Triangle * m_m_dummytri,
-  SubSeg * m_m_dummysub,
+  const boost::shared_ptr<Triangle>& m_m_dummytri,
+  const boost::shared_ptr<SubSeg>& m_m_dummysub,
   const int m_m_eextras,
   //const Behavior& b,
   const bool b_m_vararea,
@@ -1000,11 +1005,13 @@ LocateResult preciselocate(
 /// called directly from the debugger, and presents information about an
 /// oriented subsegment in digestible form.  It's also used when the highest
 /// level of verbosity (`-VVV') is specified.
+/*
 void printsubseg(
   const SubSeg * const m_dummysub,
   const Triangle * const m_dummytri,
   const Osub& s
 );
+*/
 
 /// printtriangle()   Print out the details of an oriented triangle.
 ///
@@ -1012,11 +1019,13 @@ void printsubseg(
 /// called directly from the debugger, and presents information about an
 /// oriented triangle in digestible form.  It's also used when the
 /// highest level of verbosity (`-VVV') is specified.
+/*
 void printtriangle(
   const Mesh& m,
   const Behavior& b,
   const Otri * const t
 );
+*/
 
 void quality_statistics(
   Mesh& m,
@@ -1122,7 +1131,8 @@ long removeghosts(
 );
 
 bool rightofhyperbola(
-  Mesh& m,
+  //Mesh& m,
+  int& m_m_hyperbolacount,
   const Otri * const fronttri,
   const Vertex& newsite
 );
@@ -1141,9 +1151,11 @@ bool rightofhyperbola(
 /// will h.)
 int scale_expansion_zeroelim(
   const int elen,
-  const double * const e,
+  //const double * const e,
+  const std::vector<double>& e,
   const double b,
-  double * const h
+  std::vector<double>& h
+  //double * const h
 );
 
 /// scoutsegment()   Scout the first triangle on the path from one endpoint
@@ -1232,11 +1244,12 @@ void splittriangle(
 );
 
 /// statistics()   Print all sorts of cool facts.
+/*
 void statistics(
   Mesh& m,
   const Behavior& b
 );
-
+*/
 /// subsegdealloc()   Deallocate space for a subsegment, marking it dead.
 void subsegdealloc(
   Mesh& m,
@@ -1307,10 +1320,12 @@ void triangledealloc(
 );
 
 /// triangledeinit()   Free all remaining allocated memory.
+/*
 void triangledeinit(
   Mesh& m,
   const Behavior& b
 );
+*/
 
 /// triangletraverse()   Traverse the triangles, skipping dead ones.
 //Triangle * triangletraverse(Mesh& m);

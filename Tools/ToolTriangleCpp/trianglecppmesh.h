@@ -1,6 +1,10 @@
 #ifndef TRIANGLECPPMESH_H
 #define TRIANGLECPPMESH_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <vector>
 
 #include "trianglecppmemorypool.h"
@@ -10,6 +14,7 @@
 #include "trianglecppotri.h"
 #include "trianglecppsplaynode.h"
 #include "trianglecppfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -19,14 +24,16 @@ namespace tricpp {
 struct Mesh
 {
   Mesh();
+  Mesh(const Mesh&) = delete;
+  Mesh& operator=(const Mesh&) = delete;
 
   const Vertex& GetVertex(const int index) const noexcept;
   //Vertex& GetVertex(const int index) noexcept;
   void KillSubSeg(SubSeg& subseg) noexcept;
-  void KillTriangle(Triangle * triangle) noexcept;
+  void KillTriangle(Triangle& triangle) noexcept;
   void KillVertex(const int index) noexcept;
 
-  int m_areaboundindex; //REPLACE BY CONST            /// Index to find area bound of a triangle.
+  //int m_areaboundindex; //REPLACE BY CONST            /// Index to find area bound of a triangle.
   //MemoryPool m_badsubsegs; /// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   std::vector<BadSubSeg> m_badsubsegs;
   //MemoryPool m_badtriangles;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
@@ -37,9 +44,9 @@ struct Mesh
   long m_circumcentercount;  /// Number of circumcenter calculations performed.
   long m_counterclockcount;     /// Number of counterclockwise tests performed.
   //static const bool m_do_readnodefile = false;          /// Has a .node file been read?
-  SubSeg * m_dummysub; /// Pointer to the omnipresent subsegment.  Referenced by any triangle or ///   subsegment that isn't really connected to a subsegment at that ///   location.
+  SubSeg m_dummysub; /// Pointer to the omnipresent subsegment.  Referenced by any triangle or ///   subsegment that isn't really connected to a subsegment at that ///   location.
   //SubSeg * m_dummysubbase;      /// Keep base address so we can free() it later.
-  Triangle * m_dummytri; /// Pointer to the `triangle' that occupies all of "outer space."
+  Triangle m_dummytri; /// Pointer to the `triangle' that occupies all of "outer space."
   //Triangle *m_dummytribase;    /// Keep base address so we can free() it later.
   long m_edges;                                     /// Number of output edges.
   int m_eextras;                         /// Number of attributes per triangle.
@@ -53,7 +60,7 @@ struct Mesh
   //  associated with high order elements are found.  There are three
   //  pointers to other triangles, three pointers to corners, and possibly
   //  three pointers to subsegments before the extra nodes.
-  static const int m_highorderindex = 9;
+  //static const int m_highorderindex = 9;
   int m_holes;                                       /// Number of input holes.
   long m_hullsize;                          /// Number of edges in convex hull.
   long m_hyperbolacount;      /// Number of right-of-hyperbola tests performed.
@@ -64,13 +71,13 @@ struct Mesh
   Vertex m_infvertex3; /// Triangular bounding box vertices.
   int m_insegments;                               /// Number of input segments.
   int m_invertices;                               /// Number of input vertices.
-  FlipStacker *m_lastflip; /// Variable that maintains the stack of recently flipped triangles.
-  static const int m_mesh_dim = 2;                                /// Dimension (ought to be 2).
-  int m_nextnonemptyq[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
-  static const int m_nextras = 0; /// Number of attributes per vertex.
+  std::vector<FlipStacker> m_lastflip; /// Variable that maintains the stack of recently flipped triangles.
+  //static const int m_mesh_dim = 2;                                /// Dimension (ought to be 2).
+  std::vector<int> m_nextnonemptyq; //[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
+  //static const int m_nextras = 0; /// Number of attributes per vertex.
   long m_orient3dcount;           /// Number of 3D orientation tests performed.
-  BadTriang *m_queuefront[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
-  BadTriang *m_queuetail[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
+  std::vector<BadTriang> m_queuefront; //[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
+  std::vector<BadTriang> m_queuetail; //[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
   Otri m_recenttri; /// Pointer to a recently visited triangle.  Improves point location if proximate vertices are inserted sequentially.
   int m_regions;                                   /// Number of input regions.
   long m_samples;              /// Number of random samples for point location.
@@ -82,8 +89,8 @@ struct Mesh
   //MemoryPool m_triangles;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   std::vector<Triangle> m_triangles;
   int m_undeads;    /// Number of input vertices that don't appear in the mesh.
-  static const int m_vertex2triindex = 3; //TODO: REMOVE    /// Index to find a triangle adjacent to a vertex.
-  static const int m_vertexmarkindex = 1; //TODO: REMOVE        /// Index to find boundary marker of a vertex.
+  //static const int m_vertex2triindex = 3; //TODO: REMOVE    /// Index to find a triangle adjacent to a vertex.
+  //static const int m_vertexmarkindex = 1; //TODO: REMOVE        /// Index to find boundary marker of a vertex.
   //MemoryPool m_vertices;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   std::vector<Vertex> m_vertices;
   //MemoryPool m_viri;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
@@ -98,8 +105,8 @@ struct Mesh
 
 //void triangleinit(Mesh& m);
 
-/*  vertextraverse()   Traverse the vertices, skipping dead ones.            */
-Vertex vertextraverse(Mesh& m);
+//vertextraverse()   Traverse the vertices, skipping dead ones.
+//Vertex vertextraverse(Mesh& m);
 
 } //~namespace tricpp
 } //~namespace ribi

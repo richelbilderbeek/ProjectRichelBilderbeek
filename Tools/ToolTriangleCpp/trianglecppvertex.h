@@ -1,7 +1,15 @@
 #ifndef TRIANGLECPPVERTEX_H
 #define TRIANGLECPPVERTEX_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/shared_ptr.hpp>
 #include "trianglecppvertextype.h"
+#include "trianglecppfwd.h"
+#pragma GCC diagnostic pop
+
 namespace ribi {
 namespace tricpp {
 
@@ -29,8 +37,10 @@ struct Vertex
   bool IsEmpty() const noexcept;
 
   int GetMark() const noexcept { return m_mark; }
+  boost::shared_ptr<Triangle> GetTriangle() const noexcept;
   VertexType GetVertexType() const noexcept { return m_type; }
   void SetMark(const int mark) noexcept { m_mark = mark; }
+  void SetTriangle(const boost::shared_ptr<Triangle>& triangle) noexcept;
   void SetVertexType(const VertexType type) noexcept { m_type = type; }
 
   private:

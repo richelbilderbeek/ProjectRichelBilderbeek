@@ -1,37 +1,48 @@
 #ifndef TRIANGLECPPTRIANGLE_H
 #define TRIANGLECPPTRIANGLE_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <vector>
+#include <boost/shared_ptr.hpp>
 #include "trianglecppfwd.h"
 #include "trianglecpptriangle.h"
 #include "trianglecppsubseg.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
 
-/* The triangle data structure.  Each triangle contains three pointers to    */
-/*   adjoining triangles, plus three pointers to vertices, plus three        */
-/*   pointers to subsegments (declared below; these pointers are usually     */
-/*   `dummysub').  It may or may not also contain user-defined attributes    */
-/*   and/or a floating-point "area constraint."  It may also contain extra   */
-/*   pointers for nodes, when the user asks for high-order elements.         */
-/*   Because the size and structure of a `triangle' is not decided until     */
-/*   runtime, I haven't simply declared the type `triangle' as a struct.     */
+// The triangle data structure.  Each triangle contains three pointers to
+//   adjoining triangles, plus three pointers to vertices, plus three
+//   pointers to subsegments (declared below; these pointers are usually
+//   `dummysub').  It may or may not also contain user-defined attributes
+//   and/or a floating-point "area constraint."  It may also contain extra
+//   pointers for nodes, when the user asks for high-order elements.
+//   Because the size and structure of a `triangle' is not decided until
+//   runtime, I haven't simply declared the type `triangle' as a struct.
 
 //typedef double **Triangle;
 struct Triangle
 {
-  void SetTriangle(Triangle& triangle, const int index); //If the lvalue of operator[] needed to be used
-  void SetSubSeg(SubSeg& subseg, const int index); //If the lvalue of operator[] needed to be used
+  Triangle();
+  void SetTriangle(const Triangle& triangle, const int index); //If the lvalue of operator[] needed to be used
+  void SetSubSeg(const SubSeg& subseg, const int index); //If the lvalue of operator[] needed to be used
   Triangle& operator[](const int i) noexcept;
   const Triangle& operator[](const int i) const noexcept;
   Vertex GetOrg();
   bool IsDead() const noexcept;
-  void KillMe() const noexcept;
+  void KillMe() noexcept;
 
-  std::vector<Triangle> m_triangles;
+  bool m_is_dead;
   std::vector<SubSeg> m_subsegs;
+  std::vector<Triangle> m_triangles;
 };
+
+bool operator==(const Triangle& lhs, const Triangle& rhs) noexcept;
+bool operator!=(const Triangle& lhs, const Triangle& rhs) noexcept;
 
 //These primitives determine or set the origin, destination, or apex of a
 //triangle.
@@ -47,8 +58,11 @@ struct Triangle
 
 //void killtri(const Triangle& t) { t[1] = nullptr; t[3] = nullptr; }
 
-Triangle& vertex2tri(Vertex& vx);
-void setvertex2tri(Vertex& vx, const Triangle& value);
+boost::shared_ptr<Triangle> vertex2tri(Vertex& vx);
+//Triangle vertex2tri(Vertex& vx);
+
+//void setvertex2tri(Vertex& vx, const Triangle& value);
+void setvertex2tri(Vertex& vx, const boost::shared_ptr<Triangle>& value);
 
 } //~namespace tricpp
 } //~namespace ribi

@@ -1,9 +1,11 @@
 #include "trianglecppfile.h"
+/*
 
 #include <cstring>
 #include <cstdio>
 
 #include "trianglecppglobals.h"
+
 char * ribi::tricpp::readline(char * const string, FILE * const infile)
 {
   char *result = nullptr;
@@ -18,8 +20,8 @@ char * ribi::tricpp::readline(char * const string, FILE * const infile)
       return nullptr;
 
     }
-    //* Skip anything that doesn't look like a number, a comment,
-    //*   or the end of a line.
+    // Skip anything that doesn't look like a number, a comment,
+    //   or the end of a line.
     while ((*result != '\0') && (*result != '#')
            && (*result != '.') && (*result != '+') && (*result != '-')
            && ((*result < '0') || (*result > '9'))) {
@@ -30,3 +32,4 @@ char * ribi::tricpp::readline(char * const string, FILE * const infile)
   return result;
 }
 
+*/

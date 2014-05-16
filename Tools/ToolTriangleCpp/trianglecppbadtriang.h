@@ -1,8 +1,13 @@
 #ifndef TRIANGLECPPBADTRIANG_H
 #define TRIANGLECPPBADTRIANG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "trianglecpptriangle.h"
 #include "trianglecppvertex.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -14,6 +19,8 @@ namespace tricpp {
 struct BadTriang
 {
   BadTriang();
+  BadTriang(const BadTriang&) = delete;
+  BadTriang& operator=(const BadTriang&) = delete;
 
   double m_key; ///cos^2 of smallest (apical) angle
   BadTriang * m_nexttriang; /// Pointer to next bad triangle

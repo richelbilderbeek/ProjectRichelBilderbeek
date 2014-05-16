@@ -11,7 +11,7 @@
 #include "fileio.h"
 #include "trace.h"
 
-#include "triangle.h"
+//#include "triangle.h"
 
 #define TODO_ISSUE_207
 #ifdef  TODO_ISSUE_207
@@ -181,7 +181,7 @@ void ribi::TriangleFile::ExecuteTriangle(
     std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
   }
   const std::pair<int,char **> p = CreateArgv(cmd);
-  triangle_main(p.first,p.second);
+  //triangle_main(p.first,p.second);
   DeleteArgv(p);
   //End of specific part
 

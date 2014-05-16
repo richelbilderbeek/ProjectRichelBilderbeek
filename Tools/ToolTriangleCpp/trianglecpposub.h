@@ -1,7 +1,12 @@
 #ifndef TRIANGLECPPOSUB_H
 #define TRIANGLECPPOSUB_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "trianglecppsubseg.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace tricpp {
@@ -19,9 +24,16 @@ struct Osub
   void SetSubSeg(SubSeg& subseg, const int i);
   void SetTriangle(Triangle& triangle, const int i);
 
+  const SubSeg& GetDest() const noexcept;
+  const SubSeg& GetOrigin() const noexcept;
+
   int GetMark() const noexcept { return m_mark; }
   void SetMark(const int value) noexcept { m_mark = value; }
   void SetOrient(const int orient) noexcept;
+
+  void SetDest(const SubSeg subseg) noexcept;
+  void SetOrigin(const SubSeg subseg) noexcept;
+
   void SetSubsegOrient(const int subseg_orient) noexcept;
   std::vector<SubSeg> m_subseg;
   std::vector<Triangle> m_triangles;
@@ -42,8 +54,8 @@ struct Osub
 
 ///Bond two subsegments together.
 void sbond(Osub& osub1, Osub& osub2);
-void sorg(Osub& osub, Vertex& vertexptr);
-void sdest(Osub& osub, Vertex& vertexptr);
+void GetOrigin(const Osub& osub, Vertex& vertexptr);
+void GetDest(const Osub& osub, Vertex& vertexptr);
 ///spivot() finds the other subsegment (from the same segment) that shares
 ///  the same origin.
 void spivot(Osub& osub1, Osub& osub2, SubSeg& sptr);
