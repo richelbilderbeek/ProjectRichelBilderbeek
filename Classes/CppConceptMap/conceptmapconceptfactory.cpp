@@ -121,7 +121,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
     [](const std::pair<std::string,Competency>& p)
     {
       const boost::shared_ptr<cmap::Example> q
-        = ExampleFactory::Create(
+        = ExampleFactory().Create(
           p.first,
           p.second);
       assert(q);

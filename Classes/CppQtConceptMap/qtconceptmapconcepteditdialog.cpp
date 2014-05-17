@@ -273,7 +273,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::on_button_ok_clicked()
     const QtConceptMapListWidgetItem * const pvdb_item = dynamic_cast<const QtConceptMapListWidgetItem *>(item);
     const cmap::Competency competency = pvdb_item ? pvdb_item->m_competency : cmap::Competency::uninitialized;
     boost::shared_ptr<cmap::Example> p(
-      cmap::ExampleFactory::Create(
+      ExampleFactory().Create(
         item->text().toStdString(),
         competency
       )
@@ -308,7 +308,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapConceptEdit
     const QtConceptMapListWidgetItem * const pvdb_item = dynamic_cast<const QtConceptMapListWidgetItem *>(item);
     const cmap::Competency competency = pvdb_item ? pvdb_item->m_competency : cmap::Competency::uninitialized;
     boost::shared_ptr<cmap::Example> p(
-      cmap::ExampleFactory::Create(
+      cmap::ExampleFactory().Create(
         item->text().toStdString(),
         competency
       )

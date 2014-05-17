@@ -185,9 +185,9 @@ void ribi::cmap::Examples::Test() noexcept
   }
   //Test if unrated and rated examples are noticed as different
   {
-    const boost::shared_ptr<Example> a = ExampleFactory::Create("1",Competency::misc);
-    const boost::shared_ptr<Example> b = ExampleFactory::Create("1",Competency::misc);
-    const boost::shared_ptr<Example> c = ExampleFactory::Create("1",Competency::uninitialized);
+    const boost::shared_ptr<Example> a = ExampleFactory().Create("1",Competency::misc);
+    const boost::shared_ptr<Example> b = ExampleFactory().Create("1",Competency::misc);
+    const boost::shared_ptr<Example> c = ExampleFactory().Create("1",Competency::uninitialized);
     assert(*a == *a); assert(*a == *b); assert(*a != *c);
     assert(*b == *a); assert(*b == *b); assert(*b != *c);
     assert(*c != *a); assert(*c != *b); assert(*c == *c);

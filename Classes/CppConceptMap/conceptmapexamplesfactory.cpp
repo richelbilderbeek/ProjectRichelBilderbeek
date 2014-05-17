@@ -65,7 +65,7 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Creat
     [](const boost::shared_ptr<const cmap::Example>& p)
     {
       boost::shared_ptr<cmap::Example> q
-        = ExampleFactory::Create(p->GetText(),p->GetCompetency());
+        = ExampleFactory().Create(p->GetText(),p->GetCompetency());
       assert(q);
       return q;
     }
@@ -84,7 +84,7 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Creat
     [](const std::pair<std::string,Competency>& p)
     {
       const boost::shared_ptr<cmap::Example> q
-        = ExampleFactory::Create(p.first,p.second);
+        = ExampleFactory().Create(p.first,p.second);
       assert(q);
       return q;
     }

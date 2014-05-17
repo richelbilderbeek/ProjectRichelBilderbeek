@@ -1,7 +1,7 @@
 #include "trianglecpposub.h"
 
 ribi::tricpp::Osub::Osub()
-  : m_subseg{nullptr},
+  : m_subsegs{nullptr},
     m_subseg_orient{0}
 {
 
@@ -33,8 +33,8 @@ void ribi::tricpp::setmark(const Osub& osub, const int value) { return osub.SetM
 
 void ribi::tricpp::sbond(Osub& osub1, Osub& osub2)
 {
-  osub1.m_subseg[osub1.m_subseg_orient] = sencode(osub2);
-  osub2.m_subseg[osub2.m_subseg_orient] = sencode(osub1);
+  osub1.m_subsegs[osub1.m_subseg_orient] = sencode(osub2);
+  osub2.m_subsegs[osub2.m_subseg_orient] = sencode(osub1);
 }
 
 //#define sbond(osub1, osub2) \
@@ -72,7 +72,7 @@ void ribi::tricpp::GetDest(const Osub& osub, Vertex& vertexptr)
 
 void ribi::tricpp::spivot(Osub& osub1, Osub& osub2, SubSeg& sptr)
 {
-  sptr = osub1.m_subseg[osub1.m_subseg_orient];
+  sptr = osub1.m_subsegs[osub1.m_subseg_orient];
   sdecode(sptr, osub2);
 }
 
@@ -112,7 +112,7 @@ void ribi::tricpp::snext(Osub& osub1, Osub& osub2, SubSeg& sptr)
 void ribi::tricpp::snextself(Osub& osub, SubSeg& sptr)
 {
   assert(!"Does not change the pointer");
-  sptr = (osub).m_subseg[1 - (osub).m_subseg_orient];
+  sptr = (osub).m_subsegs[1 - (osub).m_subseg_orient];
   sdecode(sptr, osub);
 }
 
@@ -158,7 +158,7 @@ void ribi::tricpp::stpivot(Osub& osub, Otri& otri)
 void ribi::tricpp::tsbond(Otri& otri, Osub& osub)
 {
   otri.m_tri[6 + (otri).m_orient] = (Triangle) sencode(osub);
-  osub.m_subseg[6 + (osub).m_subseg_orient] = (SubSeg) encode(otri);
+  osub.m_subsegs[6 + (osub).m_subseg_orient] = (SubSeg) encode(otri);
 }
 
 /*
@@ -183,7 +183,7 @@ void ribi::tricpp::tsdissolve(Otri& otri, SubSeg& m_m_dummysub)
 
 void ribi::tricpp::stdissolve(Osub& osub, Triangle& m_m_dummytri)
 {
-  osub.m_subseg[6 + osub.m_subseg_orient] = m.m_dummytri;
+  osub.m_subsegs[6 + osub.m_subseg_orient] = m.m_dummytri;
 }
 
 /*

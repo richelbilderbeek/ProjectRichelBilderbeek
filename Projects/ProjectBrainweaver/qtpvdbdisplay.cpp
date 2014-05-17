@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QHeaderView>
 #include <QTableWidget>
 
+#include "conceptmapcompetencies.h"
 #include "conceptmapcompetency.h"
 #include "conceptmapconcept.h"
 #include "conceptmap.h"
@@ -107,7 +108,7 @@ void ribi::pvdb::QtDisplay::DisplayExamples(
     for(int i=0; i!=n_rows; ++i)
     {
       const cmap::Competency competency = static_cast<cmap::Competency>(i + 1); //Skip 0 == uninitialized
-      const std::string text = cmap::CompetencyToDutchStr(competency);
+      const std::string text = cmap::Competencies().ToStrDutch(competency);
       const QIcon icon = cmap::QtCompetency::CompetencyToIcon(competency);
       QTableWidgetItem * const item = new QTableWidgetItem;
       item->setText(text.c_str());

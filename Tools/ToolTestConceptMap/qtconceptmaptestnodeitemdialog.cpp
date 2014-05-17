@@ -12,19 +12,20 @@
 
 #include <boost/lexical_cast.hpp>
 #include <QKeyEvent>
+#include "conceptmapcompetencies.h"
+#include "conceptmapconcept.h"
+#include "conceptmapexample.h"
+#include "conceptmapexamples.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapnode.h"
+#include "qtconceptmapbrushfactory.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
-#include "qtconceptmapratestrategy.h"
-#include "conceptmapnodefactory.h"
-#include "qtconceptmapdisplaystrategy.h"
-#include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapnode.h"
-#include "conceptmapexamples.h"
-#include "conceptmapexample.h"
-#include "ui_qtconceptmaptestnodeitemdialog.h"
-#include "conceptmapconcept.h"
-#include "conceptmapnode.h"
+#include "qtconceptmapratestrategy.h"
 #include "trace.h"
+#include "ui_qtconceptmaptestnodeitemdialog.h"
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidget *parent) :
@@ -111,11 +112,11 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   m_rate_node->SetPos(   0.0, 40.0);
 
   {
-    const std::vector<cmap::Competency> v = cmap::GetAllCompetencies();
+    const std::vector<cmap::Competency> v = Competencies().GetAllCompetencies();
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
-      ui->box_competency->addItem(cmap::CompetencyToDutchStr(v[i]).c_str());
+      ui->box_competency->addItem(Competencies().ToStrDutch(v[i]).c_str());
     }
   }
 

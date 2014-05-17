@@ -11,17 +11,16 @@
 
 #include <QKeyEvent>
 
-#include "conceptmapcompetencies.h"
-#include "conceptmapconceptfactory.h"
-#include "conceptmapconcept.h"
-#include "conceptmapexample.h"
-#include "conceptmapexamples.h"
-#include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
+#include "qtconceptmapbrushfactory.h"
+#include "conceptmapconcept.h"
 #include "qtconceptmapratestrategy.h"
-#include "trace.h"
+#include "conceptmapexamples.h"
+#include "conceptmapexample.h"
 #include "ui_qtconceptmaptestconceptitemdialog.h"
+#include "conceptmapconceptfactory.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtConceptMapTestConceptItemDialog::QtConceptMapTestConceptItemDialog(QWidget *parent) :
@@ -83,11 +82,11 @@ ribi::cmap::QtConceptMapTestConceptItemDialog::QtConceptMapTestConceptItemDialog
   assert(dynamic_cast<cmap::QtItemDisplayStrategy*>(ui->view->scene()->items()[2]));
 
   {
-    const std::vector<cmap::Competency> v = Competencies().GetAllCompetencies();
+    const std::vector<cmap::Competency> v = cmap::GetAllCompetencies();
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
-      ui->box_competency->addItem(Competencies().ToStrDutch(v[i]).c_str());
+      ui->box_competency->addItem(cmap::CompetencyToDutchStr(v[i]).c_str());
     }
   }
 

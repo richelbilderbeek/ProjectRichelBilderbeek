@@ -104,7 +104,7 @@ void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapElement* const i
   }
 }
 
-void ribi::cmap::QtExamplesItem::SetExamples(const boost::shared_ptr<const cmap::Examples>& examples)
+void ribi::cmap::QtExamplesItem::SetExamples(const boost::shared_ptr<const ribi::cmap::Examples>& examples)
 {
   std::vector<std::string> v;
   for (const boost::shared_ptr<const cmap::Example> example: examples->Get())

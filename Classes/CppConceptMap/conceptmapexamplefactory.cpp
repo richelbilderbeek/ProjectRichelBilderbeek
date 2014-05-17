@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include <boost/lexical_cast.hpp>
-
+#include <boost/make_shared.hpp>
 #include <QRegExp>
 
 #include "conceptmaphelper.h"
@@ -35,15 +35,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::Create(
+boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::Create(
   const std::string& text,
   const cmap::Competency& competency,
   const bool is_complex,
   const bool is_concrete,
-  const bool is_specific)
+  const bool is_specific
+) const noexcept
 {
-  boost::shared_ptr<cmap::Example> example(
+  boost::shared_ptr<Example> example(
     new Example(
+      *this,
       text,
       competency,
       is_complex,
@@ -55,7 +57,7 @@ const boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::Create(
   return example;
 }
 
-boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::FromXml(const std::string& s)
+boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::FromXml(const std::string& s) const noexcept
 {
   assert(s.size() >= 17);
   assert(s.substr(0,9) == "<example>");
@@ -98,21 +100,21 @@ boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::FromXml(const
     text = ribi::xml::StripXmlTag(v[0]);
   }
 
-  const boost::shared_ptr<Example> example {
-    Create(text,competency,is_complex,is_concrete,is_specific)
-  };
+  const boost::shared_ptr<Example> example
+    = Create(text,competency,is_complex,is_concrete,is_specific)
+  ;
   assert(example);
   assert(example->ToXml() == s);
   return example;
 }
 
-const boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::GetTest(const int i) const noexcept
+boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::GetTest(const int i) const noexcept
 {
   assert(i < GetNumberOfTests());
   return GetTests()[i];
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Example> > ribi::cmap::ExampleFactory::GetTests() const noexcept
+std::vector<boost::shared_ptr<ribi::cmap::Example>> ribi::cmap::ExampleFactory::GetTests() const noexcept
 {
   return
   {

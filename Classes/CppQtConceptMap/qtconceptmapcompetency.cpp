@@ -24,8 +24,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtconceptmapcompetency.h"
 
-// /home/richel/ProjectRichelBilderbeek/Classes/CppQtConceptMap/qtconceptmapcompetency.cpp
 #include <cassert>
+
+#include "conceptmapcompetencies.h"
 
 #include <QImage>
 #include <QPixmap>
@@ -149,7 +150,7 @@ void ribi::cmap::QtCompetency::Test() noexcept
   }
   //Conversion between QColor and cmap::Competency
   {
-    const std::vector<cmap::Competency> v = cmap::GetAllCompetencies();
+    const std::vector<cmap::Competency> v = Competencies().GetAllCompetencies();
     std::for_each(v.begin(),v.end(),
       [](const cmap::Competency& competency)
       {
@@ -160,7 +161,7 @@ void ribi::cmap::QtCompetency::Test() noexcept
   }
   //Conversion between QIcon and cmap::Competency
   {
-    const std::vector<cmap::Competency> v = cmap::GetAllCompetencies();
+    const std::vector<cmap::Competency> v = Competencies().GetAllCompetencies();
     std::for_each(v.begin(),v.end(),
       [](const cmap::Competency& competency)
       {

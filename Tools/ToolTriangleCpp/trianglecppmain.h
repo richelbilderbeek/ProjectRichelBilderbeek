@@ -33,8 +33,8 @@ void alternateaxes(
   int axis
 );
 
-/// badsubsegdealloc()   Deallocate space for a bad subsegment, marking it
-///                      dead.
+/// Deallocate space for a bad subsegment, marking it
+/// dead.
 void badsubsegdealloc(
   //Mesh& m,
   std::vector<BadSubSeg>& m_badsubsegs,
@@ -49,8 +49,7 @@ void badsubsegdealloc(
 /// The vertices at "infinity" are assigned finite coordinates, which are
 /// used by the point location routines, but (mostly) ignored by the
 /// Delaunay edge flip routines.
-void boundingbox(Mesh& m, const Behavior& b
-);
+void boundingbox(Mesh& m, const Behavior& b);
 
 /// carveholes()   Find the holes and infect them.  Find the area
 ///                constraints and infect them.  Infect the convex hull.
@@ -59,8 +58,6 @@ void boundingbox(Mesh& m, const Behavior& b
 ///
 /// This routine mainly calls other routines to carry out all these
 /// functions.
-
-
 void carveholes(
   Mesh& m,
   const Behavior& b,
@@ -78,12 +75,20 @@ void check4deadevent(
 );
 
 ///Ensure that the mesh is (constrained) Delaunay.
-void checkdelaunay(Mesh& m, Behavior& b);
+void checkdelaunay(
+  Mesh& m,
+  int& m_m_incirclecount
+  //const bool m_m_noexact,
+  //Behavior& b
+);
 
 ///Test the mesh for topological consistency.
 void checkmesh(
   Mesh& m,
-  Behavior& b
+  //const std::vector<boost::shared_ptr<Triangle>>& m_m_triangles,
+  int& m_m_counterclockcount
+  //Behavior& b
+  //const bool b_m_noexact
 );
 
 /// Check a subsegment to see if it is encroached; add
@@ -756,8 +761,8 @@ LocateResult locate(
 ///Create a new subsegment with orientation zero.
 void makesubseg(
   //Mesh& m,
-  Triangle& m_m_dummytri,
-  SubSeg& m_m_dummysub,
+  boost::shared_ptr<Triangle>& m_m_dummytri,
+  boost::shared_ptr<SubSeg>& m_m_dummysub,
   Osub& newsubseg
 );
 
@@ -848,8 +853,10 @@ void mergehulls(
 /// heights are already provided, so the 3D orientation test is applied
 /// directly.  If neither switch is used, the incircle test is applied.
 double nonregular(
-  Mesh& m,
-  const Behavior& b,
+  //Mesh& m,
+  int& m_m_incirclecount,
+  //const Behavior& b,
+  const bool b_m_noexact,
   const Vertex& pa,
   const Vertex& pb,
   const Vertex& pc,
@@ -866,7 +873,8 @@ void numbernodes(Mesh& m, const Behavior& b);
 double orient3d(
   //Mesh& m,
   int& m_m_orient3dcount,
-  const Behavior& b,
+  const bool b_m_noexact,
+  //const Behavior& b,
   const Vertex& pa,
   const Vertex& pb,
   const Vertex& pc,

@@ -6,6 +6,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <vector>
+#include <boost/shared_ptr.hpp>
 #include "trianglecppfwd.h"
 #pragma GCC diagnostic pop
 
@@ -24,10 +25,10 @@ struct SubSeg
   bool IsDead() const noexcept;
   void KillMe() noexcept;
   void SetBoundaryMarker(const int value) noexcept;
-  void SetSubSeg(SubSeg * const subseg, const int index);
-  void SetTriangle(Triangle * const triangle, const int index);
-  std::vector<SubSeg> m_subsegs;
-  std::vector<Triangle> m_triangles;
+  void SetSubSeg(const boost::shared_ptr<SubSeg>& subseg, const int index);
+  void SetTriangle(const boost::shared_ptr<Triangle>& triangle, const int index);
+  std::vector<boost::shared_ptr<SubSeg>> m_subsegs;
+  std::vector<boost::shared_ptr<Triangle>> m_triangles;
 
   private:
   int m_boundary_marker;

@@ -34,6 +34,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace cmap {
 
+
+///QtExamplesItem displays an Examples
 struct QtExamplesItem : public QtRoundedEditRectItem
 {
   QtExamplesItem(QGraphicsItem* parent = 0);
@@ -49,6 +51,7 @@ struct QtExamplesItem : public QtRoundedEditRectItem
 
   ///Request update of QGraphicsScene, because this item has changed
   mutable boost::signals2::signal<void() > m_signal_request_scene_update;
+  ///The competency, as might be judged by an assessor
 
 protected:
 
@@ -63,7 +66,7 @@ private:
   ///Item has updated, Examples must follow
   void OnItemUpdated();
 
-  void SetExamples(const boost::shared_ptr<const cmap::Examples>& examples);
+  void SetExamples(const boost::shared_ptr<const Examples>& examples);
 };
 
 } //~namespace cmap

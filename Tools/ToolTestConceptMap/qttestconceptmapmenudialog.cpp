@@ -110,3 +110,9 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_conceptmapwidget_clicked(
   QtTestConceptMapWidgetDialog d;
   this->ShowChild(&d);
 }
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_example_clicked()
+{
+  QtConceptMapTestExampleDialog d;
+  this->ShowChild(&d);
+}

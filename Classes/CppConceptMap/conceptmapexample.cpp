@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "conceptmapexample.h"
 
 #include <cassert>
@@ -30,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #include <QRegExp>
 
+#include "conceptmapcompetencies.h"
+#include "conceptmapcompetency.h"
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmaphelper.h"
@@ -38,6 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::Example::Example(
+  const ExampleFactory&,
   const std::string& text,
   const cmap::Competency competency,
   const bool is_complex,
@@ -45,6 +49,9 @@ ribi::cmap::Example::Example(
   const bool is_specific
   )
   : m_signal_competency_changed{},
+    m_signal_is_complex_changed{},
+    m_signal_is_concrete_changed{},
+    m_signal_is_specific_changed{},
     m_signal_text_changed{},
     m_competency(competency),
     m_is_complex(is_complex),
@@ -57,6 +64,7 @@ ribi::cmap::Example::Example(
   #endif
 }
 
+/*
 std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competency) noexcept
 {
   switch (competency)
@@ -73,7 +81,7 @@ std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competen
   assert(!"Should not get here");
   throw std::logic_error("ribi::cmap::Example::CompetencyToStr: unknown Competency");
 }
-
+*/
 
 void ribi::cmap::Example::SetCompetency(const cmap::Competency competency) noexcept
 {
@@ -81,6 +89,33 @@ void ribi::cmap::Example::SetCompetency(const cmap::Competency competency) noexc
   {
     m_competency = competency;
     m_signal_competency_changed(this);
+  }
+}
+
+void ribi::cmap::Example::SetIsComplex(const bool is_complex) noexcept
+{
+  if (m_is_complex != is_complex)
+  {
+    m_is_complex = is_complex;
+    m_signal_is_complex_changed(this);
+  }
+}
+
+void ribi::cmap::Example::SetIsConcrete(const bool is_concrete) noexcept
+{
+  if (m_is_concrete != is_concrete)
+  {
+    m_is_concrete = is_concrete;
+    m_signal_is_concrete_changed(this);
+  }
+}
+
+void ribi::cmap::Example::SetIsSpecific(const bool is_specific) noexcept
+{
+  if (m_is_specific != is_specific)
+  {
+    m_is_specific = is_specific;
+    m_signal_is_specific_changed(this);
   }
 }
 
@@ -107,6 +142,7 @@ ribi::cmap::Competency ribi::cmap::Example::StrToCompetency(const std::string& s
   throw std::logic_error("ribi::cmap::Example::StrToCompetency: unknown string");
 }
 
+#ifndef NDEBUG
 void ribi::cmap::Example::Test() noexcept
 {
   {
@@ -120,7 +156,7 @@ void ribi::cmap::Example::Test() noexcept
     const int sz = ExampleFactory().GetNumberOfTests();
     for (int i=0; i!=sz; ++i)
     {
-      boost::shared_ptr<const cmap::Example> a = ExampleFactory().GetTest(i);
+      boost::shared_ptr<const Example> a = ExampleFactory().GetTest(i);
       boost::shared_ptr<      Example> b = ExampleFactory().GetTest(i);
       assert(*a == *a);
       assert(*a == *b);
@@ -128,8 +164,8 @@ void ribi::cmap::Example::Test() noexcept
       assert(*b == *b);
       for (int j=0; j!=sz; ++j)
       {
-        boost::shared_ptr<const cmap::Example> c = cmap::ExampleFactory().GetTest(j);
-        boost::shared_ptr<      Example> d = cmap::ExampleFactory().GetTest(j);
+        boost::shared_ptr<const Example> c = ExampleFactory().GetTest(j);
+        boost::shared_ptr<      Example> d = ExampleFactory().GetTest(j);
         assert(*c == *c);
         assert(*c == *d);
         assert(*d == *c);
@@ -153,14 +189,16 @@ void ribi::cmap::Example::Test() noexcept
   }
   //Test if unrated and rated examples are noticed as different
   {
-    const boost::shared_ptr<cmap::Example> a = ExampleFactory::Create("1",Competency::misc);
-    const boost::shared_ptr<cmap::Example> b = ExampleFactory::Create("1",Competency::misc);
-    const boost::shared_ptr<cmap::Example> c = ExampleFactory::Create("1",Competency::uninitialized);
+    const boost::shared_ptr<Example> a = ExampleFactory().Create("1",Competency::misc);
+    const boost::shared_ptr<Example> b = ExampleFactory().Create("1",Competency::misc);
+    const boost::shared_ptr<Example> c = ExampleFactory().Create("1",Competency::uninitialized);
     assert(*a == *a); assert(*a == *b); assert(*a != *c);
     assert(*b == *a); assert(*b == *b); assert(*b != *c);
     assert(*c != *a); assert(*c != *b); assert(*c == *c);
   }
   //Conversion between std::string and competency
+  //Checked by Competencies
+  /*
   {
     const std::vector<Competency> v
       =
@@ -178,7 +216,7 @@ void ribi::cmap::Example::Test() noexcept
     std::transform(v.begin(),v.end(),std::back_inserter(w),
       [](const cmap::Competency& c)
       {
-        return ribi::cmap::Example::CompetencyToStr(c);
+        return ribi::Example::CompetencyToStr(c);
       }
     );
     std::vector<Competency> x;
@@ -190,6 +228,7 @@ void ribi::cmap::Example::Test() noexcept
     );
     assert(v == x);
   }
+  */
   //Conversion between class and XML, test for equality
   {
     const std::vector<boost::shared_ptr<const Example> > v = AddConst(ExampleFactory().GetTests());
@@ -229,6 +268,7 @@ void ribi::cmap::Example::Test() noexcept
   }
   TRACE("Example::Test finished successfully");
 }
+#endif
 
 std::string ribi::cmap::Example::ToXml() const noexcept
 {
@@ -238,7 +278,8 @@ std::string ribi::cmap::Example::ToXml() const noexcept
   s <<     GetText();
   s <<   "</text>";
   s <<   "<competency>";
-  s <<     CompetencyToStr(GetCompetency());
+  s << Competencies().ToStr(GetCompetency());
+  //s <<     CompetencyToStr(GetCompetency());
   s <<   "</competency>";
   s <<   "<is_complex>";
   s <<     GetIsComplex();

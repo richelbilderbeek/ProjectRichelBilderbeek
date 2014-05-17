@@ -35,8 +35,8 @@ struct Osub
   void SetOrigin(const SubSeg subseg) noexcept;
 
   void SetSubsegOrient(const int subseg_orient) noexcept;
-  std::vector<SubSeg> m_subseg;
-  std::vector<Triangle> m_triangles;
+  std::vector<boost::shared_ptr<SubSeg>> m_subsegs; //Origanaly called 'm_sugseg', yet it must be a std::vector
+  std::vector<boost::shared_ptr<Triangle>> m_triangles;
   private:
   int morient;
   /// Ranges from 0 to 1

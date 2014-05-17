@@ -11,6 +11,7 @@
 
 #include <QKeyEvent>
 
+#include "conceptmapcompetencies.h"
 #include "conceptmapcompetency.h"
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
@@ -80,7 +81,7 @@ void ribi::cmap::QtTestRateConceptMapDialog::DoSomethingRandom()
           {
             if ( (std::rand() >> 4) % 2)
             {
-              const std::vector<cmap::Competency> w = cmap::GetAllCompetencies();
+              const std::vector<cmap::Competency> w = Competencies().GetAllCompetencies();
               example->SetCompetency(w[ std::rand() % w.size() ]);
             }
             else

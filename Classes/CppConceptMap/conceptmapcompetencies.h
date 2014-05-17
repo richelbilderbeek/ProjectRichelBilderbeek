@@ -18,50 +18,48 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-#ifndef CONCEPTMAPEXAMPLEFACTORY_H
-#define CONCEPTMAPEXAMPLEFACTORY_H
+#ifndef CONCEPTMAPCOMPETENCIES_H
+#define CONCEPTMAPCOMPETENCIES_H
 
+#include <string>
 #include <vector>
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <boost/shared_ptr.hpp>
+#include <boost/bimap.hpp>
+
 #include "conceptmapcompetency.h"
-#include "conceptmapexample.h"
-#include "conceptmapexamples.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 namespace cmap {
 
-struct ExampleFactory
+///Functions to work on with the Competency enumeration
+struct Competencies
 {
-  ExampleFactory() {}
+  Competencies();
+  std::vector<Competency> GetAllCompetencies() const noexcept;
+  int ToIndex(const Competency competency) const noexcept;
+  std::string ToStrDutch(const Competency competency) const noexcept;
+  std::string ToStr(const Competency competency) const noexcept;
+  Competency ToTypeFromDutch(const std::string& dutch_string) const noexcept;
+  Competency ToType(const std::string& s) const noexcept;
 
-  ///Create an example from string and enum
-  boost::shared_ptr<cmap::Example> Create(
-    const std::string& text,
-    const cmap::Competency& competency,
-    const bool is_complex = true,
-    const bool is_concrete = true,
-    const bool is_specific = true
-  ) const noexcept;
+  private:
+  static boost::bimap<Competency,std::string> m_map_dutch;
+  static boost::bimap<Competency,std::string> m_map_english;
+  static boost::bimap<Competency,std::string> CreateMapDutch() noexcept;
+  static boost::bimap<Competency,std::string> CreateMapEnglish() noexcept;
 
-  ///Create examples for strings
-  ///Note that all cmap::Competency values are set to uninitialized
-  //static const std::vector<boost::shared_ptr<cmap::Example> > CreateExamples(const std::vector<std::string>& v);
-
-  ///Create an example from XML
-  boost::shared_ptr<Example> FromXml(const std::string& s) const noexcept;
-
-  int GetNumberOfTests() const noexcept { return static_cast<int>(GetTests().size()); }
-  boost::shared_ptr<Example> GetTest(const int i) const noexcept;
-  std::vector<boost::shared_ptr<Example>> GetTests() const noexcept;
-
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // CONCEPTMAPEXAMPLEFACTORY_H
+
+#endif // CONCEPTMAPCOMPETENCIES_H

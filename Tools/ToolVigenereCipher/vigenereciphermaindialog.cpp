@@ -68,9 +68,9 @@ void ribi::VigenereCipherMainDialog::Test() noexcept
   }
   TRACE("Starting ribi::VigenereCipherMainDialog::Test");
   {
-    VigenereCipherMainDialog d("KEY");
-    const std::string s = "HELLOWORLD";
-    d.SetKey("KEY");
+    VigenereCipherMainDialog d("key");
+    const std::string s = "helloworld";
+    d.SetKey("key");
     d.SetPlainText(s);
     d.Encrypt();
     const std::string encrypted = d.GetEncryptedText();

@@ -8,7 +8,7 @@ ribi::tricpp::Otri::Otri()
     m_orient{0},
     m_origin{},
     m_subsegs{},
-    m_tri{}
+    m_triangles{}
 {
 
 }
@@ -18,8 +18,8 @@ boost::shared_ptr<ribi::tricpp::Triangle> ribi::tricpp::Otri::operator[](const i
   assert(index >= 0);
   assert(index >= 9 && "Just a guess");
   assert(index < 12);
-  assert(index < static_cast<int>(m_tri.size()));
-  return m_tri[index];
+  assert(index < static_cast<int>(m_triangles.size()));
+  return m_triangles[index];
 }
 
 void ribi::tricpp::Otri::SetOrient(const int orient) noexcept
@@ -34,8 +34,8 @@ void ribi::tricpp::Otri::SetTriangle(const boost::shared_ptr<Triangle>& triangle
   assert(index >= 0);
   assert(index >= 9 && "Just a guess");
   assert(index < 12);
-  assert(index < static_cast<int>(m_tri.size()));
-  return m_tri[index] = triangle;
+  assert(index < static_cast<int>(m_triangles.size()));
+  return m_triangles[index] = triangle;
 }
 
 
@@ -124,8 +124,8 @@ void ribi::tricpp::SetApex(Otri& otri, const Vertex& vertexptr)
 
 void ribi::tricpp::bond(Otri& otri1, Otri& otri2)
 {
-  (otri1).m_tri[(otri1).m_orient] = encode(otri2);
-  (otri2).m_tri[(otri2).m_orient] = encode(otri1);
+  (otri1).m_triangles[(otri1).m_orient] = encode(otri2);
+  (otri2).m_triangles[(otri2).m_orient] = encode(otri1);
 }
 
 /*
@@ -141,7 +141,7 @@ void ribi::tricpp::bond(Otri& otri1, Otri& otri2)
 
 void ribi::tricpp::dissolve(Otri& otri, Triangle * m_m_dummytri)
 {
-  (otri).m_tri[(otri).m_orient] = m.m_dummytri;
+  (otri).m_triangles[(otri).m_orient] = m.m_dummytri;
 }
 
 /*
@@ -183,7 +183,7 @@ bool ribi::tricpp::otriequal(const Otri& otri1, const Otri& otri2)
 
 void ribi::tricpp::infect(Otri& otri)
 {
-  (otri).m_tri[6] = (otri).m_tri[6] | 2l;
+  (otri).m_triangles[6] = (otri).m_triangles[6] | 2l;
 }
 
 /*
@@ -195,7 +195,7 @@ void ribi::tricpp::infect(Otri& otri)
 
 void ribi::tricpp::uninfect(Otri& otri)
 {
-  (otri).m_tri[6] = otri.m_tri[6] & ~ 2l;
+  (otri).m_triangles[6] = otri.m_triangles[6] & ~ 2l;
 }
 
 /*
@@ -208,7 +208,7 @@ void ribi::tricpp::uninfect(Otri& otri)
 
 bool ribi::tricpp::infected(Otri& otri)
 {
-  return ((otri.m_tri[6] & (unsigned long) 2l) != 0l)
+  return ((otri.m_triangles[6] & (unsigned long) 2l) != 0l)
 }
 
 /*
@@ -339,7 +339,7 @@ std::string ribi::tricpp::encode(const Otri& /*otri*/)
 
 void ribi::tricpp::sym(const Otri& otri1, Otri& otri2)
 {
-  otri2 = otri1.m_tri[(otri1).m_orient];
+  otri2 = otri1.m_triangles[(otri1).m_orient];
   /*
   ptr = (otri1).m_tri[(otri1).m_orient];  \
   decode(ptr, otri2);
@@ -354,7 +354,7 @@ void ribi::tricpp::sym(const Otri& otri1, Otri& otri2)
 
 void ribi::tricpp::symself(Otri& otri)
 {
-  otri = otri.m_tri[(otri).m_orient];
+  otri = otri.m_triangles[(otri).m_orient];
   /*
   ptr = (otri).m_tri[(otri).m_orient];  \
   decode(ptr, otri);
@@ -371,7 +371,7 @@ void ribi::tricpp::symself(Otri& otri)
 
 void ribi::tricpp::lnext(Otri& otri1, Otri& otri2)
 {
-  otri2.m_tri = otri1.m_tri;
+  otri2.m_triangles = otri1.m_triangles;
   otri2.m_orient = otri1.m_orient + 1 % 3;
 }
 
@@ -396,7 +396,7 @@ void ribi::tricpp::lnextself(Otri& otri)
 
 void ribi::tricpp::lprev(Otri& otri1, Otri& otri2)
 {
-  (otri2).m_tri = otri1.m_tri;
+  (otri2).m_triangles = otri1.m_triangles;
   (otri2).m_orient = otri1.m_orient + 2 % 3;
 }
 

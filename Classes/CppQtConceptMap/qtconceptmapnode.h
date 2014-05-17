@@ -36,7 +36,7 @@ namespace ribi {
 
 namespace cmap {
 
-///QtNode displays a Node
+///QtNode displays a Node as a QtConceptMapElement
 struct QtNode : public QtConceptMapElement
 {
   virtual ~QtNode() noexcept {}

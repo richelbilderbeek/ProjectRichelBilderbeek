@@ -37,8 +37,8 @@ struct Triangle
   void KillMe() noexcept;
 
   bool m_is_dead;
-  std::vector<SubSeg> m_subsegs;
-  std::vector<Triangle> m_triangles;
+  std::vector<boost::shared_ptr<SubSeg>> m_subsegs;
+  std::vector<boost::shared_ptr<Triangle>> m_triangles;
 };
 
 bool operator==(const Triangle& lhs, const Triangle& rhs) noexcept;

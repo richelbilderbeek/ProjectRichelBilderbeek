@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTestTicTacToeMenuDialog</class>
- <widget class="QDialog" name="QtTestTicTacToeMenuDialog">
+ <class>QtTestHideAndShowMenuDialog</class>
+ <widget class="QDialog" name="QtTestHideAndShowMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>334</width>
-    <height>219</height>
+    <height>225</height>
    </rect>
   </property>
   <property name="font">
@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>TestTicTacToe</string>
+   <string>TestHideAndShowDialog</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 

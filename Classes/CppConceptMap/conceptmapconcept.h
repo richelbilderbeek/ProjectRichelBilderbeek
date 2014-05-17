@@ -40,6 +40,12 @@ namespace cmap {
 struct ConceptFactory;
 
 ///A Concept is a class that has a name and examples
+///A Concept is a Node without coordinats
+///A Concept is an Edge without coordinats, source and target
+///A Concept is the GUI independent part of a concept. It is displayed as:
+/// - QtConceptDialog (as a QDialog, to be used in a QDialog)
+/// - (as part of QtNode)
+/// - (as part of QtEdge)
 struct Concept
 {
   ///Block copying, as signals cannot be copied

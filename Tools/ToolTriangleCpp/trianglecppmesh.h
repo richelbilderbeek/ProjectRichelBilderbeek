@@ -44,9 +44,9 @@ struct Mesh
   long m_circumcentercount;  /// Number of circumcenter calculations performed.
   long m_counterclockcount;     /// Number of counterclockwise tests performed.
   //static const bool m_do_readnodefile = false;          /// Has a .node file been read?
-  SubSeg m_dummysub; /// Pointer to the omnipresent subsegment.  Referenced by any triangle or ///   subsegment that isn't really connected to a subsegment at that ///   location.
+  boost::shared_ptr<SubSeg> m_dummysub; /// Pointer to the omnipresent subsegment.  Referenced by any triangle or ///   subsegment that isn't really connected to a subsegment at that ///   location.
   //SubSeg * m_dummysubbase;      /// Keep base address so we can free() it later.
-  Triangle m_dummytri; /// Pointer to the `triangle' that occupies all of "outer space."
+  boost::shared_ptr<Triangle> m_dummytri; /// Pointer to the `triangle' that occupies all of "outer space."
   //Triangle *m_dummytribase;    /// Keep base address so we can free() it later.
   long m_edges;                                     /// Number of output edges.
   int m_eextras;                         /// Number of attributes per triangle.
@@ -87,7 +87,7 @@ struct Mesh
   //MemoryPool m_subsegs;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   std::vector<SubSeg> m_subsegs;
   //MemoryPool m_triangles;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
-  std::vector<Triangle> m_triangles;
+  std::vector<boost::shared_ptr<Triangle>> m_triangles;
   int m_undeads;    /// Number of input vertices that don't appear in the mesh.
   //static const int m_vertex2triindex = 3; //TODO: REMOVE    /// Index to find a triangle adjacent to a vertex.
   //static const int m_vertexmarkindex = 1; //TODO: REMOVE        /// Index to find boundary marker of a vertex.

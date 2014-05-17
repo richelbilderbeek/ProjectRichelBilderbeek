@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtVigenereCipherMainDialog::QtVigenereCipherMainDialog(QWidget *parent) noexcept
  :  QtHideAndShowDialog(parent),
     ui(new Ui::QtVigenereCipherMainDialog),
-    m_dialog(new VigenereCipherMainDialog("A"))
+    m_dialog(new VigenereCipherMainDialog("a"))
 {
   #ifndef NDEBUG
   Test();

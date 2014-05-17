@@ -49,8 +49,9 @@ struct Otri
   int m_orient; /// Ranges from 0 to 2
   Vertex m_origin;
   std::vector<boost::shared_ptr<SubSeg>> m_subsegs;
-  std::vector<boost::shared_ptr<Triangle>> m_tri;
+  std::vector<boost::shared_ptr<Triangle>> m_triangles; //Must be std::vector
 };
+
 
 void GetOrigin(const Otri& otri, Vertex& vertexptr);
 void GetDest(const Otri& otri, Vertex& vertexptr);
