@@ -76,7 +76,12 @@ ribi::cmap::QtEdge::QtEdge(
   if (dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to))
   {
     m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
+    #define TODO_ISSUE_212
+    #ifdef TODO_ISSUE_212
+    m_display_strategy->GetConcept()->SetName("");
+    #else // TODO_ISSUE_212
     m_display_strategy->GetConcept()->SetName(" ");
+    #endif
   }
   else
   {

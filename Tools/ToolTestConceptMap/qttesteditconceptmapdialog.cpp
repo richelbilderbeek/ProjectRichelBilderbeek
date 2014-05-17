@@ -157,7 +157,8 @@ void ribi::cmap::QtTestEditConceptMapDialog::DoSomethingRandom()
       if (QtEdge* const qtitem = dynamic_cast<QtEdge*>(item))
       {
         assert(qtitem->GetConcept());
-        assert(!qtitem->GetConcept()->GetName().empty());
+        assert( (!qtitem->GetConcept()->GetName().empty() || qtitem->GetConcept()->GetName().empty())
+          && "An item can contain no text: when connected to the center node");
         assert(qtitem->GetConcept()->GetExamples());
         qtitem->SetName(qtitem->GetConcept()->GetName() + "E");
         const std::vector<boost::shared_ptr<Examples> > v = ExamplesFactory().GetTests();
