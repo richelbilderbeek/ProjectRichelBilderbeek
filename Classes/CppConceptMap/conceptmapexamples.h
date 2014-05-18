@@ -44,17 +44,17 @@ struct Examples
   Examples& operator=(const Example& rhs) = delete;
 
 
-  std::vector<boost::shared_ptr<Example> >& Get() noexcept { return m_v; }
-  std::vector<boost::shared_ptr<const Example> > Get() const noexcept;
+  std::vector<boost::shared_ptr<Example>>& Get() noexcept { return m_v; }
+  std::vector<boost::shared_ptr<const Example>> Get() const noexcept;
 
   std::string ToXml() const noexcept;
 
   ///Something of one of the examples was changed
-  mutable boost::signals2::signal<void(const Examples*)> m_signal_examples_changed;
+  mutable boost::signals2::signal<void(Examples*)> m_signal_examples_changed;
 private:
-  ~Examples() noexcept {}
+  ~Examples() noexcept;
 
-  std::vector<boost::shared_ptr<Example> > m_v;
+  std::vector<boost::shared_ptr<Example>> m_v;
 
   //void Add(const boost::shared_ptr<cmap::Example>& example);
 

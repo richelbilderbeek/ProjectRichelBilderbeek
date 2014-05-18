@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>633</width>
-    <height>431</height>
+    <width>648</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="font">
@@ -73,6 +73,13 @@ QPushButton { font: 24px &quot;Courier New&quot;, courier, monospace }</string>
        <widget class="QPushButton" name="button_example">
         <property name="text">
          <string>E&amp;xample</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_examples">
+        <property name="text">
+         <string>Example&amp;s</string>
         </property>
        </widget>
       </item>

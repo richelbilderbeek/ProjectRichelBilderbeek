@@ -10,6 +10,7 @@
 #include "qtconceptmapviewtestsdialog.h"
 #include "qtconceptmaptestconceptitemdialog.h"
 #include "qtconceptmaptestexampledialog.h"
+#include "qtconceptmaptestexamplesdialog.h"
 #include "qtconceptmaptestedgeitemdialog.h"
 #include "qtconceptmaptestnodeitemdialog.h"
 #include "qttestconceptmapwidgetdialog.h"
@@ -116,5 +117,11 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_conceptmapwidget_clicked(
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_example_clicked()
 {
   QtConceptMapTestExampleDialog d;
+  this->ShowChild(&d);
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_examples_clicked()
+{
+  QtConceptMapTestExamplesDialog d;
   this->ShowChild(&d);
 }

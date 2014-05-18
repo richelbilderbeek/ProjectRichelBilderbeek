@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
-#ifndef QTCONCEPTMAPEXAMPLEDIALOG_H
-#define QTCONCEPTMAPEXAMPLEDIALOG_H
+#ifndef QTCONCEPTMAPEXAMPLESDIALOG_H
+#define QTCONCEPTMAPEXAMPLESDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -31,50 +31,38 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtExampleDialog; }
+namespace Ui { class QtExamplesDialog; }
 
 namespace ribi {
 namespace cmap {
 
-///Displays and modifies an Example
-class QtExampleDialog : public ribi::QtHideAndShowDialog
+///Displays and modifies Examples
+class QtExamplesDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtExampleDialog(QWidget *parent = 0);
-  QtExampleDialog(const QtExampleDialog&) = delete;
-  QtExampleDialog& operator=(const QtExampleDialog&) = delete;
-  ~QtExampleDialog();
+  explicit QtExamplesDialog(QWidget *parent = 0);
+  QtExamplesDialog(const QtExamplesDialog&) = delete;
+  QtExamplesDialog& operator=(const QtExamplesDialog&) = delete;
+  ~QtExamplesDialog();
 
-  void SetExample(const boost::shared_ptr<Example>& example);
-  boost::shared_ptr<Example> GetExample() const noexcept { return m_example; }
-
-private slots:
-  void on_box_competency_currentIndexChanged(int index);
-  void on_box_is_complex_stateChanged(int arg1);
-  void on_box_is_concrete_stateChanged(int arg1);
-  void on_box_is_specific_stateChanged(int arg1);
-  void on_edit_text_textChanged(const QString &arg1);
+  void SetExamples(const boost::shared_ptr<Examples>& examples);
+  boost::shared_ptr<Examples> GetExamples() const noexcept { return m_examples; }
 
 private:
-  Ui::QtExampleDialog *ui;
+  Ui::QtExamplesDialog *ui;
+  boost::shared_ptr<Examples> m_examples;
 
-  ///The Example to work on
-  boost::shared_ptr<Example> m_example;
-
-  void OnCompetencyChanged(const Example * const example);
-  void OnIsComplexChanged(const Example * const example);
-  void OnIsConcreteChanged(const Example * const example);
-  void OnIsSpecificChanged(const Example * const example);
-  void OnTextChanged(const Example * const example);
+  void OnExamplesChanged(Examples* const examples) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
 };
 
-} //~namespace cmap
 } //~namespace ribi
+} //~namespace cmap
 
-#endif // QTCONCEPTMAPEXAMPLEDIALOG_H
+#endif // QTCONCEPTMAPEXAMPLESDIALOG_H

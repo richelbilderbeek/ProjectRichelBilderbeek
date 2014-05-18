@@ -62,6 +62,15 @@ ribi::cmap::QtExampleDialog::~QtExampleDialog()
 
 void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& example)
 {
+  assert(example);
+  if (m_example == example) return;
+
+  const bool competency_changed = example->GetCompetency() == m_example->GetCompetency();
+  const bool is_complex_changed = example->GetIsComplex() == m_example->GetIsComplex();
+  const bool is_concrete_changed = example->GetIsConcrete() == m_example->GetIsConcrete();
+  const bool is_specific_changed = example->GetIsSpecific() == m_example->GetIsSpecific();
+  const bool text_changed = example->GetText() == m_example->GetText();
+
   //Disconnect m_example
   m_example->m_signal_competency_changed.disconnect(
     boost::bind(&ribi::cmap::QtExampleDialog::OnCompetencyChanged,this,boost::lambda::_1)
@@ -98,12 +107,12 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
     boost::bind(&ribi::cmap::QtExampleDialog::OnTextChanged,this,boost::lambda::_1)
   );
 
-  //Emit that everything has changed
-  m_example->m_signal_competency_changed(m_example.get());
-  m_example->m_signal_is_complex_changed(m_example.get());
-  m_example->m_signal_is_concrete_changed(m_example.get());
-  m_example->m_signal_is_specific_changed(m_example.get());
-  m_example->m_signal_text_changed(m_example.get());
+  //Emit everything that has changed
+  if (competency_changed) m_example->m_signal_competency_changed(m_example.get());
+  if (is_complex_changed) m_example->m_signal_is_complex_changed(m_example.get()); //RECURSIVE ERROR HIERO
+  if (is_concrete_changed) m_example->m_signal_is_concrete_changed(m_example.get());
+  if (is_specific_changed) m_example->m_signal_is_specific_changed(m_example.get());
+  if (text_changed) m_example->m_signal_text_changed(m_example.get());
 }
 
 void ribi::cmap::QtExampleDialog::OnCompetencyChanged(const Example * const example)

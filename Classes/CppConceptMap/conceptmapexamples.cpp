@@ -44,28 +44,53 @@ ribi::cmap::Examples::Examples(const std::vector<boost::shared_ptr<cmap::Example
   Test();
   #endif
 
-  std::for_each(m_v.begin(),m_v.end(),
-    [this](const boost::shared_ptr<Example>& example)
-    {
-      assert(example);
-      example->m_signal_competency_changed.connect(
-        boost::bind(
-          &Examples::OnExampleChanged,
-          this
-        )
-      );
-      example->m_signal_text_changed.connect(
-        boost::bind(
-          &Examples::OnExampleChanged,
-          this
-        )
-      );
-    }
-  );
+  for(auto example: m_v)
+  {
+    assert(example);
+    example->m_signal_competency_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_complex_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_concrete_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_specific_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_text_changed.connect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+  }
 
   assert(std::count_if(m_v.begin(),m_v.end(),
     [](const boost::shared_ptr<Example>& e) { return !e; }
     ) == 0 && "All Example instances must be initialized");
+}
+
+ribi::cmap::Examples::~Examples() noexcept
+{
+  for(auto example: m_v)
+  {
+    assert(example);
+    example->m_signal_competency_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_complex_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_concrete_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_is_specific_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+    example->m_signal_text_changed.disconnect(
+      boost::bind(&Examples::OnExampleChanged,this)
+    );
+  }
+
 }
 
 /*
@@ -99,7 +124,7 @@ std::vector<boost::shared_ptr<const ribi::cmap::Example> > ribi::cmap::Examples:
 
 void ribi::cmap::Examples::OnExampleChanged() noexcept
 {
-  m_signal_examples_changed(this);
+  m_signal_examples_changed(this); //RECURSIVE ERROR HIERO
 }
 
 void ribi::cmap::Examples::Test() noexcept
