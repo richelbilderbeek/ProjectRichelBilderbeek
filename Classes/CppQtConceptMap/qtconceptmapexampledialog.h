@@ -31,27 +31,27 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapExampleDialog; }
+namespace Ui { class QtExampleDialog; }
 
 namespace ribi {
 namespace cmap {
 
 ///Displays and modifies an Example
-class QtConceptMapExampleDialog : public ribi::QtHideAndShowDialog
+class QtExampleDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtConceptMapExampleDialog(QWidget *parent = 0);
-  QtConceptMapExampleDialog(const QtConceptMapExampleDialog&) = delete;
-  QtConceptMapExampleDialog& operator=(const QtConceptMapExampleDialog&) = delete;
-  ~QtConceptMapExampleDialog();
+  explicit QtExampleDialog(QWidget *parent = 0);
+  QtExampleDialog(const QtExampleDialog&) = delete;
+  QtExampleDialog& operator=(const QtExampleDialog&) = delete;
+  ~QtExampleDialog();
 
   void SetExample(const boost::shared_ptr<Example>& example);
   boost::shared_ptr<Example> GetExample() const noexcept { return m_example; }
 
 private:
-  Ui::QtConceptMapExampleDialog *ui;
+  Ui::QtExampleDialog *ui;
 
   ///The Example to work on
   boost::shared_ptr<Example> m_example;

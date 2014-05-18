@@ -73,7 +73,9 @@ ribi::cmap::QtEdge::QtEdge(
   assert(m_from != m_to);
   //m_edge must be initialized before m_arrow
   //if 'from' or 'to' are CenterNodes, then no item must be put at the center
-  if (dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to))
+  const bool is_connected_to_center_node
+    = dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to);
+  if (is_connected_to_center_node)
   {
     m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
     #define TODO_ISSUE_212
@@ -135,8 +137,8 @@ ribi::cmap::QtEdge::QtEdge(
 
   //Signals
   m_arrow->m_signal_item_updated.connect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnItemHasUpdated,this));
+    boost::bind(&ribi::cmap::QtEdge::OnItemHasUpdated,this)
+  );
 
   m_edge->m_signal_edge_changed.connect(
     boost::bind(
@@ -154,8 +156,8 @@ ribi::cmap::QtEdge::QtEdge(
     boost::bind(
       &ribi::cmap::QtEdge::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
-  #ifdef TODO_ISSUE_192
-  if (!(dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to)))
+  #ifdef TODO_ISSUE_212
+  if (!is_connected_to_center_node)
   {
     //Only allow edges not connected to the center node to be edited
     assert(display_strategy);
@@ -184,6 +186,60 @@ ribi::cmap::QtEdge::QtEdge(
   assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
   assert(this->m_display_strategy->acceptHoverEvents());
   assert(this->m_arrow->acceptHoverEvents()); //Must remove the 's' in Qt5?
+}
+
+ribi::cmap::QtEdge::~QtEdge()
+{
+  //Disconnect signals
+  assert(m_from);
+  assert(m_to);
+  const bool is_connected_to_center_node
+    = dynamic_cast<QtCenterNode*>(m_from) || dynamic_cast<QtCenterNode*>(m_to);
+
+  m_arrow->m_signal_item_updated.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::OnItemHasUpdated,this)
+  );
+
+  m_edge->m_signal_edge_changed.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::OnEdgeChanged,this,boost::lambda::_1)
+  );
+
+  m_display_strategy->m_signal_item_has_updated.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::OnItemHasUpdated,this)
+  );
+
+  m_display_strategy->m_signal_request_scene_update.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::OnRequestSceneUpdate,this)
+  );
+
+  m_display_strategy->m_signal_position_changed.disconnect(
+    boost::bind(&ribi::cmap::QtEdge::SetPos,this,boost::lambda::_1,boost::lambda::_2)
+  );
+
+  #ifdef TODO_ISSUE_212
+  if (!is_connected_to_center_node)
+  {
+    //Only allow edges not connected to the center node to be edited
+    assert(m_display_strategy);
+    QtEditStrategy * const edit_concept = dynamic_cast<QtEditStrategy*>(m_display_strategy.get());
+    if (edit_concept)
+    {
+      edit_concept->m_signal_request_edit.disconnect(
+        boost::bind(&QtConceptMapElement::OnConceptRequestsEdit,this)
+      );
+    }
+  }
+  #else
+  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(display_strategy.get()))
+  {
+    edit_concept->m_signal_request_edit.disconnect(
+      boost::bind(
+        &QtConceptMapElement::OnConceptRequestsEdit,
+        this
+      )
+    );
+  }
+  #endif
 }
 
 QRectF ribi::cmap::QtEdge::boundingRect() const

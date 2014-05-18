@@ -17,12 +17,14 @@ namespace ribi {
 namespace cmap {
 
 ///Tests QtExampleDialog
-class QtConceptMapTestExampleDialog : public QDialog
+class QtConceptMapTestExampleDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtConceptMapTestExampleDialog(QWidget *parent = 0);
+  QtConceptMapTestExampleDialog(const QtConceptMapTestExampleDialog&) = delete;
+  QtConceptMapTestExampleDialog& operator=(const QtConceptMapTestExampleDialog&) = delete;
   ~QtConceptMapTestExampleDialog();
 
 private slots:
@@ -31,6 +33,7 @@ private slots:
 
 private:
   Ui::QtConceptMapTestExampleDialog *ui;
+  boost::shared_ptr<QtExampleDialog> m_example_dialog;
 };
 
 } //~namespace cmap

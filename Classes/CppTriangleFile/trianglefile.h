@@ -34,6 +34,8 @@ struct TriangleFile
   static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeTriangle(const double scale = 1.0) noexcept;
 
   ///Call Triangle
+  //#define TODO_ISSUE_207
+  #ifdef  TODO_ISSUE_207
   void ExecuteTriangle(
     std::string& node_filename,
     std::string& ele_filename,
@@ -43,8 +45,6 @@ struct TriangleFile
     const bool verbose = false
   ) const noexcept;
 
-  #define TODO_ISSUE_207
-  #ifdef  TODO_ISSUE_207
   ///Call Triangle its C++ equivalent
   void ExecuteTriangleCpp(
     std::string& node_filename,
@@ -57,6 +57,16 @@ struct TriangleFile
   #endif
   ///Executes Triangle.exe from a Windows command line
   void ExecuteTriangleExe(
+    std::string& node_filename,
+    std::string& ele_filename,
+    std::string& poly_filename,
+    const double quality = 30.0,
+    const double area = 2.0,
+    const bool verbose = false
+  ) const noexcept;
+
+  ///Executes TriangleCpp.exe from command line
+  void ExecuteTriangleCppExe(
     std::string& node_filename,
     std::string& ele_filename,
     std::string& poly_filename,

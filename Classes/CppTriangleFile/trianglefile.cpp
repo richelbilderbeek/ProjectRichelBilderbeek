@@ -13,7 +13,7 @@
 
 //#include "triangle.h"
 
-#define TODO_ISSUE_207
+//#define TODO_ISSUE_207
 #ifdef  TODO_ISSUE_207
 #include "trianglecppmain.h"
 #endif
@@ -139,6 +139,8 @@ void ribi::TriangleFile::DeleteArgv(const std::pair<int,char **>& p) noexcept
   delete[] p.second;
 }
 
+//#define TODO_ISSUE_207
+#ifdef  TODO_ISSUE_207
 void ribi::TriangleFile::ExecuteTriangle(
   std::string& node_filename,
   std::string& ele_filename,
@@ -157,8 +159,8 @@ void ribi::TriangleFile::ExecuteTriangle(
     f << this->ToStr();
   }
 
-  assert(fileio::FileIo().IsRegularFile(filename));
   const std::string exe_filename { "triangle.exe" };
+
 
   //Specific
   const std::string quality_str = boost::lexical_cast<std::string>(quality);
@@ -181,7 +183,7 @@ void ribi::TriangleFile::ExecuteTriangle(
     std::swap(cmd[cmd.size() - 1], cmd[cmd.size() - 2]);
   }
   const std::pair<int,char **> p = CreateArgv(cmd);
-  //triangle_main(p.first,p.second);
+  triangle_main(p.first,p.second);
   DeleteArgv(p);
   //End of specific part
 
@@ -195,8 +197,6 @@ void ribi::TriangleFile::ExecuteTriangle(
   fileio::FileIo().DeleteFile(filename);
 }
 
-#define TODO_ISSUE_207
-#ifdef  TODO_ISSUE_207
 void ribi::TriangleFile::ExecuteTriangleCpp(
   std::string& node_filename,
   std::string& ele_filename,
@@ -271,7 +271,13 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   }
 
   assert(fileio::FileIo().IsRegularFile(filename));
+
+  assert(fileio::FileIo().IsRegularFile(filename));
+  #ifdef _WIN32
   const std::string exe_filename { "triangle.exe" };
+  #else
+  const std::string exe_filename { "ToolTriangleConsole" };
+  #endif
 
   //Specific
   const std::string quality_str = boost::lexical_cast<std::string>(quality);
@@ -321,8 +327,9 @@ std::string ribi::TriangleFile::GetVersion() noexcept
 std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
 {
   return {
-    "2014-02-07: Version 1.0: initial version",
-    "2014-04-04: Version 1.1: allow to call Triangle its code directly"
+    "2014-02-07: Version 1.0: initial version, use of Windows executable only",
+    "2014-04-04: Version 1.1: allow to call Triangle its code directly",
+    "2014-05-18: Version 1.2: allow use of a Linux executable"
   };
 }
 
@@ -350,7 +357,12 @@ void ribi::TriangleFile::Test() noexcept
   std::string filename_node;
   std::string filename_ele;
   std::string filename_poly;
+  //#define TODO_ISSUE_207
+  #ifdef  TODO_ISSUE_207
   f.ExecuteTriangle(filename_node,filename_ele,filename_poly);
+  #else
+  f.ExecuteTriangleExe(filename_node,filename_ele,filename_poly);
+  #endif // TODO_ISSUE_207
   assert(fileio::FileIo().IsRegularFile(filename_node));
   assert(fileio::FileIo().IsRegularFile(filename_ele));
   assert(fileio::FileIo().IsRegularFile(filename_poly));

@@ -1,0 +1,1 @@
+Do not delete ToolTriangleConsole: it is used in the resources

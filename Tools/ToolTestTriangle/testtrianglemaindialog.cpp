@@ -75,8 +75,12 @@ ribi::TestTriangleMainDialog::TestTriangleMainDialog(
   std::string filename_poly;
   {
     ribi::TriangleFile f(shapes);
-    //const double area = 2.0;
+    //#define TODO_ISSUE_207
+    #ifdef  TODO_ISSUE_207
     f.ExecuteTriangle(
+    #else
+    f.ExecuteTriangleExe(
+    #endif
       filename_node,
       filename_ele,
       filename_poly,

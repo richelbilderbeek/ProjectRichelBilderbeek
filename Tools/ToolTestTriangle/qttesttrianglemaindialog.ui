@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>868</width>
-    <height>574</height>
+    <width>882</width>
+    <height>812</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -69,7 +69,7 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_shapes">
      <property name="text">
       <string>Shapes</string>
      </property>
@@ -79,7 +79,7 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_triangle">
      <property name="text">
       <string>Triangle</string>
      </property>
@@ -89,9 +89,9 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
     </widget>
    </item>
    <item row="1" column="2">
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="label_triangle_cpp">
      <property name="text">
-      <string>Triangle its C++ equivalent</string>
+      <string>TriangleC++</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -146,7 +146,59 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="3">
+   <item row="3" column="1">
+    <widget class="QLabel" name="label_triangle_exe">
+     <property name="text">
+      <string>Triangle.exe</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLabel" name="label_triangle_cpp_exe">
+     <property name="text">
+      <string>TriangleCpp.exe</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="ribi::QtNavigationableGraphicsView" name="view_triangle_mesh_exe">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>3</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="ribi::QtNavigationableGraphicsView" name="view_triangle_cpp_mesh_exe">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>3</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="3">
     <widget class="QGroupBox" name="box_parameters">
      <property name="title">
       <string/>
@@ -155,24 +207,7 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
       <item>
        <widget class="QLabel" name="label_triangle_quality">
         <property name="text">
-         <string>Triangle.exe quality</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDoubleSpinBox" name="box_triangle_quality">
-        <property name="maximum">
-         <double>10000.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>5.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_triangle_area">
-        <property name="text">
-         <string>Triangle.exe area</string>
+         <string>quality, maximum angle (degrees) </string>
         </property>
        </widget>
       </item>
@@ -186,6 +221,23 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
         </property>
         <property name="value">
          <double>2.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_triangle_area">
+        <property name="text">
+         <string>area maximum (m2)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="box_triangle_quality">
+        <property name="maximum">
+         <double>10000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>5.000000000000000</double>
         </property>
        </widget>
       </item>

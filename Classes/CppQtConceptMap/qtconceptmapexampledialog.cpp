@@ -31,68 +31,82 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "conceptmapcompetencies.h"
 #include "conceptmapexample.h"
+#include "conceptmapexamplefactory.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapExampleDialog::QtConceptMapExampleDialog(QWidget *parent) :
+ribi::cmap::QtExampleDialog::QtExampleDialog(QWidget *parent) :
   ribi::QtHideAndShowDialog(parent),
-  ui(new Ui::QtConceptMapExampleDialog),
-  m_example{}
+  ui(new Ui::QtExampleDialog),
+  m_example{ExampleFactory().GetTest(0)}
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
-
-  ///The competency, as might be judged by an assessor
-  //Competency m_competency;
-
-  ///Has an assessor rated this example as being an addition to the complexity?
-  //bool m_is_complex;
-
-  ///Has an assessor rated this example as being an addition to the concreteness?
-  //bool m_is_concrete;
-
-  ///Has an assessor rated this example as being an addition to the specificity?
-  //bool m_is_specific;
-
-  ///The text of the example
-  ///For example: 'Plato', 'When I was a kid', 'As I did on holiday'
-  //std::string m_text;
-
+  {
+    const auto v = Competencies().GetAllCompetencies();
+    for (auto c: v)
+    {
+      const std::string s = Competencies().ToStrDutch(c);
+      ui->box_competency->addItem(s.c_str());
+    }
+  }
 }
 
-ribi::cmap::QtConceptMapExampleDialog::~QtConceptMapExampleDialog()
+ribi::cmap::QtExampleDialog::~QtExampleDialog()
 {
   delete ui;
 }
 
-void ribi::cmap::QtConceptMapExampleDialog::SetExample(const boost::shared_ptr<Example>& example)
+void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& example)
 {
   //Disconnect m_example
+  m_example->m_signal_competency_changed.disconnect(
+    boost::bind(&ribi::cmap::QtExampleDialog::OnCompetencyChanged,this,boost::lambda::_1)
+  );
+  m_example->m_signal_is_complex_changed.disconnect(
+    boost::bind(&ribi::cmap::QtExampleDialog::OnIsComplexChanged,this,boost::lambda::_1)
+  );
+  m_example->m_signal_is_concrete_changed.disconnect(
+    boost::bind(&ribi::cmap::QtExampleDialog::OnIsConcreteChanged,this,boost::lambda::_1)
+  );
+  m_example->m_signal_is_specific_changed.disconnect(
+    boost::bind(&ribi::cmap::QtExampleDialog::OnIsSpecificChanged,this,boost::lambda::_1)
+  );
+  m_example->m_signal_text_changed.disconnect(
+    boost::bind(&ribi::cmap::QtExampleDialog::OnTextChanged,this,boost::lambda::_1)
+  );
 
   //Replace m_example by the new one
   m_example = example;
 
   m_example->m_signal_competency_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptMapExampleDialog::OnCompetencyChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::cmap::QtExampleDialog::OnCompetencyChanged,this,boost::lambda::_1)
   );
   m_example->m_signal_is_complex_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptMapExampleDialog::OnIsComplexChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::cmap::QtExampleDialog::OnIsComplexChanged,this,boost::lambda::_1)
   );
   m_example->m_signal_is_concrete_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptMapExampleDialog::OnIsConcreteChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::cmap::QtExampleDialog::OnIsConcreteChanged,this,boost::lambda::_1)
   );
   m_example->m_signal_is_specific_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptMapExampleDialog::OnIsSpecificChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::cmap::QtExampleDialog::OnIsSpecificChanged,this,boost::lambda::_1)
   );
   m_example->m_signal_text_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptMapExampleDialog::OnTextChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::cmap::QtExampleDialog::OnTextChanged,this,boost::lambda::_1)
   );
+
+  //Emit that everything has changed
+  m_example->m_signal_competency_changed(m_example.get());
+  m_example->m_signal_is_complex_changed(m_example.get());
+  m_example->m_signal_is_concrete_changed(m_example.get());
+  m_example->m_signal_is_specific_changed(m_example.get());
+  m_example->m_signal_text_changed(m_example.get());
 }
 
-void ribi::cmap::QtConceptMapExampleDialog::OnCompetencyChanged(const Example * const example)
+void ribi::cmap::QtExampleDialog::OnCompetencyChanged(const Example * const example)
 {
   assert(example);
   ui->box_competency->setCurrentIndex(
@@ -100,40 +114,40 @@ void ribi::cmap::QtConceptMapExampleDialog::OnCompetencyChanged(const Example * 
   );
 }
 
-void ribi::cmap::QtConceptMapExampleDialog::OnIsComplexChanged(const Example * const example)
+void ribi::cmap::QtExampleDialog::OnIsComplexChanged(const Example * const example)
 {
   assert(example);
   ui->box_is_complex->setChecked(example->GetIsComplex());
 }
 
-void ribi::cmap::QtConceptMapExampleDialog::OnIsConcreteChanged(const Example * const example)
+void ribi::cmap::QtExampleDialog::OnIsConcreteChanged(const Example * const example)
 {
   assert(example);
   ui->box_is_concrete->setChecked(example->GetIsConcrete());
 }
 
-void ribi::cmap::QtConceptMapExampleDialog::OnIsSpecificChanged(const Example * const example)
+void ribi::cmap::QtExampleDialog::OnIsSpecificChanged(const Example * const example)
 {
   assert(example);
   ui->box_is_specific->setChecked(example->GetIsSpecific());
 }
 
-void ribi::cmap::QtConceptMapExampleDialog::OnTextChanged(const Example * const example)
+void ribi::cmap::QtExampleDialog::OnTextChanged(const Example * const example)
 {
   assert(example);
   ui->edit_text->setText(example->GetText().c_str());
-
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapExampleDialog::Test() noexcept
+void ribi::cmap::QtExampleDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtConceptMapExampleDialog::Test");
-  TRACE("ribi::cmap::QtConceptMapExampleDialog::Test finished successfully");
+  TRACE("Started ribi::cmap::QtExampleDialog::Test");
+  //QtExampleDialog d;
+  TRACE("ribi::cmap::QtExampleDialog::Test finished successfully");
 }
 #endif

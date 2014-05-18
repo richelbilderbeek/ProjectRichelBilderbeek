@@ -149,6 +149,18 @@ ribi::cmap::QtConceptMap::QtConceptMap(
 
 ribi::cmap::QtConceptMap::~QtConceptMap() noexcept
 {
+  for (auto qtnode: Collect<QtNode>(scene()))
+  {
+    //signal #1
+    qtnode->m_signal_request_scene_update.disconnect(
+      boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this)
+    );
+    //signal #2
+    qtnode->m_signal_item_has_updated.disconnect(
+      boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
+    );
+  }
+
   delete m_examples_item; //Why did I forget this?
   m_examples_item = nullptr;
 }
@@ -184,10 +196,14 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
     }
     assert(qtnode);
     //Let the center node respond to mouse clicks
+    //signal #1
     qtnode->m_signal_request_scene_update.connect(
-      boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this));
+      boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this)
+    );
+    //signal #2
     qtnode->m_signal_item_has_updated.connect(
-      boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
+      boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
+    );
     //Add the center node to scene
     assert(!qtnode->scene());
     this->scene()->addItem(qtnode);
@@ -195,7 +211,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
     assert(Collect<QtNode>(scene()).size() == 1);
 
     //Add the regular nodes to the scene
-    const std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes = m_concept_map->GetNodes();
+    const std::vector<boost::shared_ptr<Node> > nodes = m_concept_map->GetNodes();
     const std::size_t n_nodes = nodes.size();
     assert(n_nodes >= 1);
     for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip focal node

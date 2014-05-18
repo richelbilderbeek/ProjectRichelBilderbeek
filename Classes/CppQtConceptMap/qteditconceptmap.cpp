@@ -148,13 +148,16 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   }
 
   //General: inform an Observer that this item has changed
+  //Signal #6
   qtedge->m_signal_item_has_updated.connect(
    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 
+  //Signal #7
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtedge->m_signal_request_scene_update.connect(
     boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
 
+  //Signal #8
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtedge->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
@@ -249,19 +252,23 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_fro
     //qtconcept->setVisible(false); //ISSUE_
   }
 
+  //Signal #9
   //General: inform an Observer that this item has changed
   qtedge->m_signal_item_has_updated.connect(
-   boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
+    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
+  );
 
+  //Signal #10
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this)
+  );
 
+  //Signal #11
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtedge->m_signal_conceptmapitem_requests_edit.connect(
-    boost::bind(
-      &ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit,
-      this, boost::lambda::_1)); //Do not forget the placeholder!
+    boost::bind(&ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit,this, boost::lambda::_1) //Do not forget the placeholder!
+  );
 
 
   assert(!qtedge->scene());
@@ -295,14 +302,17 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
   assert(IsCenterNode(qtnode->GetNode()) == IsQtCenterNode(qtnode)
     && "Should be equivalent");
 
+  //Signal #1
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(
    boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 
+  //Signal #2
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtnode->m_signal_request_scene_update.connect(
     boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
 
+  //Signal #3
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtnode->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
@@ -356,6 +366,7 @@ void ribi::cmap::QtEditConceptMap::CleanMe()
     QtExamplesItem * const item = new QtExamplesItem;
     assert(item);
     SetExamplesItem(item);
+    //Signal #4
     item->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::cmap::QtEditConceptMap::OnRequestSceneUpdate,this));
@@ -368,6 +379,7 @@ void ribi::cmap::QtEditConceptMap::CleanMe()
   {
     assert(!m_tools);
     m_tools = new QtTool;
+    //Signal #5
     m_tools->m_signal_clicked.connect(
       boost::bind(
         &ribi::cmap::QtEditConceptMap::OnToolsClicked,

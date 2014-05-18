@@ -118,13 +118,13 @@ std::vector<boost::shared_ptr<ribi::cmap::Example>> ribi::cmap::ExampleFactory::
 {
   return
   {
-    Create("Test example 0",Competency::profession),
-    Create("Test example 1",Competency::organisations),
-    Create("Test example 2",Competency::social_surroundings),
-    Create("Test example 3",Competency::target_audience),
-    Create("Test example 4",Competency::ti_knowledge),
-    Create("Test example 5",Competency::prof_growth),
-    Create("Test example 6",Competency::misc),
-    Create("",Competency::uninitialized),
+    Create("Test example 0",Competency::profession,true,false,false),
+    Create("Test example 1",Competency::organisations,false,true,false),
+    Create("Test example 2",Competency::social_surroundings,false,false,true),
+    Create("Test example 3",Competency::target_audience,true,true,false),
+    Create("Test example 4",Competency::ti_knowledge,false,true,true),
+    Create("Test example 5",Competency::prof_growth,true,false,true),
+    Create("Test example 6",Competency::misc,true,true,true),
+    Create("",Competency::uninitialized,true,false,true),
   };
 }

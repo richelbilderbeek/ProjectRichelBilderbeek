@@ -9,6 +9,7 @@
 #include "qttestrateconceptmapdialog.h"
 #include "qtconceptmapviewtestsdialog.h"
 #include "qtconceptmaptestconceptitemdialog.h"
+#include "qtconceptmaptestexampledialog.h"
 #include "qtconceptmaptestedgeitemdialog.h"
 #include "qtconceptmaptestnodeitemdialog.h"
 #include "qttestconceptmapwidgetdialog.h"

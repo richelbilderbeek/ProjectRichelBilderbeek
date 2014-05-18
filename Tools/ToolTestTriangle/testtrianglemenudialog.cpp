@@ -59,7 +59,7 @@ ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestTriangle",
     "compare Triangle to its C++ equivalent",
-    "the 9th of May 2014",
+    "the 18th of May 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTestTriangle.htm",
     GetVersion(),
@@ -106,13 +106,14 @@ boost::shared_ptr<const ribi::Program> ribi::TestTriangleMenuDialog::GetProgram(
 
 std::string ribi::TestTriangleMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2014-05-09: version 1.0: initial version"
+    "2014-05-09: version 1.0: initial version, uses Windows executable only",
+    "2014-05-18: version 1.1: uses Linux executable additionally"
   };
 }
 

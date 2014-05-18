@@ -28,7 +28,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapfwd.h"
 
 namespace ribi {
-
 namespace cmap {
 
 ///The QtEdge is a QtConceptMapElement that
@@ -44,7 +43,7 @@ struct QtEdge : public QtConceptMapElement
     QtNode* const to);
   QtEdge(const QtEdge&) = delete;
   QtEdge& operator=(const QtEdge&) = delete;
-  ~QtEdge() noexcept {}
+  ~QtEdge() noexcept;
 
   QRectF boundingRect() const final;
 
