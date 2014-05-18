@@ -8,6 +8,9 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <QLabel>
+#include <QKeyEvent>
+
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "qtconceptmapexampledialog.h"
@@ -17,12 +20,25 @@
 ribi::cmap::QtConceptMapTestExampleDialog::QtConceptMapTestExampleDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtConceptMapTestExampleDialog),
-  m_example_dialog{new QtExampleDialog}
+  m_example_1{new QtExampleDialog},
+  m_example_2{new QtExampleDialog}
 {
   ui->setupUi(this);
 
-  assert(this->layout());
-  layout()->addWidget(m_example_dialog.get());
+  {
+    assert(this->layout());
+    QLabel * const label_1 = new QLabel;
+    label_1->setText("#1");
+    layout()->addWidget(label_1);
+
+    layout()->addWidget(m_example_1.get());
+
+    QLabel * const label_2 = new QLabel;
+    label_2->setText("#2");
+    layout()->addWidget(label_2);
+
+    layout()->addWidget(m_example_2.get());
+  }
 
   {
     const int n_tests = ExampleFactory().GetNumberOfTests();
@@ -40,6 +56,10 @@ ribi::cmap::QtConceptMapTestExampleDialog::~QtConceptMapTestExampleDialog()
   delete ui;
 }
 
+void ribi::cmap::QtConceptMapTestExampleDialog::keyPressEvent(QKeyEvent *event)
+{
+  if (event->key() == Qt::Key_Escape) { close(); return; }
+}
 
 void ribi::cmap::QtConceptMapTestExampleDialog::on_button_load_example_clicked()
 {
@@ -47,7 +67,9 @@ void ribi::cmap::QtConceptMapTestExampleDialog::on_button_load_example_clicked()
   assert(i >= 0);
   assert(i < ExampleFactory().GetNumberOfTests());
   const auto example = ExampleFactory().GetTest(i);
-  m_example_dialog->SetExample(example);
+  m_example_1->SetExample(example);
+  m_example_2->SetExample(example);
 
-  assert(m_example_dialog->GetExample() == example);
+  assert(m_example_1->GetExample() == example);
+  assert(m_example_2->GetExample() == example);
 }

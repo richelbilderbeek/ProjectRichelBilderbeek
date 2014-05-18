@@ -65,6 +65,13 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>box_competency</tabstop>
+  <tabstop>box_is_complex</tabstop>
+  <tabstop>box_is_concrete</tabstop>
+  <tabstop>box_is_specific</tabstop>
+  <tabstop>edit_text</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

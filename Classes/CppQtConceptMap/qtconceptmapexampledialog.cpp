@@ -109,9 +109,10 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
 void ribi::cmap::QtExampleDialog::OnCompetencyChanged(const Example * const example)
 {
   assert(example);
-  ui->box_competency->setCurrentIndex(
-    Competencies().ToIndex(example->GetCompetency())
-  );
+  const int index = Competencies().ToIndex(example->GetCompetency());
+  assert(index >= 0);
+  assert(index < static_cast<int>(Competencies().GetAllCompetencies().size()));
+  ui->box_competency->setCurrentIndex(index);
 }
 
 void ribi::cmap::QtExampleDialog::OnIsComplexChanged(const Example * const example)
@@ -151,3 +152,35 @@ void ribi::cmap::QtExampleDialog::Test() noexcept
   TRACE("ribi::cmap::QtExampleDialog::Test finished successfully");
 }
 #endif
+
+void ribi::cmap::QtExampleDialog::on_box_competency_currentIndexChanged(int index)
+{
+  if(index < 0)
+  {
+    TRACE("ERROR");
+  }
+  assert(index >= 0);
+  assert(index < static_cast<int>(Competencies().GetAllCompetencies().size()));
+  const auto competency = Competencies().GetAllCompetencies()[index];
+  m_example->SetCompetency(competency);
+}
+
+void ribi::cmap::QtExampleDialog::on_box_is_complex_stateChanged(int)
+{
+  m_example->SetIsComplex(ui->box_is_complex->isChecked());
+}
+
+void ribi::cmap::QtExampleDialog::on_box_is_concrete_stateChanged(int)
+{
+  m_example->SetIsConcrete(ui->box_is_concrete->isChecked());
+}
+
+void ribi::cmap::QtExampleDialog::on_box_is_specific_stateChanged(int)
+{
+  m_example->SetIsSpecific(ui->box_is_specific->isChecked());
+}
+
+void ribi::cmap::QtExampleDialog::on_edit_text_textChanged(const QString &arg1)
+{
+  m_example->SetText(arg1.toStdString());
+}

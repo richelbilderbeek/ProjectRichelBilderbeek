@@ -50,6 +50,17 @@ public:
   void SetExample(const boost::shared_ptr<Example>& example);
   boost::shared_ptr<Example> GetExample() const noexcept { return m_example; }
 
+private slots:
+  void on_box_competency_currentIndexChanged(int index);
+
+  void on_box_is_complex_stateChanged(int arg1);
+
+  void on_box_is_concrete_stateChanged(int arg1);
+
+  void on_box_is_specific_stateChanged(int arg1);
+
+  void on_edit_text_textChanged(const QString &arg1);
+
 private:
   Ui::QtExampleDialog *ui;
 

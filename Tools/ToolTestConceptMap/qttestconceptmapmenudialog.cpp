@@ -52,14 +52,15 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::QtTestConceptMapMenuDialog::Test");
+  QtConceptMapTestExampleDialog();
   QtConceptMapTestConceptItemDialog();
   QtConceptMapTestNodeItemDialog();
   QtConceptMapTestEdgeItemDialog();
-  QtTestDisplayConceptMapDialog();
-  QtTestEditConceptMapDialog();
-  QtTestRateConceptMapDialog();
-  QtConceptMapViewTestsDialog();
-  QtTestConceptMapWidgetDialog();
+  //QtTestDisplayConceptMapDialog();
+  //QtTestEditConceptMapDialog();
+  //QtTestRateConceptMapDialog();
+  //QtConceptMapViewTestsDialog();
+  //QtTestConceptMapWidgetDialog();
   TRACE("Finished ribi::cmap::QtTestConceptMapMenuDialog::Test successfully");
 }
 #endif

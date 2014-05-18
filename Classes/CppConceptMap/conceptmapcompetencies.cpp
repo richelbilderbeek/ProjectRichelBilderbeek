@@ -139,14 +139,14 @@ void ribi::cmap::Competencies::Test() noexcept
   }
   //ToIndex
   {
-    assert(c.ToIndex(Competency::uninitialized) == -1);
+    assert(c.ToIndex(Competency::uninitialized) == 0);
   }
 }
 #endif
 
 int ribi::cmap::Competencies::ToIndex(const Competency competency) const noexcept
 {
-  return static_cast<int>(competency) - 1;
+  return static_cast<int>(competency);
 }
 
 std::string ribi::cmap::Competencies::ToStr(const Competency type) const noexcept

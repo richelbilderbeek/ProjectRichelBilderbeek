@@ -37,7 +37,7 @@ ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestConceptMap",
     "tests the ConceptMap classes",
-    "on the 3rd of December 2013",
+    "on the 18th of May 2014",
     "2013-2014",
     "http://www.richelbilderbeek.nl/ToolTestConceptMap.htm",
     GetVersion(),
@@ -74,13 +74,14 @@ boost::shared_ptr<const ribi::Program> ribi::TestConceptMapMenuDialog::GetProgra
 
 std::string ribi::TestConceptMapMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::TestConceptMapMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2013-12-03: version 1.0: initial version"
+    "2013-12-03: version 1.0: initial version",
+    "2014-05-18: version 1.1: added testing Example"
   };
 }
 
