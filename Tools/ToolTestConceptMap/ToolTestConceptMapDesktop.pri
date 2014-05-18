@@ -9,7 +9,8 @@ HEADERS += \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestedgeitemdialog.h \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestconceptitemdialog.h \
     ../../Tools/ToolTestConceptMap/qtconceptmapviewtestsdialog.h \
-    ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.h
+    ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.h \
+    qtconceptmaptestexampledialog.h
 
 SOURCES += \
     ../../Tools/ToolTestConceptMap/qttestconceptmapmenudialog.cpp \
@@ -20,7 +21,8 @@ SOURCES += \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestedgeitemdialog.cpp \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestconceptitemdialog.cpp \
     ../../Tools/ToolTestConceptMap/qtconceptmapviewtestsdialog.cpp \
-    ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.cpp
+    ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.cpp \
+    qtconceptmaptestexampledialog.cpp
 
 
 FORMS += \
@@ -32,6 +34,7 @@ FORMS += \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestedgeitemdialog.ui \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestconceptitemdialog.ui \
     ../../Tools/ToolTestConceptMap/qtconceptmapviewtestsdialog.ui \
-    ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.ui
+    ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.ui \
+    qtconceptmaptestexampledialog.ui
 
 
