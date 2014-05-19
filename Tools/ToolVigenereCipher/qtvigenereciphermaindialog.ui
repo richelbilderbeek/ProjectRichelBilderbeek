@@ -70,7 +70,7 @@
     <widget class="QLineEdit" name="edit_encrypted_text"/>
    </item>
    <item row="1" column="3">
-    <widget class="QLineEdit" name="box_key">
+    <widget class="QLineEdit" name="edit_key">
      <property name="text">
       <string>abc</string>
      </property>

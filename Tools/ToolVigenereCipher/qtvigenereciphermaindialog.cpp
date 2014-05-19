@@ -44,6 +44,14 @@ ribi::QtVigenereCipherMainDialog::QtVigenereCipherMainDialog(QWidget *parent) no
   Test();
   #endif
   ui->setupUi(this);
+
+  {
+    const QRegExp regex("[a-z]*");
+    QValidator * const validator = new QRegExpValidator(regex, this);
+    ui->edit_encrypted_text->setValidator(validator);
+    ui->edit_key->setValidator(validator);
+    ui->edit_plaintext->setValidator(validator);
+  }
 }
 
 ribi::QtVigenereCipherMainDialog::~QtVigenereCipherMainDialog() noexcept
@@ -54,10 +62,10 @@ ribi::QtVigenereCipherMainDialog::~QtVigenereCipherMainDialog() noexcept
 
 void ribi::QtVigenereCipherMainDialog::on_button_encrypt_clicked() noexcept
 {
-  const std::string key = ui->box_key->text().toStdString();
-  for (auto c:key) { if (c < 'A' || c > 'Z') return; }
+  const std::string key = ui->edit_key->text().toStdString();
+  //for (auto c:key) { if (c < 'A' || c > 'Z') return; }
   const std::string text = ui->edit_plaintext->text().toStdString();
-  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
+  //for (auto c:text) { if (c < 'A' || c > 'Z') return; }
   m_dialog->SetPlainText(text);
   m_dialog->SetKey(key);
   m_dialog->Encrypt();
@@ -71,10 +79,10 @@ void ribi::QtVigenereCipherMainDialog::on_button_encrypt_clicked() noexcept
 
 void ribi::QtVigenereCipherMainDialog::on_button_deencrypt_clicked() noexcept
 {
-  const std::string key = ui->box_key->text().toStdString();
-  for (auto c:key) { if (c < 'A' || c > 'Z') return; }
+  const std::string key = ui->edit_key->text().toStdString();
+  //for (auto c:key) { if (c < 'A' || c > 'Z') return; }
   const std::string text = ui->edit_encrypted_text->text().toStdString();
-  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
+  //for (auto c:text) { if (c < 'A' || c > 'Z') return; }
   m_dialog->SetEncryptedText(text);
   m_dialog->SetKey(key);
   m_dialog->Deencrypt();

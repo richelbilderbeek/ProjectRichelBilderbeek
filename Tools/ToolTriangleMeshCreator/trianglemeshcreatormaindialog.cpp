@@ -84,7 +84,7 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   {
     ribi::TriangleFile f(shapes);
     //const double area = 2.0;
-    f.ExecuteTriangle(
+    f.ExecuteTriangleExe(
       filename_node,
       filename_ele,
       filename_poly,

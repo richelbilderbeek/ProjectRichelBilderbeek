@@ -2762,13 +2762,13 @@ struct ProgramTestToggleButton : public ProgramClass
 struct ProgramTestTriangle : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestTriangle_1_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestTriangle"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testTriangle; }
   std::string GetUrl() const noexcept { return "ToolTestTriangle.htm"; }
@@ -2808,13 +2808,13 @@ struct ProgramThorVeen : public ProgramProject
 struct ProgramThresholdFilterer : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolThresholdFilterer_2_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "ThresholdFilterer"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::thresholdFilterer; }
   std::string GetUrl() const noexcept { return "ToolThresholdFilterer.htm"; }
@@ -2959,13 +2959,13 @@ struct ProgramUbuntuOneWatcher : public ProgramTool
 struct ProgramValentineCardDecrypter : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolValentineCardDecrypter_2_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "ValentineCardDecrypter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::valentineCardDecrypter; }
   std::string GetUrl() const noexcept { return "ToolValentineCardDecrypter.htm"; }
@@ -2990,7 +2990,7 @@ struct ProgramVanDenBogaart : public ProgramProject
 struct ProgramVigenereCipher : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolVigenereCipher_1_0.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "VigenereCipher"; }

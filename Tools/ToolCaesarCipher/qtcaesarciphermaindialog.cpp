@@ -51,7 +51,6 @@ ribi::QtCaesarCipherMainDialog::QtCaesarCipherMainDialog(QWidget *parent) noexce
   {
     const QRegExp regex("[a-z]*");
     QValidator * const validator = new QRegExpValidator(regex, this);
-
     ui->edit_encrypted_text->setValidator(validator);
     ui->edit_plaintext->setValidator(validator);
   }
@@ -66,7 +65,6 @@ ribi::QtCaesarCipherMainDialog::~QtCaesarCipherMainDialog() noexcept
 void ribi::QtCaesarCipherMainDialog::on_button_encrypt_clicked() noexcept
 {
   const std::string text = ui->edit_plaintext->text().toStdString();
-  //for (auto c:text) { if (c < 'A' || c > 'Z') return; }
 
   const int key = ui->box_key->value();
   assert(key >= 0);
@@ -84,7 +82,6 @@ void ribi::QtCaesarCipherMainDialog::on_button_encrypt_clicked() noexcept
 void ribi::QtCaesarCipherMainDialog::on_button_deencrypt_clicked() noexcept
 {
   const std::string text = ui->edit_encrypted_text->text().toStdString();
-  //for (auto c:text) { if (c < 'A' || c > 'Z') return; }
 
   const int key = ui->box_key->value();
   m_dialog->SetEncryptedText(text);

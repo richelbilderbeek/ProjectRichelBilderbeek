@@ -24,8 +24,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttesttrianglemaindialog.h"
 
+#include <fstream>
+#include <stdexcept>
+
 #include <boost/math/constants/constants.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
+
 #include <QDesktopWidget>
 #include <QGraphicsSvgItem>
 #include <QKeyEvent>
@@ -107,44 +111,60 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
   #endif // TODO_ISSUE_207
   ; ++i)
   {
+    std::function<
+      void(const ribi::TriangleFile *,std::string&,std::string&,std::string&,const double,const double,const bool)
+    > triangle_function;
+    QGraphicsScene * scene = nullptr;
+
+    switch (i)
+    {
+      case 0:
+        triangle_function = &ribi::TriangleFile::ExecuteTriangleExe;
+        scene = ui->view_triangle_mesh_exe->scene();
+      break;
+      //case 1:
+      //  triangle_function = &ribi::TriangleFile::ExecuteTriangleCppExe;
+      //scene = ui->view_trianglecpp_mesh_exe->scene();
+      //break;
+      //case 2:
+      //  triangle_function = &ribi::TriangleFile::ExecuteTriangle;
+      //scene = ui->view_triangle_mesh->scene();
+      //break;
+      //case 3:
+      //  triangle_function = &ribi::TriangleFile::ExecuteTriangleCpp;
+      //scene = ui->view_trianglecpp_mesh->scene();
+      //break;
+      default:
+        assert(!"Should not get here");
+        throw std::logic_error("Unknown i");
+    }
+    assert(scene);
+    scene->clear();
+
+    const auto shapes = GetShapes();
+    if (shapes.empty()) continue;
+
+    const ribi::TriangleFile triangle_file(shapes);
+
     std::string filename_node;
     std::string filename_ele;
     std::string filename_poly;
-    {
-      ribi::TriangleFile f(GetShapes());
-      switch (i)
-      {
-        case 0:
-          if (verbose) { std::clog << "Write some geometries, call Triangle to work on it" << std::endl; }
-          //#define TODO_ISSUE_207
-          #ifdef  TODO_ISSUE_207
-          f.ExecuteTriangle(
-          #else
-          f.ExecuteTriangleExe(
-          #endif // TODO_ISSUE_207
-            filename_node,
-            filename_ele,
-            filename_poly,
-            GetTriangleQuality(),
-            GetTriangleArea()
-          );
-        break;
-        #ifdef TODO_ISSUE_207
-        case 1:
 
-          if (verbose) { std::clog << "Write some geometries, call Triangle its C++ equivalent to work on it" << std::endl; }
-          f.ExecuteTriangleCpp(
-            filename_node,
-            filename_ele,
-            filename_poly,
-            GetTriangleQuality(),
-            GetTriangleArea()
-          );
-        #endif // TODO_ISSUE_207
-        break;
-        default:
-          assert(!"Should not get here");
-      }
+    try
+    {
+      triangle_function(
+        &triangle_file,
+        filename_node,
+        filename_ele,
+        filename_poly,
+        GetTriangleQuality(),
+        GetTriangleArea(),
+        verbose
+      );
+    }
+    catch (std::runtime_error& e)
+    {
+      continue;
     }
 
     if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
@@ -182,11 +202,6 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
     {
       QGraphicsSvgItem * const item = new QGraphicsSvgItem(filename.c_str());
       item->setScale(10.0);
-      QGraphicsScene * const scene = i == 0
-        ? ui->view_triangle_mesh->scene()
-        : ui->view_triangle_cpp_mesh->scene();
-      assert(scene);
-      scene->clear();
       scene->addItem(item);
     }
     fileio::FileIo().DeleteFile(filename);

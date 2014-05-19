@@ -91,7 +91,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
       assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));
       std::stringstream s;
       s
-        #ifdef WIN32_
+        #ifdef _WIN32
         << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
         #else
         << "meshlab "
@@ -146,7 +146,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
   std::string filename_poly;
   {
     ribi::TriangleFile f(GetShapes());
-    f.ExecuteTriangle(
+    f.ExecuteTriangleExe(
       filename_node,
       filename_ele,
       filename_poly,
