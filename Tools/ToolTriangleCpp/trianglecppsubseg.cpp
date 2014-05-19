@@ -61,19 +61,21 @@ void ribi::tricpp::ssym(const Osub& osub1, Osub& osub2)
 
 void ribi::tricpp::ssymself(Osub& osub1)
 {
-  osub.m_subseg_orient = 1 - osub.m_subseg_orient;
+  osub1.Ssymself();
+  //osub.m_subseg_orient = 1 - osub.m_subseg_orient;
   /*
   #define ssymself(osub) \
   (osub).m_subseg_orient = 1 - (osub).m_subseg_orient
   */
 }
 
+/*
 void ribi::tricpp::GetDest(Osub& osub, Vertex * vertexptr)
 {
   //Does not do anything yet
   vertexptr = osub.m_subseg[3 - osub.m_subseg_orient];
 }
-
+*/
 /*
 #define sdest(osub, vertexptr) \
   vertexptr = (Vertex) (osub).m_subseg[3 - (osub).m_subseg_orient]

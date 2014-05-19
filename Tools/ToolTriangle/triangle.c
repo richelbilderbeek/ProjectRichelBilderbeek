@@ -13587,6 +13587,7 @@ struct badtriang *badtri;
       printf("  precision of floating point arithmetic.  (You can be\n");
       printf("  sure of this if I fail to terminate.)\n");
       precisionerror();
+      triexit(1); //RJCB
     }
   }
 }

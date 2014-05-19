@@ -7,6 +7,23 @@ ribi::tricpp::Osub::Osub()
 
 }
 
+boost::shared_ptr<ribi::tricpp::Otri> ribi::tricpp::Osub::GetStPivot() const
+//ribi::tricpp::Otri& ribi::tricpp::Osub::GetStPivot() const
+{
+  //return this->m_subsegs[6 + osub.m_subseg_orient];
+  return boost::shared_ptr<Otri>();
+}
+
+boost::shared_ptr<ribi::tricpp::SubSeg> ribi::tricpp::Osub::Sencode() noexcept
+{
+  assert(m_subseg_orient >= 0);
+  assert(m_subseg_orient < static_cast<int>(m_subsegs.size()));
+  return m_subsegs[m_subseg_orient];
+  /*
+  #define sencode(osub) \
+    (SubSeg) ((unsigned long) (osub).m_subseg | (unsigned long) (osub).m_subseg_orient)
+  */
+}
 
 void ribi::tricpp::Osub::SetSubsegOrient(const int subseg_orient) noexcept
 {
@@ -14,6 +31,16 @@ void ribi::tricpp::Osub::SetSubsegOrient(const int subseg_orient) noexcept
   assert(subseg_orient >= 0);
   assert(subseg_orient  < 2);
   m_subseg_orient = subseg_orient;
+}
+
+void ribi::tricpp::Osub::SetSubsegOrient(const int subseg_orient) noexcept
+{
+  osub.m_subseg_orient = 1 - osub.m_subseg_orient;
+}
+
+void ribi::tricpp::Osub::Ssymself() noexcept
+{
+  m_subseg_orient = 1 - m_subseg_orient;
 }
 
 //These primitives read or set a boundary marker.  Boundary markers are
@@ -42,25 +69,28 @@ void ribi::tricpp::sbond(Osub& osub1, Osub& osub2)
 //  (osub2).m_subseg[(osub2).m_subseg_orient] = sencode(osub1)
 
 
-
+/*
 void ribi::tricpp::GetOrigin(const Osub& osub, Vertex& vertexptr)
 {
   vertexptr = osub.GetOrigin();
   //Does not do anything yet
   //vertexptr = osub.m_subseg[2 + osub.m_subseg_orient;
 }
+*/
 
 /*
 #define sorg(osub, vertexptr) \
   vertexptr = (Vertex) (osub).m_subseg[2 + (osub).m_subseg_orient]
 */
 
+/*
 void ribi::tricpp::GetDest(const Osub& osub, Vertex& vertexptr)
 {
   vertexptr = osub.GetDest();
   //Does not do anything yet
   //vertexptr = osub.m_subseg[3 - osub.m_subseg_orient];
 }
+*/
 
 /*
 #define sdest(osub, vertexptr) \
@@ -142,7 +172,11 @@ void ribi::tricpp::tspivot(Otri& otri, Osub& osub)
 
 void ribi::tricpp::stpivot(Osub& osub, Otri& otri)
 {
-  otri = m_subseg[6 + osub.m_subseg_orient];
+  otri = osub.GetStPivot();
+
+  //otri = osub.m_subsegs[6 + osub.m_subseg_orient];
+
+
   //ptr = (Triangle) (osub).m_subseg[6 + (osub).m_subseg_orient];
   //decode(ptr, otri);
 }
@@ -167,10 +201,11 @@ void ribi::tricpp::tsbond(Otri& otri, Osub& osub)
   (osub).m_subseg[6 + (osub).m_subseg_orient] = (SubSeg) encode(otri)
 */
 
-//Dissolve a bond (from the triangle side).
 
+//Dissolve a bond (from the triangle side).
 void ribi::tricpp::tsdissolve(Otri& otri, SubSeg& m_m_dummysub)
 {
+  otri.Dissolve(m_m_dummysub);
   otri.m_tri[6 + otri.m_orient] = m_m_dummysub;
 }
 

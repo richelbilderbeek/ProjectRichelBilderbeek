@@ -22,6 +22,8 @@ namespace tricpp {
 struct SubSeg
 {
   SubSeg();
+  double GetX() const noexcept;
+  double GetY() const noexcept;
   bool IsDead() const noexcept;
   void KillMe() noexcept;
   void SetBoundaryMarker(const int value) noexcept;

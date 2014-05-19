@@ -1780,38 +1780,48 @@ std::string ribi::Geometry::ToSvgStr(
   const double stroke_width
 ) const noexcept
 {
-  std::string s;
-  s += R"*(<svg xmlns="http://www.w3.org/2000/svg" version="1.1">)*";
-  s += '\n';
+  std::stringstream s;
+  s
+    << std::setprecision(99)
+    << R"*(<svg xmlns="http://www.w3.org/2000/svg" version="1.1">)*"
+    << '\n'
+  ;
   for (const Polygon& polygon: shapes)
   {
     const std::vector<Coordinat2D> points = polygon.outer();
     const int n_points = static_cast<int>(points.size());
     if(n_points < 3) continue;
     //Move to first point
-    s += R"*(  <path d="M )*";
-    s += boost::lexical_cast<std::string>(points[0].x());
-    s += " ";
-    s += boost::lexical_cast<std::string>(points[0].y());
+    s
+      <<  R"*(  <path d="M )*"
+      << points[0].x()
+      << " "
+      << points[0].y()
+    ;
     //Draw lines to others
-    s += " L ";
+    s << " L ";
     for (int i=1; i!=n_points; ++i)
     {
-      s += boost::lexical_cast<std::string>(points[i].x());
-      s += " ";
-      s += boost::lexical_cast<std::string>(points[i].y());
-      s += " ,";
+      s
+        << points[i].x()
+        << " "
+        << points[i].y()
+        << " "
+      ;
+
+      //No trailing comma
+      if (i != n_points - 1) { s << ","; }
     }
-    //Remove trailing comma
-    s.pop_back();
-    s += R"*(z" stroke="black" fill="none" stroke-width=")*";
-    s += boost::lexical_cast<std::string>(stroke_width);
-    s += R"*("/>)*";
-    s += '\n';
+    s
+      << R"*(z" stroke="black" fill="none" stroke-width=")*"
+      << stroke_width
+      << R"*("/>)*"
+      << '\n'
+    ;
   }
 
-  s += R"*(</svg>)*";
-  return s;
+  s << R"*(</svg>)*";
+  return s.str();
 }
 
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>

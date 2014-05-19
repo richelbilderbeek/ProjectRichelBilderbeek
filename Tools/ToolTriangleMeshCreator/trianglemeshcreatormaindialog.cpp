@@ -81,16 +81,21 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   std::string filename_node;
   std::string filename_ele;
   std::string filename_poly;
+  try
   {
     ribi::TriangleFile f(shapes);
-    //const double area = 2.0;
     f.ExecuteTriangleExe(
       filename_node,
       filename_ele,
       filename_poly,
       triangle_quality,
-      triangle_area
+      triangle_area,
+      verbose
     );
+  }
+  catch (std::runtime_error&)
+  {
+    throw std::runtime_error("Triangle.exe failed");
   }
 
   if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }

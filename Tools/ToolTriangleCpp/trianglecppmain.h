@@ -317,7 +317,7 @@ void deletevertex(
 );
 
 /// dequeuebadtriang()   Remove a triangle from the front of the queue.
-BadTriang * dequeuebadtriang(Mesh& m);
+boost::shared_ptr<BadTriang> dequeuebadtriang(Mesh& m);
 
 
 
@@ -399,7 +399,7 @@ void enforcequality(
 void enqueuebadtri(
   Mesh& m,
   const Behavior& b,
-  const Otri * const enqtri,
+  const Otri& enqtri,
   const double minedge,
   const Vertex& enqapex,
   const Vertex& enqorg,
@@ -417,7 +417,7 @@ void enqueuebadtri(
 void enqueuebadtriang(
   Mesh& m,
   const Behavior& b,
-  BadTriang * const badtri
+  boost::shared_ptr<BadTriang> badtri
 );
 
 
@@ -1213,14 +1213,14 @@ void segmentintersection(
   const Vertex& endpoint2
 );
 
-SplayNode * splay(
+boost::shared_ptr<SplayNode> splay(
   Mesh& m,
   SplayNode * const splaytree,
   const Vertex& searchpoint,
   Otri * const searchtri
 );
 
-SplayNode * splayinsert(
+boost::shared_ptr<SplayNode> splayinsert(
   Mesh& m,
   SplayNode * const splayroot,
   const Otri * const newkey,

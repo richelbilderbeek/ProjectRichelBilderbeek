@@ -27,22 +27,30 @@ struct Otri
   double GetAreaBound() const noexcept { return m_area_bound; }
   const Vertex& GetDest() const noexcept;
   double GetElemAttrib(const int index);
+  bool GetInfected() const noexcept { return m_is_infected; }
   const Vertex& GetOrigin() const noexcept;
   void GetDest(const Vertex& GetDest) noexcept;
   void GetOrigin(const Vertex& origin) noexcept;
+
+  void Lnext(const Otri& other);
+  void Lnextself();
+  //otri2.Lnext(otri1);
 
   void SetApex(const Vertex& apex) noexcept { m_apex = apex; }
   void SetAreaBound(const double area_bound) noexcept { m_area_bound = area_bound; }
   void SetDest(const Vertex& dest) noexcept { m_dest = dest; }
   void SetElemAttrib(const double value, const int index);
+  void SetInfected(const bool is_infected) noexcept { m_is_infected = is_infected; }
   void SetOrigin(const Vertex& origin) noexcept { m_origin = origin; }
   void SetSubSeg(const boost::shared_ptr<SubSeg>& subseg, const int index) noexcept;
   void SetTriangle(const boost::shared_ptr<Triangle>& triangle, const int index) noexcept;
   //operator[](const int index) const noexcept;
   int GetOrient() const noexcept { return m_orient; }
   void SetOrient(const int orient) noexcept;
+  void Symself() noexcept;
 
   Vertex m_apex;
+  bool m_is_infected;
   double m_area_bound;
   std::vector<double> m_attributes;
   Vertex m_dest;
@@ -53,12 +61,12 @@ struct Otri
 };
 
 
-void GetOrigin(const Otri& otri, Vertex& vertexptr);
-void GetDest(const Otri& otri, Vertex& vertexptr);
+//void GetOrigin(const Otri& otri, Vertex& vertexptr);
+//void GetDest(const Otri& otri, Vertex& vertexptr);
 //void GetApex(const Otri& otri, Vertex& vertexptr);
 //void SetOrigin(Otri& otri, const Vertex& vertexptr);
-void SetDest(Otri& otri, const Vertex& vertexptr);
-void SetApex(Otri& otri, const Vertex& vertexptr);
+//void SetDest(Otri& otri, const Vertex& vertexptr);
+//void SetApex(Otri& otri, const Vertex& vertexptr);
 // Bond two triangles together
 void bond(Otri& otri1, Otri& otri2);
 // Dissolve a bond (from one side).  Note that the other triangle will still
@@ -68,20 +76,20 @@ void bond(Otri& otri1, Otri& otri2);
 void dissolve(Otri& otri, Triangle * m_m_dummytri);
 //void otricopy(const Otri& otri1, Otri& otri2);
 //bool otriequal(const Otri& otri1, const Otri& otri2);
-void infect(Otri& otri);
-void uninfect(Otri& otri);
-bool infected(Otri& otri);
-double elemattribute(Otri& otri, int attnum);
-void setelemattribute(Otri& otri, const int attnum, const double value);
-double areabound(Otri& otri);
-void setareabound(Otri& otri, const double value);
+//void infect(Otri& otri);
+//void uninfect(Otri& otri);
+//bool infected(Otri& otri);
+//double elemattribute(Otri& otri, int attnum);
+//void setelemattribute(Otri& otri, const int attnum, const double value);
+//double areabound(Otri& otri);
+//void setareabound(Otri& otri, const double value);
 bool operator==(const Otri& lhs, const Otri& rhs) noexcept;
 bool operator!=(const Otri& lhs, const Otri& rhs) noexcept;
 void decode(const std::string& s, Otri& otri);
 std::string encode(const Otri& /*otri*/);
 void sym(const Otri& otri1, Otri& otri2);
-void symself(Otri& otri);
-void lnext(Otri& otri1, Otri& otri2);
+//void symself(Otri& otri);
+//void lnext(Otri& otri1, Otri& otri2);
 void lnextself(Otri& otri);
 void lprev(Otri& otri1, Otri& otri2);
 void lprevself(Otri& otri);

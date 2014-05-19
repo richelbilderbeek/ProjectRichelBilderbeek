@@ -147,7 +147,7 @@ void ribi::TriangleFile::ExecuteTriangle(
   std::string& poly_filename,
   const double quality,
   const double area,
-  const bool verbose) const noexcept
+  const bool verbose) const
 {
   const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
   node_filename = "";
@@ -203,7 +203,7 @@ void ribi::TriangleFile::ExecuteTriangleCpp(
   std::string& poly_filename,
   const double quality,
   const double area,
-  const bool verbose) const noexcept
+  const bool verbose) const
 {
   const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
   node_filename = "";
@@ -258,7 +258,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   std::string& poly_filename,
   const double quality,
   const double area,
-  const bool verbose) const noexcept
+  const bool verbose) const
 {
   const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
   node_filename = "";
@@ -271,10 +271,9 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   }
 
   assert(fileio::FileIo().IsRegularFile(filename));
-
-  assert(fileio::FileIo().IsRegularFile(filename));
   #ifdef _WIN32
-  const std::string exe_filename { "triangle.exe" };
+  //const std::string exe_filename { "triangle.exe" };
+  const std::string exe_filename { "ToolTriangleConsole.exe" };
   #else
   const std::string exe_filename { "ToolTriangleConsole" };
   #endif
@@ -301,12 +300,15 @@ void ribi::TriangleFile::ExecuteTriangleExe(
     << (verbose ? "" : " -Q")
     << " "
     << filename;
+  if (verbose) { std::cout << "Starting command '" << s.str() << "'" << std::endl; }
   const bool error = std::system(s.str().c_str());
   if (error)
   {
+    if (verbose) { std::cout << "Finished command with an error" << std::endl; }
     fileio::FileIo().DeleteFile(filename);
     throw std::runtime_error(s.str().c_str());
   }
+  if (verbose) { std::cout << "Finished command without errors" << std::endl; }
   //End of specific
 
   const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
@@ -321,7 +323,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
 
 std::string ribi::TriangleFile::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
@@ -330,6 +332,7 @@ std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
     "2014-02-07: Version 1.0: initial version, use of Windows executable only",
     "2014-04-04: Version 1.1: allow to call Triangle its code directly",
     "2014-05-18: Version 1.2: allow use of a Linux executable"
+    "2014-05-19: Version 1.3: use of non-freezing Windows executable"
   };
 }
 

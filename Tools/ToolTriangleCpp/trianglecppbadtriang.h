@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/shared_ptr.hpp>
 #include "trianglecpptriangle.h"
 #include "trianglecppvertex.h"
 #pragma GCC diagnostic pop
@@ -23,11 +24,11 @@ struct BadTriang
   BadTriang& operator=(const BadTriang&) = delete;
 
   double m_key; ///cos^2 of smallest (apical) angle
-  BadTriang * m_nexttriang; /// Pointer to next bad triangle
-  Triangle m_poortri;  /// A skinny or too-large triangle.
+  boost::shared_ptr<BadTriang> m_nexttriang; /// Pointer to next bad triangle
+  boost::shared_ptr<Triangle> m_poortri;  /// A skinny or too-large triangle.
   Vertex m_triangorg;
   Vertex m_triangdest;
-  Vertex m_triangapex;           /// Its three vertices
+  Vertex m_triangapex; /// Its three vertices
 };
 
 } //~namespace tricpp

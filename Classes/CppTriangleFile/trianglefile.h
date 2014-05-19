@@ -43,7 +43,7 @@ struct TriangleFile
     const double quality = 30.0,
     const double area = 2.0,
     const bool verbose = false
-  ) const noexcept;
+  ) const;
 
   ///Call Triangle its C++ equivalent
   void ExecuteTriangleCpp(
@@ -53,7 +53,7 @@ struct TriangleFile
     const double quality = 30.0,
     const double area = 2.0,
     const bool verbose = false
-  ) const noexcept;
+  ) const;
   #endif
   ///Executes Triangle.exe from a Windows command line
   void ExecuteTriangleExe(
@@ -63,7 +63,7 @@ struct TriangleFile
     const double quality = 30.0,
     const double area = 2.0,
     const bool verbose = false
-  ) const noexcept;
+  ) const;
 
   ///Executes TriangleCpp.exe from command line
   void ExecuteTriangleCppExe(
@@ -73,7 +73,7 @@ struct TriangleFile
     const double quality = 30.0,
     const double area = 2.0,
     const bool verbose = false
-  ) const noexcept;
+  ) const;
 
   ///Convert the file to a string in a format usable by Triangle.exe
   std::string ToStr() const noexcept;

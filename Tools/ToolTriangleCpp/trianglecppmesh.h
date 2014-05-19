@@ -76,8 +76,8 @@ struct Mesh
   std::vector<int> m_nextnonemptyq; //[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
   //static const int m_nextras = 0; /// Number of attributes per vertex.
   long m_orient3dcount;           /// Number of 3D orientation tests performed.
-  std::vector<BadTriang> m_queuefront; //[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
-  std::vector<BadTriang> m_queuetail; //[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
+  std::vector<boost::shared_ptr<BadTriang>> m_queuefront; //[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
+  std::vector<boost::shared_ptr<BadTriang>> m_queuetail; //[4096]; /// bad triangle queues.  The queues are ordered from 4095 (highest priority) to 0 (lowest priority).
   Otri m_recenttri; /// Pointer to a recently visited triangle.  Improves point location if proximate vertices are inserted sequentially.
   int m_regions;                                   /// Number of input regions.
   long m_samples;              /// Number of random samples for point location.

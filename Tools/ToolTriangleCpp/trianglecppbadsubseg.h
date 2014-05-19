@@ -14,15 +14,15 @@
 namespace ribi {
 namespace tricpp {
 
-/* A queue used to store encroached subsegments.  Each subsegment's vertices */
-/*   are stored so that we can check whether a subsegment is still the same. */
-
+/// A queue used to store encroached subsegments.  Each subsegment's vertices
+///   are stored so that we can check whether a subsegment is still the same.
 struct BadSubSeg
 {
   BadSubSeg();
-  SubSeg m_encsubseg;                             /* An encroached subsegment. */
-  Vertex m_subsegdest;
-  Vertex m_subsegorg;
+  ///An encroached subsegment
+  boost::shared_ptr<SubSeg> m_encsubseg;
+  boost::shared_ptr<Vertex> m_subsegdest;
+  boost::shared_ptr<Vertex> m_subsegorg;
 };
 
 } //~namespace tricpp

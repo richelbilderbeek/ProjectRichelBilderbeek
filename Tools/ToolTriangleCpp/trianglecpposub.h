@@ -19,6 +19,14 @@ namespace tricpp {
 struct Osub
 {
   Osub();
+
+  //stpivot() finds a triangle abutting a subsegment.  It requires that the
+  //  variable `ptr' of type `triangle' be defined.
+
+  boost::shared_ptr<Otri> GetStPivot() const;
+  //Otri
+
+
   SubSeg& GetSubSeg(const int i);
   Triangle& GetTriangle(const int i);
   void SetSubSeg(SubSeg& subseg, const int i);
@@ -28,6 +36,9 @@ struct Osub
   const SubSeg& GetOrigin() const noexcept;
 
   int GetMark() const noexcept { return m_mark; }
+
+  boost::shared_ptr<SubSeg> Sencode() noexcept;
+
   void SetMark(const int value) noexcept { m_mark = value; }
   void SetOrient(const int orient) noexcept;
 
@@ -35,6 +46,7 @@ struct Osub
   void SetOrigin(const SubSeg subseg) noexcept;
 
   void SetSubsegOrient(const int subseg_orient) noexcept;
+  void Ssymself() noexcept;
   std::vector<boost::shared_ptr<SubSeg>> m_subsegs; //Origanaly called 'm_sugseg', yet it must be a std::vector
   std::vector<boost::shared_ptr<Triangle>> m_triangles;
   private:
@@ -54,8 +66,8 @@ struct Osub
 
 ///Bond two subsegments together.
 void sbond(Osub& osub1, Osub& osub2);
-void GetOrigin(const Osub& osub, Vertex& vertexptr);
-void GetDest(const Osub& osub, Vertex& vertexptr);
+//void GetOrigin(const Osub& osub, Vertex& vertexptr);
+//void GetDest(const Osub& osub, Vertex& vertexptr);
 ///spivot() finds the other subsegment (from the same segment) that shares
 ///  the same origin.
 void spivot(Osub& osub1, Osub& osub2, SubSeg& sptr);

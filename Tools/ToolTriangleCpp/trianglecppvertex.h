@@ -30,8 +30,10 @@ struct Vertex
 {
   Vertex();
   //Vertex(double * begin);
-  double& operator[](const int index) noexcept;
-  const double& operator[](const int index) const noexcept;
+  double GetX() const noexcept;
+  double GetY() const noexcept;
+  //double& operator[](const int index) noexcept;
+  //const double& operator[](const int index) const noexcept;
   void Clear() noexcept; //Set size to zero
   bool IsDead() { return m_is_dead; }
   bool IsEmpty() const noexcept;
@@ -42,6 +44,8 @@ struct Vertex
   void SetMark(const int mark) noexcept { m_mark = mark; }
   void SetTriangle(const boost::shared_ptr<Triangle>& triangle) noexcept;
   void SetVertexType(const VertexType type) noexcept { m_type = type; }
+  void SetX(const double x) noexcept;
+  void SetY(const double y) noexcept;
 
   private:
   bool m_is_dead;

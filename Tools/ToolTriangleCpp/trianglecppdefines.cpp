@@ -210,6 +210,7 @@ void ribi::tricpp::Square_Tail_Smartass(const double a, const double x, double& 
   y = (alo * alo) - err3
 */
 
+/*
 void ribi::tricpp::Two_One_Diff(const double a1, const double a0, const double b, double& x2, double& x1, double& x0)
 {
   //double i = 0.0;
@@ -223,7 +224,7 @@ void ribi::tricpp::Two_One_Diff(const double a1, const double a0, const double b
   //x = a + b, y = 0.0;
   //Two_Sum( a1, i, x2, x1);
 }
-
+*/
 void ribi::tricpp::Two_One_Diff_Smartass(const double a1, const double a0, const double b, double& x2, double& x1, double& x0)
 {
   double i = 0.0;
@@ -241,30 +242,41 @@ void ribi::tricpp::Two_One_Diff_Smartass(const double a1, const double a0, const
   Two_Sum( a1, _i, x2, x1)
 */
 
+/*
 void ribi::tricpp::Two_One_Product(const double a1, const double a0, const double b, double& x3, double& x2, double& x1, double& x0)
 {
-  double zero = 0.0;
-  double i = 0.0;
-  double j = 0.0;
-  double k = 0.0;
+  //double zero = 0.0;
+  //double i = 0.0;
+  //double j = 0.0;
+  //double k = 0.0;
   //double bhi = 0.0;
   //double blo = 0.0;
-  bhi = b;
-  blo = 0.0;
+  //bhi = b;
+  //blo = 0.0;
   //Split(b, bhi, blo);
-  Two_Product_Presplit(a0, b, bhi, blo, i, x0);
-  Two_Product_Presplit(a1, b, bhi, blo, j, zero);
 
-  k = i + zero;
+  //double i = a0 * b;
+  //Two_Product_Presplit(a,b,bhi,blo,x,y): x = a*b, y = 0.0
+  //Two_Product_Presplit(a0, b, bhi, blo, i, x0);
+
+  //double j = a1 * b;
+  //Two_Product_Presplit(a,b,bhi,blo,x,y): x = a*b, y = 0.0
+  //Two_Product_Presplit(a1, b, bhi, blo, j, zero);
+
+  //double k = a0 * b;
+  //double k = i + zero;
+
   x1 = 0.0;
   //x = a + b, y = 0.0;
   //Two_Sum(i, zero, k, x1);
 
-  x3 = j + k;
+  x3 = (a1 + a0) * b;
+  //x3 = (a1 * b) + (a0 * b);
+  //x3 = j + k;
   //Fast_Two_Sum(a,b,x,y) : x = a + b, y = 0.0;
   //Fast_Two_Sum(j, k, x3, x2);
 }
-
+*/
 void ribi::tricpp::Two_One_Product_Smartass(const double a1, const double a0, const double b, double& x3, double& x2, double& x1, double& x0)
 {
   double zero = 0.0;
@@ -274,8 +286,14 @@ void ribi::tricpp::Two_One_Product_Smartass(const double a1, const double a0, co
   double bhi = 0.0;
   double blo = 0.0;
   Split_Smartass(b, bhi, blo);
-  Two_Product_Presplit(a0, b, bhi, blo, i, x0);
-  Two_Product_Presplit(a1, b, bhi, blo, j, zero);
+
+  i = a0 * b;
+  //Two_Product_Presplit(a,b,bhi,blo,x,y): x = a*b, y = 0.0
+  //Two_Product_Presplit(a0, b, bhi, blo, i, x0);
+
+  j = a1 * b;
+  //Two_Product_Presplit(a,b,bhi,blo,x,y): x = a*b, y = 0.0
+  //Two_Product_Presplit(a1, b, bhi, blo, j, zero);
 
   k = i + zero;
   x1 = 0.0;
@@ -294,7 +312,7 @@ void ribi::tricpp::Two_One_Product_Smartass(const double a1, const double a0, co
   Fast_Two_Sum(_j, _k, x3, x2)
 */
 
-
+/*
 void ribi::tricpp::Two_One_Sum(const double a1, const double a0, const double b, double& x2, double& x1, double& x0)
 {
   //const double i = a0 + b;
@@ -308,7 +326,7 @@ void ribi::tricpp::Two_One_Sum(const double a1, const double a0, const double b,
   //x = a + b, y = 0.0;
   //Two_Sum(a1, i, x2, x1);
 }
-
+*/
 void ribi::tricpp::Two_One_Sum_Smartass(const double a1, const double a0, const double b, double& x2, double& x1, double& x0)
 {
   double i = 0.0;
@@ -337,11 +355,13 @@ void ribi::tricpp::Two_Product(const double a, const double b, double& x, double
   Two_Product_Tail(a, b, x, y)
 */
 
+/*
 void ribi::tricpp::Two_Product_Presplit(const double a, const double b, const double bhi, const double blo, double& x, double& y)
 {
   x = a * b;
   y = 0.0;
 }
+*/
 
 void ribi::tricpp::Two_Product_Presplit_Smartass(const double a, const double b, const double bhi, const double blo, double& x, double& y)
 {
@@ -482,7 +502,7 @@ void ribi::tricpp::Two_Two_Diff(const double a1, const double a0, const double b
   Two_One_Diff(a1, a0, b0, _j, _0, x0); \
   Two_One_Diff(_j, _0, b1, x3, x2, x1)
 */
-
+/*
 void ribi::tricpp::Two_Two_Sum(const double a1, const double a0, const double b1, const double b0, double& x3, double& x2, double& x1, double& x0)
 {
   double zero = 0.0;
@@ -499,7 +519,7 @@ void ribi::tricpp::Two_Two_Sum(const double a1, const double a0, const double b1
   //Two_One_Sum(a1,a0,b,x2,x1,x0): x2 = a1 + a0 + b0, x1 = 0.0, x0 = 0.0
   //Two_One_Sum( j, zero, b1, x3, x2, x1);
 }
-
+*/
 /*
 #define Two_Two_Sum(a1, a0, b1, b0, x3, x2, x1, x0) \
   Two_One_Sum(a1, a0, b0, _j, _0, x0); \
