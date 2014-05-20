@@ -79,28 +79,33 @@ ribi::tricpp::Behavior::Behavior(
   //static const int max_filename_size = 2048;
   std::string workstring; //[max_filename_size];
 
-  for (int i = start_index; i < argc; i++)
+  for (int i = 1; i < argc; ++i)
   {
-    if (args[i][0] == '-')
+    std::string line = args[i];
+    if (line[0] == '-')
     {
-      for (int j = start_index; args[i][j] != '\0'; j++)
+      std::string s = line.substr(1,line.size() - 1);
+      for (int j = 1; line[j] != '\0'; j++)
       {
-        if (args[i][j] == 'p')
+        if (s == "p")
         {
           TRACE("p is a useless flag, always set to on");
+          continue;
         }
-        if (args[i][j] == 'r') {
-          this->m_do_refine = true;
+        if (s == "r")
+        {
+          m_do_refine = true;
         }
-        if (args[i][j] == 'q') {
+        if (line[j] == 'q')
+        {
           this->m_quality = 1;
-          if (((args[i][j + 1] >= '0') && (args[i][j + 1] <= '9')) ||
-              (args[i][j + 1] == '.')) {
+          if (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
+              (line[j + 1] == '.')) {
             int k = 0;
-            while (((args[i][j + 1] >= '0') && (args[i][j + 1] <= '9')) ||
-                   (args[i][j + 1] == '.')) {
+            while (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
+                   (line[j + 1] == '.')) {
               j++;
-              workstring[k] = args[i][j];
+              workstring[k] = line[j];
               k++;
             }
             workstring[k] = '\0';
@@ -109,17 +114,18 @@ ribi::tricpp::Behavior::Behavior(
             this->m_minangle = 20.0;
           }
         }
-        if (args[i][j] == 'a')
+        if (line[j] == 'a')
         {
           this->m_quality = 1;
-          if (((args[i][j + 1] >= '0') && (args[i][j + 1] <= '9')) ||
-              (args[i][j + 1] == '.')) {
+          if (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
+              (line[j + 1] == '.'))
+          {
             this->m_fixedarea = 1;
             int k = 0;
-            while (((args[i][j + 1] >= '0') && (args[i][j + 1] <= '9')) ||
-                   (args[i][j + 1] == '.')) {
+            while (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
+                   (line[j + 1] == '.')) {
               j++;
-              workstring[k] = args[i][j];
+              workstring[k] = line[j];
               k++;
             }
             workstring[k] = '\0';
@@ -127,115 +133,122 @@ ribi::tricpp::Behavior::Behavior(
             if (this->m_maxarea <= 0.0) {
               throw std::logic_error("Triangle:  Maximum area must be greater than zero.\n");
             }
-          } else {
-            this->m_vararea = 1;
+          }
+          else
+          {
+            this->m_vararea = true;
           }
         }
-        if (args[i][j] == 'u') {
+        if (line[j] == 'u') {
           this->m_quality = 1;
           this->m_usertest = 1;
         }
-        if (args[i][j] == 'A') {
+        if (line[j] == 'A') {
           this->m_regionattrib = 1;
         }
-        if (args[i][j] == 'c') {
+        if (line[j] == 'c') {
           this->m_convex = 1;
         }
-        //if (args[i][j] == 'w') {
+        //if (line[j] == 'w') {
         //  this->m_weighted = 1;
         //}
-        //if (args[i][j] == 'W') {
+        //if (line[j] == 'W') {
         //  this->m_weighted = 2;
         //}
-        if (args[i][j] == 'j') {
+        if (line[j] == 'j')
+        {
           this->m_jettison = 1;
         }
-        //if (args[i][j] == 'z') {
+        //if (line[j] == 'z') {
         //  this->m_firstnumber = 0;
         //}
-        if (args[i][j] == 'e') {
+        if (line[j] == 'e') {
           this->m_edgesout = 1;
         }
-        if (args[i][j] == 'v')
+        if (line[j] == 'v')
         {
           this->m_voronoi = 1;
         }
-        if (args[i][j] == 'n') {
+        if (line[j] == 'n') {
           this->m_neighbors = 1;
         }
-        if (args[i][j] == 'g') {
+        if (line[j] == 'g') {
           this->m_geomview = 1;
         }
-        if (args[i][j] == 'B') {
+        if (line[j] == 'B') {
           this->m_nobound = 1;
         }
-        if (args[i][j] == 'P') {
+        if (line[j] == 'P') {
           this->m_nopolywritten = 1;
         }
-        if (args[i][j] == 'N') {
+        if (line[j] == 'N') {
           this->m_nonodewritten = 1;
         }
-        if (args[i][j] == 'E') {
+        if (line[j] == 'E') {
           this->m_noelewritten = 1;
         }
-        if (args[i][j] == 'I') {
+        if (line[j] == 'I') {
           this->m_noiterationnum = 1;
         }
-        if (args[i][j] == 'O') {
+        if (line[j] == 'O') {
           this->m_noholes = 1;
         }
-        if (args[i][j] == 'X') {
+        if (line[j] == 'X') {
           this->m_noexact = 1;
         }
-        if (args[i][j] == 'o') {
-          if (args[i][j + 1] == '2') {
+        if (line[j] == 'o') {
+          if (line[j + 1] == '2') {
             j++;
             this->m_order = 2;
           }
         }
-        if (args[i][j] == 'Y') {
+        if (line[j] == 'Y') {
           this->m_nobisect++;
         }
-        if (args[i][j] == 'S') {
+        if (line[j] == 'S')
+        {
           this->m_steiner = 0;
-          while ((args[i][j + 1] >= '0') && (args[i][j + 1] <= '9')) {
+          while ((line[j + 1] >= '0') && (line[j + 1] <= '9'))
+          {
             j++;
-            this->m_steiner = this->m_steiner * 10 + (int) (args[i][j] - '0');
+            m_steiner = m_steiner * 10 + (int) (line[j] - '0');
           }
         }
-        if (args[i][j] == 'i') {
+        if (line[j] == 'i') {
           this->m_incremental = 1;
         }
-        if (args[i][j] == 'F') {
+        if (line[j] == 'F') {
           this->m_sweepline = 1;
         }
-        if (args[i][j] == 'l') {
+        if (line[j] == 'l') {
           this->m_dwyer = 0;
         }
-        if (args[i][j] == 's') {
+        if (line[j] == 's') {
           this->m_splitseg = 1;
         }
-        if ((args[i][j] == 'D') || (args[i][j] == 'L')) {
+        if ((line[j] == 'D') || (line[j] == 'L')) {
           this->m_quality = 1;
           this->m_conformdel = 1;
         }
-        if (args[i][j] == 'C') {
+        if (line[j] == 'C') {
           this->m_do_check = true;
         }
-        if (args[i][j] == 'Q') {
+        if (line[j] == 'Q') {
           this->m_quiet = 1;
         }
-        if (args[i][j] == 'V') {
+        if (line[j] == 'V') {
           ++m_verbosity;
         }
-        if ((args[i][j] == 'h') || (args[i][j] == 'H') ||
-            (args[i][j] == '?')) {
+        if ((line[j] == 'h') || (line[j] == 'H') ||
+            (line[j] == '?')) {
           info();
         }
       }
-    } else {
+    }
+    else
+    {
       assert(i < argc); //RJCB
-      m_innodefilename = args[i];
+      m_innodefilename = line;
       //this->m_innodefilename[max_filename_size - 1] = '\0';
     }
   }

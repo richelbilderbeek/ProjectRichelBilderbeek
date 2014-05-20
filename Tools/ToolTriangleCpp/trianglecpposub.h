@@ -32,8 +32,8 @@ struct Osub
   void SetSubSeg(SubSeg& subseg, const int i);
   void SetTriangle(Triangle& triangle, const int i);
 
-  const SubSeg& GetDest() const noexcept;
-  const SubSeg& GetOrigin() const noexcept;
+  boost::shared_ptr<SubSeg> GetDest() const noexcept;
+  boost::shared_ptr<SubSeg> GetOrigin() const noexcept;
 
   int GetMark() const noexcept { return m_mark; }
 
@@ -42,10 +42,11 @@ struct Osub
   void SetMark(const int value) noexcept { m_mark = value; }
   void SetOrient(const int orient) noexcept;
 
-  void SetDest(const SubSeg subseg) noexcept;
-  void SetOrigin(const SubSeg subseg) noexcept;
+  void SetDest(const boost::shared_ptr<SubSeg> subseg) noexcept;
+  void SetOrigin(const boost::shared_ptr<SubSeg> subseg) noexcept;
 
   void SetSubsegOrient(const int subseg_orient) noexcept;
+  void Ssym(const Osub& other);
   void Ssymself() noexcept;
   std::vector<boost::shared_ptr<SubSeg>> m_subsegs; //Origanaly called 'm_sugseg', yet it must be a std::vector
   std::vector<boost::shared_ptr<Triangle>> m_triangles;

@@ -23,18 +23,32 @@ struct Otri
 {
   Otri();
   //Triangle * operator[](const int index) noexcept;
-  const Vertex& GetApex() const noexcept;
+
+  static Otri CreateSym(const Otri& other);
+
+  void Dissolve(boost::shared_ptr<Triangle> m_m_dummytri);
+
+  void Dnext(const Otri& other);
+  void Dnextself();
+  void Dprev(const Otri& other);
+
+  boost::shared_ptr<Vertex> GetApex() const noexcept;
   double GetAreaBound() const noexcept { return m_area_bound; }
-  const Vertex& GetDest() const noexcept;
+  boost::shared_ptr<Vertex> GetDest() const noexcept;
   double GetElemAttrib(const int index);
   bool GetInfected() const noexcept { return m_is_infected; }
-  const Vertex& GetOrigin() const noexcept;
+  boost::shared_ptr<Vertex> GetOrigin() const noexcept;
   void GetDest(const Vertex& GetDest) noexcept;
   void GetOrigin(const Vertex& origin) noexcept;
 
   void Lnext(const Otri& other);
   void Lnextself();
-  //otri2.Lnext(otri1);
+  void Lprev(const Otri& other);
+  void Lprevself();
+  void Onext(const Otri& other);
+  void Onextself(const Otri& other);
+  void Oprev(const Otri& other);
+  void Oprevself();
 
   void SetApex(const Vertex& apex) noexcept { m_apex = apex; }
   void SetAreaBound(const double area_bound) noexcept { m_area_bound = area_bound; }
@@ -47,6 +61,7 @@ struct Otri
   //operator[](const int index) const noexcept;
   int GetOrient() const noexcept { return m_orient; }
   void SetOrient(const int orient) noexcept;
+  void Sym(const Otri& other);
   void Symself() noexcept;
 
   Vertex m_apex;
@@ -68,12 +83,12 @@ struct Otri
 //void SetDest(Otri& otri, const Vertex& vertexptr);
 //void SetApex(Otri& otri, const Vertex& vertexptr);
 // Bond two triangles together
-void bond(Otri& otri1, Otri& otri2);
+void Bond(Otri& otri1, Otri& otri2);
 // Dissolve a bond (from one side).  Note that the other triangle will still
 //   think it's connected to this triangle.  Usually, however, the other
 //   triangle is being deleted entirely, or bonded to another triangle, so
 //   it doesn't matter.
-void dissolve(Otri& otri, Triangle * m_m_dummytri);
+//void dissolve(Otri& otri, Triangle * m_m_dummytri);
 //void otricopy(const Otri& otri1, Otri& otri2);
 //bool otriequal(const Otri& otri1, const Otri& otri2);
 //void infect(Otri& otri);
@@ -85,26 +100,26 @@ void dissolve(Otri& otri, Triangle * m_m_dummytri);
 //void setareabound(Otri& otri, const double value);
 bool operator==(const Otri& lhs, const Otri& rhs) noexcept;
 bool operator!=(const Otri& lhs, const Otri& rhs) noexcept;
-void decode(const std::string& s, Otri& otri);
-std::string encode(const Otri& /*otri*/);
-void sym(const Otri& otri1, Otri& otri2);
+//void decode(const std::string& s, Otri& otri);
+//std::string encode(const Otri& /*otri*/);
+//void sym(const Otri& otri1, Otri& otri2);
 //void symself(Otri& otri);
 //void lnext(Otri& otri1, Otri& otri2);
-void lnextself(Otri& otri);
-void lprev(Otri& otri1, Otri& otri2);
-void lprevself(Otri& otri);
-void onext(Otri& otri1, Otri& otri2);
-void onextself(Otri& otri);
-void oprev(Otri& otri1, Otri& otri2);
-void oprevself(Otri& otri);
-void dnext(Otri& otri1, Otri& otri2);
-void dnextself(Otri& otri);
-void dprev(Otri& otri1, Otri& otri2);
-void dprevself(Otri& otri);
-void rnext(Otri& otri1, Otri& otri2);
-void rnextself(Otri& otri);
-void rprev(Otri& otri1, Otri& otri2);
-void rprevself(Otri& otri);
+//void lnextself(Otri& otri);
+//void lprev(Otri& otri1, Otri& otri2);
+//void lprevself(Otri& otri);
+//void onext(Otri& otri1, Otri& otri2);
+//void onextself(Otri& otri);
+//void oprev(Otri& otri1, Otri& otri2);
+//void oprevself(Otri& otri);
+//void dnext(Otri& otri1, Otri& otri2);
+//void dnextself(Otri& otri);
+//void dprev(Otri& otri1, Otri& otri2);
+//void dprevself(Otri& otri);
+//void rnext(Otri& otri1, Otri& otri2);
+//void rnextself(Otri& otri);
+//void rprev(Otri& otri1, Otri& otri2);
+//void rprevself(Otri& otri);
 
 } //~namespace tricpp
 } //~namespace ribi

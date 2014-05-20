@@ -3,13 +3,16 @@
 #include "trianglecppmesh.h"
 #include "trianglecppvertextype.h"
 
-ribi::tricpp::Vertex::Vertex()
+ribi::tricpp::Vertex::Vertex(const double x, const double y, const int vertexmarker)
   : m_is_dead{false},
-    m_mark{0},
-    m_type{VertexType::INPUTVERTEX} //Guess
+    m_type{VertexType::INPUTVERTEX},
+    m_vertexmark{vertexmarker},
+    m_x{x},
+    m_y{y}
 {
 
 }
+
 /*
 int ribi::tricpp::GetVertexType(const Vertex& vx) noexcept
 {

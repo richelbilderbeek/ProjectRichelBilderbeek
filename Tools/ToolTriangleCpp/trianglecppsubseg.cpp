@@ -49,9 +49,10 @@ void ribi::tricpp::SubSeg::SetTriangle(Triangle * const triangle, const int inde
 
 void ribi::tricpp::ssym(const Osub& osub1, Osub& osub2)
 {
+  osub2.Ssym(osub1);
 
-  osub2.m_subseg = osub1.m_subseg;
-  osub2.m_subseg_orient = 1 - osub1.m_subseg_orient;
+  //osub2.m_subseg = osub1.m_subseg;
+  //osub2.m_subseg_orient = 1 - osub1.m_subseg_orient;
   /*
   #define ssym(osub1, osub2) \
     (osub2).m_subseg = (osub1).m_subseg; \

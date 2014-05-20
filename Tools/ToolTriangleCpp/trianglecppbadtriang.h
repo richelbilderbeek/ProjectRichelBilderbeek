@@ -26,9 +26,9 @@ struct BadTriang
   double m_key; ///cos^2 of smallest (apical) angle
   boost::shared_ptr<BadTriang> m_nexttriang; /// Pointer to next bad triangle
   boost::shared_ptr<Triangle> m_poortri;  /// A skinny or too-large triangle.
-  Vertex m_triangorg;
-  Vertex m_triangdest;
-  Vertex m_triangapex; /// Its three vertices
+  boost::shared_ptr<Vertex> m_triangorg;
+  boost::shared_ptr<Vertex> m_triangdest;
+  boost::shared_ptr<Vertex> m_triangapex; /// Its three vertices
 };
 
 } //~namespace tricpp

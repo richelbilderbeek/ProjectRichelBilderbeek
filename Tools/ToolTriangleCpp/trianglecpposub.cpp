@@ -19,6 +19,7 @@ boost::shared_ptr<ribi::tricpp::SubSeg> ribi::tricpp::Osub::Sencode() noexcept
   assert(m_subseg_orient >= 0);
   assert(m_subseg_orient < static_cast<int>(m_subsegs.size()));
   return m_subsegs[m_subseg_orient];
+
   /*
   #define sencode(osub) \
     (SubSeg) ((unsigned long) (osub).m_subseg | (unsigned long) (osub).m_subseg_orient)
@@ -36,6 +37,12 @@ void ribi::tricpp::Osub::SetSubsegOrient(const int subseg_orient) noexcept
 void ribi::tricpp::Osub::SetSubsegOrient(const int subseg_orient) noexcept
 {
   osub.m_subseg_orient = 1 - osub.m_subseg_orient;
+}
+
+void ribi::tricpp::Osub::Ssym(const Osub& other)
+{
+  m_subseg = other.m_subseg;
+  m_subseg_orient = 1 - other.m_subseg_orient;
 }
 
 void ribi::tricpp::Osub::Ssymself() noexcept
@@ -60,8 +67,10 @@ void ribi::tricpp::setmark(const Osub& osub, const int value) { return osub.SetM
 
 void ribi::tricpp::sbond(Osub& osub1, Osub& osub2)
 {
-  osub1.m_subsegs[osub1.m_subseg_orient] = sencode(osub2);
-  osub2.m_subsegs[osub2.m_subseg_orient] = sencode(osub1);
+  osub1.m_subsegs[osub1.m_subseg_orient] = osub2.Sencode();
+  osub2.m_subsegs[osub2.m_subseg_orient] = osub1.Sencode();
+  //osub1.m_subsegs[osub1.m_subseg_orient] = sencode(osub2);
+  //osub2.m_subsegs[osub2.m_subseg_orient] = sencode(osub1);
 }
 
 //#define sbond(osub1, osub2) \
@@ -191,8 +200,11 @@ void ribi::tricpp::stpivot(Osub& osub, Otri& otri)
 
 void ribi::tricpp::tsbond(Otri& otri, Osub& osub)
 {
-  otri.m_tri[6 + (otri).m_orient] = (Triangle) sencode(osub);
-  osub.m_subsegs[6 + (osub).m_subseg_orient] = (SubSeg) encode(otri);
+  otri.m_tri[6 + otri.m_orient] = osub.Sencode();
+  osub.m_subsegs[6 + osub.m_subseg_orient] =  (SubSeg) encode(otri);
+
+  //otri.m_tri[6 + (otri).m_orient] = (Triangle) sencode(osub);
+  //osub.m_subsegs[6 + (osub).m_subseg_orient] = (SubSeg) encode(otri);
 }
 
 /*

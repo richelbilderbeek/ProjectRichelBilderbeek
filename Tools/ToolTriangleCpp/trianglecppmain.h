@@ -35,12 +35,13 @@ void alternateaxes(
 
 /// Deallocate space for a bad subsegment, marking it
 /// dead.
+/*
 void badsubsegdealloc(
   //Mesh& m,
   std::vector<BadSubSeg>& m_badsubsegs,
   BadSubSeg& dyingseg
 );
-
+*/
 /// badsubsegtraverse()   Traverse the bad subsegments, skipping dead ones.
 //BadSubSeg * badsubsegtraverse(Mesh& m);
 
@@ -110,9 +111,13 @@ void checkmesh(
 ///
 /// Returns a nonzero value if the subsegment is encroached.
 int checkseg4encroach(
-  Mesh& m,
-  const Behavior& b,
-  const Osub * const testsubseg
+  //Mesh& m,
+  boost::shared_ptr<Triangle> m_m_dummytri,
+  //const Behavior& b,
+  const bool b_m_conformdel,
+  const double b_m_goodangle,
+  const bool b_m_nobisect,
+  boost::shared_ptr<Osub> testsubseg
 );
 
 double circletop(
@@ -391,35 +396,6 @@ void enforcequality(
   Mesh& m,
   const Behavior& b
 );
-
-/// enqueuebadtri()   Add a bad triangle to the end of a queue.
-///
-/// Allocates a badtriang data structure for the triangle, then passes it to
-/// enqueuebadtriang().
-void enqueuebadtri(
-  Mesh& m,
-  const Behavior& b,
-  const Otri& enqtri,
-  const double minedge,
-  const Vertex& enqapex,
-  const Vertex& enqorg,
-  const Vertex& enqdest
-);
-
-
-
-/// enqueuebadtriang()   Add a bad triangle data structure to the end of a
-///                      queue.
-///
-/// The queue is actually a set of 4096 queues.  I use multiple queues to
-/// give priority to smaller angles.  I originally implemented a heap, but
-/// the queues are faster by a larger margin than I'd suspected.
-void enqueuebadtriang(
-  Mesh& m,
-  const Behavior& b,
-  boost::shared_ptr<BadTriang> badtri
-);
-
 
 
 /// fast_expansion_sum_zeroelim()   Sum two expansions, eliminating zero
@@ -715,7 +691,7 @@ InsertVertexResult insertvertex(
   Otri * const searchtri,
   Osub * const splitseg,
   const int segmentflaws,
-  const int triflaws
+  const bool triflaws
 );
 
 /// locate()   Find a triangle or edge containing a given point.
@@ -789,8 +765,8 @@ void maketriangle(
 /// of several triangles, but in the end every vertex will point to some
 /// triangle that contains it.
 void makevertexmap(
-  Mesh& m,
-  const Behavior& b
+  Mesh& m
+  //const Behavior& b
 );
 
 ///Cover the convex hull of a triangulation with subsegments.

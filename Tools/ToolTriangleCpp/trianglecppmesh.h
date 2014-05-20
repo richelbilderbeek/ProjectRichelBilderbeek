@@ -27,6 +27,19 @@ struct Mesh
   Mesh(const Mesh&) = delete;
   Mesh& operator=(const Mesh&) = delete;
 
+
+  ///Add a bad triangle to the end of a queue.
+  void Enqueuebadtri(
+    const boost::shared_ptr<Otri>& enqtri,
+    const double minedge,
+    const boost::shared_ptr<Vertex>& enqapex,
+    const boost::shared_ptr<Vertex>& enqorg,
+    const boost::shared_ptr<Vertex>& enqdest
+  );
+
+  ///Add a bad triangle data structure to the end of a queue.
+  void Enqueuebadtriang(boost::shared_ptr<BadTriang> badtri);
+
   const Vertex& GetVertex(const int index) const noexcept;
   //Vertex& GetVertex(const int index) noexcept;
   void KillSubSeg(SubSeg& subseg) noexcept;
@@ -37,7 +50,7 @@ struct Mesh
   //MemoryPool m_badsubsegs; /// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   std::vector<BadSubSeg> m_badsubsegs;
   //MemoryPool m_badtriangles;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
-  std::vector<BadTriang> m_badtriangles;
+  std::vector<boost::shared_ptr<BadTriang>> m_badtriangles;
   int m_checkquality;                  /// Has quality triangulation begun yet?
   int m_checksegments;         /// Are there segments in the triangulation yet?
   long m_circletopcount;       /// Number of circle top calculations performed.
@@ -62,7 +75,7 @@ struct Mesh
   //  three pointers to subsegments before the extra nodes.
   //static const int m_highorderindex = 9;
   int m_holes;                                       /// Number of input holes.
-  long m_hullsize;                          /// Number of edges in convex hull.
+  int m_hullsize;                          /// Number of edges in convex hull.
   long m_hyperbolacount;      /// Number of right-of-hyperbola tests performed.
   long m_incirclecount;                 /// Number of incircle tests performed.
   int m_inelements;                              /// Number of input triangles.

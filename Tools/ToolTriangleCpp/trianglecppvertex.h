@@ -28,7 +28,7 @@ namespace tricpp {
 #ifdef TODO_ISSUE_206_IMPROVE_VERTEX
 struct Vertex
 {
-  Vertex();
+  Vertex(const double x, const double y, const int vertexmarker);
   //Vertex(double * begin);
   double GetX() const noexcept;
   double GetY() const noexcept;
@@ -38,18 +38,20 @@ struct Vertex
   bool IsDead() { return m_is_dead; }
   bool IsEmpty() const noexcept;
 
-  int GetMark() const noexcept { return m_mark; }
+  int GetMark() const noexcept { return m_vertexmark; }
   boost::shared_ptr<Triangle> GetTriangle() const noexcept;
   VertexType GetVertexType() const noexcept { return m_type; }
-  void SetMark(const int mark) noexcept { m_mark = mark; }
+  void SetMark(const int mark) noexcept { m_vertexmark = mark; }
   void SetTriangle(const boost::shared_ptr<Triangle>& triangle) noexcept;
   void SetVertexType(const VertexType type) noexcept { m_type = type; }
   void SetX(const double x) noexcept;
   void SetY(const double y) noexcept;
 
   private:
+  double m_x;
+  double m_y;
   bool m_is_dead;
-  int m_mark;
+  int m_vertexmark;
   VertexType m_type;
 };
 #else
