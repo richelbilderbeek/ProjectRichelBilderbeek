@@ -24,6 +24,4 @@ FORMS += \
     ../../Games/GameMaziak/qtmaziakgamewondialog.ui \
     ../../Games/GameMaziak/qtmaziakgameoverdialog.ui
 
-RESOURCES += \
-    ../../Games/GameMaziak/GameMaziak.qrc
 

@@ -62,5 +62,6 @@
         <file>AboutPicture.png</file>
         <file>Congratulations.png</file>
         <file>R.png</file>
+        <file>GameMaziakBackground.png</file>
     </qresource>
 </RCC>

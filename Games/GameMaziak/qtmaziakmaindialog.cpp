@@ -174,8 +174,10 @@ void ribi::maziak::QtMaziakMainDialog::OnTimerStartShowingSolution()
 
 void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
 {
-  const int block_width  = 1 + ((ui->widget->width()  - 4) / m_view_width);
-  const int block_height = 1 + ((ui->widget->height() - 4) / m_view_height);
+  //const int block_width  = 1 + ((ui->widget->width()  - 4) / m_view_width);
+  //const int block_height = 1 + ((ui->widget->height() - 4) / m_view_height);
+  const int block_width  = width()  / m_view_width;
+  const int block_height = height() / m_view_height;
 
   m_dialog->AnimateFighting();
 

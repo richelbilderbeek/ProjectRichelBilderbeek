@@ -39,7 +39,8 @@ private:
 
   void keyPressEvent(QKeyEvent *);
   void keyReleaseEvent(QKeyEvent *);
-  void paintEvent(QPaintEvent *);
+  //void paintEvent(QPaintEvent *);
+  //void resizeEvent(QResizeEvent *);
 };
 
 } //~namespace taba

@@ -122,37 +122,35 @@ void ribi::taba::QtGameWidget::OnTimer()
 
 void ribi::taba::QtGameWidget::paintEvent(QPaintEvent *)
 {
+  //168 wide / 8 = 21
+  //176 heigh / 8 = 22
+  //Bricks are 8x8, sprites are 16x16
   QPainter painter(this);
 
-  {
-    const auto arena = GetPixmap(SpriteType::arena);
-    painter.drawPixmap(0,0,arena->width(),arena->height(),*arena);
-  }
+  const auto arena = GetPixmap(SpriteType::arena);
+  painter.drawPixmap(rect(),*arena);
+
+  const double scale_x
+    = static_cast<double>(rect().width())
+    / static_cast<double>(arena->width())
+  ;
+  const double scale_y
+    = static_cast<double>(rect().height())
+    / static_cast<double>(arena->height())
+  ;
 
 
 
   const auto p = GetPixmap(Helper().ToPlayerSpriteType(m_direction));
   assert(p->height() > 0);
   assert(p->width() > 0);
-  painter.drawPixmap(m_x,m_y,16,16,*p);
-
-  /*
-  QPainter painter(this);
-  const int width = this->width();
-  const int height = this->height();
-  const double scale_x
-    = static_cast<double>(width)
-    / TankBattalion::GetArenaWidth();
-  const double scale_y
-    = static_cast<double>(height)
-    / TankBattalion::GetArenaHeight();
-  painter.setBackgroundMode(Qt::TransparentMode);
-  painter.drawImage(
-    this->rect(),
-    *GetImage(TankBattalion::arena).get());
-
-  painter.drawImage(
-    QRect(0,0,scale_x * 16.0, scale_y * 16.0),
-    *GetImage(TankBattalion::player_left).get());
-  */
+  painter.drawPixmap(
+    QRect(
+      m_x * scale_x,
+      m_y * scale_y,
+      p->width() * scale_x,
+      p->height() * scale_y
+    )
+    ,*p
+  );
 }

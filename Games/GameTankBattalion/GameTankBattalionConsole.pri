@@ -4,7 +4,8 @@ INCLUDEPATH += \
 SOURCES += \
     ../../Games/GameTankBattalion/tankbattalionmenudialog.cpp \
     ../../Games/GameTankBattalion/tankbattalionspritetypes.cpp \
-    ../../Games/GameTankBattalion/tankbattalionhelper.cpp
+    ../../Games/GameTankBattalion/tankbattalionhelper.cpp \
+    tankbattaliongamewidget.cpp
 
 HEADERS  += \
     ../../Games/GameTankBattalion/tankbattalionmenudialog.h \
@@ -12,7 +13,8 @@ HEADERS  += \
     ../../Games/GameTankBattalion/tankbattalionspritetypes.h \
     ../../Games/GameTankBattalion/tankbattalionkey.h \
     ../../Games/GameTankBattalion/tankbattaliondirection.h \
-    ../../Games/GameTankBattalion/tankbattalionhelper.h
+    ../../Games/GameTankBattalion/tankbattalionhelper.h \
+    tankbattaliongamewidget.h
 
 OTHER_FILES += \
     ../../Games/GameTankBattalion/Licence.txt

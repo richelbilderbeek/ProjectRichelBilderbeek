@@ -16,6 +16,7 @@ ribi::taba::QtTankBattalionGameDialog::QtTankBattalionGameDialog(QWidget *parent
 {
   ui->setupUi(this);
   ui->layout->addWidget(m_game.get());
+  m_game->setGeometry(rect());
 }
 
 ribi::taba::QtTankBattalionGameDialog::~QtTankBattalionGameDialog()
@@ -33,11 +34,20 @@ void ribi::taba::QtTankBattalionGameDialog::keyReleaseEvent(QKeyEvent * e)
   m_game->keyReleaseEvent(e);
 }
 
+/*
 void ribi::taba::QtTankBattalionGameDialog::paintEvent(QPaintEvent *)
 {
-  QPainter painter(this);
-  QPixmap p;
+  //QPainter painter(this);
+  //m_game->render(&painter);
 
-  m_game->render(&p);
-  painter.drawPixmap(rect(),p);
+  //painter.draw(
+  //painter.drawPixmap(rect(),p,p.rect());
 }
+*/
+/*
+void ribi::taba::QtTankBattalionGameDialog::resizeEvent(QResizeEvent *)
+{
+  m_game->setGeometry(rect());
+  repaint();
+}
+*/

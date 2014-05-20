@@ -14,7 +14,7 @@
    <string>Maziak</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../GameAminoAcidFighter/GameAminoAcidFighter.qrc">
+   <iconset>
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -33,13 +33,8 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="0" column="0">
-    <widget class="QWidget" name="widget" native="true"/>
-   </item>
   </layout>
  </widget>
- <resources>
-  <include location="../GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

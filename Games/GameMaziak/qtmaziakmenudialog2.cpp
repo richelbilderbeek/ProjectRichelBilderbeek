@@ -157,6 +157,11 @@ void ribi::maziak::QtMaziakMenuDialog2::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
   {
+    QPixmap background(":/images/GameMaziakBackground.png");
+    painter.drawPixmap(rect(),background);
+  }
+
+  {
     //Top left
     QPixmap pixmap;
     switch (m_difficulty)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>473</width>
-    <height>365</height>
+    <width>1124</width>
+    <height>651</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,9 +29,6 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="0" column="0">
-    <layout class="QGridLayout" name="layout"/>
-   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
