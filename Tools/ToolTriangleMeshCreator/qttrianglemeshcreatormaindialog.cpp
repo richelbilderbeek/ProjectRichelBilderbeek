@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttrianglemeshcreatormaindialog.h"
 
+#include <fstream>
+
 #include <boost/math/constants/constants.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
 #include <QDesktopWidget>
@@ -321,6 +323,3 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
   TRACE("Finished QtTriangleMeshCreatorMainDialog::Test successfully");
 }
 #endif
-
-
-

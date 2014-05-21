@@ -1,3 +1,5 @@
+QMAKE_CXXFLAGS_DEBUG += -pg
+QMAKE_LFLAGS_DEBUG += -pg
 
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)
@@ -15,7 +17,7 @@ include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppTriangleFile/CppTriangleFile.pri)
 include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)
-include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
+#include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
 #include(../../Tools/ToolTriangleCpp/ToolTriangleCppConsole.pri)
 
 #Desktop
