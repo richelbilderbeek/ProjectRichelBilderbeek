@@ -40,6 +40,11 @@ struct TriangleMeshCreatorMenuDialog : public MenuDialog
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
+  std::vector<std::string> SeperateString(
+    const std::string& input,
+    const char seperator
+  ) noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

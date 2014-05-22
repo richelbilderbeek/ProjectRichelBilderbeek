@@ -42,8 +42,8 @@ struct Mesh
 
   const Vertex& GetVertex(const int index) const noexcept;
   //Vertex& GetVertex(const int index) noexcept;
-  void KillSubSeg(SubSeg& subseg) noexcept;
-  void KillTriangle(Triangle& triangle) noexcept;
+  void KillSubSeg(boost::shared_ptr<SubSeg>& subseg) noexcept;
+  void KillTriangle(boost::shared_ptr<Triangle> triangle) noexcept;
   void KillVertex(const int index) noexcept;
 
   //int m_areaboundindex; //REPLACE BY CONST            /// Index to find area bound of a triangle.
@@ -77,11 +77,11 @@ struct Mesh
   int m_holes;                                       /// Number of input holes.
   int m_hullsize;                          /// Number of edges in convex hull.
   long m_hyperbolacount;      /// Number of right-of-hyperbola tests performed.
-  long m_incirclecount;                 /// Number of incircle tests performed.
+  int m_incirclecount;                 /// Number of incircle tests performed.
   int m_inelements;                              /// Number of input triangles.
-  Vertex m_infvertex1; /// Triangular bounding box vertices.
-  Vertex m_infvertex2; /// Triangular bounding box vertices.
-  Vertex m_infvertex3; /// Triangular bounding box vertices.
+  boost::shared_ptr<Vertex> m_infvertex1; /// Triangular bounding box vertices.
+  boost::shared_ptr<Vertex> m_infvertex2; /// Triangular bounding box vertices.
+  boost::shared_ptr<Vertex> m_infvertex3; /// Triangular bounding box vertices.
   int m_insegments;                               /// Number of input segments.
   int m_invertices;                               /// Number of input vertices.
   std::vector<FlipStacker> m_lastflip; /// Variable that maintains the stack of recently flipped triangles.

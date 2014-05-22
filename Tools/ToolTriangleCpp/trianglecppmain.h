@@ -128,14 +128,14 @@ double circletop(
   const double ccwabc
 );
 
-SplayNode * circletopinsert(
+boost::shared_ptr<SplayNode> circletopinsert(
   Mesh& m,
   const Behavior& b,
-  SplayNode * const splayroot,
-  const Otri * const newkey,
-  const Vertex& pa,
-  const Vertex& pb,
-  const Vertex& pc,
+  boost::shared_ptr<SplayNode> splayroot,
+  const boost::shared_ptr<Otri>& newkey,
+  const boost::shared_ptr<Vertex>& pa,
+  const boost::shared_ptr<Vertex>& pb,
+  const boost::shared_ptr<Vertex>& pc,
   const double topy
 );
 
@@ -218,16 +218,16 @@ void constrainededge(
   Mesh& m,
   const Behavior& b,
   const Otri * const starttri,
-  const Vertex& endpoint2,
+  const boost::shared_ptr<Vertex>& endpoint2,
   const int newmark
 );
 
 double counterclockwise(
   int& m_m_counterclockcount,
   const bool b_m_noexact,
-  const Vertex& pa,
-  const Vertex& pb,
-  const Vertex& pc
+  const boost::shared_ptr<Vertex>& pa,
+  const boost::shared_ptr<Vertex>& pb,
+  const boost::shared_ptr<Vertex>& pc
 );
 
 /// counterclockwise()   Return a positive value if the points pa, pb, and
@@ -246,9 +246,9 @@ double counterclockwise(
 ///
 /// See my Robust Predicates paper for details.
 double counterclockwiseadapt(
-  const Vertex& pa,
-  const Vertex& pb,
-  const Vertex& pc,
+  const boost::shared_ptr<Vertex>& pa,
+  const boost::shared_ptr<Vertex>& pb,
+  const boost::shared_ptr<Vertex>& pc,
   const double detsum
 );
 
@@ -318,7 +318,7 @@ void delaunayfixup(
 void deletevertex(
   Mesh& m,
   const Behavior& b,
-  const Otri * const deltri
+  const boost::shared_ptr<Otri>& deltri
 );
 
 /// dequeuebadtriang()   Remove a triangle from the front of the queue.
@@ -353,11 +353,12 @@ long divconqdelaunay(
 void divconqrecurse(
   Mesh& m,
   const Behavior& b,
-  const Vertex * const sortarray,
-  const int vertices,
+  const std::vector<boost::shared_ptr<Vertex>>& sortarray,
+  //const Vertex * const sortarray,
+  //const int vertices,
   const int axis,
-  Otri * const farleft,
-  Otri * const farright
+  boost::shared_ptr<Otri> farleft,
+  boost::shared_ptr<Otri> farright
 );
 
 /// dummyinit()   Initialize the triangle that fills "outer space" and the
@@ -406,10 +407,10 @@ void enforcequality(
 /// will be also.)  Does NOT maintain the nonoverlapping or nonadjacent
 /// properties.
 int fast_expansion_sum_zeroelim(
-  const int elen,
+  //const int elen,
   const std::vector<double>& e,
   //const double * const e,
-  const int flen,
+  //const int flen,
   const std::vector<double>& f,
   //const double * const f,
   std::vector<double>& h
@@ -434,12 +435,12 @@ void findcircumcenter(
   bool b_m_noexact,
   const double b_m_offconstant,
   //const Behavior& b,
-  const Vertex& torg,
-  const Vertex& tdest,
-  const Vertex& tapex,
-  Vertex& circumcenter,
-  double * const xi,
-  double * const eta,
+  const boost::shared_ptr<Vertex>& torg,
+  const boost::shared_ptr<Vertex>& tdest,
+  const boost::shared_ptr<Vertex>& tapex,
+  boost::shared_ptr<Vertex>& circumcenter,
+  double& xi,
+  double& eta,
   const int offcenter
 );
 
@@ -463,7 +464,7 @@ FindDirectionResult finddirection(
   Mesh& m,
   const Behavior& b,
   Otri * const searchtri,
-  const Vertex& searchpoint
+  const boost::shared_ptr<Vertex>& searchpoint
 );
 
 /// flip()   Transform two triangles to two different triangles by flipping
@@ -495,7 +496,7 @@ FindDirectionResult finddirection(
 void flip(
   const Mesh& m,
   const Behavior& b,
-  const Otri * const flipedge
+  const boost::shared_ptr<Otri>& flipedge
 );
 
 /// formskeleton()   Create the segments of a triangulation, including PSLG
@@ -548,10 +549,10 @@ double incircle(
   //Mesh& m,
   const bool b_m_noexact,
   //const Behavior& b,
-  const Vertex& pa,
-  const Vertex& pb,
-  const Vertex& pc,
-  const Vertex& pd
+  const boost::shared_ptr<Vertex>& pa,
+  const boost::shared_ptr<Vertex>& pb,
+  const boost::shared_ptr<Vertex>& pc,
+  const boost::shared_ptr<Vertex>& pd
 );
 
 
@@ -573,10 +574,10 @@ double incircle(
 
 
 double incircleadapt(
-  const Vertex& pa,
-  const Vertex& pb,
-  const Vertex& pc,
-  const Vertex& pd,
+  const boost::shared_ptr<Vertex>& pa,
+  const boost::shared_ptr<Vertex>& pb,
+  const boost::shared_ptr<Vertex>& pc,
+  const boost::shared_ptr<Vertex>& pd,
   const double permanent
 );
 
@@ -639,7 +640,7 @@ void insertsegment(
 void insertsubseg(
   Mesh& m,
   const Behavior& b,
-  const Otri * const tri,
+  const boost::shared_ptr<Otri>& tri,
   const int subsegmark
 );
 
@@ -687,9 +688,9 @@ void insertsubseg(
 InsertVertexResult insertvertex(
   Mesh& m,
   const Behavior& b,
-  const Vertex& newvertex,
-  Otri * const searchtri,
-  Osub * const splitseg,
+  const boost::shared_ptr<Vertex>& newvertex,
+  boost::shared_ptr<Otri>& searchtri,
+  boost::shared_ptr<Osub>& splitseg,
   const int segmentflaws,
   const bool triflaws
 );
@@ -730,27 +731,28 @@ InsertVertexResult insertvertex(
 LocateResult locate(
   Mesh& m,
   const Behavior& b,
-  const Vertex& searchpoint,
-  Otri * const searchtri
+  const boost::shared_ptr<Vertex>& searchpoint,
+  boost::shared_ptr<Otri>& searchtri
 );
 
 ///Create a new subsegment with orientation zero.
-void makesubseg(
+boost::shared_ptr<Osub> makesubseg(
+//void makesubseg(
   //Mesh& m,
   boost::shared_ptr<Triangle>& m_m_dummytri,
-  boost::shared_ptr<SubSeg>& m_m_dummysub,
-  Osub& newsubseg
+  boost::shared_ptr<SubSeg>& m_m_dummysub
+  //Osub& newsubseg
 );
 
 ///Create a new triangle with orientation zero.
-void maketriangle(
+boost::shared_ptr<ribi::tricpp::Otri> maketriangle(
   //Mesh& m,
   const boost::shared_ptr<Triangle>& m_m_dummytri,
   const boost::shared_ptr<SubSeg>& m_m_dummysub,
   const int m_m_eextras,
   //const Behavior& b,
-  const bool b_m_vararea,
-  Otri& newotri
+  const bool b_m_vararea
+  //boost::shared_ptr<Otri>& newotri
 );
 
 
@@ -808,10 +810,10 @@ void markhull(
 void mergehulls(
   Mesh& m,
   const Behavior& b,
-  Otri * const farleft,
-  Otri * const innerleft,
-  Otri * const innerright,
-  Otri * const farright,
+  boost::shared_ptr<Otri> farleft,
+  boost::shared_ptr<Otri> innerleft,
+  boost::shared_ptr<Otri> innerright,
+  boost::shared_ptr<Otri> farright,
   const int axis
 );
 
@@ -832,11 +834,11 @@ double nonregular(
   //Mesh& m,
   int& m_m_incirclecount,
   //const Behavior& b,
-  const bool b_m_noexact,
-  const Vertex& pa,
-  const Vertex& pb,
-  const Vertex& pc,
-  const Vertex& pd
+  //const bool b_m_noexact,
+  const boost::shared_ptr<Vertex>& pa,
+  const boost::shared_ptr<Vertex>& pb,
+  const boost::shared_ptr<Vertex>& pc,
+  const boost::shared_ptr<Vertex>& pd
 );
 
 /// Number the vertices.
@@ -851,10 +853,10 @@ double orient3d(
   int& m_m_orient3dcount,
   const bool b_m_noexact,
   //const Behavior& b,
-  const Vertex& pa,
-  const Vertex& pb,
-  const Vertex& pc,
-  const Vertex& pd,
+  const boost::shared_ptr<Vertex>& pa,
+  const boost::shared_ptr<Vertex>& pb,
+  const boost::shared_ptr<Vertex>& pc,
+  const boost::shared_ptr<Vertex>& pd,
   const double aheight,
   const double bheight,
   const double cheight,
@@ -881,10 +883,10 @@ double orient3d(
 ///
 /// See my Robust Predicates paper for details.
 double orient3dadapt(
-  const Vertex& pa,
-  const Vertex& pb,
-  const Vertex& pc,
-  const Vertex& pd,
+  const boost::shared_ptr<Vertex>& pa,
+  const boost::shared_ptr<Vertex>& pb,
+  const boost::shared_ptr<Vertex>& pc,
+  const boost::shared_ptr<Vertex>& pd,
   const double aheight,
   const double bheight,
   const double cheight,
@@ -976,10 +978,12 @@ void plague(
 /// However, it can still be used to find the circumcenter of a triangle, as
 /// long as the search is begun from the triangle in question.
 LocateResult preciselocate(
-  Mesh& m,
-  const Behavior& b,
-  const Vertex& searchpoint,
-  Otri * const searchtri,
+  //Mesh& m,
+  int& m_m_counterclockcount,
+  //const Behavior& b,
+  const bool b_m_noexact,
+  const boost::shared_ptr<Vertex>& searchpoint,
+  const boost::shared_ptr<Otri>& searchtri,
   const int stopatsubsegment
 );
 
@@ -1111,7 +1115,7 @@ long removebox(
 long removeghosts(
   Mesh& m,
   const Behavior& b,
-  Otri * const startghost
+  boost::shared_ptr<Otri> startghost
 );
 
 bool rightofhyperbola(
@@ -1133,12 +1137,14 @@ bool rightofhyperbola(
 /// with IEEE 754), maintains the strongly nonoverlapping and nonadjacent
 /// properties as well.  (That is, if e has one of these properties, so
 /// will h.)
-int scale_expansion_zeroelim(
-  const int elen,
+double scale_expansion_zeroelim(
+//void scale_expansion_zeroelim(
+//bool scale_expansion_zeroelim(
+  //const int elen,
   //const double * const e,
   const std::vector<double>& e,
-  const double b,
-  std::vector<double>& h
+  const double b
+  //double& h
   //double * const h
 );
 
@@ -1184,23 +1190,23 @@ int scoutsegment(
 void segmentintersection(
   Mesh& m,
   const Behavior& b,
-  Otri * const splittri,
-  Osub * const splitsubseg,
-  const Vertex& endpoint2
+  boost::shared_ptr<Otri>& splittri,
+  boost::shared_ptr<Osub>& splitsubseg,
+  const boost::shared_ptr<Vertex>& endpoint2
 );
 
 boost::shared_ptr<SplayNode> splay(
   Mesh& m,
-  SplayNode * const splaytree,
-  const Vertex& searchpoint,
-  Otri * const searchtri
+  boost::shared_ptr<SplayNode>& splaytree,
+  const boost::shared_ptr<Vertex>& searchpoint,
+  boost::shared_ptr<Otri>& searchtri
 );
 
 boost::shared_ptr<SplayNode> splayinsert(
   Mesh& m,
-  SplayNode * const splayroot,
-  const Otri * const newkey,
-  const Vertex& searchpoint
+  boost::shared_ptr<SplayNode> splayroot,
+  boost::shared_ptr<Otri> newkey,
+  const boost::shared_ptr<Vertex>& searchpoint
 );
 
 /// splitencsegs()   Split all the encroached subsegments.
@@ -1224,7 +1230,7 @@ void splitencsegs(
 void splittriangle(
   Mesh& m,
   const Behavior& b,
-  const BadTriang * const badtri
+  const boost::shared_ptr<BadTriang>& badtri
 );
 
 /// statistics()   Print all sorts of cool facts.
@@ -1237,7 +1243,7 @@ void statistics(
 /// subsegdealloc()   Deallocate space for a subsegment, marking it dead.
 void subsegdealloc(
   Mesh& m,
-  SubSeg& dyingsubseg
+  boost::shared_ptr<SubSeg>& dyingsubseg
 );
 
 /// subsegtraverse()   Traverse the subsegments, skipping dead ones.
@@ -1267,7 +1273,7 @@ void tallyfaces(Mesh& m,const Behavior& b);
 void testtriangle(
   Mesh& m,
   const Behavior& b,
-  const Otri * const testtri
+  boost::shared_ptr<Otri>& testtri
 );
 
 
@@ -1298,9 +1304,9 @@ int triangle_cpp_main(
 
 /// triangledealloc()   Deallocate space for a triangle, marking it dead.
 void triangledealloc(
-  std::vector<Triangle>& m_m_triangles,
+  std::vector<boost::shared_ptr<Triangle>>& m_m_triangles,
   //Mesh& m,
-  Triangle& dyingtriangle
+  boost::shared_ptr<Triangle>& dyingtriangle
 );
 
 /// triangledeinit()   Free all remaining allocated memory.
@@ -1436,19 +1442,19 @@ void undovertex(
 void unflip(
   const Mesh& m,
   const Behavior& b,
-  const Otri * const flipedge
+  const boost::shared_ptr<Otri>& flipedge
 );
 
 /// vertexdealloc()   Deallocate space for a vertex, marking it dead.
 void vertexdealloc(
-  Mesh& m,
-  Vertex& dyingvertex
+  std::vector<boost::shared_ptr<Vertex>>& vertices,
+  boost::shared_ptr<Vertex>& dyingvertex
 );
 
-void vertexdealloc(
-  std::vector<Vertex>& vertices,
-  Vertex& dyingvertex
-);
+//void vertexdealloc(
+//  std::vector<Vertex>& vertices,
+//  Vertex& dyingvertex
+//);
 
 /// vertexmedian()   An order statistic algorithm, almost.  Shuffles an
 ///                  array of vertices so that the first `median' vertices

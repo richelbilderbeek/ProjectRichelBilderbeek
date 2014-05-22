@@ -226,7 +226,7 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::Face::GetNonConstNeighbour() noe
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetConstOwner() const noexcept
 {
-  
+  //TODO: This is the slowest function
   assert(m_belongs_to.size() <= 2);
   m_belongs_to.erase(
     std::remove_if(

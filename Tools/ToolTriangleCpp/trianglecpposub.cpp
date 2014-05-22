@@ -165,7 +165,9 @@ void ribi::tricpp::snextself(Osub& osub, SubSeg& sptr)
 //tspivot() finds a subsegment abutting a triangle.
 void ribi::tricpp::tspivot(Otri& otri, Osub& osub)
 {
-  osub = otri.m_tri[6 + otri.m_orient];
+  otri.Tspivot(osub);
+  //osub = otri.m_tri[6 + otri.m_orient];
+
   //sptr = (SubSeg) (otri).m_tri[6 + (otri).m_orient];
   //sdecode(sptr, osub)
 }

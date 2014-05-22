@@ -62,9 +62,9 @@ typedef double *Vertex;
 //bool IsDeadVertexType(const Vertex& vx) noexcept;
 
 bool IsTriangleUnsuitable(
-  const Vertex& triorg,
-  const Vertex& tridest,
-  const Vertex& triapex
+  const boost::shared_ptr<Vertex>& triorg,
+  const boost::shared_ptr<Vertex>& tridest,
+  const boost::shared_ptr<Vertex>& triapex
 ) noexcept;
 
 //int vertextype(const Vertex& vertex) noexcept;

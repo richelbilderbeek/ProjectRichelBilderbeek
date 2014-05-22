@@ -26,17 +26,17 @@ bool ribi::tricpp::IsDeadVertexType(const Vertex& vx) noexcept
 */
 
 bool ribi::tricpp::IsTriangleUnsuitable(
-  const Vertex& triorg,
-  const Vertex& tridest,
-  const Vertex& triapex
+  const boost::shared_ptr<Vertex>& triorg,
+  const boost::shared_ptr<Vertex>& tridest,
+  const boost::shared_ptr<Vertex>& triapex
 ) noexcept
 {
-  const double dxoa = triorg[0] - triapex[0];
-  const double dyoa = triorg[1] - triapex[1];
-  const double dxda = tridest[0] - triapex[0];
-  const double dyda = tridest[1] - triapex[1];
-  const double dxod = triorg[0] - tridest[0];
-  const double dyod = triorg[1] - tridest[1];
+  const double dxoa = triorg->GetX() - triapex->GetX();
+  const double dyoa = triorg->GetY() - triapex->GetY();
+  const double dxda = tridest->GetX() - triapex->GetX();
+  const double dyda = tridest->GetY() - triapex->GetY();
+  const double dxod = triorg->GetX() - tridest->GetX();
+  const double dyod = triorg->GetY() - tridest->GetY();
   /* Find the squares of the lengths of the triangle's three edges. */
   const double oalen = dxoa * dxoa + dyoa * dyoa;
   const double dalen = dxda * dxda + dyda * dyda;
@@ -45,7 +45,7 @@ bool ribi::tricpp::IsTriangleUnsuitable(
   double maxlen = (dalen > oalen) ? dalen : oalen;
   maxlen = (odlen > maxlen) ? odlen : maxlen;
 
-  return maxlen > 0.05 * (triorg[0] * triorg[0] + triorg[1] * triorg[1]) + 0.02;
+  return maxlen > 0.05 * (triorg->GetX() * triorg->GetX() + triorg->GetY() * triorg->GetY()) + 0.02;
 }
 
 /*

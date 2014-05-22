@@ -147,6 +147,16 @@ void ribi::tricpp::Otri::SetTriangle(const boost::shared_ptr<Triangle>& triangle
   return m_triangles[index] = triangle;
 }
 
+boost::shared_ptr<ribi::tricpp::Osub> ribi::tricpp::Otri::CreateTspivot()
+{
+  boost::shared_ptr<Osub> osub = m_tri[6 + m_orient];
+  return osub;
+}
+
+void ribi::tricpp::Otri::Tspivot(Osub& osub)
+{
+  osub = m_tri[6 + m_orient];
+}
 
 
 
@@ -235,10 +245,10 @@ void ribi::tricpp::SetApex(Otri& otri, const Vertex& vertexptr)
 
 /* Bond two triangles together.                                              */
 
-void ribi::tricpp::Bond(Otri& otri1, Otri& otri2)
+void ribi::tricpp::Bond(boost::shared_ptr<Otri>& otri1, boost::shared_ptr<Otri>& otri2)
 {
-  otri1.m_triangles[otri1.m_orient] = otri2.m_tri[otri2.m_orient];
-  otri2.m_triangles[otri2.m_orient] = otri1.m_tri[otri2.m_orient];
+  otri1->m_triangles[otri1->m_orient] = otri2->m_tri[otri2->m_orient];
+  otri2->m_triangles[otri2->m_orient] = otri1->m_tri[otri2->m_orient];
 
 
   //(otri1).m_triangles[otri1.m_orient] = encode(otri2);

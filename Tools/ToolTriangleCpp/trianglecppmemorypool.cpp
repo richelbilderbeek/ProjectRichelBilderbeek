@@ -89,6 +89,7 @@ void ribi::tricpp::PoolDealloc(
 }
 */
 
+/*
 void ribi::tricpp::PoolDealloc(
   std::vector<Triangle>& triangles,
   Triangle& dying_triangle
@@ -116,7 +117,7 @@ void ribi::tricpp::PoolDealloc(
   vertices.pop_back();
 
 }
-
+*/
 /*
 void ribi::tricpp::PoolDeinit(MemoryPool * const pool)
 {

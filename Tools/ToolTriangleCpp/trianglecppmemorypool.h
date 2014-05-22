@@ -66,10 +66,20 @@ void PoolDealloc(
 */
 
 ///  The deallocated space is stored in a queue for later reuse.
-void PoolDealloc(std::vector<BadSubSeg>& subseg,BadSubSeg& dyingsubseg);
-void PoolDealloc(std::vector<SubSeg>& subseg,SubSeg& dyingsubseg);
-void PoolDealloc(std::vector<Triangle>& triangles,Triangle& dyingtriangle);
-void PoolDealloc(std::vector<Vertex>& vertices,Vertex& dyingitem);
+//void PoolDealloc(std::vector<BadSubSeg>& subseg,BadSubSeg& dyingsubseg);
+//void PoolDealloc(std::vector<SubSeg>& subseg,SubSeg& dyingsubseg);
+//void PoolDealloc(std::vector<Triangle>& triangles,Triangle& dyingtriangle);
+//void PoolDealloc(std::vector<Vertex>& vertices,Vertex& dyingitem);
+
+template <class T>
+void PoolDealloc(std::vector<boost::shared_ptr<T>>& vertices,boost::shared_ptr<T>& dyingitem)
+{
+  std::swap(
+    *std::find(vertices.begin(),vertices.end(),dyingitem),
+    vertices.back()
+  );
+  vertices.pop_back();
+}
 
 ///  pooldeinit()   Free to the operating system all memory taken by a pool.
 ///

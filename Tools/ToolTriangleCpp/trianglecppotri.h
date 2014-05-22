@@ -32,14 +32,20 @@ struct Otri
   void Dnextself();
   void Dprev(const Otri& other);
 
+  boost::shared_ptr<Osub> CreateTspivot();
+
+  void Tspivot(Osub& osub);
+
+
+
   boost::shared_ptr<Vertex> GetApex() const noexcept;
   double GetAreaBound() const noexcept { return m_area_bound; }
   boost::shared_ptr<Vertex> GetDest() const noexcept;
   double GetElemAttrib(const int index);
   bool GetInfected() const noexcept { return m_is_infected; }
   boost::shared_ptr<Vertex> GetOrigin() const noexcept;
-  void GetDest(const Vertex& GetDest) noexcept;
-  void GetOrigin(const Vertex& origin) noexcept;
+  //void GetDest(const Vertex& GetDest) noexcept;
+  //void GetOrigin(const Vertex& origin) noexcept;
 
   void Lnext(const Otri& other);
   void Lnextself();
@@ -50,12 +56,12 @@ struct Otri
   void Oprev(const Otri& other);
   void Oprevself();
 
-  void SetApex(const Vertex& apex) noexcept { m_apex = apex; }
+  void SetApex(const boost::shared_ptr<Vertex>& apex) noexcept { m_apex = apex; }
   void SetAreaBound(const double area_bound) noexcept { m_area_bound = area_bound; }
-  void SetDest(const Vertex& dest) noexcept { m_dest = dest; }
+  void SetDest(const boost::shared_ptr<Vertex>& dest) noexcept { m_dest = dest; }
   void SetElemAttrib(const double value, const int index);
   void SetInfected(const bool is_infected) noexcept { m_is_infected = is_infected; }
-  void SetOrigin(const Vertex& origin) noexcept { m_origin = origin; }
+  void SetOrigin(const boost::shared_ptr<Vertex>& origin) noexcept { m_origin = origin; }
   void SetSubSeg(const boost::shared_ptr<SubSeg>& subseg, const int index) noexcept;
   void SetTriangle(const boost::shared_ptr<Triangle>& triangle, const int index) noexcept;
   //operator[](const int index) const noexcept;
@@ -64,13 +70,13 @@ struct Otri
   void Sym(const Otri& other);
   void Symself() noexcept;
 
-  Vertex m_apex;
+  boost::shared_ptr<Vertex> m_apex;
   bool m_is_infected;
   double m_area_bound;
   std::vector<double> m_attributes;
-  Vertex m_dest;
+  boost::shared_ptr<Vertex> m_dest;
   int m_orient; /// Ranges from 0 to 2
-  Vertex m_origin;
+  boost::shared_ptr<Vertex> m_origin;
   std::vector<boost::shared_ptr<SubSeg>> m_subsegs;
   std::vector<boost::shared_ptr<Triangle>> m_triangles; //Must be std::vector
 };
@@ -83,7 +89,7 @@ struct Otri
 //void SetDest(Otri& otri, const Vertex& vertexptr);
 //void SetApex(Otri& otri, const Vertex& vertexptr);
 // Bond two triangles together
-void Bond(Otri& otri1, Otri& otri2);
+void Bond(boost::shared_ptr<Otri>& otri1, boost::shared_ptr<Otri>& otri2);
 // Dissolve a bond (from one side).  Note that the other triangle will still
 //   think it's connected to this triangle.  Usually, however, the other
 //   triangle is being deleted entirely, or bonded to another triangle, so
