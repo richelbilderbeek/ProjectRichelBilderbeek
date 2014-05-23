@@ -2,6 +2,8 @@
 
 #include <cassert>
 
+#include "trace.h"
+
 ribi::taba::GameWidget::GameWidget()
   : m_arena(CreateArena())
 {
@@ -25,3 +27,16 @@ bool ribi::taba::GameWidget::GetIsBrick(const int x, const int y) const noexcept
   assert(m_arena.at(y).at(x) >= 0);
   return m_arena[y][x];
 }
+
+#ifndef NDEBUG
+void ribi::taba::GameWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::taba::GameWidget::Test");
+  TRACE("Finished ribi::taba::GameWidget::Test successfully");
+}
+#endif

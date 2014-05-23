@@ -507,7 +507,7 @@ void flip(
 void formskeleton(
   Mesh& m,
   const Behavior& b,
-  FILE * const polyfile,
+  //FILE * const polyfile,
   const std::string& polyfilename
 );
 
@@ -1030,12 +1030,15 @@ void quality_statistics(
 void readholes(
   //const Mesh * const /* m */,
   const Behavior& b,
-  FILE * const polyfile,
+  //FILE * const polyfile,
+  const std::string& polyfilename,
   //const char * const polyfilename,
-  double ** const hlist,
-  int * const holes,
-  double ** const rlist,
-  int *regions
+  std::vector<double >& hlist, //hole list
+  //double ** const hlist,
+  //int * const holes,
+  std::vector<double>& rlist //region list
+  //double ** const rlist,
+  //int *regions
 );
 
 
@@ -1075,8 +1078,8 @@ long reconstruct(
   const Behavior& b,
   std::string& elefilename,
   const std::string& areafilename,
-  const std::string& polyfilename,
-  FILE * const polyfile
+  const std::string& polyfilename
+  //FILE * const polyfile
 );
 
 
@@ -1532,10 +1535,12 @@ void writepoly(
   Mesh& m,
   const Behavior& b,
   const std::string& polyfilename,
-  const double * const holelist,
-  const int holes,
-  const double * const regionlist,
-  const int regions,
+  const std::vector<double>& holes,
+  //const double * const holelist,
+  //const int holes,
+  const std::vector<double>& regions,
+  //const double * const regionlist,
+  //const int regions,
   const std::vector<std::string>& args
 );
 

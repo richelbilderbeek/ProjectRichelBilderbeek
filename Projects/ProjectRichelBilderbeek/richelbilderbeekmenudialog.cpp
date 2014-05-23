@@ -3163,6 +3163,10 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ProjectRichelBilderbeekMenuDialog::Test()");
+  ProjectRichelBilderbeekMenuDialog d;
+  d.Execute( { "ProjectRichelBilderbeek" } );
+  d.Execute( { "ProjectRichelBilderbeek", "--program" } );
+  d.Execute( { "ProjectRichelBilderbeek", "--status"  } );
   //Create all menus
   for (const auto m: CreateMenus())
   {
@@ -3171,7 +3175,6 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
     assert(!m->GetVersionHistory().empty());
     assert(m->GetProgram());
   }
-
   TRACE("Finished ribi::ProjectRichelBilderbeekMenuDialog::Test()");
 }
 #endif

@@ -6,7 +6,9 @@
 #include <sstream>
 #include <stdexcept>
 
+
 #include "richelbilderbeekprogram.h"
+#include "trace.h"
 
 int ribi::TankBattalionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -69,3 +71,16 @@ std::vector<std::string> ribi::TankBattalionMenuDialog::GetVersionHistory() cons
     "2013-11-07: version 0.1: conformized to ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TankBattalionMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TankBattalionMenuDialog::Test");
+  TRACE("Finished ribi::TankBattalionMenuDialog::Test successfully");
+}
+#endif
