@@ -22,6 +22,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "trianglemeshcreatormenudialog.h"
+
+/*
 #include <string>
 
 #include <boost/math/constants/constants.hpp>
@@ -36,10 +39,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
+*/
 #pragma GCC diagnostic pop
 
-int main(int, char* argv[])
+int main(int argc, char* argv[])
 {
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::TriangleMeshCreatorMenuDialog().Execute(args);
+
+  /*
   START_TRACE();
   typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
   {
@@ -59,7 +67,7 @@ int main(int, char* argv[])
     //::ribi::trim::CreateVerticalFacesStrategy::two_faces_per_square
   };
 
-  const bool verbose = true;
+  const bool verbose = false;
 
   const std::string checkMesh_command(
     std::string(
@@ -91,7 +99,7 @@ int main(int, char* argv[])
       );
       const double triangle_area = 2.0;
       const double triangle_quality = 5.0;
-      const bool verbose = true;
+      const bool verbose = false;
       const ribi::TriangleMeshCreatorMainDialog d(
         shapes,
         n_layers,
@@ -136,7 +144,7 @@ int main(int, char* argv[])
 
     const double triangle_quality = 5.0;
     const double triangle_area = 2.0;
-    const bool verbose = true;
+    const bool verbose = false;
     const ribi::TriangleMeshCreatorMainDialog d(
       shapes,
       n_layers,
@@ -174,4 +182,5 @@ int main(int, char* argv[])
     std::cerr << "ERROR: Unknown exception caught!" << std::endl;
     return 1;
   }
+  */
 }

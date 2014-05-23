@@ -30,7 +30,7 @@ void ribi::tricpp::Otri::Dissolve(boost::shared_ptr<Triangle> m_m_dummytri)
 
 void ribi::tricpp::Otri::Dnext(const Otri& other)
 {
-  Sym(other);
+  *this = CreateSym(other);
   //sym(otri1, otri2);
 
   Lprevself();
@@ -48,14 +48,14 @@ void ribi::tricpp::Otri::Dnextself()
 
 void ribi::tricpp::Otri::Dprev(const Otri& other)
 {
-  Lnext(other);
+  SetLnext(other);
   //lnext(otri1, otri2);
   Symself();
   //symself(otri2);
 }
 
 
-void ribi::tricpp::Otri::Lnext(const Otri& other)
+void ribi::tricpp::Otri::SetLnext(const Otri& other)
 {
   m_triangles = other.m_triangles;
   m_orient = other.m_orient + 1 % 3;
@@ -66,7 +66,7 @@ void ribi::tricpp::Otri::LnextSelf()
   m_orient = m_orient + 1 % 3;
 }
 
-void ribi::tricpp::Otri::Lprev(const Otri& other)
+void ribi::tricpp::Otri::Lprev(const Otri& other) const
 {
   m_triangles = other.m_triangles;
   m_orient = other.m_orient + 2 % 3;
@@ -97,7 +97,7 @@ void ribi::tricpp::Otri::Onextself(Otri& otri)
 
 void ribi::tricpp::Otri::Oprev(Otri& other)
 {
-  Sym(other);
+  *this = CreateSym(other);
   //sym(otri1, otri2);
 
   Lnextself();
@@ -119,6 +119,17 @@ void ribi::tricpp::Otri::SetOrient(const int orient) noexcept
   assert(orient >= 0);
   assert(orient  < 3);
   m_orient = orient;
+}
+
+boost::shared_ptr<ribi::tricpp::Otri> ribi::tricpp::Otri::CreateSym(const Otri& other)
+{
+  return other.m_triangles[other.m_orient];
+  //*this = other.m_triangles[other.m_orient];
+  //otri2 = otri1.m_triangles[(otri1).m_orient];
+  /*
+  ptr = (otri1).m_tri[(otri1).m_orient];  \
+  decode(ptr, otri2);
+  */
 }
 
 

@@ -69,7 +69,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
     std::vector<boost::shared_ptr<ribi::trim::Cell>> no_cells; return no_cells;
   }
   assert(n_face_layers >= 2);
-  const bool verbose = true;
+  const bool verbose = false;
 
   if (verbose) { TRACE("Create points"); }
   const std::vector<boost::shared_ptr<Point>> all_points
@@ -288,7 +288,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 ) noexcept
 {
   assert(t);
-  const bool verbose = true;
+  const bool verbose = false;
 
   assert(n_face_layers > 0);
   if (n_face_layers < 2)

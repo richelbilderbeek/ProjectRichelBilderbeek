@@ -3736,7 +3736,8 @@ void ribi::tricpp::testtriangle(
   boost::shared_ptr<Otri>& testtri
 )
 {
-  Otri tri1, tri2;
+  boost::shared_ptr<Otri> tri1;
+  boost::shared_ptr<Otri> tri2;
   //boost::shared_ptr<Osub> testsub;
   //Vertex torg, tdest, tapex;
   boost::shared_ptr<Vertex> base1;
@@ -3784,7 +3785,7 @@ void ribi::tricpp::testtriangle(
     base1 = torg;
     base2 = tdest;
     //otricopy(*testtri, tri1);
-    tri1 = *testtri;
+    tri1 = testtri;
   }
   else if (orglen < destlen)
   {
@@ -3796,7 +3797,7 @@ void ribi::tricpp::testtriangle(
     base1 = tdest;
     base2 = tapex;
 
-    tri1.Lnext(*testtri);
+    tri1->SetLnext(*testtri);
     //lnext(*testtri, tri1);
   }
   else
@@ -3809,7 +3810,7 @@ void ribi::tricpp::testtriangle(
     base1 = tapex;
     base2 = torg;
 
-    tri1.Lprev(*testtri);
+    tri1->Lprev(*testtri);
     //lprev(*testtri, tri1);
   }
 
@@ -3861,7 +3862,7 @@ void ribi::tricpp::testtriangle(
     {
       //Check if both points lie in a common segment.  If they do, the
       //  skinny triangle is enqueued to be split as usual.
-      const auto testsub = tri1.CreateTspivot();
+      const auto testsub = tri1->CreateTspivot();
       //tri1.Tspivot(testsub);
       //tspivot(tri1, testsub);
 
@@ -3872,11 +3873,11 @@ void ribi::tricpp::testtriangle(
         //otricopy(tri1, tri2);
         do
         {
-          tri1.Oprevself();
+          tri1->Oprevself();
           //oprevself(tri1);
 
-          const auto testsub = tri1.CreateTspivot();
-          //tri1.Tspivot(testsub);
+          //const auto testsub = tri1->CreateTspivot();
+          tri1->Tspivot(*testsub);
           //tspivot(tri1, testsub);
 
         } while (testsub->m_subsegs[0] == m.m_dummysub);
@@ -3890,13 +3891,13 @@ void ribi::tricpp::testtriangle(
         //Find a subsegment that contains `tdest'.
         do
         {
-          tri2.Dnextself();
+          tri2->Dnextself();
           //dnextself(tri2);
 
           const auto testsub = tri2->CreateTspivot();
           //tri2.Tspivot(testsub);
           //tspivot(tri2, testsub);
-        } while (testsub.m_subsegs == m.m_dummysub);
+        } while (testsub->m_subsegs[0] == m.m_dummysub);
         //Find the endpoints of the containing segment.
 
         const auto org2 = testsub->GetOrigin();
@@ -3907,7 +3908,7 @@ void ribi::tricpp::testtriangle(
 
         //Check if the two containing segments have an endpoint in common.
         //boost::shared_ptr<Vertex> joinvertex;
-        decltype(dest1) joinvertex;
+        std::remove_const<decltype(dest1)>::type joinvertex;
 
         if (dest1->GetX() == org2->GetX() && dest1->GetY() == org2->GetY())
         {
@@ -3961,14 +3962,14 @@ void ribi::tricpp::makevertexmap(
   for (auto my_triangle: m.m_triangles)
   {
     if (my_triangle->IsDead()) continue;
-    Otri triangleloop;
+    boost::shared_ptr<Otri> triangleloop;
     triangleloop->tri = my_triangle;
-    for (triangleloop.m_orient = 0; triangleloop.m_orient != 3; ++triangleloop.m_orient)
+    for (triangleloop->m_orient = 0; triangleloop->m_orient != 3; ++triangleloop->m_orient)
     {
-      const auto triorg = triangleloop.GetOrigin();
+      const auto triorg = triangleloop->GetOrigin();
       //org(triangleloop, triorg);
 
-      triangleloop->m_tri[triangleloop.m_orient] = triorg;
+      triangleloop->m_tri[triangleloop->m_orient] = triorg;
       //setvertex2tri(triorg, encode(triangleloop));
     }
 
@@ -3997,7 +3998,7 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
   const int stopatsubsegment
 )
 {
-  Otri backtracktri;
+  boost::shared_ptr<Otri> backtracktri;
   //Osub checkedge;
   //Vertex forg, fdest, fapex;
   //double orgorient, destorient;
@@ -4095,14 +4096,14 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
     //  off a boundary of the triangulation.
     if (moveleft)
     {
-      backtracktri.Lprev(*searchtri);
+      backtracktri->Lprev(*searchtri);
       //lprev(*searchtri, backtracktri);
 
       fdest = fapex;
     }
     else
     {
-      backtracktri.Lnext(*searchtri);
+      backtracktri->SetLnext(*searchtri);
       //lnext(*searchtri, backtracktri);
 
       forg = fapex;
@@ -4114,14 +4115,14 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
     if (m.m_checksegments && stopatsubsegment)
     {
       //Check for walking through a subsegment.
-      const auto checkedge = backtracktri.CreateTspivot();
+      const auto checkedge = backtracktri->CreateTspivot();
       //backtracktri.Tspivot(checkedge);
       //tspivot(backtracktri, checkedge);
 
       if (checkedge.m_subsegs != m.m_dummysub)
       {
         //Go back to the last triangle.
-        *searchtri = backtracktri;
+        searchtri = backtracktri;
         //otricopy(backtracktri, *searchtri);
         return OUTSIDE;
       }
@@ -4130,7 +4131,7 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
     if (searchtri->m_triangles == m.m_dummytri)
     {
       //Go back to the last triangle.
-      *searchtri = backtracktri;
+      searchtri = backtracktri;
       //otricopy(backtracktri, *searchtri);
       return OUTSIDE;
     }
@@ -4485,13 +4486,13 @@ void ribi::tricpp::flip(
   const auto toplcasing = Otri::CreateSym(topleft);
   //sym(topleft, toplcasing);
 
-  topright.Lnext(top);
+  topright.SetLnext(top);
   //lnext(top, topright);
 
   const auto toprcasing = Otri::CreateSym(topright);
   //sym(topright, toprcasing);
 
-  botleft.Lnext(*flipedge);
+  botleft.SetLnext(*flipedge);
   //lnext(*flipedge, botleft);
 
   const auto botlcasing = Otri::CreateSym(botleft);
@@ -4648,13 +4649,13 @@ void ribi::tricpp::unflip(
   const auto toplcasing = Otri::CreateSym(topleft);
   //sym(topleft, toplcasing);
 
-  topright.Lnext(top);
+  topright.SetLnext(top);
   //lnext(top, topright);
 
   toprcasing.sym(topright);
   //sym(topright, toprcasing);
 
-  botleft.Lnext(*flipedge);
+  botleft.SetLnext(*flipedge);
   //lnext(*flipedge, botleft);
 
   const auto botlcasing = Otri::CreateSym(botleft);
@@ -4757,21 +4758,26 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
   const bool triflaws
 )
 {
-  Otri horiz;
+  boost::shared_ptr<Otri> horiz;
   //Otri top;
-  Otri botleft, botright;
-  Otri topleft, topright;
+  boost::shared_ptr<Otri> botleft;
+  boost::shared_ptr<Otri> botright;
+  boost::shared_ptr<Otri> topleft;
+  boost::shared_ptr<Otri> topright;
   //Otri newbotleft, newbotright;
-  Otri newtopright;
+  boost::shared_ptr<Otri> newtopright;
   //Otri botlcasing, botrcasing;
-  Otri toplcasing, toprcasing;
+  //boost::shared_ptr<Otri> toplcasing;
+  boost::shared_ptr<Otri> toprcasing;
   //Otri testtri;
-  Osub botlsubseg, botrsubseg;
-  Osub toplsubseg, toprsubseg;
-  Osub brokensubseg;
-  Osub checksubseg;
-  Osub rightsubseg;
-  Osub newsubseg;
+  //boost::shared_ptr<Osub> botlsubseg;
+  boost::shared_ptr<Otri> botrsubseg;
+  //boost::shared_ptr<Osub> toplsubseg;
+  //boost::shared_ptr<Otri> toprsubseg;
+  //boost::shared_ptr<Osub> brokensubseg;
+  //boost::shared_ptr<Osub> checksubseg;
+  boost::shared_ptr<Osub> rightsubseg;
+  boost::shared_ptr<Osub> newsubseg;
   //BadSubSeg *encroached;
   //FlipStacker *newflip;
   //Vertex first;
@@ -5147,7 +5153,7 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
   else
   {
     //Insert the vertex in a triangle, splitting it into three.
-    botleft.Lnext(horiz);
+    botleft.SetLnext(horiz);
     //lnext(horiz, botleft);
 
     botright.Lprev(horiz);
@@ -5423,13 +5429,13 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
           const auto toplcasing = Otri::CreateSym(topleft);
           //sym(topleft, toplcasing);
 
-          topright.Lnext(top);
+          topright.SetLnext(top);
           //lnext(top, topright);
 
           const auto toprcasing = Otri::CreateSym(topright);
           //sym(topright, toprcasing);
 
-          botleft.Lnext(horiz);
+          botleft.SetLnext(horiz);
           //lnext(horiz, botleft);
 
           const auto botlcasing = Otri::CreateSym(botleft);
@@ -5636,15 +5642,15 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
       if (leftvertex == first || testtri.m_triangles == m.m_dummytri)
       {
         //We're done.  Return a triangle whose origin is the new vertex.
-        searchtri->Lnext(horiz);
+        searchtri->SetLnext(horiz);
         //lnext(horiz, *searchtri);
 
-        m.m_recenttri.Lnext(horiz);
+        m.m_recenttri.SetLnext(horiz);
         //lnext(horiz, m.m_recenttri);
         return success;
       }
       //Finish finding the next edge around the newly inserted vertex.
-      horiz.Lnext(testtri);
+      horiz.SetLnext(testtri);
       //lnext(testtri, horiz);
 
       rightvertex = leftvertex;
@@ -5658,16 +5664,16 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
 void ribi::tricpp::triangulatepolygon(
   Mesh& m,
   const Behavior& b,
-  const Otri * const firstedge,
-  Otri * const lastedge,
+  boost::shared_ptr<Otri> firstedge,
+  boost::shared_ptr<Otri> lastedge,
   const int edgecount,
   const int doflip,
   const int triflaws
 )
 {
-  Otri testtri;
-  Otri besttri;
-  Otri tempedge;
+  boost::shared_ptr<Otri> testtri;
+  boost::shared_ptr<Otri> besttri;
+  boost::shared_ptr<Otri> tempedge;
   //Vertex leftbasevertex, rightbasevertex;
   //Vertex testvertex;
   //Vertex bestvertex;
@@ -5702,7 +5708,8 @@ void ribi::tricpp::triangulatepolygon(
   int bestnumber = 1;
   for (int i = 2; i <= edgecount - 2; ++i)
   {
-    testtri.Onextself();
+    testtri->
+    Onextself();
     //onextself(testtri);
 
     const auto testvertex = testtri.GetDest();
@@ -6307,7 +6314,7 @@ void ribi::tricpp::mergehulls(
 
     while (checkvertex[1] > innerleftdest[1])
     {
-      innerleft->Lnext(checkedge);
+      innerleft->SetLnext(checkedge);
       //lnext(checkedge, *innerleft);
 
       const auto innerleftapex = innerleftdest;
@@ -6341,7 +6348,7 @@ void ribi::tricpp::mergehulls(
 
     while (checkvertex[1] > farrightpt[1])
     {
-      farright->Lnext(checkedge);
+      farright->SetLnext(checkedge);
       //lnext(checkedge, *farright);
 
       const auto farrightapex = farrightpt;
@@ -6434,7 +6441,7 @@ void ribi::tricpp::mergehulls(
 
   if (innerleftdest == farleftpt)
   {
-    farleft->Lnext(baseedge);
+    farleft->SetLnext(baseedge);
     //lnext(baseedge, *farleft);
   }
 
@@ -6648,7 +6655,7 @@ void ribi::tricpp::mergehulls(
     if (!rightfinished)
     {
       //What vertex would be exposed if an edge were deleted?
-      nextedge.Lnext(rightcand);
+      nextedge.SetLnext(rightcand);
       //lnext(rightcand, nextedge);
 
       nextedge.Symself();
@@ -7058,7 +7065,7 @@ void ribi::tricpp::divconqrecurse(
       }
       else
       {
-        farright->Lnext(*farleft);
+        farright->SetLnext(*farleft);
         //lnext(*farleft, *farright);
       }
     }
@@ -7131,7 +7138,7 @@ long ribi::tricpp::removeghosts(
   {
     hullsize++;
 
-    deadtriangle.Lnext(dissolveedge);
+    deadtriangle.SetLnext(dissolveedge);
     //lnext(dissolveedge, deadtriangle);
 
     dissolveedge.Lprevself();
@@ -7349,7 +7356,7 @@ long ribi::tricpp::removebox(
 
   //Check whether nextedge is another boundary triangle
   //  adjacent to the first one.
-  checkedge.Lnext(nextedge);
+  checkedge.SetLnext(nextedge);
   //lnext(nextedge, checkedge);
 
   checkedge.Symself();
@@ -7389,7 +7396,7 @@ long ribi::tricpp::removebox(
     dissolveedge.Dissolve(m_m_dummyri);
     //dissolve(dissolveedge);
 
-    deadtriangle.Lnext(nextedge);
+    deadtriangle.SetLnext(nextedge);
     //lnext(nextedge, deadtriangle);
 
     const auto nextedge = Otri::CreateSym(deadtriangle);
@@ -8090,7 +8097,7 @@ long ribi::tricpp::sweeplinedelaunay(
         }
         else if (std::rand() % SAMPLERATE == 0)
         {
-          inserttri.Lnext(righttri);
+          inserttri.SetLnext(righttri);
           //lnext(righttri, inserttri);
 
           splayroot = splayinsert(m, splayroot, &inserttri, nextvertex);
@@ -8320,7 +8327,7 @@ long ribi::tricpp::reconstruct(
     //makesubseg(m.m_dummytri,m.m_dummysub,&subsegloop);
     //makesubseg(m, &subsegloop);
     //Mark the subsegment as living.
-    subsegloop.m_subsegs[2] = (SubSeg) subsegloop.m_subsegs;
+    subsegloop->m_subsegs[2] = (SubSeg) subsegloop->m_subsegs;
   }
 
   if (b.m_vararea)
@@ -8543,9 +8550,9 @@ long ribi::tricpp::reconstruct(
     //  to their neighboring triangles.
     boundmarker = 0;
     TraversalInit(&m.m_subsegs);
-    subsegloop.m_subsegs = subsegtraverse(m);
+    subsegloop->m_subsegs = subsegtraverse(m);
     i = b.m_firstnumber;
-    while (subsegloop.m_subsegs != nullptr)
+    while (subsegloop->m_subsegs != nullptr)
     {
       //Read the endpoints of each segment, and possibly a boundary marker.
       stringptr = readline(inputline, polyfile);
@@ -8599,25 +8606,25 @@ long ribi::tricpp::reconstruct(
       }
 
       //set the subsegment's vertices.
-      subsegloop.m_subseg_orient = 0;
+      subsegloop->m_subseg_orient = 0;
       segmentorg = getvertex(m.m_vertices, b, end[0]);
       segmentdest = getvertex(m.m_vertices, b, end[1]);
 
-      subsegloop.SetsOrigin(segmentorg);
+      subsegloop->SetsOrigin(segmentorg);
       //SetsOrigin(subsegloop, segmentorg);
 
-      subsegloop.SetDest(segmentdest);
+      subsegloop->SetDest(segmentdest);
       //SetDest(subsegloop, segmentdest);
 
       setsegorg(subsegloop, segmentorg);
       setsegdest(subsegloop, segmentdest);
       setmark(subsegloop, boundmarker);
       //Try linking the subsegment to triangles that share these vertices.
-      for (subsegloop.m_subseg_orient = 0; subsegloop.m_subseg_orient < 2;
-           subsegloop.m_subseg_orient++)
+      for (subsegloop->m_subseg_orient = 0; subsegloop->m_subseg_orient < 2;
+           subsegloop->m_subseg_orient++)
       {
-        //Take the number for the destination of subsegloop.
-        aroundvertex = end[1 - subsegloop.m_subseg_orient];
+        //Take the number for the destination of subsegloop->
+        aroundvertex = end[1 - subsegloop->m_subseg_orient];
         //Look for triangles having this vertex.
         prevlink = &vertexarray[aroundvertex - b.m_firstnumber];
         nexttri = vertexarray[aroundvertex - b.m_firstnumber];
@@ -8625,7 +8632,7 @@ long ribi::tricpp::reconstruct(
         checktri = nexttri;
         //decode(nexttri, checktri);
 
-        shorg = subsegloop.GetOrigin();
+        shorg = subsegloop->GetOrigin();
         //GetOrigin(subsegloop, shorg);
 
         notfound = 1;
@@ -8670,7 +8677,7 @@ long ribi::tricpp::reconstruct(
           //decode(nexttri, checktri);
         }
       }
-      subsegloop.m_subsegs = subsegtraverse(m);
+      subsegloop->m_subsegs = subsegtraverse(m);
       i++;
     }
   }
@@ -8996,7 +9003,7 @@ int ribi::tricpp::scoutsegment(
   }
   else
   {
-    crosstri.Lnext(*searchtri);
+    crosstri.SetLnext(*searchtri);
     //lnext(*searchtri, crosstri);
 
     const auto crosssubseg = crosstri.CreateTspivot();
@@ -9150,7 +9157,7 @@ void ribi::tricpp::delaunayfixup(
   Triangle ptr;                         //Temporary variable used by sym().
   SubSeg sptr;                      //Temporary variable used by tspivot().
 
-  neartri.Lnext(*fixuptri);
+  neartri.SetLnext(*fixuptri);
   //lnext(*fixuptri, neartri);
 
   const auto fartri = Otri::CreateSym(neartri);
@@ -9244,7 +9251,7 @@ void ribi::tricpp::constrainededge(
   const auto endpoint1 = starttri->GetOrigin();
   //GetOrigin(*starttri, endpoint1);
 
-  fixuptri.Lnext(*starttri);
+  fixuptri.SetLnext(*starttri);
   //lnext(*starttri, fixuptri);
 
   flip(m, b, &fixuptri);
@@ -10364,15 +10371,15 @@ void ribi::tricpp::tallyencs(
   //int dummy;
 
   TraversalInit(&m.m_subsegs);
-  subsegloop.m_subseg_orient = 0;
-  subsegloop.m_subsegs = subsegtraverse(m);
-  while (subsegloop.m_subsegs != nullptr)
+  subsegloop->m_subseg_orient = 0;
+  subsegloop->m_subsegs = subsegtraverse(m);
+  while (subsegloop->m_subsegs != nullptr)
   {
     //If the segment is encroached, add it to the list.
     checkseg4encroach(m.m_dummytri,b.m_conformdel,b.m_goodangle,b.m_nobisect,&subsegloop);
     //checkseg4encroach(m, b, &subsegloop);
 
-    subsegloop.m_subsegs = subsegtraverse(m);
+    subsegloop->m_subsegs = subsegtraverse(m);
   }
 }
 
@@ -10442,7 +10449,7 @@ void ribi::tricpp::splitencsegs(
         auto enctri = currentenc.GetStPivot();
         //stpivot(currentenc, enctri);
 
-        testtri.Lnext(enctri);
+        testtri.SetLnext(enctri);
         //lnext(enctri, testtri);
 
         const auto testsh = testtri.CreateTspivot();
@@ -11412,15 +11419,15 @@ void ribi::tricpp::writepoly(
   outfile << m.m_subsegs.m_items << " " << (1 - b.m_nobound) << '\n';
 
   TraversalInit(&m.m_subsegs);
-  subsegloop.m_subsegs = subsegtraverse(m);
-  subsegloop.m_subseg_orient = 0;
+  subsegloop->m_subsegs = subsegtraverse(m);
+  subsegloop->m_subseg_orient = 0;
   subsegnumber = b.m_firstnumber;
-  while (subsegloop.m_subsegs != nullptr)
+  while (subsegloop->m_subsegs != nullptr)
   {
-    endpoint1 = subsegloop.GetOrigin();
+    endpoint1 = subsegloop->GetOrigin();
     //GetOrigin(subsegloop, endpoint1);
 
-    endpoint2 = subsegloop.GetDest();
+    endpoint2 = subsegloop->GetDest();
     //GetDest(subsegloop, endpoint2);
 
     //Segment number, indices of its two endpoints, and possibly a marker.
@@ -11444,12 +11451,12 @@ void ribi::tricpp::writepoly(
         << ' '
         << endpoint2.GetMark()
         << ' '
-        << subsegloop.GetMark()
+        << subsegloop->GetMark()
         << '\n'
         ;
     }
 
-    subsegloop.m_subsegs = subsegtraverse(m);
+    subsegloop->m_subsegs = subsegtraverse(m);
     subsegnumber++;
   }
 

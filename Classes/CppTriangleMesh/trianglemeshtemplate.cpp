@@ -30,8 +30,9 @@ ribi::trim::Template::Template(
   Test();
   #endif
 
-  
-  TRACE("Load the points and faces created by Triangle");
+  const bool verbose = false;
+
+  if (verbose) { TRACE("Load the points and faces created by Triangle"); }
   {
     const std::vector<std::string> v {
       ribi::fileio::FileIo().FileToVector(
@@ -81,7 +82,7 @@ ribi::trim::Template::Template(
     }
   }
 
-  TRACE("Load and translate faces");
+  if (verbose) { TRACE("Load and translate faces"); }
   {
     const std::vector<std::string> v
       = ribi::fileio::FileIo().FileToVector(filename_ele);
@@ -151,7 +152,7 @@ ribi::trim::Template::Template(
   }
 
   #ifndef NDEBUG
-  TRACE("Checking the result");
+  if (verbose) { TRACE("Checking the result"); }
   const int n_faces = static_cast<int>(m_faces.size());
   assert(m_faces.size() == m_face_point_indices.size());
   for (int i=0; i!=n_faces; ++i)
@@ -172,7 +173,7 @@ ribi::trim::Template::Template(
   auto new_end = std::unique(m_edges.begin(),m_edges.end());
   m_edges.erase(new_end,m_edges.end());
   assert(!m_edges.empty());
-  TRACE("Done checking the result");
+  if (verbose) { TRACE("Done checking the result"); }
 }
 
 ribi::trim::Template::Template(

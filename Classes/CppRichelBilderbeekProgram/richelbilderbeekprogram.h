@@ -2904,7 +2904,7 @@ struct ProgramTriangleMeshCreator : public ProgramTool
   std::string GetScreenName() const noexcept { return "TriangleMeshCreator"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::triangleMeshCreator; }
   std::string GetUrl() const noexcept { return "ToolTriangleMeshCreator.htm"; }

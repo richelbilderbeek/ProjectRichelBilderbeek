@@ -834,22 +834,30 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   const std::vector<boost::shared_ptr<Cell>>& cells
 ) noexcept
 {
+  const bool verbose = false;
+
   std::vector<boost::shared_ptr<Face>> v;
   for (const boost::shared_ptr<Cell>& cell: cells)
   {
     const auto w(cell->GetFaces());
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
-  TRACE("n_face, non-unique:");
-  TRACE(v.size());
+  if (verbose)
+  {
+    TRACE("n_face, non-unique:");
+    TRACE(v.size());
+  }
   
   std::sort(v.begin(),v.end(),Helper().OrderByIndex());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
 
-  TRACE("n_face, unique:");
-  TRACE(v.size());
+  if (verbose)
+  {
+    TRACE("n_face, unique:");
+    TRACE(v.size());
+  }
   return v;
 
 

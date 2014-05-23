@@ -1391,8 +1391,8 @@ void triangulate(
 void triangulatepolygon(
   Mesh& m,
   const Behavior& b,
-  const Otri * const firstedge,
-  Otri * const lastedge,
+  boost::shared_ptr<Otri> firstedge,
+  boost::shared_ptr<Otri> lastedge,
   const int edgecount,
   const int doflip,
   const int triflaws

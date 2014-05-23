@@ -31,6 +31,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
+#include <boost/units/io.hpp>
+//#include <boost/xpressive/xpressive.hpp>
+
+#include <QRegExp>
 
 #include "fileio.h"
 #include "geometry.h"
@@ -58,45 +62,67 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
   using boost::units::si::meter;
 
-
   const int argc = static_cast<int>(args.size());
 
-  bool show_mesh = false;
-  if (std::count(args.begin(),args.end(),"-s"         )) { show_mesh = true; }
-  if (std::count(args.begin(),args.end(),"--show_mesh")) { show_mesh = true; }
-
+  //Verbosity
   bool verbose = false;
-  if (std::count(args.begin(),args.end(),"-v"       )) { verbose = true; }
-  if (std::count(args.begin(),args.end(),"--verbose")) { verbose = true; }
+  if (std::count(args.begin(),args.end(),"-b") || std::count(args.begin(),args.end(),"--verbose"))
+  {
+    verbose = true;
+    std::cout << "Verbose mode" << std::endl;
+  }
 
-  //Help::Option('h',"layer_height","the height of a layer, in meters"),
+  //Show mesh
+  bool show_mesh = false;
+  if (std::count(args.begin(),args.end(),"-m") || std::count(args.begin(),args.end(),"--show_mesh"))
+  {
+    show_mesh = true;
+  }
+  if (verbose)
+  {
+    std::cout << "Show mesh: " << (show_mesh ? "Yes" : "No") << std::endl;
+  }
+
+  //Layer height
+  if (!std::count(args.begin(),args.end(),"-z") && !std::count(args.begin(),args.end(),"--layer_height"))
+  {
+    std::cerr << "Parameter for layer height missing" << '\n';
+    return 1;
+  }
   Length layer_height(0.0 * boost::units::si::meter);
-
   for (int i=0; i!=argc-1; ++i)
   {
-    if (args[i] == "-h" || args[i] == "--layer_height")
+    if (args[i] == "-z" || args[i] == "--layer_height")
     {
       try
       {
-        layer_height = Length(boost::lexical_cast<double>(args[i+1]) * boost::units::si::meter);
+        layer_height = Length(boost::lexical_cast<double>(args[i+1]) * meter);
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cout << "Please supply a value for the layer height, e.g. '3.14'" << std::endl;
+        std::cerr << "Please supply a value for the layer height, e.g. '3.14'" << std::endl;
         return 1;
       }
     }
   }
   if (layer_height <= 0.0 * meter)
   {
-    std::cout << "Please supply a positive non-zero value for the layer height, e.g. '3.14'" << std::endl;
+    std::cerr << "Please supply a positive non-zero value for the layer height, e.g. '3.14'" << std::endl;
     return 1;
   }
+  if (verbose)
+  {
+    std::cout << "Layer height: " << layer_height << std::endl;
+  }
 
-  //Help::Option('s',"strategy","how to create vertical faces, '1' (one square, default) or '2' (two triangles)"),
+  //Create vertical faces strategy
+  if (!std::count(args.begin(),args.end(),"-s") && !std::count(args.begin(),args.end(),"--strategy"))
+  {
+    std::cerr << "Parameter for vertical faces creation strategy missing" << '\n';
+    return 1;
+  }
   ribi::trim::CreateVerticalFacesStrategy strategy
     = ribi::trim::CreateVerticalFacesStrategy::one_face_per_square;
-
   for (int i=0; i!=argc-1; ++i)
   {
     if (args[i] == "-s" || args[i] == "--strategy")
@@ -106,24 +132,44 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
         int value = boost::lexical_cast<int>(args[i+1]);
         switch (value)
         {
-          case 1: strategy = ribi::trim::CreateVerticalFacesStrategy::one_face_per_square;
-          case 2: strategy = ribi::trim::CreateVerticalFacesStrategy::two_faces_per_square;
+          case 1:
+            strategy = ribi::trim::CreateVerticalFacesStrategy::one_face_per_square;
+            break;
+          case 2:
+            strategy = ribi::trim::CreateVerticalFacesStrategy::two_faces_per_square;
+            break;
           default:
           {
-            std::cout << "Please supply either a '1' or '2' for the vertical faces strategy" << std::endl;
+            std::cerr << "Please supply either a '1' or '2' for the vertical faces strategy" << std::endl;
             return 1;
           }
         }
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cout << "Please supply a value for the vertical faces strategy, either '1' or '2'" << std::endl;
+        std::cerr << "Please supply a value for the vertical faces strategy, either '1' or '2'" << std::endl;
         return 1;
       }
     }
   }
+  if (verbose)
+  {
+    std::cout
+      << "Create vertical faces strategy: "
+      << (strategy == ribi::trim::CreateVerticalFacesStrategy::one_face_per_square
+          ? "One face"
+          : "Two faces"
+        )
+      << " per square"
+      << std::endl;
+  }
 
-  //Help::Option('n',"n_layers","the number of layers"),
+  //Number of layers
+  if (!std::count(args.begin(),args.end(),"-n") && !std::count(args.begin(),args.end(),"--n_layers"))
+  {
+    std::cerr << "Parameter for number of layers missing" << '\n';
+    return 1;
+  }
   int n_layers = 0;
   for (int i=0; i!=argc-1; ++i)
   {
@@ -135,22 +181,31 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cout << "Please supply a value for number of layers" << std::endl;
+        std::cerr << "Please supply a value for number of layers" << std::endl;
         return 1;
       }
     }
   }
   if (n_layers <= 0)
   {
-    std::cout << "Please supply a positive non-zero value for the number of layers" << std::endl;
+    std::cerr << "Please supply a positive non-zero value for the number of layers" << std::endl;
     return 1;
   }
+  if (verbose)
+  {
+    std::cout << "Number of layers: " << n_layers << std::endl;
+  }
 
-  //Help::Option('a',"triangle_area","Triangle area"),
+  //Triangle area
+  if (!std::count(args.begin(),args.end(),"-r") && !std::count(args.begin(),args.end(),"--triangle_area"))
+  {
+    std::cerr << "Parameter for Triangle area missing" << '\n';
+    return 1;
+  }
   double triangle_area = 0.0;
   for (int i=0; i!=argc-1; ++i)
   {
-    if (args[i] == "-a" || args[i] == "--triangle_area")
+    if (args[i] == "-r" || args[i] == "--triangle_area")
     {
       try
       {
@@ -158,18 +213,27 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cout << "Please supply a value for Triangle area" << std::endl;
+        std::cerr << "Please supply a value for Triangle area" << std::endl;
         return 1;
       }
     }
   }
   if (triangle_area <= 0.0)
   {
-    std::cout << "Please supply a positive non-zero value for the Triangle area" << std::endl;
+    std::cerr << "Please supply a positive non-zero value for the Triangle area" << std::endl;
     return 1;
   }
+  if (verbose)
+  {
+    std::cout << "Triangle area: " << triangle_area << std::endl;
+  }
 
-  //Help::Option('q',"triangle_quality","Triangle quality"),
+  //Triangle quality
+  if (!std::count(args.begin(),args.end(),"-q") && !std::count(args.begin(),args.end(),"--triangle_quality"))
+  {
+    std::cerr << "Parameter for Triangle quality missing" << '\n';
+    return 1;
+  }
   double triangle_quality = 0.0;
   for (int i=0; i!=argc-1; ++i)
   {
@@ -181,28 +245,44 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cout << "Please supply a value for Triangle quality" << std::endl;
+        std::cerr << "Please supply a value for Triangle quality" << std::endl;
         return 1;
       }
     }
   }
   if (triangle_quality <= 0.0)
   {
-    std::cout << "Please supply a positive non-zero value for the Triangle quality" << std::endl;
+    std::cerr << "Please supply a positive non-zero value for the Triangle quality" << std::endl;
     return 1;
+  }
+  if (verbose)
+  {
+    std::cout << "Triangle quality: " << triangle_quality << std::endl;
   }
 
   //Help::Option('p',"polygons","the shapes used as a base"),
-  std::vector<Polygon> polygons;
+  if (!std::count(args.begin(),args.end(),"-p")
+    && !std::count(args.begin(),args.end(),"--polygon")
+    && !std::count(args.begin(),args.end(),"--polygons")
+  )
+  {
+    std::cerr << "Parameter for polygons missing" << '\n';
+    return 1;
+  }
 
+  std::vector<Polygon> polygons;
   for (int i=0; i!=argc-1; ++i)
   {
-    if (args[i] == "-p" || args[i] == "--polygon")
+    if (args[i] == "-p" || args[i] == "--polygon" || args[i] == "--polygons")
     {
       const std::string text = args[i+1];
-      const std::vector<std::string> lines = SeperateString(text,',');
-      for (const std::string line: lines)
+      if (verbose) { std::cout << "Parsing polygons '" << text << "'" << std::endl; }
+      const QRegExp regex(GetPolygonRegex().c_str());
+      //const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(GetPolygonRegex());
+      const std::vector<std::string> lines = GetRegexMatches(text,regex);
+      for (const std::string& line: lines)
       {
+        if (verbose) { std::cout << "Parsing polygon '" << line << "'" << std::endl; }
         Polygon polygon;
         try
         {
@@ -218,11 +298,48 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   }
   if (polygons.empty())
   {
-    std::cout << "Please supply a value for polygon, e.g. 'POLYGON(1 1,1 -1,1 -1)" << std::endl;
+    std::cerr << "Please supply a value for polygon, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl;
     return 1;
 
   }
+  if (verbose)
+  {
+    std::cout << "Number of polygons: " << polygons.size() << std::endl;
+    std::cout << "Polygons (as SVG text): " << Geometry().ToSvgStr(polygons) << std::endl;
+  }
 
+
+  //Fraction
+  if (!std::count(args.begin(),args.end(),"-f") && !std::count(args.begin(),args.end(),"--fraction"))
+  {
+    std::cerr << "Parameter for fraction of cells to keep" << '\n';
+    return 1;
+  }
+  double fraction = 0.0;
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (args[i] == "-f" || args[i] == "--fraction")
+    {
+      try
+      {
+        fraction = boost::lexical_cast<double>(args[i+1]);
+      }
+      catch (boost::bad_lexical_cast&)
+      {
+        std::cerr << "Please supply a value for fraction of cells to keep" << std::endl;
+        return 1;
+      }
+    }
+  }
+  if (fraction < 0.0 || fraction > 1.0)
+  {
+    std::cerr << "Please supply a value between zero and one for the fraction of cells to keep" << std::endl;
+    return 1;
+  }
+  if (verbose)
+  {
+    std::cout << "Fraction of cells to keep: " << fraction << std::endl;
+  }
 
   try
   {
@@ -233,7 +350,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       strategy,
       triangle_quality,
       triangle_area,
-      ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
+      ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(fraction),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
       verbose
@@ -261,7 +378,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       + (verbose ? "&& dir " : "")
       + "&& checkMesh"
     );
-    TRACE(checkMesh_command);
+    if (verbose) { TRACE(checkMesh_command); }
     std::system(checkMesh_command.c_str());
     return 0;
   }
@@ -284,7 +401,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TriangleMeshCreator",
     "Create a 3D mesh using Triangle",
-    "the 11th of May 2014",
+    "the 23rd of May 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm",
     GetVersion(),
@@ -312,20 +429,28 @@ ribi::Help ribi::TriangleMeshCreatorMenuDialog::GetHelp() const noexcept
     GetAbout().GetFileTitle(),
     GetAbout().GetFileDescription(),
     {
-      Help::Option('h',"layer_height","the height of a layer, in meters"),
+      Help::Option('z',"layer_height","the height of a layer, in meters"),
       Help::Option('p',"polygons","the shapes used as a base"),
-      Help::Option('s',"strategy","how to create vertical faces, '1' (one square, default) or '2' (two triangles)"),
+      Help::Option('s',"strategy","how to create vertical faces, '1' or '2'"),
       Help::Option('n',"n_layers","the number of layers"),
+      Help::Option('f',"fraction","fraction of cells to keep"),
       Help::Option('m',"show_mesh","show the generated 3D mesh"),
-      Help::Option('a',"triangle_area","Triangle area"),
+      Help::Option('r',"triangle_area","Triangle area"),
       Help::Option('q',"triangle_quality","Triangle quality"),
-      Help::Option('v',"verbose","generate more output")
+      Help::Option('b',"verbose","generate more output")
     },
     {
-      GetAbout().GetFileTitle() + " --layer_height 1 --polygons POLYGON(1 1,-1 1,-1 -1,1 -1) --strategy 1 --n_layers 3 --show_mesh --triangle_area 1.0 --triangle_quality 1.0 --verbose",
-      GetAbout().GetFileTitle() + " -h 1 -p POLYGON(0 1,-1 -1,1 -1),POLYGON(0 -1,-1 1,1 1) -s 1 -n 3 -m -a 1.0 -q 1.0 -v",
+      GetAbout().GetFileTitle() + " --layer_height 1 --polygons POLYGON((1 1,-1 1,-1 -1,1 -1)) --strategy 1 --n_layers 3 --show_mesh --triangle_area 1.0 --triangle_quality 1.0 --verbose --fraction 0.75",
+      GetAbout().GetFileTitle() + " -z 1 -p POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1)) -s 1 -n 3 -m -r 1.0 -q 1.0 -b --f 0.75",
     }
   );
+}
+
+std::string ribi::TriangleMeshCreatorMenuDialog::GetPolygonRegex()
+{
+  return
+    "(POLYGON\\(\\(.*\\)\\))"
+  ;
 }
 
 boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetProgram() const noexcept
@@ -337,9 +462,30 @@ boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetP
   return p;
 }
 
+//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetRegexMatches(
+  const std::string& s,
+  const QRegExp& r_original
+) noexcept
+{
+  QRegExp r(r_original);
+  r.setMinimal(true); //QRegExp must be non-greedy
+  std::vector<std::string> v;
+  int pos = 0;
+  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
+  {
+    const QString q = r.cap(1);
+    if (q.isEmpty()) break;
+    v.push_back(q.toStdString());
+    pos += r.matchedLength();
+  }
+
+  return v;
+}
+
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory() const noexcept
@@ -351,7 +497,8 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory(
     "2014-04-28: version 1.3: bugfixes",
     "2014-05-06: version 1.4: added desktop version"
     "2014-05-08: version 1.5: preview of shape, use both TRIANGLE.EXE area and quality parameter, preview of Triangle.exe output",
-    "2014-05-11: version 1.6: also calls meshlab under Linux"
+    "2014-05-11: version 1.6: also calls meshlab under Linux",
+    "2014-05-23: version 1.7: added command line interface"
   };
 }
 
@@ -375,6 +522,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleMeshCreatorMenuDialog::Test");
+  /*
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
   //typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   //typedef boost::units::quantity<boost::units::si::length> Length;
@@ -400,7 +548,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
 
       const double triangle_area = 2.0;
       const double triangle_quality = 5.0;
-      const bool verbose = true;
+      const bool verbose = false;
       const ribi::TriangleMeshCreatorMainDialog d(
         shapes,
         n_layers,
@@ -425,36 +573,52 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
       assert(!"Should not get here");
     }
   }
+  */
+  {
+    const QRegExp regex(GetPolygonRegex().c_str());
+    const std::vector<std::string> lines
+      = GetRegexMatches("POLYGON((0 0,0 1,1 0,1 1)),POLYGON((0 0,0 1,1 0,1 1))",regex);
+    if (lines.size() != 2)
+    {
+      TRACE("ERROR");
+      TRACE(lines.size());
+      for (auto line: lines) { TRACE(line); }
+    }
+    assert(lines.size() == 2);
+  }
+
   {
     TriangleMeshCreatorMenuDialog d;
-    d.Execute( {"TriangleMeshCreator" } );
+    d.Execute( {"TriangleMeshCreator", "--help" } );
     d.Execute(
       {
         "TriangleMeshCreator",
         "--layer_height", "1",
-        "--polygons", "POLYGON(1 1,-1 1,-1 -1,1 -1)",
+        "--polygons", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
         "--strategy", "1",
         "--n_layers", "1",
-        "--show_mesh",
+        "--fraction", "0.75",
+        //"--show_mesh",
+        //"--verbose",
         "--triangle_area", "1.0",
-        "--triangle_quality", "1.0",
-        "--verbose"
+        "--triangle_quality", "1.0"
       }
     );
+    for (int i=0; i!=20; ++i) { std::cout << std::endl; }
     d.Execute(
       {
         "TriangleMeshCreator",
-        "-h", "1",
-        "-p", "POLYGON(0 1,-1 -1,1 -1),POLYGON(0 -1,-1 1,1 1)",
+        "-z", "1",
+        "-p", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))",
         "-s", "1",
         "-n", "1",
+        "-f", "0.75",
         //"-m",
-        "-a", "1.0",
-        "-q", "1.0",
-        "-v"
+        //"-b",
+        "-r", "1.0",
+        "-q", "1.0"
       }
     );
-
   }
   TRACE("Finished ribi::TriangleMeshCreatorMenuDialog::Test successfully");
 }

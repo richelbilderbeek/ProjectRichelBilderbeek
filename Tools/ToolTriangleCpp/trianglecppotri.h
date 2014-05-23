@@ -47,7 +47,7 @@ struct Otri
   //void GetDest(const Vertex& GetDest) noexcept;
   //void GetOrigin(const Vertex& origin) noexcept;
 
-  void Lnext(const Otri& other);
+  void SetLnext(const Otri& other);
   void Lnextself();
   void Lprev(const Otri& other);
   void Lprevself();
@@ -67,7 +67,10 @@ struct Otri
   //operator[](const int index) const noexcept;
   int GetOrient() const noexcept { return m_orient; }
   void SetOrient(const int orient) noexcept;
+
+  //static boost::shared_ptr<Otri> CreateSym(const Otri& other);
   void Sym(const Otri& other);
+
   void Symself() noexcept;
 
   boost::shared_ptr<Vertex> m_apex;

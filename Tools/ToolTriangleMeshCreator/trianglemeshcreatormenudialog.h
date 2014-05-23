@@ -23,8 +23,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+struct QRegExp;
 #include "menudialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -39,6 +44,14 @@ struct TriangleMeshCreatorMenuDialog : public MenuDialog
 
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  static std::string GetPolygonRegex();
+
+  static std::vector<std::string> GetRegexMatches(
+    const std::string& s,
+    const QRegExp& r_original
+  ) noexcept;
+
 
   std::vector<std::string> SeperateString(
     const std::string& input,
