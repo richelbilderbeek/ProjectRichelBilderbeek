@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "menudialog.h"
 
+struct QRegExp;
+
 namespace ribi {
 
 ///GUI independent TestTriangle menu dialog
@@ -39,6 +41,13 @@ struct TestTriangleMenuDialog : public MenuDialog
 
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  static std::string GetPolygonRegex();
+
+  static std::vector<std::string> GetRegexMatches(
+    const std::string& s,
+    const QRegExp& r_original
+  ) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

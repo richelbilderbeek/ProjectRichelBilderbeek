@@ -3990,6 +3990,7 @@ void ribi::tricpp::makevertexmap(
 
 ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
   //Mesh& m,
+  const bool m_m_checksegments,
   int& m_m_counterclockcount,
   //const Behavior& b,
   const bool b_m_noexact,
@@ -4112,7 +4113,7 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
     searchtri->Sym(backtracktri);
     //sym(backtracktri, *searchtri);
 
-    if (m.m_checksegments && stopatsubsegment)
+    if (m_m_checksegments && stopatsubsegment)
     {
       //Check for walking through a subsegment.
       const auto checkedge = backtracktri->CreateTspivot();
@@ -4144,6 +4145,7 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
 
 ribi::tricpp::LocateResult ribi::tricpp::locate(
   Mesh& m,
+  int& m_m_counterclockcount,
   const Behavior& b,
   const boost::shared_ptr<Vertex>& searchpoint,
   boost::shared_ptr<Otri>& searchtri
@@ -4233,7 +4235,7 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
   //  from the first block of triangles.
   const auto samplesleft = (m.m_samples * m.m_triangles.m_itemsfirstblock - 1) /
                 m.m_triangles.m_maxitems + 1;
-  const auto totalsamplesleft = m.m_samples;
+  auto totalsamplesleft = m.m_samples;
   const auto population = m.m_triangles.m_itemsfirstblock;
   const auto totalpopulation = m.m_triangles.m_maxitems;
   const auto sampleblock = m.m_triangles.m_firstblock;
@@ -4327,7 +4329,7 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
       return ONEDGE;
     }
   }
-  return preciselocate(m.m_counterclockcount, b.m_noexact, searchpoint, searchtri, 0);
+  return preciselocate(m.m_checksegments,m.m_counterclockcount, b.m_noexact, searchpoint, searchtri, 0);
 }
 
 void ribi::tricpp::insertsubseg(
@@ -4435,7 +4437,7 @@ void ribi::tricpp::flip(
   const boost::shared_ptr<Otri> flipedge
 )
 {
-  Otri botleft, botright;
+  boost::sharedOtri botleft, botright;
   Otri topleft, topright;
   Otri top;
   Otri botlcasing, botrcasing;
@@ -4819,7 +4821,7 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
       //Start searching from the triangle provided by the caller.
       horiz = searchtri;
       //otricopy(*searchtri, horiz);
-      intersect = preciselocate(m.m_counterclockcount, b.m_noexact, newvertex, &horiz, 1);
+      intersect = preciselocate(m.m_checksegments,m.m_counterclockcount, b.m_noexact, newvertex, &horiz, 1);
     }
   }
   else

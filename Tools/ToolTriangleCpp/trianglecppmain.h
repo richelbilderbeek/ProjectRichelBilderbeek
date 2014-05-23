@@ -730,6 +730,7 @@ InsertVertexResult insertvertex(
 
 LocateResult locate(
   Mesh& m,
+  int& m_m_counterclockcount,
   const Behavior& b,
   const boost::shared_ptr<Vertex>& searchpoint,
   boost::shared_ptr<Otri>& searchtri
@@ -979,6 +980,7 @@ void plague(
 /// long as the search is begun from the triangle in question.
 LocateResult preciselocate(
   //Mesh& m,
+  const bool m_m_checksegments,
   int& m_m_counterclockcount,
   //const Behavior& b,
   const bool b_m_noexact,

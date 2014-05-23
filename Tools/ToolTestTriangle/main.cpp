@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TriangleMeshCreator, creates a 3D mesh using Triangle,
+TestTriangle, compare Triangle to its C++ equivalent
 Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,19 +16,19 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm
+//From http://www.richelbilderbeek.nl/ToolTestTriangle.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "trianglemeshcreatormenudialog.h"
+#include "testtrianglemenudialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char* argv[])
 {
   const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
-  ribi::TriangleMeshCreatorMenuDialog d;
+  ribi::TestTriangleMenuDialog d;
   return d.Execute(args);
 
 }

@@ -73,6 +73,7 @@ std::vector<std::string> ribi::Canvas::GetRegexMatches(
 
   return v;
 }
+
 std::string ribi::Canvas::GetVersion() noexcept
 {
   return "1.0";

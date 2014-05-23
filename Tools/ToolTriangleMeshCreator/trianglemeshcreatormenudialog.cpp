@@ -55,9 +55,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   #ifndef NDEBUG
   Test();
   #endif
-  //typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
-  //typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef boost::units::quantity<boost::units::si::length> Length;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
   using boost::units::si::meter;
@@ -260,7 +258,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     std::cout << "Triangle quality: " << triangle_quality << std::endl;
   }
 
-  //Help::Option('p',"polygons","the shapes used as a base"),
+  //Polygons
   if (!std::count(args.begin(),args.end(),"-p")
     && !std::count(args.begin(),args.end(),"--polygon")
     && !std::count(args.begin(),args.end(),"--polygons")
@@ -360,8 +358,13 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));
       std::stringstream s;
       s
+        #ifdef _WIN32
         << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
-        << d.GetFilename();
+        #else
+        << "meshlab "
+        #endif
+        << d.GetFilename()
+      ;
       const int error = std::system(s.str().c_str());
       if (error) std::cout << "WARNING: cannot display mesh" << '\n';
     }
@@ -604,7 +607,6 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         "--triangle_quality", "1.0"
       }
     );
-    for (int i=0; i!=20; ++i) { std::cout << std::endl; }
     d.Execute(
       {
         "TriangleMeshCreator",

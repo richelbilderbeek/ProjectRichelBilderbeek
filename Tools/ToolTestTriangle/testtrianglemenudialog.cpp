@@ -30,26 +30,173 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 
+#include <QRegExp>
+
 #include "fileio.h"
 #include "geometry.h"
 #include "plane.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "trianglefile.h"
+#include "testtrianglemaindialog.h"
 #pragma GCC diagnostic pop
 
-int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
 {
   #ifndef NDEBUG
   Test();
   #endif
-  const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+  typedef boost::geometry::model::polygon<Coordinat> Polygon;
+
+  const int argc = static_cast<int>(args.size());
+
+  //Verbosity
+  bool verbose = false;
+  if (std::count(args.begin(),args.end(),"-b") || std::count(args.begin(),args.end(),"--verbose"))
   {
-    std::cout << GetHelp() << '\n';
+    verbose = true;
+    std::cout << "Verbose mode" << std::endl;
+  }
+
+  //Triangle area
+  if (!std::count(args.begin(),args.end(),"-r") && !std::count(args.begin(),args.end(),"--triangle_area"))
+  {
+    std::cerr << "Parameter for Triangle area missing" << '\n';
     return 1;
   }
-  return 1;
+  double triangle_area = 0.0;
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (args[i] == "-r" || args[i] == "--triangle_area")
+    {
+      try
+      {
+        triangle_area = boost::lexical_cast<double>(args[i+1]);
+      }
+      catch (boost::bad_lexical_cast&)
+      {
+        std::cerr << "Please supply a value for Triangle area" << std::endl;
+        return 1;
+      }
+    }
+  }
+  if (triangle_area <= 0.0)
+  {
+    std::cerr << "Please supply a positive non-zero value for the Triangle area" << std::endl;
+    return 1;
+  }
+  if (verbose)
+  {
+    std::cout << "Triangle area: " << triangle_area << std::endl;
+  }
+
+  //Triangle quality
+  if (!std::count(args.begin(),args.end(),"-q") && !std::count(args.begin(),args.end(),"--triangle_quality"))
+  {
+    std::cerr << "Parameter for Triangle quality missing" << '\n';
+    return 1;
+  }
+  double triangle_quality = 0.0;
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (args[i] == "-q" || args[i] == "--triangle_quality")
+    {
+      try
+      {
+        triangle_quality = boost::lexical_cast<double>(args[i+1]);
+      }
+      catch (boost::bad_lexical_cast&)
+      {
+        std::cerr << "Please supply a value for Triangle quality" << std::endl;
+        return 1;
+      }
+    }
+  }
+  if (triangle_quality <= 0.0)
+  {
+    std::cerr << "Please supply a positive non-zero value for the Triangle quality" << std::endl;
+    return 1;
+  }
+  if (verbose)
+  {
+    std::cout << "Triangle quality: " << triangle_quality << std::endl;
+  }
+
+  //Polygons
+  if (!std::count(args.begin(),args.end(),"-p")
+    && !std::count(args.begin(),args.end(),"--polygon")
+    && !std::count(args.begin(),args.end(),"--polygons")
+  )
+  {
+    std::cerr << "Parameter for polygons missing" << '\n';
+    return 1;
+  }
+
+  std::vector<Polygon> polygons;
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (args[i] == "-p" || args[i] == "--polygon" || args[i] == "--polygons")
+    {
+      const std::string text = args[i+1];
+      if (verbose) { std::cout << "Parsing polygons '" << text << "'" << std::endl; }
+      const QRegExp regex(GetPolygonRegex().c_str());
+      //const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(GetPolygonRegex());
+      const std::vector<std::string> lines = GetRegexMatches(text,regex);
+      for (const std::string& line: lines)
+      {
+        if (verbose) { std::cout << "Parsing polygon '" << line << "'" << std::endl; }
+        Polygon polygon;
+        try
+        {
+          boost::geometry::read_wkt(line,polygon);
+          polygons.push_back(polygon);
+        }
+        catch (boost::geometry::read_wkt_exception& e)
+        {
+          //No problem
+        }
+      }
+    }
+  }
+  if (polygons.empty())
+  {
+    std::cerr << "Please supply a value for polygon, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl;
+    return 1;
+
+  }
+  if (verbose)
+  {
+    std::cout << "Number of polygons: " << polygons.size() << std::endl;
+    std::cout << "Polygons (as SVG text): " << Geometry().ToSvgStr(polygons) << std::endl;
+  }
+
+  try
+  {
+    const TestTriangleMainDialog d(
+      polygons,
+      triangle_quality,
+      triangle_area,
+      verbose
+    );
+    if (verbose)
+    {
+      std::cout << std::endl //Because Triangle does not do an endl itself
+        << "Created file '" << d.GetFilename() << "' successfully" << std::endl;
+    }
+    return 0;
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "ERROR: Exception caught: " << e.what() << std::endl;
+    return 1;
+  }
+  catch (...)
+  {
+    std::cerr << "ERROR: Unknown exception caught!" << std::endl;
+    return 1;
+  }
 }
 
 ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
@@ -87,12 +234,23 @@ ribi::Help ribi::TestTriangleMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-
+      Help::Option('p',"polygons","the shapes used as a base"),
+      Help::Option('r',"triangle_area","Triangle area"),
+      Help::Option('q',"triangle_quality","Triangle quality"),
+      Help::Option('b',"verbose","generate more output")
     },
     {
-
+      GetAbout().GetFileTitle() + " --polygons POLYGON((1 1,-1 1,-1 -1,1 -1)) --triangle_area 1.0 --triangle_quality 1.0 --verbose",
+      GetAbout().GetFileTitle() + " -p POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1)) -r 1.0 -q 1.0 -b",
     }
   );
+}
+
+std::string ribi::TestTriangleMenuDialog::GetPolygonRegex()
+{
+  return
+    "(POLYGON\\(\\(.*\\)\\))"
+  ;
 }
 
 boost::shared_ptr<const ribi::Program> ribi::TestTriangleMenuDialog::GetProgram() const noexcept
@@ -104,16 +262,38 @@ boost::shared_ptr<const ribi::Program> ribi::TestTriangleMenuDialog::GetProgram(
   return p;
 }
 
+//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+std::vector<std::string> ribi::TestTriangleMenuDialog::GetRegexMatches(
+  const std::string& s,
+  const QRegExp& r_original
+) noexcept
+{
+  QRegExp r(r_original);
+  r.setMinimal(true); //QRegExp must be non-greedy
+  std::vector<std::string> v;
+  int pos = 0;
+  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
+  {
+    const QString q = r.cap(1);
+    if (q.isEmpty()) break;
+    v.push_back(q.toStdString());
+    pos += r.matchedLength();
+  }
+
+  return v;
+}
+
 std::string ribi::TestTriangleMenuDialog::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2014-05-09: version 1.0: initial version, uses Windows executable only",
-    "2014-05-18: version 1.1: uses Linux executable additionally"
+    "2014-05-18: version 1.1: uses Linux executable additionally",
+    "2014-05-23: version 1.2: added command line interface"
   };
 }
 
@@ -126,8 +306,29 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestTriangleMenuDialog::Test");
-  TestTriangleMenuDialog d;
-  d.Execute( {"TestTriangle" } );
+  {
+    TestTriangleMenuDialog d;
+    d.Execute( {"TestTriangleMenuDialog", "--help" } );
+    d.Execute(
+      {
+        "TestTriangleMenuDialog",
+        "--polygons", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
+        //"--verbose",
+        "--triangle_area", "1.0",
+        "--triangle_quality", "1.0"
+      }
+    );
+    d.Execute(
+      {
+        "TestTriangleMenuDialog",
+        "-p", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))",
+        "-b",
+        "-r", "1.0",
+        "-q", "1.0"
+      }
+    );
+    assert(1==2);
+  }
   TRACE("Finished ribi::TestTriangleMenuDialog::Test successfully");
 }
 #endif

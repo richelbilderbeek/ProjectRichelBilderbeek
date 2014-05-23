@@ -14,6 +14,6 @@ include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)
 include(../../Tools/ToolTriangle/ToolTriangleConsole.pri)
 
-include(../../Tools/ToolTriangleMeshCreator/ToolTriangleMeshCreatorConsole.pri)
+include(../../Tools/ToolTestTriangle/ToolTestTriangleConsole.pri)
 
 SOURCES += main.cpp
