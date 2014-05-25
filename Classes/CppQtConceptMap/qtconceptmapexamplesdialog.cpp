@@ -64,23 +64,27 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
   const bool verbose = true;
 
   //if (examples == m_examples.get()) return; //Will allways be true
-  bool will_change = false;
-  if (examples->Get().size() != m_dialogs.size())
+
+  //Check if the dialog needs to change
   {
-    will_change = true;
-  }
-  else
-  {
-    const int n = static_cast<int>(examples->Get().size());
-    for (int i=0; i!=n; ++i)
+    bool will_change = false;
+    if (examples->Get().size() != m_dialogs.size())
     {
-      if (m_dialogs[i]->GetExample() != examples->Get()[i])
+      will_change = true;
+    }
+    else
+    {
+      const int n = static_cast<int>(examples->Get().size());
+      for (int i=0; i!=n; ++i)
       {
-        will_change = true;
+        if (m_dialogs[i]->GetExample() != examples->Get()[i])
+        {
+          will_change = true;
+        }
       }
     }
+    if (!will_change) return;
   }
-  if (!will_change) return;
 
   if (layout()) delete layout();
   assert(!layout());

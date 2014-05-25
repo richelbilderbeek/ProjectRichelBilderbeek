@@ -124,7 +124,7 @@ std::vector<boost::shared_ptr<const ribi::cmap::Example> > ribi::cmap::Examples:
 
 void ribi::cmap::Examples::OnExampleChanged() noexcept
 {
-  m_signal_examples_changed(this);  //RECURSIVE ERROR #2 HIERO
+  m_signal_examples_changed(this); //RECURSIVE ERROR #2 HIERO
 }
 
 void ribi::cmap::Examples::Test() noexcept
