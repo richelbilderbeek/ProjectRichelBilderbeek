@@ -19,7 +19,7 @@
      <item>
       <widget class="QPushButton" name="button_load_examples">
        <property name="text">
-        <string>&amp;Load example</string>
+        <string>&amp;Load examples</string>
        </property>
       </widget>
      </item>

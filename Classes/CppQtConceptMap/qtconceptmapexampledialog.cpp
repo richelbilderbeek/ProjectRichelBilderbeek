@@ -39,7 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ribi::cmap::QtExampleDialog::QtExampleDialog(QWidget *parent) :
   ribi::QtHideAndShowDialog(parent),
   ui(new Ui::QtExampleDialog),
-  m_example{ExampleFactory().GetTest(0)}
+  m_example{}
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -53,6 +53,10 @@ ribi::cmap::QtExampleDialog::QtExampleDialog(QWidget *parent) :
       ui->box_competency->addItem(s.c_str());
     }
   }
+
+  const auto example
+    = ExampleFactory().Create("QtExampleDialog initial example",Competency::uninitialized,false,false,false);
+  this->SetExample(example);
 }
 
 ribi::cmap::QtExampleDialog::~QtExampleDialog()
@@ -62,34 +66,119 @@ ribi::cmap::QtExampleDialog::~QtExampleDialog()
 
 void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& example)
 {
+  const bool verbose = true;
+
   assert(example);
-  if (m_example == example) return;
+  if (m_example == example)
+  {
+    assert(!"?Should not get here");
+    return;
+  }
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Setting example '" << example->ToStr() << "'\n";
+  }
 
-  const bool competency_changed = example->GetCompetency() == m_example->GetCompetency();
-  const bool is_complex_changed = example->GetIsComplex() == m_example->GetIsComplex();
-  const bool is_concrete_changed = example->GetIsConcrete() == m_example->GetIsConcrete();
-  const bool is_specific_changed = example->GetIsSpecific() == m_example->GetIsSpecific();
-  const bool text_changed = example->GetText() == m_example->GetText();
+  const Competency competency_after = example->GetCompetency();
+  const bool is_complex_after = example->GetIsComplex();
+  const bool is_concrete_after = example->GetIsConcrete();
+  const bool is_specific_after = example->GetIsSpecific();
+  const std::string text_after = example->GetText();
 
-  //Disconnect m_example
-  m_example->m_signal_competency_changed.disconnect(
-    boost::bind(&ribi::cmap::QtExampleDialog::OnCompetencyChanged,this,boost::lambda::_1)
-  );
-  m_example->m_signal_is_complex_changed.disconnect(
-    boost::bind(&ribi::cmap::QtExampleDialog::OnIsComplexChanged,this,boost::lambda::_1)
-  );
-  m_example->m_signal_is_concrete_changed.disconnect(
-    boost::bind(&ribi::cmap::QtExampleDialog::OnIsConcreteChanged,this,boost::lambda::_1)
-  );
-  m_example->m_signal_is_specific_changed.disconnect(
-    boost::bind(&ribi::cmap::QtExampleDialog::OnIsSpecificChanged,this,boost::lambda::_1)
-  );
-  m_example->m_signal_text_changed.disconnect(
-    boost::bind(&ribi::cmap::QtExampleDialog::OnTextChanged,this,boost::lambda::_1)
-  );
+
+  bool competency_changed  = true;
+  bool is_complex_changed  = true;
+  bool is_concrete_changed = true;
+  bool is_specific_changed = true;
+  bool text_changed = true;
+
+  if (m_example)
+  {
+    const Competency competency_before = m_example->GetCompetency();
+    const bool is_complex_before = m_example->GetIsComplex();
+    const bool is_concrete_before = m_example->GetIsConcrete();
+    const bool is_specific_before = m_example->GetIsSpecific();
+    const std::string text_before = m_example->GetText();
+
+    competency_changed  = competency_before != competency_after;
+    is_complex_changed  = is_complex_before != is_complex_after;
+    is_concrete_changed = is_concrete_before != is_concrete_after;
+    is_specific_changed = is_specific_before != is_specific_after;
+    text_changed = text_before != text_after;
+
+
+    if (verbose)
+    {
+      if (competency_changed)
+      {
+        std::stringstream s;
+        s
+          << "Competency will change from "
+          << Competencies().ToStr(competency_before)
+          << " to "
+          << Competencies().ToStr(competency_after)
+          << '\n'
+        ;
+        TRACE(s.str());
+      }
+      if (is_complex_changed)
+      {
+        std::stringstream s;
+        s << "IsComplex will change from " << is_complex_before
+          << " to " << is_complex_after << '\n';
+        TRACE(s.str());
+      }
+      if (is_concrete_changed)
+      {
+        std::stringstream s;
+        s << "IsConcrete will change from " << is_concrete_before
+          << " to " << is_concrete_after << '\n';
+        TRACE(s.str());
+      }
+      if (is_specific_changed)
+      {
+        std::stringstream s;
+        s << "IsSpecific will change from " << is_specific_before
+          << " to " << is_specific_after << '\n';
+        TRACE(s.str());
+      }
+      if (text_changed)
+      {
+        std::stringstream s;
+        s << "Text will change from '" << text_before
+          << "' to '" << text_after << "'\n";
+        TRACE(s.str());
+      }
+    }
+
+    //Disconnect m_example
+    m_example->m_signal_competency_changed.disconnect(
+      boost::bind(&ribi::cmap::QtExampleDialog::OnCompetencyChanged,this,boost::lambda::_1)
+    );
+    m_example->m_signal_is_complex_changed.disconnect(
+      boost::bind(&ribi::cmap::QtExampleDialog::OnIsComplexChanged,this,boost::lambda::_1)
+    );
+    m_example->m_signal_is_concrete_changed.disconnect(
+      boost::bind(&ribi::cmap::QtExampleDialog::OnIsConcreteChanged,this,boost::lambda::_1)
+    );
+    m_example->m_signal_is_specific_changed.disconnect(
+      boost::bind(&ribi::cmap::QtExampleDialog::OnIsSpecificChanged,this,boost::lambda::_1)
+    );
+    m_example->m_signal_text_changed.disconnect(
+      boost::bind(&ribi::cmap::QtExampleDialog::OnTextChanged,this,boost::lambda::_1)
+    );
+  }
 
   //Replace m_example by the new one
   m_example = example;
+
+
+  assert(m_example->GetCompetency() == competency_after );
+  assert(m_example->GetIsComplex()  == is_complex_after );
+  assert(m_example->GetIsConcrete() == is_concrete_after);
+  assert(m_example->GetIsSpecific() == is_specific_after);
+  assert(m_example->GetText()       == text_after       );
 
   m_example->m_signal_competency_changed.connect(
     boost::bind(&ribi::cmap::QtExampleDialog::OnCompetencyChanged,this,boost::lambda::_1)
@@ -108,20 +197,49 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
   );
 
   //Emit everything that has changed
-  if (competency_changed) m_example->m_signal_competency_changed(m_example.get());
-  if (is_complex_changed) m_example->m_signal_is_complex_changed(m_example.get()); //RECURSIVE ERROR HIERO
-  if (is_concrete_changed) m_example->m_signal_is_concrete_changed(m_example.get());
-  if (is_specific_changed) m_example->m_signal_is_specific_changed(m_example.get());
-  if (text_changed) m_example->m_signal_text_changed(m_example.get());
+  if (competency_changed)
+  {
+    m_example->m_signal_competency_changed(m_example.get()); //RECURSIVE ERROR #2 HIERO
+  }
+  if (is_complex_changed)
+  {
+    m_example->m_signal_is_complex_changed(m_example.get());
+  }
+  if (is_concrete_changed)
+  {
+    m_example->m_signal_is_concrete_changed(m_example.get());
+  }
+  if (is_specific_changed)
+  {
+    m_example->m_signal_is_specific_changed(m_example.get());
+  }
+  if (text_changed)
+  {
+    m_example->m_signal_text_changed(m_example.get());
+  }
+  assert( example ==  m_example);
+  assert(*example == *m_example);
 }
 
 void ribi::cmap::QtExampleDialog::OnCompetencyChanged(const Example * const example)
 {
+  const bool verbose = true;
   assert(example);
-  const int index = Competencies().ToIndex(example->GetCompetency());
-  assert(index >= 0);
-  assert(index < static_cast<int>(Competencies().GetAllCompetencies().size()));
-  ui->box_competency->setCurrentIndex(index);
+
+  const int index_before = ui->box_competency->currentIndex();
+  const int index_after = Competencies().ToIndex(example->GetCompetency());
+  assert(index_after >= 0);
+  assert(index_after < static_cast<int>(Competencies().GetAllCompetencies().size()));
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Change competency index from " << index_before << " to " << index_after;
+    TRACE(s.str());
+  }
+
+  ui->box_competency->setCurrentIndex(index_after);
+  assert(ui->box_competency->currentIndex() == index_after);
 }
 
 void ribi::cmap::QtExampleDialog::OnIsComplexChanged(const Example * const example)
@@ -164,14 +282,32 @@ void ribi::cmap::QtExampleDialog::Test() noexcept
 
 void ribi::cmap::QtExampleDialog::on_box_competency_currentIndexChanged(int index)
 {
-  if(index < 0)
+  const bool verbose = true;
+
+  if (!m_example)
   {
-    TRACE("ERROR");
+    //Used in construction
+    return;
   }
+
   assert(index >= 0);
   assert(index < static_cast<int>(Competencies().GetAllCompetencies().size()));
   const auto competency = Competencies().GetAllCompetencies()[index];
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "QtExampleDialog will set competency " << Competencies().ToStr(competency)
+      << " (index " << index << ", current competency is "
+      << (m_example ? Competencies().ToStr(m_example->GetCompetency()) : "[nullptr]")
+      << ")";
+    TRACE(s.str());
+  }
+  //Let the Example figure out itself if this changes anything;
+  //Allow setting a new competency if it equals the current
   m_example->SetCompetency(competency);
+
+  assert(m_example->GetCompetency() == competency);
 }
 
 void ribi::cmap::QtExampleDialog::on_box_is_complex_stateChanged(int)

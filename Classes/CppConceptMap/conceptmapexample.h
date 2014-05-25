@@ -87,7 +87,10 @@ struct Example
   static void Test() noexcept;
   #endif
 
-  ///Convert Example to a std::string
+  ///Convert Example to a short std::string
+  std::string ToStr() const noexcept;
+
+  ///Convert Example to an XML std::string
   std::string ToXml() const noexcept;
 
   ///Emitted when SetCompetency changes the competency

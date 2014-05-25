@@ -85,10 +85,34 @@ std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competen
 
 void ribi::cmap::Example::SetCompetency(const cmap::Competency competency) noexcept
 {
-  if (m_competency != competency)
+  const bool verbose = true;
+  const Competency competency_before = m_competency;
+  const Competency competency_after  =   competency;
+  if (competency_before != competency_after)
   {
+    assert(m_competency == competency_before);
+
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "Example will change Competency from " << Competencies().ToStr(competency_before)
+        << " to " << Competencies().ToStr(competency_after);
+      TRACE(s.str());
+    }
+
     m_competency = competency;
+
+    assert(m_competency == competency_after);
+
     m_signal_competency_changed(this);
+
+    assert(m_competency == competency_after);
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "Competency changed to " << Competencies().ToStr(m_competency);
+      TRACE(s.str());
+    }
   }
 }
 
@@ -151,6 +175,54 @@ void ribi::cmap::Example::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::Example::Test");
+  //Test basic set and get
+  {
+    const Competency competency_before = Competency::uninitialized;
+    const Competency competency_after = Competency::misc;
+    const bool is_complex_before  = false;
+    const bool is_complex_after   = true;
+    const bool is_concrete_before = true;
+    const bool is_concrete_after  = false;
+    const bool is_specific_before = true;
+    const bool is_specific_after  = false;
+    const std::string text_before = "before";
+    const std::string text_after  = "after";
+
+    auto example  = ExampleFactory().Create(
+      text_before,
+      competency_before,
+      is_complex_before,
+      is_concrete_before,
+      is_specific_before
+    );
+    assert(example->GetCompetency() == competency_before);
+    assert(example->GetCompetency() != competency_after);
+    assert(example->GetIsComplex() == is_complex_before);
+    assert(example->GetIsComplex() != is_complex_after);
+    assert(example->GetIsConcrete() == is_concrete_before);
+    assert(example->GetIsConcrete() != is_concrete_after);
+    assert(example->GetIsSpecific() == is_specific_before);
+    assert(example->GetIsSpecific() != is_specific_after);
+    assert(example->GetText() == text_before);
+    assert(example->GetText() != text_after);
+
+    example->SetCompetency(competency_after);
+    example->SetIsComplex(is_complex_after);
+    example->SetIsConcrete(is_concrete_after);
+    example->SetIsSpecific(is_specific_after);
+    example->SetText(text_after);
+
+    assert(example->GetCompetency() != competency_before);
+    assert(example->GetCompetency() == competency_after);
+    assert(example->GetIsComplex() != is_complex_before);
+    assert(example->GetIsComplex() == is_complex_after);
+    assert(example->GetIsConcrete() != is_concrete_before);
+    assert(example->GetIsConcrete() == is_concrete_after);
+    assert(example->GetIsSpecific() != is_specific_before);
+    assert(example->GetIsSpecific() == is_specific_after);
+    assert(example->GetText() != text_before);
+    assert(example->GetText() == text_after);
+  }
   //Test of operator== and operator!=
   {
     const int sz = ExampleFactory().GetNumberOfTests();
@@ -269,6 +341,20 @@ void ribi::cmap::Example::Test() noexcept
   TRACE("Example::Test finished successfully");
 }
 #endif
+
+std::string ribi::cmap::Example::ToStr() const noexcept
+{
+  std::stringstream s;
+  s
+    << GetText() << " "
+    << Competencies().ToStr(GetCompetency()) << " "
+    << GetIsComplex() << " "
+    << GetIsConcrete() << " "
+    << GetIsSpecific()
+  ;
+  return s.str();
+
+}
 
 std::string ribi::cmap::Example::ToXml() const noexcept
 {

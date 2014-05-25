@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPEXAMPLESDIALOG_H
 #define QTCONCEPTMAPEXAMPLESDIALOG_H
 
+#include <vector>
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -52,6 +54,7 @@ public:
 
 private:
   Ui::QtExamplesDialog *ui;
+  std::vector<boost::shared_ptr<QtExampleDialog>> m_dialogs;
   boost::shared_ptr<Examples> m_examples;
 
   void OnExamplesChanged(Examples* const examples) noexcept;
