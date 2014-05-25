@@ -167,7 +167,7 @@ ribi::cmap::QtConceptMap::~QtConceptMap() noexcept
 
 void ribi::cmap::QtConceptMap::BuildQtConceptMap()
 {
-  CleanMe();
+  CleanMe(); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
   assert(m_concept_map);
   assert(m_concept_map->IsValid());
   assert(this->scene());
@@ -192,7 +192,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
     }
     else
     {
-      qtnode = new QtNode(node,this->GetDisplayStrategy(node->GetConcept()));
+      qtnode = new QtNode(node,this->GetDisplayStrategy(node->GetConcept())); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
     }
     assert(qtnode);
     //Let the center node respond to mouse clicks
@@ -211,7 +211,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
     assert(Collect<QtNode>(scene()).size() == 1);
 
     //Add the regular nodes to the scene
-    const std::vector<boost::shared_ptr<Node> > nodes = m_concept_map->GetNodes();
+    const std::vector<boost::shared_ptr<Node>> nodes = m_concept_map->GetNodes();
     const std::size_t n_nodes = nodes.size();
     assert(n_nodes >= 1);
     for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip focal node
@@ -222,7 +222,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
       assert(node);
       assert( (IsCenterNode(node) || !IsCenterNode(node))
         && "focal node != center node");
-      QtNode * const qtnode = AddNode(node);
+      QtNode * const qtnode = AddNode(node); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
       qtnodes.push_back(qtnode);
       assert(Collect<QtNode>(scene()).size() == i + 1 && "Node is added to scene");
     }
@@ -248,7 +248,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
         assert(edge->GetFrom());
         assert(edge->GetTo());
         assert(edge->GetFrom() != edge->GetTo());
-        this->AddEdge(edge);
+        this->AddEdge(edge); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
       }
     );
   }
