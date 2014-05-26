@@ -51,7 +51,9 @@ ribi::cmap::QtExamplesDialog::QtExamplesDialog(QWidget *parent)
   #ifndef NDEBUG
   Test();
   #endif
-  this->SetExamples(ExamplesFactory().GetTest(0));
+
+  for (int i=0; i!=20; ++i) TRACE("");
+  //this->SetExamples(ExamplesFactory().GetTest(0));
 }
 
 ribi::cmap::QtExamplesDialog::~QtExamplesDialog()
@@ -86,50 +88,64 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
     if (!will_change) return;
   }
 
-  if (layout()) delete layout();
-  assert(!layout());
+  //if (layout()) delete layout();
+  //assert(!layout());
+  //m_dialogs.clear();
+  //assert(m_dialogs.empty());
+  //QVBoxLayout * const layout = new QVBoxLayout;
 
-  m_dialogs.clear();
-  assert(m_dialogs.empty());
-
-  QVBoxLayout * const layout = new QVBoxLayout;
-
-  if (verbose)
-  {
-    std::stringstream s;
-    s << "QtExamplesDialog setting " << examples->Get().size() << " Example instances";
-    TRACE(s.str());
-  }
+  //Creating the right number of QtExampleDialog instances
   assert(examples);
-  int index = 0;
-  for (auto example: examples->Get())
+  while (examples->Get().size() < m_dialogs.size())
   {
-    {
-      QLabel * label = new QLabel;
-      const std::string text = "Example index " + boost::lexical_cast<std::string>(index);
-      label->setText(text.c_str());
-      layout->addWidget(label);
+    //Need to remove m_dialogs
+    assert(layout());
+    layout()->removeWidget(m_dialogs.back().get());
+    m_dialogs.pop_back();
 
-      ++index;
-    }
-
-    assert(example);
-    boost::shared_ptr<QtExampleDialog> dialog(new QtExampleDialog);
-    m_dialogs.push_back(dialog);
     if (verbose)
     {
       std::stringstream s;
-      s << "QtExamplesDialog will set Example '" << example->ToStr() << "'\n";
+      s << "QtExamplesDialog removed an Example instance";
       TRACE(s.str());
     }
-    dialog->SetExample(example); //RECURSIVE ERROR #2 HIERO
-    assert( example ==  dialog->GetExample());
-    assert(*example == *dialog->GetExample());
+  }
+  while (examples->Get().size() > m_dialogs.size())
+  {
+    boost::shared_ptr<QtExampleDialog> dialog(new QtExampleDialog);
+    assert(layout());
+    layout()->addWidget(dialog.get());
+    m_dialogs.push_back(dialog);
+
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "QtExamplesDialog added an Example instance";
+      TRACE(s.str());
+    }
+  }
+  assert(examples->Get().size() == m_dialogs.size());
+  const int n = static_cast<int>(m_dialogs.size());
+  TRACE(n);
+  for (int i=0; i!=n; ++i)
+  {
+    assert(m_dialogs[i]);
+    assert(examples->Get()[i]);
+    m_dialogs[i]->SetExample(examples->Get()[i]);
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "QtExamplesDialog will set Example '" << examples->Get()[i]->ToStr() << "'\n";
+      TRACE(s.str());
+    }
+    //dialog->SetExample(example); //RECURSIVE ERROR #2 HIERO
+    assert( examples->Get()[i] ==  m_dialogs[i]->GetExample());
+    assert(*examples->Get()[i] == *m_dialogs[i]->GetExample());
     //assert(!"Yay, recursive error issue 1/2? is fixed!");
-    layout->addWidget(dialog.get());
+    //layout->addWidget(dialog.get());
   }
 
-  this->setLayout(layout);
+  //this->setLayout(layout);
 }
 
 void ribi::cmap::QtExamplesDialog::SetExamples(const boost::shared_ptr<Examples>& examples)

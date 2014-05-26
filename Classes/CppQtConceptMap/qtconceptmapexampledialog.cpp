@@ -71,7 +71,6 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
   assert(example);
   if (m_example == example)
   {
-    assert(!"?Should not get here");
     return;
   }
   if (verbose)

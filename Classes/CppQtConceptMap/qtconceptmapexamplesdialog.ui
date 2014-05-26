@@ -1,17 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>QtExamplesDialog</class>
- <widget name="QtExamplesDialog" class="QDialog">
+ <widget class="QDialog" name="QtExamplesDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>429</width>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout"/>
  </widget>
  <resources/>
  <connections/>
