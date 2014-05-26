@@ -54,6 +54,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::cmap::QtTestConceptMapMenuDialog::Test");
   QtConceptMapTestExampleDialog();
+  QtConceptMapTestExamplesDialog();
   QtConceptMapTestConceptItemDialog();
   QtConceptMapTestNodeItemDialog();
   QtConceptMapTestEdgeItemDialog();
@@ -69,59 +70,69 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_readonly_conceptmap_clicked()
 {
   QtTestDisplayConceptMapDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edit_conceptmap_clicked()
 {
   QtTestEditConceptMapDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
 {
   QtTestRateConceptMapDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_concept_clicked()
 {
   QtConceptMapTestConceptItemDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
 {
   QtConceptMapTestNodeItemDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
 {
   QtConceptMapTestEdgeItemDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_view_concept_maps_clicked()
 {
   QtConceptMapViewTestsDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_conceptmapwidget_clicked()
 {
   QtTestConceptMapWidgetDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_example_clicked()
 {
   QtConceptMapTestExampleDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_examples_clicked()
 {
   QtConceptMapTestExamplesDialog d;
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }

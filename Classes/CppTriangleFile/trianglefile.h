@@ -11,6 +11,10 @@
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
+#include <boost/units/systems/si/area.hpp>
+#include <boost/units/systems/si/length.hpp>
+#include <boost/units/systems/si/plane_angle.hpp>
+#include <boost/units/quantity.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -19,19 +23,26 @@ namespace ribi {
 ///Triangle.exe is written by Jonathan Shewchuk, http://people.sc.fsu.edu/~jburkardt/c_src/triangle/triangle.html
 struct TriangleFile
 {
+  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
+  typedef boost::units::quantity<boost::units::si::area> Area;
+  typedef boost::units::quantity<boost::units::si::length> Length;
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+  typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef std::vector<Polygon> Polygons;
+
   TriangleFile(
-    const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
-    const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& holes = {}
+    const Polygons& shapes,
+    const Polygons& holes = {}
   );
 
   int CountSegments() const noexcept { return CountVertices(); } //A polygon has as much vertices as segments
   int CountShapes() const noexcept { return static_cast<int>(m_shapes.size()); }
   int CountVertices() const noexcept;
 
-  static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeHeart(const double scale = 1.0) noexcept;
-  static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeHouse(const double scale = 1.0) noexcept;
-  static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) noexcept;
-  static boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeTriangle(const double scale = 1.0) noexcept;
+  static Polygon CreateShapeHeart(const double scale = 1.0) noexcept;
+  static Polygon CreateShapeHouse(const double scale = 1.0) noexcept;
+  static Polygon CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) noexcept;
+  static Polygon CreateShapeTriangle(const double scale = 1.0) noexcept;
 
   ///Call Triangle
   //#define TODO_ISSUE_207
@@ -40,8 +51,8 @@ struct TriangleFile
     std::string& node_filename,
     std::string& ele_filename,
     std::string& poly_filename,
-    const double quality = 30.0,
-    const double area = 2.0,
+    const Angle triangle_min_angle,
+    const Area triangle_max_area,
     const bool verbose = false
   ) const;
 
@@ -50,8 +61,8 @@ struct TriangleFile
     std::string& node_filename,
     std::string& ele_filename,
     std::string& poly_filename,
-    const double quality = 30.0,
-    const double area = 2.0,
+    const Angle triangle_min_angle,
+    const Area triangle_max_area,
     const bool verbose = false
   ) const;
   #endif
@@ -60,8 +71,8 @@ struct TriangleFile
     std::string& node_filename,
     std::string& ele_filename,
     std::string& poly_filename,
-    const double quality = 30.0,
-    const double area = 2.0,
+    const Angle triangle_min_angle,
+    const Area triangle_max_area,
     const bool verbose = false
   ) const;
 
@@ -70,8 +81,8 @@ struct TriangleFile
     std::string& node_filename,
     std::string& ele_filename,
     std::string& poly_filename,
-    const double quality = 30.0,
-    const double area = 2.0,
+    const Angle triangle_min_angle,
+    const Area triangle_max_area,
     const bool verbose = false
   ) const;
 
@@ -82,8 +93,8 @@ struct TriangleFile
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
-  const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>> m_holes;
-  const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>> m_shapes;
+  const Polygons m_holes;
+  const Polygons m_shapes;
 
   static std::pair<int,char **> CreateArgv(const std::vector<std::string>& v) noexcept;
   static void DeleteArgv(const std::pair<int,char **>& p) noexcept;

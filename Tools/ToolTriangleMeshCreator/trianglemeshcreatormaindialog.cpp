@@ -61,8 +61,8 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   const int n_cell_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
-  const double triangle_area,
-  const double triangle_quality,
+  const Angle triangle_min_angle,
+  const Area triangle_max_area,
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
   const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
   const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
@@ -88,8 +88,8 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
       filename_node,
       filename_ele,
       filename_poly,
-      triangle_quality,
-      triangle_area,
+      triangle_min_angle, //Triangle paraneter 'quality'
+      triangle_max_area,  //Triangle parameter 'area'
       verbose
     );
   }
@@ -507,8 +507,12 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
       const std::vector<Coordinat2D> shapes {
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
-      const double triangle_quality = 5.0;
-      const double triangle_area = 2.0;
+      const Angle triangle_min_angle
+        = 20.0 //Default used by Triangle, in degrees
+        * (boost::math::constants::two_pi<double>() / 360.0)
+        * boost::units::si::radian
+      ;
+      const Area triangle_max_area = 1.0 * boost::units::si::square_meter;
       const int n_cell_layers = 1;
       const bool verbose = false;
       const ribi::TriangleMeshCreatorMainDialog d(
@@ -516,8 +520,8 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
         n_cell_layers,
         1.0 * boost::units::si::meter,
         strategy,
-        triangle_quality,
-        triangle_area,
+        triangle_min_angle,
+        triangle_max_area,
         TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
         TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
         TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),

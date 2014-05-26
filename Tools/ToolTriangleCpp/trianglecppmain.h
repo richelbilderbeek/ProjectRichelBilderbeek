@@ -8,12 +8,15 @@
 #include <string>
 #include <vector>
 
+#include <boost/shared_ptr.hpp>
+
 #include "trianglecppfwd.h"
 
 #include "trianglecpplocateresult.h"
 #include "trianglecppfinddirectionresult.h"
 #include "trianglecppsubseg.h"
 #include "trianglecpptriangle.h"
+#include "trianglecpptypedefs.h"
 #include "trianglecppvertex.h"
 #include "trianglecppinsertvertexresult.h"
 #pragma GCC diagnostic pop
@@ -62,10 +65,12 @@ void boundingbox(Mesh& m, const Behavior& b);
 void carveholes(
   Mesh& m,
   const Behavior& b,
-  double * const holelist,
-  const int holes,
-  double * const regionlist,
-  const int regions
+  std::vector<double>& holelist,
+  //double * const holelist,
+  //const int holes,
+  std::vector<double>& regionlist
+  //double * const regionlist,
+  //const int regions
 );
 
 void check4deadevent(
@@ -406,14 +411,16 @@ void enforcequality(
 /// nonoverlapping property.  (That is, if e is strongly nonoverlapping, h
 /// will be also.)  Does NOT maintain the nonoverlapping or nonadjacent
 /// properties.
-int fast_expansion_sum_zeroelim(
+//fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+double fast_expansion_sum_zeroelim(
+//int fast_expansion_sum_zeroelim(
   //const int elen,
   const std::vector<double>& e,
   //const double * const e,
   //const int flen,
-  const std::vector<double>& f,
+  const std::vector<double>& f
   //const double * const f,
-  std::vector<double>& h
+  //std::vector<double>& h
   //double * const h
 );
 
@@ -1045,13 +1052,12 @@ void readholes(
 
 /// readnodes()   Read the vertices from a file, which may be a .node or
 ///               .poly file.
-void ReadNodes(
-  Mesh& m,
-  const Behavior& b,
+std::vector<boost::shared_ptr<Vertex>> ReadNodes(
+//void ReadNodes(
+  //Mesh& m,
+  //const Behavior& b,
   const std::string& polyfilename
 );
-
-
 
 /// reconstruct()   Reconstruct a triangulation from its .ele (and possibly
 ///                 .poly) file.  Used when the -r switch is used.
@@ -1142,6 +1148,9 @@ bool rightofhyperbola(
 /// with IEEE 754), maintains the strongly nonoverlapping and nonadjacent
 /// properties as well.  (That is, if e has one of these properties, so
 /// will h.)
+///
+//scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+
 double scale_expansion_zeroelim(
 //void scale_expansion_zeroelim(
 //bool scale_expansion_zeroelim(
@@ -1469,7 +1478,8 @@ void vertexdealloc(
 /// if axis == 1.  Very similar to the vertexsort() procedure, but runs in
 /// randomized linear time.
 void vertexmedian(
-  Vertex * const sortarray,
+  std::vector<Vertex>& vertices,
+  //Vertex * const sortarray,
   const int arraysize,
   const int median,
   const int axis
@@ -1481,11 +1491,12 @@ void vertexmedian(
 /// Uses quicksort.  Randomized O(n log n) time.  No, I did not make any of
 /// the usual quicksort mistakes.
 //Use vertex*, because a quicksort is used
+/*
 void vertexsort(
   Vertex * const sortarray,
   const int arraysize
 );
-
+*/
 /// writeedges()   Write the edges to an .edge file.
 void writeedges(
   Mesh& m,

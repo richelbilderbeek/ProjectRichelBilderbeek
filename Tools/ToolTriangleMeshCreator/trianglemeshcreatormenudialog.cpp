@@ -56,10 +56,15 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   Test();
   #endif
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
-  typedef boost::units::quantity<boost::units::si::length> Length;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef boost::units::quantity<boost::units::si::area> Area;
+  typedef boost::units::quantity<boost::units::si::length> Length;
+  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
+  //typedef std::vector<Polygon> Polygons;
   using boost::units::si::meter;
-
+  using boost::units::si::radian;
+  using boost::units::si::square_meter;
+  const double tau = boost::math::constants::two_pi<double>();
   const int argc = static_cast<int>(args.size());
 
   //Verbosity
@@ -200,62 +205,80 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     std::cerr << "Parameter for Triangle area missing" << '\n';
     return 1;
   }
-  double triangle_area = 0.0;
+  Area triangle_max_area = 0.0 * boost::units::si::square_meters;
   for (int i=0; i!=argc-1; ++i)
   {
     if (args[i] == "-r" || args[i] == "--triangle_area")
     {
       try
       {
-        triangle_area = boost::lexical_cast<double>(args[i+1]);
+        triangle_max_area
+          = boost::lexical_cast<double>(args[i+1])
+          * square_meter
+        ;
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cerr << "Please supply a value for Triangle area" << std::endl;
+        std::cerr << "Please supply a value for Triangle maximum area" << std::endl;
         return 1;
       }
     }
   }
-  if (triangle_area <= 0.0)
+  if (triangle_max_area <= 0.0 * boost::units::si::square_meters)
   {
-    std::cerr << "Please supply a positive non-zero value for the Triangle area" << std::endl;
+    std::cerr << "Please supply a positive non-zero value for the Triangle maximum area" << std::endl;
     return 1;
   }
   if (verbose)
   {
-    std::cout << "Triangle area: " << triangle_area << std::endl;
+    std::cout << "Triangle maximum area: " << triangle_max_area << std::endl;
   }
 
-  //Triangle quality
+  //Triangle quality (the minimum angle of a triangle corner)
   if (!std::count(args.begin(),args.end(),"-q") && !std::count(args.begin(),args.end(),"--triangle_quality"))
   {
-    std::cerr << "Parameter for Triangle quality missing" << '\n';
+    std::cerr << "Parameter for Triangle quality (the minimum angle of a triangle corner) is missing" << '\n';
     return 1;
   }
-  double triangle_quality = 0.0;
+  Angle triangle_min_angle = 0.0 * radian;
   for (int i=0; i!=argc-1; ++i)
   {
     if (args[i] == "-q" || args[i] == "--triangle_quality")
     {
       try
       {
-        triangle_quality = boost::lexical_cast<double>(args[i+1]);
+        triangle_min_angle
+          = Angle(
+            boost::lexical_cast<double>(args[i+1])
+            * 360 / tau
+            * radian
+          )
+        ;
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cerr << "Please supply a value for Triangle quality" << std::endl;
+        std::cerr << "Please supply a value for Triangle quality (the minimum angle of a triangle corner)" << std::endl;
         return 1;
       }
     }
   }
-  if (triangle_quality <= 0.0)
+  if (triangle_min_angle.value() <= 0.0)
   {
-    std::cerr << "Please supply a positive non-zero value for the Triangle quality" << std::endl;
+    std::cerr << "Please supply a positive non-zero value for the Triangle quality (the minimum angle of a triangle corner)" << std::endl;
+    return 1;
+  }
+  if (triangle_min_angle.value() >= 60.0 * tau / 360.0)
+  {
+    std::cerr << "Please supply a value lower than 60.0 degrees for the Triangle quality (the minimum angle of a triangle corner)" << std::endl;
     return 1;
   }
   if (verbose)
   {
-    std::cout << "Triangle quality: " << triangle_quality << std::endl;
+    std::cout << "Triangle quality (the minimum angle of a triangle corner): "
+      << triangle_min_angle << ", "
+      << (triangle_min_angle * 360.0 / tau) << " degree"
+      << std::endl
+    ;
   }
 
   //Polygons
@@ -346,8 +369,8 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       n_layers,
       layer_height,
       strategy,
-      triangle_quality,
-      triangle_area,
+      triangle_min_angle,
+      triangle_max_area,
       ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(fraction),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),

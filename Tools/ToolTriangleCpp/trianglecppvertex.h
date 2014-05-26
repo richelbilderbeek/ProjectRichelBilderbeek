@@ -8,6 +8,7 @@
 #include <boost/shared_ptr.hpp>
 #include "trianglecppvertextype.h"
 #include "trianglecppfwd.h"
+#include "trianglecpptypedefs.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -21,17 +22,11 @@ namespace tricpp {
 /* The vertex types.   A DEADVERTEX has been deleted entirely.  An           */
 /*   UNDEADVERTEX is not part of the mesh, but is written to the output      */
 /*   .node file and affects the node indexing in the other output files.     */
-
-
-
-#define TODO_ISSUE_206_IMPROVE_VERTEX
-#ifdef TODO_ISSUE_206_IMPROVE_VERTEX
 struct Vertex
 {
-  Vertex(const double x, const double y, const int vertexmarker);
-  //Vertex(double * begin);
-  double GetX() const noexcept;
-  double GetY() const noexcept;
+  Vertex(const Length x, const Length y, const int vertexmarker);
+  Length GetX() const noexcept { return m_x; }
+  Length GetY() const noexcept { return m_y; }
   //double& operator[](const int index) noexcept;
   //const double& operator[](const int index) const noexcept;
   void Clear() noexcept; //Set size to zero
@@ -44,19 +39,16 @@ struct Vertex
   void SetMark(const int mark) noexcept { m_vertexmark = mark; }
   void SetTriangle(const boost::shared_ptr<Triangle>& triangle) noexcept;
   void SetVertexType(const VertexType type) noexcept { m_type = type; }
-  void SetX(const double x) noexcept;
-  void SetY(const double y) noexcept;
+  void SetX(const Length x) noexcept { m_x = x; }
+  void SetY(const Length y) noexcept { m_y = y; }
 
   private:
-  double m_x;
-  double m_y;
+  Length m_x;
+  Length m_y;
   bool m_is_dead;
   int m_vertexmark;
   VertexType m_type;
 };
-#else
-typedef double *Vertex;
-#endif //#ifdef TODO_ISSUE_206_IMPROVE_VERTEX
 
 //int GetVertexType(const Vertex& vx) noexcept;
 //bool IsDeadVertexType(const Vertex& vx) noexcept;

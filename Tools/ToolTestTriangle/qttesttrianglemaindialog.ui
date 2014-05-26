@@ -207,7 +207,7 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
       <item>
        <widget class="QLabel" name="label_triangle_quality">
         <property name="text">
-         <string>quality, maximum angle (degrees) </string>
+         <string>Minimum angle (degrees) </string>
         </property>
        </widget>
       </item>
@@ -230,7 +230,7 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
       <item>
        <widget class="QLabel" name="label_triangle_area">
         <property name="text">
-         <string>area maximum (m2)</string>
+         <string>Maximum area (m2)</string>
         </property>
        </widget>
       </item>

@@ -10,7 +10,7 @@
 #include <cmath>
 
 #include <boost/math/constants/constants.hpp>
-
+#include <boost/units/systems/angle/degrees.hpp>
 #include "fileio.h"
 #include "trianglecppinfo.h"
 #include "trianglecppsyntax.h"
@@ -32,14 +32,18 @@ ribi::tricpp::Behavior::Behavior(
     //m_firstnumber{1},
     m_fixedarea{0},
     m_geomview{0},
-    m_goodangle{0.0},
+    m_goodangle{0.0 * boost::units::si::radian},
     m_incremental{0},
     m_inelefilename{},
     m_innodefilename{},
     m_inpolyfilename{},
-    m_jettison{0},
-    m_maxarea{-1.0},
-    m_minangle{0.0},
+    m_do_jettison{0},
+    m_maxarea{0.0 * boost::units::si::meter * boost::units::si::meter},
+    m_minangle{
+      20.0
+      * (boost::math::constants::two_pi<double>() / 360.0) //degrees -> radian
+      * boost::units::si::radian
+    },
     m_neighborfilename{},
     m_neighbors{0},
     m_nobisect{0},
@@ -77,182 +81,230 @@ ribi::tricpp::Behavior::Behavior(
   int increment;
   int meshnumber;
   //static const int max_filename_size = 2048;
-  std::string workstring; //[max_filename_size];
+  //std::string workstring; //[max_filename_size];
 
-  for (int i = 1; i < argc; ++i)
+  for (int i = 1; i != argc; ++i)
   {
-    std::string line = args[i];
+    const std::string line = args[i];
+    assert(!line.empty());
     if (line[0] == '-')
     {
-      std::string s = line.substr(1,line.size() - 1);
-      for (int j = 1; line[j] != '\0'; j++)
+      const std::string s = line.substr(1,line.size() - 1);
+      if (s == "p")
       {
-        if (s == "p")
-        {
-          TRACE("p is a useless flag, always set to on");
-          continue;
-        }
-        if (s == "r")
-        {
-          m_do_refine = true;
-        }
-        if (line[j] == 'q')
-        {
-          this->m_quality = 1;
-          if (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
-              (line[j + 1] == '.')) {
-            int k = 0;
-            while (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
-                   (line[j + 1] == '.')) {
-              j++;
-              workstring[k] = line[j];
-              k++;
-            }
-            workstring[k] = '\0';
-            this->m_minangle = boost::lexical_cast<double>(workstring);
-          } else {
-            this->m_minangle = 20.0;
-          }
-        }
-        if (line[j] == 'a')
-        {
-          this->m_quality = 1;
-          if (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
-              (line[j + 1] == '.'))
-          {
-            this->m_fixedarea = 1;
-            int k = 0;
-            while (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
-                   (line[j + 1] == '.')) {
-              j++;
-              workstring[k] = line[j];
-              k++;
-            }
-            workstring[k] = '\0';
-            this->m_maxarea = boost::lexical_cast<double>(workstring);
-            if (this->m_maxarea <= 0.0) {
-              throw std::logic_error("Triangle:  Maximum area must be greater than zero.\n");
-            }
-          }
-          else
-          {
-            this->m_vararea = true;
-          }
-        }
-        if (line[j] == 'u') {
-          this->m_quality = 1;
-          this->m_usertest = 1;
-        }
-        if (line[j] == 'A') {
-          this->m_regionattrib = 1;
-        }
-        if (line[j] == 'c') {
-          this->m_convex = 1;
-        }
-        //if (line[j] == 'w') {
-        //  this->m_weighted = 1;
-        //}
-        //if (line[j] == 'W') {
-        //  this->m_weighted = 2;
-        //}
-        if (line[j] == 'j')
-        {
-          this->m_jettison = 1;
-        }
-        //if (line[j] == 'z') {
-        //  this->m_firstnumber = 0;
-        //}
-        if (line[j] == 'e') {
-          this->m_edgesout = 1;
-        }
-        if (line[j] == 'v')
-        {
-          this->m_voronoi = 1;
-        }
-        if (line[j] == 'n') {
-          this->m_neighbors = 1;
-        }
-        if (line[j] == 'g') {
-          this->m_geomview = 1;
-        }
-        if (line[j] == 'B') {
-          this->m_nobound = 1;
-        }
-        if (line[j] == 'P') {
-          this->m_nopolywritten = 1;
-        }
-        if (line[j] == 'N') {
-          this->m_nonodewritten = 1;
-        }
-        if (line[j] == 'E') {
-          this->m_noelewritten = 1;
-        }
-        if (line[j] == 'I') {
-          this->m_noiterationnum = 1;
-        }
-        if (line[j] == 'O') {
-          this->m_noholes = 1;
-        }
-        if (line[j] == 'X') {
-          this->m_noexact = 1;
-        }
-        if (line[j] == 'o') {
-          if (line[j + 1] == '2') {
+        TRACE("p is a useless flag, always set to on");
+        continue;
+      }
+      if (s == "r")
+      {
+        m_do_refine = true;
+      }
+      if (s[0] == 'q')
+      {
+        const std::string t = line.substr(1,s.size() - 1);
+        m_minangle = boost::lexical_cast<double>(t);
+        /*
+        m_quality = 1;
+        if (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
+            (line[j + 1] == '.')) {
+          int k = 0;
+          while (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
+                 (line[j + 1] == '.')) {
             j++;
-            this->m_order = 2;
+            workstring[k] = line[j];
+            k++;
           }
+          workstring[k] = '\0';
+          this->m_minangle = boost::lexical_cast<double>(workstring);
+        } else {
+          this->m_minangle = 20.0;
         }
-        if (line[j] == 'Y') {
-          this->m_nobisect++;
-        }
-        if (line[j] == 'S')
+        */
+      }
+      if (s[0] == 'a')
+      {
+        const std::string t = s.substr(1,s.size());
+        if (t.empty())
         {
-          this->m_steiner = 0;
-          while ((line[j + 1] >= '0') && (line[j + 1] <= '9'))
+          m_vararea = true;
+        }
+        else
+        {
+          using boost::units::si::meter;
+          m_maxarea = Area(boost::lexical_cast<double>(t) * meter * meter);
+          if (this->m_maxarea <= 0.0  * meter * meter)
           {
-            j++;
-            m_steiner = m_steiner * 10 + (int) (line[j] - '0');
+            throw std::logic_error("Triangle:  Maximum area must be greater than zero");
           }
         }
-        if (line[j] == 'i') {
-          this->m_incremental = 1;
+        /*
+        this->m_quality = 1;
+        if (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
+            (line[j + 1] == '.'))
+        {
+          this->m_fixedarea = 1;
+          int k = 0;
+          while (((line[j + 1] >= '0') && (line[j + 1] <= '9')) ||
+                 (line[j + 1] == '.')) {
+            j++;
+            workstring[k] = line[j];
+            k++;
+          }
+          workstring[k] = '\0';
+          this->m_maxarea = boost::lexical_cast<double>(workstring);
+          if (this->m_maxarea <= 0.0) {
+            throw std::logic_error("Triangle:  Maximum area must be greater than zero.\n");
+          }
         }
-        if (line[j] == 'F') {
-          this->m_sweepline = 1;
+        else
+        {
+          this->m_vararea = true;
         }
-        if (line[j] == 'l') {
-          this->m_dwyer = 0;
+        */
+      }
+      if (s[0] == 'u')
+      {
+        m_quality = 1;
+        m_usertest = 1;
+      }
+      if (s[0] == 'A')
+      {
+        m_regionattrib = 1;
+      }
+      if (s[0] == 'c')
+      {
+        m_convex = 1;
+      }
+      //if (line[j] == 'w') {
+      //  this->m_weighted = 1;
+      //}
+      //if (line[j] == 'W') {
+      //  this->m_weighted = 2;
+      //}
+      if (s[0] == 'j')
+      {
+        m_do_jettison = true;
+      }
+      //if (line[j] == 'z') {
+      //  this->m_firstnumber = 0;
+      //}
+      if (s[0] == 'e')
+      {
+        m_edgesout = 1;
+      }
+      if (s[0] == 'v')
+      {
+        m_voronoi = 1;
+      }
+      if (s[0] == 'n')
+      {
+        m_neighbors = 1;
+      }
+      if (s[0] == 'g')
+      {
+        m_geomview = 1;
+      }
+      if (s[0] == 'B')
+      {
+        m_nobound = 1;
+      }
+      if (s[0] == 'P')
+      {
+        m_nopolywritten = 1;
+      }
+      if (s[0] == 'N')
+      {
+        m_nonodewritten = 1;
+      }
+      if (s[0] == 'E')
+      {
+        m_noelewritten = 1;
+      }
+      if (s[0] == 'I')
+      {
+        m_noiterationnum = 1;
+      }
+      if (s[0] == 'O')
+      {
+        m_noholes = 1;
+      }
+      if (s[0] == 'X')
+      {
+        m_noexact = 1;
+      }
+      if (s[0] == 'o')
+      {
+        const std::string t = s.substr(1,s.size());
+        if (!t.empty() && t[0] == '2')
+        //if (line[j + 1] == '2')
+        {
+          //j++;
+          m_order = 2;
         }
-        if (line[j] == 's') {
-          this->m_splitseg = 1;
+      }
+      if (s[0] == 'Y')
+      {
+        m_nobisect++;
+      }
+      if (s[0] == 'S')
+      {
+        const std::string t = s.substr(1,s.size());
+        m_steiner = boost::lexical_cast<int>(t);
+        /*
+        m_steiner = 0;
+        while ((line[j + 1] >= '0') && (line[j + 1] <= '9'))
+        {
+          j++;
+          m_steiner = m_steiner * 10 + (int) (s[0] - '0');
         }
-        if ((line[j] == 'D') || (line[j] == 'L')) {
-          this->m_quality = 1;
-          this->m_conformdel = 1;
-        }
-        if (line[j] == 'C') {
-          this->m_do_check = true;
-        }
-        if (line[j] == 'Q') {
-          this->m_quiet = 1;
-        }
-        if (line[j] == 'V') {
-          ++m_verbosity;
-        }
-        if ((line[j] == 'h') || (line[j] == 'H') ||
-            (line[j] == '?')) {
-          info();
-        }
+        */
+      }
+      if (s[0] == 'i')
+      {
+        m_incremental = 1;
+      }
+      if (s[0] == 'F')
+      {
+        m_sweepline = 1;
+      }
+      if (s[0] == 'l')
+      {
+        m_dwyer = 0;
+      }
+      if (s[0] == 's')
+      {
+        m_splitseg = 1;
+      }
+      if ((s[0] == 'D') || (s[0] == 'L')) {
+        m_quality = 1;
+        m_conformdel = 1;
+      }
+      if (s[0] == 'C')
+      {
+        m_do_check = true;
+      }
+      if (s[0] == 'Q')
+      {
+        m_quiet = 1;
+      }
+      if (s[0] == 'V')
+      {
+        ++m_verbosity;
+      }
+      if (s[0] == 'h' || s[0] == 'H' || s[0] == '?')
+      {
+        info();
       }
     }
     else
     {
       assert(i < argc); //RJCB
       m_innodefilename = line;
-      //this->m_innodefilename[max_filename_size - 1] = '\0';
+      //m_innodefilename[max_filename_size - 1] = '\0';
     }
   }
-  if (this->m_innodefilename[0] == '\0')
+  if (m_innodefilename.empty())
+  //if (m_innodefilename[0] == '\0')
   {
     Syntax();
   }
@@ -289,17 +341,28 @@ ribi::tricpp::Behavior::Behavior(
     this->m_quality = 1;
     this->m_vararea = 1;
   }
-  static_assert(this->m_usesegments,"");
+  //static_assert(this->m_usesegments,"");
   //this->m_usesegments = this->m_poly || this->m_do_refine || this->m_quality || this->m_convex;
 
-  this->m_goodangle = cos(this->m_minangle * boost::math::constants::pi<double>() / 180.0);
-  if (this->m_goodangle == 1.0) {
-    this->m_offconstant = 0.0;
-  } else {
-    this->m_offconstant = 0.475 * sqrt((1.0 + this->m_goodangle) / (1.0 - this->m_goodangle));
+  const Angle temp_angle = std::cos(m_minangle.value()) * radians;
+  //m_goodangle = std::cos(m_minangle.value()) * radians; //Hmmm, why is this?
+  //this->m_goodangle = cos(this->m_minangle * boost::math::constants::pi<double>() / 180.0);
+
+  if (temp_angle == 1.0 * radians) //?Why?
+  {
+    m_offconstant = 0.0;
   }
-  this->m_goodangle *= this->m_goodangle;
-  if (this->m_do_refine && this->m_noiterationnum) {
+  else
+  {
+    m_offconstant = 0.475 * std::sqrt((1.0 + temp_angle.value()) / (1.0 - temp_angle.value()));
+    //this->m_offconstant = 0.475 * sqrt((1.0 + this->m_goodangle) / (1.0 - this->m_goodangle));
+  }
+
+  m_goodangle = Angle(std::cos(m_minangle.value()) * std::cos(m_minangle.value()) * radians);
+  //this->m_goodangle *= this->m_goodangle;
+
+  if (m_do_refine && m_noiterationnum)
+  {
     throw std::logic_error("Triangle: You cannot use the -I switch when refining a triangulation.\n");
   }
   /* Be careful not to allocate space for element area constraints that */
@@ -307,7 +370,8 @@ ribi::tricpp::Behavior::Behavior(
 
   /* Be careful not to add an extra attribute to each element unless the */
   /*   input supports it (PSLG in, but not refining a preexisting mesh). */
-  if (this->m_do_refine) {
+  if (m_do_refine)
+  {
     this->m_regionattrib = 0;
   }
   /* Regular/weighted triangulations are incompatible with PSLGs */
@@ -322,16 +386,20 @@ ribi::tricpp::Behavior::Behavior(
     //         );
     //}
   }
-  if (this->m_jettison && this->m_nonodewritten && !this->m_quiet) {
-    printf("Warning:  -j and -N switches are somewhat incompatible.\n");
-    printf("  If any vertices are jettisoned, you will need the output\n");
-    printf("  .node file to reconstruct the new node indices.");
+  if (m_do_jettison && m_nonodewritten && !m_quiet)
+  {
+    std::cout
+      << "Warning:  -j and -N switches are somewhat incompatible."
+      << "If any vertices are jettisoned, you will need the output"
+      << " .node file to reconstruct the new node indices."
+    ;
   }
 
   m_inpolyfilename = m_innodefilename;
   m_inelefilename = m_innodefilename;
   m_areafilename = m_innodefilename;
 
+  /*
   increment = 0;
   workstring = m_innodefilename;
   int j = 1;
@@ -367,6 +435,7 @@ ribi::tricpp::Behavior::Behavior(
     m_offfilename = m_innodefilename + ".off";
   }
   else if (increment == 0)
+  */
   {
     m_outnodefilename = m_innodefilename + ".1.node";
     m_outpolyfilename = m_innodefilename + ".1.poly";
@@ -377,6 +446,7 @@ ribi::tricpp::Behavior::Behavior(
     m_neighborfilename = m_innodefilename + ".1.neigh";
     m_offfilename = m_innodefilename + ".1.off";
   }
+  /*
   else
   {
     const std::string s = boost::lexical_cast<std::string>(meshnumber + 1);
@@ -389,6 +459,7 @@ ribi::tricpp::Behavior::Behavior(
     m_neighborfilename = m_innodefilename + "." + s + ".neigh";
     m_offfilename = m_innodefilename + "." + s + ".off";
   }
+  */
   m_innodefilename += ".node";
   m_inpolyfilename += ".poly";
   m_inelefilename += ".ele";

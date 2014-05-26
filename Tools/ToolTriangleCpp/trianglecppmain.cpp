@@ -430,17 +430,21 @@ boost::shared_ptr<ribi::tricpp::Osub> ribi::tricpp::makesubseg(
   return newsubseg;
 }
 
-int ribi::tricpp::fast_expansion_sum_zeroelim(
+double ribi::tricpp::fast_expansion_sum_zeroelim(
   //const int elen_original,
   const std::vector<double>& e,
   //const double * const e,
   //const int flen_original,
-  const std::vector<double>& f,
+  const std::vector<double>& f
   //const double * const f,
-  std::vector<double>& h
+  //std::vector<double>& h
   //double * const h
 )
 {
+  return std::accumulate(e.begin(),e.end())
+    + std::accumulate(f.begin(),f.end());
+
+  /*
   const int elen = static_cast<int>(e.size());
   const int flen = static_cast<int>(f.size());
   //assert(elen_original == elen);
@@ -455,93 +459,113 @@ int ribi::tricpp::fast_expansion_sum_zeroelim(
   if ((fnow > enow) == (fnow > -enow))
   {
     Q = enow;
-    enow = e[++eindex];
+    ++eindex;
+    enow = e[eindex];
   }
   else
   {
     Q = fnow;
-    fnow = f[++findex];
+    ++findex;
+    fnow = f[findex];
   }
-  int hindex = 0;
+  //int hindex = 0;
   if (eindex < elen && findex < flen)
   {
     if ((fnow > enow) == (fnow > -enow))
     {
-      Qnew = enow + Q; hh = 0.0;
+      Qnew = enow + Q;
+      //hh = 0.0;
       //Fast_Two_Sum(a,b,x,y) : x = a + b, y = 0.0;
       //Fast_Two_Sum(enow, Q, Qnew, hh);
-      enow = e[++eindex];
+      ++eindex;
+      enow = e[eindex];
     }
     else
     {
-      Qnew = fnow + Q; hh = 0.0;
+      Qnew = fnow + Q;
+      //hh = 0.0;
       //Fast_Two_Sum(a,b,x,y) : x = a + b, y = 0.0;
       //Fast_Two_Sum(fnow, Q, Qnew, hh);
 
-      fnow = f[++findex];
+      ++findex;
+      fnow = f[findex];
     }
     Q = Qnew;
-    if (hh != 0.0)
-    {
-      h[hindex++] = hh;
-    }
+
+    //if (hh != 0.0)
+    //{
+    //  h[hindex++] = hh;
+    //}
     while (eindex < elen && findex < flen)
     {
       if ((fnow > enow) == (fnow > -enow))
       {
-        Qnew = Q + enow;
-        hh = 0.0;
+        Q += enow;
+        //Qnew = Q + enow;
+        //hh = 0.0;
         //x = a + b, y = 0.0;
         //Two_Sum(Q, enow, Qnew, hh);
-        enow = e[++eindex];
+
+        ++eindex;
+        enow = e[eindex];
       }
       else
       {
-        Qnew = Q + fnow;
-        hh = 0.0;
+        Q += fnow;
+        //Qnew = Q + fnow;
+        //hh = 0.0;
         //x = a + b, y = 0.0;
         //Two_Sum(Q, fnow, Qnew, hh);
-        fnow = f[++findex];
+        ++findex;
+        fnow = f[findex];
       }
-      Q = Qnew;
-      if (hh != 0.0)
-      {
-        h[hindex++] = hh;
-      }
+      //Q = Qnew;
+
+      //if (hh != 0.0)
+      //{
+      //  h[hindex++] = hh;
+      //}
     }
   }
   while (eindex < elen)
   {
-    Qnew = Q + enow;
-    hh = 0.0;
+    Q += enow;
+    //Qnew = Q + enow;
+    //hh = 0.0;
     //x = a + b, y = 0.0;
     //Two_Sum(Q, enow, Qnew, hh);
-    enow = e[++eindex];
-    Q = Qnew;
-    if (hh != 0.0)
-    {
-      h[hindex++] = hh;
-    }
+    ++eindex;
+    enow = e[eindex];
+    //Q = Qnew;
+    //if (hh != 0.0)
+    //{
+    //  h[hindex++] = hh;
+    //}
   }
   while (findex < flen)
   {
-    Qnew = Q + fnow;
-    hh = 0.0;
+    Q += fnow;
+    //Qnew = Q + fnow;
+    //hh = 0.0;
     //x = a + b, y = 0.0;
     //Two_Sum(Q, fnow, Qnew, hh);
 
-    fnow = f[++findex];
-    Q = Qnew;
-    if (hh != 0.0)
-    {
-      h[hindex++] = hh;
-    }
+    ++findex;
+    fnow = f[findex];
+    //Q = Qnew;
+    //if (hh != 0.0)
+    //{
+    //  h[hindex++] = hh;
+    //}
   }
-  if (Q != 0.0 || hindex == 0)
-  {
-    h[hindex++] = Q;
-  }
-  return hindex;
+
+  return 1;
+  //if (Q != 0.0 || hindex == 0)
+  //{
+  //  h[hindex++] = Q;
+  //}
+  //return hindex;
+  */
 }
 
 
@@ -555,6 +579,9 @@ double ribi::tricpp::scale_expansion_zeroelim(
   //double * const h
 )
 {
+  return std::accumulate(e.begin(),e.end()) * b;
+
+  /*
   const int elen = static_cast<int>(e.size());
   //assert(elen == elen_original);
   //double Q;
@@ -574,12 +601,11 @@ double ribi::tricpp::scale_expansion_zeroelim(
   //Two_Product_Presplit(e[0], b, bhi, blo, Q, hh);
 
   //const int hindex = 0;
-  /*
-  if (hh != 0)
-  {
-    h[hindex++] = hh;
-  }
-  */
+  /if (hh != 0)
+  //{
+  //  h[hindex++] = hh;
+  //}
+
   for (int eindex = 1; eindex < elen; eindex++)
   {
     //enow = e[eindex];
@@ -594,34 +620,35 @@ double ribi::tricpp::scale_expansion_zeroelim(
     //double hh = 0.0;
     //x = a + b, y = 0.0;
     //Two_Sum(Q, product0, sum, hh);
-    /*
-    if (hh != 0)
-    {
-      h[hindex++] = hh;
-    }
-    */
+
+    //if (hh != 0)
+    //{
+    //  h[hindex++] = hh;
+    //}
+
     Q = (e[eindex] * b) + sum;
     //Q = product1 + sum;
     //hh = 0.0;
     //Fast_Two_Sum(a,b,x,y) : x = a + b, y = 0.0;
     //Fast_Two_Sum(product1, sum, Q, hh);
-    /*
-    if (hh != 0)
-    {
-      h[hindex++] = hh;
-    }
-    */
+
+    //if (hh != 0)
+    //{
+    //  h[hindex++] = hh;
+    //}
+
   }
-  /*
-  if (Q != 0.0 || hindex == 0)
-  {
-    h[hindex++] = Q;
-  }
-  return hindex;
-  */
+
+  //if (Q != 0.0 || hindex == 0)
+  //{
+  //  h[hindex++] = Q;
+  //}
+  //return hindex;
+
   return Q;
   //h = Q;
   //return true;
+  */
 }
 
 // estimate()   Produce a one-word estimate of an expansion's value.
@@ -656,25 +683,25 @@ double ribi::tricpp::counterclockwiseadapt(
   //const double detlefttail = 0.0;
   //const double detrighttail = 0.0;
   //double det, errbound;
-  std::vector<double> B(4,0.0);
+  //std::vector<double> B(4,0.0);
   //double B[4];
-  std::vector<double> C1(8,0.0);
-  std::vector<double> C2(12,0.0);
-  std::vector<double> D(16,0.0);
+  //std::vector<double> C1(8,0.0);
+  //std::vector<double> C2(12,0.0);
+  //std::vector<double> D(16,0.0);
   //double C1[8], C2[12], D[16];
   //double B3 = 0.0;
   //int C1length, C2length, Dlength;
-  std::vector<double> u(4,0.0);
+  //std::vector<double> u(4,0.0);
   //double u[4];
-  double u3 = 0.0;
+  //double u3 = 0.0;
   //double s1, t1;
   //const double s0 = 0.0;
   //const double t0 = 0.0;
 
-  const double acx = pa->GetX() - pc->GetX();
-  const double bcx = pb->GetX() - pc->GetX();
-  const double acy = pa->GetY() - pc->GetY();
-  const double bcy = pb->GetY() - pc->GetY();
+  const Length acx = pa->GetX() - pc->GetX();
+  const Length bcx = pb->GetX() - pc->GetX();
+  const Length acy = pa->GetY() - pc->GetY();
+  const Length bcy = pb->GetY() - pc->GetY();
 
   //const double detleft = acx * bcy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
@@ -689,11 +716,12 @@ double ribi::tricpp::counterclockwiseadapt(
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(detleft, detlefttail, detright, detrighttail,B3, B[2], B[1], B[0]);
 
-  B[3] = 0.0;
+  //B[3] = 0.0;
   //B[3] = B3;
 
 
-  double det = std::accumulate(B.begin(),B.end(),0.0);
+  auto det = 0.0; //B consisted of zeroes only
+  //auto det = std::accumulate(B.begin(),B.end(),0.0);
   //double det = estimate(B);
 
   double errbound = Global().m_ccwerrboundB * detsum;
@@ -702,40 +730,43 @@ double ribi::tricpp::counterclockwiseadapt(
     return det;
   }
 
-  const double acxtail = -acx + pa->GetX() - pc->GetX();
+  const Length acxtail = -acx + pa->GetX() - pc->GetX();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pa[0], pc[0], acx, acxtail);
 
-  const double bcxtail = -bcx + pb->GetX() - pc->GetX();
+  const Length bcxtail = -bcx + pb->GetX() - pc->GetX();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pb[0], pc[0], bcx, bcxtail);
 
-  const double acytail = -acy + pa->GetY() - pc->GetY();
+  const Length acytail = -acy + pa->GetY() - pc->GetY();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pa[1], pc[1], acy, acytail);
 
-  const double bcytail = -bcy + pb->GetY() - pc->GetY();
+  const Length bcytail = -bcy + pb->GetY() - pc->GetY();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pb[1], pc[1], bcy, bcytail);
 
-  if (acxtail == 0.0 && acytail == 0.0 && bcxtail == 0.0 && bcytail == 0.0)
+  if ( acxtail == 0.0 * meter
+    && acytail == 0.0 * meter
+    && bcxtail == 0.0 * meter
+    && bcytail == 0.0 * meter
+  )
   {
     return det;
   }
 
   errbound = Global().m_ccwerrboundC * detsum + Global().m_resulterrbound * std::abs(det);
-  det += (acx * bcytail + bcy * acxtail)
-       - (acy * bcxtail + bcx * acytail);
-  if ((det >= errbound) || (-det >= errbound))
+  det += ((acx * bcytail + bcy * acxtail) - (acy * bcxtail + bcx * acytail));
+  if (det >= errbound || -det >= errbound)
   {
     return det;
   }
 
-  double s1 = acxtail * bcy;
+  //auto s1 = acxtail * bcy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(acxtail, bcy, s1, s0);
 
-  double t1 = acytail * bcx;
+  //auto t1 = acytail * bcx;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(acytail, bcx, t1, t0);
 
@@ -743,52 +774,67 @@ double ribi::tricpp::counterclockwiseadapt(
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
 
-  u[3] = u3;
 
-  fast_expansion_sum_zeroelim(B,u,C1);
+  //const auto C1 = 0.0;
+  //const auto C1 = u3;
+  //u[3] = u3;
+  //C1 = std::accumulate(u.begin(),u.end());
+  //C1 = fast_expansion_sum_zeroelim(B,u);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(B,u,C1);
   //const int C1length = fast_expansion_sum_zeroelim(B,u,C1);
   //const int C1length = fast_expansion_sum_zeroelim(4, B, 4, u, C1);
 
-  s1 = acx * bcytail;
+  return (acxtail * bcytail) - (acytail * bcxtail)
+       + (    acx * bcytail) - (    acy * bcxtail);
+  //return (acxtail * bcytail) - (acytail * bcxtail) + C2;
+  //const auto C2 = (acx * bcytail) - (acy * bcxtail);
+  //s1 = acx * bcytail;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(acx, bcytail, s1, s0);
-
-  t1 = acy * bcxtail;
+  //t1 = acy * bcxtail;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(acy, bcxtail, t1, t0);
 
-  u3 = s1 - t1;
+  //const auto C2 = s1 - t1;
+  //const auto C2 = C1 + s1 - t1;
+  //const auto u3 = s1 - t1;
   //u3 = s1 + s0 - t1;
   //u3 = s1 + s0 - t1 - t0;
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
-
-  u[3] = u3;
-
-  fast_expansion_sum_zeroelim(C1,u,C2);
+  //const auto C2 = C1 + u3;
+  //u[3] = u3;
+  //C2 = fast_expansion_sum_zeroelim(C1,u);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(C1,u,C2);
   //const int C2length = fast_expansion_sum_zeroelim(C1,u,C2);
   //const int C2length = fast_expansion_sum_zeroelim(C1length, C1, 4, u, C2);
 
-  s1 = acxtail * bcytail;
+  //return (acxtail * bcytail) - (acytail * bcxtail) + C2;
+  //s1 = acxtail * bcytail;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(acxtail, bcytail, s1, s0);
 
-  t1 = acytail * bcxtail;
+  //t1 = acytail * bcxtail;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(acytail, bcxtail, t1, t0);
 
-  u3 = s1 - t1;
+  //return s1 - t1 + C2;
+  //const auto u3 = s1 - t1;
   //u3 = s1 + s0 - t1;
   //u3 = s1 + s0 - t1 - t0;
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(s1, s0, t1, t0, u3, u[2], u[1], u[0]);
-
-  u[3] = u3;
-
-  const int Dlength = fast_expansion_sum_zeroelim(C2,u,D);
+  //return u3 + C2;
+  //u[3] = u3;
+  //return fast_expansion_sum_zeroelim(C2,u);
+  //const int Dlength = 1;
+  //D = fast_expansion_sum_zeroelim(C2,u);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //const int Dlength = fast_expansion_sum_zeroelim(C2,u,D);
   //const int Dlength = fast_expansion_sum_zeroelim(C2length, C2, 4, u, D);
-
-  return(D[Dlength - 1]);
+  //return(D[Dlength - 1]);
 }
 
 double ribi::tricpp::counterclockwise(
@@ -803,8 +849,8 @@ double ribi::tricpp::counterclockwise(
 
   ++m_m_counterclockcount;
 
-  const double detleft  = (pa->GetX() - pc->GetX()) * (pb->GetY() - pc->GetY());
-  const double detright = (pa->GetY() - pc->GetY()) * (pb->GetX() - pc->GetX());
+  const double detleft  = ( (pa->GetX() - pc->GetX()) * (pb->GetY() - pc->GetY()) ).value();
+  const double detright = ( (pa->GetY() - pc->GetY()) * (pb->GetX() - pc->GetX()) ).value();
   const double det = detleft - detright;
 
   if (b_m_noexact)
@@ -863,31 +909,31 @@ double ribi::tricpp::incircleadapt(
   //const double adxcdy0 = 0.0;
   //const double adxbdy0 = 0.0;
   //const double bdxady0 = 0.0;
-  std::vector<double> bc(4,0.0);
-  std::vector<double> ca(4,0.0);
-  std::vector<double> ab(4,0.0);
+  //std::vector<double> bc(4,0.0);
+  //std::vector<double> ca(4,0.0);
+  //std::vector<double> ab(4,0.0);
   //double bc3, ca3, ab3;
-  std::vector<double> axbc(8,0.0);
-  std::vector<double> axxbc(16,0.0);
-  std::vector<double> aybc(8,0.0);
-  std::vector<double> ayybc(16,0.0);
-  std::vector<double> adet(32,0.0);
+  //std::vector<double> axbc(8,0.0);
+  //std::vector<double> axxbc(16,0.0);
+  //std::vector<double> aybc(8,0.0);
+  //std::vector<double> ayybc(16,0.0);
+  //std::vector<double> adet(32,0.0);
   //int axbclen, axxbclen, aybclen, ayybclen, alen;
-  std::vector<double> bxca(8,0.0);
-  std::vector<double> bxxca(16,0.0);
-  std::vector<double> byca(8,0.0);
-  std::vector<double> byyca(16,0.0);
-  std::vector<double> bdet(32,0.0);
-  std::vector<double> cxab(8,0.0);
-  std::vector<double> cxxab(16,0.0);
-  std::vector<double> cyab(8,0.0);
-  std::vector<double> cyyab(16,0.0);
-  std::vector<double> cdet(32,0.0);
+  //std::vector<double> bxca(8,0.0);
+  //std::vector<double> bxxca(16,0.0);
+  //std::vector<double> byca(8,0.0);
+  //std::vector<double> byyca(16,0.0);
+  //std::vector<double> bdet(32,0.0);
+  //std::vector<double> cxab(8,0.0);
+  //std::vector<double> cxxab(16,0.0);
+  //std::vector<double> cyab(8,0.0);
+  //std::vector<double> cyyab(16,0.0);
+  //std::vector<double> cdet(32,0.0);
   //int cxablen, cxxablen, cyablen, cyyablen, clen;
-  std::vector<double> abdet(64,0.0);
+  //std::vector<double> abdet(64,0.0);
   //int ablen;
-  std::vector<double> fin1(1152,0.0);
-  std::vector<double> fin2(1152,0.0);
+  //std::vector<double> fin1(1152,0.0);
+  //std::vector<double> fin2(1152,0.0);
   //double fin1(1152], fin2(1152];
   //double *finnow,
   //double *finother;
@@ -902,15 +948,15 @@ double ribi::tricpp::incircleadapt(
   //const double bdybdy0 = 0.0;
   //const double cdxcdx0 = 0.0;
   //const double cdycdy0 = 0.0;
-  std::vector<double> aa(4,0.0);
-  std::vector<double> bb(4,0.0);
-  std::vector<double> cc(4,0.0);
+  //std::vector<double> aa(4,0.0);
+  //std::vector<double> bb(4,0.0);
+  //std::vector<double> cc(4,0.0);
   //double aa3, bb3, cc3;
   //double ti1, tj1;
   //const double ti0 = 0.0;
   //const double tj0 = 0.0;
-  std::vector<double> u(4,0.0);
-  std::vector<double> v(4,0.0);
+  //std::vector<double> u(4,0.0);
+  //std::vector<double> v(4,0.0);
   //double u3, v3;
   std::vector<double> temp8(8,0.0);
   std::vector<double> temp16a(16,0.0);
@@ -970,142 +1016,199 @@ double ribi::tricpp::incircleadapt(
   //double abtt3, bctt3, catt3;
   //double negate;
 
-  const double adx = pa->GetX() - pd->GetX();
-  const double bdx = pb->GetX() - pd->GetX();
-  const double cdx = pc->GetX() - pd->GetX();
-  const double ady = pa->GetY() - pd->GetY();
-  const double bdy = pb->GetY() - pd->GetY();
-  const double cdy = pc->GetY() - pd->GetY();
+  const auto adx = pa->GetX() - pd->GetX();
+  const auto bdx = pb->GetX() - pd->GetX();
+  const auto cdx = pc->GetX() - pd->GetX();
+  const auto ady = pa->GetY() - pd->GetY();
+  const auto bdy = pb->GetY() - pd->GetY();
+  const auto cdy = pc->GetY() - pd->GetY();
 
-  const double bdxcdy1 = bdx * cdy;
+  const auto bdxcdy1 = bdx * cdy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(bdx, cdy, bdxcdy1, bdxcdy0);
 
-  const double cdxbdy1 = cdx * bdy;
+  const auto cdxbdy1 = cdx * bdy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(cdx, bdy, cdxbdy1, cdxbdy0);
 
-  const double bc3 = bdxcdy1 - cdxbdy1;
+  const auto bc3 = bdxcdy1 - cdxbdy1;
   //bc3 = bdxcdy1 - cdxbdy1 - cdxbdy0;
   //bc3 = bdxcdy1 + bdxcdy0 - cdxbdy1 - cdxbdy0;
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(bdxcdy1, bdxcdy0, cdxbdy1, cdxbdy0, bc3, bc[2], bc[1], bc[0]);
 
-  bc[3] = bc3;
+  //bc[3] = bc3;
 
-  axbc[0] = scale_expansion_zeroelim(bc,adx);
+  //axbc[0] = bc3 * adx;
+  //axbc[0] = std::accumulate(bc.begin(),bc.end()) * adx;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //axbc[0] = scale_expansion_zeroelim(bc,adx);
   //scale_expansion_zeroelim(bc,adx,axbc[0]);
   //const int axbclen = scale_expansion_zeroelim(bc,adx,axbc);
   //const int axbclen = scale_expansion_zeroelim(4, bc, adx, axbc);
 
-  axxbc[0] = scale_expansion_zeroelim(axbc,adx);
+
+  //axxbc[0] = bc3 * adx * adx;
+  //axxbc[0] = std::accumulate(axbc.begin(),axbc.end()) * adx;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //axxbc[0] = scale_expansion_zeroelim(axbc,adx);
   //scale_expansion_zeroelim(axbc,adx,axxbc[0]);
   //const int axxbclen = scale_expansion_zeroelim(axbc,adx,axxbc);
   //const int axxbclen = scale_expansion_zeroelim(axbclen, axbc, adx, axxbc);
 
-  aybc[0] = scale_expansion_zeroelim(bc,ady);
+  //aybc[0] = bc3 * ady;
+  //aybc[0] = std::accumulate(bc.begin(),bc.end()) * ady;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //aybc[0] = scale_expansion_zeroelim(bc,ady);
   //scale_expansion_zeroelim(bc,ady,aybc[0]);
   //const int aybclen = scale_expansion_zeroelim(bc,ady,aybc);
   //const int aybclen = scale_expansion_zeroelim(4, bc, ady, aybc);
 
-  ayybc[0] = scale_expansion_zeroelim(aybc,ady);
+
+  //ayybc[0] = bc3 * ady * ady;
+  //ayybc[0] = std::accumulate(aybc.begin(),aybc.end()) * ady;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //ayybc[0] = scale_expansion_zeroelim(aybc,ady);
   //scale_expansion_zeroelim(aybc,ady,ayybc[0]);
   //const int ayybclen = scale_expansion_zeroelim(aybc,ady,ayybc);
   //const int ayybclen = scale_expansion_zeroelim(aybclen, aybc, ady, ayybc);
 
-  fast_expansion_sum_zeroelim(axxbc,ayybc,adet);
+  const auto adet = (bc3 * adx * adx) + (bc3 * ady * ady);
+  //adet = fast_expansion_sum_zeroelim(axxbc,ayybc);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(axxbc,ayybc,adet);
   //const int alen = fast_expansion_sum_zeroelim(axxbc,ayybc,adet);
   //const int alen = fast_expansion_sum_zeroelim(axxbclen, axxbc, ayybclen, ayybc, adet);
 
-  const double cdxady1 = cdx * ady;
+  const auto cdxady1 = cdx * ady;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(cdx, ady, cdxady1, cdxady0);
 
-  const double adxcdy1 = adx * cdy;
+  const auto adxcdy1 = adx * cdy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(adx, cdy, adxcdy1, adxcdy0);
 
-  const double ca3 = cdxady1 - adxcdy1;
+  const auto ca3 = cdxady1 - adxcdy1;
   //ca3 = cdxady1 - adxcdy1 - adxcdy0;
   //ca3 = cdxady1 + cdxady0 - adxcdy1 - adxcdy0;
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(cdxady1, cdxady0, adxcdy1, adxcdy0, ca3, ca[2], ca[1], ca[0]);
 
-  ca[3] = ca3;
+  //ca[3] = ca3;
 
-  bxca[0] = scale_expansion_zeroelim(ca,bdx);
+  //bxca[0] = ca3 * bdx;
+  //bxca[0] = std::accumulate(ca.begin(),ca.end()) * bdx;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //bxca[0] = scale_expansion_zeroelim(ca,bdx);
   //scale_expansion_zeroelim(ca,bdx,bxca[0]);
   //const int bxcalen = scale_expansion_zeroelim(ca,bdx,bxca);
   //const int bxcalen = scale_expansion_zeroelim(4, ca, bdx, bxca);
 
-  bxxca[0] = scale_expansion_zeroelim(bxca,bdx);
+  //bxxca[0] = ca3 * bdx * bdx;
+  //bxca[0] = ca3 * bdx;
+  //bxxca[0] = std::accumulate(bxca.begin(),bxca.end()) * bdx;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //bxxca[0] = scale_expansion_zeroelim(bxca,bdx);
   //scale_expansion_zeroelim(bxca,bdx,bxxca[0]);
   //const int bxxcalen = scale_expansion_zeroelim(bxca,bdx,bxxca);
   //const int bxxcalen = scale_expansion_zeroelim(bxcalen, bxca, bdx, bxxca);
 
-  byca[0] = scale_expansion_zeroelim(ca,bdy);
+  //byca[0] = ca3 * bdy;
+  //byca[0] = std::accumulate(ca.begin(),ca.end()) * bdy;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //byca[0] = scale_expansion_zeroelim(ca,bdy);
   //scale_expansion_zeroelim(ca,bdy,byca[0]);
   //const int bycalen = scale_expansion_zeroelim(ca,bdy,byca);
   //const int bycalen = scale_expansion_zeroelim(4, ca, bdy, byca);
 
-  byyca[0] = scale_expansion_zeroelim(byca,bdy);
+  //byyca[0] = ca3 * bdy * bdy;
+  //byyca[0] = std::accumulate(byca.begin(),byca.end()) * bdy;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //byyca[0] = scale_expansion_zeroelim(byca,bdy);
   //scale_expansion_zeroelim(byca,bdy,byyca[0]);
   //const int byycalen = scale_expansion_zeroelim(byca,bdy,byyca);
   //const int byycalen = scale_expansion_zeroelim(bycalen, byca, bdy, byyca);
 
-  fast_expansion_sum_zeroelim(bxxca,byyca,bdet);
+  const auto bdet = (ca3 * bdx * bdx) + (ca3 * bdy * bdy);
+  //bdet = fast_expansion_sum_zeroelim(bxxca,byyca);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(bxxca,byyca,bdet);
   //const int blen = fast_expansion_sum_zeroelim(bxxca,byyca,bdet);
   //const int blen = fast_expansion_sum_zeroelim(bxxcalen, bxxca, byycalen, byyca, bdet);
 
-  const double adxbdy1 = adx * bdy;
+  const auto adxbdy1 = adx * bdy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(adx, bdy, adxbdy1, adxbdy0);
 
-  const double bdxady1 = bdx * ady;
+  const auto bdxady1 = bdx * ady;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(bdx, ady, bdxady1, bdxady0);
 
-  const double ab3 = adxbdy1 - bdxady1;
+  const auto ab3 = adxbdy1 - bdxady1;
   //ab3 = adxbdy1 - bdxady1 - bdxady0;
   //ab3 = adxbdy1 + adxbdy0 - bdxady1 - bdxady0;
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(adxbdy1, adxbdy0, bdxady1, bdxady0, ab3, ab[2], ab[1], ab[0]);
 
-  ab[3] = ab3;
+  //ab[3] = ab3;
 
-  cxab[0] = scale_expansion_zeroelim(ab,cdx);
+  //cxab[0] = ab3 * cdx;
+  //cxab[0] = std::accumulate(ab.begin(),ab.end()) * cdx;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //cxab[0] = scale_expansion_zeroelim(ab,cdx);
   //scale_expansion_zeroelim(ab,cdx,cxab[0]);
   //const int cxablen = scale_expansion_zeroelim(ab,cdx,cxab);
   //const int cxablen = scale_expansion_zeroelim(4, ab, cdx, cxab);
 
-  cxxab[0] = scale_expansion_zeroelim(cxab,cdx);
+
+  //cxxab[0] = ab3 * cdx * cdx;
+  //cxxab[0] = std::accumulate(cxab.begin(),cxab.end()) * cdx;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //cxxab[0] = scale_expansion_zeroelim(cxab,cdx);
   //scale_expansion_zeroelim(cxab,cdx,cxxab[0]);
   //const int cxxablen = scale_expansion_zeroelim(cxab,cdx,cxxab);
   //const int cxxablen = scale_expansion_zeroelim(cxablen, cxab, cdx, cxxab);
 
-  cyab[0] = scale_expansion_zeroelim(ab,cdy);
+  //cyab[0] = ab3 * cdy;
+  //cyab[0] = std::accumulate(ab.begin(),ab.end()) * cdy;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //cyab[0] = scale_expansion_zeroelim(ab,cdy);
   //scale_expansion_zeroelim(ab,cdy,cyab[0]);
   //const int cyablen = scale_expansion_zeroelim(ab,cdy,cyab);
   //const int cyablen = scale_expansion_zeroelim(4, ab, cdy, cyab);
 
-  cyyab[0] = scale_expansion_zeroelim(cyab, cdy);
+
+  //cyyab[0] = ab3 * cdy * cdy;
+  //cyyab[0] = std::accumulate(cyab.begin(),cyab.end()) * cdy;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //cyyab[0] = scale_expansion_zeroelim(cyab, cdy);
   //scale_expansion_zeroelim(cyab, cdy, cyyab[0]);
   //const int cyyablen = scale_expansion_zeroelim(cyab, cdy, cyyab);
   //const int cyyablen = scale_expansion_zeroelim(cyablen, cyab, cdy, cyyab);
 
-  fast_expansion_sum_zeroelim(cxxab,cyyab,cdet);
+  const auto cdet = (ab3 * cdx * cdx) + (ab3 * cdy * cdy);
+  //cdet = fast_expansion_sum_zeroelim(cxxab,cyyab);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(cxxab,cyyab,cdet);
   //const int clen = fast_expansion_sum_zeroelim(cxxab,cyyab,cdet);
   //const int clen = fast_expansion_sum_zeroelim(cxxablen, cxxab, cyyablen, cyyab, cdet);
 
-  fast_expansion_sum_zeroelim(adet,bdet,abdet);
+  const auto abdet = adet + bdet;
+  //abdet = fast_expansion_sum_zeroelim(adet,bdet);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(adet,bdet,abdet);
   //const int ablen = fast_expansion_sum_zeroelim(adet,bdet,abdet);
   //const int ablen = fast_expansion_sum_zeroelim(alen, adet, blen, bdet, abdet);
 
-  int finlength = fast_expansion_sum_zeroelim(abdet,cdet,fin1);
+  //int finlength = 1;
+  const auto fin1 = fast_expansion_sum_zeroelim(abdet,cdet);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //int finlength = fast_expansion_sum_zeroelim(abdet,cdet,fin1);
   //int finlength = fast_expansion_sum_zeroelim(ablen, abdet, clen, cdet, fin1);
 
-  assert(finlength == static_cast<int>(fin1.size()));
-  double det = std::accumulate(fin1.begin(),fin1.end(),0.0);
+  //assert(finlength == static_cast<int>(fin1.size()));
+  auto det = fin1;
+  //double det = std::accumulate(fin1.begin(),fin1.end(),0.0);
   //double det = estimate(fin1);
 
   double errbound = Global().m_iccerrboundB * permanent;
@@ -1114,32 +1217,36 @@ double ribi::tricpp::incircleadapt(
     return det;
   }
 
-  const double adxtail = -adx + pa->GetX() - pd->GetX();
+  const auto adxtail = -adx + pa->GetX() - pd->GetX();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pa[0], pd[0], adx, adxtail);
 
-  const double adytail = -ady + pa->GetY() - pd->GetY();
+  const auto adytail = -ady + pa->GetY() - pd->GetY();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pa[1], pd[1], , adytail);
 
-  const double bdxtail = -bdx + pb->GetX() - pd->GetX();
+  const auto bdxtail = -bdx + pb->GetX() - pd->GetX();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pb[0], pd[0], bdx, bdxtail);
 
-  const double bdytail = -bdy + pb->GetY() - pd->GetY();
+  const auto bdytail = -bdy + pb->GetY() - pd->GetY();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pb[1], pd[1], bdy, bdytail);
 
-  const double cdxtail = -cdx + pc->GetX() - pd->GetX();
+  const auto cdxtail = -cdx + pc->GetX() - pd->GetX();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pc[0], pd[0], cdx, cdxtail);
 
-  const double cdytail = -cdy + pc->GetY() - pd->GetY();
+  const auto cdytail = -cdy + pc->GetY() - pd->GetY();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pc[1], pd[1], cdy, cdytail);
 
-  if ( adxtail == 0.0 && bdxtail == 0.0 && cdxtail == 0.0
-    && adytail == 0.0 && bdytail == 0.0 && cdytail == 0.0
+  if ( adxtail == 0.0 * meter
+    && bdxtail == 0.0 * meter
+    && cdxtail == 0.0 * meter
+    && adytail == 0.0 * meter
+    && bdytail == 0.0 * meter
+    && cdytail == 0.0 * meter
   )
   {
     return det;
@@ -1163,98 +1270,135 @@ double ribi::tricpp::incircleadapt(
   }
 
   std::vector<double> finnow = fin1;
-  std::vector<double> finother = fin2;
 
-  if (bdxtail != 0.0 || bdytail != 0.0 || (cdxtail != 0.0) || (cdytail != 0.0))
-  {
-    const double adxadx1 = adx * adx;
+  std::vector<double> finother(1152,0.0);
+  //std::vector<double> finother = fin2;
+
+  const auto aa3
+    = bdxtail != 0.0 || bdytail != 0.0 || cdxtail != 0.0 || cdytail != 0.0
+    ? (adx * adx) + (ady * ady)
+    : 0.0
+  ;
+  //if (bdxtail != 0.0 || bdytail != 0.0 || cdxtail != 0.0 || cdytail != 0.0)
+  //{
+    //const auto adxadx1 = adx * adx;
     //Square(adx, adxadx1, adxadx0); //x = a * a, y = 0.0
 
-    const double adyady1 = ady * ady;
+    //const auto adyady1 = ady * ady;
     //Square(ady, adyady1, adyady0); //x = a * a, y = 0.0
 
-    const double aa3 = adxadx1 + adyady1;
+    //const auto aa3 = (adx * adx) + (ady * ady);
+    //const auto aa3 = adxadx1 + adyady1;
     //aa3 = adxadx1 + adyady1 + adyady0;
     //aa3 = adxadx1 + adxadx0 + adyady1 + adyady0;
     //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
     //Two_Two_Sum(adxadx1, adxadx0, adyady1, adyady0, aa3, aa[2], aa[1], aa[0]);
 
-    aa[3] = aa3;
-  }
-  if (cdxtail != 0.0 || cdytail != 0.0 || adxtail != 0.0 || adytail != 0.0)
-  {
-    const double bdxbdx1 = bdx * bdx;
+    //aa[3] = aa3;
+  //}
+
+  //assert(cdxtail != 0.0 || cdytail != 0.0 || adxtail != 0.0 || adytail != 0.0);
+  //if (cdxtail != 0.0 || cdytail != 0.0 || adxtail != 0.0 || adytail != 0.0)
+  //{
+    const auto bdxbdx1 = bdx * bdx;
     //Square(bdx, bdxbdx1, bdxbdx0); //x = a * a, y = 0.0
 
-    const double bdybdy1 = bdy * bdy;
+    const auto bdybdy1 = bdy * bdy;
     //Square(bdy, bdybdy1, bdybdy0); //x = a * a, y = 0.0
 
-    const double bb3 = bdxbdx1 + bdybdy1;
+    const auto bb3 = bdxbdx1 + bdybdy1;
     //bb3 = bdxbdx1 + bdybdy1 + bdybdy0;
     //bb3 = bdxbdx1 + bdxbdx0 + bdybdy1 + bdybdy0;
     //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
     //Two_Two_Sum(bdxbdx1, bdxbdx0, bdybdy1, bdybdy0, bb3, bb[2], bb[1], bb[0]);
 
-    bb[3] = bb3;
-  }
-  if (adxtail != 0.0 || adytail != 0.0 || bdxtail != 0.0 || bdytail != 0.0)
-  {
-    const double cdxcdx1 = cdx * cdx;
+    //bb[3] = bb3;
+  //}
+
+  const auto cc3 = adxtail != 0.0 || adytail != 0.0 || bdxtail != 0.0 || bdytail != 0.0
+    ? (cdx * cdx) + (cdy * cdy)
+    : 0.0
+  ;
+  //if (adxtail != 0.0 || adytail != 0.0 || bdxtail != 0.0 || bdytail != 0.0)
+  //{
+    //const auto cdxcdx1 = cdx * cdx;
     //Square(cdx, cdxcdx1, cdxcdx0); //x = a * a, y = 0.0
 
-    const double cdycdy1 = cdy * cdy;
+    //const auto cdycdy1 = cdy * cdy;
     //Square(cdy, cdycdy1, cdycdy0); //x = a * a, y = 0.0
 
-    const double cc3 = cdxcdx1 + cdycdy1;
+    //const auto cc3 = (cdx * cdx) + (cdy * cdy);
+    //const auto cc3 = cdxcdx1 + cdycdy1;
     //cc3 = cdxcdx1 + cdycdy1 + cdycdy0;
     //cc3 = cdxcdx1 + cdxcdx0 + cdycdy1 + cdycdy0;
     //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
     //Two_Two_Sum(cdxcdx1, cdxcdx0, cdycdy1, cdycdy0, cc3, cc[2], cc[1], cc[0]);
 
-    cc[3] = cc3;
-  }
+    //cc[3] = cc3;
+  //}
 
   if (adxtail != 0.0)
   {
-    axtbc[0] = scale_expansion_zeroelim(bc, adxtail);
+    axtbc[0] = bc3 * adxtail;
+    //axtbc[0] = std::accumulate(bc.begin(),bc.end()) * adxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //axtbc[0] = scale_expansion_zeroelim(bc, adxtail);
     //scale_expansion_zeroelim(bc, adxtail, axtbc[0]);
     //const int axtbclen = scale_expansion_zeroelim(bc, adxtail, axtbc);
     //const int axtbclen = scale_expansion_zeroelim(4, bc, adxtail, axtbc);
 
-    temp16a[0] = scale_expansion_zeroelim(axtbc,2.0 * adx);
+    temp16a[0] = std::accumulate(axtbc.begin(),axtbc.end()) * 2.0 * adx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16a[0] = scale_expansion_zeroelim(axtbc,2.0 * adx);
     //scale_expansion_zeroelim(axtbc,2.0 * adx,temp16a[0]);
     //const int temp16alen = scale_expansion_zeroelim(axtbc,2.0 * adx,temp16a);
     //const int temp16alen = scale_expansion_zeroelim(axtbclen, axtbc, 2.0 * adx,temp16a);
 
-    axtcc[0] = scale_expansion_zeroelim(cc,adxtail);
+    axtcc[0] = cc3 * adxtail;
+    //axtcc[0] = std::accumulate(cc.begin(),cc.end()) * adxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //axtcc[0] = scale_expansion_zeroelim(cc,adxtail);
     //scale_expansion_zeroelim(cc,adxtail,axtcc[0]);
     //const int axtcclen = scale_expansion_zeroelim(cc,adxtail,axtcc);
     //const int axtcclen = scale_expansion_zeroelim(4, cc, adxtail, axtcc);
 
-    temp16b[0] = scale_expansion_zeroelim(axtcc,bdy);
+    temp16b[0] = std::accumulate(axtcc.begin(),axtcc.end()) * bdy;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16b[0] = scale_expansion_zeroelim(axtcc,bdy);
     //scale_expansion_zeroelim(axtcc,bdy,temp16b[0]);
     //const int temp16blen = scale_expansion_zeroelim(axtcc,bdy,temp16b);
     //const int temp16blen = scale_expansion_zeroelim(axtcclen, axtcc, bdy, temp16b);
 
-    axtbb[0] = scale_expansion_zeroelim(bb, adxtail);
+    axtbb[0] = bb3 * adxtail;
+    //axtbb[0] = std::accumulate(bb.begin(),bb.end()) * adxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //axtbb[0] = scale_expansion_zeroelim(bb, adxtail);
     //scale_expansion_zeroelim(bb, adxtail, axtbb[0]);
     //const int axtbblen = scale_expansion_zeroelim(bb, adxtail, axtbb);
     //const int axtbblen = scale_expansion_zeroelim(4, bb, adxtail, axtbb);
 
-    temp16c[0] = scale_expansion_zeroelim(axtbb,-cdy);
+    temp16c[0] = std::accumulate(axtbb.begin(),axtbb.end()) * -cdy;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16c[0] = scale_expansion_zeroelim(axtbb,-cdy);
     //scale_expansion_zeroelim(axtbb,-cdy,temp16c[0]);
     //const int temp16clen = scale_expansion_zeroelim(axtbb,-cdy,temp16c);
     //const int temp16clen = scale_expansion_zeroelim(axtbblen, axtbb, -cdy, temp16c);
 
-    fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
+    temp32a = fast_expansion_sum_zeroelim(temp16a,temp16b);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
 
-    fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
+    temp48 = fast_expansion_sum_zeroelim(temp16c,temp32a);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
 
-    fast_expansion_sum_zeroelim(finnow,temp48,finother);
+    finother = fast_expansion_sum_zeroelim(finnow,temp48);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -1263,45 +1407,66 @@ double ribi::tricpp::incircleadapt(
   }
   if (adytail != 0.0)
   {
-    aytbc[0] = scale_expansion_zeroelim(bc,adytail);
+    aytbc[0] = bc3 * adytail;
+    //aytbc[0] = std::accumulate(bc.begin(),bc.end()) * adytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //aytbc[0] = scale_expansion_zeroelim(bc,adytail);
     //scale_expansion_zeroelim(bc,adytail,aytbc[0]);
     //const int aytbclen = scale_expansion_zeroelim(bc,adytail,aytbc);
     //const int aytbclen = scale_expansion_zeroelim(4, bc, adytail, aytbc);
 
-    temp16a[0] = scale_expansion_zeroelim(aytbc,2.0 * ady);
+    temp16a[0] = std::accumulate(aytbc.begin(),aytbc.end()) * 2.0 * ady;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16a[0] = scale_expansion_zeroelim(aytbc,2.0 * ady);
     //scale_expansion_zeroelim(aytbc,2.0 * ady,temp16a[0]);
     //const int temp16alen = scale_expansion_zeroelim(aytbc,2.0 * ady,temp16a);
     //const int temp16alen = scale_expansion_zeroelim(aytbclen, aytbc, 2.0 * ady,temp16a);
 
-    aytbb[0] = scale_expansion_zeroelim(bb,adytail);
+    aytbb[0] = bb3 * adytail;
+    //aytbb[0] = std::accumulate(bb.begin(),bb.end()) * adytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //aytbb[0] = scale_expansion_zeroelim(bb,adytail);
     //scale_expansion_zeroelim(bb,adytail,aytbb[0]);
     //const int aytbblen = scale_expansion_zeroelim(bb,adytail,aytbb);
     //const int aytbblen = scale_expansion_zeroelim(4, bb, adytail, aytbb);
 
-    temp16b[0] = scale_expansion_zeroelim(aytbb,cdx);
+    temp16b[0] = std::accumulate(aytbb.begin(),aytbb.end()) * cdx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16b[0] = scale_expansion_zeroelim(aytbb,cdx);
     //scale_expansion_zeroelim(aytbb,cdx,temp16b[0]);
     //const int temp16blen = scale_expansion_zeroelim(aytbb,cdx,temp16b);
     //const int temp16blen = scale_expansion_zeroelim(aytbblen, aytbb, cdx, temp16b);
 
-    aytcc[0] = scale_expansion_zeroelim(cc,adytail);
+    aytcc[0] = cc3 * adytail;
+    //aytcc[0] = std::accumulate(cc.begin(),cc.end()) * adytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //aytcc[0] = scale_expansion_zeroelim(cc,adytail);
     //scale_expansion_zeroelim(cc,adytail,aytcc[0]);
     //const int aytcclen = scale_expansion_zeroelim(cc,adytail,aytcc);
     //const int aytcclen = scale_expansion_zeroelim(4, cc, adytail, aytcc);
 
-    temp16c[0] = scale_expansion_zeroelim(aytcc,-bdx);
+    temp16c[0] = std::accumulate(aytcc.begin(),aytcc.end()) * -bdx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16c[0] = scale_expansion_zeroelim(aytcc,-bdx);
     //scale_expansion_zeroelim(aytcc,-bdx,temp16c[0]);
     //const int temp16clen = scale_expansion_zeroelim(aytcc,-bdx,temp16c);
     //const int temp16clen = scale_expansion_zeroelim(aytcclen, aytcc, -bdx, temp16c);
 
-    fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
+    temp32a = fast_expansion_sum_zeroelim(temp16a,temp16b);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
 
-    fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
+    temp48 = fast_expansion_sum_zeroelim(temp16c,temp32a);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
 
-    fast_expansion_sum_zeroelim(finnow,temp48,finother);
+    finother = fast_expansion_sum_zeroelim(finnow,temp48);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -1310,45 +1475,66 @@ double ribi::tricpp::incircleadapt(
   }
   if (bdxtail != 0.0)
   {
-    bxtca[0] = scale_expansion_zeroelim(ca,bdxtail);
+    bxtca[0] = ca3 * bdxtail;
+    //bxtca[0] = std::accumulate(ca.begin(),ca.end()) * bdxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //bxtca[0] = scale_expansion_zeroelim(ca,bdxtail);
     //scale_expansion_zeroelim(ca,bdxtail,bxtca[0]);
     //const int bxtcalen = scale_expansion_zeroelim(ca,bdxtail,bxtca);
     //const int bxtcalen = scale_expansion_zeroelim(4, ca, bdxtail, bxtca);
 
-    temp16a[0] = scale_expansion_zeroelim(bxtca,2.0 * bdx);
+    temp16a[0] = std::accumulate(bxtca.begin(),bxtca.end()) * 2.0 * bdx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16a[0] = scale_expansion_zeroelim(bxtca,2.0 * bdx);
     //scale_expansion_zeroelim(bxtca,2.0 * bdx,temp16a[0]);
     //const int temp16alen = scale_expansion_zeroelim(bxtca,2.0 * bdx,temp16a);
     //const int temp16alen = scale_expansion_zeroelim(bxtcalen, bxtca, 2.0 * bdx,temp16a);
 
-    bxtaa[0] = scale_expansion_zeroelim(aa,bdxtail);
+    bxtaa[0] = aa3 * bdxtail;
+    //bxtaa[0] = std::accumulate(aa.begin(),aa.end()) * bdxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //bxtaa[0] = scale_expansion_zeroelim(aa,bdxtail);
     //scale_expansion_zeroelim(aa,bdxtail,bxtaa[0]);
     //const int bxtaalen = scale_expansion_zeroelim(aa,bdxtail,bxtaa);
     //const int bxtaalen = scale_expansion_zeroelim(4, aa, bdxtail, bxtaa);
 
-    temp16b[0] = scale_expansion_zeroelim(bxtaa,cdy);
+    temp16b[0] = std::accumulate(bxtaa.begin(),bxtaa.end()) * cdy;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16b[0] = scale_expansion_zeroelim(bxtaa,cdy);
     //scale_expansion_zeroelim(bxtaa,cdy,temp16b[0]);
     //const int temp16blen = scale_expansion_zeroelim(bxtaa,cdy,temp16b);
     //const int temp16blen = scale_expansion_zeroelim(bxtaalen, bxtaa, cdy, temp16b);
 
-    bxtcc[0] = scale_expansion_zeroelim(cc, bdxtail);
+    bxtcc[0] = cc3 * bdxtail;
+    //bxtcc[0] = std::accumulate(cc.begin(),cc.end()) * bdxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //bxtcc[0] = scale_expansion_zeroelim(cc, bdxtail);
     //scale_expansion_zeroelim(cc, bdxtail, bxtcc[0]);
     //const int bxtcclen = scale_expansion_zeroelim(cc, bdxtail, bxtcc);
     //const int bxtcclen = scale_expansion_zeroelim(4, cc, bdxtail, bxtcc);
 
-    temp16c[0] = scale_expansion_zeroelim(bxtcc,-ady);
+    temp16c[0] = std::accumulate(bxtcc.begin(),bxtcc.end()) * -ady;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16c[0] = scale_expansion_zeroelim(bxtcc,-ady);
     //scale_expansion_zeroelim(bxtcc,-ady,temp16c[0]);
     //const int temp16clen = scale_expansion_zeroelim(bxtcc,-ady,temp16c);
     //const int temp16clen = scale_expansion_zeroelim(bxtcclen, bxtcc, -ady, temp16c);
 
-    fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
+    temp32a = fast_expansion_sum_zeroelim(temp16a,temp16b);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
 
-    fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
+    temp48 = fast_expansion_sum_zeroelim(temp16c,temp32a);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
 
-    fast_expansion_sum_zeroelim(finnow,temp48,finother);
+    finother = fast_expansion_sum_zeroelim(finnow,temp48);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -1357,45 +1543,66 @@ double ribi::tricpp::incircleadapt(
   }
   if (bdytail != 0.0)
   {
-    bytca[0] = scale_expansion_zeroelim(ca,bdytail);
+    bytca[0] = ca3 * bdytail;
+    //bytca[0] = std::accumulate(ca.begin(),ca.end()) * bdytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //bytca[0] = scale_expansion_zeroelim(ca,bdytail);
     //scale_expansion_zeroelim(ca,bdytail,bytca[0]);
     //const int bytcalen = scale_expansion_zeroelim(ca,bdytail,bytca);
     //const int bytcalen = scale_expansion_zeroelim(4, ca, bdytail, bytca);
 
-    temp16a[0] = scale_expansion_zeroelim(bytca,2.0 * bdy);
+    temp16a[0] = std::accumulate(bytca.begin(),bytca.end()) * 2.0 * bdy;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16a[0] = scale_expansion_zeroelim(bytca,2.0 * bdy);
     //scale_expansion_zeroelim(bytca,2.0 * bdy,temp16a[0]);
     //const int temp16alen = scale_expansion_zeroelim(bytca,2.0 * bdy,temp16a);
     //const int temp16alen = scale_expansion_zeroelim(bytcalen, bytca, 2.0 * bdy,temp16a);
 
-    bytcc[0] = scale_expansion_zeroelim(cc,bdytail);
+    bytcc[0] = cc3 * bdytail;
+    //bytcc[0] = std::accumulate(cc.begin(),cc.end()) * bdytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //bytcc[0] = scale_expansion_zeroelim(cc,bdytail);
     //scale_expansion_zeroelim(cc,bdytail,bytcc[0]);
     //const int bytcclen = scale_expansion_zeroelim(cc,bdytail,bytcc);
     //const int bytcclen = scale_expansion_zeroelim(4, cc, bdytail, bytcc);
 
-    temp16b[0] = scale_expansion_zeroelim(bytcc,adx);
+    temp16b[0] = std::accumulate(bytcc.begin(),bytcc.end()) * adx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16b[0] = scale_expansion_zeroelim(bytcc,adx);
     //scale_expansion_zeroelim(bytcc,adx,temp16b[0]);
     //const int temp16blen = scale_expansion_zeroelim(bytcc,adx,temp16b);
     //const int temp16blen = scale_expansion_zeroelim(bytcclen, bytcc, adx, temp16b);
 
-    bytaa[0] = scale_expansion_zeroelim(aa,bdytail);
+    bytaa[0] = aa3 * bdytail;
+    //bytaa[0] = std::accumulate(aa.begin(),aa.end()) * bdytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //bytaa[0] = scale_expansion_zeroelim(aa,bdytail);
     //scale_expansion_zeroelim(aa,bdytail,bytaa[0]);
     //const int bytaalen = scale_expansion_zeroelim(aa,bdytail,bytaa);
     //const int bytaalen = scale_expansion_zeroelim(4, aa, bdytail, bytaa);
 
-    temp16c[0] = scale_expansion_zeroelim(bytaa,-cdx);
+    temp16c[0] = std::accumulate(bytaa.begin(),bytaa.end()) * -cdx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16c[0] = scale_expansion_zeroelim(bytaa,-cdx);
     //scale_expansion_zeroelim(bytaa,-cdx,temp16c[0]);
     //const int temp16clen = scale_expansion_zeroelim(bytaa,-cdx,temp16c);
     //const int temp16clen = scale_expansion_zeroelim(bytaalen, bytaa, -cdx, temp16c);
 
-    fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
+    temp32a = fast_expansion_sum_zeroelim(temp16a,temp16b);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
 
-    fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
+    temp48 = fast_expansion_sum_zeroelim(temp16c,temp32a);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
 
-    fast_expansion_sum_zeroelim(finnow,temp48,finother);
+    finother = fast_expansion_sum_zeroelim(finnow,temp48);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -1404,45 +1611,66 @@ double ribi::tricpp::incircleadapt(
   }
   if (cdxtail != 0.0)
   {
-    cxtab[0] = scale_expansion_zeroelim(ab,cdxtail);
+    cxtab[0] = ab3 * cdxtail;
+    //cxtab[0] = std::accumulate(ab.begin(),ab.end()) * cdxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //cxtab[0] = scale_expansion_zeroelim(ab,cdxtail);
     //scale_expansion_zeroelim(ab,cdxtail,cxtab[0]);
     //const int cxtablen = scale_expansion_zeroelim(ab,cdxtail,cxtab);
     //const int cxtablen = scale_expansion_zeroelim(4, ab, cdxtail, cxtab);
 
-    temp16a[0] = scale_expansion_zeroelim(cxtab,2.0 * cdx);
+    temp16a[0] = std::accumulate(cxtab.begin(),cxtab.end()) * 2.0 * cdx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16a[0] = scale_expansion_zeroelim(cxtab,2.0 * cdx);
     //scale_expansion_zeroelim(cxtab,2.0 * cdx,temp16a[0]);
     //const int temp16alen = scale_expansion_zeroelim(cxtab,2.0 * cdx,temp16a);
     //const int temp16alen = scale_expansion_zeroelim(cxtablen, cxtab, 2.0 * cdx,temp16a);
 
-    cxtbb[0] = scale_expansion_zeroelim(bb,cdxtail);
+    cxtbb[0] = bb3 * cdxtail;
+    //cxtbb[0] = std::accumulate(bb.begin(),bb.end()) * cdxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //cxtbb[0] = scale_expansion_zeroelim(bb,cdxtail);
     //scale_expansion_zeroelim(bb,cdxtail,cxtbb[0]);
     //const int cxtbblen = scale_expansion_zeroelim(bb,cdxtail,cxtbb);
     //const int cxtbblen = scale_expansion_zeroelim(4, bb, cdxtail, cxtbb);
 
-    temp16b[0] = scale_expansion_zeroelim(cxtbb,ady);
+    temp16b[0] = std::accumulate(cxtbb.begin(),cxtbb.end()) * ady;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16b[0] = scale_expansion_zeroelim(cxtbb,ady);
     //scale_expansion_zeroelim(cxtbb,ady,temp16b[0]);
     //const int temp16blen = scale_expansion_zeroelim(cxtbb,ady,temp16b);
     //const int temp16blen = scale_expansion_zeroelim(cxtbblen, cxtbb, ady, temp16b);
 
-    cxtaa[0] = scale_expansion_zeroelim(aa,cdxtail);
+    cxtaa[0] = aa3 * cdxtail;
+    //cxtaa[0] = std::accumulate(aa.begin(),aa.end()) * cdxtail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //cxtaa[0] = scale_expansion_zeroelim(aa,cdxtail);
     //scale_expansion_zeroelim(aa,cdxtail,cxtaa[0]);
     //const int cxtaalen = scale_expansion_zeroelim(aa,cdxtail,cxtaa);
     //const int cxtaalen = scale_expansion_zeroelim(4, aa, cdxtail, cxtaa);
 
-    temp16c[0] = scale_expansion_zeroelim(cxtaa,-bdy);
+    temp16c[0] = std::accumulate(cxtaa.begin(),cxtaa.end()) * -bdy;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16c[0] = scale_expansion_zeroelim(cxtaa,-bdy);
     //scale_expansion_zeroelim(cxtaa,-bdy,temp16c[0]);
     //const int temp16clen = scale_expansion_zeroelim(cxtaa,-bdy,temp16c);
     //const int temp16clen = scale_expansion_zeroelim(cxtaalen, cxtaa, -bdy, temp16c);
 
-    fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
+    temp32a = fast_expansion_sum_zeroelim(temp16a,temp16b);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
 
-    fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
+    temp48 = fast_expansion_sum_zeroelim(temp16c,temp32a);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
 
-    fast_expansion_sum_zeroelim(finnow,temp48,finother);
+    finother = fast_expansion_sum_zeroelim(finnow,temp48);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -1451,45 +1679,66 @@ double ribi::tricpp::incircleadapt(
   }
   if (cdytail != 0.0)
   {
-    cytab[0] = scale_expansion_zeroelim(ab,cdytail);
+    cytab[0] = ab3 * cdytail;
+    //cytab[0] = std::accumulate(ab.begin(),ab.end()) * cdytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //cytab[0] = scale_expansion_zeroelim(ab,cdytail);
     //scale_expansion_zeroelim(ab,cdytail,cytab[0]);
     //const int cytablen = scale_expansion_zeroelim(ab,cdytail,cytab);
     //const int cytablen = scale_expansion_zeroelim(4, ab, cdytail, cytab);
 
-    temp16a[0] = scale_expansion_zeroelim(cytab,2.0 * cdy);
+    temp16a[0] = std::accumulate(cytab.begin(),cytab.end()) * 2.0 * cdy;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16a[0] = scale_expansion_zeroelim(cytab,2.0 * cdy);
     //scale_expansion_zeroelim(cytab,2.0 * cdy,temp16a[0]);
     //const int temp16alen = scale_expansion_zeroelim(cytab,2.0 * cdy,temp16a);
     //const int temp16alen = scale_expansion_zeroelim(cytablen, cytab, 2.0 * cdy,temp16a);
 
-    cytaa[0] = scale_expansion_zeroelim(aa, cdytail);
+    cytaa[0] = aa3 * cdytail;
+    //cytaa[0] = std::accumulate(aa.begin(),aa.end()) * cdytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //cytaa[0] = scale_expansion_zeroelim(aa, cdytail);
     //scale_expansion_zeroelim(aa, cdytail, cytaa[0]);
     //const int cytaalen = scale_expansion_zeroelim(aa, cdytail, cytaa);
     //const int cytaalen = scale_expansion_zeroelim(4, aa, cdytail, cytaa);
 
-    temp16b[0] = scale_expansion_zeroelim(cytaa,bdx);
+    temp16b[0] = std::accumulate(cytaa.begin(),cytaa.end()) * bdx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16b[0] = scale_expansion_zeroelim(cytaa,bdx);
     //scale_expansion_zeroelim(cytaa,bdx,temp16b[0]);
     //const int temp16blen = scale_expansion_zeroelim(cytaa,bdx,temp16b);
     //const int temp16blen = scale_expansion_zeroelim(cytaalen, cytaa, bdx, temp16b);
 
-    cytbb[0] = scale_expansion_zeroelim(bb, cdytail);
+    cytbb[0] = bb3 * cdytail;
+    //cytbb[0] = std::accumulate(bb.begin(),bb.end()) * cdytail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //cytbb[0] = scale_expansion_zeroelim(bb, cdytail);
     //scale_expansion_zeroelim(bb, cdytail, cytbb[0]);
     //const int cytbblen = scale_expansion_zeroelim(bb, cdytail, cytbb);
     //const int cytbblen = scale_expansion_zeroelim(4, bb, cdytail, cytbb);
 
-    temp16c[0] = scale_expansion_zeroelim(cytbb,-adx);
+    temp16c[0] = std::accumulate(cytbb.begin(),cytbb.end()) * -adx;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //temp16c[0] = scale_expansion_zeroelim(cytbb,-adx);
     //scale_expansion_zeroelim(cytbb,-adx,temp16c[0]);
     //const int temp16clen = scale_expansion_zeroelim(cytbb,-adx,temp16c);
     //const int temp16clen = scale_expansion_zeroelim(cytbblen, cytbb, -adx, temp16c);
 
-    fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
+    temp32a = fast_expansion_sum_zeroelim(temp16a,temp16b);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32a);
     //const int temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32a);
 
-    fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
+    temp48 = fast_expansion_sum_zeroelim(temp16c,temp32a);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16c,temp32a,temp48);
     //const int temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,temp32alen, temp32a, temp48);
 
-    fast_expansion_sum_zeroelim(finnow,temp48,finother);
+    finother = fast_expansion_sum_zeroelim(finnow,temp48);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
     //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -1499,95 +1748,127 @@ double ribi::tricpp::incircleadapt(
 
   if (adxtail != 0.0 || adytail != 0.0)
   {
-    if (bdxtail != 0.0 || bdytail != 0.0 || cdxtail != 0.0 || cdytail != 0.0)
-    {
-      double ti1 = bdxtail * cdy;
+    //Uses same conditional statement twice
+    const auto bct
+      = bdxtail != 0.0 || bdytail != 0.0 || cdxtail != 0.0 || cdytail != 0.0
+      ? ((bdxtail * cdy) + (bdx * cdytail)) + ((cdxtail * -bdy) + (cdx * -bdytail))
+      : 0.0
+    ;
+    const auto bctt3
+      = bdxtail != 0.0 || bdytail != 0.0 || cdxtail != 0.0 || cdytail != 0.0
+      ? (bdxtail * cdytail) - (cdxtail * bdytail)
+      : 0.0
+    ;
+    //if (bdxtail != 0.0 || bdytail != 0.0 || cdxtail != 0.0 || cdytail != 0.0)
+    //{
+      //auto ti1 = bdxtail * cdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdxtail, cdy, ti1, ti0);
 
-      double tj1 = bdx * cdytail;
+      //auto tj1 = bdx * cdytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdx, cdytail, tj1, tj0);
 
-      const double u3 = ti1 + tj1;
+      //const auto u3 = (bdxtail * cdy) + (bdx * cdytail);
+      //const auto u3 = ti1 + tj1;
       //u3 = ti1 + tj1 + tj0;
       //u3 = ti1 + ti0 + tj1 + tj0;
       //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
       //Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
 
-      u[3] = u3;
-      double negate = -bdy;
+      //u[3] = u3;
 
-      ti1 = cdxtail * negate;
+      //ti1 = cdxtail * -bdy;
+      //auto negate = -bdy;
+      //ti1 = cdxtail * negate;
+
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdxtail, negate, ti1, ti0);
 
-      negate = -bdytail;
+      //tj1 = cdx * -bdytail;
+      //negate = -bdytail;
+      //tj1 = cdx * negate;
 
-      tj1 = cdx * negate;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdx, negate, tj1, tj0);
 
 
-      const double v3 = ti1 + tj1;
+      //const double v3 = (cdxtail * -bdy) + (cdx * -bdytail);
+      //const double v3 = ti1 + tj1;
       //v3 = ti1 + tj1 + tj0;
       //v3 = ti1 + ti0 + tj1 + tj0;
       //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
       //Two_Two_Sum(ti1, ti0, tj1, tj0, v3, v[2], v[1], v[0]);
 
-      v[3] = v3;
+      //v[3] = v3;
 
-      fast_expansion_sum_zeroelim(u,v,bct);
+      //const auto bct = ((bdxtail * cdy) + (bdx * cdytail)) + ((cdxtail * -bdy) + (cdx * -bdytail));
+      //const auto bct = u3 + v3;
+      //bct = fast_expansion_sum_zeroelim(u,v);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(u,v,bct);
       //const int bctlen = fast_expansion_sum_zeroelim(u,v,bct);
       //const int bctlen = fast_expansion_sum_zeroelim(4, u, 4, v, bct);
 
-      ti1 = bdxtail * cdytail;
+      //ti1 = bdxtail * cdytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdxtail, cdytail, ti1, ti0);
 
-      tj1 = cdxtail * bdytail;
+      //tj1 = cdxtail * bdytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdxtail, bdytail, tj1, tj0);
 
-      const double bctt3 = ti1 - tj1;
+      //const double bctt3 = (bdxtail * cdytail) - (cdxtail * bdytail);
+      //const double bctt3 = ti1 - tj1;
       //bctt3 = ti1 - tj1 - tj0;
       //bctt3 = ti1 + ti0 - tj1 - tj0;
       //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
       //Two_Two_Diff(ti1, ti0, tj1, tj0, bctt3, bctt[2], bctt[1], bctt[0]);
 
-      bctt[3] = bctt3;
+      //bctt[3] = bctt3;
       //const int bcttlen = 4;
-    }
-    else
-    {
-      bct[0] = 0.0;
+    //}
+    //else
+    //{
+      //bct[0] = 0.0;
       //const int bctlen = 1;
-      bctt[0] = 0.0;
+      //bctt[0] = 0.0;
       //const int bcttlen = 1;
-    }
+    //}
 
     if (adxtail != 0.0)
     {
-      temp16a[0] = scale_expansion_zeroelim(axtbc,adxtail);
+      temp16a[0] = std::accumulate(axtbc.begin(),axtbc.end()) * adxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(axtbc,adxtail);
       //scale_expansion_zeroelim(axtbc,adxtail,temp16a[0]);
       //const int temp16alen = scale_expansion_zeroelim(axtbc,adxtail,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(axtbclen, axtbc, adxtail, temp16a);
 
-      axtbct[0] = scale_expansion_zeroelim(bct,adxtail);
+      axtbct[0] = bct * adxtail;
+      //axtbct[0] = std::accumulate(bct.begin(),bct.end()) * adxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //axtbct[0] = scale_expansion_zeroelim(bct,adxtail);
       //scale_expansion_zeroelim(bct,adxtail,axtbct[0]);
       //const int axtbctlen = scale_expansion_zeroelim(bct,adxtail,axtbct);
       //const int axtbctlen = scale_expansion_zeroelim(bctlen, bct, adxtail, axtbct);
 
-      temp32a[0] = scale_expansion_zeroelim(axtbct,2.0 * adx);
+      temp32a[0] = std::accumulate(axtbct.begin(),axtbct.end()) * 2.0 * adx;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(axtbct,2.0 * adx);
       //scale_expansion_zeroelim(axtbct,2.0 * adx,temp32a[0]);
       //const int temp32alen = scale_expansion_zeroelim(axtbct,2.0 * adx,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(axtbctlen, axtbct, 2.0 * adx,temp32a);
 
-      fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
+      temp48 = fast_expansion_sum_zeroelim(temp16a,temp32a);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
 
-      fast_expansion_sum_zeroelim(finnow,temp48,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp48);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -1595,17 +1876,24 @@ double ribi::tricpp::incircleadapt(
       //finswap = finnow; finnow = finother; finother = finswap;
       if (bdytail != 0.0)
       {
-        temp8[0] = scale_expansion_zeroelim(cc,adxtail);
+        temp8[0] = cc3 * adxtail;
+        //temp8[0] = std::accumulate(cc.begin(),cc.end()) * adxtail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp8[0] = scale_expansion_zeroelim(cc,adxtail);
         //scale_expansion_zeroelim(cc,adxtail,temp8[0]);
         //const int temp8len = scale_expansion_zeroelim(cc,adxtail,temp8);
         //const int temp8len = scale_expansion_zeroelim(4, cc, adxtail, temp8);
 
-        temp16a[0] = scale_expansion_zeroelim(temp8,bdytail);
+        temp16a[0] = std::accumulate(temp8.begin(),temp8.end()) * bdytail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp16a[0] = scale_expansion_zeroelim(temp8,bdytail);
         //scale_expansion_zeroelim(temp8,bdytail,temp16a[0]);
         //const int temp16alen = scale_expansion_zeroelim(temp8,bdytail,temp16a);
         //const int temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,temp16a);
 
-        fast_expansion_sum_zeroelim(finnow,temp16a,finother);
+        finother = fast_expansion_sum_zeroelim(finnow,temp16a);
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
 
@@ -1614,17 +1902,24 @@ double ribi::tricpp::incircleadapt(
       }
       if (cdytail != 0.0)
       {
-        temp8[0] = scale_expansion_zeroelim(bb,-adxtail);
+        temp8[0] = bb3 * -adxtail;
+        //temp8[0] = std::accumulate(bb.begin(),bb.end()) * -adxtail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp8[0] = scale_expansion_zeroelim(bb,-adxtail);
         //scale_expansion_zeroelim(bb,-adxtail,temp8[0]);
         //const int temp8len = scale_expansion_zeroelim(bb,-adxtail,temp8);
         //const int temp8len = scale_expansion_zeroelim(4, bb, -adxtail, temp8);
 
-        temp16a[0] = scale_expansion_zeroelim(temp8,cdytail);
+        temp16a[0] = std::accumulate(temp8.begin(),temp8.end()) * cdytail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp16a[0] = scale_expansion_zeroelim(temp8,cdytail);
         //scale_expansion_zeroelim(temp8,cdytail,temp16a[0]);
         //const int temp16alen = scale_expansion_zeroelim(temp8,cdytail,temp16a);
         //const int temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,temp16a);
 
-        fast_expansion_sum_zeroelim(finnow,temp16a,finother);
+        finother = fast_expansion_sum_zeroelim(finnow,temp16a);
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
 
@@ -1632,35 +1927,50 @@ double ribi::tricpp::incircleadapt(
         //finswap = finnow; finnow = finother; finother = finswap;
       }
 
-      temp32a[0] = scale_expansion_zeroelim(axtbct,adxtail);
+      temp32a[0] = std::accumulate(axtbct.begin(),axtbct.end()) * adxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(axtbct,adxtail);
       //scale_expansion_zeroelim(axtbct,adxtail,temp32a[0]);
       //const int temp32alen = scale_expansion_zeroelim(axtbct,adxtail,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(axtbctlen, axtbct, adxtail,temp32a);
 
-      axtbctt[0] = scale_expansion_zeroelim(bctt,adxtail);
+      axtbctt[0] = bctt3 * adxtail;
+      //axtbctt[0] = std::accumulate(bctt.begin(),bctt.end()) * adxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //axtbctt[0] = scale_expansion_zeroelim(bctt,adxtail);
       //scale_expansion_zeroelim(bctt,adxtail,axtbctt[0]);
       //const int axtbcttlen = scale_expansion_zeroelim(bctt,adxtail,axtbctt);
       //const int axtbcttlen = scale_expansion_zeroelim(bcttlen, bctt, adxtail, axtbctt);
 
-      temp16a[0] = scale_expansion_zeroelim(axtbctt,2.0 * adx);
+      temp16a[0] = std::accumulate(axtbctt.begin(),axtbctt.end()) * 2.0 * adx;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(axtbctt,2.0 * adx);
       //scale_expansion_zeroelim(axtbctt,2.0 * adx,temp16a[0]);
       //const int temp16alen = scale_expansion_zeroelim(axtbctt,2.0 * adx,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(axtbcttlen, axtbctt, 2.0 * adx,temp16a);
 
-      temp16b[0] = scale_expansion_zeroelim(axtbctt,adxtail);
+      temp16b[0] = std::accumulate(axtbctt.begin(),axtbctt.end()) * adxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16b[0] = scale_expansion_zeroelim(axtbctt,adxtail);
       //scale_expansion_zeroelim(axtbctt,adxtail,temp16b[0]);
       //const int temp16blen = scale_expansion_zeroelim(axtbctt,adxtail,temp16b);
       //const int temp16blen = scale_expansion_zeroelim(axtbcttlen, axtbctt, adxtail,temp16b);
 
-      fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
+      temp32b = fast_expansion_sum_zeroelim(temp16a,temp16b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
 
-      fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
+      temp64 = fast_expansion_sum_zeroelim(temp32a,temp32b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
 
-      fast_expansion_sum_zeroelim(finnow,temp64,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp64);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
 
@@ -1669,61 +1979,87 @@ double ribi::tricpp::incircleadapt(
     }
     if (adytail != 0.0)
     {
-      temp16a[0] = scale_expansion_zeroelim(aytbc,adytail);
+      temp16a[0] = std::accumulate(aytbc.begin(),aytbc.end()) * adytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(aytbc,adytail);
       //scale_expansion_zeroelim(aytbc,adytail,temp16a[0]);
       //const int temp16alen = scale_expansion_zeroelim(aytbc,adytail,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(aytbclen, aytbc, adytail, temp16a);
 
-      aytbct[0] = scale_expansion_zeroelim(bct,adytail);
+      aytbct[0] = bct * adytail;
+      //aytbct[0] = std::accumulate(bct.begin(),bct.end()) * adytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //aytbct[0] = scale_expansion_zeroelim(bct,adytail);
       //scale_expansion_zeroelim(bct,adytail,aytbct[0]);
       //const int aytbctlen = scale_expansion_zeroelim(bct,adytail,aytbct);
       //const int aytbctlen = scale_expansion_zeroelim(bctlen, bct, adytail, aytbct);
 
-      temp32a[0] = scale_expansion_zeroelim(aytbct, 2.0 * ady);
+      temp32a[0] = std::accumulate(aytbct.begin(),aytbct.end()) * 2.0 * ady;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(aytbct, 2.0 * ady);
       //scale_expansion_zeroelim(aytbct, 2.0 * ady,temp32a[0]);
       //const int temp32alen = scale_expansion_zeroelim(aytbct, 2.0 * ady,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(aytbctlen, aytbct, 2.0 * ady,temp32a);
 
-      fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
+      temp48 = fast_expansion_sum_zeroelim(temp16a,temp32a);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
 
-      fast_expansion_sum_zeroelim(finnow,temp48,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp48);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
       std::swap(finnow,finother);
       //finswap = finnow; finnow = finother; finother = finswap;
 
-      temp32a[0] = scale_expansion_zeroelim(aytbct,adytail);
+      temp32a[0] = std::accumulate(aytbct.begin(),aytbct.end()) * adytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(aytbct,adytail);
       //scale_expansion_zeroelim(aytbct,adytail,temp32a[0]);
       //const int temp32alen = scale_expansion_zeroelim(aytbct,adytail,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(aytbctlen, aytbct, adytail,temp32a);
 
-      aytbctt[0] = scale_expansion_zeroelim(bctt,adytail);
+      aytbctt[0] = bctt3 * adytail;
+      //aytbctt[0] = std::accumulate(bctt.begin(),bctt.end()) * adytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //aytbctt[0] = scale_expansion_zeroelim(bctt,adytail);
       //scale_expansion_zeroelim(bctt,adytail,aytbctt[0]);
       //const int aytbcttlen = scale_expansion_zeroelim(bctt,adytail,aytbctt);
       //const int aytbcttlen = scale_expansion_zeroelim(bcttlen, bctt, adytail, aytbctt);
 
-      temp16a[0] = scale_expansion_zeroelim(aytbctt,2.0 * ady);
+      temp16a[0] = std::accumulate(aytbctt.begin(),aytbctt.end()) * 2.0 * ady;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(aytbctt,2.0 * ady);
       //scale_expansion_zeroelim(aytbctt,2.0 * ady,temp16a[0]);
       //const int temp16alen = scale_expansion_zeroelim(aytbctt,2.0 * ady,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(aytbcttlen, aytbctt, 2.0 * ady,temp16a);
 
-      temp16b[0] = scale_expansion_zeroelim(aytbctt,adytail);
+      temp16b[0] = std::accumulate(aytbctt.begin(),aytbctt.end()) * adytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16b[0] = scale_expansion_zeroelim(aytbctt,adytail);
       //scale_expansion_zeroelim(aytbctt,adytail,temp16b[0]);
       //const int temp16blen = scale_expansion_zeroelim(aytbctt,adytail,temp16b);
       //const int temp16blen = scale_expansion_zeroelim(aytbcttlen, aytbctt, adytail,temp16b);
 
-      fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
+      temp32b = fast_expansion_sum_zeroelim(temp16a,temp16b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
 
-      fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
+      temp64 = fast_expansion_sum_zeroelim(temp32a,temp32b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
 
-      fast_expansion_sum_zeroelim(finnow,temp64, finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp64);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp64, finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp64, finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
 
@@ -1735,42 +2071,48 @@ double ribi::tricpp::incircleadapt(
   {
     if (cdxtail != 0.0 || cdytail != 0.0 || adxtail != 0.0 || adytail != 0.0)
     {
-      double ti1 = cdxtail * ady;
+      auto ti1 = cdxtail * ady;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdxtail, ady, ti1, ti0);
 
-      double tj1 = cdx * adytail;
+      auto tj1 = cdx * adytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdx, adytail, tj1, tj0);
 
-      const double u3 = ti1 + tj1;
+      const auto u3 = ti1 + tj1;
       //u3 = ti1 + tj1 + tj0;
       //u3 = ti1 + ti0 + tj1 + tj0;
       //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
       //Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
 
-      u[3] = u3;
-      double negate = -cdy;
+      //u[3] = u3;
 
-      ti1 = adxtail * negate;
+      ti1 = adxtail * -cdy;
+      //double negate = -cdy;
+      //ti1 = adxtail * negate;
+
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adxtail, negate, ti1, ti0);
 
-      negate = -cdytail;
+      tj1 = adx * -cdytail;
+      //negate = -cdytail;
+      //tj1 = adx * negate;
 
-      tj1 = adx * negate;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adx, negate, tj1, tj0);
 
-      const double v3 = ti1 + tj1;
+      const auto v3 = ti1 + tj1;
       //v3 = ti1 + tj1 + tj0;
       //v3 = ti1 + ti0 + tj1 + tj0;
       //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
       //Two_Two_Sum(ti1, ti0, tj1, tj0, v3, v[2], v[1], v[0]);
 
-      v[3] = v3;
+      //v[3] = v3;
 
-      fast_expansion_sum_zeroelim(u,v,cat);
+      cat = u3 + v3;
+      //cat = fast_expansion_sum_zeroelim(u,v);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(u,v,cat);
       //const int catlen = fast_expansion_sum_zeroelim(u,v,cat);
       //const int catlen = fast_expansion_sum_zeroelim(4, u, 4, v, cat);
 
@@ -1782,7 +2124,7 @@ double ribi::tricpp::incircleadapt(
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adxtail, cdytail, tj1, tj0);
 
-      const double catt3 = ti1 - tj1;
+      const auto catt3 = ti1 - tj1;
       //catt3 = ti1 - tj1 - tj0;
       //catt3 = ti1 + ti0 - tj1 - tj0;
       //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
@@ -1801,26 +2143,36 @@ double ribi::tricpp::incircleadapt(
 
     if (bdxtail != 0.0)
     {
-      temp16a[0] = scale_expansion_zeroelim(bxtca,bdxtail);
+      temp16a[0] = std::accumulate(bxtca.begin(),bxtca.end()) * bdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(bxtca,bdxtail);
       //scale_expansion_zeroelim(bxtca,bdxtail,temp16a[0]);
       //const int temp16alen = scale_expansion_zeroelim(bxtca,bdxtail,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(bxtcalen, bxtca, bdxtail, temp16a);
 
-      bxtcat[0] = scale_expansion_zeroelim(cat,bdxtail);
+      bxtcat[0] = std::accumulate(cat.begin(),cat.end()) * bdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //bxtcat[0] = scale_expansion_zeroelim(cat,bdxtail);
       //scale_expansion_zeroelim(cat,bdxtail,bxtcat[0]);
       //const int bxtcatlen = scale_expansion_zeroelim(cat,bdxtail,bxtcat);
       //const int bxtcatlen = scale_expansion_zeroelim(catlen, cat, bdxtail, bxtcat);
 
-      temp32a[0] = scale_expansion_zeroelim(bxtcat,2.0 * bdx);
+      temp32a[0] = std::accumulate(bxtcat.begin(),bxtcat.end()) * 2.0 * bdx;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(bxtcat,2.0 * bdx);
       //scale_expansion_zeroelim(bxtcat,2.0 * bdx,temp32a[0]);
       //const int temp32alen = scale_expansion_zeroelim(bxtcat,2.0 * bdx,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(bxtcatlen, bxtcat, 2.0 * bdx,temp32a);
 
-      fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
+      temp48 = fast_expansion_sum_zeroelim(temp16a,temp32a);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
 
-      fast_expansion_sum_zeroelim(finnow,temp48,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp48);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -1828,17 +2180,24 @@ double ribi::tricpp::incircleadapt(
       //finswap = finnow; finnow = finother; finother = finswap;
       if (cdytail != 0.0)
       {
-        temp8[0] = scale_expansion_zeroelim(aa,bdxtail);
+        temp8[0] = aa3 * bdxtail;
+        //temp8[0] = std::accumulate(aa.begin(),aa.end()) * bdxtail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp8[0] = scale_expansion_zeroelim(aa,bdxtail);
         //scale_expansion_zeroelim(aa,bdxtail,temp8[0]);
         //const int temp8len = scale_expansion_zeroelim(aa,bdxtail,temp8);
         //const int temp8len = scale_expansion_zeroelim(4, aa, bdxtail, temp8);
 
-        temp16a[0] = scale_expansion_zeroelim(temp8,cdytail);
+        temp16a[0] = std::accumulate(temp8.begin(),temp8.end()) * cdytail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp16a[0] = scale_expansion_zeroelim(temp8,cdytail);
         //scale_expansion_zeroelim(temp8,cdytail,temp16a[0]);
         //const int temp16alen = scale_expansion_zeroelim(temp8,cdytail,temp16a);
         //const int temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,temp16a);
 
-        fast_expansion_sum_zeroelim(finnow,temp16a,finother);
+        finother = fast_expansion_sum_zeroelim(finnow,temp16a);
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
 
@@ -1847,17 +2206,24 @@ double ribi::tricpp::incircleadapt(
       }
       if (adytail != 0.0)
       {
-        temp8[0] = scale_expansion_zeroelim(cc, -bdxtail);
+        temp8[0] = cc3 * -bdxtail;
+        //temp8[0] = std::accumulate(cc.begin(),cc.end()) * -bdxtail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp8[0] = scale_expansion_zeroelim(cc, -bdxtail);
         //scale_expansion_zeroelim(cc, -bdxtail, temp8[0]);
         //const int temp8len = scale_expansion_zeroelim(cc, -bdxtail, temp8);
         //const int temp8len = scale_expansion_zeroelim(4, cc, -bdxtail, temp8);
 
-        temp16a[0] = scale_expansion_zeroelim(temp8,adytail);
+        temp16a[0] = std::accumulate(temp8.begin(),temp8.end()) * adytail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp16a[0] = scale_expansion_zeroelim(temp8,adytail);
         //scale_expansion_zeroelim(temp8,adytail,temp16a[0]);
         //const int temp16alen = scale_expansion_zeroelim(temp8,adytail,temp16a);
         //const int temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,temp16a);
 
-        fast_expansion_sum_zeroelim(finnow,temp16a,finother);
+        finother = fast_expansion_sum_zeroelim(finnow,temp16a);
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
 
@@ -1865,35 +2231,49 @@ double ribi::tricpp::incircleadapt(
         //finswap = finnow; finnow = finother; finother = finswap;
       }
 
-      temp32a[0] = scale_expansion_zeroelim(bxtcat, bdxtail);
+      temp32a[0] = std::accumulate(bxtcat.begin(),bxtcat.end()) * bdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(bxtcat, bdxtail);
       //scale_expansion_zeroelim(bxtcat, bdxtail,temp32a[0]);
       //const int temp32alen = scale_expansion_zeroelim(bxtcat, bdxtail,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(bxtcatlen, bxtcat, bdxtail,temp32a);
 
-      bxtcatt[0] = scale_expansion_zeroelim(catt, bdxtail);
+      bxtcatt[0] = std::accumulate(catt.begin(),catt.end()) * bdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //bxtcatt[0] = scale_expansion_zeroelim(catt, bdxtail);
       //scale_expansion_zeroelim(catt, bdxtail, bxtcatt[0]);
       //const int bxtcattlen = scale_expansion_zeroelim(catt, bdxtail, bxtcatt);
       //const int bxtcattlen = scale_expansion_zeroelim(cattlen, catt, bdxtail, bxtcatt);
 
-      temp16a[0] = scale_expansion_zeroelim(bxtcatt,2.0 * bdx);
+      temp16a[0] = std::accumulate(bxtcatt.begin(),bxtcatt.end()) * 2.0 * bdx;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(bxtcatt,2.0 * bdx);
       //scale_expansion_zeroelim(bxtcatt,2.0 * bdx,temp16a[0]);
       //const int temp16alen = scale_expansion_zeroelim(bxtcatt,2.0 * bdx,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(bxtcattlen, bxtcatt, 2.0 * bdx,temp16a);
 
-      temp16b[0] = scale_expansion_zeroelim(bxtcatt,bdxtail);
+      temp16b[0] = std::accumulate(bxtcatt.begin(),bxtcatt.end()) * bdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16b[0] = scale_expansion_zeroelim(bxtcatt,bdxtail);
       //scale_expansion_zeroelim(bxtcatt,bdxtail,temp16b[0]);
       //const int temp16blen = scale_expansion_zeroelim(bxtcatt,bdxtail,temp16b);
       //const int temp16blen = scale_expansion_zeroelim(bxtcattlen, bxtcatt, bdxtail,temp16b);
 
-      fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
+      temp32b = fast_expansion_sum_zeroelim(temp16a,temp16b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
 
-      fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
+      temp64 = fast_expansion_sum_zeroelim(temp32a,temp32b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
 
-      fast_expansion_sum_zeroelim(finnow,temp64,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp64);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
 
@@ -1902,61 +2282,85 @@ double ribi::tricpp::incircleadapt(
     }
     if (bdytail != 0.0)
     {
-      temp16a[0] = scale_expansion_zeroelim(bytca,bdytail);
+      temp16a[0] = std::accumulate(bytca.begin(),bytca.end()) * bdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(bytca,bdytail);
       //scale_expansion_zeroelim(bytca,bdytail,temp16a[0]);
       //const int temp16alen = scale_expansion_zeroelim(bytca,bdytail,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(bytcalen, bytca, bdytail, temp16a);
 
-      bytcat[0] = scale_expansion_zeroelim(cat,bdytail);
+      bytcat[0] = std::accumulate(cat.begin(),cat.end()) * bdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //bytcat[0] = scale_expansion_zeroelim(cat,bdytail);
       //scale_expansion_zeroelim(cat,bdytail,bytcat[0]);
       //const int bytcatlen = scale_expansion_zeroelim(cat,bdytail,bytcat);
       //const int bytcatlen = scale_expansion_zeroelim(catlen, cat, bdytail, bytcat);
 
-      temp32a[0] = scale_expansion_zeroelim(bytcat,2.0 * bdy);
+      temp32a[0] = std::accumulate(bytcat.begin(),bytcat.end()) * 2.0 * bdy;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(bytcat,2.0 * bdy);
       //scale_expansion_zeroelim(bytcat,2.0 * bdy,temp32a[0]);
       //const int temp32alen = scale_expansion_zeroelim(bytcat,2.0 * bdy,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(bytcatlen, bytcat, 2.0 * bdy,temp32a);
 
-      fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
+      temp48 = fast_expansion_sum_zeroelim(temp16a,temp32a);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
 
-      fast_expansion_sum_zeroelim(finnow,temp48,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp48);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
       std::swap(finnow,finother);
       //finswap = finnow; finnow = finother; finother = finswap;
 
-      temp32a[0] = scale_expansion_zeroelim(bytcat,bdytail);
+      temp32a[0] = std::accumulate(bytcat.begin(),bytcat.end()) * bdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(bytcat,bdytail);
       //scale_expansion_zeroelim(bytcat,bdytail,temp32a[0]);
       //const int temp32alen = scale_expansion_zeroelim(bytcat,bdytail,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(bytcatlen, bytcat, bdytail,temp32a);
 
-      bytcatt[0] = scale_expansion_zeroelim(catt,bdytail);
+      bytcatt[0] = std::accumulate(catt.begin(),catt.end()) * bdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //bytcatt[0] = scale_expansion_zeroelim(catt,bdytail);
       //scale_expansion_zeroelim(catt,bdytail,bytcatt[0]);
       //const int bytcattlen = scale_expansion_zeroelim(catt,bdytail,bytcatt);
       //const int bytcattlen = scale_expansion_zeroelim(cattlen, catt, bdytail, bytcatt);
 
-      temp16a[0] = scale_expansion_zeroelim(bytcatt,2.0 * bdy);
+      temp16a[0] = std::accumulate(bytcatt.begin(),bytcatt.end()) * 2.0 * bdy;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(bytcatt,2.0 * bdy);
       //scale_expansion_zeroelim(bytcatt,2.0 * bdy,temp16a[0]);
       //const int temp16alen = scale_expansion_zeroelim(bytcatt,2.0 * bdy,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(bytcattlen, bytcatt, 2.0 * bdy,temp16a);
 
-      temp16b[0] = scale_expansion_zeroelim(bytcatt, bdytail);
+      temp16b[0] = std::accumulate(bytcatt.begin(),bytcatt.end()) * bdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16b[0] = scale_expansion_zeroelim(bytcatt, bdytail);
       //scale_expansion_zeroelim(bytcatt, bdytail,temp16b[0]);
       //const int temp16blen = scale_expansion_zeroelim(bytcatt, bdytail,temp16b);
       //const int temp16blen = scale_expansion_zeroelim(bytcattlen, bytcatt, bdytail,temp16b);
 
-      fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
+      temp32b = fast_expansion_sum_zeroelim(temp16a,temp16b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
 
-      fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
+      temp64 = fast_expansion_sum_zeroelim(temp32a,temp32b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
 
-      fast_expansion_sum_zeroelim(finnow,temp64,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp64);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
 
@@ -1968,41 +2372,45 @@ double ribi::tricpp::incircleadapt(
   {
     if (adxtail != 0.0 || adytail != 0.0 || bdxtail != 0.0 || bdytail != 0.0)
     {
-      double ti1 = adxtail * bdy;
+      auto ti1 = adxtail * bdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adxtail, bdy, ti1, ti0);
 
-      double tj1 = adx * bdytail;
+      auto tj1 = adx * bdytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adx, bdytail, tj1, tj0);
 
-      const double u3 = ti1 + tj1;
+      const auto u3 = ti1 + tj1;
       //u3 = ti1 + tj1 + tj0;
       //u3 = ti1 + ti0 + tj1 + tj0;
       //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
       //Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
-      u[3] = u3;
-      double negate = -ady;
+      //u[3] = u3;
 
-      ti1 = bdxtail * negate;
+      ti1 = bdxtail * -ady;
+      //double negate = -ady;
+      //ti1 = bdxtail * negate;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdxtail, negate, ti1, ti0);
 
-      negate = -adytail;
-
-      tj1 = bdx * negate;
+      tj1 = bdx * -adytail;
+      //negate = -adytail;
+      //tj1 = bdx * negate;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdx, negate, tj1, tj0);
 
-      const double v3 = ti1 + tj1;
+      const auto v3 = ti1 + tj1;
       //v3 = ti1 + tj1 + tj0;
       //v3 = ti1 + ti0 + tj1 + tj0;
       //Two_Two_Sum(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 + b1 + b0, x2=0.0, x1=0.0, x0=0.0
       //Two_Two_Sum(ti1, ti0, tj1, tj0, v3, v[2], v[1], v[0]);
 
-      v[3] = v3;
+      //v[3] = v3;
 
-      fast_expansion_sum_zeroelim(u,v,abt);
+      abt = u3 + v3;
+      //abt = fast_expansion_sum_zeroelim(u,v);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(u,v,abt);
       //const int abtlen = fast_expansion_sum_zeroelim(u,v,abt);
       //const int abtlen = fast_expansion_sum_zeroelim(u,v, abt);
       //const int abtlen = fast_expansion_sum_zeroelim(4, u, 4, v, abt);
@@ -2015,7 +2423,7 @@ double ribi::tricpp::incircleadapt(
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdxtail, adytail, tj1, tj0);
 
-      const double abtt3 = ti1 - tj1;
+      const auto abtt3 = ti1 - tj1;
       //abtt3 = ti1 - tj1 - tj0;
       //abtt3 = ti1 + ti0 - tj1 - tj0;
       //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
@@ -2034,29 +2442,39 @@ double ribi::tricpp::incircleadapt(
 
     if (cdxtail != 0.0)
     {
-      temp16a[0] = scale_expansion_zeroelim(cxtab,cdxtail);
+      temp16a[0] = std::accumulate(cxtab.begin(),cxtab.end()) * cdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(cxtab,cdxtail);
       //scale_expansion_zeroelim(cxtab,cdxtail,temp16a[0]);
       //scale_expansion_zeroelim(cxtablen, cxtab, cdxtail, temp16a);
       //const int temp16alen = scale_expansion_zeroelim(cxtablen, cxtab, cdxtail, temp16a);
 
-      cxtabt[0] = scale_expansion_zeroelim(abt,cdxtail);
+      cxtabt[0] = std::accumulate(abt.begin(),abt.end()) * cdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //cxtabt[0] = scale_expansion_zeroelim(abt,cdxtail);
       //scale_expansion_zeroelim(abt,cdxtail,cxtabt[0]);
       //scale_expansion_zeroelim(abtlen, abt, cdxtail, cxtabt);
       //const int cxtabtlen = scale_expansion_zeroelim(abtlen, abt, cdxtail, cxtabt);
 
-      temp32a[0] = scale_expansion_zeroelim(cxtabt, 2.0 * cdx);
+      temp32a[0] = std::accumulate(cxtabt.begin(),cxtabt.end()) * 2.0 * cdx;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(cxtabt, 2.0 * cdx);
       //scale_expansion_zeroelim(cxtabt, 2.0 * cdx,temp32a[0]);
       //scale_expansion_zeroelim(1, cxtabt, 2.0 * cdx,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(1, cxtabt, 2.0 * cdx,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(cxtabtlen, cxtabt, 2.0 * cdx,temp32a);
 
-      fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
+      temp48 = fast_expansion_sum_zeroelim(temp16a,temp32a);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(1, temp16a,1,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,1,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
 
-      fast_expansion_sum_zeroelim(finnow,temp48,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp48);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
@@ -2065,18 +2483,25 @@ double ribi::tricpp::incircleadapt(
 
       if (adytail != 0.0)
       {
-        temp8[0] = scale_expansion_zeroelim(bb,cdxtail);
+        temp8[0] = bb3 * cdxtail;
+        //temp8[0] = std::accumulate(bb.begin(),bb.end()) * cdxtail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp8[0] = scale_expansion_zeroelim(bb,cdxtail);
         //scale_expansion_zeroelim(bb,cdxtail,temp8[0]);
         //scale_expansion_zeroelim(4, bb, cdxtail, temp8);
         //const int temp8len = scale_expansion_zeroelim(4, bb, cdxtail, temp8);
 
-        temp16a[0] = scale_expansion_zeroelim(temp8,adytail);
+        temp16a[0] = std::accumulate(temp8.begin(),temp8.end()) * adytail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp16a[0] = scale_expansion_zeroelim(temp8,adytail);
         //scale_expansion_zeroelim(temp8,adytail,temp16a[0]);
         //scale_expansion_zeroelim(1, temp8, adytail,temp16a);
         //const int temp16alen = scale_expansion_zeroelim(1, temp8, adytail,temp16a);
         //const int temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,temp16a);
 
-        fast_expansion_sum_zeroelim(finnow,temp16a,finother);
+        finother = fast_expansion_sum_zeroelim(finnow,temp16a);
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow,1,temp16a, finother);
         //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
@@ -2086,18 +2511,25 @@ double ribi::tricpp::incircleadapt(
       }
       if (bdytail != 0.0)
       {
-        temp8[0] = scale_expansion_zeroelim(aa,-cdxtail);
+        temp8[0] = aa3 * -cdxtail;
+        //temp8[0] = std::accumulate(aa.begin(),aa.end()) * -cdxtail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp8[0] = scale_expansion_zeroelim(aa,-cdxtail);
         //scale_expansion_zeroelim(aa,-cdxtail,temp8[0]);
         //scale_expansion_zeroelim(4, aa, -cdxtail, temp8);
         //const int temp8len = scale_expansion_zeroelim(4, aa, -cdxtail, temp8);
 
-        temp16a[0] = scale_expansion_zeroelim(temp8,bdytail);
+        temp16a[0] = std::accumulate(temp8.begin(),temp8.end()) * bdytail;
+        //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+        //temp16a[0] = scale_expansion_zeroelim(temp8,bdytail);
         //scale_expansion_zeroelim(temp8,bdytail,temp16a[0]);
         //scale_expansion_zeroelim(1, temp8, bdytail,temp16a);
         //const int temp16alen = scale_expansion_zeroelim(1, temp8, bdytail,temp16a);
         //const int temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,temp16a);
 
-        fast_expansion_sum_zeroelim(finnow,temp16a,finother);
+        finother = fast_expansion_sum_zeroelim(finnow,temp16a);
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finnow,temp16a,finother);
         //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow,1,temp16a, finother);
         //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,temp16a, finother);
@@ -2106,41 +2538,55 @@ double ribi::tricpp::incircleadapt(
         //finswap = finnow; finnow = finother; finother = finswap;
       }
 
-      temp32a[0] = scale_expansion_zeroelim(cxtabt, cdxtail);
+      temp32a[0] = std::accumulate(cxtabt.begin(),cxtabt.end()) * cdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(cxtabt, cdxtail);
       //scale_expansion_zeroelim(cxtabt, cdxtail,temp32a[0]);
       //scale_expansion_zeroelim(1, cxtabt, cdxtail,temp32a);
       //scale_expansion_zeroelim(cxtabtlen, cxtabt, cdxtail,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(cxtabtlen, cxtabt, cdxtail,temp32a);
 
-      cxtabtt[0] = scale_expansion_zeroelim(abtt,cdxtail);
+      cxtabtt[0] = std::accumulate(abtt.begin(),abtt.end()) * cdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //cxtabtt[0] = scale_expansion_zeroelim(abtt,cdxtail);
       //scale_expansion_zeroelim(abtt,cdxtail,cxtabtt[0]);
       //scale_expansion_zeroelim(abttlen, abtt, cdxtail, cxtabtt);
       //const int cxtabttlen = scale_expansion_zeroelim(abttlen, abtt, cdxtail, cxtabtt);
 
-      temp16a[0] = scale_expansion_zeroelim(cxtabtt,2.0 * cdx);
+      temp16a[0] = std::accumulate(cxtabtt.begin(),cxtabtt.end()) * 2.0 * cdx;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(cxtabtt,2.0 * cdx);
       //scale_expansion_zeroelim(cxtabtt,2.0 * cdx,temp16a[0]);
       //scale_expansion_zeroelim(1, cxtabtt, 2.0 * cdx,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(1, cxtabtt, 2.0 * cdx,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(cxtabttlen, cxtabtt, 2.0 * cdx,temp16a);
 
-      temp16b[0] = scale_expansion_zeroelim(cxtabtt,cdxtail);
+      temp16b[0] = std::accumulate(cxtabtt.begin(),cxtabtt.end()) * cdxtail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16b[0] = scale_expansion_zeroelim(cxtabtt,cdxtail);
       //scale_expansion_zeroelim(cxtabtt,cdxtail,temp16b[0]);
       //scale_expansion_zeroelim(1, cxtabtt, cdxtail,temp16b);
       //scale_expansion_zeroelim(cxtabttlen, cxtabtt, cdxtail,temp16b);
       //const int temp16blen = scale_expansion_zeroelim(cxtabttlen, cxtabtt, cdxtail,temp16b);
 
-      fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
+      temp32b = fast_expansion_sum_zeroelim(temp16a,temp16b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(1,temp16a,temp16b, temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16b, temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
 
-      fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
+      temp64 = fast_expansion_sum_zeroelim(temp32a,temp32b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(1, temp32a,temp32blen, temp32b, temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
 
-      fast_expansion_sum_zeroelim(finnow,temp64,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp64);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
 
@@ -2149,70 +2595,94 @@ double ribi::tricpp::incircleadapt(
     }
     if (cdytail != 0.0)
     {
-      temp16a[0] = scale_expansion_zeroelim(cytab,cdytail);
+      temp16a[0] = std::accumulate(cytab.begin(),cytab.end()) * cdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(cytab,cdytail);
       //scale_expansion_zeroelim(cytab,cdytail,temp16a[0]);
       //scale_expansion_zeroelim(cytablen, cytab, cdytail, temp16a);
       //const int temp16alen = scale_expansion_zeroelim(cytablen, cytab, cdytail, temp16a);
 
-      cytabt[0] = scale_expansion_zeroelim(abt,cdytail);
+      cytabt[0] = std::accumulate(abt.begin(),abt.end()) * cdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //cytabt[0] = scale_expansion_zeroelim(abt,cdytail);
       //scale_expansion_zeroelim(abt,cdytail,cytabt[0]);
       //scale_expansion_zeroelim(abtlen, abt, cdytail, cytabt);
       //const int cytabtlen = scale_expansion_zeroelim(abtlen, abt, cdytail, cytabt);
 
-      temp32a[0] = scale_expansion_zeroelim(cytabt,2.0 * cdy);
+      temp32a[0] = scale_expansion_zeroelim(cytabt) * 2.0 * cdy;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(cytabt,2.0 * cdy);
       //scale_expansion_zeroelim(cytabt,2.0 * cdy,temp32a[0]);
       //scale_expansion_zeroelim(1, cytabt, 2.0 * cdy,temp32a);
       //scale_expansion_zeroelim(cytabtlen, cytabt, 2.0 * cdy,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(cytabtlen, cytabt, 2.0 * cdy,temp32a);
 
-      fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
+      temp48 = fast_expansion_sum_zeroelim(temp16a,temp32a);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16a,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(1,temp16a,1,temp32a,temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(1, temp16a,temp32alen, temp32a, temp48);
       //const int temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp32alen, temp32a, temp48);
 
-      fast_expansion_sum_zeroelim(finnow,temp48,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp48);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp48,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,temp48, finother);
 
       std::swap(finnow,finother);
       //finswap = finnow; finnow = finother; finother = finswap;
 
-      temp32a[0] = scale_expansion_zeroelim(cytabt, cdytail);
+      temp32a[0] = scale_expansion_zeroelim(cytabt) * cdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp32a[0] = scale_expansion_zeroelim(cytabt, cdytail);
       //scale_expansion_zeroelim(cytabt, cdytail,temp32a[0]);
       //scale_expansion_zeroelim(1, cytabt, cdytail,temp32a);
       //scale_expansion_zeroelim(cytabtlen, cytabt, cdytail,temp32a);
       //const int temp32alen = scale_expansion_zeroelim(cytabtlen, cytabt, cdytail,temp32a);
 
-      cytabtt[0] = scale_expansion_zeroelim(abtt,cdytail);
+      cytabtt[0] = std::accumulate(abtt.begin(),abtt.end()) * cdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //cytabtt[0] = scale_expansion_zeroelim(abtt,cdytail);
       //scale_expansion_zeroelim(abtt,cdytail,cytabtt[0]);
       //scale_expansion_zeroelim(abttlen, abtt, cdytail, cytabtt);
       //const int cytabttlen = scale_expansion_zeroelim(abttlen, abtt, cdytail, cytabtt);
 
-      temp16a[0] = scale_expansion_zeroelim(cytabtt, 2.0 * cdy);
+      temp16a[0] = std::accumulate(cytabtt.begin(),cytabtt.end()) * 2.0 * cdy;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16a[0] = scale_expansion_zeroelim(cytabtt, 2.0 * cdy);
       //scale_expansion_zeroelim(cytabtt, 2.0 * cdy,temp16a[0]);
       //scale_expansion_zeroelim(1, cytabtt, 2.0 * cdy,temp16a);
       //scale_expansion_zeroelim(cytabttlen, cytabtt, 2.0 * cdy,temp16a);
       //const int temp16alen = scale_expansion_zeroelim(cytabttlen, cytabtt, 2.0 * cdy,temp16a);
 
-      temp16b[0] = scale_expansion_zeroelim(cytabtt, cdytail);
+      temp16b[0] = std::accumulate(cytabtt.begin(),cytabtt.end()) * cdytail;
+      //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+      //temp16b[0] = scale_expansion_zeroelim(cytabtt, cdytail);
       //scale_expansion_zeroelim(cytabtt, cdytail,temp16b[0]);
       //scale_expansion_zeroelim(1, cytabtt, cdytail,temp16b);
       //scale_expansion_zeroelim(cytabttlen, cytabtt, cdytail,temp16b);
 
-      fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
+      temp32b = fast_expansion_sum_zeroelim(temp16a,temp16b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16a,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(1, temp16a,1,temp16b,temp32b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,1,temp16b,temp32b);
       //const int temp16blen = scale_expansion_zeroelim(cytabttlen, cytabtt, cdytail,temp16b);
       //const int temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,temp16blen, temp16b, temp32b);
 
-      fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
+      temp64 = fast_expansion_sum_zeroelim(temp32a,temp32b);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32a,temp32b,temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(1, temp32a,temp32blen, temp32b, temp64);
       //const int temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,temp32blen, temp32b, temp64);
 
-      fast_expansion_sum_zeroelim(finnow,temp64,finother);
+      finother = fast_expansion_sum_zeroelim(finnow,temp64);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finnow,temp64,finother);
       //const int finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,temp64, finother);
 
@@ -2237,28 +2707,30 @@ double ribi::tricpp::incircle(
 {
   ++m_m_incirclecount;
 
-  const double adx = pa->GetX() - pd->GetX();
-  const double bdx = pb->GetX() - pd->GetX();
-  const double cdx = pc->GetX() - pd->GetX();
-  const double ady = pa->GetY() - pd->GetY();
-  const double bdy = pb->GetY() - pd->GetY();
-  const double cdy = pc->GetY() - pd->GetY();
+  const auto adx = pa->GetX() - pd->GetX();
+  const auto bdx = pb->GetX() - pd->GetX();
+  const auto cdx = pc->GetX() - pd->GetX();
+  const auto ady = pa->GetY() - pd->GetY();
+  const auto bdy = pb->GetY() - pd->GetY();
+  const auto cdy = pc->GetY() - pd->GetY();
 
-  const double bdxcdy = bdx * cdy;
-  const double cdxbdy = cdx * bdy;
-  const double alift = adx * adx + ady * ady;
+  const auto bdxcdy = bdx * cdy;
+  const auto cdxbdy = cdx * bdy;
+  const auto alift = adx * adx + ady * ady;
 
-  const double cdxady = cdx * ady;
-  const double adxcdy = adx * cdy;
-  const double blift = bdx * bdx + bdy * bdy;
+  const auto cdxady = cdx * ady;
+  const auto adxcdy = adx * cdy;
+  const auto blift = bdx * bdx + bdy * bdy;
 
-  const double adxbdy = adx * bdy;
-  const double bdxady = bdx * ady;
-  const double clift = cdx * cdx + cdy * cdy;
+  const auto adxbdy = adx * bdy;
+  const auto bdxady = bdx * ady;
+  const auto clift = cdx * cdx + cdy * cdy;
 
-  const double det = alift * (bdxcdy - cdxbdy)
+  const double det = (
+        alift * (bdxcdy - cdxbdy)
       + blift * (cdxady - adxcdy)
-      + clift * (adxbdy - bdxady);
+      + clift * (adxbdy - bdxady)
+  ).value();
 
   if (b_m_noexact)
   {
@@ -2302,29 +2774,29 @@ double ribi::tricpp::orient3dadapt(
   //const double adxbdy0 = 0.0;
   //const double bdxady0 = 0.0;
   //double bc[4], ca[4], ab[4];
-  std::vector<double> bc(4,0.0);
-  std::vector<double> ca(4,0.0);
-  std::vector<double> ab(4,0.0);
+  //std::vector<double> bc(4,0.0);
+  //std::vector<double> ca(4,0.0);
+  //std::vector<double> ab(4,0.0);
   //double bc3, ca3, ab3;
-  std::vector<double> adet(8,0.0);
-  std::vector<double> bdet(8,0.0);
-  std::vector<double> cdet(8,0.0);
+  //std::vector<double> adet(8,0.0);
+  //std::vector<double> bdet(8,0.0);
+  //std::vector<double> cdet(8,0.0);
   //double adet(8,0.0), bdet(8,0.0), cdet(8,0.0);
-  std::vector<double> abdet(16,0.0);
+  //std::vector<double> abdet(16,0.0);
   //double abdet[16];
   //double *finnow, *finother, *finswap;
-  std::vector<double> fin1(192,0.0);
-  std::vector<double> fin2(192,0.0);
+  //std::vector<double> fin1(192,0.0);
+  //std::vector<double> fin2(192,0.0);
   //double fin1[192], fin2[192];
   //double adxtail, bdxtail, cdxtail;
   //double adytail, bdytail, cdytail;
   //double adheighttail, bdheighttail, cdheighttail;
   //double at_blarge,
-  double at_clarge;
+  //double at_clarge;
   //double bt_clarge,
-  double bt_alarge;
+  //double bt_alarge;
   //double ct_alarge,
-  double ct_blarge;
+  //double ct_blarge;
   std::vector<double> at_b(4,0.0);
   std::vector<double> at_c(4,0.0);
   std::vector<double> bt_c(4,0.0);
@@ -2363,94 +2835,110 @@ double ribi::tricpp::orient3dadapt(
   std::vector<double> u(4,0.0);
   std::vector<double> v(12,0.0);
   std::vector<double> w(16,0.0);
-  double u3;
+  auto u3;
   //int vlength, wlength;
-  double negate;
+  //auto negate;
 
-  const double adx = pa->GetX() - pd->GetX();
-  const double bdx = pb->GetX() - pd->GetX();
-  const double cdx = pc->GetX() - pd->GetX();
-  const double ady = pa->GetY() - pd->GetY();
-  const double bdy = pb->GetY() - pd->GetY();
-  const double cdy = pc->GetY() - pd->GetY();
-  const double adheight = aheight - dheight;
-  const double bdheight = bheight - dheight;
-  const double cdheight = cheight - dheight;
+  const auto adx = pa->GetX() - pd->GetX();
+  const auto bdx = pb->GetX() - pd->GetX();
+  const auto cdx = pc->GetX() - pd->GetX();
+  const auto ady = pa->GetY() - pd->GetY();
+  const auto bdy = pb->GetY() - pd->GetY();
+  const auto cdy = pc->GetY() - pd->GetY();
+  const auto adheight = aheight - dheight;
+  const auto bdheight = bheight - dheight;
+  const auto cdheight = cheight - dheight;
 
-  double bdxcdy1 = bdx * cdy;
+  const auto bdxcdy1 = bdx * cdy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(bdx, cdy, bdxcdy1, bdxcdy0);
 
-  double cdxbdy1 = cdx * bdy;
+  const auto cdxbdy1 = cdx * bdy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(cdx, bdy, cdxbdy1, cdxbdy0);
 
-  double bc3 = bdxcdy1 - cdxbdy1;
+  const auto bc3 = bdxcdy1 - cdxbdy1;
   //double bc3 = bdxcdy1 - cdxbdy1 - cdxbdy0;
   //double bc3 = bdxcdy1 + bdxcdy0 - cdxbdy1 - cdxbdy0;
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(bdxcdy1, bdxcdy0, cdxbdy1, cdxbdy0, bc3, bc[2], bc[1], bc[0]);
 
-  bc[3] = bc3;
+  //bc[3] = bc3;
 
-  adet[0] = scale_expansion_zeroelim(bc,adheight);
+  //adet[0] = bc3 * adheight;
+  //adet[0] = std::accumulate(bc.begin(),bc.end()) * adheight;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //adet[0] = scale_expansion_zeroelim(bc,adheight);
   //scale_expansion_zeroelim(bc,adheight,adet[0]);
   //scale_expansion_zeroelim(4, bc, adheight, adet);
   //const int alen = scale_expansion_zeroelim(4, bc, adheight, adet);
 
-  double cdxady1 = cdx * ady;
+  const auto cdxady1 = cdx * ady;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(cdx, ady, cdxady1, cdxady0);
 
-  double adxcdy1 = adx * cdy;
+  const auto adxcdy1 = adx * cdy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(adx, cdy, adxcdy1, adxcdy0);
 
-  double ca3 = cdxady1 - adxcdy1;
+  const auto ca3 = cdxady1 - adxcdy1;
   //double ca3 = cdxady1 - adxcdy1 - adxcdy0;
   //double ca3 = cdxady1 + cdxady0 - adxcdy1 - adxcdy0;
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(cdxady1, cdxady0, adxcdy1, adxcdy0, ca3, ca[2], ca[1], ca[0]);
 
-  ca[3] = ca3;
+  //ca[3] = ca3;
 
-  bdet[0] = scale_expansion_zeroelim(ca,bdheight);
+  //bdet[0] = ca3 * bdheight;
+  //bdet[0] = std::accumulate(ca.begin(),ca.end()) * bdheight;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //bdet[0] = scale_expansion_zeroelim(ca,bdheight);
   //scale_expansion_zeroelim(ca,bdheight,bdet[0]);
   //scale_expansion_zeroelim(4, ca, bdheight, bdet);
   //const int blen = scale_expansion_zeroelim(4, ca, bdheight, bdet);
 
-  double adxbdy1 = adx * bdy;
+  const auto adxbdy1 = adx * bdy;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(adx, bdy, adxbdy1, adxbdy0);
 
-  double bdxady1 = bdx * ady;
+  const auto bdxady1 = bdx * ady;
   //Two_Product(a,b,x,y): x = a*b, y = 0.0;
   //Two_Product(bdx, ady, bdxady1, bdxady0);
 
-  double ab3 = adxbdy1 - bdxady1;
+  const auto ab3 = adxbdy1 - bdxady1;
   //double ab3 = adxbdy1 - bdxady1 - bdxady0;
   //double ab3 = adxbdy1 + adxbdy0 - bdxady1 - bdxady0;
   //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
   //Two_Two_Diff(adxbdy1, adxbdy0, bdxady1, bdxady0, ab3, ab[2], ab[1], ab[0]);
 
-  ab[3] = ab3;
+  //ab[3] = ab3;
 
-  cdet[0] = scale_expansion_zeroelim(ab,cdheight);
+  //cdet[0] = ab3 * cdheight;
+  //cdet[0] = std::accumulate(ab.begin(),ab.end()) * cdheight;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //cdet[0] = scale_expansion_zeroelim(ab,cdheight);
   //scale_expansion_zeroelim(ab,cdheight,cdet[0]);
   //scale_expansion_zeroelim(4, ab, cdheight, cdet);
   //const int clen = scale_expansion_zeroelim(4, ab, cdheight, cdet);
 
-  fast_expansion_sum_zeroelim(adet,bdet,abdet);
+  //const auto abdet = (bc3 * adheight) + (ca3 * bdheight);
+  //abdet = fast_expansion_sum_zeroelim(adet,bdet);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(adet,bdet,abdet);
   //const int ablen = fast_expansion_sum_zeroelim(adet,bdet,abdet);
   //const int ablen = fast_expansion_sum_zeroelim(1, adet, 1, bdet, abdet);
   //const int ablen = fast_expansion_sum_zeroelim(1, adet, blen, bdet, abdet);
   //const int ablen = fast_expansion_sum_zeroelim(alen, adet, blen, bdet, abdet);
 
-  int finlength = fast_expansion_sum_zeroelim(abdet,cdet,fin1);
+  const auto fin1 = (bc3 * adheight) + (ca3 * bdheight) + (ab3 * cdheight);
+  //fin1 = fast_expansion_sum_zeroelim(abdet,cdet);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //int finlength = fast_expansion_sum_zeroelim(abdet,cdet,fin1);
   //int finlength = fast_expansion_sum_zeroelim(ablen, abdet, 1, cdet, fin1);
   //int finlength = fast_expansion_sum_zeroelim(ablen, abdet, clen, cdet, fin1);
 
-  double det = std::accumulate(fin1.begin(),fin1.end(),0.0);
+  const auto det = fin1;
+  //double det = std::accumulate(fin1.begin(),fin1.end(),0.0).value();
   //double det = estimate(fin1);
   double errbound = Global().m_o3derrboundB * permanent;
   if (det >= errbound || -det >= errbound)
@@ -2458,39 +2946,39 @@ double ribi::tricpp::orient3dadapt(
     return det;
   }
 
-  const double adxtail = -adx + pa->GetX() - pd->GetX();
+  const auto adxtail = -adx + pa->GetX() - pd->GetX();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pa[0], pd[0], adx, adxtail);
 
-  const double bdxtail = -bdx + pb->GetX() - pd->GetX();
+  const auto bdxtail = -bdx + pb->GetX() - pd->GetX();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pb[0], pd[0], bdx, bdxtail);
 
-  const double cdxtail = -cdx + pc->GetX() - pd->GetX();
+  const auto cdxtail = -cdx + pc->GetX() - pd->GetX();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pc[0], pd[0], cdx, cdxtail);
 
-  const double adytail = -ady + pa->GetY() - pd->GetY();
+  const auto adytail = -ady + pa->GetY() - pd->GetY();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pa[1], pd[1], ady, adytail);
 
-  const double bdytail = -bdy + pb->GetY() - pd->GetY();
+  const auto bdytail = -bdy + pb->GetY() - pd->GetY();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pb[1], pd[1], bdy, bdytail);
 
-  const double cdytail = -cdy + pc->GetY() - pd->GetY();
+  const auto cdytail = -cdy + pc->GetY() - pd->GetY();
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(pc[1], pd[1], cdy, cdytail);
 
-  const double adheighttail = -adheight + aheight - dheight;
+  const auto adheighttail = -adheight + aheight - dheight;
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(aheight, dheight, adheight, adheighttail);
 
-  const double bdheighttail = -bdheight + bheight - dheight;
+  const auto bdheighttail = -bdheight + bheight - dheight;
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(bheight, dheight, bdheight, bdheighttail);
 
-  const double cdheighttail = -cdheight + cheight - dheight;
+  const auto cdheighttail = -cdheight + cheight - dheight;
   //Two_Diff_Tail(a,b,x,y): y = -x + a - b;
   //Two_Diff_Tail(cheight, dheight, cdheight, cdheighttail);
 
@@ -2519,8 +3007,9 @@ double ribi::tricpp::orient3dadapt(
     return det;
   }
 
-  std::vector<double> finnow = fin1;
-  std::vector<double> finother = fin2;
+  auto finnow = fin1;
+  std::vector<double> finother(192,0.0);
+  //std::vector<double> finother = fin2;
 
   if (adxtail == 0.0)
   {
@@ -2533,16 +3022,16 @@ double ribi::tricpp::orient3dadapt(
     }
     else
     {
-      const double negate = -adytail;
-
-      const double at_blarge = negate * bdx;
+      const auto at_blarge = -adytail * bdx;
+      //const auto negate = -adytail;
+      //const double at_blarge = negate * bdx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, bdx, at_blarge, at_b[0]);
 
       at_b[1] = at_blarge;
       //at_blen = 2;
 
-      at_clarge = adytail * cdx;
+      auto at_clarge = adytail * cdx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adytail, cdx, at_clarge, at_c[0]);
 
@@ -2554,15 +3043,16 @@ double ribi::tricpp::orient3dadapt(
   {
     if (adytail == 0.0)
     {
-      const double at_blarge = adxtail * bdy;
+      const auto at_blarge = adxtail * bdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adxtail, bdy, at_blarge, at_b[0]);
 
       at_b[1] = at_blarge;
       //at_blen = 2;
-      const double negate = -adxtail;
 
-      at_clarge = negate * cdy;
+      auto at_clarge = -adxtail * cdy;
+      //const double negate = -adxtail;
+      //auto at_clarge = negate * cdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, cdy, at_clarge, at_c[0]);
 
@@ -2571,15 +3061,15 @@ double ribi::tricpp::orient3dadapt(
     }
     else
     {
-      const double adxt_bdy1 = adxtail * bdy;
+      const auto adxt_bdy1 = adxtail * bdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adxtail, bdy, adxt_bdy1, adxt_bdy0);
 
-      const double adyt_bdx1 = adytail * bdx;
+      const auto adyt_bdx1 = adytail * bdx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adytail, bdx, adyt_bdx1, adyt_bdx0);
 
-      const double at_blarge = adxt_bdy1 - adyt_bdx1;
+      const auto at_blarge = adxt_bdy1 - adyt_bdx1;
       //at_blarge = adxt_bdy1 - adyt_bdx1 - adyt_bdx0;
       //at_blarge = adxt_bdy1 + adxt_bdy0 - adyt_bdx1 - adyt_bdx0;
       //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
@@ -2588,15 +3078,15 @@ double ribi::tricpp::orient3dadapt(
       at_b[3] = at_blarge;
       //at_blen = 4;
 
-      const double adyt_cdx1 = adytail * cdx;
+      const auto adyt_cdx1 = adytail * cdx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adytail, cdx, adyt_cdx1, adyt_cdx0);
 
-      const double adxt_cdy1 = adxtail * cdy;
+      const auto adxt_cdy1 = adxtail * cdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adxtail, cdy, adxt_cdy1, adxt_cdy0);
 
-      const double at_clarge = adyt_cdx1 - adxt_cdy1;
+      const auto at_clarge = adyt_cdx1 - adxt_cdy1;
       //at_clarge = adyt_cdx1 + adyt_cdx0 - adxt_cdy1;
       //at_clarge = adyt_cdx1 + adyt_cdx0 - adxt_cdy1 - adxt_cdy0;
       //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
@@ -2617,16 +3107,16 @@ double ribi::tricpp::orient3dadapt(
     }
     else
     {
-      negate = -bdytail;
-
-      const double bt_clarge = negate * cdx;
+      const auto bt_clarge = -bdytail * cdx;
+      //negate = -bdytail;
+      //const auto bt_clarge = negate * cdx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, cdx, bt_clarge, bt_c[0]);
 
       bt_c[1] = bt_clarge;
       //bt_clen = 2;
 
-      bt_alarge = bdytail * adx;
+      auto bt_alarge = bdytail * adx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdytail, adx, bt_alarge, bt_a[0]);
 
@@ -2638,15 +3128,16 @@ double ribi::tricpp::orient3dadapt(
   {
     if (bdytail == 0.0)
     {
-      const double bt_clarge = bdxtail * cdy;
+      const auto bt_clarge = bdxtail * cdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdxtail, cdy, bt_clarge, bt_c[0]);
 
       bt_c[1] = bt_clarge;
       //bt_clen = 2;
-      const double negate = -bdxtail;
 
-      bt_alarge = negate * ady;
+      bt_alarge = -bdxtail * ady;
+      //const double negate = -bdxtail;
+      //bt_alarge = negate * ady;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, ady, bt_alarge, bt_a[0]);
 
@@ -2655,15 +3146,15 @@ double ribi::tricpp::orient3dadapt(
     }
     else
     {
-      const double bdxt_cdy1 = bdxtail * cdy;
+      const auto bdxt_cdy1 = bdxtail * cdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdxtail, cdy, bdxt_cdy1, bdxt_cdy0);
 
-      const double bdyt_cdx1 = bdytail * cdx;
+      const auto bdyt_cdx1 = bdytail * cdx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdytail, cdx, bdyt_cdx1, bdyt_cdx0);
 
-      const double bt_clarge = bdxt_cdy1 - bdyt_cdx1;
+      const auto bt_clarge = bdxt_cdy1 - bdyt_cdx1;
       //bt_clarge = bdxt_cdy1 - bdyt_cdx1 - bdyt_cdx0;
       //bt_clarge = bdxt_cdy1 + bdxt_cdy0 - bdyt_cdx1 - bdyt_cdx0;
       //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
@@ -2672,15 +3163,15 @@ double ribi::tricpp::orient3dadapt(
       bt_c[3] = bt_clarge;
       //bt_clen = 4;
 
-      const double bdyt_adx1 = bdytail * adx;
+      const auto bdyt_adx1 = bdytail * adx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdytail, adx, bdyt_adx1, bdyt_adx0);
 
-      const double bdxt_ady1 = bdxtail * ady;
+      const auto bdxt_ady1 = bdxtail * ady;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdxtail, ady, bdxt_ady1, bdxt_ady0);
 
-      const double bt_alarge = bdyt_adx1 - bdxt_ady1;
+      const auto bt_alarge = bdyt_adx1 - bdxt_ady1;
       //bt_alarge = bdyt_adx1 + bdyt_adx0 - bdxt_ady1;
       //bt_alarge = bdyt_adx1 + bdyt_adx0 - bdxt_ady1 - bdxt_ady0;
       //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
@@ -2701,9 +3192,9 @@ double ribi::tricpp::orient3dadapt(
     }
     else
     {
-      const double negate = -cdytail;
-
-      const double ct_alarge = negate * adx;
+      const auto ct_alarge = -cdytail * adx;
+      //const double negate = -cdytail;
+      //const double ct_alarge = negate * adx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, adx, ct_alarge, ct_a[0]);
 
@@ -2722,15 +3213,16 @@ double ribi::tricpp::orient3dadapt(
   {
     if (cdytail == 0.0)
     {
-      const double ct_alarge = cdxtail * ady;
+      const auto ct_alarge = cdxtail * ady;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdxtail, ady, ct_alarge, ct_a[0]);
 
       ct_a[1] = ct_alarge;
       //ct_alen = 2;
-      negate = -cdxtail;
 
-      ct_blarge = negate * bdy;
+      ct_blarge = -cdxtail * bdy;
+      //negate = -cdxtail;
+      //ct_blarge = negate * bdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, bdy, ct_blarge, ct_b[0]);
 
@@ -2739,15 +3231,15 @@ double ribi::tricpp::orient3dadapt(
     }
     else
     {
-      const double cdxt_ady1 = cdxtail * ady;
+      const auto cdxt_ady1 = cdxtail * ady;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdxtail, ady, cdxt_ady1, cdxt_ady0);
 
-      const double cdyt_adx1 = cdytail * adx;
+      const auto cdyt_adx1 = cdytail * adx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdytail, adx, cdyt_adx1, cdyt_adx0);
 
-      const double ct_alarge = cdxt_ady1 - cdyt_adx1;
+      const auto ct_alarge = cdxt_ady1 - cdyt_adx1;
       //ct_alarge = cdxt_ady1 - cdyt_adx1 - cdyt_adx0;
       //ct_alarge = cdxt_ady1 + cdxt_ady0 - cdyt_adx1 - cdyt_adx0;
       //Two_Two_Diff(a1,a0,b1,b0,x3,x2,x1,x0): x3 = a1 + a0 - b0 - b1, x2 = 0.0, x1 = 0.0, x0 = 0.0
@@ -2756,11 +3248,11 @@ double ribi::tricpp::orient3dadapt(
       ct_a[3] = ct_alarge;
       //ct_alen = 4;
 
-      const double cdyt_bdx1 = cdytail * bdx;
+      const auto cdyt_bdx1 = cdytail * bdx;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdytail, bdx, cdyt_bdx1, cdyt_bdx0);
 
-      const double cdxt_bdy1 = cdxtail * bdy;
+      const auto cdxt_bdy1 = cdxtail * bdy;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdxtail, bdy, cdxt_bdy1, cdxt_bdy0);
 
@@ -2775,15 +3267,23 @@ double ribi::tricpp::orient3dadapt(
     }
   }
 
-  fast_expansion_sum_zeroelim(bt_c,ct_b,bct);
+  bct = fast_expansion_sum_zeroelim(bt_c,ct_b);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(bt_c,ct_b,bct);
   //bctlen = fast_expansion_sum_zeroelim(bt_c,ct_b,bct);
   //bctlen = fast_expansion_sum_zeroelim(bt_clen, bt_c, ct_blen, ct_b, bct);
 
-  w[0] = scale_expansion_zeroelim(bct,adheight);
+  w[0] = bct * adheight;
+  //w[0] = std::accumulate(bct.begin(),bct.end()) * adheight;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //w[0] = scale_expansion_zeroelim(bct,adheight);
   //scale_expansion_zeroelim(bct,adheight,w[0]);
   //scale_expansion_zeroelim(bctlen, bct, adheight, w);
 
-  finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
+  finlength = 1;
+  finother = fast_expansion_sum_zeroelim(finnow,w);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
   //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1, w,finother);
 
   //wlength = scale_expansion_zeroelim(bctlen, bct, adheight, w);
@@ -2792,15 +3292,22 @@ double ribi::tricpp::orient3dadapt(
   //finswap = finnow; finnow = finother; finother = finswap;
   std::swap(finnow,finother);
 
-  fast_expansion_sum_zeroelim(ct_a,at_c,cat);
+  cat = fast_expansion_sum_zeroelim(ct_a,at_c);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(ct_a,at_c,cat);
   //catlen = fast_expansion_sum_zeroelim(ct_a,at_c,cat);
   //catlen = fast_expansion_sum_zeroelim(ct_alen, ct_a, at_clen, at_c, cat);
 
-  w[0] = scale_expansion_zeroelim(cat,bdheight);
+  w[0] = std::accumulate(cat.begin(),cat.end()) * bdheight;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //w[0] = scale_expansion_zeroelim(cat,bdheight);
   //scale_expansion_zeroelim(cat,bdheight,w[0]);
   //scale_expansion_zeroelim(catlen, cat, bdheight, w);
 
-  finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
+  finlength = 1;
+  finother = fast_expansion_sum_zeroelim(finnow,w);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
   //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1, w,finother);
 
   //wlength = scale_expansion_zeroelim(catlen, cat, bdheight, w);
@@ -2809,15 +3316,28 @@ double ribi::tricpp::orient3dadapt(
   std::swap(finnow,finother);
   //finswap = finnow; finnow = finother; finother = finswap;
 
-  fast_expansion_sum_zeroelim(at_b,bt_a,abt);
+  const auto abt
+    = std::accumulate(at_b.begin(),at_b.end())
+    + std::accumulate(bt_a.begin(),bt_a.end()
+  );
+  //abt = fast_expansion_sum_zeroelim(at_b,bt_a);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //fast_expansion_sum_zeroelim(at_b,bt_a,abt);
   //abtlen = fast_expansion_sum_zeroelim(at_b,bt_a,abt);
   //abtlen = fast_expansion_sum_zeroelim(at_blen, at_b, bt_alen, bt_a, abt);
 
-  w[0] = scale_expansion_zeroelim(abt,cdheight);
+  //w[0] = abt * cdheight;
+  //w[0] = std::accumulate(abt.begin(),abt.end()) * cdheight;
+  //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+  //w[0] = scale_expansion_zeroelim(abt,cdheight);
   //scale_expansion_zeroelim(abt,cdheight,w[0]);
   //scale_expansion_zeroelim(abtlen, abt, cdheight, w);
 
-  finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
+  finother = finnow + (abt * cdheight);
+  //finlength = 1;
+  //finother = fast_expansion_sum_zeroelim(finnow,w);
+  //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+  //finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
   //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1, w,finother);
 
   //wlength = scale_expansion_zeroelim(abtlen, abt, cdheight, w);
@@ -2828,11 +3348,18 @@ double ribi::tricpp::orient3dadapt(
 
   if (adheighttail != 0.0)
   {
-    v[0] = scale_expansion_zeroelim(bc,adheighttail);
+    //v[0] = bc3 * adheighttail;
+    //v[0] = std::accumulate(bc.begin(),bc.end()) * adheighttail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //v[0] = scale_expansion_zeroelim(bc,adheighttail);
     //scale_expansion_zeroelim(bc,adheighttail,v[0]);
     //scale_expansion_zeroelim(4, bc, adheighttail, v);
 
-    finlength = fast_expansion_sum_zeroelim(finnow,v,finother);
+    finother = finnow + (bc3 * adheighttail);
+    //finlength = 1;
+    //finother = fast_expansion_sum_zeroelim(finnow,v);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //finlength = fast_expansion_sum_zeroelim(finnow,v,finother);
     //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1, v,finother);
 
     //vlength = scale_expansion_zeroelim(4, bc, adheighttail, v);
@@ -2843,11 +3370,18 @@ double ribi::tricpp::orient3dadapt(
   }
   if (bdheighttail != 0.0)
   {
-    v[0] = scale_expansion_zeroelim(ca,bdheighttail);
+    //v[0] = ca3 * bdheighttail;
+    //v[0] = std::accumulate(ca.begin(),ca.end()) * bdheighttail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //v[0] = scale_expansion_zeroelim(ca,bdheighttail);
     //scale_expansion_zeroelim(ca,bdheighttail,v[0]);
     //scale_expansion_zeroelim(4, ca, bdheighttail, v);
 
-    finlength = fast_expansion_sum_zeroelim(finnow,v,finother);
+    finother = finnow + (ca3 * bdheighttail);
+    //finlength = 1;
+    //finother = fast_expansion_sum_zeroelim(finnow,v);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //finlength = fast_expansion_sum_zeroelim(finnow,v,finother);
     //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1, v,finother);
 
     //vlength = scale_expansion_zeroelim(4, ca, bdheighttail, v);
@@ -2858,11 +3392,18 @@ double ribi::tricpp::orient3dadapt(
   }
   if (cdheighttail != 0.0)
   {
-    v[0] = scale_expansion_zeroelim(ab,cdheighttail);
+    //v[0] = ab3 * cdheighttail;
+    //v[0] = std::accumulate(ab.begin(),ab.end()) * cdheighttail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //v[0] = scale_expansion_zeroelim(ab,cdheighttail);
     //scale_expansion_zeroelim(ab,cdheighttail,v[0]);
     //scale_expansion_zeroelim(4, ab, cdheighttail, v);
 
-    finlength = fast_expansion_sum_zeroelim(finnow,v,finother);
+    finother = finnow + (ab3 * cdheighttail);
+    //finlength = 1;
+    //finother = fast_expansion_sum_zeroelim(finnow,v);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //finlength = fast_expansion_sum_zeroelim(finnow,v,finother);
     //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1, v,finother);
 
     //vlength = scale_expansion_zeroelim(4, ab, cdheighttail, v);
@@ -2876,18 +3417,22 @@ double ribi::tricpp::orient3dadapt(
   {
     if (bdytail != 0.0)
     {
-      const double adxt_bdyt1 = adxtail * bdytail;
+      const auto adxt_bdyt1 = adxtail * bdytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(adxtail, bdytail, adxt_bdyt1, adxt_bdyt0);
 
-      double u3 = adxt_bdyt1 * cdheight;
+      //auto u3 = adxt_bdyt1 * cdheight;
       //u3 = (adxt_bdyt1 + adxt_bdyt0) * cdheight;
       //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
       //Two_One_Product(adxt_bdyt1, adxt_bdyt0, cdheight, u3, u[2], u[1], u[0]);
 
-      u[3] = u3;
+      //u[3] = u3;
 
-      finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+      finother = finnow + (adxt_bdyt1 * cdheight);
+      //finlength = 1;
+      //finother = fast_expansion_sum_zeroelim(finnow,u);
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
       //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
 
@@ -2895,14 +3440,18 @@ double ribi::tricpp::orient3dadapt(
       //finswap = finnow; finnow = finother; finother = finswap;
       if (cdheighttail != 0.0)
       {
-        u3 = adxt_bdyt1 * cdheighttail;
+        //u3 = adxt_bdyt1 * cdheighttail;
         //u3 = (adxt_bdyt1 + adxt_bdyt0) * cdheighttail;
         //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
         //Two_One_Product(adxt_bdyt1, adxt_bdyt0, cdheighttail,u3, u[2], u[1], u[0]);
 
-        u[3] = u3;
+        //u[3] = u3;
 
-        finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+        finother = finnow + (adxt_bdyt1 * cdheighttail);
+        //finlength = 1;
+        //finother = fast_expansion_sum_zeroelim(finnow,u);
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
         //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
         std::swap(finnow,finother);
@@ -2911,34 +3460,42 @@ double ribi::tricpp::orient3dadapt(
     }
     if (cdytail != 0.0)
     {
-      negate = -adxtail;
-
-      const double adxt_cdyt1 = negate * cdytail;
+      const auto adxt_cdyt1 = -adxtail * cdytail;
+      //negate = -adxtail;
+      //const double adxt_cdyt1 = negate * cdytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, cdytail, adxt_cdyt1, adxt_cdyt0);
 
-      u3 = adxt_cdyt1 * bdheight;
+      //u3 = adxt_cdyt1 * bdheight;
       //u3 = (adxt_cdyt1 + adxt_cdyt0) * bdheight;
       //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
       //Two_One_Product(adxt_cdyt1, adxt_cdyt0, bdheight, u3, u[2], u[1], u[0]);
 
-      u[3] = u3;
+      //u[3] = u3;
 
-      finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+      finother = finnow + (adxt_cdyt1 * bdheight);
+      //finother = fast_expansion_sum_zeroelim(finnow,u);
+      //finlength = 1;
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
       //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
       std::swap(finnow,finother);
       //finswap = finnow; finnow = finother; finother = finswap;
       if (bdheighttail != 0.0)
       {
-        u3 = adxt_cdyt1 * bdheighttail;
+        //u3 = adxt_cdyt1 * bdheighttail;
         //u3 = (adxt_cdyt1 + adxt_cdyt0) * bdheighttail;
         //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
         //Two_One_Product(adxt_cdyt1, adxt_cdyt0, bdheighttail,u3, u[2], u[1], u[0]);
 
-        u[3] = u3;
+        //u[3] = u3;
 
-        finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+        finother = finnow + (adxt_cdyt1 * bdheighttail);
+        //finother = fast_expansion_sum_zeroelim(finnow,u);
+        //finlength = 1;
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
         //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
         std::swap(finnow,finother);
@@ -2950,32 +3507,40 @@ double ribi::tricpp::orient3dadapt(
   {
     if (cdytail != 0.0)
     {
-      const double bdxt_cdyt1 = bdxtail * cdytail;
+      const auto bdxt_cdyt1 = bdxtail * cdytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(bdxtail, cdytail, bdxt_cdyt1, bdxt_cdyt0);
 
-      double u3 = bdxt_cdyt1 * adheight;
+      //auto u3 = bdxt_cdyt1 * adheight;
       //u3 = (bdxt_cdyt1 + bdxt_cdyt0) * adheight;
       //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
       //Two_One_Product(bdxt_cdyt1, bdxt_cdyt0, adheight, u3, u[2], u[1], u[0]);
 
-      u[3] = u3;
+      //u[3] = u3;
 
-      finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+      finother = finnow + (bdxt_cdyt1 * adheight);
+      //finother = fast_expansion_sum_zeroelim(finnow,u);
+      //finlength = 1;
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
       //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
       std::swap(finnow,finother);
       //finswap = finnow; finnow = finother; finother = finswap;
       if (adheighttail != 0.0)
       {
-        u3 = bdxt_cdyt1 * adheighttail;
+        //u3 = bdxt_cdyt1 * adheighttail;
         //u3 = (bdxt_cdyt1 + bdxt_cdyt0) * adheighttail;
         //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
         //Two_One_Product(bdxt_cdyt1, bdxt_cdyt0, adheighttail,u3, u[2], u[1], u[0]);
 
-        u[3] = u3;
+        //u[3] = u3;
 
-        finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+        finother = finnow + (bdxt_cdyt1 * adheighttail);
+        //finother = fast_expansion_sum_zeroelim(finnow,u);
+        //finlength = 1;
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
         //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
         std::swap(finnow,finother);
@@ -2984,34 +3549,43 @@ double ribi::tricpp::orient3dadapt(
     }
     if (adytail != 0.0)
     {
-      negate = -bdxtail;
 
-      const double bdxt_adyt1 = negate * adytail;
+      const auto bdxt_adyt1 = -bdxtail; * adytail;
+      //negate = -bdxtail;
+      //const auto bdxt_adyt1 = negate * adytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, adytail, bdxt_adyt1, bdxt_adyt0);
 
-      u3 = bdxt_adyt1 * cdheight;
+      //u3 = bdxt_adyt1 * cdheight;
       //u3 = (bdxt_adyt1 + bdxt_adyt0) * cdheight;
       //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
       //Two_One_Product(bdxt_adyt1, bdxt_adyt0, cdheight, u3, u[2], u[1], u[0]);
 
-      u[3] = u3;
+      //u[3] = u3;
 
-      finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+      finother = finnow + (bdxt_adyt1 * cdheight);
+      //finother = fast_expansion_sum_zeroelim(finnow,u);
+      //finlength = 1;
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
       //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
       std::swap(finnow,finother);
       //finswap = finnow; finnow = finother; finother = finswap;
       if (cdheighttail != 0.0)
       {
-        u3 = bdxt_adyt1 * cdheighttail;
+        //u3 = bdxt_adyt1 * cdheighttail;
         //u3 = (bdxt_adyt1 + bdxt_adyt0) * cdheighttail;
         //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
         //Two_One_Product(bdxt_adyt1, bdxt_adyt0, cdheighttail,u3, u[2], u[1], u[0]);
 
-        u[3] = u3;
+        //u[3] = u3;
 
-        finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+        finother = finnow + (bdxt_adyt1 * cdheighttail);
+        //finother = fast_expansion_sum_zeroelim(finnow,u);
+        //finlength = 1;
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
         //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
         std::swap(finnow,finother);
@@ -3023,32 +3597,40 @@ double ribi::tricpp::orient3dadapt(
   {
     if (adytail != 0.0)
     {
-      const double cdxt_adyt1 = cdxtail * adytail;
+      const auto cdxt_adyt1 = cdxtail * adytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(cdxtail, adytail, cdxt_adyt1, cdxt_adyt0);
 
-      double u3 = cdxt_adyt1 * bdheight;
+      //auto u3 = cdxt_adyt1 * bdheight;
       //u3 = (cdxt_adyt1 + cdxt_adyt0) * bdheight;
       //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
       //Two_One_Product(cdxt_adyt1, cdxt_adyt0, bdheight, u3, u[2], u[1], u[0]);
 
-      u[3] = u3;
+      //u[3] = u3;
 
-      finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+      finother = finnow + (cdxt_adyt1 * bdheight);
+      //finother = fast_expansion_sum_zeroelim(finnow,u);
+      //finlength = 1;
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
       //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
       std::swap(finnow,finother);
       //finswap = finnow; finnow = finother; finother = finswap;
       if (bdheighttail != 0.0)
       {
-        u3 = cdxt_adyt1 * bdheighttail;
+        //u3 = cdxt_adyt1 * bdheighttail;
         //u3 = (cdxt_adyt1 + cdxt_adyt0) * bdheighttail;
         //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
         //Two_One_Product(cdxt_adyt1, cdxt_adyt0, bdheighttail,u3, u[2], u[1], u[0]);
 
-        u[3] = u3;
+        //u[3] = u3;
 
-        finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+        finother = finnow + (cdxt_adyt1 * bdheighttail);
+        //finother = fast_expansion_sum_zeroelim(finnow,u);
+        //finlength = 1;
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
         //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
         std::swap(finnow,finother);
@@ -3059,32 +3641,40 @@ double ribi::tricpp::orient3dadapt(
     {
       negate = -cdxtail;
 
-      const double cdxt_bdyt1 = negate * bdytail;
+      const auto cdxt_bdyt1 = negate * bdytail;
       //Two_Product(a,b,x,y): x = a*b, y = 0.0;
       //Two_Product(negate, bdytail, cdxt_bdyt1, cdxt_bdyt0);
 
-      const double u3 = cdxt_bdyt1 * adheight;
+      //const auto u3 = cdxt_bdyt1 * adheight;
       //u3 = (cdxt_bdyt1 + cdxt_bdyt0) * adheight;
       //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
       //Two_One_Product(cdxt_bdyt1, cdxt_bdyt0, adheight, u3, u[2], u[1], u[0]);
 
-      u[3] = u3;
+      //u[3] = u3;
 
-      finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+      finother = finnow + (cdxt_bdyt1 * adheight);
+      //finother = fast_expansion_sum_zeroelim(finnow,u);
+      //finlength = 1;
+      //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+      //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
       //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
       std::swap(finnow,finother);
       //finswap = finnow; finnow = finother; finother = finswap;
       if (adheighttail != 0.0)
       {
-       const double u3 = cdxt_bdyt1 * adheighttail;
+        //const auto u3 = cdxt_bdyt1 * adheighttail;
         //u3 = (cdxt_bdyt1 + cdxt_bdyt0) * adheighttail,
         //Two_One_Product(a1,a0,b,x3,x2,x1,x0): x3 = (a1 + a0) * b
         //Two_One_Product(cdxt_bdyt1, cdxt_bdyt0, adheighttail,u3, u[2], u[1], u[0]);
 
-        u[3] = u3;
+        //u[3] = u3;
 
-        finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
+        finother = finnow + (cdxt_bdyt1 * adheighttail);
+        //finother = fast_expansion_sum_zeroelim(finnow,u);
+        //finlength = 1;
+        //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+        //finlength = fast_expansion_sum_zeroelim(finnow,u,finother);
         //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,finother);
 
         std::swap(finnow,finother);
@@ -3095,11 +3685,18 @@ double ribi::tricpp::orient3dadapt(
 
   if (adheighttail != 0.0)
   {
-    w[0] = scale_expansion_zeroelim(bct,adheighttail);
+    //w[0] = bct * adheighttail;
+    //w[0] = std::accumulate(bct) * adheighttail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //w[0] = scale_expansion_zeroelim(bct,adheighttail);
     //scale_expansion_zeroelim(bct,adheighttail,w[0]);
     //scale_expansion_zeroelim(bctlen, bct, adheighttail, w);
 
-    finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
+    finother = finnow + (bct * adheighttail);
+    //finother = fast_expansion_sum_zeroelim(finnow,w);
+    //finlength = 1;
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
     //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1,w,finother);
 
     //wlength = scale_expansion_zeroelim(bctlen, bct, adheighttail, w);
@@ -3110,11 +3707,18 @@ double ribi::tricpp::orient3dadapt(
   }
   if (bdheighttail != 0.0)
   {
-    w[0] = scale_expansion_zeroelim(cat,bdheighttail);
+    //w[0] = cat * bdheighttail;
+    //w[0] = std::accumulate(cat.begin(),cat.end()) * bdheighttail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //w[0] = scale_expansion_zeroelim(cat,bdheighttail);
     //scale_expansion_zeroelim(cat,bdheighttail,w[0]);
     //scale_expansion_zeroelim(catlen, cat, bdheighttail, w);
 
-    finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
+    finother = finnow + (cat * bdheighttail);
+    //finother = fast_expansion_sum_zeroelim(finnow,w);
+    //finlength = 1;
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
     //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1, w,finother);
 
     //wlength = scale_expansion_zeroelim(catlen, cat, bdheighttail, w);
@@ -3125,11 +3729,16 @@ double ribi::tricpp::orient3dadapt(
   }
   if (cdheighttail != 0.0)
   {
-    w[0] = scale_expansion_zeroelim(abt,cdheighttail);
+    //w[0] = abt * cdheighttail;
+    //scale_expansion_zeroelim(v,s): return std::accumulate(v.begin(),v.end()) * s
+    //w[0] = scale_expansion_zeroelim(abt,cdheighttail);
     //scale_expansion_zeroelim(abt,cdheighttail,w[0]);
     //scale_expansion_zeroelim(abtlen, abt, cdheighttail, w);
 
-    finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
+    finother = finnow + (abt * cdheighttail);
+    //finother = fast_expansion_sum_zeroelim(finnow,w);
+    //fast_expansion_sum_zeroelim(a,b,c): c = std::accumulate(a.begin(),a.end()) + std::accumulate(b.begin(),b.end());
+    //finlength = fast_expansion_sum_zeroelim(finnow,w,finother);
     //finlength = fast_expansion_sum_zeroelim(finlength, finnow, 1, w,finother);
 
     //wlength = scale_expansion_zeroelim(abtlen, abt, cdheighttail, w);
@@ -3139,7 +3748,8 @@ double ribi::tricpp::orient3dadapt(
     //finswap = finnow; finnow = finother; finother = finswap;
   }
 
-  return finnow[finlength - 1];
+  return finnow;
+  //return finnow[finlength - 1];
 }
 
 
@@ -3152,37 +3762,38 @@ double ribi::tricpp::orient3d(
   const boost::shared_ptr<Vertex>& pb,
   const boost::shared_ptr<Vertex>& pc,
   const boost::shared_ptr<Vertex>& pd,
-  const double aheight,
-  const double bheight,
-  const double cheight,
-  const double dheight
+  const Length aheight,
+  const Length bheight,
+  const Length cheight,
+  const Length dheight
 )
 {
   ++m_m_orient3dcount;
 
-  const double adx = pa->GetX() - pd->GetX();
-  const double bdx = pb->GetX() - pd->GetX();
-  const double cdx = pc->GetX() - pd->GetX();
-  const double ady = pa->GetY() - pd->GetY();
-  const double bdy = pb->GetY() - pd->GetY();
-  const double cdy = pc->GetY() - pd->GetY();
-  const double adheight = aheight - dheight;
-  const double bdheight = bheight - dheight;
-  const double cdheight = cheight - dheight;
+  const auto adx = pa->GetX() - pd->GetX();
+  const auto bdx = pb->GetX() - pd->GetX();
+  const auto cdx = pc->GetX() - pd->GetX();
+  const auto ady = pa->GetY() - pd->GetY();
+  const auto bdy = pb->GetY() - pd->GetY();
+  const auto cdy = pc->GetY() - pd->GetY();
+  const auto adheight = aheight - dheight;
+  const auto bdheight = bheight - dheight;
+  const auto cdheight = cheight - dheight;
 
-  const double bdxcdy = bdx * cdy;
-  const double cdxbdy = cdx * bdy;
+  const auto bdxcdy = bdx * cdy;
+  const auto cdxbdy = cdx * bdy;
 
-  const double cdxady = cdx * ady;
-  const double adxcdy = adx * cdy;
+  const auto cdxady = cdx * ady;
+  const auto adxcdy = adx * cdy;
 
-  const double adxbdy = adx * bdy;
-  const double bdxady = bdx * ady;
+  const auto adxbdy = adx * bdy;
+  const auto bdxady = bdx * ady;
 
   const double det
-      = adheight * (bdxcdy - cdxbdy)
+    = (adheight * (bdxcdy - cdxbdy)
       + bdheight * (cdxady - adxcdy)
-      + cdheight * (adxbdy - bdxady);
+      + cdheight * (adxbdy - bdxady)
+    ).value();
 
   if (b_m_noexact) {
     return det;
@@ -3261,13 +3872,13 @@ void ribi::tricpp::findcircumcenter(
   m_m_circumcentercount++;
 
   //Compute the circumcenter of the triangle.
-  const double xdo = tdest->GetX() - torg->GetX();
-  const double ydo = tdest->GetY() - torg->GetY();
-  const double xao = tapex->GetX() - torg->GetX();
-  const double yao = tapex->GetY() - torg->GetY();
-  const double dodist = xdo * xdo + ydo * ydo;
-  const double aodist = xao * xao + yao * yao;
-  const double dadist = (tdest->GetX() - tapex->GetX()) * (tdest->GetX() - tapex->GetX())
+  const auto xdo = tdest->GetX() - torg->GetX();
+  const auto ydo = tdest->GetY() - torg->GetY();
+  const auto xao = tapex->GetX() - torg->GetX();
+  const auto yao = tapex->GetY() - torg->GetY();
+  const auto dodist = xdo * xdo + ydo * ydo;
+  const auto aodist = xao * xao + yao * yao;
+  const auto dadist = (tdest->GetX() - tapex->GetX()) * (tdest->GetX() - tapex->GetX())
     + (tdest->GetY() - tapex->GetY()) * (tdest->GetY() - tapex->GetY());
   if (b_m_noexact)
   {
@@ -3282,8 +3893,8 @@ void ribi::tricpp::findcircumcenter(
     //Don't count the above as an orientation test.
     m_m_counterclockcount--;
   }
-  double dx = (yao * dodist - ydo * aodist) * denominator;
-  double dy = (xdo * aodist - xao * dodist) * denominator;
+  auto dx = (yao * dodist - ydo * aodist) * denominator;
+  auto dy = (xdo * aodist - xao * dodist) * denominator;
 
   //Find the (squared) length of the triangle's shortest edge.  This
   //  serves as a conservative estimate of the insertion radius of the
@@ -3295,8 +3906,8 @@ void ribi::tricpp::findcircumcenter(
     if (offcenter && b_m_offconstant > 0.0)
     {
       //Find the position of the off-center, as described by Alper Ungor.
-      const double dxoff = 0.5 * xdo - b_m_offconstant * ydo;
-      const double dyoff = 0.5 * ydo + b_m_offconstant * xdo;
+      const auto dxoff = 0.5 * xdo - b_m_offconstant * ydo;
+      const auto dyoff = 0.5 * ydo + b_m_offconstant * xdo;
       //If the off-center is closer to the origin than the
       //  circumcenter, use the off-center instead.
       if (dxoff * dxoff + dyoff * dyoff < dx * dx + dy * dy)
@@ -3310,8 +3921,8 @@ void ribi::tricpp::findcircumcenter(
   {
     if (offcenter && (b_m_offconstant > 0.0))
     {
-      const double dxoff = 0.5 * xao + b_m_offconstant * yao;
-      const double dyoff = 0.5 * yao - b_m_offconstant * xao;
+      const auto dxoff = 0.5 * xao + b_m_offconstant * yao;
+      const auto dyoff = 0.5 * yao - b_m_offconstant * xao;
       //If the off-center is closer to the origin than the
       //  circumcenter, use the off-center instead.
       if (dxoff * dxoff + dyoff * dyoff < dx * dx + dy * dy)
@@ -3325,8 +3936,8 @@ void ribi::tricpp::findcircumcenter(
   {
     if (offcenter && (b_m_offconstant > 0.0))
     {
-      const double dxoff = 0.5 * (tapex->GetX() - tdest->GetX()) - b_m_offconstant * (tapex->GetY() - tdest->GetY());
-      const double dyoff = 0.5 * (tapex->GetY() - tdest->GetY()) + b_m_offconstant * (tapex->GetX() - tdest->GetX());
+      const auto dxoff = 0.5 * (tapex->GetX() - tdest->GetX()) - b_m_offconstant * (tapex->GetY() - tdest->GetY());
+      const auto dyoff = 0.5 * (tapex->GetY() - tdest->GetY()) + b_m_offconstant * (tapex->GetX() - tdest->GetX());
       //If the off-center is closer to the destination than the
       //  circumcenter, use the off-center instead.
       if (dxoff * dxoff + dyoff * dyoff < (dx - xdo) * (dx - xdo) + (dy - ydo) * (dy - ydo))
@@ -3593,7 +4204,7 @@ int ribi::tricpp::checkseg4encroach(
   boost::shared_ptr<Triangle> m_m_dummytri,
   //const Behavior& b,
   const bool b_m_conformdel,
-  const double b_m_goodangle,
+  const Angle b_m_goodangle,
   const bool b_m_nobisect,
   boost::shared_ptr<Osub> testsubseg
 )
@@ -3633,9 +4244,10 @@ int ribi::tricpp::checkseg4encroach(
     //  at the apex is greater than (180 - 2 `minangle') degrees (for
     //  lenses; 90 degrees for diametral circles).
     const double dotproduct
-      = (eorg->GetX() - eapex->GetX()) * (edest->GetX() - eapex->GetX())
+      = (
+        (eorg->GetX() - eapex->GetX()) * (edest->GetX() - eapex->GetX())
       + (eorg->GetY() - eapex->GetY()) * (edest->GetY() - eapex->GetY())
-        ;
+    ).value();
     //  = (eorg[0] - eapex[0]) * (edest[0] - eapex[0])
     //  + (eorg[1] - eapex[1]) * (edest[1] - eapex[1])
     if (dotproduct < 0.0)
@@ -3684,11 +4296,15 @@ int ribi::tricpp::checkseg4encroach(
     {
       if (b_m_conformdel ||
         (dotproduct * dotproduct >=
-         (2.0 * b_m_goodangle - 1.0) * (2.0 * b_m_goodangle - 1.0) *
-         (( eorg->GetX() - eapex->GetX()) * ( eorg->GetX() - eapex->GetX()) +
-          ( eorg->GetY() - eapex->GetY()) * ( eorg->GetY() - eapex->GetY())) *
-         ((edest->GetX() - eapex->GetX()) * (edest->GetX() - eapex->GetX()) +
-          (edest->GetY() - eapex->GetY()) * (edest->GetY() - eapex->GetY()))))
+          (
+           (2.0 * b_m_goodangle - 1.0) * (2.0 * b_m_goodangle - 1.0) *
+           (( eorg->GetX() - eapex->GetX()) * ( eorg->GetX() - eapex->GetX()) +
+            ( eorg->GetY() - eapex->GetY()) * ( eorg->GetY() - eapex->GetY())) *
+           ((edest->GetX() - eapex->GetX()) * (edest->GetX() - eapex->GetX()) +
+            (edest->GetY() - eapex->GetY()) * (edest->GetY() - eapex->GetY()))
+          ).value()
+        )
+      )
          //((eorg[0] - eapex[0]) * (eorg[0] - eapex[0]) +
          // (eorg[1] - eapex[1]) * (eorg[1] - eapex[1])) *
          //((edest[0] - eapex[0]) * (edest[0] - eapex[0]) +
@@ -3750,7 +4366,7 @@ void ribi::tricpp::testtriangle(
   //double dxod2, dyod2, dxda2, dyda2, dxao2, dyao2;
   //double apexlen, orglen, destlen, minedge;
   double minedge = 0.0;
-  double angle = 0.0;
+  Angle angle = 0.0 * radian;
   //double area;
   //double dist1, dist2;
   //SubSeg sptr;                      //Temporary variable used by tspivot().
@@ -3759,22 +4375,22 @@ void ribi::tricpp::testtriangle(
   const auto torg = testtri->GetOrigin();
   const auto tdest = testtri->GetDest();//dest(*testtri, tdest);
   const auto tapex = testtri->GetApex();//apex(*testtri, tapex);
-  const double dxod = torg->GetX() - tdest->GetX();
-  const double dyod = torg->GetY() - tdest->GetY();
-  const double dxda = tdest->GetX() - tapex->GetX();
-  const double dyda = tdest->GetY() - tapex->GetY();
-  const double dxao = tapex->GetX() - torg->GetX();
-  const double dyao = tapex->GetY() - torg->GetY();
-  const double dxod2 = dxod * dxod;
-  const double dyod2 = dyod * dyod;
-  const double dxda2 = dxda * dxda;
-  const double dyda2 = dyda * dyda;
-  const double dxao2 = dxao * dxao;
-  const double dyao2 = dyao * dyao;
+  const Length dxod = torg->GetX() - tdest->GetX();
+  const auto dyod = torg->GetY() - tdest->GetY();
+  const auto dxda = tdest->GetX() - tapex->GetX();
+  const auto dyda = tdest->GetY() - tapex->GetY();
+  const auto dxao = tapex->GetX() - torg->GetX();
+  const auto dyao = tapex->GetY() - torg->GetY();
+  const auto dxod2 = dxod * dxod;
+  const auto dyod2 = dyod * dyod;
+  const auto dxda2 = dxda * dxda;
+  const auto dyda2 = dyda * dyda;
+  const auto dxao2 = dxao * dxao;
+  const auto dyao2 = dyao * dyao;
   //Find the lengths of the triangle's three edges.
-  const double apexlen = dxod2 + dyod2;
-  const double orglen = dxda2 + dyda2;
-  const double destlen = dxao2 + dyao2;
+  const auto apexlen = dxod2 + dyod2;
+  const auto orglen = dxda2 + dyda2;
+  const auto destlen = dxao2 + dyao2;
 
   if (apexlen < orglen && apexlen < destlen)
   {
@@ -3818,7 +4434,7 @@ void ribi::tricpp::testtriangle(
   if (b.m_vararea || b.m_fixedarea || b.m_usertest)
   {
     //Check whether the area is larger than permitted.
-    const double area = 0.5 * (dxod * dyda - dyod * dxda);
+    const Area area = 0.5 * (dxod * dyda - dyod * dxda);
     if (b.m_fixedarea && area > b.m_maxarea)
     {
       //Add this triangle to the list of bad triangles.
@@ -3923,11 +4539,11 @@ void ribi::tricpp::testtriangle(
         {
           //Compute the distance from the common endpoint (of the two
           //  segments) to each of the endpoints of the shortest edge.
-          const double dist1
+          const auto dist1
             = ((base1->GetX() - joinvertex->GetX()) * (base1->GetX() - joinvertex->GetX())
             +  (base1->GetY() - joinvertex->GetY()) * (base1->GetY() - joinvertex->GetY()))
           ;
-          const double dist2
+          const auto dist2
             = ((base2->GetX() - joinvertex->GetX()) * (base2->GetX() - joinvertex->GetX())
             +  (base2->GetY() - joinvertex->GetY()) * (base2->GetY() - joinvertex->GetY()))
           ;
@@ -4043,10 +4659,10 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
     }
     //Does the point lie on the other side of the line defined by the
     //  triangle edge opposite the triangle's destination?
-    const double destorient = counterclockwise(m_m_counterclockcount, b_m_noexact, forg, fapex, searchpoint);
+    const auto destorient = counterclockwise(m_m_counterclockcount, b_m_noexact, forg, fapex, searchpoint);
     //Does the point lie on the other side of the line defined by the
     //  triangle edge opposite the triangle's origin?
-    const double orgorient = counterclockwise(m_m_counterclockcount, b_m_noexact, fapex, fdest, searchpoint);
+    const auto orgorient = counterclockwise(m_m_counterclockcount, b_m_noexact, fapex, fdest, searchpoint);
     if (destorient > 0.0)
     {
       if (orgorient > 0.0)
@@ -4175,7 +4791,7 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
   auto torg = searchtri->GetOrigin();
   //org(*searchtri, torg);
 
-  double searchdist
+  auto searchdist
     = (searchpoint->GetX() - torg->GetX()) * (searchpoint->GetX() - torg->GetX())
     + (searchpoint->GetY() - torg->GetY()) * (searchpoint->GetY() - torg->GetY());
   /*
@@ -4199,7 +4815,7 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
         //otricopy(m.m_recenttri, *searchtri);
         return ONVERTEX;
       }
-      double dist
+      auto dist
         = (searchpoint->GetX() - torg->GetX()) * (searchpoint->GetX() - torg->GetX())
         + (searchpoint->GetY() - torg->GetY()) * (searchpoint->GetY() - torg->GetY()
       );
@@ -4312,7 +4928,7 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
     return ONVERTEX;
   }
   //Orient `searchtri' to fit the preconditions of calling preciselocate().
-  const double ahead = counterclockwise(m_m_counterclockcount, b_m_noexact, torg, tdest, searchpoint);
+  const auto ahead = counterclockwise(m_m_counterclockcount, b_m_noexact, torg, tdest, searchpoint);
   if (ahead < 0.0)
   {
     //Turn around so that `searchpoint' is to the left of the
@@ -5201,7 +5817,7 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
     {
 
       //Set the element attributes of the new triangles.
-      const double attrib = horiz.GetElemAttrib(i);
+      const auto attrib = horiz.GetElemAttrib(i);
 
       //attrib = elemattribute(horiz, i);
       newbotleft.SetElemAttrib(attrib,i);
@@ -5215,7 +5831,7 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
     if (b.m_vararea)
     {
       //Set the area constraint of the new triangles.
-      const double area = horiz.GetAreaBound();
+      const auto area = horiz.GetAreaBound();
       //area = areabound(horiz);
 
       newbotleft.SetAreaBound(area);
@@ -5529,7 +6145,7 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
           for (int i = 0; i != m.m_eextras; ++i)
           {
             //Take the average of the two triangles' attributes.
-            const double attrib = 0.5 * top.GetElemAttrib(i) + horiz.GetElemAttrib(i);
+            const auto attrib = 0.5 * top.GetElemAttrib(i) + horiz.GetElemAttrib(i);
             //attrib = 0.5 * (elemattribute(top, i) + elemattribute(horiz, i));
 
             top.SetElemAttrib(i,attrib);
@@ -5540,7 +6156,7 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
           }
           if (b.m_vararea)
           {
-            double area = 0.0;
+            auto area = 0.0;
             if (top.GetAreaBound() <= 0.0 || horiz.GetAreaBound() <= 0.0)
             //if (areabound(top) <= 0.0 || areabound(horiz) <= 0.0)
             {
@@ -6091,6 +6707,7 @@ void ribi::tricpp::undovertex(
 
 //Use vertex*, because a quicksort is used
 //Sort to x_left < x_right, then y_left < y_right (as I'd expect)
+/*
 void ribi::tricpp::vertexsort(
   Vertex * const sortarray,
   const int arraysize
@@ -6151,14 +6768,25 @@ void ribi::tricpp::vertexsort(
     vertexsort(&sortarray[right + 1], arraysize - right - 1);
   }
 }
+*/
 
 void ribi::tricpp::vertexmedian(
-  Vertex * const sortarray,
-  const int arraysize,
+  std::vector<Vertex>& vertices,
+  //Vertex * const sortarray,
+  //const int arraysize,
   const int median,
   const int axis
 )
 {
+  std::partial_sort(vertices.begin(),vertices.begin() + median,vertices.end(),
+    [](const auto lhs, const auto rhs)
+    {
+      if (lhs->GetX() < rhs->GetX()) return true;
+      if (lhs->GetX() > rhs->GetX()) return false;
+      return lhs->GetY() < rhs->GetY();
+    }
+  );
+  /*
   //int left, right;
   //int pivot;
   //double pivot1, pivot2;
@@ -6209,8 +6837,8 @@ void ribi::tricpp::vertexmedian(
     vertexmedian(&sortarray[right + 1], arraysize - right - 1,
                  median - right - 1, axis);
   }
+  */
 }
-
 
 void ribi::tricpp::alternateaxes(
   Vertex * const sortarray,
@@ -7257,7 +7885,6 @@ long ribi::tricpp::divconqdelaunay(
 
   return removeghosts(m, b, &hullleft);
 }
-
 
 void ribi::tricpp::boundingbox(
   Mesh& m,
@@ -11115,9 +11742,10 @@ void ribi::tricpp::highorder(
   }
 }
 
-void ribi::tricpp::ReadNodes(
-  Mesh& m,
-  const Behavior& b,
+std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> ribi::tricpp::ReadNodes(
+//void ribi::tricpp::ReadNodes(
+  //Mesh& m,
+  //const Behavior& b,
   const std::string& polyfilename
 )
 {
@@ -11135,7 +11763,7 @@ void ribi::tricpp::ReadNodes(
     s << "Error:  Input must have at least three input vertices.\n";
     throw std::logic_error(s.str().c_str());
   }
-  m.m_invertices = n_vertices;
+  //m.m_invertices = n_vertices;
 
   assert(mesh_dimensionality == 2);
   assert(n_extras == 0);
@@ -11160,15 +11788,16 @@ void ribi::tricpp::ReadNodes(
     const double x = boost::lexical_cast<double>(w[1]);
     const double y = boost::lexical_cast<double>(w[2]);
     const int currentmarker = boost::lexical_cast<int>(w[3]);
-    vertexloop[0] = x;
-    vertexloop[1] = y;
-    {
-      assert(currentmarker == 1);
-      setvertexmark(vertexloop, currentmarker);
-    }
+    //vertexloop[0] = x;
+    //vertexloop[1] = y;
+    //{
+    //  assert(currentmarker == 1);
+    //  setvertexmark(vertexloop, currentmarker);
+    //}
     //setvertextype(vertexloop, VertexType::INPUTVERTEX);
     boost::shared_ptr<Vertex> vertexloop(new Vertex(x,y,currentmarker);
     // Determine the smallest and largest x and y coordinates
+    /*
     if (i == 0)
     {
       m.m_xmin = m.m_xmax = x;
@@ -11181,11 +11810,12 @@ void ribi::tricpp::ReadNodes(
       m.m_ymin = (y < m.m_ymin) ? y : m.m_ymin;
       m.m_ymax = (y > m.m_ymax) ? y : m.m_ymax;
     }
+    */
   }
 
   // Nonexistent x value used as a flag to mark circle events in sweepline
   //   Delaunay algorithm.
-  m.m_xminextreme = 10 * m.m_xmin - 9 * m.m_xmax;
+  //m.m_xminextreme = 10 * m.m_xmin - 9 * m.m_xmax;
 }
 
 
@@ -11394,7 +12024,7 @@ void ribi::tricpp::writenodes(
   //FILE *outfile = nullptr;
   //Vertex vertexloop;
   const int outvertices
-   = b.m_jettison
+   = b.m_do_jettison
    ? static_cast<int>(m.m_vertices.size()) - static_cast<int>(m.m_undeads.size())
    : static_cast<int>(m.m_vertices.size())
   ;
@@ -11426,7 +12056,7 @@ void ribi::tricpp::writenodes(
   for (auto vertexloop: m.m_vertices)
   //while (vertexloop != nullptr)
   {
-    if (!b.m_jettison || vertexloop->GetType() != VertexType::UNDEADVERTEX)
+    if (!b.m_do_jettison || vertexloop->GetType() != VertexType::UNDEADVERTEX)
     //if (!b.m_jettison || vertextype(vertexloop) != VertexType::UNDEADVERTEX)
     {
 
@@ -11473,7 +12103,7 @@ void ribi::tricpp::numbernodes(Mesh& m, const Behavior& b)
   {
     vertexloo->SetMark(vertexnumber);
     //setvertexmark(vertexloop, vertexnumber);
-    if (!b.m_jettison || vertextype(vertexloop) != VertexType::UNDEADVERTEX)
+    if (!b.m_do_jettison || vertextype(vertexloop) != VertexType::UNDEADVERTEX)
     {
       ++vertexnumber;
     }
@@ -12017,7 +12647,7 @@ void ribi::tricpp::writeoff(
   //Vertex p1, p2, p3;
 
   int outvertices = 0;
-  if (b.m_jettison)
+  if (b.m_do_jettison)
   {
     outvertices = m.m_vertices.m_items - m.m_undeads;
   }
@@ -12042,7 +12672,7 @@ void ribi::tricpp::writeoff(
   for (auto vertexloop: m.m_vertices)
   {
 
-    if (!b.m_jettison || vertexloop.GetVertexType() != VertexType::UNDEADVERTEX)
+    if (!b.m_do_jettison || vertexloop.GetVertexType() != VertexType::UNDEADVERTEX)
     //if (!b.m_jettison || (vertextype(vertexloop) != VertexType::UNDEADVERTEX))
     {
       //The OFF format uses 3D coordinates
@@ -12420,9 +13050,10 @@ int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
   //FILE *polyfile = nullptr;
   m.m_steinerleft = b.m_steiner;
 
-  ReadNodes(
-    m,
-    b,
+  const std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> vertices
+    = ReadNodes(
+    //m,
+    //b,
     b.m_inpolyfilename
   );
 

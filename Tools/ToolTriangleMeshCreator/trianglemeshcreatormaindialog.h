@@ -30,8 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/units/quantity.hpp>
+#include <boost/units/systems/si/area.hpp>
 #include <boost/units/systems/si/length.hpp>
-
+#include <boost/units/systems/si/plane_angle.hpp>
 #include "openfoampatchfieldtype.h"
 #include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
@@ -42,13 +43,20 @@ namespace trim { struct Cell; }
 
 struct TriangleMeshCreatorMainDialog
 {
+  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
+  typedef boost::units::quantity<boost::units::si::area> Area;
+  typedef boost::units::quantity<boost::units::si::length> Length;
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+  typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef std::vector<Polygon> Polygons;
+
   TriangleMeshCreatorMainDialog(
-    const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
+    const Polygons& shapes,
     const int n_cell_layers,
-    const boost::units::quantity<boost::units::si::length> layer_height,
+    const Length layer_height,
     const ::ribi::trim::CreateVerticalFacesStrategy strategy,
-    const double triangle_area,
-    const double triangle_quality,
+    const Angle triangle_min_angle,
+    const Area triangle_max_area,
     const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
     const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
     const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,

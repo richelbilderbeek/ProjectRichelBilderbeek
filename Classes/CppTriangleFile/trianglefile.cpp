@@ -256,8 +256,8 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   std::string& node_filename,
   std::string& ele_filename,
   std::string& poly_filename,
-  const double quality,
-  const double area,
+  const Angle triangle_min_angle, //Triangle calls this the 'quality' parameter
+  const Area triangle_max_area,   //Triangle calls this the 'area' parameter
   const bool verbose) const
 {
   const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
@@ -279,8 +279,13 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   #endif
 
   //Specific
-  const std::string quality_str = boost::lexical_cast<std::string>(quality);
-  const std::string area_str = boost::lexical_cast<std::string>(area);
+  const std::string quality_str
+    = boost::lexical_cast<std::string>(
+        triangle_min_angle.value()
+      * 360.0 / boost::math::constants::two_pi<double>() //Triangle uses degrees
+    );
+  const std::string area_str
+    = boost::lexical_cast<std::string>(triangle_max_area.value());
   assert(quality_str.find(',') == std::string::npos && "No Dutch please");
   assert(area_str.find(',')    == std::string::npos && "No Dutch please");
   if (!fileio::FileIo().IsRegularFile(exe_filename))
@@ -323,7 +328,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
 
 std::string ribi::TriangleFile::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
@@ -332,7 +337,8 @@ std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
     "2014-02-07: Version 1.0: initial version, use of Windows executable only",
     "2014-04-04: Version 1.1: allow to call Triangle its code directly",
     "2014-05-18: Version 1.2: allow use of a Linux executable"
-    "2014-05-19: Version 1.3: use of non-freezing Windows executable"
+    "2014-05-19: Version 1.3: use of non-freezing Windows executable",
+    "2014-05-26: Version 1.4: use of units in Triangle 'area' (the maximum area of a triangle) and 'quality' (the minimum angle of a triangle's corner) parameters"
   };
 }
 
@@ -360,11 +366,17 @@ void ribi::TriangleFile::Test() noexcept
   std::string filename_node;
   std::string filename_ele;
   std::string filename_poly;
+  const Angle min_angle
+    = 20.0 //Default used by Triangle, in degrees
+    * (boost::math::constants::two_pi<double>() / 360.0)
+    * boost::units::si::radian
+  ;
+  const Area max_area = 1.0 * boost::units::si::square_meter;
   //#define TODO_ISSUE_207
   #ifdef  TODO_ISSUE_207
-  f.ExecuteTriangle(filename_node,filename_ele,filename_poly);
+  f.ExecuteTriangle(filename_node,filename_ele,filename_poly,min_angle,max_area);
   #else
-  f.ExecuteTriangleExe(filename_node,filename_ele,filename_poly);
+  f.ExecuteTriangleExe(filename_node,filename_ele,filename_poly,min_angle,max_area);
   #endif // TODO_ISSUE_207
   assert(fileio::FileIo().IsRegularFile(filename_node));
   assert(fileio::FileIo().IsRegularFile(filename_ele));

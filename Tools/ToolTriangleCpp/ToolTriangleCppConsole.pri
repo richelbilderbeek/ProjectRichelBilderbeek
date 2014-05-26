@@ -58,7 +58,8 @@ HEADERS += \
     ../../Tools/ToolTriangleCpp/trianglecppfile.h \
     ../../Tools/ToolTriangleCpp/trianglecppstring.h \
     ../ToolTriangleCpp/trianglecppvertextype.h \
-    ../ToolTriangleCpp/trianglecpphelper.h
+    ../ToolTriangleCpp/trianglecpphelper.h \
+    trianglecpptypedefs.h
 
 OTHER_FILES += \
     ../ToolTriangleCpp/ToolTriangleCpp.txt

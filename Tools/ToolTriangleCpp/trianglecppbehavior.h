@@ -7,6 +7,12 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <string>
 #include <vector>
+
+#include <boost/units/systems/si/area.hpp>
+#include <boost/units/systems/si/length.hpp>
+#include <boost/units/systems/si/plane_angle.hpp>
+#include <boost/units/quantity.hpp>
+
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -47,7 +53,12 @@ namespace tricpp {
 ///     used at all.
 ///
 /// Read the instructions to find out the meaning of these switches.
-struct Behavior {
+struct Behavior
+{
+  typedef boost::units::quantity<boost::units::si::length> Length;
+  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
+  typedef boost::units::quantity<boost::units::si::area> Area;
+
   /// Maximum number of characters in a file name (including the null).
   //static const int max_filename_size = 2048;
 
@@ -66,14 +77,14 @@ struct Behavior {
   static const int m_firstnumber = 1;
   int m_fixedarea;
   int m_geomview;
-  double m_goodangle;
+  Angle m_goodangle;
   int m_incremental;
   std::string m_inelefilename;
   std::string m_innodefilename;
   std::string m_inpolyfilename;
-  int m_jettison;
-  double m_maxarea;
-  double m_minangle;
+  bool m_do_jettison;
+  Area m_maxarea;
+  Angle m_minangle;
   std::string m_neighborfilename;
   int m_neighbors;
   int m_nobisect;
@@ -90,14 +101,14 @@ struct Behavior {
   std::string m_outelefilename;
   std::string m_outnodefilename;
   std::string m_outpolyfilename;
-  int m_quality;
+  //int m_quality;
   int m_quiet;
   int m_regionattrib;
   int m_splitseg;
   int m_steiner;
   int m_sweepline;
   int m_usertest;
-  static const bool m_usesegments = true;
+  //static const bool m_usesegments = true;
   bool m_vararea;
   std::string m_vedgefilename;
   int m_verbosity; ///0: no verbosity, 1: verbose, +1: more verbose
