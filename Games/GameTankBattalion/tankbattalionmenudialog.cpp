@@ -10,7 +10,14 @@
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 
-int ribi::TankBattalionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::taba::MenuDialog::MenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+int ribi::taba::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
@@ -22,7 +29,7 @@ int ribi::TankBattalionMenuDialog::ExecuteSpecific(const std::vector<std::string
   return 1;
 }
 
-ribi::About ribi::TankBattalionMenuDialog::GetAbout() const noexcept
+ribi::About ribi::taba::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,7 +44,7 @@ ribi::About ribi::TankBattalionMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-ribi::Help ribi::TankBattalionMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::taba::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -51,7 +58,7 @@ ribi::Help ribi::TankBattalionMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::TankBattalionMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::taba::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramTankBattalion
@@ -60,12 +67,12 @@ boost::shared_ptr<const ribi::Program> ribi::TankBattalionMenuDialog::GetProgram
   return p;
 }
 
-std::string ribi::TankBattalionMenuDialog::GetVersion() const noexcept
+std::string ribi::taba::MenuDialog::GetVersion() const noexcept
 {
   return "0.1";
 }
 
-std::vector<std::string> ribi::TankBattalionMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::taba::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07: version 0.1: conformized to ProjectRichelBilderbeekConsole"
@@ -73,7 +80,7 @@ std::vector<std::string> ribi::TankBattalionMenuDialog::GetVersionHistory() cons
 }
 
 #ifndef NDEBUG
-void ribi::TankBattalionMenuDialog::Test() noexcept
+void ribi::taba::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

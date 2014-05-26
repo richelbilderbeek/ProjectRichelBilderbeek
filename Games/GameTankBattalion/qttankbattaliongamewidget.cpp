@@ -17,17 +17,15 @@
 #include <QImage>
 #include <QPainter>
 
+#include "tankbattaliongamewidget.h"
 #include "tankbattalionhelper.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::taba::QtGameWidget::QtGameWidget(QWidget *parent)
  : QWidget(parent),
-   m_direction{Direction::down},
-   m_keys{},
    m_sprites(CreateSprites()),
-   m_x{0},
-   m_y{0}
+   m_widget{new GameWidget}
 {
   {
     QTimer * const timer = new QTimer(this);
@@ -35,13 +33,13 @@ ribi::taba::QtGameWidget::QtGameWidget(QWidget *parent)
     timer->setInterval(20);
     timer->start();
   }
+  /*
   {
     //Put the dialog in the screen center
     const QRect screen = QApplication::desktop()->screenGeometry();
     this->move( screen.center() - this->rect().center() );
-    m_x = (this->rect().center().x() / 2) - (32 / 2);
-    m_y = (this->rect().center().y() / 2) - (32 / 2);
   }
+  */
 }
 
 ribi::taba::QtGameWidget::SpriteMap ribi::taba::QtGameWidget::CreateSprites() const
@@ -69,27 +67,24 @@ boost::shared_ptr<QPixmap> ribi::taba::QtGameWidget::GetPixmap(const SpriteType&
 
 void ribi::taba::QtGameWidget::keyPressEvent(QKeyEvent * e)
 {
+  const bool verbose = false;
   switch (e->key())
   {
     case Qt::Key_Up:
-      TRACE("Pressed up");
-      m_keys.insert(Key::up);
-      m_direction = Direction::up;
+      if (verbose) { TRACE("Pressed up"); }
+      m_widget->PressKey(Key::up);
       break;
     case Qt::Key_Right:
-      TRACE("Pressed right");
-      m_keys.insert(Key::right);
-      m_direction = Direction::right;
+      if (verbose) { TRACE("Pressed right"); }
+      m_widget->PressKey(Key::right);
       break;
     case Qt::Key_Down:
-      TRACE("Pressed down");
-      m_keys.insert(Key::down);
-      m_direction = Direction::down;
+      if (verbose) { TRACE("Pressed down"); }
+      m_widget->PressKey(Key::down);
       break;
     case Qt::Key_Left:
-      TRACE("Pressed left");
-      m_keys.insert(Key::left);
-      m_direction = Direction::left;
+      if (verbose) { TRACE("Pressed left"); }
+      m_widget->PressKey(Key::left);
       break;
   }
 }
@@ -98,25 +93,16 @@ void ribi::taba::QtGameWidget::keyReleaseEvent(QKeyEvent * e)
 {
   switch (e->key())
   {
-    case Qt::Key_Up: m_keys.erase(Key::up); break;
-    case Qt::Key_Right: m_keys.erase(Key::right); break;
-    case Qt::Key_Down: m_keys.erase(Key::down); break;
-    case Qt::Key_Left: m_keys.erase(Key::left); break;
+    case Qt::Key_Up   : m_widget->ReleaseKey(Key::up); break;
+    case Qt::Key_Right: m_widget->ReleaseKey(Key::right); break;
+    case Qt::Key_Down : m_widget->ReleaseKey(Key::down); break;
+    case Qt::Key_Left : m_widget->ReleaseKey(Key::left); break;
   }
 }
 
 void ribi::taba::QtGameWidget::OnTimer()
 {
-  for (auto k: m_keys)
-  {
-    switch (k)
-    {
-      case Key::up   : --m_y; break;
-      case Key::right: ++m_x; break;
-      case Key::down : ++m_y; break;
-      case Key::left : --m_x; break;
-    }
-  }
+  m_widget->OnTimer();
   repaint();
 }
 
@@ -141,13 +127,13 @@ void ribi::taba::QtGameWidget::paintEvent(QPaintEvent *)
 
 
 
-  const auto p = GetPixmap(Helper().ToPlayerSpriteType(m_direction));
+  const auto p = GetPixmap(Helper().ToPlayerSpriteType(m_widget->GetDirection()));
   assert(p->height() > 0);
   assert(p->width() > 0);
   painter.drawPixmap(
     QRect(
-      m_x * scale_x,
-      m_y * scale_y,
+      m_widget->GetPlayerX() * scale_x,
+      m_widget->GetPlayerY() * scale_y,
       p->width() * scale_x,
       p->height() * scale_y
     )

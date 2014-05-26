@@ -3,6 +3,29 @@
 #include <cassert>
 #include <stdexcept>
 
+#include "trace.h"
+
+ribi::taba::Helper::Helper()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+ribi::taba::Direction ribi::taba::Helper::KeyToDirection(const Key k)
+{
+  switch (k)
+  {
+    case Key::up: return Direction::up;
+    case Key::right: return Direction::right;
+    case Key::down: return Direction::down;
+    case Key::left: return Direction::left;
+    default:
+      assert(!"Should not use this key for a direction");
+  }
+  assert(!"Should not get here");
+}
+
 ribi::taba::SpriteType ribi::taba::Helper::ToPlayerSpriteType(const Direction d) const noexcept
 {
   switch (d)
@@ -16,3 +39,16 @@ ribi::taba::SpriteType ribi::taba::Helper::ToPlayerSpriteType(const Direction d)
   assert(!"ribi::taba::Helper::ToPlayerSpriteType: should not get here");
   throw std::logic_error("ribi::taba::Helper::ToPlayerSpriteType: unknown direction");
 }
+
+#ifndef NDEBUG
+void ribi::taba::Helper::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::taba::Helper::Test");
+  TRACE("Finished ribi::taba::Helper::Test successfully");
+}
+#endif

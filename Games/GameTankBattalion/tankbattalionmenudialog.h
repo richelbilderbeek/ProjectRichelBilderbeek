@@ -4,9 +4,11 @@
 #include "menudialog.h"
 
 namespace ribi {
+namespace taba {
 
-struct TankBattalionMenuDialog : public MenuDialog
+struct MenuDialog : public ribi::MenuDialog
 {
+  MenuDialog();
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;
   boost::shared_ptr<const Program> GetProgram() const noexcept;
@@ -21,6 +23,7 @@ struct TankBattalionMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace taba
 } //~namespace ribi
 
 #endif // TANKBATTALIONMENUDIALOG_H

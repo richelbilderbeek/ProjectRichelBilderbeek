@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   ribi::taba::QtTankBattalionGameDialog w;
+  w.setWindowState(Qt::WindowFullScreen);
   w.show();
 
   return a.exec();
