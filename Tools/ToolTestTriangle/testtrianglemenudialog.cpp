@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
+#include <boost/units/io.hpp>
 
 #include <QRegExp>
 
@@ -49,6 +50,10 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
 
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
+  typedef boost::units::quantity<boost::units::si::area> Area;
+  using boost::units::si::square_meter;
+  using boost::units::si::radian;
 
   const int argc = static_cast<int>(args.size());
 
@@ -61,67 +66,85 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
   }
 
   //Triangle area
-  if (!std::count(args.begin(),args.end(),"-r") && !std::count(args.begin(),args.end(),"--triangle_area"))
+  if (!std::count(args.begin(),args.end(),"-r")
+    && !std::count(args.begin(),args.end(),"--triangle_area")
+    && !std::count(args.begin(),args.end(),"--triangle_max_area")
+  )
   {
     std::cerr << "Parameter for Triangle area missing" << '\n';
     return 1;
   }
-  double triangle_area = 0.0;
+  Area triangle_max_area = 0.0 * square_meter;
   for (int i=0; i!=argc-1; ++i)
   {
-    if (args[i] == "-r" || args[i] == "--triangle_area")
+    if (args[i] == "-r" || args[i] == "--triangle_area" || args[i] == "--triangle_max_area")
     {
       try
       {
-        triangle_area = boost::lexical_cast<double>(args[i+1]);
+        triangle_max_area = boost::lexical_cast<double>(args[i+1])* square_meter;
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cerr << "Please supply a value for Triangle area" << std::endl;
+        std::cerr << "Please supply a value for Triangle max area" << std::endl;
         return 1;
       }
     }
   }
-  if (triangle_area <= 0.0)
+  if (triangle_max_area <= 0.0 * square_meter)
   {
-    std::cerr << "Please supply a positive non-zero value for the Triangle area" << std::endl;
+    std::cerr << "Please supply a positive non-zero value for the Triangle max area" << std::endl;
     return 1;
   }
   if (verbose)
   {
-    std::cout << "Triangle area: " << triangle_area << std::endl;
+    std::cout << "Triangle max area: " << triangle_max_area << std::endl;
   }
 
   //Triangle quality
-  if (!std::count(args.begin(),args.end(),"-q") && !std::count(args.begin(),args.end(),"--triangle_quality"))
+  if ( !std::count(args.begin(),args.end(),"-q")
+    && !std::count(args.begin(),args.end(),"--triangle_quality")
+    && !std::count(args.begin(),args.end(),"--triangle_min_angle")
+  )
   {
-    std::cerr << "Parameter for Triangle quality missing" << '\n';
+    std::cerr << "Parameter for Triangle quality (a minimum angle) missing" << '\n';
     return 1;
   }
-  double triangle_quality = 0.0;
+  Angle triangle_min_angle = 0.0 * radian;
   for (int i=0; i!=argc-1; ++i)
   {
-    if (args[i] == "-q" || args[i] == "--triangle_quality")
+    if (args[i] == "-q" || args[i] == "--triangle_quality" || args[i] == "--triangle_min_angle")
     {
       try
       {
-        triangle_quality = boost::lexical_cast<double>(args[i+1]);
+        triangle_min_angle
+          = boost::lexical_cast<double>(args[i+1]) //Degrees
+          * (boost::math::constants::two_pi<double>() / 360.0) //Degrees to radian
+          * radian
+        ;
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cerr << "Please supply a value for Triangle quality" << std::endl;
+        std::cerr << "Please supply a value for Triangle quality (a minimum angle)" << std::endl;
         return 1;
       }
     }
   }
-  if (triangle_quality <= 0.0)
+  if (triangle_min_angle <= 0.0 * radian )
   {
-    std::cerr << "Please supply a positive non-zero value for the Triangle quality" << std::endl;
+    std::cerr << "Please supply a positive non-zero value for the Triangle quality (a minimum angle)" << std::endl;
+    return 1;
+  }
+  if (triangle_min_angle >= (boost::math::constants::two_pi<double>() / 3.0) * radian )
+  {
+    std::cerr
+      << "Please supply a value less than 60 degrees for the Triangle quality (a minimum angle):"
+      << "A triangle cannot have three corners each of at least 60 degrees"
+      << std::endl;
     return 1;
   }
   if (verbose)
   {
-    std::cout << "Triangle quality: " << triangle_quality << std::endl;
+    std::cout << "Triangle quality (minimum angle): " << triangle_min_angle << std::endl;
   }
 
   //Polygons
@@ -176,8 +199,8 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
   {
     const TestTriangleMainDialog d(
       polygons,
-      triangle_quality,
-      triangle_area,
+      triangle_max_area,
+      triangle_min_angle,
       verbose
     );
     if (verbose)
@@ -206,7 +229,7 @@ ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestTriangle",
     "compare Triangle to its C++ equivalent",
-    "the 18th of May 2014",
+    "the 27th of May 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTestTriangle.htm",
     GetVersion(),
@@ -235,8 +258,8 @@ ribi::Help ribi::TestTriangleMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileDescription(),
     {
       Help::Option('p',"polygons","the shapes used as a base"),
-      Help::Option('r',"triangle_area","Triangle area"),
-      Help::Option('q',"triangle_quality","Triangle quality"),
+      Help::Option('r',"triangle_area","Triangle maximum area"),
+      Help::Option('q',"triangle_min_angle","Triangle minimum angle"),
       Help::Option('b',"verbose","generate more output")
     },
     {
@@ -285,7 +308,7 @@ std::vector<std::string> ribi::TestTriangleMenuDialog::GetRegexMatches(
 
 std::string ribi::TestTriangleMenuDialog::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const noexcept
@@ -293,7 +316,8 @@ std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const
   return {
     "2014-05-09: version 1.0: initial version, uses Windows executable only",
     "2014-05-18: version 1.1: uses Linux executable additionally",
-    "2014-05-23: version 1.2: added command line interface"
+    "2014-05-23: version 1.2: added command line interface",
+    "2014-05-27: version 1.3: added units to Triangle parameters, fixed bug in desktop version that was detected by this"
   };
 }
 

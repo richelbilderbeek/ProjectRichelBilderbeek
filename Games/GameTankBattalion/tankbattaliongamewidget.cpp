@@ -43,6 +43,8 @@ void ribi::taba::GameWidget::OnTimer() noexcept
     case Key::right: ++m_x; break;
     case Key::down : ++m_y; break;
     case Key::left : --m_x; break;
+    case Key::fire :        break;
+    case Key::n_keys: assert(!"Should never use ribi::taba::Key::n_keys"); break;
   }
 }
 
@@ -75,19 +77,15 @@ void ribi::taba::GameWidget::PressKey(const Key key)
 
 void ribi::taba::GameWidget::ReleaseKey(const Key key)
 {
-  const int n = static_cast<int>(m_keys.size());
-  for (int i=0; i!=n; ++i)
+  m_keys.erase(std::remove(m_keys.begin(),m_keys.end(),key),m_keys.end());
+  if (m_keys.empty()) return;
+  const auto iter = std::find(m_keys.begin(),m_keys.end(),Keys().GetOpposite(key));
+  if (iter != m_keys.end())
   {
-    if (m_keys[i] == key)
-    {
-      std::swap(m_keys[i], m_keys[n-1]);
-      m_keys.pop_back();
-      if (m_keys.size() == 1)
-      {
-        m_direction = Helper().KeyToDirection(m_keys[0]);
-      }
-    }
+    std::swap(*m_keys.begin(),*iter);
+    assert(m_keys[0] == Keys().GetOpposite(key));
   }
+  m_direction = Helper().KeyToDirection(m_keys[0]);
 }
 
 
@@ -100,8 +98,66 @@ void ribi::taba::GameWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::taba::GameWidget::Test");
   Keys();
+
+  TRACE("Starting ribi::taba::GameWidget::Test");
+  const bool verbose = true;
+
+  //Key presses: single key, does the player change direction?
+  {
+    GameWidget w;
+    for (const auto key: Keys().GetAll())
+    {
+      if (!Keys().IsMovement(key)) continue;
+      w.PressKey(key);
+      assert(w.GetDirection() == Helper().KeyToDirection(key)
+        && "A single key changes the direction of the player");
+      w.ReleaseKey(key);
+      assert(w.GetDirection() == Helper().KeyToDirection(key)
+        && "Releasing the only single key, maintains the direction of the player");
+    }
+  }
+  //Key presses: two keys: does the player keep both if perpendicular
+  {
+    GameWidget w;
+    for (const auto key_a: Keys().GetAll())
+    {
+      if (!Keys().IsMovement(key_a)) continue;
+      for (const auto key_b: Keys().GetAll())
+      {
+        if (!Keys().IsMovement(key_b)) continue;
+        w.PressKey(key_a);
+        w.PressKey(key_b);
+        if (verbose)
+        {
+          TRACE(Keys().ToStr(key_a));
+          TRACE(Keys().ToStr(key_b));
+        }
+        if (Keys().IsOpposite(key_a,key_b))
+        {
+          assert(w.GetDirection() == Helper().KeyToDirection(key_b)
+            && "If an opposite key is pressed, change direction to it");
+          w.ReleaseKey(key_b);
+          assert(w.GetDirection() == Helper().KeyToDirection(key_a)
+            && "If that opposite key is released, reverse the player's direction");
+          w.ReleaseKey(key_a);
+          assert(w.GetDirection() == Helper().KeyToDirection(key_a)
+            && "Maintain that player's direction");
+        }
+        else
+        {
+          assert(w.GetDirection() == Helper().KeyToDirection(key_b)
+            && "If a second perpendicular key is pressed, change direction to it");
+          w.ReleaseKey(key_b);
+          assert(w.GetDirection() == Helper().KeyToDirection(key_a)
+            && "If the primary key is released, make the other key the new primary one");
+          w.ReleaseKey(key_b);
+          assert(w.GetDirection() == Helper().KeyToDirection(key_a)
+            && "Maintain that player's direction");
+        }
+      }
+    }
+  }
   TRACE("Finished ribi::taba::GameWidget::Test successfully");
 }
 #endif

@@ -6,9 +6,13 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/make_shared.hpp>
+
 #include <QFile>
 
 #include "fileio.h"
+#include "geometry.h"
+#include "polyfile.h"
 #include "trace.h"
 
 //#include "triangle.h"
@@ -21,26 +25,17 @@
 #pragma GCC diagnostic pop
 
 ribi::TriangleFile::TriangleFile(
-  const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
-  const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& holes
-) : m_holes(holes),
+  const Polygons& shapes
+  //const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& holes
+) : //m_holes(holes),
+    m_polyfile{boost::make_shared<PolyFile>(shapes)},
     m_shapes(shapes)
 {
   #ifndef NDEBUG
   Test();
   #endif
 
-  assert(holes.empty() && "Adding holes is not implemented yet");
-}
-
-int ribi::TriangleFile::CountVertices() const noexcept
-{
-  int sum = 0;
-  for (auto shape: m_shapes)
-  {
-    sum += boost::geometry::num_points(shape);
-  }
-  return sum;
+  //assert(holes.empty() && "Adding holes is not implemented yet");
 }
 
 std::pair<int,char **> ribi::TriangleFile::CreateArgv(const std::vector<std::string>& v) noexcept
@@ -61,72 +56,6 @@ std::pair<int,char **> ribi::TriangleFile::CreateArgv(const std::vector<std::str
   }
   std::pair<int,char **> p = std::make_pair(argc,argv);
   return p;
-}
-
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHeart(const double scale) noexcept
-{
-  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
-    { 0.0 * scale, 1.0 * scale}, //0
-    { 1.0 * scale, 2.0 * scale}, //1
-    { 2.0 * scale, 1.0 * scale}, //2
-    { 2.0 * scale, 0.0 * scale}, //3
-    { 0.0 * scale,-2.0 * scale}, //4
-    {-2.0 * scale, 0.0 * scale}, //5
-    {-2.0 * scale, 1.0 * scale}, //6
-    {-1.0 * scale, 2.0 * scale}  //7
-  };
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  return v;
-}
-
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHouse(const double scale) noexcept
-{
-  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
-    { 0.0 * scale, 2.0 * scale}, //0
-    { 1.0 * scale, 1.0 * scale}, //1
-    { 1.0 * scale,-1.0 * scale}, //2
-    {-1.0 * scale,-1.0 * scale}, //3
-    {-1.0 * scale, 1.0 * scale}  //4
-  };
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  return v;
-}
-
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapePolygon(
-  const int n,
-  const double rotation,
-  const double scale
-) noexcept
-{
-  assert(n >= 3 && "A polygon has at least three edges");
-  const double tau { boost::math::constants::two_pi<double>() };
-  std::vector<boost::geometry::model::d2::point_xy<double>> points;
-  for (int i=0; i!=n; ++i)
-  {
-    const double angle { tau * static_cast<double>(i) / static_cast<double>(n) };
-    const double x {  std::sin(angle + rotation) };
-    const double y { -std::cos(angle + rotation) };
-    boost::geometry::model::d2::point_xy<double> point(x * scale, y * scale);
-    points.push_back(point);
-  }
-
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  return v;
-}
-
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeTriangle(const double scale) noexcept
-{
-  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
-    { 0.0 * scale, 0.0 * scale}, //0
-    { 1.0 * scale, 0.0 * scale}, //1
-    { 0.0 * scale, 1.0 * scale}  //2
-  };
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  return v;
 }
 
 void ribi::TriangleFile::DeleteArgv(const std::pair<int,char **>& p) noexcept
@@ -156,7 +85,7 @@ void ribi::TriangleFile::ExecuteTriangle(
 
   {
     std::ofstream f(filename.c_str());
-    f << this->ToStr();
+    m_polyfile << this->ToStr();
   }
 
   const std::string exe_filename { "triangle.exe" };
@@ -212,7 +141,7 @@ void ribi::TriangleFile::ExecuteTriangleCpp(
 
   {
     std::ofstream f(filename.c_str());
-    f << this->ToStr();
+    m_polyfile << this->ToStr();
   }
 
   assert(fileio::FileIo().IsRegularFile(filename));
@@ -267,7 +196,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
 
   {
     std::ofstream f(filename.c_str());
-    f << this->ToStr();
+    f << m_polyfile->ToStr();
   }
 
   assert(fileio::FileIo().IsRegularFile(filename));
@@ -328,7 +257,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
 
 std::string ribi::TriangleFile::GetVersion() noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
@@ -339,9 +268,9 @@ std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
     "2014-05-18: Version 1.2: allow use of a Linux executable"
     "2014-05-19: Version 1.3: use of non-freezing Windows executable",
     "2014-05-26: Version 1.4: use of units in Triangle 'area' (the maximum area of a triangle) and 'quality' (the minimum angle of a triangle's corner) parameters"
+    "2014-05-27: Version 1.5: split of sections to PolyFile"
   };
 }
-
 
 #ifndef NDEBUG
 void ribi::TriangleFile::Test() noexcept
@@ -352,134 +281,38 @@ void ribi::TriangleFile::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleFile::Test");
-  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
-    {0.5, 2.0}, //0
-    {1.0, 1.0}, //1
-    {1.0, 0.0}, //2
-    {0.0, 0.0}, //3
-    {0.0, 1.0}  //4
-  };
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  TriangleFile f( {v} );
-  //TRACE(f.ToStr());
-  std::string filename_node;
-  std::string filename_ele;
-  std::string filename_poly;
-  const Angle min_angle
-    = 20.0 //Default used by Triangle, in degrees
-    * (boost::math::constants::two_pi<double>() / 360.0)
-    * boost::units::si::radian
-  ;
-  const Area max_area = 1.0 * boost::units::si::square_meter;
-  //#define TODO_ISSUE_207
-  #ifdef  TODO_ISSUE_207
-  f.ExecuteTriangle(filename_node,filename_ele,filename_poly,min_angle,max_area);
-  #else
-  f.ExecuteTriangleExe(filename_node,filename_ele,filename_poly,min_angle,max_area);
-  #endif // TODO_ISSUE_207
-  assert(fileio::FileIo().IsRegularFile(filename_node));
-  assert(fileio::FileIo().IsRegularFile(filename_ele));
-  assert(fileio::FileIo().IsRegularFile(filename_poly));
-  TRACE("Finished ribi::TriangleFile::Test successfully");
+  //Call Triangle with simple shapes
+  {
+    const std::vector<Coordinat> points {
+      {0.5, 2.0}, //0
+      {1.0, 1.0}, //1
+      {1.0, 0.0}, //2
+      {0.0, 0.0}, //3
+      {0.0, 1.0}  //4
+    };
+    Polygon v;
+    boost::geometry::append(v, points);
+    TriangleFile f( {v} );
+    //TRACE(f.ToStr());
+    std::string filename_node;
+    std::string filename_ele;
+    std::string filename_poly;
+    const Angle min_angle
+      = 20.0 //Default used by Triangle, in degrees
+      * (boost::math::constants::two_pi<double>() / 360.0)
+      * boost::units::si::radian
+    ;
+    const Area max_area = 1.0 * boost::units::si::square_meter;
+    //#define TODO_ISSUE_207
+    #ifdef  TODO_ISSUE_207
+    f.ExecuteTriangle(filename_node,filename_ele,filename_poly,min_angle,max_area);
+    #else
+    f.ExecuteTriangleExe(filename_node,filename_ele,filename_poly,min_angle,max_area);
+    #endif // TODO_ISSUE_207
+    assert(fileio::FileIo().IsRegularFile(filename_node));
+    assert(fileio::FileIo().IsRegularFile(filename_ele));
+    assert(fileio::FileIo().IsRegularFile(filename_poly));
+    TRACE("Finished ribi::TriangleFile::Test successfully");
+  }
 }
 #endif
-
-std::string ribi::TriangleFile::ToStr() const noexcept
-{
-  std::stringstream s;
-  s << std::setprecision(6) << std::fixed;
-
-  //Write vertices
-  {
-    std::vector<boost::geometry::model::d2::point_xy<double>> points;
-    for (auto shape: m_shapes)
-    {
-      boost::geometry::model::ring<boost::geometry::model::d2::point_xy<double>> v;
-      boost::geometry::convert(shape,v);
-      std::copy(std::begin(v),std::end(v),std::back_inserter(points));
-    }
-
-    {
-      const int sz = static_cast<int>(points.size());
-      const int dimensionality = 2; //All points are 2 dimensional
-      const int n_extras = 0; //Points have zero extras
-      const int n_node_markers = 1;
-      s << sz << " " << dimensionality << " " << n_extras << " " << n_node_markers << '\n';
-
-      for(int n=0; n !=sz; ++n)
-      {
-        const auto point = points[n];
-        s
-          << (n + 1) //Human based index counting
-          << " "
-          << point.x()
-          << " "
-          << point.y()
-          << " 1\n";
-      }
-    }
-  }
-
-  //Write segments
-  {
-    std::vector<std::pair<int,int>> segments;
-    const int n_segments = CountSegments();
-    s << n_segments << " 0\n";
-
-    const int n_shapes = CountShapes();
-    int cnt = 0;
-    for (int i=0; i!=n_shapes; ++i)
-    {
-      const int n_vertices = boost::geometry::num_points(m_shapes[i]);
-      //A polygon has segments from a point to the next...
-      for (int j=0; j!=n_vertices-1; ++j)
-      {
-        segments.push_back(std::make_pair(cnt,cnt+1));
-        ++cnt;
-      }
-      //...or from the last to the first
-      segments.push_back(std::make_pair(cnt,cnt-n_vertices+1));
-      ++cnt;
-    }
-
-    for(int i=0; i!=n_segments; ++i)
-    {
-      s
-        << (i + 1) //Human based index counting
-        << " "
-        << (segments[i].first  + 1) //Human based index counting
-        << " "
-        << (segments[i].second + 1) //Human based index counting
-        << "\n";
-    }
-  }
-  //Write holes
-  {
-    std::vector<boost::geometry::model::d2::point_xy<double>> holes;
-    for (auto hole: m_holes)
-    {
-      boost::geometry::model::ring<boost::geometry::model::d2::point_xy<double>> v;
-      boost::geometry::convert(hole,v);
-      std::copy(std::begin(v),std::end(v),std::back_inserter(holes));
-    }
-
-    {
-      const int sz = static_cast<int>(holes.size());
-      s << sz << '\n';
-
-      for(int n=0; n !=sz; ++n)
-      {
-        const auto hole = holes[n];
-        s
-          << (n + 1) //Human based index counting
-          << " "
-          << hole.x()
-          << " "
-          << hole.y()
-          << '\n';
-      }
-    }
-  }
-  return s.str();
-}

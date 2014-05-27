@@ -1052,7 +1052,7 @@ void readholes(
 
 /// readnodes()   Read the vertices from a file, which may be a .node or
 ///               .poly file.
-std::vector<boost::shared_ptr<Vertex>> ReadNodes(
+std::vector<boost::shared_ptr<Vertex>> ReadVertices(
 //void ReadNodes(
   //Mesh& m,
   //const Behavior& b,
@@ -1079,11 +1079,12 @@ std::vector<boost::shared_ptr<Vertex>> ReadNodes(
 /// in mind is that each triangle is removed from a stack precisely when
 /// the corresponding pointer is adjusted to refer to a subsegment rather
 /// than the next triangle of the stack.
-long reconstruct(
-  Mesh& m,
-  const Behavior& b,
-  std::string& elefilename,
-  const std::string& areafilename,
+long ReadSubSegs(
+  std::vector<boost::shared_ptr<Vertex>>& vertices,
+  //Mesh& m,
+  //const Behavior& b,
+  const std::string& elefilename,
+  //const std::string& areafilename,
   const std::string& polyfilename
   //FILE * const polyfile
 );

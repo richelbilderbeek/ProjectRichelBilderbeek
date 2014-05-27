@@ -13,6 +13,7 @@ include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppOpenFoam/CppOpenFoam.pri)
 include(../../Classes/CppPhp/CppPhp.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppPolyFile/CppPolyFile.pri)
 include(../../Classes/CppTriangleFile/CppTriangleFile.pri)
 include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)
@@ -24,3 +25,4 @@ include(../../Classes/CppQtNavigationableGraphicsView/CppQtNavigationableGraphic
 include(../../Tools/ToolTestTriangle/ToolTestTriangleDesktop.pri)
 
 SOURCES += qtmain.cpp
+

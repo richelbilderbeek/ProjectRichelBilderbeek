@@ -205,14 +205,14 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="label_triangle_quality">
+       <widget class="QLabel" name="label_triangle_angle">
         <property name="text">
          <string>Minimum angle (degrees) </string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="box_triangle_area">
+       <widget class="QDoubleSpinBox" name="box_triangle_min_angle">
         <property name="decimals">
          <number>3</number>
         </property>
@@ -223,19 +223,19 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
          <double>60.000000000000000</double>
         </property>
         <property name="value">
-         <double>5.000000000000000</double>
+         <double>20.000000000000000</double>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_triangle_area">
+       <widget class="QLabel" name="label_triangle_max_area">
         <property name="text">
          <string>Maximum area (m2)</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="box_triangle_quality">
+       <widget class="QDoubleSpinBox" name="box_triangle_max_area">
         <property name="minimum">
          <double>1.000000000000000</double>
         </property>
@@ -243,7 +243,7 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
          <double>10000.000000000000000</double>
         </property>
         <property name="value">
-         <double>5.000000000000000</double>
+         <double>1.000000000000000</double>
         </property>
        </widget>
       </item>

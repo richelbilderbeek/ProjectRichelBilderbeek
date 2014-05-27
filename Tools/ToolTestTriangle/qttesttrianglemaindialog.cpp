@@ -56,8 +56,8 @@ ribi::QtTestTriangleMainDialog::QtTestTriangleMainDialog(QWidget *parent) noexce
   #endif
   ui->setupUi(this);
 
-  connect(ui->box_triangle_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
-  connect(ui->box_triangle_quality,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
+  connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
+  connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
 
 
   {
@@ -112,7 +112,7 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
   ; ++i)
   {
     std::function<
-      void(const ribi::TriangleFile *,std::string&,std::string&,std::string&,const double,const double,const bool)
+      void(const ribi::TriangleFile *,std::string&,std::string&,std::string&,const Angle,const Area,const bool)
     > triangle_function;
     QGraphicsScene * scene = nullptr;
 
@@ -157,8 +157,8 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
         filename_node,
         filename_ele,
         filename_poly,
-        GetTriangleQuality(),
-        GetTriangleArea(),
+        GetTriangleMinAngle(),
+        GetTriangleMaxArea(),
         verbose
       );
     }
@@ -230,15 +230,19 @@ std::vector<ribi::QtTestTriangleMainDialog::Polygon>
   return polygons;
 }
 
-double ribi::QtTestTriangleMainDialog::GetTriangleArea() const noexcept
+ribi::QtTestTriangleMainDialog::Area ribi::QtTestTriangleMainDialog::GetTriangleMaxArea() const noexcept
 {
-  return ui->box_triangle_area->value();
+  return ui->box_triangle_max_area->value()
+    * boost::units::si::square_meter;
 }
 
 
-double ribi::QtTestTriangleMainDialog::GetTriangleQuality() const noexcept
+ribi::QtTestTriangleMainDialog::Angle ribi::QtTestTriangleMainDialog::GetTriangleMinAngle() const noexcept
 {
-  return ui->box_triangle_quality->value();
+  return ui->box_triangle_min_angle->value() //Degrees
+    * (boost::math::constants::two_pi<double>() / 360.0) //Convert to radians
+    * boost::units::si::radians;
+    ;
 }
 
 bool ribi::QtTestTriangleMainDialog::GetVerbose() const noexcept

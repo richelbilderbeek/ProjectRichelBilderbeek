@@ -17,8 +17,10 @@ ribi::taba::QtTankBattalionGameDialog::QtTankBattalionGameDialog(QWidget *parent
   ui->setupUi(this);
   setCursor(Qt::BlankCursor);
 
-  ui->layout->addWidget(m_game.get());
+  assert(layout());
+  layout()->addWidget(m_game.get());
   m_game->setGeometry(rect());
+  assert(1==2);
 }
 
 ribi::taba::QtTankBattalionGameDialog::~QtTankBattalionGameDialog()

@@ -30,7 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/units/quantity.hpp>
+#include <boost/units/systems/si/area.hpp>
 #include <boost/units/systems/si/length.hpp>
+#include <boost/units/systems/si/plane_angle.hpp>
 
 #include "openfoampatchfieldtype.h"
 #include "trianglemeshcreateverticalfacesstrategy.h"
@@ -42,10 +44,13 @@ namespace trim { struct Cell; }
 
 struct TestTriangleMainDialog
 {
+  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
+  typedef boost::units::quantity<boost::units::si::area> Area;
+
   TestTriangleMainDialog(
     const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
-    const double triangle_area,
-    const double triangle_quality,
+    const Area triangle_max_area,
+    const Angle triangle_min_angle,
     const bool verbose
   );
 

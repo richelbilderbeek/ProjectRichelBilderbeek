@@ -3,6 +3,7 @@
 #include <cassert>
 #include <stdexcept>
 
+#include "tankbattalionkeys.h"
 #include "trace.h"
 
 ribi::taba::Helper::Helper()
@@ -14,6 +15,8 @@ ribi::taba::Helper::Helper()
 
 ribi::taba::Direction ribi::taba::Helper::KeyToDirection(const Key k)
 {
+  assert(Keys().IsMovement(k)
+    && "Only movement keys can be converted to a direction");
   switch (k)
   {
     case Key::up: return Direction::up;
@@ -24,6 +27,7 @@ ribi::taba::Direction ribi::taba::Helper::KeyToDirection(const Key k)
       assert(!"Should not use this key for a direction");
   }
   assert(!"Should not get here");
+  throw std::logic_error("ribi::taba::Helper::KeyToDirection: cannot convert Key to Direction");
 }
 
 ribi::taba::SpriteType ribi::taba::Helper::ToPlayerSpriteType(const Direction d) const noexcept

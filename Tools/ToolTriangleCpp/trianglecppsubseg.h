@@ -13,10 +13,14 @@
 namespace ribi {
 namespace tricpp {
 
-/* The subsegment data structure.  Each subsegment contains two pointers to  */
-/*   adjoining subsegments, plus four pointers to vertices, plus two         */
-/*   pointers to adjoining triangles, plus one boundary marker, plus one     */
-/*   segment number.                                                         */
+// The subsegment data structure.  Each subsegment contains
+//  two pointers to adjoining subsegments,
+//WHY ONLY TWO? BOTH THE HEAD AND TAIL OF THE EDGE CAN BE CONNECTED TO MULTIPLE EDGES
+//  plus four pointers to vertices,
+//WHY FOUR VERTICES? AN EDGE IS A CONNECTION BETWEEN TWO POINTS
+//  plus two pointers to adjoining triangles,
+//  plus one boundary marker,
+//  plus one segment number.
 
 //typedef double **SubSeg; /* Really:  typedef subseg *subseg   */
 struct SubSeg

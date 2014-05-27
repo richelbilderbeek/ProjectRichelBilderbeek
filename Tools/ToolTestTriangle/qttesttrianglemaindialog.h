@@ -28,7 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/units/quantity.hpp>
+#include <boost/units/systems/si/area.hpp>
 #include <boost/units/systems/si/length.hpp>
+#include <boost/units/systems/si/plane_angle.hpp>
 #include "qthideandshowdialog.h"
 #include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
@@ -46,6 +48,9 @@ class QtTestTriangleMainDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
+  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
+  typedef boost::units::quantity<boost::units::si::area> Area;
+
   explicit QtTestTriangleMainDialog(QWidget *parent = 0) noexcept;
   QtTestTriangleMainDialog(const QtTestTriangleMainDialog&) = delete;
   QtTestTriangleMainDialog& operator=(const QtTestTriangleMainDialog&) = delete;
@@ -56,8 +61,8 @@ public:
 
   void DisplayPolygons() noexcept;
   std::vector<Polygon> GetShapes() const noexcept;
-  double GetTriangleArea() const noexcept;
-  double GetTriangleQuality() const noexcept;
+  Area GetTriangleMaxArea() const noexcept;
+  Angle GetTriangleMinAngle() const noexcept;
   bool GetVerbose() const noexcept;
 
 protected:

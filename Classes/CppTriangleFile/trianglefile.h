@@ -19,7 +19,14 @@
 
 namespace ribi {
 
-///Create a two-dimensional shape in a format usable by Triangle.exe
+struct PolyFile;
+
+///TriangleFile allows for conversion between multiple polygons
+///  and Triangle output files
+///
+///TriangleFile can then call ExecuteTriangle on itself
+///to create a triangulated 2D mesh in the form of a .ele, .node and poly file
+///
 ///Triangle.exe is written by Jonathan Shewchuk, http://people.sc.fsu.edu/~jburkardt/c_src/triangle/triangle.html
 struct TriangleFile
 {
@@ -30,19 +37,16 @@ struct TriangleFile
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
   typedef std::vector<Polygon> Polygons;
 
+  ///Start from .poly file
+  //TriangleFile(
+  //  const std::string& polyfile
+  //) : TriangleFile(ParseShapes(polyfile),ParseHoles(polyfile)) { }
+
+  ///Start from polygons
   TriangleFile(
-    const Polygons& shapes,
-    const Polygons& holes = {}
+    const Polygons& shapes
+    //const Polygons& holes = {}
   );
-
-  int CountSegments() const noexcept { return CountVertices(); } //A polygon has as much vertices as segments
-  int CountShapes() const noexcept { return static_cast<int>(m_shapes.size()); }
-  int CountVertices() const noexcept;
-
-  static Polygon CreateShapeHeart(const double scale = 1.0) noexcept;
-  static Polygon CreateShapeHouse(const double scale = 1.0) noexcept;
-  static Polygon CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) noexcept;
-  static Polygon CreateShapeTriangle(const double scale = 1.0) noexcept;
 
   ///Call Triangle
   //#define TODO_ISSUE_207
@@ -86,14 +90,15 @@ struct TriangleFile
     const bool verbose = false
   ) const;
 
-  ///Convert the file to a string in a format usable by Triangle.exe
-  std::string ToStr() const noexcept;
+  //const Polygons& GetHoles()  const noexcept { return m_holes; }
+  const Polygons& GetShapes() const noexcept { return m_shapes; }
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
-  const Polygons m_holes;
+  //const Polygons m_holes;
+  boost::shared_ptr<PolyFile> m_polyfile;
   const Polygons m_shapes;
 
   static std::pair<int,char **> CreateArgv(const std::vector<std::string>& v) noexcept;

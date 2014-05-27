@@ -186,12 +186,15 @@ void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
   assert(painter.isActive());
 
   //Clean painter
+  //?Really needed?
+  /*
   {
     const boost::shared_ptr<const QPixmap> temp { m_sprites->Get(Sprite::empty) };
 
     assert(temp);
     painter.drawPixmap(ui->widget->rect(),*temp);
   }
+  */
 
   m_dialog->RespondToCurrentSquare();
 

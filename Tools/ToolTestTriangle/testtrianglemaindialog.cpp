@@ -43,6 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "openfoamtemperaturefile.h"
 #include "openfoamthermophysicalpropertiesfile.h"
 #include "openfoamvelocityfieldfile.h"
+#include "polyfile.h"
 #include "trace.h"
 #include "trianglefile.h"
 #include "trianglemeshbuilder.h"
@@ -58,8 +59,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::TestTriangleMainDialog::TestTriangleMainDialog(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
-  const double triangle_area,
-  const double triangle_quality,
+  const Area triangle_max_area,
+  const Angle triangle_min_angle,
   const bool verbose
 )
   : m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"))
@@ -84,8 +85,8 @@ ribi::TestTriangleMainDialog::TestTriangleMainDialog(
       filename_node,
       filename_ele,
       filename_poly,
-      triangle_quality,
-      triangle_area
+      triangle_min_angle,
+      triangle_max_area
     );
   }
 
@@ -116,15 +117,19 @@ void ribi::TestTriangleMainDialog::Test() noexcept
   {
     const double pi { boost::math::constants::pi<double>() };
     const std::vector<Coordinat2D> shapes {
-      ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
+      ribi::PolyFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
     };
-    const double triangle_quality = 5.0;
-    const double triangle_area = 2.0;
+    const Angle triangle_min_angle
+      = 20.0 //Degrees
+      * (boost::math::constants::two_pi<double>() / 360.0) //Degrees to radians conversion
+      * boost::units::si::radians //Radians
+    ;
+    const Area triangle_max_area = 1.0 * boost::units::si::square_meter;
     const bool verbose = false;
     const ribi::TestTriangleMainDialog d(
       shapes,
-      triangle_quality,
-      triangle_area,
+      triangle_max_area,
+      triangle_min_angle,
       verbose
     );
   }
