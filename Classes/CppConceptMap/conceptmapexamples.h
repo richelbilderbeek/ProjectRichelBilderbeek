@@ -47,6 +47,7 @@ struct Examples
   std::vector<boost::shared_ptr<Example>>& Get() noexcept { return m_v; }
   std::vector<boost::shared_ptr<const Example>> Get() const noexcept;
 
+  std::string ToStr() const noexcept;
   std::string ToXml() const noexcept;
 
   ///Something of one of the examples was changed

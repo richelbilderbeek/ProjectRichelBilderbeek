@@ -77,7 +77,7 @@ private:
 
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTCONCEPTMAPRATEEXAMPLESDIALOG_H

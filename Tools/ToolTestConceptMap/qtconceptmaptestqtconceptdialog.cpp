@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaptestconceptitemdialog.h"
+#include "qtconceptmaptestqtconceptdialog.h"
 
 #include <cassert>
 #include <stdexcept>
@@ -21,23 +21,23 @@
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
-#include "ui_qtconceptmaptestconceptitemdialog.h"
+#include "ui_qtconceptmaptestqtconceptdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestConceptItemDialog::QtConceptMapTestConceptItemDialog(QWidget *parent) :
+ribi::cmap::QtConceptMapTestQtConceptDialog::QtConceptMapTestQtConceptDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtConceptMapTestConceptItemDialog),
-  m_concept(cmap::ConceptFactory().GetTests().at(1)),
-  m_display_concept(nullptr),
-  m_edit_concept(nullptr),
-  m_rate_concept(nullptr)
+  ui(new Ui::QtConceptMapTestQtConceptDialog)
+  //m_concept(cmap::ConceptFactory().GetTests().at(1)),
+  //m_display_concept(nullptr),
+  //m_edit_concept(nullptr),
+  //m_rate_concept(nullptr)
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
-  assert(ui->view->scene());
-
+  assert(ui->view_1->scene());
+  /*
   //Node is used in: m_node
   assert(m_concept.use_count() == 1);
 
@@ -102,14 +102,16 @@ ribi::cmap::QtConceptMapTestConceptItemDialog::QtConceptMapTestConceptItemDialog
   ui->edit_example_text->setText(this->GetChosenConcept()->GetExamples()->Get().at(0)->GetText().c_str());
 
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetChosenConcept()->GetExamples()->Get().at(0)->GetCompetency()));
+    */
 }
 
-ribi::cmap::QtConceptMapTestConceptItemDialog::~QtConceptMapTestConceptItemDialog() noexcept
+ribi::cmap::QtConceptMapTestQtConceptDialog::~QtConceptMapTestQtConceptDialog() noexcept
 {
   delete ui;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapTestConceptItemDialog::GetChosenConcept()
+/*
+const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapTestQtConceptDialog::GetChosenConcept()
 {
   switch(ui->box_edit->currentIndex())
   {
@@ -166,27 +168,29 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapTestConcept
       assert(!"Should not get here");
   }
   assert(!"Should not get here");
-  throw std::logic_error("ribi::cmap::QtConceptMapTestConceptItemDialog::GetChosenConcept: chosen concept unknown");
+  throw std::logic_error("ribi::cmap::QtConceptMapTestQtConceptDialog::GetChosenConcept: chosen concept unknown");
 }
+*/
 
-void ribi::cmap::QtConceptMapTestConceptItemDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtConceptMapTestQtConceptDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::cmap::QtConceptMapTestConceptItemDialog::on_box_competency_currentIndexChanged(int index)
+/*
+void ribi::cmap::QtConceptMapTestQtConceptDialog::on_box_competency_currentIndexChanged(int index)
 {
   const cmap::Competency c = static_cast<cmap::Competency>(index);
   this->GetChosenConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
-void ribi::cmap::QtConceptMapTestConceptItemDialog::on_edit_name_textChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtConceptDialog::on_edit_name_textChanged(const QString &arg1)
 {
   assert(GetChosenConcept());
   this->GetChosenConcept()->SetName(arg1.toStdString());
 }
 
-void ribi::cmap::QtConceptMapTestConceptItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtConceptDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
 {
   const int rating_complexity = boost::lexical_cast<int>(arg1.toStdString());
   assert(rating_complexity >= -1);
@@ -194,78 +198,31 @@ void ribi::cmap::QtConceptMapTestConceptItemDialog::on_box_complexity_currentInd
   this->GetChosenConcept()->SetRatingComplexity(rating_complexity);
 }
 
-void ribi::cmap::QtConceptMapTestConceptItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtConceptDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
   this->GetChosenConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void ribi::cmap::QtConceptMapTestConceptItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtConceptDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
   this->GetChosenConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void ribi::cmap::QtConceptMapTestConceptItemDialog::on_edit_example_text_textChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtConceptDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
   this->GetChosenConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
+*/
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestConceptItemDialog::Test() noexcept
+void ribi::cmap::QtConceptMapTestQtConceptDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapTestConceptItemDialog::Test started");
-  QtConceptMapTestConceptItemDialog d;
-  assert(d.m_concept.get() == d.m_display_concept->GetConcept().get());
-  assert(d.m_concept.get() == d.m_edit_concept->GetConcept().get());
-  assert(d.m_concept.get() == d.m_rate_concept->GetConcept().get());
-
-  //Test resizing due to text being changed
-  {
-    const std::string s = d.m_concept->GetName();
-    assert(d.m_display_concept->boundingRect().width() == d.m_edit_concept->boundingRect().width());
-    assert(d.m_display_concept->boundingRect().width() == d.m_rate_concept->boundingRect().width());
-    const double w = d.m_display_concept->boundingRect().width();
-    const double h = d.m_display_concept->boundingRect().height();
-    const double a = w * h;
-    d.m_concept->SetName(s + "*");
-
-    assert(d.m_display_concept->boundingRect().width()
-      * d.m_display_concept->boundingRect().height()
-      >= a);
-    assert(d.m_edit_concept->boundingRect().width()
-      * d.m_edit_concept->boundingRect().height()
-      >= a);
-    assert(d.m_rate_concept->boundingRect().width()
-      * d.m_rate_concept->boundingRect().height()
-      >= a);
-  }
-  //Test brushes being changed when ratings are given
-  {
-    const boost::shared_ptr<Concept> concept = d.m_concept;
-    concept->SetRatingComplexity(-1);
-    concept->SetRatingConcreteness(-1);
-    concept->SetRatingSpecificity(-1);
-    assert(d.m_edit_concept->brush()    == QtBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_concept->brush() == QtBrushFactory::CreateRedGradientBrush());
-    assert(d.m_rate_concept->brush()    == QtBrushFactory::CreateRedGradientBrush());
-
-    concept->SetRatingComplexity(0);
-    concept->SetRatingConcreteness(1);
-
-    assert(d.m_edit_concept->brush()     == QtBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_concept->brush()  == QtBrushFactory::CreateYellowGradientBrush());
-    assert(d.m_rate_concept->brush()     == QtBrushFactory::CreateYellowGradientBrush());
-
-    concept->SetRatingSpecificity(2);
-
-    assert(d.m_edit_concept->brush()    == QtBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_concept->brush() == QtBrushFactory::CreateGreenGradientBrush());
-    assert(d.m_rate_concept->brush()    == QtBrushFactory::CreateGreenGradientBrush());
-  }
-  TRACE("ribi::cmap::QtConceptMapTestConceptItemDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMapTestQtConceptDialog::Test started");
+  TRACE("ribi::cmap::QtConceptMapTestQtConceptDialog::Test finished successfully");
 }
 #endif

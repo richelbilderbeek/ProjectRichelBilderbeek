@@ -43,6 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::cmap::QtExamplesDialog::QtExamplesDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
+    m_signal_qtexamplesdialog_changed{},
     ui(new Ui::QtExamplesDialog),
     m_dialogs{},
     m_examples{}
@@ -51,9 +52,6 @@ ribi::cmap::QtExamplesDialog::QtExamplesDialog(QWidget *parent)
   #ifndef NDEBUG
   Test();
   #endif
-
-  for (int i=0; i!=20; ++i) TRACE("");
-  //this->SetExamples(ExamplesFactory().GetTest(0));
 }
 
 ribi::cmap::QtExamplesDialog::~QtExamplesDialog()
@@ -175,7 +173,11 @@ void ribi::cmap::QtExamplesDialog::SetExamples(const boost::shared_ptr<Examples>
   //Emit that everything has changed
   if (examples_changed)
   {
+    //For those interested in m_examples
     m_examples->m_signal_examples_changed(m_examples.get());
+
+    //For those interested in this dialog
+    m_signal_qtexamplesdialog_changed(this);
   }
 }
 

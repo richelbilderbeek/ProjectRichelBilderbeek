@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>648</width>
+    <width>862</width>
     <height>475</height>
    </rect>
   </property>
@@ -63,7 +63,7 @@ QPushButton { font: 24px &quot;Courier New&quot;, courier, monospace }</string>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Elements</string>
+      <string>Elements, non-graphical</string>
      </property>
      <property name="flat">
       <bool>false</bool>
@@ -150,6 +150,13 @@ used in &amp;testing</string>
       <bool>false</bool>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="button_qtconcept">
+        <property name="text">
+         <string>QtConcept</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QPushButton" name="button_readonly_conceptmap">
         <property name="text">

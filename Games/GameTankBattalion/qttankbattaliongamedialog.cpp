@@ -20,7 +20,6 @@ ribi::taba::QtTankBattalionGameDialog::QtTankBattalionGameDialog(QWidget *parent
   assert(layout());
   layout()->addWidget(m_game.get());
   m_game->setGeometry(rect());
-  assert(1==2);
 }
 
 ribi::taba::QtTankBattalionGameDialog::~QtTankBattalionGameDialog()

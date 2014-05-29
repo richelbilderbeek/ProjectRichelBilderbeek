@@ -6,6 +6,7 @@
 
 #include <cassert>
 
+#include <QDesktopWidget>
 #include <QKeyEvent>
 #include <QLabel>
 
@@ -23,21 +24,10 @@ ribi::cmap::QtConceptMapTestExamplesDialog::QtConceptMapTestExamplesDialog(QWidg
 {
   ui->setupUi(this);
 
+
   {
     assert(this->layout());
-    /*
-    QLabel * const label_1 = new QLabel;
-    label_1->setText("Examples #1");
-    layout()->addWidget(label_1);
-    */
-
     layout()->addWidget(m_examples_1.get());
-    /*
-    QLabel * const label_2 = new QLabel;
-    label_2->setText("Examples #2");
-    layout()->addWidget(label_2);
-    */
-
     layout()->addWidget(m_examples_2.get());
   }
   {

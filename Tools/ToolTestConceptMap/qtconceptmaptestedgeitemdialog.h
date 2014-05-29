@@ -75,7 +75,7 @@ private:
   #endif
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 
 } //~namespace ribi
 

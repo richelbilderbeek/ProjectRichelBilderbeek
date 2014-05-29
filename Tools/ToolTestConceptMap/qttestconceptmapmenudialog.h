@@ -3,6 +3,12 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <vector>
+
+#include <boost/shared_ptr.hpp>
+
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
@@ -34,9 +40,7 @@ private slots:
   void on_button_rate_conceptmap_clicked();
   void on_button_readonly_conceptmap_clicked();
   void on_button_view_concept_maps_clicked();
-
   void on_button_example_clicked();
-
   void on_button_examples_clicked();
 
 private:
@@ -45,6 +49,12 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  static const bool sm_test_concept = true;
+  static const bool sm_test_edge = true;
+  static const bool sm_test_examples = true;
+  static const bool sm_test_example = true;
+  static const bool sm_test_node = true;
 };
 
 } //~namespace cmap

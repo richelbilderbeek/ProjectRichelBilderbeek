@@ -60,7 +60,7 @@ private:
   #endif
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTCONCEPTMAPTESTNODEITEMDIALOG_H

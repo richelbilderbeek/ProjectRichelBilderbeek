@@ -43,6 +43,7 @@ ribi::cmap::Concept::Concept(
   const int rating_concreteness,
   const int rating_specificity)
   : m_signal_examples_changed{},
+    m_signal_is_complex_changed{},
     m_signal_name_changed{},
     m_signal_rating_complexity_changed{},
     m_signal_rating_concreteness_changed{},
@@ -84,6 +85,16 @@ void ribi::cmap::Concept::SetExamples(const boost::shared_ptr<ribi::cmap::Exampl
     m_signal_examples_changed(this);
   }
 }
+
+void ribi::cmap::Concept::SetIsComplex(const bool is_complex) noexcept
+{
+  if (is_complex != m_is_complex)
+  {
+    m_is_complex = is_complex;
+    m_signal_is_complex_changed(this);
+  }
+}
+
 
 void ribi::cmap::Concept::SetName(const std::string& name) noexcept
 {
@@ -130,6 +141,20 @@ void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity) noe
     assert(m_rating_specificity <=  2);
     m_signal_rating_specificity_changed(this);
   }
+}
+
+std::string ribi::cmap::Concept::ToStr() const noexcept
+{
+  std::stringstream s;
+  s
+    << GetName() << " "
+    << GetExamples()->ToStr() << " "
+    << GetIsComplex() << " "
+    << GetRatingComplexity() << " "
+    << GetRatingConcreteness() << " "
+    << GetRatingSpecificity()
+  ;
+  return s.str();
 }
 
 std::string ribi::cmap::Concept::ToXml() const noexcept

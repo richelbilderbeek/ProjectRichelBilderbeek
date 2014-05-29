@@ -229,6 +229,20 @@ void ribi::cmap::Examples::Test() noexcept
   TRACE("Examples::Test finished successfully");
 }
 
+std::string ribi::cmap::Examples::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << "{ ";
+
+  //const std::vector<boost::shared_ptr<const Example> > examples = c->GetExamples();
+  for (const auto example: Get())
+  {
+    s << example->ToStr() << " ";
+  };
+  s << "}";
+  return s.str();
+}
+
 std::string ribi::cmap::Examples::ToXml() const noexcept
 {
   std::stringstream s;

@@ -8,7 +8,7 @@
 #include "qttesteditconceptmapdialog.h"
 #include "qttestrateconceptmapdialog.h"
 #include "qtconceptmapviewtestsdialog.h"
-#include "qtconceptmaptestconceptitemdialog.h"
+#include "qtconceptmaptestconceptdialog.h"
 #include "qtconceptmaptestexampledialog.h"
 #include "qtconceptmaptestexamplesdialog.h"
 #include "qtconceptmaptestedgeitemdialog.h"
@@ -26,6 +26,12 @@ ribi::cmap::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *pare
   Test();
   #endif
   ui->setupUi(this);
+
+  ui->button_example->setEnabled(sm_test_example);
+  ui->button_examples->setEnabled(sm_test_examples);
+  ui->button_concept->setEnabled(sm_test_concept);
+  ui->button_node->setEnabled(sm_test_node);
+  ui->button_edge->setEnabled(sm_test_edge);
 }
 
 ribi::cmap::QtTestConceptMapMenuDialog::~QtTestConceptMapMenuDialog() noexcept
@@ -53,11 +59,12 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::QtTestConceptMapMenuDialog::Test");
-  QtConceptMapTestExampleDialog();
-  QtConceptMapTestExamplesDialog();
-  QtConceptMapTestConceptItemDialog();
-  QtConceptMapTestNodeItemDialog();
-  QtConceptMapTestEdgeItemDialog();
+
+  if (sm_test_example) { QtConceptMapTestExampleDialog(); }
+  if (sm_test_examples) { QtConceptMapTestExamplesDialog(); };
+  if (sm_test_concept) { QtConceptMapTestConceptDialog(); }
+  if (sm_test_node) { QtConceptMapTestNodeItemDialog(); }
+  if (sm_test_edge) { QtConceptMapTestEdgeItemDialog(); }
   //QtTestDisplayConceptMapDialog();
   //QtTestEditConceptMapDialog();
   //QtTestRateConceptMapDialog();
@@ -90,7 +97,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_concept_clicked()
 {
-  QtConceptMapTestConceptItemDialog d;
+  QtConceptMapTestConceptDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }

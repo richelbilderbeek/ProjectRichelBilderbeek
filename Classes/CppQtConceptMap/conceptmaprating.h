@@ -55,7 +55,7 @@ struct Rating
   static int SuggestSpecificity(const boost::shared_ptr<const ConceptMap> m_sub_concept_map);
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTCONCEPTMAPRATING_H

@@ -151,7 +151,7 @@ void ribi::taba::GameWidget::Test() noexcept
           w.ReleaseKey(key_b);
           assert(w.GetDirection() == Helper().KeyToDirection(key_a)
             && "If the primary key is released, make the other key the new primary one");
-          w.ReleaseKey(key_b);
+          w.ReleaseKey(key_a);
           assert(w.GetDirection() == Helper().KeyToDirection(key_a)
             && "Maintain that player's direction");
         }
