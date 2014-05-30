@@ -63,6 +63,8 @@ private:
   ///The Concept to work on
   boost::shared_ptr<Concept> m_concept;
 
+  boost::shared_ptr<QtExamplesDialog> m_qtexamplesdialog;
+
   //concept is non-const, as its displayal by this dialog renders it editable
   void OnExamplesChanged(Concept * const concept);
 

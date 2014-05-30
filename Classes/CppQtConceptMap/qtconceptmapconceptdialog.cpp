@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapconceptfactory.h"
 #include "conceptmapexamples.h"
 #include "conceptmapexamplesfactory.h"
+#include "qtconceptmapexamplesdialog.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -41,12 +42,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ribi::cmap::QtConceptDialog::QtConceptDialog(QWidget *parent) :
   ribi::QtHideAndShowDialog(parent),
   ui(new Ui::QtConceptDialog),
-  m_concept{}
+  m_concept{},
+  m_qtexamplesdialog{new QtExamplesDialog}
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+
+  {
+    assert(layout());
+    layout()->addWidget(m_qtexamplesdialog.get());
+
+  }
+
   const auto concept
     = ConceptFactory().Create("QtConceptDialog initial concept",
         ExamplesFactory().GetTest(2),true,-1,-1,-1);
@@ -240,7 +249,7 @@ void ribi::cmap::QtConceptDialog::OnExamplesChanged(Concept * const concept)
   const bool verbose = true;
   assert(concept);
 
-  const auto examples_before = ui->qtexamplesdialog->GetExamples();
+  const auto examples_before = m_qtexamplesdialog->GetExamples();
   const boost::shared_ptr<Examples> examples_after = concept->GetExamples();
 
   if (verbose)
@@ -252,9 +261,9 @@ void ribi::cmap::QtConceptDialog::OnExamplesChanged(Concept * const concept)
     TRACE(s.str());
   }
 
-  ui->qtexamplesdialog->SetExamples(examples_after);
+  m_qtexamplesdialog->SetExamples(examples_after);
 
-  assert(ui->qtexamplesdialog->GetExamples() == examples_after);
+  assert(m_qtexamplesdialog->GetExamples() == examples_after);
 }
 
 void ribi::cmap::QtConceptDialog::OnIsComplexChanged(Concept * const concept)

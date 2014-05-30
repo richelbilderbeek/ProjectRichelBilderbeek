@@ -44,8 +44,8 @@ private slots:
 private:
   Ui::QtConceptMapTestConceptDialog *ui;
 
-  //boost::shared_ptr<QtConceptDialog> m_dialog_1;
-  //boost::shared_ptr<QtConceptDialog> m_dialog_2;
+  boost::shared_ptr<QtConceptDialog> m_qtconceptdialog_1;
+  boost::shared_ptr<QtConceptDialog> m_qtconceptdialog_2;
 
   //const boost::shared_ptr<Concept> m_concept;
   //cmap::QtDisplayStrategy* m_display_concept;

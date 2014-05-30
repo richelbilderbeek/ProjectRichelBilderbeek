@@ -198,7 +198,7 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
   //Emit everything that has changed
   if (competency_changed)
   {
-    m_example->m_signal_competency_changed(m_example.get()); //RECURSIVE ERROR #2 HIERO
+    m_example->m_signal_competency_changed(m_example.get());
   }
   if (is_complex_changed)
   {

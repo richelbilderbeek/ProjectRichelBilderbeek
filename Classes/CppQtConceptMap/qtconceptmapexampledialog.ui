@@ -10,6 +10,12 @@
     <height>166</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>198</width>
+    <height>166</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>QtExampleDialog</string>
   </property>

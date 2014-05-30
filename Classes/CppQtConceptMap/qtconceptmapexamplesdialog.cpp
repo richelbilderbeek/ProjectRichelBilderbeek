@@ -62,6 +62,7 @@ ribi::cmap::QtExamplesDialog::~QtExamplesDialog()
 void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcept
 {
   const bool verbose = true;
+  const int minimum_height_example = 166;
 
   //if (examples == m_examples.get()) return; //Will allways be true
 
@@ -111,6 +112,7 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
   while (examples->Get().size() > m_dialogs.size())
   {
     boost::shared_ptr<QtExampleDialog> dialog(new QtExampleDialog);
+    assert(dialog->minimumHeight() == minimum_height_example);
     assert(layout());
     layout()->addWidget(dialog.get());
     m_dialogs.push_back(dialog);
@@ -123,6 +125,10 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
     }
   }
   assert(examples->Get().size() == m_dialogs.size());
+
+  //+16 because of margins
+  this->setMinimumHeight((minimum_height_example + 16) * static_cast<int>(m_dialogs.size()));
+
   const int n = static_cast<int>(m_dialogs.size());
   TRACE(n);
   for (int i=0; i!=n; ++i)
@@ -136,11 +142,8 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
       s << "QtExamplesDialog will set Example '" << examples->Get()[i]->ToStr() << "'\n";
       TRACE(s.str());
     }
-    //dialog->SetExample(example); //RECURSIVE ERROR #2 HIERO
     assert( examples->Get()[i] ==  m_dialogs[i]->GetExample());
     assert(*examples->Get()[i] == *m_dialogs[i]->GetExample());
-    //assert(!"Yay, recursive error issue 1/2? is fixed!");
-    //layout->addWidget(dialog.get());
   }
 
   //this->setLayout(layout);

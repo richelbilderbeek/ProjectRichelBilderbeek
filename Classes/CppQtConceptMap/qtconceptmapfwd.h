@@ -29,6 +29,7 @@ struct QtQuadBezierArrowItem;
 
 namespace cmap {
 
+struct QtConceptDialog;
 struct QtConceptMap;
 struct QtConceptMapElement;
 struct QtConceptMapWidget;
