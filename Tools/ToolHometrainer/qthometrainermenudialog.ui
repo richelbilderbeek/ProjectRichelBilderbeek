@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>797</height>
+    <width>728</width>
+    <height>807</height>
    </rect>
   </property>
   <property name="font">
@@ -101,7 +101,9 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
   </layout>
  </widget>
  <tabstops>
+  <tabstop>button_load_exercise</tabstop>
   <tabstop>button_start_exercise</tabstop>
+  <tabstop>button_create_examples</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>

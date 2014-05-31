@@ -93,6 +93,13 @@ QPushButton { font: 24px &quot;Courier New&quot;, courier, monospace }</string>
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="button_qtedge">
+     <property name="text">
+      <string>QtEdge</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="label_3">
      <property name="text">
       <string>QtConceptMaps</string>

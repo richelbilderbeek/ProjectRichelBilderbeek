@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaptestedgeitemdialog.h"
+#include "qtconceptmaptestqtedgedialog.h"
 
 
 #include <cassert>
@@ -29,12 +29,12 @@
 #include "qtconceptmapnode.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
-#include "ui_qtconceptmaptestedgeitemdialog.h"
+#include "ui_qtconceptmaptestqtedgedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidget *parent) :
+ribi::cmap::QtConceptMapTestQtEdgeDialog::QtConceptMapTestQtEdgeDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtConceptMapTestEdgeItemDialog),
+  ui(new Ui::QtConceptMapTestQtEdgeDialog),
   m_edge{},
   m_edge_item{},
   m_from(CreateFrom()),
@@ -53,12 +53,12 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
 
 }
 
-ribi::cmap::QtConceptMapTestEdgeItemDialog::~QtConceptMapTestEdgeItemDialog() noexcept
+ribi::cmap::QtConceptMapTestQtEdgeDialog::~QtConceptMapTestQtEdgeDialog() noexcept
 {
   delete ui;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDialog::CreateFrom()
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestQtEdgeDialog::CreateFrom()
 {
   const std::size_t index = 2;
   assert(index < cmap::NodeFactory().GetTests().size());
@@ -67,7 +67,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDi
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDialog::CreateTo()
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestQtEdgeDialog::CreateTo()
 {
   const std::size_t index = 2;
   assert(index < cmap::NodeFactory().GetTests().size());
@@ -76,12 +76,12 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDi
   return node;
 }
 
-boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDialog::GetEdgeCurrentWay()
+boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestQtEdgeDialog::GetEdgeCurrentWay()
 {
   return GetEdge(ui->box_edit->currentIndex());
 }
 
-boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDialog::GetEdge(const int index)
+boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestQtEdgeDialog::GetEdge(const int index)
 {
   switch(index)
   {
@@ -106,15 +106,15 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDialog::
       assert(!"Should not get here");
   }
   assert(!"Should not get here");
-  throw std::logic_error("ribi::cmap::QtConceptMapTestEdgeItemDialog::GetEdge: current index unknown");
+  throw std::logic_error("ribi::cmap::QtConceptMapTestQtEdgeDialog::GetEdge: current index unknown");
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-int ribi::cmap::QtConceptMapTestEdgeItemDialog::GetTestIndex() const noexcept
+int ribi::cmap::QtConceptMapTestQtEdgeDialog::GetTestIndex() const noexcept
 {
   const int index = ui->box_index->value();
   assert(index >= 0);
@@ -122,7 +122,7 @@ int ribi::cmap::QtConceptMapTestEdgeItemDialog::GetTestIndex() const noexcept
   return index;
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_competency_currentIndexChanged(int index)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_competency_currentIndexChanged(int index)
 {
   const cmap::Competency c = static_cast<cmap::Competency>(index);
   assert(GetEdgeCurrentWay());
@@ -136,7 +136,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_competency_currentIndexC
   this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_edit_name_textChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_edit_name_textChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
@@ -144,7 +144,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_edit_name_textChanged(const 
   assert(this->GetEdgeCurrentWay()->GetConcept()->GetName() == arg1.toStdString());
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
 {
   const int rating_complexity = boost::lexical_cast<int>(arg1.toStdString());
   assert(rating_complexity >= -1);
@@ -154,21 +154,21 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_complexity_currentIndexC
   this->GetEdgeCurrentWay()->GetConcept()->SetRatingComplexity(rating_complexity);
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
   this->GetEdgeCurrentWay()->GetConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
   this->GetEdgeCurrentWay()->GetConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
@@ -183,7 +183,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_edit_example_text_textChange
   }
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_arrow_head_currentIndexChanged(int index)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_arrow_head_currentIndexChanged(int index)
 {
   assert(GetEdgeCurrentWay());
   this->GetEdgeCurrentWay()->SetHeadArrow(index);
@@ -191,7 +191,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_arrow_head_currentIndexC
   assert(this->GetEdge(1)->HasHeadArrow() == static_cast<bool>(index));
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_arrow_tail_currentIndexChanged(int index)
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_arrow_tail_currentIndexChanged(int index)
 {
   assert(GetEdgeCurrentWay());
   this->GetEdgeCurrentWay()->SetTailArrow(index);
@@ -199,7 +199,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_box_arrow_tail_currentIndexC
   assert(this->GetEdge(1)->HasTailArrow() == static_cast<bool>(index));
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate()
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::OnRequestSceneUpdate()
 {
   assert(ui);
   assert(ui->view);
@@ -207,7 +207,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate()
   ui->view->scene()->update();
 }
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::SetEdge(const boost::shared_ptr<ribi::cmap::Edge>& edge) noexcept
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetEdge(const boost::shared_ptr<ribi::cmap::Edge>& edge) noexcept
 {
   //Create three nodes that the edges can connect to
   cmap::QtNode * node1 = nullptr;
@@ -216,7 +216,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::SetEdge(const boost::shared_ptr
     const boost::shared_ptr<QtDisplayStrategy> item(new QtDisplayStrategy(m_from->GetConcept()));
     node1 = new cmap::QtNode(m_from,item);
     node1->m_signal_request_scene_update.connect(
-      boost::bind(&ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate,this));
+      boost::bind(&ribi::cmap::QtConceptMapTestQtEdgeDialog::OnRequestSceneUpdate,this));
   }
   cmap::QtNode * node2 = nullptr;
   {
@@ -224,7 +224,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::SetEdge(const boost::shared_ptr
     const boost::shared_ptr<QtEditStrategy> item(new QtEditStrategy(m_to->GetConcept()));
     node2 = new cmap::QtNode(m_to,item);
     node2->m_signal_request_scene_update.connect(
-      boost::bind(&ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate,this));
+      boost::bind(&ribi::cmap::QtConceptMapTestQtEdgeDialog::OnRequestSceneUpdate,this));
   }
   assert(node1);
   assert(node2);
@@ -355,16 +355,16 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::SetEdge(const boost::shared_ptr
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::Test() noexcept
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapTestEdgeItemDialog::Test started");
-  //boost::shared_ptr<QtConceptMapTestEdgeItemDialog> parent(new QtConceptMapTestEdgeItemDialog);
-  boost::shared_ptr<QtConceptMapTestEdgeItemDialog> d(new QtConceptMapTestEdgeItemDialog);
+  TRACE("ribi::cmap::QtConceptMapTestQtEdgeDialog::Test started");
+  //boost::shared_ptr<QtConceptMapTestQtEdgeDialog> parent(new QtConceptMapTestQtEdgeDialog);
+  boost::shared_ptr<QtConceptMapTestQtEdgeDialog> d(new QtConceptMapTestQtEdgeDialog);
   //assert(parent);
   assert(d);
   //parent->ShowChild(d.get());
@@ -459,11 +459,11 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::Test() noexcept
     }
   }
   d->close();
-  TRACE("ribi::cmap::QtConceptMapTestEdgeItemDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMapTestQtEdgeDialog::Test finished successfully");
 }
 #endif
 
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::on_button_load_test_clicked()
+void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_button_load_test_clicked()
 {
   const int index = GetTestIndex(); //Must have examples
   assert(index < static_cast<int>(cmap::EdgeFactory().GetTests(m_from,m_to).size()));

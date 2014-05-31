@@ -41,7 +41,7 @@ struct NodeFactory;
 ///A Node is the GUI independent part of a node. It is displayed as:
 /// - QtNode (as QtConceptMapElement: a QGraphicsItem, to be used in a QGraphicsView)
 /// - QtNodeDialog (as a QDialog, to be used in a QDialog)
-///Node is used as a base class by
+///Node is used as a base class by:
 /// - CenterNode
 struct Node : public Element
 {

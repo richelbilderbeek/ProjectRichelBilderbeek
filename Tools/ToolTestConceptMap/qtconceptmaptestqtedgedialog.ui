@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtConceptMapTestEdgeItemDialog</class>
- <widget class="QDialog" name="QtConceptMapTestEdgeItemDialog">
+ <class>QtConceptMapTestQtEdgeDialog</class>
+ <widget class="QDialog" name="QtConceptMapTestQtEdgeDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -270,7 +270,6 @@
       </item>
      </layout>
      <zorder>label_node_1</zorder>
-     <zorder>group_edge</zorder>
      <zorder>label_node_2</zorder>
      <zorder>edit_node_1</zorder>
      <zorder>edit_node_2</zorder>

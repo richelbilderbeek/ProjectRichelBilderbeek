@@ -48,7 +48,7 @@ ribi::cmap::QtDisplayStrategy::QtDisplayStrategy(const boost::shared_ptr<ribi::c
   assert(GetConcept());
   #endif
 
-  UpdateBrushesAndPens();
+  UpdateBrushesAndPens(); //NEVER CALL VIRTUAL FUNCTIONS IN CONSTRUCTORS
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(

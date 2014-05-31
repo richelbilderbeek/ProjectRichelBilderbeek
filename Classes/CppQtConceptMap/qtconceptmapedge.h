@@ -75,11 +75,15 @@ struct QtEdge : public QtConceptMapElement
 
   void SetConcept(const boost::shared_ptr<Concept> concept);
 
+  void SetFrom(QtNode * const from) noexcept;
+
   void SetHasHeadArrow(const bool has_head_arrow) noexcept;
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;
 
   ///Set the name of the relation on the edge
   void SetName(const std::string& name) noexcept;
+
+  void SetTo(QtNode * const to) noexcept;
 
   ///Set the X coordinat of the central concept
   void SetX(const double x) noexcept;
@@ -114,13 +118,19 @@ private:
   const boost::shared_ptr<Edge> m_edge;
 
   ///The node item the arrow originates from
-  QtNode * const m_from;
+  QtNode * m_from;
 
   ///The node item the arrow targets
-  QtNode * const m_to;
+  QtNode * m_to;
 
   ///Called whenever the edge changes
-  void OnEdgeChanged(const Edge * const edge);
+  void OnConceptChanged(Edge * const edge) noexcept;
+  void OnFromChanged(Edge * const edge) noexcept;
+  void OnHeadArrowChanged(Edge * const edge) noexcept;
+  void OnTailArrowChanged(Edge * const edge) noexcept;
+  void OnToChanged(Edge * const edge) noexcept;
+  void OnXchanged(Edge * const edge) noexcept;
+  void OnYchanged(Edge * const edge) noexcept;
 
   ///Called whenever the arrow updates
   void OnItemHasUpdated();

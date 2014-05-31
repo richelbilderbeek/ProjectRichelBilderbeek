@@ -56,7 +56,7 @@ struct QtItemDisplayStrategy : public QtRoundedEditRectItem
   virtual ~QtItemDisplayStrategy() noexcept {}
 
   ///Read the Concept
-  const boost::shared_ptr<const Concept>  GetConcept() const noexcept;
+        boost::shared_ptr<const Concept>  GetConcept() const noexcept;
   const boost::shared_ptr<      Concept>& GetConcept() noexcept { return m_concept; }
 
   ///Get he brush by which the indicator is filled

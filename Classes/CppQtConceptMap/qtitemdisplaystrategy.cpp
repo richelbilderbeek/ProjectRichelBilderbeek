@@ -82,7 +82,7 @@ ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
   this->SetName(m_concept->GetName());
 }
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStrategy::GetConcept() const noexcept
+boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStrategy::GetConcept() const noexcept
 {
   boost::shared_ptr<const ribi::cmap::Concept> p(m_concept);
   assert(p);

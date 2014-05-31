@@ -42,7 +42,13 @@ ribi::cmap::Edge::Edge(
   const bool tail_arrow,
   const boost::shared_ptr<ribi::cmap::Node> to,
   const bool head_arrow)
-  : m_signal_edge_changed{},
+  : m_signal_concept_changed{},
+    m_signal_from_changed{},
+    m_signal_head_arrow_changed{},
+    m_signal_tail_arrow_changed{},
+    m_signal_to_changed{},
+    m_signal_x_changed{},
+    m_signal_y_changed{},
     m_concept(concept),
     m_from(from),
     m_head_arrow(head_arrow),
@@ -60,8 +66,8 @@ ribi::cmap::Edge::Edge(
   assert(m_concept);
 
 
-
   //Subscribe to all Concept signals to re-emit m_signal_edge_changed
+  /*
   this->m_concept->m_signal_name_changed.connect(
     boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
 
@@ -76,11 +82,44 @@ ribi::cmap::Edge::Edge(
 
   this->m_concept->m_signal_rating_specificity_changed.connect(
     boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
+  */
 }
 
+ribi::cmap::Edge::~Edge() noexcept
+{
+  /*
+  this->m_concept->m_signal_name_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
+
+  this->m_concept->m_signal_examples_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
+
+  this->m_concept->m_signal_rating_complexity_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
+
+  this->m_concept->m_signal_rating_concreteness_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
+
+  this->m_concept->m_signal_rating_specificity_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
+  */
+}
+
+/*
 void ribi::cmap::Edge::EmitSignalEdgeChanged()
 {
   m_signal_edge_changed(this);
+}
+*/
+
+void ribi::cmap::Edge::SetConcept(const boost::shared_ptr<Concept>& concept) noexcept
+{
+  assert(concept);
+  if (m_concept != concept)
+  {
+    m_concept = concept;
+    m_signal_concept_changed(this);
+  }
 }
 
 void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from) noexcept
@@ -89,7 +128,7 @@ void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from) n
   if (m_from != from)
   {
     m_from = from;
-    m_signal_edge_changed(this);
+    m_signal_from_changed(this);
   }
 }
 
@@ -98,7 +137,7 @@ void ribi::cmap::Edge::SetHeadArrow(const bool has_head_arrow) noexcept
   if (m_head_arrow != has_head_arrow)
   {
     m_head_arrow = has_head_arrow;
-    m_signal_edge_changed(this);
+    m_signal_head_arrow_changed(this);
   }
 }
 
@@ -107,7 +146,7 @@ void ribi::cmap::Edge::SetTailArrow(const bool has_tail_arrow) noexcept
   if (m_tail_arrow != has_tail_arrow)
   {
     m_tail_arrow = has_tail_arrow;
-    m_signal_edge_changed(this);
+    m_signal_tail_arrow_changed(this);
   }
 }
 
@@ -117,8 +156,7 @@ void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to) noexc
   if (m_to != to)
   {
     m_to = to;
-
-    m_signal_edge_changed(this);
+    m_signal_to_changed(this);
   }
 }
 
@@ -127,7 +165,7 @@ void ribi::cmap::Edge::SetX(const double x) noexcept
   if (m_x != x)
   {
     m_x = x;
-    m_signal_edge_changed(this);
+    m_signal_x_changed(this);
   }
 }
 
@@ -136,7 +174,7 @@ void ribi::cmap::Edge::SetY(const double y) noexcept
   if (m_y != y)
   {
     m_y = y;
-    m_signal_edge_changed(this);
+    m_signal_y_changed(this);
   }
 }
 
@@ -182,6 +220,21 @@ void ribi::cmap::Edge::Test() noexcept
   TRACE("Edge::Test finished successfully");
 }
 #endif
+
+std::string ribi::cmap::Edge::ToStr() const noexcept
+{
+  std::stringstream s;
+  s
+    << GetConcept()->ToStr() << " "
+    << GetX() << " "
+    << GetY() << " "
+    << HasHeadArrow() << " "
+    << HasTailArrow() << " "
+    << GetFrom()->ToStr() << " "
+    << GetTo()->ToStr()
+  ;
+  return s.str();
+}
 
 std::string ribi::cmap::Edge::ToXml(
   const boost::shared_ptr<const cmap::Edge>& edge,

@@ -70,7 +70,7 @@ struct Edge : public Element
   bool HasTailArrow() const noexcept { return m_tail_arrow; }
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<Concept> concept) noexcept { m_concept = concept; }
+  void SetConcept(const boost::shared_ptr<Concept>& concept) noexcept;
 
   ///Set the Node index this edge originates from
   void SetFrom(const boost::shared_ptr<Node> from) noexcept;
@@ -93,16 +93,24 @@ struct Edge : public Element
   ///Set the y coordinat of the concept at the center of the node
   void SetY(const double y) noexcept;
 
+  std::string ToStr() const noexcept;
+
   ///Convert an Edge from an XML std::string
   ///The container of nodes is needed to convert the 'to' and 'from'
   ///field to indices
   static std::string ToXml(
     const boost::shared_ptr<const Edge>& c,
-    const std::vector<boost::shared_ptr<const Node> >& nodes
+    const std::vector<boost::shared_ptr<const Node>>& nodes
     ) noexcept;
 
   ///Emitted when an Edge attribute has changed
-  boost::signals2::signal<void (const Edge*)> m_signal_edge_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_concept_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_from_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_head_arrow_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_tail_arrow_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_to_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_x_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_y_changed;
 
   private:
 
@@ -127,7 +135,7 @@ struct Edge : public Element
   ///The y-coordinat
   double m_y;
 
-  void EmitSignalEdgeChanged();
+  //void EmitSignalEdgeChanged();
 
   #ifndef NDEBUG
   ///Test this class
@@ -137,8 +145,9 @@ struct Edge : public Element
   Edge() = delete;
 
   ///Block destructor, except for the friend boost::checked_delete
-  ~Edge() noexcept {}
-  friend void boost::checked_delete<>(Edge* x);
+  ~Edge() noexcept;
+  friend void boost::checked_delete<>(      Edge*);
+  friend void boost::checked_delete<>(const Edge*);
 
   ///Block constructor, except for EdgeFactory
   friend EdgeFactory;

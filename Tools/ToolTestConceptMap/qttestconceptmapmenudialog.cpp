@@ -4,17 +4,18 @@
 
 #include "qtaboutdialog.h"
 #include "testconceptmapmenudialog.h"
+#include "qtconceptmaptestconceptdialog.h"
+//#include "qtconceptmaptestedgedialog.h"
+#include "qtconceptmaptestexampledialog.h"
+#include "qtconceptmaptestexamplesdialog.h"
+#include "qtconceptmaptestnodedialog.h"
+#include "qtconceptmaptestqtedgedialog.h"
+#include "qtconceptmaptestqtnodedialog.h"
+#include "qtconceptmapviewtestsdialog.h"
+#include "qttestconceptmapwidgetdialog.h"
 #include "qttestdisplayconceptmapdialog.h"
 #include "qttesteditconceptmapdialog.h"
 #include "qttestrateconceptmapdialog.h"
-#include "qtconceptmapviewtestsdialog.h"
-#include "qtconceptmaptestconceptdialog.h"
-#include "qtconceptmaptestexampledialog.h"
-#include "qtconceptmaptestexamplesdialog.h"
-#include "qtconceptmaptestedgeitemdialog.h"
-#include "qtconceptmaptestqtnodedialog.h"
-#include "qtconceptmaptestnodedialog.h"
-#include "qttestconceptmapwidgetdialog.h"
 #include "ui_qttestconceptmapmenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -63,8 +64,8 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
   if (sm_test_example) { QtConceptMapTestExampleDialog(); }
   if (sm_test_examples) { QtConceptMapTestExamplesDialog(); };
   if (sm_test_concept) { QtConceptMapTestConceptDialog(); }
-  //if (sm_test_node) { QtConceptMapTestNodeDialog(); }
-  if (sm_test_edge) { QtConceptMapTestEdgeItemDialog(); }
+  if (sm_test_node) { QtConceptMapTestNodeDialog(); }
+  //if (sm_test_edge) { QtConceptMapTestEdgeDialog(); }
   //QtTestDisplayConceptMapDialog();
   //QtTestEditConceptMapDialog();
   //QtTestRateConceptMapDialog();
@@ -111,9 +112,9 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
 {
-  QtConceptMapTestEdgeItemDialog d;
-  d.setStyleSheet(this->styleSheet());
-  this->ShowChild(&d);
+  //QtConceptMapTestEdgeDialog d;
+  //d.setStyleSheet(this->styleSheet());
+  //this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_view_concept_maps_clicked()
@@ -147,6 +148,13 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_examples_clicked()
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtnode_clicked()
 {
   QtConceptMapTestQtNodeDialog d;
+  d.setStyleSheet(this->styleSheet());
+  this->ShowChild(&d);
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtedge_clicked()
+{
+  QtConceptMapTestQtEdgeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }

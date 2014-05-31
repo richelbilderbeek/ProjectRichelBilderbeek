@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPTESTEDGEITEMDIALOG_H
-#define QTCONCEPTMAPTESTEDGEITEMDIALOG_H
+#ifndef QTCONCEPTMAPTESTQTEDGEDIALOG_H
+#define QTCONCEPTMAPTESTQTEDGEDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -11,7 +11,7 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapTestEdgeItemDialog; }
+namespace Ui { class QtConceptMapTestQtEdgeDialog; }
 
 namespace ribi {
 namespace cmap {
@@ -19,15 +19,15 @@ namespace cmap {
 ///Tests all QtConceptMapConceptItem items when being a member of a cmap::QtNode,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtConceptMapTestEdgeItemDialog : public ribi::QtHideAndShowDialog
+class QtConceptMapTestQtEdgeDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtConceptMapTestEdgeItemDialog(QWidget *parent = 0);
-  QtConceptMapTestEdgeItemDialog(const QtConceptMapTestEdgeItemDialog&) = delete;
-  QtConceptMapTestEdgeItemDialog& operator=(const QtConceptMapTestEdgeItemDialog&) = delete;
-  ~QtConceptMapTestEdgeItemDialog() noexcept;
+  explicit QtConceptMapTestQtEdgeDialog(QWidget *parent = 0);
+  QtConceptMapTestQtEdgeDialog(const QtConceptMapTestQtEdgeDialog&) = delete;
+  QtConceptMapTestQtEdgeDialog& operator=(const QtConceptMapTestQtEdgeDialog&) = delete;
+  ~QtConceptMapTestQtEdgeDialog() noexcept;
   int GetTestIndex() const noexcept;
 protected:
 
@@ -50,7 +50,7 @@ private slots:
 
 private:
 
-  Ui::QtConceptMapTestEdgeItemDialog *ui;
+  Ui::QtConceptMapTestQtEdgeDialog *ui;
   boost::shared_ptr<Edge> m_edge;
   cmap::QtEdge* m_edge_item;
   const boost::shared_ptr<Node> m_from;
@@ -79,5 +79,5 @@ private:
 
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPTESTEDGEITEMDIALOG_H
+#endif // QTCONCEPTMAPTESTQTEDGEDIALOG_H
 
