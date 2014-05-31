@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>862</width>
-    <height>475</height>
+    <width>252</width>
+    <height>699</height>
    </rect>
   </property>
   <property name="font">
@@ -26,180 +26,166 @@ QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 24px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="2">
-    <widget class="QGroupBox" name="groupBox_conceptmapwidget">
-     <property name="title">
-      <string>Widget</string>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QPushButton" name="button_conceptmapwidget">
-        <property name="text">
-         <string>An&amp;y type</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QPushButton" name="button_about">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
      <property name="text">
-      <string>&amp;About</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QPushButton" name="button_quit">
-     <property name="text">
-      <string>&amp;Quit</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
       <string>Elements, non-graphical</string>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QPushButton" name="button_example">
-        <property name="text">
-         <string>E&amp;xample</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_examples">
-        <property name="text">
-         <string>Example&amp;s</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_concept">
-        <property name="text">
-         <string>&amp;Concept</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_node">
-        <property name="text">
-         <string>&amp;Node</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_edge">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="text">
-         <string>&amp;Edge</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="button_view_concept_maps">
-     <property name="text">
-      <string>Concept maps
-used in &amp;testing</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="label_title">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>28</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>TestConceptMap</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QGroupBox" name="groupBox_conceptmap">
-     <property name="title">
-      <string>View</string>
+   <item>
+    <widget class="QPushButton" name="button_example">
+     <property name="text">
+      <string>E&amp;xample</string>
      </property>
-     <property name="flat">
-      <bool>false</bool>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_examples">
+     <property name="text">
+      <string>Example&amp;s</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPushButton" name="button_qtconcept">
-        <property name="text">
-         <string>QtConcept</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_readonly_conceptmap">
-        <property name="text">
-         <string>&amp;Read-only</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_edit_conceptmap">
-        <property name="text">
-         <string>E&amp;ditable</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_rate_conceptmap">
-        <property name="text">
-         <string>R&amp;ateable</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_concept">
+     <property name="text">
+      <string>&amp;Concept</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_node">
+     <property name="text">
+      <string>&amp;Node</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_edge">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>&amp;Edge</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Elements, graphical</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_qtnode">
+     <property name="text">
+      <string>QtNode</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>QtConceptMaps</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_readonly_conceptmap">
+     <property name="text">
+      <string>&amp;Read-only</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_edit_conceptmap">
+     <property name="text">
+      <string>E&amp;ditable</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_rate_conceptmap">
+     <property name="text">
+      <string>R&amp;ateable</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_view_concept_maps">
+     <property name="text">
+      <string>Used in &amp;testing</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>QtConceptMapWidget</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_conceptmapwidget">
+     <property name="text">
+      <string>An&amp;y type</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Misc</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_about">
+     <property name="text">
+      <string>&amp;About</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>&amp;Quit</string>
+     </property>
     </widget>
    </item>
   </layout>
-  <zorder>label_title</zorder>
-  <zorder>button_view_concept_maps</zorder>
-  <zorder>button_quit</zorder>
-  <zorder>button_about</zorder>
-  <zorder>groupBox_conceptmapwidget</zorder>
-  <zorder>groupBox_conceptmap</zorder>
-  <zorder>groupBox</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
+  <tabstop>button_example</tabstop>
+  <tabstop>button_examples</tabstop>
   <tabstop>button_concept</tabstop>
   <tabstop>button_node</tabstop>
   <tabstop>button_edge</tabstop>
+  <tabstop>button_qtnode</tabstop>
   <tabstop>button_readonly_conceptmap</tabstop>
   <tabstop>button_edit_conceptmap</tabstop>
   <tabstop>button_rate_conceptmap</tabstop>
-  <tabstop>button_conceptmapwidget</tabstop>
   <tabstop>button_view_concept_maps</tabstop>
+  <tabstop>button_conceptmapwidget</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>

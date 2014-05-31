@@ -41,6 +41,8 @@ struct NodeFactory;
 ///A Node is the GUI independent part of a node. It is displayed as:
 /// - QtNode (as QtConceptMapElement: a QGraphicsItem, to be used in a QGraphicsView)
 /// - QtNodeDialog (as a QDialog, to be used in a QDialog)
+///Node is used as a base class by
+/// - CenterNode
 struct Node : public Element
 {
   Node(const Node&) = delete;
@@ -75,8 +77,11 @@ struct Node : public Element
   void SetY(const double y) noexcept;
 
   virtual std::string ToXml() const noexcept;
+  std::string ToStr() const noexcept;
 
-  boost::signals2::signal<void(const Node *)> m_signal_node_changed;
+  mutable boost::signals2::signal<void(Node *)> m_signal_concept_changed;
+  mutable boost::signals2::signal<void(Node *)> m_signal_x_changed;
+  mutable boost::signals2::signal<void(Node *)> m_signal_y_changed;
 
   protected:
   ///Block construction, except for NodeFactory and derived classes

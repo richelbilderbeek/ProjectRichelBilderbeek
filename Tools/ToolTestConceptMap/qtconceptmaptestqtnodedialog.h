@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPTESTNODEITEMDIALOG_H
-#define QTCONCEPTMAPTESTNODEITEMDIALOG_H
+#ifndef QTCONCEPTMAPTESTQTNODEDIALOG_H
+#define QTCONCEPTMAPTESTQTNODEDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -11,23 +11,23 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapTestNodeItemDialog; }
+namespace Ui { class QtConceptMapTestQtNodeDialog; }
 
 namespace ribi {
 namespace cmap {
 
-///Tests all QtConceptMapConceptItem items when being a member of a cmap::QtNode,
+///Tests all QtConceptMapConceptItem items when being a member of a QtNode,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtConceptMapTestNodeItemDialog : public ribi::QtHideAndShowDialog
+class QtConceptMapTestQtNodeDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtConceptMapTestNodeItemDialog(QWidget *parent = 0);
-  QtConceptMapTestNodeItemDialog(const QtConceptMapTestNodeItemDialog&) = delete;
-  QtConceptMapTestNodeItemDialog& operator=(const QtConceptMapTestNodeItemDialog&) = delete;
-  ~QtConceptMapTestNodeItemDialog() noexcept;
+  explicit QtConceptMapTestQtNodeDialog(QWidget *parent = 0);
+  QtConceptMapTestQtNodeDialog(const QtConceptMapTestQtNodeDialog&) = delete;
+  QtConceptMapTestQtNodeDialog& operator=(const QtConceptMapTestQtNodeDialog&) = delete;
+  ~QtConceptMapTestQtNodeDialog() noexcept;
 
 protected:
 
@@ -44,11 +44,11 @@ private slots:
 
 private:
 
-  Ui::QtConceptMapTestNodeItemDialog *ui;
+  Ui::QtConceptMapTestQtNodeDialog *ui;
   const boost::shared_ptr<Node> m_node;
-  cmap::QtNode* m_display_node;
-  cmap::QtNode* m_edit_node;
-  cmap::QtNode* m_rate_node;
+  QtNode* m_display_node;
+  QtNode* m_edit_node;
+  QtNode* m_rate_node;
 
   ///Get the Node via the route chosen by box_edit
   const boost::shared_ptr<Node> GetNode();
@@ -63,4 +63,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPTESTNODEITEMDIALOG_H
+#endif // QTCONCEPTMAPTESTQTNODEDIALOG_H

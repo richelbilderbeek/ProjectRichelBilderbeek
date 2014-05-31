@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaptestnodeitemdialog.h"
+#include "qtconceptmaptestqtnodedialog.h"
 
 #include <cassert>
 
@@ -25,12 +25,12 @@
 #include "qtconceptmapnode.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
-#include "ui_qtconceptmaptestnodeitemdialog.h"
+#include "ui_qtconceptmaptestqtnodedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidget *parent) :
+ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtConceptMapTestNodeItemDialog),
+  ui(new Ui::QtConceptMapTestQtNodeDialog),
   m_node(cmap::NodeFactory().GetTests().at(1)),
   m_display_node(nullptr),
   m_edit_node(nullptr),
@@ -49,10 +49,10 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
 
   {
     const boost::shared_ptr<QtDisplayStrategy> display_strategy(new QtDisplayStrategy(m_node->GetConcept()));
-    m_display_node = new cmap::QtNode(m_node,display_strategy);
+    m_display_node = new QtNode(m_node,display_strategy);
     m_display_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::cmap::QtConceptMapTestQtNodeDialog::OnRequestsSceneUpdate,
         this));
   }
 
@@ -66,10 +66,10 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
 
   {
     const boost::shared_ptr<QtEditStrategy> item(new QtEditStrategy(m_node->GetConcept()));
-    m_edit_node = new cmap::QtNode(m_node,item);
+    m_edit_node = new QtNode(m_node,item);
     m_edit_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::cmap::QtConceptMapTestQtNodeDialog::OnRequestsSceneUpdate,
         this));
   }
 
@@ -79,10 +79,10 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
 
   {
     const boost::shared_ptr<QtRateStrategy> item(new QtRateStrategy(m_node->GetConcept()));
-    m_rate_node = new cmap::QtNode(m_node,item);
+    m_rate_node = new QtNode(m_node,item);
     m_rate_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::cmap::QtConceptMapTestQtNodeDialog::OnRequestsSceneUpdate,
         this));
   }
 
@@ -134,12 +134,12 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
 }
 
-ribi::cmap::QtConceptMapTestNodeItemDialog::~QtConceptMapTestNodeItemDialog() noexcept
+ribi::cmap::QtConceptMapTestQtNodeDialog::~QtConceptMapTestQtNodeDialog() noexcept
 {
   delete ui;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDialog::GetNode()
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestQtNodeDialog::GetNode()
 {
   switch(ui->box_edit->currentIndex())
   {
@@ -150,13 +150,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
+          const QtNode* const node_item = dynamic_cast<const QtNode*>(item);
           assert(node_item);
           return dynamic_cast<const QtDisplayStrategy*>(node_item->GetDisplayStrategy().get());
         }
       );
       assert(iter!=v.end());
-      cmap::QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
+      QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }
@@ -166,13 +166,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
+          const QtNode* const node_item = dynamic_cast<const QtNode*>(item);
           assert(node_item);
           return dynamic_cast<const QtEditStrategy*>(node_item->GetDisplayStrategy().get());
         }
       );
       assert(iter!=v.end());
-      cmap::QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
+      QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }
@@ -182,13 +182,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
+          const QtNode* const node_item = dynamic_cast<const QtNode*>(item);
           assert(node_item);
           return dynamic_cast<const QtRateStrategy*>(node_item->GetDisplayStrategy().get());
         }
       );
       assert(iter!=v.end());
-      cmap::QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
+      QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }
@@ -196,26 +196,26 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
       assert(!"Should not get here");
   }
   assert(!"Should not get here");
-  throw std::logic_error("ribi::cmap::QtConceptMapTestNodeItemDialog::GetNode: index unknown");
+  throw std::logic_error("ribi::cmap::QtConceptMapTestQtNodeDialog::GetNode: index unknown");
 }
 
-void ribi::cmap::QtConceptMapTestNodeItemDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtConceptMapTestQtNodeDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_competency_currentIndexChanged(int index)
+void ribi::cmap::QtConceptMapTestQtNodeDialog::on_box_competency_currentIndexChanged(int index)
 {
-  const cmap::Competency c = static_cast<cmap::Competency>(index);
+  const Competency c = static_cast<cmap::Competency>(index);
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
-void ribi::cmap::QtConceptMapTestNodeItemDialog::on_edit_name_textChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtNodeDialog::on_edit_name_textChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetName(arg1.toStdString());
 }
 
-void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtNodeDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
 {
   const int rating_complexity = boost::lexical_cast<int>(arg1.toStdString());
   assert(rating_complexity >= -1);
@@ -223,23 +223,23 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_complexity_currentIndexC
   this->GetNode()->GetConcept()->SetRatingComplexity(rating_complexity);
 }
 
-void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtNodeDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtNodeDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void ribi::cmap::QtConceptMapTestNodeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestQtNodeDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestNodeItemDialog::Test() noexcept
+void ribi::cmap::QtConceptMapTestQtNodeDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -251,8 +251,8 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::Test() noexcept
     []
     {
   #endif
-  TRACE("ribi::cmap::QtConceptMapTestNodeItemDialog::Test started");
-  QtConceptMapTestNodeItemDialog d;
+  TRACE("ribi::cmap::QtConceptMapTestQtNodeDialog::Test started");
+  QtConceptMapTestQtNodeDialog d;
   assert(d.m_node.get() == d.m_display_node->GetNode().get());
   assert(d.m_node.get() == d.m_edit_node->GetNode().get());
   assert(d.m_node.get() == d.m_rate_node->GetNode().get());
@@ -312,7 +312,7 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::Test() noexcept
     */
   }
 
-  TRACE("ribi::cmap::QtConceptMapTestNodeItemDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMapTestQtNodeDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -321,7 +321,7 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::Test() noexcept
 }
 #endif
 
-void ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate()
+void ribi::cmap::QtConceptMapTestQtNodeDialog::OnRequestsSceneUpdate()
 {
   this->ui->view->scene()->update();
 }

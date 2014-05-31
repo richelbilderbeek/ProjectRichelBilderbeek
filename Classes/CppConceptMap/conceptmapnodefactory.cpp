@@ -39,7 +39,7 @@ ribi::cmap::NodeFactory::NodeFactory()
   #endif
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
   const boost::shared_ptr<ribi::cmap::Concept>& concept,
   const double x,
   const double y
@@ -50,13 +50,24 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
     new Node(concept,x,y,*this)
   );
   assert(node);
+  assert(node->GetConcept());
+  #ifndef NDEBUG
+  if(*concept != *node->GetConcept())
+  {
+    TRACE(concept);
+    TRACE(node->GetConcept());
+    TRACE(*concept);
+    TRACE(*node->GetConcept());
+    TRACE("BREAK");
+  }
+  #endif
   assert(*concept == *node->GetConcept());
   assert(node->GetX() == x);
   assert(node->GetY() == y);
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::CreateFromStrings(
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::CreateFromStrings(
   const std::string& name,
   const std::vector<std::pair<std::string,Competency> >& examples,
   const double x,
@@ -79,7 +90,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::CreateFromStr
 }
 
 #ifndef NDEBUG
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::DeepCopy(
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::DeepCopy(
   const boost::shared_ptr<const cmap::Node>& node) const noexcept
 {
   assert(node);
@@ -100,7 +111,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::DeepCopy(
 }
 #endif
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::string& s) const noexcept
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::string& s) const noexcept
 {
   {
     const boost::shared_ptr<CenterNode> center_node {
@@ -155,15 +166,20 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::GetTest(const int i) const noexcept
+int ribi::cmap::NodeFactory::GetNumberOfTests() const noexcept
 {
-  const std::vector<boost::shared_ptr<Node>> tests { GetTests() };
+  return static_cast<int>(GetTests().size());
+}
+
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::GetTest(const int i) const noexcept
+{
+  const auto tests = GetTests();
   assert(i >= 0);
   assert(i < static_cast<int>(tests.size()));
   return tests[i];
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTests() const noexcept
+std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTests() const noexcept
 {
   std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
   const auto v = ConceptFactory().GetTests();

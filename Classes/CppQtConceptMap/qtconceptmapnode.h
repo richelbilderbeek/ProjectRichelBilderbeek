@@ -39,7 +39,7 @@ namespace cmap {
 ///QtNode displays a Node as a QtConceptMapElement
 struct QtNode : public QtConceptMapElement
 {
-  virtual ~QtNode() noexcept {}
+  virtual ~QtNode() noexcept;
 
   ///Node cannot be const as it contains a Concept that the user might want to edit
   ///concept_item contains the Stategy to display (and respond to the concept)
@@ -106,7 +106,9 @@ private:
   void OnItemHasUpdated();
 
   ///The m_node has changed
-  void OnNodeChanged(const cmap::Node * node);
+  void OnXchanged(Node * const node);
+  void OnYchanged(Node * const node);
+  void OnConceptChanged(Node * const node);
   void OnRequestsSceneUpdate();
 
   ///The item

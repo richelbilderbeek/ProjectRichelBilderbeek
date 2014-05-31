@@ -45,6 +45,7 @@ struct QtItemDisplayStrategy;
 struct QtItemHighlighter;
 struct QtNewArrow;
 struct QtNode;
+struct QtNodeDialog;
 struct QtRateConceptMap;
 struct QtRateStrategy;
 struct QtTool;

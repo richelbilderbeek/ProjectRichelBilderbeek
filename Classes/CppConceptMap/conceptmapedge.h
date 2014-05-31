@@ -109,8 +109,7 @@ struct Edge : public Element
   ///The Concept on the Edge
   boost::shared_ptr<Concept> m_concept;
 
-  ///The Node index this edge originates from
-  ///Cannot be an index, see [1] below
+  ///The Node this edge originates from
   boost::shared_ptr<Node> m_from;
 
   ///Is there an arrowhead at the 'to' node?
@@ -119,8 +118,7 @@ struct Edge : public Element
   ///Is there an arrowhead at the 'from' node?
   bool m_tail_arrow;
 
-  ///The Node index this edge goes to
-  ///Cannot be an index, see [1] below
+  ///The Node this edge goes to
   boost::shared_ptr<Node> m_to;
 
   ///The x-coordinat
@@ -172,26 +170,6 @@ bool operator<(
 bool operator<(
   const boost::shared_ptr<const Edge>& lhs,
   const boost::shared_ptr<const Edge>& rhs) = delete;
-
-///Notes:
-/// [1] Node::m_from and Node::m_to cannot be indices, because of the desired copying behavior
-/// of Edge: when copying an edge, it is natural that it keeps pointing to the same nodes.
-/// When using pointers, this will work. Indices, on the other hand, are context-specific:
-/// Example: imagine a concept map like this:
-///
-/// NodeA Edge1 NodeB Edge2 NodeC
-/// [0] [1] [2]
-///
-/// In this example, Edge2 goes from [1] to [2]
-///
-/// A sub-concept map will be (when NodeC is the focal node):
-///
-/// NodeB Edge2 NodeC
-/// [0] [1]
-///
-/// In this example, Edge2 goes from [0] to [1]! Due to this, the same Edge2 cannot behave identical in the different contexts
-///
-/// Indices are only used when saving and loading
 
 } //~namespace cmap
 } //~namespace ribi

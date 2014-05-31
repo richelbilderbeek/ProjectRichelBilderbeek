@@ -169,6 +169,8 @@ struct Concept
   friend ConceptFactory;
 };
 
+std::ostream& operator<<(std::ostream& os, const Concept& concept) noexcept;
+
 bool operator==(const Concept& lhs, const Concept& rhs);
 bool operator!=(const Concept& lhs, const Concept& rhs);
 

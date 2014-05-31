@@ -12,7 +12,8 @@
 #include "qtconceptmaptestexampledialog.h"
 #include "qtconceptmaptestexamplesdialog.h"
 #include "qtconceptmaptestedgeitemdialog.h"
-#include "qtconceptmaptestnodeitemdialog.h"
+#include "qtconceptmaptestqtnodedialog.h"
+#include "qtconceptmaptestnodedialog.h"
 #include "qttestconceptmapwidgetdialog.h"
 #include "ui_qttestconceptmapmenudialog.h"
 #include "trace.h"
@@ -26,7 +27,6 @@ ribi::cmap::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *pare
   Test();
   #endif
   ui->setupUi(this);
-
   ui->button_example->setEnabled(sm_test_example);
   ui->button_examples->setEnabled(sm_test_examples);
   ui->button_concept->setEnabled(sm_test_concept);
@@ -63,7 +63,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
   if (sm_test_example) { QtConceptMapTestExampleDialog(); }
   if (sm_test_examples) { QtConceptMapTestExamplesDialog(); };
   if (sm_test_concept) { QtConceptMapTestConceptDialog(); }
-  if (sm_test_node) { QtConceptMapTestNodeItemDialog(); }
+  //if (sm_test_node) { QtConceptMapTestNodeDialog(); }
   if (sm_test_edge) { QtConceptMapTestEdgeItemDialog(); }
   //QtTestDisplayConceptMapDialog();
   //QtTestEditConceptMapDialog();
@@ -104,7 +104,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_concept_clicked()
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
 {
-  QtConceptMapTestNodeItemDialog d;
+  QtConceptMapTestNodeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
@@ -140,6 +140,13 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_example_clicked()
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_examples_clicked()
 {
   QtConceptMapTestExamplesDialog d;
+  d.setStyleSheet(this->styleSheet());
+  this->ShowChild(&d);
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtnode_clicked()
+{
+  QtConceptMapTestQtNodeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }

@@ -39,7 +39,9 @@ ribi::cmap::Node::Node(
   const double x,
   const double y,
   const NodeFactory&
-) : m_signal_node_changed{},
+) : m_signal_concept_changed{},
+    m_signal_x_changed{},
+    m_signal_y_changed{},
     m_concept(concept),
     m_x(x),
     m_y(y)
@@ -60,7 +62,7 @@ std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTests() n
     {
       const int x = (std::rand() % 256) - 128;
       const int y = (std::rand() % 256) - 128;
-      const boost::shared_ptr<Node> node { NodeFactory().Create(concept,x,y) };
+      const auto node = NodeFactory().Create(concept,x,y);
       result.push_back(node);
     }
   );
@@ -79,7 +81,7 @@ void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept) noex
   if (m_concept != concept)
   {
     m_concept = concept;
-    m_signal_node_changed(this);
+    m_signal_concept_changed(this);
   }
 }
 
@@ -88,7 +90,7 @@ void ribi::cmap::Node::SetX(const double x) noexcept
   if (m_x != x)
   {
     m_x = x;
-    m_signal_node_changed(this);
+    m_signal_x_changed(this);
   }
 }
 
@@ -97,7 +99,7 @@ void ribi::cmap::Node::SetY(const double y) noexcept
   if (m_y != y)
   {
     m_y = y;
-    m_signal_node_changed(this);
+    m_signal_y_changed(this);
   }
 }
 
@@ -242,6 +244,18 @@ void ribi::cmap::Node::Test() noexcept
   TRACE("Node::Test finished successfully");
 }
 #endif
+
+std::string ribi::cmap::Node::ToStr() const noexcept
+{
+  std::stringstream s;
+  s
+    << GetConcept()->ToStr() << " "
+    << GetX() << " "
+    << GetY()
+  ;
+  return s.str();
+}
+
 
 std::string ribi::cmap::Node::ToXml() const noexcept
 {

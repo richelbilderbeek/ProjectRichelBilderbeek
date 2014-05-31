@@ -43,6 +43,8 @@ private slots:
   void on_button_example_clicked();
   void on_button_examples_clicked();
 
+  void on_button_qtnode_clicked();
+
 private:
   Ui::QtTestConceptMapMenuDialog *ui;
 

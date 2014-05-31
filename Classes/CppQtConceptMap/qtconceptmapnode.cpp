@@ -73,20 +73,31 @@ ribi::cmap::QtNode::QtNode(
   //  && "Bounding rects must by synced");
 
 
-  this->setPos(m_node->GetX(),m_node->GetY());
-  assert(this->pos().x() == m_node->GetX());
-  assert(this->pos().y() == m_node->GetY());
+  setPos(m_node->GetX(),m_node->GetY());
+  assert(pos().x() == m_node->GetX());
+  assert(pos().y() == m_node->GetY());
   m_display_strategy->SetPos(m_node->GetX(),m_node->GetY());
 
-  m_display_strategy->m_signal_position_changed.connect(
-    boost::bind(&ribi::cmap::QtNode::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
-  m_node->m_signal_node_changed.connect(
-    boost::bind(&ribi::cmap::QtNode::OnNodeChanged,this,boost::lambda::_1));
+
+  m_display_strategy->m_signal_position_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::SetPos,this,boost::lambda::_1,boost::lambda::_2)
+  );
+
+  m_node->m_signal_concept_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_node->m_signal_x_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnXchanged,this,boost::lambda::_1)
+  );
+  m_node->m_signal_y_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnYchanged,this,boost::lambda::_1)
+  );
 
   m_display_strategy->m_signal_item_has_updated.connect(
     boost::bind(
-      &ribi::cmap::QtNode::OnItemHasUpdated,this));
+      &ribi::cmap::QtNode::OnItemHasUpdated,this)
+  );
 
   m_display_strategy->m_signal_request_scene_update.connect(
     boost::bind(
@@ -95,7 +106,7 @@ ribi::cmap::QtNode::QtNode(
     )
   );
 
-  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(concept_item.get()))
+  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(m_display_strategy.get()))
   {
     edit_concept->m_signal_request_edit.connect(
       boost::bind(
@@ -105,7 +116,7 @@ ribi::cmap::QtNode::QtNode(
     );
   }
 
-  if (QtRateStrategy * rate_concept = dynamic_cast<QtRateStrategy*>(concept_item.get()))
+  if (QtRateStrategy * rate_concept = dynamic_cast<QtRateStrategy*>(m_display_strategy.get()))
   {
     rate_concept->m_signal_request_rate_concept.connect(
       boost::bind(
@@ -128,6 +139,61 @@ ribi::cmap::QtNode::QtNode(
   assert(this->pos().y() == m_node->GetY());
   assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
   assert(this->m_display_strategy->acceptHoverEvents()); //Must remove the 's' in Qt5?
+}
+
+ribi::cmap::QtNode::~QtNode() noexcept
+{
+  m_display_strategy->m_signal_position_changed.disconnect(
+    boost::bind(&ribi::cmap::QtNode::SetPos,this,boost::lambda::_1,boost::lambda::_2)
+  );
+
+  m_node->m_signal_concept_changed.disconnect(
+    boost::bind(&ribi::cmap::QtNode::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_node->m_signal_x_changed.disconnect(
+    boost::bind(&ribi::cmap::QtNode::OnXchanged,this,boost::lambda::_1)
+  );
+  m_node->m_signal_y_changed.disconnect(
+    boost::bind(&ribi::cmap::QtNode::OnYchanged,this,boost::lambda::_1)
+  );
+
+  m_display_strategy->m_signal_item_has_updated.disconnect(
+    boost::bind(
+      &ribi::cmap::QtNode::OnItemHasUpdated,this)
+  );
+
+  m_display_strategy->m_signal_request_scene_update.disconnect(
+    boost::bind(
+      &ribi::cmap::QtNode::OnRequestsSceneUpdate,
+      this
+    )
+  );
+
+  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(m_display_strategy.get()))
+  {
+    edit_concept->m_signal_request_edit.disconnect(
+      boost::bind(
+        &QtConceptMapElement::OnConceptRequestsEdit,
+        this
+      )
+    );
+  }
+
+  if (QtRateStrategy * rate_concept = dynamic_cast<QtRateStrategy*>(m_display_strategy.get()))
+  {
+    rate_concept->m_signal_request_rate_concept.disconnect(
+      boost::bind(
+        &ribi::cmap::QtNode::OnItemRequestsRateConcept,
+        this
+      )
+    );
+    rate_concept->m_signal_request_rate_examples.disconnect(
+      boost::bind(
+        &ribi::cmap::QtNode::OnItemRequestsRateExamples,
+        this
+      )
+    );
+  }
 }
 
 QRectF ribi::cmap::QtNode::boundingRect() const
@@ -234,11 +300,23 @@ void ribi::cmap::QtNode::OnItemRequestsRateExamples()
   m_signal_node_requests_rate_examples(this);
 }
 
-void ribi::cmap::QtNode::OnNodeChanged(const cmap::Node * node)
+void ribi::cmap::QtNode::OnConceptChanged(Node * const node)
+{
+  assert(node);
+  SetConcept(node->GetConcept());
+}
+
+void ribi::cmap::QtNode::OnXchanged(Node * const node)
+{
+  assert(node);
+  SetX(node->GetX());
+}
+
+void ribi::cmap::QtNode::OnYchanged(Node * const node)
 {
   assert(node);
   //Keep the coordinats synced
-  this->SetPos(node->GetX(),node->GetY());
+  SetY(node->GetY());
 }
 
 void ribi::cmap::QtNode::OnRequestsSceneUpdate()
