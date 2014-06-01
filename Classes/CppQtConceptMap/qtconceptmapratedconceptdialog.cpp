@@ -97,7 +97,7 @@ ribi::cmap::QtConceptMapRatedConceptDialog::QtConceptMapRatedConceptDialog(
           = ( edge->HasHeadArrow() ? " -> " : " -- ");
         const std::string text
           = first_arrow
-          + edge->GetConcept()->GetName()
+          + edge->GetNode()->GetConcept()->GetName()
           + second_arrow
           //+ node->GetConcept()->GetName();
           + edge->GetTo()->GetConcept()->GetName();
@@ -110,13 +110,13 @@ ribi::cmap::QtConceptMapRatedConceptDialog::QtConceptMapRatedConceptDialog(
         const std::string second_arrow = (edge->HasTailArrow() ? " -> " : " -- ");
         const std::string text
           = first_arrow
-          + edge->GetConcept()->GetName()
+          + edge->GetNode()->GetConcept()->GetName()
           + second_arrow
           + edge->GetFrom()->GetConcept()->GetName();
         ui->list_cluster_relations->addItem(new QListWidgetItem(text.c_str()));
       }
       //Indendent on arrow: all examples
-      for (const boost::shared_ptr<const cmap::Example> example: edge->GetConcept()->GetExamples()->Get())
+      for (const boost::shared_ptr<const cmap::Example> example: edge->GetNode()->GetConcept()->GetExamples()->Get())
       {
         ui->list_cluster_relations->addItem(
           new QListWidgetItem(

@@ -35,17 +35,15 @@ private slots:
   void on_button_conceptmapwidget_clicked();
   void on_button_edge_clicked();
   void on_button_edit_conceptmap_clicked();
+  void on_button_example_clicked();
+  void on_button_examples_clicked();
   void on_button_node_clicked();
+  void on_button_qtedge_clicked();
+  void on_button_qtnode_clicked();
   void on_button_quit_clicked();
   void on_button_rate_conceptmap_clicked();
   void on_button_readonly_conceptmap_clicked();
   void on_button_view_concept_maps_clicked();
-  void on_button_example_clicked();
-  void on_button_examples_clicked();
-
-  void on_button_qtnode_clicked();
-
-  void on_button_qtedge_clicked();
 
 private:
   Ui::QtTestConceptMapMenuDialog *ui;

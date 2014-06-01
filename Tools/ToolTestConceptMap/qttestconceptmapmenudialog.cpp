@@ -5,7 +5,7 @@
 #include "qtaboutdialog.h"
 #include "testconceptmapmenudialog.h"
 #include "qtconceptmaptestconceptdialog.h"
-//#include "qtconceptmaptestedgedialog.h"
+#include "qtconceptmaptestedgedialog.h"
 #include "qtconceptmaptestexampledialog.h"
 #include "qtconceptmaptestexamplesdialog.h"
 #include "qtconceptmaptestnodedialog.h"
@@ -65,7 +65,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
   if (sm_test_examples) { QtConceptMapTestExamplesDialog(); };
   if (sm_test_concept) { QtConceptMapTestConceptDialog(); }
   if (sm_test_node) { QtConceptMapTestNodeDialog(); }
-  //if (sm_test_edge) { QtConceptMapTestEdgeDialog(); }
+  if (sm_test_edge) { QtConceptMapTestEdgeDialog(); }
   //QtTestDisplayConceptMapDialog();
   //QtTestEditConceptMapDialog();
   //QtTestRateConceptMapDialog();
@@ -112,9 +112,9 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
 {
-  //QtConceptMapTestEdgeDialog d;
-  //d.setStyleSheet(this->styleSheet());
-  //this->ShowChild(&d);
+  QtConceptMapTestEdgeDialog d;
+  d.setStyleSheet(this->styleSheet());
+  this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_view_concept_maps_clicked()

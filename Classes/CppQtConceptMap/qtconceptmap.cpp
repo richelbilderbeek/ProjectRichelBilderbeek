@@ -690,12 +690,13 @@ void ribi::cmap::QtConceptMap::RepositionItems()
         const double new_y = p.y();
         //qtedge->GetEdge()->SetX(new_x);
         //qtedge->GetEdge()->SetY(new_y);
-        qtedge->GetEdge()->SetPos(new_x,new_y);
+        qtedge->GetEdge()->GetNode()->SetX(new_x);
+        qtedge->GetEdge()->GetNode()->SetY(new_y);
         #ifndef NDEBUG
         const double epsilon = 0.000001;
         #endif
-        assert(std::abs(qtedge->pos().x() - qtedge->GetEdge()->GetX()) < epsilon);
-        assert(std::abs(qtedge->pos().y() - qtedge->GetEdge()->GetY()) < epsilon);
+        assert(std::abs(qtedge->pos().x() - qtedge->GetEdge()->GetNode()->GetX()) < epsilon);
+        assert(std::abs(qtedge->pos().y() - qtedge->GetEdge()->GetNode()->GetY()) < epsilon);
       }
     );
   }
@@ -744,8 +745,8 @@ void ribi::cmap::QtConceptMap::RepositionItems()
           {
             QtEdge * const qtedge = dynamic_cast<QtEdge *>(node_or_edge);
             assert(qtedge && "Every item is either a Qt node or Qt edge");
-            qtedge->GetEdge()->SetX(new_x);
-            qtedge->GetEdge()->SetY(new_y);
+            qtedge->GetEdge()->GetNode()->SetX(new_x);
+            qtedge->GetEdge()->GetNode()->SetY(new_y);
             //node->setPos(QPointF(new_x,new_y));
           }
           done = false;

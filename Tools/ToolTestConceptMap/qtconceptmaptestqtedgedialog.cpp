@@ -126,22 +126,22 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_competency_currentIndexCha
 {
   const cmap::Competency c = static_cast<cmap::Competency>(index);
   assert(GetEdgeCurrentWay());
-  assert(GetEdgeCurrentWay()->GetConcept());
-  assert(GetEdgeCurrentWay()->GetConcept()->GetExamples());
-  if(GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().empty())
+  assert(GetEdgeCurrentWay()->GetNode());
+  assert(GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples());
+  if(GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().empty())
   {
     TRACE("BREAK");
   }
-  assert(!GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().empty());
-  this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
+  assert(!GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().empty());
+  this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
 void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_edit_name_textChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
-  assert(GetEdgeCurrentWay()->GetConcept());
-  this->GetEdgeCurrentWay()->GetConcept()->SetName(arg1.toStdString());
-  assert(this->GetEdgeCurrentWay()->GetConcept()->GetName() == arg1.toStdString());
+  assert(GetEdgeCurrentWay()->GetNode());
+  this->GetEdgeCurrentWay()->GetNode()->GetConcept()->SetName(arg1.toStdString());
+  assert(this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetName() == arg1.toStdString());
 }
 
 void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
@@ -150,32 +150,32 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_complexity_currentIndexCha
   assert(rating_complexity >= -1);
   assert(rating_complexity <=  2);
   assert(GetEdgeCurrentWay());
-  assert(GetEdgeCurrentWay()->GetConcept());
-  this->GetEdgeCurrentWay()->GetConcept()->SetRatingComplexity(rating_complexity);
+  assert(GetEdgeCurrentWay()->GetNode());
+  this->GetEdgeCurrentWay()->GetNode()->GetConcept()->SetRatingComplexity(rating_complexity);
 }
 
 void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
-  assert(GetEdgeCurrentWay()->GetConcept());
-  this->GetEdgeCurrentWay()->GetConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
+  assert(GetEdgeCurrentWay()->GetNode());
+  this->GetEdgeCurrentWay()->GetNode()->GetConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
 void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
-  assert(GetEdgeCurrentWay()->GetConcept());
-  this->GetEdgeCurrentWay()->GetConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
+  assert(GetEdgeCurrentWay()->GetNode());
+  this->GetEdgeCurrentWay()->GetNode()->GetConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
 void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
   assert(GetEdgeCurrentWay());
-  assert(GetEdgeCurrentWay()->GetConcept());
-  assert(GetEdgeCurrentWay()->GetConcept()->GetExamples());
-  if (this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().size() > 0)
+  assert(GetEdgeCurrentWay()->GetNode());
+  assert(GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples());
+  if (this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().size() > 0)
   {
-    this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
+    this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
   }
   else
   {
@@ -234,12 +234,12 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetEdge(const boost::shared_ptr<r
   assert(node2->GetNode()->GetConcept());
 
 
-  assert(edge->GetConcept());
-  assert(edge->GetConcept()->GetExamples());
+  assert(edge->GetNode());
+  assert(edge->GetNode()->GetConcept()->GetExamples());
 
   //false:
-  assert((edge->GetConcept()->GetExamples()->Get().empty()
-    || !edge->GetConcept()->GetExamples()->Get().empty())
+  assert((edge->GetNode()->GetConcept()->GetExamples()->Get().empty()
+    || !edge->GetNode()->GetConcept()->GetExamples()->Get().empty())
     && "This should be nonsense now:"
     && "Otherwise 'ui->box_competency->addItem(qs)' will fail, due to on_box_competency_currentIndexChanged"
   );
@@ -250,7 +250,7 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetEdge(const boost::shared_ptr<r
   //Create the edge
   {
     assert(m_edge);
-    boost::shared_ptr<QtEditStrategy> concept(new QtEditStrategy(m_edge->GetConcept()));
+    boost::shared_ptr<QtEditStrategy> concept(new QtEditStrategy(m_edge->GetNode()->GetConcept()));
     m_edge_item = new QtEdge(m_edge,concept,node1,node2);
   }
 
@@ -258,7 +258,7 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetEdge(const boost::shared_ptr<r
   //assert(m_edge.use_count() == 2);
   //Concept is used in: m_edge::m_concept, QtDisplayStrategy::m_edge::m_concept and QtConceptMapConcept::m_concept
   assert(m_edge.get() == m_edge_item->GetEdge().get());
-  assert(m_edge->GetConcept().get() == m_edge_item->GetEdge()->GetConcept().get());
+  assert(m_edge->GetNode().get() == m_edge_item->GetEdge()->GetNode().get());
 
   //Add items to the scene
   assert(node1);
@@ -301,35 +301,35 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetEdge(const boost::shared_ptr<r
       assert(ui);
       assert(ui->box_competency);
       assert(GetEdgeCurrentWay());
-      assert(GetEdgeCurrentWay()->GetConcept());
-      assert(GetEdgeCurrentWay()->GetConcept()->GetExamples());
-      if (GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().empty())
+      assert(GetEdgeCurrentWay()->GetNode());
+      assert(GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples());
+      if (GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().empty())
       {
         ui->box_competency->clear();
       }
       else
       {
-        assert(!GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().empty()
+        assert(!GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().empty()
           && "Otherwise 'ui->box_competency->addItem(qs)' will fail, due to on_box_competency_currentIndexChanged");
         ui->box_competency->addItem(qs); //2013-06-22: BUG: std::out_of_range' what():  vector::_M_range_check
       }
     }
   }
 
-  assert(this->GetEdgeCurrentWay()->GetConcept()->GetExamples());
-  assert(!this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().empty()
-    || this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().empty()
+  assert(this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples());
+  assert(!this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().empty()
+    || this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().empty()
   );
 
-  ui->box_complexity->setCurrentIndex(this->GetEdgeCurrentWay()->GetConcept()->GetRatingComplexity() + 1);
-  ui->box_concreteness->setCurrentIndex(this->GetEdgeCurrentWay()->GetConcept()->GetRatingConcreteness() + 1);
-  ui->box_specificity->setCurrentIndex(this->GetEdgeCurrentWay()->GetConcept()->GetRatingSpecificity() + 1);
+  ui->box_complexity->setCurrentIndex(this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetRatingComplexity() + 1);
+  ui->box_concreteness->setCurrentIndex(this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetRatingConcreteness() + 1);
+  ui->box_specificity->setCurrentIndex(this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetRatingSpecificity() + 1);
 
-  ui->edit_name->setText(this->GetEdgeCurrentWay()->GetConcept()->GetName().c_str());
+  ui->edit_name->setText(this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetName().c_str());
 
-  if (GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().size() > 0)
+  if (GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().size() > 0)
   {
-    ui->edit_example_text->setText(this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->GetText().c_str());
+    ui->edit_example_text->setText(this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().at(0)->GetText().c_str());
     ui->edit_example_text->setEnabled(true);
   }
   else
@@ -341,9 +341,9 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetEdge(const boost::shared_ptr<r
   ui->box_arrow_head->setCurrentIndex(this->GetEdgeCurrentWay()->HasHeadArrow());
   ui->box_arrow_tail->setCurrentIndex(this->GetEdgeCurrentWay()->HasTailArrow());
 
-  if (GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().size() > 0)
+  if (GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().size() > 0)
   {
-    ui->box_competency->setCurrentIndex(static_cast<int>(this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
+    ui->box_competency->setCurrentIndex(static_cast<int>(this->GetEdgeCurrentWay()->GetNode()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
     ui->box_competency->setEnabled(true);
   }
   else
@@ -369,18 +369,18 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::Test() noexcept
   assert(d);
   //parent->ShowChild(d.get());
   assert(d->m_edge);
-  assert(d->m_edge->GetConcept());
+  assert(d->m_edge->GetNode());
   assert(d->m_edge_item);
   assert(d->m_edge_item->GetEdge());
   assert(d->m_edge.get() == d->m_edge_item->GetEdge().get());
-  assert(d->m_edge->GetConcept().get() == d->m_edge_item->GetEdge()->GetConcept().get());
+  assert(d->m_edge->GetNode().get() == d->m_edge_item->GetEdge()->GetNode().get());
 
   //Test resizing due to longer text being set
   {
-    const std::string s = d->m_edge->GetConcept()->GetName();
+    const std::string s = d->m_edge->GetNode()->GetConcept()->GetName();
     const double concept_item_width_before = d->m_edge_item->GetDisplayStrategy()->boundingRect().width();
     const double edge_item_width_before = d->m_edge_item->boundingRect().width();
-    d->m_edge->GetConcept()->SetName(s + "******************************");
+    d->m_edge->GetNode()->GetConcept()->SetName(s + "******************************");
     //There must be no discrepancy between these boundingRects
     const double concept_item_width_after = d->m_edge_item->GetDisplayStrategy()->boundingRect().width();
     const double edge_item_width_after = d->m_edge_item->boundingRect().width();
@@ -389,7 +389,7 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::Test() noexcept
   }
   //Test resizing due to shorter text being set
   {
-    d->m_edge->GetConcept()->SetName("1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890");
+    d->m_edge->GetNode()->GetConcept()->SetName("1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890");
 
     const double concept_item_height_before = d->m_edge_item->GetDisplayStrategy()->boundingRect().height();
     const double concept_item_width_before = d->m_edge_item->GetDisplayStrategy()->boundingRect().width();
@@ -398,7 +398,7 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::Test() noexcept
     const double edge_item_width_before = d->m_edge_item->boundingRect().width();
     const double edge_item_area_before = edge_item_width_before * edge_item_height_before;
 
-    d->m_edge->GetConcept()->SetName(std::string(1,'*'));
+    d->m_edge->GetNode()->GetConcept()->SetName(std::string(1,'*'));
 
     const double concept_item_height_after = d->m_edge_item->GetDisplayStrategy()->boundingRect().height();
     const double concept_item_width_after = d->m_edge_item->GetDisplayStrategy()->boundingRect().width();

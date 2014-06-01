@@ -44,8 +44,10 @@ private slots:
 private:
   Ui::QtConceptMapTestEdgeDialog *ui;
 
+  boost::shared_ptr<Node> m_from_node;
   boost::shared_ptr<QtEdgeDialog> m_qtedgedialog_1;
   boost::shared_ptr<QtEdgeDialog> m_qtedgedialog_2;
+  boost::shared_ptr<Node> m_to_node;
 
   //const boost::shared_ptr<Node> m_concept;
   //cmap::QtDisplayStrategy* m_display_concept;

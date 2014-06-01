@@ -126,7 +126,7 @@ ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
 ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
-  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
+  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetNode()->GetConcept()));
   assert(qtconcept);
   QtNode * const from = FindQtNode(edge->GetFrom().get());
   assert(from);
@@ -178,8 +178,8 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   #ifndef NDEBUG
   const double epsilon = 0.000001;
   #endif
-  assert(std::abs(qtedge->pos().x() - edge->GetX()) < epsilon);
-  assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
+  assert(std::abs(qtedge->pos().x() - edge->GetNode()->GetX()) < epsilon);
+  assert(std::abs(qtedge->pos().y() - edge->GetNode()->GetY()) < epsilon);
 
   return qtedge;
 }
@@ -222,16 +222,18 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_fro
   assert(concept);
   const bool head_arrow = true;
   const bool tail_arrow = false;
-  const boost::shared_ptr<ribi::cmap::Node> from = qt_from->GetNode();
+  const boost::shared_ptr<Node> from = qt_from->GetNode();
   assert(from);
-  const boost::shared_ptr<ribi::cmap::Node> to = qt_to->GetNode();
+  const boost::shared_ptr<Node> to = qt_to->GetNode();
   assert(to);
   assert(from != to);
   const boost::shared_ptr<Edge> edge(
     EdgeFactory().Create(
-      concept,
-      (qt_from->pos().x() + qt_to->pos().x()) / 2.0,
-      (qt_from->pos().y() + qt_to->pos().y()) / 2.0,
+      NodeFactory().Create(
+        concept,
+        (qt_from->pos().x() + qt_to->pos().x()) / 2.0,
+        (qt_from->pos().y() + qt_to->pos().y()) / 2.0
+      ),
       from,
       tail_arrow,
       to,
@@ -240,7 +242,7 @@ ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_fro
   );
 
   //Step 1: Create an Edge concept
-  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
+  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetNode()->GetConcept()));
   assert(qtconcept);
 
   QtEdge * const qtedge = new QtEdge(edge,qtconcept,qt_from,qt_to);

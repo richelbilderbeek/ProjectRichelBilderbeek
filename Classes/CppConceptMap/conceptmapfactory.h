@@ -46,31 +46,31 @@ struct ConceptMapFactory
     const std::string& focal_question);
   */
 
-  static const boost::shared_ptr<ConceptMap> Create(
+  static boost::shared_ptr<ConceptMap> Create(
     const std::vector<boost::shared_ptr<Node> >& nodes = {},
     const std::vector<boost::shared_ptr<Edge> >& edges = {});
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<ConceptMap> DeepCopy(
+  static boost::shared_ptr<ConceptMap> DeepCopy(
     const boost::shared_ptr<const ConceptMap> map);
   #endif
 
   ///Obtain a ConceptMap from an XML std::string
-  static const boost::shared_ptr<ConceptMap> FromXml(const std::string& s);
+  static boost::shared_ptr<ConceptMap> FromXml(const std::string& s);
 
   ///Get all the other tests as one vector
-  static const std::vector<boost::shared_ptr<ConceptMap> > GetAllTests();
+  static std::vector<boost::shared_ptr<ConceptMap>> GetAllTests();
 
   ///Get the documented heteromorphous test concept maps
-  static const std::vector<boost::shared_ptr<ConceptMap> > GetHeteromorphousTestConceptMaps();
-  static const boost::shared_ptr<ConceptMap> GetHeteromorphousTestConceptMap(const int index);
+  static std::vector<boost::shared_ptr<ConceptMap>> GetHeteromorphousTestConceptMaps();
+  static boost::shared_ptr<ConceptMap> GetHeteromorphousTestConceptMap(const int index);
 
   ///Get the documented complex homomorphous test concept maps
-  static const std::vector<boost::shared_ptr<ConceptMap> > GetComplexHomomorphousTestConceptMaps();
+  static std::vector<boost::shared_ptr<ConceptMap>> GetComplexHomomorphousTestConceptMaps();
 
   ///Get the documented simple homomorphous test concept maps
-  static const std::vector<boost::shared_ptr<ConceptMap> > GetSimpleHomomorphousTestConceptMaps();
+  static std::vector<boost::shared_ptr<ConceptMap>> GetSimpleHomomorphousTestConceptMaps();
 };
 
 } //~namespace cmap

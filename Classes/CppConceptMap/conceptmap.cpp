@@ -108,7 +108,7 @@ ribi::cmap::ConceptMap::ConceptMap(
   {
     const int x = 0;
     const int y = 0;
-    const boost::shared_ptr<Node> node = cmap::NodeFactory().Create(v[i],x,y);
+    const boost::shared_ptr<Node> node = NodeFactory().Create(v[i],x,y);
     assert(node);
     m_nodes.push_back(node);
   }
@@ -193,7 +193,7 @@ bool ribi::cmap::ConceptMap::CanConstruct(
   return true;
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::ConceptMap::CreateNodes(
+const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::ConceptMap::CreateNodes(
   const std::string& question,
   const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes)
 {
@@ -449,6 +449,15 @@ bool ribi::cmap::ConceptMap::HasSameContent(
     }
     return false;
   }
+  //Function to compare Node smart pointers
+  //typedef boost::shared_ptr<const Node> ConstNodePtr;
+  //const std::function<bool(const boost::shared_ptr<const Node>& lhs,
+  //  const boost::shared_ptr<const Node>& rhs)> node_cmp
+  //  = [](const boost::shared_ptr<const Node>& lhs,
+  //       const boost::shared_ptr<const Node>& rhs)
+  //    {
+  //      return *lhs < *rhs;
+  //    };
   //Function to compare Concept smart pointers
   typedef boost::shared_ptr<const ribi::cmap::Concept> ConstConceptPtr;
   const std::function<bool(const boost::shared_ptr<const ribi::cmap::Concept>& lhs,
@@ -459,13 +468,14 @@ bool ribi::cmap::ConceptMap::HasSameContent(
         return *lhs < *rhs;
       };
 
+
   //Same Concepts
   {
-    const std::vector<boost::shared_ptr<const cmap::Node> > nodes_lhs = lhs.GetNodes();
+    const std::vector<boost::shared_ptr<const Node>> nodes_lhs = lhs.GetNodes();
     std::multiset<ConstConceptPtr,decltype(concept_cmp)> concepts_lhs(concept_cmp);
     std::transform(nodes_lhs.begin(),nodes_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
-      [](boost::shared_ptr<const cmap::Node> node)
+      [](boost::shared_ptr<const Node> node)
       {
         assert(node);
         assert(node->GetConcept());
@@ -474,12 +484,12 @@ bool ribi::cmap::ConceptMap::HasSameContent(
       }
     );
 
-    const std::vector<boost::shared_ptr<const cmap::Node> > nodes_rhs = rhs.GetNodes();
+    const std::vector<boost::shared_ptr<const Node>> nodes_rhs = rhs.GetNodes();
     std::multiset<ConstConceptPtr,decltype(concept_cmp)> concepts_rhs(concept_cmp);
 
     std::transform(nodes_rhs.begin(),nodes_rhs.end(),
       std::inserter(concepts_rhs,concepts_rhs.begin()),
-      [](const boost::shared_ptr<const cmap::Node>& node)
+      [](const boost::shared_ptr<const Node>& node)
       {
         return node->GetConcept();
       }
@@ -499,26 +509,30 @@ bool ribi::cmap::ConceptMap::HasSameContent(
   }
   //Same Edges
   {
-    const std::vector<boost::shared_ptr<const cmap::Edge> > edges_lhs = lhs.GetEdges();
+    const std::vector<boost::shared_ptr<const Edge>> edges_lhs = lhs.GetEdges();
     std::multiset<ConstConceptPtr,decltype(concept_cmp)> concepts_lhs(concept_cmp);
     std::transform(edges_lhs.begin(),edges_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
-      [](const boost::shared_ptr<const cmap::Edge>& edge)
+      [](const boost::shared_ptr<const Edge>& edge)
       {
         assert(edge);
-        assert(edge->GetConcept());
-        return edge->GetConcept();
+        assert(edge->GetNode());
+        assert(edge->GetNode()->GetConcept());
+        return edge->GetNode()->GetConcept();
       }
     );
 
-    const std::vector<boost::shared_ptr<const cmap::Edge> > edges_rhs = rhs.GetEdges();
+    const std::vector<boost::shared_ptr<const Edge>> edges_rhs = rhs.GetEdges();
 
     std::multiset<ConstConceptPtr,decltype(concept_cmp)> concepts_rhs(concept_cmp);
     std::transform(edges_rhs.begin(),edges_rhs.end(),
       std::inserter(concepts_rhs,concepts_rhs.begin()),
       [](const boost::shared_ptr<const cmap::Edge>& edge)
       {
-        return edge->GetConcept();
+        assert(edge);
+        assert(edge->GetNode());
+        assert(edge->GetNode()->GetConcept());
+        return edge->GetNode()->GetConcept();
       }
     );
     if (std::mismatch(concepts_lhs.begin(),concepts_lhs.end(),concepts_rhs.begin(),
@@ -546,7 +560,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
     {
       const auto from_node = lhs.GetEdges()[i]->GetFrom();
       const std::string str_from = from_node->GetConcept()->GetName();
-      const std::string str_mid = lhs.GetEdges()[i]->GetConcept()->GetName();
+      const std::string str_mid = lhs.GetEdges()[i]->GetNode()->GetConcept()->GetName();
       const auto to_node = lhs.GetEdges()[i]->GetTo();
       const std::string str_to = to_node->GetConcept()->GetName();
       //Only if arrow is reversed, reverse the fake edge
@@ -575,7 +589,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
     {
       const auto from_node = rhs.GetEdges()[i]->GetFrom();
       const std::string str_from = from_node->GetConcept()->GetName();
-      const std::string str_mid = rhs.GetEdges()[i]->GetConcept()->GetName();
+      const std::string str_mid = rhs.GetEdges()[i]->GetNode()->GetConcept()->GetName();
       const auto to_node = rhs.GetEdges()[i]->GetTo();
       const std::string str_to = to_node->GetConcept()->GetName();
       //w.push_back(std::make_tuple(str_from,str_mid,str_to));
@@ -680,8 +694,8 @@ std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ribi::cm
   std::stringstream s;
   s << "<concept_map>";
   s << "<nodes>";
-  const std::vector<boost::shared_ptr<const cmap::Node> >& nodes = map->GetNodes();
-  for (const boost::shared_ptr<const cmap::Node> node: nodes)
+  const std::vector<boost::shared_ptr<const Node> >& nodes = map->GetNodes();
+  for (const boost::shared_ptr<const Node> node: nodes)
   {
     s << node->ToXml();
   }
@@ -735,16 +749,16 @@ bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap:
 {
   //Compare nodes
   {
-    const std::vector<boost::shared_ptr<const cmap::Node> > lhs_nodes = lhs.GetNodes();
-    const std::vector<boost::shared_ptr<const cmap::Node> > rhs_nodes = rhs.GetNodes();
+    const std::vector<boost::shared_ptr<const Node> > lhs_nodes = lhs.GetNodes();
+    const std::vector<boost::shared_ptr<const Node> > rhs_nodes = rhs.GetNodes();
     if (lhs_nodes.size() != rhs_nodes.size()) return false;
     if (!
       std::equal(
         std::begin(lhs_nodes),
         std::end(  lhs_nodes),
         std::begin(rhs_nodes),
-        [](const boost::shared_ptr<const cmap::Node> lhs_node,
-           const boost::shared_ptr<const cmap::Node> rhs_node)
+        [](const boost::shared_ptr<const Node> lhs_node,
+           const boost::shared_ptr<const Node> rhs_node)
         {
           return *lhs_node == *rhs_node;
         }

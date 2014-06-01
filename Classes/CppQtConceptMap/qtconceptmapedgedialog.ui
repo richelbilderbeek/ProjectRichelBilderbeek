@@ -6,48 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>208</width>
-    <height>197</height>
+    <width>307</width>
+    <height>68</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>208</width>
-    <height>197</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Edge</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_x">
-     <item>
-      <widget class="QLabel" name="label_x">
-       <property name="text">
-        <string>X</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDoubleSpinBox" name="box_x"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_y">
-     <item>
-      <widget class="QLabel" name="label_y">
-       <property name="text">
-        <string>Y</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDoubleSpinBox" name="box_y"/>
-     </item>
-    </layout>
-   </item>
    <item>
     <widget class="QCheckBox" name="box_head_arrow">
      <property name="text">

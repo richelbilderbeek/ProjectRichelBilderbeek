@@ -35,27 +35,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::Edge::Edge(
-  const boost::shared_ptr<ribi::cmap::Concept> & concept,
-  const double concept_x,
-  const double concept_y,
-  const boost::shared_ptr<ribi::cmap::Node> from,
+  const boost::shared_ptr<Node>& node,
+  //const double concept_x,
+  //const double concept_y,
+  const boost::shared_ptr<Node> from,
   const bool tail_arrow,
-  const boost::shared_ptr<ribi::cmap::Node> to,
+  const boost::shared_ptr<Node> to,
   const bool head_arrow)
-  : m_signal_concept_changed{},
-    m_signal_from_changed{},
+  : m_signal_from_changed{},
     m_signal_head_arrow_changed{},
+    m_signal_node_changed{},
     m_signal_tail_arrow_changed{},
     m_signal_to_changed{},
-    m_signal_x_changed{},
-    m_signal_y_changed{},
-    m_concept(concept),
+//    m_signal_x_changed{},
+//    m_signal_y_changed{},
     m_from(from),
     m_head_arrow(head_arrow),
+    m_node(node),
     m_tail_arrow(tail_arrow),
-    m_to(to),
-    m_x(concept_x),
-    m_y(concept_y)
+    m_to(to)
+//    m_x(concept_x),
+//    m_y(concept_y)
 {
   #ifndef NDEBUG
   Test();
@@ -63,7 +63,7 @@ ribi::cmap::Edge::Edge(
   assert(from);
   assert(to);
   assert(from != to);
-  assert(m_concept);
+  assert(m_node);
 
 
   //Subscribe to all Concept signals to re-emit m_signal_edge_changed
@@ -112,13 +112,26 @@ void ribi::cmap::Edge::EmitSignalEdgeChanged()
 }
 */
 
-void ribi::cmap::Edge::SetConcept(const boost::shared_ptr<Concept>& concept) noexcept
+std::string ribi::cmap::Edge::GetVersion() noexcept
 {
-  assert(concept);
-  if (m_concept != concept)
+  return "1.1";
+}
+
+std::vector<std::string> ribi::cmap::Edge::GetVersionHistory() noexcept
+{
+  return {
+    "2013-xx-xx: Version 1.0: initial version",
+    "2014-06-01: Version 1.1: replaced Concept, X and Y by a Node"
+  };
+}
+
+void ribi::cmap::Edge::SetNode(const boost::shared_ptr<Node>& node) noexcept
+{
+  assert(node);
+  if (m_node != node)
   {
-    m_concept = concept;
-    m_signal_concept_changed(this);
+    m_node = node;
+    m_signal_node_changed(this);
   }
 }
 
@@ -160,6 +173,7 @@ void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to) noexc
   }
 }
 
+/*
 void ribi::cmap::Edge::SetX(const double x) noexcept
 {
   if (m_x != x)
@@ -177,6 +191,7 @@ void ribi::cmap::Edge::SetY(const double y) noexcept
     m_signal_y_changed(this);
   }
 }
+*/
 
 #ifndef NDEBUG
 void ribi::cmap::Edge::Test() noexcept
@@ -225,10 +240,10 @@ std::string ribi::cmap::Edge::ToStr() const noexcept
 {
   std::stringstream s;
   s
-    << GetConcept()->ToStr() << " "
-    << GetX() << " "
-    << GetY() << " "
+    //<< GetX() << " "
+    //<< GetY() << " "
     << HasHeadArrow() << " "
+    << GetNode()->ToStr() << " "
     << HasTailArrow() << " "
     << GetFrom()->ToStr() << " "
     << GetTo()->ToStr()
@@ -243,7 +258,7 @@ std::string ribi::cmap::Edge::ToXml(
 {
   std::stringstream s;
   s << "<edge>";
-  s << edge->GetConcept()->ToXml();
+  s << edge->GetNode()->GetConcept()->ToXml();
 
   const auto from_iter = std::find(nodes.begin(),nodes.end(),edge->GetFrom());
   const auto to_iter = std::find(nodes.begin(),nodes.end(),edge->GetTo());
@@ -261,8 +276,8 @@ std::string ribi::cmap::Edge::ToXml(
   s << "<head_arrow>" << edge->HasHeadArrow() << "</head_arrow>";
   s << "<tail_arrow>" << edge->HasTailArrow() << "</tail_arrow>";
   s << "<to>" << to_index << "</to>";
-  s << "<x>" << edge->GetX() << "</x>";
-  s << "<y>" << edge->GetY() << "</y>";
+  s << "<x>" << edge->GetNode()->GetX() << "</x>";
+  s << "<y>" << edge->GetNode()->GetY() << "</y>";
   s << "</edge>";
 
   const std::string r = s.str();
@@ -283,24 +298,25 @@ bool ribi::cmap::IsConnectedToCenterNode(const boost::shared_ptr<const Edge> edg
 
 bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge& rhs)
 {
-  assert(lhs.GetConcept()); assert(rhs.GetConcept());
+  assert(lhs.GetNode()); assert(rhs.GetNode());
   #ifndef NDEBUG
-  if (*lhs.GetConcept()   != *rhs.GetConcept()) TRACE("Concept differs");
+  if (*lhs.GetNode()   != *rhs.GetNode()) TRACE("Node differs");
   if (*lhs.GetFrom()      != *rhs.GetFrom()) TRACE("From node differs");
   if (*lhs.GetTo()        != *rhs.GetTo()) TRACE("To node differs");
-  if ( lhs.GetX()         != rhs.GetX()) TRACE("X differs");
-  if ( lhs.GetY()         != rhs.GetY()) TRACE("Y differs");
+  //if ( lhs.GetX()         != rhs.GetX()) TRACE("X differs");
+  //if ( lhs.GetY()         != rhs.GetY()) TRACE("Y differs");
   if ( lhs.HasHeadArrow() != rhs.HasHeadArrow()) TRACE("Has head arrow differs");
   if ( lhs.HasTailArrow() != rhs.HasTailArrow()) TRACE("Has tail arrow differs");
   #endif
   return
-       *lhs.GetConcept()   == *rhs.GetConcept()
+       *lhs.GetNode()   == *rhs.GetNode()
     && *lhs.GetFrom()      == *rhs.GetFrom()
     && *lhs.GetTo()        == *rhs.GetTo()
-    &&  lhs.GetX()         == rhs.GetX()
-    &&  lhs.GetY()         == rhs.GetY()
+    //&&  lhs.GetX()         == rhs.GetX()
+    //&&  lhs.GetY()         == rhs.GetY()
     &&  lhs.HasHeadArrow() == rhs.HasHeadArrow()
-    &&  lhs.HasTailArrow() == rhs.HasTailArrow();
+    &&  lhs.HasTailArrow() == rhs.HasTailArrow()
+  ;
 }
 
 bool ribi::cmap::operator!=(const cmap::Edge& lhs, const cmap::Edge& rhs)

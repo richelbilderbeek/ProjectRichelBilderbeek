@@ -13,11 +13,14 @@
 #include <QLabel>
 
 #include "conceptmapcompetencies.h"
+#include "conceptmapedgefactory.h"
+#include "conceptmapedge.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "conceptmapexample.h"
-#include "conceptmapexamples.h"x
+#include "conceptmapexamples.h"
 #include "qtconceptmapnodedialog.h"
+#include "qtconceptmapedgedialog.h"
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
@@ -29,8 +32,10 @@
 ribi::cmap::QtConceptMapTestEdgeDialog::QtConceptMapTestEdgeDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtConceptMapTestEdgeDialog),
-    m_qtedgedialog_1{new QtEdgeDialog},
-    m_qtedgedialog_2{new QtEdgeDialog}
+    m_from_node(NodeFactory().GetTest(0)),
+    m_qtedgedialog_1(new QtEdgeDialog),
+    m_qtedgedialog_2(new QtEdgeDialog),
+    m_to_node(NodeFactory().GetTest(0))
     //m_concept(cmap::ConceptFactory().GetTests().at(1)),
     //m_display_concept(nullptr),
     //m_edit_concept(nullptr),
@@ -131,7 +136,7 @@ void ribi::cmap::QtConceptMapTestEdgeDialog::on_button_load_clicked()
   const int i = ui->box_test->value();
   assert(i >= 0);
   assert(i < EdgeFactory().GetNumberOfTests());
-  const auto edge = EdgeFactory().GetTest(i);
+  const auto edge = EdgeFactory().GetTest(i,m_from_node,m_to_node);
   m_qtedgedialog_1->SetEdge(edge);
   m_qtedgedialog_2->SetEdge(edge);
   assert(m_qtedgedialog_1->GetEdge() == edge);

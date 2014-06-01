@@ -35,15 +35,16 @@ namespace cmap {
 
 struct EdgeFactory
 {
-  const boost::shared_ptr<Edge> Create(
+  boost::shared_ptr<Edge> Create(
     const boost::shared_ptr<Node> from,
     const boost::shared_ptr<Node> to
   ) const noexcept;
 
-  const boost::shared_ptr<Edge> Create(
-    const boost::shared_ptr<Concept>& concept,
-    const double concept_x,
-    const double concept_y,
+  boost::shared_ptr<Edge> Create(
+    const boost::shared_ptr<Node>& node,
+    //const boost::shared_ptr<Concept>& concept,
+    //const double concept_x,
+    //const double concept_y,
     const boost::shared_ptr<Node> from,
     const bool tail_arrow,
     const boost::shared_ptr<Node> to,
@@ -53,7 +54,7 @@ struct EdgeFactory
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
   ///The nodes need to be the deepcopied ones
-  const boost::shared_ptr<Edge> DeepCopy(
+  boost::shared_ptr<Edge> DeepCopy(
     const boost::shared_ptr<const cmap::Edge> edge,
     const boost::shared_ptr<Node> from,
     const boost::shared_ptr<Node> to
@@ -62,13 +63,22 @@ struct EdgeFactory
 
   ///Obtain an Edge from an XML std::string
   ///You need the real nodes to connect the edge to
-  const boost::shared_ptr<Edge> FromXml(
+  boost::shared_ptr<Edge> FromXml(
     const std::string& s,
     const std::vector<boost::shared_ptr<Node> >& nodes
   ) const noexcept;
 
+
+  int GetNumberOfTests() const noexcept;
+
+  boost::shared_ptr<Edge> GetTest(
+    const int index,
+    const boost::shared_ptr<Node> from,
+    const boost::shared_ptr<Node> to
+ ) const noexcept;
+
   ///Get testing edges connecting the two supplied nodes
-  const std::vector<boost::shared_ptr<Edge> > GetTests(
+  std::vector<boost::shared_ptr<Edge>> GetTests(
     const boost::shared_ptr<Node> from,
     const boost::shared_ptr<Node> to
   ) const noexcept;

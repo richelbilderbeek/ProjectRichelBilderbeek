@@ -38,13 +38,14 @@ namespace cmap {
 struct EdgeFactory;
 
 ///An Edge is the GUI-independent part of the edges used in QtConceptMap.
-///An Edge goes from one Node to another, which must a different Node
+///An Edge goes from one Node to another, which must a different Node,
+/// at the center of the Edge is a Node
 struct Edge : public Element
 {
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
-  boost::shared_ptr<const Concept> GetConcept() const noexcept { return m_concept; }
-  boost::shared_ptr<      Concept> GetConcept()       noexcept { return m_concept; }
+  boost::shared_ptr<const Node> GetNode() const noexcept { return m_node; }
+  boost::shared_ptr<      Node> GetNode()       noexcept { return m_node; }
 
   ///Get the Node this edge originates from
   boost::shared_ptr<const Node> GetFrom() const noexcept { return m_from; }
@@ -54,23 +55,25 @@ struct Edge : public Element
   boost::shared_ptr<const Node> GetTo() const noexcept { return m_to; }
   boost::shared_ptr<      Node> GetTo()       noexcept { return m_to; }
 
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
   ///Get the x coordinat
-  double GetX() const noexcept { return m_x; }
+  //A Node has an X coordinat
+  //double GetX() const noexcept { return m_x; }
 
   ///Get the y coordinat
-  double GetY() const noexcept { return m_y; }
+  //A Node has a Y coordinat
+  //double GetY() const noexcept { return m_y; }
 
   ///Does the edge have an arrow at the head?
   bool HasHeadArrow() const noexcept { return m_head_arrow; }
 
   //Similar to operator==, except that the coordinats are not checked
-  static bool HasSameContent(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) noexcept;
+  //static bool HasSameContent(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) noexcept;
 
   ///Does the edge have an arrow at the tail?
   bool HasTailArrow() const noexcept { return m_tail_arrow; }
-
-  ///Set the concept
-  void SetConcept(const boost::shared_ptr<Concept>& concept) noexcept;
 
   ///Set the Node index this edge originates from
   void SetFrom(const boost::shared_ptr<Node> from) noexcept;
@@ -78,8 +81,11 @@ struct Edge : public Element
   ///Set if the head has an arrow
   void SetHeadArrow(const bool has_head_arrow) noexcept;
 
+  ///Set the center Node
+  void SetNode(const boost::shared_ptr<Node>& node) noexcept;
+
   ///Set the coordinat of the concept at the center of the node
-  void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
+  //void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
 
   ///Set if the tail has an arrow
   void SetTailArrow(const bool has_tail_arrow) noexcept;
@@ -88,10 +94,12 @@ struct Edge : public Element
   void SetTo(const boost::shared_ptr<Node> to) noexcept;
 
   ///Set the x coordinat of the concept at the center of the node
-  void SetX(const double x) noexcept;
+  //A Node has an X coordinat
+  //void SetX(const double x) noexcept;
 
   ///Set the y coordinat of the concept at the center of the node
-  void SetY(const double y) noexcept;
+  //A Node has a Y coordinat
+  //void SetY(const double y) noexcept;
 
   std::string ToStr() const noexcept;
 
@@ -104,24 +112,25 @@ struct Edge : public Element
     ) noexcept;
 
   ///Emitted when an Edge attribute has changed
-  boost::signals2::signal<void (Edge*)> m_signal_concept_changed;
   boost::signals2::signal<void (Edge*)> m_signal_from_changed;
   boost::signals2::signal<void (Edge*)> m_signal_head_arrow_changed;
+  boost::signals2::signal<void (Edge*)> m_signal_node_changed;
   boost::signals2::signal<void (Edge*)> m_signal_tail_arrow_changed;
   boost::signals2::signal<void (Edge*)> m_signal_to_changed;
-  boost::signals2::signal<void (Edge*)> m_signal_x_changed;
-  boost::signals2::signal<void (Edge*)> m_signal_y_changed;
+  //boost::signals2::signal<void (Edge*)> m_signal_x_changed;
+  //boost::signals2::signal<void (Edge*)> m_signal_y_changed;
 
   private:
 
-  ///The Concept on the Edge
-  boost::shared_ptr<Concept> m_concept;
 
   ///The Node this edge originates from
   boost::shared_ptr<Node> m_from;
 
   ///Is there an arrowhead at the 'to' node?
   bool m_head_arrow;
+
+  ///The Node on the Edge
+  boost::shared_ptr<Node> m_node;
 
   ///Is there an arrowhead at the 'from' node?
   bool m_tail_arrow;
@@ -130,10 +139,10 @@ struct Edge : public Element
   boost::shared_ptr<Node> m_to;
 
   ///The x-coordinat
-  double m_x;
+  //double m_x;
 
   ///The y-coordinat
-  double m_y;
+  //double m_y;
 
   //void EmitSignalEdgeChanged();
 
@@ -152,13 +161,15 @@ struct Edge : public Element
   ///Block constructor, except for EdgeFactory
   friend EdgeFactory;
   Edge(
-    const boost::shared_ptr<Concept> & concept,
-    const double concept_x,
-    const double concept_y,
+    const boost::shared_ptr<Node>& node,
+    //const boost::shared_ptr<Concept> & concept,
+    //const double concept_x,
+    //const double concept_y,
     const boost::shared_ptr<Node> from,
     const bool tail_arrow,
     const boost::shared_ptr<Node> to,
-    const bool head_arrow);
+    const bool head_arrow
+  );
 
 };
 

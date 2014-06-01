@@ -75,7 +75,7 @@ struct QtEdge : public QtConceptMapElement
 
   void SetConcept(const boost::shared_ptr<Concept> concept);
 
-  void SetFrom(QtNode * const from) noexcept;
+  void SetFrom(QtNode * const from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
 
   void SetHasHeadArrow(const bool has_head_arrow) noexcept;
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;
@@ -124,13 +124,13 @@ private:
   QtNode * m_to;
 
   ///Called whenever the edge changes
-  void OnConceptChanged(Edge * const edge) noexcept;
   void OnFromChanged(Edge * const edge) noexcept;
   void OnHeadArrowChanged(Edge * const edge) noexcept;
+  void OnNodeChanged(Edge * const edge) noexcept;
   void OnTailArrowChanged(Edge * const edge) noexcept;
   void OnToChanged(Edge * const edge) noexcept;
-  void OnXchanged(Edge * const edge) noexcept;
-  void OnYchanged(Edge * const edge) noexcept;
+  //void OnXchanged(Edge * const edge) noexcept;
+  //void OnYchanged(Edge * const edge) noexcept;
 
   ///Called whenever the arrow updates
   void OnItemHasUpdated();

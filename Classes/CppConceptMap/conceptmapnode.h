@@ -118,6 +118,7 @@ struct Node : public Element
 
 bool operator==(const Node& lhs, const Node& rhs) noexcept;
 bool operator!=(const Node& lhs, const Node& rhs) noexcept;
+bool operator<(const Node& lhs, const Node& rhs) noexcept;
 
 } //~namespace cmap
 

@@ -69,7 +69,7 @@ std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTests() n
   return result;
 }
 
-bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const cmap::Node>& lhs, const boost::shared_ptr<const cmap::Node>& rhs) noexcept
+bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs) noexcept
 {
   assert(lhs);
   assert(rhs);
@@ -274,7 +274,7 @@ std::string ribi::cmap::Node::ToXml() const noexcept
   return r;
 }
 
-bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs) noexcept
+bool ribi::cmap::operator==(const Node& lhs, const Node& rhs) noexcept
 {
   assert(lhs.GetConcept());
   assert(rhs.GetConcept());
@@ -284,7 +284,18 @@ bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs) noexce
     && lhs.GetY() == rhs.GetY();
 }
 
-bool ribi::cmap::operator!=(const cmap::Node& lhs, const cmap::Node& rhs) noexcept
+bool ribi::cmap::operator!=(const Node& lhs, const Node& rhs) noexcept
 {
   return !(lhs == rhs);
+}
+
+bool ribi::cmap::operator<(const Node& lhs, const Node& rhs) noexcept
+{
+  assert(lhs.GetConcept());
+  assert(rhs.GetConcept());
+  if (lhs.GetX() < rhs.GetX()) return true;
+  if (lhs.GetX() > rhs.GetX()) return false;
+  if (lhs.GetY() < rhs.GetY()) return true;
+  if (lhs.GetY() > rhs.GetY()) return false;
+  return *lhs.GetConcept() < *rhs.GetConcept();
 }

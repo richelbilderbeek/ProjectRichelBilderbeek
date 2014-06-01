@@ -51,8 +51,10 @@ public:
   boost::shared_ptr<Edge> GetEdge() const noexcept { return m_edge; }
 
 private slots:
-  void on_box_x_valueChanged(double arg1);
-  void on_box_y_valueChanged(double arg1);
+
+  void on_box_head_arrow_stateChanged(int arg1);
+
+  void on_box_tail_arrow_stateChanged(int arg1);
 
 private:
   Ui::QtEdgeDialog *ui;
@@ -60,14 +62,16 @@ private:
   ///The Edge to work on
   boost::shared_ptr<Edge> m_edge;
 
-  boost::shared_ptr<QtConceptDialog> m_qtconceptdialog;
+  boost::shared_ptr<QtNodeDialog> m_qtnodedialog; //The center node
   boost::shared_ptr<QtNodeDialog> m_qtnodedialog_from;
   boost::shared_ptr<QtNodeDialog> m_qtnodedialog_to;
 
   //edge is non-const, as its displayal by this dialog renders it editable
-  void OnConceptChanged(Edge * const edge);
-  void OnXchanged(Edge * const edge);
-  void OnYchanged(Edge * const edge);
+  void OnFromChanged(Edge * const edge);
+  void OnHeadArrowChanged(Edge * const edge);
+  void OnNodeChanged(Edge * const edge);
+  void OnTailArrowChanged(Edge * const edge);
+  void OnToChanged(Edge * const edge);
 
   #ifndef NDEBUG
   static void Test() noexcept;

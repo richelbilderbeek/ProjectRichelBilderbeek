@@ -36,6 +36,7 @@ struct QtConceptMapWidget;
 struct QtDisplayConceptMap;
 struct QtDisplayStrategy;
 struct QtEdge;
+struct QtEdgeDialog;
 struct QtEditConceptMap;
 struct QtEditStrategy;
 struct QtExampleDialog;

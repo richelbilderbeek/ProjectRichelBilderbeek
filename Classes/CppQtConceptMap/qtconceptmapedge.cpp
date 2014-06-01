@@ -105,22 +105,22 @@ ribi::cmap::QtEdge::QtEdge(
   m_display_strategy->SetTextPen(QPen(QColor(0,0,0)));
 
   //Name
-  this->SetName(edge->GetConcept()->GetName());
-  this->GetDisplayStrategy()->SetName(edge->GetConcept()->GetName());
+  GetEdge()->GetNode()->GetConcept()->SetName(edge->GetNode()->GetConcept()->GetName());
+  this->GetDisplayStrategy()->SetName(edge->GetNode()->GetConcept()->GetName());
   //assert(m_edge->GetConcept()->GetName() == GetName()
   //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
   //    && "Names/texts must be in sync");
 
 
   //Position
-  this->SetPos(edge->GetX(),edge->GetY());
-  this->GetDisplayStrategy()->SetPos(edge->GetX(),edge->GetY());
+  this->SetPos(edge->GetNode()->GetX(),edge->GetNode()->GetY());
+  this->GetDisplayStrategy()->SetPos(edge->GetNode()->GetX(),edge->GetNode()->GetY());
 
   #ifndef NDEBUG
   const double epsilon = 0.000001;
-  assert(std::abs(this->pos().x() - GetEdge()->GetX()) < epsilon);
+  assert(std::abs(this->pos().x() - GetEdge()->GetNode()->GetX()) < epsilon);
   assert(std::abs(this->pos().x() - this->GetDisplayStrategy()->x()) < epsilon);
-  assert(std::abs(this->pos().y() - GetEdge()->GetY()) < epsilon);
+  assert(std::abs(this->pos().y() - GetEdge()->GetNode()->GetY()) < epsilon);
   assert(std::abs(this->pos().y() - this->GetDisplayStrategy()->y()) < epsilon);
   #endif
 
@@ -141,9 +141,9 @@ ribi::cmap::QtEdge::QtEdge(
   );
 
   //Edge
-  m_edge->m_signal_concept_changed.connect(
+  m_edge->m_signal_node_changed.connect(
     boost::bind(
-      &ribi::cmap::QtEdge::OnConceptChanged,this,boost::lambda::_1)
+      &ribi::cmap::QtEdge::OnNodeChanged,this,boost::lambda::_1)
   );
   m_edge->m_signal_from_changed.connect(
     boost::bind(
@@ -161,14 +161,14 @@ ribi::cmap::QtEdge::QtEdge(
     boost::bind(
       &ribi::cmap::QtEdge::OnToChanged,this,boost::lambda::_1)
   );
-  m_edge->m_signal_x_changed.connect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnXchanged,this,boost::lambda::_1)
-  );
-  m_edge->m_signal_y_changed.connect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnYchanged,this,boost::lambda::_1)
-  );
+  //m_edge->m_signal_x_changed.connect(
+  //  boost::bind(
+  //    &ribi::cmap::QtEdge::OnXchanged,this,boost::lambda::_1)
+  //);
+  //m_edge->m_signal_y_changed.connect(
+  //  boost::bind(
+  //    &ribi::cmap::QtEdge::OnYchanged,this,boost::lambda::_1)
+  //);
 
   //DisplayStrategy
   m_display_strategy->m_signal_item_has_updated.connect(
@@ -228,10 +228,6 @@ ribi::cmap::QtEdge::~QtEdge()
   );
 
   //Edge
-  m_edge->m_signal_concept_changed.disconnect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnConceptChanged,this,boost::lambda::_1)
-  );
   m_edge->m_signal_from_changed.disconnect(
     boost::bind(
       &ribi::cmap::QtEdge::OnFromChanged,this,boost::lambda::_1)
@@ -239,6 +235,10 @@ ribi::cmap::QtEdge::~QtEdge()
   m_edge->m_signal_head_arrow_changed.disconnect(
     boost::bind(
       &ribi::cmap::QtEdge::OnHeadArrowChanged,this,boost::lambda::_1)
+  );
+  m_edge->m_signal_node_changed.disconnect(
+    boost::bind(
+      &ribi::cmap::QtEdge::OnNodeChanged,this,boost::lambda::_1)
   );
   m_edge->m_signal_tail_arrow_changed.disconnect(
     boost::bind(
@@ -248,14 +248,14 @@ ribi::cmap::QtEdge::~QtEdge()
     boost::bind(
       &ribi::cmap::QtEdge::OnToChanged,this,boost::lambda::_1)
   );
-  m_edge->m_signal_x_changed.disconnect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnXchanged,this,boost::lambda::_1)
-  );
-  m_edge->m_signal_y_changed.disconnect(
-    boost::bind(
-      &ribi::cmap::QtEdge::OnYchanged,this,boost::lambda::_1)
-  );
+  //m_edge->m_signal_x_changed.disconnect(
+  //  boost::bind(
+  //    &ribi::cmap::QtEdge::OnXchanged,this,boost::lambda::_1)
+  //);
+  //m_edge->m_signal_y_changed.disconnect(
+  //  boost::bind(
+  //    &ribi::cmap::QtEdge::OnYchanged,this,boost::lambda::_1)
+  //);
 
   //DisplayStrategy
   m_display_strategy->m_signal_item_has_updated.disconnect(
@@ -331,21 +331,21 @@ void ribi::cmap::QtEdge::EnableAll()
 
 boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() const noexcept
 {
-  const boost::shared_ptr<const ribi::cmap::Concept> p = m_edge->GetConcept();
+  const boost::shared_ptr<const Concept> p = m_edge->GetNode()->GetConcept();
   assert(p);
   return p;
 }
 
 boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() noexcept
 {
-  const boost::shared_ptr<ribi::cmap::Concept> p = m_edge->GetConcept();
+  const boost::shared_ptr<Concept> p = m_edge->GetNode()->GetConcept();
   assert(p);
   return p;
 }
 
 std::string ribi::cmap::QtEdge::GetName() const noexcept
 {
-  return m_edge->GetConcept()->GetName();
+  return m_edge->GetNode()->GetConcept()->GetName();
 }
 
 void ribi::cmap::QtEdge::focusInEvent(QFocusEvent*)
@@ -429,49 +429,54 @@ void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event)
   QtConceptMapElement::mousePressEvent(event);
 }
 
-void ribi::cmap::QtEdge::OnConceptChanged(Edge * const edge) noexcept
-{
-  SetConcept(edge->GetConcept());
-  assert(edge->GetConcept() == this->GetConcept());
-}
 
 
 void ribi::cmap::QtEdge::OnFromChanged(Edge * const edge) noexcept
 {
   this->GetFrom()->SetConcept(edge->GetFrom()->GetConcept());
-  //SetFrom(edge->GetFrom());
-  assert(edge->GetFrom() == this->GetFrom());
+  assert(edge->GetFrom() == this->GetFrom()->GetNode());
 }
 
 void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
 {
   SetHasHeadArrow(edge->HasHeadArrow());
-  assert(edge->HasHeadArrow() == this->GetArrow->HasHead());
+  assert(edge->HasHeadArrow() == this->GetArrow()->HasHead());
+}
+
+void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
+{
+  this->SetConcept(edge->GetNode()->GetConcept());
+  this->SetX(edge->GetNode()->GetX());
+  this->SetY(edge->GetNode()->GetY());
+  //SetNode(edge->GetNode());
+  assert(edge->GetNode()->GetConcept() == this->GetConcept());
 }
 
 void ribi::cmap::QtEdge::OnTailArrowChanged(Edge * const edge) noexcept
 {
   SetHasTailArrow(edge->HasTailArrow());
-  assert(edge->HasTailArrow() == this->GetArrow->HasTail());
+  assert(edge->HasTailArrow() == this->GetArrow()->HasTail());
 }
 
 void ribi::cmap::QtEdge::OnToChanged(Edge * const edge) noexcept
 {
-  SetTo(edge->GetTo());
-  assert(edge->GetTo() == this->GetTo());
+  this->GetTo()->SetConcept(edge->GetTo()->GetConcept());
+  assert(edge->GetTo() == this->GetTo()->GetNode());
 }
 
+/*
 void ribi::cmap::QtEdge::OnXchanged(Edge * const edge) noexcept
 {
   SetX(edge->GetX());
   assert(edge->GetX() == this->GetX());
 }
 
-void ribi::cmap::QtEdge::OnXchanged(Edge * const edge) noexcept
+void ribi::cmap::QtEdge::OnYchanged(Edge * const edge) noexcept
 {
   SetY(edge->GetY());
   assert(edge->GetY() == this->GetY());
 }
+*/
 
 /*
 void ribi::cmap::QtEdge::OnEdgeChanged(Edge * const edge) noexcept
@@ -514,8 +519,8 @@ void ribi::cmap::QtEdge::OnItemHasUpdated()
 {
   this->SetName(m_display_strategy->GetName());
 
-  assert(m_edge->GetConcept()->GetName() == GetName()
-      && m_edge->GetConcept()->GetName() == m_display_strategy->GetName()
+  assert(m_edge->GetNode()->GetConcept()->GetName() == GetName()
+      && m_edge->GetNode()->GetConcept()->GetName() == m_display_strategy->GetName()
       && "Names/texts must be in sync after");
 
   //this->setRect(QtConceptMapItem::boundingRect());
@@ -576,7 +581,7 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
 
 void ribi::cmap::QtEdge::SetConcept(const boost::shared_ptr<Concept> concept) //NEW 2013-01-07
 {
-  this->m_edge->SetConcept(concept);
+  this->m_edge->GetNode()->SetConcept(concept);
 }
 
 void ribi::cmap::QtEdge::SetFrom(QtNode * const from) noexcept
@@ -608,7 +613,7 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
 
 void ribi::cmap::QtEdge::SetName(const std::string& name) noexcept
 {
-  m_edge->GetConcept()->SetName(name);
+  m_edge->GetNode()->GetConcept()->SetName(name);
 }
 
 void ribi::cmap::QtEdge::SetTo(QtNode * const to) noexcept
@@ -619,43 +624,43 @@ void ribi::cmap::QtEdge::SetTo(QtNode * const to) noexcept
 void ribi::cmap::QtEdge::SetX(const double x) noexcept
 {
   if ( x != this->pos().x()
-    || x != this->GetEdge()->GetX()
+    || x != this->GetEdge()->GetNode()->GetX()
     || x != this->GetDisplayStrategy()->pos().x()
   )
   {
     this->setX(x);
-    this->GetEdge()->SetX(x);
+    this->GetEdge()->GetNode()->SetX(x);
     this->GetDisplayStrategy()->setX(x);
-    if (!(std::abs(x - this->GetEdge()->GetX()) < 0.000001))
+    if (!(std::abs(x - this->GetEdge()->GetNode()->GetX()) < 0.000001))
     {
       TRACE(x);
-      TRACE(GetEdge()->GetX());
+      TRACE(GetEdge()->GetNode()->GetX());
     }
     assert(std::abs(x - this->pos().x()) < 0.000001);
-    assert(std::abs(x - this->GetEdge()->GetX()) < 0.000001);
+    assert(std::abs(x - this->GetEdge()->GetNode()->GetX()) < 0.000001);
     assert(std::abs(x - this->GetDisplayStrategy()->pos().x()) < 0.000001);
   }
   assert(std::abs(x - this->pos().x()) < 0.000001);
-  assert(std::abs(x - this->GetEdge()->GetX()) < 0.000001);
+  assert(std::abs(x - this->GetEdge()->GetNode()->GetX()) < 0.000001);
   assert(std::abs(x - this->GetDisplayStrategy()->pos().x()) < 0.000001);
 }
 
 void ribi::cmap::QtEdge::SetY(const double y) noexcept
 {
   if ( y != this->pos().y()
-    || y != this->GetEdge()->GetY()
+    || y != this->GetEdge()->GetNode()->GetY()
     || y != this->GetDisplayStrategy()->pos().y()
     )
   {
     this->setY(y);
-    this->GetEdge()->SetY(y);
+    this->GetEdge()->GetNode()->SetY(y);
     this->GetDisplayStrategy()->setY(y);
     assert(std::abs(y - this->pos().y()) < 0.000001);
-    assert(std::abs(y - this->GetEdge()->GetY()) < 0.000001);
+    assert(std::abs(y - this->GetEdge()->GetNode()->GetY()) < 0.000001);
     assert(std::abs(y - this->GetDisplayStrategy()->pos().y()) < 0.000001);
   }
   assert(std::abs(y - this->pos().y()) < 0.000001);
-  assert(std::abs(y - this->GetEdge()->GetY()) < 0.000001);
+  assert(std::abs(y - this->GetEdge()->GetNode()->GetY()) < 0.000001);
   assert(std::abs(y - this->GetDisplayStrategy()->pos().y()) < 0.000001);
 }
 
@@ -687,15 +692,15 @@ void ribi::cmap::QtEdge::Test() noexcept
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory().GetTests(node_from,node_to);
       boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));
+      boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetNode()->GetConcept()));
       boost::shared_ptr<QtEdge> qtedge(
         new QtEdge(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       const double epsilon = 0.000001;
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
-      assert(qtconcept_item->GetConcept() == edge->GetConcept());
+      assert(qtconcept_item->GetConcept() == edge->GetNode()->GetConcept());
       assert(edge == qtedge->GetEdge());
       {
-        const double edge_x = edge->GetX();
+        const double edge_x = edge->GetNode()->GetX();
         const double qtedge_x = qtedge->pos().x();
         const double qtconcept_item_x = qtedge->GetDisplayStrategy()->pos().x();
         if(!(edge_x == qtedge_x && qtedge_x == qtconcept_item_x))
@@ -706,7 +711,7 @@ void ribi::cmap::QtEdge::Test() noexcept
         }
         assert(edge_x == qtedge_x && qtedge_x == qtconcept_item_x
          && "X coordinat must be in sync");
-        const double edge_y = edge->GetY();
+        const double edge_y = edge->GetNode()->GetY();
         const double qtedge_y = qtedge->pos().y();
         const double qtconcept_item_y = qtedge->GetDisplayStrategy()->pos().y();
         assert(edge_y == qtedge_y && qtedge_y == qtconcept_item_y
@@ -719,10 +724,10 @@ void ribi::cmap::QtEdge::Test() noexcept
         const double new_y = e;
 
         //Change via edge
-        edge->SetX(new_x);
-        edge->SetY(new_y);
+        edge->GetNode()->SetX(new_x);
+        edge->GetNode()->SetY(new_y);
 
-        const double edge_x = edge->GetX();
+        const double edge_x = edge->GetNode()->GetX();
         const double qtedge_x = qtedge->pos().x();
         const double qtconcept_item_x = qtedge->GetDisplayStrategy()->pos().x();
         if(!(std::abs(new_x - edge_x) < epsilon
@@ -740,7 +745,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && std::abs(new_x - qtconcept_item_x) < epsilon
          && std::abs(new_x - qtedge_x) < epsilon
          && "X coordinat must be in sync");
-        const double edge_y = edge->GetY();
+        const double edge_y = edge->GetNode()->GetY();
         const double qtedge_y = qtedge->pos().y();
         const double qtconcept_item_y = qtedge->GetDisplayStrategy()->pos().y();
         assert(edge_y == qtedge_y && qtedge_y == qtconcept_item_y
@@ -753,7 +758,7 @@ void ribi::cmap::QtEdge::Test() noexcept
         //Change via Qt edge
         qtedge->SetPos(new_x,new_y);
 
-        const double edge_x = edge->GetX();
+        const double edge_x = edge->GetNode()->GetX();
         const double qtedge_x = qtedge->pos().x();
         const double qtconcept_item_x = qtedge->GetDisplayStrategy()->pos().x();
         assert(
@@ -761,7 +766,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && std::abs(new_x - qtconcept_item_x) < epsilon
          && std::abs(new_x - qtedge_x) < epsilon
          && "X coordinat must be in sync");
-        const double edge_y = edge->GetY();
+        const double edge_y = edge->GetNode()->GetY();
         const double qtedge_y = qtedge->pos().y();
         const double qtconcept_item_y = qtedge->GetDisplayStrategy()->pos().y();
         assert(
@@ -777,7 +782,7 @@ void ribi::cmap::QtEdge::Test() noexcept
         //Change via Qt concept item
         qtedge->GetDisplayStrategy()->SetPos(new_x,new_y);
 
-        const double edge_x = edge->GetX();
+        const double edge_x = edge->GetNode()->GetX();
         const double qtedge_x = qtedge->pos().x();
         const double qtconcept_item_x = qtedge->GetDisplayStrategy()->pos().x();
         assert(
@@ -785,7 +790,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && std::abs(new_x - qtconcept_item_x) < epsilon
          && std::abs(new_x - qtedge_x) < epsilon
          && "X coordinat must be in sync");
-        const double edge_y = edge->GetY();
+        const double edge_y = edge->GetNode()->GetY();
         const double qtedge_y = qtedge->pos().y();
         const double qtconcept_item_y = qtedge->GetDisplayStrategy()->pos().y();
         assert(
@@ -810,14 +815,14 @@ void ribi::cmap::QtEdge::Test() noexcept
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory().GetTests(node_from,node_to);
       boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));
+      boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetNode()->GetConcept()));
       boost::shared_ptr<QtEdge> qtedge(
         new QtEdge(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
-      assert(qtconcept_item->GetConcept() == edge->GetConcept());
+      assert(qtconcept_item->GetConcept() == edge->GetNode()->GetConcept());
       assert(edge == qtedge->GetEdge());
       {
-        const std::string edge_name = edge->GetConcept()->GetName();
+        const std::string edge_name = edge->GetNode()->GetConcept()->GetName();
         const std::string qtedge_name = qtedge->GetName();
         const std::string qtconcept_text = qtconcept_item->GetName();
 
@@ -831,16 +836,16 @@ void ribi::cmap::QtEdge::Test() noexcept
          && "Names/texts must be in sync");
       }
       {
-        const std::string edge_name_before = edge->GetConcept()->GetName();
+        const std::string edge_name_before = edge->GetNode()->GetConcept()->GetName();
         const std::string qtedge_name_before = qtedge->GetName();
         const std::string qtconcept_text_before = qtconcept_item->GetName();
         assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
          && "Names/texts must be in sync");
 
         //Change via edge's concept
-        edge->GetConcept()->SetName( edge->GetConcept()->GetName() + " made longer");
+        edge->GetNode()->GetConcept()->SetName( edge->GetNode()->GetConcept()->GetName() + " made longer");
 
-        const std::string edge_name_after = edge->GetConcept()->GetName();
+        const std::string edge_name_after = edge->GetNode()->GetConcept()->GetName();
         const std::string qtedge_name_after = qtedge->GetName();
         const std::string qtconcept_text_after = qtconcept_item->GetName();
 
@@ -848,7 +853,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && "Names/texts must be in sync");
       }
       {
-        const std::string edge_name_before = edge->GetConcept()->GetName();
+        const std::string edge_name_before = edge->GetNode()->GetConcept()->GetName();
         const std::string qtedge_name_before = qtedge->GetName();
         const std::string qtconcept_text_before = qtconcept_item->GetName();
         assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
@@ -857,7 +862,7 @@ void ribi::cmap::QtEdge::Test() noexcept
         //Change via Qt edge
         qtedge->SetName(qtedge->GetName() + " and made longer again");
 
-        const std::string edge_name_after = edge->GetConcept()->GetName();
+        const std::string edge_name_after = edge->GetNode()->GetConcept()->GetName();
         const std::string qtedge_name_after = qtedge->GetName();
         const std::string qtconcept_text_after = qtconcept_item->GetName();
 
@@ -865,7 +870,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && "Names/texts must be in sync");
       }
       {
-        const std::string edge_name_before = edge->GetConcept()->GetName();
+        const std::string edge_name_before = edge->GetNode()->GetConcept()->GetName();
         const std::string qtedge_name_before = qtedge->GetName();
         const std::string qtconcept_text_before = qtconcept_item->GetName();
         assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
@@ -874,7 +879,7 @@ void ribi::cmap::QtEdge::Test() noexcept
         //Change via Qt concept item
         qtedge->GetDisplayStrategy()->SetName(qtedge->GetDisplayStrategy()->GetName() + " and again");
 
-        const std::string edge_name_after = edge->GetConcept()->GetName();
+        const std::string edge_name_after = edge->GetNode()->GetConcept()->GetName();
         const std::string qtedge_name_after = qtedge->GetName();
         const std::string qtconcept_text_after = qtconcept_item->GetName();
         if (!(edge_name_after == qtedge_name_after && qtedge_name_after == qtconcept_text_after))
@@ -904,12 +909,12 @@ void ribi::cmap::QtEdge::Test() noexcept
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = EdgeFactory().GetTests(node_from,node_to);
       boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));
+      boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetNode()->GetConcept()));
       boost::shared_ptr<QtEdge> qtedge(
         new QtEdge(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       //const double epsilon = 0.000001;
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
-      assert(qtconcept_item->GetConcept() == edge->GetConcept());
+      assert(qtconcept_item->GetConcept() == edge->GetNode()->GetConcept());
       assert(edge == qtedge->GetEdge());
       {
         const QRectF qtedge_rect = qtedge->boundingRect();
@@ -932,7 +937,7 @@ void ribi::cmap::QtEdge::Test() noexcept
           && "The complete edge (including nodes will be at least as high as the concept only");
 
         //Change via edge's concept
-        edge->GetConcept()->SetName( edge->GetConcept()->GetName() + " made longer");
+        edge->GetNode()->GetConcept()->SetName( edge->GetNode()->GetConcept()->GetName() + " made longer");
 
         const QRectF qtedge_rect_after = qtedge->boundingRect();
         const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();

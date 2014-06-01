@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/bind/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 
+#include <QLabel>
+
 #include "conceptmapedge.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapnode.h"
@@ -45,7 +47,7 @@ ribi::cmap::QtEdgeDialog::QtEdgeDialog(QWidget *parent)
   : ribi::QtHideAndShowDialog(parent),
     ui(new Ui::QtEdgeDialog),
     m_edge{},
-    m_qtconceptdialog{new QtConceptDialog},
+    m_qtnodedialog{new QtNodeDialog},
     m_qtnodedialog_from{new QtNodeDialog},
     m_qtnodedialog_to{new QtNodeDialog}
 {
@@ -55,14 +57,18 @@ ribi::cmap::QtEdgeDialog::QtEdgeDialog(QWidget *parent)
   #endif
   {
     assert(layout());
-    layout()->addWidget(m_qtconceptdialog.get());
     {
-      QLabel * const label = new QLabel("From");
+      QLabel * const label = new QLabel("Center node:");
+      layout()->addWidget(label);
+    }
+    layout()->addWidget(m_qtnodedialog.get());
+    {
+      QLabel * const label = new QLabel("From node:");
       layout()->addWidget(label);
     }
     layout()->addWidget(m_qtnodedialog_from.get());
     {
-      QLabel * const label = new QLabel("To");
+      QLabel * const label = new QLabel("To node:");
       layout()->addWidget(label);
     }
     layout()->addWidget(m_qtnodedialog_to.get());
@@ -89,135 +95,280 @@ void ribi::cmap::QtEdgeDialog::SetEdge(const boost::shared_ptr<Edge>& edge)
     std::stringstream s;
     s << "Setting edge '" << edge->ToStr() << "'\n";
   }
-  const auto concept_after = edge->GetConcept();
-  const auto x_after = edge->GetX();
-  const auto y_after = edge->GetY();
+  const auto from_after = edge->GetFrom();
+  const auto head_arrow_after = edge->HasHeadArrow();
+  const auto node_after = edge->GetNode();
+  const auto tail_arrow_after = edge->HasTailArrow();
+  const auto to_after = edge->GetTo();
 
-
-  bool concept_changed  = true;
-  bool x_changed  = true;
-  bool y_changed = true;
+  bool from_changed  = true;
+  bool head_arrow_changed  = true;
+  bool node_changed  = true;
+  bool tail_arrow_changed  = true;
+  bool to_changed  = true;
 
   if (m_edge)
   {
-    const auto concept_before = m_edge->GetConcept();
-    const auto x_before = m_edge->GetX();
-    const auto y_before = m_edge->GetY();
+    const auto from_before = m_edge->GetFrom();
+    const auto head_arrow_before = m_edge->HasHeadArrow();
+    const auto node_before = m_edge->GetNode();
+    const auto tail_arrow_before = m_edge->HasTailArrow();
+    const auto to_before = m_edge->GetTo();
 
-    concept_changed = concept_before != concept_after;
-    x_changed = x_before != x_after;
-    y_changed = y_before != y_after;
+
+    from_changed = from_before != from_after;
+    head_arrow_changed = head_arrow_before != head_arrow_after;
+    node_changed = node_before != node_after;
+    tail_arrow_changed = tail_arrow_before != tail_arrow_after;
+    to_changed = to_before != to_after;
 
 
     if (verbose)
     {
-      if (concept_changed)
+      if (from_changed)
       {
         std::stringstream s;
         s
-          << "Concept will change from "
-          << concept_before->ToStr()
+          << "From will change from "
+          << from_before->ToStr()
           << " to "
-          << concept_after->ToStr()
+          << from_after->ToStr()
           << '\n'
         ;
         TRACE(s.str());
       }
-      if (x_changed)
+      if (head_arrow_changed)
       {
         std::stringstream s;
-        s << "X will change from " << x_before
-          << " to " << x_after << '\n';
+        s
+          << "Head arrow will change from "
+          << head_arrow_before
+          << " to "
+          << head_arrow_after
+          << '\n'
+        ;
         TRACE(s.str());
       }
-      if (y_changed)
+      if (node_changed)
       {
         std::stringstream s;
-        s << "Y will change from " << y_before
-          << " to " << y_after << '\n';
+        s
+          << "Node will change from "
+          << node_before->ToStr()
+          << " to "
+          << node_after->ToStr()
+          << '\n'
+        ;
+        TRACE(s.str());
+      }
+      if (tail_arrow_changed)
+      {
+        std::stringstream s;
+        s
+          << "Tail arrow will change from "
+          << tail_arrow_before
+          << " to "
+          << tail_arrow_after
+          << '\n'
+        ;
+        TRACE(s.str());
+      }
+      if (to_changed)
+      {
+        std::stringstream s;
+        s
+          << "To will change from "
+          << to_before->ToStr()
+          << " to "
+          << to_after->ToStr()
+          << '\n'
+        ;
         TRACE(s.str());
       }
     }
-    //Disconnect m_concept
-    m_edge->m_signal_concept_changed.disconnect(
-      boost::bind(&ribi::cmap::QtEdgeDialog::OnConceptChanged,this,boost::lambda::_1)
+    //Disconnect
+    m_edge->m_signal_from_changed.disconnect(
+      boost::bind(&ribi::cmap::QtEdgeDialog::OnFromChanged,this,boost::lambda::_1)
     );
-    m_edge->m_signal_x_changed.disconnect(
-      boost::bind(&ribi::cmap::QtEdgeDialog::OnXchanged,this,boost::lambda::_1)
+    m_edge->m_signal_head_arrow_changed.disconnect(
+      boost::bind(&ribi::cmap::QtEdgeDialog::OnHeadArrowChanged,this,boost::lambda::_1)
     );
-    m_edge->m_signal_y_changed.disconnect(
-      boost::bind(&ribi::cmap::QtEdgeDialog::OnYchanged,this,boost::lambda::_1)
+    m_edge->m_signal_node_changed.disconnect(
+      boost::bind(&ribi::cmap::QtEdgeDialog::OnNodeChanged,this,boost::lambda::_1)
+    );
+    m_edge->m_signal_tail_arrow_changed.disconnect(
+      boost::bind(&ribi::cmap::QtEdgeDialog::OnTailArrowChanged,this,boost::lambda::_1)
+    );
+    m_edge->m_signal_to_changed.disconnect(
+      boost::bind(&ribi::cmap::QtEdgeDialog::OnToChanged,this,boost::lambda::_1)
     );
   }
 
   //Replace m_example by the new one
   m_edge = edge;
 
-  assert(m_edge->GetConcept() == concept_after );
-  assert(m_edge->GetX()  == x_after );
-  assert(m_edge->GetY() == y_after);
+  assert(m_edge->GetFrom() == from_after );
+  assert(m_edge->HasHeadArrow() == head_arrow_after );
+  assert(m_edge->GetNode() == node_after );
+  assert(m_edge->HasTailArrow() == tail_arrow_after );
+  assert(m_edge->GetTo() == to_after );
 
-  m_edge->m_signal_concept_changed.connect(
-    boost::bind(&ribi::cmap::QtEdgeDialog::OnConceptChanged,this,boost::lambda::_1)
+  //Connect
+  m_edge->m_signal_from_changed.connect(
+    boost::bind(&ribi::cmap::QtEdgeDialog::OnFromChanged,this,boost::lambda::_1)
   );
-  m_edge->m_signal_x_changed.connect(
-    boost::bind(&ribi::cmap::QtEdgeDialog::OnXchanged,this,boost::lambda::_1)
+  m_edge->m_signal_head_arrow_changed.connect(
+    boost::bind(&ribi::cmap::QtEdgeDialog::OnHeadArrowChanged,this,boost::lambda::_1)
   );
-  m_edge->m_signal_y_changed.connect(
-    boost::bind(&ribi::cmap::QtEdgeDialog::OnYchanged,this,boost::lambda::_1)
+  m_edge->m_signal_node_changed.connect(
+    boost::bind(&ribi::cmap::QtEdgeDialog::OnNodeChanged,this,boost::lambda::_1)
+  );
+  m_edge->m_signal_tail_arrow_changed.connect(
+    boost::bind(&ribi::cmap::QtEdgeDialog::OnTailArrowChanged,this,boost::lambda::_1)
+  );
+  m_edge->m_signal_to_changed.connect(
+    boost::bind(&ribi::cmap::QtEdgeDialog::OnToChanged,this,boost::lambda::_1)
   );
 
   //Emit everything that has changed
-  if (concept_changed)
+  if (from_changed)
   {
-    m_edge->m_signal_concept_changed(m_edge.get());
+    m_edge->m_signal_from_changed(m_edge.get());
   }
-  if (x_changed)
+  if (head_arrow_changed)
   {
-    m_edge->m_signal_x_changed(m_edge.get());
+    m_edge->m_signal_head_arrow_changed(m_edge.get());
   }
-  if (y_changed)
+  if (node_changed)
   {
-    m_edge->m_signal_y_changed(m_edge.get());
+    m_edge->m_signal_node_changed(m_edge.get());
   }
-
+  if (tail_arrow_changed)
+  {
+    m_edge->m_signal_tail_arrow_changed(m_edge.get());
+  }
+  if (to_changed)
+  {
+    m_edge->m_signal_to_changed(m_edge.get());
+  }
   assert( edge ==  m_edge);
   assert(*edge == *m_edge);
 }
 
-void ribi::cmap::QtEdgeDialog::OnConceptChanged(Node * const node)
+void ribi::cmap::QtEdgeDialog::OnFromChanged(Edge * const edge)
 {
   const bool verbose = true;
-  assert(node);
+  assert(edge);
 
-  const auto concept_before = m_qtconceptdialog->GetConcept();
-  const boost::shared_ptr<Concept> concept_after = node->GetConcept();
+  const auto from_before = m_qtnodedialog_from->GetNode();
+  const auto from_after = edge->GetFrom();
 
   if (verbose)
   {
     std::stringstream s;
-    s << "Change concept from "
-    << (concept_before ? concept_before->ToStr() : "[NONE]")
-    << " to " << concept_after->ToStr();
+    s << "Change from from "
+    << (from_before ? from_before->ToStr() : "[NONE]")
+    << " to " << from_after->ToStr();
     TRACE(s.str());
   }
 
-  m_qtconceptdialog->SetConcept(concept_after);
+  m_qtnodedialog_from->SetNode(from_after);
 
-  assert(m_qtconceptdialog->GetConcept() == concept_after);
+  assert(m_qtnodedialog_from->GetNode() == from_after);
 }
 
-void ribi::cmap::QtEdgeDialog::OnXchanged(Node * const node)
+void ribi::cmap::QtEdgeDialog::OnHeadArrowChanged(Edge * const edge)
 {
-  assert(node);
-  ui->box_x->setValue(node->GetX());
+  const bool verbose = true;
+  assert(edge);
+
+  const auto head_arrow_before = ui->box_head_arrow->isChecked();
+  const auto head_arrow_after = edge->HasHeadArrow();
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Change head arrow from "
+      << head_arrow_before
+      << " to " << head_arrow_after
+    ;
+    TRACE(s.str());
+  }
+
+  ui->box_head_arrow->setChecked(head_arrow_after);
+
+  assert(ui->box_head_arrow->isChecked() == head_arrow_after);
 }
 
-void ribi::cmap::QtEdgeDialog::OnYchanged(Node * const node)
+void ribi::cmap::QtEdgeDialog::OnNodeChanged(Edge * const edge)
 {
-  assert(node);
-  ui->box_y->setValue(node->GetY());
+  const bool verbose = true;
+  assert(edge);
+
+  const auto node_before = m_qtnodedialog->GetNode();
+  const auto node_after = edge->GetNode();
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Change center node from "
+    << (node_before ? node_before->ToStr() : "[NONE]")
+    << " to " << node_after->ToStr();
+    TRACE(s.str());
+  }
+
+  m_qtnodedialog->SetNode(node_after);
+
+  assert(m_qtnodedialog->GetNode() == node_after);
 }
+
+
+void ribi::cmap::QtEdgeDialog::OnTailArrowChanged(Edge * const edge)
+{
+  const bool verbose = true;
+  assert(edge);
+
+  const auto tail_arrow_before = ui->box_tail_arrow->isChecked();
+  const auto tail_arrow_after = edge->HasTailArrow();
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Change tail arrow from "
+      << tail_arrow_before
+      << " to " << tail_arrow_after
+    ;
+    TRACE(s.str());
+  }
+
+  ui->box_tail_arrow->setChecked(tail_arrow_after);
+
+  assert(ui->box_tail_arrow->isChecked() == tail_arrow_after);
+}
+
+
+void ribi::cmap::QtEdgeDialog::OnToChanged(Edge * const edge)
+{
+  const bool verbose = true;
+  assert(edge);
+
+  const auto to_before = m_qtnodedialog_to->GetNode();
+  const auto to_after = edge->GetTo();
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Change to from "
+    << (to_before ? to_before->ToStr() : "[NONE]")
+    << " to " << to_after->ToStr();
+    TRACE(s.str());
+  }
+
+  m_qtnodedialog_to->SetNode(to_after);
+
+  assert(m_qtnodedialog_to->GetNode() == to_after);
+}
+
 
 #ifndef NDEBUG
 void ribi::cmap::QtEdgeDialog::Test() noexcept
@@ -233,12 +384,12 @@ void ribi::cmap::QtEdgeDialog::Test() noexcept
 }
 #endif
 
-void ribi::cmap::QtEdgeDialog::on_box_x_valueChanged(double arg1)
+void ribi::cmap::QtEdgeDialog::on_box_head_arrow_stateChanged(int)
 {
-  m_edge->SetX(arg1);
+  m_edge->SetHeadArrow(ui->box_head_arrow->isChecked());
 }
 
-void ribi::cmap::QtEdgeDialog::on_box_y_valueChanged(double arg1)
+void ribi::cmap::QtEdgeDialog::on_box_tail_arrow_stateChanged(int)
 {
-  m_edge->SetY(arg1);
+  m_edge->SetTailArrow(ui->box_tail_arrow->isChecked());
 }
