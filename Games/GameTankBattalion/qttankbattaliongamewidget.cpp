@@ -17,6 +17,7 @@
 #include <QImage>
 #include <QPainter>
 
+#include "tankbattalionarena.h"
 #include "tankbattaliongamewidget.h"
 #include "tankbattalionhelper.h"
 #include "trace.h"
@@ -113,16 +114,31 @@ void ribi::taba::QtGameWidget::paintEvent(QPaintEvent *)
   //Bricks are 8x8, sprites are 16x16
   QPainter painter(this);
 
-  const auto arena = GetPixmap(SpriteType::arena);
-  painter.drawPixmap(rect(),*arena);
+  const int block_width  = 8;
+  const int block_height = 8;
+  const int arena_width  = Arena::GetColumns() * block_width;
+  const int arena_height = Arena::GetRows()    * block_height;
+
+  for (int y=0; y!=GetRows(); ++y)
+  {
+    for (int x=0; x!=GetColumns(); ++x)
+    {
+      assert(y < static_cast<int>(v.size()));
+      assert(x < static_cast<int>(v[y].size()));
+      assert(index < static_cast<int>(s.size()));
+      v[y][x] = static_cast<int>(s[index]);
+      ++index;
+    }
+  }
+
 
   const double scale_x
     = static_cast<double>(rect().width())
-    / static_cast<double>(arena->width())
+    / static_cast<double>(arena_pixmap.width())
   ;
   const double scale_y
     = static_cast<double>(rect().height())
-    / static_cast<double>(arena->height())
+    / static_cast<double>(arena_pixmap.height())
   ;
 
 

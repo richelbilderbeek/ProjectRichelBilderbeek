@@ -3,8 +3,17 @@
 
 #include <array>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/shared_ptr.hpp>
+
 #include "tankbattaliondirection.h"
+#include "tankbattalionfwd.h"
 #include "tankbattalionkey.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace taba {
@@ -12,11 +21,9 @@ namespace taba {
 struct GameWidget
 {
   GameWidget();
-  int GetColumns() const noexcept { return sm_n_columns; }
+  boost::shared_ptr<const Arena> GetArena() const { return m_arena; }
   Direction GetDirection() const noexcept { return m_direction; }
 
-  bool GetIsBrick(const int x, const int y) const noexcept;
-  int GetRows() const noexcept { return sm_n_rows; }
   int GetPlayerX() const noexcept { return m_x; }
   int GetPlayerY() const noexcept { return m_y; }
 
@@ -29,10 +36,9 @@ struct GameWidget
   void ReleaseKey(const Key key);
 
   private:
-  static const int sm_n_columns = 21; //blocks
-  static const int sm_n_rows    = 22; //blocks
 
-  std::array<std::array<int,sm_n_columns>,sm_n_rows> m_arena;
+  const boost::shared_ptr<Arena> m_arena;
+
   Direction m_direction;
 
   ///The primary key, if any, is at index 0
@@ -41,7 +47,6 @@ struct GameWidget
   int m_x;
   int m_y;
 
-  static std::array<std::array<int,sm_n_columns>,sm_n_rows> CreateArena() noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

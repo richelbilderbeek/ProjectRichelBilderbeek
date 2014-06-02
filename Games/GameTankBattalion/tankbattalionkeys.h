@@ -24,6 +24,7 @@ struct Keys
   Key GetOpposite(const Key k) const noexcept;
   bool IsMovement(const Key k) const noexcept;
   bool IsOpposite(const Key a, const Key b) const noexcept;
+
   Key ToKey(const std::string& s) const noexcept;
   std::string ToStr(const Key k) const noexcept;
 

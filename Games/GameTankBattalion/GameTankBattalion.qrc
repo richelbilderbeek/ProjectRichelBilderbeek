@@ -10,5 +10,8 @@
         <file>GameTankBattalionPlayerRight.png</file>
         <file>GameTankBattalionPlayerUp.png</file>
         <file>TankBattalionOriginal.png</file>
+        <file>GameTankBattalionBricks.png</file>
+        <file>GameTankBattalionFlag.png</file>
+        <file>GameTankBattalionNoBricks.png</file>
     </qresource>
 </RCC>

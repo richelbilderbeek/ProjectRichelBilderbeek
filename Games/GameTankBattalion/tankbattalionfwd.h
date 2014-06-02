@@ -4,6 +4,7 @@
 namespace ribi {
 namespace taba {
 
+struct Arena;
 struct GameWidget;
 
 } //~namespace taba
