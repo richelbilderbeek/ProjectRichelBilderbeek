@@ -2414,6 +2414,21 @@ struct ProgramTestPolyFile : public ProgramClass
   std::string GetUrl() const noexcept { return "ToolTestPolyFile.htm"; }
 };
 
+struct ProgramTestPolyFileFromPolygons : public ProgramClass
+{
+  std::string GetFilenameConsole() const noexcept { return ""; }
+  std::string GetFilenameDesktop() const noexcept { return ""; }
+  std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  std::string GetFilenameWeb() const noexcept { return ""; }
+  std::string GetScreenName() const noexcept { return "TestPolyFileFromPolygons"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::testPolyFileFromPolygons; }
+  std::string GetUrl() const noexcept { return "ToolTestPolyFileFromPolygons.htm"; }
+};
+
 struct ProgramTestPylos : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }

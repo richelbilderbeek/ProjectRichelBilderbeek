@@ -107,6 +107,11 @@ struct Geometry
   boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
     CreateHouseShape() const noexcept;
 
+  static Polygon CreateShapeHeart(const double scale = 1.0) noexcept;
+  static Polygon CreateShapeHouse(const double scale = 1.0) noexcept;
+  static Polygon CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) noexcept;
+  static Polygon CreateShapeTriangle(const double scale = 1.0) noexcept;
+
   ///Functor for X-Y-Z ordering
   std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)> Equals2d() const noexcept;
   std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> Equals() const noexcept;

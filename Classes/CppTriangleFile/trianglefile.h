@@ -19,7 +19,7 @@
 
 namespace ribi {
 
-struct PolyFile;
+struct PolyFileFromPolygons;
 
 ///TriangleFile allows for conversion between multiple polygons
 ///  and Triangle output files
@@ -43,10 +43,7 @@ struct TriangleFile
   //) : TriangleFile(ParseShapes(polyfile),ParseHoles(polyfile)) { }
 
   ///Start from polygons
-  TriangleFile(
-    const Polygons& shapes
-    //const Polygons& holes = {}
-  );
+  TriangleFile(const Polygons& shapes);
 
   ///Call Triangle
   //#define TODO_ISSUE_207
@@ -91,15 +88,15 @@ struct TriangleFile
   ) const;
 
   //const Polygons& GetHoles()  const noexcept { return m_holes; }
-  const Polygons& GetShapes() const noexcept { return m_shapes; }
+  const Polygons& GetShapes() const noexcept ; //{ return m_shapes; }
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   //const Polygons m_holes;
-  boost::shared_ptr<PolyFile> m_polyfile;
-  const Polygons m_shapes;
+  boost::shared_ptr<PolyFileFromPolygons> m_polyfile;
+  //const Polygons m_shapes;
 
   static std::pair<int,char **> CreateArgv(const std::vector<std::string>& v) noexcept;
   static void DeleteArgv(const std::pair<int,char **>& p) noexcept;

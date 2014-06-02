@@ -6,28 +6,24 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/make_shared.hpp>
+#include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/trim.hpp>
 
 #include <QFile>
 
+#include "container.h"
 #include "fileio.h"
-#include "geometry.h"
 #include "trace.h"
-
-//#include "triangle.h"
-
-//#define TODO_ISSUE_207
-#ifdef  TODO_ISSUE_207
-#include "trianglecppmain.h"
-#endif
 
 #pragma GCC diagnostic pop
 
 ribi::PolyFile::PolyFile(
   const Vertices& vertices,
   const Edges& edges
-) : m_edges(edges),
+) noexcept
+  : m_edges(edges),
     m_vertices(vertices)
 {
   #ifndef NDEBUG
@@ -35,127 +31,30 @@ ribi::PolyFile::PolyFile(
   #endif
 }
 
-/*
-ribi::PolyFile::PolyFile(
-  const Polygons& shapes
-  //const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& holes
-) : m_holes(holes),
-    m_shapes(shapes)
-{
-  #ifndef NDEBUG
-  Test();
-  #endif
-
-  assert(holes.empty() && "Adding holes is not implemented yet");
-}
-*/
-
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::PolyFile::CreateShapeHeart(const double scale) noexcept
-{
-  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
-    { 0.0 * scale, 1.0 * scale}, //0
-    { 1.0 * scale, 2.0 * scale}, //1
-    { 2.0 * scale, 1.0 * scale}, //2
-    { 2.0 * scale, 0.0 * scale}, //3
-    { 0.0 * scale,-2.0 * scale}, //4
-    {-2.0 * scale, 0.0 * scale}, //5
-    {-2.0 * scale, 1.0 * scale}, //6
-    {-1.0 * scale, 2.0 * scale}  //7
-  };
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  return v;
-}
-
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::PolyFile::CreateShapeHouse(const double scale) noexcept
-{
-  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
-    { 0.0 * scale, 2.0 * scale}, //0
-    { 1.0 * scale, 1.0 * scale}, //1
-    { 1.0 * scale,-1.0 * scale}, //2
-    {-1.0 * scale,-1.0 * scale}, //3
-    {-1.0 * scale, 1.0 * scale}  //4
-  };
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  return v;
-}
-
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::PolyFile::CreateShapePolygon(
-  const int n,
-  const double rotation,
-  const double scale
-) noexcept
-{
-  assert(n >= 3 && "A polygon has at least three edges");
-  const double tau { boost::math::constants::two_pi<double>() };
-  std::vector<boost::geometry::model::d2::point_xy<double>> points;
-  for (int i=0; i!=n; ++i)
-  {
-    const double angle { tau * static_cast<double>(i) / static_cast<double>(n) };
-    const double x {  std::sin(angle + rotation) };
-    const double y { -std::cos(angle + rotation) };
-    boost::geometry::model::d2::point_xy<double> point(x * scale, y * scale);
-    points.push_back(point);
-  }
-
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  return v;
-}
-
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::PolyFile::CreateShapeTriangle(const double scale) noexcept
-{
-  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
-    { 0.0 * scale, 0.0 * scale}, //0
-    { 1.0 * scale, 0.0 * scale}, //1
-    { 0.0 * scale, 1.0 * scale}  //2
-  };
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-  boost::geometry::append(v, points);
-  return v;
-}
-
-std::vector<std::string> ribi::PolyFile::FileToNoCommentVector(const std::string& filename) noexcept
-{
-  //From http://people.sc.fsu.edu/~jburkardt/data/poly/poly.html:
-  //
-  //  Comments are prefixed by the character '#'. Everything from the comment character to the end of the line is ignored.
-  //
-  std::vector<std::string> v = fileio::FileIo().FileToVector(filename);
-  v.erase(
-    std::remove_if(v.begin(),v.end(),
-      [](std::string s)
-      {
-        boost::algorithm::trim_left(s);
-        if (s.empty()) return true;
-        if (s[0]=='#') return true;
-        return false;
-      }
-    ),
-    v.end()
-  );
-  return v;
-}
-
 std::string ribi::PolyFile::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::PolyFile::GetVersionHistory() noexcept
 {
   return {
     "2014-05-27: Version 1.0: initial version, split off from TriangleFile"
+    "2014-06-02: Version 1.1: removed contruction from polygons, start counting from zero, added testing broken files"
   };
 }
 
 std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(const std::string& filename)
 {
+  const bool verbose = true;
   //Collect all indices
-  const auto v = FileToNoCommentVector(filename);
+  const auto v = RemoveComments(fileio::FileIo().FileToVector(filename));
   if (v.empty())
   {
+    if (verbose)
+    {
+      TRACE(Container().ToStr(v));
+    }
     std::stringstream s;
     s
       << "ribi::PolyFile::Parse: " << filename
@@ -184,6 +83,16 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
   const int edges_header_index = beyond_last_vertex_index;
   int n_edges = -1;
   {
+    if (edges_header_index >= static_cast<int>(v.size()))
+    {
+      std::stringstream s;
+      s
+        << "ribi::PolyFile::Parse: " << filename
+        << " its edges header is missing"
+      ;
+      throw std::logic_error(s.str().c_str());
+    }
+
     assert(edges_header_index < static_cast<int>(v.size()));
     const std::string& line = v[edges_header_index];
     const auto w = SeperateString(line,' ');
@@ -201,12 +110,74 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
   assert(n_edges >= 0);
   const int first_edge_index = edges_header_index + 1;
   const int beyond_last_edge_index = first_edge_index + n_edges;
+  const int holes_header_index = beyond_last_edge_index;
+  int n_holes = -1;
+  {
+    if (holes_header_index >= static_cast<int>(v.size()))
+    {
+      std::stringstream s;
+      s
+        << "ribi::PolyFile::Parse: " << filename
+        << " its holes header is missing"
+      ;
+      throw std::logic_error(s.str().c_str());
+    }
+    assert(holes_header_index < static_cast<int>(v.size()));
+    const std::string& line = v[holes_header_index];
+    const auto w = SeperateString(line,' ');
+    if (w.empty())
+    {
+      std::stringstream s;
+      s
+        << "ribi::PolyFile::Parse: " << filename
+        << " its holes header does not indicate the number of holes"
+      ;
+      throw std::logic_error(s.str().c_str());
+    }
+    if (w.size() != 1)
+    {
+      std::stringstream s;
+      s
+        << "ribi::PolyFile::Parse: " << filename
+        << " its holes header contains too much element"
+      ;
+      throw std::logic_error(s.str().c_str());
+    }
+    n_holes = boost::lexical_cast<int>(w[0]);
+    if (n_holes != 0)
+    {
+      std::stringstream s;
+      s
+        << "ribi::PolyFile::Parse: " << filename
+        << " no support for holes"
+      ;
+      throw std::logic_error(s.str().c_str());
+    }
+  }
+  assert(n_holes == 0 && "Holes are not supported");
+
+  //Allow the indices to start at 1,
+  //because, from http://people.sc.fsu.edu/~jburkardt/data/poly/poly.html :
+  //
+  //  Vertices, segments, holes, and regions must be numbered and listed consecutively, starting from either 1 or 0.
+  //
+  const int first_index = boost::lexical_cast<int>(SeperateString(v[1],' ')[0]);
   //Create actual data
   Vertices vertices;
   for (int i=first_vertex_index; i!=beyond_last_vertex_index; ++i)
   {
     const std::string& line = v[i];
     const auto w = SeperateString(line,' ');
+    if (w.size() != 4)
+    {
+      std::stringstream s;
+      s << "File '" << filename << "' cannot be parsed: "
+        << "vertex line does not contain four strings. "
+        << "line #" << i << ": '"
+        << line << "'"
+      ;
+      throw std::runtime_error(s.str().c_str());
+    }
     assert(w.size() == 4);
     const double x = boost::lexical_cast<double>(w[1]);
     const double y = boost::lexical_cast<double>(w[2]);
@@ -218,13 +189,100 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
   {
     const std::string& line = v[i];
     const auto w = SeperateString(line,' ');
-    assert(w.size() >= 3);
-    const int from_index = boost::lexical_cast<int>(w[1]);
-    const int to_index = boost::lexical_cast<int>(w[1]);
+    if (w.size() != 3)
+    {
+      std::stringstream s;
+      s << "File '" << filename << "' cannot be parsed: "
+        << "edge line does not contain three strings. "
+        << "line #" << i << ": '"
+        << line << "'"
+      ;
+      throw std::runtime_error(s.str().c_str());
+    }
+    assert(w.size() == 3);
+    const int from_index = boost::lexical_cast<int>(w[1]) - first_index;
+    const int to_index = boost::lexical_cast<int>(w[2]) - first_index;
+    if (from_index == to_index)
+    {
+      std::stringstream s;
+      s << "File '" << filename << "' cannot be parsed: "
+        << "edge line 'from' is equal to 'to'. "
+        << "line #" << i << ": '"
+        << line << "'"
+      ;
+      throw std::runtime_error(s.str().c_str());
+    }
+    if (from_index < 0)
+    {
+      std::stringstream s;
+      s << "File '" << filename << "' cannot be parsed: "
+        << "edge line 'from' is an invalid index (" << from_index
+        << "), as it is lower than zero. "
+        << "line #" << i << ": '"
+        << line << "'"
+      ;
+      throw std::runtime_error(s.str().c_str());
+    }
+    if (from_index >= static_cast<int>(vertices.size()))
+    {
+      std::stringstream s;
+      s << "File '" << filename << "' cannot be parsed: "
+        << "edge line 'from' is an invalid index (" << from_index
+        << "), as it is height than the number of vertices ("
+        << vertices.size() << "). "
+        << "line #" << i << ": '"
+        << line << "'"
+      ;
+      throw std::runtime_error(s.str().c_str());
+    }
+    if (to_index < 0)
+    {
+      std::stringstream s;
+      s << "File '" << filename << "' cannot be parsed: "
+        << "edge line 'to' is an invalid index (" << to_index
+        << "), as it is lower than zero. "
+        << "line #" << i << ": '"
+        << line << "'"
+      ;
+      throw std::runtime_error(s.str().c_str());
+    }
+    if (to_index >= static_cast<int>(vertices.size()))
+    {
+      std::stringstream s;
+      s << "File '" << filename << "' cannot be parsed: "
+        << "edge line 'to' is an invalid index (" << to_index
+        << "), as it is height than the number of vertices ("
+        << vertices.size() << "). "
+        << "line #" << i << ": '"
+        << line << "'"
+      ;
+      throw std::runtime_error(s.str().c_str());
+    }
+    assert(from_index != to_index);
+    assert(from_index < static_cast<int>(vertices.size()));
+    assert(from_index >= 0);
+    assert(to_index < static_cast<int>(vertices.size()));
+    assert(to_index >= 0);
     Edge edge(from_index,to_index);
     edges.push_back(edge);
   }
   return std::make_pair(vertices,edges);
+}
+
+std::vector<std::string> ribi::PolyFile::RemoveComments(const std::vector<std::string>& v) noexcept
+{
+  std::vector<std::string> w;
+  std::copy_if(v.begin(),v.end(),std::back_inserter(w),
+    [](std::string s)
+    {
+      boost::algorithm::trim_left(s);
+      if (s.empty()) return false;
+      if (s[0]=='#') return false;
+      return true;
+    }
+  );
+  assert(w.size() <= v.size());
+  return w;
 }
 
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
@@ -248,7 +306,15 @@ void ribi::PolyFile::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PolyFile::Test");
-  //Load a .poly file
+  const bool verbose = true;
+  if (verbose) { TRACE("RemoveComments"); }
+  {
+    std::vector<std::string> v
+      = { "#At beginning", " #At second spot", "Keep me", "  #At third spot"  } ;
+    const auto w = RemoveComments(v);
+    assert(w.size() == 1);
+  }
+  if (verbose) { TRACE("Load a .poly file"); }
   {
     const std::string filename = fileio::FileIo().GetTempFileName(".poly");
     {
@@ -261,212 +327,298 @@ void ribi::PolyFile::Test() noexcept
     PolyFile polyfile(filename);
     assert(!polyfile.GetVertices().empty());
     assert(!polyfile.GetEdges().empty());
+    fileio::FileIo().DeleteFile(filename);
   }
-
-  //Create PolyFile from shapes, save to file, load PolyFile from file,
-  //shapes before should match those loaded from file
-  /*
+  if (verbose) { TRACE("Create a .poly file from vertices and edges, save to file and load again"); }
   {
-    boost::shared_ptr<PolyFile> triangle_file;
+    const Vertices vertices = { {0.0,0.0},{0.0,1.0},{1.0,0.0} };
+    const int n_vertices = static_cast<int>(vertices.size());
+    const Edges edges = { {0,1},{1,2},{2,0} };
+    const int n_edges = static_cast<int>(edges.size());
+    const std::string filename = fileio::FileIo().GetTempFileName(".poly");
+    //Save to file
     {
-      const std::vector<Coordinat> points {
-        {0.5, 2.0}, //0
-        {1.0, 1.0}, //1
-        {1.0, 0.0}, //2
-        {0.0, 0.0}, //3
-        {0.0, 1.0}  //4
-      };
-      Polygon shape;
-      boost::geometry::append(shape, points);
-      const Polygons shapes = {shape};
-      triangle_file = boost::make_shared<PolyFile>(shapes);
+      const PolyFile polyfile(vertices,edges);
+      std::ofstream f(filename.c_str());
+      f << polyfile.ToStr();
     }
-    const Polygons shapes = triangle_file->GetShapes();
+    //Load from file
+    const PolyFile polyfile(filename);
+    assert(polyfile.GetVertices().size() == vertices.size());
+    for (int i=0; i!=n_vertices; ++i)
+    {
+      assert(std::abs(polyfile.GetVertices()[i].x() - vertices[i].x()) < 0.00001);
+      assert(std::abs(polyfile.GetVertices()[i].y() - vertices[i].y()) < 0.00001);
+    }
+    assert(polyfile.GetEdges().size() == edges.size());
+    for (int i=0; i!=n_edges; ++i)
+    {
+      assert(polyfile.GetEdges()[i].first  == edges[i].first );
+      assert(polyfile.GetEdges()[i].second == edges[i].second);
+    }
+    fileio::FileIo().DeleteFile(filename);
+  }
+  if (verbose) { TRACE("Create a .poly file starting at index 0"); }
+  {
     const std::string filename = fileio::FileIo().GetTempFileName(".poly");
     {
-      std::ofstream f(filename.c_str());
-      f << triangle_file->ToStr();
+      std::ofstream f(filename);
+      f
+        << "# Vertices header" << '\n'
+        << "3 2 0 1" << '\n'
+        << "# Vertices " << '\n'
+        << "0 0.0 0.0 1" << '\n'
+        << "1 0.0 1.0 1" << '\n'
+        << "2 1.0 0.0 1" << '\n'
+        << "# Edges header" << '\n'
+        << "3 0" << '\n'
+        << "# Edges " << '\n'
+        << "0 0 1" << '\n'
+        << "1 1 2" << '\n'
+        << "2 2 0" << '\n'
+        << "# Holes header" << '\n'
+        << "0" << '\n'
+        << "# Holes (unsupported)" << '\n'
+      ;
     }
-    {
-      triangle_file = boost::make_shared<PolyFile>(filename);
-      assert(shapes.size() == triangle_file->GetShapes().size()
-        && "The number of shapes is expected to be equal");
-      const int n_shapes = static_cast<int>(shapes.size());
-      for (int i=0; i!=n_shapes; ++i)
-      {
-        assert(shapes[i].outer().size() == triangle_file->GetShapes()[i].outer().size()
-          && "The number of vertices per shape is expected to be equal");
-        const int n_vertices = static_cast<int>(shapes[i].outer().size());
-        for (int j=0; j!=n_vertices; ++j)
-        {
-          assert(
-            Geometry().IsEqual2d(
-              shapes[i].outer()[j],
-              triangle_file->GetShapes()[i].outer()[j]
-            )
-          && "Vertices must be about equal"
-          );
-        }
-      }
-    }
-
+    const PolyFile polyfile(filename);
+    assert(polyfile.GetEdges().size() == 3);
+    assert(polyfile.GetVertices().size() == 3);
+    fileio::FileIo().DeleteFile(filename);
   }
-  */
+  if (verbose) { TRACE("Create a .poly file starting at index 1"); }
+  {
+    const std::string filename = fileio::FileIo().GetTempFileName(".poly");
+    {
+      std::ofstream f(filename);
+      f
+        << "# Vertices header" << '\n'
+        << "3 2 0 1" << '\n'
+        << "# Vertices " << '\n'
+        << "1 0.0 0.0 1" << '\n'
+        << "2 0.0 1.0 1" << '\n'
+        << "3 1.0 0.0 1" << '\n'
+        << "# Edges header" << '\n'
+        << "3 0" << '\n'
+        << "# Edges " << '\n'
+        << "1 1 2" << '\n'
+        << "2 2 3" << '\n'
+        << "3 3 1" << '\n'
+        << "# Holes header" << '\n'
+        << "0" << '\n'
+        << "# Holes (unsupported)" << '\n'
+      ;
+    }
+    const PolyFile polyfile(filename);
+    assert(polyfile.GetEdges().size() == 3);
+    assert(polyfile.GetVertices().size() == 3);
+    fileio::FileIo().DeleteFile(filename);
+  }
+  if (verbose) { TRACE("Create a broken .poly file: number of vertices is more than supplied"); }
+  {
+    const std::string filename = fileio::FileIo().GetTempFileName(".poly");
+    {
+      std::ofstream f(filename);
+      f
+        << "# Vertices header" << '\n'
+        << "4 2 0 1" << '\n' //Changed first number '3' to '4'
+        << "# Vertices " << '\n'
+        << "1 0.0 0.0 1" << '\n'
+        << "2 0.0 1.0 1" << '\n'
+        << "3 1.0 0.0 1" << '\n'
+        << "# Edges header" << '\n'
+        << "3 0" << '\n'
+        << "# Edges " << '\n'
+        << "1 1 2" << '\n'
+        << "2 2 3" << '\n'
+        << "3 3 1" << '\n'
+        << "# Holes header" << '\n'
+        << "0" << '\n'
+        << "# Holes (unsupported)" << '\n'
+      ;
+    }
+    try
+    {
+      const PolyFile polyfile(filename);
+      assert(!"Should have detected error");
+      assert(!polyfile.GetVertices().empty()); //To silence the compiler
+    }
+    catch (std::exception&)
+    {
+      //OK
+    }
+    fileio::FileIo().DeleteFile(filename);
+  }
+  if (verbose) { TRACE("Create a broken .poly file: number of vertices is less than supplied"); }
+  {
+    const std::string filename = fileio::FileIo().GetTempFileName(".poly");
+    {
+      std::ofstream f(filename);
+      f
+        << "# Vertices header" << '\n'
+        << "2 2 0 1" << '\n' //Changed first number '3' to '2'
+        << "# Vertices " << '\n'
+        << "1 0.0 0.0 1" << '\n'
+        << "2 0.0 1.0 1" << '\n'
+        << "3 1.0 0.0 1" << '\n'
+        << "# Edges header" << '\n'
+        << "3 0" << '\n'
+        << "# Edges " << '\n'
+        << "1 1 2" << '\n'
+        << "2 2 3" << '\n'
+        << "3 3 1" << '\n'
+        << "# Holes header" << '\n'
+        << "0" << '\n'
+        << "# Holes (unsupported)" << '\n'
+      ;
+    }
+    try
+    {
+      const PolyFile polyfile(filename);
+      assert(!"Should have detected error");
+      assert(!polyfile.GetVertices().empty()); //To silence the compiler
+    }
+    catch (std::exception&)
+    {
+      //OK
+    }
+    fileio::FileIo().DeleteFile(filename);
+  }
+  if (verbose) { TRACE("Create a broken .poly file: number of edges is more than supplied"); }
+  {
+    const std::string filename = fileio::FileIo().GetTempFileName(".poly");
+    {
+      std::ofstream f(filename);
+      f
+        << "# Vertices header" << '\n'
+        << "3 2 0 1" << '\n'
+        << "# Vertices " << '\n'
+        << "1 0.0 0.0 1" << '\n'
+        << "2 0.0 1.0 1" << '\n'
+        << "3 1.0 0.0 1" << '\n'
+        << "# Edges header" << '\n'
+        << "4 0" << '\n' //Changed first number '3' to '4'
+        << "# Edges " << '\n'
+        << "1 1 2" << '\n'
+        << "2 2 3" << '\n'
+        << "3 3 1" << '\n'
+        << "# Holes header" << '\n'
+        << "0" << '\n'
+        << "# Holes (unsupported)" << '\n'
+      ;
+    }
+    try
+    {
+      const PolyFile polyfile(filename);
+      assert(!"Should have detected error");
+      assert(!polyfile.GetVertices().empty()); //To silence the compiler
+    }
+    catch (std::exception&)
+    {
+      //OK
+    }
+    fileio::FileIo().DeleteFile(filename);
+  }
+  if (verbose) { TRACE("Create a broken .poly file: number of edges is less than supplied"); }
+  {
+    const std::string filename = fileio::FileIo().GetTempFileName(".poly");
+    {
+      std::ofstream f(filename);
+      f
+        << "# Vertices header" << '\n'
+        << "3 2 0 1" << '\n'
+        << "# Vertices " << '\n'
+        << "1 0.0 0.0 1" << '\n'
+        << "2 0.0 1.0 1" << '\n'
+        << "3 1.0 0.0 1" << '\n'
+        << "# Edges header" << '\n'
+        << "2 0" << '\n' //Changed first number '3' to '2'
+        << "# Edges " << '\n'
+        << "1 1 2" << '\n'
+        << "2 2 3" << '\n'
+        << "3 3 1" << '\n'
+        << "# Holes header" << '\n'
+        << "0" << '\n'
+        << "# Holes (unsupported)" << '\n'
+      ;
+    }
+    try
+    {
+      const PolyFile polyfile(filename);
+      assert(!"Should have detected error");
+      assert(!polyfile.GetVertices().empty()); //To silence the compiler
+    }
+    catch (std::exception&)
+    {
+      //OK
+    }
+    fileio::FileIo().DeleteFile(filename);
+  }
+  if (verbose) { TRACE("Create a broken .poly file starting at index 1, but has an edge pointing to index 0"); }
+  {
+    const std::string filename = fileio::FileIo().GetTempFileName(".poly");
+    {
+      std::ofstream f(filename);
+      f
+        << "# Vertices header" << '\n'
+        << "3 2 0 1" << '\n'
+        << "# Vertices " << '\n'
+        << "1 0.0 0.0 1" << '\n'
+        << "2 0.0 1.0 1" << '\n'
+        << "3 1.0 0.0 1" << '\n'
+        << "# Edges header" << '\n'
+        << "3 0" << '\n'
+        << "# Edges " << '\n'
+        << "1 1 2" << '\n'
+        << "2 2 3" << '\n'
+        << "3 3 0" << '\n' //Changed last digit '1' to '0'
+        << "# Holes header" << '\n'
+        << "0" << '\n'
+        << "# Holes (unsupported)" << '\n'
+      ;
+    }
+    try
+    {
+      const PolyFile polyfile(filename);
+      assert(!"Should have detected error");
+      assert(!polyfile.GetVertices().empty()); //To silence the compiler
+    }
+    catch (std::exception&)
+    {
+      //OK
+    }
+    fileio::FileIo().DeleteFile(filename);
+  }
 }
 #endif
 
-ribi::PolyFile::Edges ribi::PolyFile::ToEdges(const Polygons& polygons) noexcept
-{
-  Edges edges;
-  int vertex_index = 0;
-  int shape_first_vertex_index = 0;
-  for (const auto shape: polygons)
-  {
-    const int n = static_cast<int>(shape.outer().size());
-
-    for (int i=0; i!=n; ++i)
-    {
-      const int from_index = vertex_index;
-      const int to_index
-        = i != n-1
-        ? vertex_index+1           //Go to next
-        : shape_first_vertex_index //Go to first of shape
-      ;
-      edges.push_back(std::make_pair(from_index,to_index));
-      ++vertex_index;
-    }
-    shape_first_vertex_index += n;
-  }
-  return edges;
-}
 
 std::string ribi::PolyFile::ToStr() const noexcept
 {
   std::stringstream s;
   s << *this;
   return s.str();
-  /*
-  s << std::setprecision(6) << std::fixed;
-
-  //Write vertices
-  {
-    {
-      const int sz = static_cast<int>(m_vertices.size());
-      const int dimensionality = 2; //All m_vertices are 2 dimensional
-      const int n_extras = 0; //Points have zero extras
-      const int n_node_markers = 1;
-      s << sz << " " << dimensionality << " " << n_extras << " " << n_node_markers << '\n';
-
-      for(int n=0; n !=sz; ++n)
-      {
-        const auto point = m_vertices[n];
-        s
-          << (n + 1) //Human based index counting
-          << " "
-          << point.x()
-          << " "
-          << point.y()
-          << " 1\n";
-      }
-    }
-  }
-
-  //Write segments
-  {
-
-    const int n_edges = static_cast<int>(m_edges.size());
-    {
-      const int n_extras = 0;
-      s << n_edges << " " << n_extras << '\n';
-    }
-    for(int i=0; i!=n_edges; ++i)
-    {
-      s
-        << (i + 1) //Human based index counting
-        << " "
-        << (m_edges[i].first  + 1) //Human based index counting
-        << " "
-        << (m_edges[i].second + 1) //Human based index counting
-        << "\n";
-    }
-  }
-  //Write holes
-  {
-    #ifdef SUPPORT_HOLES_20140527
-    std::vector<boost::geometry::model::d2::point_xy<double>> holes;
-    for (auto hole: m_holes)
-    {
-      boost::geometry::model::ring<boost::geometry::model::d2::point_xy<double>> v;
-      boost::geometry::convert(hole,v);
-      std::copy(std::begin(v),std::end(v),std::back_inserter(holes));
-    }
-
-    {
-      const int sz = static_cast<int>(holes.size());
-      s << sz << '\n';
-
-      for(int n=0; n !=sz; ++n)
-      {
-        const auto hole = holes[n];
-        s
-          << (n + 1) //Human based index counting
-          << " "
-          << hole.x()
-          << " "
-          << hole.y()
-          << '\n';
-      }
-    }
-    #else
-    const int n_holes = 0;
-    s << n_holes << '\n';
-    #endif
-  }
-  return s.str();
-  */
-}
-
-std::vector<ribi::PolyFile::Coordinat> ribi::PolyFile::ToVertices(const Polygons& polygons) noexcept
-{
-  std::vector<Coordinat> v;
-  for (const auto shape: polygons)
-  {
-    for (const auto vertex: shape.outer())
-    {
-      v.push_back(vertex);
-    }
-  }
-  return v;
 }
 
 std::ostream& ribi::operator<<(std::ostream& s,const PolyFile& file) noexcept
 {
-  //std::stringstream s;
-  s << std::setprecision(6) << std::fixed;
-
   //Write vertices
   {
-    /*
-    std::vector<boost::geometry::model::d2::point_xy<double>> points;
-    for (auto shape: m_shapes)
     {
-      boost::geometry::model::ring<boost::geometry::model::d2::point_xy<double>> v;
-      boost::geometry::convert(shape,v);
-      std::copy(std::begin(v),std::end(v),std::back_inserter(points));
-    }
-    */
-    {
-      const int sz = static_cast<int>(file.GetVertices().size());
+      const int n_vertices = static_cast<int>(file.GetVertices().size());
       const int dimensionality = 2; //All m_vertices are 2 dimensional
       const int n_extras = 0; //Points have zero extras
       const int n_node_markers = 1;
-      s << sz << " " << dimensionality << " " << n_extras << " " << n_node_markers << '\n';
+      s << "# Vertex header: n_vertices - dimensionality - n_extras - n_node_markers\n";
+      s << n_vertices << " " << dimensionality << " " << n_extras << " " << n_node_markers << '\n';
+      s << "# Vertices\n";
+      s << "# index - x - y\n";
 
-      for(int n=0; n !=sz; ++n)
+      for(int n=0; n !=n_vertices; ++n)
       {
         const auto point = file.GetVertices()[n];
         s
-          << (n + 1) //Human based index counting
+          << n
           << " "
           << point.x()
           << " "
@@ -478,74 +630,30 @@ std::ostream& ribi::operator<<(std::ostream& s,const PolyFile& file) noexcept
 
   //Write segments
   {
-    /*
-    std::vector<std::pair<int,int>> segments;
-    const int n_segments = CountSegments();
-    s << n_segments << " 0\n";
-
-    const int n_shapes = CountShapes();
-    int cnt = 0;
-    for (int i=0; i!=n_shapes; ++i)
-    {
-      const int n_vertices = boost::geometry::num_points(m_shapes[i]);
-      //A polygon has segments from a point to the next...
-      for (int j=0; j!=n_vertices-1; ++j)
-      {
-        segments.push_back(std::make_pair(cnt,cnt+1));
-        ++cnt;
-      }
-      //...or from the last to the first
-      segments.push_back(std::make_pair(cnt,cnt-n_vertices+1));
-      ++cnt;
-    }
-    */
     const int n_edges = static_cast<int>(file.GetEdges().size());
     {
       const int n_extras = 0;
+      s << "# Edge header: n_edges - n_extras\n";
       s << n_edges << " " << n_extras << '\n';
+      s << "# Edges\n";
+      s << "# index - from vertex index - to vertex index\n";
     }
     for(int i=0; i!=n_edges; ++i)
     {
       s
-        << (i + 1) //Human based index counting
+        << i
         << " "
-        << (file.GetEdges()[i].first  + 1) //Human based index counting
+        << file.GetEdges()[i].first
         << " "
-        << (file.GetEdges()[i].second + 1) //Human based index counting
+        << file.GetEdges()[i].second
         << "\n";
     }
   }
-  //Write holes
+  //Write holes: unsupported
   {
-    #ifdef SUPPORT_HOLES_20140527
-    std::vector<boost::geometry::model::d2::point_xy<double>> holes;
-    for (auto hole: m_holes)
-    {
-      boost::geometry::model::ring<boost::geometry::model::d2::point_xy<double>> v;
-      boost::geometry::convert(hole,v);
-      std::copy(std::begin(v),std::end(v),std::back_inserter(holes));
-    }
-
-    {
-      const int sz = static_cast<int>(holes.size());
-      s << sz << '\n';
-
-      for(int n=0; n !=sz; ++n)
-      {
-        const auto hole = holes[n];
-        s
-          << (n + 1) //Human based index counting
-          << " "
-          << hole.x()
-          << " "
-          << hole.y()
-          << '\n';
-      }
-    }
-    #else
+    s << "# Holes header: n_holes\n";
     const int n_holes = 0;
     s << n_holes << '\n';
-    #endif
   }
   return s;
 }

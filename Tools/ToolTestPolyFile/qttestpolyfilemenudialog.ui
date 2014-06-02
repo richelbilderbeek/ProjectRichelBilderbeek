@@ -18,6 +18,10 @@
   <property name="windowTitle">
    <string>TestPolyFile</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="ToolTestPolyFile.qrc">
+    <normaloff>:/images/ToolTestPolyFileIcon.png</normaloff>:/images/ToolTestPolyFileIcon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
 background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
@@ -63,6 +67,8 @@ QPushButton { font: 32px, &quot;monospace&quot; }</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="ToolTestPolyFile.qrc"/>
+ </resources>
  <connections/>
 </ui>

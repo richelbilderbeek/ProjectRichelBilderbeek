@@ -42,12 +42,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testtrianglemaindialog.h"
 #pragma GCC diagnostic pop
 
-int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
+ribi::TestTriangleMenuDialog::TestTriangleMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
 
+int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
+{
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;

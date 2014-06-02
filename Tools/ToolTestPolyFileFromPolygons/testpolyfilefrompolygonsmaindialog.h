@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestTriangle, compare Triangle to its C++ equivalent
+TestPolyFileFromPolygons, tests the PolyFileFromPolygons class
 Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestTriangle.htm
+//From http://www.richelbilderbeek.nl/ToolTestPolyFileFromPolygons.htm
 //---------------------------------------------------------------------------
-#ifndef RIBI_TESTTRIANGLEMAINDIALOG_H
-#define RIBI_TESTTRIANGLEMAINDIALOG_H
+#ifndef RIBI_TESTPOLYFILEFROMPOLYGONSMAINDIALOG_H
+#define RIBI_TESTPOLYFILEFROMPOLYGONSMAINDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -29,40 +29,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/units/quantity.hpp>
-#include <boost/units/systems/si/area.hpp>
+//#include <boost/units/quantity.hpp>
+//#include <boost/units/systems/si/area.hpp>
 //#include <boost/units/systems/si/length.hpp>
-#include <boost/units/systems/si/plane_angle.hpp>
+//#include <boost/units/systems/si/plane_angle.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
-struct TestTriangleMainDialog
+///Converts shapes to a .poly file its content (using operator<<
+struct TestPolyFileFromPolygonsMainDialog
 {
-  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
-  typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef boost::geometry::model::d2::point_xy<double> Point;
+  typedef boost::geometry::model::polygon<Point> Polygon;
   typedef std::vector<Polygon> Polygons;
-  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
-  typedef boost::units::quantity<boost::units::si::area> Area;
 
-  TestTriangleMainDialog(
-    const Polygons& shapes,
-    const Area triangle_max_area,
-    const Angle triangle_min_angle,
-    const bool verbose
-  );
 
-  ///Obtain the filename of the created mesh
-  std::string GetFilename() const noexcept { return m_filename_result_mesh; }
+  TestPolyFileFromPolygonsMainDialog(const Polygons& polygons);
+  const Polygons& GetPolygons() const noexcept { return m_polygons; }
 
   private:
-  const std::string m_filename_result_mesh;
+  const Polygons m_polygons;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 };
 
+std::ostream& operator<<(std::ostream& os, const TestPolyFileFromPolygonsMainDialog& dialog) noexcept;
+
 } //~namespace ribi
 
-#endif // RIBI_TESTTRIANGLEMAINDIALOG_H
+#endif // RIBI_TESTPOLYFILEFROMPOLYGONSMAINDIALOG_H

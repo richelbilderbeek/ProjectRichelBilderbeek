@@ -180,6 +180,7 @@ enum class ProgramType
   testOpenQuestion,
   testPlane,
   testPolyFile,
+  testPolyFileFromPolygons,
   testPylos,
   testQrcFile,
   testQtArrowItems,

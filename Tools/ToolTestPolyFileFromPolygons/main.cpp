@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestPolyFile, tool to test the PolyFile class
-Copyright (C) 2012-2013 Richel Bilderbeek
+TestPolyFileFromPolygons, compare Triangle to its C++ equivalent
+Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -10,29 +10,25 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
-along with this program.If not, see <http://www.gnu.org/licenses/>.
+along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestPolyFile.htm
+//From http://www.richelbilderbeek.nl/ToolTestPolyFileFromPolygons.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <QApplication>
-#include "qttestpolyfilemenudialog.h"
-#include "trace.h"
+#include "testpolyfilefrompolygonsmenudialog.h"
 #pragma GCC diagnostic pop
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-  QApplication a(argc, argv);
-  START_TRACE();
-  ribi::QtTestPolyFileMenuDialog w;
-  w.show();
-  return a.exec();
-}
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  ribi::TestPolyFileFromPolygonsMenuDialog d;
+  return d.Execute(args);
 
+}

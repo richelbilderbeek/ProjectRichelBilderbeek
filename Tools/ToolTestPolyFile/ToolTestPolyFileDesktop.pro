@@ -5,8 +5,6 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
 #Specific for this application
-include(../../Classes/CppGeometry/CppGeometry.pri)
-include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppPolyFile/CppPolyFile.pri)
 include(../../Tools/ToolTestPolyFile/ToolTestPolyFileDesktop.pri)
 

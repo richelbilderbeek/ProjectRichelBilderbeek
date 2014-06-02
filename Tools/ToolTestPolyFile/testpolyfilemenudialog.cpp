@@ -147,9 +147,9 @@ void ribi::TestPolyFileMenuDialog::Test() noexcept
       qfile.copy(filename.c_str());
     }
     assert(fileio::FileIo().IsRegularFile(filename));
-    const PolyFile polyfile(filename);
-    assert(!polyfile.GetVertices().empty());
-    assert(!polyfile.GetEdges().empty());
+    TestPolyFileMenuDialog d;
+    d.ExecuteSpecific( {"TestPolyFile", "-f", filename} );
+    fileio::FileIo().DeleteFile(filename);
   }
 }
 #endif

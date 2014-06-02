@@ -8,52 +8,27 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-variable"
-#include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
-#include <boost/geometry/geometries/polygon.hpp>
-#include <boost/units/systems/si/area.hpp>
-#include <boost/units/systems/si/length.hpp>
-#include <boost/units/systems/si/plane_angle.hpp>
-#include <boost/units/quantity.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
-///PolyFile allows for conversion between
-///multiple polygons to a .poly file
-///
-///Does not allow holes
+///PolyFile allows for conversion between a file and its vertex and edges
+///PolyFile does not support holes
 struct PolyFile
 {
-  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
-  typedef boost::units::quantity<boost::units::si::area> Area;
-  typedef boost::units::quantity<boost::units::si::length> Length;
-  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
-  typedef boost::geometry::model::polygon<Coordinat> Polygon;
-  typedef std::vector<Polygon> Polygons;
-
   typedef std::pair<int,int> Edge; //An Edge has exactly two Vertex indices
   typedef std::vector<Edge> Edges;
-  typedef Coordinat Vertex;
+  typedef boost::geometry::model::d2::point_xy<double> Vertex;
   typedef std::vector<Vertex> Vertices;
 
   ///Start from data members
-  PolyFile(const Vertices& vertices,const Edges& edges);
-
-  ///Start from polygons
-  PolyFile(
-    const Polygons& shapes
-  ) : PolyFile(ToVertices(shapes),ToEdges(shapes)) { }
+  PolyFile(const Vertices& vertices,const Edges& edges) noexcept;
 
   ///Start from filename
   PolyFile(
     const std::string& poly_filename
   ) : PolyFile(Parse(poly_filename)) {}
-
-  static Polygon CreateShapeHeart(const double scale = 1.0) noexcept;
-  static Polygon CreateShapeHouse(const double scale = 1.0) noexcept;
-  static Polygon CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) noexcept;
-  static Polygon CreateShapeTriangle(const double scale = 1.0) noexcept;
 
   ///Obtain all pair of vertex indices that form an edge
   ///For example '{{0,1},{1,2},{2,0}}', for a triangle
@@ -73,11 +48,11 @@ struct PolyFile
   const Edges m_edges;
   const Vertices m_vertices;
 
-
   PolyFile(const std::pair<Vertices,Edges>& p)
     : PolyFile(p.first,p.second) {}
 
-  static std::vector<std::string> FileToNoCommentVector(const std::string& filename) noexcept;
+  //static std::vector<std::string> FileToNoCommentVector(const std::string& filename) noexcept;
+  static std::vector<std::string> RemoveComments(const std::vector<std::string>& v) noexcept;
 
   static std::pair<Vertices,Edges> Parse(const std::string& filename);
 
@@ -91,16 +66,18 @@ struct PolyFile
   static void Test() noexcept;
   #endif
 
-  static Edges ToEdges(const Polygons& polygons) noexcept;
-  static Vertices ToVertices(const Polygons& polygons) noexcept;
 };
 
 ///Convert the vertices and edges to a .poly file its content
 std::ostream& operator<<(std::ostream& os, const PolyFile& file) noexcept;
+std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<PolyFile>& file) = delete;
+std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<const PolyFile>& file) = delete;
 
 } //~namespace ribi
 
 /*
+POLY is a data directory which contains examples of POLY files, a format used by Jonathan Shewchuk to define PSLG's, planar straight line graphs, for use with his program TRIANGLE.
+
 From http://people.sc.fsu.edu/~jburkardt/data/poly/poly.html :
 
 Comments are prefixed by the character '#'. Everything from the comment character to the end of the line is ignored.

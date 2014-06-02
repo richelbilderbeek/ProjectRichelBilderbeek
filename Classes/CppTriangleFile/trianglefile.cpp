@@ -13,6 +13,7 @@
 #include "fileio.h"
 #include "geometry.h"
 #include "polyfile.h"
+#include "polyfilefrompolygons.h"
 #include "trace.h"
 
 //#include "triangle.h"
@@ -26,10 +27,7 @@
 
 ribi::TriangleFile::TriangleFile(
   const Polygons& shapes
-  //const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& holes
-) : //m_holes(holes),
-    m_polyfile{boost::make_shared<PolyFile>(shapes)},
-    m_shapes(shapes)
+) : m_polyfile{boost::make_shared<PolyFileFromPolygons>(shapes)}
 {
   #ifndef NDEBUG
   Test();
@@ -195,6 +193,12 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   ele_filename = "";
   poly_filename = "";
 
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Writing .poly file to '" << filename << "'";
+    std::clog << s.str() << std::endl;
+  }
   {
     std::ofstream f(filename.c_str());
     f << m_polyfile->ToStr();
@@ -225,8 +229,8 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   }
   assert(fileio::FileIo().IsRegularFile(exe_filename));
 
-  std::stringstream s;
-  s
+  std::stringstream command;
+  command
     << exe_filename
     << " -j -z -q"
     << quality_str
@@ -234,9 +238,10 @@ void ribi::TriangleFile::ExecuteTriangleExe(
     << area_str
     << (verbose ? "" : " -Q")
     << " "
-    << filename;
-  if (verbose) { std::cout << "Starting command '" << s.str() << "'" << std::endl; }
-  const bool error = std::system(s.str().c_str());
+    << filename
+  ;
+  if (verbose) { std::cout << "Starting command '" << command.str() << "'" << std::endl; }
+  const bool error = std::system(command.str().c_str());
 
   //Delete input file directly after running the program,
   //so that independent of a possible error this behavior occurs
@@ -258,7 +263,10 @@ void ribi::TriangleFile::ExecuteTriangleExe(
     if (verbose)
     {
       std::cout << "Finished command with an error" << std::endl;
+      TRACE(m_polyfile->ToStr());
     }
+    std::stringstream s;
+    s << "Error: '" << command << "' failed, with error code " << error;
     throw std::runtime_error(s.str().c_str());
   }
   if (verbose) { std::cout << "Finished command without errors" << std::endl; }
@@ -273,9 +281,16 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   assert(fileio::FileIo().IsRegularFile(poly_filename));
 }
 
+const ribi::TriangleFile::Polygons& ribi::TriangleFile::GetShapes() const noexcept
+{
+  assert(m_polyfile);
+  return m_polyfile->GetPolygons();
+}
+
+
 std::string ribi::TriangleFile::GetVersion() noexcept
 {
-  return "1.5";
+  return "1.6";
 }
 
 std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
@@ -286,7 +301,8 @@ std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
     "2014-05-18: Version 1.2: allow use of a Linux executable"
     "2014-05-19: Version 1.3: use of non-freezing Windows executable",
     "2014-05-26: Version 1.4: use of units in Triangle 'area' (the maximum area of a triangle) and 'quality' (the minimum angle of a triangle's corner) parameters"
-    "2014-05-27: Version 1.5: split of sections to PolyFile"
+    "2014-05-27: Version 1.5: split of sections to PolyFile",
+    "2014-06-02: Version 1.6: split of sections to PolyFileFromPolygons"
   };
 }
 
@@ -299,6 +315,7 @@ void ribi::TriangleFile::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleFile::Test");
+  const bool verbose = true;
   //Call Triangle with simple shapes
   {
     const std::vector<Coordinat> points {
@@ -310,26 +327,34 @@ void ribi::TriangleFile::Test() noexcept
     };
     Polygon v;
     boost::geometry::append(v, points);
-    TriangleFile f( {v} );
-    //TRACE(f.ToStr());
-    std::string filename_node;
-    std::string filename_ele;
-    std::string filename_poly;
-    const Angle min_angle
-      = 20.0 //Default used by Triangle, in degrees
-      * (boost::math::constants::two_pi<double>() / 360.0)
-      * boost::units::si::radian
-    ;
-    const Area max_area = 1.0 * boost::units::si::square_meter;
-    //#define TODO_ISSUE_207
-    #ifdef  TODO_ISSUE_207
-    f.ExecuteTriangle(filename_node,filename_ele,filename_poly,min_angle,max_area);
-    #else
-    f.ExecuteTriangleExe(filename_node,filename_ele,filename_poly,min_angle,max_area);
-    #endif // TODO_ISSUE_207
-    assert(fileio::FileIo().IsRegularFile(filename_node));
-    assert(fileio::FileIo().IsRegularFile(filename_ele));
-    assert(fileio::FileIo().IsRegularFile(filename_poly));
+    try
+    {
+      TriangleFile f( {v} );
+      //TRACE(f.ToStr());
+      std::string filename_node;
+      std::string filename_ele;
+      std::string filename_poly;
+      const Angle min_angle
+        = 20.0 //Default used by Triangle, in degrees
+        * (boost::math::constants::two_pi<double>() / 360.0)
+        * boost::units::si::radian
+      ;
+      const Area max_area = 1.0 * boost::units::si::square_meter;
+      //#define TODO_ISSUE_207
+      #ifdef  TODO_ISSUE_207
+      f.ExecuteTriangle(filename_node,filename_ele,filename_poly,min_angle,max_area,verbose);
+      #else
+      f.ExecuteTriangleExe(filename_node,filename_ele,filename_poly,min_angle,max_area,verbose);
+      #endif // TODO_ISSUE_207
+      assert(fileio::FileIo().IsRegularFile(filename_node));
+      assert(fileio::FileIo().IsRegularFile(filename_ele));
+      assert(fileio::FileIo().IsRegularFile(filename_poly));
+    }
+    catch (std::exception& e)
+    {
+      TRACE(e.what());
+      assert(!"Should not get here");
+    }
     TRACE("Finished ribi::TriangleFile::Test successfully");
   }
 }

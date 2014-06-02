@@ -58,7 +58,6 @@ void ribi::QtTestPolyFileMainDialog::on_edit_textChanged(const QString &arg1)
   const std::string filename = "../../" + arg1.toStdString();
   if (!fileio::FileIo().IsRegularFile(filename))
   {
-    ui->text_result->clear();
     const std::string text = "File '" + filename + "' does not exist.";
     ui->text_result->setPlainText(text.c_str());
     return;

@@ -229,6 +229,76 @@ ribi::Geometry::Rect ribi::Geometry::CreateRect(
   return rect;
 }
 
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+  ribi::Geometry::CreateShapeHeart(const double scale) noexcept
+{
+  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+    { 0.0 * scale, 1.0 * scale}, //0
+    { 1.0 * scale, 2.0 * scale}, //1
+    { 2.0 * scale, 1.0 * scale}, //2
+    { 2.0 * scale, 0.0 * scale}, //3
+    { 0.0 * scale,-2.0 * scale}, //4
+    {-2.0 * scale, 0.0 * scale}, //5
+    {-2.0 * scale, 1.0 * scale}, //6
+    {-1.0 * scale, 2.0 * scale}  //7
+  };
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
+  boost::geometry::append(v, points);
+  return v;
+}
+
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+  ribi::Geometry::CreateShapeHouse(const double scale) noexcept
+{
+  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+    { 0.0 * scale, 2.0 * scale}, //0
+    { 1.0 * scale, 1.0 * scale}, //1
+    { 1.0 * scale,-1.0 * scale}, //2
+    {-1.0 * scale,-1.0 * scale}, //3
+    {-1.0 * scale, 1.0 * scale}  //4
+  };
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
+  boost::geometry::append(v, points);
+  return v;
+}
+
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+  ribi::Geometry::CreateShapePolygon(
+  const int n,
+  const double rotation,
+  const double scale
+) noexcept
+{
+  assert(n >= 3 && "A polygon has at least three edges");
+  const double tau { boost::math::constants::two_pi<double>() };
+  std::vector<boost::geometry::model::d2::point_xy<double>> points;
+  for (int i=0; i!=n; ++i)
+  {
+    const double angle { tau * static_cast<double>(i) / static_cast<double>(n) };
+    const double x {  std::sin(angle + rotation) };
+    const double y { -std::cos(angle + rotation) };
+    boost::geometry::model::d2::point_xy<double> point(x * scale, y * scale);
+    points.push_back(point);
+  }
+
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
+  boost::geometry::append(v, points);
+  return v;
+}
+
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
+  ribi::Geometry::CreateShapeTriangle(const double scale) noexcept
+{
+  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+    { 0.0 * scale, 0.0 * scale}, //0
+    { 1.0 * scale, 0.0 * scale}, //1
+    { 0.0 * scale, 1.0 * scale}  //2
+  };
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
+  boost::geometry::append(v, points);
+  return v;
+}
+
 double ribi::Geometry::Fmod(const double x, const double mod) const noexcept
 {
   #ifndef NDEBUG

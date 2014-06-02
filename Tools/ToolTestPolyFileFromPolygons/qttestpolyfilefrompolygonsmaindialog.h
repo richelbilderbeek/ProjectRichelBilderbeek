@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestTriangle, compare Triangle to its C++ equivalent
+TestPolyFileFromPolygons, tests the PolyFileFromPolygons class
 Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,53 +16,68 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestTriangle.htm
+//From http://www.richelbilderbeek.nl/ToolTestPolyFileFromPolygons.htm
 //---------------------------------------------------------------------------
-#ifndef RIBI_TESTTRIANGLEMAINDIALOG_H
-#define RIBI_TESTTRIANGLEMAINDIALOG_H
+#ifndef QTTRIANGLEMESHCREATORMAINDIALOG_H
+#define QTTRIANGLEMESHCREATORMAINDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/si/area.hpp>
-//#include <boost/units/systems/si/length.hpp>
+#include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/plane_angle.hpp>
+#include "qthideandshowdialog.h"
+//#include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
+
+struct QPlainTextEdit;
+
+namespace Ui {
+  class QtTestPolyFileFromPolygonsMainDialog;
+}
 
 namespace ribi {
 
-struct TestTriangleMainDialog
+class QtTestPolyFileFromPolygonsMainDialog : public QtHideAndShowDialog
 {
-  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
-  typedef boost::geometry::model::polygon<Coordinat> Polygon;
-  typedef std::vector<Polygon> Polygons;
-  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
-  typedef boost::units::quantity<boost::units::si::area> Area;
+  Q_OBJECT
 
-  TestTriangleMainDialog(
-    const Polygons& shapes,
-    const Area triangle_max_area,
-    const Angle triangle_min_angle,
-    const bool verbose
-  );
+public:
 
-  ///Obtain the filename of the created mesh
-  std::string GetFilename() const noexcept { return m_filename_result_mesh; }
+  explicit QtTestPolyFileFromPolygonsMainDialog(QWidget *parent = 0) noexcept;
+  QtTestPolyFileFromPolygonsMainDialog(const QtTestPolyFileFromPolygonsMainDialog&) = delete;
+  QtTestPolyFileFromPolygonsMainDialog& operator=(const QtTestPolyFileFromPolygonsMainDialog&) = delete;
+  ~QtTestPolyFileFromPolygonsMainDialog() noexcept;
 
-  private:
-  const std::string m_filename_result_mesh;
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+
+  std::vector<Polygon> GetShapes() const noexcept;
+
+protected:
+  void keyPressEvent(QKeyEvent *) noexcept;
+
+private:
+  Ui::QtTestPolyFileFromPolygonsMainDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+  static std::vector<std::string> SeperateString(const std::string& input) noexcept;
+
+private slots:
+
+  void DisplayPolyFile() noexcept;
+  void DisplayPolygons() noexcept;
+
+  void on_edit_shapes_textChanged();
 };
 
 } //~namespace ribi
 
-#endif // RIBI_TESTTRIANGLEMAINDIALOG_H
+#endif // QTTRIANGLEMESHCREATORMAINDIALOG_H

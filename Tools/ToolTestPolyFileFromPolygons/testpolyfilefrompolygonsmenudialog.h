@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestTriangle, compare Triangle to its C++ equivalent
+TestPolyFileFromPolygons, tests the PolyFileFromPolygons class
 Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestTriangle.htm
+//From http://www.richelbilderbeek.nl/ToolTestPolyFileFromPolygons.htm
 //---------------------------------------------------------------------------
-#ifndef RIBI_TESTTRIANGLEMENUDIALOG_H
-#define RIBI_TESTTRIANGLEMENUDIALOG_H
+#ifndef RIBI_TESTPOLYFILEFROMPOLYGONSMENUDIALOG_H
+#define RIBI_TESTPOLYFILEFROMPOLYGONSMENUDIALOG_H
 
 #include <string>
 #include <vector>
@@ -30,10 +30,9 @@ struct QRegExp;
 
 namespace ribi {
 
-///GUI independent TestTriangle menu dialog
-struct TestTriangleMenuDialog : public MenuDialog
+///GUI independent TestPolyFileFromPolygons menu dialog
+struct TestPolyFileFromPolygonsMenuDialog : public MenuDialog
 {
-  TestTriangleMenuDialog();
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;
   boost::shared_ptr<const Program> GetProgram() const noexcept;
@@ -57,4 +56,4 @@ struct TestTriangleMenuDialog : public MenuDialog
 
 } //namespace ribi
 
-#endif // RIBI_TESTTRIANGLEMENUDIALOG_H
+#endif // RIBI_TESTPOLYFILEFROMPOLYGONSMENUDIALOG_H
