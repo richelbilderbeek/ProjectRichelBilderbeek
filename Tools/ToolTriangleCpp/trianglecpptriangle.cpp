@@ -48,7 +48,7 @@ void ribi::tricpp::Triangle::SetTriangle(
 }
 
 void ribi::tricpp::Triangle::SetSubSeg(
-  const SubSeg& subseg,
+  const Edge& subseg,
   const int i
 )
 {

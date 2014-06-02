@@ -42,7 +42,7 @@ struct Mesh
 
   const Vertex& GetVertex(const int index) const noexcept;
   //Vertex& GetVertex(const int index) noexcept;
-  void KillSubSeg(boost::shared_ptr<SubSeg>& subseg) noexcept;
+  void KillSubSeg(boost::shared_ptr<Edge>& subseg) noexcept;
   void KillTriangle(boost::shared_ptr<Triangle> triangle) noexcept;
   void KillVertex(const int index) noexcept;
 
@@ -57,7 +57,7 @@ struct Mesh
   long m_circumcentercount;  /// Number of circumcenter calculations performed.
   long m_counterclockcount;     /// Number of counterclockwise tests performed.
   //static const bool m_do_readnodefile = false;          /// Has a .node file been read?
-  boost::shared_ptr<SubSeg> m_dummysub; /// Pointer to the omnipresent subsegment.  Referenced by any triangle or ///   subsegment that isn't really connected to a subsegment at that ///   location.
+  boost::shared_ptr<Edge> m_dummysub; /// Pointer to the omnipresent subsegment.  Referenced by any triangle or ///   subsegment that isn't really connected to a subsegment at that ///   location.
   //SubSeg * m_dummysubbase;      /// Keep base address so we can free() it later.
   boost::shared_ptr<Triangle> m_dummytri; /// Pointer to the `triangle' that occupies all of "outer space."
   //Triangle *m_dummytribase;    /// Keep base address so we can free() it later.
@@ -98,7 +98,7 @@ struct Mesh
   std::vector<SplayNode> m_splaynodes;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   int m_steinerleft;                 /// Number of Steiner points not yet used.
   //MemoryPool m_subsegs;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
-  std::vector<SubSeg> m_subsegs;
+  std::vector<Edge> m_subsegs;
   //MemoryPool m_triangles;/// Variables used to allocate memory for triangles, subsegments, vertices, viri (triangles being eaten), encroached segments, bad (skinny or too large) triangles, and splay tree nodes.
   std::vector<boost::shared_ptr<Triangle>> m_triangles;
   int m_undeads;    /// Number of input vertices that don't appear in the mesh.

@@ -17,6 +17,7 @@
 #include <boost/make_shared.hpp>
 #include <boost/math/constants/constants.hpp>
 #include "fileio.h"
+#include "polyfile.h"
 #include "trianglecppbadsubseg.h"
 #include "trianglecppbehavior.h"
 #include "trianglecppdefines.h"
@@ -33,9 +34,47 @@
 #include "trianglecppvertex.h"
 #include "trianglecppvertextype.h"
 
+std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> ribi::tricpp::CreateVertices(
+  const ribi::PolyFile& polyfile
+) noexcept
+{
+  std::vector<boost::shared_ptr<Vertex>> vertices;
+  for (const auto coordinat: polyfile.GetVertices())
+  {
+    const int currentmarker = 1; //Appeared to always be true
+    const auto vertex
+      = boost::make_shared<Vertex>(coordinat.x(),coordinat.y(),currentmarker);
+    vertices.push_back(vertex);
+  }
+  return vertices;
+}
+
+std::vector<boost::shared_ptr<ribi::tricpp::Edge>> ribi::tricpp::CreateEdges(
+  const ribi::PolyFile& polyfile,
+  std::vector<boost::shared_ptr<Vertex>>& vertices
+) noexcept
+{
+  std::vector<boost::shared_ptr<Edge>> edges;
+  for (const auto vertex_indices: polyfile.GetEdges())
+  {
+    const int n_vertices = static_cast<int>(vertex_indices.size());
+    for (int i = 0; i!=n_vertices; ++i)
+    {
+      const int vertex_index = vertex_indices[i];
+      const int next_vertex_index = vertex_indices[(i + 1) % n_vertices];
+      Edge edge(vertices[vertex_index],vertices[next_vertex_index]);
+      edges.push_back(edge);
+    }
+  }
+  return edges;
+}
+
+
 //There is a spot where is written to index 1, where I (RJCB) believe it should
 //be at index 2.
 const int one_or_two = 2; //RJCB: Shouldn't this index be 2?
+
+#ifdef CARE_TODAY_20140602
 
 void ribi::tricpp::dummyinit(
   Mesh& m
@@ -12136,6 +12175,7 @@ std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> ribi::tricpp::ReadVertices(
   const std::string& polyfilename
 )
 {
+  ribi::PolyFile p;
   const auto v = ribi::fileio::FileIo().FileToVector(polyfilename);
   const auto first_line_strings = SeperateString(v[0],' ');
   assert(first_line_strings.size() == 4);
@@ -13428,21 +13468,23 @@ void ribi::tricpp::statistics(
 }
 */
 
+#endif // CARE_TODAY_20140602
+
 int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
 {
   Mesh m;
   Behavior b(args);
-  std::vector<double> holearray;                                        //Array of holes.
-  std::vector<double> regionarray;   //Array of regional attributes and area constraints.
-  //FILE *polyfile = nullptr;
+  std::vector<double> holearray; //Array of holes.
+  std::vector<double> regionarray; //Array of regional attributes and area constraints.
   m.m_steinerleft = b.m_steiner;
+  const ribi::PolyFile polyfile(b.m_inpolyfilename);
 
   const std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> vertices
-    = ReadVertices(
-    //m,
-    //b,
-    b.m_inpolyfilename
-  );
+    = CreateVertices(polyfile);
+  const std::vector<boost::shared_ptr<ribi::tricpp::Edge>> edges
+    = CreateEdges(polyfile,vertices);
+  const std::vector<boost::shared_ptr<ribi::tricpp::Edge>> triangles
+    = CreateTriangles(polyfile,vertices,edges);
 
   //if (b.m_do_refine)
   {

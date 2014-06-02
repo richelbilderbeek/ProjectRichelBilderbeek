@@ -23,24 +23,26 @@ namespace tricpp {
 //  plus one segment number.
 
 //typedef double **SubSeg; /* Really:  typedef subseg *subseg   */
-struct SubSeg
+struct Edge
 {
-  SubSeg();
+  Edge(const boost::shared_ptr<Vertex>& from,const boost::shared_ptr<Vertex>& to);
   double GetX() const noexcept;
   double GetY() const noexcept;
   bool IsDead() const noexcept;
   void KillMe() noexcept;
   void SetBoundaryMarker(const int value) noexcept;
-  void SetSubSeg(const boost::shared_ptr<SubSeg>& subseg, const int index);
+  void SetSubSeg(const boost::shared_ptr<Edge>& subseg, const int index);
   void SetTriangle(const boost::shared_ptr<Triangle>& triangle, const int index);
-  std::vector<boost::shared_ptr<SubSeg>> m_subsegs;
+  std::vector<boost::shared_ptr<Edge>> m_subsegs;
   std::vector<boost::shared_ptr<Triangle>> m_triangles;
 
   private:
+  const boost::shared_ptr<Vertex> m_from;
+  const boost::shared_ptr<Vertex> m_to;
   int m_boundary_marker;
 };
 
-bool operator==(const SubSeg& lhs, const SubSeg& rhs) noexcept;
+bool operator==(const Edge& lhs, const Edge& rhs) noexcept;
 
 //sdecode() converts a pointer to an oriented subsegment.  The orientation
 //  is extracted from the least significant bit of the pointer.  The two
@@ -68,16 +70,16 @@ void ssymself(Osub& osub1);
 //void SetDest(Osub& osub, const SubSeg& subsegptr);
 //void GetOrg(const Osub& osub, Vertex& vertexptr);
 //void GetDest(const Osub& osub, Vertex& vertexptr);
-void setsegorg(Osub& osub, SubSeg * subsegptr);
-void setsegdest(Osub& osub, SubSeg * subsegptr);
+void setsegorg(Osub& osub, Edge * subsegptr);
+void setsegdest(Osub& osub, Edge * subsegptr);
 
 ///Dissolve a subsegment bond (from one side).  Note that the other
 ///  subsegment will still think it's connected to this subsegment.
-void sdissolve(const Osub& osub, SubSeg m_m_dummysub);
+void sdissolve(const Osub& osub, Edge m_m_dummysub);
 //void subsegcopy(const SubSeg& osub1, SubSeg& osub2) { osub2 = osub1; }
 //bool subsegequal(const SubSeg& osub1, const SubSeg& osub2);
-bool deadsubseg(const SubSeg& t);
-void killsubseg(SubSeg& t);
+bool deadsubseg(const Edge& t);
+void killsubseg(Edge& t);
 
 } //~namespace tricpp
 } //~namespace ribi

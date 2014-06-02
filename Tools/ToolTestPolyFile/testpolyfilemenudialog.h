@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestQrcFile, tool to test the QrcFile class
-Copyright (C) 2012-2014 Richel Bilderbeek
+TestPolyFile, tool to test the PolyFile class
+Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,12 +16,32 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestQrcFile.htm
+//From http://www.richelbilderbeek.nl/ToolTestPolyFile.htm
 //---------------------------------------------------------------------------
-#include "testqrcfilemenudialog.h"
+#ifndef TESTPOLYFILEMENUDIALOG_H
+#define TESTPOLYFILEMENUDIALOG_H
 
-int main(int argc, char* argv[])
+#include "menudialog.h"
+
+namespace ribi {
+
+struct TestPolyFileMenuDialog : public MenuDialog
 {
-  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
-  return ribi::TestQrcFileMenuDialog().Execute(args);
-}
+  TestPolyFileMenuDialog();
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+};
+
+} //~namespace ribi
+
+#endif // TESTPOLYFILEMENUDIALOG_H

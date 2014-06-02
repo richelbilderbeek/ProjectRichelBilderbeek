@@ -10,5 +10,6 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Classes/CppPolyFile/Licence.txt
 
-RESOURCES +=
+RESOURCES += \
+    ../../Classes/CppPolyFile/CppPolyFile.qrc
 

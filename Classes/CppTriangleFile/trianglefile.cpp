@@ -190,6 +190,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   const bool verbose) const
 {
   const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
+  const bool delete_poly_file = false;
   node_filename = "";
   ele_filename = "";
   poly_filename = "";
@@ -236,10 +237,28 @@ void ribi::TriangleFile::ExecuteTriangleExe(
     << filename;
   if (verbose) { std::cout << "Starting command '" << s.str() << "'" << std::endl; }
   const bool error = std::system(s.str().c_str());
+
+  //Delete input file directly after running the program,
+  //so that independent of a possible error this behavior occurs
+  {
+    if (delete_poly_file)
+    {
+      if (verbose) { std::cout << "Deleted file " << filename << std::endl; }
+      fileio::FileIo().DeleteFile(filename);
+    }
+    else
+    {
+      if (verbose) { std::cout << "Kept file " << filename << " for inspection" << std::endl; }
+    }
+  }
+
+  //Respond to errors
   if (error)
   {
-    if (verbose) { std::cout << "Finished command with an error" << std::endl; }
-    fileio::FileIo().DeleteFile(filename);
+    if (verbose)
+    {
+      std::cout << "Finished command with an error" << std::endl;
+    }
     throw std::runtime_error(s.str().c_str());
   }
   if (verbose) { std::cout << "Finished command without errors" << std::endl; }
@@ -252,7 +271,6 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   assert(fileio::FileIo().IsRegularFile(node_filename));
   assert(fileio::FileIo().IsRegularFile(ele_filename));
   assert(fileio::FileIo().IsRegularFile(poly_filename));
-  fileio::FileIo().DeleteFile(filename);
 }
 
 std::string ribi::TriangleFile::GetVersion() noexcept

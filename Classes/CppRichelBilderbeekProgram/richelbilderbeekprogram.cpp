@@ -187,6 +187,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::testNewickVector: p.reset(new ProgramTestNewickVector); break;
     case ProgramType::testOpenQuestion: p.reset(new ProgramTestOpenQuestion); break;
     case ProgramType::testPlane: p.reset(new ProgramTestPlane); break;
+    case ProgramType::testPolyFile: p.reset(new ProgramTestPolyFile); break;
     case ProgramType::testPylos: p.reset(new ProgramTestPylos); break;
     case ProgramType::testQrcFile: p.reset(new ProgramTestQrcFile); break;
     case ProgramType::testQtArrowItems: p.reset(new ProgramTestQtArrowItems); break;

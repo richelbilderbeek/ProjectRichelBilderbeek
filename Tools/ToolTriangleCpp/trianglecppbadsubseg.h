@@ -20,7 +20,7 @@ struct BadSubSeg
 {
   BadSubSeg();
   ///An encroached subsegment
-  boost::shared_ptr<SubSeg> m_encsubseg;
+  boost::shared_ptr<Edge> m_encsubseg;
   boost::shared_ptr<Vertex> m_subsegdest;
   boost::shared_ptr<Vertex> m_subsegorg;
 };

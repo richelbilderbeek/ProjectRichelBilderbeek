@@ -62,7 +62,7 @@ struct Otri
   void SetElemAttrib(const double value, const int index);
   void SetInfected(const bool is_infected) noexcept { m_is_infected = is_infected; }
   void SetOrigin(const boost::shared_ptr<Vertex>& origin) noexcept { m_origin = origin; }
-  void SetSubSeg(const boost::shared_ptr<SubSeg>& subseg, const int index) noexcept;
+  void SetSubSeg(const boost::shared_ptr<Edge>& subseg, const int index) noexcept;
   void SetTriangle(const boost::shared_ptr<Triangle>& triangle, const int index) noexcept;
   //operator[](const int index) const noexcept;
   int GetOrient() const noexcept { return m_orient; }
@@ -80,7 +80,7 @@ struct Otri
   boost::shared_ptr<Vertex> m_dest;
   int m_orient; /// Ranges from 0 to 2
   boost::shared_ptr<Vertex> m_origin;
-  std::vector<boost::shared_ptr<SubSeg>> m_subsegs;
+  std::vector<boost::shared_ptr<Edge>> m_subsegs;
   std::vector<boost::shared_ptr<Triangle>> m_triangles; //Must be std::vector
 };
 

@@ -54,8 +54,8 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
   #endif
   ui->setupUi(this);
 
-  connect(ui->box_triangle_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
-  connect(ui->box_triangle_quality,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
+  connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
+  connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
 
 
   {
@@ -81,8 +81,8 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
       GetNumberOfCellLayers(),
       GetLayerHeight(),
       GetCreateVerticalFacesStrategy(),
-      GetTriangleQuality(),
-      GetTriangleArea(),
+      GetTriangleMinAngle(),
+      GetTriangleMaxArea(),
       ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(GetFraction()),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
       ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
@@ -152,8 +152,8 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
       filename_node,
       filename_ele,
       filename_poly,
-      GetTriangleQuality(),
-      GetTriangleArea()
+      GetTriangleMinAngle(),
+      GetTriangleMaxArea()
     );
   }
 
@@ -244,15 +244,18 @@ bool ribi::QtTriangleMeshCreatorMainDialog::GetShowMesh() const noexcept
   return ui->check_show_mesh->isChecked();
 }
 
-double ribi::QtTriangleMeshCreatorMainDialog::GetTriangleArea() const noexcept
+ribi::QtTriangleMeshCreatorMainDialog::Area ribi::QtTriangleMeshCreatorMainDialog::GetTriangleMaxArea() const noexcept
 {
-  return ui->box_triangle_area->value();
+  return ui->box_triangle_max_area->value() * boost::units::si::square_meter;
 }
 
 
-double ribi::QtTriangleMeshCreatorMainDialog::GetTriangleQuality() const noexcept
+ribi::QtTriangleMeshCreatorMainDialog::Angle ribi::QtTriangleMeshCreatorMainDialog::GetTriangleMinAngle() const noexcept
 {
-  return ui->box_triangle_quality->value();
+  return ui->box_triangle_min_angle->value() //Degrees
+    * (boost::math::constants::two_pi<double>() / 360.0) //Degrees -> radians
+    * boost::units::si::radians
+  ;
 }
 
 bool ribi::QtTriangleMeshCreatorMainDialog::GetVerbose() const noexcept

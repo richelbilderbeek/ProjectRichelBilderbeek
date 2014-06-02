@@ -28,7 +28,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/units/quantity.hpp>
+#include <boost/units/systems/si/area.hpp>
 #include <boost/units/systems/si/length.hpp>
+#include <boost/units/systems/si/plane_angle.hpp>
 #include "qthideandshowdialog.h"
 #include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
@@ -53,6 +55,8 @@ public:
 
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+  typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
+  typedef boost::units::quantity<boost::units::si::area> Area;
 
   void CreateMesh() noexcept;
   void DisplayPolygons() noexcept;
@@ -62,8 +66,8 @@ public:
   int GetNumberOfCellLayers() const noexcept;
   std::vector<Polygon> GetShapes() const noexcept;
   bool GetShowMesh() const noexcept;
-  double GetTriangleArea() const noexcept;
-  double GetTriangleQuality() const noexcept;
+  Area GetTriangleMaxArea() const noexcept;
+  Angle GetTriangleMinAngle() const noexcept;
   bool GetVerbose() const noexcept;
 
   void SetShowMesh(const bool show_mesh) noexcept;

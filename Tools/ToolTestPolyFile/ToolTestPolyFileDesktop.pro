@@ -1,10 +1,13 @@
-include(../../ConsoleApplication.pri)
+include(../../DesktopApplication.pri)
+
 include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
+#Specific for this application
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppPolyFile/CppPolyFile.pri)
-include(../../Tools/ToolTriangleCpp/ToolTriangleCppConsole.pri)
+include(../../Tools/ToolTestPolyFile/ToolTestPolyFileDesktop.pri)
 
-SOURCES += main.cpp
+SOURCES += qtmain.cpp

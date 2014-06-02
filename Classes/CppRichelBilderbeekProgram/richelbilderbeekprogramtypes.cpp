@@ -193,6 +193,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testOpenQuestion,"testOpenQuestion"));
   m.insert(Pair(ProgramType::testPylos,"testPylos"));
   m.insert(Pair(ProgramType::testPlane,"testPlane"));
+  m.insert(Pair(ProgramType::testPolyFile,"testPolyFile"));
   m.insert(Pair(ProgramType::testQrcFile,"testQrcFile"));
   m.insert(Pair(ProgramType::testQtArrowItems,"testQtArrowItems"));
   m.insert(Pair(ProgramType::testQtCreatorProFile,"testQtCreatorProFile"));
@@ -411,6 +412,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testNewickVector,"Test NewickVector"));
   m.insert(Pair(ProgramType::testOpenQuestion,"Test OpenQuestion"));
   m.insert(Pair(ProgramType::testPlane,"Test Plane"));
+  m.insert(Pair(ProgramType::testPolyFile,"Test PolyFile"));
   m.insert(Pair(ProgramType::testPylos,"Test Pylos"));
   m.insert(Pair(ProgramType::testQrcFile,"Test QrcFile"));
   m.insert(Pair(ProgramType::testQtArrowItems,"Test QtArrowItems"));

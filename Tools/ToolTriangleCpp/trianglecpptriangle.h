@@ -29,7 +29,7 @@ struct Triangle
 {
   Triangle();
   void SetTriangle(const Triangle& triangle, const int index); //If the lvalue of operator[] needed to be used
-  void SetSubSeg(const SubSeg& subseg, const int index); //If the lvalue of operator[] needed to be used
+  void SetSubSeg(const Edge& subseg, const int index); //If the lvalue of operator[] needed to be used
   Triangle& operator[](const int i) noexcept;
   const Triangle& operator[](const int i) const noexcept;
   Vertex GetOrg();
@@ -37,7 +37,7 @@ struct Triangle
   void KillMe() noexcept;
 
   bool m_is_dead;
-  std::vector<boost::shared_ptr<SubSeg>> m_subsegs;
+  std::vector<boost::shared_ptr<Edge>> m_subsegs;
   std::vector<boost::shared_ptr<Triangle>> m_triangles;
 };
 

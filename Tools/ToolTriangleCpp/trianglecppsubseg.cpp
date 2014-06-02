@@ -1,6 +1,6 @@
 #include "trianglecppsubseg.h"
 
-ribi::tricpp::SubSeg::SubSeg()
+ribi::tricpp::Edge::Edge()
   :
     m_subsegs{},
     m_triangles{},
@@ -9,14 +9,14 @@ ribi::tricpp::SubSeg::SubSeg()
 
 }
 
-bool ribi::tricpp::SubSeg::IsDead() const noexcept
+bool ribi::tricpp::Edge::IsDead() const noexcept
 {
   //bool deadsubseg(const SubSeg& t) { return t[1] == nullptr; }
   assert(m_triangles.size() > 1);
   return m_triangles[1] == nullptr;
 }
 
-void ribi::tricpp::SubSeg::KillMe() noexcept
+void ribi::tricpp::Edge::KillMe() noexcept
 {
   //void killsubseg(const SubSeg& t) { t[1] = nullptr; t[2] = nullptr; }
   assert(m_triangles.size() > 2);
@@ -25,13 +25,13 @@ void ribi::tricpp::SubSeg::KillMe() noexcept
   assert(IsDead());
 }
 
-void ribi::tricpp::SubSeg::SetBoundaryMarker(const int value)
+void ribi::tricpp::Edge::SetBoundaryMarker(const int value)
 {
   //* (int *) (m.m_dummysub + 8) = 0;
   m_boundary_marker = value;
 }
 
-void ribi::tricpp::SubSeg::SetSubSeg(SubSeg * const subseg, const int index)
+void ribi::tricpp::Edge::SetSubSeg(Edge * const subseg, const int index)
 {
   assert(index >= 0);
   assert(index  < 6 && "But not sure yet...");
@@ -39,7 +39,7 @@ void ribi::tricpp::SubSeg::SetSubSeg(SubSeg * const subseg, const int index)
   m_subsegs[index] = subseg;
 }
 
-void ribi::tricpp::SubSeg::SetTriangle(Triangle * const triangle, const int index)
+void ribi::tricpp::Edge::SetTriangle(Triangle * const triangle, const int index)
 {
   assert(index >= 6);
   assert(index  < 8 && "But not sure yet...");
@@ -130,7 +130,7 @@ void ribi::tricpp::GetDest(const Osub& osub, Vertex& vertexptr)
   vertexptr = (Vertex) (osub).m_subseg[5 - (osub).m_subseg_orient]
 */
 
-void ribi::tricpp::setsegorg(Osub& osub, SubSeg * subsegptr)
+void ribi::tricpp::setsegorg(Osub& osub, Edge * subsegptr)
 {
   osub.m_subseg[4 + osub.m_subseg_orient] = subsegptr;
 }
@@ -140,7 +140,7 @@ void ribi::tricpp::setsegorg(Osub& osub, SubSeg * subsegptr)
   (osub).m_subseg[4 + (osub).m_subseg_orient] = (SubSeg) vertexptr
 */
 
-void ribi::tricpp::setsegdest(Osub& osub, SubSeg * subsegptr)
+void ribi::tricpp::setsegdest(Osub& osub, Edge * subsegptr)
 {
   osub.m_subseg[5 - osub.m_subseg_orient] = vertexptr;
 }
@@ -150,7 +150,7 @@ void ribi::tricpp::setsegdest(Osub& osub, SubSeg * subsegptr)
   (osub).m_subseg[5 - (osub).m_subseg_orient] = (SubSeg) vertexptr
 */
 
-void ribi::tricpp::sdissolve(const Osub& osub, SubSeg m_m_dummysub)
+void ribi::tricpp::sdissolve(const Osub& osub, Edge m_m_dummysub)
 {
   osub.m_subseg[osub.m_subseg_orient] = m.m_dummysub;
 }
@@ -184,7 +184,7 @@ void ribi::tricpp::sdissolve(const Osub& osub, SubSeg m_m_dummysub)
 //  for the stack of dead items.)  Its third pointer (its first vertex)
 //  is set to NULL in case a `badsubseg' structure points to it.
 
-bool ribi::tricpp::deadsubseg(const SubSeg& t) { return t.IsDead(); }
+bool ribi::tricpp::deadsubseg(const Edge& t) { return t.IsDead(); }
 //#define deadsubseg(sub)  ((sub)[1] == (SubSeg) NULL)
 
-void ribi::tricpp::killsubseg(SubSeg& t) { t.KillMe(); }
+void ribi::tricpp::killsubseg(Edge& t) { t.KillMe(); }

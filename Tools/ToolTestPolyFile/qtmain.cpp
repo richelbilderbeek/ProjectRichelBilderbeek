@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestQrcFile, tool to test the QrcFile class
-Copyright (C) 2012-2014 Richel Bilderbeek
+TestPolyFile, tool to test the PolyFile class
+Copyright (C) 2012-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,12 +16,22 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestQrcFile.htm
+//From http://www.richelbilderbeek.nl/ToolTestPolyFile.htm
 //---------------------------------------------------------------------------
-#include "testqrcfilemenudialog.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <QApplication>
+#include "qttestpolyfilemenudialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
-  return ribi::TestQrcFileMenuDialog().Execute(args);
+  QApplication a(argc, argv);
+  START_TRACE();
+  ribi::QtTestPolyFileMenuDialog w;
+  w.show();
+  return a.exec();
 }
+

@@ -179,6 +179,7 @@ enum class ProgramType
   testNewickVector,
   testOpenQuestion,
   testPlane,
+  testPolyFile,
   testPylos,
   testQrcFile,
   testQtArrowItems,

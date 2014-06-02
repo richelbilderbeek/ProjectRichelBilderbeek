@@ -14,7 +14,7 @@ boost::shared_ptr<ribi::tricpp::Otri> ribi::tricpp::Osub::GetStPivot() const
   return boost::shared_ptr<Otri>();
 }
 
-boost::shared_ptr<ribi::tricpp::SubSeg> ribi::tricpp::Osub::Sencode() noexcept
+boost::shared_ptr<ribi::tricpp::Edge> ribi::tricpp::Osub::Sencode() noexcept
 {
   assert(m_subseg_orient >= 0);
   assert(m_subseg_orient < static_cast<int>(m_subsegs.size()));
@@ -109,7 +109,7 @@ void ribi::tricpp::GetDest(const Osub& osub, Vertex& vertexptr)
 //spivot() finds the other subsegment (from the same segment) that shares
 //  the same origin.
 
-void ribi::tricpp::spivot(Osub& osub1, Osub& osub2, SubSeg& sptr)
+void ribi::tricpp::spivot(Osub& osub1, Osub& osub2, Edge& sptr)
 {
   sptr = osub1.m_subsegs[osub1.m_subseg_orient];
   sdecode(sptr, osub2);
@@ -121,7 +121,7 @@ void ribi::tricpp::spivot(Osub& osub1, Osub& osub2, SubSeg& sptr)
   sdecode(sptr, osub2)
 */
 
-void ribi::tricpp::spivotself(Osub& osub1, SubSeg& sptr)
+void ribi::tricpp::spivotself(Osub& osub1, Edge& sptr)
 {
   sptr = osub.m_subseg[osub.m_subseg_orient];
   sdecode(sptr, osub);
@@ -136,7 +136,7 @@ void ribi::tricpp::spivotself(Osub& osub1, SubSeg& sptr)
 //snext() finds the next subsegment (from the same segment) in sequence;
 //  one whose origin is the input subsegment's destination.
 
-void ribi::tricpp::snext(Osub& osub1, Osub& osub2, SubSeg& sptr)
+void ribi::tricpp::snext(Osub& osub1, Osub& osub2, Edge& sptr)
 {
   sptr = osub1.ss[1 - osub1.m_subseg_orient];
   sdecode(sptr, osub2);
@@ -148,7 +148,7 @@ void ribi::tricpp::snext(Osub& osub1, Osub& osub2, SubSeg& sptr)
   sdecode(sptr, osub2)
 */
 
-void ribi::tricpp::snextself(Osub& osub, SubSeg& sptr)
+void ribi::tricpp::snextself(Osub& osub, Edge& sptr)
 {
   assert(!"Does not change the pointer");
   sptr = (osub).m_subsegs[1 - (osub).m_subseg_orient];
@@ -203,7 +203,7 @@ void ribi::tricpp::stpivot(Osub& osub, Otri& otri)
 void ribi::tricpp::tsbond(Otri& otri, Osub& osub)
 {
   otri.m_tri[6 + otri.m_orient] = osub.Sencode();
-  osub.m_subsegs[6 + osub.m_subseg_orient] =  (SubSeg) encode(otri);
+  osub.m_subsegs[6 + osub.m_subseg_orient] =  (Edge) encode(otri);
 
   //otri.m_tri[6 + (otri).m_orient] = (Triangle) sencode(osub);
   //osub.m_subsegs[6 + (osub).m_subseg_orient] = (SubSeg) encode(otri);
@@ -217,7 +217,7 @@ void ribi::tricpp::tsbond(Otri& otri, Osub& osub)
 
 
 //Dissolve a bond (from the triangle side).
-void ribi::tricpp::tsdissolve(Otri& otri, SubSeg& m_m_dummysub)
+void ribi::tricpp::tsdissolve(Otri& otri, Edge& m_m_dummysub)
 {
   otri.Dissolve(m_m_dummysub);
   otri.m_tri[6 + otri.m_orient] = m_m_dummysub;

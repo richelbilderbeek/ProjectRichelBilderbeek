@@ -13,7 +13,7 @@ struct Mesh;
 struct Osub;
 struct Otri;
 struct SplayNode;
-struct SubSeg;
+struct Edge;
 struct Triangle;
 struct TriangulateIo;
 struct Vertex;

@@ -264,6 +264,12 @@ void createeventheap(
   Event ** freeevents
 );
 
+///CreateVertices converts raw .poly file its contents
+///to Vertex instances
+std::vector<boost::shared_ptr<Vertex>> CreateVertices(
+  const PolyFile& polyfile
+) noexcept;
+
 /// delaunay()   Form a Delaunay triangulation.
 long delaunay(Mesh& m, const Behavior& b);
 
@@ -748,7 +754,7 @@ boost::shared_ptr<Osub> makesubseg(
 //void makesubseg(
   //Mesh& m,
   boost::shared_ptr<Triangle>& m_m_dummytri,
-  boost::shared_ptr<SubSeg>& m_m_dummysub
+  boost::shared_ptr<Edge>& m_m_dummysub
   //Osub& newsubseg
 );
 
@@ -756,7 +762,7 @@ boost::shared_ptr<Osub> makesubseg(
 boost::shared_ptr<ribi::tricpp::Otri> maketriangle(
   //Mesh& m,
   const boost::shared_ptr<Triangle>& m_m_dummytri,
-  const boost::shared_ptr<SubSeg>& m_m_dummysub,
+  const boost::shared_ptr<Edge>& m_m_dummysub,
   const int m_m_eextras,
   //const Behavior& b,
   const bool b_m_vararea
@@ -1258,7 +1264,7 @@ void statistics(
 /// subsegdealloc()   Deallocate space for a subsegment, marking it dead.
 void subsegdealloc(
   Mesh& m,
-  boost::shared_ptr<SubSeg>& dyingsubseg
+  boost::shared_ptr<Edge>& dyingsubseg
 );
 
 /// subsegtraverse()   Traverse the subsegments, skipping dead ones.

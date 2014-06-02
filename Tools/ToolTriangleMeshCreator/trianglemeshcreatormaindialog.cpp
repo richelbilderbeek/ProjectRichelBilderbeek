@@ -32,8 +32,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 #include <boost/units/systems/si.hpp>
 
-
-
 #include "fileio.h"
 #include "openfoamcontroldictfile.h"
 #include "openfoamfilenames.h"
@@ -43,6 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "openfoamtemperaturefile.h"
 #include "openfoamthermophysicalpropertiesfile.h"
 #include "openfoamvelocityfieldfile.h"
+#include "polyfile.h"
 #include "trace.h"
 #include "trianglefile.h"
 #include "trianglemeshbuilder.h"
@@ -505,7 +504,7 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
     {
       const double pi { boost::math::constants::pi<double>() };
       const std::vector<Coordinat2D> shapes {
-        ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
+        ribi::PolyFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
       const Angle triangle_min_angle
         = 20.0 //Default used by Triangle, in degrees
