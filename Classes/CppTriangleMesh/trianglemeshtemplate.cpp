@@ -108,25 +108,29 @@ ribi::trim::Template::Template(
       assert(CanLexicalCast<int>(w[2]));
       assert(CanLexicalCast<int>(w[3]));
 
-      //I do not correct for one-base Triangle.exe output
+      //I hope that I made the Triangle.exe output start at index 0..
       const int point1 = boost::lexical_cast<int>(w[1]);
       const int point2 = boost::lexical_cast<int>(w[2]);
       const int point3 = boost::lexical_cast<int>(w[3]);
-      assert(point1 > 0);
-      assert(point2 > 0);
-      assert(point3 > 0);
+      assert(point1 >= 0); //Start at index 0
+      assert(point2 >= 0); //Start at index 0
+      assert(point3 >= 0); //Start at index 0
+      assert(point1 - 0 < static_cast<int>(m_points.size()));
+      assert(point2 - 0 < static_cast<int>(m_points.size()));
+      assert(point3 - 0 < static_cast<int>(m_points.size()));
       const std::vector<int> face_point_indices {
-        point1-1,
-        point2-1,
-        point3-1
+        point1-0, //Start at index 0
+        point2-0, //Start at index 0
+        point3-0  //Start at index 0
       };
       m_edges.push_back(std::make_pair(face_point_indices[0],face_point_indices[1]));
       m_edges.push_back(std::make_pair(face_point_indices[0],face_point_indices[2]));
       m_edges.push_back(std::make_pair(face_point_indices[1],face_point_indices[2]));
+
       std::vector<boost::shared_ptr<Point>> face_points {
-        m_points[point1-1],
-        m_points[point2-1],
-        m_points[point3-1]
+        m_points[point1-0], //Start at index 0
+        m_points[point2-0], //Start at index 0
+        m_points[point3-0]  //Start at index 0
       };
       if (!Helper().IsClockwiseHorizontal(face_points))
       {
