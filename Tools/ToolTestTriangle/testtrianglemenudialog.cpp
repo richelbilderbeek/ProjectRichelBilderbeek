@@ -321,7 +321,7 @@ std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const
     "2014-05-18: version 1.1: uses Linux executable additionally",
     "2014-05-23: version 1.2: added command line interface",
     "2014-05-27: version 1.3: added units to Triangle parameters, fixed bug in desktop version that was detected by this",
-    "2014-06-03: version 1.4: assume Triangle starts counting from index zero"
+    "2014-06-03: version 1.4: assume Triangle starts counting from index zero, desktop version responds to all positive values"
   };
 }
 

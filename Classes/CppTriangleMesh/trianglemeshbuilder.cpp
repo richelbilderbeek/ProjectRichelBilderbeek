@@ -575,7 +575,8 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       fs.str()
       );
 
-    const std::pair<std::string,std::string> p { CreateCells() };
+    const auto p = CreateCells();
+    //const std::pair<std::string,std::string> p { CreateCells() };
     const std::string& out_owner { p.first };
     const std::string& out_neighbour { p.second};
     fo << out_owner;

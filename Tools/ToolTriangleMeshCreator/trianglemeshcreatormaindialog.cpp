@@ -88,14 +88,18 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
       filename_node,
       filename_ele,
       filename_poly,
-      triangle_min_angle, //Triangle paraneter 'quality'
-      triangle_max_area,  //Triangle parameter 'area'
+      triangle_min_angle,
+      triangle_max_area,
       verbose
     );
   }
-  catch (std::runtime_error&)
+  catch (std::exception& e)
   {
-    throw std::runtime_error("Triangle.exe failed");
+    std::stringstream s;
+    s << "ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog: "
+      << "Triangle.exe failed: " << e.what();
+    TRACE(s.str());
+    throw std::runtime_error(s.str());
   }
 
   if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }

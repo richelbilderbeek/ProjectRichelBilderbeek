@@ -266,8 +266,9 @@ void ribi::TriangleFile::ExecuteTriangleExe(
       TRACE(m_polyfile->ToStr());
     }
     std::stringstream s;
-    s << "Error: '" << command << "' failed, with error code " << error;
-    throw std::runtime_error(s.str().c_str());
+    s << "Error: '" << command.str() << "' failed, with error code " << error;
+    TRACE(s.str());
+    throw std::runtime_error(s.str());
   }
   if (verbose) { std::cout << "Finished command without errors" << std::endl; }
   //End of specific
@@ -352,7 +353,12 @@ void ribi::TriangleFile::Test() noexcept
     }
     catch (std::exception& e)
     {
-      TRACE(e.what());
+      std::stringstream s;
+      s
+        << "TriangleFile::Test: "
+        << "Triangle.exe failed: " << e.what()
+      ;
+      TRACE(s.str());
       assert(!"Should not get here");
     }
     TRACE("Finished ribi::TriangleFile::Test successfully");

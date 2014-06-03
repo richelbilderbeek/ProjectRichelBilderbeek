@@ -143,9 +143,14 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
   const bool verbose = GetVerbose();
   if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
 
+  assert(ui->view_triangle_mesh->scene());
+  ui->view_triangle_mesh->scene()->clear();
+
+
   std::string filename_node;
   std::string filename_ele;
   std::string filename_poly;
+  try
   {
     ribi::TriangleFile f(GetShapes());
     f.ExecuteTriangleExe(
@@ -155,6 +160,14 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
       GetTriangleMinAngle(),
       GetTriangleMaxArea()
     );
+  }
+  catch (std::exception& e)
+  {
+    std::clog
+      << "QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh: "
+      << "Triangle.exe failed: " << e.what()
+    ;
+    return;
   }
 
   if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
@@ -180,7 +193,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
     polygons.push_back(polygon);
   }
 
-  if (verbose) { std::clog << "Convert to polygons to SVG" << std::endl; }
+  if (verbose) { std::clog << "Convert polygons to SVG" << std::endl; }
   const std::string svg_text = Geometry().ToSvgStr(polygons,0.1);
 
   const std::string filename = fileio::FileIo().GetTempFileName(".svg");
@@ -192,8 +205,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
   {
     QGraphicsSvgItem * const item = new QGraphicsSvgItem(filename.c_str());
     item->setScale(10.0);
-    assert(ui->view_triangle_mesh->scene());
-    ui->view_triangle_mesh->scene()->clear();
     ui->view_triangle_mesh->scene()->addItem(item);
   }
   fileio::FileIo().DeleteFile(filename);

@@ -176,7 +176,8 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      throw std::runtime_error(s.str().c_str());
+      TRACE(s.str());
+      throw std::runtime_error(s.str());
     }
     assert(w.size() == 4);
     const double x = boost::lexical_cast<double>(w[1]);
@@ -197,7 +198,8 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      throw std::runtime_error(s.str().c_str());
+      TRACE(s.str());
+      throw std::runtime_error(s.str());
     }
     assert(w.size() == 3);
     const int from_index = boost::lexical_cast<int>(w[1]) - first_index;
@@ -210,7 +212,8 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      throw std::runtime_error(s.str().c_str());
+      TRACE(s.str());
+      throw std::runtime_error(s.str());
     }
     if (from_index < 0)
     {
@@ -221,7 +224,8 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      throw std::runtime_error(s.str().c_str());
+      TRACE(s.str());
+      throw std::runtime_error(s.str());
     }
     if (from_index >= static_cast<int>(vertices.size()))
     {
@@ -233,7 +237,8 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      throw std::runtime_error(s.str().c_str());
+      TRACE(s.str());
+      throw std::runtime_error(s.str());
     }
     if (to_index < 0)
     {
@@ -244,7 +249,8 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      throw std::runtime_error(s.str().c_str());
+      TRACE(s.str());
+      throw std::runtime_error(s.str());
     }
     if (to_index >= static_cast<int>(vertices.size()))
     {
@@ -256,7 +262,8 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      throw std::runtime_error(s.str().c_str());
+      TRACE(s.str());
+      throw std::runtime_error(s.str());
     }
     assert(from_index != to_index);
     assert(from_index < static_cast<int>(vertices.size()));

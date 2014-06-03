@@ -340,6 +340,7 @@ boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
     std::stringstream s;
     s << "File '" << filename << "' is not an OpenFOAM 'boundary' file: "
       << e.what();
+    TRACE(s.str());
     throw std::runtime_error(s.str());
   }
 }

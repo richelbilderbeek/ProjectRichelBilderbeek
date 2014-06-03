@@ -176,6 +176,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, Header& h)
         << "OpenFOAM header start with 'FoamFile'. "
         << "This file starts with  '"
         << title << "' instead";
+      TRACE(s.str());
       throw std::runtime_error(s.str());
     }
   }

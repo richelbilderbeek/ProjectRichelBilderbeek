@@ -217,7 +217,7 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
          <number>3</number>
         </property>
         <property name="minimum">
-         <double>1.000000000000000</double>
+         <double>0.000000000000000</double>
         </property>
         <property name="maximum">
          <double>60.000000000000000</double>
@@ -237,7 +237,7 @@ POLYGON((-10 -10,-8 -10,-6 -10,-4 -10,-2 -10,0 -10,2 -10,4 -10,6 -10,8 -10,10 -1
       <item>
        <widget class="QDoubleSpinBox" name="box_triangle_max_area">
         <property name="minimum">
-         <double>1.000000000000000</double>
+         <double>0.000000000000000</double>
         </property>
         <property name="maximum">
          <double>10000.000000000000000</double>

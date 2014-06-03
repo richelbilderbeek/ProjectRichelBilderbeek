@@ -76,14 +76,22 @@ void ribi::fileio::FileIo::CreateFolder(const std::string& folder) const
   }
   #endif
   assert(!IsFolder(folder)
-    && "Can only create folders that do not exist yes");
+    && "Can only create folders that do not exist yet");
   const std::string cmd = "mkdir " + folder;
   const int error = std::system(cmd.c_str());
   #ifndef NDEBUG
   if (error) { TRACE(cmd); }
   #endif
   assert(!error && "Assume mkdir works under both Windows and Linux");
-  if (error) throw std::runtime_error("CreateFolder failed");
+  if (error)
+  {
+    std::stringstream s;
+    s << "ribi::fileio::FileIo::CreateFolder: "
+      << "CreateFolder failed in creating the folder '" << folder << "': "
+    ;
+    TRACE(s.str());
+    throw std::runtime_error(s.str());
+  }
   assert(IsFolder(folder) && "it should work");
 }
 
@@ -148,13 +156,22 @@ void ribi::fileio::FileIo::DeleteFolder(const std::string& folder) const
   assert(!error && "Assume rmdir works under both Windows and Linux");
   if (error)
   {
-    TRACE(folder);
-    throw std::runtime_error("DeleteFolder failed by system call");
+    std::stringstream s;
+    s << "ribi::fileio::FileIo::DeleteFolder: "
+      << "DeleteFolder failed in deleting the folder '" << folder << "': "
+      << "failed by system call"
+    ;
+    TRACE(s.str());
+    throw std::runtime_error(s.str());
   }
   if (IsFolder(folder))
   {
-    TRACE(folder);
-    throw std::runtime_error("DeleteFolder failed in deleting the folder");
+    std::stringstream s;
+    s << "ribi::fileio::FileIo::DeleteFolder: "
+      << "DeleteFolder failed in deleting the folder '" << folder << "'"
+    ;
+    TRACE(s.str());
+    throw std::runtime_error(s.str());
   }
 }
 
@@ -484,7 +501,13 @@ std::string ribi::fileio::FileIo::GetTempFileName(const std::string& post) const
       << post;
     if (!IsRegularFile(s.str())) return s.str();
   }
-  throw std::runtime_error("Could not find a temporary file name");
+
+  std::stringstream s;
+  s << "ribi::fileio::FileIo::GetTempFileName: "
+    << "Could not find a temporary file name"
+  ;
+  TRACE(s.str());
+  throw std::runtime_error(s.str());
 }
 
 
@@ -503,7 +526,13 @@ std::string ribi::fileio::FileIo::GetTempFolderName() const
       << std::rand();
     if (!IsFolder(s.str())) return s.str();
   }
-  throw std::runtime_error("Could not find a temporary folder name");
+
+  std::stringstream s;
+  s << "ribi::fileio::FileIo::GetTempFolderName: "
+    << "Could not find a temporary folder name"
+  ;
+  TRACE(s.str());
+  throw std::runtime_error(s.str());
 }
 
 std::string ribi::fileio::FileIo::GetVersion() const noexcept
@@ -1171,13 +1200,13 @@ void ribi::fileio::FileIo::VectorToFile(
     assert(!IsRegularFile(filename) && "File must not exist");
     if (IsRegularFile(filename))
     {
-      std::stringstream msg;
-      msg
+      std::stringstream s;
+      s
         << "VectorToFile: not allowed to overwrite file '"
         << filename
         << "'";
-
-      throw std::runtime_error(msg.str().c_str());
+      TRACE(s.str());
+      throw std::runtime_error(s.str());
     }
   }
   {
