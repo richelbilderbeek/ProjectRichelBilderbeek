@@ -6,8 +6,8 @@ SOURCES += \
     ../../Games/GameTankBattalion/tankbattalionspritetypes.cpp \
     ../../Games/GameTankBattalion/tankbattalionhelper.cpp \
     ../../Games/GameTankBattalion/tankbattaliongamewidget.cpp \
-    tankbattalionkeys.cpp \
-    tankbattalionarena.cpp
+    ../../Games/GameTankBattalion/tankbattalionkeys.cpp \
+    ../../Games/GameTankBattalion/tankbattalionarena.cpp
 
 HEADERS  += \
     ../../Games/GameTankBattalion/tankbattalionmenudialog.h \
@@ -17,9 +17,9 @@ HEADERS  += \
     ../../Games/GameTankBattalion/tankbattaliondirection.h \
     ../../Games/GameTankBattalion/tankbattalionhelper.h \
     ../../Games/GameTankBattalion/tankbattaliongamewidget.h \
-    tankbattalionfwd.h \
-    tankbattalionkeys.h \
-    tankbattalionarena.h
+    ../../Games/GameTankBattalion/tankbattalionfwd.h \
+    ../../Games/GameTankBattalion/tankbattalionkeys.h \
+    ../../Games/GameTankBattalion/tankbattalionarena.h
 
 OTHER_FILES += \
     ../../Games/GameTankBattalion/Licence.txt

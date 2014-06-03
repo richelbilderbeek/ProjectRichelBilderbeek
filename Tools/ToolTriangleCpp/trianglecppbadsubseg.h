@@ -1,12 +1,14 @@
 #ifndef TRIANGLECPPBADSUBSEG_H
 #define TRIANGLECPPBADSUBSEG_H
 
+#ifdef TRIANGLECPP_USE_BADSUBSEG
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "trianglecppfwd.h"
-#include "trianglecppsubseg.h"
+#include "trianglecppedge.h"
 #include "trianglecppvertex.h"
 #pragma GCC diagnostic pop
 
@@ -27,5 +29,7 @@ struct BadSubSeg
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_BADSUBSEG
 
 #endif // TRIANGLECPPBADSUBSEG_H

@@ -1,11 +1,13 @@
 #ifndef TRIANGLECPPOSUB_H
 #define TRIANGLECPPOSUB_H
 
+#ifdef TRIANGLECPP_USE_OSUB
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "trianglecppsubseg.h"
+#include "trianglecppedge.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -85,5 +87,7 @@ void stdissolve(Osub& osub, Triangle& m_m_dummytri);
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_OSUB
 
 #endif // TRIANGLECPPOSUB_H

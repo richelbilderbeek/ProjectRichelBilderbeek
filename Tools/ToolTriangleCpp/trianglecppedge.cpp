@@ -1,5 +1,13 @@
-#include "trianglecppsubseg.h"
+#include "trianglecppedge.h"
 
+ribi::tricpp::Edge::Edge(const VertexPtr& from_vertex, const VertexPtr& to_vertex)
+  : m_from_vertex(from_vertex),
+    m_to_vertex(to_vertex)
+{
+
+}
+
+/*
 ribi::tricpp::Edge::Edge()
   :
     m_subsegs{},
@@ -8,7 +16,9 @@ ribi::tricpp::Edge::Edge()
 {
 
 }
+*/
 
+/*
 bool ribi::tricpp::Edge::IsDead() const noexcept
 {
   //bool deadsubseg(const SubSeg& t) { return t[1] == nullptr; }
@@ -24,13 +34,14 @@ void ribi::tricpp::Edge::KillMe() noexcept
   m_triangles[2] = nullptr;
   assert(IsDead());
 }
-
+*/
 void ribi::tricpp::Edge::SetBoundaryMarker(const int value)
 {
   //* (int *) (m.m_dummysub + 8) = 0;
   m_boundary_marker = value;
 }
 
+/*
 void ribi::tricpp::Edge::SetSubSeg(Edge * const subseg, const int index)
 {
   assert(index >= 0);
@@ -46,6 +57,9 @@ void ribi::tricpp::Edge::SetTriangle(Triangle * const triangle, const int index)
   assert(index < static_cast<int>(m_triangles.size()));
   m_triangles[index] = triangle;
 }
+*/
+
+
 
 void ribi::tricpp::ssym(const Osub& osub1, Osub& osub2)
 {
@@ -188,3 +202,13 @@ bool ribi::tricpp::deadsubseg(const Edge& t) { return t.IsDead(); }
 //#define deadsubseg(sub)  ((sub)[1] == (SubSeg) NULL)
 
 void ribi::tricpp::killsubseg(Edge& t) { t.KillMe(); }
+
+bool ribi::tricpp::AreConnected(const Edge& lhs, const Edge& rhs) noexcept
+{
+  return
+       lhs.GetFromVertex() == rhs.GetFromVertex()
+    || lhs.GetFromVertex() == rhs.GetToVertex()
+    || lhs.GetToVertex()   == rhs.GetFromVertex()
+    || lhs.GetToVertex()   == rhs.GetToVertex()
+  ;
+}

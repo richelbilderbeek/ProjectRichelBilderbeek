@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "richelbilderbeekmenudialog.h"
 
 #include "aafmenudialog.h"
@@ -191,6 +192,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
 #include "testplanemenudialog.h"
+#include "testpolyfilemenudialog.h"
+#include "testpolyfilefrompolygonsmenudialog.h"
 #include "testpylosmenudialog.h"
 #include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
@@ -409,7 +412,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("StateObserver version: " + StateObserverMenuDialog().GetVersion());
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
   a.AddLibrary("SuperNsanaBros version: " + NsanaBrosMenuDialog().GetVersion());
-  a.AddLibrary("TankBattalion version: " + TankBattalionMenuDialog().GetVersion());
+  a.AddLibrary("TankBattalion version: " + taba::MenuDialog().GetVersion());
   a.AddLibrary("TestApproximator version: " + ToolTestApproximatorMenuDialog().GetVersion());
   a.AddLibrary("TestDial version: " + TestDialMenuDialog().GetVersion());
   a.AddLibrary("TestExercise version: " + TestExerciseMenuDialog().GetVersion());
@@ -2084,7 +2087,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::tankBattalion: p.reset(new TankBattalionMenuDialog); break;
+      case ProgramType::tankBattalion: p.reset(new taba::MenuDialog); break;
       case ProgramType::testAbout: p.reset(new TestAboutMenuDialog); break;
       case ProgramType::testApproximator: p.reset(new ToolTestApproximatorMenuDialog); break;
       case ProgramType::testBinaryNewickVector: p.reset(new TestBinaryNewickVectorMenuDialog); break;
@@ -2467,6 +2470,8 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       break;
       case ProgramType::testOpenQuestion: p.reset(new TestOpenQuestionMenuDialog); break;
       case ProgramType::testPlane: p.reset(new TestPlaneMenuDialog); break;
+      case ProgramType::testPolyFile: p.reset(new TestPolyFileMenuDialog); break;
+      case ProgramType::testPolyFileFromPolygons: p.reset(new TestPolyFileFromPolygonsMenuDialog); break;
       case ProgramType::testPylos: p.reset(new TestPylosMenuDialog); break;
       case ProgramType::testQrcFile: p.reset(new TestQrcFileMenuDialog); break;
       case ProgramType::testQtArrowItems : p.reset(new TestQtArrowItemsMenuDialog); break;

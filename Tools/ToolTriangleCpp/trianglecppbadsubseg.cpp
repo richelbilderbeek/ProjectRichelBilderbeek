@@ -1,5 +1,7 @@
 #include "trianglecppbadsubseg.h"
 
+#ifdef USE_BADSUBSEG
+
 ribi::tricpp::BadSubSeg::BadSubSeg()
   :
     m_encsubseg{},
@@ -8,3 +10,5 @@ ribi::tricpp::BadSubSeg::BadSubSeg()
 {
 
 }
+
+#endif // USE_BADSUBSEG

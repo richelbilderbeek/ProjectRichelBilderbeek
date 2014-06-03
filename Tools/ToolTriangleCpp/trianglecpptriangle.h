@@ -9,7 +9,7 @@
 #include <boost/shared_ptr.hpp>
 #include "trianglecppfwd.h"
 #include "trianglecpptriangle.h"
-#include "trianglecppsubseg.h"
+#include "trianglecppedge.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -27,18 +27,27 @@ namespace tricpp {
 //typedef double **Triangle;
 struct Triangle
 {
-  Triangle();
-  void SetTriangle(const Triangle& triangle, const int index); //If the lvalue of operator[] needed to be used
-  void SetSubSeg(const Edge& subseg, const int index); //If the lvalue of operator[] needed to be used
-  Triangle& operator[](const int i) noexcept;
-  const Triangle& operator[](const int i) const noexcept;
-  Vertex GetOrg();
-  bool IsDead() const noexcept;
-  void KillMe() noexcept;
+  typedef boost::shared_ptr<Edge> EdgePtr;
+  typedef std::array<boost::shared_ptr<Edge>,3> Edges;
+  //Triangle(const EdgePtr& a, const EdgePtr& b, const EdgePtr& c);
+  Triangle(const Edges& edges);
 
-  bool m_is_dead;
-  std::vector<boost::shared_ptr<Edge>> m_subsegs;
-  std::vector<boost::shared_ptr<Triangle>> m_triangles;
+
+  //void SetTriangle(const Triangle& triangle, const int index); //If the lvalue of operator[] needed to be used
+  //void SetSubSeg(const Edge& subseg, const int index); //If the lvalue of operator[] needed to be used
+  //Triangle& operator[](const int i) noexcept;
+  //const Triangle& operator[](const int i) const noexcept;
+  //Vertex GetOrg();
+  //bool IsDead() const noexcept;
+  //void KillMe() noexcept;
+
+  //bool m_is_dead;
+  private:
+  const Edges m_edges;
+  //Triangle(const EdgePtr& a, const EdgePtr& b, const EdgePtr& c);
+
+  //std::vector<boost::shared_ptr<Edge>> m_subsegs;
+  //std::vector<boost::shared_ptr<Triangle>> m_triangles;
 };
 
 bool operator==(const Triangle& lhs, const Triangle& rhs) noexcept;
@@ -58,11 +67,11 @@ bool operator!=(const Triangle& lhs, const Triangle& rhs) noexcept;
 
 //void killtri(const Triangle& t) { t[1] = nullptr; t[3] = nullptr; }
 
-boost::shared_ptr<Triangle> vertex2tri(Vertex& vx);
+//boost::shared_ptr<Triangle> vertex2tri(Vertex& vx);
 //Triangle vertex2tri(Vertex& vx);
 
 //void setvertex2tri(Vertex& vx, const Triangle& value);
-void setvertex2tri(Vertex& vx, const boost::shared_ptr<Triangle>& value);
+//void setvertex2tri(Vertex& vx, const boost::shared_ptr<Triangle>& value);
 
 } //~namespace tricpp
 } //~namespace ribi

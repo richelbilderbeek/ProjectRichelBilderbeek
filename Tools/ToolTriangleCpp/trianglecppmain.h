@@ -14,7 +14,7 @@
 
 #include "trianglecpplocateresult.h"
 #include "trianglecppfinddirectionresult.h"
-#include "trianglecppsubseg.h"
+#include "trianglecppedge.h"
 #include "trianglecpptriangle.h"
 #include "trianglecpptypedefs.h"
 #include "trianglecppvertex.h"
@@ -53,7 +53,7 @@ void badsubsegdealloc(
 /// The vertices at "infinity" are assigned finite coordinates, which are
 /// used by the point location routines, but (mostly) ignored by the
 /// Delaunay edge flip routines.
-void boundingbox(Mesh& m, const Behavior& b);
+void boundingbox(Mesh& m, const Arguments& b);
 
 /// carveholes()   Find the holes and infect them.  Find the area
 ///                constraints and infect them.  Infect the convex hull.
@@ -64,7 +64,7 @@ void boundingbox(Mesh& m, const Behavior& b);
 /// functions.
 void carveholes(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   std::vector<double>& holelist,
   //double * const holelist,
   //const int holes,
@@ -85,7 +85,7 @@ void checkdelaunay(
   Mesh& m,
   int& m_m_incirclecount
   //const bool m_m_noexact,
-  //Behavior& b
+  //Arguments& b
 );
 
 ///Test the mesh for topological consistency.
@@ -93,7 +93,7 @@ void checkmesh(
   Mesh& m,
   //const std::vector<boost::shared_ptr<Triangle>>& m_m_triangles,
   int& m_m_counterclockcount
-  //Behavior& b
+  //Arguments& b
   //const bool b_m_noexact
 );
 
@@ -118,7 +118,7 @@ void checkmesh(
 int checkseg4encroach(
   //Mesh& m,
   boost::shared_ptr<Triangle> m_m_dummytri,
-  //const Behavior& b,
+  //const Arguments& b,
   const bool b_m_conformdel,
   const double b_m_goodangle,
   const bool b_m_nobisect,
@@ -135,7 +135,7 @@ double circletop(
 
 boost::shared_ptr<SplayNode> circletopinsert(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<SplayNode> splayroot,
   const boost::shared_ptr<Otri>& newkey,
   const boost::shared_ptr<Vertex>& pa,
@@ -162,7 +162,7 @@ boost::shared_ptr<SplayNode> circletopinsert(
 /// restored by enforcequality() by splitting encroached subsegments.
 void conformingedge(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const Vertex& endpoint1,
   const Vertex& endpoint2,
   const int newmark
@@ -221,7 +221,7 @@ void conformingedge(
 /// by the delaunayfixup() routine above.
 void constrainededge(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const Otri * const starttri,
   const boost::shared_ptr<Vertex>& endpoint2,
   const int newmark
@@ -264,14 +264,9 @@ void createeventheap(
   Event ** freeevents
 );
 
-///CreateVertices converts raw .poly file its contents
-///to Vertex instances
-std::vector<boost::shared_ptr<Vertex>> CreateVertices(
-  const PolyFile& polyfile
-) noexcept;
 
 /// delaunay()   Form a Delaunay triangulation.
-long delaunay(Mesh& m, const Behavior& b);
+long delaunay(Mesh& m, const Arguments& b);
 
 
 
@@ -310,7 +305,7 @@ long delaunay(Mesh& m, const Behavior& b);
 /// endpoint1 to endpoint2.)
 void delaunayfixup(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   Otri * const fixuptri,
   const int leftside
 );
@@ -328,7 +323,7 @@ void delaunayfixup(
 /// deleted.
 void deletevertex(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Otri>& deltri
 );
 
@@ -344,7 +339,7 @@ boost::shared_ptr<BadTriang> dequeuebadtriang(Mesh& m);
 /// removes the bounding box, setting boundary markers as appropriate.
 long divconqdelaunay(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 /// divconqrecurse()   Recursively form a Delaunay triangulation by the
@@ -363,7 +358,7 @@ long divconqdelaunay(
 //Use vertex* instead of iterators for now
 void divconqrecurse(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::vector<boost::shared_ptr<Vertex>>& sortarray,
   //const Vertex * const sortarray,
   //const int vertices,
@@ -397,16 +392,18 @@ void divconqrecurse(
 /// harm done.
 void dummyinit(
   Mesh& m
-  //const Behavior& b,
+  //const Arguments& b,
   //const int trianglebytes,
   //const int subsegbytes
 );
 
 /// enforcequality()   Remove all the encroached subsegments and bad
 ///                    triangles from the triangulation.
+//Adds Steiner points, then splits bad (*) Triangles
+// (*) Triangles with angle < min_angle || area > max_area)
 void enforcequality(
-  Mesh& m,
-  const Behavior& b
+  Mesh& m
+  //const Arguments& b
 );
 
 
@@ -447,7 +444,7 @@ void findcircumcenter(
   //Mesh& m,
   bool b_m_noexact,
   const double b_m_offconstant,
-  //const Behavior& b,
+  //const Arguments& b,
   const boost::shared_ptr<Vertex>& torg,
   const boost::shared_ptr<Vertex>& tdest,
   const boost::shared_ptr<Vertex>& tapex,
@@ -475,7 +472,7 @@ void findcircumcenter(
 
 FindDirectionResult finddirection(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   Otri * const searchtri,
   const boost::shared_ptr<Vertex>& searchpoint
 );
@@ -508,7 +505,7 @@ FindDirectionResult finddirection(
 /// gnashing of teeth.
 void flip(
   const Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Otri>& flipedge
 );
 
@@ -517,12 +514,13 @@ void flip(
 ///
 /// The PSLG segments are read from a .poly file.  The return value is the
 /// number of segments in the file.
-void formskeleton(
-  Mesh& m,
-  const Behavior& b,
-  //FILE * const polyfile,
-  const std::string& polyfilename
-);
+//RJCB: ?creates all Edges
+//void formskeleton(
+//  Mesh& m,
+//  const Arguments& b,
+//  //FILE * const polyfile,
+//  const std::string& polyfilename
+//);
 
 SplayNode * frontlocate(
   Mesh& m,
@@ -543,7 +541,7 @@ SplayNode * frontlocate(
 /*
 Vertex getvertex(
   const std::vector<Vertex>& vertices, //m_vertices
-  const Behavior& b,
+  const Arguments& b,
   const int number
 );
 */
@@ -553,7 +551,7 @@ Vertex getvertex(
 /*
 void highorder(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 */
 
@@ -561,7 +559,7 @@ double incircle(
   int& m_m_incirclecount,
   //Mesh& m,
   const bool b_m_noexact,
-  //const Behavior& b,
+  //const Arguments& b,
   const boost::shared_ptr<Vertex>& pa,
   const boost::shared_ptr<Vertex>& pb,
   const boost::shared_ptr<Vertex>& pc,
@@ -600,7 +598,7 @@ double incircleadapt(
 ///                         inserting vertices.
 ///
 /// Returns the number of edges on the convex hull of the triangulation.
-int incrementaldelaunay(Mesh& m,const Behavior& b);
+int incrementaldelaunay(Mesh& m,const Arguments& b);
 
 
 
@@ -609,7 +607,7 @@ int incrementaldelaunay(Mesh& m,const Behavior& b);
 ///                subsegments, set boundary markers as appropriate.
 void infecthull(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 /// initializetrisubpools()   Calculate the sizes of the triangle and
@@ -620,7 +618,7 @@ void infecthull(
 /*
 void initializetrisubpools(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 */
 
@@ -632,14 +630,14 @@ void initializetrisubpools(
 /*
 void initializevertexpool(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 */
 
 /// insertsegment()   Insert a PSLG segment into a triangulation.
 void insertsegment(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   Vertex endpoint1,
   Vertex endpoint2,
   const int newmark
@@ -652,7 +650,7 @@ void insertsegment(
 /// is applied to the subsegment and, if appropriate, its vertices.
 void insertsubseg(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Otri>& tri,
   const int subsegmark
 );
@@ -700,7 +698,7 @@ void insertsubseg(
 /// locations of subsegments.
 InsertVertexResult insertvertex(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Vertex>& newvertex,
   boost::shared_ptr<Otri>& searchtri,
   boost::shared_ptr<Osub>& splitseg,
@@ -744,7 +742,7 @@ InsertVertexResult insertvertex(
 LocateResult locate(
   Mesh& m,
   int& m_m_counterclockcount,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Vertex>& searchpoint,
   boost::shared_ptr<Otri>& searchtri
 );
@@ -764,7 +762,7 @@ boost::shared_ptr<ribi::tricpp::Otri> maketriangle(
   const boost::shared_ptr<Triangle>& m_m_dummytri,
   const boost::shared_ptr<Edge>& m_m_dummysub,
   const int m_m_eextras,
-  //const Behavior& b,
+  //const Arguments& b,
   const bool b_m_vararea
   //boost::shared_ptr<Otri>& newotri
 );
@@ -782,13 +780,13 @@ boost::shared_ptr<ribi::tricpp::Otri> maketriangle(
 /// triangle that contains it.
 void makevertexmap(
   Mesh& m
-  //const Behavior& b
+  //const Arguments& b
 );
 
 ///Cover the convex hull of a triangulation with subsegments.
 void markhull(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 /// Merge two adjacent Delaunay triangulations into a
@@ -823,7 +821,7 @@ void markhull(
 /// vertex.
 void mergehulls(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri> farleft,
   boost::shared_ptr<Otri> innerleft,
   boost::shared_ptr<Otri> innerright,
@@ -847,7 +845,7 @@ void mergehulls(
 double nonregular(
   //Mesh& m,
   int& m_m_incirclecount,
-  //const Behavior& b,
+  //const Arguments& b,
   //const bool b_m_noexact,
   const boost::shared_ptr<Vertex>& pa,
   const boost::shared_ptr<Vertex>& pb,
@@ -860,13 +858,13 @@ double nonregular(
 /// Each vertex is assigned a marker equal to its number.
 ///
 /// Used when writenodes() is not called because no .node file is written.
-void numbernodes(Mesh& m, const Behavior& b);
+void numbernodes(Mesh& m, const Arguments& b);
 
 double orient3d(
   //Mesh& m,
   int& m_m_orient3dcount,
   const bool b_m_noexact,
-  //const Behavior& b,
+  //const Arguments& b,
   const boost::shared_ptr<Vertex>& pa,
   const boost::shared_ptr<Vertex>& pb,
   const boost::shared_ptr<Vertex>& pc,
@@ -924,7 +922,7 @@ double orient3dadapt(
 /// eliminates orphaned vertices.
 void plague(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 
@@ -995,7 +993,7 @@ LocateResult preciselocate(
   //Mesh& m,
   const bool m_m_checksegments,
   int& m_m_counterclockcount,
-  //const Behavior& b,
+  //const Arguments& b,
   const bool b_m_noexact,
   const boost::shared_ptr<Vertex>& searchpoint,
   const boost::shared_ptr<Otri>& searchtri,
@@ -1025,14 +1023,14 @@ void printsubseg(
 /*
 void printtriangle(
   const Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const Otri * const t
 );
 */
 
 void quality_statistics(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 
@@ -1042,7 +1040,7 @@ void quality_statistics(
 ///               constraints, from a .poly file.
 void readholes(
   //const Mesh * const /* m */,
-  const Behavior& b,
+  const Arguments& b,
   //FILE * const polyfile,
   const std::string& polyfilename,
   //const char * const polyfilename,
@@ -1061,7 +1059,7 @@ void readholes(
 std::vector<boost::shared_ptr<Vertex>> ReadVertices(
 //void ReadNodes(
   //Mesh& m,
-  //const Behavior& b,
+  //const Arguments& b,
   const std::string& polyfilename
 );
 
@@ -1088,7 +1086,7 @@ std::vector<boost::shared_ptr<Vertex>> ReadVertices(
 long ReadSubSegs(
   std::vector<boost::shared_ptr<Vertex>>& vertices,
   //Mesh& m,
-  //const Behavior& b,
+  //const Arguments& b,
   const std::string& elefilename,
   //const std::string& areafilename,
   const std::string& polyfilename
@@ -1109,7 +1107,7 @@ long ReadSubSegs(
 /// normal.
 void regionplague(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const double attribute,
   const double area
 );
@@ -1127,12 +1125,12 @@ void regionplague(
 /// Returns the number of edges on the convex hull of the triangulation.
 long removebox(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 long removeghosts(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri> startghost
 );
 
@@ -1190,7 +1188,7 @@ double scale_expansion_zeroelim(
 /// Their intersection vertex is inserted, splitting the subsegment.
 int scoutsegment(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   Otri * const searchtri,
   const Vertex& endpoint2,
   const int newmark
@@ -1210,7 +1208,7 @@ int scoutsegment(
 /// intersection point as its origin, and endpoint1 as its destination.
 void segmentintersection(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri>& splittri,
   boost::shared_ptr<Osub>& splitsubseg,
   const boost::shared_ptr<Vertex>& endpoint2
@@ -1241,7 +1239,7 @@ boost::shared_ptr<SplayNode> splayinsert(
 /// subsegments.
 void splitencsegs(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const int triflaws
 );
 
@@ -1250,7 +1248,7 @@ void splitencsegs(
 ///                   upon a segment.
 void splittriangle(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<BadTriang>& badtri
 );
 
@@ -1258,7 +1256,7 @@ void splittriangle(
 /*
 void statistics(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 */
 /// subsegdealloc()   Deallocate space for a subsegment, marking it dead.
@@ -1272,19 +1270,19 @@ void subsegdealloc(
 
 long sweeplinedelaunay(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 /// tallyencs()   Traverse the entire list of subsegments, and check each
 ///               to see if it is encroached.  If so, add it to the list.
 void tallyencs(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 
 /// tallyfaces()   Test every triangle in the mesh for quality measures.
-void tallyfaces(Mesh& m,const Behavior& b);
+void tallyfaces(Mesh& m,const Arguments& b);
 
 /// testtriangle()   Test a triangle for quality and size.
 ///
@@ -1293,7 +1291,7 @@ void tallyfaces(Mesh& m,const Behavior& b);
 /// to the bad triangle queue.
 void testtriangle(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri>& testtri
 );
 
@@ -1334,7 +1332,7 @@ void triangledealloc(
 /*
 void triangledeinit(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 */
 
@@ -1411,7 +1409,7 @@ void triangulate(
 /// bad.
 void triangulatepolygon(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri> firstedge,
   boost::shared_ptr<Otri> lastedge,
   const int edgecount,
@@ -1429,7 +1427,7 @@ void triangulatepolygon(
 /// Two triangles (possibly just one) are also deallocated.
 void undovertex(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 );
 
 /// unflip()   Transform two triangles to two different triangles by
@@ -1462,7 +1460,7 @@ void undovertex(
 /// gnashing of teeth.
 void unflip(
   const Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Otri>& flipedge
 );
 
@@ -1507,7 +1505,7 @@ void vertexsort(
 /// writeedges()   Write the edges to an .edge file.
 void writeedges(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& edgefilename,
   const std::vector<std::string>& args
 );
@@ -1515,14 +1513,14 @@ void writeedges(
 /// writeelements()   Write the triangles to an .ele file.
 void writeelements(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& elefilename,
   const std::vector<std::string>& args
 );
 
 void writeneighbors(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& neighborfilename,
   const std::vector<std::string>& args
 );
@@ -1533,7 +1531,7 @@ void writeneighbors(
 /// after the vertices are written to a file.
 void writenodes(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& nodefilename,
   const std::vector<std::string>& args
 );
@@ -1543,7 +1541,7 @@ void writenodes(
 /// Center's Geomview package.
 void writeoff(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& offfilename,
   const std::vector<std::string>& args
 );
@@ -1551,7 +1549,7 @@ void writeoff(
 /// writepoly()   Write the segments and holes to a .poly file.
 void writepoly(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& polyfilename,
   const std::vector<double>& holes,
   //const double * const holelist,
@@ -1575,7 +1573,7 @@ void writepoly(
 /// element.  Hence, you should call this procedure last.
 void writevoronoi(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& vnodefilename,
   const std::string& vedgefilename,
   const std::vector<std::string>& args

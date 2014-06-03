@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPOTRI_H
 #define TRIANGLECPPOTRI_H
 
+#ifdef TRIANGLECPP_USE_OTRI
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -132,5 +134,7 @@ bool operator!=(const Otri& lhs, const Otri& rhs) noexcept;
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_OTRI
 
 #endif // TRIANGLECPPOTRI_H

@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPMEMORYPOOL_H
 #define TRIANGLECPPMEMORYPOOL_H
 
+#ifdef TRIANGLECPP_USE_MEMORYPOOL
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -143,5 +145,7 @@ void * Traverse(MemoryPool * const pool);
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_MEMORYPOOL
 
 #endif // TRIANGLECPPMEMORYPOOL_H

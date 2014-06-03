@@ -29,15 +29,15 @@ struct Vertex
   Length GetY() const noexcept { return m_y; }
   //double& operator[](const int index) noexcept;
   //const double& operator[](const int index) const noexcept;
-  void Clear() noexcept; //Set size to zero
-  bool IsDead() { return m_is_dead; }
-  bool IsEmpty() const noexcept;
+  //void Clear() noexcept; //Set size to zero
+  //bool IsDead() { return m_is_dead; }
+  //bool IsEmpty() const noexcept;
 
   int GetMark() const noexcept { return m_vertexmark; }
-  boost::shared_ptr<Triangle> GetTriangle() const noexcept;
+  //boost::shared_ptr<Triangle> GetTriangle() const noexcept;
   VertexType GetVertexType() const noexcept { return m_type; }
   void SetMark(const int mark) noexcept { m_vertexmark = mark; }
-  void SetTriangle(const boost::shared_ptr<Triangle>& triangle) noexcept;
+  //void SetTriangle(const boost::shared_ptr<Triangle>& triangle) noexcept;
   void SetVertexType(const VertexType type) noexcept { m_type = type; }
   void SetX(const Length x) noexcept { m_x = x; }
   void SetY(const Length y) noexcept { m_y = y; }
@@ -45,7 +45,7 @@ struct Vertex
   private:
   Length m_x;
   Length m_y;
-  bool m_is_dead;
+  //bool m_is_dead;
   int m_vertexmark;
   VertexType m_type;
 };

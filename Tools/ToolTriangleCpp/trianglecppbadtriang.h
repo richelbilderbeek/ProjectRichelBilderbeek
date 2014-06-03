@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPBADTRIANG_H
 #define TRIANGLECPPBADTRIANG_H
 
+#ifdef TRIANGLECPP_USE_BADTRIANG
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -33,5 +35,7 @@ struct BadTriang
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_BADTRIANG
 
 #endif // TRIANGLECPPBADTRIANG_H

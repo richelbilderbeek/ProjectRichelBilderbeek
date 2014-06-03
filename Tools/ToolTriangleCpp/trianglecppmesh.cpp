@@ -9,9 +9,25 @@
 #include "trianglecppbadsubseg.h"
 #include "trianglecppdefines.h"
 #include "trianglecppglobals.h"
-#include "trianglecppsubseg.h"
+#include "trianglecppedge.h"
 #pragma GCC diagnostic pop
 
+ribi::tricpp::Mesh::Mesh(
+  const ArgumentsPtr& arguments,
+  const Edges& edges,
+  const Triangles& triangles,
+  const Vertices& vertices
+)
+  : m_arguments(arguments),
+    m_edges(edges),
+    m_triangles(triangles),
+    m_vertices(vertices)
+{
+
+}
+
+
+#ifdef TRIANGLECPP_REALLY_USE_THIS_20140603
 ribi::tricpp::Mesh::Mesh()
   :
     //m_areaboundindex{0},
@@ -89,6 +105,8 @@ void ribi::tricpp::Mesh::Enqueuebadtri(
   Enqueuebadtriang(newbad);
   //enqueuebadtriang(m,newbad);
 }
+*/
+
 
 void ribi::tricpp::Mesh::Enqueuebadtriang(boost::shared_ptr<BadTriang> badtri)
 {
@@ -239,3 +257,4 @@ ribi::tricpp::Vertex ribi::tricpp::vertextraverse(Mesh& m)
   return newvertex;
 }
 */
+#endif

@@ -1,6 +1,7 @@
 #ifndef TRIANGLECPPFINDDIRECTIONRESULT_H
 #define TRIANGLECPPFINDDIRECTIONRESULT_H
 
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -19,5 +20,6 @@ enum FindDirectionResult {WITHIN, LEFTCOLLINEAR, RIGHTCOLLINEAR};
 
 } //~namespace tricpp
 } //~namespace ribi
+
 
 #endif // TRIANGLECPPFINDDIRECTIONRESULT_H

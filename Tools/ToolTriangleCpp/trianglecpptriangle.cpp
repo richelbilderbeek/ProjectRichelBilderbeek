@@ -9,6 +9,7 @@
 #include "trianglecppvertex.h"
 #pragma GCC diagnostic pop
 
+/*
 ribi::tricpp::Triangle::Triangle()
   : m_is_dead{false},
     m_subsegs{},
@@ -77,16 +78,17 @@ boost::shared_ptr<ribi::tricpp::Triangle> ribi::tricpp::vertex2tri(Vertex& vx)
 {
   return vx.GetTriangle();
 }
+*/
 
 /*
 #define vertex2tri(vx)  ((Triangle *) (vx))[m.m_vertex2triindex]
 */
-
+/*
 void ribi::tricpp::setvertex2tri(Vertex& vx, const boost::shared_ptr<Triangle>& triangle)
 {
   vx.SetTriangle(triangle);
 }
-
+*/
 /*
 #define setvertex2tri(vx, value)                                        \
   ((Triangle *) (vx))[m.m_vertex2triindex] = value

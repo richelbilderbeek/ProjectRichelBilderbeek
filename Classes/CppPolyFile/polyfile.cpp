@@ -327,6 +327,17 @@ void ribi::PolyFile::Test() noexcept
     {
       const std::string qtfilename = ":/polyfile/polyfile1.poly";
       QFile qfile(qtfilename.c_str());
+      if (qfile.size() == 0)
+      {
+        std::stringstream s;
+        s << "PolyFile::Test: "
+          << "resource file '" << qtfilename << "' not found. "
+          << "Solutions: "
+          << "(1) Add the resource file Classes/CppPolyFile/CppPolyFile.qrc to your project "
+          << "(2) Check that in that resource file, " << qtfilename << " is present"
+        ;
+        TRACE(s.str());
+      }
       assert(qfile.size() > 0);
       qfile.copy(filename.c_str());
     }

@@ -57,8 +57,8 @@
        <property name="value">
         <number>-1</number>
        </property>
-       <property name="displayIntegerBase">
-        <number>10</number>
+       <property name="displayIntegerBase" stdset="0">
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -80,8 +80,8 @@
        <property name="value">
         <number>-1</number>
        </property>
-       <property name="displayIntegerBase">
-        <number>10</number>
+       <property name="displayIntegerBase" stdset="0">
+        <number>0</number>
        </property>
       </widget>
      </item>
@@ -103,8 +103,8 @@
        <property name="value">
         <number>-1</number>
        </property>
-       <property name="displayIntegerBase">
-        <number>10</number>
+       <property name="displayIntegerBase" stdset="0">
+        <number>0</number>
        </property>
       </widget>
      </item>

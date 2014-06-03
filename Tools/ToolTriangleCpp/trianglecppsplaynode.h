@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPSPLAYNODE_H
 #define TRIANGLECPPSPLAYNODE_H
 
+#ifdef TRIANGLECPP_USE_SPLAYNODE
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -39,5 +41,7 @@ struct SplayNode
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_SPLAYNODE
 
 #endif // TRIANGLECPPSPLAYNODE_H

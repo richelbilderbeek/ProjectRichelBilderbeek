@@ -68,7 +68,7 @@ void ribi::TestPolyFileFromPolygonsMainDialog::Test() noexcept
 std::ostream& ribi::operator<<(std::ostream& os, const TestPolyFileFromPolygonsMainDialog& dialog) noexcept
 {
   PolyFileFromPolygons file(dialog.GetPolygons());
-  os << file;
+  os << file.ToStr();
   return os;
 
 }

@@ -1,18 +1,19 @@
 #ifndef TRIANGLECPPMESH_H
 #define TRIANGLECPPMESH_H
 
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <vector>
-
-#include "trianglecppmemorypool.h"
-#include "trianglecppbadtriang.h"
-#include "trianglecppflipstacker.h"
-#include "trianglecppsubseg.h"
-#include "trianglecppotri.h"
-#include "trianglecppsplaynode.h"
+#include <boost/shared_ptr.hpp>
+//#include "trianglecppmemorypool.h"
+//#include "trianglecppbadtriang.h"
+//#include "trianglecppflipstacker.h"
+//#include "trianglecppedge.h"
+//#include "trianglecppotri.h"
+//#include "trianglecppsplaynode.h"
 #include "trianglecppfwd.h"
 #pragma GCC diagnostic pop
 
@@ -23,6 +24,33 @@ namespace tricpp {
 ///   structure is used (instead of global variables) to allow reentrancy.
 struct Mesh
 {
+  typedef boost::shared_ptr<const Arguments> ArgumentsPtr;
+  typedef boost::shared_ptr<Edge> EdgePtr;
+  typedef boost::shared_ptr<Triangle> TrianglePtr;
+  typedef boost::shared_ptr<Vertex> VertexPtr;
+
+  typedef std::vector<EdgePtr> Edges;
+  typedef std::vector<TrianglePtr> Triangles;
+  typedef std::vector<VertexPtr> Vertices;
+
+  private:
+
+  friend class MeshBuilder;
+  Mesh(
+    const ArgumentsPtr& arguments,
+    const Edges& edges,
+    const Triangles& triangles,
+    const Vertices& vertices
+  );
+
+  private:
+
+  const ArgumentsPtr m_arguments;
+  const Edges m_edges;
+  const Triangles m_triangles;
+  const Vertices m_vertices;
+
+  /*
   Mesh();
   Mesh(const Mesh&) = delete;
   Mesh& operator=(const Mesh&) = delete;
@@ -113,7 +141,7 @@ struct Mesh
   double m_xminextreme;      /// Nonexistent x value used as a flag in sweepline.
   double m_ymax; /// x and y bounds
   double m_ymin; /// x and y bounds
-
+  */
 };
 
 //void triangleinit(Mesh& m);

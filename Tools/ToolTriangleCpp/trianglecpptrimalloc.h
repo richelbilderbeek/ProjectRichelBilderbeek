@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPTRIMALLOC_H
 #define TRIANGLECPPTRIMALLOC_H
 
+#ifdef TRIANGLECPP_USE_TRIMALLOC
+
 namespace ribi {
 namespace tricpp {
 
@@ -9,5 +11,7 @@ namespace tricpp {
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_TRIMALLOC
 
 #endif // TRIANGLECPPTRIMALLOC_H

@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPFLIPSTACKER_H
 #define TRIANGLECPPFLIPSTACKER_H
 
+#ifdef TRIANGLECPP_USE_FLIPSTACKER
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -27,5 +29,7 @@ struct FlipStacker
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_FLIPSTACKER
 
 #endif // TRIANGLECPPFLIPSTACKER_H

@@ -2,18 +2,22 @@
 #define TRIANGLECPPFWD_H
 
 namespace ribi {
+
+struct PolyFile;
+
 namespace tricpp {
 
 struct BadSubSeg;
 struct BadTriang;
-struct Behavior;
+struct Arguments;
+struct Edge;
 struct Event;
 struct MemoryPool;
 struct Mesh;
+struct MeshBuilder;
 struct Osub;
 struct Otri;
 struct SplayNode;
-struct Edge;
 struct Triangle;
 struct TriangulateIo;
 struct Vertex;

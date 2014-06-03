@@ -1,3 +1,5 @@
+// http://code.google.com/p/poly2tri/
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 //#pragma GCC diagnostic ignored "-Wsign-compare"
@@ -17,9 +19,11 @@
 #include <boost/make_shared.hpp>
 #include <boost/math/constants/constants.hpp>
 #include "fileio.h"
+#include "make_array.h"
 #include "polyfile.h"
+#include "trianglecppmeshbuilder.h"
 #include "trianglecppbadsubseg.h"
-#include "trianglecppbehavior.h"
+#include "trianglecpparguments.h"
 #include "trianglecppdefines.h"
 #include "trianglecppevent.h"
 #include "trianglecppfile.h"
@@ -29,45 +33,14 @@
 #include "trianglecppotri.h"
 #include "trianglecppsplaynode.h"
 #include "trianglecppstring.h"
-#include "trianglecppsubseg.h"
+#include "trianglecppedge.h"
 #include "trianglecpptrimalloc.h"
 #include "trianglecppvertex.h"
 #include "trianglecppvertextype.h"
 
-std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> ribi::tricpp::CreateVertices(
-  const ribi::PolyFile& polyfile
-) noexcept
-{
-  std::vector<boost::shared_ptr<Vertex>> vertices;
-  for (const auto coordinat: polyfile.GetVertices())
-  {
-    const int currentmarker = 1; //Appeared to always be true
-    const auto vertex
-      = boost::make_shared<Vertex>(coordinat.x(),coordinat.y(),currentmarker);
-    vertices.push_back(vertex);
-  }
-  return vertices;
-}
 
-std::vector<boost::shared_ptr<ribi::tricpp::Edge>> ribi::tricpp::CreateEdges(
-  const ribi::PolyFile& polyfile,
-  std::vector<boost::shared_ptr<Vertex>>& vertices
-) noexcept
-{
-  std::vector<boost::shared_ptr<Edge>> edges;
-  for (const auto vertex_indices: polyfile.GetEdges())
-  {
-    const int n_vertices = static_cast<int>(vertex_indices.size());
-    for (int i = 0; i!=n_vertices; ++i)
-    {
-      const int vertex_index = vertex_indices[i];
-      const int next_vertex_index = vertex_indices[(i + 1) % n_vertices];
-      Edge edge(vertices[vertex_index],vertices[next_vertex_index]);
-      edges.push_back(edge);
-    }
-  }
-  return edges;
-}
+
+
 
 
 //There is a spot where is written to index 1, where I (RJCB) believe it should
@@ -78,7 +51,7 @@ const int one_or_two = 2; //RJCB: Shouldn't this index be 2?
 
 void ribi::tricpp::dummyinit(
   Mesh& m
-  //const Behavior& b,
+  //const Arguments& b,
   //const int trianglebytes,
   //const int subsegbytes
 )
@@ -156,7 +129,7 @@ void ribi::tricpp::dummyinit(
 /*
 void ribi::tricpp::initializevertexpool(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   static_assert(
@@ -192,7 +165,7 @@ void ribi::tricpp::initializevertexpool(
 /*
 void ribi::tricpp::initializetrisubpools(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
 
@@ -347,7 +320,7 @@ ribi::tricpp::BadSubSeg * ribi::tricpp::badsubsegtraverse(Mesh& m)
 /*
 ribi::tricpp::Vertex ribi::tricpp::getvertex(
   const std::vector<Vertex>& vertices,
-  const Behavior&,
+  const Arguments&,
   const int index
 )
 {
@@ -379,7 +352,7 @@ ribi::tricpp::Vertex ribi::tricpp::getvertex(
 /*
 void ribi::tricpp::triangledeinit(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   PoolDeinit(m.m_triangles);
@@ -408,7 +381,7 @@ boost::shared_ptr<ribi::tricpp::Otri> ribi::tricpp::maketriangle(
   const boost::shared_ptr<Triangle>& m_m_dummytri,
   const boost::shared_ptr<SubSeg>& m_m_dummysub,
   const int m_m_eextras,
-  //const Behavior& b,
+  //const Arguments& b,
   const bool b_m_vararea
   //boost::shared_ptr<Otri>& newotri
 )
@@ -2936,7 +2909,7 @@ double ribi::tricpp::incircleadapt(
 
 double ribi::tricpp::incircle(
   int& m_m_incirclecount,
-  //const Behavior& b,
+  //const Arguments& b,
   const bool b_m_noexact,
   const boost::shared_ptr<Vertex>& pa,
   const boost::shared_ptr<Vertex>& pb,
@@ -3998,7 +3971,7 @@ double ribi::tricpp::orient3d(
   //Mesh& m,
   int& m_m_orient3dcount,
   const bool b_m_noexact,
-  //const Behavior& b,
+  //const Arguments& b,
   const boost::shared_ptr<Vertex>& pa,
   const boost::shared_ptr<Vertex>& pb,
   const boost::shared_ptr<Vertex>& pc,
@@ -4058,7 +4031,7 @@ double ribi::tricpp::orient3d(
 double ribi::tricpp::nonregular(
   //Mesh& m,
   int& incirclecount,
-  //const Behavior& b,
+  //const Arguments& b,
   //const bool b_m_noexact,
   const boost::shared_ptr<Vertex>& pa,
   const boost::shared_ptr<Vertex>& pb,
@@ -4096,7 +4069,7 @@ void ribi::tricpp::findcircumcenter(
   //Mesh& m,
   bool b_m_noexact,
   const double b_m_offconstant,
-  //const Behavior& b,
+  //const Arguments& b,
   const boost::shared_ptr<Vertex>& torg,
   const boost::shared_ptr<Vertex>& tdest,
   const boost::shared_ptr<Vertex>& tapex,
@@ -4210,7 +4183,7 @@ void ribi::tricpp::checkmesh(
   Mesh& m,
   //const std::vector<boost::shared_ptr<Triangle>>& m_m_triangles,
   int& m_m_counterclockcount
-  //Behavior& b
+  //Arguments& b
   //const bool b_m_noexact
 )
 {
@@ -4306,7 +4279,7 @@ void ribi::tricpp::checkdelaunay(
   Mesh& m,
   int& incirclecount
   //const bool m_m_noexact,
-  //Behavior& b
+  //Arguments& b
 )
 {
 
@@ -4444,7 +4417,7 @@ boost::shared_ptr<ribi::tricpp::BadTriang> ribi::tricpp::dequeuebadtriang(Mesh& 
 int ribi::tricpp::checkseg4encroach(
   //Mesh& m,
   boost::shared_ptr<Triangle> m_m_dummytri,
-  //const Behavior& b,
+  //const Arguments& b,
   const bool b_m_conformdel,
   const Angle b_m_goodangle,
   const bool b_m_nobisect,
@@ -4591,7 +4564,7 @@ int ribi::tricpp::checkseg4encroach(
 
 void ribi::tricpp::testtriangle(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri>& testtri
 )
 {
@@ -4806,7 +4779,7 @@ void ribi::tricpp::testtriangle(
 
 void ribi::tricpp::makevertexmap(
   Mesh& m
-  //const Behavior& b
+  //const Arguments& b
 )
 {
   //Otri triangleloop;
@@ -4851,7 +4824,7 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
   //Mesh& m,
   const bool m_m_checksegments,
   int& m_m_counterclockcount,
-  //const Behavior& b,
+  //const Arguments& b,
   const bool b_m_noexact,
   const boost::shared_ptr<Vertex>& searchpoint,
   const boost::shared_ptr<Otri>& searchtri,
@@ -5005,7 +4978,7 @@ ribi::tricpp::LocateResult ribi::tricpp::preciselocate(
 ribi::tricpp::LocateResult ribi::tricpp::locate(
   Mesh& m,
   int& m_m_counterclockcount,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Vertex>& searchpoint,
   boost::shared_ptr<Otri>& searchtri
 )
@@ -5203,7 +5176,7 @@ ribi::tricpp::LocateResult ribi::tricpp::locate(
 
 void ribi::tricpp::insertsubseg(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Otri>& tri,
   const int subsegmark
 )
@@ -5302,7 +5275,7 @@ void ribi::tricpp::insertsubseg(
 
 void ribi::tricpp::flip(
   const Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Otri> flipedge
 )
 {
@@ -5465,7 +5438,7 @@ void ribi::tricpp::flip(
 
 void ribi::tricpp::unflip(
   const Mesh& m,
-  const Behavior& /*b*/,
+  const Arguments& /*b*/,
   const boost::shared_ptr<Otri>& flipedge
 )
 {
@@ -5621,7 +5594,7 @@ void ribi::tricpp::unflip(
 
 ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Vertex>& newvertex,
   boost::shared_ptr<Otri>& searchtri,
   boost::shared_ptr<Osub>& splitseg,
@@ -6534,7 +6507,7 @@ ribi::tricpp::InsertVertexResult ribi::tricpp::insertvertex(
 
 void ribi::tricpp::triangulatepolygon(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri> firstedge,
   boost::shared_ptr<Otri> lastedge,
   const int edgecount,
@@ -6640,7 +6613,7 @@ void ribi::tricpp::triangulatepolygon(
 
 void ribi::tricpp::deletevertex(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<Otri>& deltri
 )
 {
@@ -6765,7 +6738,7 @@ void ribi::tricpp::deletevertex(
 
 void ribi::tricpp::undovertex(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   //Otri fliptri;
@@ -7117,7 +7090,7 @@ void ribi::tricpp::alternateaxes(
 
 void ribi::tricpp::mergehulls(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri> farleft,
   boost::shared_ptr<Otri> innerleft,
   boost::shared_ptr<Otri> innerright,
@@ -7675,7 +7648,7 @@ void ribi::tricpp::mergehulls(
 
 void ribi::tricpp::divconqrecurse(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::vector<boost::shared_ptr<Vertex>>& sortarray,
   //const Vertex * const sortarray,
   //const int vertices,
@@ -7986,7 +7959,7 @@ void ribi::tricpp::divconqrecurse(
 
 long ribi::tricpp::removeghosts(
   Mesh& m,
-  const Behavior& /*b*/,
+  const Arguments& /*b*/,
   boost::shared_ptr<Otri> startghost
 )
 {
@@ -8051,7 +8024,7 @@ long ribi::tricpp::removeghosts(
 
 long ribi::tricpp::divconqdelaunay(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   //vertex *sortarray;
@@ -8142,7 +8115,7 @@ long ribi::tricpp::divconqdelaunay(
 
 void ribi::tricpp::boundingbox(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   boost::shared_ptr<Otri> inftri;          //Handle for the triangular bounding box.
@@ -8203,7 +8176,7 @@ void ribi::tricpp::boundingbox(
 
 long ribi::tricpp::removebox(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   Otri deadtriangle;
@@ -8331,7 +8304,7 @@ long ribi::tricpp::removebox(
 }
 
 
-int ribi::tricpp::incrementaldelaunay(Mesh& m,const Behavior& b)
+int ribi::tricpp::incrementaldelaunay(Mesh& m,const Arguments& b)
 {
   //Otri starttri;
   //Vertex vertexloop;
@@ -8696,7 +8669,7 @@ boost::shared_ptr<ribi::tricpp::SplayNode> ribi::tricpp::splayinsert(
 
 boost::shared_ptr<ribi::tricpp::SplayNode> ribi::tricpp::circletopinsert(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<SplayNode> splayroot,
   const boost::shared_ptr<Otri>& newkey,
   const boost::shared_ptr<Vertex>& pa,
@@ -8759,7 +8732,7 @@ ribi::tricpp::SplayNode * ribi::tricpp::frontlocate(
 
 long ribi::tricpp::sweeplinedelaunay(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   Event **eventheap;
@@ -9098,7 +9071,7 @@ long ribi::tricpp::sweeplinedelaunay(
   return removeghosts(m, b, &bottommost);
 }
 
-long ribi::tricpp::delaunay(Mesh& m,const Behavior& b)
+long ribi::tricpp::delaunay(Mesh& m,const Arguments& b)
 {
   //long hulledges;
 
@@ -9148,7 +9121,7 @@ long ribi::tricpp::delaunay(Mesh& m,const Behavior& b)
 std::vector<boost::shared_ptr<SubSeg>> ribi::tricpp::ReadEdges(
   //Mesh& m,
   const std::vector<boost::shared_ptr<Vertex>>& vertices,
-  //const Behavior& b,
+  //const Arguments& b,
   const std::string& elefilename,
   //const std::string& areafilename,
   const std::string& polyfilename
@@ -9785,7 +9758,7 @@ std::vector<boost::shared_ptr<SubSeg>> ribi::tricpp::ReadEdges(
 
 ribi::tricpp::FindDirectionResult ribi::tricpp::finddirection(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   Otri * const searchtri,
   const Vertex& searchpoint
 )
@@ -9888,7 +9861,7 @@ ribi::tricpp::FindDirectionResult ribi::tricpp::finddirection(
 
 void ribi::tricpp::segmentintersection(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   boost::shared_ptr<Otri>& splittri,
   boost::shared_ptr<Osub>& splitsubseg,
   const boost::shared_ptr<Vertex>& endpoint2
@@ -10014,7 +9987,7 @@ void ribi::tricpp::segmentintersection(
 
 int ribi::tricpp::scoutsegment(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   Otri * const searchtri,
   const Vertex& endpoint2,
   const int newmark
@@ -10099,7 +10072,7 @@ int ribi::tricpp::scoutsegment(
 
 void ribi::tricpp::conformingedge(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const Vertex& endpoint1,
   const Vertex& endpoint2,
   const int newmark
@@ -10212,7 +10185,7 @@ void ribi::tricpp::conformingedge(
 
 void ribi::tricpp::delaunayfixup(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   Otri * const fixuptri,
   const int leftside
 )
@@ -10298,7 +10271,7 @@ void ribi::tricpp::delaunayfixup(
 
 void ribi::tricpp::constrainededge(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const Otri * const starttri,
   const boost::shared_ptr<Vertex>& endpoint2,
   const int newmark
@@ -10425,7 +10398,7 @@ void ribi::tricpp::constrainededge(
 
 void ribi::tricpp::insertsegment(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   Vertex endpoint1,
   Vertex endpoint2,
   const int newmark
@@ -10556,7 +10529,7 @@ void ribi::tricpp::insertsegment(
 
 void ribi::tricpp::markhull(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   Otri hulltri;
@@ -10600,7 +10573,7 @@ void ribi::tricpp::markhull(
 
 void ribi::tricpp::formskeleton(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   //FILE * const polyfile,
   const std::string& polyfilename
 )
@@ -10740,7 +10713,7 @@ void ribi::tricpp::formskeleton(
 
 void ribi::tricpp::infecthull(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   boost::shared_ptr<Otri> hulltri;
@@ -10843,7 +10816,7 @@ void ribi::tricpp::infecthull(
 
 void ribi::tricpp::plague(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   boost::shared_ptr<Otri> testtri;
@@ -11116,7 +11089,7 @@ void ribi::tricpp::plague(
 
 void ribi::tricpp::regionplague(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const double attribute,
   const double area
 )
@@ -11248,7 +11221,7 @@ void ribi::tricpp::regionplague(
 
 void ribi::tricpp::carveholes(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::vector<double>& holes,
   //double * const holelist,
   //const int holes,
@@ -11487,7 +11460,7 @@ void ribi::tricpp::carveholes(
 
 void ribi::tricpp::tallyencs(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   //Osub subsegloop;
@@ -11510,7 +11483,7 @@ void ribi::tricpp::tallyencs(
 
 void ribi::tricpp::splitencsegs(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const int triflaws
 )
 {
@@ -11805,7 +11778,7 @@ void ribi::tricpp::splitencsegs(
 
 void ribi::tricpp::tallyfaces(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   //Otri triangleloop;
@@ -11825,7 +11798,7 @@ void ribi::tricpp::tallyfaces(
 
 void ribi::tricpp::splittriangle(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const boost::shared_ptr<BadTriang>& badtri
 )
 {
@@ -11986,7 +11959,7 @@ void ribi::tricpp::splittriangle(
 
 void ribi::tricpp::enforcequality(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   //BadTriang *badtri;
@@ -12080,7 +12053,7 @@ void ribi::tricpp::enforcequality(
 
 void ribi::tricpp::highorder(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   //Otri triangleloop, trisym;
@@ -12171,7 +12144,7 @@ void ribi::tricpp::highorder(
 std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> ribi::tricpp::ReadVertices(
 //void ribi::tricpp::ReadNodes(
   //Mesh& m,
-  //const Behavior& b,
+  //const Arguments& b,
   const std::string& polyfilename
 )
 {
@@ -12247,7 +12220,7 @@ std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> ribi::tricpp::ReadVertices(
 
 
 void ribi::tricpp::readholes(
-  const Behavior& b,
+  const Arguments& b,
   //FILE * const polyfile,
   const std::string& polyfilename,
   //const char * const polyfilename,
@@ -12443,7 +12416,7 @@ void finishfile(
 
 void ribi::tricpp::writenodes(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& nodefilename,
   const std::vector<std::string>& args
 )
@@ -12517,7 +12490,7 @@ void ribi::tricpp::writenodes(
   //finishfile(outfile, args);
 }
 
-void ribi::tricpp::numbernodes(Mesh& m, const Behavior& b)
+void ribi::tricpp::numbernodes(Mesh& m, const Arguments& b)
 {
   //Vertex vertexloop;
   //int vertexnumber;
@@ -12540,7 +12513,7 @@ void ribi::tricpp::numbernodes(Mesh& m, const Behavior& b)
 
 void ribi::tricpp::writeelements(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& elefilename,
   const std::vector<std::string>& args
 )
@@ -12621,7 +12594,7 @@ void ribi::tricpp::writeelements(
 
 void ribi::tricpp::writepoly(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& polyfilename,
   const std::vector<double>& holes,
   //const double * const holelist,
@@ -12739,7 +12712,7 @@ void ribi::tricpp::writepoly(
 
 void ribi::tricpp::writeedges(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& edgefilename,
   const std::vector<std::string>& args
 )
@@ -12851,7 +12824,7 @@ void ribi::tricpp::writeedges(
 
 void ribi::tricpp::writevoronoi(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& vnodefilename,
   const std::string& vedgefilename,
   const std::vector<std::string>& args
@@ -12991,7 +12964,7 @@ void ribi::tricpp::writevoronoi(
 
 void ribi::tricpp::writeneighbors(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& neighborfilename,
   const std::vector<std::string>& args
 )
@@ -13063,7 +13036,7 @@ void ribi::tricpp::writeneighbors(
 
 void ribi::tricpp::writeoff(
   Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const std::string& offfilename,
   const std::vector<std::string>& args
 )
@@ -13142,7 +13115,7 @@ void ribi::tricpp::writeoff(
 
 void ribi::tricpp::quality_statistics(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   //Otri triangleloop;
@@ -13380,7 +13353,7 @@ void ribi::tricpp::quality_statistics(
 /*
 void ribi::tricpp::statistics(
   Mesh& m,
-  const Behavior& b
+  const Arguments& b
 )
 {
   std::cout << "\nStatistics:\n\n");
@@ -13472,37 +13445,42 @@ void ribi::tricpp::statistics(
 
 int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
 {
-  Mesh m;
-  Behavior b(args);
-  std::vector<double> holearray; //Array of holes.
+  using ribi::tricpp::Vertex;
+  using ribi::tricpp::Edge;
+  using ribi::tricpp::Triangle;
+  typedef std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> Vertices;
+  typedef std::vector<boost::shared_ptr<ribi::tricpp::Edge>> Edges;
+  typedef std::vector<boost::shared_ptr<ribi::tricpp::Triangle>> Triangles;
+
+  //Mesh m;
+  const Arguments arguments(args);
+
+  const auto mesh = MeshBuilder().Create(arguments);
+
+  //std::vector<double> holearray; //Array of holes.
   std::vector<double> regionarray; //Array of regional attributes and area constraints.
-  m.m_steinerleft = b.m_steiner;
-  const ribi::PolyFile polyfile(b.m_inpolyfilename);
+  //mesh.m_steinerleft = arguments.m_max_added_steiner_points;
+  const ribi::PolyFile polyfile(arguments.m_inpolyfilename);
 
-  const std::vector<boost::shared_ptr<ribi::tricpp::Vertex>> vertices
-    = CreateVertices(polyfile);
-  const std::vector<boost::shared_ptr<ribi::tricpp::Edge>> edges
-    = CreateEdges(polyfile,vertices);
-  const std::vector<boost::shared_ptr<ribi::tricpp::Edge>> triangles
-    = CreateTriangles(polyfile,vertices,edges);
-
+  /*
   //if (b.m_do_refine)
   {
     //Read and reconstruct a mesh.
-    m.m_hullsize
+    mesh.m_hullsize
       = ReadEdges(
       //m,
-      b,
-      b.m_inelefilename,
+      arguments,
+      arguments.m_inelefilename,
       //b.m_areafilename,
-      b.m_inpolyfilename,
+      arguments.m_inpolyfilename,
       polyfile
     );
   }
-  else
-  {
-    m.m_hullsize = delaunay(m, b);              //Triangulate the vertices.
-  }
+  //else
+  //{
+  //  m.m_hullsize = delaunay(m, b);              //Triangulate the vertices.
+  //}
+  */
 
   //Ensure that no vertex can be mistaken for a triangular bounding
   //  box vertex in insertvertex().
@@ -13510,30 +13488,35 @@ int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
   //m.m_infvertex2 = nullptr;
   //m.m_infvertex3 = nullptr;
 
+  /*
   {
-    m.m_checksegments = 1;                //Segments will be introduced next.
-    if (!b.m_do_refine)
+    //mesh.m_checksegments = 1;                //Segments will be introduced next.
+    if (!arguments.m_do_refine)
     {
       //Insert PSLG segments and/or convex hull segments.
-      formskeleton(m, b, b.m_inpolyfilename);
+      formskeleton(mesh, arguments, arguments.m_inpolyfilename);
       //formskeleton(m, b, polyfile, b.m_inpolyfilename);
     }
   }
-  if (m.m_triangles.m_items > 0)
+  */
+
+  /*
+  //Using holes is not supported
+  if (mesh.m_triangles.m_items > 0)
   {
     readholes(
-      b,
+      arguments,
       //polyfile,
-      b.m_inpolyfilename,
+      arguments.m_inpolyfilename,
       holearray,
       //&m.m_holes,
       regionarray
       //&m.m_regions
     );
-    if (!b.m_do_refine)
+    if (!arguments.m_do_refine)
     {
       //Carve out holes and concavities.
-      carveholes(m, b, holearray, regionarray);
+      carveholes(mesh, arguments, holearray, regionarray);
       //carveholes(m, b, holearray, m.m_holes, regionarray, m.m_regions);
     }
   }
@@ -13542,55 +13525,59 @@ int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
     //Without a PSLG, there can be no holes or regional attributes
     //  or area constraints.  The following are set to zero to avoid
     //  an accidental free() later.
-    m.m_holes = 0;
-    m.m_regions = 0;
+    mesh.m_holes = 0;
+    mesh.m_regions = 0;
   }
+  */
 
-  if (b.m_quality && m.m_triangles.m_items > 0)
+  //if (arguments.m_quality && mesh.m_triangles.m_items > 0)
   {
-    enforcequality(m, b);           //Enforce angle and area constraints.
+    //enforcequality(mesh, arguments); //Enforce angle and area constraints.
+    enforcequality(mesh); //Enforce angle and area constraints.
   }
 
   //Calculate the number of edges.
-  m.m_edges = (3l * m.m_triangles.m_items + m.m_hullsize) / 2l;
-
-  if (b.m_order > 1)
+  //mesh.m_edges = (3l * mesh.m_triangles.m_items + mesh.m_hullsize) / 2l;
+  /*
+  RJCB: Only used arguments.m_order == 1
+  if (arguments.m_order > 1)
   {
-    highorder(m, b);       //Promote elements to higher polynomial order.
+    highorder(mesh, arguments);       //Promote elements to higher polynomial order.
   }
+  */
   //If not using iteration numbers, don't write a .node file if one was
   //  read, because the original one would be overwritten!
-  if (b.m_nonodewritte)
+  if (arguments.m_nonodewritte)
   {
-    if (!b.m_quiet)
+    if (!arguments.m_quiet)
     {
       std::cout << "NOT writing a .node file.\n";
     }
-    numbernodes(m, b);         //We must remember to number the vertices.
+    numbernodes(mesh, arguments);         //We must remember to number the vertices.
   }
   else
   {
-    writenodes(m, b, b.m_outnodefilename, args);
+    writenodes(mesh, arguments, arguments.m_outnodefilename, args);
   }
-  if (b.m_noelewritten)
+  if (arguments.m_noelewritten)
   {
-    if (!b.m_quiet)
+    if (!arguments.m_quiet)
     {
       std::cout << "NOT writing an .ele file.\n";
     }
   }
   else
   {
-    writeelements(m, b, b.m_outelefilename, args);
+    writeelements(mesh, arguments, arguments.m_outelefilename, args);
   }
   //The -c switch (convex switch) causes a PSLG to be written
   //  even if none was read.
 
   {
     //If not using iteration numbers, don't overwrite the .poly file.
-    if (b.m_nopolywritten || b.m_noiterationnum)
+    if (arguments.m_nopolywritten || arguments.m_noiterationnum)
     {
-      if (!b.m_quiet)
+      if (!arguments.m_quiet)
       {
         std::cout << "NOT writing a .poly file.\n";
       }
@@ -13598,9 +13585,9 @@ int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
     else
     {
       writepoly(
-        m,
-        b,
-        b.m_outpolyfilename,
+        mesh,
+        arguments,
+        arguments.m_outpolyfilename,
         holearray,
         //m.m_holes,
         regionarray,
@@ -13609,42 +13596,42 @@ int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
       );
     }
   }
-  if (m.m_regions > 0)
+  if (mesh.m_regions > 0)
   {
     delete regionarray;
     regionarray = nullptr;
   }
-  if (m.m_holes > 0)
+  if (mesh.m_holes > 0)
   {
     delete holearray;
     holearray = nullptr;
   }
-  if (b.m_geomview)
+  if (arguments.m_geomview)
   {
-    writeoff(m, b, b.m_offfilename, args);
+    writeoff(mesh, arguments, arguments.m_offfilename, args);
   }
-  if (b.m_edgesout)
+  if (arguments.m_edgesout)
   {
-    writeedges(m, b, b.m_edgefilename, args);
+    writeedges(mesh, arguments, arguments.m_edgefilename, args);
   }
-  if (b.m_voronoi)
+  if (arguments.m_voronoi)
   {
-    writevoronoi(m, b, b.m_vnodefilename, b.m_vedgefilename, args);
+    writevoronoi(mesh, arguments, arguments.m_vnodefilename, arguments.m_vedgefilename, args);
   }
-  if (b.m_neighbors)
+  if (arguments.m_neighbors)
   {
-    writeneighbors(m, b, b.m_neighborfilename, args);
+    writeneighbors(mesh, arguments, arguments.m_neighborfilename, args);
   }
 
-  if (!b.m_quiet)
+  if (!arguments.m_quiet)
   {
-    statistics(m, b);
+    statistics(mesh, arguments);
   }
-  if (b.m_do_check)
+  if (arguments.m_do_check)
   {
-    checkmesh(m, b);
+    checkmesh(mesh, arguments);
 
-    checkdelaunay(m,m.m_incirclecount);
+    checkdelaunay(mesh,mesh.m_incirclecount);
     //checkdelaunay(m, b);
   }
   //triangledeinit(m, b);
@@ -13654,7 +13641,7 @@ int ribi::tricpp::triangle_cpp_main(const std::vector<std::string>& args)
 /*
 void ribi::tricpp::printtriangle(
   const Mesh& m,
-  const Behavior& b,
+  const Arguments& b,
   const Otri * const t
 )
 {

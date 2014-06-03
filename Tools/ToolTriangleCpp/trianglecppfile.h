@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPFILE_H
 #define TRIANGLECPPFILE_H
 
+#ifdef TRIANGLECPP_USE_FILE
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -21,5 +23,7 @@ char * readline(char * const string, _iobuf * const infile);
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_FILE
 
 #endif // TRIANGLECPPFILE_H

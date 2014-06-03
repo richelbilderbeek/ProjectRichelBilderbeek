@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPDEFINES_H
 #define TRIANGLECPPDEFINES_H
 
+#ifdef TRIANGLECPP_USE_DEFINES
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -81,5 +83,7 @@ void Two_Sum_Tail_Smartass(const double a, const double b, const double x, doubl
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_DEFINES
 
 #endif // TRIANGLECPPDEFINES_H

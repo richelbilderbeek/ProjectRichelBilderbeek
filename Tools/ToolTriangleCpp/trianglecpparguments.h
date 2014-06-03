@@ -53,7 +53,7 @@ namespace tricpp {
 ///     used at all.
 ///
 /// Read the instructions to find out the meaning of these switches.
-struct Behavior
+struct Arguments
 {
   typedef boost::units::quantity<boost::units::si::length> Length;
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
@@ -64,7 +64,7 @@ struct Behavior
 
   /// Read the command line, identify switches, and set
   /// up options and file names.
-  Behavior(const std::vector<std::string>& args);
+  Arguments(const std::vector<std::string>& args);
 
   std::string m_areafilename;
   int m_conformdel;
@@ -74,7 +74,7 @@ struct Behavior
   int m_dwyer;
   std::string m_edgefilename;
   int m_edgesout;
-  static const int m_firstnumber = 1;
+  //static const int m_firstnumber = 0; //Start counting from zero, as every programmer does
   int m_fixedarea;
   int m_geomview;
   Angle m_goodangle;
@@ -82,7 +82,7 @@ struct Behavior
   std::string m_inelefilename;
   std::string m_innodefilename;
   std::string m_inpolyfilename;
-  bool m_do_jettison;
+  //const static bool m_do_jettison = true; //As I always use it
   Area m_maxarea;
   Angle m_minangle;
   std::string m_neighborfilename;
@@ -97,15 +97,15 @@ struct Behavior
   int m_nopolywritten;
   double m_offconstant;
   std::string m_offfilename;
-  int m_order;
+  static const int m_order = 1; //RJCB: I always use 1
   std::string m_outelefilename;
   std::string m_outnodefilename;
   std::string m_outpolyfilename;
-  //int m_quality;
+  static bool m_quality = true;
   int m_quiet;
   int m_regionattrib;
   int m_splitseg;
-  int m_steiner;
+  int m_max_added_steiner_points;
   int m_sweepline;
   int m_usertest;
   //static const bool m_usesegments = true;

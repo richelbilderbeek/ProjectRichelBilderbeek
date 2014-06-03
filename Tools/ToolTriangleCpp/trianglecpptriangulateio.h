@@ -1,6 +1,8 @@
 #ifndef TRIANGLECPPTRIANGULATEIO_H
 #define TRIANGLECPPTRIANGULATEIO_H
 
+#ifdef TRIANGLECPP_USE_TRIANGULATEIO
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -40,5 +42,7 @@ struct TriangulateIo
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_TRIANGULATEIO
 
 #endif // TRIANGLECPPTRIANGULATEIO_H

@@ -2,13 +2,14 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "trianglecppbehavior.h"
+#include "trianglecpparguments.h"
 
 #include <cassert>
 #include <cstring>
 #include <stdexcept>
 #include <cmath>
 
+#include <boost/limits.hpp>
 #include <boost/math/constants/constants.hpp>
 #include <boost/units/systems/angle/degrees.hpp>
 #include "fileio.h"
@@ -18,7 +19,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::tricpp::Behavior::Behavior(
+ribi::tricpp::Arguments::Arguments(
   const std::vector<std::string>& args
 )
   : m_areafilename{},
@@ -37,7 +38,7 @@ ribi::tricpp::Behavior::Behavior(
     m_inelefilename{},
     m_innodefilename{},
     m_inpolyfilename{},
-    m_do_jettison{0},
+    m_do_jettison{false},
     m_maxarea{0.0 * boost::units::si::meter * boost::units::si::meter},
     m_minangle{
       20.0
@@ -56,7 +57,7 @@ ribi::tricpp::Behavior::Behavior(
     m_nopolywritten{0},
     m_offconstant{0.0},
     m_offfilename{},
-    m_order{1},
+    //m_order{1},
     m_outelefilename{},
     m_outnodefilename{},
     m_outpolyfilename{},
@@ -65,7 +66,7 @@ ribi::tricpp::Behavior::Behavior(
     m_quiet{0},
     m_regionattrib{0},
     m_splitseg{0},
-    m_steiner{-1},
+    m_max_added_steiner_points{boost::numeric::bounds<int>::highest()},
     m_sweepline{0},
     m_usertest{0},
     //m_usesegments{0},
@@ -77,9 +78,9 @@ ribi::tricpp::Behavior::Behavior(
     //m_weighted{0}
 {
   const int argc = static_cast<int>(args.size());
-  const int start_index = 1; //Because args[0] contains the filename
-  int increment;
-  int meshnumber;
+  //const int start_index = 1; //Because args[0] contains the filename
+  //int increment;
+  //int meshnumber;
   //static const int max_filename_size = 2048;
   //std::string workstring; //[max_filename_size];
 
@@ -164,7 +165,7 @@ ribi::tricpp::Behavior::Behavior(
       }
       if (s[0] == 'u')
       {
-        m_quality = 1;
+        //m_quality = 1;
         m_usertest = 1;
       }
       if (s[0] == 'A')
@@ -232,6 +233,8 @@ ribi::tricpp::Behavior::Behavior(
       {
         m_noexact = 1;
       }
+      /*
+      RJCB: I don't use it
       if (s[0] == 'o')
       {
         const std::string t = s.substr(1,s.size());
@@ -242,6 +245,7 @@ ribi::tricpp::Behavior::Behavior(
           m_order = 2;
         }
       }
+      */
       if (s[0] == 'Y')
       {
         m_nobisect++;
@@ -249,7 +253,15 @@ ribi::tricpp::Behavior::Behavior(
       if (s[0] == 'S')
       {
         const std::string t = s.substr(1,s.size());
-        m_steiner = boost::lexical_cast<int>(t);
+        m_max_added_steiner_points = boost::lexical_cast<int>(t);
+        if (m_max_added_steiner_points < 0)
+        {
+          std::stringstream s;
+          s << "Max added Steiner points cannot be " << m_max_added_steiner_points
+            << ", use a positive value instead";
+          TRACE(s.str());
+          throw std::runtime_error(s.str());
+        }
         /*
         m_steiner = 0;
         while ((line[j + 1] >= '0') && (line[j + 1] <= '9'))
@@ -275,8 +287,9 @@ ribi::tricpp::Behavior::Behavior(
       {
         m_splitseg = 1;
       }
-      if ((s[0] == 'D') || (s[0] == 'L')) {
-        m_quality = 1;
+      if ((s[0] == 'D') || (s[0] == 'L'))
+      {
+        //m_quality = 1;
         m_conformdel = 1;
       }
       if (s[0] == 'C')
@@ -337,7 +350,7 @@ ribi::tricpp::Behavior::Behavior(
   {
     m_innodefilename = ribi::fileio::FileIo().GetFileBasename(m_innodefilename);
     //this->m_innodefilename[strlen(this->m_innodefilename) - 5] = '\0';
-    this->m_do_refine = true;
+    //this->m_do_refine = true;
     this->m_quality = 1;
     this->m_vararea = 1;
   }
@@ -464,4 +477,7 @@ ribi::tricpp::Behavior::Behavior(
   m_inpolyfilename += ".poly";
   m_inelefilename += ".ele";
   m_areafilename += ".area";
+
+  assert(m_do_refine == true);  //Which one is it?
+  assert(m_do_refine == false); //Which one is it?
 }

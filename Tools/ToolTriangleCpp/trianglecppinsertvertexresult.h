@@ -10,7 +10,8 @@ namespace tricpp {
 /*   segment, or was not inserted because another vertex occupies the same   */
 /*   location.                                                               */
 
-enum InsertVertexResult {
+enum class InsertVertexResult
+{
   SUCCESSFULVERTEX,
   ENCROACHINGVERTEX,
   VIOLATINGVERTEX,

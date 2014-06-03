@@ -1,11 +1,14 @@
 #ifndef TRIANGLECPPEVENT_H
 #define TRIANGLECPPEVENT_H
 
+#ifdef TRIANGLECPP_USE_EVENT
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic pop
+
 
 namespace ribi {
 namespace tricpp {
@@ -51,5 +54,7 @@ void eventheapinsert(
 
 } //~namespace tricpp
 } //~namespace ribi
+
+#endif // TRIANGLECPP_USE_EVENT
 
 #endif // TRIANGLECPPEVENT_H

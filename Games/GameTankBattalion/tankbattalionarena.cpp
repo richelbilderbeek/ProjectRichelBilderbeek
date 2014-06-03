@@ -2,6 +2,12 @@
 
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic pop
+
 ribi::taba::Arena::Arena(const int level)
   : m_arena(CreateArena(level))
 {
@@ -68,7 +74,7 @@ QPixmap ribi::taba::Arena::CreatePixmap() const noexcept
 }
 */
 
-bool ribi::taba::Arena::Get(const int x, const int y) const noexcept
+int ribi::taba::Arena::Get(const int x, const int y) const noexcept
 {
   assert(x >= 0);
   assert(x < sm_n_columns);

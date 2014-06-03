@@ -118,10 +118,12 @@ void ribi::taba::QtGameWidget::paintEvent(QPaintEvent *)
   const int block_height = 8;
   const int arena_width  = Arena::GetColumns() * block_width;
   const int arena_height = Arena::GetRows()    * block_height;
+  const auto n_rows = m_widget->GetArena()->GetRows();
+  const auto n_cols = m_widget->GetArena()->GetColumns();
 
-  for (int y=0; y!=GetRows(); ++y)
+  for (int y=0; y!=n_rows; ++y)
   {
-    for (int x=0; x!=GetColumns(); ++x)
+    for (int x=0; x!=n_cols; ++x)
     {
       assert(y < static_cast<int>(v.size()));
       assert(x < static_cast<int>(v[y].size()));
@@ -134,11 +136,11 @@ void ribi::taba::QtGameWidget::paintEvent(QPaintEvent *)
 
   const double scale_x
     = static_cast<double>(rect().width())
-    / static_cast<double>(arena_pixmap.width())
+    / static_cast<double>(arena_width)
   ;
   const double scale_y
     = static_cast<double>(rect().height())
-    / static_cast<double>(arena_pixmap.height())
+    / static_cast<double>(arena_height)
   ;
 
 
