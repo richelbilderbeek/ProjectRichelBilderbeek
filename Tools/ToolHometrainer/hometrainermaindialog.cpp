@@ -235,7 +235,6 @@ void ribi::HometrainerMainDialog::OnSubmitted(const bool is_correct) noexcept
 
 void ribi::HometrainerMainDialog::Submit(const std::string& answer_from_user)
 {
-
   const bool is_correct = this->GetCurrentQuestion()->IsCorrect(answer_from_user);
   if (is_correct) ++m_n_correct; else ++m_n_incorrect;
   NewQuestion();

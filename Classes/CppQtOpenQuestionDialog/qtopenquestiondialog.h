@@ -57,7 +57,8 @@ public:
   QtOpenQuestionDialog& operator=(const QtOpenQuestionDialog&) = delete;
   ~QtOpenQuestionDialog() noexcept;
 
-  const boost::shared_ptr<const QuestionDialog> GetDialog() const;
+  boost::shared_ptr<const QuestionDialog> GetDialog() const;
+  void SetDialog(const boost::shared_ptr<QuestionDialog>& dialog);
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;

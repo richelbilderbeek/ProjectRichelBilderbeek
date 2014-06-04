@@ -69,15 +69,21 @@ const boost::shared_ptr<const ribi::QuestionDialog> ribi::QtOpenQuestionDialog::
   return m_dialog;
 }
 
+void ribi::QtOpenQuestionDialog::SetDialog(const boost::shared_ptr<QuestionDialog>& dialog) const
+{
+  m_dialog = dialog;
+}
+
 std::string ribi::QtOpenQuestionDialog::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::QtOpenQuestionDialog::GetVersionHistory() noexcept
 {
   return {
-    "2011-06-28: version 1.0: initial version"
+    "2011-06-28: version 1.0: initial version",
+    "2014-06-04: version 1.1: added SetDialog member function"
   };
 }
 

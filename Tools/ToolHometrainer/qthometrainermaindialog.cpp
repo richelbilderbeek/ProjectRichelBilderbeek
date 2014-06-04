@@ -133,20 +133,26 @@ void ribi::QtHometrainerMainDialog::OnSubmitted(const bool is_correct)
 void ribi::QtHometrainerMainDialog::SetQuestion(const boost::shared_ptr<const Question> s)
 {
   assert(s);
-  m_qtdialog = CreateQtQuestionDialog(s);
-  assert(m_qtdialog);
-  m_qtdialog->GetDialog()->m_signal_submitted.connect(
+  const auto new_qtdialog = CreateQtQuestionDialog(s);
+  assert(new_qtdialog);
+  new_qtdialog->GetDialog()->m_signal_submitted.connect(
     boost::bind(&ribi::QtHometrainerMainDialog::OnSubmitted,this,boost::lambda::_1)
-  );
-
+  );  
   if (ui->contents_here->layout())
   {
     delete ui->contents_here->layout();
   }
   assert(!ui->contents_here->layout());
+
   if (m_qtdialog)
   {
-    assert(m_qtdialog);
+    new_qtdialog->GetDialog()->m_signal_submitted.disconnect(
+      boost::bind(&ribi::QtHometrainerMainDialog::OnSubmitted,this,boost::lambda::_1)
+    );
+  }
+  m_qtdialog = new_qtdialog;
+  if (m_qtdialog)
+  {
     assert(!ui->contents_here->layout());
     QLayout * const my_layout = new QVBoxLayout;
     ui->contents_here->setLayout(my_layout);
