@@ -20,24 +20,30 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "openquestiondialog.h"
 
+#include <cassert>
+
 #include "openquestion.h"
+//#include "openquestionfactory.h"
+#include "openquestiondialogfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::OpenQuestionDialog::OpenQuestionDialog(const std::string& question)
-  : m_question(new OpenQuestion(question))
+ribi::OpenQuestionDialog::OpenQuestionDialog()
+  : m_signal_open_question_changed{},
+    m_open_question{}
 {
   #ifndef NDEBUG
   Test();
   #endif
-  assert(!HasSubmitted());
-  assert(GetQuestion());
 }
 
+/*
 ribi::OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question)
-  : m_question(question)
+  : m_open_question(question)
 {
   #ifndef NDEBUG
   Test();
@@ -46,24 +52,36 @@ ribi::OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<const OpenQ
   assert(!HasSubmitted());
   assert(GetQuestion());
 }
+*/
 
 boost::shared_ptr<const ribi::Question> ribi::OpenQuestionDialog::GetQuestion() const noexcept
 {
-  return m_question;
+  return m_open_question;
 }
 
 std::string ribi::OpenQuestionDialog::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::OpenQuestionDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-29: version 1.0: initial version",
-    "2013-10-24: version 1.1: added testing"
+    "2013-10-24: version 1.1: added testing",
+    "2014-06-05: version 1.2: moved some code to OpenQuestionDialogFactory"
   };
 }
+
+void ribi::OpenQuestionDialog::SetOpenQuestion(const boost::shared_ptr<OpenQuestion>& open_question) noexcept
+{
+  if (m_open_question != open_question)
+  {
+    m_open_question = open_question;
+    m_signal_open_question_changed(this);
+  }
+}
+
 
 void ribi::OpenQuestionDialog::Submit(const std::string& s)
 {
@@ -86,15 +104,17 @@ void ribi::OpenQuestionDialog::Test() noexcept
   }
   TRACE("Starting ribi::OpenQuestionDialog::Test");
   //Test setting the open questions
-  for(const std::string& s: OpenQuestion::GetValidOpenQuestions())
+  for(const auto dialog: OpenQuestionDialogFactory().GetTestOpenQuestionDialogs())
   {
-    const boost::shared_ptr<OpenQuestion> q {
-      new OpenQuestion(s)
-    };
-    assert(q);
-    const OpenQuestionDialog d(q);
-    assert(!d.HasSubmitted() );
+    assert(!dialog->HasSubmitted());
   }
   TRACE("Finished ribi::OpenQuestionDialog::Test successfully");
 }
 #endif
+
+std::string ribi::OpenQuestionDialog::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << m_open_question->ToStr();
+  return s.str();
+}

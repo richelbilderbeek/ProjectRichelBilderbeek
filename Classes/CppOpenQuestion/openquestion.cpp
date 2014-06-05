@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "openquestion.h"
 
 #include <cassert>
@@ -33,9 +34,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "imagecanvas.h"
+#include "openquestionfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+/*
 ribi::OpenQuestion::OpenQuestion(const std::string& question)
   : Question(
       SeperateString(question,',').at(0),
@@ -64,12 +67,13 @@ ribi::OpenQuestion::OpenQuestion(const std::string& question)
   }
 
 }
+*/
 
 ribi::OpenQuestion::OpenQuestion(
   const std::string& filename,
   const std::string& question,
-  const std::vector<std::string>& answers)
-: Question(filename,question, answers )
+  const std::vector<std::string>& answers) noexcept
+  : Question(filename,question, answers )
 {
   #ifndef NDEBUG
   Test();
@@ -89,67 +93,17 @@ ribi::Question * ribi::OpenQuestion::Clone() const noexcept
   );
 }
 
-std::vector<std::string> ribi::OpenQuestion::ExtractAnswers(const std::string& input)
-{
-  const std::vector<std::string> v = SeperateString(input,',');
-  if (v.size() != 3)
-  {
-    throw std::logic_error("An open question has exactly three comma-seperated elements");
-  }
-
-  const std::vector<std::string> w = SeperateString(v[2],'/');
-  if (w.size() == 0)
-  {
-    throw std::logic_error("An open question has at least one correct answer");
-  }
-  return w;
-}
-
 //const std::vector<std::string>& ribi::OpenQuestion::GetAnswers() const noexcept
 //{
 //  this->GetCorrectAnswers()
 //}
 
-std::vector<std::string> ribi::OpenQuestion::GetInvalidOpenQuestions() noexcept
-{
-  return {
-    "-,1+1=,2,3", //Incorrect options are
-    "-,1+1=",   //No answer
-    "-",        //No question
-    "tmp.png",  //No question
-    "",         //Nothing
-    ",tmp.png,1+1=,2", //Start with comma
-    "tmp.png,,1+1=,2", //Two consecutive comma's
-    "tmp.png,1+1=,,2", //Two consecutive comma's
-    "tmp.png,1+1=,2,", //Two consecutive comma's
-    "tmp.png,1+1=,2,", //End with comma
-    ",tmp.png,1+1=,2,", //Start and end with comma
-    ",,tmp.png,1+1=,2,",
-    ",tmp.png,,1+1=,2,",
-    ",tmp.png,1+1=,,2,",
-    ",tmp.png,1+1=,2,,",
-    ",",
-    ",,",
-    ",,,",
-    ",,,,",
-    ",,,,,",
-    ",,,,,,"
-  };
-}
 
-std::vector<std::string> ribi::OpenQuestion::GetValidOpenQuestions() noexcept
-{
-  return {
-    "-,1+1=,2",
-    "tmp.png,1+1=,2/Two",
-    "-,1+1=,Two/2/two"
-  };
-}
 
 
 std::string ribi::OpenQuestion::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::OpenQuestion::GetVersionHistory() noexcept
@@ -157,7 +111,8 @@ std::vector<std::string> ribi::OpenQuestion::GetVersionHistory() noexcept
   return {
     "2011-06-27: version 1.0: initial version",
     "2011-09-16: version 1.1: allow parsing from std::string"
-    "2013-10-24: version 1.2: added tests"
+    "2013-10-24: version 1.2: added tests",
+    "2014-06-05: version 1.3: moved parts to OpenQuestionFactory"
   };
 }
 
@@ -181,64 +136,13 @@ void ribi::OpenQuestion::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::OpenQuestion::Test");
-  try
-  {
-    boost::scoped_ptr<OpenQuestion> q {
-      new OpenQuestion(
-        OpenQuestion::GetExampleOpenQuestion()
-      )
-    };
-    assert(q);
-  }
-  catch (std::exception& e)
-  {
-    assert("OpenQuestion::GetExampleOpenQuestion()"
-        && "must yield a valid OpenQuestion");
-  }
-  //Test valid multiple choice questions for validity
-  {
-    const std::vector<std::string> valid { GetValidOpenQuestions() };
-    for (const std::string& s: valid)
-    {
-      try
-      {
-        boost::scoped_ptr<OpenQuestion> q { new OpenQuestion(s) };
-        assert(q); //To make the compiler happy
-        //OK
-      }
-      catch (std::exception& e)
-      {
-        TRACE("ERROR");
-        TRACE(s);
-        assert(!"Valid questions must be accepted");
-      }
-    }
-  }
-  //Test invalid multiple choice questions for invalidity
-  {
-    const std::vector<std::string> invalid { GetInvalidOpenQuestions()  };
-    for (const std::string& s: invalid)
-    {
-      try
-      {
-        boost::scoped_ptr<OpenQuestion> q { new OpenQuestion(s) };
-        TRACE("ERROR");
-        TRACE(s);
-        assert(!"Invalid questions must be rejected");
-      }
-      catch (std::exception& e)
-      {
-        //OK
-      }
-    }
-  }
   //Test simple get/set with single answer
   {
     const std::string filename = "-";
     const std::string question = "1+1=";
-    const std::string answer_1 { "2" };
+    const std::string answer_1 = "2";
     const std::vector<std::string> answers { answer_1 };
-    boost::scoped_ptr<OpenQuestion> q { new OpenQuestion(filename,question,answers) };
+    const auto q = OpenQuestionFactory().Create(filename,question,answers);
     assert(q->GetFilename() == filename);
     assert(q->GetQuestion() == question);
     assert(q->GetCorrectAnswers() == answers);
@@ -254,7 +158,7 @@ void ribi::OpenQuestion::Test() noexcept
     const std::string answer_1 { "2" };
     const std::string answer_2 { "Two" };
     const std::vector<std::string> answers { answer_1, answer_2 };
-    boost::scoped_ptr<OpenQuestion> q { new OpenQuestion(filename,question,answers) };
+    const auto q = OpenQuestionFactory().Create(filename,question,answers);
     assert(q->GetFilename() == filename);
     assert(q->GetQuestion() == question);
     assert(q->GetCorrectAnswers() == answers);
@@ -266,21 +170,21 @@ void ribi::OpenQuestion::Test() noexcept
   }
   //Test conversion std::string to OpenQuestion and back
   {
-    const std::vector<std::string> valid { GetValidOpenQuestions() };
+    const auto valid = OpenQuestionFactory().GetValidOpenQuestionStrings();
     for (const std::string& s: valid)
     {
-      const boost::scoped_ptr<OpenQuestion> q { new OpenQuestion(s) };
+      const auto q = OpenQuestionFactory().Create(s);
       assert(s == q->ToStr());
     }
   }
   //Test that ToLines always yields the same result
   {
-    const std::vector<std::string> valid { GetValidOpenQuestions() };
+    const auto valid = OpenQuestionFactory().GetValidOpenQuestionStrings();
     for (const std::string& s: valid)
     {
-      const boost::scoped_ptr<OpenQuestion> q { new OpenQuestion(s) };
-      const std::vector<std::string> v { q->ToLines() };
-      const std::vector<std::string> w { q->ToLines() };
+      const auto q = OpenQuestionFactory().Create(s);
+      const auto v = q->ToLines();
+      const auto w = q->ToLines();
       assert(v == w);
     }
   }
@@ -323,7 +227,7 @@ std::vector<std::string> ribi::OpenQuestion::ToLines() const noexcept
 std::string ribi::OpenQuestion::ToStr() const noexcept
 {
   //Concatenate the correct answer
-  assert(!this->GetCorrectAnswers().empty());
+  assert(!GetCorrectAnswers().empty());
   std::string correct_answers_str;
 
   for (const std::string s: this->GetCorrectAnswers()) { correct_answers_str += s + "/"; }

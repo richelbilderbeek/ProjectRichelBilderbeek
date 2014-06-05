@@ -30,6 +30,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
+
+#include "tribool.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -46,6 +48,8 @@ struct QuestionDialog
   ///Run the dialog from the command line
   void Execute();
 
+  Tribool GetIsCorrect() const noexcept { return m_is_correct; }
+
   ///Obtain the question
   virtual boost::shared_ptr<const Question> GetQuestion() const = 0;
 
@@ -56,7 +60,7 @@ struct QuestionDialog
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Check if an answer has been submitted
-  bool HasSubmitted() const { return !m_is_correct.empty(); }
+  bool HasSubmitted() const { return m_is_correct != Tribool::Indeterminate; }
 
   ///See if the submitted answer is correct
   bool IsAnswerCorrect() const;
@@ -67,6 +71,8 @@ struct QuestionDialog
   ///Submit will throw an exception if s is invalid. For example,
   ///if s is a word, where a multiple choice question needs an index (like '2')
   virtual void Submit(const std::string& s) = 0;
+
+  virtual std::string ToStr() const noexcept = 0;
 
   ///This signal is emitted when the client requests to quit
   mutable boost::signals2::signal<void ()> m_signal_request_quit;
@@ -92,7 +98,8 @@ struct QuestionDialog
   ///m_is_correct[0] == 0 -> false
   ///m_is_correct[0] == 1 -> true
   ///Other values and sizes are invalid
-  std::vector<int> m_is_correct;
+  //std::vector<int> m_is_correct;
+  Tribool m_is_correct;
 
   ///The question
   //boost::shared_ptr<const Question> m_question;

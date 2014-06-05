@@ -63,6 +63,9 @@ struct Question
   ///How to display the question as multiple lines
   virtual std::vector<std::string> ToLines() const noexcept = 0;
 
+  ///Convert to std::string line, as read from file
+  virtual std::string ToStr() const noexcept = 0;
+
   protected:
   virtual ~Question() noexcept {}
 

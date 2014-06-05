@@ -36,22 +36,25 @@ struct OpenQuestion;
 ///Dialog for an OpenQuestion
 struct OpenQuestionDialog : public QuestionDialog
 {
-  explicit OpenQuestionDialog(const std::string& question);
-  explicit OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question);
+  OpenQuestionDialog();
+  //explicit OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question);
 
-  boost::shared_ptr<const OpenQuestion> GetOpenQuestion() const noexcept { return m_question; }
-
+  boost::shared_ptr<const OpenQuestion> GetOpenQuestion() const noexcept { return m_open_question; }
+  boost::shared_ptr<      OpenQuestion> GetOpenQuestion()       noexcept { return m_open_question; }
   boost::shared_ptr<const Question> GetQuestion() const noexcept;
 
-  ///Obtain the version
-  static std::string GetVersion() noexcept;
+  void SetOpenQuestion(const boost::shared_ptr<OpenQuestion>& open_question) noexcept;
 
-  ///Obtain the version history
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Submit an answer
   ///For an open question, s will be the anwer
   void Submit(const std::string& s);
+
+  std::string ToStr() const noexcept;
+
+  mutable boost::signals2::signal<void (OpenQuestionDialog*)> m_signal_open_question_changed;
 
   private:
   friend void boost::checked_delete<>(OpenQuestionDialog*);
@@ -60,7 +63,7 @@ struct OpenQuestionDialog : public QuestionDialog
   friend class boost::detail::sp_ms_deleter<const OpenQuestionDialog>;
   ~OpenQuestionDialog() noexcept {}
 
-  const boost::shared_ptr<const OpenQuestion> m_question;
+  boost::shared_ptr<OpenQuestion> m_open_question;
 
   #ifndef NDEBUG
   static void Test() noexcept;

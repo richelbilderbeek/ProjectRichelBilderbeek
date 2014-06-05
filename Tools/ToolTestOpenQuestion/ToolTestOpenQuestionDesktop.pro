@@ -13,6 +13,7 @@ include(../../Classes/CppOpenQuestionDialog/CppOpenQuestionDialog.pri)
 include(../../Classes/CppQuestion/CppQuestion.pri)
 include(../../Classes/CppQuestionDialog/CppQuestionDialog.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppTribool/CppTribool.pri)
 
 include(ToolTestOpenQuestionDesktop.pri)
 

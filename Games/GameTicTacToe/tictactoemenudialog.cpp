@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "dotmatrixchar.h"
 #include "textcanvas.h"
 #include "tictactoeai.h"
 #include "tictactoeais.h"
@@ -75,6 +76,7 @@ int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std:
     {
       int x = 0;
       int y = 0;
+      TRACE("Please enter input");
       std::cin >> x >> y;
       if (t.CanDoMove(x,y)) t.DoMove(x,y);
     }
@@ -88,11 +90,15 @@ ribi::About ribi::tictactoe::TicTacToeMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TicTacToe",
     "tic-tac-toe game",
-    "the 10th of February 2014",
+    "the 5th of June 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/GameTicTacToe.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("DotMatrix version: " + DotMatrixChar::GetVersion());
+  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("tictactoe::Board version: " + tictactoe::Board::GetVersion());
   a.AddLibrary("tictactoe::Game version: " + tictactoe::Game::GetVersion());
   a.AddLibrary("tictactoe::Widget version: " + tictactoe::Widget::GetVersion());
@@ -132,7 +138,7 @@ boost::shared_ptr<const ribi::Program> ribi::tictactoe::TicTacToeMenuDialog::Get
 
 std::string ribi::tictactoe::TicTacToeMenuDialog::GetVersion() const noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
 std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory() const noexcept
@@ -144,7 +150,8 @@ std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory
     "2011-01-07: version 1.3: seperated wtmain.cpp in multiple units",
     "2011-04-15: version 1.4: major architectural changes",
     "2011-04-16: version 1.5: added use of WtAutoConfig (for web application)"
-    "2014-02-10: version 1.6: added retro version"
+    "2014-02-10: version 1.6: added retro version",
+    "2014-06-05: version 1.7: first step in adding AI"
   };
 }
 
@@ -159,7 +166,7 @@ void ribi::tictactoe::TicTacToeMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::tictactoe::TicTacToeMenuDialog::Test");
   {
-    TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog" } );
+    TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog","--1h","--2h" } );
   }
   TRACE("Finished ribi::tictactoe::TicTacToeMenuDialog::Test successfully");
 }

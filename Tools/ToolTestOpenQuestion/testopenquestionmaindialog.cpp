@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "openquestiondialogfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -36,38 +37,26 @@ ribi::TestOpenQuestionMainDialog::TestOpenQuestionMainDialog()
   #endif
 }
 
-std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestOpenQuestionMainDialog::CreateQuestions()
+std::vector<boost::shared_ptr<ribi::QuestionDialog>> ribi::TestOpenQuestionMainDialog::CreateQuestions()
 {
   std::vector<boost::shared_ptr<QuestionDialog> > v;
 
+
   v.push_back(
-    boost::shared_ptr<QuestionDialog>(
-      new OpenQuestionDialog(
-        boost::shared_ptr<OpenQuestion>(
-          new OpenQuestion(
-            "*",
-            "1+1=",
-            { "2", "two" }
-          )
-        )
-      )
+    OpenQuestionDialogFactory().Create(
+      "*",
+      "1+1=",
+      { "2", "two" }
     )
   );
   v.push_back(
-    boost::shared_ptr<QuestionDialog>(
-      new OpenQuestionDialog(
-        boost::shared_ptr<OpenQuestion>(
-          new OpenQuestion(
-            "question.png",
-            "The solution of this equation is...",
-            { "2", "two" }
-          )
-        )
-      )
+    OpenQuestionDialogFactory().Create(
+      "question.png",
+      "The solution of this equation is...",
+      { "2", "two" }
     )
   );
   std::random_shuffle(v.begin(),v.end());
-
   return v;
 }
 

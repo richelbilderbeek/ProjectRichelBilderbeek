@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -48,17 +50,16 @@ class QtOpenQuestionDialog : public QtQuestionDialog
 
 public:
   explicit QtOpenQuestionDialog(QWidget *parent = 0);
-
   ///Will throw if the QuestionDialog is not an OpenQuestionDialog
-  explicit QtOpenQuestionDialog(
-    const boost::shared_ptr<OpenQuestionDialog> dialog,
-    QWidget *parent = 0);
+  //explicit QtOpenQuestionDialog(QWidget *parent = 0);
   QtOpenQuestionDialog(const QtOpenQuestionDialog&) = delete;
   QtOpenQuestionDialog& operator=(const QtOpenQuestionDialog&) = delete;
   ~QtOpenQuestionDialog() noexcept;
 
   boost::shared_ptr<const QuestionDialog> GetDialog() const;
   void SetDialog(const boost::shared_ptr<QuestionDialog>& dialog);
+
+  void SetOpenQuestionDialog(const boost::shared_ptr<OpenQuestionDialog>& dialog);
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -68,7 +69,12 @@ private slots:
 
 private:
   Ui::QtOpenQuestionDialog *ui;
-  const boost::shared_ptr<OpenQuestionDialog> m_dialog;
+  boost::shared_ptr<OpenQuestionDialog> m_openquestiondialog;
+
+  void OnOpenQuestionDialogChanged(OpenQuestionDialog * const open_question_dialog) noexcept;
+  void OnOpenQuestionChanged(const boost::shared_ptr<OpenQuestion>& open_question) noexcept;
+  void OnQuit() noexcept;
+  void OnSubmit(const bool was_answer_correct) noexcept;
 };
 
 } //~namespace ribi

@@ -71,6 +71,7 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_about_clicked()
   About a = TicTacToeMenuDialog().GetAbout();
   a.AddLibrary("QtTicTacToeWidget version: " + tictactoe::QtTicTacToeWidget::GetVersion());
   QtAboutDialog d(a);
+  //d.setStyleSheet(styleSheet());
   this->ShowChild(&d);
 }
 
@@ -88,6 +89,7 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::tictactoe::QtTicTacToeMenuDialog::Test");
+  TicTacToeMenuDialog();
   {
     const boost::shared_ptr<Ai> player1;
     const boost::shared_ptr<Ai> player2;
