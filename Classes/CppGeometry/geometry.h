@@ -347,6 +347,7 @@ struct Geometry
 
   std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;
+  std::string ToStr(const Polygon& polygon) const noexcept;
 
   std::string ToSvgStr(
     const std::vector<Polygon>& shapes,

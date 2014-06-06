@@ -1845,6 +1845,20 @@ std::string ribi::Geometry::ToStr(const boost::geometry::model::point<double,3,b
   return s.str();
 }
 
+std::string ribi::Geometry::ToStr(
+  const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& polygon
+) const noexcept
+{
+  std::stringstream s;
+  for (const auto point: polygon.outer())
+  {
+    s << ToStr(point) << ',';
+  }
+  std::string t = s.str();
+  if (!t.empty()) { t.pop_back(); }
+  return t;
+}
+
 std::string ribi::Geometry::ToSvgStr(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
   const double stroke_width

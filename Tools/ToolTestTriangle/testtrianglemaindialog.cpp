@@ -26,28 +26,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <fstream>
 
-//#include <boost/geometry.hpp>
-//#include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/make_shared.hpp>
-//#include <boost/shared_ptr.hpp>
-//#include <boost/units/systems/si.hpp>
-
-
-
 #include "fileio.h"
 #include "geometry.h"
 #include "polyfile.h"
 #include "trace.h"
 #include "trianglefile.h"
-//#include "trianglemeshbuilder.h"
-//#include "trianglemeshcell.h"
-//#include "trianglemeshcellscreator.h"
-//#include "trianglemeshcellscreatorfactory.h"
-//#include "trianglemeshface.h"
-//#include "trianglemeshhelper.h"
-//#include "trianglemeshpoint.h"
 #include "trianglemeshtemplate.h"
-//#include "trianglemeshcreateverticalfacesstrategies.h"
 #pragma GCC diagnostic pop
 
 ribi::TestTriangleMainDialog::TestTriangleMainDialog(
@@ -102,9 +87,6 @@ void ribi::TestTriangleMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestTriangleMainDialog::Test");
-  //typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
-  //ribi::trim::CellsCreatorFactory();
-
   //Create a simple mesh
   try
   {
