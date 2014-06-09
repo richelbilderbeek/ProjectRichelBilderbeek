@@ -498,7 +498,7 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
 
     const auto concept_e(ConceptFactory().Create());
     const auto node_e(NodeFactory().Create(concept_e,1.2,3.4));
-    const auto edge_a(cmap::EdgeFactory().Create(node_e,nodes.at(1),false,nodes.at(2),true));
+    const auto edge_a(EdgeFactory().Create(node_e,nodes.at(1),false,nodes.at(2),true));
 
 
     const Edges edges
@@ -525,7 +525,7 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
 
     const auto concept_e(ConceptFactory().Create());
     const auto node_e(NodeFactory().Create(concept_e,1.2,3.4));
-    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory().Create(node_e,nodes.at(2),false,nodes.at(3),true));
+    const boost::shared_ptr<Edge> edge_a(EdgeFactory().Create(node_e,nodes.at(2),false,nodes.at(3),true));
 
     const Edges edges
       =

@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QCursor>
 
 #include "conceptmapconcept.h"
+#include "conceptmapnode.h"
 #include "conceptmapexamples.h"
 #include "qtitemdisplaystrategy.h"
 #include "trace.h"
@@ -35,8 +36,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 void ribi::cmap::QtConceptMapElement::OnConceptRequestsEdit()
 {
   assert(this);
-  assert(this->GetConcept());
-  assert(this->GetConcept()->GetExamples());
+  assert(this->GetNode());
+  assert(this->GetNode()->GetConcept()->GetExamples());
   this->setAcceptHoverEvents(true);
   m_signal_conceptmapitem_requests_edit(this);
 }

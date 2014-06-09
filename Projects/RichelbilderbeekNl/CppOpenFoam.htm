@@ -134,8 +134,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamalphatfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMALPHAT<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMALPHAT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMALPHAT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMALPHAT<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppArrayH.htm">array</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
@@ -181,7 +181,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMALPHAT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMALPHAT<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -284,14 +284,15 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamboundary.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMBOUNDARY_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMBOUNDARY_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMBOUNDARY_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMBOUNDARY_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfwd.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoampatchfieldtype.h"<br/>
@@ -304,19 +305,19 @@
 <b><a href="CppStruct.htm">struct</a></b> Boundary<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Boundary(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; &gt;&amp; faces,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; faces,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; name,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> PatchFieldType type<br/>
 &nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face&gt; &gt;&amp; GetFaces() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_faces; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; &gt;&nbsp;&nbsp;GetFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; GetFaces() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_faces; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&nbsp;&nbsp;GetFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; GetName() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_name; }<br/>
 &nbsp;&nbsp;PatchFieldType GetType() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_type; }<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; &gt; m_faces;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_faces;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_name;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> PatchFieldType m_type;<br/>
 <br/>
@@ -328,7 +329,7 @@
 } <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMBOUNDARY_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMBOUNDARY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -350,7 +351,7 @@
 <a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::Boundary::Boundary(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; &gt;&amp; faces,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; faces,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; name,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> PatchFieldType type<br/>
 &nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -361,7 +362,7 @@
 <br/>
 }<br/>
 <br/>
-<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face&gt; &gt; <a href="CppRibi.htm">ribi</a>::foam::Boundary::GetFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::foam::Boundary::GetFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;<a href="CppStdTransform.htm">std::transform</a>(<br/>
@@ -407,8 +408,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamboundaryfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -492,7 +493,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -869,8 +870,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamboundaryfileitem.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
@@ -926,7 +927,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMBOUNDARY<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1110,8 +1111,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamboundaryindex.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMBOUNDARYINDEX_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMBOUNDARYINDEX_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMBOUNDARYINDEX_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMBOUNDARYINDEX_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <br/>
@@ -1149,7 +1150,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMBOUNDARYINDEX_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMBOUNDARYINDEX_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1277,14 +1278,15 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamcell.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMCELL_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMCELL_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMCELL_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMCELL_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfwd.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -1340,7 +1342,7 @@
 } <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMCELL_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMCELL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1384,7 +1386,7 @@
 &nbsp;&nbsp;m_owned_faces <a href="CppOperatorAssign.htm">=</a> owned_faces;<br/>
 }<br/>
 <br/>
-<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face&gt; &gt; <a href="CppRibi.htm">ribi</a>::foam::Cell::GetOwnedFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::foam::Cell::GetOwnedFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;<a href="CppStdTransform.htm">std::transform</a>(<br/>
@@ -1452,8 +1454,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamcellindex.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMCELLINDEX_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMCELLINDEX_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMCELLINDEX_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMCELLINDEX_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <br/>
@@ -1490,7 +1492,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMCELLINDEX_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMCELLINDEX_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1618,8 +1620,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamcontroldictfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMCONTROLDICT<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMCONTROLDICT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMCONTROLDICT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMCONTROLDICT<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -1690,7 +1692,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMCONTROLDICT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMCONTROLDICT<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1805,8 +1807,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamdecomposepardictfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMDECOMPOSEPARDICT<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMDECOMPOSEPARDICT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMDECOMPOSEPARDICT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMDECOMPOSEPARDICT<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -1843,7 +1845,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMDECOMPOSEPARDICT<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMDECOMPOSEPARDICT<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2112,13 +2114,14 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamface.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMFACE_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMFACE_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMFACE_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMFACE_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
@@ -2160,8 +2163,8 @@
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Cell&gt; GetOwner() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_owner; }<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell&gt; GetOwner()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt; Get<a href="CppPoint.htm">Point</a>s() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Coordinat3D&gt; &gt;&amp;Get<a href="CppPoint.htm">Point</a>s()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppPointer.htm">point</a>s; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Get<a href="CppPoint.htm">Point</a>s() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp;Get<a href="CppPoint.htm">Point</a>s()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppPointer.htm">point</a>s; }<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/If <b><a href="CppThis.htm">this</a></b> Face has no Neighbour, <b><a href="CppThis.htm">this</a></b> is <b><a href="CppNullptr.htm">nullptr</a></b><br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; m_neighbour;<br/>
@@ -2188,7 +2191,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMFACE_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMFACE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2329,8 +2332,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamfaceindex.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMFACEINDEX_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMFACEINDEX_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMFACEINDEX_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMFACEINDEX_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <br/>
@@ -2371,7 +2374,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMFACEINDEX_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMFACEINDEX_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2530,8 +2533,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamfacesfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMFACES<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMFACES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMFACES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMFACES<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -2591,7 +2594,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMFACES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMFACES<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2913,8 +2916,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamfacesfileitem.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMFACES<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMFACES<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMFACES<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMFACES<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
@@ -2953,7 +2956,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMFACES<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMFACES<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3090,8 +3093,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamfilenames.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAM<a href="CppCfile.htm">FILE</a>NAMES_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAM<a href="CppCfile.htm">FILE</a>NAMES_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAM<a href="CppCfile.htm">FILE</a>NAMES_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAM<a href="CppCfile.htm">FILE</a>NAMES_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -3193,7 +3196,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAM<a href="CppCfile.htm">FILE</a>NAMES_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAM<a href="CppCfile.htm">FILE</a>NAMES_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3404,14 +3407,15 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamfiles.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAM<a href="CppCfile.htm">FILE</a>S_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAM<a href="CppCfile.htm">FILE</a>S_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAM<a href="CppCfile.htm">FILE</a>S_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAM<a href="CppCfile.htm">FILE</a>S_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfwd.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -3512,7 +3516,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAM<a href="CppCfile.htm">FILE</a>S_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAM<a href="CppCfile.htm">FILE</a>S_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3866,6 +3870,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "File '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' is not an OpenFOAM 'boundary' file: "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s.str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>(s.str());<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -4392,8 +4397,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamfvschemesfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMFVSCHEMES<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMFVSCHEMES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMFVSCHEMES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMFVSCHEMES<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -4430,7 +4435,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMFVSCHEMES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMFVSCHEMES<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -4554,8 +4559,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamfvsolutionfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMFVSOLUTION<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMFVSOLUTION<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMFVSOLUTION<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMFVSOLUTION<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -4592,7 +4597,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMFVSOLUTION<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMFVSOLUTION<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -4733,8 +4738,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamfwd.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMFWD_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMFWD_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMFWD_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMFWD_H<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
@@ -4767,7 +4772,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMFWD_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMFWD_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -4779,8 +4784,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamheader.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMHEADER_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMHEADER_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMHEADER_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMHEADER_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -4849,7 +4854,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMHEADER_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMHEADER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -5039,6 +5044,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "OpenFOAM header start with 'FoamFile'. "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "This file starts with&nbsp;&nbsp;'"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> title <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' instead";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s.str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>(s.str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
@@ -5149,8 +5155,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamhelper.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMHELPER_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMHELPER_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMHELPER_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMHELPER_H<br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -5159,6 +5165,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
@@ -5176,10 +5183,10 @@
 <br/>
 <a href="CppComment.htm">///</a>Help adding constness a bit<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> T&gt; &gt; <a href="CppAdd.htm">Add</a>Const(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;T&gt; &gt; v)<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> T<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppAdd.htm">Add</a>Const(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;T<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> T&gt; &gt;(v.begin(),v.end());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> T<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(v.begin(),v.end());<br/>
 }<br/>
 <br/>
 <a href="CppStdString.htm">std::string</a> ToStr(<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::<a href="CppPointer.htm">point</a>&lt;<b><a href="CppDouble.htm">double</a></b>,3,<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::cs::cartesian&gt;&amp; p) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -5219,7 +5226,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMHELPER_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMHELPER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -5455,8 +5462,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoammesh.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMMESH_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMMESH_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMMESH_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMMESH_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -5501,20 +5508,22 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Write the Mesh to a Files<br/>
 &nbsp;&nbsp;Files CreateFiles() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; FindMostSimilarFace(<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; FindMostSimilarFace(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt;&amp; coordinats<br/>
 &nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Boundary<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; GetBoundaries() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_boundaries; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; GetCells() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b>&nbsp;&nbsp;m_cells; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; GetFaces()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_faces; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&nbsp;&nbsp;GetFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNumberOfBoundaries() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNumberOfCells() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNumberOfFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNumberOf<a href="CppPoint.htm">Point</a>s() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Boundary&gt; &gt;&amp; GetBoundaries() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_boundaries; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; &gt;&amp; GetCells() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b>&nbsp;&nbsp;m_cells; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face&gt; &gt;&amp; GetFaces()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_faces; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; &gt;&nbsp;&nbsp;GetFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; Get<a href="CppPoint.htm">Point</a>s() <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppPointer.htm">point</a>s; }<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 <br/>
@@ -5545,14 +5554,14 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt;&amp; w) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> CalcSimilarityFaster(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt;&amp; v,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt;&amp; w) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> CalcSimilaritySlow(<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt;&amp; v,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v,<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt;&amp; w) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Boundary&gt; &gt; CreateBoundaries(<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Boundary<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> CreateBoundaries(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Files&amp; files, <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; faces);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;BoundaryFile&gt; CreateBoundary() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -5572,7 +5581,7 @@
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;OwnerFile&gt; CreateOwner() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>sFile&gt; Create<a href="CppPoint.htm">Point</a>s() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Coordinat3D&gt; &gt; Create<a href="CppPoint.htm">Point</a>s(<b><a href="CppConst.htm">const</a></b> Files&amp; files);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Create<a href="CppPoint.htm">Point</a>s(<b><a href="CppConst.htm">const</a></b> Files&amp; files);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/This <a href="CppMemberFunction.htm">member function</a> is called to reorder the faces in such a way<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/that indices in m_faces are adjacent when they belong to the<br/>
@@ -5616,7 +5625,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMMESH_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMMESH_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -5844,7 +5853,7 @@
 }<br/>
 <br/>
 <b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::foam::Mesh::CalcSimilarityFaster(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt;&amp; w) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.size() <a href="CppOperatorNotEqual.htm">!=</a> w.size()) <b><a href="CppReturn.htm">return</a></b> <a href="CppStdNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::max();<br/>
@@ -5921,7 +5930,7 @@
 <br/>
 <a href="CppComment.htm">/*</a><br/>
 <b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::foam::Mesh::CalcSimilaritySlow(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt;&amp; w) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.size() <a href="CppOperatorNotEqual.htm">!=</a> w.size()) <b><a href="CppReturn.htm">return</a></b> <a href="CppStdNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::max();<br/>
@@ -5947,7 +5956,7 @@
 }<br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::Boundary&gt; &gt; <a href="CppRibi.htm">ribi</a>::foam::Mesh::CreateBoundaries(<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::Boundary<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::foam::Mesh::CreateBoundaries(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Files&amp; files,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; all_faces<br/>
 &nbsp;&nbsp;)<br/>
@@ -5963,7 +5972,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> name <a href="CppOperatorAssign.htm">=</a> item.GetName();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> type <a href="CppOperatorAssign.htm">=</a> item.GetType();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; &gt; faces;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceIndex end_face { item.GetEndFace() } ;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (FaceIndex face_index <a href="CppOperatorAssign.htm">=</a> item.GetStartFace(); face_index<a href="CppOperatorNotEqual.htm">!=</a>end_face; <a href="CppOperatorIncrement.htm">++</a>face_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -6055,10 +6064,10 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f;<br/>
 }<br/>
 <br/>
-<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::Cell&gt; &gt; <a href="CppRibi.htm">ribi</a>::foam::Mesh::CreateEmptyCells(<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::foam::Mesh::CreateEmptyCells(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Files&amp; files)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::Cell&gt; &gt; cells;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CellIndex n_cells <a href="CppOperatorAssign.htm">=</a> files.GetOwner()-&gt;CountNumberOfCells();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_cells <a href="CppOperatorEqual.htm">==</a> files.GetOwner()-&gt;CountNumberOfCells());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_cells &gt; CellIndex(0));<br/>
@@ -6085,7 +6094,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; face)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt; <a href="CppPointer.htm">point</a>s {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face-&gt;Get<a href="CppPoint.htm">Point</a>s()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppPoint.htm">Point</a>Index&gt; <a href="CppPointer.htm">point</a>_indices;<br/>
@@ -6299,7 +6308,7 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face&gt; <a href="CppRibi.htm">ribi</a>::foam::Mesh::FindMostSimilarFace(<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face&gt; <a href="CppRibi.htm">ribi</a>::foam::Mesh::FindMostSimilarFace(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt;&amp; coordinats<br/>
 &nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -6334,9 +6343,9 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face&gt; &gt; <a href="CppRibi.htm">ribi</a>::foam::Mesh::GetFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::foam::Mesh::GetFaces() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face&gt; &gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::foam::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;<a href="CppStdTransform.htm">std::transform</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_faces.begin(),m_faces.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdBack_inserter.htm">std::back_inserter</a>(v),<br/>
@@ -6370,6 +6379,19 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppPointer.htm">point</a>s.size());<br/>
 }<br/>
 <br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::foam::Mesh::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::foam::Mesh::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-05-08: <a href="CppVersion.htm">version</a> 1.1: initial <a href="CppVersion.htm">version</a>ing"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::Mesh::ReorderFaces()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<b><a href="CppThis.htm">this</a></b>-&gt;AreFacesOrdered());<br/>
@@ -6383,7 +6405,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_faces; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(j &lt; boundary-&gt;GetFaces().size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; &gt;::<a href="CppIterator.htm">iterator</a> here {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>::<a href="CppIterator.htm">iterator</a> here {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdFind.htm">std::find</a>(m_faces.begin(),m_faces.end(),boundary-&gt;GetFaces()[j])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(here <a href="CppOperatorNotEqual.htm">!=</a> m_faces.end());<br/>
@@ -6418,7 +6440,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> mesh_index <a href="CppOperatorAssign.htm">=</a> 0; mesh_index <a href="CppOperatorNotEqual.htm">!=</a> n_meshes; <a href="CppOperatorIncrement.htm">++</a>mesh_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Mesh mesh(*v[mesh_index]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; &gt; mesh_faces {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> mesh_faces {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mesh.GetFaces()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_internal {<br/>
@@ -6438,13 +6460,13 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>CalcSimilarity: empty<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt; w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalcSimilarityFaster(v,w) &lt; 0.001);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>CalcSimilarity: one <a href="CppPointer.htm">point</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt; w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D c(1.1,2.2,3.3);<br/>
@@ -6460,7 +6482,7 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>CalcSimilarity: two <a href="CppPointer.htm">point</a>s<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt; w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D c(1.1,2.2,3.3);<br/>
@@ -6486,7 +6508,7 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>CalcSimilarity: one versus two <a href="CppPointer.htm">point</a>s<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D&gt; &gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;Coordinat3D&gt; w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D c(1.1,2.2,3.3);<br/>
@@ -6672,8 +6694,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamneighbourfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -6741,7 +6763,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -7069,8 +7091,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamneighbourfileitem.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
@@ -7126,7 +7148,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMNEIGHBOUR<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -7216,8 +7238,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamownerfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMOWNER<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMOWNER<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMOWNER<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMOWNER<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -7277,7 +7299,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMOWNER<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMOWNER<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -7775,8 +7797,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamparseerror.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMPARSEERROR_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMPARSEERROR_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMPARSEERROR_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMPARSEERROR_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
@@ -7792,7 +7814,7 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_filename;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_line;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> CreateErrorMsg(<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> CreateErrorMsg(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> line) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 };<br/>
@@ -7800,7 +7822,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMPARSEERROR_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMPARSEERROR_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -7826,7 +7848,7 @@
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::foam::ParseError::CreateErrorMsg(<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::foam::ParseError::CreateErrorMsg(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> line) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
@@ -7862,8 +7884,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoampatchfieldtype.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMPATCHFIELDTYPE_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMPATCHFIELDTYPE_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMPATCHFIELDTYPE_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMPATCHFIELDTYPE_H<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> foam {<br/>
@@ -7968,7 +7990,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMPATCHFIELDTYPE_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMPATCHFIELDTYPE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -7992,8 +8014,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoampatchfieldtypes.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMPATCHFIELDTYPES_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMPATCHFIELDTYPES_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMPATCHFIELDTYPES_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMPATCHFIELDTYPES_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -8001,6 +8023,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bimap.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -8030,7 +8053,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMPATCHFIELDTYPES_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMPATCHFIELDTYPES_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -8323,8 +8346,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoampoint.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMPOINT_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMPOINT_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMPOINT_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMPOINT_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoam<a href="CppPointer.htm">point</a>sfileitem.h"<br/>
 <br/>
@@ -8337,7 +8360,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMPOINT_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMPOINT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -8361,8 +8384,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoampointindex.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMPOINTINDEX_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMPOINTINDEX_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMPOINTINDEX_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMPOINTINDEX_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <br/>
@@ -8403,7 +8426,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMPOINTINDEX_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMPOINTINDEX_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -8540,8 +8563,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoampointsfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -8593,7 +8616,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -8909,8 +8932,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoampointsfileitem.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppArrayH.htm">array</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -8919,6 +8942,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -8959,7 +8983,7 @@
 <br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMPOINTS<a href="CppCfile.htm">FILE</a>ITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -9117,8 +9141,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoampressurefile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMPRESSURE<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMPRESSURE<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMPRESSURE<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMPRESSURE<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppArrayH.htm">array</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
@@ -9171,7 +9195,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMPRESSURE<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMPRESSURE<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -9412,8 +9436,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamtemperaturefile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMTEMPERATURE<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMTEMPERATURE<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMTEMPERATURE<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMTEMPERATURE<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppArrayH.htm">array</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
@@ -9466,7 +9490,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMTEMPERATURE<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMTEMPERATURE<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -9581,8 +9605,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamthermophysicalpropertiesfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMTHERMOPHYSICALPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMTHERMOPHYSICALPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMTHERMOPHYSICALPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMTHERMOPHYSICALPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -9628,7 +9652,7 @@
 <br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMTHERMOPHYSICALPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMTHERMOPHYSICALPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -9716,8 +9740,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamturbulencepropertiesfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMTURBULENCEPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMTURBULENCEPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMTURBULENCEPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMTURBULENCEPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -9758,7 +9782,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMTURBULENCEPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMTURBULENCEPROPERTIES<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -9843,8 +9867,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppOpenFoam/openfoamvelocityfieldfile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> OPENFOAMVELOCITYFIELD<a href="CppCfile.htm">FILE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> OPENFOAMVELOCITYFIELD<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_OPENFOAMVELOCITYFIELD<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_OPENFOAMVELOCITYFIELD<a href="CppCfile.htm">FILE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppArrayH.htm">array</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
@@ -9898,7 +9922,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> foam<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENFOAMVELOCITYFIELD<a href="CppCfile.htm">FILE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_OPENFOAMVELOCITYFIELD<a href="CppCfile.htm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

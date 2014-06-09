@@ -382,23 +382,23 @@ void ribi::cmap::QtRateConceptMap::OnNodeRequestsRateConcept(QtNode * const item
 void ribi::cmap::QtRateConceptMap::OnNodeRequestsRateExamples(QtNode * const item)
 {
   assert(item);
-  if (item->GetConcept()->GetExamples()->Get().empty())
+  if (item->GetNode()->GetConcept()->GetExamples()->Get().empty())
   {
     return;
   }
   //Start edit
   {
     QtScopedDisable<QtRateConceptMap> disable(this);
-    const boost::shared_ptr<Concept> concept = item->GetConcept();
+    const boost::shared_ptr<Concept> concept = item->GetNode()->GetConcept();
     assert(concept);
-    assert(item->GetConcept().get() == concept.get());
-    assert(item->GetConcept() == concept);
+    assert(item->GetNode()->GetConcept().get() == concept.get());
+    assert(item->GetNode()->GetConcept() == concept);
 
     QtRateExamplesDialogNewName d(concept); //FYI: Might change the concept (as suggested by the ctor prototype)
     d.exec();
 
-    assert(item->GetConcept().get() == concept.get());
-    assert(item->GetConcept() == concept);
+    assert(item->GetNode()->GetConcept().get() == concept.get());
+    assert(item->GetNode()->GetConcept() == concept);
   }
   this->setFocus();
   this->scene()->setFocusItem(item);

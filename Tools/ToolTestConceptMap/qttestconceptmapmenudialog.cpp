@@ -65,7 +65,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
   if (sm_test_examples) { QtConceptMapTestExamplesDialog(); };
   if (sm_test_concept) { QtConceptMapTestConceptDialog(); }
   if (sm_test_node) { QtConceptMapTestNodeDialog(); }
-  if (sm_test_edge) { QtConceptMapTestEdgeDialog(); }
+  //if (sm_test_edge) { QtConceptMapTestEdgeDialog(); }
   //QtTestDisplayConceptMapDialog();
   //QtTestEditConceptMapDialog();
   //QtTestRateConceptMapDialog();
@@ -75,6 +75,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
 }
 #endif
 
+/*
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_readonly_conceptmap_clicked()
 {
   QtTestDisplayConceptMapDialog d;
@@ -95,6 +96,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
+*/
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_concept_clicked()
 {
@@ -117,6 +119,8 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
   this->ShowChild(&d);
 }
 
+/*
+
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_view_concept_maps_clicked()
 {
   QtConceptMapViewTestsDialog d;
@@ -130,6 +134,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_conceptmapwidget_clicked(
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
+*/
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_example_clicked()
 {
@@ -152,9 +157,11 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtnode_clicked()
   this->ShowChild(&d);
 }
 
+/*
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtedge_clicked()
 {
   QtConceptMapTestQtEdgeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
+*/

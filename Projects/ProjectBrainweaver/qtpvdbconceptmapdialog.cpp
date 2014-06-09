@@ -301,8 +301,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(cmap::QtCo
   {
     assert(this);
     assert(item);
-    assert(item->GetConcept());
-    cmap::QtConceptMapConceptEditDialog d(item->GetConcept());
+    assert(item->GetNode());
+    cmap::QtConceptMapConceptEditDialog d(item->GetNode()->GetConcept());
     this->ShowChild(&d);
   }
   //item->GetConcept()->m_signal_examples_changed(item->GetConcept().get()); //NEW 2013-01-08 21:40

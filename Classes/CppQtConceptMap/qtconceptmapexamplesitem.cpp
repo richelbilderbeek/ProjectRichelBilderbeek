@@ -27,14 +27,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFont>
 #include <QPainter>
 
+#include "conceptmapconcept.h"
 #include "conceptmapexample.h"
 #include "conceptmapexamples.h"
-#include "qtconceptmapelement.h"
-#include "conceptmapconcept.h"
-#include "qtconceptmapelement.h"
 #include "conceptmaphelper.h"
-#include "qtconceptmapedge.h"
+#include "conceptmapnode.h"
 #include "qtconceptmapbrushfactory.h"
+#include "qtconceptmapedge.h"
+#include "qtconceptmapelement.h"
+#include "qtconceptmapelement.h"
+#include "qtitemdisplaystrategy.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -65,7 +67,7 @@ void ribi::cmap::QtExamplesItem::OnItemUpdated()
 
 void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-  this->SetExamples(this->m_item->GetConcept()->GetExamples());
+  this->SetExamples(this->m_item->GetNode()->GetConcept()->GetExamples());
 
   const QPointF p = m_item->pos();
   const QRectF r = m_item->GetDisplayStrategy()->rect();
@@ -82,14 +84,14 @@ void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapElement* const i
   if (m_item != item)
   {
     m_item = item;
-    if (m_item && !m_item->GetConcept()->GetExamples()->Get().empty())
+    if (m_item && !m_item->GetNode()->GetConcept()->GetExamples()->Get().empty())
     {
       m_item->m_signal_item_has_updated.connect(
         boost::bind(
           &ribi::cmap::QtExamplesItem::OnItemUpdated,this
         )
       );
-      this->SetExamples(item->GetConcept()->GetExamples());
+      this->SetExamples(item->GetNode()->GetConcept()->GetExamples());
       this->setVisible(true);
     }
     m_signal_request_scene_update();

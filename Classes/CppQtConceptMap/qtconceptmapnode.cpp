@@ -48,8 +48,8 @@ ribi::cmap::QtNode::QtNode(
   : m_signal_node_requests_rate_concept{},
     m_signal_node_requests_rate_examples{},
     m_display_strategy(concept_item),
-    m_contour_pen(concept_item->GetContourPen()),
-    m_focus_pen(concept_item->GetFocusPen()),
+    //m_contour_pen(concept_item->GetContourPen()),
+    //m_focus_pen(concept_item->GetFocusPen()),
     m_node(node)
 {
   #ifndef NDEBUG
@@ -78,15 +78,16 @@ ribi::cmap::QtNode::QtNode(
   assert(pos().y() == m_node->GetY());
   m_display_strategy->SetPos(m_node->GetX(),m_node->GetY());
 
-
+  /*
 
   m_display_strategy->m_signal_position_changed.connect(
     boost::bind(&ribi::cmap::QtNode::SetPos,this,boost::lambda::_1,boost::lambda::_2)
   );
 
-  m_node->m_signal_concept_changed.connect(
-    boost::bind(&ribi::cmap::QtNode::OnConceptChanged,this,boost::lambda::_1)
+  m_node->m_signal_node_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnNodeChanged,this,boost::lambda::_1)
   );
+
   m_node->m_signal_x_changed.connect(
     boost::bind(&ribi::cmap::QtNode::OnXchanged,this,boost::lambda::_1)
   );
@@ -131,6 +132,7 @@ ribi::cmap::QtNode::QtNode(
       )
     );
   }
+  */
 
   assert(flags() & QGraphicsItem::ItemIsFocusable);
   assert(flags() & QGraphicsItem::ItemIsSelectable);
@@ -143,12 +145,13 @@ ribi::cmap::QtNode::QtNode(
 
 ribi::cmap::QtNode::~QtNode() noexcept
 {
+  /*
   m_display_strategy->m_signal_position_changed.disconnect(
     boost::bind(&ribi::cmap::QtNode::SetPos,this,boost::lambda::_1,boost::lambda::_2)
   );
 
   m_node->m_signal_concept_changed.disconnect(
-    boost::bind(&ribi::cmap::QtNode::OnConceptChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::cmap::QtNode::OnNodeChanged,this,boost::lambda::_1)
   );
   m_node->m_signal_x_changed.disconnect(
     boost::bind(&ribi::cmap::QtNode::OnXchanged,this,boost::lambda::_1)
@@ -194,6 +197,7 @@ ribi::cmap::QtNode::~QtNode() noexcept
       )
     );
   }
+  */
 }
 
 QRectF ribi::cmap::QtNode::boundingRect() const
@@ -208,10 +212,12 @@ QRectF ribi::cmap::QtNode::boundingRect() const
   //return QtConceptMapItem::boundingRect(); //Bypassed going via m_concept_item
 }
 
+/*
 QBrush ribi::cmap::QtNode::brush() const
 {
   return m_display_strategy->brush();
 }
+*/
 
 void ribi::cmap::QtNode::DisableAll()
 {
@@ -231,26 +237,26 @@ void ribi::cmap::QtNode::EnableAll()
 
 void ribi::cmap::QtNode::focusInEvent(QFocusEvent*)
 {
-  m_display_strategy->SetContourPen(m_focus_pen); //Updates itself
+  m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
   assert(!m_display_strategy->hasFocus());
 }
 
 void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)
 {
-  m_display_strategy->SetContourPen(m_contour_pen); //Updates itself
+  m_display_strategy->SetContourPen(m_display_strategy->GetContourPen()); //Updates itself
   //m_signal_item_has_updated(0); //causes Examples to get hidden
 }
 
-boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() const noexcept
+boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::QtNode::GetNode() const noexcept
 {
-  const boost::shared_ptr<const ribi::cmap::Concept> p = m_node->GetConcept();
+  const auto p = m_node;
   assert(p);
   return p;
 }
 
-boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() noexcept
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtNode::GetNode() noexcept
 {
-  const boost::shared_ptr<ribi::cmap::Concept> p = m_node->GetConcept();
+  const auto p = m_node;
   assert(p);
   return p;
 }
@@ -300,12 +306,14 @@ void ribi::cmap::QtNode::OnItemRequestsRateExamples()
   m_signal_node_requests_rate_examples(this);
 }
 
-void ribi::cmap::QtNode::OnConceptChanged(Node * const node)
+void ribi::cmap::QtNode::OnNodeChanged(Node * const node)
 {
   assert(node);
-  SetConcept(node->GetConcept());
+  assert(node == m_node.get());
+  //SetNode(node);
 }
 
+/*
 void ribi::cmap::QtNode::OnXchanged(Node * const node)
 {
   assert(node);
@@ -318,6 +326,7 @@ void ribi::cmap::QtNode::OnYchanged(Node * const node)
   //Keep the coordinats synced
   SetY(node->GetY());
 }
+*/
 
 void ribi::cmap::QtNode::OnRequestsSceneUpdate()
 {
@@ -331,7 +340,7 @@ void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem
   assert(!m_display_strategy->hasFocus());
   assert(!m_display_strategy->isSelected());
 
-  this->m_display_strategy->SetName(this->GetConcept()->GetName());
+  this->m_display_strategy->SetName(this->GetNode()->GetConcept()->GetName());
 
 
   //Only QtEditStrategy actually modifies the position of the concept items
@@ -369,16 +378,19 @@ void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem
   #endif
 }
 
-void ribi::cmap::QtNode::SetConcept(const boost::shared_ptr<Concept> concept)
+void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node)
 {
-  this->m_node->SetConcept(concept);
+  m_node = node;
 }
 
+/*
 void ribi::cmap::QtNode::SetName(const std::string& name) noexcept
 {
   m_node->GetConcept()->SetName(name);
 }
+*/
 
+/*
 void ribi::cmap::QtNode::SetX(const double x) noexcept
 {
   #ifndef NDEBUG
@@ -422,6 +434,7 @@ void ribi::cmap::QtNode::SetY(const double y) noexcept
   assert(std::abs(y - GetNode()->GetY()) < epsilon);
   assert(std::abs(y - m_display_strategy->pos().y()) < epsilon);
 }
+*/
 
 #ifndef NDEBUG
 void ribi::cmap::QtNode::Test() noexcept
@@ -443,7 +456,7 @@ void ribi::cmap::QtNode::Test() noexcept
       assert(node);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(node->GetConcept()));
       boost::shared_ptr<QtNode> qtnode(new QtNode(node,qtconcept_item));
-      assert(qtconcept_item->GetConcept() == qtnode->GetConcept());
+      assert(qtconcept_item->GetConcept() == qtnode->GetNode()->GetConcept());
       assert(qtconcept_item->GetConcept() == node->GetConcept());
       assert(node == qtnode->GetNode());
       const double epsilon = 0.00001;
@@ -492,11 +505,12 @@ void ribi::cmap::QtNode::Test() noexcept
         assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
+      /*
+      //Change via Qt node
       {
         const double new_x = 123.456;
         const double new_y = 654.321;
 
-        //Change via Qt node
         qtnode->SetPos(new_x,new_y);
 
         const double node_x = node->GetX();
@@ -510,6 +524,7 @@ void ribi::cmap::QtNode::Test() noexcept
         assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
+      */
       {
         const double new_x = -1234.5678;
         const double new_y = -8765.4321;

@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QVBoxLayout>
+#include <QGridLayout>
 #include <QKeyEvent>
 #include <QLabel>
 
@@ -54,6 +55,7 @@ ribi::QtTestOpenQuestionMainDialog::QtTestOpenQuestionMainDialog(QWidget *parent
   #endif
   ui->setupUi(this);
 
+  assert(layout());
   QGridLayout * const my_layout = dynamic_cast<QGridLayout*>(this->layout());
   assert(my_layout);
   {

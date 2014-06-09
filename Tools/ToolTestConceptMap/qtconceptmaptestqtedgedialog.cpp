@@ -118,7 +118,7 @@ int ribi::cmap::QtConceptMapTestQtEdgeDialog::GetTestIndex() const noexcept
 {
   const int index = ui->box_index->value();
   assert(index >= 0);
-  assert(index < static_cast<int>(cmap::EdgeFactory().GetTests(m_from,m_to).size()));
+  assert(index < static_cast<int>(EdgeFactory().GetTests(m_from,m_to).size()));
   return index;
 }
 
@@ -285,9 +285,9 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetEdge(const boost::shared_ptr<r
 
   //Put nodes (not the edges) into place
   //The nodes must reposition themselves
-  node1->SetPos(-100.0,-100.0);
-  m_edge_item->SetPos(0.0,0.0);
-  node2->SetPos( 100.0, 100.0);
+  node1->GetNode()->SetPos(-100.0,-100.0);
+  m_edge_item->GetNode()->SetPos(0.0,0.0);
+  node2->GetNode()->SetPos( 100.0, 100.0);
 
   {
     const std::vector<cmap::Competency> v = Competencies().GetAllCompetencies();
@@ -466,7 +466,7 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::Test() noexcept
 void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_button_load_test_clicked()
 {
   const int index = GetTestIndex(); //Must have examples
-  assert(index < static_cast<int>(cmap::EdgeFactory().GetTests(m_from,m_to).size()));
-  const auto edge = cmap::EdgeFactory().GetTests(m_from,m_to)[index];
+  assert(index < static_cast<int>(EdgeFactory().GetTests(m_from,m_to).size()));
+  const auto edge = EdgeFactory().GetTests(m_from,m_to)[index];
   SetEdge(edge);
 }

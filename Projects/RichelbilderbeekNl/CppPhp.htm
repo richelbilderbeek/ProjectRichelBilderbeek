@@ -54,8 +54,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppPhp/php.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> PHP_H<br/>
-<a href="CppDefine.htm">#define</a> PHP_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_PHP_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_PHP_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
@@ -67,6 +67,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -289,17 +290,16 @@
 }<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> var_dump(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;T&gt; &gt;&amp; s,<br/>
+<b><a href="CppVoid.htm">void</a></b> var_dump(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;T<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; s,<br/>
 &nbsp;&nbsp;<a href="CppStdOstream.htm">std::ostream</a>&amp; os <a href="CppOperatorAssign.htm">=</a> <a href="CppStdCout.htm">std::cout</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;php_<b><a href="CppPrivate.htm">private</a></b>::var_dump_ptrs(s.begin(),s.end(),os);<br/>
 }<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> php<br/>
-<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PHP_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_PHP_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

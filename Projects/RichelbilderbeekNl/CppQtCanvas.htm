@@ -56,8 +56,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtCanvas/qtcanvas.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTCANVAS_H<br/>
-<a href="CppDefine.htm">#define</a> QTCANVAS_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_QTCANVAS_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_QTCANVAS_H<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
@@ -117,7 +117,7 @@
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCANVAS_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_QTCANVAS_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -142,8 +142,6 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;QScrollBar&gt;<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "canvas.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolDotMatrix.htm">dotmatrix</a>text.h"<br/>
@@ -260,18 +258,21 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtCanvas/qtcanvasdialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTCANVASDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTCANVASDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_QTCANVASDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_QTCANVASDIALOG_H<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
@@ -297,6 +298,8 @@
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog* x);<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> <a href="CppBoost.htm">boost</a>::detail::sp_ms_deleter&lt;<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog&gt;;<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> <a href="CppBoost.htm">boost</a>::detail::sp_ms_deleter&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog&gt;;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a> * <b><a href="CppConst.htm">const</a></b> m_qtcanvas;<br/>
 <br/>
@@ -305,7 +308,7 @@
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCANVASDIALOG_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_QTCANVASDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -354,6 +357,7 @@
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog::~<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>

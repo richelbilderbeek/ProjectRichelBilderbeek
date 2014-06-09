@@ -44,23 +44,23 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
   virtual void EnableAll() = 0;
 
   ///Obtain the Concept from either a Node or an Edge
-  virtual boost::shared_ptr<const Concept>  GetConcept() const noexcept = 0;
-  virtual boost::shared_ptr<      Concept>  GetConcept()       noexcept = 0;
+  virtual boost::shared_ptr<const Node>  GetNode() const noexcept = 0;
+  virtual boost::shared_ptr<      Node>  GetNode()       noexcept = 0;
 
   virtual boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept = 0;
   virtual boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept = 0;
 
   ///Set the name of the concept
-  virtual void SetName(const std::string& name) noexcept = 0;
+  //virtual void SetName(const std::string& name) noexcept = 0;
 
   ///Set the position
-  void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
+  //void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
 
   ///Set the X coordinat
-  virtual void SetX(const double x) noexcept = 0;
+  //virtual void SetX(const double x) noexcept = 0;
 
   ///Set the Y coordinat
-  virtual void SetY(const double y) noexcept = 0;
+  //virtual void SetY(const double y) noexcept = 0;
 
   ///A more specific signal: a Concept requests an edit, this is passed to
   ///OnConceptRequestsEdit, which lets this QtConceptMapItem request for an edit
@@ -79,7 +79,7 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
   void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
 
   private:
-  virtual void SetConcept(const boost::shared_ptr<Concept> concept) = 0;
+  virtual void SetNode(const boost::shared_ptr<Node>& node) = 0;
 
 };
 

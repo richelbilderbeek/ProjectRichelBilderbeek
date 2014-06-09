@@ -222,7 +222,7 @@ void ribi::pvdb::QtDisplay::DisplayValues(
     const int n_edges_examples = std::accumulate(edges.begin(),edges.end(),0,
       [](int& init, const boost::shared_ptr<const cmap::Edge>& edge)
       {
-        return init + static_cast<int>(edge->GetConcept()->GetExamples()->Get().size());
+        return init + static_cast<int>(edge->GetNode()->GetConcept()->GetExamples()->Get().size());
       }
     );
     const int n_relations_not_to_focus //Constant 'r'

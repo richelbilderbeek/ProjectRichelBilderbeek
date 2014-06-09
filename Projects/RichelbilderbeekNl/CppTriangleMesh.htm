@@ -91,14 +91,15 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshbuilder.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHBUILDER_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHBUILDER_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHBUILDER_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHBUILDER_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-variable"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <br/>
@@ -122,7 +123,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; cells,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; mesh_filename,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::PatchFieldType(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; boundary_to_patch_field_type_function,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> CountCells() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_cells.size()); }<br/>
@@ -204,7 +206,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHBUILDER_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHBUILDER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -248,9 +250,9 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; cells,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; mesh_filename,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::PatchFieldType(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; boundary_to_patch_field_type_function,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
-&nbsp;&nbsp;)<br/>
-&nbsp;&nbsp;: m_cells(cells),<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose<br/>
+) : m_cells(cells),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>#1: Partition faces in boundaries<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_faces(SortByBoundary(ExtractFaces(cells),boundary_to_patch_field_type_function)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s(Extract<a href="CppPoint.htm">Point</a>s(cells))<br/>
@@ -258,8 +260,6 @@
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; folder: GetAllFolders())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppIsFolder.htm">IsFolder</a>(folder))<br/>
@@ -795,7 +795,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fs.str()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdString.htm">std::string</a>,<a href="CppStdString.htm">std::string</a>&gt; p { CreateCells() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p <a href="CppOperatorAssign.htm">=</a> CreateCells();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdString.htm">std::string</a>,<a href="CppStdString.htm">std::string</a>&gt; p { CreateCells() };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; out_owner { p.first };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; out_neighbour { p.second};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;fo <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> out_owner;<br/>
@@ -1054,22 +1055,30 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; cells<br/>
 ) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt;&amp; cell: cells)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w(cell-&gt;GetFaces());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("n_face, non-unique:");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("n_face, non-unique:");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(v.size());<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(v.begin(),v.end(),Helper().OrderByIndex());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> new_end <a href="CppOperatorAssign.htm">=</a> <a href="CppStdUnique.htm">std::unique</a>(v.begin(),v.end());<br/>
 &nbsp;&nbsp;v.erase(new_end,v.end());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(v.begin(),v.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("n_face, unique:");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(v.size());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("n_face, unique:");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(v.size());<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 <br/>
 <br/>
@@ -1542,8 +1551,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshcell.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHCELL_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHCELL_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHCELL_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHCELL_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -1551,6 +1560,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
@@ -1622,7 +1632,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHCELL_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHCELL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1893,8 +1903,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshcellfactory.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHCELLFACTORY_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHCELLFACTORY_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHCELLFACTORY_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHCELLFACTORY_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
@@ -1903,6 +1913,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshfwd.h"<br/>
@@ -1961,7 +1972,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHCELLFACTORY_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHCELLFACTORY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2033,11 +2044,11 @@
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>-&gt;CountFaces() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers <a href="CppOperatorAssign.htm">=</a> 1;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_<b><a href="CppTemplate.htm">template</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_cell_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strategy<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
@@ -2064,7 +2075,7 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
 ) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; &gt; faces {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().CreateTestPrism(strategy)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; prism {<br/>
@@ -2119,8 +2130,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshcellscheck.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHCELLSCHECK_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHCELLSCHECK_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHCELLSCHECK_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHCELLSCHECK_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -2128,6 +2139,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshfwd.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -2141,7 +2153,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHCELLSCHECK_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHCELLSCHECK_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2210,14 +2222,15 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshcellscreator.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHCELLSCREATOR_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHCELLSCREATOR_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHCELLSCREATOR_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHCELLSCREATOR_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/quantity.hpp&gt;<br/>
@@ -2255,9 +2268,10 @@
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreatorFactory;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>n_face_layers <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorEqual.htm">==</a> n_cell_layers<br/>
 &nbsp;&nbsp;CellsCreator(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CellsCreatorFactory&amp; lock <a href="CppComment.htm">//</a>to force creation by CellsCreatorFactory<br/>
@@ -2271,9 +2285,10 @@
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> CheckCells(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; cells) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be <b><a href="CppStatic.htm">static</a></b>: it is used in the <a href="CppConstructor.htm">constructor</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>n_face_layers <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorEqual.htm">==</a> n_cell_layers<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> CreateCells(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_face_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
 &nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -2281,21 +2296,20 @@
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> CreateHorizontalFaces(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_face_layers<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Create<a href="CppPoint.htm">Point</a>s(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_face_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height<br/>
 &nbsp;&nbsp;);<br/>
-<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be <b><a href="CppStatic.htm">static</a></b>: it is used in the <a href="CppConstructor.htm">constructor</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> CreateVerticalFaces(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_face_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
 &nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -2322,7 +2336,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHCELLSCREATOR_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHCELLSCREATOR_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2362,17 +2376,23 @@
 <br/>
 <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::CellsCreator(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CellsCreatorFactory&amp;<br/>
-) : m_cells(CreateCells(t,n_layers,layer_height,strategy)),<br/>
+) : m_cells(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateCells(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_cell_layers <a href="CppOperatorPlus.htm">+</a> 1, <a href="CppComment.htm">//</a>n_face_layers <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorEqual.htm">==</a> n_cell_layers<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;layer_height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strategy<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_strategy(strategy)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_layers <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 2);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(strategy <a href="CppOperatorEqual.htm">==</a> m_strategy);<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
@@ -2388,29 +2408,37 @@
 <br/>
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::CreateCells(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_face_layers,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
 ) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n_face_layers &lt; 2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> no_cells; <b><a href="CppReturn.htm">return</a></b> no_cells;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_face_layers <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 2);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Create <a href="CppPointer.htm">point</a>s"); }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> all_<a href="CppPointer.htm">point</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Create<a href="CppPoint.htm">Point</a>s(t,n_layers,layer_height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Create<a href="CppPoint.htm">Point</a>s(t,n_face_layers,layer_height);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Create horizontal faces"); }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> hor_faces<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> CreateHorizontalFaces(t,all_<a href="CppPointer.htm">point</a>s,n_layers);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> CreateHorizontalFaces(t,all_<a href="CppPointer.htm">point</a>s,n_face_layers);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Create vertical faces"); }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> ver_faces<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> CreateVerticalFaces(t,all_<a href="CppPointer.htm">point</a>s,n_layers,layer_height,strategy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> CreateVerticalFaces(t,all_<a href="CppPointer.htm">point</a>s,n_face_layers,layer_height,strategy);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!ver_faces.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ver_faces.empty())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> no_cells; <b><a href="CppReturn.htm">return</a></b> no_cells;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppAuto.htm">auto</a></b> f:ver_faces) { <a href="CppAssert.htm">assert</a>(f); }<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
@@ -2420,7 +2448,7 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Creating cells"); }<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> layer=0; layer<a href="CppOperatorNotEqual.htm">!=</a>n_layers-1; <a href="CppOperatorIncrement.htm">++</a>layer) <a href="CppComment.htm">//</a>-1 because there are no <a href="CppPointer.htm">point</a>s above the top layer<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> layer=0; layer<a href="CppOperatorNotEqual.htm">!=</a>n_face_layers-1; <a href="CppOperatorIncrement.htm">++</a>layer) <a href="CppComment.htm">//</a>-1 because there are no <a href="CppPointer.htm">point</a>s above the top layer<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ".";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_cells_per_layer; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
@@ -2441,6 +2469,12 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (strategy <a href="CppOperatorEqual.htm">==</a> CreateVerticalFacesStrategy::one_face_per_square )<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (these_ver_faces.size() <a href="CppOperatorNotEqual.htm">!=</a> 3)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("BREAK");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(these_ver_faces.size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(hor_faces[bottom_face_index]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(hor_faces[top_face_index]);<br/>
@@ -2502,31 +2536,31 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Checking cells"); }<br/>
 &nbsp;&nbsp;CheckCells(cells);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Done creating cells"); }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> cells;<br/>
 }<br/>
 <br/>
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::CreateHorizontalFaces(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; all_<a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_face_layers<br/>
 )<br/>
 {<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; &gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!all_<a href="CppPointer.htm">point</a>s.empty());<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppPointer.htm">point</a>s_per_layer <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(t-&gt;Get<a href="CppPoint.htm">Point</a>s().size());<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_faces_per_layer <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(t-&gt;GetFaces().size());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_layers &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_face_layers &gt; 0);<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n_layers &lt; 2) { <a href="CppTRACE.htm">TRACE</a>("WARNING: NEED AT LEAST TWO HORIZONTAL PLANES TO CREATE CELLS"); }<br/>
-&nbsp;&nbsp;v.reserve(n_layers * n_<a href="CppPointer.htm">point</a>s_per_layer);<br/>
+&nbsp;&nbsp;v.reserve(n_face_layers * n_<a href="CppPointer.htm">point</a>s_per_layer);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> layer=0; layer<a href="CppOperatorNotEqual.htm">!=</a>n_layers; <a href="CppOperatorIncrement.htm">++</a>layer)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> layer=0; layer<a href="CppOperatorNotEqual.htm">!=</a>n_face_layers; <a href="CppOperatorIncrement.htm">++</a>layer)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppPointer.htm">point</a>_offset <a href="CppOperatorAssign.htm">=</a> n_<a href="CppPointer.htm">point</a>s_per_layer * layer;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; face_<a href="CppPointer.htm">point</a>_indices: t-&gt;GetFace<a href="CppPoint.htm">Point</a>Indices())<br/>
@@ -2572,15 +2606,15 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a>&gt; &gt; <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::Create<a href="CppPoint.htm">Point</a>s(<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::Create<a href="CppPoint.htm">Point</a>s(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_face_layers,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height<br/>
 )<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_layers; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_face_layers; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppPoint.htm">Point</a>&gt; <a href="CppPointer.htm">point</a>: t-&gt;Get<a href="CppPoint.htm">Point</a>s())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -2590,7 +2624,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(new_<a href="CppPointer.htm">point</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(t-&gt;Get<a href="CppPoint.htm">Point</a>s().size()) * n_layers);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(t-&gt;Get<a href="CppPoint.htm">Point</a>s().size()) * n_face_layers);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
@@ -2598,21 +2632,32 @@
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::CreateVerticalFaces(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; all_<a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_face_layers,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
 ) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_face_layers &gt; 0);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n_face_layers &lt; 2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("To few layers to create vertical faces"); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> no_faces;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> no_faces;<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceFactory face_factory;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Checking <a href="CppPointer.htm">point</a>s"); }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> <a href="CppPointer.htm">point</a>: all_<a href="CppPointer.htm">point</a>s) { <a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>); }<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Get edges"); }<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> edges <a href="CppOperatorAssign.htm">=</a> t-&gt;GetEdges();<br/>
+<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!edges.empty());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_edges <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(edges.size());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppPointer.htm">point</a>s_per_layer <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(t-&gt;Get<a href="CppPoint.htm">Point</a>s().size());<br/>
@@ -2625,20 +2670,24 @@
 <br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_reserve <a href="CppOperatorAssign.htm">=</a> n_ver_faces * (n_layers <a href="CppOperatorMinus.htm">-</a> 1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_reserve <a href="CppOperatorAssign.htm">=</a> n_ver_faces * (n_face_layers <a href="CppOperatorMinus.htm">-</a> 1);<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_reserve &gt; 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_reserve &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.max_size()));<br/>
-&nbsp;&nbsp;v.reserve(n_ver_faces * (n_layers <a href="CppOperatorMinus.htm">-</a> 1));<br/>
+&nbsp;&nbsp;v.reserve(n_ver_faces * (n_face_layers <a href="CppOperatorMinus.htm">-</a> 1));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_layers &gt; 0);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n_layers &lt; 2) { <a href="CppTRACE.htm">TRACE</a>("WARNING: NEED AT LEAST TWO HORIZONTAL PLANES TO CREATE CELLS"); }<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_face_layers &gt; 0);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n_face_layers <a href="CppOperatorEqual.htm">==</a> 1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> no_faces;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> no_faces;<br/>
+&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Start building layers"); }<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> layer=0; layer<a href="CppOperatorNotEqual.htm">!=</a>n_layers-1; <a href="CppOperatorIncrement.htm">++</a>layer) <a href="CppComment.htm">//</a>-1 because there are no <a href="CppPointer.htm">point</a>s above the top layer<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> layer=0; layer<a href="CppOperatorNotEqual.htm">!=</a>n_face_layers-1; <a href="CppOperatorIncrement.htm">++</a>layer) <a href="CppComment.htm">//</a>-1 because there are no <a href="CppPointer.htm">point</a>s above the top layer<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>(layer); }<br/>
@@ -2768,7 +2817,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_ver_faces * (n_layers <a href="CppOperatorMinus.htm">-</a> 1) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_ver_faces * (n_face_layers <a href="CppOperatorMinus.htm">-</a> 1) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
@@ -2881,11 +2930,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_<b><a href="CppTemplate.htm">template</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_cell_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strategy<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
@@ -2902,11 +2951,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>-&gt;CountFaces() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers <a href="CppOperatorAssign.htm">=</a> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_<b><a href="CppTemplate.htm">template</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_cell_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strategy<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
@@ -3050,8 +3099,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshcellscreatorfactory.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
@@ -3060,6 +3109,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si/length.hpp&gt;<br/>
@@ -3078,7 +3128,7 @@
 <br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
 &nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -3122,7 +3172,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3156,14 +3206,15 @@
 <br/>
 <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::CellsCreator&gt; <a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory::Create(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CreateVerticalFacesStrategy strategy<br/>
 ) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_cell_layers <a href="CppOperatorNotEqual.htm">!=</a> 0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; creator(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CellsCreator(t,n_layers,layer_height,strategy,*<b><a href="CppThis.htm">this</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CellsCreator(t,n_cell_layers,layer_height,strategy,*<b><a href="CppThis.htm">this</a></b>)<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(creator);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> creator;<br/>
@@ -3177,11 +3228,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(1)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>-&gt;CountFaces() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers <a href="CppOperatorAssign.htm">=</a> 1;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_<b><a href="CppTemplate.htm">template</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_cell_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strategy<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
@@ -3210,11 +3261,11 @@
 &nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> Template::CreateTest(0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>-&gt;CountFaces() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cell_layers <a href="CppOperatorAssign.htm">=</a> 1;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> cells_creator_factory.Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my_<b><a href="CppTemplate.htm">template</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_cell_layers,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strategy<br/>
 &nbsp;&nbsp;);<br/>
@@ -3285,8 +3336,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshcreateverticalfacesstrategies.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -3310,7 +3361,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGIES_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3374,8 +3425,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshcreateverticalfacesstrategy.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHCREATEVERTICALFACESSTRATEGY_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHCREATEVERTICALFACESSTRATEGY_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGY_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGY_H<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> trim {<br/>
@@ -3390,7 +3441,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHCREATEVERTICALFACESSTRATEGY_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHCREATEVERTICALFACESSTRATEGY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3425,8 +3476,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshface.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHFACE_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHFACE_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHFACE_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHFACE_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
@@ -3435,6 +3486,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
@@ -3586,7 +3638,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHFACE_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHFACE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3826,7 +3878,7 @@
 <br/>
 <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Cell&gt; <a href="CppRibi.htm">ribi</a>::trim::Face::GetConstOwner() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>TODO: This is the slowest <a href="CppFunction.htm">function</a><br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_belongs_to.size() <a href="CppOperatorLessEqual.htm">&lt;=</a> 2);<br/>
 &nbsp;&nbsp;m_belongs_to.erase(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdRemove_if.htm">std::remove_if</a>(<br/>
@@ -4019,8 +4071,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshfacefactory.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHFACEFACTORY_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHFACEFACTORY_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHFACEFACTORY_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHFACEFACTORY_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -4028,6 +4080,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
@@ -4114,7 +4167,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHFACEFACTORY_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHFACEFACTORY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -4488,8 +4541,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshfaceorientation.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHFACEORIENTATION_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHFACEORIENTATION_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHFACEORIENTATION_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHFACEORIENTATION_H<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> trim {<br/>
@@ -4499,7 +4552,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHFACEORIENTATION_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHFACEORIENTATION_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -4523,8 +4576,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshfwd.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHFWD_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHFWD_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHFWD_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHFWD_H<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
@@ -4543,7 +4596,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHFWD_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHFWD_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -5074,9 +5127,10 @@
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::trim::Helper::IsHorizontal(<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Face&amp; face) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::get;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> answer_1 <a href="CppOperatorAssign.htm">=</a> face.GetOrientation() <a href="CppOperatorEqual.htm">==</a> FaceOrientation::horizontal;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::get;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> coordinats(ExtractCoordinats(face));<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdSet.htm">std::set</a>&lt;Coordinat3D&gt;::<a href="CppIterator.htm">iterator</a> <a href="CppIterator.htm">Iterator</a>;<br/>
@@ -5125,6 +5179,8 @@
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(answer_1 <a href="CppOperatorEqual.htm">==</a> answer_2);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> answer_2;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> answer_1;<br/>
 }<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::trim::Helper::IsPlane(<br/>
@@ -5641,8 +5697,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshpoint.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHPOINT_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHPOINT_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHPOINT_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHPOINT_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -5650,6 +5706,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
@@ -5771,7 +5828,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHPOINT_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHPOINT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -6009,8 +6066,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshpointfactory.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHPOINTFACTORY_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHPOINTFACTORY_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHPOINTFACTORY_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHPOINTFACTORY_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -6151,7 +6208,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHPOINTFACTORY_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHPOINTFACTORY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -6498,14 +6555,15 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshtemplate.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESH<a href="CppQmakeTemplate.htm">TEMPLATE</a>_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESH<a href="CppQmakeTemplate.htm">TEMPLATE</a>_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESH<a href="CppQmakeTemplate.htm">TEMPLATE</a>_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESH<a href="CppQmakeTemplate.htm">TEMPLATE</a>_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
@@ -6515,7 +6573,7 @@
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> trim {<br/>
 <br/>
-<a href="CppComment.htm">///</a>Template is a bare-bone layer, consisting of <a href="CppPoint.htm">Point</a>s and Faces only<br/>
+<a href="CppComment.htm">///</a>Template is a two-dimensional mesh, consisting of <a href="CppPoint.htm">Point</a>s, Edges and Faces only<br/>
 <a href="CppComment.htm">///</a>It <a href="CppConstructor.htm">construct</a>s itself from a TemplateFile its output (.node and .ele) files<br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a>The next step will be to create a multiple layers of Cells by CellsCreator<br/>
@@ -6540,10 +6598,10 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;Template(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> edges,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> face_<a href="CppPointer.htm">point</a>_indices,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; edges,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; faces,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; face_<a href="CppPointer.htm">point</a>_indices,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;Template(<b><a href="CppConst.htm">const</a></b> Template&amp; ) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;Template(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Template<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
@@ -6556,6 +6614,9 @@
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_faces;<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_face_<a href="CppPointer.htm">point</a>_indices;<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_<a href="CppPointer.htm">point</a>s;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>No idea why Triangle started <b><a href="CppUsing.htm">using</a></b> the Dutch numbering system...<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppConvert.htm">Convert</a>NumbersToEnglish(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; CreateTest2x3() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; CreateTest3x3() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -6580,7 +6641,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESH<a href="CppQmakeTemplate.htm">TEMPLATE</a>_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESH<a href="CppQmakeTemplate.htm">TEMPLATE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -6624,8 +6685,9 @@
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Load the <a href="CppPointer.htm">point</a>s and faces created by Triangle");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Load the <a href="CppPointer.htm">point</a>s and faces created by Triangle"); }<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppFileToVector.htm">FileToVector</a>(<br/>
@@ -6639,7 +6701,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n <a href="CppOperatorModulus.htm">%</a> percent <a href="CppOperatorEqual.htm">==</a> 0) <a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '%';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> line <a href="CppOperatorAssign.htm">=</a> v[n];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(n<a href="CppOperatorEqual.htm">==</a>0) <b><a href="CppContinue.htm">continue</a></b>; <a href="CppComment.htm">//</a>No idea why <b><a href="CppThis.htm">this</a></b> has to be skipped<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; w { <a href="CppSeperateString.htm">SeperateString</a>(line) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; w { <a href="CppSeperateString.htm">SeperateString</a>(<a href="CppConvert.htm">Convert</a>NumbersToEnglish(line)) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (w.empty() <a href="CppOperatorLogicalOr.htm">||</a> w[0].empty() <a href="CppOperatorLogicalOr.htm">||</a>&nbsp;&nbsp;w[0] <a href="CppOperatorEqual.htm">==</a> "#")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The <b><a href="CppFinal.htm">final</a></b> comment line<br/>
@@ -6648,6 +6710,18 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w.size() <a href="CppOperatorEqual.htm">==</a> 4);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(w[0]));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(w[1]));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(w[2]))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("ERROR");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(line);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(w[0]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(w[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(w[2]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(w[3]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("BREAK");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(w[2]));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(w[3]));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(w[1]);<br/>
@@ -6663,7 +6737,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Load and translate faces");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Load and translate faces"); }<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppFileToVector.htm">FileToVector</a>(filename_ele);<br/>
@@ -6689,25 +6763,29 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(w[2]));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(w[3]));<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>I <b><a href="CppDo.htm">do</a></b> not correct <b><a href="CppFor.htm">for</a></b> one-base Triangle.exe output<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>I hope that I made the Triangle.exe output start at index 0..<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppPointer.htm">point</a>1 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(w[1]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppPointer.htm">point</a>2 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(w[2]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppPointer.htm">point</a>3 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(w[3]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>1 &gt; 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>2 &gt; 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>3 &gt; 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0); <a href="CppComment.htm">//</a>Start at index 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>2 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0); <a href="CppComment.htm">//</a>Start at index 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>3 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0); <a href="CppComment.htm">//</a>Start at index 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>1 <a href="CppOperatorMinus.htm">-</a> 0 &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppPointer.htm">point</a>s.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>2 <a href="CppOperatorMinus.htm">-</a> 0 &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppPointer.htm">point</a>s.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>3 <a href="CppOperatorMinus.htm">-</a> 0 &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppPointer.htm">point</a>s.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; face_<a href="CppPointer.htm">point</a>_indices {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>1-1,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>2-1,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>3-1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>1-0, <a href="CppComment.htm">//</a>Start at index 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>2-0, <a href="CppComment.htm">//</a>Start at index 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>3-0&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start at index 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_edges.push_back(<a href="CppStdMake_pair.htm">std::make_pair</a>(face_<a href="CppPointer.htm">point</a>_indices[0],face_<a href="CppPointer.htm">point</a>_indices[1]));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_edges.push_back(<a href="CppStdMake_pair.htm">std::make_pair</a>(face_<a href="CppPointer.htm">point</a>_indices[0],face_<a href="CppPointer.htm">point</a>_indices[2]));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_edges.push_back(<a href="CppStdMake_pair.htm">std::make_pair</a>(face_<a href="CppPointer.htm">point</a>_indices[1],face_<a href="CppPointer.htm">point</a>_indices[2]));<br/>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> face_<a href="CppPointer.htm">point</a>s {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>1-1],<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>2-1],<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>3-1]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>1-0], <a href="CppComment.htm">//</a>Start at index 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>2-0], <a href="CppComment.htm">//</a>Start at index 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>3-0]&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start at index 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!Helper().IsClockwiseHorizontal(face_<a href="CppPointer.htm">point</a>s))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -6733,7 +6811,7 @@
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Checking the result");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Checking the result"); }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_faces <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_faces.size());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_faces.size() <a href="CppOperatorEqual.htm">==</a> m_face_<a href="CppPointer.htm">point</a>_indices.size());<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_faces; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
@@ -6754,16 +6832,26 @@
 &nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> new_end <a href="CppOperatorAssign.htm">=</a> <a href="CppStdUnique.htm">std::unique</a>(m_edges.begin(),m_edges.end());<br/>
 &nbsp;&nbsp;m_edges.erase(new_end,m_edges.end());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_edges.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("Done checking the result"); }<br/>
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::trim::Template::Template(<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> edges,<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces,<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> face_<a href="CppPointer.htm">point</a>_indices,<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; edges,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; faces,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; face_<a href="CppPointer.htm">point</a>_indices,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s<br/>
 ) : m_edges{edges}, m_faces{faces}, m_face_<a href="CppPointer.htm">point</a>_indices{face_<a href="CppPointer.htm">point</a>_indices}, m_<a href="CppPointer.htm">point</a>s{<a href="CppPointer.htm">point</a>s}<br/>
 {<br/>
 <br/>
+}<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::trim::Template::<a href="CppConvert.htm">Convert</a>NumbersToEnglish(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> _WIN32<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(s,",",".");<br/>
+&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Template&gt; <a href="CppRibi.htm">ribi</a>::trim::Template::CreateTest(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -6836,7 +6924,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;{ 1,2,3 }<br/>
 &nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; edges {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> edges {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,1 },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,2 },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 1,2 },<br/>
@@ -6962,7 +7050,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,1,2 }<br/>
 &nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; edges {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> edges {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,1 },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,2 },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 1,2 }<br/>
@@ -7097,7 +7185,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;{ 2,4,5 }<br/>
 &nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; edges {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> edges {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,1 },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,3 },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 1,2 },<br/>
@@ -7241,7 +7329,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;{ 5,7,8 }<br/>
 &nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; edges {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> edges {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,1 },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0,3 },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 1,2 },<br/>
@@ -7444,8 +7532,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshwinding.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHWINDING_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHWINDING_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHWINDING_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHWINDING_H<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> trim {<br/>
@@ -7462,7 +7550,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHWINDING_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHWINDING_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -7486,8 +7574,8 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppTriangleMesh/trianglemeshwindings.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHWINDINGS_H<br/>
-<a href="CppDefine.htm">#define</a> TRIANGLEMESHWINDINGS_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TRIANGLEMESHWINDINGS_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TRIANGLEMESHWINDINGS_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
@@ -7506,7 +7594,7 @@
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHWINDINGS_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RIBI_TRIANGLEMESHWINDINGS_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

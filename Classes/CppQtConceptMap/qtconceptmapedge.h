@@ -21,6 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPEDGEITEM_H
 #define QTCONCEPTMAPEDGEITEM_H
 
+#define NO_QTEDGE_20140609
+#ifndef NO_QTEDGE_20140609
+
+
 #include <boost/shared_ptr.hpp>
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapelement.h"
@@ -53,8 +57,9 @@ struct QtEdge : public QtConceptMapElement
   boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const noexcept { return m_arrow; }
   boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       noexcept { return m_arrow; }
 
-  boost::shared_ptr<const Concept>  GetConcept() const noexcept;
-  boost::shared_ptr<      Concept>  GetConcept()       noexcept;
+  ///Get the Node at the center of the Edge
+  boost::shared_ptr<const Node>  GetNode() const noexcept;
+  boost::shared_ptr<      Node>  GetNode()       noexcept;
 
   boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
   boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
@@ -67,13 +72,13 @@ struct QtEdge : public QtConceptMapElement
         QtNode * GetFrom()       noexcept { return m_from; }
 
   ///Get the name of the relation
-  std::string GetName() const noexcept;
+  //std::string GetName() const noexcept;
 
   ///The node item the arrow targets
   const QtNode * GetTo() const noexcept { return m_to; }
         QtNode * GetTo()       noexcept { return m_to; }
 
-  void SetConcept(const boost::shared_ptr<Concept> concept);
+  void SetNode(const boost::shared_ptr<Node>& node);
 
   void SetFrom(QtNode * const from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
 
@@ -81,7 +86,7 @@ struct QtEdge : public QtConceptMapElement
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;
 
   ///Set the name of the relation on the edge
-  void SetName(const std::string& name) noexcept;
+  //void SetName(const std::string& name) noexcept;
 
   void SetTo(QtNode * const to) noexcept;
 
@@ -111,8 +116,8 @@ private:
   ///The Strategy for displaying the Concept
   const boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
 
-  const QPen m_contour_pen;
-  const QPen m_focus_pen;
+  //const QPen m_contour_pen;
+  //const QPen m_focus_pen;
 
   ///The edge
   const boost::shared_ptr<Edge> m_edge;
@@ -145,5 +150,7 @@ private:
 } //~namespace cmap
 
 } //~namespace ribi
+
+#endif //~ NO_QTEDGE_20140609
 
 #endif // QTCONCEPTMAPEDGEITEM_H

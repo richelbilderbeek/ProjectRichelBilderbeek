@@ -31,7 +31,7 @@
 ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtConceptMapTestQtNodeDialog),
-  m_node(cmap::NodeFactory().GetTests().at(1)),
+  m_node(NodeFactory().GetTests().at(1)),
   m_display_node(nullptr),
   m_edit_node(nullptr),
   m_rate_node(nullptr)
@@ -107,9 +107,9 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *
   assert(dynamic_cast<cmap::QtNode*>(ui->view->scene()->items()[2]));
 
   //QtConceptMapConceptItems are aware of their surroundings, but I put them into place manually
-  m_display_node->SetPos(0.0,-40.0);
-  m_edit_node->SetPos(   0.0,  0.0);
-  m_rate_node->SetPos(   0.0, 40.0);
+  m_display_node->GetNode()->SetPos(0.0,-40.0);
+  m_edit_node->GetNode()->SetPos(   0.0,  0.0);
+  m_rate_node->GetNode()->SetPos(   0.0, 40.0);
 
   {
     const std::vector<cmap::Competency> v = Competencies().GetAllCompetencies();

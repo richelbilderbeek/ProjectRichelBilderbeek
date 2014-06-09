@@ -785,7 +785,7 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
           default: assert(!"Should not get here");
         }
         assert(QPointF(x,y) != qtnode->pos());
-        qtnode->SetPos(x,y);
+        qtnode->GetNode()->SetPos(x,y);
       }
     }
   );

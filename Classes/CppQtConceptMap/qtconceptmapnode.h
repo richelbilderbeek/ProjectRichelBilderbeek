@@ -49,29 +49,30 @@ struct QtNode : public QtConceptMapElement
 
   virtual QRectF boundingRect() const;
 
-  QBrush brush() const;
+  //QBrush brush() const;
 
   void DisableAll();
   void EnableAll();
 
-  boost::shared_ptr<const Concept>  GetConcept() const noexcept;
-  boost::shared_ptr<      Concept>  GetConcept()       noexcept;
+  boost::shared_ptr<const Node>  GetNode() const noexcept;
+  boost::shared_ptr<      Node>  GetNode()       noexcept;
 
   boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
   boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
 
-        boost::shared_ptr<const cmap::Node>  GetNode() const noexcept { return m_node; }
-  const boost::shared_ptr<      cmap::Node>& GetNode()       noexcept { return m_node; }
+  //      boost::shared_ptr<const cmap::Node>  GetNode() const noexcept { return m_node; }
+  //const boost::shared_ptr<      cmap::Node>& GetNode()       noexcept { return m_node; }
 
-  void SetConcept(const boost::shared_ptr<Concept> concept);
+  void SetNode(const boost::shared_ptr<Node>& node);
+  void SetDisplay(const boost::shared_ptr<QtItemDisplayStrategy>& display_strategy);
 
-  void SetName(const std::string& name) noexcept;
+  //void SetName(const std::string& name) noexcept;
 
   ///Set the X coordinat of the central concept
-  void SetX(const double x) noexcept;
+  //void SetX(const double x) noexcept;
 
   ///Set the Y coordinat of the central concept
-  void SetY(const double y) noexcept;
+  //void SetY(const double y) noexcept;
 
   ///m_signal_request_rate_node is emitted due to a m_signal_request_rate_node
   ///of the Node its QtRateConceptItem
@@ -95,20 +96,22 @@ protected:
 private:
 
   ///The Strategy for displaying a Concept
-  const boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
+  boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
 
-  const QPen m_contour_pen;
-  const QPen m_focus_pen;
+  //const QPen m_contour_pen;
+  //const QPen m_focus_pen;
 
   ///The node being edited, or displayed and not changed, or rated
-  const boost::shared_ptr<Node> m_node;
+  boost::shared_ptr<Node> m_node;
 
   void OnItemHasUpdated();
 
   ///The m_node has changed
-  void OnXchanged(Node * const node);
-  void OnYchanged(Node * const node);
-  void OnConceptChanged(Node * const node);
+  //void OnXchanged(Node * const node);
+  //void OnYchanged(Node * const node);
+
+  ///This QtNode its Node changed
+  void OnNodeChanged(Node * const node);
   void OnRequestsSceneUpdate();
 
   ///The item

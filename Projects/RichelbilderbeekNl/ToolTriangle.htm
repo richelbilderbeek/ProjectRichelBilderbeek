@@ -94,6 +94,34 @@ include(../../<a href="Tools.htm">Tools</a>/ToolTriangle/ToolTriangleConsole.pri
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>./ToolTriangle/ToolTriangleDesktop.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTriangle/ToolTriangleDesktop.pri" border = "1"><tr><td><code>
+include(../../<a href="Tools.htm">Tools</a>/ToolTriangle/ToolTriangleConsole.pri)<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> +=<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> +=<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTriangle/ToolTriangleWebsite.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTriangle/ToolTriangleWebsite.pri" border = "1"><tr><td><code>
+include(../../<a href="Tools.htm">Tools</a>/ToolTriangle/ToolTriangleConsole.pri)<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>./ToolTriangle/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
@@ -3780,12 +3808,6 @@ I_WILL_NOT_COMPILE<br/>
 <a href="CppComment.htm">/*</a>&nbsp;&nbsp; be accomplished by setting the CPU86 symbol <b><a href="CppFor.htm">for</a></b> the Microsoft C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a>&nbsp;&nbsp; <a href="CppCompiler.htm">compiler</a>, or the LINUX symbol <b><a href="CppFor.htm">for</a></b> the gcc <a href="CppCompiler.htm">compiler</a> running on <a href="CppLinux.htm">Linux</a>.&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">/*</a> An inferior solution is to declare certain values as `<b><a href="CppVolatile.htm">volatile</a></b>', thus&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">/*</a>&nbsp;&nbsp; forcing them to be stored to <a href="CppMemory.htm">memory</a> and rounded off.&nbsp;&nbsp;Unfortunately,&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">/*</a>&nbsp;&nbsp; <b><a href="CppThis.htm">this</a></b> solution might slow Triangle down quite a bit.&nbsp;&nbsp;To use <b><a href="CppVolatile.htm">volatile</a></b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">/*</a>&nbsp;&nbsp; values, write "<a href="CppDefine.htm">#define</a> INEXACT <b><a href="CppVolatile.htm">volatile</a></b>" below.&nbsp;&nbsp;Normally, however,&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">/*</a>&nbsp;&nbsp; INEXACT should be defined to be nothing.&nbsp;&nbsp;("<a href="CppDefine.htm">#define</a> INEXACT".)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">/*</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a> For more discussion, see http://www.cs.cmu.edu/~quake/robust.pc.html .&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a>&nbsp;&nbsp; For yet more discussion, see Section 5 of my paper, "Adaptive Precision <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a>&nbsp;&nbsp; Floating-<a href="CppPoint.htm">Point</a> Arithmetic and Fast Robust Geometric <a href="CppPredicate.htm">Predicate</a>s" (also&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
@@ -3793,9 +3815,6 @@ I_WILL_NOT_COMPILE<br/>
 <br/>
 <a href="CppComment.htm">/*</a> <a href="CppDefine.htm">#define</a> CPU86 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a> <a href="CppDefine.htm">#define</a> LINUX <a href="CppComment.htm">*/</a><br/>
-<br/>
-<a href="CppDefine.htm">#define</a> INEXACT <a href="CppComment.htm">/*</a> Nothing <a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">/*</a> <a href="CppDefine.htm">#define</a> INEXACT <b><a href="CppVolatile.htm">volatile</a></b> <a href="CppComment.htm">*/</a><br/>
 <br/>
 <a href="CppComment.htm">/*</a> Maximum number of <a href="CppChar.htm">character</a>s in a file name (including the null).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 <br/>
@@ -4938,7 +4957,6 @@ REAL area;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs
 <b><a href="CppVoid.htm">void</a></b> triexit(status)<br/>
 <b><a href="CppInt.htm">int</a></b> status;<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">/*</a> not ANSI_DECLARATORS <a href="CppComment.htm">*/</a><br/>
-<br/>
 {<br/>
 &nbsp;&nbsp;exit(status);<br/>
 }<br/>
@@ -4956,6 +4974,9 @@ VOID *trimalloc(size)<br/>
 &nbsp;&nbsp;memptr <a href="CppOperatorAssign.htm">=</a> (VOID *) malloc((<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b>) size);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (memptr <a href="CppOperatorEqual.htm">==</a> (VOID *) <a href="CppNULL.htm">NULL</a>) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;printf("Error:&nbsp;&nbsp;Out of <a href="CppMemory.htm">memory</a>.\n");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> TODO_206<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>("Triangle: out of <a href="CppMemory.htm">memory</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;triexit(1);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>(memptr);<br/>
@@ -8482,22 +8503,12 @@ vertex getvertex(m, b, number)<br/>
 <a href="CppComment.htm">/*</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a>***************************************************************************<a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> ANSI_DECLARATORS<br/>
 <b><a href="CppInt.htm">int</a></b> fast_expansion_sum_zeroelim(<b><a href="CppInt.htm">int</a></b> elen, REAL *e, <b><a href="CppInt.htm">int</a></b> flen, REAL *f, REAL *h)<br/>
-<a href="CppPreElse.htm">#else</a> <a href="CppComment.htm">/*</a> not ANSI_DECLARATORS <a href="CppComment.htm">*/</a><br/>
-<b><a href="CppInt.htm">int</a></b> fast_expansion_sum_zeroelim(elen, e, flen, f, h)&nbsp;&nbsp;<a href="CppComment.htm">/*</a> h cannot be e or f. <a href="CppComment.htm">*/</a><br/>
-<b><a href="CppInt.htm">int</a></b> elen;<br/>
-REAL *e;<br/>
-<b><a href="CppInt.htm">int</a></b> flen;<br/>
-REAL *f;<br/>
-REAL *h;<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">/*</a> not ANSI_DECLARATORS <a href="CppComment.htm">*/</a><br/>
-<br/>
 {<br/>
 &nbsp;&nbsp;REAL Q;<br/>
-&nbsp;&nbsp;INEXACT REAL Q<b><a href="CppNew.htm">new</a></b>;<br/>
-&nbsp;&nbsp;INEXACT REAL hh;<br/>
-&nbsp;&nbsp;INEXACT REAL bvirt;<br/>
+&nbsp;&nbsp;REAL Q<b><a href="CppNew.htm">new</a></b>;<br/>
+&nbsp;&nbsp;REAL hh;<br/>
+&nbsp;&nbsp;REAL bvirt;<br/>
 &nbsp;&nbsp;REAL avirt, bround, around;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> eindex, findex, hindex;<br/>
 &nbsp;&nbsp;REAL enow, fnow;<br/>
@@ -8575,28 +8586,18 @@ REAL *h;<br/>
 <a href="CppComment.htm">/*</a>&nbsp;&nbsp;will h.)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a>***************************************************************************<a href="CppComment.htm">*/</a><br/>
-<br/>
-<a href="CppIfdef.htm">#ifdef</a> ANSI_DECLARATORS<br/>
 <b><a href="CppInt.htm">int</a></b> scale_expansion_zeroelim(<b><a href="CppInt.htm">int</a></b> elen, REAL *e, REAL b, REAL *h)<br/>
-<a href="CppPreElse.htm">#else</a> <a href="CppComment.htm">/*</a> not ANSI_DECLARATORS <a href="CppComment.htm">*/</a><br/>
-<b><a href="CppInt.htm">int</a></b> scale_expansion_zeroelim(elen, e, b, h)&nbsp;&nbsp; <a href="CppComment.htm">/*</a> e and h cannot be the same. <a href="CppComment.htm">*/</a><br/>
-<b><a href="CppInt.htm">int</a></b> elen;<br/>
-REAL *e;<br/>
-REAL b;<br/>
-REAL *h;<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">/*</a> not ANSI_DECLARATORS <a href="CppComment.htm">*/</a><br/>
-<br/>
 {<br/>
-&nbsp;&nbsp;INEXACT REAL Q, sum;<br/>
+&nbsp;&nbsp;REAL Q, sum;<br/>
 &nbsp;&nbsp;REAL hh;<br/>
-&nbsp;&nbsp;INEXACT REAL product1;<br/>
+&nbsp;&nbsp;REAL product1;<br/>
 &nbsp;&nbsp;REAL product0;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> eindex, hindex;<br/>
 &nbsp;&nbsp;REAL enow;<br/>
-&nbsp;&nbsp;INEXACT REAL bvirt;<br/>
+&nbsp;&nbsp;REAL bvirt;<br/>
 &nbsp;&nbsp;REAL avirt, bround, around;<br/>
-&nbsp;&nbsp;INEXACT REAL c;<br/>
-&nbsp;&nbsp;INEXACT REAL abig;<br/>
+&nbsp;&nbsp;REAL c;<br/>
+&nbsp;&nbsp;REAL abig;<br/>
 &nbsp;&nbsp;REAL ahi, alo, bhi, blo;<br/>
 &nbsp;&nbsp;REAL err1, err2, err3;<br/>
 <br/>
@@ -8682,26 +8683,26 @@ REAL detsum;<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">/*</a> not ANSI_DECLARATORS <a href="CppComment.htm">*/</a><br/>
 <br/>
 {<br/>
-&nbsp;&nbsp;INEXACT REAL acx, acy, bcx, bcy;<br/>
+&nbsp;&nbsp;REAL acx, acy, bcx, bcy;<br/>
 &nbsp;&nbsp;REAL acxtail, acytail, bcxtail, bcytail;<br/>
-&nbsp;&nbsp;INEXACT REAL detleft, detright;<br/>
+&nbsp;&nbsp;REAL detleft, detright;<br/>
 &nbsp;&nbsp;REAL detlefttail, detrighttail;<br/>
 &nbsp;&nbsp;REAL det, errbound;<br/>
 &nbsp;&nbsp;REAL B[4], C1[8], C2[12], D[16];<br/>
-&nbsp;&nbsp;INEXACT REAL B3;<br/>
+&nbsp;&nbsp;REAL B3;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> C1length, C2length, Dlength;<br/>
 &nbsp;&nbsp;REAL u[4];<br/>
-&nbsp;&nbsp;INEXACT REAL u3;<br/>
-&nbsp;&nbsp;INEXACT REAL s1, t1;<br/>
+&nbsp;&nbsp;REAL u3;<br/>
+&nbsp;&nbsp;REAL s1, t1;<br/>
 &nbsp;&nbsp;REAL s0, t0;<br/>
 <br/>
-&nbsp;&nbsp;INEXACT REAL bvirt;<br/>
+&nbsp;&nbsp;REAL bvirt;<br/>
 &nbsp;&nbsp;REAL avirt, bround, around;<br/>
-&nbsp;&nbsp;INEXACT REAL c;<br/>
-&nbsp;&nbsp;INEXACT REAL abig;<br/>
+&nbsp;&nbsp;REAL c;<br/>
+&nbsp;&nbsp;REAL abig;<br/>
 &nbsp;&nbsp;REAL ahi, alo, bhi, blo;<br/>
 &nbsp;&nbsp;REAL err1, err2, err3;<br/>
-&nbsp;&nbsp;INEXACT REAL _i, _j;<br/>
+&nbsp;&nbsp;REAL _i, _j;<br/>
 &nbsp;&nbsp;REAL _0;<br/>
 <br/>
 &nbsp;&nbsp;acx <a href="CppOperatorAssign.htm">=</a> (REAL) (pa[0] <a href="CppOperatorMinus.htm">-</a> pc[0]);<br/>
@@ -8841,13 +8842,13 @@ REAL permanent;<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">/*</a> not ANSI_DECLARATORS <a href="CppComment.htm">*/</a><br/>
 <br/>
 {<br/>
-&nbsp;&nbsp;INEXACT REAL adx, bdx, cdx, ady, bdy, cdy;<br/>
+&nbsp;&nbsp;REAL adx, bdx, cdx, ady, bdy, cdy;<br/>
 &nbsp;&nbsp;REAL det, errbound;<br/>
 <br/>
-&nbsp;&nbsp;INEXACT REAL bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;<br/>
+&nbsp;&nbsp;REAL bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;<br/>
 &nbsp;&nbsp;REAL bdxcdy0, cdxbdy0, cdxady0, adxcdy0, adxbdy0, bdxady0;<br/>
 &nbsp;&nbsp;REAL bc[4], ca[4], ab[4];<br/>
-&nbsp;&nbsp;INEXACT REAL bc3, ca3, ab3;<br/>
+&nbsp;&nbsp;REAL bc3, ca3, ab3;<br/>
 &nbsp;&nbsp;REAL axbc[8], axxbc[16], aybc[8], ayybc[16], adet[32];<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> axbclen, axxbclen, aybclen, ayybclen, alen;<br/>
 &nbsp;&nbsp;REAL bxca[8], bxxca[16], byca[8], byyca[16], bdet[32];<br/>
@@ -8861,14 +8862,14 @@ REAL permanent;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> finlength;<br/>
 <br/>
 &nbsp;&nbsp;REAL adxtail, bdxtail, cdxtail, adytail, bdytail, cdytail;<br/>
-&nbsp;&nbsp;INEXACT REAL adxadx1, adyady1, bdxbdx1, bdybdy1, cdxcdx1, cdycdy1;<br/>
+&nbsp;&nbsp;REAL adxadx1, adyady1, bdxbdx1, bdybdy1, cdxcdx1, cdycdy1;<br/>
 &nbsp;&nbsp;REAL adxadx0, adyady0, bdxbdx0, bdybdy0, cdxcdx0, cdycdy0;<br/>
 &nbsp;&nbsp;REAL aa[4], bb[4], cc[4];<br/>
-&nbsp;&nbsp;INEXACT REAL aa3, bb3, cc3;<br/>
-&nbsp;&nbsp;INEXACT REAL ti1, tj1;<br/>
+&nbsp;&nbsp;REAL aa3, bb3, cc3;<br/>
+&nbsp;&nbsp;REAL ti1, tj1;<br/>
 &nbsp;&nbsp;REAL ti0, tj0;<br/>
 &nbsp;&nbsp;REAL u[4], v[4];<br/>
-&nbsp;&nbsp;INEXACT REAL u3, v3;<br/>
+&nbsp;&nbsp;REAL u3, v3;<br/>
 &nbsp;&nbsp;REAL temp8[8], temp16a[16], temp16b[16], temp16c[16];<br/>
 &nbsp;&nbsp;REAL temp32a[32], temp32b[32], temp48[48], temp64[64];<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> temp8len, temp16alen, temp16blen, temp16clen;<br/>
@@ -8890,16 +8891,16 @@ REAL permanent;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> abtlen, bctlen, catlen;<br/>
 &nbsp;&nbsp;REAL abtt[4], bctt[4], catt[4];<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> abttlen, bcttlen, cattlen;<br/>
-&nbsp;&nbsp;INEXACT REAL abtt3, bctt3, catt3;<br/>
+&nbsp;&nbsp;REAL abtt3, bctt3, catt3;<br/>
 &nbsp;&nbsp;REAL negate;<br/>
 <br/>
-&nbsp;&nbsp;INEXACT REAL bvirt;<br/>
+&nbsp;&nbsp;REAL bvirt;<br/>
 &nbsp;&nbsp;REAL avirt, bround, around;<br/>
-&nbsp;&nbsp;INEXACT REAL c;<br/>
-&nbsp;&nbsp;INEXACT REAL abig;<br/>
+&nbsp;&nbsp;REAL c;<br/>
+&nbsp;&nbsp;REAL abig;<br/>
 &nbsp;&nbsp;REAL ahi, alo, bhi, blo;<br/>
 &nbsp;&nbsp;REAL err1, err2, err3;<br/>
-&nbsp;&nbsp;INEXACT REAL _i, _j;<br/>
+&nbsp;&nbsp;REAL _i, _j;<br/>
 &nbsp;&nbsp;REAL _0;<br/>
 <br/>
 &nbsp;&nbsp;adx <a href="CppOperatorAssign.htm">=</a> (REAL) (pa[0] <a href="CppOperatorMinus.htm">-</a> pd[0]);<br/>
@@ -9509,13 +9510,13 @@ REAL permanent;<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">/*</a> not ANSI_DECLARATORS <a href="CppComment.htm">*/</a><br/>
 <br/>
 {<br/>
-&nbsp;&nbsp;INEXACT REAL adx, bdx, cdx, ady, bdy, cdy, adheight, bdheight, cdheight;<br/>
+&nbsp;&nbsp;REAL adx, bdx, cdx, ady, bdy, cdy, adheight, bdheight, cdheight;<br/>
 &nbsp;&nbsp;REAL det, errbound;<br/>
 <br/>
-&nbsp;&nbsp;INEXACT REAL bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;<br/>
+&nbsp;&nbsp;REAL bdxcdy1, cdxbdy1, cdxady1, adxcdy1, adxbdy1, bdxady1;<br/>
 &nbsp;&nbsp;REAL bdxcdy0, cdxbdy0, cdxady0, adxcdy0, adxbdy0, bdxady0;<br/>
 &nbsp;&nbsp;REAL bc[4], ca[4], ab[4];<br/>
-&nbsp;&nbsp;INEXACT REAL bc3, ca3, ab3;<br/>
+&nbsp;&nbsp;REAL bc3, ca3, ab3;<br/>
 &nbsp;&nbsp;REAL adet[8], bdet[8], cdet[8];<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> alen, blen, clen;<br/>
 &nbsp;&nbsp;REAL abdet[16];<br/>
@@ -9527,37 +9528,37 @@ REAL permanent;<br/>
 &nbsp;&nbsp;REAL adxtail, bdxtail, cdxtail;<br/>
 &nbsp;&nbsp;REAL adytail, bdytail, cdytail;<br/>
 &nbsp;&nbsp;REAL adheighttail, bdheighttail, cdheighttail;<br/>
-&nbsp;&nbsp;INEXACT REAL at_blarge, at_clarge;<br/>
-&nbsp;&nbsp;INEXACT REAL bt_clarge, bt_alarge;<br/>
-&nbsp;&nbsp;INEXACT REAL ct_alarge, ct_blarge;<br/>
+&nbsp;&nbsp;REAL at_blarge, at_clarge;<br/>
+&nbsp;&nbsp;REAL bt_clarge, bt_alarge;<br/>
+&nbsp;&nbsp;REAL ct_alarge, ct_blarge;<br/>
 &nbsp;&nbsp;REAL at_b[4], at_c[4], bt_c[4], bt_a[4], ct_a[4], ct_b[4];<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> at_blen, at_clen, bt_clen, bt_alen, ct_alen, ct_blen;<br/>
-&nbsp;&nbsp;INEXACT REAL bdxt_cdy1, cdxt_bdy1, cdxt_ady1;<br/>
-&nbsp;&nbsp;INEXACT REAL adxt_cdy1, adxt_bdy1, bdxt_ady1;<br/>
+&nbsp;&nbsp;REAL bdxt_cdy1, cdxt_bdy1, cdxt_ady1;<br/>
+&nbsp;&nbsp;REAL adxt_cdy1, adxt_bdy1, bdxt_ady1;<br/>
 &nbsp;&nbsp;REAL bdxt_cdy0, cdxt_bdy0, cdxt_ady0;<br/>
 &nbsp;&nbsp;REAL adxt_cdy0, adxt_bdy0, bdxt_ady0;<br/>
-&nbsp;&nbsp;INEXACT REAL bdyt_cdx1, cdyt_bdx1, cdyt_adx1;<br/>
-&nbsp;&nbsp;INEXACT REAL adyt_cdx1, adyt_bdx1, bdyt_adx1;<br/>
+&nbsp;&nbsp;REAL bdyt_cdx1, cdyt_bdx1, cdyt_adx1;<br/>
+&nbsp;&nbsp;REAL adyt_cdx1, adyt_bdx1, bdyt_adx1;<br/>
 &nbsp;&nbsp;REAL bdyt_cdx0, cdyt_bdx0, cdyt_adx0;<br/>
 &nbsp;&nbsp;REAL adyt_cdx0, adyt_bdx0, bdyt_adx0;<br/>
 &nbsp;&nbsp;REAL bct[8], cat[8], abt[8];<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> bctlen, catlen, abtlen;<br/>
-&nbsp;&nbsp;INEXACT REAL bdxt_cdyt1, cdxt_bdyt1, cdxt_adyt1;<br/>
-&nbsp;&nbsp;INEXACT REAL adxt_cdyt1, adxt_bdyt1, bdxt_adyt1;<br/>
+&nbsp;&nbsp;REAL bdxt_cdyt1, cdxt_bdyt1, cdxt_adyt1;<br/>
+&nbsp;&nbsp;REAL adxt_cdyt1, adxt_bdyt1, bdxt_adyt1;<br/>
 &nbsp;&nbsp;REAL bdxt_cdyt0, cdxt_bdyt0, cdxt_adyt0;<br/>
 &nbsp;&nbsp;REAL adxt_cdyt0, adxt_bdyt0, bdxt_adyt0;<br/>
 &nbsp;&nbsp;REAL u[4], v[12], w[16];<br/>
-&nbsp;&nbsp;INEXACT REAL u3;<br/>
+&nbsp;&nbsp;REAL u3;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> vlength, wlength;<br/>
 &nbsp;&nbsp;REAL negate;<br/>
 <br/>
-&nbsp;&nbsp;INEXACT REAL bvirt;<br/>
+&nbsp;&nbsp;REAL bvirt;<br/>
 &nbsp;&nbsp;REAL avirt, bround, around;<br/>
-&nbsp;&nbsp;INEXACT REAL c;<br/>
-&nbsp;&nbsp;INEXACT REAL abig;<br/>
+&nbsp;&nbsp;REAL c;<br/>
+&nbsp;&nbsp;REAL abig;<br/>
 &nbsp;&nbsp;REAL ahi, alo, bhi, blo;<br/>
 &nbsp;&nbsp;REAL err1, err2, err3;<br/>
-&nbsp;&nbsp;INEXACT REAL _i, _j, _k;<br/>
+&nbsp;&nbsp;REAL _i, _j, _k;<br/>
 &nbsp;&nbsp;REAL _0;<br/>
 <br/>
 &nbsp;&nbsp;adx <a href="CppOperatorAssign.htm">=</a> (REAL) (pa[0] <a href="CppOperatorMinus.htm">-</a> pd[0]);<br/>
@@ -17121,6 +17122,7 @@ REAL *regionlist;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("&nbsp;&nbsp;precision of floating <a href="CppPointer.htm">point</a> arithmetic.&nbsp;&nbsp;(You can be\n");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("&nbsp;&nbsp;sure of <b><a href="CppThis.htm">this</a></b> <b><a href="CppIf.htm">if</a></b> I fail to terminate.)\n");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;precisionerror();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;triexit(1); <a href="CppComment.htm">//</a>RJCB<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
