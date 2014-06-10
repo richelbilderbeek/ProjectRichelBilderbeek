@@ -39,6 +39,7 @@ namespace cmap {
 ///QtNode displays a Node as a QtConceptMapElement
 struct QtNode : public QtConceptMapElement
 {
+  typedef QtConceptMapElement Base;
   virtual ~QtNode() noexcept;
 
   ///Node cannot be const as it contains a Concept that the user might want to edit
@@ -47,7 +48,7 @@ struct QtNode : public QtConceptMapElement
     const boost::shared_ptr<Node> node,
     const boost::shared_ptr<QtItemDisplayStrategy> concept_item);
 
-  virtual QRectF boundingRect() const;
+  //virtual QRectF boundingRect() const;
 
   //QBrush brush() const;
 
@@ -85,6 +86,7 @@ protected:
 
   void focusInEvent(QFocusEvent *event) final;
   void focusOutEvent(QFocusEvent *event) final;
+  void hoverStartEvent(QGraphicsSceneHoverEvent *);
   void keyPressEvent(QKeyEvent *event) final;
 
   //const boost::shared_ptr<QtConceptMapItem>& GetConceptItem() { return m_concept_item; }

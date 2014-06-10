@@ -61,7 +61,7 @@ private:
 
   ///The concept this item displays the examples of.
   ///If m_concept is nullptr, this item hides
-  const QtConceptMapElement* m_item;
+  const QtConceptMapElement * m_item;
 
   ///Item has updated, Examples must follow
   void OnItemUpdated();

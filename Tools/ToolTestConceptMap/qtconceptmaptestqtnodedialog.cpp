@@ -21,6 +21,7 @@
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapnodedialog.h"
+#include "qtconceptmapqtnodedialog.h"
 #include "qtconceptmapnode.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
@@ -151,14 +152,17 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::~QtConceptMapTestQtNodeDialog() noexce
   delete ui;
 }
 
-boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestQtNodeDialog::GetNode() const noexcept
+boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtConceptMapTestQtNodeDialog::GetQtNode() const noexcept
 {
-
+  assert(!"Not implemented");
+  boost::shared_ptr<QtNode> qtnode;
+  return qtnode;
 }
 
-void ribi::cmap::QtConceptMapTestQtNodeDialog::SetNode(const boost::shared_ptr<Node>& m_node) noexcept
+void ribi::cmap::QtConceptMapTestQtNodeDialog::SetNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
 {
-
+  assert(qtnode);
+  assert(!"Not implemented");
 }
 
 /*

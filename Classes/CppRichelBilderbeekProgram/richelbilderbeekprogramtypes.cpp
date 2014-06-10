@@ -191,9 +191,10 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testNewick,"testNewick"));
   m.insert(Pair(ProgramType::testNewickVector,"testNewickVector"));
   m.insert(Pair(ProgramType::testOpenQuestion,"testOpenQuestion"));
-  m.insert(Pair(ProgramType::testPylos,"testPylos"));
   m.insert(Pair(ProgramType::testPlane,"testPlane"));
   m.insert(Pair(ProgramType::testPolyFile,"testPolyFile"));
+  m.insert(Pair(ProgramType::testPolyFileFromPolygons,"testPolyFileFromPolygons"));
+  m.insert(Pair(ProgramType::testPylos,"testPylos"));
   m.insert(Pair(ProgramType::testQrcFile,"testQrcFile"));
   m.insert(Pair(ProgramType::testQtArrowItems,"testQtArrowItems"));
   m.insert(Pair(ProgramType::testQtCreatorProFile,"testQtCreatorProFile"));
@@ -235,6 +236,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::vigenereCipher,"vigenereCipher"));
   m.insert(Pair(ProgramType::virtualBastard,"virtualBastard"));
   m.insert(Pair(ProgramType::visualAbc,"visualAbc"));
+  m.insert(Pair(ProgramType::wktToSvg,"wktToSvg"));
   m.insert(Pair(ProgramType::xeNonZero,"xeNonZero"));
   m.insert(Pair(ProgramType::zork,"zork"));
   assert(m.left.size() == m.right.size());
@@ -413,6 +415,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testOpenQuestion,"Test OpenQuestion"));
   m.insert(Pair(ProgramType::testPlane,"Test Plane"));
   m.insert(Pair(ProgramType::testPolyFile,"Test PolyFile"));
+  m.insert(Pair(ProgramType::testPolyFileFromPolygons,"Test PolyFileFromPolygons"));
   m.insert(Pair(ProgramType::testPylos,"Test Pylos"));
   m.insert(Pair(ProgramType::testQrcFile,"Test QrcFile"));
   m.insert(Pair(ProgramType::testQtArrowItems,"Test QtArrowItems"));
@@ -455,6 +458,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::vigenereCipher,"VigenereCipher"));
   m.insert(Pair(ProgramType::virtualBastard,"Virtual Bastard"));
   m.insert(Pair(ProgramType::visualAbc,"Visual ABC"));
+  m.insert(Pair(ProgramType::wktToSvg,"WktToSvg"));
   m.insert(Pair(ProgramType::xeNonZero,"XeNonZero"));
   m.insert(Pair(ProgramType::zork,"Zork"));
   assert(m.left.size() == m.right.size());

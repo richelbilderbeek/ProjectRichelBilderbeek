@@ -31,8 +31,8 @@ public:
   QtConceptMapTestQtNodeDialog& operator=(const QtConceptMapTestQtNodeDialog&) = delete;
   ~QtConceptMapTestQtNodeDialog() noexcept;
 
-  boost::shared_ptr<Node> GetNode() const noexcept;
-  void SetNode(const boost::shared_ptr<Node>& m_node) noexcept;
+  boost::shared_ptr<QtNode> GetQtNode() const noexcept;
+  void SetNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
 
 protected:
 
@@ -53,7 +53,7 @@ private:
 
   Ui::QtConceptMapTestQtNodeDialog *ui;
 
-  boost::shared_ptr<QtNodeDialog> m_dialog;
+  boost::shared_ptr<QtQtNodeDialog> m_dialog;
   QGraphicsView * const m_view;
   //QtNode* m_display_node;
   //QtNode* m_edit_node;

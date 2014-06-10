@@ -3065,7 +3065,7 @@ struct ProgramVisualAbc : public ProgramTool
 struct ProgramWktToSvg : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolWktToSvg_1_0.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolWktToSvg_1_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "WktToSvg"; }

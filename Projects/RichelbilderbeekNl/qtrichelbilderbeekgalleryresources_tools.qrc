@@ -144,5 +144,7 @@
         <file>ToolValentineCardDecrypter_2_0.png</file>
         <file>ToolValentineCardDecrypter_2_0_Windows.png</file>
         <file>ToolVigenereCipher_1_0.png</file>
+        <file>ToolWktToSvg_1_0.png</file>
+        <file>ToolWktToSvg_1_1.png</file>
     </qresource>
 </RCC>

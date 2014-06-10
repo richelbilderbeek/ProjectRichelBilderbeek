@@ -18,41 +18,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
-#ifndef QTCONCEPTMAPFWD_H
-#define QTCONCEPTMAPFWD_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qtconceptmapqtnodedialog.h"
 
-#include "conceptmapfwd.h"
+#include <cassert>
 
-namespace ribi {
+#include "ui_qtconceptmapqtnodedialog.h"
+#pragma GCC diagnostic pop
 
-struct QtQuadBezierArrowItem;
+ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+  ui(new Ui::QtConceptMapQtNodeDialog)
+{
+  ui->setupUi(this);
+}
 
-namespace cmap {
-
-struct QtConceptDialog;
-struct QtConceptMap;
-struct QtConceptMapElement;
-struct QtConceptMapWidget;
-struct QtDisplayConceptMap;
-struct QtDisplayStrategy;
-struct QtEdge;
-struct QtEdgeDialog;
-struct QtEditConceptMap;
-struct QtEditStrategy;
-struct QtExampleDialog;
-struct QtExamplesDialog;
-struct QtExamplesItem;
-struct QtItemDisplayStrategy;
-struct QtItemHighlighter;
-struct QtNewArrow;
-struct QtNode;
-struct QtNodeDialog; //QtDialog showing a Node
-struct QtQtNodeDialog; //QtDialog showing a QtNode
-struct QtRateConceptMap;
-struct QtRateStrategy;
-struct QtTool;
-
-} //~namespace cmap
-} //~namespace ribi
-
-#endif // QTCONCEPTMAPFWD_H
+ribi::cmap::QtQtNodeDialog::~QtQtNodeDialog()
+{
+  delete ui;
+}

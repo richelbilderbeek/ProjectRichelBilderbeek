@@ -49,9 +49,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
-  const boost::shared_ptr<ribi::cmap::Concept>& concept)
-  : m_signal_position_changed{},
-    m_concept(concept),
+  //const boost::shared_ptr<ribi::cmap::Concept>& concept
+)
+  : //m_signal_position_changed{},
+    //m_concept(concept),
+    m_contour_pen(QPen(QColor(0,0,0))),
+    m_focus_pen(QPen(QColor(0,0,0))),
     m_indicator_brush(QBrush(QColor(0,0,0,0))),
     m_indicator_pen(QPen(QColor(0,0,0)))
 {
@@ -59,9 +62,10 @@ ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
   Test();
   #endif
 
-  assert(m_concept);
-  assert(m_concept->GetExamples());
+  //assert(m_concept);
+  //assert(m_concept->GetExamples());
 
+  /*
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsSelectable);
@@ -70,35 +74,39 @@ ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
   this->setAcceptHoverEvents(true);
 
   this->SetPadding(Base::Padding(1.0,6.0,1.0,2.0));
-
-  GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::cmap::QtItemDisplayStrategy::OnConceptNameChanged,this)); //Obligatory
+  */
+  //GetConcept()->m_signal_name_changed.connect(
+  //  boost::bind(&ribi::cmap::QtItemDisplayStrategy::OnConceptNameChanged,this)); //Obligatory
 
   //FIX? 2013-06-25
   //this->SetText("DUMMY TEXT");
   //assert(this->GetText() != m_concept->GetName()
   //  && "The text must be set, to get a resize");
 
-  this->SetName(m_concept->GetName());
+  //this->SetName(m_concept->GetName());
 }
 
+/*
 boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStrategy::GetConcept() const noexcept
 {
   boost::shared_ptr<const ribi::cmap::Concept> p(m_concept);
   assert(p);
   return p;
 }
+*/
 
 std::string ribi::cmap::QtItemDisplayStrategy::GetName() const noexcept
 {
   return Unwordwrap(this->GetText());
 }
 
+/*
 void ribi::cmap::QtItemDisplayStrategy::hoverStartEvent(QGraphicsSceneHoverEvent *)
 {
   std::exit(1); //Never called
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
+*/
 
 void ribi::cmap::QtItemDisplayStrategy::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {

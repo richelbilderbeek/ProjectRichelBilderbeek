@@ -29,9 +29,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lambda/lambda.hpp>
 #include <boost/signals2.hpp>
+
+#include <QCursor>
 #include <QKeyEvent>
+#include <QPainter>
 #include <QPen>
 
+#include "conceptmapexamples.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapbrushfactory.h"
@@ -58,7 +62,12 @@ ribi::cmap::QtNode::QtNode(
   assert(node);
   assert(m_display_strategy);
   assert(m_node);
-  assert(m_display_strategy->GetConcept().get() == m_node->GetConcept().get());
+  //assert(m_display_strategy->GetConcept().get() == m_node->GetConcept().get());
+
+  //Allow mouse tracking
+  this->setAcceptHoverEvents(true);
+
+  this->SetPadding(Base::Padding(1.0,6.0,1.0,2.0));
 
   this->setAcceptHoverEvents(true);
   this->setFlags(
@@ -66,9 +75,9 @@ ribi::cmap::QtNode::QtNode(
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
 
-  this->setRect(m_display_strategy->boundingRect());
-  assert(m_display_strategy->boundingRect() == this->boundingRect()
-    && "Bounding rects must by synced");
+  //this->setRect(m_display_strategy->boundingRect());
+  //assert(m_display_strategy->boundingRect() == this->boundingRect()
+  //  && "Bounding rects must by synced");
   //assert(m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
   //  && "Bounding rects must by synced");
 
@@ -76,7 +85,8 @@ ribi::cmap::QtNode::QtNode(
   setPos(m_node->GetX(),m_node->GetY());
   assert(pos().x() == m_node->GetX());
   assert(pos().y() == m_node->GetY());
-  m_display_strategy->SetPos(m_node->GetX(),m_node->GetY());
+  //m_display_strategy->SetPos(m_node->GetX(),m_node->GetY());
+  this->setPos(m_node->GetX(),m_node->GetY());
 
   /*
 
@@ -140,7 +150,7 @@ ribi::cmap::QtNode::QtNode(
   assert(this->pos().x() == m_node->GetX());
   assert(this->pos().y() == m_node->GetY());
   assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
-  assert(this->m_display_strategy->acceptHoverEvents()); //Must remove the 's' in Qt5?
+  //assert(this->m_display_strategy->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
 
 ribi::cmap::QtNode::~QtNode() noexcept
@@ -200,6 +210,7 @@ ribi::cmap::QtNode::~QtNode() noexcept
   */
 }
 
+/*
 QRectF ribi::cmap::QtNode::boundingRect() const
 {
   //TRACE(m_concept_item->boundingRect().width());
@@ -211,7 +222,7 @@ QRectF ribi::cmap::QtNode::boundingRect() const
   return m_display_strategy->boundingRect();
   //return QtConceptMapItem::boundingRect(); //Bypassed going via m_concept_item
 }
-
+*/
 /*
 QBrush ribi::cmap::QtNode::brush() const
 {
@@ -223,22 +234,23 @@ void ribi::cmap::QtNode::DisableAll()
 {
   this->setEnabled(false);
   this->setVisible(false);
-  this->m_display_strategy->setEnabled(false);
-  this->m_display_strategy->setVisible(false);
+  //this->m_display_strategy->setEnabled(false);
+  //this->m_display_strategy->setVisible(false);
 }
 
 void ribi::cmap::QtNode::EnableAll()
 {
   this->setEnabled(true);
   this->setVisible(true);
-  this->m_display_strategy->setEnabled(true);
-  this->m_display_strategy->setVisible(true);
+  //this->m_display_strategy->setEnabled(true);
+  //this->m_display_strategy->setVisible(true);
 }
 
 void ribi::cmap::QtNode::focusInEvent(QFocusEvent*)
 {
   m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
-  assert(!m_display_strategy->hasFocus());
+  //assert(!m_display_strategy->hasFocus());
+  assert(hasFocus());
 }
 
 void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)
@@ -271,10 +283,15 @@ void ribi::cmap::QtNode::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
 }
 */
 
+void ribi::cmap::QtNode::hoverStartEvent(QGraphicsSceneHoverEvent *)
+{
+  this->setCursor(QCursor(Qt::PointingHandCursor));
+}
+
 void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event)
 {
   assert(m_display_strategy);
-  assert(m_display_strategy->GetConcept());
+  //assert(m_display_strategy->GetConcept());
   m_display_strategy->keyPressEvent(event);
   switch (event->key())
   {
@@ -287,7 +304,7 @@ void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event)
 
 void ribi::cmap::QtNode::OnItemHasUpdated()
 {
-  this->setRect(m_display_strategy->boundingRect());
+  //this->setRect(m_display_strategy->boundingRect());
 
   //Cannot check here, as setRect triggers this member function
   //assert(m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
@@ -337,23 +354,40 @@ void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem
 {
 
   assert(m_display_strategy);
-  assert(!m_display_strategy->hasFocus());
-  assert(!m_display_strategy->isSelected());
+  //assert(!m_display_strategy->hasFocus());
+  //assert(!m_display_strategy->isSelected());
 
-  this->m_display_strategy->SetName(this->GetNode()->GetConcept()->GetName());
+  //this->m_display_strategy->SetName(this->GetNode()->GetConcept()->GetName());
 
 
   //Only QtEditStrategy actually modifies the position of the concept items
+  /*
   if (dynamic_cast<QtEditStrategy*>(m_display_strategy.get()))
   {
     //Notifies the GUI-independent collaborators
     this->m_display_strategy->SetPos(x(),y());
   }
+  */
 
-  assert(this->boundingRect() == m_display_strategy->boundingRect()
-    && "Keep bounding rects in sync (but is this check still relevent?) 2013-07-06");
+  //assert(this->boundingRect() == m_display_strategy->boundingRect()
+  //  && "Keep bounding rects in sync (but is this check still relevent?) 2013-07-06");
 
-  m_display_strategy->paint(painter,item,widget);
+  //m_display_strategy->paint(painter,item,widget);
+  Base::paint(painter,item,widget);
+
+  if (!GetNode()->GetConcept()->GetExamples()->Get().empty())
+  {
+    painter->setBrush(m_display_strategy->GetIndicatorBrush());
+    painter->setPen(m_display_strategy->GetIndicatorPen());
+    //Draw indicator that a concept has examples in it
+    painter->drawRect(
+      rect().right() - 5.0,
+      rect().top() + 3.0,
+      3.0,
+      3.0
+      );
+  }
+
 
   //Check if item can move (as the center node cannot)
   #ifdef BRAINWEAVER_MOVE_ITEMS_ON_COLLISION
@@ -456,26 +490,25 @@ void ribi::cmap::QtNode::Test() noexcept
       assert(node);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(node->GetConcept()));
       boost::shared_ptr<QtNode> qtnode(new QtNode(node,qtconcept_item));
-      assert(qtconcept_item->GetConcept() == qtnode->GetNode()->GetConcept());
-      assert(qtconcept_item->GetConcept() == node->GetConcept());
+      assert(qtnode->GetNode()->GetConcept() == node->GetConcept());
       assert(node == qtnode->GetNode());
       {
         const double node_x = node->GetX();
         const double qtnode_x = qtnode->pos().x();
-        const double qtconcept_item_x = qtnode->GetDisplayStrategy()->pos().x();
-        if (!(node_x == qtnode_x && qtnode_x == qtconcept_item_x))
+        //const double qtconcept_item_x = qtnode->GetDisplayStrategy()->pos().x();
+        if (node_x != qtnode_x) //&& qtnode_x == qtconcept_item_x))
         {
           TRACE(node_x);
           TRACE(qtnode_x);
-          TRACE(qtconcept_item_x);
+          //TRACE(qtconcept_item_x);
         }
 
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
+        assert(node_x == qtnode_x //&& qtnode_x == qtconcept_item_x
          && "X coordinat must be in sync");
         const double node_y = node->GetY();
         const double qtnode_y = qtnode->pos().y();
-        const double qtconcept_item_y = qtnode->GetDisplayStrategy()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
+        //const double qtconcept_item_y = qtnode->GetDisplayStrategy()->pos().y();
+        assert(node_y == qtnode_y //&& qtnode_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
       #ifdef TODO_20140609

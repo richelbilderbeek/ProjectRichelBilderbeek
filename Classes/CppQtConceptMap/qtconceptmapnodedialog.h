@@ -57,7 +57,7 @@ private slots:
 private:
   Ui::QtNodeDialog *ui;
 
-  ///The Concept to work on
+  ///The Node to work on
   boost::shared_ptr<Node> m_node;
 
   boost::shared_ptr<QtConceptDialog> m_qtconceptdialog;
