@@ -170,13 +170,14 @@ std::vector<std::string> ribi::WktToSvgMenuDialog::GetRegexMatches(
 
 std::string ribi::WktToSvgMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::WktToSvgMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2014-06-10: version 1.0: initial version, supports polygon only"
+    "2014-06-10: version 1.0: initial version, supports polygon only",
+    "2014-06-10: version 1.1: added support for linestring"
   };
 }
 
@@ -195,15 +196,29 @@ void ribi::WktToSvgMenuDialog::Test() noexcept
     d.Execute(
       {
         "WktToSvgMenuDialog",
-        "--wkt", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
-        "--verbose",
+        "--wkt", "POLYGON((1 1,-1 1,-1 -1,1 -1))"
+        //"--verbose"
       }
     );
     d.Execute(
       {
         "WktToSvgMenuDialog",
-        "-w", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))",
-        "-b"
+        "--wkt", "LINESTRING(1 1,-1 1,-1 -1,1 -1)"
+        //"--verbose"
+      }
+    );
+    d.Execute(
+      {
+        "WktToSvgMenuDialog",
+        "-w", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))"
+        //"-b"
+      }
+    );
+    d.Execute(
+      {
+        "WktToSvgMenuDialog",
+        "-w", "POLYGON((0 1,-1 -1,1 -1)),LINESTRING(0 -1,-1 1,1 1,0 -1)"
+        //"-b"
       }
     );
   }

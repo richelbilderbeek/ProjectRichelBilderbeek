@@ -78,7 +78,7 @@ void ribi::QtWktToSvgMainDialog::Test() noexcept
 
 void ribi::QtWktToSvgMainDialog::on_edit_textChanged(const QString &arg1)
 {
-  WktToSvgMainDialog d(arg1.toStdString());
+  WktToSvgMainDialog d(arg1.toStdString(),ui->box_verbose->isChecked());
 
   const std::string svg_text = d.GetSvg();
 

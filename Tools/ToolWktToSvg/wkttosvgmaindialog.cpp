@@ -106,6 +106,7 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef boost::geometry::model::linestring<Coordinat> Linestring;
 
   if (verbose)
   {
@@ -134,7 +135,7 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
 
         if (verbose)
         {
-          std::cout << "Geometry '" << s << "' parsed successfully" << std::endl;
+          std::cout << "Geometry '" << s << "' was parsed successfully as a Polygon" << std::endl;
         }
 
         svg.add(polygon);
@@ -144,9 +145,31 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
       {
         if (verbose)
         {
-          std::cout << "Geometry '" << s << "' could not be parsed" << std::endl;
+          std::cout << "Geometry '" << s << "' could not be parsed to a Polygon" << std::endl;
         }
       }
+
+      try
+      {
+        Linestring linestring;
+        boost::geometry::read_wkt(s,linestring);
+
+        if (verbose)
+        {
+          std::cout << "Geometry '" << s << "' was parsed successfully as a Linestring" << std::endl;
+        }
+
+        svg.add(linestring);
+        svg.map(linestring,"fill:none;stroke:rgb(0,0,0);stroke-width:1");
+      }
+      catch (std::exception&)
+      {
+        if (verbose)
+        {
+          std::cout << "Geometry '" << s << "' could not be parsed to a Linestring" << std::endl;
+        }
+      }
+
     }
   }
   return stream.str();
