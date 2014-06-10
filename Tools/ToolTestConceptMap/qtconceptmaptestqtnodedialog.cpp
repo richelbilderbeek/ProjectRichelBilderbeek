@@ -31,7 +31,7 @@
 ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtConceptMapTestQtNodeDialog),
-    m_dialog(new QtNodeDialog),
+    m_dialog(new QtQtNodeDialog),
     //m_node(NodeFactory().GetTests().at(1)),
     //m_display_node(nullptr),
     //m_edit_node(nullptr),
