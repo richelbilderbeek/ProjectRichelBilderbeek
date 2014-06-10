@@ -6,12 +6,11 @@
 
 #include <cassert>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
+
+#include <QGraphicsView>
 #include <QKeyEvent>
+
 #include "conceptmapcompetencies.h"
 #include "conceptmapconcept.h"
 #include "conceptmapexample.h"
@@ -20,27 +19,38 @@
 #include "conceptmapnode.h"
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
-#include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
+#include "qtconceptmapnodedialog.h"
 #include "qtconceptmapnode.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
 #include "ui_qtconceptmaptestqtnodedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtConceptMapTestQtNodeDialog),
-  m_node(NodeFactory().GetTests().at(1)),
-  m_display_node(nullptr),
-  m_edit_node(nullptr),
-  m_rate_node(nullptr)
+ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtConceptMapTestQtNodeDialog),
+    m_dialog(new QtNodeDialog),
+    //m_node(NodeFactory().GetTests().at(1)),
+    //m_display_node(nullptr),
+    //m_edit_node(nullptr),
+    //m_rate_node(nullptr),
+    m_view(new QGraphicsView(this))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
 
+  assert(!this->layout());
+  QGridLayout * const my_layout = new QGridLayout;
+  this->setLayout(my_layout);
+
+  my_layout->addWidget(ui->widget_top,0,0,1,2);
+  my_layout->addWidget(m_dialog.get(),1,1);
+  my_layout->addWidget(m_view,1,0);
+
+  /*
   assert(ui->view->scene());
 
   //Node is used in: m_node
@@ -132,6 +142,7 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *
 
 
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
+  */
 }
 
 ribi::cmap::QtConceptMapTestQtNodeDialog::~QtConceptMapTestQtNodeDialog() noexcept
@@ -139,6 +150,7 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::~QtConceptMapTestQtNodeDialog() noexce
   delete ui;
 }
 
+/*
 const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestQtNodeDialog::GetNode()
 {
   switch(ui->box_edit->currentIndex())
@@ -198,12 +210,14 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestQtNodeDial
   assert(!"Should not get here");
   throw std::logic_error("ribi::cmap::QtConceptMapTestQtNodeDialog::GetNode: index unknown");
 }
+*/
 
 void ribi::cmap::QtConceptMapTestQtNodeDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+/*
 void ribi::cmap::QtConceptMapTestQtNodeDialog::on_box_competency_currentIndexChanged(int index)
 {
   const Competency c = static_cast<cmap::Competency>(index);
@@ -237,6 +251,7 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::on_edit_example_text_textChanged(
 {
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
+*/
 
 #ifndef NDEBUG
 void ribi::cmap::QtConceptMapTestQtNodeDialog::Test() noexcept
@@ -246,20 +261,16 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("ribi::cmap::QtConceptMapTestQtNodeDialog::Test started");
   QtConceptMapTestQtNodeDialog d;
+  /*
   assert(d.m_node.get() == d.m_display_node->GetNode().get());
   assert(d.m_node.get() == d.m_edit_node->GetNode().get());
   assert(d.m_node.get() == d.m_rate_node->GetNode().get());
   assert(d.m_node->GetConcept().get() == d.m_display_node->GetNode()->GetConcept().get());
   assert(d.m_node->GetConcept().get() == d.m_edit_node->GetNode()->GetConcept().get());
   assert(d.m_node->GetConcept().get() == d.m_rate_node->GetNode()->GetConcept().get());
-
+  */
   //Test resizing due to text being changed
   {
     TRACE("TODO");
@@ -313,15 +324,12 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::Test() noexcept
   }
 
   TRACE("ribi::cmap::QtConceptMapTestQtNodeDialog::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 
+/*
 void ribi::cmap::QtConceptMapTestQtNodeDialog::OnRequestsSceneUpdate()
 {
   this->ui->view->scene()->update();
 }
+*/

@@ -13,6 +13,8 @@
 
 namespace Ui { class QtConceptMapTestQtNodeDialog; }
 
+struct QGraphicsView;
+
 namespace ribi {
 namespace cmap {
 
@@ -35,25 +37,28 @@ protected:
 
 private slots:
 
-  void on_box_competency_currentIndexChanged(int index);
-  void on_edit_name_textChanged(const QString &arg1);
-  void on_box_complexity_currentIndexChanged(const QString &arg1);
-  void on_box_concreteness_currentIndexChanged(const QString &arg1);
-  void on_box_specificity_currentIndexChanged(const QString &arg1);
-  void on_edit_example_text_textChanged(const QString &arg1);
+  //void on_box_competency_currentIndexChanged(int index);
+  //void on_edit_name_textChanged(const QString &arg1);
+  //void on_box_complexity_currentIndexChanged(const QString &arg1);
+  //void on_box_concreteness_currentIndexChanged(const QString &arg1);
+  //void on_box_specificity_currentIndexChanged(const QString &arg1);
+  //void on_edit_example_text_textChanged(const QString &arg1);
 
 private:
 
   Ui::QtConceptMapTestQtNodeDialog *ui;
-  const boost::shared_ptr<Node> m_node;
-  QtNode* m_display_node;
-  QtNode* m_edit_node;
-  QtNode* m_rate_node;
+
+  boost::shared_ptr<QtNodeDialog> m_dialog;
+  QGraphicsView * const m_view;
+  //const boost::shared_ptr<Node> m_node;
+  //QtNode* m_display_node;
+  //QtNode* m_edit_node;
+  //QtNode* m_rate_node;
 
   ///Get the Node via the route chosen by box_edit
-  const boost::shared_ptr<Node> GetNode();
+  //const boost::shared_ptr<Node> GetNode();
 
-  void OnRequestsSceneUpdate();
+  //void OnRequestsSceneUpdate();
 
   #ifndef NDEBUG
   static void Test() noexcept;
