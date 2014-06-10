@@ -18,7 +18,7 @@
 #pragma GCC diagnostic pop
 
 ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *parent)
-  : QGraphicsView(new QGraphicsScene,parent)
+  : ribi::QtKeyboardFriendlyGraphicsView(parent)
 {
   const double pi = boost::math::constants::pi<double>();
   const int n_items = 16;
@@ -30,8 +30,10 @@ ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *pare
       const double x =  std::sin(angle) * ray;
       const double y = -std::cos(angle) * ray;
       QtRoundedRectItem * const item = new QtRoundedRectItem;
+      assert(item);
       item->setPos(x,y);
       item->SetRoundedRect(QRectF(-32.0,-32.0,64.0,64.0),16.0,16.0);
+      assert(scene());
       scene()->addItem(item);
     }
     {
@@ -39,13 +41,42 @@ ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *pare
       const double x =  std::sin(angle) * ray;
       const double y = -std::cos(angle) * ray;
       QGraphicsRectItem * const item = new QGraphicsRectItem;
+      assert(item);
       item->setFlags(
           QGraphicsItem::ItemIsFocusable
         | QGraphicsItem::ItemIsMovable
         | QGraphicsItem::ItemIsSelectable);
       item->setPos(x,y);
       item->setRect(-16.0,-16.0,32.0,32.0);
+      assert(scene());
       scene()->addItem(item);
     }
   }
+  //Add texts
+  {
+    const std::vector<std::string> v
+      =
+      {
+        "Goal: compare my custom class to the Qt class",
+        "Outer ring: my custom QtRoundedRectItem",
+        "Inner ring: Qt its QGraphicsRectItem (note that these do not indicate being selected)",
+        "Space: set focus to random item",
+        "Arrow keys: move focus",
+        "Shift + arrow keys: move item"
+        //"F2: edit item"
+      };
+    const int sz = boost::numeric_cast<int>(v.size());
+    for (int i=0; i!=sz; ++i)
+    {
+      QGraphicsSimpleTextItem * const item = new QGraphicsSimpleTextItem(v[i].c_str());
+      const double w = item->boundingRect().width();
+      const double h = item->boundingRect().height();
+      const double x = -300.0;
+      const double y = -300.0 + (static_cast<double>(i - (sz/2)) * 20.0);
+      item->setPos((-0.5 * w) + x,(-0.5 * h) + y);
+      assert(!item->scene());
+      scene()->addItem(item);
+    }
+  }
+
 }

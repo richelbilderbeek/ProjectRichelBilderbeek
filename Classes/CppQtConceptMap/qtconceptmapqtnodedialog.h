@@ -13,27 +13,27 @@
 
 
 namespace Ui {
-  class QtConceptMapQtNodeDialog;
+  class QtQtNodeDialog;
 }
 
 namespace ribi {
 namespace cmap {
 
-class QtConceptMapQtNodeDialog : public ::ribi::QtHideAndShowDialog
+class QtQtNodeDialog : public ::ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtConceptMapQtNodeDialog(QWidget *parent = 0);
-  QtConceptMapQtNodeDialog(const QtConceptMapQtNodeDialog&) = delete;
-  QtConceptMapQtNodeDialog& operator=(const QtConceptMapQtNodeDialog&) = delete;
-  ~QtConceptMapQtNodeDialog();
+  explicit QtQtNodeDialog(QWidget *parent = 0);
+  QtQtNodeDialog(const QtQtNodeDialog&) = delete;
+  QtQtNodeDialog& operator=(const QtQtNodeDialog&) = delete;
+  ~QtQtNodeDialog();
 
   void SetQtNode(const boost::shared_ptr<QtNode>& qtnode);
   boost::shared_ptr<QtNode> GetQtNode() const noexcept { return m_qtnode; }
 
 private:
-  Ui::QtConceptMapQtNodeDialog *ui;
+  Ui::QtQtNodeDialog *ui;
 
   ///The QtNode to work on
   boost::shared_ptr<QtNode> m_qtnode;

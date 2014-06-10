@@ -77,6 +77,8 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
   void setPos(qreal x, qreal y) { QtRoundedEditRectItem::setPos(x,y); }
 
   void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
+  void hoverStartEvent(QGraphicsSceneHoverEvent *);
+
 
   private:
   virtual void SetNode(const boost::shared_ptr<Node>& node) = 0;

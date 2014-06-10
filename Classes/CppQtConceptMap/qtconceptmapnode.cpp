@@ -283,10 +283,6 @@ void ribi::cmap::QtNode::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
 }
 */
 
-void ribi::cmap::QtNode::hoverStartEvent(QGraphicsSceneHoverEvent *)
-{
-  this->setCursor(QCursor(Qt::PointingHandCursor));
-}
 
 void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event)
 {

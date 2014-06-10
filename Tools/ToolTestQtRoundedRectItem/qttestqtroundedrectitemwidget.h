@@ -5,13 +5,13 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <QGraphicsView>
+#include "qtkeyboardfriendlygraphicsview.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///The widget holding the items
-struct QtTestQtRoundedRectItemWidget : public QGraphicsView
+struct QtTestQtRoundedRectItemWidget : public ribi::QtKeyboardFriendlyGraphicsView
 {
   QtTestQtRoundedRectItemWidget(QWidget *parent = 0);
 };

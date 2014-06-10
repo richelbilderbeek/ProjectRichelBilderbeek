@@ -86,7 +86,6 @@ protected:
 
   void focusInEvent(QFocusEvent *event) final;
   void focusOutEvent(QFocusEvent *event) final;
-  void hoverStartEvent(QGraphicsSceneHoverEvent *);
   void keyPressEvent(QKeyEvent *event) final;
 
   //const boost::shared_ptr<QtConceptMapItem>& GetConceptItem() { return m_concept_item; }

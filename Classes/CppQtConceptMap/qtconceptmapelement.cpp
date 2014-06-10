@@ -46,3 +46,8 @@ void ribi::cmap::QtConceptMapElement::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
+
+void ribi::cmap::QtConceptMapElement::hoverStartEvent(QGraphicsSceneHoverEvent *)
+{
+  this->setCursor(QCursor(Qt::PointingHandCursor));
+}

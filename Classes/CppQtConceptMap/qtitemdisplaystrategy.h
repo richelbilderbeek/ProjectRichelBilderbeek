@@ -149,6 +149,9 @@ private:
   ///The pen by which the indicator is drawn
   QPen m_indicator_pen;
 
+  ///The ?main? brush
+  QBrush m_main_brush;
+
   //void setFocus(Qt::FocusReason focusReason) = delete;
 
   #ifndef NDEBUG

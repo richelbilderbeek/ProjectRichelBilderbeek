@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-  ui(new Ui::QtConceptMapQtNodeDialog)
+  ui(new Ui::QtQtNodeDialog)
 {
   ui->setupUi(this);
 }

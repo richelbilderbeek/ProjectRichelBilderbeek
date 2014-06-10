@@ -56,7 +56,8 @@ ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
     m_contour_pen(QPen(QColor(0,0,0))),
     m_focus_pen(QPen(QColor(0,0,0))),
     m_indicator_brush(QBrush(QColor(0,0,0,0))),
-    m_indicator_pen(QPen(QColor(0,0,0)))
+    m_indicator_pen(QPen(QColor(0,0,0))),
+    m_main_brush(QBrush(QColor(0,0,0,0)))
 {
   #ifndef NDEBUG
   Test();
@@ -95,10 +96,12 @@ boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStrategy::
 }
 */
 
+/*
 std::string ribi::cmap::QtItemDisplayStrategy::GetName() const noexcept
 {
   return Unwordwrap(this->GetText());
 }
+*/
 
 /*
 void ribi::cmap::QtItemDisplayStrategy::hoverStartEvent(QGraphicsSceneHoverEvent *)
@@ -107,7 +110,7 @@ void ribi::cmap::QtItemDisplayStrategy::hoverStartEvent(QGraphicsSceneHoverEvent
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 */
-
+/*
 void ribi::cmap::QtItemDisplayStrategy::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
@@ -159,13 +162,13 @@ void ribi::cmap::QtItemDisplayStrategy::paint(QPainter* painter, const QStyleOpt
       );
   }
 }
-
+*/
 void ribi::cmap::QtItemDisplayStrategy::SetIndicatorBrush(const QBrush& brush)
 {
   if (m_indicator_brush != brush)
   {
     m_indicator_brush = brush;
-    this->update();
+    //this->update();
   }
 }
 
@@ -174,21 +177,22 @@ void ribi::cmap::QtItemDisplayStrategy::SetIndicatorPen(const QPen& pen)
   if (m_indicator_pen != pen)
   {
     m_indicator_pen = pen;
-    this->update();
+    //this->update();
   }
 }
 
 void ribi::cmap::QtItemDisplayStrategy::SetMainBrush(const QBrush& any_brush)
 {
-
-  if (this->brush() != any_brush)
+  if (m_main_brush != any_brush)
   {
-    this->setBrush(any_brush);
-    this->update();
+    m_main_brush = any_brush;
+    //this->setBrush(any_brush);
+    //this->update();
   }
-  assert(this->brush() == any_brush);
+  //assert(this->brush() == any_brush);
 }
 
+/*
 void ribi::cmap::QtItemDisplayStrategy::SetPos(const double x, const double y)
 {
   if (x != this->x() || y != this->y())
@@ -212,6 +216,7 @@ void ribi::cmap::QtItemDisplayStrategy::SetName(const std::string& s)
   #endif
   assert(this->GetName() == s);
 }
+*/
 
 /*
 QPainterPath ribi::cmap::QtItemDisplayStrategy::shape() const
