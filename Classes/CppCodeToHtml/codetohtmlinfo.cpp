@@ -13710,7 +13710,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
-    { "ToolPaperRockScissors", // || m_page_name == "CppPaperRockScissors",
+    { "ToolPaperRockScissorsVcl", // || m_page_name == "CppPaperRockScissors",
       {
         "<p>This simulation shows pure paper-rock-scissors players competing on a",
         "two-dimensional grid (a donut-shaped world). Each time step, a random pixel is",

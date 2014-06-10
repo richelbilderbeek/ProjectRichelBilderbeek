@@ -1210,19 +1210,19 @@ struct ProgramNdsPaint : public ProgramTool
   std::string GetUrl() const noexcept { return "ToolNdsPaint.htm"; }
 };
 
-struct ProgramPaperRockScissors : public ProgramTool
+struct ProgramPaperRockScissorsVcl : public ProgramTool
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
   std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolPaperRockScissors_1_0.png"; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  std::string GetScreenName() const noexcept { return "PaperRockScissors"; }
+  std::string GetScreenName() const noexcept { return "PaperRockScissors (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::paperRockScissors; }
-  std::string GetUrl() const noexcept { return "ToolPaperRockScissors.htm"; }
+  ProgramType GetType() const noexcept { return ProgramType::paperRockScissorsVcl; }
+  std::string GetUrl() const noexcept { return "ToolPaperRockScissorsVcl.htm"; }
 };
 
 struct ProgramPause : public ProgramTool

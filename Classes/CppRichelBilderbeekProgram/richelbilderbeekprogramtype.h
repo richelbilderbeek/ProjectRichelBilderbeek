@@ -100,7 +100,7 @@ enum class ProgramType
   musicTheory,
   ndsmake,
   ndsPaint,
-  paperRockScissors,
+  paperRockScissorsVcl,
   pause,
   perfectElasticCollision,
   picToCode,
