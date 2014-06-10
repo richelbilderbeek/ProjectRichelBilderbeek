@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 
 #include "polyfile.h"
@@ -12,15 +13,21 @@
 
 namespace ribi {
 
-///Class to contruct a PolyFile from Polygons
+///Class to contruct a PolyFile from Polygons and Linestring
 struct PolyFileFromPolygons
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+  typedef boost::geometry::model::linestring<Coordinat> Linestring;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef std::vector<Linestring> Linestrings;
   typedef std::vector<Polygon> Polygons;
 
-  PolyFileFromPolygons(const Polygons& shapes);
+  PolyFileFromPolygons(
+    const Polygons& polygons,
+    const Linestrings& linestrings = {}
+  );
 
+  const Linestrings& GetLinestrings() const noexcept { return m_linestrings; }
   const PolyFile& GetPolyFile() const noexcept { return m_polyfile; }
   const Polygons& GetPolygons() const noexcept { return m_polygons; }
 
@@ -30,6 +37,7 @@ struct PolyFileFromPolygons
   std::string ToStr() const noexcept;
 
   private:
+  const Linestrings m_linestrings;
   const PolyFile m_polyfile;
   const Polygons m_polygons;
 
@@ -37,8 +45,12 @@ struct PolyFileFromPolygons
   static void Test() noexcept;
   #endif
 
-  static PolyFile::Edges ToEdges(const Polygons& polygons) noexcept;
-  static PolyFile::Vertices ToVertices(const Polygons& polygons) noexcept;
+  static PolyFile::Edges ToEdges(
+    const Polygons& polygons, const Linestrings& linestrings
+  ) noexcept;
+  static PolyFile::Vertices ToVertices(
+    const Polygons& polygons, const Linestrings& linestrings
+  ) noexcept;
 };
 
 //std::ostream& operator<<(std::ostream& os, const PolyFileFromPolygons& polyfile) noexcept;

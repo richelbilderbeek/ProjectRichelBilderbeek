@@ -36,6 +36,7 @@ struct WktToSvgMainDialog
 {
   WktToSvgMainDialog(
     const std::string& wkt = "POLYGON((0 0,0 1,1 1))",
+    const double stroke_width = 1.0,
     const bool verbose = false
   );
 
@@ -67,6 +68,7 @@ struct WktToSvgMainDialog
 
   static std::string ToSvg(
     const std::string& wkt,
+    const double stroke_width,
     const bool verbose
   );
 };

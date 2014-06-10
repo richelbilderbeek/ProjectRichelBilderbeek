@@ -27,10 +27,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <stdexcept>
 
-#include <boost/math/constants/constants.hpp>
-#include <boost/units/systems/si/prefixes.hpp>
-
-#include <QDesktopWidget>
 #include <QGraphicsSvgItem>
 #include <QKeyEvent>
 
@@ -38,9 +34,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "geometry.h"
 #include "polyfilefrompolygons.h"
 #include "qtnavigationablegraphicsview.h"
-#include "trace.h"
 #include "testpolyfilefrompolygonsmaindialog.h"
+#include "trace.h"
 #include "ui_qttestpolyfilefrompolygonsmaindialog.h"
+#include "wkttosvgmaindialog.h"
 
 #pragma GCC diagnostic pop
 
@@ -53,12 +50,6 @@ ribi::QtTestPolyFileFromPolygonsMainDialog::QtTestPolyFileFromPolygonsMainDialog
   #endif
   ui->setupUi(this);
 
-  {
-    //Put this dialog in the screen center
-    const QRect scr = QApplication::desktop()->screenGeometry();
-    move( scr.center() - rect().center() );
-  }
-
   on_edit_shapes_textChanged();
 }
 
@@ -69,13 +60,13 @@ ribi::QtTestPolyFileFromPolygonsMainDialog::~QtTestPolyFileFromPolygonsMainDialo
 
 void ribi::QtTestPolyFileFromPolygonsMainDialog::DisplayPolyFile() noexcept
 {
-  const auto polygons = GetShapes();
+  const auto shapes = GetShapes();
 
   const std::string filename = fileio::FileIo().GetTempFileName(".poly");
   {
-    PolyFileFromPolygons polyfile(polygons);
+    PolyFileFromPolygons polyfile(shapes.first,shapes.second);
     std::ofstream f(filename.c_str());
-    f << polyfile;
+    f << polyfile.ToStr();
   }
   const auto text = fileio::FileIo().FileToVector(filename);
   std::string s;
@@ -88,21 +79,25 @@ void ribi::QtTestPolyFileFromPolygonsMainDialog::DisplayPolyFile() noexcept
 
 void ribi::QtTestPolyFileFromPolygonsMainDialog::DisplayPolygons() noexcept
 {
-  const std::string text = ui->edit_shapes->toPlainText().toStdString();
-  const std::vector<std::string> lines = SeperateString(text);
-
-  std::vector<Polygon> polygons = GetShapes();
-
+  assert(ui->view->scene());
+  ui->view->scene()->clear();
   const std::string svg_filename = fileio::FileIo().GetTempFileName(".svg");
   {
+    const std::string text_with_comments = ui->edit_shapes->toPlainText().toStdString();
+    const auto v = SeperateString(text_with_comments,'\n');
+    std::string text;
+    for (const auto s: v)
+    {
+      std::string t = boost::algorithm::trim_copy(s);
+      if (!t.empty() && t[0] != '#') text += t + '\n';
+    }
+    const WktToSvgMainDialog d(text);
     std::ofstream f(svg_filename.c_str());
-    f << Geometry().ToSvgStr(polygons,0.1);
+    f << d.GetSvg();
   }
   {
     QGraphicsSvgItem * const item = new QGraphicsSvgItem(svg_filename.c_str());
-    item->setScale(10.0);
-    assert(ui->view->scene());
-    ui->view->scene()->clear();
+    item->setScale(1.0);
     ui->view->scene()->addItem(item);
   }
   fileio::FileIo().DeleteFile(svg_filename);
@@ -110,26 +105,36 @@ void ribi::QtTestPolyFileFromPolygonsMainDialog::DisplayPolygons() noexcept
 
 
 
-std::vector<ribi::QtTestPolyFileFromPolygonsMainDialog::Polygon>
+ribi::QtTestPolyFileFromPolygonsMainDialog::Shapes
   ribi::QtTestPolyFileFromPolygonsMainDialog::GetShapes() const noexcept
 {
-  std::vector<Polygon> polygons;
+  Shapes shapes;
   const std::string text = ui->edit_shapes->toPlainText().toStdString();
   const std::vector<std::string> lines = SeperateString(text);
   for (const std::string line: lines)
   {
-    Polygon polygon;
     try
     {
+      Polygon polygon;
       boost::geometry::read_wkt(line,polygon);
-      polygons.push_back(polygon);
+      shapes.first.push_back(polygon);
     }
-    catch (boost::geometry::read_wkt_exception& e)
+    catch (boost::geometry::read_wkt_exception&)
+    {
+      //No problem
+    }
+    try
+    {
+      Linestring linestring;
+      boost::geometry::read_wkt(line,linestring);
+      shapes.second.push_back(linestring);
+    }
+    catch (boost::geometry::read_wkt_exception&)
     {
       //No problem
     }
   }
-  return polygons;
+  return shapes;
 }
 
 void ribi::QtTestPolyFileFromPolygonsMainDialog::keyPressEvent(QKeyEvent * event) noexcept
@@ -144,9 +149,10 @@ void ribi::QtTestPolyFileFromPolygonsMainDialog::on_edit_shapes_textChanged()
 }
 
 std::vector<std::string> ribi::QtTestPolyFileFromPolygonsMainDialog::SeperateString(
-  const std::string& input) noexcept
+  const std::string& input,
+  const char seperator
+) noexcept
 {
-  const char seperator  = '\n';
   std::vector<std::string> v;
   boost::algorithm::split(v,input,
     std::bind2nd(std::equal_to<char>(),seperator),

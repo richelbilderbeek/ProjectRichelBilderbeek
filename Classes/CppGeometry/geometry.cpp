@@ -1859,8 +1859,8 @@ std::string ribi::Geometry::ToStr(
   return t;
 }
 
-std::string ribi::Geometry::ToSvgStr(
-  const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
+std::string ribi::Geometry::ToSvg(
+  const Polygons& polygons,
   const double stroke_width
 ) const noexcept
 {
@@ -1869,42 +1869,132 @@ std::string ribi::Geometry::ToSvgStr(
     << std::setprecision(99)
     << R"*(<svg xmlns="http://www.w3.org/2000/svg" version="1.1">)*"
     << '\n'
+    << ToSvgStr(polygons,stroke_width) << '\n'
+    << R"*(</svg>)*"
   ;
-  for (const Polygon& polygon: shapes)
+  return s.str();
+}
+
+std::string ribi::Geometry::ToSvg(
+  const Polygons& polygons,
+  const Linestrings& linestrings,
+  const double stroke_width
+) const noexcept
+{
+  std::stringstream s;
+  s
+    << std::setprecision(99)
+    << R"*(<svg xmlns="http://www.w3.org/2000/svg" version="1.1">)*"
+    << '\n'
+    << ToSvgStr(polygons,stroke_width) << '\n'
+    << ToSvgStr(linestrings,stroke_width) << '\n'
+    << R"*(</svg>)*"
+  ;
+  return s.str();
+}
+
+std::string ribi::Geometry::ToSvgStr(
+  const Polygons& polygons,
+  const double stroke_width
+) const noexcept
+{
+  std::stringstream s;
+  for (const Polygon& polygon: polygons)
   {
-    const std::vector<Coordinat2D> points = polygon.outer();
-    const int n_points = static_cast<int>(points.size());
-    if(n_points < 3) continue;
-    //Move to first point
-    s
-      <<  R"*(  <path d="M )*"
-      << points[0].x()
-      << " "
-      << points[0].y()
-    ;
-    //Draw lines to others
-    s << " L ";
-    for (int i=1; i!=n_points; ++i)
-    {
-      s
-        << points[i].x()
-        << " "
-        << points[i].y()
-        << " "
-      ;
-
-      //No trailing comma
-      if (i != n_points - 1) { s << ","; }
-    }
-    s
-      << R"*(z" stroke="black" fill="none" stroke-width=")*"
-      << stroke_width
-      << R"*("/>)*"
-      << '\n'
-    ;
+    s << ToSvgStr(polygon,stroke_width);
   }
+  return s.str();
+}
 
-  s << R"*(</svg>)*";
+std::string ribi::Geometry::ToSvgStr(
+  const Linestrings& linestrings,
+  const double stroke_width
+) const noexcept
+{
+  std::stringstream s;
+  for (const Linestring& linestring: linestrings)
+  {
+    s << ToSvgStr(linestring,stroke_width);
+  }
+  return s.str();
+}
+
+std::string ribi::Geometry::ToSvgStr(
+  const Polygon& polygon,
+  const double stroke_width
+) const noexcept
+{
+  const std::vector<Coordinat2D> points = polygon.outer();
+  const int n_points = static_cast<int>(points.size());
+  //if(n_points < 3) continue;
+  //Move to first point
+  std::stringstream s;
+  s
+    <<  R"*(  <path d="M )*"
+    << points[0].x()
+    << " "
+    << points[0].y()
+  ;
+  //Draw lines to others
+  s << " L ";
+  for (int i=1; i!=n_points; ++i)
+  {
+    s
+      << points[i].x()
+      << " "
+      << points[i].y()
+      << " "
+    ;
+
+    //No trailing comma
+    if (i != n_points - 1)
+    {
+      s << ",";
+    }
+  }
+  s
+    << R"*(z" stroke="black" fill="none" stroke-width=")*"
+    << stroke_width
+    << R"*("/>)*"
+  ;
+  return s.str();
+}
+
+std::string ribi::Geometry::ToSvgStr(
+  const Linestring& linestring,
+  const double stroke_width
+) const noexcept
+{
+  const std::vector<Coordinat2D> points = linestring;
+  const int n_points = static_cast<int>(points.size());
+  //if(n_points < 3) continue;
+  //Move to first point
+  std::stringstream s;
+  s
+    <<  R"*(  <path d="M )*"
+    << points[0].x()
+    << " "
+    << points[0].y()
+  ;
+  //Draw lines to others
+  s << " L ";
+  for (int i=1; i!=n_points; ++i)
+  {
+    s
+      << points[i].x()
+      << " "
+      << points[i].y()
+      << " "
+    ;
+
+    //No trailing comma
+    if (i != n_points - 1) { s << ","; }
+  }
+  s
+    << R"*(z" stroke="black" fill="none" stroke-width=")*"
+    << stroke_width
+    << R"*("/>)*"
+  ;
   return s.str();
 }
 

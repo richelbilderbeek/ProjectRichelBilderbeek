@@ -27,9 +27,9 @@ SOURCES += \
     ../../Tools/ToolTriangleCpp/trianglecppstring.cpp \
     ../../Tools/ToolTriangleCpp/trianglecppglobals.cpp \
     ../../Tools/ToolTriangleCpp/trianglecppdefines.cpp \
-    ../ToolTriangleCpp/trianglecppvertextype.cpp \
-    ../ToolTriangleCpp/trianglecpphelper.cpp \
-    trianglecppmeshbuilder.cpp
+    ../../Tools/ToolTriangleCpp/trianglecppvertextype.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecpphelper.cpp \
+    ../../Tools/ToolTriangleCpp/trianglecppmeshbuilder.cpp
 
 HEADERS += \
     ../../Tools/ToolTriangleCpp/trianglecppmain.h \
@@ -58,10 +58,10 @@ HEADERS += \
     ../../Tools/ToolTriangleCpp/trianglecppfinddirectionresult.h \
     ../../Tools/ToolTriangleCpp/trianglecppfile.h \
     ../../Tools/ToolTriangleCpp/trianglecppstring.h \
-    ../ToolTriangleCpp/trianglecppvertextype.h \
-    ../ToolTriangleCpp/trianglecpphelper.h \
-    trianglecpptypedefs.h \
-    trianglecppmeshbuilder.h
+    ../../Tools/ToolTriangleCpp/trianglecppvertextype.h \
+    ../../Tools/ToolTriangleCpp/trianglecpphelper.h \
+    ../../Tools/ToolTriangleCpp/trianglecpptypedefs.h \
+    ../../Tools/ToolTriangleCpp/trianglecppmeshbuilder.h
 
 OTHER_FILES += \
     ../ToolTriangleCpp/ToolTriangleCpp.txt

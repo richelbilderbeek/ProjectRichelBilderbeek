@@ -14,8 +14,17 @@
 #pragma GCC diagnostic pop
 
 
-ribi::PolyFileFromPolygons::PolyFileFromPolygons(const Polygons& polygons)
-  : m_polyfile(PolyFile(ToVertices(polygons),ToEdges(polygons))),
+ribi::PolyFileFromPolygons::PolyFileFromPolygons(
+  const Polygons& polygons,
+  const Linestrings& linestrings
+)
+  : m_linestrings(linestrings),
+    m_polyfile(
+      PolyFile(
+        ToVertices(polygons,linestrings),
+        ToEdges(polygons,linestrings)
+      )
+    ),
     m_polygons(polygons)
 {
   #ifndef NDEBUG
@@ -25,13 +34,14 @@ ribi::PolyFileFromPolygons::PolyFileFromPolygons(const Polygons& polygons)
 
 std::string ribi::PolyFileFromPolygons::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::PolyFileFromPolygons::GetVersionHistory() noexcept
 {
   return {
-    "2014-06-02: Version 1.0: split off from PolyFile"
+    "2014-06-02: Version 1.0: split off from PolyFile",
+    "2014-06-10: Version 1.1: added support for linestrings"
   };
 }
 
@@ -83,7 +93,10 @@ void ribi::PolyFileFromPolygons::Test() noexcept
   TRACE("Successfully finished ribi::PolyFileFromPolygons::Test");
 }
 #endif
-ribi::PolyFile::Edges ribi::PolyFileFromPolygons::ToEdges(const Polygons& polygons) noexcept
+ribi::PolyFile::Edges ribi::PolyFileFromPolygons::ToEdges(
+  const Polygons& polygons,
+  const Linestrings& linestrings
+) noexcept
 {
   ribi::PolyFile::Edges edges;
   int vertex_index = 0;
@@ -105,6 +118,21 @@ ribi::PolyFile::Edges ribi::PolyFileFromPolygons::ToEdges(const Polygons& polygo
     }
     shape_first_vertex_index += n;
   }
+
+  for (const auto linestring: linestrings)
+  {
+    const int n = static_cast<int>(linestring.size());
+
+    for (int i=0; i!=n-1; ++i) //Always go to the next point
+    {
+      const int from_index = vertex_index;
+      const int to_index = vertex_index+1; //Go to next
+      edges.push_back(std::make_pair(from_index,to_index));
+      ++vertex_index;
+    }
+    shape_first_vertex_index += n;
+  }
+
   return edges;
 }
 
@@ -113,12 +141,22 @@ std::string ribi::PolyFileFromPolygons::ToStr() const noexcept
   return m_polyfile.ToStr();
 }
 
-ribi::PolyFile::Vertices ribi::PolyFileFromPolygons::ToVertices(const Polygons& polygons) noexcept
+ribi::PolyFile::Vertices ribi::PolyFileFromPolygons::ToVertices(
+  const Polygons& polygons,
+  const Linestrings& linestrings
+) noexcept
 {
   ribi::PolyFile::Vertices v;
-  for (const auto shape: polygons)
+  for (const auto polygon: polygons)
   {
-    for (const auto vertex: shape.outer())
+    for (const auto vertex: polygon.outer())
+    {
+      v.push_back(vertex);
+    }
+  }
+  for (const auto linestring: linestrings)
+  {
+    for (const auto vertex: linestring)
     {
       v.push_back(vertex);
     }

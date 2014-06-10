@@ -25,14 +25,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
-#include <boost/units/quantity.hpp>
-#include <boost/units/systems/si/area.hpp>
-#include <boost/units/systems/si/length.hpp>
-#include <boost/units/systems/si/plane_angle.hpp>
+//#include <boost/units/quantity.hpp>
+//#include <boost/units/systems/si/area.hpp>
+//#include <boost/units/systems/si/length.hpp>
+//#include <boost/units/systems/si/plane_angle.hpp>
 #include "qthideandshowdialog.h"
-//#include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
 
 struct QPlainTextEdit;
@@ -56,8 +56,11 @@ public:
 
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
-
-  std::vector<Polygon> GetShapes() const noexcept;
+  typedef boost::geometry::model::linestring<Coordinat2D> Linestring;
+  typedef std::vector<Polygon> Polygons;
+  typedef std::vector<Linestring> Linestrings;
+  typedef std::pair<Polygons,Linestrings> Shapes;
+  Shapes GetShapes() const noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *) noexcept;
@@ -68,7 +71,10 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-  static std::vector<std::string> SeperateString(const std::string& input) noexcept;
+  static std::vector<std::string> SeperateString(
+    const std::string& input,
+    const char seperator = '\n'
+  ) noexcept;
 
 private slots:
 

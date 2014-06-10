@@ -44,8 +44,13 @@ struct Geometry
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
-  typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Polygon;
+
+  typedef boost::geometry::model::linestring<Coordinat2D> Linestring;
+  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
   typedef boost::geometry::model::box<Coordinat2D> Rect;
+
+  typedef std::vector<Linestring> Linestrings;
+  typedef std::vector<Polygon> Polygons;
 
   Geometry();
 
@@ -349,8 +354,36 @@ struct Geometry
   std::string ToStr(const Coordinat3D& p) const noexcept;
   std::string ToStr(const Polygon& polygon) const noexcept;
 
+  //Create a complete SVG file contents
+  std::string ToSvg(
+    const Polygons& polygons,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
+  std::string ToSvg(
+    const Polygons& polygons,
+    const Linestrings& linestrings,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
+  //Create the line this geometry is in an SVG file
   std::string ToSvgStr(
-    const std::vector<Polygon>& shapes,
+    const std::vector<Polygon>& polygons,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
+  std::string ToSvgStr(
+    const Polygon& polygon,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
+  std::string ToSvgStr(
+    const Linestrings& linestrings,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
+  std::string ToSvgStr(
+    const Linestring& linestring,
     const double stroke_width = 1.0
   ) const noexcept;
 

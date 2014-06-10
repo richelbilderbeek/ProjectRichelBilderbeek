@@ -29,13 +29,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/xpressive/xpressive.hpp>
+
+#include "geometry.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::WktToSvgMainDialog::WktToSvgMainDialog(
   const std::string& wkt,
+  const double stroke_width,
   const bool verbose
-) : m_svg(ToSvg(wkt,verbose)),
+) : m_svg(ToSvg(wkt,stroke_width,verbose)),
     m_wkt(wkt)
 {
   #ifndef NDEBUG
@@ -101,6 +104,7 @@ void ribi::WktToSvgMainDialog::Test() noexcept
 
 std::string ribi::WktToSvgMainDialog::ToSvg(
   const std::string& wkt,
+  const double stroke_width,
   const bool verbose
 )
 {
@@ -123,6 +127,60 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
 
 
   std::stringstream stream;
+
+  #define DO_NOT_USE_BOOST_GEOMETRY_SVG_MAPPER_20140610
+  #ifdef DO_NOT_USE_BOOST_GEOMETRY_SVG_MAPPER_20140610
+  {
+    stream
+      << std::setprecision(99)
+      << R"*(<svg xmlns="http://www.w3.org/2000/svg" version="1.1">)*"
+      << '\n'
+    ;
+
+    for (const auto s: GetRegexMatches(wkt,regex_str))
+    {
+      try
+      {
+        Polygon polygon;
+        stream << Geometry().ToSvgStr(polygon,stroke_width);
+
+        if (verbose)
+        {
+          std::cout << "Geometry '" << s << "' was parsed successfully as a Polygon" << std::endl;
+        }
+      }
+      catch (std::exception&)
+      {
+        if (verbose)
+        {
+          std::cout << "Geometry '" << s << "' could not be parsed to a Polygon" << std::endl;
+        }
+      }
+
+      try
+      {
+        Linestring linestring;
+        stream << Geometry().ToSvgStr(linestring,stroke_width);
+
+        if (verbose)
+        {
+          std::cout << "Geometry '" << s << "' was parsed successfully as a Linestring" << std::endl;
+        }
+      }
+      catch (std::exception&)
+      {
+        if (verbose)
+        {
+          std::cout << "Geometry '" << s << "' could not be parsed to a Linestring" << std::endl;
+        }
+      }
+
+    }
+    stream << R"*(</svg>)*";
+  }
+  #else
+  //It appears that the Boost.Geometry SVG mapper cannot handle
+  //negative coordinats
   {
     boost::geometry::svg_mapper<Coordinat,false> svg(stream,100,100);
 
@@ -172,5 +230,6 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
 
     }
   }
+  #endif
   return stream.str();
 }

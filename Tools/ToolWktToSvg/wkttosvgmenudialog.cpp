@@ -57,6 +57,7 @@ int ribi::WktToSvgMenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
     std::cout << "Verbose mode" << std::endl;
   }
 
+  //WKT
   std::string wkt = "";
   for (int i=0; i!=argc-1; ++i)
   {
@@ -77,13 +78,23 @@ int ribi::WktToSvgMenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
     std::cout << "WKT: " << wkt << '\n';
   }
 
+  //Silent
+  bool silent = false;
+  if (std::count(args.begin(),args.end(),"-s") || std::count(args.begin(),args.end(),"--silent"))
+  {
+    silent = true;
+  }
+
   try
   {
     const WktToSvgMainDialog d(
       wkt,
       verbose
     );
-    std::cout << "SVG: " << d.GetSvg() << std::endl;
+    if (!silent)
+    {
+      std::cout << d.GetSvg() << std::endl;
+    }
     return 0;
   }
   catch (std::exception& e)
@@ -121,21 +132,15 @@ ribi::Help ribi::WktToSvgMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-      Help::Option('w',"wkt","the WTK string"),
-      Help::Option('b',"verbose","generate more output")
+      Help::Option('b',"verbose","generate more output"),
+      Help::Option('s',"silent","no final output"),
+      Help::Option('w',"wkt","the WTK string")
     },
     {
       GetAbout().GetFileTitle() + " --wtk POLYGON((1 1,-1 1,-1 -1,1 -1)) --verbose",
-      GetAbout().GetFileTitle() + " -w POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1)) -b",
+      GetAbout().GetFileTitle() + " -w POLYGON((0 1,-1 -1,1 -1)),LINESTRING((0 -1,-1 1,1 1)) -b",
     }
   );
-}
-
-std::string ribi::WktToSvgMenuDialog::GetPolygonRegex()
-{
-  return
-    "(POLYGON\\(\\(.*\\)\\))"
-  ;
 }
 
 boost::shared_ptr<const ribi::Program> ribi::WktToSvgMenuDialog::GetProgram() const noexcept
@@ -145,27 +150,6 @@ boost::shared_ptr<const ribi::Program> ribi::WktToSvgMenuDialog::GetProgram() co
   };
   assert(p);
   return p;
-}
-
-//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-std::vector<std::string> ribi::WktToSvgMenuDialog::GetRegexMatches(
-  const std::string& s,
-  const QRegExp& r_original
-) noexcept
-{
-  QRegExp r(r_original);
-  r.setMinimal(true); //QRegExp must be non-greedy
-  std::vector<std::string> v;
-  int pos = 0;
-  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
-  {
-    const QString q = r.cap(1);
-    if (q.isEmpty()) break;
-    v.push_back(q.toStdString());
-    pos += r.matchedLength();
-  }
-
-  return v;
 }
 
 std::string ribi::WktToSvgMenuDialog::GetVersion() const noexcept
@@ -196,28 +180,32 @@ void ribi::WktToSvgMenuDialog::Test() noexcept
     d.Execute(
       {
         "WktToSvgMenuDialog",
-        "--wkt", "POLYGON((1 1,-1 1,-1 -1,1 -1))"
+        "--wkt", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
+        "--silent"
         //"--verbose"
       }
     );
     d.Execute(
       {
         "WktToSvgMenuDialog",
-        "--wkt", "LINESTRING(1 1,-1 1,-1 -1,1 -1)"
+        "--wkt", "LINESTRING(1 1,-1 1,-1 -1,1 -1)",
+        "-s"
         //"--verbose"
       }
     );
     d.Execute(
       {
         "WktToSvgMenuDialog",
-        "-w", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))"
+        "-w", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))",
+        "-s"
         //"-b"
       }
     );
     d.Execute(
       {
         "WktToSvgMenuDialog",
-        "-w", "POLYGON((0 1,-1 -1,1 -1)),LINESTRING(0 -1,-1 1,1 1,0 -1)"
+        "-w", "POLYGON((0 1,-1 -1,1 -1)),LINESTRING(0 -1,-1 1,1 1,0 -1)",
+        "-s"
         //"-b"
       }
     );
