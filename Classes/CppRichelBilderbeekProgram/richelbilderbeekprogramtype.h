@@ -223,6 +223,7 @@ enum class ProgramType
   vigenereCipher,
   virtualBastard,
   visualAbc,
+  wktToSvg,
   xeNonZero,
   zork,
 

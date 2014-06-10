@@ -31,6 +31,9 @@ public:
   QtConceptMapTestQtNodeDialog& operator=(const QtConceptMapTestQtNodeDialog&) = delete;
   ~QtConceptMapTestQtNodeDialog() noexcept;
 
+  boost::shared_ptr<Node> GetNode() const noexcept;
+  void SetNode(const boost::shared_ptr<Node>& m_node) noexcept;
+
 protected:
 
   void keyPressEvent(QKeyEvent *);
@@ -44,13 +47,14 @@ private slots:
   //void on_box_specificity_currentIndexChanged(const QString &arg1);
   //void on_edit_example_text_textChanged(const QString &arg1);
 
+  void on_button_load_clicked();
+
 private:
 
   Ui::QtConceptMapTestQtNodeDialog *ui;
 
   boost::shared_ptr<QtNodeDialog> m_dialog;
   QGraphicsView * const m_view;
-  //const boost::shared_ptr<Node> m_node;
   //QtNode* m_display_node;
   //QtNode* m_edit_node;
   //QtNode* m_rate_node;

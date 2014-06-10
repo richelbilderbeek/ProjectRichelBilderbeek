@@ -231,6 +231,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::vigenereCipher: p.reset(new ProgramVigenereCipher); break;
     case ProgramType::virtualBastard: p.reset(new ProgramVirtualBastard); break;
     case ProgramType::visualAbc: p.reset(new ProgramVisualAbc); break;
+    case ProgramType::wktToSvg: p.reset(new ProgramWktToSvg); break;
     case ProgramType::xeNonZero: p.reset(new ProgramXeNonZero); break;
     case ProgramType::zork: p.reset(new ProgramZork); break;
     case ProgramType::n_types:

@@ -50,6 +50,7 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *
   my_layout->addWidget(m_dialog.get(),1,1);
   my_layout->addWidget(m_view,1,0);
 
+
   /*
   assert(ui->view->scene());
 
@@ -148,6 +149,16 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *
 ribi::cmap::QtConceptMapTestQtNodeDialog::~QtConceptMapTestQtNodeDialog() noexcept
 {
   delete ui;
+}
+
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestQtNodeDialog::GetNode() const noexcept
+{
+
+}
+
+void ribi::cmap::QtConceptMapTestQtNodeDialog::SetNode(const boost::shared_ptr<Node>& m_node) noexcept
+{
+
 }
 
 /*
@@ -333,3 +344,8 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::OnRequestsSceneUpdate()
   this->ui->view->scene()->update();
 }
 */
+
+void ribi::cmap::QtConceptMapTestQtNodeDialog::on_button_load_clicked()
+{
+
+}
