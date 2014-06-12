@@ -91,7 +91,9 @@ void ribi::QtTestPolyFileFromPolygonsMainDialog::DisplayPolygons() noexcept
       std::string t = boost::algorithm::trim_copy(s);
       if (!t.empty() && t[0] != '#') text += t + '\n';
     }
-    const WktToSvgMainDialog d(text);
+    const double stroke_width = 1.0;
+    const bool verbose = false;
+    const WktToSvgMainDialog d(text,stroke_width,verbose);
     std::ofstream f(svg_filename.c_str());
     f << d.GetSvg();
   }

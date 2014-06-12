@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>619</width>
-    <height>416</height>
+    <height>445</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -95,9 +95,11 @@ QPlainTextEdit { font: 10px }
       <enum>QPlainTextEdit::NoWrap</enum>
      </property>
      <property name="plainText">
-      <string>POLYGON((0 0,0 2,2 2,2 0))
-LINESTRING(1 1,1 3,3 3,3 1,1 1)
-</string>
+      <string>#Two intersecting squares
+#A square as you would expect
+POLYGON((-10 -10,-10 10,10 10,10 -10))
+#A linestring that goes back to its origin
+LINESTRING(-5 -5,-5 15,15 15,15 -5,-5 -5)</string>
      </property>
     </widget>
    </item>

@@ -134,7 +134,7 @@ ribi::About ribi::TestPolyFileFromPolygonsMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestPolyFileFromPolygons",
     "tests the PolyFileFromPolygons class",
-    "the 2nd of June 2014",
+    "the 12th of June 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTestPolyFileFromPolygons.htm",
     GetVersion(),
@@ -202,13 +202,14 @@ std::vector<std::string> ribi::TestPolyFileFromPolygonsMenuDialog::GetRegexMatch
 
 std::string ribi::TestPolyFileFromPolygonsMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::TestPolyFileFromPolygonsMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2014-06-02: version 1.0: initial version"
+    "2014-06-02: version 1.0: initial version, supported polygons only",
+    "2014-06-12: version 1.1: added support for linestring",
   };
 }
 
