@@ -78,6 +78,40 @@ int ribi::WktToSvgMenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
     std::cout << "WKT: " << wkt << '\n';
   }
 
+  //Stroke width
+  double stroke_width = 1.0;
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (args[i] == "-x" || args[i] == "--stroke_width")
+    {
+      try
+      {
+        stroke_width = boost::lexical_cast<double>(args[i+1]);
+      }
+      catch (boost::bad_lexical_cast&)
+      {
+        std::cerr
+          << "You supplied a stroke width of '" << args[i+1] << "'\n"
+          << "Please supply a value of stroke width, for example '1.0'" << std::endl
+        ;
+        return 1;
+      }
+      break;
+    }
+  }
+  if (stroke_width <= 0.0)
+  {
+    std::cerr
+      << "You supplied a stroke width of " << stroke_width << '\n'
+      << "Please supply a positive value of stroke width" << std::endl;
+    return 1;
+
+  }
+  if (verbose)
+  {
+    std::cout << "stroke_width: " << stroke_width << '\n';
+  }
+
   //Silent
   bool silent = false;
   if (std::count(args.begin(),args.end(),"-s") || std::count(args.begin(),args.end(),"--silent"))
@@ -89,6 +123,7 @@ int ribi::WktToSvgMenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
   {
     const WktToSvgMainDialog d(
       wkt,
+      stroke_width,
       verbose
     );
     if (!silent)
@@ -116,7 +151,7 @@ ribi::About ribi::WktToSvgMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "WktToSvg",
     "tool to convert WKT to SVG",
-    "the 10th of June 2014",
+    "the 12th of June 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolWktToSvg.htm",
     GetVersion(),
@@ -134,11 +169,13 @@ ribi::Help ribi::WktToSvgMenuDialog::GetHelp() const noexcept
     {
       Help::Option('b',"verbose","generate more output"),
       Help::Option('s',"silent","no final output"),
-      Help::Option('w',"wkt","the WTK string")
+      Help::Option('w',"wkt","the WTK string"),
+      Help::Option('x',"stroke_width","the stroke width (1.0 by default)")
     },
     {
       GetAbout().GetFileTitle() + " --wtk POLYGON((1 1,-1 1,-1 -1,1 -1)) --verbose",
       GetAbout().GetFileTitle() + " -w POLYGON((0 1,-1 -1,1 -1)),LINESTRING((0 -1,-1 1,1 1)) -b",
+      GetAbout().GetFileTitle() + " -w LINESTRING((0 -1,-1 1,1 1)) --stroke_width 0.1",
     }
   );
 }
@@ -154,14 +191,15 @@ boost::shared_ptr<const ribi::Program> ribi::WktToSvgMenuDialog::GetProgram() co
 
 std::string ribi::WktToSvgMenuDialog::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::WktToSvgMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2014-06-10: version 1.0: initial version, supports polygon only",
-    "2014-06-10: version 1.1: added support for linestring"
+    "2014-06-10: version 1.1: added support for linestring",
+    "2014-06-12: version 1.2: added stroke_width parameter"
   };
 }
 

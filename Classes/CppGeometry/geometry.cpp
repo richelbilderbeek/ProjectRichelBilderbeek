@@ -1864,6 +1864,7 @@ std::string ribi::Geometry::ToSvg(
   const double stroke_width
 ) const noexcept
 {
+  assert(stroke_width > 0.0);
   std::stringstream s;
   s
     << std::setprecision(99)
@@ -1881,6 +1882,7 @@ std::string ribi::Geometry::ToSvg(
   const double stroke_width
 ) const noexcept
 {
+  assert(stroke_width > 0.0);
   std::stringstream s;
   s
     << std::setprecision(99)
@@ -1898,6 +1900,7 @@ std::string ribi::Geometry::ToSvgStr(
   const double stroke_width
 ) const noexcept
 {
+  assert(stroke_width > 0.0);
   std::stringstream s;
   for (const Polygon& polygon: polygons)
   {
@@ -1911,6 +1914,7 @@ std::string ribi::Geometry::ToSvgStr(
   const double stroke_width
 ) const noexcept
 {
+  assert(stroke_width > 0.0);
   std::stringstream s;
   for (const Linestring& linestring: linestrings)
   {
@@ -1924,9 +1928,12 @@ std::string ribi::Geometry::ToSvgStr(
   const double stroke_width
 ) const noexcept
 {
+  if (stroke_width <= 0.0) { return ""; }
+  assert(stroke_width > 0.0);
   const std::vector<Coordinat2D> points = polygon.outer();
   const int n_points = static_cast<int>(points.size());
-  //if(n_points < 3) continue;
+  if (n_points < 3) { return ""; }
+  assert(n_points >= 3 && "A polygon has at least three points");
   //Move to first point
   std::stringstream s;
   s
@@ -1965,9 +1972,12 @@ std::string ribi::Geometry::ToSvgStr(
   const double stroke_width
 ) const noexcept
 {
+  if (stroke_width <= 0.0) { return ""; }
+  assert(stroke_width > 0.0);
   const std::vector<Coordinat2D> points = linestring;
   const int n_points = static_cast<int>(points.size());
-  //if(n_points < 3) continue;
+  if (n_points < 2) { return ""; }
+  assert(n_points >= 2 && "A linestring has at least two points");
   //Move to first point
   std::stringstream s;
   s
@@ -1991,7 +2001,7 @@ std::string ribi::Geometry::ToSvgStr(
     if (i != n_points - 1) { s << ","; }
   }
   s
-    << R"*(z" stroke="black" fill="none" stroke-width=")*"
+    << R"*(" stroke="black" fill="none" stroke-width=")*"
     << stroke_width
     << R"*("/>)*"
   ;

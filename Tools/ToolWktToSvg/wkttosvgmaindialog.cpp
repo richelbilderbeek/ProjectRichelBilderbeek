@@ -142,7 +142,8 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
       try
       {
         Polygon polygon;
-        stream << Geometry().ToSvgStr(polygon,stroke_width);
+        boost::geometry::read_wkt(s,polygon);
+        stream << Geometry().ToSvgStr(polygon,stroke_width) << '\n';
 
         if (verbose)
         {
@@ -160,7 +161,8 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
       try
       {
         Linestring linestring;
-        stream << Geometry().ToSvgStr(linestring,stroke_width);
+        boost::geometry::read_wkt(s,linestring);
+        stream << Geometry().ToSvgStr(linestring,stroke_width) << '\n';
 
         if (verbose)
         {

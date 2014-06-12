@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>857</width>
-    <height>547</height>
+    <width>848</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -40,8 +40,18 @@ QPlainTextEdit { font: 10px }
 
 </string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0" colspan="3">
+    <widget class="QLabel" name="label_other_parameters">
+     <property name="text">
+      <string>Other parameters</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
     <widget class="QLabel" name="label_wkt">
      <property name="text">
       <string>WKT</string>
@@ -51,14 +61,21 @@ QPlainTextEdit { font: 10px }
      </property>
     </widget>
    </item>
-   <item>
+   <item row="1" column="0" colspan="3">
     <widget class="QLineEdit" name="edit">
      <property name="text">
-      <string>POLYGON((0 0,0 4,4 4,4 0)),POLYGON((1 1,1 3,3 3,3 1)) </string>
+      <string>POLYGON((-10 -10,-10 10,10 10,10 -10)),LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_stroke_width">
+     <property name="text">
+      <string>stroke_width</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="3">
     <widget class="QLabel" name="label_svg">
      <property name="text">
       <string>SVG</string>
@@ -68,28 +85,19 @@ QPlainTextEdit { font: 10px }
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QTextEdit" name="text_svg">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
+   <item row="7" column="0" colspan="3">
+    <widget class="QPlainTextEdit" name="text_svg">
      <property name="lineWrapMode">
-      <enum>QTextEdit::NoWrap</enum>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
+      <enum>QPlainTextEdit::NoWrap</enum>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="8" column="0" colspan="3">
     <widget class="ribi::QtNavigationableGraphicsView" name="view">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
+       <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="minimumSize">
@@ -100,10 +108,23 @@ QPlainTextEdit { font: 10px }
      </property>
     </widget>
    </item>
-   <item>
+   <item row="4" column="0" colspan="3">
     <widget class="QCheckBox" name="box_verbose">
      <property name="text">
       <string>Verbose</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1" colspan="2">
+    <widget class="QDoubleSpinBox" name="box_stroke_width">
+     <property name="minimum">
+      <double>0.010000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>10.000000000000000</double>
+     </property>
+     <property name="value">
+      <double>1.000000000000000</double>
      </property>
     </widget>
    </item>

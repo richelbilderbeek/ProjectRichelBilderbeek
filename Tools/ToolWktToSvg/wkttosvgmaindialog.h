@@ -34,10 +34,10 @@ namespace ribi {
 
 struct WktToSvgMainDialog
 {
-  WktToSvgMainDialog(
-    const std::string& wkt = "POLYGON((0 0,0 1,1 1))",
-    const double stroke_width = 1.0,
-    const bool verbose = false
+  explicit WktToSvgMainDialog(
+    const std::string& wkt, // = "POLYGON((0 0,0 1,1 1))",
+    const double stroke_width,
+    const bool verbose
   );
 
   const std::string& GetSvg() const noexcept { return m_svg; }

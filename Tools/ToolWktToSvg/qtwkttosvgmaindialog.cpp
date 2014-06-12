@@ -47,8 +47,11 @@ ribi::QtWktToSvgMainDialog::QtWktToSvgMainDialog(QWidget *parent) noexcept
   #endif
   ui->setupUi(this);
 
+  QObject::connect(ui->edit,SIGNAL(textChanged(QString)),this,SLOT(OnInputChanged()));
+  QObject::connect(ui->box_stroke_width,SIGNAL(valueChanged(double)),this,SLOT(OnInputChanged()));
+  QObject::connect(ui->box_verbose,SIGNAL(stateChanged(int)),this,SLOT(OnInputChanged()));
 
-  on_edit_textChanged(ui->edit->text());
+  OnInputChanged();
 }
 
 ribi::QtWktToSvgMainDialog::~QtWktToSvgMainDialog() noexcept
@@ -70,19 +73,35 @@ void ribi::QtWktToSvgMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting QtWktToSvgMainDialog::Test");
-  WktToSvgMainDialog();
+  WktToSvgMainDialog("POLYGON((0 0,0 1,1 1))",1.0,false);
   QtWktToSvgMainDialog();
   TRACE("Finished QtWktToSvgMainDialog::Test successfully");
 }
 #endif
 
-void ribi::QtWktToSvgMainDialog::on_edit_textChanged(const QString &arg1)
+void ribi::QtWktToSvgMainDialog::OnInputChanged()
 {
-  WktToSvgMainDialog d(arg1.toStdString(),ui->box_verbose->isChecked());
+  const std::string wkt_text = ui->edit->text().toStdString();
+  const double stroke_width = ui->box_stroke_width->value();
+  const WktToSvgMainDialog d(
+    wkt_text,
+    stroke_width,
+    ui->box_verbose->isChecked()
+  );
 
   const std::string svg_text = d.GetSvg();
 
-  ui->text_svg->setPlainText(svg_text.c_str());
+  ui->text_svg->setPlainText(svg_text.c_str()); //Calls on_text_svg_textChanged
+}
+
+void ribi::QtWktToSvgMainDialog::on_text_svg_textChanged()
+{
+  assert(ui->view->scene());
+  ui->view->scene()->clear();
+
+
+  const std::string svg_text = ui->text_svg->toPlainText().toStdString();
+
 
   const std::string filename = fileio::FileIo().GetTempFileName(".svg");
   //if (verbose) { std::clog << "Write SVG to file '" << filename << "'" << std::endl; }
@@ -93,9 +112,7 @@ void ribi::QtWktToSvgMainDialog::on_edit_textChanged(const QString &arg1)
   {
     QGraphicsSvgItem * const item = new QGraphicsSvgItem(filename.c_str());
     assert(item);
-    item->setScale(1.0);
-    assert(ui->view->scene());
-    ui->view->scene()->clear();
+    item->setScale(10.0);
     ui->view->scene()->addItem(item);
     assert(!ui->view->scene()->items().empty());
   }

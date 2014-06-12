@@ -64,7 +64,8 @@ private:
   #endif
 
 private slots:
-  void on_edit_textChanged(const QString &arg1);
+  void on_text_svg_textChanged();
+  void OnInputChanged();
 };
 
 } //~namespace ribi
