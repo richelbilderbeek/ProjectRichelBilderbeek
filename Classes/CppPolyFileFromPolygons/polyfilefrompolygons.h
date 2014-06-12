@@ -21,11 +21,18 @@ struct PolyFileFromPolygons
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
   typedef std::vector<Linestring> Linestrings;
   typedef std::vector<Polygon> Polygons;
+  typedef std::pair<Polygons,Linestrings> Shapes;
+
 
   PolyFileFromPolygons(
     const Polygons& polygons,
     const Linestrings& linestrings = {}
   );
+
+  PolyFileFromPolygons(
+    const Shapes& shapes
+  ) : PolyFileFromPolygons(shapes.first,shapes.second) {}
+
 
   const Linestrings& GetLinestrings() const noexcept { return m_linestrings; }
   const PolyFile& GetPolyFile() const noexcept { return m_polyfile; }

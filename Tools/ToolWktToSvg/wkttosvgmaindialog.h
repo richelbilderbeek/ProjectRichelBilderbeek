@@ -35,9 +35,8 @@ namespace ribi {
 struct WktToSvgMainDialog
 {
   explicit WktToSvgMainDialog(
-    const std::string& wkt, // = "POLYGON((0 0,0 1,1 1))",
-    const double stroke_width,
-    const bool verbose
+    const std::string& wkt,
+    const double stroke_width
   );
 
   const std::string& GetSvg() const noexcept { return m_svg; }
@@ -48,9 +47,10 @@ struct WktToSvgMainDialog
   const std::string m_svg;
   const std::string m_wkt;
 
-  static std::string GetRegex() noexcept { return R"((POLYGON\(\(.*?\)\))|(LINESTRING\(.*?\)))"; }
+  //static std::string GetRegex() noexcept { return R"((POLYGON\(\(.*?\)\))|(LINESTRING\(.*?\)))"; }
 
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+  /*
   static std::vector<std::string>
     GetRegexMatches(
     const std::string& s,
@@ -61,15 +61,14 @@ struct WktToSvgMainDialog
     const std::string& input,
     const char seperator
   ) noexcept;
-
+  */
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
   static std::string ToSvg(
     const std::string& wkt,
-    const double stroke_width,
-    const bool verbose
+    const double stroke_width
   );
 };
 

@@ -26,8 +26,10 @@
 #pragma GCC diagnostic pop
 
 ribi::TriangleFile::TriangleFile(
-  const Polygons& shapes
-) : m_polyfile{boost::make_shared<PolyFileFromPolygons>(shapes)}
+  const Polygons& polygons,
+  const Linestrings& linestrings
+) : m_polyfile(boost::make_shared<PolyFileFromPolygons>(polygons,linestrings))
+  //: m_polyfile(new PolyFileFromPolygons(shapes.first,shapes.second))
 {
   #ifndef NDEBUG
   Test();
@@ -328,9 +330,12 @@ void ribi::TriangleFile::Test() noexcept
     };
     Polygon v;
     boost::geometry::append(v, points);
+    const Polygons polygons = { v };
+    const Linestrings linestrings = {};
+    const Shapes shapes = std::make_pair(polygons,linestrings);
     try
     {
-      TriangleFile f( {v} );
+      TriangleFile f(shapes);
       //TRACE(f.ToStr());
       std::string filename_node;
       std::string filename_ele;
@@ -365,3 +370,9 @@ void ribi::TriangleFile::Test() noexcept
   }
 }
 #endif
+
+std::string ribi::TriangleFile::ToStr() const noexcept
+{
+  assert(m_polyfile);
+  return m_polyfile->ToStr();
+}

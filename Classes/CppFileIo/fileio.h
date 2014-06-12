@@ -67,11 +67,18 @@ struct FileIo
     const std::string& filename_b
   ) const;
 
+  ///FileToStr reads a file and converts it to std::string
+  ///Throws std::bad_alloc if the file is too big to fit in std::vector
+  ///Throws std::logic_error if the file does not exist
+  //From http://www.richelbilderbeek.nl/CppFileToVector.htm
+  std::string FileToStr(const std::string& filename) const;
+
   ///FileToVector reads a file and converts it to a std::vector<std::string>
   ///Throws std::bad_alloc if the file is too big to fit in std::vector
   ///Throws std::logic_error if the file does not exist
   //From http://www.richelbilderbeek.nl/CppFileToVector.htm
   std::vector<std::string> FileToVector(const std::string& filename) const;
+
 
   ///Returns the extension of a filename, starting with a dot
   //From http://www.richelbilderbeek.nl/CppGetExtension.htm

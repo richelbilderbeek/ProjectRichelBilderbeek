@@ -41,58 +41,20 @@ QPlainTextEdit { font: 10px }
 </string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0" colspan="3">
-    <widget class="QLabel" name="label_other_parameters">
-     <property name="text">
-      <string>Other parameters</string>
+   <item row="3" column="1" colspan="2">
+    <widget class="QDoubleSpinBox" name="box_stroke_width">
+     <property name="minimum">
+      <double>0.010000000000000</double>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+     <property name="maximum">
+      <double>10.000000000000000</double>
      </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="3">
-    <widget class="QLabel" name="label_wkt">
-     <property name="text">
-      <string>WKT</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="3">
-    <widget class="QLineEdit" name="edit">
-     <property name="text">
-      <string>POLYGON((-10 -10,-10 10,10 10,10 -10)),LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_stroke_width">
-     <property name="text">
-      <string>stroke_width</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0" colspan="3">
-    <widget class="QLabel" name="label_svg">
-     <property name="text">
-      <string>SVG</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+     <property name="value">
+      <double>1.000000000000000</double>
      </property>
     </widget>
    </item>
    <item row="7" column="0" colspan="3">
-    <widget class="QPlainTextEdit" name="text_svg">
-     <property name="lineWrapMode">
-      <enum>QPlainTextEdit::NoWrap</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0" colspan="3">
     <widget class="ribi::QtNavigationableGraphicsView" name="view">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -108,23 +70,54 @@ QPlainTextEdit { font: 10px }
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="3">
-    <widget class="QCheckBox" name="box_verbose">
-     <property name="text">
-      <string>Verbose</string>
+   <item row="6" column="0" colspan="3">
+    <widget class="QPlainTextEdit" name="text_svg">
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
      </property>
     </widget>
    </item>
-   <item row="3" column="1" colspan="2">
-    <widget class="QDoubleSpinBox" name="box_stroke_width">
-     <property name="minimum">
-      <double>0.010000000000000</double>
+   <item row="5" column="0" colspan="3">
+    <widget class="QLabel" name="label_svg">
+     <property name="text">
+      <string>SVG</string>
      </property>
-     <property name="maximum">
-      <double>10.000000000000000</double>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
-     <property name="value">
-      <double>1.000000000000000</double>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_stroke_width">
+     <property name="text">
+      <string>stroke_width</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QLineEdit" name="edit">
+     <property name="text">
+      <string>POLYGON((-10 -10,-10 10,10 10,10 -10)),LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label_wkt">
+     <property name="text">
+      <string>WKT</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QLabel" name="label_other_parameters">
+     <property name="text">
+      <string>Other parameters</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>

@@ -34,8 +34,11 @@ struct TriangleFile
   typedef boost::units::quantity<boost::units::si::area> Area;
   typedef boost::units::quantity<boost::units::si::length> Length;
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+  typedef boost::geometry::model::linestring<Coordinat> Linestring;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef std::vector<Linestring> Linestrings;
   typedef std::vector<Polygon> Polygons;
+  typedef std::pair<Polygons,Linestrings> Shapes;
 
   ///Start from .poly file
   //TriangleFile(
@@ -43,7 +46,8 @@ struct TriangleFile
   //) : TriangleFile(ParseShapes(polyfile),ParseHoles(polyfile)) { }
 
   ///Start from polygons
-  TriangleFile(const Polygons& shapes);
+  TriangleFile(const Polygons& polygons, const Linestrings& linestrings);
+  TriangleFile(const Shapes& shapes) : TriangleFile(shapes.first,shapes.second) {}
 
   ///Call Triangle
   //#define TODO_ISSUE_207
@@ -92,6 +96,8 @@ struct TriangleFile
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
+
+  std::string ToStr() const noexcept;
 
   private:
   //const Polygons m_holes;

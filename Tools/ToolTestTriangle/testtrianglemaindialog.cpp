@@ -36,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::TestTriangleMainDialog::TestTriangleMainDialog(
-  const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
+  const Shapes& shapes,
   const Area triangle_max_area,
   const Angle triangle_min_angle,
   const bool verbose
@@ -53,7 +53,7 @@ ribi::TestTriangleMainDialog::TestTriangleMainDialog(
   std::string filename_ele;
   std::string filename_poly;
   {
-    ribi::TriangleFile f(shapes);
+    TriangleFile f(shapes);
     //#define TODO_ISSUE_207
     #ifdef  TODO_ISSUE_207
     f.ExecuteTriangle(
@@ -91,9 +91,12 @@ void ribi::TestTriangleMainDialog::Test() noexcept
   try
   {
     const double pi { boost::math::constants::pi<double>() };
-    const Polygons shapes
+    const Polygons polygons
       = { Geometry().CreateShapePolygon(4,pi * 0.125,1.0) } //1 cube
     ;
+    const Linestrings linestrings = {};
+    const auto shapes = std::make_pair(polygons,linestrings);
+
     const Angle triangle_min_angle
       = 20.0 //Degrees
       * (boost::math::constants::two_pi<double>() / 360.0) //Degrees to radians conversion

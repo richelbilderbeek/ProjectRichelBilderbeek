@@ -51,6 +51,7 @@ struct Geometry
 
   typedef std::vector<Linestring> Linestrings;
   typedef std::vector<Polygon> Polygons;
+  typedef std::pair<Polygons,Linestrings> Shapes;
 
   Geometry();
 
@@ -209,6 +210,15 @@ struct Geometry
     return left;
   }
 
+  //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+  std::vector<std::string>
+    GetRegexMatches(
+    const std::string& s,
+    const std::string& regex_str
+  ) const noexcept;
+
+  std::string GetRegexShapes() const noexcept { return R"((POLYGON\(\(.*?\)\))|(LINESTRING\(.*?\)))"; }
+
   template <class T>
   T GetRight(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
   {
@@ -366,6 +376,11 @@ struct Geometry
     const double stroke_width = 1.0
   ) const noexcept;
 
+  std::string ToSvg(
+    const Shapes& shapes,
+    const double stroke_width = 1.0
+  ) const noexcept { return ToSvg(shapes.first,shapes.second,stroke_width); }
+
   //Create the line this geometry is in an SVG file
   std::string ToSvgStr(
     const std::vector<Polygon>& polygons,
@@ -393,6 +408,12 @@ struct Geometry
       const double dx,
       const double dy
     ) const noexcept;
+
+
+  Shapes WktToShapes(const std::string& wkt) const;
+  Shapes WktToShapes(const std::vector<std::string>& wkt) const;
+  std::string WktToSvg(const std::string& wkt, const double svg_stroke_width) const;
+  std::string WktToSvg(const std::vector<std::string>& wkt, const double svg_stroke_width) const;
 
   private:
   ///Take the floating point modulus

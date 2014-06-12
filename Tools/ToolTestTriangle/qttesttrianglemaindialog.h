@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/units/quantity.hpp>
@@ -50,17 +51,20 @@ class QtTestTriangleMainDialog : public QtHideAndShowDialog
 public:
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
   typedef boost::units::quantity<boost::units::si::area> Area;
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::linestring<Coordinat2D> Linestring;
+  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+  typedef std::vector<Linestring> Linestrings;
+  typedef std::vector<Polygon> Polygons;
+  typedef std::pair<Polygons,Linestrings> Shapes;
 
   explicit QtTestTriangleMainDialog(QWidget *parent = 0) noexcept;
   QtTestTriangleMainDialog(const QtTestTriangleMainDialog&) = delete;
   QtTestTriangleMainDialog& operator=(const QtTestTriangleMainDialog&) = delete;
   ~QtTestTriangleMainDialog() noexcept;
 
-  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
-  typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
 
-  void DisplayPolygons() noexcept;
-  std::vector<Polygon> GetShapes() const noexcept;
+  Shapes GetShapes() const noexcept;
   Area GetTriangleMaxArea() const noexcept;
   Angle GetTriangleMinAngle() const noexcept;
   bool GetVerbose() const noexcept;
@@ -77,9 +81,8 @@ private:
   static std::vector<std::string> SeperateString(const std::string& input) noexcept;
 
 private slots:
-
-  void on_edit_shapes_textChanged();
   void DisplayTriangleMesh() noexcept;
+  void DisplayPolygons() noexcept;
 };
 
 } //~namespace ribi

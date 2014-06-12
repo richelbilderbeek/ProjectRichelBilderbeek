@@ -121,11 +121,7 @@ int ribi::WktToSvgMenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
 
   try
   {
-    const WktToSvgMainDialog d(
-      wkt,
-      stroke_width,
-      verbose
-    );
+    const WktToSvgMainDialog d(wkt,stroke_width);
     if (!silent)
     {
       std::cout << d.GetSvg() << std::endl;
@@ -191,7 +187,7 @@ boost::shared_ptr<const ribi::Program> ribi::WktToSvgMenuDialog::GetProgram() co
 
 std::string ribi::WktToSvgMenuDialog::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::WktToSvgMenuDialog::GetVersionHistory() const noexcept
@@ -199,7 +195,8 @@ std::vector<std::string> ribi::WktToSvgMenuDialog::GetVersionHistory() const noe
   return {
     "2014-06-10: version 1.0: initial version, supports polygon only",
     "2014-06-10: version 1.1: added support for linestring",
-    "2014-06-12: version 1.2: added stroke_width parameter"
+    "2014-06-12: version 1.2: added stroke_width parameter",
+    "2014-06-12: version 1.3: removed verbose option in desktop version"
   };
 }
 
@@ -243,8 +240,9 @@ void ribi::WktToSvgMenuDialog::Test() noexcept
       {
         "WktToSvgMenuDialog",
         "-w", "POLYGON((0 1,-1 -1,1 -1)),LINESTRING(0 -1,-1 1,1 1,0 -1)",
-        "-s"
-        //"-b"
+        "-s",
+        //"-b",
+        "-x", "3.1415926"
       }
     );
   }

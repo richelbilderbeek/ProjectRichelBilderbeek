@@ -36,9 +36,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::WktToSvgMainDialog::WktToSvgMainDialog(
   const std::string& wkt,
-  const double stroke_width,
-  const bool verbose
-) : m_svg(ToSvg(wkt,stroke_width,verbose)),
+  const double stroke_width
+) : m_svg(ToSvg(wkt,stroke_width)),
     m_wkt(wkt)
 {
   #ifndef NDEBUG
@@ -47,6 +46,7 @@ ribi::WktToSvgMainDialog::WktToSvgMainDialog(
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+/*
 std::vector<std::string>
   ribi::WktToSvgMainDialog::GetRegexMatches(
   const std::string& s,
@@ -67,6 +67,9 @@ std::vector<std::string>
   }
   return v;
 }
+*/
+
+/*
 std::vector<std::string> ribi::WktToSvgMainDialog::SeperateString(
   const std::string& input,
   const char seperator) noexcept
@@ -77,6 +80,7 @@ std::vector<std::string> ribi::WktToSvgMainDialog::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 #ifndef NDEBUG
 void ribi::WktToSvgMainDialog::Test() noexcept
@@ -87,35 +91,26 @@ void ribi::WktToSvgMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::WktToSvgMainDialog::Test");
-  {
-    const auto v
-      = GetRegexMatches(
-        "POLYGON((0 0,0 1,1 0)),LINESTRING(0 0,0 1,1 0)",
-        GetRegex()
-    );
-    assert(v.size() == 2);
-    assert(v[0] == "POLYGON((0 0,0 1,1 0))");
-    assert(v[1] == "LINESTRING(0 0,0 1,1 0)");
-  }
-
   TRACE("Finished ribi::WktToSvgMainDialog::Test successfully");
 }
 #endif
 
 std::string ribi::WktToSvgMainDialog::ToSvg(
   const std::string& wkt,
-  const double stroke_width,
-  const bool verbose
+  const double stroke_width
 )
 {
+  return Geometry().WktToSvg(wkt,stroke_width);
+
+  #ifdef USE_INTERMEDIATE_CONVERSION_TO_SHAPES_HERE_20140612
+  return Geometry().ToSvg(Geometry().WktToShapes(wkt),stroke_width);
+  #endif
+
+  #ifdef USE_REGEX_AND_DO_CONVERSION_HERE_20140612
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
   typedef boost::geometry::model::linestring<Coordinat> Linestring;
-
-  if (verbose)
-  {
-    std::cout << "Converting WKT ' " << wkt << "' to SVG" << std::endl;
-  }
+  std::stringstream stream;
 
   const std::string regex_str
     = GetRegex();
@@ -125,11 +120,6 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
     std::cout << "Regex used: '" << regex_str << "'" << std::endl;
   }
 
-
-  std::stringstream stream;
-
-  #define DO_NOT_USE_BOOST_GEOMETRY_SVG_MAPPER_20140610
-  #ifdef DO_NOT_USE_BOOST_GEOMETRY_SVG_MAPPER_20140610
   {
     stream
       << std::setprecision(99)
@@ -180,7 +170,9 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
     }
     stream << R"*(</svg>)*";
   }
-  #else
+  return stream.str();
+  #endif
+  #ifdef USE_BOOST_GEOMETRY_SVG_MAPPER_20140610
   //It appears that the Boost.Geometry SVG mapper cannot handle
   //negative coordinats
   {
@@ -232,6 +224,6 @@ std::string ribi::WktToSvgMainDialog::ToSvg(
 
     }
   }
-  #endif
   return stream.str();
+  #endif
 }

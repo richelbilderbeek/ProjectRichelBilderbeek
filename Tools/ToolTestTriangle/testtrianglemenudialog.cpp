@@ -52,9 +52,13 @@ ribi::TestTriangleMenuDialog::TestTriangleMenuDialog()
 int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+  typedef boost::geometry::model::linestring<Coordinat> Linestring;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef std::vector<Linestring> Linestrings;
+  typedef std::vector<Polygon> Polygons;
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
   typedef boost::units::quantity<boost::units::si::area> Area;
+  typedef std::pair<Polygons,Linestrings> Shapes;
   using boost::units::si::square_meter;
   using boost::units::si::radian;
 
@@ -150,6 +154,7 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
     std::cout << "Triangle quality (minimum angle): " << triangle_min_angle << std::endl;
   }
 
+  /*
   //Polygons
   if (!std::count(args.begin(),args.end(),"-p")
     && !std::count(args.begin(),args.end(),"--polygon")
@@ -197,11 +202,68 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
     std::cout << "Number of polygons: " << polygons.size() << std::endl;
     std::cout << "Polygons (as SVG text): " << Geometry().ToSvgStr(polygons) << std::endl;
   }
+  const Linestrings linestrings;
+  const Shapes shapes(polygons,linestrings);
+  */
+
+  //WKT
+  Shapes shapes;
+  if (!std::count(args.begin(),args.end(),"-w")
+    && !std::count(args.begin(),args.end(),"--wkt")
+    && !std::count(args.begin(),args.end(),"--WKT")
+  )
+  {
+    std::cerr << "Parameter for WKT missing" << '\n';
+    return 1;
+  }
+
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (args[i] == "-w" || args[i] == "--wkt" || args[i] == "--WKT")
+    {
+      const std::string text = args[i+1];
+      if (verbose) { std::cout << "Parsing WKT '" << text << "'" << std::endl; }
+      shapes = Geometry().WktToShapes(text);
+      /*
+      const QRegExp regex(GetPolygonRegex().c_str());
+      //const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(GetPolygonRegex());
+      const std::vector<std::string> lines = GetRegexMatches(text,regex);
+      for (const std::string& line: lines)
+      {
+        if (verbose) { std::cout << "Parsing polygon '" << line << "'" << std::endl; }
+        Polygon polygon;
+        try
+        {
+          boost::geometry::read_wkt(line,polygon);
+          polygons.push_back(polygon);
+        }
+        catch (boost::geometry::read_wkt_exception& e)
+        {
+          //No problem
+        }
+      }
+      */
+    }
+  }
+  if (shapes.first.empty() && shapes.second.empty())
+  {
+    std::cerr << "No shapes found, please suppy a WKT with at least one shape, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl;
+    return 1;
+
+  }
+  if (verbose)
+  {
+    std::cout
+      << "Number of polygons: " << shapes.first.size() << '\n'
+      << "Number of linestrings: " << shapes.second.size() << '\n'
+      << "Shapes (as SVG text): " << Geometry().ToSvg(shapes) << '\n'
+    ;
+  }
 
   try
   {
     const TestTriangleMainDialog d(
-      polygons,
+      shapes,
       triangle_max_area,
       triangle_min_angle,
       verbose
@@ -232,7 +294,7 @@ ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestTriangle",
     "compare Triangle to its C++ equivalent",
-    "the 27th of May 2014",
+    "the 12th of June 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTestTriangle.htm",
     GetVersion(),
@@ -260,24 +322,26 @@ ribi::Help ribi::TestTriangleMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-      Help::Option('p',"polygons","the shapes used as a base"),
+      Help::Option('w',"wkt","WKT of the shapes used as a base"),
       Help::Option('r',"triangle_area","Triangle maximum area"),
       Help::Option('q',"triangle_min_angle","Triangle minimum angle"),
       Help::Option('b',"verbose","generate more output")
     },
     {
-      GetAbout().GetFileTitle() + " --polygons POLYGON((1 1,-1 1,-1 -1,1 -1)) --triangle_area 1.0 --triangle_quality 1.0 --verbose",
-      GetAbout().GetFileTitle() + " -p POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1)) -r 1.0 -q 1.0 -b",
+      GetAbout().GetFileTitle() + " --wkt POLYGON((1 1,-1 1,-1 -1,1 -1)) --triangle_area 1.0 --triangle_quality 1.0 --verbose",
+      GetAbout().GetFileTitle() + " -w POLYGON((0 1,-1 -1,1 -1)),LINESTRING(0 -1,-1 1,1 1,0 -1) -r 1.0 -q 1.0 -b",
     }
   );
 }
 
+/*
 std::string ribi::TestTriangleMenuDialog::GetPolygonRegex()
 {
   return
     "(POLYGON\\(\\(.*\\)\\))"
   ;
 }
+*/
 
 boost::shared_ptr<const ribi::Program> ribi::TestTriangleMenuDialog::GetProgram() const noexcept
 {
@@ -288,6 +352,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestTriangleMenuDialog::GetProgram(
   return p;
 }
 
+/*
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
 std::vector<std::string> ribi::TestTriangleMenuDialog::GetRegexMatches(
   const std::string& s,
@@ -308,10 +373,11 @@ std::vector<std::string> ribi::TestTriangleMenuDialog::GetRegexMatches(
 
   return v;
 }
+*/
 
 std::string ribi::TestTriangleMenuDialog::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const noexcept
@@ -321,7 +387,8 @@ std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const
     "2014-05-18: version 1.1: uses Linux executable additionally",
     "2014-05-23: version 1.2: added command line interface",
     "2014-05-27: version 1.3: added units to Triangle parameters, fixed bug in desktop version that was detected by this",
-    "2014-06-03: version 1.4: assume Triangle starts counting from index zero, desktop version responds to all positive values"
+    "2014-06-03: version 1.4: assume Triangle starts counting from index zero, desktop version responds to all positive values",
+    "2014-06-12: version 1.5: support linestrings"
   };
 }
 
@@ -340,7 +407,7 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
     d.Execute(
       {
         "TestTriangleMenuDialog",
-        "--polygons", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
+        "--wkt", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
         //"--verbose",
         "--triangle_area", "1.0",
         "--triangle_quality", "1.0"
@@ -349,8 +416,8 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
     d.Execute(
       {
         "TestTriangleMenuDialog",
-        "-p", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))",
-        "-b",
+        "-w", "POLYGON((1 1,1 -1,-1 -1,-1 1)),LINESTRING(0 0,0 2,2 2,0 0)",
+        //"-b",
         "-r", "1.0",
         "-q", "1.0"
       }

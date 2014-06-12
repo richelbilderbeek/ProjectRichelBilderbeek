@@ -197,6 +197,19 @@ bool ribi::fileio::FileIo::FilesAreIdentical(
   return v == w;
 }
 
+std::string ribi::fileio::FileIo::FileToStr(
+  const std::string& filename) const
+{
+
+  std::string s;
+  for (const auto t: FileToVector(filename))
+  {
+    s += t + '\n';
+  }
+  if (!s.empty()) s.pop_back();
+  return s;
+}
+
 std::vector<std::string> ribi::fileio::FileIo::FileToVector(
   const std::string& filename) const
 {

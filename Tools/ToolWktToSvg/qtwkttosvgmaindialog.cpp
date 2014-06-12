@@ -49,7 +49,6 @@ ribi::QtWktToSvgMainDialog::QtWktToSvgMainDialog(QWidget *parent) noexcept
 
   QObject::connect(ui->edit,SIGNAL(textChanged(QString)),this,SLOT(OnInputChanged()));
   QObject::connect(ui->box_stroke_width,SIGNAL(valueChanged(double)),this,SLOT(OnInputChanged()));
-  QObject::connect(ui->box_verbose,SIGNAL(stateChanged(int)),this,SLOT(OnInputChanged()));
 
   OnInputChanged();
 }
@@ -73,7 +72,7 @@ void ribi::QtWktToSvgMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting QtWktToSvgMainDialog::Test");
-  WktToSvgMainDialog("POLYGON((0 0,0 1,1 1))",1.0,false);
+  WktToSvgMainDialog("POLYGON((0 0,0 1,1 1))",1.0);
   QtWktToSvgMainDialog();
   TRACE("Finished QtWktToSvgMainDialog::Test successfully");
 }
@@ -85,8 +84,7 @@ void ribi::QtWktToSvgMainDialog::OnInputChanged()
   const double stroke_width = ui->box_stroke_width->value();
   const WktToSvgMainDialog d(
     wkt_text,
-    stroke_width,
-    ui->box_verbose->isChecked()
+    stroke_width
   );
 
   const std::string svg_text = d.GetSvg();

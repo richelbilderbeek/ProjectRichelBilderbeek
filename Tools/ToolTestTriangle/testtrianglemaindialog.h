@@ -40,13 +40,16 @@ namespace ribi {
 struct TestTriangleMainDialog
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+  typedef boost::geometry::model::linestring<Coordinat> Linestring;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef std::vector<Linestring> Linestrings;
   typedef std::vector<Polygon> Polygons;
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
   typedef boost::units::quantity<boost::units::si::area> Area;
+  typedef std::pair<Polygons,Linestrings> Shapes;
 
   TestTriangleMainDialog(
-    const Polygons& shapes,
+    const Shapes& shapes,
     const Area triangle_max_area,
     const Angle triangle_min_angle,
     const bool verbose

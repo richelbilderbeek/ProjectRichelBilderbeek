@@ -21,8 +21,7 @@
    <string notr="true">QDialog { 
 background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
 }
-QLabel { font: 16px, &quot;monospace&quot; }
-QLineEdit { font: 16px, &quot;monospace&quot; }</string>
+QWidget { font: 14px,&quot;Courier New&quot;,&quot;Courier&quot;,&quot;monospace&quot;}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -44,7 +43,11 @@ QLineEdit { font: 16px, &quot;monospace&quot; }</string>
     </layout>
    </item>
    <item row="1" column="0">
-    <widget class="QPlainTextEdit" name="text_result"/>
+    <widget class="QPlainTextEdit" name="text_result">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

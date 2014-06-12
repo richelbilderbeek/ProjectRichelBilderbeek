@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 
 #include <boost/math/constants/constants.hpp>
+#include <boost/xpressive/xpressive.hpp>
 #ifndef WIN32
 #include <boost/geometry/geometries/linestring.hpp>
 #endif
@@ -370,6 +371,28 @@ double ribi::Geometry::GetDistance(
 {
   //return GetDistance(a.x() - b.x(),a.y() - b.y());
   return boost::geometry::distance(a,b);
+}
+
+//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+std::vector<std::string>
+  ribi::Geometry::GetRegexMatches(
+  const std::string& s,
+  const std::string& regex_str
+) const noexcept
+{
+  const boost::xpressive::sregex r
+    = boost::xpressive::sregex::compile(regex_str)
+  ;
+
+  std::vector<std::string> v;
+  boost::xpressive::sregex_iterator cur(s.begin(),s.end(),r);
+  boost::xpressive::sregex_iterator end;
+  for( ; cur != end; ++cur )
+  {
+    const boost::xpressive::smatch& what = *cur;
+    v.push_back(what[0]);
+  }
+  return v;
 }
 
 std::string ribi::Geometry::GetVersion() const noexcept
@@ -1723,7 +1746,26 @@ void ribi::Geometry::Test() noexcept
       && "Points must be rescaled as expected"
     );
   }
-  if (verbose) TRACE("GetLineLineIntersections");
+  if (verbose) { TRACE("GetRegexMatches on GetRegexShapes"); }
+  {
+    const auto v
+      = g.GetRegexMatches(
+        "POLYGON((0 0,0 1,1 0)),LINESTRING(0 0,0 1,1 0)",
+        g.GetRegexShapes()
+    );
+    assert(v.size() == 2);
+    assert(v[0] == "POLYGON((0 0,0 1,1 0))");
+    assert(v[1] == "LINESTRING(0 0,0 1,1 0)");
+  }
+  if (verbose) { TRACE("WktToSvg"); }
+  {
+    const std::string s
+      = g.WktToSvg("POLYGON((0 0,0 1,1 0)),LINESTRING(0 0,0 1,1 0)",1.0)
+    ;
+    assert(!s.empty());
+  }
+
+  if (verbose) { TRACE("GetLineLineIntersections"); }
   #ifdef TODO_RICHEL
   {
     typedef boost::geometry::model::d2::point_xy<double> Point;
@@ -1904,7 +1946,7 @@ std::string ribi::Geometry::ToSvgStr(
   std::stringstream s;
   for (const Polygon& polygon: polygons)
   {
-    s << ToSvgStr(polygon,stroke_width);
+    s << ToSvgStr(polygon,stroke_width) << '\n';
   }
   return s.str();
 }
@@ -1918,7 +1960,7 @@ std::string ribi::Geometry::ToSvgStr(
   std::stringstream s;
   for (const Linestring& linestring: linestrings)
   {
-    s << ToSvgStr(linestring,stroke_width);
+    s << ToSvgStr(linestring,stroke_width) << '\n';
   }
   return s.str();
 }
@@ -2029,6 +2071,60 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
   Polygon new_shape;
   boost::geometry::append(new_shape, points);
   return new_shape;
+}
+
+ribi::Geometry::Shapes ribi::Geometry::WktToShapes(const std::string& wkt) const
+{
+  std::vector<std::string> v;
+  const std::string regex_str = GetRegexShapes();
+  for (const auto s: GetRegexMatches(wkt,regex_str))
+  {
+    v.push_back(s);
+  }
+  return WktToShapes(v);
+}
+
+ribi::Geometry::Shapes ribi::Geometry::WktToShapes(const std::vector<std::string>& wkt) const
+{
+  Polygons polygons;
+  Linestrings linestrings;
+  for (const auto s: wkt)
+  {
+    try
+    {
+      Polygon polygon;
+      boost::geometry::read_wkt(s,polygon);
+      polygons.push_back(polygon);
+    }
+    catch (std::exception&)
+    {
+      //OK
+    }
+
+    try
+    {
+      Linestring linestring;
+      boost::geometry::read_wkt(s,linestring);
+      linestrings.push_back(linestring);
+    }
+    catch (std::exception&)
+    {
+      //OK
+    }
+  }
+  const auto shapes = std::make_pair(polygons,linestrings);
+  return shapes;
+}
+
+
+std::string ribi::Geometry::WktToSvg(const std::string& wkt, const double svg_stroke_width) const
+{
+  return ToSvg(WktToShapes(wkt),svg_stroke_width);
+}
+
+std::string ribi::Geometry::WktToSvg(const std::vector<std::string>& wkt, const double svg_stroke_width) const
+{
+  return ToSvg(WktToShapes(wkt),svg_stroke_width);
 }
 
 boost::geometry::model::d2::point_xy<double> ribi::operator-(
