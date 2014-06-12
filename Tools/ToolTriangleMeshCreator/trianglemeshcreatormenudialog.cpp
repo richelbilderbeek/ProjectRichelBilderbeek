@@ -55,8 +55,8 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   #ifndef NDEBUG
   Test();
   #endif
-  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
-  typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  //typedef boost::geometry::model::d2::point_xy<double> Coordinat;
+  //typedef boost::geometry::model::polygon<Coordinat> Polygon;
   typedef boost::units::quantity<boost::units::si::area> Area;
   typedef boost::units::quantity<boost::units::si::length> Length;
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
@@ -200,7 +200,10 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   }
 
   //Triangle area
-  if (!std::count(args.begin(),args.end(),"-r") && !std::count(args.begin(),args.end(),"--triangle_area"))
+  if (!std::count(args.begin(),args.end(),"-r")
+    && !std::count(args.begin(),args.end(),"--triangle_area")
+    && !std::count(args.begin(),args.end(),"--triangle_max_area")
+  )
   {
     std::cerr << "Parameter for Triangle area missing" << '\n';
     return 1;
@@ -208,7 +211,10 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   Area triangle_max_area = 0.0 * boost::units::si::square_meters;
   for (int i=0; i!=argc-1; ++i)
   {
-    if (args[i] == "-r" || args[i] == "--triangle_area")
+    if (args[i] == "-r"
+      || args[i] == "--triangle_area"
+      || args[i] == "--triangle_max_area"
+    )
     {
       try
       {
@@ -235,7 +241,10 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   }
 
   //Triangle quality (the minimum angle of a triangle corner)
-  if (!std::count(args.begin(),args.end(),"-q") && !std::count(args.begin(),args.end(),"--triangle_quality"))
+  if (!std::count(args.begin(),args.end(),"-q")
+    && !std::count(args.begin(),args.end(),"--triangle_quality")
+    && !std::count(args.begin(),args.end(),"--triangle_min_angle")
+  )
   {
     std::cerr << "Parameter for Triangle quality (the minimum angle of a triangle corner) is missing" << '\n';
     return 1;
@@ -243,7 +252,9 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   Angle triangle_min_angle = 0.0 * radian;
   for (int i=0; i!=argc-1; ++i)
   {
-    if (args[i] == "-q" || args[i] == "--triangle_quality")
+    if (args[i] == "-q"
+      || args[i] == "--triangle_quality"
+      || args[i] == "--triangle_min_angle")
     {
       try
       {
@@ -280,7 +291,29 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       << std::endl
     ;
   }
+  //WKT
+  std::string wkt = "";
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (args[i] == "-w" || args[i] == "--wkt" || args[i] == "--WKT")
+    {
+      wkt = args[i+1];
+      break;
+    }
+  }
+  if (wkt.empty())
+  {
+    std::cerr << "Please supply a WKT, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl;
+    return 1;
 
+  }
+  if (verbose)
+  {
+    std::cout << "WKT: " << wkt << '\n';
+  }
+
+  const auto shapes = Geometry().WktToShapes(wkt);
+  /*
   //Polygons
   if (!std::count(args.begin(),args.end(),"-p")
     && !std::count(args.begin(),args.end(),"--polygon")
@@ -328,7 +361,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     std::cout << "Number of polygons: " << polygons.size() << std::endl;
     std::cout << "Polygons (as SVG text): " << Geometry().ToSvgStr(polygons) << std::endl;
   }
-
+  */
 
   //Fraction
   if (!std::count(args.begin(),args.end(),"-f") && !std::count(args.begin(),args.end(),"--fraction"))
@@ -365,7 +398,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   try
   {
     const ribi::TriangleMeshCreatorMainDialog d(
-      polygons,
+      shapes,
       n_layers,
       layer_height,
       strategy,
@@ -427,7 +460,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TriangleMeshCreator",
     "Create a 3D mesh using Triangle",
-    "the 23rd of May 2014",
+    "the 12th of May 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm",
     GetVersion(),
@@ -456,13 +489,13 @@ ribi::Help ribi::TriangleMeshCreatorMenuDialog::GetHelp() const noexcept
     GetAbout().GetFileDescription(),
     {
       Help::Option('z',"layer_height","the height of a layer, in meters"),
-      Help::Option('p',"polygons","the shapes used as a base"),
+      Help::Option('w',"wkt","WKT of the shapes used as a base"),
       Help::Option('s',"strategy","how to create vertical faces, '1' or '2'"),
       Help::Option('n',"n_layers","the number of layers"),
       Help::Option('f',"fraction","fraction of cells to keep"),
       Help::Option('m',"show_mesh","show the generated 3D mesh"),
-      Help::Option('r',"triangle_area","Triangle area"),
-      Help::Option('q',"triangle_quality","Triangle quality"),
+      Help::Option('r',"triangle_max_area","Triangle max area"),
+      Help::Option('q',"triangle_min_angle","Triangle min angle"),
       Help::Option('b',"verbose","generate more output")
     },
     {
@@ -511,7 +544,7 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetRegexMatches(
 
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
-  return "1.7";
+  return "1.8";
 }
 
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory() const noexcept
@@ -524,7 +557,8 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory(
     "2014-05-06: version 1.4: added desktop version"
     "2014-05-08: version 1.5: preview of shape, use both TRIANGLE.EXE area and quality parameter, preview of Triangle.exe output",
     "2014-05-11: version 1.6: also calls meshlab under Linux",
-    "2014-05-23: version 1.7: added command line interface"
+    "2014-05-23: version 1.7: added command line interface",
+    "2014-05-23: version 1.8: support linestring as shape"
   };
 }
 
@@ -626,22 +660,36 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         "--fraction", "0.75",
         //"--show_mesh",
         //"--verbose",
-        "--triangle_area", "1.0",
-        "--triangle_quality", "1.0"
+        "--triangle_max_area", "10.0",
+        "--triangle_min_angle", "20.0"
       }
     );
     d.Execute(
       {
         "TriangleMeshCreator",
         "-z", "1",
-        "-p", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))",
+        "-p", "POLYGON((0 0,0 3,3 0)),POLYGON((1 1,0 2,2 0))",
         "-s", "1",
         "-n", "1",
         "-f", "0.75",
         //"-m",
         //"-b",
-        "-r", "1.0",
-        "-q", "1.0"
+        "--triangle_area", "10.0",
+        "--triangle_quality", "20.0"
+      }
+    );
+    d.Execute(
+      {
+        "TriangleMeshCreator",
+        "-z", "1",
+        "-p", "POLYGON((10 10,10 -10,-10 -10,-10 10)),LINESTRING(5 5,5 -5,-5 -5,-5 5)",
+        "-s", "1",
+        "-n", "1",
+        "-f", "0.75",
+        //"-m",
+        //"-b",
+        "-r", "10.0",
+        "-q", "20.0"
       }
     );
   }

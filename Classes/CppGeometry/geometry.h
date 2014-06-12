@@ -381,26 +381,6 @@ struct Geometry
     const double stroke_width = 1.0
   ) const noexcept { return ToSvg(shapes.first,shapes.second,stroke_width); }
 
-  //Create the line this geometry is in an SVG file
-  std::string ToSvgStr(
-    const std::vector<Polygon>& polygons,
-    const double stroke_width = 1.0
-  ) const noexcept;
-
-  std::string ToSvgStr(
-    const Polygon& polygon,
-    const double stroke_width = 1.0
-  ) const noexcept;
-
-  std::string ToSvgStr(
-    const Linestrings& linestrings,
-    const double stroke_width = 1.0
-  ) const noexcept;
-
-  std::string ToSvgStr(
-    const Linestring& linestring,
-    const double stroke_width = 1.0
-  ) const noexcept;
 
   boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
     Translate(
@@ -422,6 +402,28 @@ struct Geometry
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  //Create the line this geometry is in an SVG file
+  std::string ToSvgStr(
+    const std::vector<Polygon>& polygons,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
+  std::string ToSvgStr(
+    const Polygon& polygon,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
+  std::string ToSvgStr(
+    const Linestrings& linestrings,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
+  std::string ToSvgStr(
+    const Linestring& linestring,
+    const double stroke_width = 1.0
+  ) const noexcept;
+
 };
 
 boost::geometry::model::d2::point_xy<double> operator-(

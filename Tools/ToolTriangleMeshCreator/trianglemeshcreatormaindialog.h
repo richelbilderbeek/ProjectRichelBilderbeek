@@ -48,10 +48,13 @@ struct TriangleMeshCreatorMainDialog
   typedef boost::units::quantity<boost::units::si::length> Length;
   typedef boost::geometry::model::d2::point_xy<double> Coordinat;
   typedef boost::geometry::model::polygon<Coordinat> Polygon;
+  typedef boost::geometry::model::linestring<Coordinat> Linestring;
   typedef std::vector<Polygon> Polygons;
+  typedef std::vector<Linestring> Linestrings;
+  typedef std::pair<Polygons,Linestrings> Shapes;
 
   TriangleMeshCreatorMainDialog(
-    const Polygons& shapes,
+    const Shapes& shapes,
     const int n_cell_layers,
     const Length layer_height,
     const ::ribi::trim::CreateVerticalFacesStrategy strategy,

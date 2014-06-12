@@ -251,16 +251,69 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
+  const bool verbose = false;
   const double x { boost::geometry::get<0>(coordinat) };
   const double y { boost::geometry::get<1>(coordinat) };
   const double z { boost::geometry::get<2>(coordinat) };
-  const double e { 0.001 };
-  try { return std::abs(CalcX(y,z) - x) < e; }
-  catch (std::logic_error&) { /* OK */ }
-  try { return std::abs(CalcY(x,z) - y) < e; }
-  catch (std::logic_error&) { /* OK */ }
-  try { return std::abs(CalcZ(x,y) - z) < e; }
-  catch (std::logic_error&) { /* OK */ }
+  const double max_error { 0.001 };
+  if (verbose)
+  {
+    TRACE(x);
+    TRACE(y);
+    TRACE(z);
+    TRACE(max_error);
+  }
+  try
+  {
+    const double expected = x;
+    if (verbose) { TRACE(expected); }
+    const double calculated = CalcX(y,z);
+    if (verbose) { TRACE(calculated); }
+    const double error = std::abs(calculated - expected);
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error < max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  try
+  {
+    const double expected = y;
+    if (verbose) { TRACE(expected); }
+    const double calculated = CalcY(x,z);
+    if (verbose) { TRACE(calculated); }
+    const double error = std::abs(calculated - expected);
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error < max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  try
+  {
+    const double expected = z;
+    if (verbose) { TRACE(expected); }
+    const double calculated = CalcZ(x,y);
+    if (verbose) { TRACE(calculated); }
+    const double error =  std::abs(calculated - expected);
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error < max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
   return false;
 }
 

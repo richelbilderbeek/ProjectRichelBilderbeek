@@ -119,12 +119,12 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
   const std::string text = ui->edit_shapes->toPlainText().toStdString();
   const std::vector<std::string> lines = SeperateString(text);
 
-  std::vector<Polygon> polygons = GetShapes();
+  const auto shapes = GetShapes();
 
   const std::string svg_filename = fileio::FileIo().GetTempFileName(".svg");
   {
     std::ofstream f(svg_filename.c_str());
-    f << Geometry().ToSvgStr(polygons,0.1);
+    f << Geometry().ToSvg(shapes,0.1);
   }
   {
     QGraphicsSvgItem * const item = new QGraphicsSvgItem(svg_filename.c_str());
@@ -194,7 +194,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
   }
 
   if (verbose) { std::clog << "Convert polygons to SVG" << std::endl; }
-  const std::string svg_text = Geometry().ToSvgStr(polygons,0.1);
+  const std::string svg_text = Geometry().ToSvg(polygons,0.1);
 
   const std::string filename = fileio::FileIo().GetTempFileName(".svg");
   if (verbose) { std::clog << "Write SVG to file '" << filename << "'" << std::endl; }
@@ -228,11 +228,14 @@ int ribi::QtTriangleMeshCreatorMainDialog::GetNumberOfCellLayers() const noexcep
   return ui->box_n_cell_layers->value();
 }
 
-std::vector<ribi::QtTriangleMeshCreatorMainDialog::Polygon>
+ribi::QtTriangleMeshCreatorMainDialog::Shapes
   ribi::QtTriangleMeshCreatorMainDialog::GetShapes() const noexcept
 {
-  std::vector<Polygon> polygons;
   const std::string text = ui->edit_shapes->toPlainText().toStdString();
+  const auto shapes = Geometry().WktToShapes(text);
+  return shapes;
+  /*
+  //std::vector<Polygon> polygons;
   const std::vector<std::string> lines = SeperateString(text);
   for (const std::string line: lines)
   {
@@ -247,7 +250,9 @@ std::vector<ribi::QtTriangleMeshCreatorMainDialog::Polygon>
       //No problem
     }
   }
+
   return polygons;
+  */
 }
 
 bool ribi::QtTriangleMeshCreatorMainDialog::GetShowMesh() const noexcept

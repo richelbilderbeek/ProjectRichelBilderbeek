@@ -578,8 +578,16 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     assert(!boost::geometry::equals(points[1],points[2]));
     return true;
   }
+  assert(points.size() == 4);
+  if(!IsPlane(points))
+  {
+    TRACE("ERROR");
+    TRACE(points.size());
+    for (auto point: points) { TRACE(Geometry().ToStr(point)); }
+    TRACE("BREAK");
+  }
+  HIERO
   assert(IsPlane(points));
-
   #ifndef NDEBUG
   const bool verbose = false;
   if (verbose)
@@ -785,15 +793,20 @@ std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry:
 
 bool ribi::Geometry::IsPlane(const std::vector<ribi::Geometry::Coordinat3D>& v) const noexcept
 {
+  using boost::geometry::get;
+
   if (v.size() < 3) return false;
   if (v.size() == 3) return true;
   #ifndef NDEBUG
   if (v.size() > 4)
   {
     TRACE("ERROR");
+    TRACE(v.size());
+    TRACE("BREAK");
   }
   #endif
   assert(v.size() == 4);
+
   const std::unique_ptr<Plane> plane(new Plane(v[0],v[1],v[2]));
   assert(plane);
   return plane->IsInPlane(v[3]);
@@ -1649,6 +1662,15 @@ void ribi::Geometry::Test() noexcept
         assert(!g.IsClockwise(coordinats,below));
       }
     }
+  }
+  //IsPlane
+  {
+    const Coordinat3D a(-3.64472,-0.25,0.0);
+    const Coordinat3D b(-4.52988,-0.25,0.0);
+    const Coordinat3D c(-3.64472,-0.25,10.0);
+    const Coordinat3D d(-4.52988,-0.25,10.0);
+    const std::vector<Coordinat3D> v = { a,b,c,d };
+    assert(Geometry().IsPlane(v));
   }
   if (verbose) TRACE("Translate");
   {

@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/units/quantity.hpp>
@@ -55,6 +56,10 @@ public:
 
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
+  typedef boost::geometry::model::linestring<Coordinat2D> Linestring;
+  typedef std::vector<Linestring> Linestrings;
+  typedef std::vector<Polygon> Polygons;
+  typedef std::pair<Polygons,Linestrings> Shapes;
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
   typedef boost::units::quantity<boost::units::si::area> Area;
 
@@ -64,7 +69,7 @@ public:
   double GetFraction() const noexcept;
   boost::units::quantity<boost::units::si::length> GetLayerHeight() const noexcept;
   int GetNumberOfCellLayers() const noexcept;
-  std::vector<Polygon> GetShapes() const noexcept;
+  Shapes GetShapes() const noexcept;
   bool GetShowMesh() const noexcept;
   Area GetTriangleMaxArea() const noexcept;
   Angle GetTriangleMinAngle() const noexcept;

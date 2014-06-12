@@ -57,7 +57,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
-  const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
+  const Shapes& shapes,
   const int n_cell_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
@@ -499,7 +499,7 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleMeshCreatorMainDialog::Test");
-  typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
+  //typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
   ribi::trim::CellsCreatorFactory();
 
   //Create a simple mesh
@@ -508,9 +508,11 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
     try
     {
       const double pi { boost::math::constants::pi<double>() };
-      const std::vector<Coordinat2D> shapes {
+      const Polygons polygons {
         Geometry().CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
       };
+      const Linestrings linestrings = {};
+      const Shapes shapes(polygons,linestrings);
       const Angle triangle_min_angle
         = 20.0 //Default used by Triangle, in degrees
         * (boost::math::constants::two_pi<double>() / 360.0)
