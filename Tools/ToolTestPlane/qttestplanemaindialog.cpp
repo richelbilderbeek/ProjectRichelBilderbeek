@@ -33,6 +33,9 @@ ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
   QObject::connect(this->ui->slider_x,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(this->ui->slider_y,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(this->ui->slider_z,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+
+  QObject::connect(this->ui->box_precision,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+
   OnAnyChange();
 }
 
@@ -44,26 +47,31 @@ ribi::QtTestPlaneMainDialog::~QtTestPlaneMainDialog() noexcept
 void ribi::QtTestPlaneMainDialog::OnAnyChange()
 {
   std::stringstream s;
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p1(
+  s << std::setprecision(ui->box_precision->value());
+
+  const Geometry::Coordinat3D p1(
     static_cast<double>(ui->slider_x1->value()),
     static_cast<double>(ui->slider_y1->value()),
     static_cast<double>(ui->slider_z1->value())
   );
-  s << "Point 1: " << Geometry().ToStr(p1) << '\n';
+  s << "Point 1: " << p1 << '\n';
+  //s << "Point 1: " << Geometry().ToStr(p1) << '\n';
 
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p2(
+  const Geometry::Coordinat3D p2(
     static_cast<double>(ui->slider_x2->value()),
     static_cast<double>(ui->slider_y2->value()),
     static_cast<double>(ui->slider_z2->value())
   );
-  s << "Point 2: " << Geometry().ToStr(p2) << '\n';
+  s << "Point 2: " << p2 << '\n';
+  //s << "Point 2: " << Geometry().ToStr(p2) << '\n';
 
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p3(
+  const Geometry::Coordinat3D p3(
     static_cast<double>(ui->slider_x3->value()),
     static_cast<double>(ui->slider_y3->value()),
     static_cast<double>(ui->slider_z3->value())
   );
-  s << "Point 3: " << Geometry().ToStr(p3) << '\n';
+  s << "Point 3: " << p3 << '\n';
+  //s << "Point 3: " << Geometry().ToStr(p3) << '\n';
 
 
   const boost::shared_ptr<ribi::Plane> plane(
@@ -149,6 +157,15 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
   catch (std::logic_error& e)
   {
     s << "Z(X,Y) = " << e.what() << '\n';
+  }
+
+  try
+  {
+    s << "Plane: " << (*plane) << '\n';
+  }
+  catch (std::logic_error& e)
+  {
+    s << "Plane: " << e.what() << '\n';
   }
 
   ui->text->setPlainText(s.str().c_str());

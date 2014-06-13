@@ -176,7 +176,10 @@ struct Plane
   friend struct std::default_delete<const Plane>;
   friend class boost::detail::sp_ms_deleter<      Plane>;
   friend class boost::detail::sp_ms_deleter<const Plane>;
+  friend std::ostream& operator<<(std::ostream& os, const Plane& plane) noexcept;
 };
+
+std::ostream& operator<<(std::ostream& os, const Plane& plane) noexcept;
 
 } //~namespace ribi
 

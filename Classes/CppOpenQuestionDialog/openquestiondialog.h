@@ -39,9 +39,17 @@ struct OpenQuestionDialog : public QuestionDialog
   OpenQuestionDialog();
   //explicit OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question);
 
+  ///The answer the user has typed in so far
+  std::string GetAnswerInProgress() const noexcept { return m_answer_in_progress; }
+
   boost::shared_ptr<const OpenQuestion> GetOpenQuestion() const noexcept { return m_open_question; }
   boost::shared_ptr<      OpenQuestion> GetOpenQuestion()       noexcept { return m_open_question; }
   boost::shared_ptr<const Question> GetQuestion() const noexcept;
+
+  ///The answer the user has typed in so far
+  ///Used for synching between multiple QtOpenQuestionDialogs displaying
+  ///the same OpenQuestionDialog
+  void SetAnswerInProgress(const std::string& answer_in_progress) noexcept;
 
   void SetOpenQuestion(const boost::shared_ptr<OpenQuestion>& open_question) noexcept;
 
@@ -63,6 +71,7 @@ struct OpenQuestionDialog : public QuestionDialog
   friend class boost::detail::sp_ms_deleter<const OpenQuestionDialog>;
   ~OpenQuestionDialog() noexcept {}
 
+  std::string m_answer_in_progress;
   boost::shared_ptr<OpenQuestion> m_open_question;
 
   #ifndef NDEBUG

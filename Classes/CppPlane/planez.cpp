@@ -103,6 +103,59 @@ double ribi::PlaneZ::CalcZ(const double x, const double y) const
   return ((-a*x) - (b*y) + d) / c;
 }
 
+double ribi::PlaneZ::GetFunctionA() const
+{
+  const double coeff_a = m_coefficients[0];
+  //const double coeff_b = m_coefficients[1];
+  const double coeff_c = m_coefficients[2];
+  //const double coeff_d = m_coefficients[3];
+
+  if (coeff_c == 0.0)
+  {
+    throw std::logic_error("ribi::PlaneZ::GetFunctionA: cannot calculate A of a vertical plane");
+  }
+
+  const double a = -coeff_a/coeff_c;
+  //const double b = -coeff_b/coeff_c;
+  //const double c =  coeff_d/coeff_c;
+  return a;
+}
+
+double ribi::PlaneZ::GetFunctionB() const
+{
+  //const double coeff_a = m_coefficients[0];
+  const double coeff_b = m_coefficients[1];
+  const double coeff_c = m_coefficients[2];
+  //const double coeff_d = m_coefficients[3];
+
+  if (coeff_c == 0.0)
+  {
+    throw std::logic_error("ribi::PlaneZ::GetFunctionB: cannot calculate B of a vertical plane");
+  }
+
+  //const double a = -coeff_a/coeff_c;
+  const double b = -coeff_b/coeff_c;
+  //const double c =  coeff_d/coeff_c;
+  return b;
+}
+
+double ribi::PlaneZ::GetFunctionC() const
+{
+  //const double coeff_a = m_coefficients[0];
+  //const double coeff_b = m_coefficients[1];
+  const double coeff_c = m_coefficients[2];
+  const double coeff_d = m_coefficients[3];
+
+  if (coeff_c == 0.0)
+  {
+    throw std::logic_error("ribi::PlaneZ::GetFunctionC: cannot calculate C of a vertical plane");
+  }
+
+  //const double a = -coeff_a/coeff_c;
+  //const double b = -coeff_b/coeff_c;
+  const double c =  coeff_d/coeff_c;
+  return c;
+}
 std::string ribi::PlaneZ::GetVersion() const noexcept
 {
   return "1.3";
@@ -406,6 +459,10 @@ void ribi::PlaneZ::Test() noexcept
 
 std::string ribi::PlaneZ::ToFunction() const
 {
+  std::stringstream s;
+  s << (*this);
+  return s.str();
+  /*
   assert(m_coefficients.size() == 4);
   const double a = m_coefficients[0];
   const double b = m_coefficients[1];
@@ -429,5 +486,49 @@ std::string ribi::PlaneZ::ToFunction() const
     assert(!"Should not get here");
     throw;
   }
+  */
 }
+
+std::ostream& ribi::operator<<(std::ostream& os, const PlaneZ& planez)
+{
+  try
+  {
+    os
+      << "z=("
+      << planez.GetFunctionA() << "*x) + ("
+      << planez.GetFunctionB() << "*y) + "
+      << planez.GetFunctionC()
+    ;
+  }
+  catch (std::logic_error&)
+  {
+    const std::string error
+      = "ribi::PlaneZ::ToFunction: cannot calculate Z of a vertical plane";
+    throw std::logic_error(error.c_str());
+  }
+  return os;
+  /*
+  assert(m_coefficients.size() == 4);
+  const double a = m_coefficients[0];
+  const double b = m_coefficients[1];
+  const double c = m_coefficients[2];
+  const double d = m_coefficients[3];
+  if (c == 0.0) throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
+  try
+  {
+    os
+      << "z=("  << (-a/c) << "*x" << ")"
+      << " + (" << (-b/c) << "*y" << ")"
+      << " + "  << ( d/c);
+  }
+  catch (std::exception&)
+  {
+    assert(!"Should not get here");
+    throw;
+  }
+  return os;
+  */
+}
+
+
 

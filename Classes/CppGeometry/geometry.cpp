@@ -1883,6 +1883,9 @@ void ribi::Geometry::Test() noexcept
 std::string ribi::Geometry::ToStr(const boost::geometry::model::d2::point_xy<double>& p) const noexcept
 {
   std::stringstream s;
+  s << p;
+  return s.str();
+  /*
   s
     << "("
     << boost::geometry::get<0>(p)
@@ -1891,11 +1894,15 @@ std::string ribi::Geometry::ToStr(const boost::geometry::model::d2::point_xy<dou
     << ")"
   ;
   return s.str();
+  */
 }
 
 std::string ribi::Geometry::ToStr(const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) const noexcept
 {
   std::stringstream s;
+  s << p;
+  return s.str();
+  /*
   s
     << "("
     << boost::geometry::get<0>(p)
@@ -1906,6 +1913,7 @@ std::string ribi::Geometry::ToStr(const boost::geometry::model::point<double,3,b
     << ")"
   ;
   return s.str();
+  */
 }
 
 std::string ribi::Geometry::ToStr(
@@ -1913,13 +1921,8 @@ std::string ribi::Geometry::ToStr(
 ) const noexcept
 {
   std::stringstream s;
-  for (const auto point: polygon.outer())
-  {
-    s << ToStr(point) << ',';
-  }
-  std::string t = s.str();
-  if (!t.empty()) { t.pop_back(); }
-  return t;
+  s << polygon;
+  return s.str();
 }
 
 std::string ribi::Geometry::ToSvg(
@@ -2170,4 +2173,30 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>
     boost::geometry::get<1>(a) - boost::geometry::get<1>(b),
     boost::geometry::get<2>(a) - boost::geometry::get<2>(b)
   );
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const Geometry::Coordinat2D& p) noexcept
+{
+  using boost::geometry::get;
+  os << '(' << get<0>(p) << ',' << get<1>(p) << ')';
+  return os;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const Geometry::Coordinat3D& p) noexcept
+{
+  using boost::geometry::get;
+  os << '(' << get<0>(p) << ',' << get<1>(p) << ',' << get<2>(p) << ')';
+  return os;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const Geometry::Polygon& p) noexcept
+{
+  const auto points = p.outer();
+  const int n_points = static_cast<int>(points.size());
+  for (int i=0; i!=n_points; ++i)
+  {
+    os << points[i];
+    if (i != n_points-1) { os << ','; }
+  }
+  return os;
 }

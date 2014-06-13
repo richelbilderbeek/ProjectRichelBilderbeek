@@ -2312,7 +2312,7 @@ struct ProgramTestMultiVector : public ProgramClass
 struct ProgramTestPlane : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
-  std::string GetFilenameDesktop() const noexcept { return "ToolTestPlane_1_0.png"; }
+  std::string GetFilenameDesktop() const noexcept { return "ToolTestPlane_1_1.png"; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
   std::string GetScreenName() const noexcept { return "TestPlane"; }

@@ -414,6 +414,10 @@ void ribi::PlaneX::Test() noexcept
 
 std::string ribi::PlaneX::ToFunction() const
 {
+  std::stringstream s;
+  s << (*this);
+  return s.str();
+  /*
   try
   {
     std::string s = m_plane_z->ToFunction();
@@ -430,5 +434,34 @@ std::string ribi::PlaneX::ToFunction() const
   {
     throw std::logic_error("ribi::PlaneX::ToFunction: cannot calculate X of a horizontal plane");
   }
+  */
 }
 
+std::ostream& ribi::operator<<(std::ostream& os,const PlaneX& planex)
+{
+  assert(planex.m_plane_z);
+  try
+  {
+    //std::string s = m_plane_z->ToFunction();
+    // 'z=(2*x) + (3*y) + 5'
+    //          =>
+    // 'x=(2*y) + (3*z) + 5'
+    //assert(!s.empty());
+    //s = boost::algorithm::replace_all_copy(s,"*y","*z");
+    //s = boost::algorithm::replace_all_copy(s,"*x","*y");
+    //s = boost::algorithm::replace_all_copy(s,"z=","x=");
+    //return s;
+
+    os
+      << "x=("
+      << planex.m_plane_z->GetFunctionA() << "*y) + ("
+      << planex.m_plane_z->GetFunctionB() << "*z) + "
+      << planex.m_plane_z->GetFunctionC()
+    ;
+  }
+  catch (std::logic_error&)
+  {
+    throw std::logic_error("ribi::PlaneX::operator<<: cannot display function of a horizontal plane");
+  }
+  return os;
+}

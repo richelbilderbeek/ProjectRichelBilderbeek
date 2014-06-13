@@ -126,7 +126,10 @@ struct PlaneY
   friend struct std::default_delete<const PlaneY>;
   friend class boost::detail::sp_ms_deleter<      PlaneY>;
   friend class boost::detail::sp_ms_deleter<const PlaneY>;
+  friend std::ostream& operator<<(std::ostream& os,const PlaneY& planey);
 };
+
+std::ostream& operator<<(std::ostream& os,const PlaneY& planey);
 
 } //~namespace ribi
 

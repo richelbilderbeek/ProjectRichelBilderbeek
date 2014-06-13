@@ -423,8 +423,15 @@ void ribi::PlaneY::Test() noexcept
 
 std::string ribi::PlaneY::ToFunction() const
 {
+  std::stringstream s;
+  s << (*this);
+  return s.str();
+  /*
   try
   {
+    // 'z=(2*x) + (3*y) + 5'
+    //          =>
+    // 'y=(2*x) + (3*z) + 5'
     std::string a = m_plane_z->ToFunction();
     assert(!a.empty());
     boost::algorithm::replace_all(a,"*y","*z");
@@ -432,20 +439,6 @@ std::string ribi::PlaneY::ToFunction() const
     boost::algorithm::replace_all(a,"z=","y=");
     assert(!a.empty());
     return a;
-    /*
-    const std::string a = m_plane_z->ToFunction();
-    // 'z=(2*x) + (3*y) + 5'
-    //          =>
-    // 'y=(2*x) + (3*z) + 5'
-    assert(!a.empty());
-    const std::string b = a; //boost::algorithm::replace_all_copy(a,"*x","*x");
-    assert(!b.empty());
-    const std::string c = boost::algorithm::replace_all_copy(b,"*y","*z");
-    assert(!c.empty());
-    const std::string d = boost::algorithm::replace_all_copy(c,"z=","y=");
-    assert(!d.empty());
-    return d;
-    */
   }
   catch (std::logic_error&)
   {
@@ -453,5 +446,38 @@ std::string ribi::PlaneY::ToFunction() const
       = "ribi::PlaneY::ToFunction: cannot calculate X of a horizontal plane";
     throw std::logic_error(error.c_str());
   }
+  */
 }
 
+std::ostream& ribi::operator<<(std::ostream& os,const PlaneY& planey)
+{
+  assert(planey.m_plane_z);
+  try
+  {
+    // 'z=(2*x) + (3*y) + 5'
+    //          =>
+    // 'y=(2*x) + (3*z) + 5'
+    /*
+    std::string a = m_plane_z->ToFunction();
+    assert(!a.empty());
+    boost::algorithm::replace_all(a,"*y","*z");
+    assert(!a.empty());
+    boost::algorithm::replace_all(a,"z=","y=");
+    assert(!a.empty());
+    return a;
+    */
+    os
+      << "y=("
+      << planey.m_plane_z->GetFunctionA() << "*x) + ("
+      << planey.m_plane_z->GetFunctionB() << "*z) + "
+      << planey.m_plane_z->GetFunctionC()
+    ;
+  }
+  catch (std::logic_error&)
+  {
+    const std::string error
+      = "ribi::PlaneY::ToFunction: cannot calculate X of a horizontal plane";
+    throw std::logic_error(error.c_str());
+  }
+  return os;
+}

@@ -57,6 +57,9 @@ boost::shared_ptr<const ribi::QuestionDialog> ribi::QtOpenQuestionDialog::GetDia
 void ribi::QtOpenQuestionDialog::OnOpenQuestionDialogChanged(OpenQuestionDialog * const open_question_dialog) noexcept
 {
   assert(open_question_dialog);
+
+  ui->edit_answer->setText(open_question_dialog->GetAnswerInProgress().c_str());
+
   OnOpenQuestionChanged(open_question_dialog->GetOpenQuestion());
 }
 
@@ -163,14 +166,15 @@ void ribi::QtOpenQuestionDialog::SetDialog(const boost::shared_ptr<QuestionDialo
 
 std::string ribi::QtOpenQuestionDialog::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::QtOpenQuestionDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-28: version 1.0: initial version",
-    "2014-06-04: version 1.1: added SetDialog member function"
+    "2014-06-04: version 1.1: added SetDialog member function",
+    "2014-06-13: version 1.2: support for displaying an answer-in-progress"
   };
 }
 
@@ -191,9 +195,14 @@ void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
   m_openquestiondialog->Submit(this->ui->edit_answer->text().toStdString());
 
   const bool is_correct = m_openquestiondialog->IsAnswerCorrect();
-  this->ui->stackedWidget->setCurrentWidget(is_correct
+  ui->stackedWidget->setCurrentWidget(is_correct
     ? ui->page_correct
     : ui->page_incorrect);
 }
 
 
+
+void ribi::QtOpenQuestionDialog::on_edit_answer_textChanged(const QString &arg1)
+{
+  m_openquestiondialog->SetAnswerInProgress(arg1.toStdString());
+}

@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::OpenQuestionDialog::OpenQuestionDialog()
   : m_signal_open_question_changed{},
+    m_answer_in_progress{},
     m_open_question{}
 {
   #ifndef NDEBUG
@@ -61,7 +62,7 @@ boost::shared_ptr<const ribi::Question> ribi::OpenQuestionDialog::GetQuestion() 
 
 std::string ribi::OpenQuestionDialog::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::OpenQuestionDialog::GetVersionHistory() noexcept
@@ -69,8 +70,18 @@ std::vector<std::string> ribi::OpenQuestionDialog::GetVersionHistory() noexcept
   return {
     "2011-06-29: version 1.0: initial version",
     "2013-10-24: version 1.1: added testing",
-    "2014-06-05: version 1.2: moved some code to OpenQuestionDialogFactory"
+    "2014-06-05: version 1.2: moved some code to OpenQuestionDialogFactory",
+    "2014-06-12: version 1.3: added support for displaying an answer-in-progress"
   };
+}
+
+void ribi::OpenQuestionDialog::SetAnswerInProgress(const std::string& answer_in_progress) noexcept
+{
+  if (m_answer_in_progress != answer_in_progress)
+  {
+    m_answer_in_progress = answer_in_progress;
+    m_signal_open_question_changed(this);
+  }
 }
 
 void ribi::OpenQuestionDialog::SetOpenQuestion(const boost::shared_ptr<OpenQuestion>& open_question) noexcept

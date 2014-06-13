@@ -95,10 +95,25 @@ struct PlaneZ
 
   const std::vector<double>& GetCoefficients() const noexcept { return m_coefficients; }
 
+  ///This plane has equation 'z = Ax + By + C'
+  ///Will throw if A cannot be calculated
+  double GetFunctionA() const;
+
+  ///This plane has equation 'z = Ax + By + C'
+  ///Will throw if B cannot be calculated
+  double GetFunctionB() const;
+
+  ///This plane has equation 'z = Ax + By + C'
+  ///Will throw if C cannot be calculated
+  double GetFunctionC() const;
+
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Convert the NonVerticalPlane to a z(x,y), e.g 'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
+  ///Convert the Plane to function z(x,y), e.g
+  ///'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
+  ///Where 2,3 and 5 can be obtained with GetFunctionA,GetFunctionB and GetFunctionC
+  ///respectively
   std::string ToFunction() const;
 
   private:
@@ -124,6 +139,8 @@ struct PlaneZ
   friend class boost::detail::sp_ms_deleter<      PlaneZ>;
   friend class boost::detail::sp_ms_deleter<const PlaneZ>;
 };
+
+std::ostream& operator<<(std::ostream& os,const PlaneZ& planez);
 
 } //~namespace ribi
 

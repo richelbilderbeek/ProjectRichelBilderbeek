@@ -67,6 +67,8 @@ public:
 private slots:
   void on_button_submit_clicked() noexcept;
 
+  void on_edit_answer_textChanged(const QString &arg1);
+
 private:
   Ui::QtOpenQuestionDialog *ui;
   boost::shared_ptr<OpenQuestionDialog> m_openquestiondialog;

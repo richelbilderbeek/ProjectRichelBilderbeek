@@ -124,7 +124,10 @@ struct PlaneX
   friend struct std::default_delete<const PlaneX>;
   friend class boost::detail::sp_ms_deleter<      PlaneX>;
   friend class boost::detail::sp_ms_deleter<const PlaneX>;
+  friend std::ostream& operator<<(std::ostream& os,const PlaneX& planex);
 };
+
+std::ostream& operator<<(std::ostream& os,const PlaneX& planex);
 
 } //~namespace ribi
 

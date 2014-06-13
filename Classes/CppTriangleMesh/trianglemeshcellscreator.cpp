@@ -380,8 +380,13 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         if(!IsPlane(face_points))
         {
           TRACE("ERROR");
-          TRACE(face_points.size());
-          for (auto point: face_points) { TRACE(point->ToStr()); }
+          std::stringstream s;
+          s
+            << face_points.size() << '\n'
+            << std::setprecision(99)
+          ;
+          for (auto point: face_points) { s << point << " "; }
+          TRACE(s.str());
           TRACE("BREAK"); //HIERO
         }
         assert(IsPlane(face_points));

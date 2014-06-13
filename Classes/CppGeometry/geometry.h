@@ -436,6 +436,11 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> operator-
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
 ) noexcept;
 
+std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat2D& p) noexcept;
+std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat3D& p) noexcept;
+std::ostream& operator<<(std::ostream& os, const Geometry::Polygon& p) noexcept;
+
+
 } //~namespace ribi
 
 #endif // RIBI_GEOMETRY_H

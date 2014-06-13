@@ -1,6 +1,8 @@
 #include "trianglemeshpoint.h"
 
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -171,14 +173,9 @@ void ribi::trim::Point::Test() noexcept
 
 std::string ribi::trim::Point::ToStr() const noexcept
 {
-  
+
   std::stringstream s;
-  s
-    << Geometry().ToStr(GetCoordinat3D())
-    << " (index: "
-    << GetIndex()
-    << ")";
-  ;
+  s << *this;
   return s.str();
 }
 
@@ -210,6 +207,18 @@ bool ribi::trim::operator!=(const ribi::trim::Point& lhs, const ribi::trim::Poin
 
 std::ostream& ribi::trim::operator<<(std::ostream& os, const Point& n)
 {
-  os << n.ToStr();
+  using boost::geometry::get;
+  const auto c = n.GetCoordinat3D();
+  os
+    << "("
+    << get<0>(c)
+    << ","
+    << get<1>(c)
+    << ","
+    << get<2>(c)
+    << ") (index: "
+    << n.GetIndex()
+    << ")"
+  ;
   return os;
 }

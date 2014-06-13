@@ -186,13 +186,14 @@ boost::shared_ptr<const ribi::Program> ribi::TestPlaneMenuDialog::GetProgram() c
 
 std::string ribi::TestPlaneMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2014-03-07: version 1.0: initial version"
+    "2014-03-07: version 1.0: initial version",
+    "2014-06-13: version 1.0: allow setting a high precision in desktop version"
   };
 }
 

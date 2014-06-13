@@ -236,7 +236,7 @@ std::vector<double> ribi::Plane::GetCoefficientsZ() const
 
 std::string ribi::Plane::GetVersion() const noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
@@ -245,23 +245,27 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
     "2014-03-07: version 1.0: initial version",
     "2014-03-10: version 1.1: allow vertical planes",
     "2014-03-13: version 1.2: bug fixed",
-    "2014-04-01: version 1.3: use of std::unique_ptr"
+    "2014-04-01: version 1.3: use of std::unique_ptr",
+    "2014-06-13: version 1.4: added operator<<, ToStr calls operator<<"
   };
 }
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
-  const bool verbose = false;
-  const double x { boost::geometry::get<0>(coordinat) };
-  const double y { boost::geometry::get<1>(coordinat) };
-  const double z { boost::geometry::get<2>(coordinat) };
-  const double max_error { 0.001 };
+  const bool verbose = true;
+  const double x = boost::geometry::get<0>(coordinat);
+  const double y = boost::geometry::get<1>(coordinat);
+  const double z = boost::geometry::get<2>(coordinat);
+  const double max_error = 0.001;
   if (verbose)
   {
     TRACE(x);
     TRACE(y);
     TRACE(z);
     TRACE(max_error);
+    try { TRACE(ToFunctionX()); } catch (std::exception&) {}
+    try { TRACE(ToFunctionY()); } catch (std::exception&) {}
+    try { TRACE(ToFunctionZ()); } catch (std::exception&) {}
   }
   try
   {
@@ -535,4 +539,49 @@ std::string ribi::Plane::ToFunctionZ() const
   {
     throw std::logic_error("Plane::ToFunctionZ: plane cannot be expressed as Z = A*X + B*Y");
   }
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const Plane& plane) noexcept
+{
+  os << '(';
+  const auto n_points = static_cast<int>(plane.m_points.size());
+  for (auto i=0; i!=n_points; ++i)
+  {
+    os << plane.m_points[i];
+    os << (i != n_points - 1 ? ',' : ')');
+  }
+  //std::copy(plane.m_points.begin(),plane.m_points.end(),
+  //  std::ostream_iterator<std::string>(os,",")
+  //);
+  os << ',';
+  if (plane.m_plane_x)
+  {
+    try { os << (*plane.m_plane_x); }
+    catch (std::exception&) { os << "divnull"; }
+  }
+  else
+  {
+    os << "null";
+  }
+  os << ',';
+  if (plane.m_plane_y)
+  {
+    try { os << (*plane.m_plane_y); }
+    catch (std::exception&) { os << "divnull"; }
+  }
+  else
+  {
+    os << "null";
+  }
+  os << ',';
+  if (plane.m_plane_z)
+  {
+    try { os << (*plane.m_plane_z); }
+    catch (std::exception&) { os << "divnull"; }
+  }
+  else
+  {
+    os << "null";
+  }
+  return os;
 }
