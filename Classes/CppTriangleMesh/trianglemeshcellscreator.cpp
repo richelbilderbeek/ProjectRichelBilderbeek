@@ -376,7 +376,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         face_points[1]->SetZ(z_here);
         face_points[2]->SetZ(z_above);
         face_points[3]->SetZ(z_above);
-
+        #ifndef NDEBUG
         if(!IsPlane(face_points))
         {
           TRACE("ERROR");
@@ -387,8 +387,9 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           ;
           for (auto point: face_points) { s << (*point) << " "; }
           TRACE(s.str());
-          TRACE("BREAK"); //HIERO
+          TRACE("BREAK");
         }
+        #endif
         assert(IsPlane(face_points));
 
         //Order face_points

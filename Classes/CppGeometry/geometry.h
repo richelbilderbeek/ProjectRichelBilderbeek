@@ -352,13 +352,26 @@ struct Geometry
   ///Functor for Z-Y-X ordering
   std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> OrderByZ() const noexcept;
 
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
-    Rescale(
-      const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
-      const double scale,
-      const double scale_origin_x = 0.0,
-      const double scale_origin_y = 0.0
-    ) const noexcept;
+  Linestring Rescale(
+    const Linestring& polygon,
+    const double scale,
+    const double scale_origin_x = 0.0,
+    const double scale_origin_y = 0.0
+  ) const noexcept;
+
+  Polygon Rescale(
+    const Polygon& polygon,
+    const double scale,
+    const double scale_origin_x = 0.0,
+    const double scale_origin_y = 0.0
+  ) const noexcept;
+
+  Polygons Rescale(
+    const Polygons& polygons,
+    const double scale,
+    const double scale_origin_x = 0.0,
+    const double scale_origin_y = 0.0
+  ) const noexcept;
 
   std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;

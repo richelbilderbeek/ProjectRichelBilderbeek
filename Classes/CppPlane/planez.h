@@ -45,30 +45,23 @@ namespace ribi {
 //    z = -A/C.x - B/C.y + D/C
 struct PlaneZ
 {
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef std::vector<Coordinat2D> Coordinats2D;
+  typedef std::vector<Coordinat3D> Coordinats3D;
 
   ///Create plane Z = 0.0
-  PlaneZ() : PlaneZ(Coordinat3D(0.0,0.0,0.0),Coordinat3D(1.0,0.0,0.0),Coordinat3D(0.0,1.0,0.0))
-  {
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
+  PlaneZ() noexcept;
 
   ///Construct from its coefficients
-  explicit PlaneZ(const std::vector<double>& coefficients);
+  PlaneZ(const std::vector<double>& coefficients) noexcept;
 
   ///Construct from three points
-  explicit PlaneZ(
+  PlaneZ(
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-  ) noexcept : PlaneZ(CalcPlaneZ(p1,p2,p3))
-  {
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
+  );
 
   ///Get the 2D projection of these 3D points,
   ///Assumes these are in a plane
@@ -86,7 +79,7 @@ struct PlaneZ
   +--B---                     A--B-----
 
   */
-  std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
+  Coordinats2D CalcProjection(
     const std::vector<Coordinat3D>& points
   ) const;
 
@@ -110,14 +103,9 @@ struct PlaneZ
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Convert the Plane to function z(x,y), e.g
-  ///'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
-  ///Where 2,3 and 5 can be obtained with GetFunctionA,GetFunctionB and GetFunctionC
-  ///respectively
-  std::string ToFunction() const;
 
   private:
-  ~PlaneZ() noexcept {}
+  ~PlaneZ() noexcept;
 
   //m_coefficients.size == 4
   const std::vector<double> m_coefficients;
@@ -131,6 +119,12 @@ struct PlaneZ
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  ///Convert the Plane to function z(x,y), e.g
+  ///'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
+  ///Where 2,3 and 5 can be obtained with GetFunctionA,GetFunctionB and GetFunctionC
+  ///respectively
+  std::string ToFunction() const;
 
   friend void boost::checked_delete<>(      PlaneZ*);
   friend void boost::checked_delete<>(const PlaneZ*);

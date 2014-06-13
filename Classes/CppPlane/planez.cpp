@@ -18,23 +18,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPlane.htm
 //---------------------------------------------------------------------------
-#include "planez.h"
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "plane.h"
+#include "planez.h"
 
 #include <cassert>
 
 #include "geometry.h"
+//#include "plane.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::PlaneZ::PlaneZ() noexcept
+  : PlaneZ(
+    Coordinat3D(0.0,0.0,0.0),
+    Coordinat3D(1.0,0.0,0.0),
+    Coordinat3D(0.0,1.0,0.0)
+  )
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 ribi::PlaneZ::PlaneZ(
   const std::vector<double>& coefficients
-) : m_coefficients(coefficients)
+) noexcept
+  : m_coefficients(coefficients)
 {
   #ifndef NDEBUG
   Test();
@@ -43,6 +55,21 @@ ribi::PlaneZ::PlaneZ(
 
 }
 
+ribi::PlaneZ::PlaneZ(
+  const Coordinat3D& p1,
+  const Coordinat3D& p2,
+  const Coordinat3D& p3
+) : PlaneZ(CalcPlaneZ(p1,p2,p3))
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+ribi::PlaneZ::~PlaneZ() noexcept
+{
+  //OK
+}
 
 std::vector<double> ribi::PlaneZ::CalcPlaneZ(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,

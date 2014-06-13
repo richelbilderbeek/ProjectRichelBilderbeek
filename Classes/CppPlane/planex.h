@@ -26,10 +26,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "planez.h"
+#include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/make_shared.hpp>
+//#include "planez.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct PlaneZ;
 
 ///A 3D plane that can have its X expressed as a function of Y and Z.
 ///Can be constructed from its equation and at least three 3D points
@@ -40,32 +44,24 @@ namespace ribi {
 //    x = -A/B.z - C/B.y + D/B
 struct PlaneX
 {
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef std::vector<Coordinat2D> Coordinats2D;
+  typedef std::vector<Coordinat3D> Coordinats3D;
   ///Construct from its coefficients
   /*
   explicit PlaneX(const std::vector<double>& coefficients = {0.0,0.0,0.0,0.0});
   */
 
   ///Create plane X = 0.0
-  PlaneX() : PlaneX(Coordinat3D(0.0,0.0,0.0),Coordinat3D(0.0,1.0,0.0),Coordinat3D(0.0,0.0,1.0))
-  {
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
-
+  PlaneX() noexcept;
 
   ///Construct from three points
-  explicit PlaneX(
+  PlaneX(
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-  ) noexcept : m_plane_z{Create(p1,p2,p3)}
-  {
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
+  ) noexcept;
 
   ///Get the 2D projection of these 3D points,
   /*
@@ -82,23 +78,32 @@ struct PlaneX
   +--B---                     A--B-----
 
   */
-  std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
-    const std::vector<Coordinat3D>& points
-  ) const;
+  Coordinats2D CalcProjection(const Coordinats3D& points) const;
 
   ///Throws when cannot calculate X, which is when the plane is horizontal
   double CalcX(const double y, const double z) const;
 
-  const std::vector<double> GetCoefficients() const noexcept;
+  std::vector<double> GetCoefficients() const noexcept;
+
+  ///x = Ay + Bz + C
+  ///Will throw if A cannot be calculated
+  double GetFunctionA() const;
+
+  ///x = Ay + Bz + C
+  ///Will throw if B cannot be calculated
+  double GetFunctionB() const;
+
+  ///x = Ay + Bz + C
+  ///Will throw if C cannot be calculated
+  double GetFunctionC() const;
 
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Convert the PlaneX to a x(y,z), e.g 'x=(2*y) + (3*z) + 5' (spaces exactly as shown)
-  std::string ToFunction() const;
+
 
   private:
-  ~PlaneX() noexcept {}
+  ~PlaneX() noexcept;
 
   ///A PlaneX is actually a PlaneZ used with its coordinats rotated from (X,Y,Z) to (Z,Y,Y)
   const std::unique_ptr<PlaneZ> m_plane_z;
@@ -117,6 +122,9 @@ struct PlaneX
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  ///Convert the PlaneX to a x(y,z), e.g 'x=(2*y) + (3*z) + 5' (spaces exactly as shown)
+  std::string ToFunction() const;
 
   friend void boost::checked_delete<>(      PlaneX*);
   friend void boost::checked_delete<>(const PlaneX*);

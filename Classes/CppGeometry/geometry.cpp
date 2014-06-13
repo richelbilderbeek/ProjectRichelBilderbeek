@@ -159,9 +159,12 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcPr
   const bool verbose = false;
   if (verbose)
   {
-    try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}
-    try { TRACE(plane->ToFunctionY()); } catch (std::exception&) {}
-    try { TRACE(plane->ToFunctionZ()); } catch (std::exception&) {}
+    TRACE(plane->CanCalcX());
+    TRACE(plane->CanCalcY());
+    TRACE(plane->CanCalcZ());
+    //try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}
+    //try { TRACE(plane->ToFunctionY()); } catch (std::exception&) {}
+    //try { TRACE(plane->ToFunctionZ()); } catch (std::exception&) {}
   }
   #endif
 
@@ -639,9 +642,12 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     #ifndef NDEBUG
     if (verbose)
     {
-      try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}
-      try { TRACE(plane->ToFunctionY()); } catch (std::exception&) {}
-      try { TRACE(plane->ToFunctionZ()); } catch (std::exception&) {}
+      TRACE(plane->CanCalcX());
+      TRACE(plane->CanCalcY());
+      TRACE(plane->CanCalcZ());
+      //try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}
+      //try { TRACE(plane->ToFunctionY()); } catch (std::exception&) {}
+      //try { TRACE(plane->ToFunctionZ()); } catch (std::exception&) {}
     }
     #endif
 
@@ -851,19 +857,46 @@ std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry:
   };
 }
 
-boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
-  ribi::Geometry::Rescale(
-    const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
-    const double scale,
-    const double scale_origin_x,
-    const double scale_origin_y
-  ) const noexcept
+ribi::Geometry::Linestring ribi::Geometry::Rescale(
+  const Linestring& linestring,
+  const double scale,
+  const double scale_origin_x,
+  const double scale_origin_y
+) const noexcept
+{
+  std::vector<Coordinat2D> v;
+
+
+  for (const auto& point:linestring)
+  {
+    const double x = point.x();
+    const double dx = x - scale_origin_x;
+    const double new_x = scale_origin_x + (scale * dx);
+
+    const double y = point.y();
+    const double dy = y - scale_origin_y;
+    const double new_y = scale_origin_y + (scale * dy);
+
+    v.push_back(Coordinat2D(new_x,new_y));
+  }
+
+  Linestring new_linestring;
+  boost::geometry::append(new_linestring,v);
+  return new_linestring;
+}
+
+ribi::Geometry::Polygon ribi::Geometry::Rescale(
+  const Polygon& polygon,
+  const double scale,
+  const double scale_origin_x,
+  const double scale_origin_y
+) const noexcept
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
 
   boost::geometry::model::ring<Coordinat2D> points;
-  boost::geometry::convert(shape,points);
+  boost::geometry::convert(polygon,points);
 
   for (auto& point:points)
   {
@@ -878,9 +911,26 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
     point = Coordinat2D(new_x,new_y);
   }
 
-  Polygon new_shape;
-  boost::geometry::append(new_shape, points);
-  return new_shape;
+  Polygon new_polygon;
+  boost::geometry::append(new_polygon, points);
+  return new_polygon;
+}
+
+ribi::Geometry::Polygons ribi::Geometry::Rescale(
+  const Polygons& polygons,
+  const double scale,
+  const double scale_origin_x,
+  const double scale_origin_y
+) const noexcept
+{
+  Polygons new_polygons;
+  for (const auto polygon: polygons)
+  {
+    new_polygons.push_back(
+      Rescale(polygon,scale,scale_origin_x,scale_origin_y)
+    );
+  }
+  return new_polygons;
 }
 
 #ifndef NDEBUG

@@ -28,16 +28,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
-#include "planex.h"
-#include "planey.h"
-#include "planez.h"
+//#include "planex.h"
+//#include "planey.h"
+//#include "planez.h"
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct PlaneX;
+struct PlaneY;
+struct PlaneZ;
 
 ///Any 3D plane, even a single point
 ///Can be constructed from its equation and at least three 3D points
@@ -98,6 +103,15 @@ struct Plane
   ///If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
   double CalcZ(const double x, const double y) const;
 
+  ///Can the Plane be expressed as X = A*Y + B*Z + C ?
+  bool CanCalcX() const noexcept;
+
+  ///Can the Plane be expressed as Y = A*X + B*Z + C ?
+  bool CanCalcY() const noexcept;
+
+  ///Can the Plane be expressed as Z = A*X + B*Y + C ?
+  bool CanCalcZ() const noexcept;
+
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
   std::vector<double> GetCoefficientsX() const;
 
@@ -113,17 +127,19 @@ struct Plane
   ///Checks if the coordinat is in the plane
   bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
 
-  ///If possible, convert the Plane to a x(y,z), e.g 'x=(2*y) + (3*z) + 5' (spaces exactly as shown)
-  std::string ToFunctionX() const;
-
-  ///If possible, convert the Plane to a y(x,z), e.g 'y=(2*x) + (3*z) + 5' (spaces exactly as shown)
-  std::string ToFunctionY() const;
-
-  ///If possible, convert the Plane to a z(x,y), e.g 'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
-  std::string ToFunctionZ() const;
 
   private:
   ~Plane() noexcept {}
+
+  ///If possible, convert the Plane to a x(y,z), e.g 'x=(2*y) + (3*z) + 5' (spaces exactly as shown)
+  //std::string ToFunctionX() const; //TEMP, to be removed
+
+  ///If possible, convert the Plane to a y(x,z), e.g 'y=(2*x) + (3*z) + 5' (spaces exactly as shown)
+  //std::string ToFunctionY() const; //TEMP, to be removed
+
+  ///If possible, convert the Plane to a z(x,y), e.g 'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
+  //std::string ToFunctionZ() const; //TEMP, to be removed
+
 
   ///A non-horizontal plane; a plane that can be expressed as 'X(Y,Z) = A*Y + B*Z + C'
   const boost::shared_ptr<const PlaneX> m_plane_x;

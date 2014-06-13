@@ -55,7 +55,6 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
     static_cast<double>(ui->slider_z1->value())
   );
   s << "Point 1: " << p1 << '\n';
-  //s << "Point 1: " << Geometry().ToStr(p1) << '\n';
 
   const Geometry::Coordinat3D p2(
     static_cast<double>(ui->slider_x2->value()),
@@ -63,7 +62,6 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
     static_cast<double>(ui->slider_z2->value())
   );
   s << "Point 2: " << p2 << '\n';
-  //s << "Point 2: " << Geometry().ToStr(p2) << '\n';
 
   const Geometry::Coordinat3D p3(
     static_cast<double>(ui->slider_x3->value()),
@@ -71,8 +69,6 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
     static_cast<double>(ui->slider_z3->value())
   );
   s << "Point 3: " << p3 << '\n';
-  //s << "Point 3: " << Geometry().ToStr(p3) << '\n';
-
 
   const boost::shared_ptr<ribi::Plane> plane(
     new Plane(p1,p2,p3)
@@ -81,7 +77,7 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 
   try
   {
-    s << "Function (X): " << plane->ToFunctionX() << '\n'
+    s << "Function (X): " << '\n' //<< plane->ToFunctionX() << '\n'
       << "Coefficients (X): " << '\n'
       << " - A: " << plane->GetCoefficientsX()[0] << '\n'
       << " - B: " << plane->GetCoefficientsX()[1] << '\n'
@@ -96,7 +92,7 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 
   try
   {
-    s << "Function (Y): " << plane->ToFunctionY() << '\n'
+    s << "Function (Y): " << '\n' //plane->ToFunctionY() << '\n'
       << "Coefficients (Y): " << '\n'
       << " - A: " << plane->GetCoefficientsY()[0] << '\n'
       << " - B: " << plane->GetCoefficientsY()[1] << '\n'
@@ -111,7 +107,7 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 
   try
   {
-    s << "Function (Z): " << plane->ToFunctionZ() << '\n'
+    s << "Function (Z): " << '\n' //plane->ToFunctionZ() << '\n'
       << "Coefficients (Z): " << '\n'
       << " - A: " << plane->GetCoefficientsZ()[0] << '\n'
       << " - B: " << plane->GetCoefficientsZ()[1] << '\n'

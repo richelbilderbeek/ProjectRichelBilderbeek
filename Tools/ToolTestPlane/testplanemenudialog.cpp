@@ -85,7 +85,7 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
     const boost::shared_ptr<ribi::Plane> plane(new ribi::Plane(p1,p2,p3));
     try
     {
-      s << "Function (X): " << plane->ToFunctionX() << '\n'
+      s << "Function (X): " << '\n' //<< plane->ToFunctionX() << '\n'
         << "Coefficients (X): " << '\n'
         << " - A: " << plane->GetCoefficientsX()[0] << '\n'
         << " - B: " << plane->GetCoefficientsX()[1] << '\n'
@@ -100,7 +100,7 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
 
     try
     {
-      s << "Function (Y): " << plane->ToFunctionY() << '\n'
+      s << "Function (Y): " << '\n' //plane->ToFunctionY() << '\n'
         << "Coefficients (Y): " << '\n'
         << " - A: " << plane->GetCoefficientsY()[0] << '\n'
         << " - B: " << plane->GetCoefficientsY()[1] << '\n'
@@ -115,7 +115,7 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
 
     try
     {
-      s << "Function (Z): " << plane->ToFunctionZ() << '\n'
+      s << "Function (Z): " << '\n' //plane->ToFunctionZ() << '\n'
         << "Coefficients (Z): " << '\n'
         << " - A: " << plane->GetCoefficientsZ()[0] << '\n'
         << " - B: " << plane->GetCoefficientsZ()[1] << '\n'
@@ -186,14 +186,15 @@ boost::shared_ptr<const ribi::Program> ribi::TestPlaneMenuDialog::GetProgram() c
 
 std::string ribi::TestPlaneMenuDialog::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2014-03-07: version 1.0: initial version",
-    "2014-06-13: version 1.0: allow setting a high precision in desktop version"
+    "2014-06-13: version 1.1: allow setting a high precision in desktop version",
+    "2014-06-13: version 1.2: use of operator<< instead of ToStr"
   };
 }
 

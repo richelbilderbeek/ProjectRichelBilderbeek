@@ -270,7 +270,11 @@ QPlainTextEdit { font: 12px &quot;Courier New&quot;, courier, monospace }</strin
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QSpinBox" name="box_precision"/>
+    <widget class="QSpinBox" name="box_precision">
+     <property name="value">
+      <number>3</number>
+     </property>
+    </widget>
    </item>
    <item row="2" column="0" colspan="2">
     <widget class="QPlainTextEdit" name="text">

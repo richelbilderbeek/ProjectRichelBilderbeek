@@ -18,24 +18,53 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPlane.htm
 //---------------------------------------------------------------------------
-#include "planey.h"
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "plane.h"
+#include "planey.h"
 
 #include <cassert>
 
 #include <boost/xpressive/xpressive.hpp>
 
 #include "geometry.h"
+//#include "plane.h"
+#include "planez.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneY::CalcProjection(
-  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
+ribi::PlaneY::PlaneY() noexcept
+  : PlaneY(
+    Coordinat3D(0.0,0.0,0.0),
+    Coordinat3D(1.0,0.0,0.0),
+    Coordinat3D(0.0,0.0,1.0)
+  )
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+ribi::PlaneY::PlaneY(
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
+) noexcept
+  : m_plane_z{Create(p1,p2,p3)}
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+ribi::PlaneY::~PlaneY()
+{
+  //OK
+}
+
+ribi::PlaneY::Coordinats2D ribi::PlaneY::CalcProjection(
+  const Coordinats3D& points
 ) const
 {
   auto v(points);
@@ -63,9 +92,9 @@ double ribi::PlaneY::CalcY(const double x, const double z) const
 }
 
 std::unique_ptr<ribi::PlaneZ> ribi::PlaneY::Create(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+  const Coordinat3D& p1,
+  const Coordinat3D& p2,
+  const Coordinat3D& p3
 ) noexcept
 {
   std::unique_ptr<PlaneZ> p(
@@ -75,11 +104,29 @@ std::unique_ptr<ribi::PlaneZ> ribi::PlaneY::Create(
   return p;
 }
 
-const std::vector<double> ribi::PlaneY::GetCoefficients() const noexcept
+std::vector<double> ribi::PlaneY::GetCoefficients() const noexcept
 {
   const auto v(m_plane_z->GetCoefficients());
   assert(v.size() == 4);
   return { v[1],v[2],v[0],v[3] };
+}
+
+double ribi::PlaneY::GetFunctionA() const
+{
+  assert(m_plane_z);
+  return m_plane_z->GetFunctionA();
+}
+
+double ribi::PlaneY::GetFunctionB() const
+{
+  assert(m_plane_z);
+  return m_plane_z->GetFunctionB();
+}
+
+double ribi::PlaneY::GetFunctionC() const
+{
+  assert(m_plane_z);
+  return m_plane_z->GetFunctionC();
 }
 
 std::vector<std::string>
@@ -101,7 +148,7 @@ std::vector<std::string>
 
 std::string ribi::PlaneY::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
@@ -109,7 +156,8 @@ std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
   return {
     "2014-03-10: version 1.0: initial version, split off from PlaneX",
     "2014-03-13: version 1.1: bug fixed",
-    "2014-04-01: version 1.2: use of std::unique_ptr"
+    "2014-04-01: version 1.2: use of std::unique_ptr",
+    "2014-06-13: version 1.3: shortened time to compile"
   };
 }
 
