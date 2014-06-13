@@ -385,7 +385,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
             << face_points.size() << '\n'
             << std::setprecision(99)
           ;
-          for (auto point: face_points) { s << point << " "; }
+          for (auto point: face_points) { s << (*point) << " "; }
           TRACE(s.str());
           TRACE("BREAK"); //HIERO
         }

@@ -20,58 +20,38 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a> (pronounced as 'stream out operator') is an <a href="CppOperator.htm">operator</a> to sending data to a <a href="CppStream.htm">stream</a>. Use <a href="CppOperatorStreamIn.htm">operator&gt;&gt;</a> to read data from a <a href="CppStream.htm">stream</a>.</p>
+<p>
+  <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a> (pronounced as 'stream out operator') is an 
+  <a href="CppOperator.htm">operator</a> to sending data to a <a href="CppStream.htm">stream</a>. 
+  Use <a href="CppOperatorStreamIn.htm">operator&gt;&gt;</a> to read data from a <a href="CppStream.htm">stream</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example: <a href="CppHelloWorld.htm">the Hello World program</a></h2>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello World" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <li><a href="CppHelloWorld.htm">Hello World</a></li>
+  <li><a href="CppOperatorStreamOutExample1.htm">operator &lt;&lt; example 1: overloading</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppOverload.htm">Overloading</a> <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></h2>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
 <p>&nbsp;</p>
-<p>Prefer <a href="CppOverload.htm">overloading</a> <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a> with a free <a href="CppFunction.htm">function</a> [1]. To be able to access the <a href="CppPrivate.htm">private</a> member variables, make this <a href="CppFunction.htm">function</a> a <a href="CppFriend.htm">friend</a>.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
-{<br/>
-&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> value) : mValue(value) {}<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mValue;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamOut.htm">&lt;&lt;</a>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> MyClass&amp; myClass);<br/>
-};<br/>
-<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamOut.htm">&lt;&lt;</a>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> MyClass&amp; myClass)<br/>
-{<br/>
-&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "MyClass.value: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myClass.mValue;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
-}<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> MyClass myClass(13);<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> myClass <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <li>Prefer <a href="CppOverload.htm">overloading</a> <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a> with a free <a href="CppFunction.htm">function</a> [1]</li>
+  <li>
+    Note to self: prefer <a href="CppOverload.htm">overloading</a> <a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a> over a 'ToStr' 
+    <a href="CppMemberFunction.htm">member function</a>, 
+    because a <a href="CppStream.htm">stream</a> can be more flexibly manipulated (consider streaming a <a href="CppStdSetprecision.htm">std::setprecision</a> 
+    before streaming a <a href="CppClass.htm">class</a> <a href="CppInstance.htm">instance</a>
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

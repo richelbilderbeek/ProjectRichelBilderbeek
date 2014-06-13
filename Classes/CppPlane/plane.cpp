@@ -252,7 +252,7 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
-  const bool verbose = true;
+  const bool verbose = false;
   const double x = boost::geometry::get<0>(coordinat);
   const double y = boost::geometry::get<1>(coordinat);
   const double z = boost::geometry::get<2>(coordinat);
@@ -477,10 +477,10 @@ void ribi::Plane::Test() noexcept
   }
   if (verbose) TRACE("CalcProjection, from #218");
   {
-    const Point3D p1(-0.55   ,2.0, 0.0);
-    const Point3D p2(-3.78624,2.0, 0.0);
-    const Point3D p3(-0.55   ,2.0,10.0);
-    const Point3D p4(-3.78624,2.0,10.0);
+    const Point3D p1(-0.5500000000000004884981308350688777863979339599609375,2.000000000000000444089209850062616169452667236328125,0);
+    const Point3D p2(-3.78623595505618038004058689693920314311981201171875,2,0);
+    const Point3D p3(-0.5500000000000004884981308350688777863979339599609375,2.000000000000000444089209850062616169452667236328125,10);
+    const Point3D p4(-3.78623595505618038004058689693920314311981201171875,2,10);
     const Plane p(p1,p2,p3);
     assert(p.IsInPlane(p4));
   }
