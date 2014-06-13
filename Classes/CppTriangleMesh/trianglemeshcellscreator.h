@@ -94,6 +94,9 @@ struct CellsCreator
     const boost::shared_ptr<const Face> a, const boost::shared_ptr<const Face> b
   );
 
+  ///Adapter to call Geometry().IsPlane()
+  static bool IsPlane(const std::vector<boost::shared_ptr<Point>>& v) noexcept;
+
   static bool IsSubset(
     std::vector<boost::shared_ptr<Point>> a,
     std::vector<boost::shared_ptr<Point>> b

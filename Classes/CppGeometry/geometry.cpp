@@ -147,7 +147,6 @@ std::vector<double> ribi::Geometry::CalcPlane(
 
 }
 
-
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcProjection(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points) const
 {
@@ -569,6 +568,9 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
 {
+  const bool verbose = false;
+
+  #ifndef NDEBUG
   assert(points.size() >= 3);
   if (points.size() == 3)
   {
@@ -586,10 +588,8 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     for (auto point: points) { TRACE(Geometry().ToStr(point)); }
     TRACE("BREAK");
   }
-  HIERO
   assert(IsPlane(points));
-  #ifndef NDEBUG
-  const bool verbose = false;
+  #endif // NDEBUG
   if (verbose)
   {
     std::stringstream s;
@@ -602,8 +602,6 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     po_str[po_str.size() - 1] = '}';
     TRACE(po_str);
   }
-
-  #endif
   //Use the first three points for a Plane
   for (const std::vector<int> v:
     {
@@ -791,7 +789,7 @@ std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry:
   };
 }
 
-bool ribi::Geometry::IsPlane(const std::vector<ribi::Geometry::Coordinat3D>& v) const noexcept
+bool ribi::Geometry::IsPlane(const std::vector<Coordinat3D>& v) const noexcept
 {
   using boost::geometry::get;
 
@@ -811,6 +809,7 @@ bool ribi::Geometry::IsPlane(const std::vector<ribi::Geometry::Coordinat3D>& v) 
   assert(plane);
   return plane->IsInPlane(v[3]);
 }
+
 
 std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)>
   ribi::Geometry::Order2dByX() const noexcept

@@ -377,6 +377,15 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         face_points[2]->SetZ(z_above);
         face_points[3]->SetZ(z_above);
 
+        if(!IsPlane(face_points))
+        {
+          TRACE("ERROR");
+          TRACE(face_points.size());
+          for (auto point: face_points) { TRACE(point->ToStr()); }
+          TRACE("BREAK"); //HIERO
+        }
+        assert(IsPlane(face_points));
+
         //Order face_points
         if (!Helper().IsConvex(face_points))
         {
@@ -527,6 +536,20 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   std::remove(faces.begin(),faces.end(),b);
   faces.pop_back();
   return faces;
+}
+
+bool ribi::trim::CellsCreator::IsPlane(const std::vector<boost::shared_ptr<Point>>& v) noexcept
+{
+  std::vector<Geometry::Coordinat3D> w;
+  std::transform(v.begin(),v.end(),std::back_inserter(w),
+    [](const boost::shared_ptr<Point>& p)
+    {
+      assert(p);
+      return p->GetCoordinat3D();
+    }
+  );
+  assert(v.size() == w.size());
+  return Geometry().IsPlane(w);
 }
 
 bool ribi::trim::CellsCreator::IsSubset(

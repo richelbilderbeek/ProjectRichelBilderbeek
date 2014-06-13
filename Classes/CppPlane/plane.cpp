@@ -471,6 +471,15 @@ void ribi::Plane::Test() noexcept
     try { p.ToFunctionZ(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
     assert(!p.CalcProjection( { p1,p2,p3,p4 } ).empty());
   }
+  if (verbose) TRACE("CalcProjection, from #218");
+  {
+    const Point3D p1(-0.55   ,2.0, 0.0);
+    const Point3D p2(-3.78624,2.0, 0.0);
+    const Point3D p3(-0.55   ,2.0,10.0);
+    const Point3D p4(-3.78624,2.0,10.0);
+    const Plane p(p1,p2,p3);
+    assert(p.IsInPlane(p4));
+  }
   TRACE("Finished ribi::Plane::Test successfully");
 }
 #endif
