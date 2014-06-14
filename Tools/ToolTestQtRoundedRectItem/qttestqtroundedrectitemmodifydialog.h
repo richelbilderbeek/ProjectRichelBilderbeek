@@ -71,6 +71,8 @@ private:
   ///The QtRoundedRectItem to work on
   boost::shared_ptr<QtRoundedRectItem> m_item;
 
+  void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

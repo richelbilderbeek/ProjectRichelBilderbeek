@@ -35,8 +35,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   : QGraphicsRectItem(parent), //New since Qt5
-   //m_signal_item_has_updated{},
-   m_signal_request_scene_update{},
+   m_signal_pos_changed{},
+   //m_signal_request_scene_update{},
    m_contour_pen(QPen(QColor(0,0,0))),
    m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine)),
    m_radius_x(4.0),
@@ -75,7 +75,7 @@ double ribi::QtRoundedRectItem::GetRadiusY() const noexcept { return m_radius_y;
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
@@ -84,7 +84,8 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2012-12-13: version 1.0: initial version",
     "2012-12-19: version 1.1: added use of pen, brush and focus-indicating pen",
     "2012-12-22: version 1.2: correctly uses the focus and regular pen, added contour pen",
-    "2016-06-14: version 1.3: removed superfluous signal m_signal_item_has_updated"
+    "2016-06-14: version 1.3: removed superfluous signal m_signal_item_has_updated",
+    "2016-06-14: version 1.4: fixed issue #219"
   };
 }
 
@@ -93,7 +94,10 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
 void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) noexcept
 {
   QGraphicsRectItem::mouseMoveEvent(event);
-  m_signal_request_scene_update();
+  this->update();
+  m_signal_pos_changed(this);
+
+  //m_signal_request_scene_update();
 }
 //#pragma GCC diagnostic pop
 
@@ -104,12 +108,32 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
   if (this->isSelected() || this->hasFocus())
   {
     painter->setPen(m_focus_pen);
-    painter->drawRoundedRect(this->rect(),m_radius_x,m_radius_y);
+    const double width = m_focus_pen.width();
+    painter->drawRoundedRect(
+      this->rect().adjusted( //Adjust to stay within rect
+        (0.5 * width) + 1.0,
+        (0.5 * width) + 1.0,
+        -width - 1.0,
+        -width - 1.0
+      ),
+      m_radius_x,
+      m_radius_y
+    );
   }
   else
   {
     painter->setPen(m_contour_pen);
-    painter->drawRoundedRect(this->rect(),m_radius_x,m_radius_y);
+    const double width = m_contour_pen.width();
+    painter->drawRoundedRect(
+
+      this->rect().adjusted( //Adjust to stay within rect
+        (0.5 * width) + 1.0,
+        (0.5 * width) + 1.0,
+        -width - 1.0,
+        -width - 1.0
+      ),
+      m_radius_x,m_radius_y
+    );
   }
 }
 
@@ -119,7 +143,6 @@ void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
   {
     m_contour_pen = pen;
     this->update();
-    //m_signal_item_has_updated(this);
   }
 }
 
@@ -129,7 +152,6 @@ void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen) noexcept
   {
     m_focus_pen = pen;
     this->update();
-    //m_signal_item_has_updated(this);
   }
 }
 
@@ -140,8 +162,13 @@ void ribi::QtRoundedRectItem::setPos(qreal x,qreal y)
 
 void ribi::QtRoundedRectItem::SetPos(const double x,const double y) noexcept
 {
-  setPos(x,y);
-  this->update();
+  const double current_x = this->pos().x();
+  const double current_y = this->pos().y();
+  if (current_x != x || current_y != y)
+  {
+    setPos(x,y);
+    this->update();
+  }
 }
 
 void ribi::QtRoundedRectItem::SetRadiusX(const double radius_x) noexcept
@@ -150,7 +177,6 @@ void ribi::QtRoundedRectItem::SetRadiusX(const double radius_x) noexcept
   {
     m_radius_x = radius_x;
     this->update();
-    //m_signal_item_has_updated(this);
   }
 }
 
@@ -160,7 +186,6 @@ void ribi::QtRoundedRectItem::SetRadiusY(const double radius_y) noexcept
   {
     m_radius_y = radius_y;
     this->update();
-    //m_signal_item_has_updated(this);
   }
 }
 

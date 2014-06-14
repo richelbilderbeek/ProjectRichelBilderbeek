@@ -80,12 +80,11 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Set the rounded rect
   void SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept;
 
-  ///Signal emitted when this item has updated itself
-  //mutable boost::signals2::signal<void (const QtRoundedRectItem*)> m_signal_item_has_updated;
-  //mutable boost::signals2::signal<void (const QtRoundedRectItem*)> m_signal_pos_changed;
+  ///Signal emitted when this item has changed its position
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;
 
   ///Signal emitted when this item has moved
-  mutable boost::signals2::signal<void ()> m_signal_request_scene_update;
+  //mutable boost::signals2::signal<void ()> m_signal_request_scene_update;
 
 protected:
 

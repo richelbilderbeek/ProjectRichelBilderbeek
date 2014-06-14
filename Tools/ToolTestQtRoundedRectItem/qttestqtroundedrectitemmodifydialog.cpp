@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtroundedrectitemmodifydialog.h"
 
 #include <boost/make_shared.hpp>
+#include <boost/lambda/lambda.hpp>
 
 #include <QKeyEvent>
 
@@ -59,6 +60,10 @@ ribi::QtTestQtRoundedRectItemModifyDialog::QtTestQtRoundedRectItemModifyDialog(Q
   ui->box_height->setValue(m_item->rect().height());
   ui->box_radius_x->setValue(m_item->GetRadiusX());
   ui->box_radius_y->setValue(m_item->GetRadiusY());
+
+  m_item->m_signal_pos_changed.connect(
+    boost::bind(&ribi::QtTestQtRoundedRectItemModifyDialog::OnPosChanged,this,boost::lambda::_1)
+  );
 }
 
 ribi::QtTestQtRoundedRectItemModifyDialog::~QtTestQtRoundedRectItemModifyDialog() noexcept
@@ -69,6 +74,14 @@ ribi::QtTestQtRoundedRectItemModifyDialog::~QtTestQtRoundedRectItemModifyDialog(
 void ribi::QtTestQtRoundedRectItemModifyDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+}
+
+void ribi::QtTestQtRoundedRectItemModifyDialog::OnPosChanged(QtRoundedRectItem * const qtitem) noexcept
+{
+  const double new_x = qtitem->pos().x();
+  const double new_y = qtitem->pos().y();
+  ui->box_x->setValue(new_x);
+  ui->box_y->setValue(new_y);
 }
 
 #ifndef NDEBUG
