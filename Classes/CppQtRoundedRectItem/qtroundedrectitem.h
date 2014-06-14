@@ -22,9 +22,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTROUNDEDRECTITEM_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
+
 #include <QGraphicsRectItem>
 #include <QPen>
 #pragma GCC diagnostic pop
@@ -32,23 +34,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 ///Rounded rectangle item
-struct QtRoundedRectItem : public QGraphicsRectItem
+class QtRoundedRectItem : public QGraphicsRectItem
 {
-  QtRoundedRectItem(QGraphicsItem *parent = 0);
+  //Q_OBJECT //Cannot make this a QObject???
 
-  virtual ~QtRoundedRectItem() noexcept {}
+  public:
+  explicit QtRoundedRectItem(QGraphicsItem *parent = 0);
+
+  virtual ~QtRoundedRectItem() noexcept;
 
   ///Get the pen by which the contour is drawn
-  const QPen& GetContourPen() const { return m_contour_pen; }
+  const QPen& GetContourPen() const noexcept;
 
   ///Get the pen by which focus is indicated
-  const QPen& GetFocusPen() const { return m_focus_pen; }
+  const QPen& GetFocusPen() const noexcept;
 
   ///Get the rounded rect corner x radius
-  double GetRadiusX() const { return m_radius_x; }
+  double GetRadiusX() const noexcept;
 
   ///Get the rounded rect corner y radius
-  double GetRadiusY() const { return m_radius_y; }
+  double GetRadiusY() const noexcept;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -58,31 +63,34 @@ struct QtRoundedRectItem : public QGraphicsRectItem
 
   ///Set the pen by which the contours are normally drawn
   ///Default value: QPen(Qt::DashLine)
-  void SetContourPen(const QPen& pen);
+  void SetContourPen(const QPen& pen) noexcept;
 
   ///Set the pen by which focus is indicated
   ///Default value: QPen(Qt::DashLine)
-  void SetFocusPen(const QPen& pen);
+  void SetFocusPen(const QPen& pen) noexcept;
+
+  void SetPos(const double x,const double y) noexcept;
 
   ///Set the rounded rect corner x radius
-  void SetRadiusX(const double radius_x);
+  void SetRadiusX(const double radius_x) noexcept;
 
   ///Set the rounded rect corner y radius
-  void SetRadiusY(const double radius_y);
+  void SetRadiusY(const double radius_y) noexcept;
 
   ///Set the rounded rect
-  void SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y);
+  void SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept;
 
   ///Signal emitted when this item has updated itself
-  mutable boost::signals2::signal<void (const QtRoundedRectItem*)> m_signal_item_has_updated;
+  //mutable boost::signals2::signal<void (const QtRoundedRectItem*)> m_signal_item_has_updated;
+  //mutable boost::signals2::signal<void (const QtRoundedRectItem*)> m_signal_pos_changed;
 
   ///Signal emitted when this item has moved
   mutable boost::signals2::signal<void ()> m_signal_request_scene_update;
 
 protected:
 
-  virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-  virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+  virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) noexcept;
+  virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept;
 
   private:
   ///The pen by which the contour is drawn
@@ -96,6 +104,9 @@ protected:
 
   ///The rounded rect corner y radius
   double m_radius_y;
+
+  ///To make it private, use SetPos instead
+  void setPos(qreal x, qreal y);
 };
 
 } //~namespace ribi

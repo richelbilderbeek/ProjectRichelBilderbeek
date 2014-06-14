@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "testqtroundededitrectitemmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttestqtroundededitrectitemmaindialog.h"
+#include "qttestqtroundededitrectitemcomparedialog.h"
 #include "trace.h"
 #include "ui_qttestqtroundededitrectitemmenudialog.h"
 #pragma GCC diagnostic pop
@@ -77,7 +77,7 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_quit_clicked()
 
 void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_start_clicked()
 {
-  QtTestQtRoundedEditRectItemMainDialog d;
+  QtTestQtRoundedEditRectItemCompareDialog d;
   ShowChild(&d);
 }
 
@@ -90,6 +90,7 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestQtRoundedEditRectItemMenuDialog::Test");
+  QtTestQtRoundedEditRectItemCompareDialog();
   TRACE("Finished ribi::QtTestQtRoundedEditRectItemMenuDialog::Test successfully");
 }
 #endif

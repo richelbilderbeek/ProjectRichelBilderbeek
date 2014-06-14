@@ -31,7 +31,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedrectitem.h"
 #include "testqtroundedrectitemmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttestqtroundedrectitemmaindialog.h"
+#include "qttestqtroundedrectitemcomparedialog.h"
+#include "qttestqtroundedrectitemmodifydialog.h"
 #include "trace.h"
 #include "ui_qttestqtroundedrectitemmenudialog.h"
 
@@ -74,9 +75,9 @@ void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_quit_clicked()
   close();
 }
 
-void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_start_clicked()
+void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_compare_clicked()
 {
-  QtTestQtRoundedRectItemMainDialog d;
+  QtTestQtRoundedRectItemCompareDialog d;
   ShowChild(&d);
 }
 
@@ -89,6 +90,14 @@ void ribi::QtTestQtRoundedRectItemMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestQtRoundedRectItemMenuDialog::Test");
+  QtTestQtRoundedRectItemCompareDialog();
+  QtTestQtRoundedRectItemModifyDialog();
   TRACE("Finished ribi::QtTestQtRoundedRectItemMenuDialog::Test successfully");
 }
 #endif
+
+void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_modify_clicked()
+{
+  QtTestQtRoundedRectItemModifyDialog d;
+  ShowChild(&d);
+}

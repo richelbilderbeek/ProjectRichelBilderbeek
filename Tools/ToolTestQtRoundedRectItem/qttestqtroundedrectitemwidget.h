@@ -11,6 +11,7 @@
 namespace ribi {
 
 ///The widget holding the items
+///Yes, really use a widget, otherwise the keyPressEvents cannot be forwarded
 struct QtTestQtRoundedRectItemWidget : public ribi::QtKeyboardFriendlyGraphicsView
 {
   QtTestQtRoundedRectItemWidget(QWidget *parent = 0);

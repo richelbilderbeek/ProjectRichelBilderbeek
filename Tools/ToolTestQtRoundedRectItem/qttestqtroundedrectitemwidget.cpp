@@ -31,7 +31,7 @@ ribi::QtTestQtRoundedRectItemWidget::QtTestQtRoundedRectItemWidget(QWidget *pare
       const double y = -std::cos(angle) * ray;
       QtRoundedRectItem * const item = new QtRoundedRectItem;
       assert(item);
-      item->setPos(x,y);
+      item->SetPos(x,y);
       item->SetRoundedRect(QRectF(-32.0,-32.0,64.0,64.0),16.0,16.0);
       assert(scene());
       scene()->addItem(item);

@@ -38,8 +38,12 @@ namespace ribi {
 
 ///A QtRoundedRectTextItem displaying multiple lines of text
 ///For a single line of text, use QtRoundedTextRectItem
-struct QtRoundedEditRectItem : public QtRoundedRectItem
+class QtRoundedEditRectItem : public QtRoundedRectItem
 {
+  Q_OBJECT
+
+  public:
+
   struct Padding
   {
     Padding(const double any_top = 0.0, const double any_right = 0.0, const double any_bottom = 0.0, const double any_left = 0.0)
@@ -86,8 +90,8 @@ struct QtRoundedEditRectItem : public QtRoundedRectItem
   boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_item_requests_edit;
 
 protected:
-  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
-  virtual void keyPressEvent(QKeyEvent* event);
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
+  virtual void keyPressEvent(QKeyEvent* event) noexcept;
 
 private:
 
@@ -108,14 +112,14 @@ private:
 
   ///Obtain the unpadded text rectangle for a single line
   ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full
-  const QRectF GetTextRect(const std::string& s) const;
+  QRectF GetTextRect(const std::string& s) const noexcept;
 
   ///Obtain the unpadded text rectangle for the whole text
   ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full
-  const QRectF GetTextRect(const std::vector<std::string>& text) const;
+  QRectF GetTextRect(const std::vector<std::string>& text) const noexcept;
 
   ///Obtain the padded text rectangle for a single line
-  const QRectF GetPaddedTextRect(const std::string& s) const;
+  QRectF GetPaddedTextRect(const std::string& s) const noexcept;
 };
 
 } //~namespace ribi

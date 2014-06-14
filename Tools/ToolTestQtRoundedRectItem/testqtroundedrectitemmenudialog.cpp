@@ -27,7 +27,7 @@ ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestQtRoundedRectItem",
     "tests QtRoundedRectItemt",
-    "the 10th of June 2014",
+    "the 14th of June 2014",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolTestQtRoundedRectItem.htm",
     GetVersion(),
@@ -62,7 +62,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestQtRoundedRectItemMenuDialog::Ge
 
 std::string ribi::TestQtRoundedRectItemMenuDialog::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::TestQtRoundedRectItemMenuDialog::GetVersionHistory() const noexcept
@@ -71,7 +71,8 @@ std::vector<std::string> ribi::TestQtRoundedRectItemMenuDialog::GetVersionHistor
     "2012-12-21: version 1.0: initial version",
     "2012-05-20: version 1.1: added menu",
     "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole",
-    "2014-06-10: version 1.3: use QtKeyboardFriendlyGraphicView in desktop version"
+    "2014-06-10: version 1.3: use QtKeyboardFriendlyGraphicView in desktop version",
+    "2014-06-14: version 1.4: added 'Modify' dialog to desktop version"
   };
 }
 

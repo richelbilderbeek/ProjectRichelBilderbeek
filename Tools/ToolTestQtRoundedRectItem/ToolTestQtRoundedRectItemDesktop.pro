@@ -6,7 +6,7 @@ include(../../Libraries/Boost.pri)
 
 include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)
 include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
-include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
+#include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
 #include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
 
 include(ToolTestQtRoundedRectItemDesktop.pri)

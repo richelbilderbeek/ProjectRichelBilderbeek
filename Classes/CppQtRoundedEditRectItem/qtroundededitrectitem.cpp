@@ -67,7 +67,7 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
 
 }
 
-const QRectF ribi::QtRoundedEditRectItem::GetPaddedTextRect(const std::string& s) const
+QRectF ribi::QtRoundedEditRectItem::GetPaddedTextRect(const std::string& s) const noexcept
 {
   return GetTextRect(s).adjusted(
     -m_text_padding.left,
@@ -76,7 +76,7 @@ const QRectF ribi::QtRoundedEditRectItem::GetPaddedTextRect(const std::string& s
      m_text_padding.bottom);
 }
 
-const QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::string& s) const
+QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::string& s) const noexcept
 {
   const double h = QFontMetricsF(m_font).height();
   const double w = QFontMetricsF(m_font).width(s.c_str());
@@ -95,7 +95,7 @@ const QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::string& s) cons
 
 }
 
-const QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::vector<std::string>& text) const
+QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::vector<std::string>& text) const noexcept
 {
   std::vector<QRectF> v;
   std::transform(text.begin(),text.end(),std::back_inserter(v),
@@ -133,7 +133,7 @@ std::vector<std::string> ribi::QtRoundedEditRectItem::GetVersionHistory() noexce
   };
 }
 
-void ribi::QtRoundedEditRectItem::keyPressEvent(QKeyEvent* event)
+void ribi::QtRoundedEditRectItem::keyPressEvent(QKeyEvent* event) noexcept
 {
   switch (event->key())
   {
@@ -144,7 +144,7 @@ void ribi::QtRoundedEditRectItem::keyPressEvent(QKeyEvent* event)
   QtRoundedRectItem::keyPressEvent(event);
 }
 
-void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
   QtRoundedRectItem::paint(painter,option,widget);
 
