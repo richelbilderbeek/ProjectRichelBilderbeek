@@ -66,16 +66,29 @@ const QPen& ribi::QtRoundedRectItem::GetFocusPen() const noexcept
   return m_focus_pen;
 }
 
+QPointF ribi::QtRoundedRectItem::GetPos() const noexcept
+{
+  return QGraphicsRectItem::pos();
+}
+
 double ribi::QtRoundedRectItem::GetRadiusX() const noexcept
 {
   return m_radius_x;
 }
 
-double ribi::QtRoundedRectItem::GetRadiusY() const noexcept { return m_radius_y; }
+double ribi::QtRoundedRectItem::GetRadiusY() const noexcept
+{
+  return m_radius_y;
+}
+
+QRectF ribi::QtRoundedRectItem::GetRect() const noexcept
+{
+  return QGraphicsRectItem::rect();
+}
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
@@ -84,8 +97,9 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2012-12-13: version 1.0: initial version",
     "2012-12-19: version 1.1: added use of pen, brush and focus-indicating pen",
     "2012-12-22: version 1.2: correctly uses the focus and regular pen, added contour pen",
-    "2016-06-14: version 1.3: removed superfluous signal m_signal_item_has_updated",
-    "2016-06-14: version 1.4: fixed issue #219"
+    "2014-06-14: version 1.3: removed superfluous signal m_signal_item_has_updated",
+    "2014-06-14: version 1.4: fixed issue #219",
+    "2014-06-16: version 1.5: disallow setRect and setPos (use SetRoundedRect and SetPos instead)"
   };
 }
 
@@ -110,7 +124,7 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
     painter->setPen(m_focus_pen);
     const double width = m_focus_pen.width();
     painter->drawRoundedRect(
-      this->rect().adjusted( //Adjust to stay within rect
+      GetRect().adjusted( //Adjust to stay within rect
         (0.5 * width) + 1.0,
         (0.5 * width) + 1.0,
         -width - 1.0,
@@ -126,7 +140,7 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
     const double width = m_contour_pen.width();
     painter->drawRoundedRect(
 
-      this->rect().adjusted( //Adjust to stay within rect
+      this->GetRect().adjusted( //Adjust to stay within rect
         (0.5 * width) + 1.0,
         (0.5 * width) + 1.0,
         -width - 1.0,
@@ -155,18 +169,35 @@ void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen) noexcept
   }
 }
 
+/*
 void ribi::QtRoundedRectItem::setPos(qreal x,qreal y)
 {
   QGraphicsRectItem::setPos(x,y);
 }
+*/
+
+void ribi::QtRoundedRectItem::SetHeight(const double height) noexcept
+{
+  const double current_height = this->GetRect().height();
+  if (current_height != height)
+  {
+    QGraphicsRectItem::setRect(
+      this->GetRect().left(),
+      this->GetRect().top(),
+      this->GetRect().width(),
+      height
+    );
+    this->update();
+  }
+}
 
 void ribi::QtRoundedRectItem::SetPos(const double x,const double y) noexcept
 {
-  const double current_x = this->pos().x();
-  const double current_y = this->pos().y();
+  const double current_x = this->GetPos().x();
+  const double current_y = this->GetPos().y();
   if (current_x != x || current_y != y)
   {
-    setPos(x,y);
+    QGraphicsRectItem::setPos(x,y);
     this->update();
   }
 }
@@ -196,11 +227,26 @@ void ribi::QtRoundedRectItem::SetRoundedRect(
   const double radius_y
 ) noexcept
 {
-  if (this->rect() != new_rect)
+  if (this->GetRect() != new_rect)
   {
-    this->setRect(new_rect);
+    QGraphicsRectItem::setRect(new_rect);
     this->update();
   }
   this->SetRadiusX(radius_x);
   this->SetRadiusY(radius_y);
+}
+
+void ribi::QtRoundedRectItem::SetWidth(const double width) noexcept
+{
+  const double current_width = this->GetRect().width();
+  if (current_width != width)
+  {
+    QGraphicsRectItem::setRect(
+      this->GetRect().left(),
+      this->GetRect().top(),
+      width,
+      this->GetRect().height()
+    );
+    this->update();
+  }
 }

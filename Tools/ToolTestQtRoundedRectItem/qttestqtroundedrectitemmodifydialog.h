@@ -36,6 +36,7 @@ class QtTestQtRoundedRectItemModifyDialog;
 namespace ribi {
 
 struct QtRoundedRectItem;
+struct QtRoundedRectItemDialog;
 
 class QtTestQtRoundedRectItemModifyDialog : public QtHideAndShowDialog
 {
@@ -52,26 +53,19 @@ protected:
   void keyPressEvent(QKeyEvent * event);
 
 private slots:
-  void on_button_contour_pen_clicked();
 
-  void on_button_focus_pen_clicked();
-
-  void on_box_radius_x_valueChanged(double arg1);
-  void on_box_radius_y_valueChanged(double arg1);
-
-  void on_box_x_valueChanged(double arg1);
-  void on_box_y_valueChanged(double arg1);
-
-  void on_box_width_valueChanged(double arg1);
-  void on_box_height_valueChanged(double arg1);
+  void on_button_set_item_clicked();
 
 private:
   Ui::QtTestQtRoundedRectItemModifyDialog *ui;
 
-  ///The QtRoundedRectItem to work on
-  boost::shared_ptr<QtRoundedRectItem> m_item;
+  ///The dialogs working on a same QtRoundedRectItem
+  boost::shared_ptr<QtRoundedRectItemDialog> m_dialog_left;
+  boost::shared_ptr<QtRoundedRectItemDialog> m_dialog_right;
 
-  void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;
+  static boost::shared_ptr<QtRoundedRectItem> CreateRandomItem() noexcept;
+
+  void SetItem(const boost::shared_ptr<QtRoundedRectItem>& item) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

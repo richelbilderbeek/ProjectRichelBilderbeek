@@ -58,8 +58,6 @@ ribi::QtTestQtRoundedEditRectItemModifyDialog::QtTestQtRoundedEditRectItemModify
   }
   ui->box_x->setValue(m_item->pos().x());
   ui->box_y->setValue(m_item->pos().y());
-  ui->box_width->setValue(m_item->rect().width());
-  ui->box_height->setValue(m_item->rect().height());
   ui->box_radius_x->setValue(m_item->GetRadiusX());
   ui->box_radius_y->setValue(m_item->GetRadiusY());
 
@@ -138,26 +136,6 @@ void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_box_x_valueChanged(double
 void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_box_y_valueChanged(double arg1)
 {
   m_item->SetPos(m_item->pos().x(),arg1);
-}
-
-void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_box_width_valueChanged(double arg1)
-{
-  m_item->setRect(
-    m_item->pos().x(),
-    m_item->pos().y(),
-    arg1,
-    m_item->rect().height()
-  );
-}
-
-void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_box_height_valueChanged(double arg1)
-{
-  m_item->setRect(
-    m_item->pos().x(),
-    m_item->pos().y(),
-    m_item->rect().width(),
-    arg1
-  );
 }
 
 void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_button_font_clicked()

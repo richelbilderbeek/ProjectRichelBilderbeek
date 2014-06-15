@@ -127,6 +127,9 @@ private:
   ///Obtain the padded text rectangle for a single line
   static QRectF GetPaddedTextRect(const std::string& s, const QFont& font) noexcept;
 
+  void SetHeight(const double) = delete;
+  void SetWidth(const double) = delete;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

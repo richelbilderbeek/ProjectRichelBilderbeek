@@ -130,26 +130,6 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QDoubleSpinBox" name="box_width">
-        <property name="maximum">
-         <double>1000.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>64.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="box_height">
-        <property name="maximum">
-         <double>1000.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>128.000000000000000</double>
-        </property>
-       </widget>
-      </item>
       <item row="8" column="0" colspan="2">
        <widget class="QPushButton" name="button_font">
         <property name="text">
@@ -164,6 +144,20 @@
        <widget class="QPushButton" name="button_text_pen">
         <property name="text">
          <string>Change &amp;text pen</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" rowspan="2">
+       <widget class="QLabel" name="label">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string>Determined
+ by text</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>

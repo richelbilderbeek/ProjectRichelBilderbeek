@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 
 #include "qtroundedrectitem.h"
+#include "qtroundedrectitemdialog.h"
 #include "trace.h"
 #include "ui_qttestqtroundedrectitemmodifydialog.h"
 #pragma GCC diagnostic pop
@@ -37,33 +38,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ribi::QtTestQtRoundedRectItemModifyDialog::QtTestQtRoundedRectItemModifyDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedRectItemModifyDialog),
-    m_item(boost::make_shared<QtRoundedRectItem>())
+    m_dialog_left(new QtRoundedRectItemDialog),
+    m_dialog_right(new QtRoundedRectItemDialog)
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
 
+  for (auto widget: { ui->widget_left,ui->widget_right })
   {
-    assert(!ui->view_left->scene());
-    assert(!ui->view_right->scene());
-    QGraphicsScene * const scene = new QGraphicsScene;
-    ui->view_left->setScene(scene);
-    ui->view_right->setScene(scene);
-    assert(ui->view_left->scene());
-    assert(ui->view_right->scene());
-    scene->addItem(m_item.get());
+    if (!widget->layout())
+    {
+      QVBoxLayout * const layout = new QVBoxLayout;
+      widget->setLayout(layout);
+    }
   }
-  ui->box_x->setValue(m_item->pos().x());
-  ui->box_y->setValue(m_item->pos().y());
-  ui->box_width->setValue(m_item->rect().width());
-  ui->box_height->setValue(m_item->rect().height());
-  ui->box_radius_x->setValue(m_item->GetRadiusX());
-  ui->box_radius_y->setValue(m_item->GetRadiusY());
+  ui->widget_left->layout()->addWidget(m_dialog_left.get());
+  ui->widget_right->layout()->addWidget(m_dialog_right.get());
 
-  m_item->m_signal_pos_changed.connect(
-    boost::bind(&ribi::QtTestQtRoundedRectItemModifyDialog::OnPosChanged,this,boost::lambda::_1)
-  );
+  on_button_set_item_clicked();
 }
 
 ribi::QtTestQtRoundedRectItemModifyDialog::~QtTestQtRoundedRectItemModifyDialog() noexcept
@@ -76,12 +70,60 @@ void ribi::QtTestQtRoundedRectItemModifyDialog::keyPressEvent(QKeyEvent * event)
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtTestQtRoundedRectItemModifyDialog::OnPosChanged(QtRoundedRectItem * const qtitem) noexcept
+boost::shared_ptr<ribi::QtRoundedRectItem> ribi::QtTestQtRoundedRectItemModifyDialog::CreateRandomItem() noexcept
 {
-  const double new_x = qtitem->pos().x();
-  const double new_y = qtitem->pos().y();
-  ui->box_x->setValue(new_x);
-  ui->box_y->setValue(new_y);
+  boost::shared_ptr<QtRoundedRectItem> item(new QtRoundedRectItem);
+  {
+    const QPen pen(
+      QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
+      1.0 + (static_cast<double>(std::rand() % 100) / 10.0),
+      Qt::SolidLine
+    );
+    item->SetContourPen(pen);
+  }
+  {
+    const QPen pen(
+      QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
+      1.0 + (static_cast<double>(std::rand() % 100) / 10.0),
+      Qt::DashLine
+    );
+    item->SetFocusPen(pen);
+  }
+  item->SetHeight(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+  item->SetPos(
+    -50.0 + (100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX)),
+    -50.0 + (100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX))
+  );
+  item->SetRadiusX(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+  item->SetRadiusY(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+  item->SetWidth(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+  return item;
+}
+
+void ribi::QtTestQtRoundedRectItemModifyDialog::on_button_set_item_clicked()
+{
+  SetItem(CreateRandomItem());
+}
+
+void ribi::QtTestQtRoundedRectItemModifyDialog::SetItem(const boost::shared_ptr<QtRoundedRectItem>& item) noexcept
+{
+  m_dialog_left->SetItem(item);
+  m_dialog_right->SetItem(item);
+
+  if (!ui->view_left->scene())
+  {
+    assert(!ui->view_left->scene());
+    assert(!ui->view_right->scene());
+    QGraphicsScene * const scene = new QGraphicsScene;
+    ui->view_left->setScene(scene);
+    ui->view_right->setScene(scene);
+  }
+  assert(ui->view_left->scene());
+  assert(ui->view_right->scene());
+  assert(ui->view_left->scene() == ui->view_right->scene());
+  ui->view_left->scene()->clear();
+  ui->view_left->scene()->addItem(item.get());
+
 }
 
 #ifndef NDEBUG
@@ -97,61 +139,3 @@ void ribi::QtTestQtRoundedRectItemModifyDialog::Test() noexcept
 }
 #endif
 
-void ribi::QtTestQtRoundedRectItemModifyDialog::on_button_contour_pen_clicked()
-{
-  const QPen pen(
-    QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
-    1.0 + (static_cast<double>(std::rand() % 100) / 10.0)
-  );
-  m_item->SetContourPen(pen);
-}
-
-void ribi::QtTestQtRoundedRectItemModifyDialog::on_button_focus_pen_clicked()
-{
-  const QPen pen(
-    QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
-    1.0 + (static_cast<double>(std::rand() % 100) / 10.0),
-    Qt::DashLine
-  );
-  m_item->SetFocusPen(pen);
-}
-
-void ribi::QtTestQtRoundedRectItemModifyDialog::on_box_radius_x_valueChanged(double arg1)
-{
-  m_item->SetRadiusX(arg1);
-}
-
-void ribi::QtTestQtRoundedRectItemModifyDialog::on_box_radius_y_valueChanged(double arg1)
-{
-  m_item->SetRadiusY(arg1);
-}
-
-void ribi::QtTestQtRoundedRectItemModifyDialog::on_box_x_valueChanged(double arg1)
-{
-  m_item->SetPos(arg1,m_item->pos().y());
-}
-
-void ribi::QtTestQtRoundedRectItemModifyDialog::on_box_y_valueChanged(double arg1)
-{
-  m_item->SetPos(m_item->pos().x(),arg1);
-}
-
-void ribi::QtTestQtRoundedRectItemModifyDialog::on_box_width_valueChanged(double arg1)
-{
-  m_item->setRect(
-    m_item->pos().x(),
-    m_item->pos().y(),
-    arg1,
-    m_item->rect().height()
-  );
-}
-
-void ribi::QtTestQtRoundedRectItemModifyDialog::on_box_height_valueChanged(double arg1)
-{
-  m_item->setRect(
-    m_item->pos().x(),
-    m_item->pos().y(),
-    m_item->rect().width(),
-    arg1
-  );
-}

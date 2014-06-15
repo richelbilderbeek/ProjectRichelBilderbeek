@@ -110,6 +110,12 @@ private:
   ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full
   const QRectF GetTextRect() const;
 
+  ///Height of this item is determined by the text
+  void SetHeight(const double width) = delete;
+
+  ///Width of this item is determined by the text
+  void SetWidth(const double width) = delete;
+
 };
 
 } //~namespace ribi

@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <iosfwd>
 #include <boost/signals2.hpp>
 
 #include <QGraphicsRectItem>
@@ -49,11 +50,15 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Get the pen by which focus is indicated
   const QPen& GetFocusPen() const noexcept;
 
+  QPointF GetPos() const noexcept;
+
   ///Get the rounded rect corner x radius
   double GetRadiusX() const noexcept;
 
   ///Get the rounded rect corner y radius
   double GetRadiusY() const noexcept;
+
+  QRectF GetRect() const noexcept;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -69,6 +74,8 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Default value: QPen(Qt::DashLine)
   void SetFocusPen(const QPen& pen) noexcept;
 
+  void SetHeight(const double width) noexcept;
+
   void SetPos(const double x,const double y) noexcept;
 
   ///Set the rounded rect corner x radius
@@ -80,8 +87,16 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Set the rounded rect
   void SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept;
 
+  void SetWidth(const double width) noexcept;
+
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_x_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_y_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_rect_changed;
+
   ///Signal emitted when this item has changed its position
-  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;
+  //mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;
 
   ///Signal emitted when this item has moved
   //mutable boost::signals2::signal<void ()> m_signal_request_scene_update;
@@ -104,9 +119,19 @@ protected:
   ///The rounded rect corner y radius
   double m_radius_y;
 
+  ///To make it private, use GetPos instead
+  QPointF pos() = delete;
+  ///To make it private, use GetRect instead
+  QRectF rect() = delete;
   ///To make it private, use SetPos instead
-  void setPos(qreal x, qreal y);
+  void setPos(qreal x, qreal y) = delete;
+  void setPos(const QPointF&) = delete;
+  ///To make it private, use SetRoundedRect instead
+  void setRect(const double,const double,const double,const double) = delete;
+  void setRect(const QRectF&) = delete;
 };
+
+std::ostream& operator<<(std::ostream& os,const QtRoundedRectItem& item) noexcept;
 
 } //~namespace ribi
 

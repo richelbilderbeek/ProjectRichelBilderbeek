@@ -66,7 +66,7 @@ ribi::cmap::QtExampleDialog::~QtExampleDialog()
 
 void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& example)
 {
-  const bool verbose = true;
+  const bool verbose = false;
 
   assert(example);
   if (m_example == example)
