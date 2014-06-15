@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QInputDialog>
 #include <QPainter>
 
+#include "container.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -52,6 +53,10 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
     m_text( {""} ), //Empty std::vector<std::string>, as m_text must be set by SetText
     m_text_pen{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
@@ -63,8 +68,9 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
   this->SetFont(font);
   this->SetRadiusX(4.0);
   this->SetRadiusY(4.0);
+  this->SetPadding(Padding(1.0,1.0,1.0,1.0));
   this->SetText(text);
-
+  this->update();
 }
 
 ribi::QtRoundedEditRectItem::~QtRoundedEditRectItem() noexcept
@@ -77,9 +83,12 @@ const QFont& ribi::QtRoundedEditRectItem::GetFont() const noexcept
   return m_font;
 }
 
-QRectF ribi::QtRoundedEditRectItem::GetPaddedTextRect(const std::string& s) const noexcept
+QRectF ribi::QtRoundedEditRectItem::GetPaddedTextRect(
+  const std::string& s,
+  const QFont& font
+) noexcept
 {
-  return GetTextRect(s).adjusted(
+  return GetTextRect(s,font).adjusted(
     -m_text_padding.left,
     -m_text_padding.top,
      m_text_padding.right,
@@ -91,12 +100,15 @@ const std::vector<std::string>& ribi::QtRoundedEditRectItem::GetText() const noe
   return m_text;
 }
 
-QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::string& s) const noexcept
+QRectF ribi::QtRoundedEditRectItem::GetTextRect(
+  const std::string& s,
+  const QFont& font
+) noexcept
 {
-  const double h = QFontMetricsF(m_font).height();
-  const double w = QFontMetricsF(m_font).width(s.c_str());
+  const double h = QFontMetricsF(font).height();
+  const double w = QFontMetricsF(font).width(s.c_str());
   assert(h > 0.0);
-  assert(w > 0.0);
+  assert(w >= 0.0 && "An empty text can have width 0");
   #ifdef _WIN32
   //adjusted(0.0,0.0,2.0,0.0) works fine for 50% of the fonts supplied by Wine under native Lubuntu
   //adjusted(0.0,0.0,3.0,0.0) works fine for 80% of the fonts supplied by Wine under native Lubuntu
@@ -106,23 +118,28 @@ QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::string& s) const noex
   //adjusted(0.0,0.0,3.0,-1.0) works fine for 99% of the fonts under native Lubuntu
   //adjusted(0.0,0.0,4.0,-1.0) works fine for all the fonts I've tried under native Lubuntu
   //return QRectF(-0.5 * w,0.0,w,h).adjusted(0.0,0.0,2.0,-1.0);
-  return QRectF(-0.5 * w,0.0,w,h).adjusted(0.0,0.0,2.0,0.0);
+  const QRectF result = QRectF(-0.5 * w,0.0,w,h).adjusted(0.0,0.0,2.0,0.0);
+  assert(result.width() >= 0.0);
+  assert(result.height() > 0.0);
+  return result;
   #endif
 
 
 }
 
-QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::vector<std::string>& text) const noexcept
+QRectF ribi::QtRoundedEditRectItem::GetTextRect(
+  const std::vector<std::string>& text,
+  const QFont& font) noexcept
 {
   std::vector<QRectF> v;
   std::transform(text.begin(),text.end(),std::back_inserter(v),
-    [this](const std::string& s)
+    [font](const std::string& s)
     {
-      return this->GetPaddedTextRect(s);
+      return QtRoundedEditRectItem::GetPaddedTextRect(s,font);
     }
   );
   const auto width_iter = std::max_element(v.begin(),v.end(),
-    [this](const QRectF& lhs, const QRectF& rhs)
+    [](const QRectF& lhs, const QRectF& rhs)
     {
       return lhs.width() < rhs.width();
     }
@@ -166,8 +183,28 @@ void ribi::QtRoundedEditRectItem::keyPressEvent(QKeyEvent* event) noexcept
 
 void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
+  const double border_width
+    = std::max(GetContourPen().width(),GetFocusPen().width());
+
+  //Possibly adapt the rounded rect border here
+  {
+    const QRectF text_rect = GetTextRect(m_text,m_font);
+    this->SetRoundedRect(
+      text_rect.adjusted(
+        -m_padding.left   - border_width,
+        -m_padding.top    - border_width,
+         m_padding.right  + border_width,
+         m_padding.bottom + border_width
+      ),
+      this->GetRadiusX(),
+      this->GetRadiusY()
+    );
+  }
+
+  //Draws the rounded rectangle
   QtRoundedRectItem::paint(painter,option,widget);
 
+  //Draw the text lines at the right spot
   painter->setFont(m_font);
   painter->setPen(m_text_pen);
   const int sz = static_cast<int>(m_text.size());
@@ -176,21 +213,25 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
   {
     const std::string& s = m_text[i];
     //Set the padded text rectangle
-    QRectF padded_rect = GetPaddedTextRect(s);
+    QRectF padded_rect = GetPaddedTextRect(s,m_font);
     QRectF current_rect = rect();
 
     padded_rect.translate(
-      0.0,
+      0.0
+      //  + (border_width / 2.0)
+      ,
       current_rect.top()
-        + m_text_padding.top + (static_cast<double>(i) * (0.0 + padded_rect.height()))
+        + m_text_padding.top
+        + (static_cast<double>(i) * (0.0 + padded_rect.height()))
+        + (border_width / 2.0)
     );
-
+    //const auto focus_pen = GetFocusPen();
     const QRectF r(
       padded_rect.adjusted(
-         m_text_padding.left,
-         m_text_padding.top,
-        -m_text_padding.right,
-        -m_text_padding.bottom
+         m_text_padding.left,  // + (border_width / 2.0),
+         m_text_padding.top,   //  + (border_width / 2.0),
+        -m_text_padding.right, // + (border_width / 2.0),
+        -m_text_padding.bottom //+ (border_width / 2.0)
       )
     );
 
@@ -241,16 +282,20 @@ void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding)
     )
   {
     m_padding = padding;
+    /*
     const QRectF text_rect = GetTextRect(m_text);
+    const auto focus_pen = GetFocusPen();
     this->SetRoundedRect(
       text_rect.adjusted(
-        -m_padding.left,
-        -m_padding.top,
-         m_padding.right,
-         m_padding.bottom),
+        -m_padding.left - (focus_pen.widthF() / 2.0),
+        -m_padding.top  - (focus_pen.widthF() / 2.0),
+         m_padding.right  + focus_pen.widthF(),
+         m_padding.bottom + focus_pen.widthF()
+      ),
       this->GetRadiusX(),
       this->GetRadiusY()
     );
+    */
     this->update();
     //m_signal_request_scene_update();
   }
@@ -258,22 +303,49 @@ void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding)
 
 void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text)
 {
+  const bool verbose = false;
+
   if (text != m_text)
   {
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "Text will change from '" << Container().ToStr(m_text)
+        << "' to '" << Container().ToStr(text)
+        << "'"
+      ;
+      TRACE(s.str());
+    }
     m_text = text;
-    const QRectF text_rect = GetTextRect(m_text);
+    /*
+    const QRectF text_rect = GetTextRect(m_text,m_font);
+    const double border_width
+      = std::max(GetContourPen().width(),GetFocusPen().width());
     this->SetRoundedRect(
       text_rect.adjusted(
-        -m_padding.left,
-        -m_padding.top,
-         m_padding.right,
-         m_padding.bottom),
+        -m_padding.left   - border_width,
+        -m_padding.top    - border_width,
+         m_padding.right  + border_width,
+         m_padding.bottom + border_width
+      ),
       this->GetRadiusX(),
       this->GetRadiusY()
     );
+    */
     this->update();
     //this->m_signal_item_has_updated(this);
     //m_signal_request_scene_update();
+  }
+  else
+  {
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "Text will remain '" << Container().ToStr(m_text)
+        << "'"
+      ;
+      TRACE(s.str());
+    }
   }
 }
 
@@ -286,3 +358,22 @@ void ribi::QtRoundedEditRectItem::SetTextPen(const QPen& pen)
     //this->m_signal_item_has_updated(this);
   }
 }
+
+#ifndef NDEBUG
+void ribi::QtRoundedEditRectItem::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtRoundedEditRectItem::Test");
+  for (const std::string& s: { "X" })
+  {
+    const QFont font;
+    assert(GetTextRect(s,font).width() > 0.0);
+    assert(GetPaddedTextRect(s,font).width() >= GetTextRect(s,font).width());
+  }
+  TRACE("Finished ribi::QtRoundedEditRectItem::Test successfully");
+}
+#endif

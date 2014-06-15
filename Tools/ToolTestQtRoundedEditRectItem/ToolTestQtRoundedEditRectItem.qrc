@@ -2,5 +2,8 @@
     <qresource prefix="/images">
         <file>ToolTestQtRoundedEditRectItemIcon.png</file>
         <file>ToolTestQtRoundedEditRectItemCompare.png</file>
+        <file>ToolTestQtRoundedEditRectItemModify.png</file>
+        <file>ToolTestQtRoundedEditRectItemAbout.png</file>
+        <file>ToolTestQtRoundedEditRectItemQuit.png</file>
     </qresource>
 </RCC>

@@ -190,10 +190,17 @@ void ribi::QtRoundedRectItem::SetRadiusY(const double radius_y) noexcept
 }
 
 
-void ribi::QtRoundedRectItem::SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept
+void ribi::QtRoundedRectItem::SetRoundedRect(
+  const QRectF new_rect,
+  const double radius_x,
+  const double radius_y
+) noexcept
 {
-  this->setRect(rect);
+  if (this->rect() != new_rect)
+  {
+    this->setRect(new_rect);
+    this->update();
+  }
   this->SetRadiusX(radius_x);
   this->SetRadiusY(radius_y);
-  this->update();
 }

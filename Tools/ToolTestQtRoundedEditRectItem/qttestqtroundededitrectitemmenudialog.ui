@@ -37,7 +37,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemCompare.png</pixmap>
+      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemModify.png</pixmap>
      </property>
     </widget>
    </item>
@@ -77,7 +77,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemCompare.png</pixmap>
+      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemAbout.png</pixmap>
      </property>
     </widget>
    </item>
@@ -97,7 +97,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemCompare.png</pixmap>
+      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemQuit.png</pixmap>
      </property>
     </widget>
    </item>

@@ -4,16 +4,16 @@ HEADERS += \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemwidget.h \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemcomparedialog.h \
-    qttestqtroundededitrectitemmodifydialog.h
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmodifydialog.h
 
 SOURCES += \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemwidget.cpp \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmenudialog.cpp \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemcomparedialog.cpp \
-    qttestqtroundededitrectitemmodifydialog.cpp
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmodifydialog.cpp
 
 FORMS += \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmenudialog.ui \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemcomparedialog.ui \
-    qttestqtroundededitrectitemmodifydialog.ui
+    ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmodifydialog.ui
 

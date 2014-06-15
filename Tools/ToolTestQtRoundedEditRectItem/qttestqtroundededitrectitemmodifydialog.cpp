@@ -28,7 +28,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lambda/lambda.hpp>
 
 #include <QKeyEvent>
+#include <QFontDialog>
 
+#include "container.h"
 #include "qtroundededitrectitem.h"
 #include "trace.h"
 #include "ui_qttestqtroundededitrectitemmodifydialog.h"
@@ -60,6 +62,8 @@ ribi::QtTestQtRoundedEditRectItemModifyDialog::QtTestQtRoundedEditRectItemModify
   ui->box_height->setValue(m_item->rect().height());
   ui->box_radius_x->setValue(m_item->GetRadiusX());
   ui->box_radius_y->setValue(m_item->GetRadiusY());
+
+  ui->text->setPlainText("XOXO\nOXOXO\n OX");
 
   m_item->m_signal_pos_changed.connect(
     boost::bind(&ribi::QtTestQtRoundedEditRectItemModifyDialog::OnPosChanged,this,boost::lambda::_1)
@@ -154,4 +158,28 @@ void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_box_height_valueChanged(d
     m_item->rect().width(),
     arg1
   );
+}
+
+void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_button_font_clicked()
+{
+  static QFont font = m_item->GetFont();
+  bool ok = false;
+  const QFont new_font = QFontDialog::getFont(&ok, font, this);
+  if (ok) { m_item->SetFont(new_font); }
+}
+
+void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_text_textChanged()
+{
+  const auto s = ui->text->toPlainText().toStdString();
+  const auto text = Container().SeperateString(s,'\n');
+  m_item->SetText(text);
+}
+
+void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_button_text_pen_clicked()
+{
+  const QPen pen(
+    QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
+    1.0 + (static_cast<double>(std::rand() % 100) / 10.0)
+  );
+  m_item->SetTextPen(pen);
 }

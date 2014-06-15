@@ -28,10 +28,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
+#include <QFont>
+//#include <QGraphicsRectItem>
+#include "qtroundedrectitem.h"
 #pragma GCC diagnostic pop
 
-#include <QFont>
-#include "qtroundedrectitem.h"
 
 namespace ribi {
 
@@ -39,6 +40,7 @@ namespace ribi {
 ///A QtRoundedRectTextItem displaying multiple lines of text
 ///For a single line of text, use QtRoundedTextRectItem
 class QtRoundedEditRectItem : public QtRoundedRectItem
+//class QtRoundedEditRectItem : public QGraphicsRectItem
 {
   //Q_OBJECT //Cannot make this a QObject???
 
@@ -116,15 +118,18 @@ private:
   QPen m_text_pen;
 
   ///Obtain the unpadded text rectangle for a single line
-  ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full
-  QRectF GetTextRect(const std::string& s) const noexcept;
+  static QRectF GetTextRect(const std::string& s, const QFont& font) noexcept;
 
   ///Obtain the unpadded text rectangle for the whole text
   ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full
-  QRectF GetTextRect(const std::vector<std::string>& text) const noexcept;
+  static QRectF GetTextRect(const std::vector<std::string>& text, const QFont& font) noexcept;
 
   ///Obtain the padded text rectangle for a single line
-  QRectF GetPaddedTextRect(const std::string& s) const noexcept;
+  static QRectF GetPaddedTextRect(const std::string& s, const QFont& font) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

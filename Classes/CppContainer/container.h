@@ -37,6 +37,18 @@ namespace ribi {
 ///Class with container class helper functions
 struct Container
 {
+  Container();
+
+  ///Obtain the version
+  std::string GetVersion() const noexcept;
+
+  ///Obtain the version history
+  std::vector<std::string> GetVersionHistory() const noexcept;
+
+  std::vector<std::string> SeperateString(
+    const std::string& input,
+    const char seperator) const noexcept;
+
   template <class T>
   static std::string ToStr(const std::set<T>& set) noexcept
   {
@@ -61,6 +73,8 @@ struct Container
     return str;
   }
 
+
+  private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

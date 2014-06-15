@@ -66,6 +66,12 @@ private slots:
   void on_box_width_valueChanged(double arg1);
   void on_box_height_valueChanged(double arg1);
 
+  void on_button_font_clicked();
+
+  void on_text_textChanged();
+
+  void on_button_text_pen_clicked();
+
 private:
   Ui::QtTestQtRoundedEditRectItemModifyDialog *ui;
 

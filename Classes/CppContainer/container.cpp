@@ -18,4 +18,57 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppContainer.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "container.h"
+
+#include <boost/algorithm/string/split.hpp>
+
+#include "trace.h"
+#pragma GCC diagnostic pop
+
+ribi::Container::Container()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+std::string ribi::Container::GetVersion() const noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::Container::GetVersionHistory() const noexcept
+{
+  return {
+    "2014-xx-xx: Version 1.0: initial version",
+    "2014-06-14: Version 1.1: added SeperateString"
+  };
+}
+
+std::vector<std::string> ribi::Container::SeperateString(
+  const std::string& input,
+  const char seperator) const noexcept
+{
+  std::vector<std::string> v;
+  boost::algorithm::split(v,input,
+    std::bind2nd(std::equal_to<char>(),seperator),
+    boost::algorithm::token_compress_on);
+  return v;
+}
+
+#ifndef NDEBUG
+void ribi::Container::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Container::Test");
+  TRACE("Finished ribi::Container::Test successfully");
+}
+#endif
