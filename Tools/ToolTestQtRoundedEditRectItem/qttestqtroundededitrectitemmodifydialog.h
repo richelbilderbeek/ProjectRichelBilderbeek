@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestQtRoundedEditRectItem, tool to test QtRoundedEditRectItem
+TestQtRoundedEditRectItem, tool to test QtRoundedRectItem
 Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -18,44 +18,61 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtRoundedEditRectItem.htm
 //---------------------------------------------------------------------------
-#ifndef QTTESTQTROUNDEDEDITRECTITEMMENUDIALOG_H
-#define QTTESTQTROUNDEDEDITRECTITEMMENUDIALOG_H
+#ifndef QTTESTQTROUNDEDEDITRECTITEMMODIFYDIALOG_H
+#define QTTESTQTROUNDEDEDITRECTITEMMODIFYDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestQtRoundedEditRectItemMenuDialog;
+class QtTestQtRoundedEditRectItemModifyDialog;
 }
 
 namespace ribi {
 
-class QtTestQtRoundedEditRectItemMenuDialog : public ribi::QtHideAndShowDialog
+struct QtRoundedRectItem;
+struct QtRoundedEditRectItem;
+
+class QtTestQtRoundedEditRectItemModifyDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
-
+    
 public:
-  explicit QtTestQtRoundedEditRectItemMenuDialog(QWidget *parent = 0);
-  QtTestQtRoundedEditRectItemMenuDialog(const QtTestQtRoundedEditRectItemMenuDialog&) = delete;
-  QtTestQtRoundedEditRectItemMenuDialog& operator=(const QtTestQtRoundedEditRectItemMenuDialog&) = delete;
-  ~QtTestQtRoundedEditRectItemMenuDialog() noexcept;
+
+  explicit QtTestQtRoundedEditRectItemModifyDialog(QWidget *parent = 0);
+  QtTestQtRoundedEditRectItemModifyDialog(const QtTestQtRoundedEditRectItemModifyDialog&) = delete;
+  QtTestQtRoundedEditRectItemModifyDialog& operator=(const QtTestQtRoundedEditRectItemModifyDialog&) = delete;
+  ~QtTestQtRoundedEditRectItemModifyDialog() noexcept;
 
 protected:
-  
   void keyPressEvent(QKeyEvent * event);
 
-private:
-  Ui::QtTestQtRoundedEditRectItemMenuDialog *ui;
-
 private slots:
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
-  void on_button_compare_clicked();
-  void on_button_modify_clicked();
+  void on_button_contour_pen_clicked();
+
+  void on_button_focus_pen_clicked();
+
+  void on_box_radius_x_valueChanged(double arg1);
+  void on_box_radius_y_valueChanged(double arg1);
+
+  void on_box_x_valueChanged(double arg1);
+  void on_box_y_valueChanged(double arg1);
+
+  void on_box_width_valueChanged(double arg1);
+  void on_box_height_valueChanged(double arg1);
+
+private:
+  Ui::QtTestQtRoundedEditRectItemModifyDialog *ui;
+
+  ///The QtRoundedRectItem to work on
+  boost::shared_ptr<QtRoundedEditRectItem> m_item;
+
+  void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -64,4 +81,4 @@ private slots:
 
 } //~namespace ribi
 
-#endif // QTTESTQTROUNDEDEDITRECTITEMMENUDIALOG_H
+#endif // QTTESTQTROUNDEDEDITRECTITEMMODIFYDIALOG_H

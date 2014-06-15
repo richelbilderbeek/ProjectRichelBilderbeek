@@ -119,7 +119,7 @@ void ribi::QtRoundedTextRectItem::keyPressEvent(QKeyEvent* event)
   QtRoundedRectItem::keyPressEvent(event);
 }
 
-void ribi::QtRoundedTextRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::QtRoundedTextRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
   QtRoundedRectItem::paint(painter,option,widget);
   painter->setFont(m_font);
@@ -142,8 +142,8 @@ void ribi::QtRoundedTextRectItem::SetFont(const QFont& font) noexcept
   {
     m_font = font;
     this->update();
-    this->m_signal_item_has_updated(this);
-    m_signal_request_scene_update();
+    //this->m_signal_item_has_updated(this);
+    //m_signal_request_scene_update();
   }
 }
 #pragma GCC diagnostic pop
@@ -168,8 +168,8 @@ void ribi::QtRoundedTextRectItem::SetPadding(const Padding& padding) noexcept
       this->GetRadiusY()
     );
     this->update();
-    this->m_signal_item_has_updated(this);
-    m_signal_request_scene_update();
+    //this->m_signal_item_has_updated(this);
+    //m_signal_request_scene_update();
   }
 }
 
@@ -189,8 +189,8 @@ void ribi::QtRoundedTextRectItem::SetText(const std::string& text) noexcept
       this->GetRadiusY()
     );
     this->update();
-    this->m_signal_item_has_updated(this);
-    m_signal_request_scene_update();
+    //this->m_signal_item_has_updated(this);
+    //m_signal_request_scene_update();
   }
 }
 
@@ -200,6 +200,6 @@ void ribi::QtRoundedTextRectItem::SetTextPen(const QPen& pen) noexcept
   {
     m_text_pen = pen;
     this->update();
-    this->m_signal_item_has_updated(this);
+    //this->m_signal_item_has_updated(this);
   }
 }

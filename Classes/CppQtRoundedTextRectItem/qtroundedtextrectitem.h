@@ -84,7 +84,7 @@ struct QtRoundedTextRectItem : public QtRoundedRectItem
   void SetTextPen(const QPen& pen) noexcept;
 
 protected:
-  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
   virtual void keyPressEvent(QKeyEvent* event);
 
 private:

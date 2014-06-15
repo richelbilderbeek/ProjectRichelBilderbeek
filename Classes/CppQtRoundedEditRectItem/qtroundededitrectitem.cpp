@@ -67,6 +67,16 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
 
 }
 
+ribi::QtRoundedEditRectItem::~QtRoundedEditRectItem() noexcept
+{
+  //OK
+}
+
+const QFont& ribi::QtRoundedEditRectItem::GetFont() const noexcept
+{
+  return m_font;
+}
+
 QRectF ribi::QtRoundedEditRectItem::GetPaddedTextRect(const std::string& s) const noexcept
 {
   return GetTextRect(s).adjusted(
@@ -76,10 +86,17 @@ QRectF ribi::QtRoundedEditRectItem::GetPaddedTextRect(const std::string& s) cons
      m_text_padding.bottom);
 }
 
+const std::vector<std::string>& ribi::QtRoundedEditRectItem::GetText() const noexcept
+{
+  return m_text;
+}
+
 QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::string& s) const noexcept
 {
   const double h = QFontMetricsF(m_font).height();
   const double w = QFontMetricsF(m_font).width(s.c_str());
+  assert(h > 0.0);
+  assert(w > 0.0);
   #ifdef _WIN32
   //adjusted(0.0,0.0,2.0,0.0) works fine for 50% of the fonts supplied by Wine under native Lubuntu
   //adjusted(0.0,0.0,3.0,0.0) works fine for 80% of the fonts supplied by Wine under native Lubuntu
@@ -114,10 +131,13 @@ QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::vector<std::string>& 
   const double height = std::accumulate(v.begin(),v.end(),0.0,
     [](double& init, const QRectF& r)
     {
+      assert(r.height() > 0.0);
       return init + r.height() + 0.0;
     }
   );
 
+  assert(width  > 0.0);
+  assert(height > 0.0);
   return QRectF(-0.5 * width,-0.5 * height, width, height).adjusted(-0.0,-0.0,0.0,0.0);
 }
 
@@ -157,12 +177,13 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
     const std::string& s = m_text[i];
     //Set the padded text rectangle
     QRectF padded_rect = GetPaddedTextRect(s);
-
+    QRectF current_rect = rect();
 
     padded_rect.translate(
       0.0,
-      rect().top() +  m_text_padding.top + (static_cast<double>(i) * (0.0 + padded_rect.height()))
-      );
+      current_rect.top()
+        + m_text_padding.top + (static_cast<double>(i) * (0.0 + padded_rect.height()))
+    );
 
     const QRectF r(
       padded_rect.adjusted(
@@ -170,13 +191,25 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
          m_text_padding.top,
         -m_text_padding.right,
         -m_text_padding.bottom
-        )
-      );
+      )
+    );
 
-    assert(r.left() >= this->rect().left());
-    assert(r.left() < this->rect().right());
-    assert(r.top()  >= this->rect().top());
-    assert(r.top()  < this->rect().bottom());
+    #ifndef NDEBUG
+    if (r.left() < this->rect().left())
+    {
+      TRACE(rect().left());
+      TRACE(rect().right());
+      TRACE(rect().top());
+      TRACE(rect().bottom());
+      TRACE(r.left());
+      TRACE(r.top());
+      TRACE("BREAK");
+    }
+    #endif
+    //assert(r.left() >= this->rect().left());
+    //assert(r.left() < this->rect().right());
+    //assert(r.top()  >= this->rect().top());
+    //assert(r.top()  < this->rect().bottom());
     #ifndef NDEBUG
     //painter->setBrush(QBrush(QColor(255,0,0)));
     //painter->drawRect(r);
@@ -194,7 +227,7 @@ void ribi::QtRoundedEditRectItem::SetFont(const QFont& font)
   {
     m_font = font;
     this->update();
-    m_signal_request_scene_update();
+    //m_signal_request_scene_update();
   }
 }
 #pragma GCC diagnostic pop
@@ -219,7 +252,7 @@ void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding)
       this->GetRadiusY()
     );
     this->update();
-    m_signal_request_scene_update();
+    //m_signal_request_scene_update();
   }
 }
 
@@ -239,8 +272,8 @@ void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text)
       this->GetRadiusY()
     );
     this->update();
-    this->m_signal_item_has_updated(this);
-    m_signal_request_scene_update();
+    //this->m_signal_item_has_updated(this);
+    //m_signal_request_scene_update();
   }
 }
 
@@ -250,6 +283,6 @@ void ribi::QtRoundedEditRectItem::SetTextPen(const QPen& pen)
   {
     m_text_pen = pen;
     this->update();
-    this->m_signal_item_has_updated(this);
+    //this->m_signal_item_has_updated(this);
   }
 }

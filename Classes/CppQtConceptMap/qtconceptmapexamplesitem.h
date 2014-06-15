@@ -55,7 +55,7 @@ struct QtExamplesItem : public QtRoundedEditRectItem
 
 protected:
 
-  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept;
 
 private:
 

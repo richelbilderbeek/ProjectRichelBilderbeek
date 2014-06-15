@@ -33,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testqtroundededitrectitemmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qttestqtroundededitrectitemcomparedialog.h"
+#include "qttestqtroundededitrectitemmodifydialog.h"
 #include "trace.h"
 #include "ui_qttestqtroundededitrectitemmenudialog.h"
 #pragma GCC diagnostic pop
@@ -70,15 +71,21 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_about_clicked()
   this->ShowChild(&d);
 }
 
-void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_quit_clicked()
-{
-  close();
-}
-
-void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_start_clicked()
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_compare_clicked()
 {
   QtTestQtRoundedEditRectItemCompareDialog d;
   ShowChild(&d);
+}
+
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_modify_clicked()
+{
+  QtTestQtRoundedEditRectItemModifyDialog d;
+  ShowChild(&d);
+}
+
+void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_quit_clicked()
+{
+  close();
 }
 
 #ifndef NDEBUG
@@ -91,6 +98,7 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::QtTestQtRoundedEditRectItemMenuDialog::Test");
   QtTestQtRoundedEditRectItemCompareDialog();
+  QtTestQtRoundedEditRectItemModifyDialog();
   TRACE("Finished ribi::QtTestQtRoundedEditRectItemMenuDialog::Test successfully");
 }
 #endif

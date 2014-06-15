@@ -82,7 +82,7 @@ void ribi::QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
         + boost::lexical_cast<std::string>(c);
 
       item->SetText( std::vector<std::string>(1 + col,s) );
-      item->setPos(x,y);
+      item->SetPos(x,y);
       item->SetFocusPen(QPen(QColor(255,0,0),3.0));
       assert(!item->scene());
       scene()->addItem(item);

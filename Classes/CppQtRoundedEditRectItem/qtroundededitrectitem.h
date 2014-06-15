@@ -40,13 +40,18 @@ namespace ribi {
 ///For a single line of text, use QtRoundedTextRectItem
 class QtRoundedEditRectItem : public QtRoundedRectItem
 {
-  Q_OBJECT
+  //Q_OBJECT //Cannot make this a QObject???
 
   public:
 
   struct Padding
   {
-    Padding(const double any_top = 0.0, const double any_right = 0.0, const double any_bottom = 0.0, const double any_left = 0.0)
+    Padding(
+      const double any_top = 0.0,
+      const double any_right = 0.0,
+      const double any_bottom = 0.0,
+      const double any_left = 0.0
+    )
       : bottom(any_bottom), left(any_left), right(any_right), top(any_top) {}
     double bottom;
     double left;
@@ -54,19 +59,19 @@ class QtRoundedEditRectItem : public QtRoundedRectItem
     double top;
   };
 
-  QtRoundedEditRectItem(
+  explicit QtRoundedEditRectItem(
     const std::vector<std::string>& text = { "..." },
     const Padding& padding = Padding(),
     const QFont& font = QFont("monospace",9),
     QGraphicsItem* parent = 0);
 
-  virtual ~QtRoundedEditRectItem() noexcept {}
+  virtual ~QtRoundedEditRectItem() noexcept;
 
   ///Get the font by which the text is drawn
-  const QFont& GetFont() const { return m_font; }
+  const QFont& GetFont() const noexcept;
 
   ///Obtain the text on the item
-  const std::vector<std::string>& GetText() const { return m_text; }
+  const std::vector<std::string>& GetText() const noexcept;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>342</width>
-    <height>307</height>
+    <width>406</width>
+    <height>692</height>
    </rect>
   </property>
   <property name="font">
@@ -19,8 +19,8 @@
    <string>TestQtRoundedEditRectItem</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Projects/ProjectVanDenBogaart/ProjectVanDenBogaart.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+   <iconset resource="ToolTestQtRoundedEditRectItem.qrc">
+    <normaloff>:/images/ToolTestQtRoundedEditRectItemIcon.png</normaloff>:/images/ToolTestQtRoundedEditRectItemIcon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -32,19 +32,19 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QPushButton" name="button_start">
+    <widget class="QLabel" name="label">
      <property name="text">
-      <string>Start</string>
+      <string/>
      </property>
-     <property name="flat">
-      <bool>true</bool>
+     <property name="pixmap">
+      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemCompare.png</pixmap>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="button_quit">
+   <item row="0" column="1">
+    <widget class="QPushButton" name="button_modify">
      <property name="text">
-      <string>Quit</string>
+      <string>&amp;Modify</string>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -52,9 +52,59 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
     </widget>
    </item>
    <item row="1" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemCompare.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_compare">
+     <property name="text">
+      <string>&amp;Compare</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemCompare.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
     <widget class="QPushButton" name="button_about">
      <property name="text">
-      <string>About</string>
+      <string>&amp;About</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestQtRoundedEditRectItem.qrc">:/images/ToolTestQtRoundedEditRectItemCompare.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>&amp;Quit</string>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -64,12 +114,12 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>button_start</tabstop>
+  <tabstop>button_compare</tabstop>
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>
  <resources>
-  <include location="../../Projects/ProjectVanDenBogaart/ProjectVanDenBogaart.qrc"/>
+  <include location="ToolTestQtRoundedEditRectItem.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -14,8 +14,8 @@
    <string>TestQtRoundedEditRectItem</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Projects/ProjectBrainweaver/Brainweaver.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+   <iconset resource="ToolTestQtRoundedEditRectItem.qrc">
+    <normaloff>:/images/ToolTestQtRoundedEditRectItemIcon.png</normaloff>:/images/ToolTestQtRoundedEditRectItemIcon.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -31,7 +31,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../Projects/ProjectBrainweaver/Brainweaver.qrc"/>
+  <include location="ToolTestQtRoundedEditRectItem.qrc"/>
  </resources>
  <connections/>
 </ui>

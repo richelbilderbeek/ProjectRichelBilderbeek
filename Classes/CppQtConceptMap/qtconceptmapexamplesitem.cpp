@@ -65,13 +65,13 @@ void ribi::cmap::QtExamplesItem::OnItemUpdated()
   this->m_signal_request_scene_update();
 }
 
-void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept
 {
   this->SetExamples(this->m_item->GetNode()->GetConcept()->GetExamples());
 
   const QPointF p = m_item->pos();
   const QRectF r = m_item->rect();
-  this->setPos(
+  this->SetPos(
     p.x() + (0.5 * r.width() ) + 4.0 + (0.5 * this->rect().width() ),
     p.y() + (0.5 * r.height()) + 4.0 + (0.5 * this->rect().height())
   );

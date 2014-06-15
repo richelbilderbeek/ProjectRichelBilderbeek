@@ -72,9 +72,9 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
 
   protected:
   ///Remove this member function, let the client call the virual SetX and SetY member functions
-  void setPos(const QPointF &pos) { QtRoundedEditRectItem::setPos(pos); }
+  //void setPos(const QPointF &pos) { QtRoundedEditRectItem::setPos(pos); }
   ///Remove this member function, let the client call the virual SetX and SetY member functions
-  void setPos(qreal x, qreal y) { QtRoundedEditRectItem::setPos(x,y); }
+  //void setPos(qreal x, qreal y) { QtRoundedEditRectItem::setPos(x,y); }
 
   void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
   void hoverStartEvent(QGraphicsSceneHoverEvent *);
