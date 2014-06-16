@@ -117,7 +117,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
 void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
 {
   const std::string text = ui->edit_shapes->toPlainText().toStdString();
-  const std::vector<std::string> lines = SeperateString(text);
+  const std::vector<std::string> lines = Geometry().SeperateString(text);
 
   const auto shapes = GetShapes();
 
@@ -310,6 +310,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::on_edit_shapes_textChanged()
   DisplayPolygons();
 }
 
+/*
 std::vector<std::string> ribi::QtTriangleMeshCreatorMainDialog::SeperateString(
   const std::string& input) noexcept
 {
@@ -320,6 +321,7 @@ std::vector<std::string> ribi::QtTriangleMeshCreatorMainDialog::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 void ribi::QtTriangleMeshCreatorMainDialog::SetShowMesh(const bool show_mesh) noexcept
 {

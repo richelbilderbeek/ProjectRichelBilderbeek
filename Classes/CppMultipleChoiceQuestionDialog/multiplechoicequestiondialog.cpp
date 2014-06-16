@@ -199,3 +199,10 @@ void ribi::MultipleChoiceQuestionDialog::Test() noexcept
   TRACE("Finished ribi::MultipleChoiceQuestionDialog::Test successfully");
 }
 #endif
+
+std::string ribi::MultipleChoiceQuestionDialog::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << m_question->ToStr();
+  return s.str();
+}

@@ -91,6 +91,7 @@ class QtRoundedRectItem : public QGraphicsRectItem
 
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_x_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_y_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_rect_changed;
@@ -132,6 +133,8 @@ protected:
 };
 
 std::ostream& operator<<(std::ostream& os,const QtRoundedRectItem& item) noexcept;
+
+bool operator==(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs) noexcept;
 
 } //~namespace ribi
 

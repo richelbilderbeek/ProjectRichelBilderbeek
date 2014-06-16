@@ -43,9 +43,6 @@ ribi::QtRoundedRectItemDialog::QtRoundedRectItemDialog(QWidget *parent) :
   Test();
   #endif
   ui->setupUi(this);
-
-  SetItem(m_item);
-
 }
 
 ribi::QtRoundedRectItemDialog::~QtRoundedRectItemDialog() noexcept
@@ -70,6 +67,16 @@ void ribi::QtRoundedRectItemDialog::keyPressEvent(QKeyEvent * event)
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+void ribi::QtRoundedRectItemDialog::OnContourPenChanged(QtRoundedRectItem * const qtitem) noexcept
+{
+  ui->box_contour_pen_width->setValue(qtitem->GetContourPen().widthF());
+}
+
+void ribi::QtRoundedRectItemDialog::OnFocusPenChanged(QtRoundedRectItem * const qtitem) noexcept
+{
+  ui->box_focus_pen_width->setValue(qtitem->GetFocusPen().widthF());
+}
+
 void ribi::QtRoundedRectItemDialog::OnPosChanged(QtRoundedRectItem * const qtitem) noexcept
 {
   const double new_x = qtitem->GetPos().x();
@@ -78,8 +85,22 @@ void ribi::QtRoundedRectItemDialog::OnPosChanged(QtRoundedRectItem * const qtite
   ui->box_y->setValue(new_y);
 }
 
-void ribi::QtRoundedRectItemDialog::on_button_focus_pen_clicked()
+void ribi::QtRoundedRectItemDialog::OnRadiusXchanged(QtRoundedRectItem * const qtitem) noexcept
 {
+  ui->box_radius_x->setValue(qtitem->GetRadiusX());
+}
+
+void ribi::QtRoundedRectItemDialog::OnRadiusYchanged(QtRoundedRectItem * const qtitem) noexcept
+{
+  ui->box_radius_y->setValue(qtitem->GetRadiusY());
+}
+
+void ribi::QtRoundedRectItemDialog::OnRectChanged(QtRoundedRectItem * const qtitem) noexcept
+{
+  const double new_width = qtitem->GetRect().width();
+  const double new_height = qtitem->GetRect().height();
+  ui->box_width->setValue(new_width);
+  ui->box_height->setValue(new_height);
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_radius_x_valueChanged(double arg1)
@@ -129,6 +150,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
 
   const auto contour_pen_after = item->GetContourPen();
   const auto focus_pen_after = item->GetFocusPen();
+  const auto pos_after = item->GetPos();
   const auto radius_x_after = item->GetRadiusX();
   const auto radius_y_after = item->GetRadiusY();
   const auto rect_after = item->GetRect();
@@ -136,6 +158,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
 
   bool contour_pen_changed  = true;
   bool focus_pen_changed  = true;
+  bool pos_changed = true;
   bool radius_x_changed = true;
   bool radius_y_changed = true;
   bool rect_changed = true;
@@ -144,12 +167,14 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   {
     const auto contour_pen_before = m_item->GetContourPen();
     const auto focus_pen_before = m_item->GetFocusPen();
+    const auto pos_before = m_item->GetPos();
     const auto radius_x_before = m_item->GetRadiusX();
     const auto radius_y_before = m_item->GetRadiusY();
     const auto rect_before = m_item->GetRect();
 
     contour_pen_changed  = contour_pen_before != contour_pen_after;
     focus_pen_changed  = focus_pen_before != focus_pen_after;
+    pos_changed = pos_before != pos_after;
     radius_x_changed = radius_x_before != radius_x_after;
     radius_y_changed = radius_y_before != radius_y_after;
     rect_changed = rect_before != rect_after;
@@ -174,6 +199,13 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
         std::stringstream s;
         s << "FocusPen will change from " << focus_pen_before
           << " to " << focus_pen_after << '\n';
+        TRACE(s.str());
+      }
+      if (pos_changed)
+      {
+        std::stringstream s;
+        s << "Pos will change from '" << pos_before
+          << "' to '" << pos_after << "'\n";
         TRACE(s.str());
       }
       if (radius_x_changed)
@@ -206,6 +238,9 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
     m_item->m_signal_focus_pen_changed.disconnect(
       boost::bind(&ribi::QtRoundedRectItemDialog::OnFocusPenChanged,this,boost::lambda::_1)
     );
+    m_item->m_signal_pos_changed.disconnect(
+      boost::bind(&ribi::QtRoundedRectItemDialog::OnPosChanged,this,boost::lambda::_1)
+    );
     m_item->m_signal_radius_x_changed.disconnect(
       boost::bind(&ribi::QtRoundedRectItemDialog::OnRadiusXchanged,this,boost::lambda::_1)
     );
@@ -221,26 +256,30 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   m_item = item;
 
 
-  assert(m_item->GetCompetency() == contour_pen_after );
-  assert(m_item->GetIsComplex()  == focus_pen_after );
-  assert(m_item->GetIsConcrete() == radius_x_after);
-  assert(m_item->GetIsSpecific() == radius_y_after);
-  assert(m_item->GetText()       == rect_after       );
+  assert(m_item->GetContourPen() == contour_pen_after);
+  assert(m_item->GetFocusPen()   == focus_pen_after  );
+  assert(m_item->GetPos()        == pos_after        );
+  assert(m_item->GetRadiusX()    == radius_x_after   );
+  assert(m_item->GetRadiusY()    == radius_y_after   );
+  assert(m_item->GetRect()       == rect_after       );
 
   m_item->m_signal_contour_pen_changed.connect(
-    boost::bind(&ribi::QtRoundedRectItemDialog::OnCompetencyChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::QtRoundedRectItemDialog::OnContourPenChanged,this,boost::lambda::_1)
   );
   m_item->m_signal_focus_pen_changed.connect(
-    boost::bind(&ribi::QtRoundedRectItemDialog::OnIsComplexChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::QtRoundedRectItemDialog::OnFocusPenChanged,this,boost::lambda::_1)
+  );
+  m_item->m_signal_pos_changed.connect(
+    boost::bind(&ribi::QtRoundedRectItemDialog::OnPosChanged,this,boost::lambda::_1)
   );
   m_item->m_signal_radius_x_changed.connect(
-    boost::bind(&ribi::QtRoundedRectItemDialog::OnIsConcreteChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::QtRoundedRectItemDialog::OnRadiusXchanged,this,boost::lambda::_1)
   );
   m_item->m_signal_radius_y_changed.connect(
-    boost::bind(&ribi::QtRoundedRectItemDialog::OnIsSpecificChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::QtRoundedRectItemDialog::OnRadiusYchanged,this,boost::lambda::_1)
   );
   m_item->m_signal_rect_changed.connect(
-    boost::bind(&ribi::QtRoundedRectItemDialog::OnTextChanged,this,boost::lambda::_1)
+    boost::bind(&ribi::QtRoundedRectItemDialog::OnRectChanged,this,boost::lambda::_1)
   );
 
   //Emit everything that has changed
@@ -251,6 +290,10 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   if (focus_pen_changed)
   {
     m_item->m_signal_focus_pen_changed(m_item.get());
+  }
+  if (pos_changed)
+  {
+    m_item->m_signal_pos_changed(m_item.get());
   }
   if (radius_x_changed)
   {
@@ -266,18 +309,6 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   }
   assert( item ==  m_item);
   assert(*item == *m_item);
-  /*
-  ui->box_x->setValue(m_item->pos().x());
-  ui->box_y->setValue(m_item->pos().y());
-  ui->box_width->setValue(m_item->rect().width());
-  ui->box_height->setValue(m_item->rect().height());
-  ui->box_radius_x->setValue(m_item->GetRadiusX());
-  ui->box_radius_y->setValue(m_item->GetRadiusY());
-
-  m_item->m_signal_pos_changed.connect(
-    boost::bind(&ribi::QtRoundedRectItemDialog::OnPosChanged,this,boost::lambda::_1)
-  );
-  */
 }
 
 #ifndef NDEBUG
@@ -293,6 +324,7 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
 }
 #endif
 
+/*
 void ribi::QtRoundedRectItemDialog::on_button_contour_pen_clicked()
 {
   const QPen pen(
@@ -301,5 +333,25 @@ void ribi::QtRoundedRectItemDialog::on_button_contour_pen_clicked()
   );
   m_item->SetContourPen(pen);
 }
+*/
 
+void ribi::QtRoundedRectItemDialog::on_box_contour_pen_width_valueChanged(double arg1)
+{
+  const QPen pen(
+    //QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
+    QBrush(qRgb(0,0,0)),
+    arg1
+  );
+  m_item->SetContourPen(pen);
+}
 
+void ribi::QtRoundedRectItemDialog::on_box_focus_pen_width_valueChanged(double arg1)
+{
+  const QPen pen(
+    //QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
+    QBrush(qRgb(0,0,0)),
+    arg1,
+    Qt::DashLine
+  );
+  m_item->SetFocusPen(pen);
+}

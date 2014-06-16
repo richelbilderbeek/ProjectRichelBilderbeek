@@ -89,20 +89,22 @@ boost::shared_ptr<ribi::QtRoundedRectItem> ribi::QtTestQtRoundedRectItemModifyDi
     );
     item->SetFocusPen(pen);
   }
-  item->SetHeight(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+  item->SetHeight(200.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
   item->SetPos(
     -50.0 + (100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX)),
     -50.0 + (100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX))
   );
   item->SetRadiusX(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
   item->SetRadiusY(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
-  item->SetWidth(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+  item->SetWidth(200.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
   return item;
 }
 
 void ribi::QtTestQtRoundedRectItemModifyDialog::on_button_set_item_clicked()
 {
-  SetItem(CreateRandomItem());
+  const auto item = CreateRandomItem();
+  assert(item);
+  SetItem(item);
 }
 
 void ribi::QtTestQtRoundedRectItemModifyDialog::SetItem(const boost::shared_ptr<QtRoundedRectItem>& item) noexcept

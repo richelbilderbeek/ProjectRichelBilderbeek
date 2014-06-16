@@ -60,13 +60,15 @@ public:
 
   ~QtMultipleChoiceQuestionDialog() noexcept;
 
-  const boost::shared_ptr<const QuestionDialog> GetDialog() const;
+  boost::shared_ptr<const QuestionDialog> GetDialog() const;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
+
+  void SetDialog(const boost::shared_ptr<QuestionDialog>& dialog);
 
 private slots:
   void on_button_submit_clicked() noexcept;

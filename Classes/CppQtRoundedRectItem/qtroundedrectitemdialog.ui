@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>285</width>
-    <height>276</height>
+    <width>212</width>
+    <height>220</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,7 +39,7 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_contour_pen_width">
      <property name="text">
       <string>Contour pen width</string>
      </property>
@@ -118,17 +118,17 @@
     </widget>
    </item>
    <item row="5" column="0">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_focus_pen_width">
      <property name="text">
       <string>Focus pen width</string>
      </property>
     </widget>
    </item>
    <item row="4" column="1">
-    <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+    <widget class="QDoubleSpinBox" name="box_contour_pen_width"/>
    </item>
    <item row="5" column="1">
-    <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+    <widget class="QDoubleSpinBox" name="box_focus_pen_width"/>
    </item>
   </layout>
  </widget>

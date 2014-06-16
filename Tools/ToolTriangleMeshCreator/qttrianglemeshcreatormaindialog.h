@@ -86,7 +86,7 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-  static std::vector<std::string> SeperateString(const std::string& input) noexcept;
+  //static std::vector<std::string> SeperateString(const std::string& input) noexcept;
 
 private slots:
 

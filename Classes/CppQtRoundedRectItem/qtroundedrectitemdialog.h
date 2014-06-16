@@ -62,10 +62,6 @@ protected:
   void keyPressEvent(QKeyEvent * event);
 
 private slots:
-  void on_button_contour_pen_clicked();
-
-  void on_button_focus_pen_clicked();
-
   void on_box_radius_x_valueChanged(double arg1);
   void on_box_radius_y_valueChanged(double arg1);
 
@@ -75,22 +71,27 @@ private slots:
   void on_box_width_valueChanged(double arg1);
   void on_box_height_valueChanged(double arg1);
 
+  void on_box_contour_pen_width_valueChanged(double arg1);
+  void on_box_focus_pen_width_valueChanged(double arg1);
+
 private:
   Ui::QtRoundedRectItemDialog *ui;
 
   ///The QtRoundedRectItem to work on
   boost::shared_ptr<QtRoundedRectItem> m_item;
 
-  void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;
 
+  void OnContourPenChanged(QtRoundedRectItem * const qtitem) noexcept;
+  void OnFocusPenChanged(QtRoundedRectItem * const qtitem) noexcept;
+  void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;
+  void OnRadiusXchanged(QtRoundedRectItem * const qtitem) noexcept;
+  void OnRadiusYchanged(QtRoundedRectItem * const qtitem) noexcept;
+  void OnRectChanged(QtRoundedRectItem * const qtitem) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 };
-
-std::ostream& operator<<(std::ostream& os,const QPen& pen) noexcept;
-std::ostream& operator<<(std::ostream& os,const QRectF& rect) noexcept;
 
 } //~namespace ribi
 

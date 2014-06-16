@@ -34,9 +34,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
-  : QGraphicsRectItem(parent), //New since Qt5
+ : QGraphicsRectItem(parent),
+   m_signal_contour_pen_changed{},
+   m_signal_focus_pen_changed{},
    m_signal_pos_changed{},
-   //m_signal_request_scene_update{},
+   m_signal_radius_x_changed{},
+   m_signal_radius_y_changed{},
+   m_signal_rect_changed{},
    m_contour_pen(QPen(QColor(0,0,0))),
    m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine)),
    m_radius_x(4.0),
@@ -99,21 +103,16 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2012-12-22: version 1.2: correctly uses the focus and regular pen, added contour pen",
     "2014-06-14: version 1.3: removed superfluous signal m_signal_item_has_updated",
     "2014-06-14: version 1.4: fixed issue #219",
-    "2014-06-16: version 1.5: disallow setRect and setPos (use SetRoundedRect and SetPos instead)"
+    "2014-06-16: version 1.5: disallow setRect and setPos (use SetRoundedRect and SetPos instead), cooperation with QtRoundedRectItemDialog"
   };
 }
 
-//#pragma GCC diagnostic push
-//#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) noexcept
 {
   QGraphicsRectItem::mouseMoveEvent(event);
   this->update();
   m_signal_pos_changed(this);
-
-  //m_signal_request_scene_update();
 }
-//#pragma GCC diagnostic pop
 
 void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept
 {
@@ -153,28 +152,23 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
 
 void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
 {
-  if (m_contour_pen != pen)
+  if (m_contour_pen.widthF() != pen.widthF())
   {
     m_contour_pen = pen;
     this->update();
+    m_signal_contour_pen_changed(this);
   }
 }
 
 void ribi::QtRoundedRectItem::SetFocusPen(const QPen& pen) noexcept
 {
-  if (m_focus_pen != pen)
+  if (m_focus_pen.widthF() != pen.widthF())
   {
     m_focus_pen = pen;
     this->update();
+    m_signal_focus_pen_changed(this);
   }
 }
-
-/*
-void ribi::QtRoundedRectItem::setPos(qreal x,qreal y)
-{
-  QGraphicsRectItem::setPos(x,y);
-}
-*/
 
 void ribi::QtRoundedRectItem::SetHeight(const double height) noexcept
 {
@@ -188,6 +182,7 @@ void ribi::QtRoundedRectItem::SetHeight(const double height) noexcept
       height
     );
     this->update();
+    m_signal_rect_changed(this);
   }
 }
 
@@ -199,6 +194,7 @@ void ribi::QtRoundedRectItem::SetPos(const double x,const double y) noexcept
   {
     QGraphicsRectItem::setPos(x,y);
     this->update();
+    m_signal_pos_changed(this);
   }
 }
 
@@ -208,6 +204,7 @@ void ribi::QtRoundedRectItem::SetRadiusX(const double radius_x) noexcept
   {
     m_radius_x = radius_x;
     this->update();
+    m_signal_radius_x_changed(this);
   }
 }
 
@@ -217,6 +214,7 @@ void ribi::QtRoundedRectItem::SetRadiusY(const double radius_y) noexcept
   {
     m_radius_y = radius_y;
     this->update();
+    m_signal_radius_y_changed(this);
   }
 }
 
@@ -231,6 +229,8 @@ void ribi::QtRoundedRectItem::SetRoundedRect(
   {
     QGraphicsRectItem::setRect(new_rect);
     this->update();
+    m_signal_pos_changed(this);
+    m_signal_rect_changed(this);
   }
   this->SetRadiusX(radius_x);
   this->SetRadiusY(radius_y);
@@ -247,6 +247,18 @@ void ribi::QtRoundedRectItem::SetWidth(const double width) noexcept
       width,
       this->GetRect().height()
     );
+    m_signal_rect_changed(this);
     this->update();
   }
+}
+
+bool ribi::operator==(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs) noexcept
+{
+  return
+       lhs.GetContourPen() == rhs.GetContourPen()
+    && lhs.GetFocusPen() == lhs.GetFocusPen()
+    && lhs.GetRadiusX() == lhs.GetRadiusX()
+    && lhs.GetRadiusY() == lhs.GetRadiusY()
+    && lhs.GetRect() == lhs.GetRect()
+  ;
 }

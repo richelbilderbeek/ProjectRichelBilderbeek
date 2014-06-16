@@ -562,6 +562,7 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory(
   };
 }
 
+/*
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::SeperateString(
   const std::string& input,
   const char seperator) noexcept
@@ -572,6 +573,7 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 #ifndef NDEBUG
 void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept

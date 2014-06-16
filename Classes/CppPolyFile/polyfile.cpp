@@ -15,6 +15,7 @@
 
 #include "container.h"
 #include "fileio.h"
+#include "geometry.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -65,7 +66,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
   int n_vertices = -1;
   {
     const std::string& first_line = v[0];
-    const auto w = SeperateString(first_line,' ');
+    const auto w = Geometry().SeperateString(first_line,' ');
     if (w.empty())
     {
       std::stringstream s;
@@ -95,7 +96,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
 
     assert(edges_header_index < static_cast<int>(v.size()));
     const std::string& line = v[edges_header_index];
-    const auto w = SeperateString(line,' ');
+    const auto w = Geometry().SeperateString(line,' ');
     if (w.empty())
     {
       std::stringstream s;
@@ -124,7 +125,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
     }
     assert(holes_header_index < static_cast<int>(v.size()));
     const std::string& line = v[holes_header_index];
-    const auto w = SeperateString(line,' ');
+    const auto w = Geometry().SeperateString(line,' ');
     if (w.empty())
     {
       std::stringstream s;
@@ -161,7 +162,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
   //
   //  Vertices, segments, holes, and regions must be numbered and listed consecutively, starting from either 1 or 0.
   //
-  const int first_index = boost::lexical_cast<int>(SeperateString(v[1],' ')[0]);
+  const int first_index = boost::lexical_cast<int>(Geometry().SeperateString(v[1],' ')[0]);
   //Create actual data
   Vertices vertices;
   for (int i=first_vertex_index; i!=beyond_last_vertex_index; ++i)
@@ -293,6 +294,7 @@ std::vector<std::string> ribi::PolyFile::RemoveComments(const std::vector<std::s
 }
 
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
+/*
 std::vector<std::string> ribi::PolyFile::SeperateString(
   const std::string& input,
   const char seperator) noexcept
@@ -303,6 +305,7 @@ std::vector<std::string> ribi::PolyFile::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 #ifndef NDEBUG
 void ribi::PolyFile::Test() noexcept

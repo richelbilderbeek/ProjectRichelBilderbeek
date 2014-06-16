@@ -35,6 +35,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
+
+struct QPen;
+struct QRect;
+struct QRectF;
+struct QPoint;
+struct QPointF;
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -376,6 +382,11 @@ struct Geometry
   std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;
   std::string ToStr(const Polygon& polygon) const noexcept;
+  std::string ToStr(const QPen& pen) noexcept;
+  std::string ToStr(const QPoint& rect) noexcept;
+  std::string ToStr(const QPointF& rect) noexcept;
+  std::string ToStr(const QRect& rect) noexcept;
+  std::string ToStr(const QRectF& rect) noexcept;
 
   //Create a complete SVG file contents
   std::string ToSvg(
@@ -452,6 +463,12 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> operator-
 std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat2D& p) noexcept;
 std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat3D& p) noexcept;
 std::ostream& operator<<(std::ostream& os, const Geometry::Polygon& p) noexcept;
+
+std::ostream& operator<<(std::ostream& os,const QPen& pen) noexcept;
+std::ostream& operator<<(std::ostream& os,const QPoint& rect) noexcept;
+std::ostream& operator<<(std::ostream& os,const QPointF& rect) noexcept;
+std::ostream& operator<<(std::ostream& os,const QRect& rect) noexcept;
+std::ostream& operator<<(std::ostream& os,const QRectF& rect) noexcept;
 
 
 } //~namespace ribi

@@ -32,6 +32,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef WIN32
 #include <boost/geometry/geometries/linestring.hpp>
 #endif
+
+#include <QPen>
+#include <QPoint>
+#include <QRect>
+
 #include "plane.h"
 #include "trace.h"
 
@@ -2249,4 +2254,43 @@ std::ostream& ribi::operator<<(std::ostream& os, const Geometry::Polygon& p) noe
     if (i != n_points-1) { os << ','; }
   }
   return os;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os,const QPen& pen) noexcept
+{
+  os << pen.color() << " (" << pen.widthF() << ')';
+  return os;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os,const QPoint& point) noexcept
+{
+  os << '(' << point.x() << ',' << point.y() << ')';
+  return os;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os,const QPointF& point) noexcept
+{
+  os << '(' << point.x() << ',' << point.y() << ')';
+  return os;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os,const QRect& rect) noexcept
+{
+  os
+    << '(' << rect.left() << ',' << rect.top() << ')'
+    << ','
+    << '(' << rect.width() << 'x' << rect.height() << ')'
+  ;
+  return os;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os,const QRectF& rect) noexcept
+{
+  os
+    << '(' << rect.left() << ',' << rect.top() << ')'
+    << ','
+    << '(' << rect.width() << 'x' << rect.height() << ')'
+  ;
+  return os;
+
 }

@@ -55,6 +55,8 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
   ///For a multiple choice question, s will be the index of the answer
   void Submit(const std::string& s);
 
+  std::string ToStr() const noexcept;
+
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestionDialog *);
   friend void boost::checked_delete<>(const MultipleChoiceQuestionDialog *);

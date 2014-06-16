@@ -112,7 +112,7 @@ ribi::QtMultipleChoiceQuestionDialog::~QtMultipleChoiceQuestionDialog() noexcept
   delete ui;
 }
 
-const boost::shared_ptr<const ribi::QuestionDialog> ribi::QtMultipleChoiceQuestionDialog::GetDialog() const
+boost::shared_ptr<const ribi::QuestionDialog> ribi::QtMultipleChoiceQuestionDialog::GetDialog() const
 {
   return m_dialog;
 }
