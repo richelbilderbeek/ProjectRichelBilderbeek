@@ -576,7 +576,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose = true;
 
   #ifndef NDEBUG
   assert(points.size() >= 3);
@@ -640,13 +640,13 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     }
   )
   {
-
     const boost::shared_ptr<Plane> plane(new Plane(points[v[0]],points[v[1]],points[v[2]]));
     assert(plane);
 
     #ifndef NDEBUG
     if (verbose)
     {
+      TRACE(*plane);
       TRACE(plane->CanCalcX());
       TRACE(plane->CanCalcY());
       TRACE(plane->CanCalcZ());
@@ -667,7 +667,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
       s << "{";
       for (auto coordinat2d: coordinats2d)
       {
-        
+
         s << Geometry().ToStr(coordinat2d) << ",";
       }
       std::string co_str(s.str());
@@ -802,6 +802,7 @@ std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry:
 
 bool ribi::Geometry::IsPlane(const std::vector<Coordinat3D>& v) const noexcept
 {
+  const bool verbose = true;
   using boost::geometry::get;
 
   if (v.size() < 3) return false;
@@ -816,9 +817,24 @@ bool ribi::Geometry::IsPlane(const std::vector<Coordinat3D>& v) const noexcept
   #endif
   assert(v.size() == 4);
 
-  const std::unique_ptr<Plane> plane(new Plane(v[0],v[1],v[2]));
-  assert(plane);
-  return plane->IsInPlane(v[3]);
+  try
+  {
+    const std::unique_ptr<Plane> plane(new Plane(v[0],v[1],v[2]));
+    assert(plane);
+    return plane->IsInPlane(v[3]);
+  }
+  catch (std::logic_error& e)
+  {
+    if (verbose)
+    {
+      std::stringstream s;
+      s << "Geometry::IsPlane: not in plane, as plane cannot be constructed ('"
+        << e.what() << "')"
+      ;
+      TRACE(s.str());
+    }
+    return false;
+  }
 }
 
 
@@ -947,11 +963,11 @@ void ribi::Geometry::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Geometry::Test");
-  const bool verbose = false;
+  const bool verbose = true;
   const double pi { boost::math::constants::pi<double>() };
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   const Geometry g;
-  if (verbose) TRACE("CalcPlane");
+  if (verbose) { TRACE("CalcPlane"); }
   {
     using boost::geometry::model::point;
     using boost::geometry::cs::cartesian;
@@ -1005,7 +1021,7 @@ void ribi::Geometry::Test() noexcept
     assert(std::abs(d - d_p2_expected) < 0.001);
     assert(std::abs(d - d_p3_expected) < 0.001);
   }
-  if (verbose) TRACE("CalcPlane");
+  if (verbose) { TRACE("CalcPlane"); }
   {
     //CalcPlane return the coefficients in the following form:
     // A.x + B.y + C.z = D
@@ -1049,7 +1065,7 @@ void ribi::Geometry::Test() noexcept
     assert(std::abs(d - d_p3_expected) < 0.001);
 
   }
-  if (verbose) TRACE("Fmod");
+  if (verbose) { TRACE("Fmod"); }
   {
     const double expected_min = 1.0 - 0.00001;
     const double expected_max = 1.0 + 0.00001;
@@ -1059,7 +1075,7 @@ void ribi::Geometry::Test() noexcept
     assert(g.Fmod(-3.0,2.0) > expected_min && g.Fmod(-3.0,2.0) < expected_max);
     assert(g.Fmod(-13.0,2.0) > expected_min && g.Fmod(-13.0,2.0) < expected_max);
   }
-  if (verbose) TRACE("GetAngle");
+  if (verbose) { TRACE("GetAngle"); }
   {
     const double angle =  g.GetAngle(0.0,-1.0); //North
     const double expected = 0.0 * pi;
@@ -1100,7 +1116,7 @@ void ribi::Geometry::Test() noexcept
     const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
-  if (verbose) TRACE("GetDistance");
+  if (verbose) { TRACE("GetDistance"); }
   {
     const double distance = g.GetDistance(3.0,4.0);
     const double expected = 5.0;
@@ -1390,6 +1406,7 @@ void ribi::Geometry::Test() noexcept
 
   if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane");
   {
+    if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane, Z shape");
     {
       /*
                   |####/
@@ -1406,9 +1423,10 @@ void ribi::Geometry::Test() noexcept
         g.CreatePoint(1.0,0.0,1.0),
         g.CreatePoint(0.0,0.0,1.0)
       };
+
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
-    //Convex shape, 3D, points in Y=0 plane
+    if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane, C shape");
     {
       /*
 

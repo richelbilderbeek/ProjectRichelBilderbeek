@@ -6,7 +6,8 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
 #Specific, console
-include(../../Classes/CppCoordinat/CppCoordinat.pri)
+#include(../../Classes/CppCoordinat/CppCoordinat.pri)
+include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppXml/CppXml.pri)

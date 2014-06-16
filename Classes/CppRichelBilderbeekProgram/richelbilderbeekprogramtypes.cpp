@@ -113,7 +113,8 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::musicTheory,"musicTheory"));
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
   m.insert(Pair(ProgramType::ndsPaint,"ndsPaint"));
-  m.insert(Pair(ProgramType::paperRockScissorsVcl,"paperRockScissors"));
+  m.insert(Pair(ProgramType::paperRockScissors,"paperRockScissors"));
+  m.insert(Pair(ProgramType::paperRockScissorsVcl,"paperRockScissorsVcl"));
   m.insert(Pair(ProgramType::pause,"pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"perfectElasticCollision"));
   m.insert(Pair(ProgramType::picToCode,"picToCode"));
@@ -335,7 +336,8 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::musicTheory,"MusicTheory"));
   m.insert(Pair(ProgramType::ndsmake,"ndsmake"));
   m.insert(Pair(ProgramType::ndsPaint,"NDS Paint"));
-  m.insert(Pair(ProgramType::paperRockScissorsVcl,"PaperRockScissors"));
+  m.insert(Pair(ProgramType::paperRockScissors,"PaperRockScissors"));
+  m.insert(Pair(ProgramType::paperRockScissorsVcl,"PaperRockScissors (VCL)"));
   m.insert(Pair(ProgramType::pause,"Pause"));
   m.insert(Pair(ProgramType::perfectElasticCollision,"PerfectElasticCollision"));
   m.insert(Pair(ProgramType::picToCode,"PicToCode"));

@@ -61,7 +61,7 @@ struct PlaneX
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-  ) noexcept;
+  );
 
   ///Get the 2D projection of these 3D points,
   /*
@@ -108,11 +108,12 @@ struct PlaneX
   ///A PlaneX is actually a PlaneZ used with its coordinats rotated from (X,Y,Z) to (Z,Y,Y)
   const std::unique_ptr<PlaneZ> m_plane_z;
 
+  ///Will throw if plane cannot be created
   static std::unique_ptr<PlaneZ> Create(
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-  ) noexcept;
+  );
 
   static std::vector<double> Rotate(const std::vector<double>& coefficients) noexcept;
   static Coordinat3D Rotate(

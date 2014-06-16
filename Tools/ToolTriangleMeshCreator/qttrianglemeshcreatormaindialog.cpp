@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsSvgItem>
 #include <QKeyEvent>
 
+#include "container.h"
 #include "fileio.h"
 #include "geometry.h"
 #include "qtnavigationablegraphicsview.h"
@@ -117,7 +118,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
 void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
 {
   const std::string text = ui->edit_shapes->toPlainText().toStdString();
-  const std::vector<std::string> lines = Geometry().SeperateString(text);
+  const std::vector<std::string> lines = Container().SeperateString(text,'\n');
 
   const auto shapes = GetShapes();
 

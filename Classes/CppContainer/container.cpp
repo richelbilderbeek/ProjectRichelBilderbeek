@@ -69,6 +69,38 @@ void ribi::Container::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Container::Test");
+  const Container c;
+  //SeperateString
+  {
+    { //Single input, seperator of type char
+      const auto v = c.SeperateString("a",',');
+      assert(v.size() == 1);
+      assert(v[0]=="a");
+    }
+    { //Two inputs, seperator of type char
+      const auto v = c.SeperateString("a,b",',');
+      assert(v.size() == 2);
+      assert(v[0]=="a");
+      assert(v[1]=="b");
+    }
+    {
+      //Five inputs, seperator of type char
+      const auto v = c.SeperateString("a,bb,ccc,dddd,eeeee",',');
+      assert(v.size() == 5);
+      assert(v[0]=="a");
+      assert(v[1]=="bb");
+      assert(v[2]=="ccc");
+      assert(v[3]=="dddd");
+      assert(v[4]=="eeeee");
+    }
+    { //Three inputs, of which one empty, seperator of type char
+      const auto v = c.SeperateString("a, ,ccc",',');
+      assert(v.size() == 3);
+      assert(v[0]=="a");
+      assert(v[1]==" ");
+      assert(v[2]=="ccc");
+    }
+  }
   TRACE("Finished ribi::Container::Test successfully");
 }
 #endif

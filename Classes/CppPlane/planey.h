@@ -57,7 +57,7 @@ struct PlaneY
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-  ) noexcept;
+  );
 
   ///Get the 2D projection of these 3D points,
   /*
@@ -109,7 +109,7 @@ struct PlaneY
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-  ) noexcept;
+  );
 
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
   static std::vector<std::string> GetRegexMatchesBoostXpressive(

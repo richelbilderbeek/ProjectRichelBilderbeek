@@ -225,6 +225,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "valentinecarddecryptermenudialog.h"
 #include "vigenereciphermenudialog.h"
 #include "visualabcmenudialog.h"
+#include "wkttosvgmenudialog.h"
 #include "xenonzeromenudialog.h"
 #include "xml.h"
 
@@ -1578,6 +1579,32 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::paperRockScissors: p.reset(new PaperRockScissorsMenuDialog); break;
+      case ProgramType::paperRockScissorsVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "PaperRockScissors (VCL)",
+          "Paper-Rock-Scissors simulation",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/ToolPaperRockScissorsVcl.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramPaperRockScissorsVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::pause:
       {
         const std::string version = "x.x";
@@ -2965,6 +2992,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::visualAbc: p.reset(new VisualAbcMenuDialog); break;
+      case ProgramType::wktToSvg: p.reset(new WktToSvgMenuDialog); break;
       case ProgramType::xeNonZero: p.reset(new XeNonZeroMenuDialog); break;
       case ProgramType::zork:
       {

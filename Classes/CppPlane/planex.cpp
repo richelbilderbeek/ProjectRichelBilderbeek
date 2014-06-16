@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include "container.h"
 #include "geometry.h"
 #include "planez.h"
 #include "trace.h"
@@ -50,7 +51,7 @@ ribi::PlaneX::PlaneX(
   const Coordinat3D& p1,
   const Coordinat3D& p2,
   const Coordinat3D& p3
-) noexcept : m_plane_z{Create(p1,p2,p3)}
+) : m_plane_z{Create(p1,p2,p3)}
 {
   #ifndef NDEBUG
   Test();
@@ -96,7 +97,7 @@ std::unique_ptr<ribi::PlaneZ> ribi::PlaneX::Create(
   const Coordinat3D& p1,
   const Coordinat3D& p2,
   const Coordinat3D& p3
-) noexcept
+)
 {
   std::unique_ptr<PlaneZ> p(
     new PlaneZ(
@@ -490,6 +491,7 @@ std::string ribi::PlaneX::ToFunction() const
 
 std::ostream& ribi::operator<<(std::ostream& os,const PlaneX& planex)
 {
+
   assert(planex.m_plane_z);
   try
   {
@@ -498,6 +500,8 @@ std::ostream& ribi::operator<<(std::ostream& os,const PlaneX& planex)
       << planex.m_plane_z->GetFunctionA() << "*y) + ("
       << planex.m_plane_z->GetFunctionB() << "*z) + "
       << planex.m_plane_z->GetFunctionC()
+      //<< ", coefficients: "
+      //<< Container().ToStr(planex.GetCoefficients())
     ;
   }
   catch (std::logic_error&)

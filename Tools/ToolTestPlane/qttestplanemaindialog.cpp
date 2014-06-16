@@ -21,18 +21,18 @@ ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
   #endif
   ui->setupUi(this);
 
-  QObject::connect(this->ui->slider_x1,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_y1,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_z1,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_x2,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_y2,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_z2,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_x3,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_y3,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_z3,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_x,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_y,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->slider_z,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_x1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_y1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_z1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_x2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_y2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_z2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_x3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_y3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_z3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_x,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_y,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_z,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 
   QObject::connect(this->ui->box_precision,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
 
@@ -50,23 +50,23 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
   s << std::setprecision(ui->box_precision->value());
 
   const Geometry::Coordinat3D p1(
-    static_cast<double>(ui->slider_x1->value()),
-    static_cast<double>(ui->slider_y1->value()),
-    static_cast<double>(ui->slider_z1->value())
+    static_cast<double>(ui->box_x1->value()),
+    static_cast<double>(ui->box_y1->value()),
+    static_cast<double>(ui->box_z1->value())
   );
   s << "Point 1: " << p1 << '\n';
 
   const Geometry::Coordinat3D p2(
-    static_cast<double>(ui->slider_x2->value()),
-    static_cast<double>(ui->slider_y2->value()),
-    static_cast<double>(ui->slider_z2->value())
+    static_cast<double>(ui->box_x2->value()),
+    static_cast<double>(ui->box_y2->value()),
+    static_cast<double>(ui->box_z2->value())
   );
   s << "Point 2: " << p2 << '\n';
 
   const Geometry::Coordinat3D p3(
-    static_cast<double>(ui->slider_x3->value()),
-    static_cast<double>(ui->slider_y3->value()),
-    static_cast<double>(ui->slider_z3->value())
+    static_cast<double>(ui->box_x3->value()),
+    static_cast<double>(ui->box_y3->value()),
+    static_cast<double>(ui->box_z3->value())
   );
   s << "Point 3: " << p3 << '\n';
 
@@ -121,9 +121,9 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
   }
 
 
-  const double x = static_cast<double>(ui->slider_x->value());
-  const double y = static_cast<double>(ui->slider_y->value());
-  const double z = static_cast<double>(ui->slider_z->value());
+  const double x = static_cast<double>(ui->box_x->value());
+  const double y = static_cast<double>(ui->box_y->value());
+  const double z = static_cast<double>(ui->box_z->value());
 
   try
   {
@@ -197,3 +197,4 @@ std::ostream& ribi::operator<<(std::ostream& os, const boost::geometry::model::p
   return os;
 }
 */
+

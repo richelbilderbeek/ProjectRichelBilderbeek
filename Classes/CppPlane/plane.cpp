@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/make_shared.hpp>
 #include <boost/limits.hpp>
 
+#include "container.h"
 #include "geometry.h"
 #include "planex.h"
 #include "planey.h"
@@ -293,7 +294,7 @@ std::vector<double> ribi::Plane::GetCoefficientsZ() const
 
 std::string ribi::Plane::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
@@ -303,7 +304,8 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
     "2014-03-10: version 1.1: allow vertical planes",
     "2014-03-13: version 1.2: bug fixed",
     "2014-04-01: version 1.3: use of std::unique_ptr",
-    "2014-06-13: version 1.4: added operator<<, ToStr calls operator<<, shortened time to compile"
+    "2014-06-13: version 1.4: added operator<<, ToStr calls operator<<, shortened time to compile",
+    "2014-06-16: version 1.5: improved detection of planes that can be expressed in less than three dimensions"
   };
 }
 
@@ -402,6 +404,11 @@ void ribi::Plane::Test() noexcept
   const bool verbose { false };
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
   using boost::geometry::get;
+  Container();
+  Geometry();
+  { const auto planex = boost::make_shared<PlaneX>(); assert(planex); }
+  { const auto planey = boost::make_shared<PlaneY>(); assert(planey); }
+  { const auto planez = boost::make_shared<PlaneZ>(); assert(planez); }
 
   if (verbose) TRACE("Plane that can be expressed in all three forms");
   {
@@ -591,11 +598,14 @@ void ribi::Plane::Test() noexcept
       s
         << std::setprecision(99)
         << p << '\n'
+        << Container().ToStr(p.GetCoefficientsX()) << '\n'
+        << Container().ToStr(p.GetCoefficientsY()) << '\n'
+        << Container().ToStr(p.GetCoefficientsZ()) << '\n'
       ;
       TRACE(s.str());
-      TRACE("BREAK"); //HIERO
+      TRACE("BREAK");
     }
-    //assert(p.IsInPlane(p4)); //TEMP
+    assert(p.IsInPlane(p4));
   }
   TRACE("Finished ribi::Plane::Test successfully");
 }

@@ -200,6 +200,7 @@ include(../../Tools/ToolTriangleMeshCreator/ToolTriangleMeshCreatorConsole.pri)
 include(../../Tools/ToolValentineCardDecrypter/ToolValentineCardDecrypterConsole.pri)
 include(../../Tools/ToolVigenereCipher/ToolVigenereCipherConsole.pri)
 include(../../Tools/ToolVisualAbc/ToolVisualAbcConsole.pri)
+include(../../Tools/ToolWktToSvg/ToolWktToSvgConsole.pri)
 
 SOURCES += main.cpp
 

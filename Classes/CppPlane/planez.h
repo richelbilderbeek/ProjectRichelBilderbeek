@@ -54,7 +54,7 @@ struct PlaneZ
   PlaneZ() noexcept;
 
   ///Construct from its coefficients
-  PlaneZ(const std::vector<double>& coefficients) noexcept;
+  PlaneZ(const std::vector<double>& coefficients);
 
   ///Construct from three points
   PlaneZ(

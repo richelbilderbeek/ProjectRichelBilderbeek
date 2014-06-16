@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include "container.h"
 #include "geometry.h"
 //#include "plane.h"
 #include "trace.h"
@@ -45,14 +46,18 @@ ribi::PlaneZ::PlaneZ() noexcept
 
 ribi::PlaneZ::PlaneZ(
   const std::vector<double>& coefficients
-) noexcept
+)
   : m_coefficients(coefficients)
 {
   #ifndef NDEBUG
   Test();
   #endif
   assert(GetCoefficients().size() == 4);
-
+  if (std::abs(m_coefficients[2]) < 1.0e-14)
+  {
+    TRACE(Container().ToStr(m_coefficients));
+    throw std::logic_error("Plane (from coeffients) that can be expressed in less than 3D space");
+  }
 }
 
 ribi::PlaneZ::PlaneZ(
@@ -64,6 +69,12 @@ ribi::PlaneZ::PlaneZ(
   #ifndef NDEBUG
   Test();
   #endif
+
+  if (std::abs(m_coefficients[2]) < 1.0e-14)
+  {
+    TRACE(Container().ToStr(m_coefficients));
+    throw std::logic_error("Plane (from points) that can be expressed in less than 3D space");
+  }
 }
 
 ribi::PlaneZ::~PlaneZ() noexcept
@@ -133,9 +144,7 @@ double ribi::PlaneZ::CalcZ(const double x, const double y) const
 double ribi::PlaneZ::GetFunctionA() const
 {
   const double coeff_a = m_coefficients[0];
-  //const double coeff_b = m_coefficients[1];
   const double coeff_c = m_coefficients[2];
-  //const double coeff_d = m_coefficients[3];
 
   if (coeff_c == 0.0)
   {
@@ -143,33 +152,25 @@ double ribi::PlaneZ::GetFunctionA() const
   }
 
   const double a = -coeff_a/coeff_c;
-  //const double b = -coeff_b/coeff_c;
-  //const double c =  coeff_d/coeff_c;
   return a;
 }
 
 double ribi::PlaneZ::GetFunctionB() const
 {
-  //const double coeff_a = m_coefficients[0];
   const double coeff_b = m_coefficients[1];
   const double coeff_c = m_coefficients[2];
-  //const double coeff_d = m_coefficients[3];
 
   if (coeff_c == 0.0)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionB: cannot calculate B of a vertical plane");
   }
 
-  //const double a = -coeff_a/coeff_c;
   const double b = -coeff_b/coeff_c;
-  //const double c =  coeff_d/coeff_c;
   return b;
 }
 
 double ribi::PlaneZ::GetFunctionC() const
 {
-  //const double coeff_a = m_coefficients[0];
-  //const double coeff_b = m_coefficients[1];
   const double coeff_c = m_coefficients[2];
   const double coeff_d = m_coefficients[3];
 
@@ -178,8 +179,6 @@ double ribi::PlaneZ::GetFunctionC() const
     throw std::logic_error("ribi::PlaneZ::GetFunctionC: cannot calculate C of a vertical plane");
   }
 
-  //const double a = -coeff_a/coeff_c;
-  //const double b = -coeff_b/coeff_c;
   const double c =  coeff_d/coeff_c;
   return c;
 }
@@ -208,14 +207,14 @@ void ribi::PlaneZ::Test() noexcept
   }
   TRACE("Starting ribi::PlaneZ::Test");
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
-  const bool verbose = false;
-  if (verbose) TRACE("Default construction");
+  const bool verbose = true;
+  if (verbose) { TRACE("Default construction"); }
   {
     const PlaneZ p;
     assert(!p.ToFunction().empty());
     assert(!p.GetCoefficients().empty());
   }
-  if (verbose) TRACE("Check formulas");
+  if (verbose) { TRACE("Check formulas"); }
   {
     const double p1_x { 1.0 };
     const double p1_y { 2.0 };
@@ -277,7 +276,7 @@ void ribi::PlaneZ::Test() noexcept
     assert(std::abs(d - d_p2_expected) < 0.001);
     assert(std::abs(d - d_p3_expected) < 0.001);
   }
-  if (verbose) TRACE("CalcPlaneZ");
+  if (verbose) { TRACE("CalcPlaneZ"); }
   {
     //CalcPlaneZ return the coefficients in the following form:
     // A.x + B.y + C.z = D
@@ -321,7 +320,7 @@ void ribi::PlaneZ::Test() noexcept
     assert(std::abs(d - d_p2_expected) < 0.001);
     assert(std::abs(d - d_p3_expected) < 0.001);
   }
-  if (verbose) TRACE("CalcZ, diagonal plane");
+  if (verbose) { TRACE("CalcZ, diagonal plane"); }
   {
     const Point3D p1(1.0,2.0,3.0);
     const Point3D p2(2.0,5.0,8.0);
@@ -331,7 +330,7 @@ void ribi::PlaneZ::Test() noexcept
     assert(std::abs(p.CalcZ(2.0,5.0)- 8.0) < 0.001);
     assert(std::abs(p.CalcZ(3.0,7.0)-11.0) < 0.001);
   }
-  if (verbose) TRACE("CalcZ, horizontal plane Z = 5.0");
+  if (verbose) { TRACE("CalcZ, horizontal plane Z = 5.0"); }
   /*
 
     |    /
@@ -356,7 +355,7 @@ void ribi::PlaneZ::Test() noexcept
     assert( std::abs(p.CalcZ(3.0,5.0)-5.0) < 0.001);
     assert( std::abs(p.CalcZ(7.0,9.0)-5.0) < 0.001);
   }
-  if (verbose) TRACE("ToFunction, 3 points and 4 points");
+  if (verbose) { TRACE("ToFunction, 3 points and 4 points"); }
   {
     std::function<double(double,double)> f {
       [](const double x, const double y)
@@ -402,7 +401,7 @@ void ribi::PlaneZ::Test() noexcept
     assert(a.ToFunction() == PlaneZ(p4,p3,p1).ToFunction());
     assert(a.ToFunction() == PlaneZ(p4,p3,p2).ToFunction());
   }
-  if (verbose) TRACE("GetProjection, for Z = 0 plane");
+  if (verbose) { TRACE("GetProjection, for Z = 0 plane"); }
   {
     typedef boost::geometry::model::d2::point_xy<double> Point2D;
     typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
@@ -439,7 +438,7 @@ void ribi::PlaneZ::Test() noexcept
     assert(std::abs(get<1>(v[2]) - 1.0 ) < 0.001);
 
   }
-  if (verbose) TRACE("CalcProjection, for Z = 2 plane");
+  if (verbose) { TRACE("CalcProjection, for Z = 2 plane"); }
   {
     typedef boost::geometry::model::d2::point_xy<double> Point2D;
     typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;

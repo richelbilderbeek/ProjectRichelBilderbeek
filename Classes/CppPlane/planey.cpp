@@ -50,7 +50,7 @@ ribi::PlaneY::PlaneY(
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-) noexcept
+)
   : m_plane_z{Create(p1,p2,p3)}
 {
   #ifndef NDEBUG
@@ -95,7 +95,7 @@ std::unique_ptr<ribi::PlaneZ> ribi::PlaneY::Create(
   const Coordinat3D& p1,
   const Coordinat3D& p2,
   const Coordinat3D& p3
-) noexcept
+)
 {
   std::unique_ptr<PlaneZ> p(
     new PlaneZ(Rotate(p1), Rotate(p2), Rotate(p3))

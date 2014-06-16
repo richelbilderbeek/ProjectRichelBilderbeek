@@ -108,6 +108,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::musicTheory: p.reset(new ProgramMusicTheory); break;
     case ProgramType::ndsmake: p.reset(new ProgramNdsmake); break;
     case ProgramType::ndsPaint: p.reset(new ProgramNdsPaint); break;
+    case ProgramType::paperRockScissors: p.reset(new ProgramPaperRockScissors); break;
     case ProgramType::paperRockScissorsVcl: p.reset(new ProgramPaperRockScissorsVcl); break;
     case ProgramType::pause: p.reset(new ProgramPause); break;
     case ProgramType::perfectElasticCollision: p.reset(new ProgramPerfectElasticCollision); break;

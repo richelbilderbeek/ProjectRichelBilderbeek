@@ -8,6 +8,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
+#include "container.h"
 #include "fileio.h"
 #include "fparser.hh"
 #include "geometry.h"
@@ -140,12 +141,14 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestPlane",
     "tests the Plane class",
-    "the 7th of March 2014",
+    "the 16th of June 2014",
     "2014",
     "http://www.richelbilderbeek.nl/ToolTestPlane.htm",
     GetVersion(),
     GetVersionHistory());
+  a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
+  a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   const boost::shared_ptr<Plane> plane(
     new Plane(
       Plane::Coordinat3D(0.0,0.0,0.0),
@@ -156,7 +159,6 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
   a.AddLibrary("Plane version: "
     + plane->GetVersion()
   );
-  a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   return a;
 }
@@ -186,7 +188,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestPlaneMenuDialog::GetProgram() c
 
 std::string ribi::TestPlaneMenuDialog::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const noexcept
@@ -194,7 +196,8 @@ std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const no
   return {
     "2014-03-07: version 1.0: initial version",
     "2014-06-13: version 1.1: allow setting a high precision in desktop version",
-    "2014-06-13: version 1.2: use of operator<< instead of ToStr"
+    "2014-06-13: version 1.2: use of operator<< instead of ToStr",
+    "2014-06-16: version 1.3: use of QDoubleSpinBox instead of QSlider in desktop version"
   };
 }
 
