@@ -1,8 +1,5 @@
 include(../../Tools/ToolTestPolyFile/ToolTestPolyFileConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolTestPolyFile/ToolTestPolyFile.qrc
-
 FORMS += \
     ../../Tools/ToolTestPolyFile/qttestpolyfilemenudialog.ui \
     ../../Tools/ToolTestPolyFile/qttestpolyfilemaindialog.ui

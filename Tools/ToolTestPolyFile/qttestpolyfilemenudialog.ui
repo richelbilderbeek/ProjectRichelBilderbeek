@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>294</width>
-    <height>274</height>
+    <width>346</width>
+    <height>462</height>
    </rect>
   </property>
   <property name="font">
@@ -32,17 +32,17 @@ QPushButton { font: 32px, &quot;monospace&quot; }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
+     <property name="pixmap">
+      <pixmap resource="ToolTestPolyFile.qrc">:/images/ToolTestPolyFileWelcome.png</pixmap>
      </property>
-    </spacer>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_start">

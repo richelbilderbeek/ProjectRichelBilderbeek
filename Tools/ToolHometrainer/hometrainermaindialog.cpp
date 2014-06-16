@@ -16,6 +16,7 @@
 #include "openquestion.h"
 #include "openquestionfactory.h"
 #include "openquestiondialog.h"
+#include "openquestiondialogfactory.h"
 #include "questiondialog.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
@@ -77,7 +78,7 @@ const boost::shared_ptr<const ribi::Question> ribi::HometrainerMainDialog::Creat
   }
   try
   {
-    const auto q = MultipleChoiceQuestionFactory().Create(s);
+    //const auto q = MultipleChoiceQuestionFactory().Create(s);
     const boost::shared_ptr<const Question> q(new MultipleChoiceQuestion(s));
     assert(q);
     return q;
@@ -91,24 +92,14 @@ const boost::shared_ptr<const ribi::Question> ribi::HometrainerMainDialog::Creat
   return q;
 }
 
-const boost::shared_ptr<ribi::QuestionDialog> ribi::HometrainerMainDialog::CreateQuestionDialog(
+boost::shared_ptr<ribi::QuestionDialog> ribi::HometrainerMainDialog::CreateQuestionDialog(
   boost::shared_ptr<const Question> question) noexcept
 {
   assert(question);
   //Open q
   {
-    const boost::shared_ptr<const OpenQuestion> open_question {
-      boost::dynamic_pointer_cast<const OpenQuestion>(question)
-    };
-    if (open_question)
-    {
-      assert(open_question);
-      const boost::shared_ptr<ribi::QuestionDialog> d {
-        new OpenQuestionDialog(open_question)
-      };
-      assert(d);
-      return d;
-    }
+    const auto d = OpenQuestionDialogFactory().Create(question->ToStr());
+    if (d) return d;
   }
   {
     const boost::shared_ptr<const MultipleChoiceQuestion> mc_question {
@@ -128,7 +119,7 @@ const boost::shared_ptr<ribi::QuestionDialog> ribi::HometrainerMainDialog::Creat
   throw std::logic_error("ribi::HometrainerMainDialog::CreateQuestionDialog: unimplemented question type");
 }
 
-const std::vector<boost::shared_ptr<const ribi::Question> >
+std::vector<boost::shared_ptr<const ribi::Question> >
   ribi::HometrainerMainDialog::CreateQuestions(
     const std::string& filename)
 {
@@ -204,7 +195,7 @@ void ribi::HometrainerMainDialog::Execute()
   }
 }
 
-const boost::shared_ptr<const ribi::Question> ribi::HometrainerMainDialog::GetCurrentQuestion() const noexcept
+boost::shared_ptr<const ribi::Question> ribi::HometrainerMainDialog::GetCurrentQuestion() const noexcept
 {
   assert(m_current_question_index < static_cast<int>(GetQuestions().size()));
   const boost::shared_ptr<const ribi::Question> question {
@@ -252,7 +243,7 @@ void ribi::HometrainerMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::HometrainerMainDialog::Test");
-  for(const std::string& s: OpenQuestion::GetValidOpenQuestions())
+  for(const std::string& s: OpenQuestionFactory().GetValidOpenQuestionStrings())
   {
     assert(CreateQuestion(s));
     assert(CreateQuestionDialog(CreateQuestion(s)));

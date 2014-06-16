@@ -86,12 +86,12 @@ protected:
 
   void focusInEvent(QFocusEvent *event) final;
   void focusOutEvent(QFocusEvent *event) final;
-  void keyPressEvent(QKeyEvent *event) final;
+  void keyPressEvent(QKeyEvent *event) noexcept final;
 
   //const boost::shared_ptr<QtConceptMapItem>& GetConceptItem() { return m_concept_item; }
 
   ///Next to QtConceptMapConcept::paint, check for collision
-  void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) final;
+  void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept final;
 
 
 private:

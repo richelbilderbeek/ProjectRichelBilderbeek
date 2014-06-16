@@ -365,6 +365,13 @@ struct Geometry
     const double scale_origin_y = 0.0
   ) const noexcept;
 
+  Linestrings Rescale(
+    const Linestrings& linestrings,
+    const double scale,
+    const double scale_origin_x = 0.0,
+    const double scale_origin_y = 0.0
+  ) const noexcept;
+
   Polygon Rescale(
     const Polygon& polygon,
     const double scale,
@@ -374,6 +381,13 @@ struct Geometry
 
   Polygons Rescale(
     const Polygons& polygons,
+    const double scale,
+    const double scale_origin_x = 0.0,
+    const double scale_origin_y = 0.0
+  ) const noexcept;
+
+  Shapes Rescale(
+    const Shapes& shapes,
     const double scale,
     const double scale_origin_x = 0.0,
     const double scale_origin_y = 0.0
@@ -406,12 +420,11 @@ struct Geometry
   ) const noexcept { return ToSvg(shapes.first,shapes.second,stroke_width); }
 
 
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
-    Translate(
-      const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,
-      const double dx,
-      const double dy
-    ) const noexcept;
+  Polygon Translate(
+    const Polygon& shape,
+    const double dx,
+    const double dy
+  ) const noexcept;
 
 
   Shapes WktToShapes(const std::string& wkt) const;

@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-variable"
 #include <boost/geometry/algorithms/intersection.hpp>
+#include <boost/geometry/algorithms/equals.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/geometry/geometries/linestring.hpp>
@@ -16,13 +17,12 @@
 #pragma GCC diagnostic pop
 
 //Convert a polygon to linestring and back
-//FAILS :-(
 int main()
 {
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Linestring;
   typedef boost::geometry::model::polygon<Point> Polygon;
-  typedef std::vector<Point> Points;
+  //typedef std::vector<Point> Points;
 
   Polygon polygon;
   boost::geometry::read_wkt(
@@ -31,7 +31,10 @@ int main()
   );
 
   Linestring linestring;
-  //FAILS :-(
-  boost::geometry::convert(polygon.outer(), linestring);
-}
+  boost::geometry::append(linestring, polygon.outer());
 
+  Polygon new_polygon;
+  boost::geometry::append(new_polygon, linestring);
+
+  boost::geometry::equals(polygon,new_polygon);
+}

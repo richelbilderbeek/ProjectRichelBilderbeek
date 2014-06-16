@@ -42,14 +42,14 @@ struct TestQuestionMainDialog
 {
   TestQuestionMainDialog();
 
-  std::vector<boost::shared_ptr<QuestionDialog> >& GetQuestions() { return m_questions; }
+  std::vector<boost::shared_ptr<QuestionDialog>>& GetQuestions() { return m_questions; }
 
   private:
-  std::vector<boost::shared_ptr<QuestionDialog> > m_questions;
+  std::vector<boost::shared_ptr<QuestionDialog>> m_questions;
 
   void OnQuestionAnswered();
 
-  static std::vector<boost::shared_ptr<QuestionDialog> > CreateQuestions();
+  static std::vector<boost::shared_ptr<QuestionDialog>> CreateQuestions();
 
   #ifndef NDEBUG
   static void Test() noexcept;

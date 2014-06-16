@@ -36,9 +36,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QRegExp>
 
+#include "container.h"
 #include "fileio.h"
 #include "geometry.h"
+#include "openfoammesh.h"
 #include "plane.h"
+#include "polyfile.h"
+#include "polyfilefrompolygons.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "trianglefile.h"
@@ -466,8 +470,10 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   );
+  a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
+  a.AddLibrary("ribi::foam::Mesh version: " + ribi::foam::Mesh::GetVersion());
   const std::unique_ptr<Plane> plane(
     new Plane(
       Plane::Coordinat3D(0.0,0.0,0.0),
@@ -477,8 +483,11 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
   );
   assert(plane);
   a.AddLibrary("Plane version: " + plane->GetVersion());
+  a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
+  a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
   a.AddLibrary("Triangle version 1.6, by Jonathan Richard Shewchuk (http://www.cs.cmu.edu/~quake/triangle.html)");
   a.AddLibrary("TriangleFile version: " + TriangleFile::GetVersion());
+  //a.AddLibrary("TriangleMesh version: " + TriangleMesh::GetVersion());
   return a;
 }
 

@@ -8,8 +8,6 @@ SOURCES += \
     ../../Tools/ToolTestPolyFileFromPolygons/testpolyfilefrompolygonsmaindialog.cpp \
     ../../Tools/ToolTestPolyFileFromPolygons/testpolyfilefrompolygonsmenudialog.cpp
 
-RESOURCES += \
-    ../../Tools/ToolTestPolyFileFromPolygons/ToolTestPolyFileFromPolygons.qrc
 
 
 OTHER_FILES += \

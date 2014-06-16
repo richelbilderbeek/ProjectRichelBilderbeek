@@ -4,6 +4,7 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
 #Console
+include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
 

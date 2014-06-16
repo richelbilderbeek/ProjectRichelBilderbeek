@@ -39,7 +39,7 @@ struct Question
     const std::vector<std::string>& correct_answers);
 
   ///Create a copy of the Question, depending on the derived class its type
-  virtual Question * Clone() const = 0;
+  virtual Question * Clone() const noexcept = 0;
 
   ///Obtain the correct answer(s)
   const std::vector<std::string>& GetCorrectAnswers() const noexcept { return m_correct_answers; }

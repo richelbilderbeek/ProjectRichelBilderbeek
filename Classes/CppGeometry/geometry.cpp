@@ -906,6 +906,24 @@ ribi::Geometry::Linestring ribi::Geometry::Rescale(
   return new_linestring;
 }
 
+
+ribi::Geometry::Linestrings ribi::Geometry::Rescale(
+  const Linestrings& linestrings,
+  const double scale,
+  const double scale_origin_x,
+  const double scale_origin_y
+) const noexcept
+{
+  Linestrings new_linestrings;
+  for (const auto linestring: linestrings)
+  {
+    new_linestrings.push_back(
+      Rescale(linestring,scale,scale_origin_x,scale_origin_y)
+    );
+  }
+  return new_linestrings;
+}
+
 ribi::Geometry::Polygon ribi::Geometry::Rescale(
   const Polygon& polygon,
   const double scale,
@@ -952,6 +970,21 @@ ribi::Geometry::Polygons ribi::Geometry::Rescale(
     );
   }
   return new_polygons;
+}
+
+ribi::Geometry::Shapes ribi::Geometry::Rescale(
+  const Shapes& shapes,
+  const double scale,
+  const double scale_origin_x,
+  const double scale_origin_y
+) const noexcept
+{
+  Shapes new_shapes;
+  new_shapes.first
+    = Rescale(shapes.first,scale,scale_origin_x,scale_origin_y);
+  new_shapes.second
+    = Rescale(shapes.second,scale,scale_origin_x,scale_origin_y);
+  return new_shapes;
 }
 
 #ifndef NDEBUG

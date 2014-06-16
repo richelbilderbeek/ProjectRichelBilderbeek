@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "exercise.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestiondialog.h"
+#include "openquestiondialogfactory.h"
 #include "qtmultiplechoicequestiondialog.h"
 #include "qtopenquestiondialog.h"
 #include "qtquestiondialog.h"
@@ -77,7 +78,8 @@ void ribi::QtExercise::DisplayCurrentQuestion()
   QtQuestionDialog * question = 0;
   try
   {
-    const boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(s));
+    const boost::shared_ptr<OpenQuestionDialog> d = OpenQuestionDialogFactory().Create(s);
+    //const boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(s));
     question = new QtOpenQuestionDialog(d);
   }
   catch(std::exception&) {}
@@ -100,7 +102,8 @@ void ribi::QtExercise::DisplayCurrentQuestion()
   layout->addWidget(question);
 
   question->GetDialog()->m_signal_submitted.connect(
-    boost::bind(&ribi::QtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
+    boost::bind(&ribi::QtExercise::OnSubmittedAnswer,this,boost::lambda::_1)
+  );
 
 }
 

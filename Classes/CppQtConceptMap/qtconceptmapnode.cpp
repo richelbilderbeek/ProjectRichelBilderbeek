@@ -82,11 +82,11 @@ ribi::cmap::QtNode::QtNode(
   //  && "Bounding rects must by synced");
 
 
-  setPos(m_node->GetX(),m_node->GetY());
-  assert(pos().x() == m_node->GetX());
-  assert(pos().y() == m_node->GetY());
+  SetPos(m_node->GetX(),m_node->GetY());
+  assert(GetPos().x() == m_node->GetX());
+  assert(GetPos().y() == m_node->GetY());
   //m_display_strategy->SetPos(m_node->GetX(),m_node->GetY());
-  this->setPos(m_node->GetX(),m_node->GetY());
+  this->SetPos(m_node->GetX(),m_node->GetY());
 
   /*
 
@@ -147,8 +147,8 @@ ribi::cmap::QtNode::QtNode(
   assert(flags() & QGraphicsItem::ItemIsFocusable);
   assert(flags() & QGraphicsItem::ItemIsSelectable);
   assert(flags() & QGraphicsItem::ItemIsMovable);
-  assert(this->pos().x() == m_node->GetX());
-  assert(this->pos().y() == m_node->GetY());
+  assert(this->GetPos().x() == m_node->GetX());
+  assert(this->GetPos().y() == m_node->GetY());
   assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
   //assert(this->m_display_strategy->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
@@ -284,7 +284,7 @@ void ribi::cmap::QtNode::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
 */
 
 
-void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event) noexcept
 {
   assert(m_display_strategy);
   //assert(m_display_strategy->GetConcept());
@@ -306,7 +306,7 @@ void ribi::cmap::QtNode::OnItemHasUpdated()
   //assert(m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
   //  && "Bounding rects must by synced");
   this->update();
-  this->m_signal_item_has_updated(this);
+  //this->m_signal_item_has_updated(this);
 }
 
 void ribi::cmap::QtNode::OnItemRequestsRateConcept()
@@ -343,10 +343,12 @@ void ribi::cmap::QtNode::OnYchanged(Node * const node)
 
 void ribi::cmap::QtNode::OnRequestsSceneUpdate()
 {
-  this->m_signal_request_scene_update();
+  //this->m_signal_request_scene_update();
 }
 
-void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget)
+void ribi::cmap::QtNode::paint(
+  QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget
+) noexcept
 {
 
   assert(m_display_strategy);
@@ -377,8 +379,8 @@ void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem
     painter->setPen(m_display_strategy->GetIndicatorPen());
     //Draw indicator that a concept has examples in it
     painter->drawRect(
-      rect().right() - 5.0,
-      rect().top() + 3.0,
+      GetRect().right() - 5.0,
+      GetRect().top() + 3.0,
       3.0,
       3.0
       );
@@ -490,7 +492,7 @@ void ribi::cmap::QtNode::Test() noexcept
       assert(node == qtnode->GetNode());
       {
         const double node_x = node->GetX();
-        const double qtnode_x = qtnode->pos().x();
+        const double qtnode_x = qtnode->GetPos().x();
         //const double qtconcept_item_x = qtnode->GetDisplayStrategy()->pos().x();
         if (node_x != qtnode_x) //&& qtnode_x == qtconcept_item_x))
         {
@@ -502,7 +504,7 @@ void ribi::cmap::QtNode::Test() noexcept
         assert(node_x == qtnode_x //&& qtnode_x == qtconcept_item_x
          && "X coordinat must be in sync");
         const double node_y = node->GetY();
-        const double qtnode_y = qtnode->pos().y();
+        const double qtnode_y = qtnode->GetPos().y();
         //const double qtconcept_item_y = qtnode->GetDisplayStrategy()->pos().y();
         assert(node_y == qtnode_y //&& qtnode_y == qtconcept_item_y
          && "Y coordinat must be in sync");

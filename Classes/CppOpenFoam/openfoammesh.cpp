@@ -740,7 +740,7 @@ int ribi::foam::Mesh::GetNumberOfPoints() const noexcept
   return static_cast<int>(m_points.size());
 }
 
-std::string ribi::foam::Mesh::GetVersion() const noexcept
+std::string ribi::foam::Mesh::GetVersion() noexcept
 {
   return "1.1";
 }

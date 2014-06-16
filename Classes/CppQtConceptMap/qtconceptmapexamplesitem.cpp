@@ -69,11 +69,11 @@ void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGrap
 {
   this->SetExamples(this->m_item->GetNode()->GetConcept()->GetExamples());
 
-  const QPointF p = m_item->pos();
-  const QRectF r = m_item->rect();
+  const QPointF p = m_item->GetPos();
+  const QRectF r = m_item->GetRect();
   this->SetPos(
-    p.x() + (0.5 * r.width() ) + 4.0 + (0.5 * this->rect().width() ),
-    p.y() + (0.5 * r.height()) + 4.0 + (0.5 * this->rect().height())
+    p.x() + (0.5 * r.width() ) + 4.0 + (0.5 * this->GetRect().width() ),
+    p.y() + (0.5 * r.height()) + 4.0 + (0.5 * GetRect().height())
   );
 
   QtRoundedEditRectItem::paint(painter,option,widget);
@@ -86,7 +86,7 @@ void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapElement* const i
     m_item = item;
     if (m_item && !m_item->GetNode()->GetConcept()->GetExamples()->Get().empty())
     {
-      m_item->m_signal_item_has_updated.connect(
+      m_item->m_signal_pos_changed.connect(
         boost::bind(
           &ribi::cmap::QtExamplesItem::OnItemUpdated,this
         )

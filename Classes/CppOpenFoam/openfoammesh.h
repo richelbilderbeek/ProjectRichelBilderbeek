@@ -58,7 +58,7 @@ struct Mesh
   int GetNumberOfFaces() const noexcept;
   int GetNumberOfPoints() const noexcept;
   const std::vector<boost::shared_ptr<Coordinat3D>>& GetPoints() noexcept { return m_points; }
-  std::string GetVersion() const noexcept;
+  static std::string GetVersion() noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:

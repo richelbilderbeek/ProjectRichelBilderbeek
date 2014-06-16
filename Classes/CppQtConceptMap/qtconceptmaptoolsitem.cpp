@@ -83,8 +83,8 @@ void ribi::cmap::QtTool::paint(QPainter* painter, const QStyleOptionGraphicsItem
 {
   assert(m_item);
   this->setPos(
-    m_item->pos().x(),
-    m_item->pos().y() - 32.0);
+    m_item->GetPos().x(),
+    m_item->GetPos().y() - 32.0);
 
   QGraphicsPixmapItem::paint(painter,option,widget);
 

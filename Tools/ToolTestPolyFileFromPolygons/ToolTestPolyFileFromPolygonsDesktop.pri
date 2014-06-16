@@ -11,3 +11,6 @@ FORMS += \
 HEADERS += \
     ../../Tools/ToolTestPolyFileFromPolygons/qttestpolyfilefrompolygonsmenudialog.h \
     ../../Tools/ToolTestPolyFileFromPolygons/qttestpolyfilefrompolygonsmaindialog.h
+
+RESOURCES += \
+    ../../Tools/ToolTestPolyFileFromPolygons/ToolTestPolyFileFromPolygons.qrc

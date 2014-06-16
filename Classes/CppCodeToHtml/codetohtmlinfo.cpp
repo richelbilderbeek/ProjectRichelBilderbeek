@@ -13866,6 +13866,28 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "ToolPaperRockScissors",
+      {
+        "<p>",
+        "  This simulation shows pure paper-rock-scissors players competing on a",
+        "  two-dimensional grid (a donut-shaped world). Each time step, a random pixel is",
+        "  chosen (that is, either a paper, rock or scissors player) and a random",
+        "  neighbor. If one beats the other, the winner's strategy replaces the loser's",
+        "  pixel.",
+        "</p>",
+        //"<p>&nbsp;</p>",
+        //"<ul>",
+        //"  <li><a href=\"ToolPaperRockScissors.png\">View a screenshot of 'PaperRockScissors' (png)</a></li>",
+        //"  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPaperRockScissorsConsoleExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
+        //"  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPaperRockScissorsDesktopExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
+        //"  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPaperRockScissorsWebsiteExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
+        //"  <li><a href=\"ToolPaperRockScissorsSource.zip\">Download the 'ToolPaperRockScissors' source code (zip)</a>.</li>",
+        //"</ul>",
+      }
+    }
+  );
+
+  m.push_back(
     { "ToolPaperRockScissorsVcl", // || m_page_name == "CppPaperRockScissors",
       {
         "<p>This simulation shows pure paper-rock-scissors players competing on a",
@@ -13875,7 +13897,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "pixel.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolPaperRockScissorsScreenshot.png\">View a screenshot of 'ToolPaperRockScissors' (png)</a></li>",
+        "  <li><a href=\"ToolPaperRockScissorsScreenshot.png\">View a screenshot of 'PaperRockScissors' (png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolPaperRockScissorsConsoleExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPaperRockScissorsDesktopExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolPaperRockScissorsWebsiteExe.zip\">Download the 'PaperRockScissors' Windows executable (latest version)(zip)</a></li>",

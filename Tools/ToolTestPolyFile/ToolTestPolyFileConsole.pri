@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestPolyFile/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestPolyFile/ToolTestPolyFile.qrc

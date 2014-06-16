@@ -49,6 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "connectthree.h"
 #include "connectthreemenudialog.h"
 #include "connectthreewidget.h"
+#include "container.h"
 #include "copy_if.h"
 #include "counter.h"
 #include "createglossarymenudialog.h"
@@ -72,6 +73,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "gaborfilter.h"
 #include "gaborfiltermenudialog.h"
 #include "gaborfilterwidget.h"
+#include "geometry.h"
 #include "graycodermenudialog.h"
 #include "histogramequalizationermenudialog.h"
 #include "hometrainermenudialog.h"
@@ -108,6 +110,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newick.h"
 #include "newickvector.h"
 #include "nsanabrosmenudialog.h"
+#include "openfoammesh.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
 #include "paperrockscissorsmenudialog.h"
@@ -115,7 +118,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pictocodemenudialog.h"
 #include "pixelatormenudialog.h"
 #include "pixelatormenudialog.h"
+#include "plane.h"
 #include "pokevolleymenudialog.h"
+#include "polyfile.h"
+#include "polyfilefrompolygons.h"
 #include "pongmenudialog.h"
 #include "predickadvocatormenudialog.h"
 #include "primeexpertmenudialog.h"
@@ -192,8 +198,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
 #include "testplanemenudialog.h"
-#include "testpolyfilemenudialog.h"
 #include "testpolyfilefrompolygonsmenudialog.h"
+#include "testpolyfilemenudialog.h"
 #include "testpylosmenudialog.h"
 #include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
@@ -210,15 +216,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testtextcanvasmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
+#include "testtrianglemenudialog.h"
 #include "testtwodigitnewickmenudialog.h"
 #include "textcanvas.h"
 #include "thresholdfilterermenudialog.h"
-#include "testtrianglemenudialog.h"
 #include "tictactoeboard.h"
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
+#include "trianglefile.h"
 #include "trianglemeshcreatormenudialog.h"
 #include "tronmenudialog.h"
 #include "twodigitnewick.h"
@@ -317,6 +324,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("CodeToHtml version: " + c2h::CodeToHtmlMenuDialog().GetVersion());
   a.AddLibrary("ConnectThree version: " + con3::ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + con3::ConnectThreeWidget::GetVersion());
+  a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("Copy_if version: " + Copy_if_version::GetVersion());
   a.AddLibrary("Counter version: " + Counter::GetVersion());
   a.AddLibrary("CreateQtProjectZipFile version: " + CreateQtProjectZipFile::MenuDialog().GetVersion());
@@ -331,9 +339,11 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("Encranger (tool) version: " + ToolEncrangerMenuDialog().GetVersion());
   a.AddLibrary("Exercise version: " + Exercise::GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
+  a.AddLibrary("foam::Mesh version: " + ribi::foam::Mesh::GetVersion());
   a.AddLibrary("Fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
   a.AddLibrary("GaborFilter version: " + GaborFilter::GetVersion());
   a.AddLibrary("GaborFilterWidget version: " + GaborFilterWidget::GetVersion());
+  a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Help version: " + Help::GetVersion());
   a.AddLibrary("Hometrainer version: " + HometrainerMenuDialog().GetVersion());
   a.AddLibrary("HtmlPage version: " + HtmlPage::GetVersion());
@@ -374,7 +384,18 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
   a.AddLibrary("PaperRockScissors version: " + PaperRockScissorsMenuDialog().GetVersion());
+  const std::unique_ptr<Plane> plane(
+    new Plane(
+      Plane::Coordinat3D(0.0,0.0,0.0),
+      Plane::Coordinat3D(1.0,0.0,0.0),
+      Plane::Coordinat3D(0.0,1.0,0.0)
+    )
+  );
+  assert(plane);
+  a.AddLibrary("Plane version: " + plane->GetVersion());
   a.AddLibrary("PokeVolley version: " + PokeVolleyMenuDialog().GetVersion());
+  a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
+  a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
   a.AddLibrary("Pong version: " + PongMenuDialog().GetVersion());
   a.AddLibrary("Pylos version: " + pylos::MenuDialog().GetVersion());
   a.AddLibrary("QmakeWatcher version: " + QmakeWatcherMenuDialog().GetVersion());
@@ -428,6 +449,8 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("TestShinyButton version: " + TestShinyButtonMenuDialog().GetVersion());
   a.AddLibrary("TestSimpleLinearRegression version: " + ToolTestSimpleLinearRegressionMenuDialog().GetVersion());
   a.AddLibrary("TestToggleButton version: " + TestToggleButtonMenuDialog().GetVersion());
+  a.AddLibrary("Triangle version 1.6, by Jonathan Richard Shewchuk (http://www.cs.cmu.edu/~quake/triangle.html)");
+  a.AddLibrary("TriangleFile version: " + TriangleFile::GetVersion());
   a.AddLibrary("TriangleMeshCreator version: " + TriangleMeshCreatorMenuDialog().GetVersion());
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("TicTacToe (game) version: " + tictactoe::TicTacToeMenuDialog().GetVersion());
