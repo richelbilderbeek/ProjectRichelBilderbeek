@@ -576,7 +576,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
 {
-  const bool verbose = true;
+  const bool verbose = false;
 
   #ifndef NDEBUG
   assert(points.size() >= 3);
@@ -802,7 +802,7 @@ std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry:
 
 bool ribi::Geometry::IsPlane(const std::vector<Coordinat3D>& v) const noexcept
 {
-  const bool verbose = true;
+  const bool verbose = false;
   using boost::geometry::get;
 
   if (v.size() < 3) return false;
@@ -963,7 +963,7 @@ void ribi::Geometry::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Geometry::Test");
-  const bool verbose = true;
+  const bool verbose = false;
   const double pi { boost::math::constants::pi<double>() };
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   const Geometry g;

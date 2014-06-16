@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QRegExp>
 
+#include "container.h"
 #include "fileio.h"
 #include "geometry.h"
 #include "richelbilderbeekprogram.h"
@@ -106,7 +107,7 @@ int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<
   if (verbose)
   {
     std::cout << "Number of polygons: " << polygons.size() << std::endl;
-    std::cout << "Polygons (as SVG text): " << Geometry().ToSvgStr(polygons) << std::endl;
+    std::cout << "Polygons (as SVG text): " << Geometry().ToSvg(polygons) << std::endl;
   }
 
   try
@@ -140,6 +141,7 @@ ribi::About ribi::TestPolyFileFromPolygonsMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   );
+  a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());

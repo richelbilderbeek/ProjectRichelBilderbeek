@@ -318,7 +318,7 @@ void ribi::TriangleFile::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleFile::Test");
-  const bool verbose = true;
+  const bool verbose = false;
   //Call Triangle with simple shapes
   {
     const std::vector<Coordinat> points {

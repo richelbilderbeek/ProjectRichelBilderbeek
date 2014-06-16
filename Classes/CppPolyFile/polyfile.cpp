@@ -47,7 +47,7 @@ std::vector<std::string> ribi::PolyFile::GetVersionHistory() noexcept
 
 std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(const std::string& filename)
 {
-  const bool verbose = true;
+  const bool verbose = false;
   //Collect all indices
   const auto v = RemoveComments(fileio::FileIo().FileToVector(filename));
   if (v.empty())
@@ -316,7 +316,7 @@ void ribi::PolyFile::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PolyFile::Test");
-  const bool verbose = true;
+  const bool verbose = false;
   if (verbose) { TRACE("RemoveComments"); }
   {
     std::vector<std::string> v

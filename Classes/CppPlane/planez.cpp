@@ -52,10 +52,16 @@ ribi::PlaneZ::PlaneZ(
   #ifndef NDEBUG
   Test();
   #endif
+  const bool verbose = false;
   assert(GetCoefficients().size() == 4);
+
+  //Sometimes due to rounding errors, m_coefficients[2] is not zero,
+  //where it should have been. If m_coefficients[2] equals zero,
+  //a division by itself is prevented by throwing an exception.
+  //Throw an exception as if m_coefficients[2] equalled zero
   if (std::abs(m_coefficients[2]) < 1.0e-14)
   {
-    TRACE(Container().ToStr(m_coefficients));
+    if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
     throw std::logic_error("Plane (from coeffients) that can be expressed in less than 3D space");
   }
 }
@@ -69,10 +75,15 @@ ribi::PlaneZ::PlaneZ(
   #ifndef NDEBUG
   Test();
   #endif
-
+  const bool verbose = false;
+  assert(GetCoefficients().size() == 4);
+  //Sometimes due to rounding errors, m_coefficients[2] is not zero,
+  //where it should have been. If m_coefficients[2] equals zero,
+  //a division by itself is prevented by throwing an exception.
+  //Throw an exception as if m_coefficients[2] equalled zero
   if (std::abs(m_coefficients[2]) < 1.0e-14)
   {
-    TRACE(Container().ToStr(m_coefficients));
+    if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
     throw std::logic_error("Plane (from points) that can be expressed in less than 3D space");
   }
 }
@@ -207,7 +218,7 @@ void ribi::PlaneZ::Test() noexcept
   }
   TRACE("Starting ribi::PlaneZ::Test");
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
-  const bool verbose = true;
+  const bool verbose = false;
   if (verbose) { TRACE("Default construction"); }
   {
     const PlaneZ p;

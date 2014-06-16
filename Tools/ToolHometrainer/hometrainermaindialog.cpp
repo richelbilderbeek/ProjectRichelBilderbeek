@@ -14,6 +14,7 @@
 
 #include "fileio.h"
 #include "openquestion.h"
+#include "openquestionfactory.h"
 #include "openquestiondialog.h"
 #include "questiondialog.h"
 #include "multiplechoicequestion.h"
@@ -65,7 +66,8 @@ const boost::shared_ptr<const ribi::Question> ribi::HometrainerMainDialog::Creat
 {
   try
   {
-    const boost::shared_ptr<const Question> q(new OpenQuestion(s));
+    const auto q = OpenQuestionFactory().Create(s);
+    //const boost::shared_ptr<const Question> q(new OpenQuestion(s));
     assert(q);
     return q;
   }
@@ -75,6 +77,7 @@ const boost::shared_ptr<const ribi::Question> ribi::HometrainerMainDialog::Creat
   }
   try
   {
+    const auto q = MultipleChoiceQuestionFactory().Create(s);
     const boost::shared_ptr<const Question> q(new MultipleChoiceQuestion(s));
     assert(q);
     return q;
