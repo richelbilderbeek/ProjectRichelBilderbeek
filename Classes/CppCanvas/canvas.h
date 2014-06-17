@@ -71,10 +71,10 @@ struct Canvas
 
   private:
   ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static std::vector<std::string> GetRegexMatches(
-    const std::string& s,
-    const QRegExp& r
-  ) noexcept;
+  //static std::vector<std::string> GetRegexMatches(
+  //  const std::string& s,
+  //  const QRegExp& r
+  //) noexcept;
 
   ///Check if a coordinat is in the range of the Canvas
   bool IsInRange(const int x, const int y) const;

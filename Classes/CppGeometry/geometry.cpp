@@ -387,6 +387,21 @@ std::vector<std::string>
   const std::string& regex_str
 ) const noexcept
 {
+  QRegExp r(regex_str.c_str());
+  r.setMinimal(true); //QRegExp must be non-greedy
+  std::vector<std::string> v;
+  int pos = 0;
+  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
+  {
+    const QString q = r.cap(1);
+    if (q.isEmpty()) break;
+    v.push_back(q.toStdString());
+    pos += r.matchedLength();
+  }
+
+  return v;
+  /*
+
   const boost::xpressive::sregex r
     = boost::xpressive::sregex::compile(regex_str)
   ;
@@ -400,6 +415,7 @@ std::vector<std::string>
     v.push_back(what[0]);
   }
   return v;
+  */
 }
 
 std::string ribi::Geometry::GetVersion() const noexcept

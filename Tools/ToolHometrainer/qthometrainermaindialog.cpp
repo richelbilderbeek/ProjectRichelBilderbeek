@@ -16,7 +16,9 @@
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
+#include "openquestionfactory.h"
 #include "openquestiondialog.h"
+#include "openquestiondialogfactory.h"
 #include "qtmultiplechoicequestiondialog.h"
 #include "hometrainermaindialog.h"
 #include "qtopenquestiondialog.h"
@@ -61,13 +63,19 @@ boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtHometrainerMainDialog::CreateQ
 
   try
   {
-    const boost::shared_ptr<const OpenQuestion> q {
-      boost::dynamic_pointer_cast<const OpenQuestion>(s)
-    };
-    if (!q) throw std::runtime_error("q cannot be converted to OpenQuestion");
-    assert(q);
-    const boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(q));
-    if (d) p.reset(new QtOpenQuestionDialog(d));
+    //const boost::shared_ptr<const OpenQuestion> q {
+    //  boost::dynamic_pointer_cast<const OpenQuestion>(s)
+    //};
+    //if (!q) throw std::runtime_error("q cannot be converted to OpenQuestion");
+    //assert(q);
+    //const boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(q));
+    const auto d = OpenQuestionDialogFactory().Create(s->ToStr());
+    const auto qd = boost::make_shared<QtOpenQuestionDialog>();
+    qd->SetDialog(d);
+    assert(qd);
+    if (qd) p = qd;
+    //assert(d);
+    //if (d) p.reset(new QtOpenQuestionDialog(d));
     assert(p);
     return p;
   }
@@ -179,9 +187,10 @@ void ribi::QtHometrainerMainDialog::Test() noexcept
     v.push_back(q);
   }
   {
-    const boost::shared_ptr<const Question> q {
-      new OpenQuestion("-,1+1=,2/Two/two")
-    };
+    const auto q = OpenQuestionFactory().Create("-,1+1=,2/Two/two");
+    //const boost::shared_ptr<const Question> q {
+    //  new OpenQuestion("-,1+1=,2/Two/two")
+    //};
     v.push_back(q);
   }
   const boost::shared_ptr<const HometrainerMainDialog> dialog {

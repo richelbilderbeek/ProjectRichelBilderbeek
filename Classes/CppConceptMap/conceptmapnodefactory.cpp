@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
+#include "geometry.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -141,21 +142,24 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::
   //m_concept
   boost::shared_ptr<Concept> concept;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
     assert(v.size() == 1);
     concept = ConceptFactory().FromXml(v[0]);
   }
   //m_x
   double x = 0.0;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
     assert(v.size() == 1);
     x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_x
   double y = 0.0;
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
     assert(v.size() == 1);
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }

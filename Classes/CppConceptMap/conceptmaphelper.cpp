@@ -52,6 +52,7 @@ double ribi::cmap::GetDistance(const double x1, const double y1, const double x2
   return GetDistance(x1-x2,y1-y2);
 }
 
+/*
 std::vector<std::string> ribi::cmap::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original
@@ -74,6 +75,7 @@ std::vector<std::string> ribi::cmap::GetRegexMatches(
 
   return v;
 }
+*/
 
 std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filename) noexcept
 {
@@ -127,7 +129,7 @@ void ribi::cmap::TestHelperFunctions() noexcept
     expected.push_back("2345 BC");
     {
       const std::string r = "(\\d{4} [A-Z]{2})";
-      assert(cmap::GetRegexMatches(s,QRegExp(r.c_str())) == expected);
+      assert(Geometry().GetRegexMatches(s,QRegExp(r.c_str())) == expected);
     }
   }
   {
@@ -139,7 +141,7 @@ void ribi::cmap::TestHelperFunctions() noexcept
     expected.push_back("<example>Example 3</example>");
     {
       const std::string r = "(<example>.*</example>)";
-      assert(cmap::GetRegexMatches(s,QRegExp(r.c_str())) == expected);
+      assert(Geometry().GetRegexMatches(s,QRegExp(r.c_str())) == expected);
     }
   }
   //GetCombinations

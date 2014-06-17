@@ -51,19 +51,6 @@ void ribi::ToolMultiEncrangerMainDialog::Encrypt()
   m_encrypted_text.resize(m_plain_text.size() - 1); //Pop trailing newline
 }
 
-/*
-std::vector<std::string> ribi::ToolMultiEncrangerMainDialog::SeperateString(
-  const std::string& input,
-  const char seperator) const noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
-
 void ribi::ToolMultiEncrangerMainDialog::SetEncryptedText(const std::string& s)
 {
   m_encrypted_text = s;

@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamplesfactory.h"
 #include "conceptmaphelper.h"
+#include "geometry.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic push
@@ -159,27 +160,31 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
   int rating_specificity   = -2; //Not even unrated (which has -1 as its value)
   //m_name
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<name>.*</name>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,("(<name>.*</name>)"));
     assert(v.size() == 1);
     name = ribi::xml::StripXmlTag(v[0]);
   }
   //m_examples
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<examples>.*</examples>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,("(<examples>.*</examples>)"));
     assert(v.size() == 1 && "<examples>*.</examples> must be present once in a Concept");
     examples = ExamplesFactory().FromXml(v[0]);
   }
 
   //m_is_complex
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concept_is_complex>.*</concept_is_complex>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,("(<concept_is_complex>.*</concept_is_complex>)"));
     assert(v.size() == 1 && "(<is_complex>.*</is_complex>) must be present once per Concept");
     is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
 
   //m_rating_complexity
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<complexity>.*</complexity>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,("(<complexity>.*</complexity>)"));
     assert(v.size() == 1 && "(<complexity>.*</complexity>) must be present once per Concept");
     rating_complexity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
     assert(rating_complexity >= -1);
@@ -187,13 +192,15 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
   }
   //m_rating_concreteness
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concreteness>.*</concreteness>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,("(<concreteness>.*</concreteness>)"));
     assert(v.size() == 1);
     rating_concreteness = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_rating_specificity
   {
-    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<specificity>.*</specificity>)"));
+    const std::vector<std::string> v
+      = Geometry().GetRegexMatches(s,("(<specificity>.*</specificity>)"));
     assert(v.size() == 1);
     rating_specificity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }

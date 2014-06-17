@@ -510,12 +510,14 @@ ribi::Help ribi::TriangleMeshCreatorMenuDialog::GetHelp() const noexcept
   );
 }
 
+/*
 std::string ribi::TriangleMeshCreatorMenuDialog::GetPolygonRegex()
 {
   return
     "(POLYGON\\(\\(.*\\)\\))"
   ;
 }
+*/
 
 boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetProgram() const noexcept
 {
@@ -527,6 +529,7 @@ boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetP
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+/*
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original
@@ -546,6 +549,7 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetRegexMatches(
 
   return v;
 }
+*/
 
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
@@ -577,6 +581,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleMeshCreatorMenuDialog::Test");
+  /*
   {
     const QRegExp regex(GetPolygonRegex().c_str());
     const std::vector<std::string> lines
@@ -589,7 +594,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     }
     assert(lines.size() == 2);
   }
-
+  */
   {
     TriangleMeshCreatorMenuDialog d;
     d.Execute( {"TriangleMeshCreator", "--help" } );

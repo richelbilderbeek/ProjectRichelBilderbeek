@@ -181,9 +181,9 @@ struct DrawCanvas : public Canvas
   CanvasCoordinatSystem m_coordinat_system;
 
   ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static std::vector<std::string> GetRegexMatches(
-    const std::string& s,
-    const QRegExp& r);
+  //static std::vector<std::string> GetRegexMatches(
+  //  const std::string& s,
+  //  const QRegExp& r);
 
   ///Check if a coordinat is in the range of the DrawCanvas
   bool IsInRange(const int x, const int y) const;

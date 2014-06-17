@@ -45,43 +45,6 @@ ribi::WktToSvgMainDialog::WktToSvgMainDialog(
   #endif
 }
 
-//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-/*
-std::vector<std::string>
-  ribi::WktToSvgMainDialog::GetRegexMatches(
-  const std::string& s,
-  const std::string& regex_str
-) noexcept
-{
-  const boost::xpressive::sregex r
-    = boost::xpressive::sregex::compile(regex_str)
-  ;
-
-  std::vector<std::string> v;
-  boost::xpressive::sregex_iterator cur(s.begin(),s.end(),r);
-  boost::xpressive::sregex_iterator end;
-  for( ; cur != end; ++cur )
-  {
-    const boost::xpressive::smatch& what = *cur;
-    v.push_back(what[0]);
-  }
-  return v;
-}
-*/
-
-/*
-std::vector<std::string> ribi::WktToSvgMainDialog::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
-
 #ifndef NDEBUG
 void ribi::WktToSvgMainDialog::Test() noexcept
 {

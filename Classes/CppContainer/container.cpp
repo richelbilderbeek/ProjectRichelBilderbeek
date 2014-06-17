@@ -36,6 +36,7 @@ ribi::Container::Container()
   #endif
 }
 
+
 std::string ribi::Container::GetVersion() const noexcept
 {
   return "1.1";

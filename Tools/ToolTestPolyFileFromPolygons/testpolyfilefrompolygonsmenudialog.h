@@ -44,10 +44,10 @@ struct TestPolyFileFromPolygonsMenuDialog : public MenuDialog
 
   static std::string GetPolygonRegex();
 
-  static std::vector<std::string> GetRegexMatches(
-    const std::string& s,
-    const QRegExp& r_original
-  ) noexcept;
+  //static std::vector<std::string> GetRegexMatches(
+  //  const std::string& s,
+  //  const QRegExp& r_original
+  //) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

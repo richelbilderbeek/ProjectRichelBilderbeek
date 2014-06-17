@@ -55,6 +55,7 @@ std::vector<char> ribi::Canvas::GetAsciiArtGradient() noexcept
   return { 'M','N','m','d','h','y','s','o','+','/',':','-','.','`',' ' };
 }
 
+/*
 std::vector<std::string> ribi::Canvas::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original) noexcept
@@ -73,6 +74,7 @@ std::vector<std::string> ribi::Canvas::GetRegexMatches(
 
   return v;
 }
+*/
 
 std::string ribi::Canvas::GetVersion() noexcept
 {

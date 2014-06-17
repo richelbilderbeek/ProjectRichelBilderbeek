@@ -34,8 +34,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 #pragma GCC diagnostic pop
 
-struct QRegExp;
-
 namespace ribi {
 
 ///Help adding constness a bit
@@ -106,10 +104,10 @@ double GetDistance(const double delta_x, const double delta_y);
 double GetDistance(const double x1, const double y1, const double x2, const double y2);
 
 ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-std::vector<std::string> GetRegexMatches(
-  const std::string& s,
-  const QRegExp& r
-) noexcept;
+//std::vector<std::string> GetRegexMatches(
+//  const std::string& s,
+//  const QRegExp& r
+//) noexcept;
 
 ///SafeFileToVector calls FileToVector and
 ///removes an empty trailing line that can be created under

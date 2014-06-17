@@ -115,6 +115,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestopenquestionmenudialog.h"
 #include "qttestplanemenudialog.h"
 #include "qttestpylosmenudialog.h"
+#include "qttestpolyfilefrompolygonsmenudialog.h"
 #include "qttestqrcfilemenudialog.h"
 #include "qttestqtarrowitemsmenudialog.h"
 #include "qttestqtcreatorprofilemenudialog.h"
@@ -317,7 +318,8 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testOpenQuestion: p = new QtTestOpenQuestionMenuDialog;  break;
     case ProgramType::testPlane: p = new QtTestPlaneMenuDialog; break;
     case ProgramType::testPylos: p = new pylos::QtTestPylosMenuDialog; break;
-    case ProgramType::testPolyFile: p = new pylos::QtTestPolyFileMenuDialog; break;
+    case ProgramType::testPolyFile: p = new QtTestPolyFileMenuDialog; break;
+    case ProgramType::testPolyFileFromPolygons: p = new QtTestPolyFileFromPolygonsMenuDialog; break;
     case ProgramType::testQrcFile: p = new QtTestQrcFileMenuDialog; break;
     case ProgramType::testQtCreatorProFile: p = new QtTestQtCreatorProFileMenuDialog; break;
     case ProgramType::testQtHideAndShowDialog: break;

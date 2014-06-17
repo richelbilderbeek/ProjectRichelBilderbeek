@@ -37,7 +37,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include <QString>
-#include <QRegExp>
 
 #include "canvascolorsystems.h"
 #include "canvascoordinatsystems.h"
@@ -97,19 +96,19 @@ ribi::DrawCanvas::DrawCanvas(const std::string& filename)
   assert(s.substr(0,8) == "<canvas>");
   assert(s.substr(s.size() - 9,9) == "</canvas>");
   {
-    const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<color_system>.*</color_system>)")) };
+    const std::vector<std::string> v { Geometry().GetRegexMatches(s,"(<color_system>.*</color_system>)") };
     assert(v.size() == 1);
     m_color_system = CanvasColorSystems::ToType(ribi::xml::StripXmlTag(v[0]));
   }
 
   {
-    const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<coordinat_system>.*</coordinat_system>)")) };
+    const std::vector<std::string> v { Geometry().GetRegexMatches(s,"(<coordinat_system>.*</coordinat_system>)") };
     assert(v.size() == 1);
     m_coordinat_system = CanvasCoordinatSystems::ToType(ribi::xml::StripXmlTag(v[0]));
   }
   int n_cols = -1;
   {
-    const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<n_cols>.*</n_cols>)")) };
+    const std::vector<std::string> v { Geometry().GetRegexMatches(s,"(<n_cols>.*</n_cols>)") };
     assert(v.size() == 1);
     //assert(CanCast<int>(ribi::xml::StripXmlTag(v[0])));
     n_cols = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
@@ -117,7 +116,7 @@ ribi::DrawCanvas::DrawCanvas(const std::string& filename)
 
   m_canvas.push_back( {} );
   {
-    const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<data>.*</data>)")) };
+    const std::vector<std::string> v { Geometry().GetRegexMatches(s,"(<data>.*</data>)") };
     assert(v.size() == 1 && "(<data>.*</data>) must be present exactly once");
     const std::pair<std::string,std::vector<std::string>> lines { xml::XmlToVector(v[0]) };
     assert(lines.first == "data");
@@ -330,6 +329,7 @@ void ribi::DrawCanvas::DrawText(const double top, const double left, const std::
   }
 }
 
+/*
 std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
@@ -345,9 +345,10 @@ std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
     v.push_back(q.toStdString());
     pos += r.matchedLength();
   }
-
   return v;
 }
+*/
+
 std::string ribi::DrawCanvas::GetVersion() noexcept
 {
   return "3.1";

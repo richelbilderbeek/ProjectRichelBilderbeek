@@ -79,9 +79,9 @@ int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<
     {
       const std::string text = args[i+1];
       if (verbose) { std::cout << "Parsing polygons '" << text << "'" << std::endl; }
-      const QRegExp regex(GetPolygonRegex().c_str());
+      const auto regex(GetPolygonRegex());
       //const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(GetPolygonRegex());
-      const std::vector<std::string> lines = GetRegexMatches(text,regex);
+      const std::vector<std::string> lines = Geometry().GetRegexMatches(text,regex);
       for (const std::string& line: lines)
       {
         if (verbose) { std::cout << "Parsing polygon '" << line << "'" << std::endl; }
@@ -182,6 +182,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestPolyFileFromPolygonsMenuDialog:
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+/*
 std::vector<std::string> ribi::TestPolyFileFromPolygonsMenuDialog::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original
@@ -201,6 +202,7 @@ std::vector<std::string> ribi::TestPolyFileFromPolygonsMenuDialog::GetRegexMatch
 
   return v;
 }
+*/
 
 std::string ribi::TestPolyFileFromPolygonsMenuDialog::GetVersion() const noexcept
 {

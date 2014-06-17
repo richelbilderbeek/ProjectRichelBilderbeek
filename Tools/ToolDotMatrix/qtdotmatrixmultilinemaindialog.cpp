@@ -8,6 +8,7 @@
 
 #include <boost/algorithm/string/split.hpp>
 
+#include "container.h"
 #include "dotmatrixtext.h"
 #include "trace.h"
 
@@ -32,28 +33,13 @@ ribi::QtDotMatrixMultiLineMainDialog::~QtDotMatrixMultiLineMainDialog()
 
 void ribi::QtDotMatrixMultiLineMainDialog::on_edit_textChanged()
 {
-
-  const std::vector<std::string> v {
-    SeperateString(ui->edit->toPlainText().toStdString(),'\n')
-  };
+  const auto v
+    = Container().SeperateString(ui->edit->toPlainText().toStdString(),'\n');
 
   const DotMatrixText m(v,1);
   m_image = m.CreateImage();
   ui->image->setPixmap(QPixmap::fromImage(*m_image.get()));
 }
-
-/*
-std::vector<std::string> ribi::QtDotMatrixMultiLineMainDialog::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
 
 #ifndef NDEBUG
 void ribi::QtDotMatrixMultiLineMainDialog::Test() noexcept
