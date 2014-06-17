@@ -234,7 +234,7 @@ QPlainTextEdit { font: 10px }
     </widget>
    </item>
    <item row="0" column="0" colspan="5">
-    <widget class="QPlainTextEdit" name="edit_shapes">
+    <widget class="QPlainTextEdit" name="edit_wkt">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
        <horstretch>0</horstretch>
@@ -266,8 +266,8 @@ LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1176</width>
-        <height>202</height>
+        <width>98</width>
+        <height>89</height>
        </rect>
       </property>
       <attribute name="label">
@@ -288,8 +288,8 @@ LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1176</width>
-        <height>202</height>
+        <width>98</width>
+        <height>89</height>
        </rect>
       </property>
       <attribute name="label">
@@ -302,6 +302,14 @@ LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
       </layout>
      </widget>
      <widget class="QWidget" name="page_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>98</width>
+        <height>89</height>
+       </rect>
+      </property>
       <attribute name="label">
        <string>Triangle.exe output .ele file</string>
       </attribute>
@@ -312,6 +320,14 @@ LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
       </layout>
      </widget>
      <widget class="QWidget" name="page_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>98</width>
+        <height>89</height>
+       </rect>
+      </property>
       <attribute name="label">
        <string>Triangle.exe output .poly file</string>
       </attribute>
@@ -322,6 +338,14 @@ LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
       </layout>
      </widget>
      <widget class="QWidget" name="page_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1176</width>
+        <height>202</height>
+       </rect>
+      </property>
       <attribute name="label">
        <string>Triangle.exe output as SVG</string>
       </attribute>

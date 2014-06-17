@@ -37,11 +37,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenmenudialog.h"
 #include "caesarciphermenudialog.h"
 #include "canvas.h"
+#ifdef INCLUDE_CHESS_20140617
 #include "chessbitboard.h"
 #include "chessboard.h"
 #include "chessboardwidget.h"
 #include "chessgame.h"
 #include "chesswidget.h"
+#endif // INCLUDE_CHESS_20140617
 #include "codebreakermenudialog.h"
 #include "codetohtmlmenudialog.h"
 #include "conceptmap.h"
@@ -125,7 +127,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pongmenudialog.h"
 #include "predickadvocatormenudialog.h"
 #include "primeexpertmenudialog.h"
+#ifdef INCLUDE_BRAINWEAVER_20140617
 #include "pvdbmenudialog.h"
+#endif // INCLUDE_BRAINWEAVER_20140617
 #include "pylosmenudialog.h"
 #include "qmakewatchermenudialog.h"
 #include "qmakewatchermenudialog.h"
@@ -177,12 +181,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "stylesheetsettermenudialog.h"
 #include "surfaceplottermenudialog.h"
+#ifdef INCLUDE_TANKBATTALION_20140617
 #include "tankbattalionmenudialog.h"
+#endif // INCLUDE_TANKBATTALION_20140617
 #include "testaboutmenudialog.h"
 #include "testapproximatormenudialog.h"
 #include "testapproximatormenudialog.h"
 #include "testbinarynewickvectormenudialog.h"
+#ifdef INCLUDE_TESTCHESS_20140617
 #include "testchessmenudialog.h"
+#endif // INCLUDE_TESTCHESS_20140617
 #include "testconceptmapmenudialog.h"
 #include "testdialmenudialog.h"
 #include "testdrawcanvasmenudialog.h"

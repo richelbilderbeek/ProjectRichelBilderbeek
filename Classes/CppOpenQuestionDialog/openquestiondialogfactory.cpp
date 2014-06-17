@@ -28,7 +28,7 @@ boost::shared_ptr<ribi::OpenQuestionDialog>
     const std::string& filename,
     const std::string& question,
     const std::vector<std::string>& answers
-) const noexcept
+) const
 {
   const auto open_question
     = OpenQuestionFactory().Create(filename,question,answers);
@@ -37,7 +37,7 @@ boost::shared_ptr<ribi::OpenQuestionDialog>
 
 boost::shared_ptr<ribi::OpenQuestionDialog> ribi::OpenQuestionDialogFactory::Create(
   const boost::shared_ptr<OpenQuestion>& open_question
-) const noexcept
+) const
 {
   assert(open_question);
   boost::shared_ptr<OpenQuestionDialog> dialog(new OpenQuestionDialog);

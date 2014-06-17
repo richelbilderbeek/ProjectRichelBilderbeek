@@ -37,9 +37,9 @@ struct ToolMultiEncrangerMainDialog
   int m_key;
   std::string m_plain_text;
 
-  std::vector<std::string> SeperateString(
-    const std::string& input,
-    const char seperator) const noexcept;
+  //std::vector<std::string> SeperateString(
+  //  const std::string& input,
+  //  const char seperator) const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

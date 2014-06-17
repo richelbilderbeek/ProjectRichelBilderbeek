@@ -40,8 +40,6 @@ ribi::TestOpenQuestionMainDialog::TestOpenQuestionMainDialog()
 std::vector<boost::shared_ptr<ribi::QuestionDialog>> ribi::TestOpenQuestionMainDialog::CreateQuestions()
 {
   std::vector<boost::shared_ptr<QuestionDialog> > v;
-
-
   v.push_back(
     OpenQuestionDialogFactory().Create(
       "*",

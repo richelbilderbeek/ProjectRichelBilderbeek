@@ -127,7 +127,7 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
       assert(c);
       cells = c->GetCells();
       #ifndef NDEBUG
-      for (auto cell:cells) { assert(cell); }
+      for (const auto cell:cells) { assert(cell); }
       #endif
     }
 

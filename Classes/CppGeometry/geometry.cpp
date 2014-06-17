@@ -238,7 +238,7 @@ ribi::Geometry::Rect ribi::Geometry::CreateRect(
 }
 
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
-  ribi::Geometry::CreateShapeHeart(const double scale) noexcept
+  ribi::Geometry::CreateShapeHeart(const double scale) const noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 1.0 * scale}, //0
@@ -256,7 +256,7 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
 }
 
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
-  ribi::Geometry::CreateShapeHouse(const double scale) noexcept
+  ribi::Geometry::CreateShapeHouse(const double scale) const noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 2.0 * scale}, //0
@@ -275,7 +275,7 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
   const int n,
   const double rotation,
   const double scale
-) noexcept
+) const noexcept
 {
   assert(n >= 3 && "A polygon has at least three edges");
   const double tau { boost::math::constants::two_pi<double>() };
@@ -295,7 +295,7 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
 }
 
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
-  ribi::Geometry::CreateShapeTriangle(const double scale) noexcept
+  ribi::Geometry::CreateShapeTriangle(const double scale) const noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 0.0 * scale}, //0
@@ -564,7 +564,7 @@ bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
 {
   Polygon polygon;
-  for (auto point: points)
+  for (const auto point: points)
   {
     //TRACE(ToStr(point));
     boost::geometry::append(polygon,point);
@@ -593,7 +593,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
   {
     TRACE("ERROR");
     TRACE(points.size());
-    for (auto point: points) { TRACE(Geometry().ToStr(point)); }
+    for (const auto point: points) { TRACE(Geometry().ToStr(point)); }
     TRACE("BREAK");
   }
   assert(IsPlane(points));
@@ -602,7 +602,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
   {
     std::stringstream s;
     s << "{";
-    for (auto point3d: points)
+    for (const auto point3d: points)
     {
       s << ToStr(point3d) << ",";
     }
@@ -665,7 +665,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     {
       std::stringstream s;
       s << "{";
-      for (auto coordinat2d: coordinats2d)
+      for (const auto coordinat2d: coordinats2d)
       {
 
         s << Geometry().ToStr(coordinat2d) << ",";
@@ -761,7 +761,7 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>
 bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points3d) const noexcept
 {
   std::vector<Coordinat2D> points2d;
-  for (auto point3d: points3d)
+  for (const auto point3d: points3d)
   {
     points2d.push_back(
       {
@@ -1982,49 +1982,87 @@ void ribi::Geometry::Test() noexcept
     }
   }
   #endif //#ifdef TODO_RICHEL
+  //WktToLinestring: open linestring to polygon
+  {
+    const auto p = g.WktToLinestring("LINESTRING(0 0 0 1 1 1 1 0)");
+    assert(p.size() == 4);
+  }
+  //WktToPolygon: open linestring to polygon
+  {
+    const auto p = g.WktToPolygon("POLYGON((0 0 0 1 1 1 1 0))");
+    assert(p.outer().size() == 4);
+  }
+  //ToPolygon: open linestring to polygon
+  {
+    /*
+
+    |        |
+    + 2-3    + 2-3
+    | |   -> | | |
+    + 1-0    + 1-0
+    |        |
+    +-+-+-   +-+-+-
+
+    */
+    const auto l = g.WktToLinestring("LINESTRING(2 1 1 1 1 2 2 2)");
+    const auto p = g.ToPolygon(l);
+    assert(p.outer().size() == 4);
+  }
+  //ToPolygon: closed linestring to polygon
+  {
+    /*
+
+    |        |
+    + 2-3    + 2-3
+    | | | -> | | |
+    + 1-0    + 1-0
+    |        |
+    +-+-+-   +-+-+-
+
+    */
+    const auto l = g.WktToLinestring("LINESTRING(2 1 1 1 1 2 2 2 2 1)");
+    const auto p = g.ToPolygon(l);
+    assert(p.outer().size() == 4);
+  }
   TRACE("Finished ribi::Geometry::Test successfully");
 }
 #endif
 
-std::string ribi::Geometry::ToStr(const boost::geometry::model::d2::point_xy<double>& p) const noexcept
+ribi::Geometry::Polygon ribi::Geometry::ToPolygon(const Linestring& linestring) const noexcept
+{
+  std::vector<Coordinat2D> v;
+  for (const auto point: linestring) { v.push_back(point); }
+
+  Polygon polygon;
+  if (v.empty()) return polygon;
+  if (boost::geometry::equals(v.front(),v.back())) { v.pop_back(); }
+
+  boost::geometry::append(polygon,v);
+  return polygon;
+}
+
+std::string ribi::Geometry::ToStr(const Coordinat2D& p) const noexcept
 {
   std::stringstream s;
   s << p;
   return s.str();
-  /*
-  s
-    << "("
-    << boost::geometry::get<0>(p)
-    << ","
-    << boost::geometry::get<1>(p)
-    << ")"
-  ;
-  return s.str();
-  */
 }
 
-std::string ribi::Geometry::ToStr(const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) const noexcept
+std::string ribi::Geometry::ToStr(const Coordinat3D& p) const noexcept
 {
   std::stringstream s;
   s << p;
   return s.str();
-  /*
-  s
-    << "("
-    << boost::geometry::get<0>(p)
-    << ","
-    << boost::geometry::get<1>(p)
-    << ","
-    << boost::geometry::get<2>(p)
-    << ")"
-  ;
-  return s.str();
-  */
 }
 
-std::string ribi::Geometry::ToStr(
-  const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& polygon
-) const noexcept
+std::string ribi::Geometry::ToStr(const Linestring& linestring) const noexcept
+{
+  std::stringstream s;
+  s << linestring;
+  return s.str();
+}
+
+std::string ribi::Geometry::ToStr(const Polygon& polygon) const noexcept
 {
   std::stringstream s;
   s << polygon;
@@ -2203,6 +2241,20 @@ boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
   return new_shape;
 }
 
+ribi::Geometry::Linestring ribi::Geometry::WktToLinestring(const std::string& wkt) const
+{
+  Linestring linestring;
+  boost::geometry::read_wkt(wkt,linestring);
+  return linestring;
+}
+
+ribi::Geometry::Polygon ribi::Geometry::WktToPolygon(const std::string& wkt) const
+{
+  Polygon polygon;
+  boost::geometry::read_wkt(wkt,polygon);
+  return polygon;
+}
+
 ribi::Geometry::Shapes ribi::Geometry::WktToShapes(const std::string& wkt) const
 {
   std::vector<std::string> v;
@@ -2222,8 +2274,8 @@ ribi::Geometry::Shapes ribi::Geometry::WktToShapes(const std::vector<std::string
   {
     try
     {
-      Polygon polygon;
-      boost::geometry::read_wkt(s,polygon);
+      const auto polygon = WktToPolygon(s);
+      //boost::geometry::read_wkt(s,polygon);
       polygons.push_back(polygon);
     }
     catch (std::exception&)
@@ -2233,8 +2285,9 @@ ribi::Geometry::Shapes ribi::Geometry::WktToShapes(const std::vector<std::string
 
     try
     {
-      Linestring linestring;
-      boost::geometry::read_wkt(s,linestring);
+      const auto linestring = WktToLinestring(s);
+      //Linestring linestring;
+      //boost::geometry::read_wkt(s,linestring);
       linestrings.push_back(linestring);
     }
     catch (std::exception&)
@@ -2292,6 +2345,18 @@ std::ostream& ribi::operator<<(std::ostream& os, const Geometry::Coordinat3D& p)
 {
   using boost::geometry::get;
   os << '(' << get<0>(p) << ',' << get<1>(p) << ',' << get<2>(p) << ')';
+  return os;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const Geometry::Linestring& p) noexcept
+{
+  const auto points = p;
+  const int n_points = static_cast<int>(points.size());
+  for (int i=0; i!=n_points; ++i)
+  {
+    os << points[i];
+    if (i != n_points-1) { os << ','; }
+  }
   return os;
 }
 

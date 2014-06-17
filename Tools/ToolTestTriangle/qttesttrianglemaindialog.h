@@ -68,6 +68,7 @@ public:
   Area GetTriangleMaxArea() const noexcept;
   Angle GetTriangleMinAngle() const noexcept;
   bool GetVerbose() const noexcept;
+  void SetWkt(const std::string& wkt) noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *) noexcept;
@@ -78,7 +79,7 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-  static std::vector<std::string> SeperateString(const std::string& input) noexcept;
+  //static std::vector<std::string> SeperateString(const std::string& input) noexcept;
 
 private slots:
   void DisplayTriangleMesh() noexcept;

@@ -90,7 +90,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   }
 
   #ifndef NDEBUG
-  for(auto f:ver_faces) { assert(f); }
+  for(const auto f:ver_faces) { assert(f); }
   #endif
 
   const int n_hor_faces_per_layer = static_cast<int>(t->GetFaces().size());
@@ -762,7 +762,6 @@ void ribi::trim::CellsCreator::Test() noexcept
         FaceOrientation::vertical
       )
     };
-    //assert(1==2 && "Test should fail");
   }
   TRACE("Finished ribi::trim::CellsCreator::Test successfully");
 }

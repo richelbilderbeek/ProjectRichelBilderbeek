@@ -58,7 +58,7 @@ ribi::QtTestTriangleMainDialog::QtTestTriangleMainDialog(QWidget *parent) noexce
 
   connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
   connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
-  connect(ui->edit_shapes,SIGNAL(textChanged()),this,SLOT(DisplayPolygons()));
+  connect(ui->edit_wkt,SIGNAL(textChanged()),this,SLOT(DisplayPolygons()));
   DisplayPolygons();
 
 }
@@ -70,7 +70,7 @@ ribi::QtTestTriangleMainDialog::~QtTestTriangleMainDialog() noexcept
 
 void ribi::QtTestTriangleMainDialog::DisplayPolygons() noexcept
 {
-  const std::string text = ui->edit_shapes->toPlainText().toStdString();
+  const std::string text = ui->edit_wkt->toPlainText().toStdString();
   //const auto lines = SeperateString(text);
   const auto verbose = GetVerbose();
 
@@ -79,13 +79,6 @@ void ribi::QtTestTriangleMainDialog::DisplayPolygons() noexcept
     std::cout << "Convert " << text.size() << " WKT characters to SVG" << std::endl;
   }
 
-  /*
-  std::vector<Polygon> polygons = GetShapes();
-  if (verbose)
-  {
-    std::cout << "Obtained " << polygons.size() << " polygons" << std::endl;
-  }
-  */
   const std::string svg_filename = fileio::FileIo().GetTempFileName(".svg");
   {
 
@@ -261,32 +254,8 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
 ribi::QtTestTriangleMainDialog::Shapes
   ribi::QtTestTriangleMainDialog::GetShapes() const noexcept
 {
-  //const auto verbose = GetVerbose();
-  //std::vector<Polygon> polygons;
-  const std::string text = ui->edit_shapes->toPlainText().toStdString();
-  //const std::vector<std::string> lines = SeperateString(text);
+  const std::string text = ui->edit_wkt->toPlainText().toStdString();
   return Geometry().WktToShapes(text);
-  /*
-  if (verbose)
-  {
-    std::cout << "Number of WKT lines: " << lines.size() << std::end;
-  }
-
-  for (const std::string line: lines)
-  {
-    Polygon polygon;
-    try
-    {
-      boost::geometry::read_wkt(line,polygon);
-      polygons.push_back(polygon);
-    }
-    catch (boost::geometry::read_wkt_exception& e)
-    {
-      //No problem
-    }
-  }
-  return polygons;
-  */
 }
 
 ribi::QtTestTriangleMainDialog::Area ribi::QtTestTriangleMainDialog::GetTriangleMaxArea() const noexcept
@@ -314,17 +283,10 @@ void ribi::QtTestTriangleMainDialog::keyPressEvent(QKeyEvent * event) noexcept
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-std::vector<std::string> ribi::QtTestTriangleMainDialog::SeperateString(
-  const std::string& input) noexcept
+void ribi::QtTestTriangleMainDialog::SetWkt(const std::string& wkt) noexcept
 {
-  const char seperator  = '\n';
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
+  ui->edit_wkt->setPlainText(wkt.c_str());
 }
-
 
 #ifndef NDEBUG
 void ribi::QtTestTriangleMainDialog::Test() noexcept
@@ -336,6 +298,11 @@ void ribi::QtTestTriangleMainDialog::Test() noexcept
   }
   TRACE("Starting QtTestTriangleMainDialog::Test");
   QtTestTriangleMainDialog d;
+  //Test if an empty result will be accepted
+  d.SetWkt("LINESTRING(-5 -5,-5 5,5 5,5 -5)");
+  //Test if an input with overlapping edges will be accepted
+  d.SetWkt("POLYGON((0 0 0 1 1 0)),POLYGON((0 0 0 2 2 0))");
+
   //d.on_edit_shapes_textChanged();
   TRACE("Finished QtTestTriangleMainDialog::Test successfully");
 }

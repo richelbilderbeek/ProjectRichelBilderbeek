@@ -15797,11 +15797,63 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     }
   );
 
+
+  m.push_back(
+    { "ToolTestPolyFile",
+      {
+        "<p>",
+        "  <a href=\"ToolTestPolyFile.htm\">TestPolyFile</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppPolyFile.htm\">PolyFile</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestPolyFile_1_0.png\">View a screenshot of 'TestPolyFile' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestPolyFileConsoleExe.zip\">Download the 'TestPolyFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestPolyFileDesktopExe.zip\">Download the 'TestPolyFile' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestPolyFileWebsiteExe.zip\">Download the 'TestPolyFile' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestPolyFileFromPolygons",
+      {
+        "<p>",
+        "  <a href=\"ToolTestPolyFileFromPolygons.htm\">TestPolyFileFromPolygons</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppPolyFileFromPolygons.htm\">PolyFileFromPolygons</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolTestPolyFileFromPolygons_1_0.png\">View a screenshot of 'TestPolyFileFromPolygons' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolTestPolyFileFromPolygonsConsoleExe.zip\">Download the 'TestPolyFileFromPolygons' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestPolyFileFromPolygonsDesktopExe.zip\">Download the 'TestPolyFileFromPolygons' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestPolyFileFromPolygonsWebsiteExe.zip\">Download the 'TestPolyFileFromPolygons' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "ToolTestPrimeExpert",
       {
-        "<p><a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a> is a <a href=\"Tools.htm\">tool</a> to test ",
-        "the <a href=\"CppPrimeExpert.htm\">PrimeExpert</a> <a href=\"CppClass.htm\">class</a>.</p>",
+        "<p>",
+        "  <a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a> is a <a href=\"Tools.htm\">tool</a> to test ",
+        "  the <a href=\"CppPrimeExpert.htm\">PrimeExpert</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -16999,6 +17051,31 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "ToolWktToSvg",
+      {
+        "<p>",
+        "  <a href=\"ToolWktToSvg.htm\">WktToSvg</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to convert <a href=\"CppWkt.htm\">WKT</a> to <a href=\"CppSvg.htm\">SVG</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolWktToSvg_1_0.png\">View a screenshot of 'WktToSvg' (version 1.0)(png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicConsole.png\" alt=\"Console\"/> <a href=\"ToolWktToSvgConsoleExe.zip\">Download the 'WktToSvg' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolWktToSvgDesktopExe.zip\">Download the 'WktToSvg' Windows executable (latest version)(zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolWktToSvgWebsiteExe.zip\">Download the 'WktToSvg' Windows executable (latest version)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
 
   m.push_back(
     { "ZZZ_I_MUST_FAIL",

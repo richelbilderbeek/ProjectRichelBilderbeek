@@ -10,6 +10,7 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/make_shared.hpp>
 
+#include "container.h"
 #include "openquestion.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -25,6 +26,7 @@ boost::shared_ptr<ribi::OpenQuestion>
   ribi::OpenQuestionFactory::Create(const std::string& s
 ) const
 {
+  const bool verbose = true;
   if (s.empty())
   {
     throw std::logic_error("An open question must contain text");
@@ -41,14 +43,15 @@ boost::shared_ptr<ribi::OpenQuestion>
   {
     throw std::logic_error("An open question cannot contain two consecutive commas");
   }
-  const auto v = SeperateString(s,',');
+  const auto v = Container().SeperateString(s,',');
   if (v.size() != 3)
   {
+    if (verbose) { TRACE(s); }
     throw std::logic_error("An open question has exactly three comma-seperated elements");
   }
   const auto filename = v[0];
   const auto question = v[1];
-  const std::vector<std::string> answers = SeperateString(v[2],'/');
+  const auto answers = Container().SeperateString(v[2],'/');
   if (answers.size() == 0)
   {
     throw std::logic_error("An open question has at least one correct answer");
@@ -155,6 +158,7 @@ std::vector<std::string> ribi::OpenQuestionFactory::GetVersionHistory() noexcept
   };
 }
 
+/*
 std::vector<std::string> ribi::OpenQuestionFactory::SeperateString(
   const std::string& input,
   const char seperator) noexcept
@@ -165,6 +169,7 @@ std::vector<std::string> ribi::OpenQuestionFactory::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 #ifndef NDEBUG
 void ribi::OpenQuestionFactory::Test() noexcept

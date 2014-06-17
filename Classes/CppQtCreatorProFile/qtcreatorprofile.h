@@ -200,8 +200,10 @@ struct QtCreatorProFile
   void RemoveComments(std::vector<std::string>& v);
 
   ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static std::vector<std::string> SeperateString(
-    const std::string& input, const char seperator);
+  //static std::vector<std::string> SeperateString(
+  //  const std::string& input,
+  //  const char seperator
+  //);
 
   #ifndef NDEBUG
   ///Test QtCreatorProFile

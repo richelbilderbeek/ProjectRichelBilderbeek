@@ -7,6 +7,8 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/algorithm/string/split.hpp>
+
+#include "container.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -24,7 +26,7 @@ ribi::ToolMultiEncrangerMainDialog::ToolMultiEncrangerMainDialog()
 void ribi::ToolMultiEncrangerMainDialog::Deencrypt()
 {
   //Convert encrypted text to vector
-  std::vector<std::string> v = SeperateString(m_encrypted_text,'\n');
+  auto v = Container().SeperateString(m_encrypted_text,'\n');
 
   //Convert encrypted lines to plaintext lines
   for (auto &s: v) { s = m_encranger->Deencrypt(s); }
@@ -38,7 +40,7 @@ void ribi::ToolMultiEncrangerMainDialog::Deencrypt()
 void ribi::ToolMultiEncrangerMainDialog::Encrypt()
 {
   //Convert encrypted text to vector
-  std::vector<std::string> v = SeperateString(m_plain_text,'\n');
+  auto v = Container().SeperateString(m_plain_text,'\n');
 
   //Convert encrypted lines to plaintext lines
   for (auto &s: v) { s = m_encranger->Encrypt(s); }
@@ -49,6 +51,7 @@ void ribi::ToolMultiEncrangerMainDialog::Encrypt()
   m_encrypted_text.resize(m_plain_text.size() - 1); //Pop trailing newline
 }
 
+/*
 std::vector<std::string> ribi::ToolMultiEncrangerMainDialog::SeperateString(
   const std::string& input,
   const char seperator) const noexcept
@@ -59,6 +62,7 @@ std::vector<std::string> ribi::ToolMultiEncrangerMainDialog::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 void ribi::ToolMultiEncrangerMainDialog::SetEncryptedText(const std::string& s)
 {

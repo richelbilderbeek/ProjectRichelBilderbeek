@@ -72,7 +72,7 @@ ribi::OpenQuestion::OpenQuestion(const std::string& question)
 ribi::OpenQuestion::OpenQuestion(
   const std::string& filename,
   const std::string& question,
-  const std::vector<std::string>& answers) noexcept
+  const std::vector<std::string>& answers)
   : Question(filename,question, answers )
 {
   #ifndef NDEBUG
@@ -116,6 +116,7 @@ std::vector<std::string> ribi::OpenQuestion::GetVersionHistory() noexcept
   };
 }
 
+/*
 std::vector<std::string> ribi::OpenQuestion::SeperateString(
   const std::string& input,
   const char seperator) noexcept
@@ -126,6 +127,7 @@ std::vector<std::string> ribi::OpenQuestion::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 #ifndef NDEBUG
 void ribi::OpenQuestion::Test() noexcept

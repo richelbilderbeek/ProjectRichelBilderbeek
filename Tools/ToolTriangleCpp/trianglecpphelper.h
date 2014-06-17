@@ -19,10 +19,10 @@ namespace tricpp {
 /// geometric algorithms.
 int DumbRand(const unsigned int choices);
 
-std::vector<std::string> SeperateString(
-  const std::string& input,
-  const char seperator
-);
+//std::vector<std::string> SeperateString(
+//  const std::string& input,
+//  const char seperator
+//);
 
 } //~namespace tricpp
 } //~namespace ribi

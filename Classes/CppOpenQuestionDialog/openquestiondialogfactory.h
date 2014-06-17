@@ -17,17 +17,20 @@ struct OpenQuestionDialogFactory
 {
   OpenQuestionDialogFactory();
 
+  ///Throws an exception if it cannot be constructed
   boost::shared_ptr<OpenQuestionDialog> Create(
     const boost::shared_ptr<OpenQuestion>& open_question
-  ) const noexcept;
+  ) const;
 
+  ///Throws an exception if it cannot be constructed
   boost::shared_ptr<OpenQuestionDialog>
     Create(
       const std::string& filename,
       const std::string& question,
       const std::vector<std::string>& answers
-  ) const noexcept;
+  ) const;
 
+  ///Throws an exception if it cannot be constructed
   boost::shared_ptr<OpenQuestionDialog> Create(
     const std::string& s
   ) const;

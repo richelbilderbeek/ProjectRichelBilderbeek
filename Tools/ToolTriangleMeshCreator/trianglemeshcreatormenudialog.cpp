@@ -653,7 +653,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     {
       TRACE("ERROR");
       TRACE(lines.size());
-      for (auto line: lines) { TRACE(line); }
+      for (const auto line: lines) { TRACE(line); }
     }
     assert(lines.size() == 2);
   }

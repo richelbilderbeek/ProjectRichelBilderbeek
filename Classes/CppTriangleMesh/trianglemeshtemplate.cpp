@@ -46,7 +46,7 @@ ribi::trim::Template::Template(
       if (n % percent == 0) std::clog << '%';
       const std::string line = v[n];
       if(n==0) continue; //No idea why this has to be skipped
-      const std::vector<std::string> w { SeperateString(ConvertNumbersToEnglish(line)) };
+      const std::vector<std::string> w { CleanAndSplitString(ConvertNumbersToEnglish(line)) };
       if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
@@ -96,7 +96,7 @@ ribi::trim::Template::Template(
       }
       const std::string line = v[n];
       if(n==0) continue;
-      const std::vector<std::string> w { SeperateString(line) };
+      const std::vector<std::string> w { CleanAndSplitString(line) };
       if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
@@ -176,7 +176,7 @@ ribi::trim::Template::Template(
 
   auto new_end = std::unique(m_edges.begin(),m_edges.end());
   m_edges.erase(new_end,m_edges.end());
-  assert(!m_edges.empty());
+
   if (verbose) { TRACE("Done checking the result"); }
 }
 
@@ -278,7 +278,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
   };
 
   {
-    for(auto v: face_point_indices)
+    for(const auto v: face_point_indices)
     {
       assert(v.size() == 3);
       //I do not correct for one-base Triangle.exe output
@@ -402,7 +402,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
   };
 
   {
-    for(auto v: face_point_indices)
+    for(const auto v: face_point_indices)
     {
       assert(v.size() == 3);
       //I do not correct for one-base Triangle.exe output
@@ -543,7 +543,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
   };
 
   {
-    for(auto v: face_point_indices)
+    for(const auto v: face_point_indices)
     {
       assert(v.size() == 3);
       //I do not correct for one-base Triangle.exe output
@@ -694,7 +694,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
   };
 
   {
-    for(auto v: face_point_indices)
+    for(const auto v: face_point_indices)
     {
       assert(v.size() == 3);
       //I do not correct for one-base Triangle.exe output
@@ -767,7 +767,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
 
 
 
-std::vector<std::string> ribi::trim::Template::SeperateString(
+std::vector<std::string> ribi::trim::Template::CleanAndSplitString(
   const std::string& input_original) noexcept
 {
 
@@ -854,7 +854,7 @@ void ribi::trim::Template::Test() noexcept
       CreateTest(i)
     };
     assert(my_template);
-    for (auto face: my_template->GetFaces())
+    for (const auto face: my_template->GetFaces())
     {
       if (!Helper().IsClockwiseHorizontal(face->GetPoints()))
       {

@@ -51,10 +51,12 @@ struct OpenQuestion : public Question
   explicit OpenQuestion(const std::string& question);
 
   ///An open question has multiple possible answers
+  ///Will throw if there is no question or if there are no answers
   OpenQuestion(
     const std::string& filename,
     const std::string& question,
-    const std::vector<std::string>& answers) noexcept;
+    const std::vector<std::string>& answers
+  );
   friend class OpenQuestionFactory;
 
   friend void boost::checked_delete<>(OpenQuestion *);
@@ -67,9 +69,9 @@ struct OpenQuestion : public Question
 
   //Split a string
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static std::vector<std::string> SeperateString(
-    const std::string& input,
-    const char seperator) noexcept;
+  //static std::vector<std::string> SeperateString(
+  //  const std::string& input,
+  //  const char seperator) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

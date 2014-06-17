@@ -8,6 +8,9 @@
 #include <boost/shared_ptr.hpp>
 
 #include "tankbattalionfwd.h"
+
+struct QPixmap;
+
 #pragma GCC diagnostic pop
 
 namespace ribi {

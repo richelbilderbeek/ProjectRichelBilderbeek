@@ -97,9 +97,14 @@ boost::shared_ptr<ribi::QuestionDialog> ribi::HometrainerMainDialog::CreateQuest
 {
   assert(question);
   //Open q
+  try
   {
     const auto d = OpenQuestionDialogFactory().Create(question->ToStr());
     if (d) return d;
+  }
+  catch (std::logic_error&)
+  {
+    //OK
   }
   {
     const boost::shared_ptr<const MultipleChoiceQuestion> mc_question {

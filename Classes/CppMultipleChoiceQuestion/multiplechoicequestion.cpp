@@ -30,15 +30,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/split.hpp>
 #include <boost/scoped_ptr.hpp>
 
+#include "container.h"
 #include "imagecanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::MultipleChoiceQuestion::MultipleChoiceQuestion(const std::string& question)
   : Question(
-      SeperateString(question,',').at(0),
-      SeperateString(question,',').at(1),
-      { SeperateString(question,',').at(2) }),
+      Container().SeperateString(question,',').at(0),
+      Container().SeperateString(question,',').at(1),
+      { Container().SeperateString(question,',').at(2) }),
     m_wrong_answers(ExtractWrongAnswers(question)),
     m_options(ExtractOptions(question))
 {
@@ -118,7 +119,7 @@ std::vector<std::string> ribi::MultipleChoiceQuestion::CreateOptions(
 
 std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractOptions(const std::string& input)
 {
-  const std::vector<std::string> v = SeperateString(input,',');
+  const auto v = Container().SeperateString(input,',');
   std::vector<std::string> w;
   std::copy(v.begin() + 2,v.end(),std::back_inserter(w));
   std::random_shuffle(w.begin(),w.end());
@@ -127,7 +128,7 @@ std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractOptions(const std:
 
 std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractWrongAnswers(const std::string& input)
 {
-  const std::vector<std::string> v = SeperateString(input,',');
+  const auto v = Container().SeperateString(input,',');
   if (v.size() < 4)
   {
     throw std::logic_error(
@@ -198,6 +199,7 @@ std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory() noexc
   };
 }
 
+/*
 std::vector<std::string> ribi::MultipleChoiceQuestion::SeperateString(
   const std::string& input,
   const char seperator) noexcept
@@ -208,6 +210,7 @@ std::vector<std::string> ribi::MultipleChoiceQuestion::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 #ifndef NDEBUG
 void ribi::MultipleChoiceQuestion::Test() noexcept

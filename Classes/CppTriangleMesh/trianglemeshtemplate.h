@@ -66,9 +66,7 @@ struct Template
   static const boost::shared_ptr<Template> CreateTestSquare2x2() noexcept;
   static const boost::shared_ptr<Template> CreateTestTriangle2x2() noexcept;
 
-  //Split a string
-  //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static std::vector<std::string> SeperateString(
+  static std::vector<std::string> CleanAndSplitString(
     const std::string& input) noexcept;
 
   #ifndef NDEBUG

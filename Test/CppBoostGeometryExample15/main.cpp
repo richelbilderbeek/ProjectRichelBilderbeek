@@ -7,11 +7,14 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-variable"
 #include <boost/geometry.hpp>
-#include <boost/geometry/algorithms/intersection.hpp>
+//#include <boost/geometry/algorithms/correct.hpp>
+//#include <boost/geometry/algorithms/equals.hpp>
+//#include <boost/geometry/algorithms/intersection.hpp>
+//#include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
-#include <boost/geometry/geometries/polygon.hpp>
-#include <boost/geometry/io/wkt/read.hpp>
-#include <boost/geometry/io/wkt/write.hpp>
+//#include <boost/geometry/geometries/polygon.hpp>
+//#include <boost/geometry/io/wkt/read.hpp>
+//#include <boost/geometry/io/wkt/write.hpp>
 #include <boost/geometry/io/wkt/wkt.hpp>
 #pragma GCC diagnostic pop
 /*

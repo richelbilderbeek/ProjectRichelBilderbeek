@@ -119,10 +119,10 @@ struct Geometry
   boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
     CreateHouseShape() const noexcept;
 
-  static Polygon CreateShapeHeart(const double scale = 1.0) noexcept;
-  static Polygon CreateShapeHouse(const double scale = 1.0) noexcept;
-  static Polygon CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) noexcept;
-  static Polygon CreateShapeTriangle(const double scale = 1.0) noexcept;
+  Polygon CreateShapeHeart(const double scale = 1.0) const noexcept;
+  Polygon CreateShapeHouse(const double scale = 1.0) const noexcept;
+  Polygon CreateShapePolygon(const int n, const double rotation = 0.0, const double scale = 0.0) const noexcept;
+  Polygon CreateShapeTriangle(const double scale = 1.0) const noexcept;
 
   ///Functor for X-Y-Z ordering
   std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)> Equals2d() const noexcept;
@@ -393,8 +393,24 @@ struct Geometry
     const double scale_origin_y = 0.0
   ) const noexcept;
 
+  ///Convert a linestring to a closed polygon. If the linestring
+  ///is open, close it
+  /*
+
+    +-+      +-+
+    |    ->  | |
+    +-+      +-+
+
+    +-+      +-+
+    | |  ->  | |
+    +-+      +-+
+
+  */
+  Polygon ToPolygon(const Linestring& linestring) const noexcept;
+
   std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;
+  std::string ToStr(const Linestring& polygon) const noexcept;
   std::string ToStr(const Polygon& polygon) const noexcept;
   std::string ToStr(const QPen& pen) noexcept;
   std::string ToStr(const QPoint& rect) noexcept;
@@ -427,6 +443,11 @@ struct Geometry
   ) const noexcept;
 
 
+  //Throws if WKT does not convert to a linestring
+  Linestring WktToLinestring(const std::string& wkt) const;
+
+  //Throws if WKT does not convert to a polygon
+  Polygon WktToPolygon(const std::string& wkt) const;
   Shapes WktToShapes(const std::string& wkt) const;
   Shapes WktToShapes(const std::vector<std::string>& wkt) const;
   std::string WktToSvg(const std::string& wkt, const double svg_stroke_width) const;
@@ -475,6 +496,7 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> operator-
 
 std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat2D& p) noexcept;
 std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat3D& p) noexcept;
+std::ostream& operator<<(std::ostream& os, const Geometry::Linestring& linestring) noexcept;
 std::ostream& operator<<(std::ostream& os, const Geometry::Polygon& p) noexcept;
 
 std::ostream& operator<<(std::ostream& os,const QPen& pen) noexcept;

@@ -41,6 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "canvascolorsystems.h"
 #include "canvascoordinatsystems.h"
+#include "container.h"
 #include "dotmatrixstring.h"
 #include "fileio.h"
 #include "geometry.h"
@@ -150,7 +151,7 @@ void ribi::DrawCanvas::Clear() noexcept
   }
 
   #ifndef NDEBUG
-  for (auto row: m_canvas)
+  for (const auto row: m_canvas)
   {
     assert(std::accumulate(row.begin(),row.end(),0.0) == 0.0);
   }
@@ -501,9 +502,9 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
   std::stringstream s;
   {
     std::vector<std::string> v;
-    for (auto line: m_canvas)
+    for (const auto line: m_canvas)
     {
-      for (auto element: line)
+      for (const auto element: line)
       {
         const std::string t { boost::lexical_cast<std::string>(element) };
         v.push_back(t);
@@ -535,6 +536,7 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
   #endif
 }
 
+/*
 std::vector<std::string> ribi::DrawCanvas::SeperateString(
   const std::string& input,
   const char seperator) noexcept
@@ -545,6 +547,7 @@ std::vector<std::string> ribi::DrawCanvas::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 void ribi::DrawCanvas::SetColorSystem(const CanvasColorSystem colorSystem) noexcept
 {
@@ -744,7 +747,7 @@ std::vector<std::string> ribi::DrawCanvas::ToStrings() const noexcept
 {
   std::stringstream s;
   s << (*this);
-  const std::vector<std::string> v { SeperateString(s.str(),'\n') };
+  const auto v = Container().SeperateString(s.str(),'\n');
   return v;
 }
 

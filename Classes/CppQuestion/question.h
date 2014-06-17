@@ -36,7 +36,8 @@ struct Question
   explicit Question(
     const std::string& filename,
     const std::string& question,
-    const std::vector<std::string>& correct_answers);
+    const std::vector<std::string>& correct_answers
+  );
 
   ///Create a copy of the Question, depending on the derived class its type
   virtual Question * Clone() const noexcept = 0;

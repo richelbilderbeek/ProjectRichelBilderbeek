@@ -63,7 +63,7 @@ HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapelement.h \
 #    ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.h \
     ../../Classes/CppQtConceptMap/qtconceptmapwidget.h \
-    ../../Classes/CppQtConceptMap/qteditconceptmap.h \
+#    ../../Classes/CppQtConceptMap/qteditconceptmap.h \
     ../../Classes/CppQtConceptMap/qtdisplayconceptmap.h \
     ../../Classes/CppQtConceptMap/qtrateconceptmap.h \
     ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.h \

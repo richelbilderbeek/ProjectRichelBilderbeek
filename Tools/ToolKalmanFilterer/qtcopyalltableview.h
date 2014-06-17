@@ -22,9 +22,9 @@ class QtCopyAllTableView : public QTableView
 
   private:
   ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static std::vector<std::string> SeperateString(
-    const std::string& input,
-    const char seperator);
+  //static std::vector<std::string> SeperateString(
+  //  const std::string& input,
+  //  const char seperator);
 };
 
 } //~namespace ribi

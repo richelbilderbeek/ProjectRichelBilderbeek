@@ -39,9 +39,9 @@ struct OpenQuestionFactory
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
-  static std::vector<std::string> SeperateString(
-    const std::string& input,
-    const char seperator) noexcept;
+  //static std::vector<std::string> SeperateString(
+  //  const std::string& input,
+  //  const char seperator) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
