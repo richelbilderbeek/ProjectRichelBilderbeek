@@ -89,10 +89,6 @@ struct Canvas
   template <class Container>
   static typename Container::value_type::value_type MaxElement(const Container& v);
 
-  //static std::vector<std::string> SeperateString(
-  //  const std::string& input,
-  //  const char seperator) noexcept;
-
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

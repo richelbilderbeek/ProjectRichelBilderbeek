@@ -30,5 +30,7 @@
         <file>ToolTestDial_2_3.png</file>
         <file>ToolTestDrawCanvas_1_2.png</file>
         <file>ToolTriangleMeshCreator_1_2.png</file>
+        <file>ToolTestPlane_1_1.png</file>
+        <file>ToolWktToSvg_1_3.png</file>
     </qresource>
 </RCC>

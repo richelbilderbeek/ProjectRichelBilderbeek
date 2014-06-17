@@ -71,10 +71,10 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-  static std::vector<std::string> SeperateString(
-    const std::string& input,
-    const char seperator = '\n'
-  ) noexcept;
+  //static std::vector<std::string> SeperateString(
+  //  const std::string& input,
+  //  const char seperator = '\n'
+  //) noexcept;
 
 private slots:
 

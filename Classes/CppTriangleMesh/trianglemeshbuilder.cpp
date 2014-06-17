@@ -361,12 +361,15 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   {
     int face_index = 0;
     const int max_cell_index
-      = (*std::max_element(m_cells.begin(),m_cells.end(),
-      [](const boost::shared_ptr<Cell>& a, const boost::shared_ptr<Cell>& b)
-      {
-        return a->GetIndex() < b->GetIndex();
-      }
-    ))->GetIndex() + 1;
+      = m_cells.empty()
+      ? 0
+      : (*std::max_element(m_cells.begin(),m_cells.end(),
+          [](const boost::shared_ptr<Cell>& a, const boost::shared_ptr<Cell>& b)
+          {
+            return a->GetIndex() < b->GetIndex();
+          }
+          )
+        )->GetIndex() + 1;
 
     for (int cell_index=0; cell_index!=max_cell_index; ++cell_index)
     {
@@ -386,6 +389,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   }
   //#4: Within each boundary, sort the faces by owner index
   //Use a bubble sort to order them
+  if (!m_faces.empty())
   {
     while (1)
     {

@@ -50,6 +50,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtgraycodermenudialog.h"
 #include "qthistogramequalizationermenudialog.h"
 #include "qthometrainermenudialog.h"
+#include "qttestpolyfilemenudialog.h"
+#include "qttestpolyfilefrompolygonsmenudialog.h"
+#include "qtwkttosvgmenudialog.h"
 #include "qtimagerotatermenudialog.h"
 #include "qtk3opeenrijmenudialog.h"
 #include "qtk3opeenrijresources.h"
@@ -65,7 +68,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpixelatormenudialog.h"
 #include "qtpredickadvocatormenudialog.h"
 #include "qtprimeexpertmenudialog.h"
+
+#ifdef INCLUDE_BRAINWEAVER_20140617
 #include "qtpvdbmenudialog.h"
+#endif // INCLUDE_BRAINWEAVER_20140617
+
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
 #include "qtquadraticsolvermenudialog.h"
@@ -87,7 +94,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestaboutmenudialog.h"
 #include "qttestapproximatormenudialog.h"
 #include "qttestbinarynewickvectormenudialog.h"
+
+#ifdef INCLUDE_CHESS_20140617
 #include "qttestchessmenudialog.h"
+#endif
+
 #include "qttestconceptmapmenudialog.h"
 #include "qttestdialmenudialog.h"
 #include "qttestdrawcanvasmenudialog.h"
@@ -151,7 +162,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::bochum: break;
     case ProgramType::boenken: p = new QtBoenkenMenuDialog; break;
     case ProgramType::boenkenVcl: break;
-    case ProgramType::brainweaver: p = new pvdb::QtPvdbMenuDialog; break;
+    case ProgramType::brainweaver:
+#ifdef INCLUDE_BRAINWEAVER_20140617
+      p = new pvdb::QtPvdbMenuDialog;
+#endif
+      break;
     case ProgramType::bristol: break;
     case ProgramType::caesarCipher: p = new QtCaesarCipherMenuDialog; break;
     case ProgramType::chrisWiley: break;
@@ -218,6 +233,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::ndsmake: break;
     case ProgramType::ndsPaint: break;
     case ProgramType::paperRockScissors: break;
+    case ProgramType::paperRockScissorsVcl: break;
     case ProgramType::pause: break;
     case ProgramType::perfectElasticCollision: p = new QtPerfectElasticCollisionMenuDialog; break;
     case ProgramType::preDickAdvocaTor: p = new QtPreDickAdvocaTorMenuDialog; break;
@@ -270,7 +286,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testBouncingRectsWidget: break;
     case ProgramType::testBroadcastServer: break;
     case ProgramType::testBinaryNewickVector: p = new QtTestBinaryNewickVectorMenuDialog; break;
-    case ProgramType::testChess: p = new QtTestChessMenuDialog; break;
+    case ProgramType::testChess:
+#ifdef INCLUDE_BRAINWEAVER_20140617
+      p = new QtTestChessMenuDialog;
+#endif
+      break;
     case ProgramType::testConceptMap: p = new cmap::QtTestConceptMapMenuDialog; break;
     case ProgramType::testDial: p = new QtTestDialMenuDialog; break;
     case ProgramType::testDrawCanvas: p = new QtTestDrawCanvasMenuDialog; break;
@@ -297,6 +317,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testOpenQuestion: p = new QtTestOpenQuestionMenuDialog;  break;
     case ProgramType::testPlane: p = new QtTestPlaneMenuDialog; break;
     case ProgramType::testPylos: p = new pylos::QtTestPylosMenuDialog; break;
+    case ProgramType::testPolyFile: p = new pylos::QtTestPolyFileMenuDialog; break;
     case ProgramType::testQrcFile: p = new QtTestQrcFileMenuDialog; break;
     case ProgramType::testQtCreatorProFile: p = new QtTestQtCreatorProFileMenuDialog; break;
     case ProgramType::testQtHideAndShowDialog: break;
@@ -338,6 +359,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::vigenereCipher: p = new QtVigenereCipherMenuDialog; break;
     case ProgramType::virtualBastard: break;
     case ProgramType::visualAbc: p = new QtVisualAbcMenuDialog; break;
+    case ProgramType::wktToSvg: p = new QtWktToSvgMenuDialog; break;
     case ProgramType::xeNonZero: break;
     case ProgramType::zork: break;
     case ProgramType::n_types:

@@ -42,7 +42,7 @@ struct QtLabeledQuadBezierArrowItem : public QtRoundedTextRectItem
 protected:
   virtual QRectF boundingRect() const;
   virtual void keyPressEvent(QKeyEvent *event);
-  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
 
 private:
   const boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;

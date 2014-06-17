@@ -184,11 +184,6 @@ struct QtKalmanFilterExperimentModel : public QObject
   ///If the string holds a WhiteNoiseSystemType, set this class to hold the same value
   void ReadWhiteNoiseSystemType(const std::string& s);
 
-  //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  //static std::vector<std::string> SeperateString(
-  //  const std::string& input,
-  //  const char seperator);
-
   #ifndef NDEBUG
   ///Test this class
   static void Test() noexcept;

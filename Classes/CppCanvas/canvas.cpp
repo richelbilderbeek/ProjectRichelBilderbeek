@@ -129,16 +129,3 @@ typename Container::value_type::value_type ribi::Canvas::MaxElement(const Contai
   }
   return maxValue;
 }
-
-/*
-std::vector<std::string> ribi::Canvas::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/

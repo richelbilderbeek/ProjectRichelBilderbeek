@@ -42,7 +42,7 @@ QPlainTextEdit { font: 10px }
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QPlainTextEdit" name="edit_shapes">
+    <widget class="QPlainTextEdit" name="edit_wkt">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>

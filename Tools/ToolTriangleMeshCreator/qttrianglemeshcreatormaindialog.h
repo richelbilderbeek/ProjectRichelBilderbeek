@@ -64,7 +64,6 @@ public:
   typedef boost::units::quantity<boost::units::si::area> Area;
 
   void CreateMesh() noexcept;
-  void DisplayPolygons() noexcept;
   ribi::trim::CreateVerticalFacesStrategy GetCreateVerticalFacesStrategy() const noexcept;
   double GetFraction() const noexcept;
   boost::units::quantity<boost::units::si::length> GetLayerHeight() const noexcept;
@@ -76,6 +75,7 @@ public:
   bool GetVerbose() const noexcept;
 
   void SetShowMesh(const bool show_mesh) noexcept;
+  void SetWkt(const std::string& wkt) noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *) noexcept;
@@ -86,12 +86,12 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-  //static std::vector<std::string> SeperateString(const std::string& input) noexcept;
 
 private slots:
 
   void on_edit_shapes_textChanged();
   void on_button_create_clicked();
+  void DisplayPolygons() noexcept;
   void DisplayTriangleMesh() noexcept;
 };
 

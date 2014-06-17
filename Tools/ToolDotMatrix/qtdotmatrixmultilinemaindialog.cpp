@@ -42,6 +42,7 @@ void ribi::QtDotMatrixMultiLineMainDialog::on_edit_textChanged()
   ui->image->setPixmap(QPixmap::fromImage(*m_image.get()));
 }
 
+/*
 std::vector<std::string> ribi::QtDotMatrixMultiLineMainDialog::SeperateString(
   const std::string& input,
   const char seperator) noexcept
@@ -52,6 +53,7 @@ std::vector<std::string> ribi::QtDotMatrixMultiLineMainDialog::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 #ifndef NDEBUG
 void ribi::QtDotMatrixMultiLineMainDialog::Test() noexcept

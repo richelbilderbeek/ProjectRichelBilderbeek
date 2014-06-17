@@ -199,19 +199,6 @@ std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory() noexc
   };
 }
 
-/*
-std::vector<std::string> ribi::MultipleChoiceQuestion::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
-
 #ifndef NDEBUG
 void ribi::MultipleChoiceQuestion::Test() noexcept
 {

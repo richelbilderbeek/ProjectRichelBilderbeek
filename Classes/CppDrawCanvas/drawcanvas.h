@@ -209,9 +209,6 @@ struct DrawCanvas : public Canvas
     const bool use_normal_color_system,
     const bool as_screen_coordinat_system);
 
-  //static std::vector<std::string> SeperateString(
-  //  const std::string& input,
-  //  const char seperator) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

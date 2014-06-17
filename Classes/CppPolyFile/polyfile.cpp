@@ -293,20 +293,6 @@ std::vector<std::string> ribi::PolyFile::RemoveComments(const std::vector<std::s
   return w;
 }
 
-//From http://www.richelbilderbeek.nl/CppSeperateString.htm
-/*
-std::vector<std::string> ribi::PolyFile::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
-
 #ifndef NDEBUG
 void ribi::PolyFile::Test() noexcept
 {

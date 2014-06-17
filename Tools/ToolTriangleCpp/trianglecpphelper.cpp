@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <boost/algorithm/string/split.hpp>
 
+/*
 int ribi::tricpp::DumbRand(const int max)
 {
   return std::rand() % max;
@@ -22,3 +23,4 @@ std::vector<std::string> ribi::tricpp::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+*/

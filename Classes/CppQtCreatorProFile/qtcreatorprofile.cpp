@@ -259,24 +259,6 @@ void ribi::QtCreatorProFile::RemoveComments(std::vector<std::string>& v)
 
 }
 
-/*
-std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
-  const std::string& input,
-  const char seperator)
-{
-  std::istringstream is(input);
-  std::vector<std::string> v;
-  for (
-    std::string sub;
-    std::getline(is, sub, seperator);
-    v.push_back(sub))
-  {
-    //Empty for loop
-  }
-  return v;
-}
-*/
-
 #ifndef NDEBUG
 void ribi::QtCreatorProFile::Test() noexcept
 {

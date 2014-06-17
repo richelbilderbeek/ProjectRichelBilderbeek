@@ -160,7 +160,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "rubiksclockdialwidget.h"
 #include "rubiksclockmenudialog.h"
 #include "rubiksclockwidget.h"
+#ifdef INCLUDE_SADD_20140617
 #include "searchanddestroychessmenudialog.h"
+#endif // INCLUDE_SADD_20140617
 #include "secretmessagemenudialog.h"
 #include "shape.h"
 #include "shapewidget.h"
@@ -320,13 +322,20 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
   a.AddLibrary("Boenken version: " + Boenken::MenuDialog().GetVersion());
+
+#ifdef INCLUDE_BRAINWEAVER_20140617
   a.AddLibrary("Brainweaver version: " + pvdb::MenuDialog().GetVersion());
+#endif // INCLUDE_BRAINWEAVER_20140617
+
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+#ifdef INCLUDE_CHESS_20140617
   a.AddLibrary("Chess::BitBoard version: " + Chess::BitBoard::GetVersion());
   a.AddLibrary("Chess::Board version: " + Chess::Board::GetVersion());
   a.AddLibrary("Chess::BoardWidget version: " + Chess::BoardWidget::GetVersion());
   a.AddLibrary("Chess::Game version: " + Chess::Game::GetVersion());
   a.AddLibrary("Chess::Widget version: " + Chess::ChessWidget::GetVersion());
+#endif
+
   a.AddLibrary("cmap::ConceptMap version: " + cmap::ConceptMap::GetVersion());
   a.AddLibrary("cmap::ConceptMapWidget version: " + cmap::Widget::GetVersion());
   a.AddLibrary("CodeToHtml version: " + c2h::CodeToHtmlMenuDialog().GetVersion());
@@ -428,7 +437,11 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("RubiksClockDialversion: " + ruco::ClockDial::GetVersion());
   a.AddLibrary("RubiksClockDialWidget version: " + ruco::ClockDialWidget::GetVersion());
   a.AddLibrary("RubiksClockWidget version: " + ruco::ClockWidget::GetVersion());
+
+#ifdef INCLUDE_SADD_20140617
   a.AddLibrary("SearchAndDestroyChess version: " + sadc::MenuDialog().GetVersion());
+#endif // INCLUDE_SADD_20140617
+
   a.AddLibrary("Shape version: " + Shape::GetVersion());
   a.AddLibrary("ShapeWidget version: " + ShapeWidget::GetVersion());
   a.AddLibrary("SimPredator version: " + SimPredatorMenuDialog().GetVersion());
@@ -442,7 +455,10 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("StateObserver version: " + StateObserverMenuDialog().GetVersion());
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
   a.AddLibrary("SuperNsanaBros version: " + NsanaBrosMenuDialog().GetVersion());
+
+#ifdef INCLUDE_TANKBATTALION_20140617
   a.AddLibrary("TankBattalion version: " + taba::MenuDialog().GetVersion());
+#endif // INCLUDE_TANKBATTALION_20140617
   a.AddLibrary("TestApproximator version: " + ToolTestApproximatorMenuDialog().GetVersion());
   a.AddLibrary("TestDial version: " + TestDialMenuDialog().GetVersion());
   a.AddLibrary("TestExercise version: " + TestExerciseMenuDialog().GetVersion());
@@ -450,6 +466,8 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("TestLed version: " + TestLedMenuDialog().GetVersion());
   a.AddLibrary("TestMultiApproximator version: " + ToolTestMultiApproximatorMenuDialog().GetVersion());
   a.AddLibrary("TestNewickVector version: " + TestNewickVectorDialog::GetVersion());
+  a.AddLibrary("TestPolyFile version: " + TestPolyFileMenuDialog().GetVersion());
+  a.AddLibrary("TestPolyFileFromPolygons version: " + TestPolyFileFromPolygonsMenuDialog().GetVersion());
   a.AddLibrary("TestProFile version: " + TestQtCreatorProFileMenuDialog().GetVersion());
   a.AddLibrary("TestQrcFile version: " + TestQrcFileMenuDialog().GetVersion());
   a.AddLibrary("TestQuestion version: " + TestQuestionMenuDialog().GetVersion());
@@ -470,6 +488,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("TwoDigitNewick version: " + TwoDigitNewick::GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   a.AddLibrary("Widget version: " + Widget::GetVersion());
+  a.AddLibrary("WktToSvg version: " + WktToSvgMenuDialog().GetVersion());
   a.AddLibrary("XeNonZero version: " + XeNonZeroMenuDialog().GetVersion());
   a.AddLibrary("XML version: " + ribi::xml::GetVersion());
   return a;
@@ -648,7 +667,21 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::brainweaver: p.reset(new ribi::pvdb::MenuDialog); break;
+      case ProgramType::brainweaver:
+#ifdef INCLUDE_BRAINWEAVER_20140617
+        p.reset(new ribi::pvdb::MenuDialog);
+#else
+     {
+        const std::string version = "x.x"; const std::vector<std::string> version_history { "20xx-xx-xx: version x.x: something" };
+        const About about(About::GetDefaultAuthor(),"somename","description","someday","20xx-20xx","http://www.richelbilderbeek.nl/Somewhere.htm",version,version_history);
+        p.reset(new PlaceholderMenuDialog(about,
+            boost::shared_ptr<Program>(new ProgramBrainweaver),
+            version,version_history
+          )
+        );
+      }
+#endif // INCLUDE_BRAINWEAVER_20140617
+        break;
       case ProgramType::bristol:
       {
         const std::string version = "x.x";
@@ -1875,7 +1908,22 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::searchAndDestroyChess: p.reset(new sadc::MenuDialog); break;
+      case ProgramType::searchAndDestroyChess:
+#ifdef INCLUDE_SADD_20140617
+        p.reset(new sadc::MenuDialog);
+#else
+     {
+        const std::string version = "x.x"; const std::vector<std::string> version_history { "20xx-xx-xx: version x.x: something" };
+        const About about(About::GetDefaultAuthor(),"somename","description","someday","20xx-20xx","http://www.richelbilderbeek.nl/Somewhere.htm",version,version_history);
+        p.reset(new PlaceholderMenuDialog(about,
+            boost::shared_ptr<Program>(new ProgramSearchAndDestroyChess),
+            version,version_history
+          )
+        );
+      }
+
+#endif
+      break;
       case ProgramType::searchAndDestroyChessVcl:
       {
         const std::string version = "x.x";
@@ -2145,7 +2193,21 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::tankBattalion: p.reset(new taba::MenuDialog); break;
+      case ProgramType::tankBattalion:
+#ifdef INCLUDE_TANKBATTALION_20140617
+        p.reset(new taba::MenuDialog);
+#else
+      {
+        const std::string version = "x.x"; const std::vector<std::string> version_history { "20xx-xx-xx: version x.x: something" };
+        const About about(About::GetDefaultAuthor(),"somename","description","someday","20xx-20xx","http://www.richelbilderbeek.nl/Somewhere.htm",version,version_history);
+        p.reset(new PlaceholderMenuDialog(about,
+            boost::shared_ptr<Program>(new ProgramTankBattalion),
+            version,version_history
+          )
+        );
+      }
+#endif
+      break;
       case ProgramType::testAbout: p.reset(new TestAboutMenuDialog); break;
       case ProgramType::testApproximator: p.reset(new ToolTestApproximatorMenuDialog); break;
       case ProgramType::testBinaryNewickVector: p.reset(new TestBinaryNewickVectorMenuDialog); break;
@@ -2227,7 +2289,21 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::testChess: p.reset(new TestChessMenuDialog); break;
+      case ProgramType::testChess:
+#ifdef INCLUDE_CHESS_20140617
+      p.reset(new TestChessMenuDialog);
+#else
+      {
+        const std::string version = "x.x"; const std::vector<std::string> version_history { "20xx-xx-xx: version x.x: something" };
+        const About about(About::GetDefaultAuthor(),"somename","description","someday","20xx-20xx","http://www.richelbilderbeek.nl/Somewhere.htm",version,version_history);
+        p.reset(new PlaceholderMenuDialog(about,
+            boost::shared_ptr<Program>(new ProgramTestChess),
+            version,version_history
+          )
+        );
+      }
+#endif // INCLUDE_CHESS_20140617
+      break;
       case ProgramType::testConceptMap: p.reset(new TestConceptMapMenuDialog); break;
       case ProgramType::testDial: p.reset(new TestDialMenuDialog); break;
       case ProgramType::testDrawCanvas: p.reset(new TestDrawCanvasMenuDialog); break;

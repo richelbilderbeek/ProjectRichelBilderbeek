@@ -35,12 +35,12 @@ ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
-  this->setPos(
+  this->SetPos(
     (from->pos().x() + to->pos().x()) * 0.49,
     (from->pos().y() + to->pos().y()) * 0.49
   );
   assert(m_arrow->GetMidItem());
-  assert(m_arrow->GetMidItem()->pos() == this->pos());
+  assert(m_arrow->GetMidItem()->pos() == this->GetPos());
   assert(m_arrow->GetFromItem()->pos() == from->pos());
   assert(m_arrow->GetToItem()->pos() == to->pos());
 }
@@ -48,7 +48,7 @@ ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
 QRectF ribi::QtLabeledQuadBezierArrowItem::boundingRect() const
 {
   return QtRoundedTextRectItem::boundingRect()
-    .united(m_arrow->boundingRect().translated(-this->pos()));
+    .united(m_arrow->boundingRect().translated(-this->GetPos()));
 }
 
 std::string ribi::QtLabeledQuadBezierArrowItem::GetVersion() noexcept
@@ -69,12 +69,12 @@ void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
   m_arrow->keyPressEvent(event);
 }
 
-void ribi::QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
   assert(m_arrow->GetMidItem());
-  assert(this->pos() == m_arrow->GetMidItem()->pos());
-  painter->translate(-this->pos());
+  assert(this->GetPos() == m_arrow->GetMidItem()->pos());
+  painter->translate(-this->GetPos());
   m_arrow->paint(painter,option,widget);
-  painter->translate(this->pos());
+  painter->translate(this->GetPos());
   QtRoundedTextRectItem::paint(painter,option,widget);
 }

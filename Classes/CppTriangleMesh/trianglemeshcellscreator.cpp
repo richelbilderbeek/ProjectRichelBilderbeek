@@ -64,7 +64,10 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 ) noexcept
 {
   assert(t);
-  if (n_face_layers < 2)
+
+  if (n_face_layers < 2
+    || t->GetPoints().empty()
+  )
   {
     std::vector<boost::shared_ptr<ribi::trim::Cell>> no_cells; return no_cells;
   }
@@ -201,6 +204,13 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   
   std::vector<boost::shared_ptr<Face>> v;
   assert(t);
+  #ifndef NDEBUG
+  if (all_points.empty())
+  {
+    TRACE("ERROR");
+    TRACE("BREAK");
+  }
+  #endif
   assert(!all_points.empty());
 
   const int n_points_per_layer = static_cast<int>(t->GetPoints().size());

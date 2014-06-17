@@ -376,15 +376,6 @@ void ribi::TriangleMeshCreatorMainDialog::CreateDefaultTemperatureField() const 
 {
   std::ofstream f(ribi::foam::Filenames().GetTemperatureField().c_str());
   ribi::foam::TemperatureFile file;
-  //std::vector<std::pair<std::string,foam::PatchFieldType>> v;
-  //v.push_back(std::make_pair("top",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("bottom",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("front",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("back",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("left",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("right",foam::PatchFieldType::zeroGradient));
-  //file.SetBoundaryField(v);
-
   file.SetBoundaryField(
     "top\n"
     "{\n"
@@ -422,15 +413,6 @@ void ribi::TriangleMeshCreatorMainDialog::CreateDefaultVelocityField() const noe
   ribi::foam::VelocityFieldFile file;
   file.SetDimensions( {0,1,-1,0,0,0,0} );
   file.SetInternalField("uniform (0 0 0)");
-  //std::vector<std::pair<std::string,foam::PatchFieldType>> v;
-  //v.push_back(std::make_pair("inside",foam::PatchFieldType::slip));
-  //v.push_back(std::make_pair("top",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("bottom",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("front",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("back",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("left",foam::PatchFieldType::zeroGradient));
-  //v.push_back(std::make_pair("right",foam::PatchFieldType::zeroGradient));
-  //file.SetBoundaryField(v);
   file.SetBoundaryField(
     "inside\n"
     "{\n"

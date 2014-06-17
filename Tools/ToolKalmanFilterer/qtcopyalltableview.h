@@ -18,13 +18,6 @@ class QtCopyAllTableView : public QTableView
 
   protected:
   void keyPressEvent(QKeyEvent *event);
-
-
-  private:
-  ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  //static std::vector<std::string> SeperateString(
-  //  const std::string& input,
-  //  const char seperator);
 };
 
 } //~namespace ribi

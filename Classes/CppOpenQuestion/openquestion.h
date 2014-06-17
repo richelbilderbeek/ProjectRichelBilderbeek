@@ -67,12 +67,6 @@ struct OpenQuestion : public Question
   static std::vector<std::string> ExtractAnswers(
     const std::string& input);
 
-  //Split a string
-  //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  //static std::vector<std::string> SeperateString(
-  //  const std::string& input,
-  //  const char seperator) noexcept;
-
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

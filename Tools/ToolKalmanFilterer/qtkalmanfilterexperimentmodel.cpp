@@ -1149,7 +1149,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::ReadWhiteNoiseSystemType(const
   }
 }
 
-
+/*
 std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateString(
   const std::string& input,
   const char seperator)
@@ -1160,6 +1160,7 @@ std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateSt
     boost::algorithm::token_compress_on);
   return v;
 }
+*/
 
 void ribi::kalman::QtKalmanFilterExperimentModel::SetContext(const std::string& context)
 {

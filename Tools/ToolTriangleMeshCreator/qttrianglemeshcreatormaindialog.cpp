@@ -55,15 +55,9 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
   #endif
   ui->setupUi(this);
 
+  connect(ui->edit_wkt,SIGNAL(textChanged()),this,SLOT(DisplayPolygons()));
   connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
   connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
-
-
-  {
-    //Put this dialog in the screen center
-    const QRect scr = QApplication::desktop()->screenGeometry();
-    move( scr.center() - rect().center() );
-  }
 
   on_edit_shapes_textChanged();
 }
@@ -117,8 +111,10 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
 
 void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
 {
-  const std::string text = ui->edit_shapes->toPlainText().toStdString();
-  const std::vector<std::string> lines = Container().SeperateString(text,'\n');
+  assert(ui->view->scene());
+  ui->view->scene()->clear();
+  //const std::string text = ui->edit_wkt->toPlainText().toStdString();
+  //const std::vector<std::string> lines = Container().SeperateString(text,'\n');
 
   const auto shapes = GetShapes();
 
@@ -130,8 +126,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
   {
     QGraphicsSvgItem * const item = new QGraphicsSvgItem(svg_filename.c_str());
     item->setScale(10.0);
-    assert(ui->view->scene());
-    ui->view->scene()->clear();
     ui->view->scene()->addItem(item);
   }
   fileio::FileIo().DeleteFile(svg_filename);
@@ -232,28 +226,9 @@ int ribi::QtTriangleMeshCreatorMainDialog::GetNumberOfCellLayers() const noexcep
 ribi::QtTriangleMeshCreatorMainDialog::Shapes
   ribi::QtTriangleMeshCreatorMainDialog::GetShapes() const noexcept
 {
-  const std::string text = ui->edit_shapes->toPlainText().toStdString();
+  const std::string text = ui->edit_wkt->toPlainText().toStdString();
   const auto shapes = Geometry().WktToShapes(text);
   return shapes;
-  /*
-  //std::vector<Polygon> polygons;
-  const std::vector<std::string> lines = SeperateString(text);
-  for (const std::string line: lines)
-  {
-    Polygon polygon;
-    try
-    {
-      boost::geometry::read_wkt(line,polygon);
-      polygons.push_back(polygon);
-    }
-    catch (boost::geometry::read_wkt_exception& e)
-    {
-      //No problem
-    }
-  }
-
-  return polygons;
-  */
 }
 
 bool ribi::QtTriangleMeshCreatorMainDialog::GetShowMesh() const noexcept
@@ -311,22 +286,14 @@ void ribi::QtTriangleMeshCreatorMainDialog::on_edit_shapes_textChanged()
   DisplayPolygons();
 }
 
-/*
-std::vector<std::string> ribi::QtTriangleMeshCreatorMainDialog::SeperateString(
-  const std::string& input) noexcept
-{
-  const char seperator  = '\n';
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
-
 void ribi::QtTriangleMeshCreatorMainDialog::SetShowMesh(const bool show_mesh) noexcept
 {
   ui->check_show_mesh->setChecked(show_mesh);
+}
+
+void ribi::QtTriangleMeshCreatorMainDialog::SetWkt(const std::string& wkt) noexcept
+{
+  ui->edit_wkt->setPlainText(wkt.c_str());
 }
 
 #ifndef NDEBUG
@@ -341,6 +308,10 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
   QtTriangleMeshCreatorMainDialog d;
   d.SetShowMesh(false);
   d.on_edit_shapes_textChanged();
+  d.on_button_create_clicked();
+
+  //Set a WKT that does not have any closed surfaces
+  d.SetWkt("LINESTRING(0 0 0 1 1 1 1 0)");
   d.on_button_create_clicked();
   TRACE("Finished QtTriangleMeshCreatorMainDialog::Test successfully");
 }

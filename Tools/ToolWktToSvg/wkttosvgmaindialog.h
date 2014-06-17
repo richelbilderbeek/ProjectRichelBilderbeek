@@ -47,21 +47,6 @@ struct WktToSvgMainDialog
   const std::string m_svg;
   const std::string m_wkt;
 
-  //static std::string GetRegex() noexcept { return R"((POLYGON\(\(.*?\)\))|(LINESTRING\(.*?\)))"; }
-
-  //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  /*
-  static std::vector<std::string>
-    GetRegexMatches(
-    const std::string& s,
-    const std::string& regex_str
-  ) noexcept;
-
-  static std::vector<std::string> SeperateString(
-    const std::string& input,
-    const char seperator
-  ) noexcept;
-  */
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

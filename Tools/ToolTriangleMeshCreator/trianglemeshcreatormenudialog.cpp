@@ -30,9 +30,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
-#include <boost/math/constants/constants.hpp>
+//#include <boost/math/constants/constants.hpp>
 #include <boost/units/io.hpp>
-//#include <boost/xpressive/xpressive.hpp>
 
 #include <QRegExp>
 
@@ -59,12 +58,9 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   #ifndef NDEBUG
   Test();
   #endif
-  //typedef boost::geometry::model::d2::point_xy<double> Coordinat;
-  //typedef boost::geometry::model::polygon<Coordinat> Polygon;
   typedef boost::units::quantity<boost::units::si::area> Area;
   typedef boost::units::quantity<boost::units::si::length> Length;
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
-  //typedef std::vector<Polygon> Polygons;
   using boost::units::si::meter;
   using boost::units::si::radian;
   using boost::units::si::square_meter;
@@ -464,7 +460,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TriangleMeshCreator",
     "Create a 3D mesh using Triangle",
-    "the 12th of May 2014",
+    "the 17th of June 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm",
     GetVersion(),
@@ -553,7 +549,7 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetRegexMatches(
 
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
-  return "1.8";
+  return "1.9";
 }
 
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory() const noexcept
@@ -567,22 +563,10 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory(
     "2014-05-08: version 1.5: preview of shape, use both TRIANGLE.EXE area and quality parameter, preview of Triangle.exe output",
     "2014-05-11: version 1.6: also calls meshlab under Linux",
     "2014-05-23: version 1.7: added command line interface",
-    "2014-05-23: version 1.8: support linestring as shape"
+    "2014-05-23: version 1.8: support linestring as shape",
+    "2014-06-17: version 1.9: allow non-surface as valid input"
   };
 }
-
-/*
-std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::SeperateString(
-  const std::string& input,
-  const char seperator) noexcept
-{
-  std::vector<std::string> v;
-  boost::algorithm::split(v,input,
-    std::bind2nd(std::equal_to<char>(),seperator),
-    boost::algorithm::token_compress_on);
-  return v;
-}
-*/
 
 #ifndef NDEBUG
 void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
@@ -593,58 +577,6 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleMeshCreatorMenuDialog::Test");
-  /*
-  typedef boost::geometry::model::d2::point_xy<double> Coordinat;
-  //typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
-  //typedef boost::units::quantity<boost::units::si::length> Length;
-  typedef boost::geometry::model::polygon<Coordinat> Polygon;
-  using boost::units::si::meter;
-
-  const bool test_smaller_mesh = false;
-  if (test_smaller_mesh)
-  {
-    try
-    {
-      const double pi = boost::math::constants::pi<double>();
-      const std::vector<Polygon> shapes {
-        ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
-        //ribi::TriangleFile::CreateShapePolygon(5,pi * 0.250,1.0) //1 cube
-      };
-      const int n_layers = 3;
-      const boost::units::quantity<boost::units::si::length> layer_height(
-        1.0 * boost::units::si::meter
-      );
-      ribi::trim::CreateVerticalFacesStrategy strategy
-      = ribi::trim::CreateVerticalFacesStrategy::one_face_per_square;
-
-      const double triangle_area = 2.0;
-      const double triangle_quality = 5.0;
-      const bool verbose = false;
-      const ribi::TriangleMeshCreatorMainDialog d(
-        shapes,
-        n_layers,
-        layer_height,
-        strategy,
-        triangle_quality,
-        triangle_area,
-        ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
-        ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
-        ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
-        verbose
-      );
-      //TRACE(checkMesh_command);
-      //std::system(checkMesh_command.c_str());
-    }
-    catch (std::exception& e)
-    {
-      assert(!"Should not get here");
-    }
-    catch (...)
-    {
-      assert(!"Should not get here");
-    }
-  }
-  */
   {
     const QRegExp regex(GetPolygonRegex().c_str());
     const std::vector<std::string> lines
@@ -694,6 +626,20 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         "TriangleMeshCreator",
         "-z", "1",
         "-p", "POLYGON((10 10,10 -10,-10 -10,-10 10)),LINESTRING(5 5,5 -5,-5 -5,-5 5)",
+        "-s", "1",
+        "-n", "1",
+        "-f", "0.75",
+        //"-m",
+        //"-b",
+        "-r", "10.0",
+        "-q", "20.0"
+      }
+    );
+    d.Execute(
+      {
+        "TriangleMeshCreator",
+        "-z", "1",
+        "-p", "LINESTRING(5 5,5 -5,-5 -5,-5 5)",
         "-s", "1",
         "-n", "1",
         "-f", "0.75",
