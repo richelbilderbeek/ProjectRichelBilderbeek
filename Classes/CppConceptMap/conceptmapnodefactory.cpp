@@ -143,7 +143,7 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::
   boost::shared_ptr<Concept> concept;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
+      = Geometry().GetRegexMatches(s,("(<concept>.*</concept>)"));
     assert(v.size() == 1);
     concept = ConceptFactory().FromXml(v[0]);
   }
@@ -151,7 +151,7 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::
   double x = 0.0;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
+      = Geometry().GetRegexMatches(s,("(<x>.*</x>)"));
     assert(v.size() == 1);
     x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -159,7 +159,7 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::
   double y = 0.0;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
+      = Geometry().GetRegexMatches(s,("(<y>.*</y>)"));
     assert(v.size() == 1);
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
