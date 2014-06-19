@@ -37,6 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPoint>
 #include <QRect>
 
+#include "ribi_regex.h"
 #include "plane.h"
 #include "trace.h"
 
@@ -380,43 +381,7 @@ double ribi::Geometry::GetDistance(
   return boost::geometry::distance(a,b);
 }
 
-//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-std::vector<std::string>
-  ribi::Geometry::GetRegexMatches(
-  const std::string& s,
-  const std::string& regex_str
-) const noexcept
-{
-  QRegExp r(regex_str.c_str());
-  r.setMinimal(true); //QRegExp must be non-greedy
-  std::vector<std::string> v;
-  int pos = 0;
-  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
-  {
-    const QString q = r.cap(1);
-    if (q.isEmpty()) break;
-    v.push_back(q.toStdString());
-    pos += r.matchedLength();
-  }
 
-  return v;
-  /*
-
-  const boost::xpressive::sregex r
-    = boost::xpressive::sregex::compile(regex_str)
-  ;
-
-  std::vector<std::string> v;
-  boost::xpressive::sregex_iterator cur(s.begin(),s.end(),r);
-  boost::xpressive::sregex_iterator end;
-  for( ; cur != end; ++cur )
-  {
-    const boost::xpressive::smatch& what = *cur;
-    v.push_back(what[0]);
-  }
-  return v;
-  */
-}
 
 std::string ribi::Geometry::GetVersion() const noexcept
 {
@@ -1889,17 +1854,6 @@ void ribi::Geometry::Test() noexcept
       && "Points must be rescaled as expected"
     );
   }
-  if (verbose) { TRACE("GetRegexMatches on GetRegexShapes"); }
-  {
-    const auto v
-      = g.GetRegexMatches(
-        "POLYGON((0 0,0 1,1 0)),LINESTRING(0 0,0 1,1 0)",
-        g.GetRegexShapes()
-    );
-    assert(v.size() == 2);
-    assert(v[0] == "POLYGON((0 0,0 1,1 0))");
-    assert(v[1] == "LINESTRING(0 0,0 1,1 0)");
-  }
   if (verbose) { TRACE("WktToSvg"); }
   {
     const std::string s
@@ -2274,8 +2228,8 @@ ribi::Geometry::Polygon ribi::Geometry::WktToPolygon(const std::string& wkt) con
 ribi::Geometry::Shapes ribi::Geometry::WktToShapes(const std::string& wkt) const
 {
   std::vector<std::string> v;
-  const std::string regex_str = GetRegexShapes();
-  for (const auto s: GetRegexMatches(wkt,regex_str))
+  const std::string regex_str = Regex().GetRegexShapes();
+  for (const auto s: Regex().GetRegexMatches(wkt,regex_str))
   {
     v.push_back(s);
   }

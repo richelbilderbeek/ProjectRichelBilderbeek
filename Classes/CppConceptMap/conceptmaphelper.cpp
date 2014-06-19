@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QRegExp>
 
 #include "fileio.h"
+#include "conceptmapregex.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -84,34 +85,6 @@ std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filenam
   return v;
 }
 
-/*
-std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
-{
-  #ifndef NDEBUG
-  cmap::TestHelperFunctions();
-  #endif
-  std::vector<std::string> v;
-  std::string::const_iterator i = s.begin();
-  std::string::const_iterator j = s.begin();
-  const std::string::const_iterator end = s.end();
-  while (j!=end)
-  {
-    ++j;
-    if ((*j=='>' || *j == '<') && std::distance(i,j) > 1)
-    {
-      std::string t;
-      std::copy(
-        *i=='<' ? i   : i+1,
-        *j=='>' ? j+1 : j,
-        std::back_inserter(t));
-      v.push_back(t);
-      i = j;
-    }
-  }
-  return v;
-}
-*/
-
 #ifndef NDEBUG
 void ribi::cmap::TestHelperFunctions() noexcept
 {
@@ -129,7 +102,7 @@ void ribi::cmap::TestHelperFunctions() noexcept
     expected.push_back("2345 BC");
     {
       const std::string r = "(\\d{4} [A-Z]{2})";
-      assert(Geometry().GetRegexMatches(s,QRegExp(r.c_str())) == expected);
+      assert(Regex().GetRegexMatches(s,(r.c_str())) == expected);
     }
   }
   {
@@ -140,8 +113,8 @@ void ribi::cmap::TestHelperFunctions() noexcept
     expected.push_back("<example>Example 2</example>");
     expected.push_back("<example>Example 3</example>");
     {
-      const std::string r = "(<example>.*</example>)";
-      assert(Geometry().GetRegexMatches(s,QRegExp(r.c_str())) == expected);
+      const std::string r = "(<example>.*?</example>)";
+      assert(Regex().GetRegexMatches(s,(r.c_str())) == expected);
     }
   }
   //GetCombinations
@@ -458,30 +431,3 @@ std::vector<std::string> ribi::cmap::Wordwrap(
   assert(Unwordwrap(v) == s_original);
   return v;
 }
-
-/*
-std::vector<std::string> ribi::cmap::XmlToPretty(const std::string& s)
-{
-  #ifndef NDEBUG
-  cmap::TestHelperFunctions();
-  #endif
-  std::vector<std::string> v = cmap::SplitXml(s);
-  int n = -2;
-  std::for_each(v.begin(),v.end(),
-    [&n](std::string& s)
-    {
-      assert(!s.empty());
-      if (s[0] == '<' && s[1] != '/')
-      {
-        n+=2;
-      }
-      s = std::string(n,' ') + s;
-      if (s[n+0] == '<' && s[n+1] == '/')
-      {
-        n-=2;
-      }
-    }
-  );
-  return v;
-}
-*/

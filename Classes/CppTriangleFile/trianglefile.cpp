@@ -29,13 +29,10 @@ ribi::TriangleFile::TriangleFile(
   const Polygons& polygons,
   const Linestrings& linestrings
 ) : m_polyfile(boost::make_shared<PolyFileFromPolygons>(polygons,linestrings))
-  //: m_polyfile(new PolyFileFromPolygons(shapes.first,shapes.second))
 {
   #ifndef NDEBUG
   Test();
   #endif
-
-  //assert(holes.empty() && "Adding holes is not implemented yet");
 }
 
 std::pair<int,char **> ribi::TriangleFile::CreateArgv(const std::vector<std::string>& v) noexcept

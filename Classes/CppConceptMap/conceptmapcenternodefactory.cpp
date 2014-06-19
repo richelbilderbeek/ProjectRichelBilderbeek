@@ -18,21 +18,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppConceptMap.htm
 //---------------------------------------------------------------------------
-#include "conceptmapcenternodefactory.h"
-
-#include <cassert>
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "conceptmapcenternodefactory.h"
+
+#include <cassert>
+
 #include <boost/lexical_cast.hpp>
 
 #include "conceptmapcenternode.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmaphelper.h"
-#include "geometry.h"
+#include "conceptmapregex.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -128,23 +128,21 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::F
   //m_concept
   boost::shared_ptr<Concept> concept;
   {
-    const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<concept>.*</concept>)"));
+    const auto v = Regex().GetRegexMatches(s,Regex().GetRegexConcept());
     assert(v.size() == 1);
     concept = ConceptFactory().FromXml(v[0]);
   }
   //m_x
   double x = 0.0;
   {
-    const std::vector<std::string> v = Geometry().GetRegexMatches(s,("(<x>.*</x>)"));
+    const std::vector<std::string> v = Regex().GetRegexMatches(s,Regex().GetRegexX());
     assert(v.size() == 1);
     x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_x
   double y = 0.0;
   {
-    const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<y>.*</y>)"));
+    const auto v = Regex().GetRegexMatches(s,Regex().GetRegexY());
     assert(v.size() == 1);
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }

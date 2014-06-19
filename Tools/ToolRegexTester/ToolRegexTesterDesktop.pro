@@ -5,6 +5,7 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
 #Specific, console
+include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 
 #Specific, desktop
 include(../../Tools/ToolRegexTester/ToolRegexTesterDesktop.pri)

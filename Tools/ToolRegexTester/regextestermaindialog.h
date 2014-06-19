@@ -65,7 +65,8 @@ struct RegexTesterMainDialog
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
   virtual std::vector<std::string> GetRegexMatches(
     const std::string& s,
-    const std::string& r) const = 0;
+    const std::string& r
+  ) const = 0;
 
   ///Replace all regexes in a std::string following a regex and a format
   virtual std::string GetRegexReplace(

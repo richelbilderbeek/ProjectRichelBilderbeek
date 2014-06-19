@@ -216,15 +216,6 @@ struct Geometry
     return left;
   }
 
-  //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  std::vector<std::string>
-    GetRegexMatches(
-    const std::string& s,
-    const std::string& regex_str
-  ) const noexcept;
-
-  std::string GetRegexShapes() const noexcept { return R"((POLYGON\(\(.*?\)\))|(LINESTRING\(.*?\)))"; }
-
   template <class T>
   T GetRight(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
   {

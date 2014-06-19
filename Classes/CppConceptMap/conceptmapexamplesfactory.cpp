@@ -24,13 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-//#include <QRegExp>
-
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamples.h"
 #include "conceptmaphelper.h"
-#include "geometry.h"
+#include "conceptmapregex.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -109,14 +107,15 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
   {
     return boost::shared_ptr<Examples>();
   }
-  assert(Geometry().GetRegexMatches(s,"(<examples>)").size()
-      == Geometry().GetRegexMatches(s,"(</examples>)").size());
+  assert(Regex().GetRegexMatches(s,"(<examples>)").size()
+      == Regex().GetRegexMatches(s,"(</examples>)").size());
 
   std::vector<boost::shared_ptr<Example> > examples;
   {
-    assert(Geometry().GetRegexMatches(s,"(<example>)").size()
-        == Geometry().GetRegexMatches(s,"(</example>)").size());
-    const std::vector<std::string> v = Geometry().GetRegexMatches(s,"(<example>.*</example>)");
+
+    assert(Regex().GetRegexMatches(s,"(<example>)").size()
+        == Regex().GetRegexMatches(s,"(</example>)").size());
+    const auto v = Regex().GetRegexMatches(s,Regex().GetRegexExample());
     std::transform(v.begin(),v.end(),std::back_inserter(examples),
       [](const std::string& s)
       {

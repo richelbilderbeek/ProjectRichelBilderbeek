@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Project Richel Bilderbeek, Richel Bilderbeek's work
-Copyright (C) 2010-2014 Richel Bilderbeek
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2012-2014 The Brainweaver Team
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,24 +16,35 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
 //---------------------------------------------------------------------------
-#include <iostream>
-#include <iterator>
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "richelbilderbeekprogram.h"
-#include "richelbilderbeekmenudialog.h"
-#include "trace.h"
-#pragma GCC diagnostic pop
+#include "pvdbregex.h"
 
-int main(int argc, char * argv[])
+#include <cassert>
+
+#include "ribi_regex.h"
+#include "trace.h"
+
+ribi::pvdb::Regex::Regex()
 {
-  START_TRACE();
-  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
-  return ribi::ProjectRichelBilderbeekMenuDialog().Execute(args);
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
+#ifndef NDEBUG
+void ribi::pvdb::Regex::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Started ribi::pvdb::Regex::Test");
+  TRACE("ribi::pvdb::Regex::Test finished successfully");
+}
+#endif

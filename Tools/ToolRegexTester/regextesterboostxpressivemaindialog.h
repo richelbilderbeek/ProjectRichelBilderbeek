@@ -44,10 +44,12 @@ struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
   std::string GetExampleRegex() const noexcept { return "(\\d{4})( )([A-Z]{2})"; }
 
   ///Get all regex matches withing a line
+  ///Returns no matches if the regex is invalid
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
   std::vector<std::string> GetRegexMatches(
     const std::string& s,
-    const std::string& r) const;
+    const std::string& regex_str
+  ) const noexcept;
 
   ///Does the regex match the whole line?
   bool GetRegexMatchLine(const std::string &line, const std::string &regex_str) const noexcept;
@@ -67,9 +69,9 @@ struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
   private:
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static std::vector<std::string> GetRegexMatches(
-    const std::string& s,
-    const boost::xpressive::sregex& r);
+  //static std::vector<std::string> GetRegexMatches(
+  //  const std::string& s,
+  //  const boost::xpressive::sregex& r);
 
   #ifndef NDEBUG
   static void Test() noexcept;

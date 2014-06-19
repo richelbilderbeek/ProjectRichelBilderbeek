@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmaphelper.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
-#include "geometry.h"
+#include "conceptmapregex.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -135,7 +135,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   boost::shared_ptr<Concept> concept;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<concept>.*</concept>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexConcept());
     assert(v.size() == 1);
     concept = ConceptFactory().FromXml(v[0]);
   }
@@ -143,7 +143,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   int from = -1;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<from>.*</from>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexFrom());
     assert(v.size() == 1);
     from = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -151,7 +151,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   bool head_arrow = false;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<head_arrow>.*</head_arrow>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexHeadArrow());
     assert(v.size() == 1);
     head_arrow = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -159,7 +159,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   bool tail_arrow = false;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<tail_arrow>.*</tail_arrow>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexTailArrow());
     assert(v.size() == 1);
     tail_arrow = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -167,7 +167,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   int to = -1;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<to>.*</to>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexTo());
     assert(v.size() == 1);
     to = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -175,7 +175,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   double x = 0.0;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<x>.*</x>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexX());
     assert(v.size() == 1);
     x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -183,7 +183,7 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   double y = 0.0;
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<y>.*</y>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexY());
     assert(v.size() == 1);
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }

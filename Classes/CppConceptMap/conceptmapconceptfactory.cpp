@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamplesfactory.h"
 #include "conceptmaphelper.h"
-#include "geometry.h"
+#include "conceptmapregex.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic push
@@ -161,31 +161,43 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
   //m_name
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<name>.*</name>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexName());
+    #ifndef NDEBUG
+    if (v.size() != 1)
+    {
+      TRACE("ERROR");
+      TRACE(s);
+      TRACE(Regex().GetRegexName());
+      TRACE(v.size());
+      for (const auto t: v) { TRACE(t); }
+      TRACE("BREAK");
+    }
+    #endif
     assert(v.size() == 1);
     name = ribi::xml::StripXmlTag(v[0]);
   }
   //m_examples
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<examples>.*</examples>)"));
-    assert(v.size() == 1 && "<examples>*.</examples> must be present once in a Concept");
+      = Regex().GetRegexMatches(s,Regex().GetRegexExamples());
+    assert(v.size() == 1 && "GetRegexExamples must be present once in a Concept");
     examples = ExamplesFactory().FromXml(v[0]);
   }
 
   //m_is_complex
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<concept_is_complex>.*</concept_is_complex>)"));
-    assert(v.size() == 1 && "(<is_complex>.*</is_complex>) must be present once per Concept");
+      = Regex().GetRegexMatches(s,Regex().GetRegexConceptIsComplex());
+    assert(v.size() == 1 && "GetRegexIsComplex must be present once per Concept");
     is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
+
 
   //m_rating_complexity
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<complexity>.*</complexity>)"));
-    assert(v.size() == 1 && "(<complexity>.*</complexity>) must be present once per Concept");
+      = Regex().GetRegexMatches(s,Regex().GetRegexComplexity());
+    assert(v.size() == 1 && "GetRegexComplexity must be present once per Concept");
     rating_complexity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
     assert(rating_complexity >= -1);
     assert(rating_complexity <=  2);
@@ -193,14 +205,14 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
   //m_rating_concreteness
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<concreteness>.*</concreteness>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexConcreteness());
     assert(v.size() == 1);
     rating_concreteness = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_rating_specificity
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,("(<specificity>.*</specificity>)"));
+      = Regex().GetRegexMatches(s,Regex().GetRegexSpecificity());
     assert(v.size() == 1);
     rating_specificity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }

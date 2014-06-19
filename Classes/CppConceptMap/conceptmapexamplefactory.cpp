@@ -21,17 +21,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "conceptmapexamplefactory.h"
 
 #include <cassert>
 
 #include <boost/lexical_cast.hpp>
 #include <boost/make_shared.hpp>
-#include <QRegExp>
+//#include <QRegExp>
 
 #include "conceptmaphelper.h"
 #include "conceptmapexample.h"
-#include "geometry.h"
+#include "conceptmapregex.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -73,36 +74,36 @@ boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::FromXml(const
   //competency
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,"(<competency>.*</competency>)");
+      = Regex().GetRegexMatches(s,Regex().GetRegexCompetency());
     assert(v.size() == 1);
     competency = Example::StrToCompetency(ribi::xml::StripXmlTag(v[0]));
   }
   //is_complex
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,"(<is_complex>.*</is_complex>)");
+      = Regex().GetRegexMatches(s,Regex().GetRegexIsComplex());
     assert(v.size() == 1);
     is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //is_concrete
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,"(<is_concrete>.*</is_concrete>)");
+      = Regex().GetRegexMatches(s,Regex().GetRegexIsConcrete());
     assert(v.size() == 1);
     is_concrete = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //is_specific
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,"(<is_specific>.*</is_specific>)");
+      = Regex().GetRegexMatches(s,Regex().GetRegexIsSpecific());
     assert(v.size() == 1);
     is_specific = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //text
   {
     const std::vector<std::string> v
-      = Geometry().GetRegexMatches(s,"(<text>.*</text>)");
-    assert(v.size() == 1 && "<text>.*</text> must be present once in an Example");
+      = Regex().GetRegexMatches(s,Regex().GetRegexText());
+    assert(v.size() == 1 && "GetRegexText must be present once in an Example");
     text = ribi::xml::StripXmlTag(v[0]);
   }
 

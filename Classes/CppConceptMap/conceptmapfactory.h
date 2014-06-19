@@ -40,12 +40,6 @@ namespace cmap {
 ///ConceptMapFactory is the only class using the ConceptMap constructor
 struct ConceptMapFactory
 {
-  //Create an empty-as-can-get ConceptMap
-  /*
-  static const boost::shared_ptr<ConceptMap> Create(
-    const std::string& focal_question);
-  */
-
   static boost::shared_ptr<ConceptMap> Create(
     const std::vector<boost::shared_ptr<Node> >& nodes = {},
     const std::vector<boost::shared_ptr<Edge> >& edges = {});

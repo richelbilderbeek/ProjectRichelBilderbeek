@@ -31,8 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #include <boost/units/io.hpp>
 
-#include <QRegExp>
-
+#include "ribi_regex.h"
 #include "container.h"
 #include "fileio.h"
 #include "geometry.h"
@@ -79,9 +78,9 @@ int ribi::TestPolyFileFromPolygonsMenuDialog::ExecuteSpecific(const std::vector<
     {
       const std::string text = args[i+1];
       if (verbose) { std::cout << "Parsing polygons '" << text << "'" << std::endl; }
-      const auto regex(GetPolygonRegex());
+      const auto regex = Regex().GetRegexPolygon();
       //const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(GetPolygonRegex());
-      const std::vector<std::string> lines = Geometry().GetRegexMatches(text,regex);
+      const auto lines = Regex().GetRegexMatches(text,regex);
       for (const std::string& line: lines)
       {
         if (verbose) { std::cout << "Parsing polygon '" << line << "'" << std::endl; }
@@ -163,13 +162,6 @@ ribi::Help ribi::TestPolyFileFromPolygonsMenuDialog::GetHelp() const noexcept
       GetAbout().GetFileTitle() + " -p POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1)) -b",
     }
   );
-}
-
-std::string ribi::TestPolyFileFromPolygonsMenuDialog::GetPolygonRegex()
-{
-  return
-    "(POLYGON\\(\\(.*\\)\\))"
-  ;
 }
 
 boost::shared_ptr<const ribi::Program> ribi::TestPolyFileFromPolygonsMenuDialog::GetProgram() const noexcept

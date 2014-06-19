@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/xpressive/detail/dynamic/parse_charset.hpp>
 
+#include "ribi_regex.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -49,14 +50,16 @@ boost::shared_ptr<ribi::RegexTesterMainDialog>
 std::vector<std::string>
   ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatches(
   const std::string& s,
-  const std::string& r) const
+  const std::string& regex_str
+) const noexcept
 {
-  if (!this->GetRegexValid(r)) return std::vector<std::string>();
-
-  return GetRegexMatches(s,boost::xpressive::sregex::compile(r));
+  if (!this->GetRegexValid(regex_str)) return std::vector<std::string>();
+  return Regex().GetRegexMatchesXpressive(s,regex_str);
+  //return GetRegexMatches(s,boost::xpressive::sregex::compile(r));
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+/*
 std::vector<std::string>
   ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatches(
   const std::string& s,
@@ -82,9 +85,12 @@ std::vector<std::string>
   }
   return v;
 }
+*/
 
 bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatchLine(
-  const std::string& line, const std::string& regex_str) const noexcept
+  const std::string& line,
+  const std::string& regex_str
+) const noexcept
 {
   if (!GetRegexValid(regex_str)) return false;
   const boost::xpressive::sregex r(
@@ -118,12 +124,15 @@ std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
 bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexValid(
   const std::string& regex_str) const noexcept
 {
+  return Regex().IsValidXpressive(regex_str);
+  /*
   try
   {
     boost::xpressive::sregex::compile(regex_str);
   }
   catch (boost::xpressive::regex_error& e) { return false; }
   return true;
+  */
 }
 
 #ifndef NDEBUG

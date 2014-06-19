@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapedgefactory.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
-#include "geometry.h"
+#include "conceptmapregex.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -52,27 +52,6 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::Create(
   assert(p->IsValid());
   return p;
 }
-
-/*
-const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::Create(
-  const std::string& focal_question)
-{
-  //A single-node ConceptMap contains only the focal question
-  const boost::shared_ptr<CenterNode> focal_node {
-    CenterNodeFactory().Create(focal_question)
-  };
-  assert(focal_node);
-  const std::vector<boost::shared_ptr<Node>> nodes = { focal_node };
-  assert(nodes.at(0));
-  const boost::shared_ptr<ConceptMap> p = Create(nodes);
-  assert(p);
-  assert(p->IsValid());
-  assert(!p->GetNodes().empty());
-  assert(p->FindCenterNode() && "A ConceptMap must have a CenterNode");
-
-  return p;
-}
-*/
 
 #ifndef NDEBUG
 boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::DeepCopy(
@@ -156,7 +135,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
 
   //Obtain the <concept_map> ... </concept_map> string
   const std::vector<std::string> v
-    = Geometry().GetRegexMatches(s,("(<concept_map>.*</concept_map>)"));
+    = Regex().GetRegexMatches(s,("(<concept_map>.*</concept_map>)"));
   assert(v.size() == 1);
   //Strip the <concept_map> tags
   const std::string concept_map_str = ribi::xml::StripXmlTag(v[0]);
@@ -165,7 +144,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
   {
     //Obtain the <nodes> ... </nodes> strings
     const std::vector<std::string> w
-      = Geometry().GetRegexMatches(concept_map_str,("(<nodes>.*</nodes>)"));
+      = Regex().GetRegexMatches(concept_map_str,("(<nodes>.*</nodes>)"));
     assert(w.size() == 1);
     //Strip the <nodes> tags
     const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
@@ -173,7 +152,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
     //CenterNode
     {
       const std::vector<std::string> x
-        = Geometry().GetRegexMatches(nodes_str,("(<center_node>.*</center_node>)"));
+        = Regex().GetRegexMatches(nodes_str,("(<center_node>.*</center_node>)"));
       assert(x.empty() || x.size() == 1);
       std::for_each(x.begin(),x.end(),
         [&nodes](const std::string& s)
@@ -189,7 +168,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
     //Regular nodes
     {
       const std::vector<std::string> x
-        = Geometry().GetRegexMatches(nodes_str,("(<node>.*</node>)"));
+        = Regex().GetRegexMatches(nodes_str,("(<node>.*</node>)"));
       std::for_each(x.begin(),x.end(),
         [&nodes](const std::string& s)
         {
@@ -220,13 +199,13 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
   {
     //Obtain the <edges> ... </edges> strings
     const std::vector<std::string> w
-      = Geometry().GetRegexMatches(concept_map_str,("(<edges>.*</edges>)"));
+      = Regex().GetRegexMatches(concept_map_str,("(<edges>.*</edges>)"));
     assert(w.size() == 1);
     //Strip the <edges> tags
     const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
     //Obtain the <edge> ... </edge> strings
     const std::vector<std::string> x
-      = Geometry().GetRegexMatches(nodes_str,("(<edge>.*</edge>)"));
+      = Regex().GetRegexMatches(nodes_str,("(<edge>.*</edge>)"));
     for (const std::string& s: x)
     {
       const boost::shared_ptr<Edge> edge {

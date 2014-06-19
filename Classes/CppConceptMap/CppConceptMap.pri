@@ -40,7 +40,8 @@ HEADERS += \
     ../../Classes/CppConceptMap/conceptmapcommandaddfocusrandom.h \
     ../../Classes/CppConceptMap/conceptmapcommandaddselectedrandom.h \
     ../../Classes/CppConceptMap/conceptmapcommandunselectrandom.h \
-    ../../Classes/CppConceptMap/conceptmapcompetencies.h
+    ../../Classes/CppConceptMap/conceptmapcompetencies.h \
+    ../../Classes/CppConceptMap/conceptmapregex.h
 
 SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcenternode.cpp \
@@ -78,4 +79,5 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcommandaddfocusrandom.cpp \
     ../../Classes/CppConceptMap/conceptmapcommandaddselectedrandom.cpp \
     ../../Classes/CppConceptMap/conceptmapcommandunselectrandom.cpp \
-    ../../Classes/CppConceptMap/conceptmapcompetencies.cpp
+    ../../Classes/CppConceptMap/conceptmapcompetencies.cpp \
+    ../../Classes/CppConceptMap/conceptmapregex.cpp
