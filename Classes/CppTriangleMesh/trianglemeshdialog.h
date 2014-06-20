@@ -18,12 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm
 //---------------------------------------------------------------------------
-#ifndef RIBI_TRIANGLEMESHCREATORMAINDIALOG_H
-#define RIBI_TRIANGLEMESHCREATORMAINDIALOG_H
+#ifndef RIBI_TRIANGLEMESHDIALOG_H
+#define RIBI_TRIANGLEMESHDIALOG_H
 
-//Use ribi::trim::dialog instead
-
-/*
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -44,9 +41,16 @@ namespace ribi {
 
 struct TriangleFile;
 
-namespace trim { struct Cell; }
+namespace trim {
 
-struct TriangleMeshCreatorMainDialog
+struct Cell;
+
+///Facade
+///
+///Shapes + Triangle.exe
+///
+///
+struct Dialog
 {
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
   typedef boost::units::quantity<boost::units::si::area> Area;
@@ -58,29 +62,29 @@ struct TriangleMeshCreatorMainDialog
   typedef std::vector<Linestring> Linestrings;
   typedef std::pair<Polygons,Linestrings> Shapes;
 
-  TriangleMeshCreatorMainDialog(
+  Dialog(
     const Shapes& shapes,
     const int n_cell_layers,
     const Length layer_height,
     const ::ribi::trim::CreateVerticalFacesStrategy strategy,
     const Angle triangle_min_angle,
     const Area triangle_max_area,
-    const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
-    const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
-    const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
+    const std::function<void(std::vector<boost::shared_ptr<Cell>>&)>& sculpt_function,
+    const std::function<void(std::vector<boost::shared_ptr<Cell>>&)>& assign_boundary_function,
+    const std::function<::ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
     const bool verbose
   );
 
-  static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateDefaultAssignBoundaryFunction() noexcept;
-  static std::function<ribi::foam::PatchFieldType(const std::string&)> CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept;
+  static std::function<void(std::vector<boost::shared_ptr<Cell>>&)> CreateDefaultAssignBoundaryFunction() noexcept;
+  static std::function<::ribi::foam::PatchFieldType(const std::string&)> CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept;
 
   void CreateDefaultControlDict() const noexcept;
   void CreateDefaultPressureField() const noexcept;
   void CreateDefaultTemperatureField() const noexcept;
   void CreateDefaultVelocityField() const noexcept;
 
-  static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateSculptFunctionNone() noexcept;
-  static std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> CreateSculptFunctionRemoveRandom(const double p) noexcept;
+  static std::function<void(std::vector<boost::shared_ptr<Cell>>&)> CreateSculptFunctionNone() noexcept;
+  static std::function<void(std::vector<boost::shared_ptr<Cell>>&)> CreateSculptFunctionRemoveRandom(const double p) noexcept;
 
   ///Obtain the filename of the created mesh
   std::string GetFilename() const noexcept { return m_filename_result_mesh; }
@@ -100,8 +104,7 @@ struct TriangleMeshCreatorMainDialog
   #endif
 };
 
+} //~namespace trim
 } //~namespace ribi
 
-*/
-
-#endif // RIBI_TRIANGLEMESHCREATORMAINDIALOG_H
+#endif // RIBI_TRIANGLEMESHDIALOG_H

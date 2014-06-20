@@ -199,7 +199,7 @@ std::string ribi::trim::Template::ConvertNumbersToEnglish(const std::string& s) 
   #endif
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(const int i) noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(const int i) noexcept
 {
   switch (i)
   {
@@ -213,7 +213,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(c
   return boost::shared_ptr<Template>();
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSquare2x2() noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSquare2x2() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
@@ -342,7 +342,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
 }
 
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle2x2() noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle2x2() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
@@ -475,7 +475,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
   return my_template;
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x3() noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x3() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
@@ -614,7 +614,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
   return my_template;
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x3() noexcept
+boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x3() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;

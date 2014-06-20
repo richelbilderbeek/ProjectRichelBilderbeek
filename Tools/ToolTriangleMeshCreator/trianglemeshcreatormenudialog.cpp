@@ -48,7 +48,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trianglefile.h"
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshcellscreatorfactory.h"
-#include "trianglemeshcreatormaindialog.h"
+#include "trianglemeshdialog.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
 #pragma GCC diagnostic pop
@@ -349,16 +349,17 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
 
   try
   {
-    const ribi::TriangleMeshCreatorMainDialog d(
+    const ribi::trim::Dialog d(
+    //const ribi::TriangleMeshCreatorMainDialog d(
       shapes,
       n_layers,
       layer_height,
       strategy,
       triangle_min_angle,
       triangle_max_area,
-      ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(fraction),
-      ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
-      ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+      ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(fraction),
+      ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction(),
+      ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
       verbose
     );
     if (show_mesh)
@@ -481,7 +482,8 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory(
     "2014-05-11: version 1.6: also calls meshlab under Linux",
     "2014-05-23: version 1.7: added command line interface",
     "2014-05-23: version 1.8: support linestring as shape",
-    "2014-06-17: version 1.9: allow non-surface as valid input"
+    "2014-06-17: version 1.9: allow non-surface as valid input",
+    "2014-06-20: version 1.10: moved main dialog to TriangleMesh classes"
   };
 }
 

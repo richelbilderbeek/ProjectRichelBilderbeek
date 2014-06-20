@@ -18,12 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm
 //---------------------------------------------------------------------------
-/*
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "trianglemeshcreatormaindialog.h"
+#include "trianglemeshdialog.h"
 
 #include <fstream>
 
@@ -57,7 +56,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #pragma GCC diagnostic pop
 
-ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
+ribi::trim::Dialog::Dialog(
   const Shapes& shapes,
   const int n_cell_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
@@ -74,7 +73,7 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
     m_n_faces{0},
     m_triangle_file{}
 {
-  
+
   #ifndef NDEBUG
   Test();
   #endif
@@ -98,7 +97,7 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   catch (std::exception& e)
   {
     std::stringstream s;
-    s << "ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog: "
+    s << "ribi::trim::Dialog::Dialog: "
       << "Triangle.exe failed: " << e.what();
     TRACE(s.str());
     throw std::runtime_error(s.str());
@@ -108,10 +107,11 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
 
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
-    const boost::shared_ptr<const ribi::trim::Template> t
-      = boost::make_shared<ribi::trim::Template>(
+    const boost::shared_ptr<const ribi::trim::Template> t(
+      new ribi::trim::Template(
         filename_node,
         filename_ele
+      )
     );
     assert(t);
 
@@ -208,7 +208,7 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
 }
 
 
-std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction() noexcept
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction() noexcept
 {
   return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
   {
@@ -281,7 +281,7 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::Tri
 }
 
 std::function<ribi::foam::PatchFieldType(const std::string&)>
-  ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept
+  ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept
 {
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
     = [](const std::string& patch_name)
@@ -302,7 +302,7 @@ std::function<ribi::foam::PatchFieldType(const std::string&)>
   return boundary_to_patch_field_type_function;
 }
 
-void ribi::TriangleMeshCreatorMainDialog::CreateDefaultControlDict() const noexcept
+void ribi::trim::Dialog::CreateDefaultControlDict() const noexcept
 {
   std::ofstream f(ribi::foam::Filenames().GetControlDict().c_str());
   ribi::foam::ControlDictFile file;
@@ -325,7 +325,7 @@ void ribi::TriangleMeshCreatorMainDialog::CreateDefaultControlDict() const noexc
   f << file;
 }
 
-void ribi::TriangleMeshCreatorMainDialog::CreateDefaultPressureField() const noexcept
+void ribi::trim::Dialog::CreateDefaultPressureField() const noexcept
 {
   std::ofstream f(ribi::foam::Filenames().GetPressureField().c_str());
   ribi::foam::PressureFile file;
@@ -374,7 +374,7 @@ void ribi::TriangleMeshCreatorMainDialog::CreateDefaultPressureField() const noe
   f << file;
 }
 
-void ribi::TriangleMeshCreatorMainDialog::CreateDefaultTemperatureField() const noexcept
+void ribi::trim::Dialog::CreateDefaultTemperatureField() const noexcept
 {
   std::ofstream f(ribi::foam::Filenames().GetTemperatureField().c_str());
   ribi::foam::TemperatureFile file;
@@ -410,7 +410,7 @@ void ribi::TriangleMeshCreatorMainDialog::CreateDefaultTemperatureField() const 
   f << file;
 }
 
-void ribi::TriangleMeshCreatorMainDialog::CreateDefaultVelocityField() const noexcept
+void ribi::trim::Dialog::CreateDefaultVelocityField() const noexcept
 {
   ribi::foam::VelocityFieldFile file;
   file.SetDimensions( {0,1,-1,0,0,0,0} );
@@ -451,7 +451,7 @@ void ribi::TriangleMeshCreatorMainDialog::CreateDefaultVelocityField() const noe
 }
 
 std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
-  ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionNone() noexcept
+  ribi::trim::Dialog::CreateSculptFunctionNone() noexcept
 {
   return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
   {
@@ -460,7 +460,7 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
   ;
 }
 
-std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(const double p) noexcept
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(const double p) noexcept
 {
   assert(p >= 0.0);
   assert(p <= 1.0);
@@ -475,14 +475,14 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::Tri
 }
 
 #ifndef NDEBUG
-void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
+void ribi::trim::Dialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TriangleMeshCreatorMainDialog::Test");
+  TRACE("Starting ribi::trim::Dialog::Test");
   //typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
   ribi::trim::CellsCreatorFactory();
 
@@ -505,16 +505,16 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
       const Area triangle_max_area = 1.0 * boost::units::si::square_meter;
       const int n_cell_layers = 1;
       const bool verbose = false;
-      const ribi::TriangleMeshCreatorMainDialog d(
+      const ribi::trim::Dialog d(
         shapes,
         n_cell_layers,
         1.0 * boost::units::si::meter,
         strategy,
         triangle_min_angle,
         triangle_max_area,
-        TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(0.75),
-        TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
-        TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+        Dialog::CreateSculptFunctionRemoveRandom(0.75),
+        Dialog::CreateDefaultAssignBoundaryFunction(),
+        Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
         verbose
       );
     }
@@ -527,7 +527,6 @@ void ribi::TriangleMeshCreatorMainDialog::Test() noexcept
       assert(!"Should not get here");
     }
   }
-  TRACE("Finished ribi::TriangleMeshCreatorMainDialog::Test successfully");
+  TRACE("Finished ribi::trim::Dialog::Test successfully");
 }
 #endif
-*/

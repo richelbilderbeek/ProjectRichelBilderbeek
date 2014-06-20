@@ -44,6 +44,8 @@ namespace Ui {
 
 namespace ribi {
 
+namespace trim { struct Dialog; }
+
 class QtTriangleMeshCreatorMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -86,6 +88,8 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  boost::shared_ptr<ribi::trim::Dialog> m_dialog;
 
 private slots:
 

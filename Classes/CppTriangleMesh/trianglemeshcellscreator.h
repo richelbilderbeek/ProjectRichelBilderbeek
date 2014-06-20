@@ -24,8 +24,11 @@ namespace trim {
 ///The next step will be
 /// - freely delete the Cells that are not in the final mesh
 /// - pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files
-struct CellsCreator
+class CellsCreator
 {
+  friend class CellFactory;
+  friend class Dialog;
+
   CellsCreator(const CellsCreator&) = delete;
   CellsCreator(CellsCreator&&) = delete;
   CellsCreator& operator=(const CellsCreator&) = delete;

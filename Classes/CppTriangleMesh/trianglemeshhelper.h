@@ -23,8 +23,21 @@
 namespace ribi {
 namespace trim {
 
-struct Helper
+///Helper class for TriangleMesh
+//It has no state, so Pimpl is unnecessary
+class Helper
 {
+  friend class Cell;
+  friend class CellsCreator;
+  friend class Dialog;
+  friend class Face;
+  friend class FaceFactory;
+  friend class Point;
+  friend class PointFactory;
+  friend class Template;
+  friend class TriangleMeshBuilder;
+  friend class TriangleMeshBuilderImpl;
+
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
@@ -34,12 +47,16 @@ struct Helper
 
   Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept;
 
-  std::vector<Coordinat2D> CalcProjection(const std::vector<boost::shared_ptr<const Point>>& v) const;
+  std::vector<Coordinat2D> CalcProjection(
+    const std::vector<boost::shared_ptr<const Point>>& v
+  ) const;
 
   ///Find out the Winding of the edges
   ///knowing that all edges are in the same XY plane
   ///when viewed from above (at an infinite Z coordinat)
-  Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Point>>& points) const noexcept;
+  Winding CalcWindingHorizontal(
+    const std::vector<boost::shared_ptr<const Point>>& points
+  ) const noexcept;
 
   FaceSet CreateEmptyFaceSet() const noexcept;
 

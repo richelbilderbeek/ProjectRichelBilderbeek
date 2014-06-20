@@ -20,8 +20,15 @@ namespace trim {
 
 ///A Cell consists of Faces that surround the volume of the cell without openings
 ///Sure, the Faces can change...
-struct Cell
+class Cell
 {
+  friend class Dialog;
+  friend class CellsCreator;
+  friend class CellsCreatorFactory;
+  friend class Face;
+  friend class TriangleMeshBuilder;
+  friend class TriangleMeshBuilderImpl;
+
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
   std::vector<boost::shared_ptr<const Face>> GetFaces() const noexcept;
@@ -35,10 +42,6 @@ struct Cell
   void SetCorrectOrder() noexcept;
 
   void SetIndex(const int index) noexcept;
-
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  mutable boost::signals2::signal<void(const Cell* const)> m_signal_destroyed;
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   static const int sm_cell_no_index = -2;
 
@@ -65,6 +68,10 @@ struct Cell
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend bool operator==(const Cell& lhs, const Cell& rhs) noexcept;
+  friend bool operator!=(const Cell& lhs, const Cell& rhs) noexcept;
+  friend std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
 };
 
 bool operator==(const Cell& lhs, const Cell& rhs) noexcept;

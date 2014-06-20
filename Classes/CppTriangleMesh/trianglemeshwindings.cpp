@@ -5,7 +5,7 @@
 
 #include "trace.h"
 
-const std::vector<ribi::trim::Winding> ribi::trim::Windings::GetAll() const noexcept
+std::vector<ribi::trim::Winding> ribi::trim::Windings::GetAll() const noexcept
 {
   const std::vector<Winding> v {
     Winding::clockwise,
@@ -16,7 +16,7 @@ const std::vector<ribi::trim::Winding> ribi::trim::Windings::GetAll() const noex
   return v;
 }
 
-const std::string ribi::trim::Windings::ToStr(const Winding winding) const noexcept
+std::string ribi::trim::Windings::ToStr(const Winding winding) const noexcept
 {
   switch (winding)
   {

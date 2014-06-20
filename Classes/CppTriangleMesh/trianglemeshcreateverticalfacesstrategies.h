@@ -9,8 +9,18 @@
 namespace ribi {
 namespace trim {
 
-struct CreateVerticalFacesStrategies
+class CreateVerticalFacesStrategies
 {
+  friend class Cell;
+  friend class CellFactory;
+  friend class CellsCreator;
+  friend class CellsCreatorFactory;
+  friend class Dialog;
+  friend class Face;
+  friend class FaceFactory;
+  friend class TriangleMeshBuilder;
+  friend class TriangleMeshBuilderImpl;
+
   CreateVerticalFacesStrategies() noexcept {}
 
   std::vector<CreateVerticalFacesStrategy> GetAll() const noexcept;

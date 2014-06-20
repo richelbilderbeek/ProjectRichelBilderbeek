@@ -20,22 +20,6 @@ ribi::trim::PointFactory::PointFactory()
   #endif
 }
 
-#ifndef NDEBUG
-/*
-///Create a Point with an undetermined Z coordinat
-const boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::CreateFromXy(
-  const double x, const double y
-) const noexcept
-{
-  const boost::shared_ptr<const ConstCoordinat2D> coordinat {
-    new ConstCoordinat2D(x,y)
-  };
-  assert(coordinat);
-  return Create(coordinat);
-}
-*/
-#endif
-
 boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
   const boost::shared_ptr<const Coordinat2D> coordinat
 ) const noexcept

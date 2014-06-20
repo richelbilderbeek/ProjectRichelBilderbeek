@@ -24,15 +24,18 @@ namespace ribi {
 namespace trim {
 
 ///An OpenFOAM point, as in the file 'points'
-struct Point
+class Point
 {
+  friend class Cell;
+  friend class CellsCreator;
+  friend class Dialog;
+  friend class Template;
+  friend class Face;
+  friend class Helper;
+
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  typedef std::vector<boost::shared_ptr<Face>> Faces;
-  #else
   typedef std::vector<boost::weak_ptr<Face>> Faces;
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   const boost::shared_ptr<const Coordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
   Coordinat3D GetCoordinat3D() const noexcept;
@@ -52,10 +55,6 @@ struct Point
 
   std::string ToStr() const noexcept;
   std::string ToXml() const noexcept;
-
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  boost::signals2::signal<void(const Point*)> m_signal_destroyed;
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   private:
   Point(const Point& ) = delete;
@@ -89,11 +88,7 @@ struct Point
 
   friend class FaceFactory;
   ///Points are connected to Faces in the Faces' construction
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  void AddConnected(const boost::shared_ptr<Face>& face);
-  #else
   void AddConnected(const boost::weak_ptr<Face>& face);
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
   void OnFaceDestroyed(const ribi::trim::Face * const face) noexcept;
 
@@ -105,7 +100,7 @@ struct Point
   >
   OrderByIndex() const noexcept;
 
-  friend class TriangleMeshBuilder;
+  friend class TriangleMeshBuilderImpl;
   ///Determined in the end
   void SetIndex(const int index) const noexcept { m_index = index; }
 
@@ -113,18 +108,20 @@ struct Point
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const Point& n);
+  friend std::ostream& operator<<(std::ostream& os, const Point& n) noexcept;
+  friend bool operator==(const Point& lhs, const Point& rhs) noexcept;
+  friend bool operator!=(const Point& lhs, const Point& rhs) noexcept;
 };
 
-bool operator==(const Point& lhs, const Point& rhs);
-bool operator!=(const Point& lhs, const Point& rhs);
+bool operator==(const Point& lhs, const Point& rhs) noexcept;
+bool operator!=(const Point& lhs, const Point& rhs) noexcept;
+
+std::ostream& operator<<(std::ostream& os, const Point& n) noexcept;
 
 bool operator<(const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<      Point>& rhs) = delete;
 bool operator<(const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<const Point>& rhs) = delete;
 bool operator<(const boost::shared_ptr<      Point>& lhs, const boost::shared_ptr<      Point>& rhs) = delete;
 bool operator<(const boost::shared_ptr<      Point>& lhs, const boost::shared_ptr<const Point>& rhs) = delete;
-
-std::ostream& operator<<(std::ostream& os, const Point& n);
 
 } //~namespace trim
 } //~namespace ribi

@@ -1,8 +1,8 @@
-#include "trianglemeshbuilder.h"
+#include "trianglemeshbuilderimpl.h"
 
 #include <sstream>
 
-std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamPout() const noexcept
+std::string ribi::trim::TriangleMeshBuilderImpl::CreateOpenFoamPout() const noexcept
 {
   std::stringstream s;
   s

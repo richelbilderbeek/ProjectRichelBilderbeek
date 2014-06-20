@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trianglemeshface.h"
 #include "trianglemeshpoint.h"
 #include "trianglefile.h"
-#include "trianglemeshcreatormaindialog.h"
+#include "trianglemeshdialog.h"
 #include "trianglemeshtemplate.h"
 #include "ui_qttrianglemeshcreatormaindialog.h"
 
@@ -48,7 +48,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTriangleMeshCreatorMainDialog)
+    ui(new Ui::QtTriangleMeshCreatorMainDialog),
+    m_dialog{}
 {
   #ifndef NDEBUG
   Test();
@@ -58,7 +59,6 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
   connect(ui->edit_wkt,SIGNAL(textChanged()),this,SLOT(DisplayPolygons()));
   connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
   connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
-
   on_edit_shapes_textChanged();
 }
 
@@ -71,21 +71,22 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
 {
   try
   {
-    const ribi::TriangleMeshCreatorMainDialog d(
+    m_dialog = boost::make_shared<ribi::trim::Dialog>(
+    //const ribi::trim::Dialog d(
       GetShapes(),
       GetNumberOfCellLayers(),
       GetLayerHeight(),
       GetCreateVerticalFacesStrategy(),
       GetTriangleMinAngle(),
       GetTriangleMaxArea(),
-      ribi::TriangleMeshCreatorMainDialog::CreateSculptFunctionRemoveRandom(GetFraction()),
-      ribi::TriangleMeshCreatorMainDialog::CreateDefaultAssignBoundaryFunction(),
-      ribi::TriangleMeshCreatorMainDialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+      ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(GetFraction()),
+      ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction(),
+      ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
       GetVerbose()
     );
     if (GetShowMesh())
     {
-      assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));
+      assert(ribi::fileio::FileIo().IsRegularFile(m_dialog->GetFilename()));
       std::stringstream s;
       s
         #ifdef _WIN32
@@ -93,7 +94,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
         #else
         << "meshlab "
         #endif
-        << d.GetFilename()
+        << m_dialog->GetFilename()
       ;
       const int error = std::system(s.str().c_str());
       if (error) std::cout << "WARNING: cannot display mesh" << '\n';
@@ -135,6 +136,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
 
 void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
 {
+  /*
   const bool verbose = GetVerbose();
   if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
 
@@ -203,6 +205,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
     ui->view_triangle_mesh->scene()->addItem(item);
   }
   fileio::FileIo().DeleteFile(filename);
+  */
 }
 
 double ribi::QtTriangleMeshCreatorMainDialog::GetFraction() const noexcept

@@ -22,9 +22,6 @@ ribi::trim::Point::Point(
   const int index,
   const PointFactory&
 ) :
-    #ifdef TRIANGLEMESH_USE_SIGNALS2
-    m_signal_destroyed{},
-    #endif
     m_connected{},
     m_coordinat(coordinat),
     m_index{index},
@@ -42,29 +39,14 @@ ribi::trim::Point::Point(
 
 ribi::trim::Point::~Point() noexcept
 {
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  m_signal_destroyed(this);
-  #endif
+
 }
 
-#ifdef TRIANGLEMESH_USE_SIGNALS2
-void ribi::trim::Point::AddConnected(const boost::shared_ptr<Face>& face)
-{
-  //assert(face.lock().get() != nullptr);
-  assert(face);
-  m_connected.push_back(face);
-
-  face->m_signal_destroyed.connect(
-    boost::bind(&ribi::trim::Point::OnFaceDestroyed,this,boost::lambda::_1)
-  );
-}
-#else
 void ribi::trim::Point::AddConnected(const boost::weak_ptr<Face>& face)
 {
   assert(face.lock().get() != nullptr);
   m_connected.push_back(face);
 }
-#endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
 ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcept
 {
@@ -99,15 +81,9 @@ const boost::units::quantity<boost::units::si::length> ribi::trim::Point::GetZ()
 void ribi::trim::Point::OnFaceDestroyed(const ribi::trim::Face * const face) noexcept
 {
   assert(1==2);
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  const auto new_end = std::remove_if(m_connected.begin(),m_connected.end(),
-    [face](const boost::shared_ptr<Face>& connected) { return connected.get() == face; }
-  );
-  #else
   const auto new_end = std::remove_if(m_connected.begin(),m_connected.end(),
     [face](const boost::weak_ptr<Face>& connected) { return connected.lock().get() == face; }
   );
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
   m_connected.erase(new_end,m_connected.end());
 }
 
@@ -147,13 +123,8 @@ void ribi::trim::Point::SetZ(const boost::units::quantity<boost::units::si::leng
   if (GetConnected().empty()) return;
   for (auto face: GetConnected())
   {
-    #ifdef TRIANGLEMESH_USE_SIGNALS2
-    assert(face);
-    face->CheckOrientation();
-    #else
     assert(face.lock());
     face.lock()->CheckOrientation();
-    #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
   }
   #endif
 }
@@ -194,18 +165,18 @@ std::string ribi::trim::Point::ToXml() const noexcept
   return s.str();
 }
 
-bool ribi::trim::operator==(const ribi::trim::Point& lhs, const ribi::trim::Point& rhs)
+bool ribi::trim::operator==(const ribi::trim::Point& lhs, const ribi::trim::Point& rhs) noexcept
 {
   return lhs.GetCoordinat() == rhs.GetCoordinat()
   ;
 }
 
-bool ribi::trim::operator!=(const ribi::trim::Point& lhs, const ribi::trim::Point& rhs)
+bool ribi::trim::operator!=(const ribi::trim::Point& lhs, const ribi::trim::Point& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::trim::operator<<(std::ostream& os, const Point& n)
+std::ostream& ribi::trim::operator<<(std::ostream& os, const Point& n) noexcept
 {
   using boost::geometry::get;
   const auto c = n.GetCoordinat3D();

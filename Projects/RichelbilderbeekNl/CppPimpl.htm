@@ -20,19 +20,23 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppPimpl.htm">Pimpl</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppPimpl.htm">Pimpl</a> is an abbreviation of '<a href="CppPointer.htm">pointer</a> to 
-<a href="CppImplementation.htm">implementation</a>'.</p>
+<p>
+  <a href="CppPimpl.htm">Pimpl</a> is an abbreviation of '<a href="CppPointer.htm">pointer</a> to 
+  <a href="CppImplementation.htm">implementation</a>'.
+</p>
 <p>&nbsp;</p>
-<p>The idea of the <a href="CppPimpl.htm">Pimpl</a> idiom is to give a <a href="CppClass.htm">class</a> (for
-example 'Lizard') an <a href="CppOpaquePointer.htm">opaque (smart) pointer</a>
-to the actual <a href="CppImplementation.htm">implementation</a> (for example 'LizardImpl'). The 
-<a href="CppOpaquePointer.htm">opaque (smart) pointer</a> enables it to do a 
-<a href="CppForwardDeclaration.htm">forward declaration</a> of the <a href="CppImplementation.htm">implementation</a>
-<a href="CppClass.htm">class</a> only, without the <a href="CppCompiler.htm">compiler</a> needing to know
-the actual <a href="CppDataType.htm">type</a>. This shortens build times [1]. All the 
-<a href="CppPublic.htm">public</a> <a href="CppMemberFunction.htm">member functions</a> of the <a href="CppPimpl.htm">Pimpl</a>
-<a href="CppClass.htm">class</a> will (often) call the <a href="CppMemberFunction.htm">member functions</a> of the 
-<a href="CppImplementation.htm">implementation</a> <a href="CppClass.htm">class</a> with the same name.</p>
+<p>
+  The idea of the <a href="CppPimpl.htm">Pimpl</a> idiom is to give a <a href="CppClass.htm">class</a> (for
+  example 'Lizard') an <a href="CppOpaquePointer.htm">opaque (smart) pointer</a>
+  to the actual <a href="CppImplementation.htm">implementation</a> (for example 'LizardImpl'). The 
+  <a href="CppOpaquePointer.htm">opaque (smart) pointer</a> enables it to do a 
+  <a href="CppForwardDeclaration.htm">forward declaration</a> of the <a href="CppImplementation.htm">implementation</a>
+  <a href="CppClass.htm">class</a> only, without the <a href="CppCompiler.htm">compiler</a> needing to know
+  the actual <a href="CppDataType.htm">type</a>. This shortens build times [1]. All the 
+  <a href="CppPublic.htm">public</a> <a href="CppMemberFunction.htm">member functions</a> of the <a href="CppPimpl.htm">Pimpl</a>
+  <a href="CppClass.htm">class</a> will (often) call the <a href="CppMemberFunction.htm">member functions</a> of the 
+  <a href="CppImplementation.htm">implementation</a> <a href="CppClass.htm">class</a> with the same name.
+</p>
 <p>&nbsp;</p>
 <p>The advantages of using the <a href="CppPimpl.htm">Pimpl</a> idiom are:</p>
 <ul>
@@ -49,16 +53,22 @@ an extra level of indirection, so <a href="CppPimpl.htm">Pimpl</a> judiciously [
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example</h2>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
-<p>Most lizards remain having the same gender for all their live. Therefore, it is a
-good idea to make a lizard's gender a const member variable. Problem is, that
-this makes a lizard class uncopyable. In this example I solve this by making a
-Lizard contain an opaque pointer to LizardImpl, where a LizardImpl does have a
-constant gender. Because I want to be able to do a <a href="CppShallowCopy.htm">shallow
-copy</a> on Lizards, I use a <a href="CppShared_ptr.htm">boost::shared_ptr</a>.
-Also note that the code is very similar to a <a href="CppDesignPatternStrategy.htm">Strategy</a>
-<a href="CppDesignPattern.htm">design pattern</a>.</p>
+<ul>
+  <li><a href="CppPimplExample1.htm">Pimpl example 1: basics</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>
+  Most lizards remain having the same gender for all their live. Therefore, it is a
+  good idea to make a lizard's gender a const member variable. Problem is, that
+  this makes a lizard class uncopyable. In this example I solve this by making a
+  Lizard contain an opaque pointer to LizardImpl, where a LizardImpl does have a
+  constant gender. Because I want to be able to do a <a href="CppShallowCopy.htm">shallow
+  copy</a> on Lizards, I use a <a href="CppShared_ptr.htm">boost::shared_ptr</a>.
+  Also note that the code is very similar to a <a href="CppDesignPatternStrategy.htm">Strategy</a>
+  <a href="CppDesignPattern.htm">design pattern</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

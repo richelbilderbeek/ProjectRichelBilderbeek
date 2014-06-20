@@ -20,8 +20,14 @@
 namespace ribi {
 namespace trim {
 
-struct FaceFactory
+class FaceFactory
 {
+  //friend class Dialog;
+  friend class CellFactory;
+  friend class CellsCreator;
+  friend class Face;
+  friend class Template;
+
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
   FaceFactory();
@@ -77,7 +83,9 @@ struct FaceFactory
   The front planes are 'a' and 'b', where 'a' has two nodes at the base
 
   */
-  std::vector<boost::shared_ptr<Face>> CreateTestPrism(const CreateVerticalFacesStrategy strategy) const noexcept;
+  std::vector<boost::shared_ptr<Face>> CreateTestPrism(
+    const CreateVerticalFacesStrategy strategy
+  ) const noexcept;
 
   boost::shared_ptr<Face> CreateTestSquare(const Winding winding) const noexcept;
 

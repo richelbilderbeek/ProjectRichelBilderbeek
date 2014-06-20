@@ -2,7 +2,6 @@
 #define RIBI_TRIANGLEMESHCELLFACTORY_H
 
 #include <iosfwd>
-//#include <set>
 #include <vector>
 
 #pragma GCC diagnostic push
@@ -19,8 +18,13 @@ namespace ribi {
 namespace trim {
 
 ///The only class to use Cell its constructor
-struct CellFactory
+//It has no state, so Pimpl is unnecessary
+class CellFactory
 {
+  //friend class Dialog;
+  friend class Cell;
+  friend class CellsCreator;
+
   CellFactory();
 
   boost::shared_ptr<Cell> Create(
@@ -41,7 +45,9 @@ struct CellFactory
     +---+
 
   */
-  boost::shared_ptr<Cell> CreateTestPrism(const CreateVerticalFacesStrategy strategy) const noexcept;
+  boost::shared_ptr<Cell> CreateTestPrism(
+    const CreateVerticalFacesStrategy strategy
+  ) const noexcept;
 
 
   ///Create two prims-shaped cell to form a cube
@@ -56,9 +62,12 @@ struct CellFactory
     +---+
 
   */
-  std::vector<boost::shared_ptr<Cell>> CreateTestCube(const CreateVerticalFacesStrategy strategy) const noexcept;
+  std::vector<boost::shared_ptr<Cell>> CreateTestCube(
+    const CreateVerticalFacesStrategy strategy
+  ) const noexcept;
 
 
+  private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

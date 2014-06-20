@@ -389,7 +389,7 @@ bool ribi::trim::operator!=(const ribi::trim::Face& lhs, const ribi::trim::Face&
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Face& f)
+std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Face& f) noexcept
 {
   os
     << ribi::xml::ToXml("face_index",f.GetIndex())

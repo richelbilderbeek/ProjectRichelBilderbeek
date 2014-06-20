@@ -20,8 +20,13 @@ namespace trim {
 ///It constructs itself from a TemplateFile its output (.node and .ele) files
 ///
 ///The next step will be to create a multiple layers of Cells by CellsCreator
-struct Template
+class Template
 {
+  friend class CellsCreator;
+  friend class CellsCreatorFactory;
+  friend class CellFactory;
+  friend class Dialog;
+
   typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
 
   Template(
@@ -32,7 +37,7 @@ struct Template
   int CountFaces() const noexcept { return static_cast<int>(m_faces.size() ); }
   int CountNodes() const noexcept { return static_cast<int>(m_points.size()); }
 
-  static const boost::shared_ptr<Template> CreateTest(const int i) noexcept;
+  static boost::shared_ptr<Template> CreateTest(const int i) noexcept;
 
   const std::vector<std::pair<int,int>>& GetEdges() const noexcept { return m_edges; }
   const std::vector<boost::shared_ptr<Face>>& GetFaces() const noexcept { return m_faces; }
@@ -61,10 +66,10 @@ struct Template
   //No idea why Triangle started using the Dutch numbering system...
   static std::string ConvertNumbersToEnglish(const std::string& s) noexcept;
 
-  static const boost::shared_ptr<Template> CreateTest2x3() noexcept;
-  static const boost::shared_ptr<Template> CreateTest3x3() noexcept;
-  static const boost::shared_ptr<Template> CreateTestSquare2x2() noexcept;
-  static const boost::shared_ptr<Template> CreateTestTriangle2x2() noexcept;
+  static boost::shared_ptr<Template> CreateTest2x3() noexcept;
+  static boost::shared_ptr<Template> CreateTest3x3() noexcept;
+  static boost::shared_ptr<Template> CreateTestSquare2x2() noexcept;
+  static boost::shared_ptr<Template> CreateTestTriangle2x2() noexcept;
 
   static std::vector<std::string> CleanAndSplitString(
     const std::string& input) noexcept;

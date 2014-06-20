@@ -1,8 +1,8 @@
-#include "trianglemeshbuilder.h"
+#include "trianglemeshbuilderimpl.h"
 
 #include <sstream>
 
-std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamK() const noexcept
+std::string ribi::trim::TriangleMeshBuilderImpl::CreateOpenFoamMut() const noexcept
 {
   std::stringstream s;
   s
@@ -12,10 +12,10 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamK() const noexcept
     << "    format      ascii;\n"
     << "    class       volScalarField;\n"
     << "    location    \"0\";\n"
-    << "    object      k;\n"
+    << "    object      mut;\n"
     << "}\n"
     << "\n"
-    << "dimensions      [ 0 2 -2 0 0 0 0 ];\n"
+    << "dimensions      [ 1 -1 -1 0 0 0 0 ];\n"
     << "\n"
     << "internalField   uniform 0;\n"
     << "\n"
@@ -38,12 +38,12 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamK() const noexcept
     << "\n"
     << "    	side_CCW\n"
     << "    	{\n"
-    << "       		type		zeroGradient;\n"
+    << "        	type		zeroGradient;\n"
     << "    	}\n"
     << "\n"
     << "    	defaultFaces\n"
     << "    	{\n"
-    << "       		type		compressible::kqRWallFunction;\n"
+    << "        	type		mutkWallFunction;\n"
     << "        	value		uniform 0;\n"
     << "    	}\n"
     << "}\n"

@@ -18,21 +18,17 @@
 namespace ribi {
 namespace trim {
 
-struct PointFactory
+class PointFactory
 {
+  friend class CellsCreator;
+  friend class Face;
+  friend class FaceFactory;
+  friend class Helper;
+  friend class Template;
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
   PointFactory();
-
-  #ifndef NDEBUG
-  /*
-  ///Create a Point with an undetermined Z coordinat
-  const boost::shared_ptr<Point> CreateFromXy(
-    const double x, const double y
-  ) const noexcept;
-  */
-  #endif
 
   ///This way is used in mesh creation: every 3D point shares the same
   ///ConstCoordinat2D
@@ -40,11 +36,6 @@ struct PointFactory
   boost::shared_ptr<Point> Create(
     const boost::shared_ptr<const Coordinat2D> coordinat
   ) const noexcept;
-
-  //boost::shared_ptr<Point> CreateFrom3D(
-  //  const boost::shared_ptr<const Coordinat3D> coordinat
-  //) const noexcept;
-
 
   //Create points that should fail to construct a Face from
   std::vector<boost::shared_ptr<Point>> CreateTestInvalid() const noexcept;

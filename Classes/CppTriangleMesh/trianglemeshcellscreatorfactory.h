@@ -21,8 +21,12 @@ namespace ribi {
 namespace trim {
 
 ///The only class to use Cell its constructor
-struct CellsCreatorFactory
+class CellsCreatorFactory
 {
+  friend class CellFactory;
+  friend class CellsCreator;
+  friend class Dialog;
+
   CellsCreatorFactory() noexcept;
 
   boost::shared_ptr<CellsCreator> Create(
