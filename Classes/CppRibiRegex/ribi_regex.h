@@ -59,6 +59,9 @@ struct Regex
   std::string GetRegexPolygon() const noexcept;
   std::string GetRegexShapes() const noexcept;
 
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
   bool IsValidXpressive(const std::string& regex_str) const noexcept;
   bool IsValid(const std::string& regex_str) const noexcept { return IsValidXpressive(regex_str); }
 

@@ -25,9 +25,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 #include "widget.h"
+#pragma GCC diagnostic pop
+
 
 namespace ribi {
 
@@ -49,7 +50,7 @@ struct LedWidget : public Widget
   );
   LedWidget(const LedWidget&) = delete;
   LedWidget& operator=(const LedWidget&) = delete;
-  ~LedWidget() noexcept {}
+  ~LedWidget() noexcept;
 
   ///Obtain a read-only pointer to Led
   const Led * GetLed() const noexcept { return m_led.get(); }

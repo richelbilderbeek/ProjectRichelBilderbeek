@@ -42,6 +42,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "plane.h"
 #include "polyfile.h"
 #include "polyfilefrompolygons.h"
+#include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "trianglefile.h"
@@ -313,55 +314,6 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   }
 
   const auto shapes = Geometry().WktToShapes(wkt);
-  /*
-  //Polygons
-  if (!std::count(args.begin(),args.end(),"-p")
-    && !std::count(args.begin(),args.end(),"--polygon")
-    && !std::count(args.begin(),args.end(),"--polygons")
-  )
-  {
-    std::cerr << "Parameter for polygons missing" << '\n';
-    return 1;
-  }
-
-  std::vector<Polygon> polygons;
-  for (int i=0; i!=argc-1; ++i)
-  {
-    if (args[i] == "-p" || args[i] == "--polygon" || args[i] == "--polygons")
-    {
-      const std::string text = args[i+1];
-      if (verbose) { std::cout << "Parsing polygons '" << text << "'" << std::endl; }
-      const QRegExp regex(GetPolygonRegex().c_str());
-      //const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(GetPolygonRegex());
-      const std::vector<std::string> lines = GetRegexMatches(text,regex);
-      for (const std::string& line: lines)
-      {
-        if (verbose) { std::cout << "Parsing polygon '" << line << "'" << std::endl; }
-        Polygon polygon;
-        try
-        {
-          boost::geometry::read_wkt(line,polygon);
-          polygons.push_back(polygon);
-        }
-        catch (boost::geometry::read_wkt_exception& e)
-        {
-          //No problem
-        }
-      }
-    }
-  }
-  if (polygons.empty())
-  {
-    std::cerr << "Please supply a value for polygon, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl;
-    return 1;
-
-  }
-  if (verbose)
-  {
-    std::cout << "Number of polygons: " << polygons.size() << std::endl;
-    std::cout << "Polygons (as SVG text): " << Geometry().ToSvgStr(polygons) << std::endl;
-  }
-  */
 
   //Fraction
   if (!std::count(args.begin(),args.end(),"-f") && !std::count(args.begin(),args.end(),"--fraction"))
@@ -470,17 +422,10 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("ribi::foam::Mesh version: " + ribi::foam::Mesh::GetVersion());
-  const std::unique_ptr<Plane> plane(
-    new Plane(
-      Plane::Coordinat3D(0.0,0.0,0.0),
-      Plane::Coordinat3D(1.0,0.0,0.0),
-      Plane::Coordinat3D(0.0,1.0,0.0)
-    )
-  );
-  assert(plane);
-  a.AddLibrary("Plane version: " + plane->GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
+  a.AddLibrary("ribi::Regex version: " + ribi::Regex::GetVersion());
   a.AddLibrary("Triangle version 1.6, by Jonathan Richard Shewchuk (http://www.cs.cmu.edu/~quake/triangle.html)");
   a.AddLibrary("TriangleFile version: " + TriangleFile::GetVersion());
   //a.AddLibrary("TriangleMesh version: " + TriangleMesh::GetVersion());
@@ -510,15 +455,6 @@ ribi::Help ribi::TriangleMeshCreatorMenuDialog::GetHelp() const noexcept
   );
 }
 
-/*
-std::string ribi::TriangleMeshCreatorMenuDialog::GetPolygonRegex()
-{
-  return
-    "(POLYGON\\(\\(.*\\)\\))"
-  ;
-}
-*/
-
 boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
@@ -527,29 +463,6 @@ boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetP
   assert(p);
   return p;
 }
-
-//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-/*
-std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetRegexMatches(
-  const std::string& s,
-  const QRegExp& r_original
-) noexcept
-{
-  QRegExp r(r_original);
-  r.setMinimal(true); //QRegExp must be non-greedy
-  std::vector<std::string> v;
-  int pos = 0;
-  while ((pos = r.indexIn(s.c_str(), pos)) != -1)
-  {
-    const QString q = r.cap(1);
-    if (q.isEmpty()) break;
-    v.push_back(q.toStdString());
-    pos += r.matchedLength();
-  }
-
-  return v;
-}
-*/
 
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
@@ -581,20 +494,6 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleMeshCreatorMenuDialog::Test");
-  /*
-  {
-    const QRegExp regex(GetPolygonRegex().c_str());
-    const std::vector<std::string> lines
-      = GetRegexMatches("POLYGON((0 0,0 1,1 0,1 1)),POLYGON((0 0,0 1,1 0,1 1))",regex);
-    if (lines.size() != 2)
-    {
-      TRACE("ERROR");
-      TRACE(lines.size());
-      for (const auto line: lines) { TRACE(line); }
-    }
-    assert(lines.size() == 2);
-  }
-  */
   {
     TriangleMeshCreatorMenuDialog d;
     d.Execute( {"TriangleMeshCreator", "--help" } );

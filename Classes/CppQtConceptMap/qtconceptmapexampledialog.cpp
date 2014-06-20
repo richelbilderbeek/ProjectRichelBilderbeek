@@ -79,11 +79,11 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
     s << "Setting example '" << example->ToStr() << "'\n";
   }
 
-  const Competency competency_after = example->GetCompetency();
-  const bool is_complex_after = example->GetIsComplex();
-  const bool is_concrete_after = example->GetIsConcrete();
-  const bool is_specific_after = example->GetIsSpecific();
-  const std::string text_after = example->GetText();
+  const auto competency_after  = example->GetCompetency();
+  const auto is_complex_after  = example->GetIsComplex();
+  const auto is_concrete_after = example->GetIsConcrete();
+  const auto is_specific_after = example->GetIsSpecific();
+  const auto text_after        = example->GetText();
 
 
   bool competency_changed  = true;
@@ -94,11 +94,11 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
 
   if (m_example)
   {
-    const Competency competency_before = m_example->GetCompetency();
-    const bool is_complex_before = m_example->GetIsComplex();
-    const bool is_concrete_before = m_example->GetIsConcrete();
-    const bool is_specific_before = m_example->GetIsSpecific();
-    const std::string text_before = m_example->GetText();
+    const auto competency_before  = m_example->GetCompetency();
+    const auto is_complex_before  = m_example->GetIsComplex();
+    const auto is_concrete_before = m_example->GetIsConcrete();
+    const auto is_specific_before = m_example->GetIsSpecific();
+    const auto text_before        = m_example->GetText();
 
     competency_changed  = competency_before != competency_after;
     is_complex_changed  = is_complex_before != is_complex_after;

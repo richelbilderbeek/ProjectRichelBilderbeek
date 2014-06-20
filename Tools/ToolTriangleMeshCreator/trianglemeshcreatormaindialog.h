@@ -39,6 +39,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+struct TriangleFile;
+
 namespace trim { struct Cell; }
 
 struct TriangleMeshCreatorMainDialog
@@ -88,6 +90,7 @@ struct TriangleMeshCreatorMainDialog
   const std::string m_filename_result_mesh;
   int m_n_cells;
   int m_n_faces;
+  boost::shared_ptr<TriangleFile> m_triangle_file;
 
   #ifndef NDEBUG
   static void Test() noexcept;

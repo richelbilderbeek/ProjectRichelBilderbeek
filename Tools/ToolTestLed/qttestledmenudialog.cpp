@@ -1,11 +1,16 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "testledmenudialog.h"
 
 #include "about.h"
 #include "qtaboutdialog.h"
+#include "qtled.h"
+#include "qtleddialog.h"
 #include "qtledwidget.h"
-#include "qttestledmaindialog.h"
+#include "qttestledcomparedialog.h"
+#include "qttestledmodifydialog.h"
 #include "qttestledmenudialog.h"
 #include "ui_qttestledmenudialog.h"
 #pragma GCC diagnostic pop
@@ -25,15 +30,23 @@ ribi::QtTestLedMenuDialog::~QtTestLedMenuDialog() noexcept
   delete ui;
 }
 
-void ribi::QtTestLedMenuDialog::on_button_start_clicked() noexcept
+void ribi::QtTestLedMenuDialog::on_button_led_compare_clicked() noexcept
 {
-  QtTestLedMainDialog d;
+  QtTestLedCompareDialog d;
+  this->ShowChild(&d);
+}
+
+void ribi::QtTestLedMenuDialog::on_button_led_modify_clicked() noexcept
+{
+  QtTestLedModifyDialog d;
   this->ShowChild(&d);
 }
 
 void ribi::QtTestLedMenuDialog::on_button_about_clicked() noexcept
 {
   About a = TestLedMenuDialog().GetAbout();
+  a.AddLibrary("QtLed version: " + QtLed::GetVersion());
+  a.AddLibrary("QtLedDialog version: " + QtLedDialog::GetVersion());
   a.AddLibrary("QtLedWidget version: " + QtLedWidget::GetVersion());
   QtAboutDialog d(a);
   this->ShowChild(&d);
@@ -52,8 +65,7 @@ void ribi::QtTestLedMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  {
-    QtTestLedMainDialog d;
-  }
+  QtTestLedCompareDialog();
+  QtTestLedModifyDialog();
 }
 #endif

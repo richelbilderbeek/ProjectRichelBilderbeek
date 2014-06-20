@@ -23,6 +23,8 @@ struct PolyFileFromPolygons;
 
 ///TriangleFile allows for conversion between multiple polygons
 ///  and Triangle output files
+///The following steps are taken:
+/// - Convert the shapes to WKT
 ///
 ///TriangleFile can then call ExecuteTriangle on itself
 ///to create a triangulated 2D mesh in the form of a .ele, .node and poly file
@@ -39,11 +41,6 @@ struct TriangleFile
   typedef std::vector<Linestring> Linestrings;
   typedef std::vector<Polygon> Polygons;
   typedef std::pair<Polygons,Linestrings> Shapes;
-
-  ///Start from .poly file
-  //TriangleFile(
-  //  const std::string& polyfile
-  //) : TriangleFile(ParseShapes(polyfile),ParseHoles(polyfile)) { }
 
   ///Start from polygons
   TriangleFile(const Polygons& polygons, const Linestrings& linestrings);
@@ -91,8 +88,7 @@ struct TriangleFile
     const bool verbose = false
   ) const;
 
-  //const Polygons& GetHoles()  const noexcept { return m_holes; }
-  const Polygons& GetShapes() const noexcept ; //{ return m_shapes; }
+  const Polygons& GetShapes() const noexcept;
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -100,9 +96,7 @@ struct TriangleFile
   std::string ToStr() const noexcept;
 
   private:
-  //const Polygons m_holes;
   boost::shared_ptr<PolyFileFromPolygons> m_polyfile;
-  //const Polygons m_shapes;
 
   static std::pair<int,char **> CreateArgv(const std::vector<std::string>& v) noexcept;
   static void DeleteArgv(const std::pair<int,char **>& p) noexcept;

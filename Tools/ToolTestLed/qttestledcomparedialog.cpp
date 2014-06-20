@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qttestledmaindialog.h"
+#include "qttestledcomparedialog.h"
 
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -31,30 +31,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testledmenudialog.h"
 #include "textcanvas.h"
 #include "trace.h"
-#include "ui_qttestledmaindialog.h"
+#include "ui_qttestledcomparedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestLedMainDialog::QtTestLedMainDialog(QWidget *parent) noexcept
+ribi::QtTestLedCompareDialog::QtTestLedCompareDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestLedMainDialog)
+    ui(new Ui::QtTestLedCompareDialog)
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
-  ui->led_left->GetWidget()->GetLed()->SetColor(  0,  64,128);
-  ui->led_mid->GetWidget()->GetLed()->SetColor(  64, 128,196);
-  ui->led_right->GetWidget()->GetLed()->SetColor(128,196,255);
+  //ui->led_left->GetWidget()->GetLed()->SetColor(  0,  64,128);
+  //ui->led_mid->GetWidget()->GetLed()->SetColor(  64, 128,196);
+  //ui->led_right->GetWidget()->GetLed()->SetColor(128,196,255);
 }
 
-ribi::QtTestLedMainDialog::~QtTestLedMainDialog() noexcept
+ribi::QtTestLedCompareDialog::~QtTestLedCompareDialog() noexcept
 {
   delete ui;
 }
 
 
-void ribi::QtTestLedMainDialog::on_slider_valueChanged(int value) noexcept
+void ribi::QtTestLedCompareDialog::on_slider_valueChanged(int /* value */) noexcept
 {
+  /*
   const double intensity = boost::numeric_cast<double>(value)
     / boost::numeric_cast<double>(ui->slider->maximum());
 
@@ -72,18 +73,19 @@ void ribi::QtTestLedMainDialog::on_slider_valueChanged(int value) noexcept
     }
     texts[i]->setPlainText(s.c_str());
   }
+  */
 }
 
 #ifndef NDEBUG
-void ribi::QtTestLedMainDialog::Test() noexcept
+void ribi::QtTestLedCompareDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestLedMainDialog::Test");
-  QtTestLedMainDialog();
-  TRACE("Finished ribi::QtTestLedMainDialog::Test successfully");
+  TRACE("Starting ribi::QtTestLedCompareDialog::Test");
+  QtTestLedCompareDialog();
+  TRACE("Finished ribi::QtTestLedCompareDialog::Test successfully");
 }
 #endif

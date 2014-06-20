@@ -49,6 +49,11 @@ ribi::LedWidget::LedWidget(
   this->SetGeometry(x,y,width,height);
 }
 
+ribi::LedWidget::~LedWidget() noexcept
+{
+  //OK
+}
+
 std::string ribi::LedWidget::GetVersion() noexcept
 {
   return "1.4";

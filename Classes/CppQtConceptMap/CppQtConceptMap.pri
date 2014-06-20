@@ -30,7 +30,7 @@ SOURCES += \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp \
+#    ../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmap_test_qteditconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmap_test_qtrateconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmap.cpp \

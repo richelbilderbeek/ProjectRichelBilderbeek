@@ -7,7 +7,6 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
-
 #include "polyfile.h"
 #pragma GCC diagnostic pop
 

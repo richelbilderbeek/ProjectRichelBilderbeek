@@ -121,8 +121,8 @@ struct Plane
   ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients,
   std::vector<double> GetCoefficientsZ() const;
 
-  std::string GetVersion() const noexcept;
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Checks if the coordinat is in the plane
   bool IsInPlane(const Coordinat3D& coordinat) const noexcept;

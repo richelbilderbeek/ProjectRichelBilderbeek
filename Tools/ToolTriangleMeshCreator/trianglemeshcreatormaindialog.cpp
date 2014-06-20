@@ -70,7 +70,8 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
 )
   : m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply")),
     m_n_cells{0},
-    m_n_faces{0}
+    m_n_faces{0},
+    m_triangle_file{}
 {
   
   #ifndef NDEBUG
@@ -83,8 +84,8 @@ ribi::TriangleMeshCreatorMainDialog::TriangleMeshCreatorMainDialog(
   std::string filename_poly;
   try
   {
-    ribi::TriangleFile f(shapes);
-    f.ExecuteTriangleExe(
+    m_triangle_file = boost::make_shared<TriangleFile>(shapes);
+    m_triangle_file->ExecuteTriangleExe(
       filename_node,
       filename_ele,
       filename_poly,

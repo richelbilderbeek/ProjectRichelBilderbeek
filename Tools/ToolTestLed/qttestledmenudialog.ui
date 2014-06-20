@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>527</width>
-    <height>719</height>
+    <width>185</width>
+    <height>224</height>
    </rect>
   </property>
   <property name="font">
@@ -16,80 +16,39 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>TestDial</string>
+   <string>TestLed</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/ToolTestDial/images/R.png</normaloff>:/ToolTestDial/images/R.png</iconset>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label_title">
-     <property name="font">
-      <font>
-       <pointsize>36</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="button_led_modify">
      <property name="text">
-      <string>TestLed</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>&amp;Modify LED</string>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QLabel" name="label_subtitle">
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="button_led_compare">
      <property name="text">
-      <string>Tool to test the Led and LedWidget classes</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>&amp;View LEDs</string>
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="ToolTestLed.qrc">:/ToolTestLed/images/ToolTestLedWelcome.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_start">
-     <property name="text">
-      <string>Start</string>
-     </property>
-    </widget>
-   </item>
-   <item>
+   <item row="2" column="0">
     <widget class="QPushButton" name="button_about">
      <property name="text">
-      <string>About</string>
+      <string>&amp;About</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="3" column="0">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
-      <string>Quit</string>
+      <string>&amp;Quit</string>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="ToolTestLed.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

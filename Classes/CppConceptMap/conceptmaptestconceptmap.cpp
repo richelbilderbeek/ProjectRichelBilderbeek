@@ -28,10 +28,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <set>
 #include <iterator>
 
-#ifdef MXE_SUPPORTS_THREADS
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 
 #include <QRegExp>
@@ -62,18 +58,13 @@ void ribi::cmap::ConceptMap::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("Started ribi::cmap::ConceptMap::Test");
   const bool trace_verbose = false;
   typedef std::vector<boost::shared_ptr<Node> > Nodes;
 
   if (trace_verbose) { TRACE("operator==, DeepCopy"); }
   {
-    const std::vector<boost::shared_ptr<const ConceptMap> > v = AddConst(ConceptMapFactory::GetAllTests());
+    const std::vector<boost::shared_ptr<const ConceptMap>> v = AddConst(ConceptMapFactory::GetAllTests());
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<const ConceptMap> m)
       {
@@ -622,10 +613,5 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
   }
   TRACE("ConceptMap::Test finished successfully");
-  #ifdef MXE_SUPPORTS_THREADS
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif

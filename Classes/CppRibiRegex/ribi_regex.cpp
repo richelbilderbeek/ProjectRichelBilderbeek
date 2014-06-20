@@ -101,6 +101,18 @@ std::string ribi::Regex::GetRegexShapes() const noexcept
   return R"((POLYGON\(\(.*?\)\))|(LINESTRING\(.*?\)))";
 }
 
+std::string ribi::Regex::GetVersion() noexcept
+{
+  return "1.0";
+}
+
+std::vector<std::string> ribi::Regex::GetVersionHistory() noexcept
+{
+  return {
+    "2014-06-19: Version 1.0: initial version"
+  };
+}
+
 bool ribi::Regex::IsValidXpressive(const std::string& regex_str) const noexcept
 {
   try

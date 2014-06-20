@@ -3,6 +3,8 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
@@ -23,7 +25,8 @@ public:
   ~QtTestLedMenuDialog() noexcept;
 
 private slots:
-  void on_button_start_clicked() noexcept;
+  void on_button_led_compare_clicked() noexcept;
+  void on_button_led_modify_clicked() noexcept;
   void on_button_about_clicked() noexcept;
   void on_button_quit_clicked() noexcept;
 

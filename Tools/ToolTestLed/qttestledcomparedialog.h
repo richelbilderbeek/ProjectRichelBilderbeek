@@ -18,36 +18,38 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestLed.htm
 //---------------------------------------------------------------------------
-#ifndef QTTESTLEDDIALOG_H
-#define QTTESTLEDDIALOG_H
+#ifndef QTTESTLEDCOMPAREDIALOG_H
+#define QTTESTLEDCOMPAREDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestLedMainDialog;
+  class QtTestLedCompareDialog;
 }
 
 
 namespace ribi {
 
-class QtTestLedMainDialog : public QtHideAndShowDialog
+class QtTestLedCompareDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestLedMainDialog(QWidget *parent = 0) noexcept;
-  QtTestLedMainDialog(const QtTestLedMainDialog&) = delete;
-  QtTestLedMainDialog& operator=(const QtTestLedMainDialog&) = delete;
-  ~QtTestLedMainDialog() noexcept;
+  explicit QtTestLedCompareDialog(QWidget *parent = 0) noexcept;
+  QtTestLedCompareDialog(const QtTestLedCompareDialog&) = delete;
+  QtTestLedCompareDialog& operator=(const QtTestLedCompareDialog&) = delete;
+  ~QtTestLedCompareDialog() noexcept;
 
 protected:
   
 
 private:
-  Ui::QtTestLedMainDialog *ui;
+  Ui::QtTestLedCompareDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -59,4 +61,4 @@ private slots:
 
 } //~namespace ribi
 
-#endif // QTTESTLEDDIALOG_H
+#endif // QTTESTLEDCOMPAREDIALOG_H

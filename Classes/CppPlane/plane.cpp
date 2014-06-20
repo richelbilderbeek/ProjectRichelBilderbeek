@@ -292,12 +292,12 @@ std::vector<double> ribi::Plane::GetCoefficientsZ() const
 }
 
 
-std::string ribi::Plane::GetVersion() const noexcept
+std::string ribi::Plane::GetVersion() noexcept
 {
   return "1.5";
 }
 
-std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 {
   return {
     "2014-03-07: version 1.0: initial version",

@@ -163,11 +163,3 @@ ribi::PolyFile::Vertices ribi::PolyFileFromPolygons::ToVertices(
   }
   return v;
 }
-
-/*
-std::ostream& ribi::operator<<(std::ostream& os, const PolyFileFromPolygons& polyfile) noexcept
-{
-  os << polyfile.GetPolyFile();
-  return os;
-}
-*/
