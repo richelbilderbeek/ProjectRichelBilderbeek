@@ -144,7 +144,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
   {
     //Obtain the <nodes> ... </nodes> strings
     const std::vector<std::string> w
-      = Regex().GetRegexMatches(concept_map_str,("(<nodes>.*</nodes>)"));
+      = Regex().GetRegexMatches(concept_map_str,Regex().GetRegexNodes());
     assert(w.size() == 1);
     //Strip the <nodes> tags
     const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
@@ -152,7 +152,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
     //CenterNode
     {
       const std::vector<std::string> x
-        = Regex().GetRegexMatches(nodes_str,("(<center_node>.*</center_node>)"));
+        = Regex().GetRegexMatches(nodes_str,Regex().GetRegexCenterNode());
       assert(x.empty() || x.size() == 1);
       std::for_each(x.begin(),x.end(),
         [&nodes](const std::string& s)
@@ -168,7 +168,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
     //Regular nodes
     {
       const std::vector<std::string> x
-        = Regex().GetRegexMatches(nodes_str,("(<node>.*</node>)"));
+        = Regex().GetRegexMatches(nodes_str,Regex().GetRegexNode());
       std::for_each(x.begin(),x.end(),
         [&nodes](const std::string& s)
         {
@@ -199,13 +199,13 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml
   {
     //Obtain the <edges> ... </edges> strings
     const std::vector<std::string> w
-      = Regex().GetRegexMatches(concept_map_str,("(<edges>.*</edges>)"));
+      = Regex().GetRegexMatches(concept_map_str,Regex().GetRegexEdges());
     assert(w.size() == 1);
     //Strip the <edges> tags
     const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
     //Obtain the <edge> ... </edge> strings
     const std::vector<std::string> x
-      = Regex().GetRegexMatches(nodes_str,("(<edge>.*</edge>)"));
+      = Regex().GetRegexMatches(nodes_str,Regex().GetRegexEdge());
     for (const std::string& s: x)
     {
       const boost::shared_ptr<Edge> edge {

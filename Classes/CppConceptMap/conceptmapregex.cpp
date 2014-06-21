@@ -12,6 +12,12 @@ ribi::cmap::Regex::Regex()
   #endif
 }
 
+std::string ribi::cmap::Regex::GetRegexCenterNode() const noexcept
+{
+  return "(<center_node>.*?</center_node>)";
+}
+
+
 std::string ribi::cmap::Regex::GetRegexCompetency() const noexcept
 {
   return "(<competency>.*?</competency>)";
@@ -35,6 +41,16 @@ std::string ribi::cmap::Regex::GetRegexConceptIsComplex() const noexcept
 std::string ribi::cmap::Regex::GetRegexConcreteness() const noexcept
 {
   return "(<concreteness>.*?</concreteness>)";
+}
+
+std::string ribi::cmap::Regex::GetRegexEdge() const noexcept
+{
+  return "(<edge>.*?</edge>)";
+}
+
+std::string ribi::cmap::Regex::GetRegexEdges() const noexcept
+{
+  return "(<edges>.*?</edges>)";
 }
 
 std::string ribi::cmap::Regex::GetRegexExample() const noexcept
@@ -76,6 +92,18 @@ std::string ribi::cmap::Regex::GetRegexName() const noexcept
 {
   return "(<name>.*?</name>)";
 }
+
+std::string ribi::cmap::Regex::GetRegexNode() const noexcept
+{
+  return "(<node>.*?</node>)";
+}
+
+std::string ribi::cmap::Regex::GetRegexNodes() const noexcept
+{
+  return "(<nodes>.*?</nodes>)";
+}
+
+
 
 std::string ribi::cmap::Regex::GetRegexSpecificity() const noexcept
 {

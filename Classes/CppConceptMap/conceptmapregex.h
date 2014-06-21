@@ -18,11 +18,14 @@ struct Regex
 {
   Regex();
 
+  std::string GetRegexCenterNode() const noexcept;
   std::string GetRegexCompetency() const noexcept;
   std::string GetRegexComplexity() const noexcept;
   std::string GetRegexConcept() const noexcept;
   std::string GetRegexConceptIsComplex() const noexcept;
   std::string GetRegexConcreteness() const noexcept;
+  std::string GetRegexEdge() const noexcept;
+  std::string GetRegexEdges() const noexcept;
   std::string GetRegexExample() const noexcept;
   std::string GetRegexExamples() const noexcept;
   std::string GetRegexFrom() const noexcept;
@@ -31,6 +34,8 @@ struct Regex
   std::string GetRegexIsConcrete() const noexcept;
   std::string GetRegexIsSpecific() const noexcept;
   std::string GetRegexName() const noexcept;
+  std::string GetRegexNode() const noexcept;
+  std::string GetRegexNodes() const noexcept;
   std::string GetRegexSpecificity() const noexcept;
   std::string GetRegexTailArrow() const noexcept;
   std::string GetRegexText() const noexcept;
