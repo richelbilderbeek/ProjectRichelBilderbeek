@@ -85,7 +85,7 @@ std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competen
 
 void ribi::cmap::Example::SetCompetency(const cmap::Competency competency) noexcept
 {
-  const bool verbose = true;
+  const bool verbose = false;
   const Competency competency_before = m_competency;
   const Competency competency_after  =   competency;
   if (competency_before != competency_after)

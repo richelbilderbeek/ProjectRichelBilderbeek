@@ -61,7 +61,7 @@ ribi::cmap::QtExamplesDialog::~QtExamplesDialog()
 
 void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcept
 {
-  const bool verbose = true;
+  const bool verbose = false;
   const int minimum_height_example = 166;
 
   //if (examples == m_examples.get()) return; //Will allways be true
@@ -130,7 +130,6 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
   this->setMinimumHeight((minimum_height_example + 16) * static_cast<int>(m_dialogs.size()));
 
   const int n = static_cast<int>(m_dialogs.size());
-  TRACE(n);
   for (int i=0; i!=n; ++i)
   {
     assert(m_dialogs[i]);
@@ -151,7 +150,7 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
 
 void ribi::cmap::QtExamplesDialog::SetExamples(const boost::shared_ptr<Examples>& examples)
 {
-  //const bool verbose = true;
+  //const bool verbose = false;
   assert(examples);
 
   if (m_examples == examples) return;

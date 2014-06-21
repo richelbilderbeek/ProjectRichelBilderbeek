@@ -64,7 +64,7 @@ ribi::cmap::QtNodeDialog::~QtNodeDialog()
 
 void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node)
 {
-  const bool verbose = true;
+  const bool verbose = false;
 
   assert(node);
   if (m_node == node)
@@ -174,7 +174,7 @@ void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node)
 
 void ribi::cmap::QtNodeDialog::OnConceptChanged(Node * const node)
 {
-  const bool verbose = true;
+  const bool verbose = false;
   assert(node);
 
   const auto concept_before = m_qtconceptdialog->GetConcept();

@@ -69,7 +69,7 @@ ribi::cmap::QtConceptDialog::~QtConceptDialog()
 
 void ribi::cmap::QtConceptDialog::SetConcept(const boost::shared_ptr<Concept>& concept)
 {
-  const bool verbose = true;
+  const bool verbose = false;
 
   assert(concept);
   if (m_concept == concept)
@@ -246,7 +246,7 @@ void ribi::cmap::QtConceptDialog::SetConcept(const boost::shared_ptr<Concept>& c
 
 void ribi::cmap::QtConceptDialog::OnExamplesChanged(Concept * const concept)
 {
-  const bool verbose = true;
+  const bool verbose = false;
   assert(concept);
 
   const auto examples_before = m_qtexamplesdialog->GetExamples();
@@ -320,7 +320,7 @@ void ribi::cmap::QtConceptDialog::Test() noexcept
 /*
 void ribi::cmap::QtConceptDialog::on_box_competency_currentIndexChanged(int index)
 {
-  const bool verbose = true;
+  const bool verbose = false;
 
   if (!m_concept)
   {
