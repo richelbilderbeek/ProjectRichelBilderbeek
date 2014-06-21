@@ -16,10 +16,10 @@
   <widget class="QWidget" name="widget_top" native="true">
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>9</y>
-     <width>371</width>
-     <height>80</height>
+     <x>40</x>
+     <y>40</y>
+     <width>231</width>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
@@ -32,37 +32,6 @@
     </item>
     <item row="0" column="1">
      <widget class="QSpinBox" name="box_test_index"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_edit_via">
-      <property name="text">
-       <string>Edit via:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QComboBox" name="box_edit">
-      <item>
-       <property name="text">
-        <string>m_node</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>QtNode-&gt;GetNode() (display)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>QtNode-&gt;GetNode() (edit)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>QtNode-&gt;GetNode() (rate)</string>
-       </property>
-      </item>
-     </widget>
     </item>
    </layout>
   </widget>

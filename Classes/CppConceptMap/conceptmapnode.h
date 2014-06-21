@@ -116,12 +116,13 @@ struct Node : public Element
 
 };
 
+
 bool operator==(const Node& lhs, const Node& rhs) noexcept;
 bool operator!=(const Node& lhs, const Node& rhs) noexcept;
 bool operator<(const Node& lhs, const Node& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const Node& node) noexcept;
 
 } //~namespace cmap
-
 } //~namespace ribi
 
 #endif // CONCEPTMAPNODE_H

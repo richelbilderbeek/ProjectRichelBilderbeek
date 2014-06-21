@@ -47,7 +47,7 @@ ribi::cmap::QtExampleDialog::QtExampleDialog(QWidget *parent) :
   #endif
   {
     const auto v = Competencies().GetAllCompetencies();
-    for (auto c: v)
+    for (const auto c: v)
     {
       const std::string s = Competencies().ToStrDutch(c);
       ui->box_competency->addItem(s.c_str());
@@ -62,6 +62,11 @@ ribi::cmap::QtExampleDialog::QtExampleDialog(QWidget *parent) :
 ribi::cmap::QtExampleDialog::~QtExampleDialog()
 {
   delete ui;
+}
+
+int ribi::cmap::QtExampleDialog::GetMinimumHeight(const Example& /*example*/) noexcept
+{
+  return 166;
 }
 
 void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& example)
@@ -216,6 +221,9 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
   {
     m_example->m_signal_text_changed(m_example.get());
   }
+
+  this->setMinimumHeight(GetMinimumHeight(*m_example));
+
   assert( example ==  m_example);
   assert(*example == *m_example);
 }

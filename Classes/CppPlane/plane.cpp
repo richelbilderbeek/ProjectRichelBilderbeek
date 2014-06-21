@@ -75,7 +75,7 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProje
 
   TRACE("ERROR");
   TRACE("INITIAL POINTS");
-  for (auto point: m_points)
+  for (const auto point: m_points)
   {
     std::stringstream s;
     s
@@ -113,7 +113,7 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProje
       try { m_plane_z->CalcProjection(points); } catch (std::logic_error&) { TRACE("Failed m_plane_z->CalcProjection"); }
     }
   }
-  for (auto point: points)
+  for (const auto point: points)
   {
     std::stringstream s;
     s
@@ -685,7 +685,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const Plane& plane) noexcept
 {
   os << '(';
   const auto n_points = static_cast<int>(plane.m_points.size());
-  for (auto i=0; i!=n_points; ++i)
+  for (/* const */ auto i=0; i!=n_points; ++i)
   {
     os << plane.m_points[i];
     os << (i != n_points - 1 ? ',' : ')');

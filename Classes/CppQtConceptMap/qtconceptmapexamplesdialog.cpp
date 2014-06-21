@@ -59,10 +59,21 @@ ribi::cmap::QtExamplesDialog::~QtExamplesDialog()
   delete ui;
 }
 
+int ribi::cmap::QtExamplesDialog::GetMinimumHeight(const Examples& examples) noexcept
+{
+  int height = 0;
+  for (const auto example: examples.Get())
+  {
+    const int margin = 16;
+    height += QtExampleDialog::GetMinimumHeight(*example);
+    height += margin;
+  }
+  return height;
+}
+
 void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcept
 {
   const bool verbose = false;
-  const int minimum_height_example = 166;
 
   //if (examples == m_examples.get()) return; //Will allways be true
 
@@ -87,12 +98,6 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
     if (!will_change) return;
   }
 
-  //if (layout()) delete layout();
-  //assert(!layout());
-  //m_dialogs.clear();
-  //assert(m_dialogs.empty());
-  //QVBoxLayout * const layout = new QVBoxLayout;
-
   //Creating the right number of QtExampleDialog instances
   assert(examples);
   while (examples->Get().size() < m_dialogs.size())
@@ -112,7 +117,6 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
   while (examples->Get().size() > m_dialogs.size())
   {
     boost::shared_ptr<QtExampleDialog> dialog(new QtExampleDialog);
-    assert(dialog->minimumHeight() == minimum_height_example);
     assert(layout());
     layout()->addWidget(dialog.get());
     m_dialogs.push_back(dialog);
@@ -126,8 +130,6 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
   }
   assert(examples->Get().size() == m_dialogs.size());
 
-  //+16 because of margins
-  this->setMinimumHeight((minimum_height_example + 16) * static_cast<int>(m_dialogs.size()));
 
   const int n = static_cast<int>(m_dialogs.size());
   for (int i=0; i!=n; ++i)
@@ -145,7 +147,6 @@ void ribi::cmap::QtExamplesDialog::OnExamplesChanged(Examples* examples) noexcep
     assert(*examples->Get()[i] == *m_dialogs[i]->GetExample());
   }
 
-  //this->setLayout(layout);
 }
 
 void ribi::cmap::QtExamplesDialog::SetExamples(const boost::shared_ptr<Examples>& examples)
@@ -181,6 +182,10 @@ void ribi::cmap::QtExamplesDialog::SetExamples(const boost::shared_ptr<Examples>
     //For those interested in this dialog
     m_signal_qtexamplesdialog_changed(this);
   }
+
+  assert( m_examples ==  examples);
+  assert(*m_examples == *examples);
+  this->setMinimumHeight(GetMinimumHeight(*m_examples));
 }
 
 #ifndef NDEBUG
@@ -193,7 +198,7 @@ void ribi::cmap::QtExamplesDialog::Test() noexcept
   }
   TRACE("Started ribi::cmap::QtExamplesDialog::Test");
   QtExamplesDialog d;
-  for (auto examples: ExamplesFactory().GetTests())
+  for(const auto examples: ExamplesFactory().GetTests())
   {
     d.SetExamples(examples);
     assert(d.GetExamples() == examples);

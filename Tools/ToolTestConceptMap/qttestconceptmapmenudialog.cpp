@@ -113,15 +113,12 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
   this->ShowChild(&d);
 }
 
-
-/*
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
 {
   QtConceptMapTestEdgeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
-*/
 
 /*
 
@@ -154,14 +151,12 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_examples_clicked()
   this->ShowChild(&d);
 }
 
-/*
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtnode_clicked()
 {
   QtConceptMapTestQtNodeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
-*/
 
 /*
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtedge_clicked()

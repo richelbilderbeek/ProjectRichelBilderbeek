@@ -87,12 +87,17 @@ double ribi::QtRoundedRectItem::GetRadiusY() const noexcept
 
 QRectF ribi::QtRoundedRectItem::GetRect() const noexcept
 {
-  return QGraphicsRectItem::rect();
+  const int pen_width
+    = std::max(m_contour_pen.widthF(),m_focus_pen.widthF())
+  ;
+  //QGraphicsRectItem::rect() is the entire rect
+  return QGraphicsRectItem::rect().adjusted(
+     pen_width, pen_width,-pen_width,pen_width);
 }
 
 std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
-  return "1.5";
+  return "1.6";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
@@ -103,7 +108,8 @@ std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
     "2012-12-22: version 1.2: correctly uses the focus and regular pen, added contour pen",
     "2014-06-14: version 1.3: removed superfluous signal m_signal_item_has_updated",
     "2014-06-14: version 1.4: fixed issue #219",
-    "2014-06-16: version 1.5: disallow setRect and setPos (use SetRoundedRect and SetPos instead), cooperation with QtRoundedRectItemDialog"
+    "2014-06-16: version 1.5: disallow setRect and setPos (use SetRoundedRect and SetPos instead), cooperation with QtRoundedRectItemDialog",
+    "2014-06-22: version 1.6: allow setting the inner and outer rectangle"
   };
 }
 

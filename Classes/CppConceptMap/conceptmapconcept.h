@@ -166,7 +166,7 @@ struct Concept
     const int rating_complexity,
     const int rating_concreteness,
     const int rating_specificity);
-  friend ConceptFactory;
+  friend class ConceptFactory;
 };
 
 std::ostream& operator<<(std::ostream& os, const Concept& concept) noexcept;

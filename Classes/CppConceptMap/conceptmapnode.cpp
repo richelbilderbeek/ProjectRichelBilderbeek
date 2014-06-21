@@ -248,11 +248,7 @@ void ribi::cmap::Node::Test() noexcept
 std::string ribi::cmap::Node::ToStr() const noexcept
 {
   std::stringstream s;
-  s
-    << GetConcept()->ToStr() << " "
-    << GetX() << " "
-    << GetY()
-  ;
+  s << *this;
   return s.str();
 }
 
@@ -299,3 +295,15 @@ bool ribi::cmap::operator<(const Node& lhs, const Node& rhs) noexcept
   if (lhs.GetY() > rhs.GetY()) return false;
   return *lhs.GetConcept() < *rhs.GetConcept();
 }
+
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const Node& node) noexcept
+{
+  os
+    << (*node.GetConcept()) << " "
+    << node.GetX() << " "
+    << node.GetY()
+  ;
+  return os;
+}
+
+

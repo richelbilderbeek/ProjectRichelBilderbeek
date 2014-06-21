@@ -47,8 +47,9 @@ public:
   QtExampleDialog& operator=(const QtExampleDialog&) = delete;
   ~QtExampleDialog();
 
-  void SetExample(const boost::shared_ptr<Example>& example);
   boost::shared_ptr<Example> GetExample() const noexcept { return m_example; }
+  static int GetMinimumHeight(const Example& example) noexcept;
+  void SetExample(const boost::shared_ptr<Example>& example);
 
 private slots:
   void on_box_competency_currentIndexChanged(int index);

@@ -25,7 +25,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapqtnodedialog.h"
 
 #include <cassert>
+#include <sstream>
 
+#include "qtconceptmapnode.h"
 #include "ui_qtconceptmapqtnodedialog.h"
 #pragma GCC diagnostic pop
 
@@ -41,4 +43,122 @@ ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
 ribi::cmap::QtQtNodeDialog::~QtQtNodeDialog()
 {
   delete ui;
+}
+
+void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
+{
+  const bool verbose = false;
+
+  assert(qtnode);
+  if (m_qtnode == qtnode)
+  {
+    return;
+  }
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Setting node '" << qtnode->ToStr() << "'\n";
+  }
+
+  const auto concept_after = qtnode->GetConcept();
+  const auto x_after = qtnode->GetX();
+  const auto y_after = qtnode->GetY();
+
+  bool concept_changed  = true;
+  bool x_changed  = true;
+  bool y_changed = true;
+
+  if (m_qtnode)
+  {
+    const auto concept_before = m_qtnode->GetConcept();
+    const auto x_before = m_qtnode->GetX();
+    const auto y_before = m_qtnode->GetY();
+
+    concept_changed = concept_before != concept_after;
+    x_changed = x_before != x_after;
+    y_changed = y_before != y_after;
+
+
+    if (verbose)
+    {
+      if (concept_changed)
+      {
+        std::stringstream s;
+        s
+          << "Concept will change from "
+          << concept_before->ToStr()
+          << " to "
+          << concept_after->ToStr()
+          << '\n'
+        ;
+        TRACE(s.str());
+      }
+      if (x_changed)
+      {
+        std::stringstream s;
+        s << "X will change from " << x_before
+          << " to " << x_after << '\n';
+        TRACE(s.str());
+      }
+      if (y_changed)
+      {
+        std::stringstream s;
+        s << "Y will change from " << y_before
+          << " to " << y_after << '\n';
+        TRACE(s.str());
+      }
+    }
+    //Disconnect m_concept
+    m_qtnode->m_signal_concept_changed.disconnect(
+      boost::bind(&ribi::cmap::QtNodeDialog::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_qtnode->m_signal_x_changed.disconnect(
+      boost::bind(&ribi::cmap::QtNodeDialog::OnXchanged,this,boost::lambda::_1)
+    );
+    m_qtnode->m_signal_y_changed.disconnect(
+      boost::bind(&ribi::cmap::QtNodeDialog::OnYchanged,this,boost::lambda::_1)
+    );
+  }
+
+  //Replace m_example by the new one
+  m_qtnode = qtnode;
+
+
+  assert(m_qtnode->GetConcept() == concept_after );
+  assert(m_qtnode->GetX() == x_after );
+  assert(m_qtnode->GetY() == y_after);
+
+  m_qtnode->m_signal_concept_changed.connect(
+    boost::bind(&ribi::cmap::QtNodeDialog::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_qtnode->m_signal_x_changed.connect(
+    boost::bind(&ribi::cmap::QtNodeDialog::OnXchanged,this,boost::lambda::_1)
+  );
+  m_qtnode->m_signal_y_changed.connect(
+    boost::bind(&ribi::cmap::QtNodeDialog::OnYchanged,this,boost::lambda::_1)
+  );
+
+  //Emit everything that has changed
+  if (concept_changed)
+  {
+    m_qtnode->m_signal_concept_changed(m_qtnode.get());
+  }
+  if (x_changed)
+  {
+    m_qtnode->m_signal_x_changed(m_qtnode.get());
+  }
+  if (y_changed)
+  {
+    m_qtnode->m_signal_y_changed(m_qtnode.get());
+  }
+
+  this->setMinimumHeight(
+    this->GetMinimumHeight(
+      *m_qtnode
+    )
+  );
+
+  assert( qtnode ==  m_qtnode);
+  assert(*qtnode == *m_qtnode);
 }

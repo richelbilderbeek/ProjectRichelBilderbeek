@@ -45,17 +45,19 @@ public:
   explicit QtConceptDialog(QWidget *parent = 0);
   QtConceptDialog(const QtConceptDialog&) = delete;
   QtConceptDialog& operator=(const QtConceptDialog&) = delete;
-  ~QtConceptDialog();
+  ~QtConceptDialog() noexcept;
 
-  void SetConcept(const boost::shared_ptr<Concept>& concept);
+  void SetConcept(const boost::shared_ptr<Concept>& concept) noexcept;
   boost::shared_ptr<Concept> GetConcept() const noexcept { return m_concept; }
 
+  static int GetMinimumHeight(const Concept& concept) noexcept;
+
 private slots:
-  void on_box_is_complex_stateChanged(int arg1);
-  void on_box_rating_complexity_valueChanged(int arg1);
-  void on_box_rating_concreteness_valueChanged(int arg1);
-  void on_box_rating_specificity_valueChanged(int arg1);
-  void on_edit_name_textChanged(const QString &arg1);
+  void on_box_is_complex_stateChanged(int arg1) noexcept;
+  void on_box_rating_complexity_valueChanged(int arg1) noexcept;
+  void on_box_rating_concreteness_valueChanged(int arg1) noexcept;
+  void on_box_rating_specificity_valueChanged(int arg1) noexcept;
+  void on_edit_name_textChanged(const QString &arg1) noexcept;
 
 private:
   Ui::QtConceptDialog *ui;
@@ -66,22 +68,22 @@ private:
   boost::shared_ptr<QtExamplesDialog> m_qtexamplesdialog;
 
   //concept is non-const, as its displayal by this dialog renders it editable
-  void OnExamplesChanged(Concept * const concept);
+  void OnExamplesChanged(Concept * const concept) noexcept;
 
   //concept is non-const, as its displayal by this dialog renders it editable
-  void OnIsComplexChanged(Concept * const concept);
+  void OnIsComplexChanged(Concept * const concept) noexcept;
 
   //concept is non-const, as its displayal by this dialog renders it editable
-  void OnNameChanged(Concept * const concept);
+  void OnNameChanged(Concept * const concept) noexcept;
 
   //concept is non-const, as its displayal by this dialog renders it editable
-  void OnRatingComplexityChanged(Concept * const concept);
+  void OnRatingComplexityChanged(Concept * const concept) noexcept;
 
   //concept is non-const, as its displayal by this dialog renders it editable
-  void OnRatingConcretenessChanged(Concept * const concept);
+  void OnRatingConcretenessChanged(Concept * const concept) noexcept;
 
   //concept is non-const, as its displayal by this dialog renders it editable
-  void OnRatingSpecificityChanged(Concept * const concept);
+  void OnRatingSpecificityChanged(Concept * const concept) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -50,6 +50,18 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Get the pen by which focus is indicated
   const QPen& GetFocusPen() const noexcept;
 
+  ///Get the height of the area within the rounded rectangle
+  /*
+    ___
+   / _ \  GetHeight/GetWidth = 1
+   ||_||  GetHeightIncludingPen/GetWidthIncludingPen = 3
+   \___/
+
+  */
+  int GetHeight() const noexcept;
+  ///Get the height of the area including the rounded rectangle itself
+  int GetHeightIncludingPen() const noexcept;
+
   QPointF GetPos() const noexcept;
 
   ///Get the rounded rect corner x radius
@@ -58,6 +70,7 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Get the rounded rect corner y radius
   double GetRadiusY() const noexcept;
 
+  ///Get the rectangle of the inner area
   QRectF GetRect() const noexcept;
 
   ///Obtain the version of this class
@@ -65,6 +78,18 @@ class QtRoundedRectItem : public QGraphicsRectItem
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///Get the width of the area within the rounded rectangle
+  /*
+    ___
+   / _ \  GetHeight/GetWidth = 1
+   ||_||  GetHeightIncludingPen/GetWidthIncludingPen = 3
+   \___/
+
+  */
+  int GetWidth() const noexcept;
+  ///Get the width of the area including the rounded rectangle itself
+  int GetWidthIncludingPen() const noexcept;
 
   ///Set the pen by which the contours are normally drawn
   ///Default value: QPen(Qt::DashLine)
@@ -84,7 +109,7 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Set the rounded rect corner y radius
   void SetRadiusY(const double radius_y) noexcept;
 
-  ///Set the rounded rect
+  ///Set the rounded rect of the inner area
   void SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept;
 
   void SetWidth(const double width) noexcept;

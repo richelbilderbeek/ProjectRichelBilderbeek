@@ -483,7 +483,7 @@ std::vector<std::string> ribi::ProgramTypes::GetAllEnumNames() noexcept
 
   //Copy right map of bimap
   std::vector<std::string> v;
-  for (auto t: m_map_to_enumname.right) { v.push_back(t.first); }
+  for (const auto t: m_map_to_enumname.right) { v.push_back(t.first); }
   assert(!v.empty());
   assert(m_map_to_enumname.right.size() == v.size());
   return v;
@@ -496,7 +496,7 @@ std::vector<std::string> ribi::ProgramTypes::GetAllScreenNames() noexcept
 
   //Copy right map of bimap
   std::vector<std::string> v;
-  for (auto t: m_map_to_screenname.right) { v.push_back(t.first); }
+  for (const auto t: m_map_to_screenname.right) { v.push_back(t.first); }
   assert(!v.empty());
   assert(m_map_to_screenname.right.size() == v.size());
   return v;
@@ -509,7 +509,7 @@ std::vector<ribi::ProgramType> ribi::ProgramTypes::GetAll() noexcept
 
   //Copy left map of bimap
   std::vector<ProgramType> v;
-  for (auto t: m_map_to_enumname.left) { v.push_back(t.first); }
+  for (const auto t: m_map_to_enumname.left) { v.push_back(t.first); }
   assert(!v.empty());
   assert(m_map_to_enumname.left.size() == v.size());
   return v;

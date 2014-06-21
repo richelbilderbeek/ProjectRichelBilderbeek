@@ -56,6 +56,8 @@ public:
   ///Something of one of the examples was changed
   mutable boost::signals2::signal<void(QtExamplesDialog*)> m_signal_qtexamplesdialog_changed;
 
+  static int GetMinimumHeight(const Examples& examples) noexcept;
+
 private:
   Ui::QtExamplesDialog *ui;
   std::vector<boost::shared_ptr<QtExampleDialog>> m_dialogs;

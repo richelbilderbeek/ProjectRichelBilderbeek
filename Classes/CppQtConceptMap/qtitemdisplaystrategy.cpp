@@ -49,6 +49,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
+    const QPen& contour_pen,
+    const QPen& focus_pen,
+    const QBrush& indicator_brush,
+    const QPen& indicator_pen,
+    const QBrush& main_brush
+) : m_contour_pen(countour_pen),
+    m_focus_pen(focus_pen),
+    m_indicator_brush(indicator_brush),
+    m_indicator_pen(indicator_pen),
+    m_main_brush(main_brush)
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+#ifdef REALLY_USE_20140621
+ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
   //const boost::shared_ptr<ribi::cmap::Concept>& concept
 )
   : //m_signal_position_changed{},
@@ -86,6 +104,7 @@ ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
 
   //this->SetName(m_concept->GetName());
 }
+#endif //REALLY_USE_20140621
 
 /*
 boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStrategy::GetConcept() const noexcept
@@ -244,3 +263,14 @@ void ribi::cmap::QtItemDisplayStrategy::Test() noexcept
   TRACE("Successfully finished ribi::cmap::QtItemDisplayStrategy::Test()");
 }
 #endif
+
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const QtItemDisplayStrategy& s) noexcept
+{
+  os
+    << s.GetContourPen().widthF() << ','
+    << s.GetFocusPen().widthF() << ','
+    << s.GetIndicatorBrush().color().value() << ','
+    << s.GetIndicatorPen().widthF()
+  ;
+  return os;
+}

@@ -47,8 +47,11 @@ public:
   QtEdgeDialog& operator=(const QtEdgeDialog&) = delete;
   ~QtEdgeDialog();
 
-  void SetEdge(const boost::shared_ptr<Edge>& edge);
+
   boost::shared_ptr<Edge> GetEdge() const noexcept { return m_edge; }
+  static int GetMinimumHeight(const Edge& edge) noexcept;
+
+  void SetEdge(const boost::shared_ptr<Edge>& edge);
 
 private slots:
 

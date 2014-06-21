@@ -31,9 +31,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcompetencies.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
+#include "conceptmapexamples.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapconceptdialog.h"
+#include "qtconceptmapexamplesdialog.h"
 #include "ui_qtconceptmapnodedialog.h"
 #include "trace.h"
 
@@ -62,7 +64,12 @@ ribi::cmap::QtNodeDialog::~QtNodeDialog()
   delete ui;
 }
 
-void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node)
+int ribi::cmap::QtNodeDialog::GetMinimumHeight(const Node& node) noexcept
+{
+  return QtConceptDialog::GetMinimumHeight(*node.GetConcept()) + 82;
+}
+
+void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node) noexcept
 {
   const bool verbose = false;
 
@@ -140,8 +147,9 @@ void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node)
   //Replace m_example by the new one
   m_node = node;
 
+
   assert(m_node->GetConcept() == concept_after );
-  assert(m_node->GetX()  == x_after );
+  assert(m_node->GetX() == x_after );
   assert(m_node->GetY() == y_after);
 
   m_node->m_signal_concept_changed.connect(
@@ -167,6 +175,12 @@ void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node)
   {
     m_node->m_signal_y_changed(m_node.get());
   }
+
+  this->setMinimumHeight(
+    this->GetMinimumHeight(
+      *m_node
+    )
+  );
 
   assert( node ==  m_node);
   assert(*node == *m_node);

@@ -6,15 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>208</width>
-    <height>197</height>
+    <width>106</width>
+    <height>82</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>208</width>
-    <height>197</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>Node</string>
@@ -30,7 +24,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QDoubleSpinBox" name="box_x"/>
+      <widget class="QDoubleSpinBox" name="box_x">
+       <property name="minimum">
+        <double>-999999999.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>999999999.000000000000000</double>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -44,7 +45,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QDoubleSpinBox" name="box_y"/>
+      <widget class="QDoubleSpinBox" name="box_y">
+       <property name="minimum">
+        <double>-999999999.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>999999999.000000000000000</double>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

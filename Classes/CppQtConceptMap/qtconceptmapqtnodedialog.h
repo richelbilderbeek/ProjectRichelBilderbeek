@@ -29,7 +29,7 @@ public:
   QtQtNodeDialog& operator=(const QtQtNodeDialog&) = delete;
   ~QtQtNodeDialog();
 
-  void SetQtNode(const boost::shared_ptr<QtNode>& qtnode);
+  void SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
   boost::shared_ptr<QtNode> GetQtNode() const noexcept { return m_qtnode; }
 
 private:

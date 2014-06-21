@@ -28,15 +28,14 @@
 #include "ui_qtconceptmaptestqtnodedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *parent)
+ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(
+  QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtConceptMapTestQtNodeDialog),
-    m_dialog(new QtQtNodeDialog),
-    //m_node(NodeFactory().GetTests().at(1)),
-    //m_display_node(nullptr),
-    //m_edit_node(nullptr),
-    //m_rate_node(nullptr),
-    m_view(new QGraphicsView(this))
+    m_dialog_left(new QtQtNodeDialog),
+    m_dialog_right(new QtQtNodeDialog),
+    m_view_left(new QGraphicsView),
+    m_view_right(new QGraphicsView)
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -47,10 +46,17 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(QWidget *
   QGridLayout * const my_layout = new QGridLayout;
   this->setLayout(my_layout);
 
-  my_layout->addWidget(ui->widget_top,0,0,1,2);
-  my_layout->addWidget(m_dialog.get(),1,1);
-  my_layout->addWidget(m_view,1,0);
+  my_layout->addWidget(ui->widget_top,0,0,1,4);
 
+  my_layout->addWidget(m_view_left.get(),1,0);
+  my_layout->addWidget(m_view_right.get(),1,1);
+  my_layout->addWidget(m_dialog_left.get(),1,2);
+  my_layout->addWidget(m_dialog_right.get(),1,3);
+
+
+  ui->box_test_index->setMaximum(NodeFactory().GetNumberOfTests());
+  ui->box_test_index->setValue(1);
+  this->on_button_load_clicked();
 
   /*
   assert(ui->view->scene());
@@ -159,7 +165,7 @@ boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtConceptMapTestQtNodeDialog::
   return qtnode;
 }
 
-void ribi::cmap::QtConceptMapTestQtNodeDialog::SetNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
+void ribi::cmap::QtConceptMapTestQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
 {
   assert(qtnode);
   assert(!"Not implemented");
@@ -351,5 +357,12 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::OnRequestsSceneUpdate()
 
 void ribi::cmap::QtConceptMapTestQtNodeDialog::on_button_load_clicked()
 {
+  const auto s = boost::make_shared<QtItemDisplayStrategy>();
 
+  const int index = ui->box_test_index->value();
+  const auto qtnode = boost::make_shared<QtNode>(
+    NodeFactory().GetTest(index),
+    s
+  );
+  SetQtNode(qtnode);
 }

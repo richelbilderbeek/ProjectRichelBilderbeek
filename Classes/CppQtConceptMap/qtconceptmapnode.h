@@ -75,6 +75,8 @@ struct QtNode : public QtConceptMapElement
   ///Set the Y coordinat of the central concept
   //void SetY(const double y) noexcept;
 
+  std::string ToStr() const noexcept;
+
   ///m_signal_request_rate_node is emitted due to a m_signal_request_rate_node
   ///of the Node its QtRateConceptItem
   boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
@@ -122,10 +124,13 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  //friend std::ostream& operator<<(std::ostream& os, const QtNode& qtnode) noexcept;
 };
 
-} //~namespace cmap
+std::ostream& operator<<(std::ostream& os, const QtNode& qtnode) noexcept;
 
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTCONCEPTMAPNODEITEM_H

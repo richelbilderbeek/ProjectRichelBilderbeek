@@ -44,7 +44,7 @@ ribi::cmap::Examples::Examples(const std::vector<boost::shared_ptr<cmap::Example
   Test();
   #endif
 
-  for(auto example: m_v)
+  for(const auto example: m_v)
   {
     assert(example);
     example->m_signal_competency_changed.connect(
@@ -71,7 +71,7 @@ ribi::cmap::Examples::Examples(const std::vector<boost::shared_ptr<cmap::Example
 
 ribi::cmap::Examples::~Examples() noexcept
 {
-  for(auto example: m_v)
+  for(const auto example: m_v)
   {
     assert(example);
     example->m_signal_competency_changed.disconnect(

@@ -43,6 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace cmap {
 
+///Rename to: QtNodeDrawStyle
 ///A QtItemDisplayStrategy shows a Concept
 ///A Concept can be shown in multiple different ways, which is performed by its derived classes.
 struct QtItemDisplayStrategy //: public QtRoundedEditRectItem
@@ -51,7 +52,13 @@ struct QtItemDisplayStrategy //: public QtRoundedEditRectItem
 
   ///concept cannot be const, the user might edit it (in derived classes for example)
   //explicit QtItemDisplayStrategy(const boost::shared_ptr<Concept>& concept);
-  explicit QtItemDisplayStrategy();
+  explicit QtItemDisplayStrategy(
+    const QPen& m_contour_pen,
+    const QPen& m_focus_pen,
+    const QBrush& m_indicator_brush,
+    const QPen& m_indicator_pen,
+    const QBrush& m_main_brush
+  );
   QtItemDisplayStrategy(const QtItemDisplayStrategy& other) = delete;
   QtItemDisplayStrategy& operator=(const QtItemDisplayStrategy& other) = delete;
   virtual ~QtItemDisplayStrategy() noexcept {}
@@ -81,23 +88,24 @@ struct QtItemDisplayStrategy //: public QtRoundedEditRectItem
   //virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
 
   ///Derived classes respond differently to key presses
-  virtual void keyPressEvent(QKeyEvent *event) = 0;
+  //TO BE REMOVED
+  virtual void keyPressEvent(QKeyEvent * /*event*/) {}
 
   ///Derived classes draw the concept the same, only with different pens
   ///It is QtEdge, however, that also draws an arrow underneath
   //void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) final;
 
   ///The pen that draws the contours
-  void SetContourPen(const QPen& pen);
+  //void SetContourPen(const QPen& pen);
 
   ///The brush by which the indicator is filled
-  void SetIndicatorBrush(const QBrush& brush);
+  //void SetIndicatorBrush(const QBrush& brush);
 
   ///The pen by which the indicator is filled
-  void SetIndicatorPen(const QPen& pen);
+  //void SetIndicatorPen(const QPen& pen);
 
-  ///Set the main brush
-  void SetMainBrush(const QBrush& any_brush);
+  ///Set the ?main? brush
+  //void SetMainBrush(const QBrush& any_brush);
 
   ///Set the name (the text), the base class (QtRoundedEditRectItem)
   ///will wordwrap it
@@ -138,19 +146,19 @@ private:
   //const boost::shared_ptr<Concept> m_concept;
 
   ///The pen by which the indicator is drawn
-  QPen m_contour_pen;
+  const QPen m_contour_pen;
 
   ///The pen by which the focus is drawn
-  QPen m_focus_pen;
+  const QPen m_focus_pen;
 
   ///The brush by which the indicator is filled
-  QBrush m_indicator_brush;
+  const QBrush m_indicator_brush;
 
   ///The pen by which the indicator is drawn
-  QPen m_indicator_pen;
+  const QPen m_indicator_pen;
 
   ///The ?main? brush
-  QBrush m_main_brush;
+  const QBrush m_main_brush;
 
   //void setFocus(Qt::FocusReason focusReason) = delete;
 
@@ -159,6 +167,8 @@ private:
   #endif
 
 };
+
+std::ostream& operator<<(std::ostream& os, const QtItemDisplayStrategy& s) noexcept;
 
 } //~namespace cmap
 } //~namespace ribi

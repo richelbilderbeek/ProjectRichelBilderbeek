@@ -32,7 +32,7 @@ public:
   ~QtConceptMapTestQtNodeDialog() noexcept;
 
   boost::shared_ptr<QtNode> GetQtNode() const noexcept;
-  void SetNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
+  void SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
 
 protected:
 
@@ -53,16 +53,10 @@ private:
 
   Ui::QtConceptMapTestQtNodeDialog *ui;
 
-  boost::shared_ptr<QtQtNodeDialog> m_dialog;
-  QGraphicsView * const m_view;
-  //QtNode* m_display_node;
-  //QtNode* m_edit_node;
-  //QtNode* m_rate_node;
-
-  ///Get the Node via the route chosen by box_edit
-  //const boost::shared_ptr<Node> GetNode();
-
-  //void OnRequestsSceneUpdate();
+  boost::shared_ptr<QtQtNodeDialog> m_dialog_left;
+  boost::shared_ptr<QtQtNodeDialog> m_dialog_right;
+  boost::shared_ptr<QGraphicsView> m_view_left;
+  boost::shared_ptr<QGraphicsView> m_view_right;
 
   #ifndef NDEBUG
   static void Test() noexcept;

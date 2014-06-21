@@ -5,6 +5,7 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
 include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 include(../../Classes/CppMultipleChoiceQuestion/CppMultipleChoiceQuestion.pri)

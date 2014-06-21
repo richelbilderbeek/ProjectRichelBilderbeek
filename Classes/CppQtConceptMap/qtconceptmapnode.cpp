@@ -248,15 +248,18 @@ void ribi::cmap::QtNode::EnableAll()
 
 void ribi::cmap::QtNode::focusInEvent(QFocusEvent*)
 {
-  m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
+  //m_display_strategy->SetContourPen(m_display_strategy->GetFocusPen()); //Updates itself
   //assert(!m_display_strategy->hasFocus());
+  ///?maybe update?
   assert(hasFocus());
 }
 
 void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)
 {
-  m_display_strategy->SetContourPen(m_display_strategy->GetContourPen()); //Updates itself
+  //m_display_strategy->SetContourPen(m_display_strategy->GetContourPen()); //Updates itself
   //m_signal_item_has_updated(0); //causes Examples to get hidden
+  ///?maybe update?
+  assert(!hasFocus());
 }
 
 boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::QtNode::GetNode() const noexcept
@@ -288,7 +291,7 @@ void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event) noexcept
 {
   assert(m_display_strategy);
   //assert(m_display_strategy->GetConcept());
-  m_display_strategy->keyPressEvent(event);
+  //m_display_strategy->keyPressEvent(event);
   switch (event->key())
   {
     case Qt::Key_F1:
@@ -586,3 +589,18 @@ void ribi::cmap::QtNode::Test() noexcept
   TRACE("Finished ribi::cmap::QtNode::Test successfully");
 }
 #endif
+
+std::string ribi::cmap::QtNode::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << (*this);
+  return s.str();
+}
+
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const QtNode& qtnode) noexcept
+{
+  os << (*qtnode.GetNode())
+    << " (" << (*qtnode.GetDisplayStrategy())
+    << ")";
+  return os;
+}

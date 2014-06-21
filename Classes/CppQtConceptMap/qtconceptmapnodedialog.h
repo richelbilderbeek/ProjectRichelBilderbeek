@@ -47,9 +47,10 @@ public:
   QtNodeDialog& operator=(const QtNodeDialog&) = delete;
   ~QtNodeDialog();
 
-  void SetNode(const boost::shared_ptr<Node>& node);
+  void SetNode(const boost::shared_ptr<Node>& node) noexcept;
   boost::shared_ptr<Node> GetNode() const noexcept { return m_node; }
 
+  static int GetMinimumHeight(const Node& node) noexcept;
 private slots:
   void on_box_x_valueChanged(double arg1);
   void on_box_y_valueChanged(double arg1);
