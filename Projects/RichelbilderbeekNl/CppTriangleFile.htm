@@ -82,6 +82,8 @@
 <br/>
 <a href="CppComment.htm">///</a>TriangleFile allows <b><a href="CppFor.htm">for</a></b> conversion between multiple polygons<br/>
 /<a href="CppComment.htm">//</a>&nbsp;&nbsp;and Triangle output files<br/>
+<a href="CppComment.htm">///</a>The following steps are taken:<br/>
+/<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> <a href="CppConvert.htm">Convert</a> the <a href="CppShape.htm">shape</a>s to WKT<br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a>TriangleFile can then call ExecuteTriangle on itself<br/>
 <a href="CppComment.htm">///</a>to create a triangulated 2D mesh in the form of a .ele, .node and poly file<br/>
@@ -93,16 +95,15 @@
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::area&gt; Area;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; Length;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Coordinat;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;Coordinat&gt; Linestring;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;Coordinat&gt; Polygon;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Linestring&gt; Linestrings;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Polygon&gt; Polygons;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Start from .poly file<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>TriangleFile(<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; polyfile<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>) : TriangleFile(Parse<a href="CppShape.htm">Shape</a>s(polyfile),ParseHoles(polyfile)) { }<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;Polygons,Linestrings&gt; <a href="CppShape.htm">Shape</a>s;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Start from polygons<br/>
-&nbsp;&nbsp;TriangleFile(<b><a href="CppConst.htm">const</a></b> Polygons&amp; <a href="CppShape.htm">shape</a>s);<br/>
+&nbsp;&nbsp;TriangleFile(<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons, <b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings);<br/>
+&nbsp;&nbsp;TriangleFile(<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>s&amp; <a href="CppShape.htm">shape</a>s) : TriangleFile(<a href="CppShape.htm">shape</a>s.first,<a href="CppShape.htm">shape</a>s.second) {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Call Triangle<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> TODO_ISSUE_207<br/>
@@ -146,16 +147,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b><br/>
 &nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Polygons&amp; GetHoles()&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_holes; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; Get<a href="CppShape.htm">Shape</a>s() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> ; <a href="CppComment.htm">//</a>{ <b><a href="CppReturn.htm">return</a></b> m_<a href="CppShape.htm">shape</a>s; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; Get<a href="CppShape.htm">Shape</a>s() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Polygons m_holes;<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PolyFileFromPolygons&gt; m_polyfile;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Polygons m_<a href="CppShape.htm">shape</a>s;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt; CreateArgv(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> DeleteArgv(<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt;&amp; p) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -207,14 +207,13 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::TriangleFile::TriangleFile(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; <a href="CppShape.htm">shape</a>s<br/>
-) : m_polyfile{<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;PolyFileFromPolygons&gt;(<a href="CppShape.htm">shape</a>s)}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings<br/>
+) : m_polyfile(<a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;PolyFileFromPolygons&gt;(polygons,linestrings))<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(holes.empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppAdd.htm">Add</a>ing holes is not implemented yet");<br/>
 }<br/>
 <br/>
 <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppChar.htm">char</a></b> **&gt; <a href="CppRibi.htm">ribi</a>::TriangleFile::CreateArgv(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -497,7 +496,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::TriangleFile::Test");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Call Triangle with simple <a href="CppShape.htm">shape</a>s<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Coordinat&gt; <a href="CppPointer.htm">point</a>s {<br/>
@@ -509,9 +508,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Polygon v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::append(v, <a href="CppPointer.htm">point</a>s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons polygons <a href="CppOperatorAssign.htm">=</a> { v };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings linestrings <a href="CppOperatorAssign.htm">=</a> {};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>s <a href="CppShape.htm">shape</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMake_pair.htm">std::make_pair</a>(polygons,linestrings);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TriangleFile f( {v} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TriangleFile f(<a href="CppShape.htm">shape</a>s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(f.ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_node;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_ele;<br/>
@@ -546,6 +548,12 @@
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_polyfile);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_polyfile-&gt;ToStr();<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

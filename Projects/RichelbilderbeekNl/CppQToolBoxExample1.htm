@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QToolBoxExample1</title>
+  <meta name="description" content="C++ QToolBoxExample1"/>
+  <meta name="keywords" content="C++ QToolBoxExample1 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQToolBoxExample1.htm">QToolBoxExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQToolBoxExample1-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.04 (trusty)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.2.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppQToolBoxExample1/CppQToolBoxExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQToolBoxExample1/CppQToolBoxExample1.pro" border = "1"><tr><td><code>
+exists (../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri) {<br/>
+&nbsp;&nbsp;include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
+}<br/>
+!exists (../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri) {<br/>
+&nbsp;&nbsp;QT += core<br/>
+&nbsp;&nbsp;QT += gui<br/>
+&nbsp;&nbsp;greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+&nbsp;&nbsp;<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+&nbsp;&nbsp;unix {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+exists(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) {<br/>
+&nbsp;&nbsp;include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
+}<br/>
+!exists(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) {<br/>
+&nbsp;&nbsp;win32 {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_55_0<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> +=\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtdialog.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtdialog.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtdialog.ui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQToolBoxExample1/qtdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQToolBoxExample1/qtdialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Dialog();<br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_pushButton_1_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_pushButton_2_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_pushButton_3_clicked();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog *ui;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQToolBoxExample1/qtdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQToolBoxExample1/qtdialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtdialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Dialog::<a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+}<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>Dialog::~<a href="CppQt.htm">Qt</a>Dialog()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Dialog::on_pushButton_1_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;label-&gt;setText("1");<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Dialog::on_pushButton_2_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;label-&gt;setText("2");<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Dialog::on_pushButton_3_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;label-&gt;setText("3");<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQToolBoxExample1/qtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQToolBoxExample1/qtmain.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

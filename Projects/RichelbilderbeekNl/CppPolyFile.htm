@@ -115,12 +115,6 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;Vertices,Edges&gt; Parse(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; input,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator<br/>
-&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
@@ -254,6 +248,7 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppContainer.htm">container</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppGeometry.htm">geometry</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -285,7 +280,7 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 <br/>
 <a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppRibi.htm">ribi</a>::PolyFile::Vertices,<a href="CppRibi.htm">ribi</a>::PolyFile::Edges&gt; <a href="CppRibi.htm">ribi</a>::PolyFile::Parse(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Collect all indices<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> RemoveComments(<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppFileToVector.htm">FileToVector</a>(filename));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.empty())<br/>
@@ -304,7 +299,7 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_vertices <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1;<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; first_line <a href="CppOperatorAssign.htm">=</a> v[0];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>(first_line,' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.htm">Container</a>().<a href="CppSeperateString.htm">SeperateString</a>(first_line,' ');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (w.empty())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
@@ -334,7 +329,7 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edges_header_index &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; line <a href="CppOperatorAssign.htm">=</a> v[edges_header_index];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>(line,' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.htm">Container</a>().<a href="CppSeperateString.htm">SeperateString</a>(line,' ');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (w.empty())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
@@ -363,7 +358,7 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(holes_header_index &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; line <a href="CppOperatorAssign.htm">=</a> v[holes_header_index];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>(line,' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.htm">Container</a>().<a href="CppSeperateString.htm">SeperateString</a>(line,' ');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (w.empty())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
@@ -400,13 +395,13 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;Vertices, segments, holes, and regions must be numbered and listed consecutively, starting from either 1 or 0.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> first_index <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppSeperateString.htm">SeperateString</a>(v[1],' ')[0]);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> first_index <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppContainer.htm">Container</a>().<a href="CppSeperateString.htm">SeperateString</a>(v[1],' ')[0]);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create actual data<br/>
 &nbsp;&nbsp;Vertices vertices;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=first_vertex_index; i<a href="CppOperatorNotEqual.htm">!=</a>beyond_last_vertex_index; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; line <a href="CppOperatorAssign.htm">=</a> v[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>(line,' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.htm">Container</a>().<a href="CppSeperateString.htm">SeperateString</a>(line,' ');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (w.size() <a href="CppOperatorNotEqual.htm">!=</a> 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
@@ -428,7 +423,7 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=first_edge_index; i<a href="CppOperatorNotEqual.htm">!=</a>beyond_last_edge_index; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; line <a href="CppOperatorAssign.htm">=</a> v[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>(line,' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.htm">Container</a>().<a href="CppSeperateString.htm">SeperateString</a>(line,' ');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (w.size() <a href="CppOperatorNotEqual.htm">!=</a> 3)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
@@ -531,18 +526,6 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::PolyFile::<a href="CppSeperateString.htm">SeperateString</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; input,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<a href="CppBoostSplit.htm">boost::algorithm::split</a>(v,input,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdBind2nd.htm">std::bind2nd</a>(<a href="CppStdEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::token_compress_on);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::PolyFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
@@ -552,7 +535,7 @@ Here is a sample file box.poly desc<a href="CppRibi.htm">ribi</a>ng a square wit
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::PolyFile::Test");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose) { <a href="CppTRACE.htm">TRACE</a>("RemoveComments"); }<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v<br/>

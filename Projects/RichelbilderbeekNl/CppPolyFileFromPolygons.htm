@@ -61,22 +61,35 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/linestring.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/polygon.hpp&gt;<br/>
-<br/>
 <a href="CppInclude.htm">#include</a> "polyfile.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a>Class to contruct a PolyFile from Polygons<br/>
+<a href="CppComment.htm">///</a>Class to contruct a PolyFile from Polygons and Linestring<br/>
 <b><a href="CppStruct.htm">struct</a></b> PolyFileFromPolygons<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Coordinat;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;Coordinat&gt; Linestring;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;Coordinat&gt; Polygon;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Linestring&gt; Linestrings;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Polygon&gt; Polygons;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;Polygons,Linestrings&gt; <a href="CppShape.htm">Shape</a>s;<br/>
 <br/>
-&nbsp;&nbsp;PolyFileFromPolygons(<b><a href="CppConst.htm">const</a></b> Polygons&amp; <a href="CppShape.htm">shape</a>s);<br/>
 <br/>
+&nbsp;&nbsp;PolyFileFromPolygons(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings <a href="CppOperatorAssign.htm">=</a> {}<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;PolyFileFromPolygons(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>s&amp; <a href="CppShape.htm">shape</a>s<br/>
+&nbsp;&nbsp;) : PolyFileFromPolygons(<a href="CppShape.htm">shape</a>s.first,<a href="CppShape.htm">shape</a>s.second) {}<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings&amp; GetLinestrings() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_linestrings; }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> PolyFile&amp; GetPolyFile() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_polyfile; }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; GetPolygons() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_polygons; }<br/>
 <br/>
@@ -86,6 +99,7 @@
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings m_linestrings;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> PolyFile m_polyfile;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons m_polygons;<br/>
 <br/>
@@ -93,8 +107,12 @@
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> PolyFile::Edges ToEdges(<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> PolyFile::Vertices ToVertices(<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> PolyFile::Edges ToEdges(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons, <b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings<br/>
+&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> PolyFile::Vertices ToVertices(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons, <b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings<br/>
+&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 };<br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> PolyFileFromPolygons&amp; polyfile) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -131,8 +149,17 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::PolyFileFromPolygons(<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons)<br/>
-&nbsp;&nbsp;: m_polyfile(PolyFile(ToVertices(polygons),ToEdges(polygons))),<br/>
+<a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::PolyFileFromPolygons(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings<br/>
+)<br/>
+&nbsp;&nbsp;: m_linestrings(linestrings),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_polyfile(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PolyFile(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToVertices(polygons,linestrings),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToEdges(polygons,linestrings)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_polygons(polygons)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -142,13 +169,14 @@
 <br/>
 <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2014-06-02: <a href="CppVersion.htm">Version</a> 1.0: split off from PolyFile"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-06-02: <a href="CppVersion.htm">Version</a> 1.0: split off from PolyFile",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-06-10: <a href="CppVersion.htm">Version</a> 1.1: added support <b><a href="CppFor.htm">for</a></b> linestrings"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
@@ -200,7 +228,10 @@
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Successfully finished <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::Test");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
-<a href="CppRibi.htm">ribi</a>::PolyFile::Edges <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::ToEdges(<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::PolyFile::Edges <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::ToEdges(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings<br/>
+) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::PolyFile::Edges edges;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> vertex_index <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -222,6 +253,21 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShape.htm">shape</a>_first_vertex_index <a href="CppOperatorPlusAssign.htm">+=</a> n;<br/>
 &nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> linestring: linestrings)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(linestring.size());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n-1; <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppComment.htm">//</a>Always go to the next <a href="CppPointer.htm">point</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> from_index <a href="CppOperatorAssign.htm">=</a> vertex_index;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> to_index <a href="CppOperatorAssign.htm">=</a> vertex_index+1; <a href="CppComment.htm">//</a>Go to next<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edges.push_back(<a href="CppStdMake_pair.htm">std::make_pair</a>(from_index,to_index));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>vertex_index;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShape.htm">shape</a>_first_vertex_index <a href="CppOperatorPlusAssign.htm">+=</a> n;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> edges;<br/>
 }<br/>
 <br/>
@@ -230,26 +276,28 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_polyfile.ToStr();<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::PolyFile::Vertices <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::ToVertices(<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::PolyFile::Vertices <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::ToVertices(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings<br/>
+) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::PolyFile::Vertices v;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> <a href="CppShape.htm">shape</a>: polygons)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> polygon: polygons)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> vertex: <a href="CppShape.htm">shape</a>.outer())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> vertex: polygon.outer())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(vertex);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> linestring: linestrings)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> vertex: linestring)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(vertex);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
-<br/>
-<a href="CppComment.htm">/*</a><br/>
-<a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> PolyFileFromPolygons&amp; polyfile) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
-{<br/>
-&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> polyfile.GetPolyFile();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
-}<br/>
-<a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

@@ -108,9 +108,9 @@ include(../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/ToolTriangleCppConso
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppstring.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppglobals.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppdefines.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../ToolTriangleCpp/trianglecppvertextype.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../ToolTriangleCpp/trianglecpphelper.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;trianglecppmeshbuilder.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppvertextype.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpphelper.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppmeshbuilder.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpp<a href="CppMain.htm">main</a>.h \<br/>
@@ -139,10 +139,10 @@ include(../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/ToolTriangleCppConso
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppfinddirectionresult.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppfile.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppstring.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../ToolTriangleCpp/trianglecppvertextype.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../ToolTriangleCpp/trianglecpphelper.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;trianglecpptypedefs.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;trianglecppmeshbuilder.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppvertextype.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpphelper.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpptypedefs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppmeshbuilder.h<br/>
 <br/>
 <a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../ToolTriangleCpp/ToolTriangleCpp.txt<br/>
@@ -5954,12 +5954,7 @@ REAL ymax;<br/>
 /<a href="CppComment.htm">//</a> This is a simple linear congruential <a href="CppRandomNumber.htm">random number</a> generator.&nbsp;&nbsp;Hence, it<br/>
 /<a href="CppComment.htm">//</a> is a bad <a href="CppRandomNumber.htm">random number</a> generator, but good enough <b><a href="CppFor.htm">for</a></b> most randomized<br/>
 /<a href="CppComment.htm">//</a> geometric <a href="CppAlgorithm.htm">algorithm</a>s.<br/>
-<b><a href="CppInt.htm">int</a></b> DumbRand(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> choices);<br/>
-<br/>
-<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; input,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator<br/>
-);<br/>
+<a href="CppComment.htm">//</a><b><a href="CppInt.htm">int</a></b> DumbRand(<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> choices);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> tricpp<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -5981,6 +5976,7 @@ REAL ymax;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/split.hpp&gt;<br/>
 <br/>
+<a href="CppComment.htm">/*</a><br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::tricpp::DumbRand(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> max;<br/>
@@ -6000,6 +5996,7 @@ REAL ymax;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::token_compress_on);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
+<a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
