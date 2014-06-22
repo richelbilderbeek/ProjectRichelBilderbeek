@@ -29,14 +29,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
+struct QGraphicsView;
+
 namespace Ui {
 class QtTestQtRoundedEditRectItemModifyDialog;
 }
 
+
 namespace ribi {
 
-struct QtRoundedRectItem;
+//struct QtRoundedRectItem;
 struct QtRoundedEditRectItem;
+struct QtRoundedEditRectItemDialog;
 
 class QtTestQtRoundedEditRectItemModifyDialog : public QtHideAndShowDialog
 {
@@ -53,29 +57,26 @@ protected:
   void keyPressEvent(QKeyEvent * event);
 
 private slots:
-  void on_button_contour_pen_clicked();
-
-  void on_button_focus_pen_clicked();
-
+  /*
   void on_box_radius_x_valueChanged(double arg1);
   void on_box_radius_y_valueChanged(double arg1);
-
   void on_box_x_valueChanged(double arg1);
   void on_box_y_valueChanged(double arg1);
-
+  void on_button_contour_pen_clicked();
+  void on_button_focus_pen_clicked();
   void on_button_font_clicked();
-
-  void on_text_textChanged();
-
   void on_button_text_pen_clicked();
-
+  void on_text_textChanged();
+  */
 private:
   Ui::QtTestQtRoundedEditRectItemModifyDialog *ui;
 
-  ///The QtRoundedRectItem to work on
-  boost::shared_ptr<QtRoundedEditRectItem> m_item;
+  boost::shared_ptr<QtRoundedEditRectItemDialog> m_dialog_left;
+  boost::shared_ptr<QtRoundedEditRectItemDialog> m_dialog_right;
+  boost::shared_ptr<QGraphicsView> m_view_left;
+  boost::shared_ptr<QGraphicsView> m_view_right;
 
-  void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;
+  //void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -27,11 +27,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/make_shared.hpp>
 #include <boost/lambda/lambda.hpp>
 
+#include <QHBoxLayout>
 #include <QKeyEvent>
-#include <QFontDialog>
+#include <QGraphicsView>
 
 #include "container.h"
 #include "qtroundededitrectitem.h"
+#include "qtroundededitrectitemdialog.h"
 #include "trace.h"
 #include "ui_qttestqtroundededitrectitemmodifydialog.h"
 #pragma GCC diagnostic pop
@@ -39,33 +41,47 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ribi::QtTestQtRoundedEditRectItemModifyDialog::QtTestQtRoundedEditRectItemModifyDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedEditRectItemModifyDialog),
-    m_item(boost::make_shared<QtRoundedEditRectItem>())
+    m_dialog_left(boost::make_shared<QtRoundedEditRectItemDialog>()),
+    m_dialog_right(boost::make_shared<QtRoundedEditRectItemDialog>()),
+    m_view_left(boost::make_shared<QGraphicsView>()),
+    m_view_right(boost::make_shared<QGraphicsView>())
+
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
 
+  const auto item = boost::make_shared<QtRoundedEditRectItem>();
+
+  //Add item to both dialogs
+  m_dialog_left->SetItem(item);
+  m_dialog_right->SetItem(item);
+
+  //Create scene and add item to it
   {
-    assert(!ui->view_left->scene());
-    assert(!ui->view_right->scene());
+    assert(!m_view_left->scene());
+    assert(!m_view_right->scene());
     QGraphicsScene * const scene = new QGraphicsScene;
-    ui->view_left->setScene(scene);
-    ui->view_right->setScene(scene);
-    assert(ui->view_left->scene());
-    assert(ui->view_right->scene());
-    scene->addItem(m_item.get());
+    m_view_left->setScene(scene);
+    m_view_right->setScene(scene);
+    assert(m_view_left->scene());
+    assert(m_view_right->scene());
+    scene->addItem(item.get());
   }
-  ui->box_x->setValue(m_item->pos().x());
-  ui->box_y->setValue(m_item->pos().y());
-  ui->box_radius_x->setValue(m_item->GetRadiusX());
-  ui->box_radius_y->setValue(m_item->GetRadiusY());
 
-  ui->text->setPlainText("XOXO\nOXOXO\n OX");
+  //Put dialogs and view on dialog
+  {
+    assert(!this->layout());
+    QHBoxLayout * const my_layout = new QHBoxLayout;
+    this->setLayout(my_layout);
+    assert(this->layout());
 
-  m_item->m_signal_pos_changed.connect(
-    boost::bind(&ribi::QtTestQtRoundedEditRectItemModifyDialog::OnPosChanged,this,boost::lambda::_1)
-  );
+    my_layout->addWidget(m_view_left.get());
+    my_layout->addWidget(m_view_right.get());
+    my_layout->addWidget(m_dialog_left.get());
+    my_layout->addWidget(m_dialog_right.get());
+  }
 }
 
 ribi::QtTestQtRoundedEditRectItemModifyDialog::~QtTestQtRoundedEditRectItemModifyDialog() noexcept
@@ -78,6 +94,7 @@ void ribi::QtTestQtRoundedEditRectItemModifyDialog::keyPressEvent(QKeyEvent * ev
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+/*
 void ribi::QtTestQtRoundedEditRectItemModifyDialog::OnPosChanged(QtRoundedRectItem * const qtitem) noexcept
 {
   const double new_x = qtitem->pos().x();
@@ -85,6 +102,7 @@ void ribi::QtTestQtRoundedEditRectItemModifyDialog::OnPosChanged(QtRoundedRectIt
   ui->box_x->setValue(new_x);
   ui->box_y->setValue(new_y);
 }
+*/
 
 #ifndef NDEBUG
 void ribi::QtTestQtRoundedEditRectItemModifyDialog::Test() noexcept
@@ -98,7 +116,7 @@ void ribi::QtTestQtRoundedEditRectItemModifyDialog::Test() noexcept
   TRACE("Finished ribi::QtTestQtRoundedEditRectItemModifyDialog::Test successfully");
 }
 #endif
-
+/*
 void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_button_contour_pen_clicked()
 {
   const QPen pen(
@@ -161,3 +179,4 @@ void ribi::QtTestQtRoundedEditRectItemModifyDialog::on_button_text_pen_clicked()
   );
   m_item->SetTextPen(pen);
 }
+*/

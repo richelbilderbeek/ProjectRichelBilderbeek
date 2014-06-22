@@ -357,12 +357,12 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::OnRequestsSceneUpdate()
 
 void ribi::cmap::QtConceptMapTestQtNodeDialog::on_button_load_clicked()
 {
-  const auto s = boost::make_shared<QtItemDisplayStrategy>();
+  //const auto s = boost::make_shared<QtItemDisplayStrategy>();
 
   const int index = ui->box_test_index->value();
   const auto qtnode = boost::make_shared<QtNode>(
-    NodeFactory().GetTest(index),
-    s
+    NodeFactory().GetTest(index)
+    //s
   );
   SetQtNode(qtnode);
 }

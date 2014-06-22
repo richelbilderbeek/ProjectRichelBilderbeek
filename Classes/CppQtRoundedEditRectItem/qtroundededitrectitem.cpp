@@ -47,7 +47,12 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
   const QFont& font,
   QGraphicsItem* parent)
   : QtRoundedRectItem(parent),
-    m_signal_item_requests_edit{},
+    //m_signal_item_requests_edit{},
+    m_signal_base_changed{},
+    m_signal_font_changed{},
+    m_signal_padding_changed{},
+    m_signal_text_changed{},
+    m_signal_text_pen_changed{},
     m_font(font),
     m_padding(padding),
     m_text( {""} ), //Empty std::vector<std::string>, as m_text must be set by SetText
@@ -175,7 +180,7 @@ void ribi::QtRoundedEditRectItem::keyPressEvent(QKeyEvent* event) noexcept
   switch (event->key())
   {
     case Qt::Key_F2:
-    m_signal_item_requests_edit(this);
+    //m_signal_item_requests_edit(this);
     break;
   }
   QtRoundedRectItem::keyPressEvent(event);
@@ -262,7 +267,7 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void ribi::QtRoundedEditRectItem::SetFont(const QFont& font)
+void ribi::QtRoundedEditRectItem::SetFont(const QFont& font) noexcept
 {
   if (m_font != font)
   {
@@ -273,7 +278,7 @@ void ribi::QtRoundedEditRectItem::SetFont(const QFont& font)
 }
 #pragma GCC diagnostic pop
 
-void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding)
+void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding) noexcept
 {
   if ( padding.bottom != m_padding.bottom
     || padding.left   != m_padding.left
@@ -301,7 +306,7 @@ void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding)
   }
 }
 
-void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text)
+void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text) noexcept
 {
   const bool verbose = false;
 
@@ -349,7 +354,7 @@ void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text)
   }
 }
 
-void ribi::QtRoundedEditRectItem::SetTextPen(const QPen& pen)
+void ribi::QtRoundedEditRectItem::SetTextPen(const QPen& pen) noexcept
 {
   if (m_text_pen != pen)
   {
@@ -377,3 +382,10 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
   TRACE("Finished ribi::QtRoundedEditRectItem::Test successfully");
 }
 #endif
+
+/*
+std::ostream& ribi::operator<<(std::ostream& os, const QtRoundedEditRectItem& item) noexcept
+{
+
+}
+*/

@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPITEMDISPLAYSTRATEGY_H
 #define QTCONCEPTMAPITEMDISPLAYSTRATEGY_H
 
+#ifdef USE_ITEMDISPLAYSTRATEGY_20140622
+
 #include <string>
 #include <vector>
 
@@ -48,7 +50,7 @@ namespace cmap {
 ///A Concept can be shown in multiple different ways, which is performed by its derived classes.
 struct QtItemDisplayStrategy //: public QtRoundedEditRectItem
 {
-  typedef QtRoundedEditRectItem Base;
+  //typedef QtRoundedEditRectItem Base;
 
   ///concept cannot be const, the user might edit it (in derived classes for example)
   //explicit QtItemDisplayStrategy(const boost::shared_ptr<Concept>& concept);
@@ -96,16 +98,19 @@ struct QtItemDisplayStrategy //: public QtRoundedEditRectItem
   //void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) final;
 
   ///The pen that draws the contours
-  //void SetContourPen(const QPen& pen);
+  void SetContourPen(const QPen& pen);
+
+  ///The pen that draws the contours when item is focussed or selected
+  void SetFocusPen(const QPen& pen);
 
   ///The brush by which the indicator is filled
-  //void SetIndicatorBrush(const QBrush& brush);
+  void SetIndicatorBrush(const QBrush& brush);
 
   ///The pen by which the indicator is filled
-  //void SetIndicatorPen(const QPen& pen);
+  void SetIndicatorPen(const QPen& pen);
 
   ///Set the ?main? brush
-  //void SetMainBrush(const QBrush& any_brush);
+  void SetMainBrush(const QBrush& any_brush);
 
   ///Set the name (the text), the base class (QtRoundedEditRectItem)
   ///will wordwrap it
@@ -119,8 +124,12 @@ struct QtItemDisplayStrategy //: public QtRoundedEditRectItem
   ///Add final to be sure that the shape is not set smaller
   //QPainterPath shape() const final;
 
+  std::string ToStr() const noexcept;
+
   ///Emitted by SetPos
   //boost::signals2::signal<void(const double,const double)> m_signal_position_changed;
+
+  boost::signals2::signal<void(QtItemDisplayStrategy*)> m_signal_changed;
 
 protected:
   //?Where is this used for?
@@ -172,5 +181,7 @@ std::ostream& operator<<(std::ostream& os, const QtItemDisplayStrategy& s) noexc
 
 } //~namespace cmap
 } //~namespace ribi
+
+#endif // USE_ITEMDISPLAYSTRATEGY_20140622
 
 #endif // QTCONCEPTMAPITEMDISPLAYSTRATEGY_H

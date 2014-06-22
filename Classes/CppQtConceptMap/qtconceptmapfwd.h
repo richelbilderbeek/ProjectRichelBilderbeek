@@ -26,6 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct QtQuadBezierArrowItem;
+struct QtRoundedRectItemDialog;
+struct QtRoundedEditRectItem;
+struct QtRoundedEditRectItemDialog;
 
 namespace cmap {
 

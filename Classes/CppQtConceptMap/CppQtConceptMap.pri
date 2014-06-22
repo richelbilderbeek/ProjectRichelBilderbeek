@@ -29,7 +29,7 @@ SOURCES += \
 #    ../../Classes/CppQtConceptMap/qteditconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.cpp \
-#    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.cpp \
+    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmap_test_qteditconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmap_test_qtrateconceptmap.cpp \
@@ -66,7 +66,7 @@ HEADERS += \
 #    ../../Classes/CppQtConceptMap/qteditconceptmap.h \
 #    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.h \
     ../../Classes/CppQtConceptMap/qtrateconceptmap.h \
-#    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.h \
+    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.h \
 #    ../../Classes/CppQtConceptMap/qtconceptmapcenternode.h \
     ../../Classes/CppQtConceptMap/qtconceptmapexampledialog.h \
     ../../Classes/CppQtConceptMap/qtconceptmapexamplesdialog.h \

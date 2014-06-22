@@ -33,13 +33,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::cmap::QtConceptMapElement::QtConceptMapElement()
+  : QtRoundedEditRectItem()
+{
+
+}
+
 void ribi::cmap::QtConceptMapElement::OnConceptRequestsEdit()
 {
   assert(this);
   assert(this->GetNode());
   assert(this->GetNode()->GetConcept()->GetExamples());
   this->setAcceptHoverEvents(true);
-  m_signal_conceptmapitem_requests_edit(this);
+  assert(!"TODO");
+  //m_signal_conceptmapitem_requests_edit(this);
 }
 
 void ribi::cmap::QtConceptMapElement::hoverMoveEvent(QGraphicsSceneHoverEvent *)

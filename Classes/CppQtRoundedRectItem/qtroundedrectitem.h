@@ -58,9 +58,9 @@ class QtRoundedRectItem : public QGraphicsRectItem
    \___/
 
   */
-  int GetHeight() const noexcept;
+  double GetHeight() const noexcept;
   ///Get the height of the area including the rounded rectangle itself
-  int GetHeightIncludingPen() const noexcept;
+  double GetHeightIncludingPen() const noexcept;
 
   QPointF GetPos() const noexcept;
 
@@ -72,6 +72,7 @@ class QtRoundedRectItem : public QGraphicsRectItem
 
   ///Get the rectangle of the inner area
   QRectF GetRect() const noexcept;
+  QRectF GetRectIncludingPen() const noexcept;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -87,9 +88,9 @@ class QtRoundedRectItem : public QGraphicsRectItem
    \___/
 
   */
-  int GetWidth() const noexcept;
+  double GetWidth() const noexcept;
   ///Get the width of the area including the rounded rectangle itself
-  int GetWidthIncludingPen() const noexcept;
+  double GetWidthIncludingPen() const noexcept;
 
   ///Set the pen by which the contours are normally drawn
   ///Default value: QPen(Qt::DashLine)
@@ -100,6 +101,7 @@ class QtRoundedRectItem : public QGraphicsRectItem
   void SetFocusPen(const QPen& pen) noexcept;
 
   void SetHeight(const double width) noexcept;
+  void SetHeightIncludingPen(const double width) noexcept;
 
   void SetPos(const double x,const double y) noexcept;
 
@@ -111,8 +113,10 @@ class QtRoundedRectItem : public QGraphicsRectItem
 
   ///Set the rounded rect of the inner area
   void SetRoundedRect(const QRectF rect, const double radius_x, const double radius_y) noexcept;
+  void SetRoundedRectIncludingPen(const QRectF rect, const double radius_x, const double radius_y) noexcept;
 
   void SetWidth(const double width) noexcept;
+  void SetWidthIncludingPen(const double width) noexcept;
 
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
@@ -155,11 +159,16 @@ protected:
   ///To make it private, use SetRoundedRect instead
   void setRect(const double,const double,const double,const double) = delete;
   void setRect(const QRectF&) = delete;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 std::ostream& operator<<(std::ostream& os,const QtRoundedRectItem& item) noexcept;
 
 bool operator==(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs) noexcept;
+bool operator!=(const QtRoundedRectItem& lhs, const QtRoundedRectItem& rhs) noexcept;
 
 } //~namespace ribi
 

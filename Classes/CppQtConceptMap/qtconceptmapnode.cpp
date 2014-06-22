@@ -47,11 +47,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtNode::QtNode(
-  const boost::shared_ptr<Node> node,
-  const boost::shared_ptr<QtItemDisplayStrategy> concept_item)
-  : m_signal_node_requests_rate_concept{},
-    m_signal_node_requests_rate_examples{},
-    m_display_strategy(concept_item),
+  const boost::shared_ptr<Node> node
+  //const boost::shared_ptr<QtItemDisplayStrategy> concept_item
+)
+  : QtConceptMapElement(),
+    //m_signal_display_changed{},
+    m_signal_node_changed{},
+    //m_signal_node_requests_rate_concept{},
+    //m_signal_node_requests_rate_examples{},
+    //m_display_strategy(concept_item),
     //m_contour_pen(concept_item->GetContourPen()),
     //m_focus_pen(concept_item->GetFocusPen()),
     m_node(node)
@@ -60,7 +64,7 @@ ribi::cmap::QtNode::QtNode(
   Test();
   #endif
   assert(node);
-  assert(m_display_strategy);
+  //assert(m_display_strategy);
   assert(m_node);
   //assert(m_display_strategy->GetConcept().get() == m_node->GetConcept().get());
 
@@ -289,7 +293,7 @@ void ribi::cmap::QtNode::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
 
 void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event) noexcept
 {
-  assert(m_display_strategy);
+  //assert(m_display_strategy);
   //assert(m_display_strategy->GetConcept());
   //m_display_strategy->keyPressEvent(event);
   switch (event->key())
@@ -312,6 +316,7 @@ void ribi::cmap::QtNode::OnItemHasUpdated()
   //this->m_signal_item_has_updated(this);
 }
 
+/*
 void ribi::cmap::QtNode::OnItemRequestsRateConcept()
 {
   m_signal_node_requests_rate_concept(this);
@@ -321,6 +326,7 @@ void ribi::cmap::QtNode::OnItemRequestsRateExamples()
 {
   m_signal_node_requests_rate_examples(this);
 }
+*/
 
 void ribi::cmap::QtNode::OnNodeChanged(Node * const node)
 {
@@ -354,7 +360,7 @@ void ribi::cmap::QtNode::paint(
 ) noexcept
 {
 
-  assert(m_display_strategy);
+  //assert(m_display_strategy);
   //assert(!m_display_strategy->hasFocus());
   //assert(!m_display_strategy->isSelected());
 
@@ -375,7 +381,7 @@ void ribi::cmap::QtNode::paint(
 
   //m_display_strategy->paint(painter,item,widget);
   Base::paint(painter,item,widget);
-
+  /*
   if (!GetNode()->GetConcept()->GetExamples()->Get().empty())
   {
     painter->setBrush(m_display_strategy->GetIndicatorBrush());
@@ -388,7 +394,7 @@ void ribi::cmap::QtNode::paint(
       3.0
       );
   }
-
+  */
 
   //Check if item can move (as the center node cannot)
   #ifdef BRAINWEAVER_MOVE_ITEMS_ON_COLLISION
@@ -486,11 +492,12 @@ void ribi::cmap::QtNode::Test() noexcept
     const std::size_t n_nodes = cmap::NodeFactory().GetTests().size();
     for (std::size_t node_index=0; node_index!=n_nodes; ++node_index)
     {
-      const auto nodes = cmap::NodeFactory().GetTests();
+      const auto nodes = NodeFactory().GetTests();
       boost::shared_ptr<Node> node = nodes[node_index];
       assert(node);
-      boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(node->GetConcept()));
-      boost::shared_ptr<QtNode> qtnode(new QtNode(node,qtconcept_item));
+      //boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(node->GetConcept()));
+      //boost::shared_ptr<QtNode> qtnode(new QtNode(node,qtconcept_item));
+      boost::shared_ptr<QtNode> qtnode(new QtNode(node));
       assert(qtnode->GetNode()->GetConcept() == node->GetConcept());
       assert(node == qtnode->GetNode());
       {
@@ -599,8 +606,9 @@ std::string ribi::cmap::QtNode::ToStr() const noexcept
 
 std::ostream& ribi::cmap::operator<<(std::ostream& os, const QtNode& qtnode) noexcept
 {
-  os << (*qtnode.GetNode())
-    << " (" << (*qtnode.GetDisplayStrategy())
-    << ")";
+  os
+    << (*qtnode.GetNode())
+    //<< " (" << (*qtnode.GetDisplayStrategy()) << ")"
+  ;
   return os;
 }

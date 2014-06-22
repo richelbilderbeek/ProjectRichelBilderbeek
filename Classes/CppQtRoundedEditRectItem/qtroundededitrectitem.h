@@ -25,55 +25,46 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
 #include <QFont>
-//#include <QGraphicsRectItem>
 #include "qtroundedrectitem.h"
+#include "qtroundededitrectitempadding.h"
 #pragma GCC diagnostic pop
 
-
 namespace ribi {
-
 
 ///A QtRoundedRectTextItem displaying multiple lines of text
 ///For a single line of text, use QtRoundedTextRectItem
 class QtRoundedEditRectItem : public QtRoundedRectItem
-//class QtRoundedEditRectItem : public QGraphicsRectItem
 {
   //Q_OBJECT //Cannot make this a QObject???
 
   public:
+  typedef QtRoundedRectItem Base;
+  typedef QtRoundedEditRectItemPadding Padding;
 
-  struct Padding
-  {
-    Padding(
-      const double any_top = 0.0,
-      const double any_right = 0.0,
-      const double any_bottom = 0.0,
-      const double any_left = 0.0
-    )
-      : bottom(any_bottom), left(any_left), right(any_right), top(any_top) {}
-    double bottom;
-    double left;
-    double right;
-    double top;
-  };
 
   explicit QtRoundedEditRectItem(
     const std::vector<std::string>& text = { "..." },
     const Padding& padding = Padding(),
     const QFont& font = QFont("monospace",9),
-    QGraphicsItem* parent = 0);
+    QGraphicsItem* parent = 0
+  );
 
   virtual ~QtRoundedEditRectItem() noexcept;
 
   ///Get the font by which the text is drawn
   const QFont& GetFont() const noexcept;
 
+  const Padding& GetPadding() const noexcept { return m_padding; }
+
   ///Obtain the text on the item
   const std::vector<std::string>& GetText() const noexcept;
+
+  const QPen& GetTextPen() const noexcept { return m_text_pen; }
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -82,19 +73,25 @@ class QtRoundedEditRectItem : public QtRoundedRectItem
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the font by which the text is drawn
-  void SetFont(const QFont& font);
+  void SetFont(const QFont& font) noexcept;
 
   ///Set the padding between text and rectangle
-  void SetPadding(const Padding& padding);
+  void SetPadding(const Padding& padding) noexcept;
 
   ///Set the text displayed
-  virtual void SetText(const std::vector<std::string>& text);
+  virtual void SetText(const std::vector<std::string>& text) noexcept;
 
   ///Set the pen by which the text is drawn
-  void SetTextPen(const QPen& pen);
+  void SetTextPen(const QPen& pen) noexcept;
 
   ///Called when the user wants to edit the text
-  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_item_requests_edit;
+  //boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_item_requests_edit;
+
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_base_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_font_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_padding_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_pen_changed;
 
 protected:
   virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
@@ -134,6 +131,8 @@ private:
   static void Test() noexcept;
   #endif
 };
+
+//std::ostream& operator<<(std::ostream& os, const QtRoundedEditRectItem&) noexcept;
 
 } //~namespace ribi
 

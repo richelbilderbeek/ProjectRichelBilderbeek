@@ -29,6 +29,8 @@ public:
   QtQtNodeDialog& operator=(const QtQtNodeDialog&) = delete;
   ~QtQtNodeDialog();
 
+  static int GetMinimumHeight(const QtNode& qtnode) noexcept;
+
   void SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
   boost::shared_ptr<QtNode> GetQtNode() const noexcept { return m_qtnode; }
 
@@ -36,11 +38,20 @@ private:
   Ui::QtQtNodeDialog *ui;
 
   ///The QtNode to work on
+  ///A QtNode is
+  /// (1) a Node
+  /// (2) inherited properties from QtRoundedEditRectItem
   boost::shared_ptr<QtNode> m_qtnode;
 
-  ///QtDialog that displays a Node (that is: a non-Qt Node)
+  ///QtDialog that displays (1) a Node
   boost::shared_ptr<QtNodeDialog> m_qtnodedialog;
 
+  ///QtDialog that displays (2) inherited properties from QtRoundedEditRectItem
+  boost::shared_ptr<QtRoundedEditRectItemDialog> m_qtroundededitrectitem_dialog;
+
+  //void OnDisplayStrategyChanged(QtNode * const qtnode) noexcept;
+  void OnNodeChanged(QtNode * const qtnode) noexcept;
+  void OnQtRoundedRectItemChanged(QtNode * const qtnode) noexcept;
 };
 
 } //~namespace cmap

@@ -356,3 +356,13 @@ void ribi::QtRoundedRectItemDialog::on_box_focus_pen_width_valueChanged(double a
   );
   m_item->SetFocusPen(pen);
 }
+
+void ribi::QtRoundedRectItemDialog::on_box_width_including_pen_valueChanged(double arg1)
+{
+  m_item->SetWidthIncludingPen(arg1);
+}
+
+void ribi::QtRoundedRectItemDialog::on_box_height_including_pen_valueChanged(double arg1)
+{
+  m_item->SetHeightIncludingPen(arg1);
+}

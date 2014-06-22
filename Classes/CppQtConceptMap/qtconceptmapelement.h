@@ -36,8 +36,9 @@ namespace cmap {
 ///A focusable element of a concept map, which is either a Node or an Edge
 ///QtRoundedTextRectItem: single line
 ///QtRoundedEditRectItem: multiple lines
-struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
+struct QtConceptMapElement : public QtRoundedEditRectItem
 {
+  QtConceptMapElement();
   virtual ~QtConceptMapElement() noexcept {}
 
   virtual void DisableAll() = 0;
@@ -47,8 +48,8 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
   virtual boost::shared_ptr<const Node>  GetNode() const noexcept = 0;
   virtual boost::shared_ptr<      Node>  GetNode()       noexcept = 0;
 
-  virtual boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept = 0;
-  virtual boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept = 0;
+  //virtual boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept = 0;
+  //virtual boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept = 0;
 
   ///Set the name of the concept
   //virtual void SetName(const std::string& name) noexcept = 0;
@@ -64,7 +65,7 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
 
   ///A more specific signal: a Concept requests an edit, this is passed to
   ///OnConceptRequestsEdit, which lets this QtConceptMapItem request for an edit
-  boost::signals2::signal<void(QtConceptMapElement*)> m_signal_conceptmapitem_requests_edit;
+  //boost::signals2::signal<void(QtConceptMapElement*)> m_signal_conceptmapitem_requests_edit;
 
   ///Slot for a Concept its signal to be edited, all it does is add the ConceptMapItem
   ///the Concept is a member of

@@ -32,7 +32,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace cmap {
 
 struct NodeFactory;

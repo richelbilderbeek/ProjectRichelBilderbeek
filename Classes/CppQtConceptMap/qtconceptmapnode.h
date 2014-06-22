@@ -33,7 +33,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace cmap {
 
 ///QtNode displays a Node as a QtConceptMapElement
@@ -45,8 +44,9 @@ struct QtNode : public QtConceptMapElement
   ///Node cannot be const as it contains a Concept that the user might want to edit
   ///concept_item contains the Stategy to display (and respond to the concept)
   explicit QtNode(
-    const boost::shared_ptr<Node> node,
-    const boost::shared_ptr<QtItemDisplayStrategy> concept_item);
+    const boost::shared_ptr<Node> node
+    //const boost::shared_ptr<QtItemDisplayStrategy> concept_item
+  );
 
   //virtual QRectF boundingRect() const;
 
@@ -58,14 +58,14 @@ struct QtNode : public QtConceptMapElement
   boost::shared_ptr<const Node>  GetNode() const noexcept;
   boost::shared_ptr<      Node>  GetNode()       noexcept;
 
-  boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
-  boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
+  //boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
+  //boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
 
   //      boost::shared_ptr<const cmap::Node>  GetNode() const noexcept { return m_node; }
   //const boost::shared_ptr<      cmap::Node>& GetNode()       noexcept { return m_node; }
 
   void SetNode(const boost::shared_ptr<Node>& node);
-  void SetDisplay(const boost::shared_ptr<QtItemDisplayStrategy>& display_strategy);
+  //void SetDisplay(const boost::shared_ptr<QtItemDisplayStrategy>& display_strategy);
 
   //void SetName(const std::string& name) noexcept;
 
@@ -79,8 +79,11 @@ struct QtNode : public QtConceptMapElement
 
   ///m_signal_request_rate_node is emitted due to a m_signal_request_rate_node
   ///of the Node its QtRateConceptItem
-  boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
-  boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_examples;
+  //boost::signals2::signal<void (QtNode *)> m_signal_display_changed;
+  boost::signals2::signal<void (QtNode *)> m_signal_base_changed;
+  boost::signals2::signal<void (QtNode *)> m_signal_node_changed;
+  //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
+  //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_examples;
 
   ///No other signals, these are present in the ConceptItems
 
@@ -99,7 +102,7 @@ protected:
 private:
 
   ///The Strategy for displaying a Concept
-  boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
+  //boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
 
   //const QPen m_contour_pen;
   //const QPen m_focus_pen;
@@ -118,8 +121,8 @@ private:
   void OnRequestsSceneUpdate();
 
   ///The item
-  void OnItemRequestsRateConcept();
-  void OnItemRequestsRateExamples();
+  //void OnItemRequestsRateConcept();
+  //void OnItemRequestsRateExamples();
 
   #ifndef NDEBUG
   static void Test() noexcept;

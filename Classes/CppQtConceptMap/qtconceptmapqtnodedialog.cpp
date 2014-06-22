@@ -27,7 +27,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <sstream>
 
+#include <boost/lambda/lambda.hpp>
+
+#include "conceptmapnode.h"
+#include "qtconceptmapnodedialog.h"
 #include "qtconceptmapnode.h"
+#include "qtitemdisplaystrategy.h"
+#include "qtroundededitrectitemdialog.h"
+#include "trace.h"
 #include "ui_qtconceptmapqtnodedialog.h"
 #pragma GCC diagnostic pop
 
@@ -35,7 +42,8 @@ ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtQtNodeDialog),
   m_qtnode{},
-  m_qtnodedialog{}
+  m_qtnodedialog{},
+  m_qtroundededitrectitem_dialog{}
 {
   ui->setupUi(this);
 }
@@ -43,6 +51,29 @@ ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
 ribi::cmap::QtQtNodeDialog::~QtQtNodeDialog()
 {
   delete ui;
+}
+
+int ribi::cmap::QtQtNodeDialog::GetMinimumHeight(const QtNode& qtnode) noexcept
+{
+  const int margin = 16;
+  return
+    QtNodeDialog::GetMinimumHeight(*qtnode.GetNode())
+  + margin
+  + QtRoundedEditRectItemDialog::GetMinimumHeight(qtnode)
+  ;
+}
+
+void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
+{
+  assert( qtnode ==  m_qtnode.get());
+  assert(*qtnode == *m_qtnode);
+  boost::shared_ptr<QtRoundedEditRectItem> base(m_qtnode);
+  this->m_qtroundededitrectitem_dialog->SetItem(base);
+}
+
+void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnode) noexcept
+{
+  this->m_qtnodedialog->SetNode(qtnode->GetNode());
 }
 
 void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
@@ -61,96 +92,72 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
     s << "Setting node '" << qtnode->ToStr() << "'\n";
   }
 
-  const auto concept_after = qtnode->GetConcept();
-  const auto x_after = qtnode->GetX();
-  const auto y_after = qtnode->GetY();
+  const auto qtroundededitrectitem_after = qtnode.get();
+  const auto node_after = qtnode->GetNode();
 
-  bool concept_changed  = true;
-  bool x_changed  = true;
-  bool y_changed = true;
+  bool qtroundededitrectitem_changed = true;
+  bool node_changed = true;
 
   if (m_qtnode)
   {
-    const auto concept_before = m_qtnode->GetConcept();
-    const auto x_before = m_qtnode->GetX();
-    const auto y_before = m_qtnode->GetY();
+    const auto qtroundededitrectitem_before = m_qtnode.get();
+    const auto node_before = m_qtnode->GetNode();
 
-    concept_changed = concept_before != concept_after;
-    x_changed = x_before != x_after;
-    y_changed = y_before != y_after;
+    qtroundededitrectitem_changed = qtroundededitrectitem_before != qtroundededitrectitem_after;
+    node_changed = node_before != node_after;
 
 
     if (verbose)
     {
-      if (concept_changed)
+      if (qtroundededitrectitem_changed)
       {
         std::stringstream s;
         s
-          << "Concept will change from "
-          << concept_before->ToStr()
+          << "DisplayStrategy will change from "
+          << qtroundededitrectitem_before->ToStr()
           << " to "
-          << concept_after->ToStr()
+          << qtroundededitrectitem_after->ToStr()
           << '\n'
         ;
         TRACE(s.str());
       }
-      if (x_changed)
+      if (node_changed)
       {
         std::stringstream s;
-        s << "X will change from " << x_before
-          << " to " << x_after << '\n';
-        TRACE(s.str());
-      }
-      if (y_changed)
-      {
-        std::stringstream s;
-        s << "Y will change from " << y_before
-          << " to " << y_after << '\n';
+        s << "QtNode will change from " << (*node_before)
+          << " to " << (*node_after) << '\n';
         TRACE(s.str());
       }
     }
     //Disconnect m_concept
-    m_qtnode->m_signal_concept_changed.disconnect(
-      boost::bind(&ribi::cmap::QtNodeDialog::OnConceptChanged,this,boost::lambda::_1)
+    m_qtnode->m_signal_base_changed.disconnect(
+      boost::bind(&ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged,this,boost::lambda::_1)
     );
-    m_qtnode->m_signal_x_changed.disconnect(
-      boost::bind(&ribi::cmap::QtNodeDialog::OnXchanged,this,boost::lambda::_1)
-    );
-    m_qtnode->m_signal_y_changed.disconnect(
-      boost::bind(&ribi::cmap::QtNodeDialog::OnYchanged,this,boost::lambda::_1)
+    m_qtnode->m_signal_node_changed.disconnect(
+      boost::bind(&ribi::cmap::QtQtNodeDialog::OnNodeChanged,this,boost::lambda::_1)
     );
   }
 
   //Replace m_example by the new one
   m_qtnode = qtnode;
 
+  assert(m_qtnode->GetNode() == node_after);
 
-  assert(m_qtnode->GetConcept() == concept_after );
-  assert(m_qtnode->GetX() == x_after );
-  assert(m_qtnode->GetY() == y_after);
-
-  m_qtnode->m_signal_concept_changed.connect(
-    boost::bind(&ribi::cmap::QtNodeDialog::OnConceptChanged,this,boost::lambda::_1)
+  m_qtnode->m_signal_base_changed.connect(
+    boost::bind(&ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged,this,boost::lambda::_1)
   );
-  m_qtnode->m_signal_x_changed.connect(
-    boost::bind(&ribi::cmap::QtNodeDialog::OnXchanged,this,boost::lambda::_1)
-  );
-  m_qtnode->m_signal_y_changed.connect(
-    boost::bind(&ribi::cmap::QtNodeDialog::OnYchanged,this,boost::lambda::_1)
+  m_qtnode->m_signal_node_changed.connect(
+    boost::bind(&ribi::cmap::QtQtNodeDialog::OnNodeChanged,this,boost::lambda::_1)
   );
 
   //Emit everything that has changed
-  if (concept_changed)
+  if (qtroundededitrectitem_changed)
   {
-    m_qtnode->m_signal_concept_changed(m_qtnode.get());
+    m_qtnode->m_signal_base_changed(m_qtnode.get());
   }
-  if (x_changed)
+  if (node_changed)
   {
-    m_qtnode->m_signal_x_changed(m_qtnode.get());
-  }
-  if (y_changed)
-  {
-    m_qtnode->m_signal_y_changed(m_qtnode.get());
+    m_qtnode->m_signal_node_changed(m_qtnode.get());
   }
 
   this->setMinimumHeight(

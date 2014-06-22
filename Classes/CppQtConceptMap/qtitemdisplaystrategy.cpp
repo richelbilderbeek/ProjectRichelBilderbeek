@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef USE_ITEMDISPLAYSTRATEGY_20140622
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -264,6 +266,13 @@ void ribi::cmap::QtItemDisplayStrategy::Test() noexcept
 }
 #endif
 
+std::string ribi::cmap::QtItemDisplayStrategy::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << (*this);
+  return s.str():
+}
+
 std::ostream& ribi::cmap::operator<<(std::ostream& os, const QtItemDisplayStrategy& s) noexcept
 {
   os
@@ -274,3 +283,5 @@ std::ostream& ribi::cmap::operator<<(std::ostream& os, const QtItemDisplayStrate
   ;
   return os;
 }
+
+#endif // USE_ITEMDISPLAYSTRATEGY_20140622

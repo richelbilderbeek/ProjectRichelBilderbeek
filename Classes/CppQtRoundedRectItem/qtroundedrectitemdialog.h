@@ -50,6 +50,8 @@ public:
 
   boost::shared_ptr<QtRoundedRectItem>& GetItem() const noexcept;
 
+  static int GetMinimumHeight() noexcept { return 276; }
+
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
 
@@ -73,6 +75,10 @@ private slots:
 
   void on_box_contour_pen_width_valueChanged(double arg1);
   void on_box_focus_pen_width_valueChanged(double arg1);
+
+  void on_box_width_including_pen_valueChanged(double arg1);
+
+  void on_box_height_including_pen_valueChanged(double arg1);
 
 private:
   Ui::QtRoundedRectItemDialog *ui;

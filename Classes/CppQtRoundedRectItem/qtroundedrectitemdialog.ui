@@ -6,29 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>212</width>
-    <height>220</height>
+    <width>340</width>
+    <height>356</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QtRoundedRectItemDialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="6" column="1">
-    <widget class="QDoubleSpinBox" name="box_radius_x">
-     <property name="value">
-      <double>3.000000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0">
-    <widget class="QLabel" name="label_radius_y">
-     <property name="text">
-      <string>Radius Y</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
+   <item row="4" column="1">
     <widget class="QDoubleSpinBox" name="box_height">
      <property name="maximum">
       <double>1000.000000000000000</double>
@@ -38,7 +24,7 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="6" column="0">
     <widget class="QLabel" name="label_contour_pen_width">
      <property name="text">
       <string>Contour pen width</string>
@@ -52,14 +38,14 @@
      </property>
     </widget>
    </item>
-   <item row="7" column="1">
+   <item row="9" column="1">
     <widget class="QDoubleSpinBox" name="box_radius_y">
      <property name="value">
       <double>3.000000000000000</double>
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
+   <item row="8" column="0">
     <widget class="QLabel" name="label_radius_x">
      <property name="text">
       <string>Radius X</string>
@@ -73,6 +59,30 @@
      </property>
      <property name="value">
       <double>64.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QDoubleSpinBox" name="box_radius_x">
+     <property name="value">
+      <double>3.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="label_radius_y">
+     <property name="text">
+      <string>Radius Y</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QDoubleSpinBox" name="box_y">
+     <property name="minimum">
+      <double>-999999999.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>999999999.000000000000000</double>
      </property>
     </widget>
    </item>
@@ -90,17 +100,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QDoubleSpinBox" name="box_y">
-     <property name="minimum">
-      <double>-999999999.000000000000000</double>
-     </property>
-     <property name="maximum">
-      <double>999999999.000000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
+   <item row="4" column="0">
     <widget class="QLabel" name="label_height">
      <property name="text">
       <string>Height</string>
@@ -117,18 +117,52 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
+   <item row="6" column="1">
+    <widget class="QDoubleSpinBox" name="box_contour_pen_width"/>
+   </item>
+   <item row="7" column="0">
     <widget class="QLabel" name="label_focus_pen_width">
      <property name="text">
       <string>Focus pen width</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
-    <widget class="QDoubleSpinBox" name="box_contour_pen_width"/>
+   <item row="7" column="1">
+    <widget class="QDoubleSpinBox" name="box_focus_pen_width"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_width_including_pen">
+     <property name="text">
+      <string>Width (including pen)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_height_including_pen">
+     <property name="text">
+      <string>Height (including pen)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QDoubleSpinBox" name="box_width_including_pen">
+     <property name="maximum">
+      <double>1000.000000000000000</double>
+     </property>
+     <property name="value">
+      <double>64.000000000000000</double>
+     </property>
+    </widget>
    </item>
    <item row="5" column="1">
-    <widget class="QDoubleSpinBox" name="box_focus_pen_width"/>
+    <widget class="QDoubleSpinBox" name="box_height_including_pen">
+     <property name="maximum">
+      <double>1000.000000000000000</double>
+     </property>
+     <property name="value">
+      <double>128.000000000000000</double>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
