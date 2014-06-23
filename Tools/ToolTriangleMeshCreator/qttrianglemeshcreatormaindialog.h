@@ -74,7 +74,8 @@ public:
   bool GetShowMesh() const noexcept;
   Area GetTriangleMaxArea() const noexcept;
   Angle GetTriangleMinAngle() const noexcept;
-  bool GetVerbose() const noexcept;
+  bool GetVerbose3dMesh() const noexcept;
+  bool GetVerboseTriangleMesh() const noexcept;
 
   void SetShowMesh(const bool show_mesh) noexcept;
   void SetWkt(const std::string& wkt) noexcept;
@@ -97,6 +98,7 @@ private slots:
   void on_button_create_clicked();
   void DisplayPolygons() noexcept;
   void DisplayTriangleMesh() noexcept;
+  void on_button_create_2d_mesh_clicked();
 };
 
 } //~namespace ribi

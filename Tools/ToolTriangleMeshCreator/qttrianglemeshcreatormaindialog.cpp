@@ -56,6 +56,28 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
   #endif
   ui->setupUi(this);
 
+  {
+    //assert(!ui->view_shapes_1->scene());
+    //assert(!ui->view_shapes_2->scene());
+    QGraphicsScene * const scene = new QGraphicsScene;
+    ui->view_shapes_1->setScene(scene);
+    ui->view_shapes_2->setScene(scene);
+    assert(ui->view_shapes_1->scene());
+    assert(ui->view_shapes_2->scene());
+    assert(ui->view_shapes_1->scene() == ui->view_shapes_2->scene());
+  }
+  {
+    //assert(!ui->view_triangle_mesh_1->scene());
+    //assert(!ui->view_triangle_mesh_2->scene());
+    QGraphicsScene * const scene = new QGraphicsScene;
+    ui->view_triangle_mesh_1->setScene(scene);
+    ui->view_triangle_mesh_2->setScene(scene);
+    assert(ui->view_triangle_mesh_1->scene());
+    assert(ui->view_triangle_mesh_2->scene());
+    assert(ui->view_triangle_mesh_1->scene() == ui->view_triangle_mesh_2->scene());
+  }
+
+
   connect(ui->edit_wkt,SIGNAL(textChanged()),this,SLOT(DisplayPolygons()));
   connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
   connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
@@ -82,8 +104,9 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
       ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(GetFraction()),
       ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction(),
       ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
-      GetVerbose()
+      GetVerbose3dMesh()
     );
+
     if (GetShowMesh())
     {
       assert(ribi::fileio::FileIo().IsRegularFile(m_dialog->GetFilename()));
@@ -112,8 +135,9 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
 
 void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
 {
-  assert(ui->view->scene());
-  ui->view->scene()->clear();
+
+  assert(ui->view_shapes_1->scene());
+  ui->view_shapes_1->scene()->clear();
   //const std::string text = ui->edit_wkt->toPlainText().toStdString();
   //const std::vector<std::string> lines = Container().SeperateString(text,'\n');
 
@@ -127,7 +151,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
   {
     QGraphicsSvgItem * const item = new QGraphicsSvgItem(svg_filename.c_str());
     item->setScale(10.0);
-    ui->view->scene()->addItem(item);
+    ui->view_shapes_1->scene()->addItem(item);
   }
   fileio::FileIo().DeleteFile(svg_filename);
 
@@ -253,9 +277,15 @@ ribi::QtTriangleMeshCreatorMainDialog::Angle ribi::QtTriangleMeshCreatorMainDial
   ;
 }
 
-bool ribi::QtTriangleMeshCreatorMainDialog::GetVerbose() const noexcept
+
+bool ribi::QtTriangleMeshCreatorMainDialog::GetVerbose3dMesh() const noexcept
 {
-  return ui->check_verbose->isChecked();
+  return ui->check_verbose_3d_mesh->isChecked();
+}
+
+bool ribi::QtTriangleMeshCreatorMainDialog::GetVerboseTriangleMesh() const noexcept
+{
+  return ui->check_verbose_triangle_mesh->isChecked();
 }
 
 ribi::trim::CreateVerticalFacesStrategy
@@ -319,3 +349,8 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
   TRACE("Finished QtTriangleMeshCreatorMainDialog::Test successfully");
 }
 #endif
+
+void ribi::QtTriangleMeshCreatorMainDialog::on_button_create_2d_mesh_clicked()
+{
+  //
+}

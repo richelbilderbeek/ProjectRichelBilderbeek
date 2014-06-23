@@ -71,6 +71,14 @@ private slots:
   void on_text_textChanged();
   void on_button_text_pen_clicked();
 
+  void on_box_padding_left_valueChanged(double arg1);
+
+  void on_box_padding_top_valueChanged(double arg1);
+
+  void on_box_padding_right_valueChanged(double arg1);
+
+  void on_box_padding_bottom_valueChanged(double arg1);
+
 private:
   Ui::QtRoundedEditRectItemDialog *ui;
 

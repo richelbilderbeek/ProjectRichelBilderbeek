@@ -56,6 +56,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #pragma GCC diagnostic pop
 
+ribi::trim::Dialog::Dialog()
+  : m_are_3d_mesh_parameters_set{false},
+    m_are_shapes_set{false},
+    m_are_triangle_parameters_set{false},
+    m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply")),
+    m_n_cells{0},
+    m_n_faces{0},
+    m_triangle_file{}
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+/*
 ribi::trim::Dialog::Dialog(
   const Shapes& shapes,
   const int n_cell_layers,
@@ -73,7 +88,6 @@ ribi::trim::Dialog::Dialog(
     m_n_faces{0},
     m_triangle_file{}
 {
-
   #ifndef NDEBUG
   Test();
   #endif
@@ -206,7 +220,7 @@ ribi::trim::Dialog::Dialog(
     assert(builder);
   }
 }
-
+*/
 
 std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction() noexcept
 {
@@ -485,8 +499,61 @@ void ribi::trim::Dialog::Test() noexcept
   TRACE("Starting ribi::trim::Dialog::Test");
   //typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
   ribi::trim::CellsCreatorFactory();
+  //Flow of Dialog
+  {
+    Dialog d;
+    assert(!d.Are3dMeshParametersSet());
+    assert(!d.AreShapesSet());
+    assert(!d.AreTriangleParametersSet());
+    {
+      const double pi { boost::math::constants::pi<double>() };
+      const Polygons polygons {
+        Geometry().CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
+      };
+      const Linestrings linestrings = {};
+      const Shapes shapes(polygons,linestrings);
+      d.SetShapes(shapes);
+    }
+    assert(!d.Are3dMeshParametersSet());
+    assert( d.AreShapesSet());
+    assert(!d.AreTriangleParametersSet());
+    {
+      const Angle triangle_min_angle
+        = 20.0 //Default used by Triangle, in degrees
+        * (boost::math::constants::two_pi<double>() / 360.0)
+        * boost::units::si::radian
+      ;
+      const Area triangle_max_area = 1.0 * boost::units::si::square_meter;
+      const bool verbose = false;
+      d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
+    }
+    assert(!d.Are3dMeshParametersSet());
+    assert( d.AreShapesSet());
+    assert( d.AreTriangleParametersSet());
+    {
+      const int n_cell_layers = 1;
+      const auto strategy
+        = CreateVerticalFacesStrategy::one_face_per_square;
+      const Length layer_height(1.0 * boost::units::si::meter);
+      const bool verbose = false;
+      d.SetMeshParameters(
+        n_cell_layers,
+        layer_height,
+        strategy,
+        Dialog::CreateSculptFunctionRemoveRandom(0.75),
+        Dialog::CreateDefaultAssignBoundaryFunction(),
+        Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+        verbose
+      );
+    }
+    assert( d.Are3dMeshParametersSet());
+    assert( d.AreShapesSet());
+    assert( d.AreTriangleParametersSet());
+  }
+
 
   //Create a simple mesh
+  /*
   for (::ribi::trim::CreateVerticalFacesStrategy strategy: ribi::trim::CreateVerticalFacesStrategies().GetAll())
   {
     try
@@ -527,6 +594,7 @@ void ribi::trim::Dialog::Test() noexcept
       assert(!"Should not get here");
     }
   }
+  */
   TRACE("Finished ribi::trim::Dialog::Test successfully");
 }
 #endif

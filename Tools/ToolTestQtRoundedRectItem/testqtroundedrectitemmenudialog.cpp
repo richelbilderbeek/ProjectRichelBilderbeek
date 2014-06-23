@@ -5,6 +5,8 @@
 
 #include "fileio.h"
 #include "geometry.h"
+#include "plane.h"
+#include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 
@@ -36,6 +38,8 @@ ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
+  a.AddLibrary("ribi::Regex version: " + Regex::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }

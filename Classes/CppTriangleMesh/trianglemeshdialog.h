@@ -49,7 +49,9 @@ struct Cell;
 ///
 ///Shapes + Triangle.exe
 ///
-///
+///1) SetShapes, CanGetShapes, GetShapes, GetShapesAsWkt, GetShapesAsSvg, m_are_shapes_set
+///2) SetTriangleParameters, CanGetTriangleMesh, m_are_triangle_parameters_set
+///3) SetMeshParameters, CanGet3dMesh, m_are_3d_mesh_parameters_set
 struct Dialog
 {
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
@@ -62,6 +64,8 @@ struct Dialog
   typedef std::vector<Linestring> Linestrings;
   typedef std::pair<Polygons,Linestrings> Shapes;
 
+  Dialog();
+  /*
   Dialog(
     const Shapes& shapes,
     const int n_cell_layers,
@@ -74,6 +78,11 @@ struct Dialog
     const std::function<::ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
     const bool verbose
   );
+  */
+
+  bool Are3dMeshParametersSet() const noexcept { return m_are_3d_mesh_parameters_set; }
+  bool AreShapesSet() const noexcept { return m_are_shapes_set; }
+  bool AreTriangleParametersSet() const noexcept { return m_are_triangle_parameters_set; }
 
   static std::function<void(std::vector<boost::shared_ptr<Cell>>&)> CreateDefaultAssignBoundaryFunction() noexcept;
   static std::function<::ribi::foam::PatchFieldType(const std::string&)> CreateDefaultBoundaryToPatchFieldTypeFunction() noexcept;
@@ -92,7 +101,33 @@ struct Dialog
   int GetNcells() const noexcept { return m_n_cells; }
   int GetNfaces() const noexcept { return m_n_faces; }
 
+  ///Step 3
+  void SetMeshParameters(
+    const int n_cell_layers,
+    const Length layer_height,
+    const ::ribi::trim::CreateVerticalFacesStrategy strategy,
+    const std::function<void(std::vector<boost::shared_ptr<Cell>>&)>& sculpt_function,
+    const std::function<void(std::vector<boost::shared_ptr<Cell>>&)>& assign_boundary_function,
+    const std::function<::ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
+    const bool verbose
+  ) noexcept;
+
+  ///Step 1
+  void SetShapes(const Shapes& shapes) noexcept;
+
+  ///Step 2
+  void SetTriangleParameters(
+    const Angle triangle_min_angle,
+    const Area triangle_max_area,
+    const bool verbose
+  ) noexcept;
+
+
   private:
+
+  bool m_are_3d_mesh_parameters_set;
+  bool m_are_shapes_set;
+  bool m_are_triangle_parameters_set;
 
   const std::string m_filename_result_mesh;
   int m_n_cells;

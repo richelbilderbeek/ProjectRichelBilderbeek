@@ -51,15 +51,78 @@ ribi::QtRoundedRectItemDialog::~QtRoundedRectItemDialog() noexcept
   delete ui;
 }
 
+void ribi::QtRoundedRectItemDialog::DisableSetSize() noexcept
+{
+  ui->box_height->setReadOnly(true);
+  ui->box_height_including_pen->setReadOnly(true);
+  ui->box_width->setReadOnly(true);
+  ui->box_width_including_pen->setReadOnly(true);
+}
+
+void ribi::QtRoundedRectItemDialog::DoSomethingRandom() noexcept
+{
+  ui->box_contour_pen_width->setValue(
+    ui->box_contour_pen_width->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_focus_pen_width->setValue(
+    ui->box_focus_pen_width->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_height->setValue(
+    ui->box_height->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_height_including_pen->setValue(
+    ui->box_height_including_pen->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_radius_x->setValue(
+    ui->box_radius_x->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_radius_y->setValue(
+    ui->box_radius_y->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_width->setValue(
+    ui->box_width->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_width_including_pen->setValue(
+    ui->box_width_including_pen->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_x->setValue(
+    ui->box_x->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+  ui->box_y->setValue(
+    ui->box_y->value()
+    + static_cast<double>(std::rand() % 3) - 1.0
+  );
+
+}
+
 std::string ribi::QtRoundedRectItemDialog::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItemDialog::GetVersionHistory() noexcept
 {
   return {
-    "2014-06-15: version 1.0: initial version"
+    "2014-06-15: version 1.0: initial version",
+    "2014-06-23: version 1.1: allow cooperation with QtRoundedEditRectItemDialog"
   };
 }
 
@@ -102,6 +165,40 @@ void ribi::QtRoundedRectItemDialog::OnRectChanged(QtRoundedRectItem * const qtit
   const double new_height = qtitem->GetRect().height();
   ui->box_width->setValue(new_width);
   ui->box_height->setValue(new_height);
+
+  const double new_width_including_pen = qtitem->GetRectIncludingPen().width();
+  const double new_height_including_pen = qtitem->GetRectIncludingPen().height();
+  ui->box_width_including_pen->setValue(new_width_including_pen);
+  ui->box_height_including_pen->setValue(new_height_including_pen);
+}
+
+void ribi::QtRoundedRectItemDialog::on_box_contour_pen_width_valueChanged(double arg1)
+{
+  const QPen pen(
+    QBrush(qRgb(0,0,0)),
+    arg1
+  );
+  m_item->SetContourPen(pen);
+}
+
+void ribi::QtRoundedRectItemDialog::on_box_focus_pen_width_valueChanged(double arg1)
+{
+  const QPen pen(
+    QBrush(qRgb(0,0,0)),
+    arg1,
+    Qt::DashLine
+  );
+  m_item->SetFocusPen(pen);
+}
+
+void ribi::QtRoundedRectItemDialog::on_box_height_valueChanged(double arg1)
+{
+  m_item->SetHeight(arg1);
+}
+
+void ribi::QtRoundedRectItemDialog::on_box_height_including_pen_valueChanged(double arg1)
+{
+  m_item->SetHeightIncludingPen(arg1);
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_radius_x_valueChanged(double arg1)
@@ -114,6 +211,16 @@ void ribi::QtRoundedRectItemDialog::on_box_radius_y_valueChanged(double arg1)
   m_item->SetRadiusY(arg1);
 }
 
+void ribi::QtRoundedRectItemDialog::on_box_width_valueChanged(double arg1)
+{
+  m_item->SetWidth(arg1);
+}
+
+void ribi::QtRoundedRectItemDialog::on_box_width_including_pen_valueChanged(double arg1)
+{
+  m_item->SetWidthIncludingPen(arg1);
+}
+
 void ribi::QtRoundedRectItemDialog::on_box_x_valueChanged(double arg1)
 {
   m_item->SetPos(arg1,m_item->GetPos().y());
@@ -122,16 +229,6 @@ void ribi::QtRoundedRectItemDialog::on_box_x_valueChanged(double arg1)
 void ribi::QtRoundedRectItemDialog::on_box_y_valueChanged(double arg1)
 {
   m_item->SetPos(m_item->GetPos().x(),arg1);
-}
-
-void ribi::QtRoundedRectItemDialog::on_box_width_valueChanged(double arg1)
-{
-  m_item->SetWidth(arg1);
-}
-
-void ribi::QtRoundedRectItemDialog::on_box_height_valueChanged(double arg1)
-{
-  m_item->SetHeight(arg1);
 }
 
 void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRectItem>& item) noexcept
@@ -325,44 +422,3 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
 }
 #endif
 
-/*
-void ribi::QtRoundedRectItemDialog::on_button_contour_pen_clicked()
-{
-  const QPen pen(
-    QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
-    1.0 + (static_cast<double>(std::rand() % 100) / 10.0)
-  );
-  m_item->SetContourPen(pen);
-}
-*/
-
-void ribi::QtRoundedRectItemDialog::on_box_contour_pen_width_valueChanged(double arg1)
-{
-  const QPen pen(
-    //QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
-    QBrush(qRgb(0,0,0)),
-    arg1
-  );
-  m_item->SetContourPen(pen);
-}
-
-void ribi::QtRoundedRectItemDialog::on_box_focus_pen_width_valueChanged(double arg1)
-{
-  const QPen pen(
-    //QBrush(qRgb(std::rand() % 256,std::rand() % 256,std::rand() % 256)),
-    QBrush(qRgb(0,0,0)),
-    arg1,
-    Qt::DashLine
-  );
-  m_item->SetFocusPen(pen);
-}
-
-void ribi::QtRoundedRectItemDialog::on_box_width_including_pen_valueChanged(double arg1)
-{
-  m_item->SetWidthIncludingPen(arg1);
-}
-
-void ribi::QtRoundedRectItemDialog::on_box_height_including_pen_valueChanged(double arg1)
-{
-  m_item->SetHeightIncludingPen(arg1);
-}

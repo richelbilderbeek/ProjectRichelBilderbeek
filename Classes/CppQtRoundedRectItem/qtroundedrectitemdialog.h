@@ -48,6 +48,9 @@ public:
   QtRoundedRectItemDialog& operator=(const QtRoundedRectItemDialog&) = delete;
   ~QtRoundedRectItemDialog() noexcept;
 
+  void DisableSetSize() noexcept;
+  void DoSomethingRandom() noexcept;
+
   boost::shared_ptr<QtRoundedRectItem>& GetItem() const noexcept;
 
   static int GetMinimumHeight() noexcept { return 276; }
@@ -64,21 +67,17 @@ protected:
   void keyPressEvent(QKeyEvent * event);
 
 private slots:
-  void on_box_radius_x_valueChanged(double arg1);
-  void on_box_radius_y_valueChanged(double arg1);
-
-  void on_box_x_valueChanged(double arg1);
-  void on_box_y_valueChanged(double arg1);
-
-  void on_box_width_valueChanged(double arg1);
-  void on_box_height_valueChanged(double arg1);
 
   void on_box_contour_pen_width_valueChanged(double arg1);
   void on_box_focus_pen_width_valueChanged(double arg1);
-
-  void on_box_width_including_pen_valueChanged(double arg1);
-
   void on_box_height_including_pen_valueChanged(double arg1);
+  void on_box_height_valueChanged(double arg1);
+  void on_box_radius_x_valueChanged(double arg1);
+  void on_box_radius_y_valueChanged(double arg1);
+  void on_box_width_including_pen_valueChanged(double arg1);
+  void on_box_width_valueChanged(double arg1);
+  void on_box_x_valueChanged(double arg1);
+  void on_box_y_valueChanged(double arg1);
 
 private:
   Ui::QtRoundedRectItemDialog *ui;

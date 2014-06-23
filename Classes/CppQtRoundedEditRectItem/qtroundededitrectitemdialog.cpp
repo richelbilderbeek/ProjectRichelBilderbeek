@@ -51,6 +51,8 @@ ribi::QtRoundedEditRectItemDialog::QtRoundedEditRectItemDialog(QWidget *parent) 
 
   assert(this->layout());
   this->layout()->addWidget(m_dialog.get());
+
+  m_dialog->DisableSetSize();
 }
 
 ribi::QtRoundedEditRectItemDialog::~QtRoundedEditRectItemDialog() noexcept
@@ -305,6 +307,30 @@ void ribi::QtRoundedEditRectItemDialog::Test() noexcept
 }
 #endif
 
+void ribi::QtRoundedEditRectItemDialog::on_box_padding_left_valueChanged(double arg1)
+{
+  auto padding = m_item->GetPadding();
+  padding.left = arg1;
+  m_item->SetPadding(padding);
+}
 
+void ribi::QtRoundedEditRectItemDialog::on_box_padding_top_valueChanged(double arg1)
+{
+  auto padding = m_item->GetPadding();
+  padding.top = arg1;
+  m_item->SetPadding(padding);
+}
 
+void ribi::QtRoundedEditRectItemDialog::on_box_padding_right_valueChanged(double arg1)
+{
+  auto padding = m_item->GetPadding();
+  padding.right = arg1;
+  m_item->SetPadding(padding);
+}
 
+void ribi::QtRoundedEditRectItemDialog::on_box_padding_bottom_valueChanged(double arg1)
+{
+  auto padding = m_item->GetPadding();
+  padding.bottom = arg1;
+  m_item->SetPadding(padding);
+}

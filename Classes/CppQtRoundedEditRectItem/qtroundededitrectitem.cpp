@@ -26,6 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <sstream>
+
+#include <boost/lambda/lambda.hpp>
+
 #include <QBrush>
 #include <QFont>
 #include <QGraphicsScene>
@@ -65,7 +68,28 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
-    | QGraphicsItem::ItemIsSelectable);
+    | QGraphicsItem::ItemIsSelectable
+  );
+
+  this->m_signal_contour_pen_changed.connect(
+    boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
+  );
+  this->m_signal_focus_pen_changed.connect(
+    boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
+  );
+  this->m_signal_pos_changed.connect(
+    boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
+  );
+  this->m_signal_radius_x_changed.connect(
+    boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
+  );
+  this->m_signal_radius_y_changed.connect(
+    boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
+  );
+  this->m_signal_rect_changed.connect(
+    boost::bind(&ribi::QtRoundedEditRectItem::OnBaseChanged,this,boost::lambda::_1)
+  );
+
 
   ///Obtain a white background
   this->setBrush(QBrush(QColor(255,255,255)));
@@ -186,6 +210,11 @@ void ribi::QtRoundedEditRectItem::keyPressEvent(QKeyEvent* event) noexcept
   QtRoundedRectItem::keyPressEvent(event);
 }
 
+void ribi::QtRoundedEditRectItem::OnBaseChanged(QtRoundedRectItem * const) noexcept
+{
+  m_signal_base_changed(this);
+}
+
 void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept
 {
   const double border_width
@@ -274,17 +303,14 @@ void ribi::QtRoundedEditRectItem::SetFont(const QFont& font) noexcept
     m_font = font;
     this->update();
     //m_signal_request_scene_update();
+    m_signal_font_changed(this);
   }
 }
 #pragma GCC diagnostic pop
 
 void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding) noexcept
 {
-  if ( padding.bottom != m_padding.bottom
-    || padding.left   != m_padding.left
-    || padding.right  != m_padding.right
-    || padding.top    != m_padding.top
-    )
+  if (padding != m_padding)
   {
     m_padding = padding;
     /*
@@ -303,6 +329,7 @@ void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding) noexcept
     */
     this->update();
     //m_signal_request_scene_update();
+    m_signal_padding_changed(this);
   }
 }
 
@@ -340,6 +367,7 @@ void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text) 
     this->update();
     //this->m_signal_item_has_updated(this);
     //m_signal_request_scene_update();
+    m_signal_text_changed(this);
   }
   else
   {
@@ -361,6 +389,7 @@ void ribi::QtRoundedEditRectItem::SetTextPen(const QPen& pen) noexcept
     m_text_pen = pen;
     this->update();
     //this->m_signal_item_has_updated(this);
+    m_signal_text_pen_changed(this);
   }
 }
 

@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtroundedrectitem.h"
-#include "qtroundedtextrectitem.h"
+#include "qtroundededitrectitem.h"
 #include "testqtroundededitrectitemmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qttestqtroundededitrectitemcomparedialog.h"
@@ -64,7 +64,7 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_about_clicked()
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtKeyboardFriendlyGraphicsView version: " + QtKeyboardFriendlyGraphicsView::GetVersion());
   a.AddLibrary("QtRoundedRectItem version: " + QtRoundedRectItem::GetVersion());
-  a.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion());
+  a.AddLibrary("QtRoundedEditRectItem version: " + QtRoundedEditRectItem::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
@@ -74,12 +74,16 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_about_clicked()
 void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_compare_clicked()
 {
   QtTestQtRoundedEditRectItemCompareDialog d;
+  d.setWindowIcon(this->windowIcon());
+  //d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
 void ribi::QtTestQtRoundedEditRectItemMenuDialog::on_button_modify_clicked()
 {
   QtTestQtRoundedEditRectItemModifyDialog d;
+  d.setWindowIcon(this->windowIcon());
+  //d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
@@ -97,6 +101,8 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestQtRoundedEditRectItemMenuDialog::Test");
+  QtRoundedRectItem();
+  QtRoundedEditRectItem();
   QtTestQtRoundedEditRectItemCompareDialog();
   QtTestQtRoundedEditRectItemModifyDialog();
   TRACE("Finished ribi::QtTestQtRoundedEditRectItemMenuDialog::Test successfully");

@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lambda/lambda.hpp>
 
 #include <QKeyEvent>
+#include <QTimer>
 
 #include "qtroundedrectitem.h"
 #include "qtroundedrectitemdialog.h"
@@ -57,12 +58,51 @@ ribi::QtTestQtRoundedRectItemModifyDialog::QtTestQtRoundedRectItemModifyDialog(Q
   ui->widget_left->layout()->addWidget(m_dialog_left.get());
   ui->widget_right->layout()->addWidget(m_dialog_right.get());
 
-  on_button_set_item_clicked();
+  {
+    QTimer * const timer = new QTimer(this);
+    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(DoSomethingRandom()));
+    timer->setInterval(100);
+    timer->start();
+  }
+
+  {
+    boost::shared_ptr<QtRoundedRectItem> item(new QtRoundedRectItem);
+    {
+      const QPen pen(
+        QBrush(qRgb(0,0,0)),
+        2.0,
+        Qt::SolidLine
+      );
+      item->SetContourPen(pen);
+    }
+    {
+      const QPen pen(
+        QBrush(qRgb(0,0,0)),
+        3.0,
+        Qt::DashLine
+      );
+      item->SetFocusPen(pen);
+    }
+    item->SetHeight(32.0);
+    item->SetPos(0.0,0.0);
+    item->SetRadiusX(5.0);
+    item->SetRadiusY(6.0);
+    item->SetWidth(48.0);
+    SetItem(item);
+  }
+
 }
 
 ribi::QtTestQtRoundedRectItemModifyDialog::~QtTestQtRoundedRectItemModifyDialog() noexcept
 {
   delete ui;
+}
+
+void ribi::QtTestQtRoundedRectItemModifyDialog::DoSomethingRandom() noexcept
+{
+  if (!ui->box_change->isChecked()) return;
+  m_dialog_left->DoSomethingRandom();
+  m_dialog_right->DoSomethingRandom();
 }
 
 void ribi::QtTestQtRoundedRectItemModifyDialog::keyPressEvent(QKeyEvent * event)
@@ -140,4 +180,3 @@ void ribi::QtTestQtRoundedRectItemModifyDialog::Test() noexcept
   TRACE("Finished ribi::QtTestQtRoundedRectItemModifyDialog::Test successfully");
 }
 #endif
-

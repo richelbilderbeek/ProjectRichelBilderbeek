@@ -54,6 +54,7 @@ protected:
 
 private slots:
 
+  void DoSomethingRandom() noexcept;
   void on_button_set_item_clicked();
 
 private:

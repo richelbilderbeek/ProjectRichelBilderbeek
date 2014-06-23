@@ -349,6 +349,19 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
 
   try
   {
+    ribi::trim::Dialog d;
+    d.SetShapes(shapes);
+    d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
+    d.SetMeshParameters(
+      n_layers,
+      layer_height,
+      strategy,
+      ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(fraction),
+      ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction(),
+      ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+      verbose
+    );
+    /*
     const ribi::trim::Dialog d(
     //const ribi::TriangleMeshCreatorMainDialog d(
       shapes,
@@ -362,6 +375,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
       verbose
     );
+    */
     if (show_mesh)
     {
       assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));

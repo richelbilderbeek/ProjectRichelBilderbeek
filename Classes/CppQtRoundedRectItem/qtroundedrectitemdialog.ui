@@ -166,6 +166,18 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>box_x</tabstop>
+  <tabstop>box_y</tabstop>
+  <tabstop>box_width</tabstop>
+  <tabstop>box_width_including_pen</tabstop>
+  <tabstop>box_height</tabstop>
+  <tabstop>box_height_including_pen</tabstop>
+  <tabstop>box_contour_pen_width</tabstop>
+  <tabstop>box_focus_pen_width</tabstop>
+  <tabstop>box_radius_x</tabstop>
+  <tabstop>box_radius_y</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

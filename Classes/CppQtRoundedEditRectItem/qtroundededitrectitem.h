@@ -124,6 +124,9 @@ private:
   ///Obtain the padded text rectangle for a single line
   static QRectF GetPaddedTextRect(const std::string& s, const QFont& font) noexcept;
 
+  ///Called whenever a base class item is changed
+  void OnBaseChanged(QtRoundedRectItem * const) noexcept;
+
   void SetHeight(const double) = delete;
   void SetWidth(const double) = delete;
 
