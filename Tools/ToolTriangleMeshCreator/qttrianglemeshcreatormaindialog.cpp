@@ -57,8 +57,6 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
   ui->setupUi(this);
 
   {
-    //assert(!ui->view_shapes_1->scene());
-    //assert(!ui->view_shapes_2->scene());
     QGraphicsScene * const scene = new QGraphicsScene;
     ui->view_shapes_1->setScene(scene);
     ui->view_shapes_2->setScene(scene);
@@ -67,8 +65,6 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
     assert(ui->view_shapes_1->scene() == ui->view_shapes_2->scene());
   }
   {
-    //assert(!ui->view_triangle_mesh_1->scene());
-    //assert(!ui->view_triangle_mesh_2->scene());
     QGraphicsScene * const scene = new QGraphicsScene;
     ui->view_triangle_mesh_1->setScene(scene);
     ui->view_triangle_mesh_2->setScene(scene);
@@ -79,8 +75,8 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
 
 
   connect(ui->edit_wkt,SIGNAL(textChanged()),this,SLOT(DisplayPolygons()));
-  connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
-  connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
+  connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(on_button_create_2d_mesh_clicked()));
+  connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(on_button_create_2d_mesh_clicked()));
   on_edit_shapes_textChanged();
 }
 

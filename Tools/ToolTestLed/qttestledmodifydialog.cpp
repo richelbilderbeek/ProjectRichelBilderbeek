@@ -6,7 +6,7 @@
 
 #include <boost/make_shared.hpp>
 
-#include <QHBoxLayout>
+#include <QGridLayout>
 
 #include "led.h"
 #include "qtled.h"
@@ -26,13 +26,28 @@ ribi::QtTestLedModifyDialog::QtTestLedModifyDialog(QWidget *parent)
 {
   ui->setupUi(this);
 
-  assert(!this->layout());
-  QHBoxLayout * const my_layout = new QHBoxLayout;
-  this->setLayout(my_layout);
-  my_layout->addWidget(m_led_left.get());
-  my_layout->addWidget(m_led_right.get());
-  my_layout->addWidget(m_dialog_left.get());
-  my_layout->addWidget(m_dialog_right.get());
+  {
+    assert(!ui->widget_left->layout());
+    QGridLayout * const my_layout = new QGridLayout;
+    assert(my_layout);
+    ui->widget_left->setLayout(my_layout);
+    assert(ui->widget_left->layout());
+    my_layout->addWidget(m_led_left.get());
+  }
+  {
+    assert(!ui->widget_right->layout());
+    QGridLayout * const my_layout = new QGridLayout;
+    assert(my_layout);
+    ui->widget_right->setLayout(my_layout);
+    assert(ui->widget_right->layout());
+    my_layout->addWidget(m_led_right.get());
+  }
+  {
+    assert(this->layout());
+    auto my_layout = this->layout();
+    my_layout->addWidget(m_dialog_left.get());
+    my_layout->addWidget(m_dialog_right.get());
+  }
 
   const auto led = boost::make_shared<Led>();
   m_dialog_left->SetLed(led);

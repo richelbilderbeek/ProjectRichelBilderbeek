@@ -20,12 +20,12 @@ namespace trim {
 ///It constructs itself from a TemplateFile its output (.node and .ele) files
 ///
 ///The next step will be to create a multiple layers of Cells by CellsCreator
-class Template
+struct Template
 {
-  friend class CellsCreator;
-  friend class CellsCreatorFactory;
-  friend class CellFactory;
-  friend class Dialog;
+  //friend class CellsCreator;
+  //friend class CellsCreatorFactory;
+  //friend class CellFactory;
+  //friend class Dialog;
 
   typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
 

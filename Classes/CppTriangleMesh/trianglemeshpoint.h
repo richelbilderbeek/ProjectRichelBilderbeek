@@ -24,14 +24,14 @@ namespace ribi {
 namespace trim {
 
 ///An OpenFOAM point, as in the file 'points'
-class Point
+struct Point
 {
-  friend class Cell;
-  friend class CellsCreator;
-  friend class Dialog;
-  friend class Template;
-  friend class Face;
-  friend class Helper;
+  //friend class Cell;
+  //friend class CellsCreator;
+  //friend class Dialog;
+  //friend class Template;
+  //friend class Face;
+  //friend class Helper;
 
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;

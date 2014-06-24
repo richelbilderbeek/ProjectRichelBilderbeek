@@ -107,7 +107,8 @@ std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() const noex
     "2011-04-11: Version 1.1: got web version to work, added more About info",
     "2011-07-02: Version 1.2: added menu",
     "2011-09-08: Version 1.3: added Welcome screen picture and increased testing in website version",
-    "2013-11-05: version 1.4: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 1.4: conformized for ProjectRichelBilderbeekConsole",
+    "2014-06-05: version 1.4: conformized for ProjectRichelBilderbeekConsole"
   };
 }
 

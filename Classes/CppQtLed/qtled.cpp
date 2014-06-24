@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <sstream>
+#include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QPainter>
@@ -165,6 +166,16 @@ std::vector<std::string> ribi::QtLed::GetVersionHistory() noexcept
   };
 }
 
+void ribi::QtLed::OnColorChanged(Led * const) noexcept
+{
+  this->update();
+}
+
+void ribi::QtLed::OnIntensityChanged(Led * const) noexcept
+{
+  this->update();
+}
+
 void ribi::QtLed::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
@@ -267,11 +278,9 @@ void ribi::QtLed::SetLed(const boost::shared_ptr<Led>& led) noexcept
   m_led = led;
 
   assert(m_led->GetBlue() == blue_after);
-  assert(m_led->GetGreen()   == green_after  );
-  assert(m_led->GetIntensity()        == intensity_after        );
-  assert(m_led->GetRed()    == red_after   );
-  assert(m_led->GetRadiusY()    == radius_y_after   );
-  assert(m_led->GetRect()       == rect_after       );
+  assert(m_led->GetGreen() == green_after);
+  assert(m_led->GetIntensity() == intensity_after);
+  assert(m_led->GetRed() == red_after);
 
   m_led->m_signal_color_changed.connect(
     boost::bind(&ribi::QtLed::OnColorChanged,this,boost::lambda::_1)

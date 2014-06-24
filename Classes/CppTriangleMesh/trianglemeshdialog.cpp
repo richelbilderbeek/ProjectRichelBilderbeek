@@ -102,6 +102,14 @@ void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
   );
   if (verbose) { TRACE(checkMesh_command); }
   const int error = std::system(checkMesh_command.c_str());
+  #ifndef NDEBUG
+  if (error)
+  {
+    TRACE("WARNING");
+    TRACE(error);
+    TRACE("BREAK");
+  }
+  #endif
   assert(!error);
 }
 
@@ -692,7 +700,14 @@ void ribi::trim::Dialog::Test() noexcept
     d.Create3dMesh();
     assert(!d.Get3dMesh().empty());
   }
-
+  {
+    ribi::trim::CellsCreatorFactory().Create(
+      ribi::trim::Template::CreateTest(0),
+      2,
+      1.0 * boost::units::si::meter,
+      ribi::trim::CreateVerticalFacesStrategy::one_face_per_square
+    );
+  }
 
   //Create a simple mesh
   /*

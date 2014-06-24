@@ -33,6 +33,7 @@ namespace ribi {
 
 struct Led;
 
+///QtLed is the Qt display widhet of an LED
 class QtLed : public QWidget
 {
   Q_OBJECT
@@ -70,7 +71,7 @@ private:
   boost::shared_ptr<Led> m_led;
 
   ///OnResize is called when the geometry of the LedWidget is changed
-  void OnResize();
+  //void OnResize();
   void OnColorChanged(Led * const) noexcept;
   void OnIntensityChanged(Led * const) noexcept;
 

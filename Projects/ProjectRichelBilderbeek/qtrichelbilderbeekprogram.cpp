@@ -104,7 +104,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestdrawcanvasmenudialog.h"
 #include "qttestfunctionparsermenudialog.h"
 #include "qttestimagecanvasmenudialog.h"
-#include "qttestledmaindialog.h"
 #include "qttestledmenudialog.h"
 #include "qttestmanydigitnewickmaindialog.h"
 #include "qttestmanydigitnewickmenudialog.h"
