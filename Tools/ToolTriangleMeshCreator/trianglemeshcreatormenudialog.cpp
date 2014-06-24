@@ -380,7 +380,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     {
       d.Show3dMesh();
     }
-    d.Check3dMesh(args[0]);
+    d.Check3dMesh();
     return 0;
   }
   catch (std::exception& e)

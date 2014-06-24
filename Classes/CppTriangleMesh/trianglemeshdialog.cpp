@@ -85,8 +85,15 @@ ribi::trim::Dialog::Dialog()
   Create3dMesh();
 }
 
-void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
+void ribi::trim::Dialog::Check3dMesh() const noexcept
 {
+  const std::string ply_filename = fileio::FileIo().GetTempFileName(".ply");
+
+  {
+    std::ofstream f(ply_filename.c_str());
+    f << m_3dmesh_output_ply;
+  }
+
   const auto verbose = m_3dmesh_verbose;
   const std::string checkMesh_command(
     std::string(
@@ -102,6 +109,9 @@ void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
   );
   if (verbose) { TRACE(checkMesh_command); }
   const int error = std::system(checkMesh_command.c_str());
+
+  ribi::fileio::FileIo().DeleteFile(ply_filename);
+
   #ifndef NDEBUG
   if (error)
   {

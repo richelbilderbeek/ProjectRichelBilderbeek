@@ -103,7 +103,7 @@ struct Dialog
   */
 
   ///Uses OpenFOAM's checkmesh to check the 3D mesh
-  void Check3dMesh(const std::string& path) const noexcept;
+  void Check3dMesh() const noexcept;
 
   void CreateTriangleMesh() noexcept;
   void Create3dMesh() noexcept;
