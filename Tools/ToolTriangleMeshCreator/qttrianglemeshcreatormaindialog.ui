@@ -44,7 +44,7 @@ QPlainTextEdit { font: 10px }
    <item row="0" column="0" rowspan="2">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_create_shapes">
       <attribute name="title">

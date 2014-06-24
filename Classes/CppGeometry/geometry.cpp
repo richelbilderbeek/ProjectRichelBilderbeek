@@ -2188,6 +2188,30 @@ std::string ribi::Geometry::ToSvgStr(
   return s.str();
 }
 
+std::string ribi::Geometry::ToWkt(
+  const Polygons& polygons,
+  const Linestrings& linestrings
+) const noexcept
+{
+  std::string s;
+  for (const auto polygon:polygons)
+  {
+    const auto w = boost::geometry::wkt<>(polygon);
+    std::stringstream t;
+    t << w << ',';
+    s += t.str();
+  }
+  for (const auto linestring:linestrings)
+  {
+    const auto w = boost::geometry::wkt<>(linestring);
+    std::stringstream t;
+    t << w << ',';
+    s += t.str();
+  }
+  if (!s.empty()) s.pop_back();
+  return s;
+}
+
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
   ribi::Geometry::Translate(
     const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>& shape,

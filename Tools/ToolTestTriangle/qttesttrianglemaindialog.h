@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/units/systems/si/plane_angle.hpp>
 #include "qthideandshowdialog.h"
 #include "trianglemeshcreateverticalfacesstrategy.h"
+#include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
 
 struct QPlainTextEdit;
@@ -76,6 +77,7 @@ protected:
 private:
   Ui::QtTestTriangleMainDialog *ui;
 
+  boost::shared_ptr<ribi::trim::Dialog> m_dialog;
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

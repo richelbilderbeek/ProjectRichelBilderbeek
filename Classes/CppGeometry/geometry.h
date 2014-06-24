@@ -426,6 +426,19 @@ struct Geometry
     const double stroke_width = 1.0
   ) const noexcept { return ToSvg(shapes.first,shapes.second,stroke_width); }
 
+  std::string ToWkt(
+    const Polygons& polygons
+  ) const noexcept { return ToWkt(polygons, {}); }
+
+  std::string ToWkt(
+    const Polygons& polygons,
+    const Linestrings& linestrings
+  ) const noexcept;
+
+  std::string ToWkt(
+    const Shapes& shapes
+  ) const noexcept { return ToWkt(shapes.first,shapes.second); }
+
 
   Polygon Translate(
     const Polygon& shape,

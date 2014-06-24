@@ -16,7 +16,7 @@ namespace ribi {
 namespace trim {
 
 ///Checks if Cells are OK
-void CellsCheck(const std::vector<boost::shared_ptr<Cell>>& cells);
+void CellsCheck(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept;
 
 } //~namespace trim
 } //~namespace ribi

@@ -57,172 +57,56 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::trim::Dialog::Dialog()
-  : m_are_3d_mesh_parameters_set{false},
-    m_are_shapes_set{false},
-    m_are_triangle_parameters_set{false},
-    m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply")),
+  : m_3dmesh_assign_boundary_function{CreateDefaultAssignBoundaryFunction()},
+    m_3dmesh_boundary_to_patch_field_type_function{CreateDefaultBoundaryToPatchFieldTypeFunction()},
+    m_3dmesh_layer_height{0.0 * boost::units::si::meter},
+    m_3dmesh_n_cell_layers{0},
+    m_3dmesh_output_ply{},
+    m_3dmesh_sculpt_function{CreateSculptFunctionNone()},
+    m_3dmesh_strategy{CreateVerticalFacesStrategy::one_face_per_square},
+    m_3dmesh_verbose{false},
     m_n_cells{0},
     m_n_faces{0},
-    m_triangle_file{}
-{
-  #ifndef NDEBUG
-  Test();
-  #endif
-}
-
-/*
-ribi::trim::Dialog::Dialog(
-  const Shapes& shapes,
-  const int n_cell_layers,
-  const boost::units::quantity<boost::units::si::length> layer_height,
-  const ::ribi::trim::CreateVerticalFacesStrategy strategy,
-  const Angle triangle_min_angle,
-  const Area triangle_max_area,
-  const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& sculpt_function,
-  const std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>& assign_boundary_function,
-  const std::function<ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
-  const bool verbose
-)
-  : m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply")),
-    m_n_cells{0},
-    m_n_faces{0},
-    m_triangle_file{}
+    m_shapes{},
+    m_triangle_input_poly{},
+    m_triangle_max_area(boost::numeric::bounds<double>::highest() * boost::units::si::square_meter),
+    m_triangle_min_angle(Angle( (20.0 * boost::math::constants::two_pi<double>() / 360.0) * boost::units::si::radians)),
+    m_triangle_output_ele{},
+    m_triangle_output_node{},
+    m_triangle_output_poly{},
+    m_triangle_shapes{},
+    m_triangle_verbose{false}
 {
   #ifndef NDEBUG
   Test();
   #endif
 
-  if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
-  std::string filename_node;
-  std::string filename_ele;
-  std::string filename_poly;
-  try
-  {
-    m_triangle_file = boost::make_shared<TriangleFile>(shapes);
-    m_triangle_file->ExecuteTriangleExe(
-      filename_node,
-      filename_ele,
-      filename_poly,
-      triangle_min_angle,
-      triangle_max_area,
-      verbose
-    );
-  }
-  catch (std::exception& e)
-  {
-    std::stringstream s;
-    s << "ribi::trim::Dialog::Dialog: "
-      << "Triangle.exe failed: " << e.what();
-    TRACE(s.str());
-    throw std::runtime_error(s.str());
-  }
-
-  if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
-
-  std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
-  {
-    const boost::shared_ptr<const ribi::trim::Template> t(
-      new ribi::trim::Template(
-        filename_node,
-        filename_ele
-      )
-    );
-    assert(t);
-
-    //Create cells from this template
-    {
-      const ribi::trim::CellsCreatorFactory cells_creator_factory;
-      assert(t);
-      const boost::shared_ptr<ribi::trim::CellsCreator> c
-        = cells_creator_factory.Create(
-          t,
-          n_cell_layers,
-          layer_height,
-          strategy
-      );
-      assert(c);
-      cells = c->GetCells();
-      #ifndef NDEBUG
-      for (const auto cell:cells) { assert(cell); }
-      #endif
-    }
-
-    //Sculpting
-    if (verbose) { std::clog << "Number of cells before sculpting: " << cells.size() << std::endl; }
-    sculpt_function(cells);
-
-    m_n_cells = static_cast<int>(cells.size());
-    if (verbose) { std::clog << "Number of cells after sculpting: " << m_n_cells << std::endl; }
-
-    //Remove weak faces
-    {
-      std::vector<boost::shared_ptr<ribi::trim::Face>> faces;
-      for (const boost::shared_ptr<ribi::trim::Cell>& cell: cells)
-      {
-        const std::vector<boost::shared_ptr<ribi::trim::Face>> w { cell->GetFaces() };
-        std::copy(w.begin(),w.end(),std::back_inserter(faces));
-      }
-      if (verbose) { std::clog << "Number of weak faces: " << faces.size() << std::endl; }
-      assert(std::unique(faces.begin(),faces.end()) == faces.end());
-      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
-      //Clean all weakened faces
-      faces.erase(
-        std::remove_if(faces.begin(),faces.end(),
-          [](const boost::shared_ptr<const ribi::trim::Face> face)
-          {
-            return !face->GetConstOwner();
-          }
-        ),
-        faces.end()
-      );
-      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
-
-      m_n_faces = static_cast<int>(faces.size());
-      if (verbose) { std::clog << "Number of strong faces: " << m_n_faces << std::endl; }
-      //const ribi::trim::Helper helper;
-      std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
-      const auto new_end = std::unique(faces.begin(),faces.end());
-      faces.erase(new_end,faces.end());
-      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
-    }
-
-    //Assign boundaries to the strong faces
-    assign_boundary_function(cells);
-  }
-
-  if (verbose) { std::clog << "Checking the cells" << std::endl; }
-  {
-    for (const auto cell: cells)
-    {
-      assert(cell);
-      for (const auto face: cell->GetFaces())
-      {
-        assert(face);
-        for (const auto point: face->GetPoints())
-        {
-          assert(point);
-        }
-      }
-    }
-  }
-
-  if (verbose) { std::clog << "Build the OpenFOAM files" << std::endl; }
-  {
-    const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder(
-      new ribi::trim::TriangleMeshBuilder(
-        cells,
-        m_filename_result_mesh,
-        boundary_to_patch_field_type_function,
-        strategy,
-        verbose
-      )
-    );
-    assert(builder);
-  }
+  CreateTriangleMesh();
+  Create3dMesh();
 }
-*/
 
-std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction() noexcept
+void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
+{
+  const auto verbose = m_3dmesh_verbose;
+  const std::string checkMesh_command(
+    std::string(
+      R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
+    + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"
+      // Changing to drive D is important...
+    + "&& D: "
+      // ...although this also indicates the drive
+    + "&& cd " + ribi::fileio::FileIo().GetPath(path) + " "
+    + "&& cd .. "
+    + (verbose ? "&& dir " : "")
+    + "&& checkMesh"
+  );
+  if (verbose) { TRACE(checkMesh_command); }
+  const int error = std::system(checkMesh_command.c_str());
+  assert(!error);
+}
+
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
+  ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction() noexcept
 {
   return [](std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells)
   {
@@ -474,7 +358,8 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
   ;
 }
 
-std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(const double p) noexcept
+std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
+  ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(const double p) noexcept
 {
   assert(p >= 0.0);
   assert(p <= 1.0);
@@ -486,6 +371,307 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)> ribi::tri
     cells.resize(static_cast<int>(static_cast<double>(cells.size()) * p));
   }
   ;
+}
+
+void ribi::trim::Dialog::CreateTriangleMesh() noexcept
+{
+  const auto verbose = m_triangle_verbose;
+  if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
+  try
+  {
+    if (verbose) { std::clog << "Create Triangle.exe input" << std::endl; }
+
+    const auto file = boost::make_shared<TriangleFile>(m_shapes);
+
+    if (verbose) { std::clog << "Store the Triangle.exe input" << std::endl; }
+
+    m_triangle_input_poly = file->GetTriangleInputPoly();
+
+    std::string filename_node;
+    std::string filename_ele;
+    std::string filename_poly;
+
+    if (verbose) { std::clog << "Calling Triangle.exe" << std::endl; }
+
+    file->ExecuteTriangleExe(
+      filename_node,
+      filename_ele,
+      filename_poly,
+      m_triangle_min_angle,
+      m_triangle_max_area,
+      verbose
+    );
+
+    if (verbose) { std::clog << "Saving Triangle.exe output" << std::endl; }
+
+    m_triangle_output_ele = fileio::FileIo().FileToStr(filename_ele);
+    m_triangle_output_node = fileio::FileIo().FileToStr(filename_node);
+    m_triangle_output_poly = fileio::FileIo().FileToStr(filename_poly);
+
+    if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
+
+    const boost::shared_ptr<const ribi::trim::Template> t(
+      //= boost::make_shared<ribi::trim::Template>(
+      new ribi::trim::Template(
+        filename_node,
+        filename_ele
+      )
+    );
+    assert(t);
+
+    if (verbose) { std::clog << "Convert Triangle.exe output to polygons" << std::endl; }
+    m_triangle_shapes = Shapes();
+
+    for (const boost::shared_ptr<trim::Face> face: t->GetFaces())
+    {
+      std::vector<Coordinat> coordinats;
+      for (const boost::shared_ptr<trim::Point> point: face->GetPoints())
+      {
+        coordinats.push_back(*point->GetCoordinat());
+      }
+      Polygon polygon;
+      boost::geometry::append(polygon, coordinats);
+      m_triangle_shapes.first.push_back(polygon);
+    }
+
+    if (verbose) { std::clog << "Delete Triangle.exe output" << std::endl; }
+    fileio::FileIo().DeleteFile(filename_ele);
+    fileio::FileIo().DeleteFile(filename_node);
+    fileio::FileIo().DeleteFile(filename_poly);
+  }
+  catch (std::exception& e)
+  {
+    std::stringstream s;
+    s << "ribi::trim::Dialog::Dialog: "
+      << "Triangle.exe failed: " << e.what();
+    TRACE(s.str());
+    //throw std::runtime_error(s.str());
+  }
+}
+
+void ribi::trim::Dialog::Create3dMesh() noexcept
+{
+  const auto verbose = m_3dmesh_verbose;
+
+  if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
+
+  std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
+  {
+    const std::string filename_ele = fileio::FileIo().GetTempFileName(".ele");
+    const std::string filename_node = fileio::FileIo().GetTempFileName(".node");
+
+    { std::ofstream f(filename_ele.c_str()); f << m_triangle_output_ele; }
+    { std::ofstream f(filename_node.c_str()); f << m_triangle_output_node; }
+
+    const boost::shared_ptr<const ribi::trim::Template> t(
+      new ribi::trim::Template(
+        filename_node,
+        filename_ele
+      )
+    );
+    assert(t);
+
+    fileio::FileIo().DeleteFile(filename_ele);
+    fileio::FileIo().DeleteFile(filename_node);
+
+    //Create cells from this template
+    {
+      const ribi::trim::CellsCreatorFactory cells_creator_factory;
+      assert(t);
+      const boost::shared_ptr<ribi::trim::CellsCreator> c
+        = cells_creator_factory.Create(
+          t,
+          m_3dmesh_n_cell_layers,
+          m_3dmesh_layer_height,
+          m_3dmesh_strategy
+      );
+      assert(c);
+      cells = c->GetCells();
+      #ifndef NDEBUG
+      for (const auto cell:cells) { assert(cell); }
+      #endif
+    }
+
+    //Sculpting
+    if (verbose) { std::clog << "Number of cells before sculpting: " << cells.size() << std::endl; }
+    m_3dmesh_sculpt_function(cells);
+
+    m_n_cells = static_cast<int>(cells.size());
+    if (verbose) { std::clog << "Number of cells after sculpting: " << m_n_cells << std::endl; }
+
+    //Remove weak faces
+    {
+      std::vector<boost::shared_ptr<ribi::trim::Face>> faces;
+      for (const boost::shared_ptr<ribi::trim::Cell>& cell: cells)
+      {
+        const std::vector<boost::shared_ptr<ribi::trim::Face>> w { cell->GetFaces() };
+        std::copy(w.begin(),w.end(),std::back_inserter(faces));
+      }
+      if (verbose) { std::clog << "Number of weak faces: " << faces.size() << std::endl; }
+      assert(std::unique(faces.begin(),faces.end()) == faces.end());
+      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
+      //Clean all weakened faces
+      faces.erase(
+        std::remove_if(faces.begin(),faces.end(),
+          [](const boost::shared_ptr<const ribi::trim::Face> face)
+          {
+            return !face->GetConstOwner();
+          }
+        ),
+        faces.end()
+      );
+      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
+
+      m_n_faces = static_cast<int>(faces.size());
+      if (verbose) { std::clog << "Number of strong faces: " << m_n_faces << std::endl; }
+      //const ribi::trim::Helper helper;
+      std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
+      const auto new_end = std::unique(faces.begin(),faces.end());
+      faces.erase(new_end,faces.end());
+      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
+    }
+
+    //Assign boundaries to the strong faces
+    m_3dmesh_assign_boundary_function(cells);
+  }
+
+  if (verbose) { std::clog << "Checking the cells" << std::endl; }
+  {
+    for (const auto cell: cells)
+    {
+      assert(cell);
+      for (const auto face: cell->GetFaces())
+      {
+        assert(face);
+        for (const auto point: face->GetPoints())
+        {
+          assert(point);
+        }
+      }
+    }
+  }
+
+  if (verbose) { std::clog << "Build the OpenFOAM files" << std::endl; }
+  {
+    std::string filename_result_mesh = fileio::FileIo().GetTempFileName(".ply");
+
+    const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder(
+      new ribi::trim::TriangleMeshBuilder(
+        cells,
+        filename_result_mesh,
+        m_3dmesh_boundary_to_patch_field_type_function,
+        m_3dmesh_strategy,
+        m_3dmesh_verbose
+      )
+    );
+    assert(builder);
+
+    m_3dmesh_output_ply = fileio::FileIo().FileToStr(filename_result_mesh);
+
+    fileio::FileIo().DeleteFile(filename_result_mesh);
+  }
+}
+
+std::string ribi::trim::Dialog::GetShapesAsSvg(const double line_width) const noexcept
+{
+  return Geometry().ToSvg(m_shapes,line_width);
+}
+
+std::string ribi::trim::Dialog::GetShapesAsWkt() const noexcept
+{
+  return Geometry().ToWkt(m_shapes);
+}
+
+std::string ribi::trim::Dialog::GetTriangleMeshAsSvg(const double line_width) const noexcept
+{
+  return Geometry().ToSvg(m_triangle_shapes,line_width);
+}
+
+std::string ribi::trim::Dialog::GetTriangleMeshAsWkt() const noexcept
+{
+  return Geometry().ToWkt(m_triangle_shapes);
+}
+
+std::string ribi::trim::Dialog::GetVersion() noexcept
+{
+  return "1.0";
+}
+
+std::vector<std::string> ribi::trim::Dialog::GetVersionHistory() noexcept
+{
+  return {
+    "2014-06-24: version 1.0: initial version"
+  };
+}
+
+void ribi::trim::Dialog::Set3dMeshParameters(
+  const int n_cell_layers,
+  const Length layer_height,
+  const ::ribi::trim::CreateVerticalFacesStrategy strategy,
+  const std::function<void(std::vector<boost::shared_ptr<Cell>>&)>& sculpt_function,
+  const std::function<void(std::vector<boost::shared_ptr<Cell>>&)>& assign_boundary_function,
+  const std::function<::ribi::foam::PatchFieldType(const std::string&)>& boundary_to_patch_field_type_function,
+  const bool verbose
+) noexcept
+{
+  m_3dmesh_assign_boundary_function = assign_boundary_function;
+  m_3dmesh_boundary_to_patch_field_type_function = boundary_to_patch_field_type_function;
+  m_3dmesh_layer_height = layer_height;
+  m_3dmesh_n_cell_layers = n_cell_layers;
+  m_3dmesh_sculpt_function = sculpt_function;
+  m_3dmesh_strategy = strategy;
+  m_3dmesh_verbose = verbose;
+
+}
+
+
+void ribi::trim::Dialog::SetShapes(const Shapes& shapes) noexcept
+{
+  m_shapes = shapes;
+}
+
+void ribi::trim::Dialog::SetShapes(const std::string& wkt) noexcept
+{
+  SetShapes(Geometry().WktToShapes(wkt));
+}
+
+void ribi::trim::Dialog::SetTriangleParameters(
+  const Angle triangle_min_angle,
+  const Area triangle_max_area,
+  const bool verbose
+) noexcept
+{
+  m_triangle_min_angle = triangle_min_angle;
+  m_triangle_max_area = triangle_max_area;
+  m_triangle_verbose = verbose;
+
+}
+
+void ribi::trim::Dialog::Show3dMesh() const noexcept
+{
+  const std::string filename = fileio::FileIo().GetTempFileName(".ply");
+
+  //Create file for MeshLab
+  {
+    std::ofstream f(filename.c_str());
+    f << m_3dmesh_output_ply;
+  }
+
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
+  std::stringstream s;
+  s
+    #ifdef _WIN32
+    << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
+    #else
+    << "meshlab "
+    #endif
+    << filename
+  ;
+  const int error = std::system(s.str().c_str());
+  if (error) std::cout << "WARNING: cannot display mesh" << '\n';
+
+  ribi::fileio::FileIo().DeleteFile(filename);
+  assert(!ribi::fileio::FileIo().IsRegularFile(filename));
 }
 
 #ifndef NDEBUG
@@ -502,53 +688,9 @@ void ribi::trim::Dialog::Test() noexcept
   //Flow of Dialog
   {
     Dialog d;
-    assert(!d.Are3dMeshParametersSet());
-    assert(!d.AreShapesSet());
-    assert(!d.AreTriangleParametersSet());
-    {
-      const double pi { boost::math::constants::pi<double>() };
-      const Polygons polygons {
-        Geometry().CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
-      };
-      const Linestrings linestrings = {};
-      const Shapes shapes(polygons,linestrings);
-      d.SetShapes(shapes);
-    }
-    assert(!d.Are3dMeshParametersSet());
-    assert( d.AreShapesSet());
-    assert(!d.AreTriangleParametersSet());
-    {
-      const Angle triangle_min_angle
-        = 20.0 //Default used by Triangle, in degrees
-        * (boost::math::constants::two_pi<double>() / 360.0)
-        * boost::units::si::radian
-      ;
-      const Area triangle_max_area = 1.0 * boost::units::si::square_meter;
-      const bool verbose = false;
-      d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
-    }
-    assert(!d.Are3dMeshParametersSet());
-    assert( d.AreShapesSet());
-    assert( d.AreTriangleParametersSet());
-    {
-      const int n_cell_layers = 1;
-      const auto strategy
-        = CreateVerticalFacesStrategy::one_face_per_square;
-      const Length layer_height(1.0 * boost::units::si::meter);
-      const bool verbose = false;
-      d.SetMeshParameters(
-        n_cell_layers,
-        layer_height,
-        strategy,
-        Dialog::CreateSculptFunctionRemoveRandom(0.75),
-        Dialog::CreateDefaultAssignBoundaryFunction(),
-        Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
-        verbose
-      );
-    }
-    assert( d.Are3dMeshParametersSet());
-    assert( d.AreShapesSet());
-    assert( d.AreTriangleParametersSet());
+    d.CreateTriangleMesh();
+    d.Create3dMesh();
+    assert(!d.Get3dMesh().empty());
   }
 
 

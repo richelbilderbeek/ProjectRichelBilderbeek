@@ -38,6 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "geometry.h"
 #include "qtnavigationablegraphicsview.h"
 #include "trace.h"
+#include "trianglemeshdialog.h"
 #include "trianglemeshface.h"
 #include "trianglemeshpoint.h"
 #include "trianglefile.h"
@@ -49,7 +50,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtTestTriangleMainDialog::QtTestTriangleMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestTriangleMainDialog)
+    ui(new Ui::QtTestTriangleMainDialog),
+    m_dialog{new ribi::trim::Dialog}
 {
   #ifndef NDEBUG
   Test();
@@ -70,21 +72,25 @@ ribi::QtTestTriangleMainDialog::~QtTestTriangleMainDialog() noexcept
 
 void ribi::QtTestTriangleMainDialog::DisplayPolygons() noexcept
 {
-  const std::string text = ui->edit_wkt->toPlainText().toStdString();
+  const std::string wkt = ui->edit_wkt->toPlainText().toStdString();
+
   //const auto lines = SeperateString(text);
   const auto verbose = GetVerbose();
 
   if (verbose)
   {
-    std::cout << "Convert " << text.size() << " WKT characters to SVG" << std::endl;
+    std::cout << "Convert " << wkt.size() << " WKT characters to SVG" << std::endl;
   }
+
+  m_dialog->SetShapes(wkt);
 
   const std::string svg_filename = fileio::FileIo().GetTempFileName(".svg");
   {
 
     std::ofstream f(svg_filename.c_str());
     //f << Geometry().ToSvgStr(polygons,0.1);
-    const std::string svg_text = Geometry().WktToSvg(text,0.1);
+    //const std::string svg_text = Geometry().WktToSvg(text,0.1);
+    const std::string svg_text = m_dialog->GetShapesAsSvg();
 
     if (verbose)
     {
@@ -109,6 +115,8 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
 {
   const bool verbose = GetVerbose();
 
+
+
   for (int i=0; i!=
   //#define TODO_ISSUE_207
   #ifndef TODO_ISSUE_207
@@ -118,15 +126,15 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
   #endif // TODO_ISSUE_207
   ; ++i)
   {
-    std::function<
-      void(const ribi::TriangleFile *,std::string&,std::string&,std::string&,const Angle,const Area,const bool)
-    > triangle_function;
+    //std::function<
+    //  void(const ribi::TriangleFile *,std::string&,std::string&,std::string&,const Angle,const Area,const bool)
+    //> triangle_function;
     QGraphicsScene * scene = nullptr;
 
     switch (i)
     {
       case 0:
-        triangle_function = &ribi::TriangleFile::ExecuteTriangleExe;
+      //  triangle_function = &ribi::TriangleFile::ExecuteTriangleExe;
         scene = ui->view_triangle_mesh_exe->scene();
       break;
       //case 1:
@@ -149,6 +157,9 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
     scene->clear();
 
     const auto shapes = GetShapes();
+    trim::Dialog d;
+    d.SetShapes(shapes);
+
     if (verbose)
     {
       std::cout
@@ -165,9 +176,33 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
       continue;
     }
 
-    const ribi::TriangleFile triangle_file(shapes);
+    d.SetTriangleParameters(
+      GetTriangleMinAngle(),
+      GetTriangleMaxArea(),
+      verbose
+    );
 
+
+    d.CreateTriangleMesh();
+
+    ui->text_triangle_input_file->setPlainText(
+      d.GetTriangleInput().c_str()
+    );
+    ui->text_triangle_output_nodefile->setPlainText(
+      d.GetTriangleOutputNode().c_str()
+    );
+    ui->text_triangle_output_elefile->setPlainText(
+      d.GetTriangleOutputEle().c_str()
+    );
+    ui->text_triangle_output_polyfile->setPlainText(
+      d.GetTriangleOutputPoly().c_str()
+    );
+
+
+    /*
+    const ribi::TriangleFile triangle_file(shapes);
     ui->text_triangle_input_file->setPlainText(triangle_file.ToStr().c_str());
+
 
     std::string filename_node;
     std::string filename_ele;
@@ -230,10 +265,11 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
       boost::geometry::append(polygon, coordinats);
       polygons.push_back(polygon);
     }
+    */
+    if (verbose) { std::clog << "Convert the polygons to SVG" << std::endl; }
+    //const std::string svg_text = Geometry().ToSvg(polygons,0.1);
 
-    if (verbose) { std::clog << "Convert to polygons to SVG" << std::endl; }
-    const std::string svg_text = Geometry().ToSvg(polygons,0.1);
-
+    const std::string svg_text = d.GetTriangleMeshAsSvg();
     ui->text_triangle_output_as_svg->setPlainText(svg_text.c_str());
 
     const std::string filename = fileio::FileIo().GetTempFileName(".svg");
@@ -297,6 +333,7 @@ void ribi::QtTestTriangleMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting QtTestTriangleMainDialog::Test");
+  ribi::trim::Dialog();
   QtTestTriangleMainDialog d;
   //Test if an empty result will be accepted
   d.SetWkt("LINESTRING(-5 -5,-5 5,5 5,5 -5)");

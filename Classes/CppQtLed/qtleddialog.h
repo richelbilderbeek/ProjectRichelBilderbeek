@@ -51,9 +51,15 @@ public:
   QtLedDialog& operator=(const QtLedDialog&) = delete;
   ~QtLedDialog() noexcept;
 
-  void SetWidget(const boost::shared_ptr<Led>& led) noexcept;
-  boost::shared_ptr<Led> GetWidget() const noexcept { return m_led; }
+  void SetLed(const boost::shared_ptr<Led>& led) noexcept;
+  boost::shared_ptr<Led> GetLed() const noexcept { return m_led; }
 
+
+private slots:
+  void on_box_blue_valueChanged(int arg1);
+  void on_box_green_valueChanged(int arg1);
+  void on_box_intensity_valueChanged(double arg1);
+  void on_box_red_valueChanged(int arg1);
 
 private:
   Ui::QtLedDialog *ui;

@@ -45,13 +45,6 @@ public:
     const unsigned char blue  =   0,
     QWidget *parent = 0
   );
-  //Use an already existing Led
-  explicit QtLed(
-    const boost::shared_ptr<Led>& led,
-    QWidget *parent = 0
-  );
-  boost::shared_ptr<const Led> GetLed() const noexcept { return m_led; }
-  boost::shared_ptr<      Led> GetLed()       noexcept { return m_led; }
 
   ///Draw a Led from a Led
   static void DrawLed(
@@ -59,6 +52,14 @@ public:
     const int left, const int top,
     const int width, const int height,
     const Led& led
+  ) noexcept;
+
+
+  boost::shared_ptr<const Led> GetLed() const noexcept { return m_led; }
+  boost::shared_ptr<      Led> GetLed()       noexcept { return m_led; }
+
+  void SetLed(
+    const boost::shared_ptr<Led>& led
   ) noexcept;
 
 protected:
@@ -70,6 +71,8 @@ private:
 
   ///OnResize is called when the geometry of the LedWidget is changed
   void OnResize();
+  void OnColorChanged(Led * const) noexcept;
+  void OnIntensityChanged(Led * const) noexcept;
 
 public:
   static std::string GetVersion() noexcept;

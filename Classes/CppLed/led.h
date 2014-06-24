@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
@@ -91,6 +92,11 @@ struct Led
   private:
   virtual ~Led() noexcept {}
   friend void boost::checked_delete<>(Led*);
+  friend void boost::checked_delete<>(const Led*);
+  friend struct std::default_delete<      Led>;
+  friend struct std::default_delete<const Led>;
+  friend class boost::detail::sp_ms_deleter<      Led>;
+  friend class boost::detail::sp_ms_deleter<const Led>;
 
   ///The Led its blueness, range [0.0,255]
   int m_blue;

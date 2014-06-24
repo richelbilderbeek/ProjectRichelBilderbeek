@@ -38,11 +38,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "geometry.h"
 #include "plane.h"
 #include "polyfile.h"
+#include "ribi_regex.h"
 #include "polyfilefrompolygons.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "trianglefile.h"
 #include "testtrianglemaindialog.h"
+#include "trianglemeshdialog.h"
 #pragma GCC diagnostic pop
 
 ribi::TestTriangleMenuDialog::TestTriangleMenuDialog()
@@ -202,8 +204,8 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
     );
     if (verbose)
     {
-      std::cout << std::endl //Because Triangle does not do an endl itself
-        << "Created file '" << d.GetFilename() << "' successfully" << std::endl;
+      //std::cout << std::endl //Because Triangle does not do an endl itself
+      //  << "Created file '" << d.GetFilename() << "' successfully" << std::endl;
     }
     return 0;
   }
@@ -226,7 +228,7 @@ ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestTriangle",
     "compare Triangle to its C++ equivalent",
-    "the 16th of June 2014",
+    "the 24th of June 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTestTriangle.htm",
     GetVersion(),
@@ -235,19 +237,13 @@ ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
   a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
-  const std::unique_ptr<Plane> plane(
-    new Plane(
-      Plane::Coordinat3D(0.0,0.0,0.0),
-      Plane::Coordinat3D(1.0,0.0,0.0),
-      Plane::Coordinat3D(0.0,1.0,0.0)
-    )
-  );
-  assert(plane);
-  a.AddLibrary("Plane version: " + plane->GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
+  a.AddLibrary("ribi::Regex version: " + ribi::Regex::GetVersion());
   a.AddLibrary("Triangle version 1.6, by Jonathan Richard Shewchuk (http://www.cs.cmu.edu/~quake/triangle.html)");
   a.AddLibrary("TriangleFile version: " + TriangleFile::GetVersion());
+  a.AddLibrary("ribi::trim::Dialog version: " + ribi::trim::Dialog::GetVersion());
   return a;
 }
 
@@ -280,7 +276,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestTriangleMenuDialog::GetProgram(
 
 std::string ribi::TestTriangleMenuDialog::GetVersion() const noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
 std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const noexcept
@@ -292,7 +288,8 @@ std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const
     "2014-05-27: version 1.3: added units to Triangle parameters, fixed bug in desktop version that was detected by this",
     "2014-06-03: version 1.4: assume Triangle starts counting from index zero, desktop version responds to all positive values",
     "2014-06-12: version 1.5: support linestrings",
-    "2014-06-17: version 1.6: don't crash desktop version if final result is empty"
+    "2014-06-17: version 1.6: don't crash desktop version if final result is empty",
+    "2014-06-24: version 1.7: use of trim::Dialog"
   };
 }
 

@@ -3,26 +3,18 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtwidget.h"
-
-#include <cassert>
-#include <cmath>
-#include <iostream>
 #include <QGraphicsScene>
-#include <QKeyEvent>
-#include <QGraphicsSimpleTextItem>
 #include "qtrectitem.h"
 #pragma GCC diagnostic pop
 
 QtWidget::QtWidget(QWidget *parent)
   : QGraphicsView(new QGraphicsScene,parent)
 {
-  const int n_items = 16;
+  const int n_items = 20;
   for (int i=0; i!=n_items; ++i)
   {
-    const double angle = 2.0 * M_PI * (static_cast<double>(i) / static_cast<double>(n_items));
-    const double ray = 150.0;
-    const double x =  std::sin(angle) * ray;
-    const double y = -std::cos(angle) * ray;
+    const double x = static_cast<double>(i % 2) * 200.0;
+    const double y = static_cast<double>(i / 2) * 40;
     QPen pen;
     pen.setWidth(i);
     QtRectItem * const item = new QtRectItem;

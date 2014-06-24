@@ -65,7 +65,7 @@ public:
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
   typedef boost::units::quantity<boost::units::si::area> Area;
 
-  void CreateMesh() noexcept;
+  void Create3dMesh() noexcept;
   ribi::trim::CreateVerticalFacesStrategy GetCreateVerticalFacesStrategy() const noexcept;
   double GetFraction() const noexcept;
   boost::units::quantity<boost::units::si::length> GetLayerHeight() const noexcept;
@@ -76,6 +76,7 @@ public:
   Angle GetTriangleMinAngle() const noexcept;
   bool GetVerbose3dMesh() const noexcept;
   bool GetVerboseTriangleMesh() const noexcept;
+
 
   void SetShowMesh(const bool show_mesh) noexcept;
   void SetWkt(const std::string& wkt) noexcept;

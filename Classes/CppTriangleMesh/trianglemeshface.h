@@ -31,6 +31,7 @@ class Face
   friend class Point;
   friend class Template;
   friend class TriangleMeshBuilderImpl;
+  friend void CellsCheck(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept;
 
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;

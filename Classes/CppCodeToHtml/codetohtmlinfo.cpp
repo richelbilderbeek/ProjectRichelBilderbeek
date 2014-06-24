@@ -587,7 +587,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p>",
-        "  <a href=\"CppBoostGeometryExample15.htm\">Boost.Geometry example 15</a>",
+        "  <a href=\"CppBoostGeometryExample15.htm\">Boost.Geometry example 15: Obtain the intersection of a polygon and linestring</a>",
         "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>"
       }
@@ -600,7 +600,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p>",
-        "  <a href=\"CppBoostGeometryExample16.htm\">Boost.Geometry example 16</a>",
+        "  <a href=\"CppBoostGeometryExample16.htm\">Boost.Geometry example 16: Convert a polygon to WKT</a>",
         "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>"
       }
@@ -5414,14 +5414,100 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppQGraphicsRectItemExample1",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsRectItemExample1.htm\">QGraphicsRectItem example 1: Basics</a> is a",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItems</a>. These items are movable",
+        "  and selectable.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsRectItemExample1.png\">View a screenshot of 'QGraphicsRectItemExample1' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsRectItemExample1.zip\">Download the Qt Creator project 'QGraphicsRectItemExample1' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsRectItemExample1Exe.zip\">Download a Windows executable of 'QGraphicsRectItemExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsRectItemExample2",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsRectItemExample2.htm\">QGraphicsRectItem example 2: Coordinat display</a> is a",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItems</a>. These items are movable",
+        "  and selectable. Additionally, the items display their coordinats.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsRectItemExample2.png\">View a screenshot of 'QGraphicsRectItemExample2' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsRectItemExample2.zip\">Download the Qt Creator project 'QGraphicsRectItemExample2' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsRectItemExample2Exe.zip\">Download a Windows executable of 'QGraphicsRectItemExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsRectItemExample3",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsRectItemExample3.htm\">QGraphicsRectItem example 3: Coordinat display on a linear gradient</a> is a",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItems</a>. These items are movable",
+        "  and selectable. Additionally, the items display their coordinats on a linear gradient.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsRectItemExample3.png\">View a screenshot of 'QGraphicsRectItemExample3' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsRectItemExample3.zip\">Download the Qt Creator project 'QGraphicsRectItemExample3' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsRectItemExample3Exe.zip\">Download a Windows executable of 'QGraphicsRectItemExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsRectItemExample4",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsRectItemExample4.htm\">QGraphicsRectItem example 4: varying pen widths</a> is a",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsRectItem.htm\">QGraphicsRectItems</a>. These items are movable",
+        "  and selectable. Additionally, the items display their width, height and pen width, on a linear gradient.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsRectItemExample4.png\">View a screenshot of 'QGraphicsRectItemExample4' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsRectItemExample4.zip\">Download the Qt Creator project 'QGraphicsRectItemExample4' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsRectItemExample4Exe.zip\">Download a Windows executable of 'QGraphicsRectItemExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
     { "CppQGraphicsSimpleTextItemExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQGraphicsSimpleTextItemExample1.htm\">QGraphicsSimpleTextItem example 1: Hello World</a> is a",
-        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
-        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with the text 'Hello World'. These items are movable",
-        "and selectable.</p>",
+        "<p>",
+        "  <a href=\"CppQGraphicsSimpleTextItemExample1.htm\">QGraphicsSimpleTextItem example 1: Hello World</a> is a",
+        "  <a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "  <a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with the text 'Hello World'. These items are movable",
+        "  and selectable.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQGraphicsSimpleTextItemExample1.png\">View a screenshot of 'QGraphicsSimpleTextItemExample1' (png)</a></li>",

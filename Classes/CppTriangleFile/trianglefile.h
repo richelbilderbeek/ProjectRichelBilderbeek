@@ -90,9 +90,13 @@ struct TriangleFile
 
   const Polygons& GetShapes() const noexcept;
 
+  ///Obtain the Triangle.exe input .poly file
+  std::string GetTriangleInputPoly() const noexcept { return ToStr(); }
+
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  ///Obtain the Triangle.exe input .poly file
   std::string ToStr() const noexcept;
 
   private:

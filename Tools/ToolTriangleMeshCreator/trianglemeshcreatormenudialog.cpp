@@ -352,7 +352,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     ribi::trim::Dialog d;
     d.SetShapes(shapes);
     d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
-    d.SetMeshParameters(
+    d.Set3dMeshParameters(
       n_layers,
       layer_height,
       strategy,
@@ -378,34 +378,9 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     */
     if (show_mesh)
     {
-      assert(ribi::fileio::FileIo().IsRegularFile(d.GetFilename()));
-      std::stringstream s;
-      s
-        #ifdef _WIN32
-        << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
-        #else
-        << "meshlab "
-        #endif
-        << d.GetFilename()
-      ;
-      const int error = std::system(s.str().c_str());
-      if (error) std::cout << "WARNING: cannot display mesh" << '\n';
+      d.Show3dMesh();
     }
-
-    const std::string checkMesh_command(
-      std::string(
-        R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
-      + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"
-        // Changing to drive D is important...
-      + "&& D: "
-        // ...although this also indicates the drive
-      + "&& cd " + ribi::fileio::FileIo().GetPath(args[0]) + " "
-      + "&& cd .. "
-      + (verbose ? "&& dir " : "")
-      + "&& checkMesh"
-    );
-    if (verbose) { TRACE(checkMesh_command); }
-    std::system(checkMesh_command.c_str());
+    d.Check3dMesh(args[0]);
     return 0;
   }
   catch (std::exception& e)
@@ -427,7 +402,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TriangleMeshCreator",
     "Create a 3D mesh using Triangle",
-    "the 17th of June 2014",
+    "the 24th of June 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTriangleMeshCreator.htm",
     GetVersion(),
@@ -443,7 +418,7 @@ ribi::About ribi::TriangleMeshCreatorMenuDialog::GetAbout() const noexcept
   a.AddLibrary("ribi::Regex version: " + ribi::Regex::GetVersion());
   a.AddLibrary("Triangle version 1.6, by Jonathan Richard Shewchuk (http://www.cs.cmu.edu/~quake/triangle.html)");
   a.AddLibrary("TriangleFile version: " + TriangleFile::GetVersion());
-  //a.AddLibrary("TriangleMesh version: " + TriangleMesh::GetVersion());
+  a.AddLibrary("TriangleMesh version: " + trim::Dialog::GetVersion());
   return a;
 }
 
@@ -481,7 +456,7 @@ boost::shared_ptr<const ribi::Program> ribi::TriangleMeshCreatorMenuDialog::GetP
 
 std::string ribi::TriangleMeshCreatorMenuDialog::GetVersion() const noexcept
 {
-  return "1.9";
+  return "1.10";
 }
 
 std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory() const noexcept
@@ -497,7 +472,7 @@ std::vector<std::string> ribi::TriangleMeshCreatorMenuDialog::GetVersionHistory(
     "2014-05-23: version 1.7: added command line interface",
     "2014-05-23: version 1.8: support linestring as shape",
     "2014-06-17: version 1.9: allow non-surface as valid input",
-    "2014-06-20: version 1.10: moved main dialog to TriangleMesh classes"
+    "2014-06-24: version 1.10: moved main dialog to TriangleMesh classes, changed GUI in desktop version to show all data in all steps"
   };
 }
 

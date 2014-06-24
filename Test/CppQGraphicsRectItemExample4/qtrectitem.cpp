@@ -17,7 +17,8 @@ QtRectItem::QtRectItem(QGraphicsItem *parent)
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
-    | QGraphicsItem::ItemIsSelectable);
+    | QGraphicsItem::ItemIsSelectable
+  );
 }
 
 void QtRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

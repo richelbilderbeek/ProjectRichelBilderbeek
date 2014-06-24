@@ -56,10 +56,10 @@ struct TestTriangleMainDialog
   );
 
   ///Obtain the filename of the created mesh
-  std::string GetFilename() const noexcept { return m_filename_result_mesh; }
+  //std::string GetFilename() const noexcept { return m_filename_result_mesh; }
 
   private:
-  const std::string m_filename_result_mesh;
+  //const std::string m_filename_result_mesh;
 
   #ifndef NDEBUG
   static void Test() noexcept;

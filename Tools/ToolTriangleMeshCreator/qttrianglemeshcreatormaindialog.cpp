@@ -49,7 +49,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTriangleMeshCreatorMainDialog),
-    m_dialog{}
+    m_dialog{new ribi::trim::Dialog}
 {
   #ifndef NDEBUG
   Test();
@@ -89,10 +89,22 @@ ribi::QtTriangleMeshCreatorMainDialog::~QtTriangleMeshCreatorMainDialog() noexce
   delete ui;
 }
 
-void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
+void ribi::QtTriangleMeshCreatorMainDialog::Create3dMesh() noexcept
 {
+
   try
   {
+    m_dialog->Set3dMeshParameters(
+      GetNumberOfCellLayers(),
+      GetLayerHeight(),
+      GetCreateVerticalFacesStrategy(),
+      ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(GetFraction()),
+      ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction(),
+      ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
+      GetVerbose3dMesh()
+    );
+    m_dialog->Create3dMesh();
+    /*
     m_dialog = boost::make_shared<ribi::trim::Dialog>(
     //const ribi::trim::Dialog d(
       GetShapes(),
@@ -106,21 +118,11 @@ void ribi::QtTriangleMeshCreatorMainDialog::CreateMesh() noexcept
       ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
       GetVerbose3dMesh()
     );
-
+    */
     if (GetShowMesh())
     {
-      assert(ribi::fileio::FileIo().IsRegularFile(m_dialog->GetFilename()));
-      std::stringstream s;
-      s
-        #ifdef _WIN32
-        << "C:\\Progra~1\\VCG\\Meshlab\\meshlab.exe "
-        #else
-        << "meshlab "
-        #endif
-        << m_dialog->GetFilename()
-      ;
-      const int error = std::system(s.str().c_str());
-      if (error) std::cout << "WARNING: cannot display mesh" << '\n';
+      m_dialog->Show3dMesh();
+
     }
   }
   catch (std::exception& e)
@@ -141,12 +143,12 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
   //const std::string text = ui->edit_wkt->toPlainText().toStdString();
   //const std::vector<std::string> lines = Container().SeperateString(text,'\n');
 
-  const auto shapes = GetShapes();
+  m_dialog->SetShapes(GetShapes());
 
   const std::string svg_filename = fileio::FileIo().GetTempFileName(".svg");
   {
     std::ofstream f(svg_filename.c_str());
-    f << Geometry().ToSvg(shapes,0.1);
+    f << m_dialog->GetShapesAsSvg();
   }
   {
     QGraphicsSvgItem * const item = new QGraphicsSvgItem(svg_filename.c_str());
@@ -155,11 +157,28 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
   }
   fileio::FileIo().DeleteFile(svg_filename);
 
-  DisplayTriangleMesh();
+  //DisplayTriangleMesh();
 }
 
 void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
 {
+  const auto verbose = GetVerboseTriangleMesh();
+
+  ui->view_triangle_mesh_1->scene()->clear();
+
+  const std::string filename = fileio::FileIo().GetTempFileName(".svg");
+  if (verbose) { std::clog << "Write SVG to file '" << filename << "'" << std::endl; }
+  {
+    std::ofstream f(filename.c_str());
+    f << m_dialog->GetTriangleMeshAsSvg();
+  }
+  {
+    QGraphicsSvgItem * const item = new QGraphicsSvgItem(filename.c_str());
+    item->setScale(10.0);
+    ui->view_triangle_mesh_1->scene()->addItem(item);
+  }
+  fileio::FileIo().DeleteFile(filename);
+
   /*
   const bool verbose = GetVerbose();
   if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
@@ -311,7 +330,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::keyPressEvent(QKeyEvent * event) noe
 
 void ribi::QtTriangleMeshCreatorMainDialog::on_button_create_clicked()
 {
-  CreateMesh();
+  Create3dMesh();
 }
 
 void ribi::QtTriangleMeshCreatorMainDialog::on_edit_shapes_textChanged()
@@ -352,5 +371,11 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
 
 void ribi::QtTriangleMeshCreatorMainDialog::on_button_create_2d_mesh_clicked()
 {
-  //
+  m_dialog->SetTriangleParameters(
+    GetTriangleMinAngle(),
+    GetTriangleMaxArea(),
+    GetVerboseTriangleMesh()
+  );
+  m_dialog->CreateTriangleMesh();
+  DisplayTriangleMesh();
 }

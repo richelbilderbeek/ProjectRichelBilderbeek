@@ -6,6 +6,9 @@
 
 #include <boost/make_shared.hpp>
 
+#include <QHBoxLayout>
+
+#include "led.h"
 #include "qtled.h"
 #include "qtleddialog.h"
 
@@ -22,6 +25,21 @@ ribi::QtTestLedModifyDialog::QtTestLedModifyDialog(QWidget *parent)
 
 {
   ui->setupUi(this);
+
+  assert(!this->layout());
+  QHBoxLayout * const my_layout = new QHBoxLayout;
+  this->setLayout(my_layout);
+  my_layout->addWidget(m_led_left.get());
+  my_layout->addWidget(m_led_right.get());
+  my_layout->addWidget(m_dialog_left.get());
+  my_layout->addWidget(m_dialog_right.get());
+
+  const auto led = boost::make_shared<Led>();
+  m_dialog_left->SetLed(led);
+  m_dialog_right->SetLed(led);
+  m_led_left->SetLed(led);
+  m_led_right->SetLed(led);
+
 }
 
 ribi::QtTestLedModifyDialog::~QtTestLedModifyDialog() noexcept

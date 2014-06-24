@@ -48,13 +48,32 @@ ribi::QtLedDialog::~QtLedDialog() noexcept
   delete ui;
 }
 
+void ribi::QtLedDialog::on_box_intensity_valueChanged(double arg1)
+{
+  m_led->SetIntensity(arg1);
+}
+
+void ribi::QtLedDialog::on_box_blue_valueChanged(int arg1)
+{
+  m_led->SetBlue(arg1);
+}
+
+void ribi::QtLedDialog::on_box_green_valueChanged(int arg1)
+{
+  m_led->SetGreen(arg1);
+}
+
+void ribi::QtLedDialog::on_box_red_valueChanged(int arg1)
+{
+  m_led->SetRed(arg1);
+}
+
 void ribi::QtLedDialog::OnColorChanged(Led * const led) noexcept
 {
   assert(led);
   ui->box_red->setValue(led->GetRed());
   ui->box_green->setValue(led->GetGreen());
   ui->box_blue->setValue(led->GetBlue());
-
 }
 
 void ribi::QtLedDialog::OnIntensityChanged(Led * const led) noexcept
@@ -63,7 +82,7 @@ void ribi::QtLedDialog::OnIntensityChanged(Led * const led) noexcept
   ui->box_intensity->setValue(led->GetIntensity());
 }
 
-void ribi::QtLedDialog::SetWidget(const boost::shared_ptr<Led>& led) noexcept
+void ribi::QtLedDialog::SetLed(const boost::shared_ptr<Led>& led) noexcept
 {
   const bool verbose = false;
 
@@ -174,4 +193,6 @@ void ribi::QtLedDialog::SetWidget(const boost::shared_ptr<Led>& led) noexcept
   assert( led ==  m_led);
   assert(*led == *m_led);
 }
+
+
 

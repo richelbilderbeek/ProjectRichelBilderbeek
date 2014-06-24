@@ -32,7 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "polyfile.h"
 #include "trace.h"
 #include "trianglefile.h"
-#include "trianglemeshtemplate.h"
+//#include "trianglemeshtemplate.h"
+#include "trianglemeshdialog.h"
 #pragma GCC diagnostic pop
 
 ribi::TestTriangleMainDialog::TestTriangleMainDialog(
@@ -41,13 +42,17 @@ ribi::TestTriangleMainDialog::TestTriangleMainDialog(
   const Angle triangle_min_angle,
   const bool verbose
 )
-  : m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"))
+  //: m_filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"))
 {
   
   #ifndef NDEBUG
   Test();
   #endif
-
+  trim::Dialog d;
+  d.SetShapes(shapes);
+  d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
+  d.CreateTriangleMesh();
+  /*
   if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
   std::string filename_node;
   std::string filename_ele;
@@ -76,6 +81,7 @@ ribi::TestTriangleMainDialog::TestTriangleMainDialog(
       filename_ele
   );
   assert(t);
+  */
 }
 
 #ifndef NDEBUG
