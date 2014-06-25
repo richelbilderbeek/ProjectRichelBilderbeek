@@ -25,8 +25,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trianglemeshcreatormenudialog.h"
 #pragma GCC diagnostic pop
 
-//
-//TriangleMeshCreator --layer_height 1 --WKT POLYGON((10 10,10 -10,-10 -10,-10 10)) --strategy 1 --n_layers 10 --fraction 0.75 --triangle_max_area 10.0 --triangle_min_angle 20.0
+//Easy, about 5 seconds
+//TriangleMeshCreator --layer_height 1 --WKT "POLYGON((10 10,10 -10,-10 -10,-10 10))" --strategy 1 --n_layers 10 --fraction 0.9 --triangle_max_area 10.0 --triangle_min_angle 20.0 --show_mesh --verbose
+
+//Medium, about 100 seconds
+//TriangleMeshCreator --layer_height 1 --WKT "POLYGON((10 10,10 -10,-10 -10,-10 10))" --strategy 1 --n_layers 10 --fraction 0.9 --triangle_max_area 1.0 --triangle_min_angle 20.0 --show_mesh --verbose
 
 int main(int argc, char* argv[])
 {

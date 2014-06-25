@@ -176,7 +176,6 @@ void ribi::Regex::Test() noexcept
     const std::string s = "POLYGON((0 0,0 1,1 0)),LINESTRING(0 0,0 1,1 0)";
     const std::string t = r.GetRegexShapes();
     const auto v = r.GetRegexMatches(s,t);
-    TRACE(r.GetRegexShapes());
     assert(v.size() == 2);
     assert(v[0] == "POLYGON((0 0,0 1,1 0))");
     assert(v[1] == "LINESTRING(0 0,0 1,1 0)");

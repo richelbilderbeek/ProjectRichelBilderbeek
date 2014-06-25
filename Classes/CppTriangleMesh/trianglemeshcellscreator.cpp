@@ -603,8 +603,10 @@ void ribi::trim::CellsCreator::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::CellsCreator::Test");
+  const bool verbose = false;
 
-  TRACE("Trying out to build cells from the testing templates");
+  if (verbose) { TRACE("Trying out to build cells from the testing templates"); }
+
   for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
   {
     for (int i=0; i!=4; ++i)
@@ -626,7 +628,7 @@ void ribi::trim::CellsCreator::Test() noexcept
       assert(cells.size() > 0);
     }
   }
-  TRACE("Specific: check if a Face really loses its neighbour: remove a prism from a cube");
+  if (verbose) { TRACE("Specific: check if a Face really loses its neighbour: remove a prism from a cube"); }
   for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
   {
     //Create a 2x1 cell block
@@ -657,10 +659,10 @@ void ribi::trim::CellsCreator::Test() noexcept
           }
         )
       };
-      TRACE(cells[0]->GetFaces().size());
-      TRACE(cells[1]->GetFaces().size());
-      TRACE(CreateVerticalFacesStrategies().ToStr(strategy));
-      TRACE(n_faces_with_neighbour);
+      //TRACE(cells[0]->GetFaces().size());
+      //TRACE(cells[1]->GetFaces().size());
+      //TRACE(CreateVerticalFacesStrategies().ToStr(strategy));
+      //TRACE(n_faces_with_neighbour);
       assert(
            (strategy == CreateVerticalFacesStrategy::one_face_per_square
              && n_faces_with_neighbour == 1)
@@ -684,10 +686,10 @@ void ribi::trim::CellsCreator::Test() noexcept
              && n_faces_with_neighbour == 2)
       );
     }
-    TRACE("Creating internal faces 1");
+    if (verbose) { TRACE("Creating internal faces 1"); }
 
     Helper::FaceSet internal_faces_1 = Helper().CreateEmptyFaceSet();
-    TRACE("Creating internal faces 1, std::copy_if");
+    if (verbose) { TRACE("Creating internal faces 1, std::copy_if"); }
     //std::set<boost::shared_ptr<Face>> internal_faces_1;
     std::copy_if(
       faces_1.begin(),faces_1.end(),
@@ -700,7 +702,7 @@ void ribi::trim::CellsCreator::Test() noexcept
       }
     );
 
-    TRACE("Creating internal faces 2");
+    if (verbose) { TRACE("Creating internal faces 2"); }
     Helper::FaceSet internal_faces_2 = Helper().CreateEmptyFaceSet();
     std::copy_if(faces_2.begin(),faces_2.end(),std::inserter(internal_faces_2,internal_faces_2.begin()),
       [](const boost::shared_ptr<Face> face)
@@ -708,7 +710,7 @@ void ribi::trim::CellsCreator::Test() noexcept
         return face->GetNeighbour().get();
       }
     );
-    TRACE("Creating internal faces 1");
+    if (verbose) { TRACE("Creating internal faces 1"); }
     assert(
       std::equal(
         internal_faces_1.begin(),internal_faces_1.end(),
@@ -717,7 +719,7 @@ void ribi::trim::CellsCreator::Test() noexcept
       )
     );
   }
-  TRACE("Create Face, from bug");
+  if (verbose) { TRACE("Create Face, from bug"); }
   {
     /*
     (1.17557,2.35781,5.0)

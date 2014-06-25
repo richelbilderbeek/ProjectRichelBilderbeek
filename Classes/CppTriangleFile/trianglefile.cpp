@@ -219,7 +219,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
     );
 
   //Prevent a '1.0e-5' notation as Triangle cannot handle it
-  //Convert it to 0.0001 instead
+  //Convert it to 0.00001 instead
   std::string area_str = "";
   {
     std::stringstream s;

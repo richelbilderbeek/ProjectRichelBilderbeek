@@ -346,6 +346,17 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     std::cout << "Fraction of cells to keep: " << fraction << std::endl;
   }
 
+  ///no_check_mesh
+  bool check_mesh = true;
+  if (!std::count(args.begin(),args.end(),"-c") && !std::count(args.begin(),args.end(),"--no-check-mesh"))
+  {
+    check_mesh = false;
+  }
+  if (verbose)
+  {
+    std::cout << "Check mesh: " << check_mesh << std::endl;
+  }
+
   try
   {
     ribi::trim::Dialog d;
@@ -367,7 +378,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       d.Show3dMesh();
     }
     //Can only check 3D mesh with a fully known path
-    if (fileio::FileIo().IsRegularFile(args[0]))
+    if (check_mesh && fileio::FileIo().IsRegularFile(args[0]))
     {
       d.Check3dMesh(args[0]);
     }
@@ -426,7 +437,8 @@ ribi::Help ribi::TriangleMeshCreatorMenuDialog::GetHelp() const noexcept
       Help::Option('m',"show_mesh","show the generated 3D mesh"),
       Help::Option('r',"triangle_max_area","Triangle max area"),
       Help::Option('q',"triangle_min_angle","Triangle min angle"),
-      Help::Option('b',"verbose","generate more output")
+      Help::Option('b',"verbose","generate more output"),
+      Help::Option('c',"no-check-mesh","do not check the resulting 3D mesh")
     },
     {
       GetAbout().GetFileTitle() + " --layer_height 1 --polygons POLYGON((1 1,-1 1,-1 -1,1 -1)) --strategy 1 --n_layers 3 --show_mesh --triangle_area 1.0 --triangle_quality 1.0 --verbose --fraction 0.75",
