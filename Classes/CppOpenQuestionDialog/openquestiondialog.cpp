@@ -103,6 +103,7 @@ void ribi::OpenQuestionDialog::Submit(const std::string& s)
   assert(!HasSubmitted());
 
   this->SetIsCorrect(GetQuestion()->IsCorrect(s));
+  //this->m_signal_submitted(this);
 }
 
 #ifndef NDEBUG

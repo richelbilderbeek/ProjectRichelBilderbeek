@@ -85,8 +85,20 @@ ribi::trim::Dialog::Dialog()
   Create3dMesh();
 }
 
-void ribi::trim::Dialog::Check3dMesh() const noexcept
+void ribi::trim::Dialog::Check3dMesh(const std::string& path) const noexcept
 {
+  #ifndef NDEBUG
+  if (!fileio::FileIo().IsRegularFile(path))
+  {
+    TRACE("ERROR");
+    TRACE("BREAK");
+  }
+  #endif
+
+  assert(fileio::FileIo().IsRegularFile(path)
+    && "Check3dMesh calls OpenFOAM its checkMesh, which needs to know the full path"
+  );
+
   const std::string ply_filename = fileio::FileIo().GetTempFileName(".ply");
 
   {
@@ -94,19 +106,21 @@ void ribi::trim::Dialog::Check3dMesh() const noexcept
     f << m_3dmesh_output_ply;
   }
 
-  const auto verbose = m_3dmesh_verbose;
+  //const auto verbose = m_3dmesh_verbose;
+  const auto verbose = true;
   const std::string checkMesh_command(
     std::string(
       R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
     + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"
-    //  // Changing to drive D is important...
-    //+ "&& D: "
-    //  // ...although this also indicates the drive
-    //+ "&& cd " + ribi::fileio::FileIo().GetPath(path) + " "
-    //+ "&& cd .. "
-    //+ (verbose ? "&& dir " : "")
+      // Changing to drive D is important...
+    + "&& D: "
+      // ...although this also indicates the drive
+    + "&& cd " + ribi::fileio::FileIo().GetPath(path) + " "
+    + "&& cd .. "
+    + (verbose ? "&& dir " : "")
     + "&& checkMesh"
   );
+
   if (verbose) { TRACE(checkMesh_command); }
   const int error = std::system(checkMesh_command.c_str());
 
@@ -115,6 +129,9 @@ void ribi::trim::Dialog::Check3dMesh() const noexcept
   if (error)
   {
     TRACE("WARNING");
+    TRACE(path);
+    TRACE(ribi::fileio::FileIo().GetPath(path));
+    TRACE(checkMesh_command);
     TRACE(error);
     TRACE("BREAK");
   }
@@ -460,6 +477,8 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
     fileio::FileIo().DeleteFile(filename_ele);
     fileio::FileIo().DeleteFile(filename_node);
     fileio::FileIo().DeleteFile(filename_poly);
+
+
   }
   catch (std::exception& e)
   {
@@ -592,6 +611,12 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
 
     fileio::FileIo().DeleteFile(filename_result_mesh);
   }
+
+  if (verbose) { std::clog << "Create some files (checkMesh needs these)" << std::endl; }
+  CreateDefaultControlDict();
+  CreateDefaultPressureField();
+  CreateDefaultTemperatureField();
+  CreateDefaultVelocityField();
 }
 
 std::string ribi::trim::Dialog::GetShapesAsSvg(const double line_width) const noexcept
@@ -616,13 +641,14 @@ std::string ribi::trim::Dialog::GetTriangleMeshAsWkt() const noexcept
 
 std::string ribi::trim::Dialog::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::trim::Dialog::GetVersionHistory() noexcept
 {
   return {
     "2014-06-24: version 1.0: initial version"
+    "2014-06-25: version 1.1: checkMesh works again"
   };
 }
 
@@ -717,6 +743,7 @@ void ribi::trim::Dialog::Test() noexcept
     d.CreateTriangleMesh();
     d.Create3dMesh();
     assert(!d.Get3dMesh().empty());
+    //d.Check3dMesh();
   }
   {
     ribi::trim::CellsCreatorFactory().Create(

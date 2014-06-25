@@ -45,11 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "trianglefile.h"
-//#include "trianglemeshcellscreator.h"
-//#include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshdialog.h"
-//#include "trianglemeshface.h"
-//#include "trianglemeshhelper.h"
 #pragma GCC diagnostic pop
 
 int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
@@ -241,6 +237,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   }
 
   //Triangle quality (the minimum angle of a triangle corner)
+
   if (!std::count(args.begin(),args.end(),"-q")
     && !std::count(args.begin(),args.end(),"--triangle_quality")
     && !std::count(args.begin(),args.end(),"--triangle_min_angle")
@@ -249,6 +246,11 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     std::cerr << "Parameter for Triangle quality (the minimum angle of a triangle corner) is missing" << '\n';
     return 1;
   }
+
+  const double triangle_min_angle_max_degrees = 60.0;
+  const Angle triangle_min_angle_max_radians(triangle_min_angle_max_degrees * tau * radian / 360.0);
+
+  double triangle_min_angle_degrees = 0.0;
   Angle triangle_min_angle = 0.0 * radian;
   for (int i=0; i!=argc-1; ++i)
   {
@@ -258,13 +260,8 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     {
       try
       {
-        triangle_min_angle
-          = Angle(
-            boost::lexical_cast<double>(args[i+1])
-            * 360 / tau
-            * radian
-          )
-        ;
+        triangle_min_angle_degrees = boost::lexical_cast<double>(args[i+1]);
+        triangle_min_angle = Angle(triangle_min_angle_degrees * tau * radian / 360.0);
       }
       catch (boost::bad_lexical_cast&)
       {
@@ -278,16 +275,19 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     std::cerr << "Please supply a positive non-zero value for the Triangle quality (the minimum angle of a triangle corner)" << std::endl;
     return 1;
   }
-  if (triangle_min_angle.value() >= 60.0 * tau / 360.0)
+  if (triangle_min_angle >= triangle_min_angle_max_radians)
   {
-    std::cerr << "Please supply a value lower than 60.0 degrees for the Triangle quality (the minimum angle of a triangle corner)" << std::endl;
+    std::cerr << "Please supply a value lower than 60.0 degrees for the Triangle quality "
+      << "(the minimum angle of a triangle corner,"
+      << "you supplied the value " << triangle_min_angle_degrees << ")"
+      << std::endl;
     return 1;
   }
   if (verbose)
   {
     std::cout << "Triangle quality (the minimum angle of a triangle corner): "
       << triangle_min_angle << ", "
-      << (triangle_min_angle * 360.0 / tau) << " degree"
+      << triangle_min_angle_degrees << " degree"
       << std::endl
     ;
   }
@@ -351,6 +351,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
     ribi::trim::Dialog d;
     d.SetShapes(shapes);
     d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
+    d.CreateTriangleMesh();
     d.Set3dMeshParameters(
       n_layers,
       layer_height,
@@ -360,26 +361,16 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
       verbose
     );
-    /*
-    const ribi::trim::Dialog d(
-    //const ribi::TriangleMeshCreatorMainDialog d(
-      shapes,
-      n_layers,
-      layer_height,
-      strategy,
-      triangle_min_angle,
-      triangle_max_area,
-      ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(fraction),
-      ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction(),
-      ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
-      verbose
-    );
-    */
+    d.Create3dMesh();
     if (show_mesh)
     {
       d.Show3dMesh();
     }
-    d.Check3dMesh();
+    //Can only check 3D mesh with a fully known path
+    if (fileio::FileIo().IsRegularFile(args[0]))
+    {
+      d.Check3dMesh(args[0]);
+    }
     return 0;
   }
   catch (std::exception& e)
@@ -491,7 +482,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
       {
         "TriangleMeshCreator",
         "--layer_height", "1",
-        "--polygons", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
+        "--WKT", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
         "--strategy", "1",
         "--n_layers", "1",
         "--fraction", "0.75",
@@ -505,7 +496,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
       {
         "TriangleMeshCreator",
         "-z", "1",
-        "-p", "POLYGON((0 0,0 3,3 0)),POLYGON((1 1,0 2,2 0))",
+        "-w", "POLYGON((0 0,0 3,3 0)),POLYGON((1 1,0 2,2 0))",
         "-s", "1",
         "-n", "1",
         "-f", "0.75",
@@ -519,7 +510,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
       {
         "TriangleMeshCreator",
         "-z", "1",
-        "-p", "POLYGON((10 10,10 -10,-10 -10,-10 10)),LINESTRING(5 5,5 -5,-5 -5,-5 5)",
+        "-w", "POLYGON((10 10,10 -10,-10 -10,-10 10)),LINESTRING(5 5,5 -5,-5 -5,-5 5)",
         "-s", "1",
         "-n", "1",
         "-f", "0.75",
@@ -533,7 +524,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
       {
         "TriangleMeshCreator",
         "-z", "1",
-        "-p", "LINESTRING(5 5,5 -5,-5 -5,-5 5)",
+        "-w", "LINESTRING(5 5,5 -5,-5 -5,-5 5)",
         "-s", "1",
         "-n", "1",
         "-f", "0.75",

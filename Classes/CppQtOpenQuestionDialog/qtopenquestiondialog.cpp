@@ -186,6 +186,9 @@ void ribi::QtOpenQuestionDialog::OnQuit() noexcept
 void ribi::QtOpenQuestionDialog::OnSubmit(const bool was_answer_correct) noexcept
 {
   TRACE(was_answer_correct);
+  ui->edit_answer->setText(
+    HIERO, need more information
+  )
 }
 
 void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
