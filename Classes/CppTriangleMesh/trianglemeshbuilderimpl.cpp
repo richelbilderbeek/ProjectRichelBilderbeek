@@ -5,8 +5,8 @@
 //#include <cassert>
 //#include <iostream>
 //#include <iomanip>
-//#include <fstream>
-//#include <sstream>
+#include <fstream>
+#include <sstream>
 
 #include "trianglemeshcell.h"
 #include "trianglemeshface.h"

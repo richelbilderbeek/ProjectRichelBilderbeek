@@ -27,7 +27,6 @@ QPlainTextEdit { font: 10px }
 
 </string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

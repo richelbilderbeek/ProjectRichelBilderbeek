@@ -99,12 +99,12 @@ void ribi::trim::Dialog::Check3dMesh() const noexcept
     std::string(
       R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
     + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""" )"
-      // Changing to drive D is important...
-    + "&& D: "
-      // ...although this also indicates the drive
-    + "&& cd " + ribi::fileio::FileIo().GetPath(path) + " "
-    + "&& cd .. "
-    + (verbose ? "&& dir " : "")
+    //  // Changing to drive D is important...
+    //+ "&& D: "
+    //  // ...although this also indicates the drive
+    //+ "&& cd " + ribi::fileio::FileIo().GetPath(path) + " "
+    //+ "&& cd .. "
+    //+ (verbose ? "&& dir " : "")
     + "&& checkMesh"
   );
   if (verbose) { TRACE(checkMesh_command); }
@@ -112,14 +112,12 @@ void ribi::trim::Dialog::Check3dMesh() const noexcept
 
   ribi::fileio::FileIo().DeleteFile(ply_filename);
 
-  #ifndef NDEBUG
   if (error)
   {
     TRACE("WARNING");
     TRACE(error);
     TRACE("BREAK");
   }
-  #endif
   assert(!error);
 }
 

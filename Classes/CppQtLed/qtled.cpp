@@ -181,10 +181,14 @@ void ribi::QtLed::paintEvent(QPaintEvent *)
   QPainter p(this);
   DrawLed(
     p,
-    this->geometry().left(),
-    this->geometry().top(),
-    this->geometry().width(),
-    this->geometry().height(),
+    this->rect().left(),
+    this->rect().top(),
+    this->rect().width(),
+    this->rect().height(),
+    //this->geometry().left(),
+    //this->geometry().top(),
+    //this->geometry().width(),
+    //this->geometry().height(),
     *m_led
   );
 }

@@ -25,6 +25,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <vector>
+
+#include <boost/shared_ptr.hpp>
+
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
@@ -34,6 +38,8 @@ namespace Ui {
 
 
 namespace ribi {
+
+struct QtLed;
 
 class QtTestLedCompareDialog : public QtHideAndShowDialog
 {
@@ -50,6 +56,8 @@ protected:
 
 private:
   Ui::QtTestLedCompareDialog *ui;
+
+  std::vector<boost::shared_ptr<QtLed>> m_v;
 
   #ifndef NDEBUG
   static void Test() noexcept;

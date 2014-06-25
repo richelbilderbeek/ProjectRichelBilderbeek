@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>131</width>
-    <height>128</height>
+    <width>393</width>
+    <height>253</height>
    </rect>
   </property>
   <property name="font">
@@ -37,35 +37,81 @@ QPlainTextEdit { font: 10px }
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestLed.qrc">:/ToolTestLed/images/ToolTestLedModify.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
     <widget class="QPushButton" name="button_led_modify">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>&amp;Modify LED</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolTestLed.qrc">:/ToolTestLed/images/ToolTestLedCompare.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
     <widget class="QPushButton" name="button_led_compare">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>&amp;View LEDs</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="button_about">
-     <property name="text">
-      <string>&amp;About</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
+   <item row="3" column="1">
     <widget class="QPushButton" name="button_quit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>&amp;Quit</string>
      </property>
     </widget>
    </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="button_about">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;About</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="ToolTestLed.qrc"/>
+ </resources>
  <connections/>
 </ui>
