@@ -217,8 +217,17 @@ void ribi::TriangleFile::ExecuteTriangleExe(
         triangle_min_angle.value()
       * 360.0 / boost::math::constants::two_pi<double>() //Triangle uses degrees
     );
-  const std::string area_str
-    = boost::lexical_cast<std::string>(triangle_max_area.value());
+
+  //Prevent a '1.0e-5' notation as Triangle cannot handle it
+  //Convert it to 0.0001 instead
+  std::string area_str = "";
+  {
+    std::stringstream s;
+    s << std::fixed << std::setprecision(99)
+      << triangle_max_area.value()
+    ;
+    area_str = s.str();
+  }
   assert(quality_str.find(',') == std::string::npos && "No Dutch please");
   assert(area_str.find(',')    == std::string::npos && "No Dutch please");
   if (!fileio::FileIo().IsRegularFile(exe_filename))
@@ -290,7 +299,7 @@ const ribi::TriangleFile::Polygons& ribi::TriangleFile::GetShapes() const noexce
 
 std::string ribi::TriangleFile::GetVersion() noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
 std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
@@ -302,7 +311,8 @@ std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
     "2014-05-19: Version 1.3: use of non-freezing Windows executable",
     "2014-05-26: Version 1.4: use of units in Triangle 'area' (the maximum area of a triangle) and 'quality' (the minimum angle of a triangle's corner) parameters"
     "2014-05-27: Version 1.5: split of sections to PolyFile",
-    "2014-06-02: Version 1.6: split of sections to PolyFileFromPolygons"
+    "2014-06-02: Version 1.6: split of sections to PolyFileFromPolygons",
+    "2014-06-25: Version 1.7: use fixed notation instead of scientific, as Triangle converts it incorrectly it"
   };
 }
 

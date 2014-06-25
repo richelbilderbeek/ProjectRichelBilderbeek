@@ -393,6 +393,13 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
 {
   const auto verbose = m_triangle_verbose;
   if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
+
+  m_triangle_input_poly = "";
+  m_triangle_shapes = Shapes();
+  m_triangle_output_ele = "";
+  m_triangle_output_node = "";
+  m_triangle_output_poly = "";
+
   try
   {
     if (verbose) { std::clog << "Create Triangle.exe input" << std::endl; }
@@ -436,7 +443,6 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
     assert(t);
 
     if (verbose) { std::clog << "Convert Triangle.exe output to polygons" << std::endl; }
-    m_triangle_shapes = Shapes();
 
     for (const boost::shared_ptr<trim::Face> face: t->GetFaces())
     {
@@ -684,7 +690,11 @@ void ribi::trim::Dialog::Show3dMesh() const noexcept
     << filename
   ;
   const int error = std::system(s.str().c_str());
-  if (error) std::cout << "WARNING: cannot display mesh" << '\n';
+  if (error)
+  {
+    std::cout << "WARNING: cannot display mesh" << '\n';
+    TRACE("BREAK");
+  }
 
   ribi::fileio::FileIo().DeleteFile(filename);
   assert(!ribi::fileio::FileIo().IsRegularFile(filename));

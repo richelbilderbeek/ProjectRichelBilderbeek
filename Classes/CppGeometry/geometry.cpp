@@ -2117,6 +2117,7 @@ std::string ribi::Geometry::ToSvgStr(
   //Move to first point
   std::stringstream s;
   s
+    << std::setprecision(99)
     <<  R"*(  <path d="M )*"
     << points[0].x()
     << " "
@@ -2161,6 +2162,7 @@ std::string ribi::Geometry::ToSvgStr(
   //Move to first point
   std::stringstream s;
   s
+    << std::setprecision(99)
     <<  R"*(  <path d="M )*"
     << points[0].x()
     << " "
