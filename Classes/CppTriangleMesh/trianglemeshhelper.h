@@ -197,11 +197,6 @@ bool CanLexicalCast(const std::string& from) noexcept
   return true;
 }
 
-//bool operator==(
-//  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
-//  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
-//) noexcept;
-
 bool operator<(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs

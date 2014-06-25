@@ -57,34 +57,6 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   assert(Helper().IsConvex(points)
     && "FaceFactory must be called by a sorted and convex collection of points"
   );
-  /*
-  if (!Helper().IsConvex(points))
-  {
-    #ifndef NDEBUG
-    //for (auto p: points) TRACE(*p);
-    #endif
-    std::sort(points.begin(),points.end());
-    while (std::next_permutation(points.begin(),points.end()))
-    {
-      if (Helper().IsConvex(points))
-      {
-        TRACE("CONVEX!");
-        break;
-      }
-    }
-  }
-
-
-  #ifndef NDEBUG
-  if(!Helper().IsConvex(points))
-  {
-    TRACE("ERROR: NOT CONVEX");
-    //for (auto p: points) TRACE(*p);
-    //TRACE("BREAK");
-  }
-  #endif
-  assert(Helper().IsConvex(points));
-  */
 
   const boost::shared_ptr<Face> face(
     new Face(
@@ -145,11 +117,6 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   assert(a);
   assert(b);
   assert(c);
-  //bottom->SetIndex(1);
-  //top->SetIndex(2);
-  //a->SetIndex(3);
-  //b->SetIndex(4);
-  //c->SetIndex(5);
   const std::vector<boost::shared_ptr<Face>> prism {
     top,bottom,a,b,c
   };
@@ -195,14 +162,6 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   assert(d);
   assert(e);
   assert(f);
-  //bottom->SetIndex(1);
-  //top->SetIndex(2);
-  //a->SetIndex(3);
-  //b->SetIndex(4);
-  //c->SetIndex(5);
-  //d->SetIndex(6);
-  //e->SetIndex(7);
-  //f->SetIndex(8);
   const std::vector<boost::shared_ptr<Face>> prism {
     top,bottom,a,b,c,d,e,f
   };

@@ -30,10 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
-//#include <boost/math/constants/constants.hpp>
 #include <boost/units/io.hpp>
-
-#include <QRegExp>
+#include <boost/units/systems/si.hpp>
+#include <boost/math/constants/constants.hpp>
 
 #include "container.h"
 #include "fileio.h"
@@ -46,11 +45,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "trianglefile.h"
-#include "trianglemeshcellscreator.h"
-#include "trianglemeshcellscreatorfactory.h"
+//#include "trianglemeshcellscreator.h"
+//#include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshdialog.h"
-#include "trianglemeshface.h"
-#include "trianglemeshhelper.h"
+//#include "trianglemeshface.h"
+//#include "trianglemeshhelper.h"
 #pragma GCC diagnostic pop
 
 int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept

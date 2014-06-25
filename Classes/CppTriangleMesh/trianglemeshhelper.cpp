@@ -14,7 +14,6 @@
 
 #include "geometry.h"
 #include "trace.h"
-//#include "trianglemeshedge.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
@@ -276,60 +275,8 @@ bool ribi::trim::Helper::IsCounterClockwise(
 
 bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) const noexcept
 {
-  const bool answer_1 = face.GetOrientation() == FaceOrientation::horizontal;
-
-  /*
-  using boost::geometry::get;
-  const auto coordinats(ExtractCoordinats(face));
-
-  typedef std::set<Coordinat3D>::iterator Iterator;
-  typedef std::pair<Iterator,Iterator> Pair;
-  const Pair xs(
-    std::minmax_element(coordinats.begin(),coordinats.end(),
-      [](const Coordinat3D& lhs,const Coordinat3D& rhs)
-      {
-        return get<0>(lhs) < get<0>(rhs);
-      }
-    )
-  );
-
-  const double dx = std::abs(get<0>(*xs.first) - get<0>(*xs.second));
-
-  const Pair ys {
-    std::minmax_element(coordinats.begin(),coordinats.end(),
-      [](const Coordinat3D& lhs,const Coordinat3D& rhs)
-      {
-        return get<1>(lhs) < get<1>(rhs);
-      }
-    )
-  };
-
-  const double dy = std::abs(get<1>(*ys.first) - get<1>(*ys.second));
-
-  const Pair zs {
-    std::minmax_element(coordinats.begin(),coordinats.end(),
-      [](const Coordinat3D& lhs,const Coordinat3D& rhs)
-      {
-        return get<2>(lhs) < get<2>(rhs);
-      }
-    )
-  };
-
-  const double dz = std::abs(get<2>(*zs.first) - get<2>(*zs.second));
-  //const double dz { std::abs((*zs.first).GetZ() - (*zs.second).GetZ()) };
-
-  const bool answer_2
-    = dz == 0.0 || (dz * 1000.0 < dx && dz * 1000.0 < dy);
-
-  if (answer_1 != answer_2)
-  {
-    TRACE("ERROR");
-  }
-
-  assert(answer_1 == answer_2);
-  return answer_2;
-  */
-  return answer_1;
+  const bool answer = face.GetOrientation() == FaceOrientation::horizontal;
+  return answer;
 }
 
 bool ribi::trim::Helper::IsPlane(
@@ -833,6 +780,5 @@ bool ribi::trim::Less(
 ) noexcept
 {
   return ribi::trim::operator <(lhs,rhs);
-  //return lhs < rhs;
 }
 

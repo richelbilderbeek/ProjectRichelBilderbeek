@@ -34,9 +34,6 @@ ribi::trim::Face::Face(
   const FaceFactory&
   )
   :
-    #ifdef TRIANGLEMESH_USE_SIGNALS2
-    m_signal_destroyed{},
-    #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
     m_belongs_to{},
     m_coordinats{},
     m_index{index},
@@ -89,27 +86,8 @@ ribi::trim::Face::~Face() noexcept
   assert(sm_faces.count(this) == 1);
   sm_faces.erase(this);
   assert(sm_faces.count(this) == 0);
-
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  m_signal_destroyed(this);
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 }
 
-#ifdef TRIANGLEMESH_USE_SIGNALS2
-void ribi::trim::Face::AddBelongsTo(boost::shared_ptr<const Cell> cell)
-{
-  assert(cell);
-  m_belongs_to.push_back(cell);
-  assert(m_belongs_to.size() <= 2);
-  assert(
-       (m_belongs_to.size() == 1)
-    || (m_belongs_to.size() == 2 && m_belongs_to[0] != m_belongs_to[1])
-  );
-  cell->m_signal_destroyed.connect(
-    boost::bind(&ribi::trim::Face::OnCellDestroyed,this,boost::lambda::_1)
-  );
-}
-#else
 void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell)
 {
   assert(cell.lock());
@@ -120,7 +98,6 @@ void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell)
     || (m_belongs_to.size() == 2 && m_belongs_to[0].lock() != m_belongs_to[1].lock())
   );
 }
-#endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Face::CalcCenter() const noexcept
 {
@@ -147,10 +124,6 @@ int ribi::trim::Face::CalcPriority() const noexcept
 {
   assert(GetConstOwner());
   return GetConstOwner()->GetIndex();
-  //return std::max(
-  //  GetOwner()->GetIndex(),
-  //  GetNeighbour() ? GetNeighbour()->GetIndex() : -1
-  //);
 }
 
 bool ribi::trim::Face::CanExtractCoordinats() const noexcept
@@ -193,28 +166,16 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const
   m_belongs_to.erase(
     std::remove_if(
       m_belongs_to.begin(),m_belongs_to.end(),
-      #ifdef TRIANGLEMESH_USE_SIGNALS2
-      [](const boost::shared_ptr<const Cell> cell) { return !cell; }
-      #else
       [](const boost::weak_ptr<const Cell> cell) { return !cell.lock(); }
-      #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
     ),
     m_belongs_to.end()
   );
   boost::shared_ptr<const Cell> p;
   if (m_belongs_to.size() < 2) return p;
-
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  assert(m_belongs_to[0] != m_belongs_to[1]);
-  p = m_belongs_to[1];
-  assert(p);
-  return p;
-  #else
   assert(m_belongs_to[0].lock() != m_belongs_to[1].lock());
   p = m_belongs_to[1].lock();
   assert(p);
   return p;
-  #endif //#ifdef TRIANGLEMESH_USE_SIGNALS2
 }
 
 boost::shared_ptr<ribi::trim::Cell> ribi::trim::Face::GetNonConstNeighbour() noexcept
@@ -231,11 +192,7 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetConstOwner() cons
   m_belongs_to.erase(
     std::remove_if(
       m_belongs_to.begin(),m_belongs_to.end(),
-      #ifdef TRIANGLEMESH_USE_SIGNALS2
-      [](const boost::shared_ptr<const Cell> cell) { return !cell; }
-      #else
       [](const boost::weak_ptr<const Cell> cell) { return !cell.lock(); }
-      #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
     ),
     m_belongs_to.end()
   );
@@ -269,15 +226,9 @@ boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int 
 void ribi::trim::Face::OnCellDestroyed(const Cell* const cell) noexcept
 {
   assert(1==2);
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  const auto new_end = std::remove_if(m_belongs_to.begin(),m_belongs_to.end(),
-    [cell](const boost::shared_ptr<const Cell>& belongs_to) { return belongs_to.get() == cell; }
-  );
-  #else
   const auto new_end = std::remove_if(m_belongs_to.begin(),m_belongs_to.end(),
     [cell](const boost::weak_ptr<const Cell>& belongs_to) { return belongs_to.lock().get() == cell; }
   );
-  #endif //~#ifdef TRIANGLEMESH_USE_SIGNALS2
   m_belongs_to.erase(new_end,m_belongs_to.end());
 }
 

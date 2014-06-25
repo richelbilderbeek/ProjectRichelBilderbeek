@@ -38,12 +38,6 @@ class CellsCreator
 
   std::vector<boost::shared_ptr<Cell>> GetCells() noexcept;
 
-  ///The Cells must be released, and this will clear CellsCreator its Cells
-  ///This is important, because one can freely delete those released Cells
-  ///and have a valid mesh. Would the Cells be copied, the mesh created would be
-  ///invalid: the deleted Cells would always have a copy inside CellsCreator
-  //const std::vector<boost::shared_ptr<Cell>> ReleaseCells() noexcept;
-
   private:
   friend class CellsCreatorFactory;
 

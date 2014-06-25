@@ -1,17 +1,11 @@
 #include "trianglemeshbuilderimpl.h"
 
-//#include <array>
-//#include <algorithm>
-//#include <cassert>
-//#include <iostream>
-//#include <iomanip>
 #include <fstream>
 #include <sstream>
 
 #include "trianglemeshcell.h"
 #include "trianglemeshface.h"
 #include "fileio.h"
-//#include "openfoamheader.h"
 #include "openfoamboundaryfile.h"
 #include "openfoamboundaryfileitem.h"
 #include "openfoamfilenames.h"

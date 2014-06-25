@@ -100,21 +100,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::Create3dMesh() noexcept
       GetVerbose3dMesh()
     );
     m_dialog->Create3dMesh();
-    /*
-    m_dialog = boost::make_shared<ribi::trim::Dialog>(
-    //const ribi::trim::Dialog d(
-      GetShapes(),
-      GetNumberOfCellLayers(),
-      GetLayerHeight(),
-      GetCreateVerticalFacesStrategy(),
-      GetTriangleMinAngle(),
-      GetTriangleMaxArea(),
-      ribi::trim::Dialog::CreateSculptFunctionRemoveRandom(GetFraction()),
-      ribi::trim::Dialog::CreateDefaultAssignBoundaryFunction(),
-      ribi::trim::Dialog::CreateDefaultBoundaryToPatchFieldTypeFunction(),
-      GetVerbose3dMesh()
-    );
-    */
     if (GetShowMesh())
     {
       m_dialog->Show3dMesh();
@@ -136,8 +121,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
 
   assert(ui->view_shapes_1->scene());
   ui->view_shapes_1->scene()->clear();
-  //const std::string text = ui->edit_wkt->toPlainText().toStdString();
-  //const std::vector<std::string> lines = Container().SeperateString(text,'\n');
 
   m_dialog->SetShapes(GetShapes());
 
@@ -152,8 +135,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons() noexcept
     ui->view_shapes_1->scene()->addItem(item);
   }
   fileio::FileIo().DeleteFile(svg_filename);
-
-  //DisplayTriangleMesh();
 }
 
 void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
@@ -174,77 +155,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh() noexcept
     ui->view_triangle_mesh_1->scene()->addItem(item);
   }
   fileio::FileIo().DeleteFile(filename);
-
-  /*
-  const bool verbose = GetVerbose();
-  if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
-
-  assert(ui->view_triangle_mesh->scene());
-  ui->view_triangle_mesh->scene()->clear();
-
-
-  std::string filename_node;
-  std::string filename_ele;
-  std::string filename_poly;
-  try
-  {
-    ribi::TriangleFile f(GetShapes());
-    f.ExecuteTriangleExe(
-      filename_node,
-      filename_ele,
-      filename_poly,
-      GetTriangleMinAngle(),
-      GetTriangleMaxArea()
-    );
-  }
-  catch (std::exception& e)
-  {
-    std::clog
-      << "QtTriangleMeshCreatorMainDialog::DisplayTriangleMesh: "
-      << "Triangle.exe failed: " << e.what()
-    ;
-    return;
-  }
-
-  if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
-
-  const boost::shared_ptr<const ribi::trim::Template> t
-    = boost::make_shared<ribi::trim::Template>(
-      filename_node,
-      filename_ele
-  );
-  assert(t);
-
-  if (verbose) { std::clog << "Convert Triangle.exe output to polygons" << std::endl; }
-  std::vector<Polygon> polygons;
-  for (const boost::shared_ptr<trim::Face> face: t->GetFaces())
-  {
-    std::vector<Coordinat2D> coordinats;
-    for (const boost::shared_ptr<trim::Point> point: face->GetPoints())
-    {
-      coordinats.push_back(*point->GetCoordinat());
-    }
-    Polygon polygon;
-    boost::geometry::append(polygon, coordinats);
-    polygons.push_back(polygon);
-  }
-
-  if (verbose) { std::clog << "Convert polygons to SVG" << std::endl; }
-  const std::string svg_text = Geometry().ToSvg(polygons,0.1);
-
-  const std::string filename = fileio::FileIo().GetTempFileName(".svg");
-  if (verbose) { std::clog << "Write SVG to file '" << filename << "'" << std::endl; }
-  {
-    std::ofstream f(filename.c_str());
-    f << svg_text;
-  }
-  {
-    QGraphicsSvgItem * const item = new QGraphicsSvgItem(filename.c_str());
-    item->setScale(10.0);
-    ui->view_triangle_mesh->scene()->addItem(item);
-  }
-  fileio::FileIo().DeleteFile(filename);
-  */
 }
 
 double ribi::QtTriangleMeshCreatorMainDialog::GetFraction() const noexcept

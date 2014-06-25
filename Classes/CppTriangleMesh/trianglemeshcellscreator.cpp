@@ -517,17 +517,11 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   assert(std::count(points.begin(),points.end(),nullptr) == 0);
 
   //Collect the candidates
-  #ifdef TRIANGLEMESH_USE_SIGNALS2
-  std::vector<boost::shared_ptr<Face>> candidates;
-  for (auto p: a->GetPoints()) { for (auto q: p->GetConnected()) { assert(q); candidates.push_back(q); } }
-  for (auto p: b->GetPoints()) { for (auto q: p->GetConnected()) { assert(q); candidates.push_back(q); } }
-  #else
   std::vector<boost::weak_ptr<Face>> weak_candidates;
   for (auto p: a->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
   for (auto p: b->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
   std::vector<boost::shared_ptr<Face>> candidates;
   for (auto p: weak_candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
-  #endif
   //std::vector<boost::shared_ptr<Face>> candidates;
   //for (auto p: candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
   std::sort(candidates.begin(),candidates.end(),Helper().OrderByIndex());

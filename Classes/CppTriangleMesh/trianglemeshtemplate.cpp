@@ -314,14 +314,6 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSquare2x
     const auto face = faces[i];
     const auto indices = face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
-    /*
-    const int n_points = static_cast<int>(indices.size());
-    for (int j=0; j!=n_points; ++j)
-    {
-      //Only true when points are not reversed
-      assert(face->GetPoints()[j] == points[ indices[j] ]);
-    }
-    */
   }
   #endif
 
@@ -433,7 +425,7 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal //?20140224
+          FaceOrientation::horizontal
         )
       };
       faces.push_back(face);
@@ -448,14 +440,6 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle
     const auto face = faces[i];
     const auto indices = face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
-    /*
-    const int n_points = static_cast<int>(indices.size());
-    for (int j=0; j!=n_points; ++j)
-    {
-      //Only true when points are not reversed
-      assert(face->GetPoints()[j] == points[ indices[j] ]);
-    }
-    */
   }
   #endif
 
