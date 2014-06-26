@@ -69,6 +69,10 @@ struct TriangleFile
   ) const;
   #endif
   ///Executes Triangle.exe from a Windows command line
+  ///Creates three output files:
+  ///- ele_filename: the .ele file
+  ///- node_filename: the .node file
+  ///- poly_filename: the .poly file
   void ExecuteTriangleExe(
     std::string& node_filename,
     std::string& ele_filename,
@@ -79,6 +83,10 @@ struct TriangleFile
   ) const;
 
   ///Executes TriangleCpp.exe from command line
+  ///Creates three output files:
+  ///- ele_filename: the .ele file
+  ///- node_filename: the .node file
+  ///- poly_filename: the .poly file
   void ExecuteTriangleCppExe(
     std::string& node_filename,
     std::string& ele_filename,
@@ -87,6 +95,12 @@ struct TriangleFile
     const Area triangle_max_area,
     const bool verbose = false
   ) const;
+
+  ///Count the number of input edges
+  int GetTriangleInputNedges() const noexcept;
+
+  ///Count the number of input vertices
+  int GetTriangleInputNvertices() const noexcept;
 
   const Polygons& GetShapes() const noexcept;
 

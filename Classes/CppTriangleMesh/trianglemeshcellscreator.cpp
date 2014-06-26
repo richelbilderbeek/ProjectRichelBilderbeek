@@ -103,7 +103,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   std::vector<boost::shared_ptr<Cell>> cells;
   for (int layer=0; layer!=n_face_layers-1; ++layer) //-1 because there are no points above the top layer
   {
-    std::clog << ".";
+    if (verbose) { std::clog << "."; }
     for (int i=0; i!=n_cells_per_layer; ++i)
     {
 

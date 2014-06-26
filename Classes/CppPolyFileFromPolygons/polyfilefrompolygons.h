@@ -34,6 +34,13 @@ struct PolyFileFromPolygons
 
 
   const Linestrings& GetLinestrings() const noexcept { return m_linestrings; }
+
+  ///Count the number of input edges
+  int GetNedges() const noexcept;
+
+  ///Count the number of input vertices
+  int GetNvertices() const noexcept;
+
   const PolyFile& GetPolyFile() const noexcept { return m_polyfile; }
   const Polygons& GetPolygons() const noexcept { return m_polygons; }
 

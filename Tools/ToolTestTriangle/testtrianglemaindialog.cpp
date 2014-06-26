@@ -22,7 +22,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+
+#ifdef DO_I_REALLY_USE_THIS_20140626
+
 #include "testtrianglemaindialog.h"
+
 
 #include <fstream>
 
@@ -52,36 +56,6 @@ ribi::TestTriangleMainDialog::TestTriangleMainDialog(
   d.SetShapes(shapes);
   d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
   d.CreateTriangleMesh();
-  /*
-  if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
-  std::string filename_node;
-  std::string filename_ele;
-  std::string filename_poly;
-  {
-    TriangleFile f(shapes);
-    //#define TODO_ISSUE_207
-    #ifdef  TODO_ISSUE_207
-    f.ExecuteTriangle(
-    #else
-    f.ExecuteTriangleExe(
-    #endif
-      filename_node,
-      filename_ele,
-      filename_poly,
-      triangle_min_angle,
-      triangle_max_area
-    );
-  }
-
-  if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
-
-  const boost::shared_ptr<const ribi::trim::Template> t
-    = boost::make_shared<ribi::trim::Template>(
-      filename_node,
-      filename_ele
-  );
-  assert(t);
-  */
 }
 
 #ifndef NDEBUG
@@ -128,3 +102,5 @@ void ribi::TestTriangleMainDialog::Test() noexcept
   TRACE("Finished ribi::TestTriangleMainDialog::Test successfully");
 }
 #endif
+
+#endif // DO_I_REALLY_USE_THIS_20140626

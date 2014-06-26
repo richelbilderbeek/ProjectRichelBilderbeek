@@ -76,6 +76,10 @@ void ribi::trim::Cell::SetCorrectOrder() noexcept
 
 void ribi::trim::Cell::SetIndex(const int index) noexcept
 {
+  assert( (index != Cell::sm_cell_no_index || index == Cell::sm_cell_no_index)
+    && "Cell indices are set and reset"
+  );
+
   m_index = index;
 
   //If there is a Face that has this cell as its neighbour, yet that Face its Owner

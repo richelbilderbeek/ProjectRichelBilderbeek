@@ -31,6 +31,9 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #ifndef NDEBUG
   Test();
   #endif
+  const bool verbose_show_faces = false;
+  const bool verbose_show_cell_indices = false;
+
   for (const std::string& folder: GetAllFolders())
   {
     if (!ribi::fileio::FileIo().IsFolder(folder))
@@ -255,7 +258,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
 
   //Show all cells' indices
-  if (verbose)
+  if (verbose_show_cell_indices)
   {
     const int n_cells = static_cast<int>(m_cells.size());
     TRACE(n_cells);
@@ -304,26 +307,15 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
             ;
             TRACE(s.str());
           }
-          TRACE("BREAK");
+          TRACE("BREAK"); HIERO
         }
         #endif
         assert(this_index != Cell::sm_cell_no_index);
-        #ifdef BELIEVE_THESE_SHOULD_BE_REMOVED_20140424
-        if (this_index == Cell::sm_cell_no_index)
-        {
-          assert(!"Should never happen");
-          std::swap(m_cells[i],m_cells[ m_cells.size() - 1]);
-          m_cells.pop_back();
-          --i;
-          break; //Next
-        }
-        else
-        #endif
         if (i != this_index)
         {
           assert(this_index >= 0);
           assert(this_index < static_cast<int>(m_cells.size()));
-          if (verbose)
+          if (verbose_show_cell_indices)
           {
             std::stringstream s;
             s << "i != this_index <-> " << i << " != " << this_index;
@@ -334,7 +326,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
         else
         {
           assert(i == this_index);
-          if (verbose)
+          if (verbose_show_cell_indices)
           {
             std::stringstream s;
             s << "i == this_index == " << i;
@@ -455,7 +447,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
 
 
   //Show the faces
-  if (verbose)
+  if (verbose_show_faces)
   {
     const int n_faces = static_cast<int>(m_faces.size());
     TRACE(n_faces);

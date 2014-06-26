@@ -68,8 +68,9 @@ ribi::trim::Dialog::Dialog()
     m_n_cells{0},
     m_n_faces{0},
     m_shapes{},
-    m_triangle_input_poly{},
-    m_triangle_max_area(boost::numeric::bounds<double>::highest() * boost::units::si::square_meter),
+    m_triangle_file{},
+    //m_triangle_input_poly{},
+    m_triangle_max_area(1.0 * 1000.0 * 1000.0 * boost::units::si::square_meter), //Square kilometer
     m_triangle_min_angle(Angle( (20.0 * boost::math::constants::two_pi<double>() / 360.0) * boost::units::si::radians)),
     m_triangle_output_ele{},
     m_triangle_output_node{},
@@ -411,21 +412,27 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
   const auto verbose = m_triangle_verbose;
   if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
 
-  m_triangle_input_poly = "";
+  //m_triangle_input_poly = "";
   m_triangle_shapes = Shapes();
   m_triangle_output_ele = "";
   m_triangle_output_node = "";
   m_triangle_output_poly = "";
+  //m_triangle_input_edges = 0;
+  //m_triangle_input_vertices = 0;
 
   try
   {
     if (verbose) { std::clog << "Create Triangle.exe input" << std::endl; }
 
-    const auto file = boost::make_shared<TriangleFile>(m_shapes);
+    //const auto file = boost::make_shared<TriangleFile>(m_shapes);
+    m_triangle_file = boost::make_shared<TriangleFile>(m_shapes);
+
+    //m_triangle_input_vertices = file->GetNumberOfVertices();
+    //m_triangle_input_edges = file->GetNumberOfEdges();
 
     if (verbose) { std::clog << "Store the Triangle.exe input" << std::endl; }
 
-    m_triangle_input_poly = file->GetTriangleInputPoly();
+    //m_triangle_input_poly = file->GetTriangleInputPoly();
 
     std::string filename_node;
     std::string filename_ele;
@@ -433,7 +440,7 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
 
     if (verbose) { std::clog << "Calling Triangle.exe" << std::endl; }
 
-    file->ExecuteTriangleExe(
+    m_triangle_file->ExecuteTriangleExe(
       filename_node,
       filename_ele,
       filename_poly,
@@ -629,6 +636,13 @@ std::string ribi::trim::Dialog::GetShapesAsWkt() const noexcept
   return Geometry().ToWkt(m_shapes);
 }
 
+/*
+std::string ribi::trim::Dialog::GetTriangleInput() const noexcept
+{
+  if (!m_triangle_file) { return ""; }
+  return m_triangle_file->GetTriangleInputPoly();
+}
+*/
 std::string ribi::trim::Dialog::GetTriangleMeshAsSvg(const double line_width) const noexcept
 {
   return Geometry().ToSvg(m_triangle_shapes,line_width);

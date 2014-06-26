@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/make_shared.hpp>
+#include <boost/units/io.hpp>
 
 #include <QFile>
 
@@ -15,8 +16,6 @@
 #include "polyfile.h"
 #include "polyfilefrompolygons.h"
 #include "trace.h"
-
-//#include "triangle.h"
 
 //#define TODO_ISSUE_207
 #ifdef  TODO_ISSUE_207
@@ -187,7 +186,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   const bool verbose) const
 {
   const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
-  const bool delete_poly_file = false;
+  const bool delete_poly_file = true; //True does not leave files scattered around
   node_filename = "";
   ele_filename = "";
   poly_filename = "";
@@ -223,11 +222,12 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   std::string area_str = "";
   {
     std::stringstream s;
-    s << std::fixed << std::setprecision(99)
+    s << std::fixed //<< std::setprecision(20)
       << triangle_max_area.value()
     ;
     area_str = s.str();
   }
+
   assert(quality_str.find(',') == std::string::npos && "No Dutch please");
   assert(area_str.find(',')    == std::string::npos && "No Dutch please");
   if (!fileio::FileIo().IsRegularFile(exe_filename))
@@ -290,6 +290,17 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   assert(fileio::FileIo().IsRegularFile(poly_filename));
 }
 
+int ribi::TriangleFile::GetTriangleInputNedges() const noexcept
+{
+  return m_polyfile ? m_polyfile->GetNedges() : 0;
+}
+
+int ribi::TriangleFile::GetTriangleInputNvertices() const noexcept
+{
+  return m_polyfile ? m_polyfile->GetNvertices() : 0;
+}
+
+
 const ribi::TriangleFile::Polygons& ribi::TriangleFile::GetShapes() const noexcept
 {
   assert(m_polyfile);
@@ -299,7 +310,7 @@ const ribi::TriangleFile::Polygons& ribi::TriangleFile::GetShapes() const noexce
 
 std::string ribi::TriangleFile::GetVersion() noexcept
 {
-  return "1.7";
+  return "1.8";
 }
 
 std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
@@ -312,7 +323,8 @@ std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
     "2014-05-26: Version 1.4: use of units in Triangle 'area' (the maximum area of a triangle) and 'quality' (the minimum angle of a triangle's corner) parameters"
     "2014-05-27: Version 1.5: split of sections to PolyFile",
     "2014-06-02: Version 1.6: split of sections to PolyFileFromPolygons",
-    "2014-06-25: Version 1.7: use fixed notation instead of scientific, as Triangle converts it incorrectly it"
+    "2014-06-25: Version 1.7: use fixed notation instead of scientific, as Triangle converts it incorrectly it",
+    "2014-06-26: Version 1.8: added GetNvertices and GetNedges"
   };
 }
 

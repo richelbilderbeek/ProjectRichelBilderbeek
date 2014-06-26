@@ -22,10 +22,6 @@
   <property name="windowTitle">
    <string>TestTriangle</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="ToolTestTriangle.qrc">
-    <normaloff>:/ToolTestTriangle/ToolTestTriangleIcon.png</normaloff>:/ToolTestTriangle/ToolTestTriangleIcon.png</iconset>
-  </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
 background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
@@ -56,9 +52,6 @@ QPlainTextEdit { font: 10px }
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="box_triangle_min_angle">
-        <property name="decimals">
-         <number>3</number>
-        </property>
         <property name="minimum">
          <double>0.000000000000000</double>
         </property>
@@ -79,6 +72,9 @@ QPlainTextEdit { font: 10px }
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="box_triangle_max_area">
+        <property name="decimals">
+         <number>8</number>
+        </property>
         <property name="minimum">
          <double>0.000000000000000</double>
         </property>
@@ -367,8 +363,6 @@ LINESTRING(-5 -5,-5 5,5 5,5 -5)</string>
    <header>qtnavigationablegraphicsview.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="ToolTestTriangle.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

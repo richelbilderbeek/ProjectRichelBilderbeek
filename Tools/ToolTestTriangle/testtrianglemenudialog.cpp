@@ -29,9 +29,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
+#include <boost/timer.hpp>
 #include <boost/units/io.hpp>
 
-#include <QRegExp>
+//#include <QRegExp>
 
 #include "container.h"
 #include "fileio.h"
@@ -75,6 +76,17 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
   {
     verbose = true;
     std::cout << "Verbose mode" << std::endl;
+  }
+
+  //Do profile
+  bool do_profile = false;
+  if (std::count(args.begin(),args.end(),"-p") || std::count(args.begin(),args.end(),"--profile"))
+  {
+    do_profile = true;
+  }
+  if (verbose)
+  {
+    std::cout << "Show profiler info: " << (do_profile ? "Yes" : "No") << std::endl;
   }
 
   //Triangle area
@@ -196,17 +208,34 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
 
   try
   {
-    const TestTriangleMainDialog d(
-      shapes,
-      triangle_max_area,
-      triangle_min_angle,
-      verbose
-    );
-    if (verbose)
+    boost::timer timer;
+
+    trim::Dialog d;
+    d.SetShapes(shapes);
+    d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
+    d.CreateTriangleMesh();
+    std::cout << std::endl; //Because Triangle does not do an endl itself
+
+    if(do_profile)
     {
-      //std::cout << std::endl //Because Triangle does not do an endl itself
-      //  << "Created file '" << d.GetFilename() << "' successfully" << std::endl;
+      const double t_secs = timer.elapsed();
+      const int n_triangle_output_eles = Container().Count(d.GetTriangleOutputEle(),'\n');
+      const int n_triangle_output_nodes = Container().Count(d.GetTriangleOutputNode(),'\n');
+      const int n_triangle_output_polys = Container().Count(d.GetTriangleOutputPoly(),'\n');
+      std::cout
+        << t_secs << " "
+        << n_triangle_output_eles << " "
+        << n_triangle_output_nodes << " "
+        << n_triangle_output_polys << " "
+        #ifndef NDEBUG
+        << "Debug"
+        #else
+        << "Release"
+        #endif
+        << std::endl
+      ;
     }
+
     return 0;
   }
   catch (std::exception& e)
@@ -228,7 +257,7 @@ ribi::About ribi::TestTriangleMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestTriangle",
     "compare Triangle to its C++ equivalent",
-    "the 24th of June 2014",
+    "the 26th of June 2014",
     "2014-2014",
     "http://www.richelbilderbeek.nl/ToolTestTriangle.htm",
     GetVersion(),
@@ -253,10 +282,11 @@ ribi::Help ribi::TestTriangleMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-      Help::Option('w',"wkt","WKT of the shapes used as a base"),
-      Help::Option('r',"triangle_area","Triangle maximum area"),
+      Help::Option('b',"verbose","generate more output"),
+      Help::Option('p',"profile","add profiling information"),
       Help::Option('q',"triangle_min_angle","Triangle minimum angle"),
-      Help::Option('b',"verbose","generate more output")
+      Help::Option('r',"triangle_area","Triangle maximum area"),
+      Help::Option('w',"wkt","WKT of the shapes used as a base")
     },
     {
       GetAbout().GetFileTitle() + " --wkt POLYGON((1 1,-1 1,-1 -1,1 -1)) --triangle_area 1.0 --triangle_quality 1.0 --verbose",
@@ -276,7 +306,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestTriangleMenuDialog::GetProgram(
 
 std::string ribi::TestTriangleMenuDialog::GetVersion() const noexcept
 {
-  return "1.7";
+  return "1.8";
 }
 
 std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const noexcept
@@ -289,7 +319,8 @@ std::vector<std::string> ribi::TestTriangleMenuDialog::GetVersionHistory() const
     "2014-06-03: version 1.4: assume Triangle starts counting from index zero, desktop version responds to all positive values",
     "2014-06-12: version 1.5: support linestrings",
     "2014-06-17: version 1.6: don't crash desktop version if final result is empty",
-    "2014-06-24: version 1.7: use of trim::Dialog"
+    "2014-06-24: version 1.7: use of trim::Dialog in desktop version",
+    "2014-06-26: version 1.8: use of trim::Dialog in console version"
   };
 }
 

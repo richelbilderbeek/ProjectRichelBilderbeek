@@ -21,6 +21,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef RIBI_TESTTRIANGLEMAINDIALOG_H
 #define RIBI_TESTTRIANGLEMAINDIALOG_H
 
+#ifdef DO_I_REALLY_USE_THIS_20140626
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -67,5 +69,7 @@ struct TestTriangleMainDialog
 };
 
 } //~namespace ribi
+
+#endif // DO_I_REALLY_USE_THIS_20140626
 
 #endif // RIBI_TESTTRIANGLEMAINDIALOG_H

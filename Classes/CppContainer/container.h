@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef RIBI_CONTAINER_H
 #define RIBI_CONTAINER_H
 
+#include <algorithm>
 #include <set>
 #include <string>
 #include <sstream>
@@ -38,6 +39,13 @@ namespace ribi {
 struct Container
 {
   Container();
+
+  ///std::count(t.begin(),t.end(),u
+  template <class T, class U>
+  static int Count(const T& t, const U& u) noexcept
+  {
+    return std::count(std::begin(t),std::end(t),u);
+  }
 
   ///Obtain the version
   std::string GetVersion() const noexcept;

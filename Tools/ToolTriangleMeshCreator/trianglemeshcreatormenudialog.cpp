@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/units/io.hpp>
 #include <boost/units/systems/si.hpp>
 #include <boost/math/constants/constants.hpp>
+#include <boost/timer.hpp>
 
 #include "container.h"
 #include "fileio.h"
@@ -80,6 +81,17 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
   if (verbose)
   {
     std::cout << "Show mesh: " << (show_mesh ? "Yes" : "No") << std::endl;
+  }
+
+  //Do profile
+  bool do_profile = false;
+  if (std::count(args.begin(),args.end(),"-p") || std::count(args.begin(),args.end(),"--profile"))
+  {
+    do_profile = true;
+  }
+  if (verbose)
+  {
+    std::cout << "Show profiler info: " << (do_profile ? "Yes" : "No") << std::endl;
   }
 
   //Layer height
@@ -359,10 +371,12 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
 
   try
   {
+    boost::timer timer;
     ribi::trim::Dialog d;
     d.SetShapes(shapes);
     d.SetTriangleParameters(triangle_min_angle,triangle_max_area,verbose);
     d.CreateTriangleMesh();
+    assert(d.GetTriangleFile());
     d.Set3dMeshParameters(
       n_layers,
       layer_height,
@@ -373,6 +387,34 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
       verbose
     );
     d.Create3dMesh();
+
+    if(do_profile)
+    {
+      const double t_secs = timer.elapsed();
+      //const int n_triangle_input_edges = d.GetTriangleFile()->GetTriangleInputNedges();
+      //const int n_triangle_input_vertices = d.GetTriangleFile()->GetTriangleInputNvertices();
+      const int n_triangle_output_eles = Container().Count(d.GetTriangleOutputEle(),'\n');
+      const int n_triangle_output_nodes = Container().Count(d.GetTriangleOutputNode(),'\n');
+      const int n_triangle_output_polys = Container().Count(d.GetTriangleOutputPoly(),'\n');
+      std::cout
+        << '\n' //Because Triangle does not terminate its output
+        << t_secs << " "
+        //<< n_triangle_input_edges << " "
+        //<< n_triangle_input_vertices << " "
+        << n_triangle_output_eles << " "
+        << n_triangle_output_nodes << " "
+        << n_triangle_output_polys << " "
+        << d.GetNfaces() << " "
+        << d.GetNcells() << " "
+        #ifndef NDEBUG
+        << "Debug"
+        #else
+        << "Release"
+        #endif
+        << std::endl
+      ;
+    }
+
     if (show_mesh)
     {
       d.Show3dMesh();
@@ -429,16 +471,17 @@ ribi::Help ribi::TriangleMeshCreatorMenuDialog::GetHelp() const noexcept
     GetAbout().GetFileTitle(),
     GetAbout().GetFileDescription(),
     {
-      Help::Option('z',"layer_height","the height of a layer, in meters"),
-      Help::Option('w',"wkt","WKT of the shapes used as a base"),
-      Help::Option('s',"strategy","how to create vertical faces, '1' or '2'"),
-      Help::Option('n',"n_layers","the number of layers"),
+      Help::Option('b',"verbose","generate more output"),
+      Help::Option('c',"no-check-mesh","do not check the resulting 3D mesh"),
       Help::Option('f',"fraction","fraction of cells to keep"),
       Help::Option('m',"show_mesh","show the generated 3D mesh"),
-      Help::Option('r',"triangle_max_area","Triangle max area"),
+      Help::Option('n',"n_layers","the number of layers"),
+      Help::Option('p',"profile","add profiling information"),
       Help::Option('q',"triangle_min_angle","Triangle min angle"),
-      Help::Option('b',"verbose","generate more output"),
-      Help::Option('c',"no-check-mesh","do not check the resulting 3D mesh")
+      Help::Option('r',"triangle_max_area","Triangle max area"),
+      Help::Option('s',"strategy","how to create vertical faces, '1' or '2'"),
+      Help::Option('w',"wkt","WKT of the shapes used as a base"),
+      Help::Option('z',"layer_height","the height of a layer, in meters")
     },
     {
       GetAbout().GetFileTitle() + " --layer_height 1 --polygons POLYGON((1 1,-1 1,-1 -1,1 -1)) --strategy 1 --n_layers 3 --show_mesh --triangle_area 1.0 --triangle_quality 1.0 --verbose --fraction 0.75",

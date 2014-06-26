@@ -32,16 +32,27 @@ ribi::PolyFileFromPolygons::PolyFileFromPolygons(
   #endif
 }
 
+int ribi::PolyFileFromPolygons::GetNedges() const noexcept
+{
+  return static_cast<int>(m_polyfile.GetEdges().size());
+}
+
+int ribi::PolyFileFromPolygons::GetNvertices() const noexcept
+{
+  return static_cast<int>(m_polyfile.GetVertices().size());
+}
+
 std::string ribi::PolyFileFromPolygons::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::PolyFileFromPolygons::GetVersionHistory() noexcept
 {
   return {
     "2014-06-02: Version 1.0: split off from PolyFile",
-    "2014-06-10: Version 1.1: added support for linestrings"
+    "2014-06-10: Version 1.1: added support for linestrings",
+    "2014-06-26: Version 1.2: added GetNvertices and GetNedges"
   };
 }
 

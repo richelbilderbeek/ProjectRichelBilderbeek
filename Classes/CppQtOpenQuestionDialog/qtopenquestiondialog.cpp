@@ -88,8 +88,13 @@ void ribi::QtOpenQuestionDialog::SetDialog(const boost::shared_ptr<QuestionDialo
   {
     std::stringstream s;
     s << "QtOpenQuestionDialog::SetDialog: not an OpenQuestionDialog '" << dialog->ToStr() << "'\n";
+    //this->ui->stackedWidget->setVisible(false);
+    //this->ui->image->setVisible(false);
     return;
   }
+
+  //this->ui->stackedWidget->setVisible(true);
+  //this->ui->image->setVisible(true);
 
   assert(openquestiondialog);
   if (m_openquestiondialog == openquestiondialog)
@@ -183,12 +188,14 @@ void ribi::QtOpenQuestionDialog::OnQuit() noexcept
   close();
 }
 
-void ribi::QtOpenQuestionDialog::OnSubmit(const bool was_answer_correct) noexcept
+void ribi::QtOpenQuestionDialog::OnSubmit(const bool /*was_answer_correct*/) noexcept
 {
-  TRACE(was_answer_correct);
-  ui->edit_answer->setText(
-    HIERO, need more information
-  )
+  //Do the change in GUI as on_button_submit_clicked
+  const bool is_correct = m_openquestiondialog->IsAnswerCorrect();
+  ui->stackedWidget->setCurrentWidget(is_correct
+    ? ui->page_correct
+    : ui->page_incorrect
+  );
 }
 
 void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
@@ -200,7 +207,8 @@ void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
   const bool is_correct = m_openquestiondialog->IsAnswerCorrect();
   ui->stackedWidget->setCurrentWidget(is_correct
     ? ui->page_correct
-    : ui->page_incorrect);
+    : ui->page_incorrect
+  );
 }
 
 

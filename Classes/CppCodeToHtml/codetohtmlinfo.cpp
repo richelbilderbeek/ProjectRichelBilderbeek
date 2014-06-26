@@ -5128,6 +5128,39 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppPimplExample1",
+      {
+        "<p>",
+        "  <a href=\"CppPimplExample1.htm\">pimpl example 1: Lizard implementation in one file using boost::shared_ptr</a> is a",
+        "  <a href=\"CppPimpl.htm\">pimpl</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>
+        "  Most lizards remain having the same gender for all their live. Therefore, it is a",
+        "  good idea to make a lizard's gender a const member variable. Problem is, that",
+        "  this makes a lizard class uncopyable. In this example I solve this by making a",
+        "  Lizard contain an opaque pointer to LizardImpl, where a LizardImpl does have a",
+        "  constant gender. Because I want to be able to do a <a href=\"CppShallowCopy.htm\">shallow copy</a>",
+        "  on Lizards, I use a <a href=\"CppBoostShared_ptr.htm\">boost::shared_ptr</a>.",
+        "  Also note that the code is very similar to a <a href=\"CppDesignPatternStrategy.htm\">Strategy</a>",
+        "  <a href=\"CppDesignPattern.htm\">design pattern</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppPimplExample2",
+      {
+        "<p>",
+        "  <a href=\"CppPimplExample2.htm\">pimpl example 1: Lizard implementation in multiple files using boost::shared_ptr</a> is a",
+        "  <a href=\"CppPimpl.htm\">pimpl</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "CppPredicateExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",

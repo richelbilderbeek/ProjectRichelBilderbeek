@@ -43,11 +43,12 @@
   <li>Shorten build times [1]</li>
   <li>Remove visibility of <a href="CppPrivate.htm">private</a> <a href="CppMemberFunction.htm">member functions</a> [1]</li>
   <li>Improved error handling and safety [1]</li>
-  <li>Personally, I also use it to make a non-copyable class (for example, one with constant member variables) copyable (instead of defining operator=)</li>
 </ul>
 <p>&nbsp;</p>
-<p>The disadvantage of using the <a href="CppPimpl.htm">Pimpl</a> idiom is the cost of
-an extra level of indirection, so <a href="CppPimpl.htm">Pimpl</a> judiciously [1].</p>
+<p>
+  The disadvantage of using the <a href="CppPimpl.htm">Pimpl</a> idiom is the cost of
+  an extra level of indirection, so <a href="CppPimpl.htm">Pimpl</a> judiciously [1].
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -56,7 +57,8 @@ an extra level of indirection, so <a href="CppPimpl.htm">Pimpl</a> judiciously [
 <h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppPimplExample1.htm">Pimpl example 1: basics</a></li>
+  <li><a href="CppPimplExample1.htm">Pimpl example 1: Lizard implementation in one file using boost::shared_ptr</a></li>
+  <li><a href="CppPimplExample2.htm">Pimpl example 2: Lizard implementation in multiple file using boost::shared_ptr</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>
@@ -65,7 +67,7 @@ an extra level of indirection, so <a href="CppPimpl.htm">Pimpl</a> judiciously [
   this makes a lizard class uncopyable. In this example I solve this by making a
   Lizard contain an opaque pointer to LizardImpl, where a LizardImpl does have a
   constant gender. Because I want to be able to do a <a href="CppShallowCopy.htm">shallow
-  copy</a> on Lizards, I use a <a href="CppShared_ptr.htm">boost::shared_ptr</a>.
+  copy</a> on Lizards, I use a <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>.
   Also note that the code is very similar to a <a href="CppDesignPatternStrategy.htm">Strategy</a>
   <a href="CppDesignPattern.htm">design pattern</a>.
 </p>

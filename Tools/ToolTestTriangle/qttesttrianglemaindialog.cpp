@@ -114,8 +114,11 @@ void ribi::QtTestTriangleMainDialog::DisplayPolygons() noexcept
 void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
 {
   const bool verbose = GetVerbose();
-
-
+  ui->text_triangle_input_file->clear();
+  ui->text_triangle_output_as_svg->clear();
+  ui->text_triangle_output_elefile->clear();
+  ui->text_triangle_output_nodefile->clear();
+  ui->text_triangle_output_polyfile->clear();
 
   for (int i=0; i!=
   //#define TODO_ISSUE_207
@@ -182,95 +185,32 @@ void ribi::QtTestTriangleMainDialog::DisplayTriangleMesh() noexcept
       verbose
     );
 
-
     d.CreateTriangleMesh();
 
-    ui->text_triangle_input_file->setPlainText(
-      d.GetTriangleInput().c_str()
-    );
-    ui->text_triangle_output_nodefile->setPlainText(
-      d.GetTriangleOutputNode().c_str()
-    );
-    ui->text_triangle_output_elefile->setPlainText(
-      d.GetTriangleOutputEle().c_str()
-    );
-    ui->text_triangle_output_polyfile->setPlainText(
-      d.GetTriangleOutputPoly().c_str()
-    );
-
-
-    /*
-    const ribi::TriangleFile triangle_file(shapes);
-    ui->text_triangle_input_file->setPlainText(triangle_file.ToStr().c_str());
-
-
-    std::string filename_node;
-    std::string filename_ele;
-    std::string filename_poly;
-
-    try
+    if (verbose)
     {
-      triangle_function(
-        &triangle_file,
-        filename_node,
-        filename_ele,
-        filename_poly,
-        GetTriangleMinAngle(),
-        GetTriangleMaxArea(),
-        verbose
+      ui->text_triangle_input_file->setPlainText(
+        d.GetTriangleFile()->GetTriangleInputPoly().c_str()
       );
-    }
-    catch (std::runtime_error& e)
-    {
-      if (verbose)
-      {
-        std::cout << "Triangle.exe exception: " << e.what() << std::endl;
-      }
-      continue;
-    }
-
-    //Triangle output files
-    {
       ui->text_triangle_output_nodefile->setPlainText(
-        fileio::FileIo().FileToStr(filename_node).c_str()
+        d.GetTriangleOutputNode().c_str()
       );
       ui->text_triangle_output_elefile->setPlainText(
-        fileio::FileIo().FileToStr(filename_ele).c_str()
+        d.GetTriangleOutputEle().c_str()
       );
       ui->text_triangle_output_polyfile->setPlainText(
-        fileio::FileIo().FileToStr(filename_poly).c_str()
+        d.GetTriangleOutputPoly().c_str()
       );
+
+      std::clog << "Convert the polygons to SVG" << std::endl;
     }
-
-
-    if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
-
-    const boost::shared_ptr<const ribi::trim::Template> t
-      = boost::make_shared<ribi::trim::Template>(
-        filename_node,
-        filename_ele
-    );
-    assert(t);
-
-    if (verbose) { std::clog << "Convert Triangle.exe output to polygons" << std::endl; }
-    std::vector<Polygon> polygons;
-    for (const boost::shared_ptr<trim::Face> face: t->GetFaces())
-    {
-      std::vector<Coordinat2D> coordinats;
-      for (const boost::shared_ptr<trim::Point> point: face->GetPoints())
-      {
-        coordinats.push_back(*point->GetCoordinat());
-      }
-      Polygon polygon;
-      boost::geometry::append(polygon, coordinats);
-      polygons.push_back(polygon);
-    }
-    */
-    if (verbose) { std::clog << "Convert the polygons to SVG" << std::endl; }
-    //const std::string svg_text = Geometry().ToSvg(polygons,0.1);
 
     const std::string svg_text = d.GetTriangleMeshAsSvg();
-    ui->text_triangle_output_as_svg->setPlainText(svg_text.c_str());
+
+    if (verbose)
+    {
+      ui->text_triangle_output_as_svg->setPlainText(svg_text.c_str());
+    }
 
     const std::string filename = fileio::FileIo().GetTempFileName(".svg");
     if (verbose) { std::clog << "Write SVG to file '" << filename << "'" << std::endl; }

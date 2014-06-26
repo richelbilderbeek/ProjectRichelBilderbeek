@@ -43,7 +43,7 @@ ribi::trim::Template::Template(
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
     {
-      if (n % percent == 0) std::clog << '%';
+      if (verbose) { if (n % percent == 0) std::clog << '%'; }
       const std::string line = v[n];
       if(n==0) continue; //No idea why this has to be skipped
       const std::vector<std::string> w { CleanAndSplitString(ConvertNumbersToEnglish(line)) };
@@ -90,9 +90,12 @@ ribi::trim::Template::Template(
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
     {
-      if (n % percent == 0)
+      if (verbose)
       {
-        std::clog << '%';
+        if (n % percent == 0)
+        {
+          std::clog << '%';
+        }
       }
       const std::string line = v[n];
       if(n==0) continue;
