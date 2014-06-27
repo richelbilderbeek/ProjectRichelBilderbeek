@@ -15,5 +15,4 @@ include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
 
 include(ToolTestQtRoundedRectItemDesktop.pri)
 
-SOURCES += \
-    qtmain.cpp
+SOURCES += qtmain.cpp

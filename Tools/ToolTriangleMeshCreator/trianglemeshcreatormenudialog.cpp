@@ -589,6 +589,41 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         "-q", "20.0"
       }
     );
+    /*
+    d.Execute(
+      {
+        "TriangleMeshCreator",
+        "--layer_height","1",
+        "--WKT", "POLYGON((10 10,10 -10,-10 -10,-10 10))",
+        "--strategy", "1",
+        "--n_layers", "3",
+        "--fraction", "0.5",
+        "--triangle_max_area", "0.001",
+        "--triangle_min_angle", "20.0",
+        "--profile"
+      }
+    );
+    assert(!"Yay, pre-221 works");
+    */
+    #define FIX_ISSUE_221
+    #ifdef  FIX_ISSUE_221
+    d.Execute(
+      {
+        "TriangleMeshCreator",
+        "--layer_height","1",
+        "--WKT", "POLYGON((10 10,10 -10,-10 -10,-10 10))",
+        "--strategy", "1",
+        "--n_layers", "10",
+        "--fraction", "0.9",
+        "--triangle_max_area", "0.1",
+        "--triangle_min_angle", "20.0",
+        "--profile"
+      }
+    );
+    assert(!"Yay, issue 221 fixed");
+    #endif
+
+
   }
   TRACE("Finished ribi::TriangleMeshCreatorMenuDialog::Test successfully");
 }

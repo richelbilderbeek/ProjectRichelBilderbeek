@@ -5,17 +5,18 @@
 #include "qtkalmanfilterexperimentmodel.h"
 
 #include <cassert>
-
-#include <boost/lexical_cast.hpp>
-#include <boost/numeric/conversion/cast.hpp>
-#include <boost/algorithm/string/trim.hpp>
-
 #include <string>
 #include <vector>
-#include <boost/algorithm/string/split.hpp>
+
+//#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/trim.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/numeric/conversion/cast.hpp>
+
 #include <QAbstractTableModel>
 #include <QMessageBox>
 
+#include "container.h"
 #include "fixedlagsmootherkalmanfilterparameters.h"
 #include "gapsfilledwhitenoisesystemparameters.h"
 #include "kalmanfilterexperimentparameter.h"
@@ -38,8 +39,7 @@
 
 #pragma GCC diagnostic pop
 
-
-const boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::numeric::ublas::matrix<std::string>& v)
+boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boost::numeric::ublas::matrix<std::string>& v) noexcept
 {
   boost::numeric::ublas::matrix<double> w(v.size1(),v.size2());
   const std::size_t n_rows = v.size1();
@@ -62,7 +62,7 @@ const boost::numeric::ublas::matrix<double> ConvertToUblasMatrixDouble(const boo
   return w;
 }
 
-const boost::numeric::ublas::vector<int> ConvertToUblasVectorInt(const boost::numeric::ublas::matrix<std::string>& v)
+boost::numeric::ublas::vector<int> ConvertToUblasVectorInt(const boost::numeric::ublas::matrix<std::string>& v) noexcept
 {
   boost::numeric::ublas::vector<int> w(v.size1());
   const std::size_t n_rows = v.size1();
@@ -86,7 +86,7 @@ const boost::numeric::ublas::vector<int> ConvertToUblasVectorInt(const boost::nu
   return w;
 }
 
-const boost::numeric::ublas::vector<double> ConvertToUblasVectorDouble(const boost::numeric::ublas::matrix<std::string>& v)
+boost::numeric::ublas::vector<double> ConvertToUblasVectorDouble(const boost::numeric::ublas::matrix<std::string>& v) noexcept
 {
   boost::numeric::ublas::vector<double> w(v.size1());
   const std::size_t n_rows = v.size1();
@@ -110,7 +110,7 @@ const boost::numeric::ublas::vector<double> ConvertToUblasVectorDouble(const boo
   return w;
 }
 
-const std::vector<std::string> ConvertToVectorString(const boost::numeric::ublas::matrix<std::string>& v)
+std::vector<std::string> ConvertToVectorString(const boost::numeric::ublas::matrix<std::string>& v)
 {
   std::vector<std::string> w(v.size1());
   const std::size_t n_rows = v.size1();
@@ -134,7 +134,7 @@ const std::vector<std::string> ConvertToVectorString(const boost::numeric::ublas
 
 const int ribi::kalman::QtKalmanFilterExperimentModel::m_version_current = 2;
 
-ribi::kalman::QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel(QObject *parent)
+ribi::kalman::QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel(QObject *parent) noexcept
  : QObject(parent),
    m_signal_context_changed{},
    m_signal_kalman_filter_type_changed{},
@@ -197,7 +197,7 @@ ribi::kalman::QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel(QObje
   }
 }
 
-const std::map<ribi::kalman::KalmanFilterExperimentParameterType,QAbstractTableModel *> ribi::kalman::QtKalmanFilterExperimentModel::CreateMap()
+std::map<ribi::kalman::KalmanFilterExperimentParameterType,QAbstractTableModel *> ribi::kalman::QtKalmanFilterExperimentModel::CreateMap() noexcept
 {
   std::map<KalmanFilterExperimentParameterType,QAbstractTableModel *> m;
 
@@ -216,7 +216,7 @@ const std::map<ribi::kalman::KalmanFilterExperimentParameterType,QAbstractTableM
 }
 
 
-void ribi::kalman::QtKalmanFilterExperimentModel::CalculateOptimalEstimatedKalmanGain()
+void ribi::kalman::QtKalmanFilterExperimentModel::CalculateOptimalEstimatedKalmanGain() noexcept
 {
   //Read
   const auto initial_covariance_estimate =
@@ -254,7 +254,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::CalculateOptimalEstimatedKalma
   )->SetRawData(m);
 }
 
-const boost::shared_ptr<ribi::kalman::KalmanFilterExperiment> ribi::kalman::QtKalmanFilterExperimentModel::CreateExperiment() const
+boost::shared_ptr<ribi::kalman::KalmanFilterExperiment> ribi::kalman::QtKalmanFilterExperimentModel::CreateExperiment() const noexcept
 {
 
   boost::shared_ptr<KalmanFilterExperiment> experiment;
@@ -318,7 +318,7 @@ const boost::shared_ptr<ribi::kalman::KalmanFilterExperiment> ribi::kalman::QtKa
 }
 
 
-const boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateFixedLagSmootherKalmanFilterParameters() const
+boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateFixedLagSmootherKalmanFilterParameters() const noexcept
 {
   const boost::shared_ptr<StandardKalmanFilterParameters> standard_parameters
     = CreateStandardKalmanFilterParameters();
@@ -345,7 +345,7 @@ boost::shared_ptr<ribi::kalman::KalmanFilter> ribi::kalman::QtKalmanFilterExperi
   return kalman_filter;
 }
 
-const boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateKalmanFilterParameters() const
+boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateKalmanFilterParameters() const noexcept
 {
   boost::shared_ptr<KalmanFilterParameters> parameters;
   switch (m_kalman_filter_type)
@@ -368,7 +368,7 @@ const boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKa
   return parameters;
 }
 
-const boost::shared_ptr<ribi::kalman::StandardKalmanFilterParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateStandardKalmanFilterParameters() const
+boost::shared_ptr<ribi::kalman::StandardKalmanFilterParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateStandardKalmanFilterParameters() const noexcept
 {
   const auto control =
     dynamic_cast<const ControlModel*>(
@@ -434,7 +434,7 @@ const boost::shared_ptr<ribi::kalman::StandardKalmanFilterParameters> ribi::kalm
   return p;
 }
 
-const boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateSteadyStateKalmanFilterParameters() const
+boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateSteadyStateKalmanFilterParameters() const noexcept
 {
   const auto control =
     dynamic_cast<const ControlModel*>(
@@ -474,7 +474,7 @@ const boost::shared_ptr<ribi::kalman::KalmanFilterParameters> ribi::kalman::QtKa
   return p;
 }
 
-const boost::shared_ptr<ribi::kalman::WhiteNoiseSystemParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateLaggedWhiteNoiseSystemParameters() const
+boost::shared_ptr<ribi::kalman::WhiteNoiseSystemParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateLaggedWhiteNoiseSystemParameters() const noexcept
 {
   const auto control =
     dynamic_cast<const ControlModel*>(
@@ -517,7 +517,7 @@ const boost::shared_ptr<ribi::kalman::WhiteNoiseSystemParameters> ribi::kalman::
 }
 
 
-QAbstractTableModel * ribi::kalman::QtKalmanFilterExperimentModel::CreateModel(const KalmanFilterExperimentParameterType type)
+QAbstractTableModel * ribi::kalman::QtKalmanFilterExperimentModel::CreateModel(const KalmanFilterExperimentParameterType type) noexcept
 {
   switch (type)
   {
@@ -566,7 +566,7 @@ QAbstractTableModel * ribi::kalman::QtKalmanFilterExperimentModel::CreateModel(c
   throw std::logic_error("QtKalmanFiltererParameterDialog::ToModel");
 }
 
-const boost::shared_ptr<ribi::kalman::WhiteNoiseSystemParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateGapsFilledWhiteNoiseSystemParameters() const
+boost::shared_ptr<ribi::kalman::WhiteNoiseSystemParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateGapsFilledWhiteNoiseSystemParameters() const noexcept
 {
   const auto control =
     dynamic_cast<const ControlModel*>(
@@ -620,7 +620,7 @@ const boost::shared_ptr<ribi::kalman::WhiteNoiseSystemParameters> ribi::kalman::
   return p;
 }
 
-const boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystemParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateStandardWhiteNoiseSystemParameters() const
+boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystemParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateStandardWhiteNoiseSystemParameters() const noexcept
 {
   const auto control =
     dynamic_cast<const ControlModel*>(
@@ -665,7 +665,7 @@ const boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystemParameters> ribi::
   return p;
 }
 
-const boost::shared_ptr<ribi::kalman::WhiteNoiseSystem> ribi::kalman::QtKalmanFilterExperimentModel::CreateWhiteNoiseSystem() const
+boost::shared_ptr<ribi::kalman::WhiteNoiseSystem> ribi::kalman::QtKalmanFilterExperimentModel::CreateWhiteNoiseSystem() const noexcept
 {
   const boost::shared_ptr<WhiteNoiseSystemParameters> parameters
     = CreateWhiteNoiseSystemParameters();
@@ -678,7 +678,7 @@ const boost::shared_ptr<ribi::kalman::WhiteNoiseSystem> ribi::kalman::QtKalmanFi
   return my_system;
 }
 
-const boost::shared_ptr<ribi::kalman::WhiteNoiseSystemParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateWhiteNoiseSystemParameters() const
+boost::shared_ptr<ribi::kalman::WhiteNoiseSystemParameters> ribi::kalman::QtKalmanFilterExperimentModel::CreateWhiteNoiseSystemParameters() const noexcept
 {
   boost::shared_ptr<WhiteNoiseSystemParameters> parameters;
   switch (m_white_noise_system_type)
@@ -725,7 +725,7 @@ const QAbstractTableModel * ribi::kalman::QtKalmanFilterExperimentModel::Find(co
 
 void ribi::kalman::QtKalmanFilterExperimentModel::FromDokuWiki(const std::string& text)
 {
-  const std::vector<std::string> lines = SeperateString(text,'\n');
+  const std::vector<std::string> lines = Container().SeperateString(text,'\n');
   assert(!lines.empty());
 
   m_version = 0; //Only version 0 does not change the version number
@@ -1044,7 +1044,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Read(
   {
     const int line = begin + 1 + row;
     assert(line < boost::numeric_cast<int>(text.size()));
-    const std::vector<std::string> cols = SeperateString(text[line],'|');
+    const std::vector<std::string> cols = Container().SeperateString(text[line],'|');
     assert(boost::numeric_cast<int>(cols.size()) == n_cols + 2); // HEADER | value | value | space
     assert(row < model->rowCount());
     for (int col = 0; col!=n_cols; ++col)
@@ -1172,7 +1172,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::SetContext(const std::string& 
   assert(m_context == context);
 }
 
-void ribi::kalman::QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const KalmanFilterExample>& example)
+void ribi::kalman::QtKalmanFilterExperimentModel::SetExample(const boost::shared_ptr<const KalmanFilterExample>& example) noexcept
 {
   //Set the state names first, as it resizes the tables
   assert(example);
@@ -1274,7 +1274,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::SetExample(const boost::shared
 
 }
 
-void ribi::kalman::QtKalmanFilterExperimentModel::SetKalmanFilterType(const KalmanFilterType type)
+void ribi::kalman::QtKalmanFilterExperimentModel::SetKalmanFilterType(const KalmanFilterType type) noexcept
 {
   if (m_kalman_filter_type != type)
   {
@@ -1283,12 +1283,12 @@ void ribi::kalman::QtKalmanFilterExperimentModel::SetKalmanFilterType(const Kalm
   }
 }
 
-void ribi::kalman::QtKalmanFilterExperimentModel::SetLagReal(const int lag)
+void ribi::kalman::QtKalmanFilterExperimentModel::SetLagReal(const int lag) noexcept
 {
   m_lag_real = lag;
 }
 
-void ribi::kalman::QtKalmanFilterExperimentModel::SetNumberOfTimesteps(const int n)
+void ribi::kalman::QtKalmanFilterExperimentModel::SetNumberOfTimesteps(const int n) noexcept
 {
   assert(n >= 0);
   if (m_number_of_timesteps != n)
@@ -1298,7 +1298,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::SetNumberOfTimesteps(const int
   }
 }
 
-void ribi::kalman::QtKalmanFilterExperimentModel::SetWhiteNoiseSystemType(const WhiteNoiseSystemType type)
+void ribi::kalman::QtKalmanFilterExperimentModel::SetWhiteNoiseSystemType(const WhiteNoiseSystemType type) noexcept
 {
   if (m_white_noise_system_type != type)
   {
@@ -1375,7 +1375,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Test() noexcept
 }
 #endif
 
-std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const
+std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const noexcept
 {
   if (m_version != m_version_current)
   {
@@ -1434,7 +1434,7 @@ std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const
 }
 
 
-std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const
+std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const noexcept
 {
   std::string s =
 
@@ -1504,7 +1504,7 @@ std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const
   return s;
 }
 
-bool ribi::kalman::operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs)
+bool ribi::kalman::operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs) noexcept
 {
   return lhs.ToDokuWiki() == rhs.ToDokuWiki();
 }

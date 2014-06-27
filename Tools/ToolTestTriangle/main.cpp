@@ -25,6 +25,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testtrianglemenudialog.h"
 #pragma GCC diagnostic pop
 
+//#221
+//--WKT "POLYGON((10 10,10 -10,-10 -10,-10 10))" --triangle_max_area 0.001 --triangle_min_angle 20.0 --profile
+
 //TestTriangleConsole --WKT "POLYGON((10 10,10 -10,-10 -10,-10 10))" --triangle_max_area 10.0 --triangle_min_angle 20.0 --profile
 int main(int argc, char* argv[])
 {

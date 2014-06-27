@@ -255,6 +255,23 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       }
       assert(m_faces[i]->GetConstOwner()->GetIndex() != Cell::sm_cell_no_index);
     }
+
+    //Might fix #221:
+    //Assign the cells without an index an index
+    for (auto& cell: m_cells)
+    {
+      if(cell->GetIndex() == Cell::sm_cell_no_index)
+      {
+        cell->SetIndex(cell_index);
+        ++cell_index;
+      }
+    }
+  }
+
+  for (auto cell: m_cells)
+  {
+    assert(cell->GetIndex() != Cell::sm_cell_no_index
+      && "All cells must have been assigned an index, #221");
   }
 
   //Show all cells' indices
@@ -297,6 +314,10 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
         if (this_index == Cell::sm_cell_no_index)
         {
           TRACE("ERROR");
+          TRACE(m_cells.size());
+          TRACE(m_faces.size());
+          TRACE(m_cells.max_size());
+          TRACE(m_faces.max_size());
           TRACE(i);
           TRACE(m_cells[i]->GetFaces().size());
           for (auto face: m_cells[i]->GetFaces())
@@ -307,7 +328,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
             ;
             TRACE(s.str());
           }
-          TRACE("BREAK"); HIERO
+          TRACE("BREAK"); //#221
         }
         #endif
         assert(this_index != Cell::sm_cell_no_index);

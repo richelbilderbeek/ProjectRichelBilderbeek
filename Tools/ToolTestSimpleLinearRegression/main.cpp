@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/units/systems/si.hpp>
 #include "simplelinearregression.h"
-#include "canvas.h"
+#include "drawcanvas.h"
 #pragma GCC diagnostic pop
 
 int main()
@@ -65,7 +65,7 @@ int main()
     //Plot the values
     const int max_x = 78;
     const int max_y = 20;
-    ribi::Canvas c(max_x,max_y,ribi::Canvas::ColorSystem::invert,ribi::Canvas::CoordinatSystem::graph);
+    ribi::DrawCanvas c(max_x,max_y,ribi::CanvasColorSystem::invert,ribi::CanvasCoordinatSystem::graph);
     c.DrawLine(0.0,0.0,max_x,0.0);
     c.DrawLine(0.0,0.0,0.0,max_y);
     assert(xs.size() == ys.size());

@@ -15,6 +15,7 @@
 #include <QKeyEvent>
 #include <QMimeData>
 
+#include "container.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -83,12 +84,12 @@ void ribi::QtCopyAllTableView::keyPressEvent(QKeyEvent *event)
     std::vector<std::vector<std::string> > table;
     {
       const std::string raw_str = QApplication::clipboard()->text().toStdString();
-      const std::vector<std::string> rows = SeperateString(raw_str,'\n');
+      const std::vector<std::string> rows = Container().SeperateString(raw_str,'\n');
       const std::size_t n_rows = rows.size();
       for (std::size_t row_index=0; row_index!=n_rows; ++row_index)
       {
         const std::string& row_str = rows[row_index];
-        const std::vector<std::string> cols = SeperateString(row_str,'\t');
+        const std::vector<std::string> cols = Container().SeperateString(row_str,'\t');
         table.push_back(cols);
       }
     }

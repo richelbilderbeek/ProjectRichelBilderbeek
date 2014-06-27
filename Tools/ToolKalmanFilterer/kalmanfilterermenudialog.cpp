@@ -2,17 +2,18 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "kalmanfilterermenudialog.h"
 
-#include "standardkalmanfilter.h"
-#include "steadystatekalmanfilter.h"
-#include "standardkalmanfilterparameters.h"
-#include "steadystatekalmanfilterparameters.h"
-#include "matrix.h"
-#include "gapsfilledwhitenoisesystem.h"
-#include "trace.h"
-#include "laggedwhitenoisesystem.h"
-#include "standardwhitenoisesystem.h"
+#include "container.h"
 #include "fixedlagsmootherkalmanfilter.h"
+#include "gapsfilledwhitenoisesystem.h"
+#include "laggedwhitenoisesystem.h"
+#include "matrix.h"
+#include "standardkalmanfilter.h"
+#include "standardkalmanfilterparameters.h"
+#include "standardwhitenoisesystem.h"
 #include "standardwhitenoisesystemparameters.h"
+#include "steadystatekalmanfilter.h"
+#include "steadystatekalmanfilterparameters.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 int ribi::kalman::KalmanFiltererMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -42,6 +43,7 @@ ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   );
+  a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FixedLagSmootherKalmanFilter version: " + FixedLagSmootherKalmanFilter::GetVersion());
   a.AddLibrary("GapsFilledWhiteNoiseSystem version: " + GapsFilledWhiteNoiseSystem::GetVersion());
   a.AddLibrary("KalmanFilter version: " + KalmanFilter::GetVersion());

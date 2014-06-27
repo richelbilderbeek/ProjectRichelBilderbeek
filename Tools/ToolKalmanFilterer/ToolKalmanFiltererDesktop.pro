@@ -6,6 +6,7 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 include(../../Libraries/Qwt.pri)
 
+include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppKalmanFilter/CppKalmanFilter.pri)
 include(../../Classes/CppMatrix/CppMatrix.pri)
 include(../../Classes/CppQtMatrix/CppQtMatrix.pri)

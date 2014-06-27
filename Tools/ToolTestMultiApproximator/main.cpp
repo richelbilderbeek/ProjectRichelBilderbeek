@@ -1,15 +1,15 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <iostream>
 
-//static assertion failed: Source type is neither std::ostream`able nor std::wostream`able
 #include <boost/units/io.hpp>
-
 #include <boost/units/systems/si.hpp>
 #include <boost/units/unit.hpp>
 
 #include "multiapproximator.h"
-#include "canvas.h"
+#include "drawcanvas.h"
 
 #pragma GCC diagnostic pop
 
@@ -26,6 +26,12 @@ int main()
     const Velocity v = a.Approximate(1.0 * boost::units::si::second);
     assert(v >= 0.99 * boost::units::si::meters_per_second
         && v <= 1.01 * boost::units::si::meters_per_second);
+    if (v == 0.0 * boost::units::si::meters_per_second)
+    {
+      std::cout << "Satisfied the compiler";
+    }
+
+
   }
 
   typedef ribi::MultiApproximator<double,double> MultiApproximator_t;
@@ -42,11 +48,11 @@ int main()
 
   const int max_x = 78;
   const int max_y = 20;
-  ribi::Canvas c(
+  ribi::DrawCanvas c(
     max_x,
     max_y,
-    ribi::Canvas::ColorSystem::invert,
-    ribi::Canvas::CoordinatSystem::graph
+    ribi::CanvasColorSystem::invert,
+    ribi::CanvasCoordinatSystem::graph
   );
 
   c.DrawLine(0.0,0.0,max_x,0.0);
@@ -86,31 +92,27 @@ int main()
 
 /* Screen output
 
-TRACE '"Starting Approximator::Test"' line 144 in file '../../Classes/CppApproxi
-mator/approximator.h': 'Starting Approximator::Test'
-TRACE '"Completed Approximator::Test successfully"' line 155 in file '../../Clas
-ses/CppApproximator/approximator.h': 'Completed Approximator::Test successfully'
+-
+o                                                --
+o                                                --
+o                            --
+o                            oo                  --
+o                           -dd-                -o-
+o                          -oooo-              -o-
+o                         -o-  -o-            -o---
+o                        -o-    -o-          -o- --
+o                       -o-      -o-        -o-
+o                      -o-        -o-      -o-
+o                     -o-          -o- -- -o-
+o                  ---o-            -o----o-
+o                  -oo-              -o--o-
+o                  -o-                -oo-
+o                  --                  --
+o                  --
+o                  --                  --
+o                                      --
+Moooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo-
 
- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooood
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMooMMMMMMMMMMMMMMMMMd-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMo-dMMMMMMMMMMMMMMMdo--dMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMdoodMMMMMMMMMMMMMddMdoodMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMdodMMMMMMMMMMMMddMMMdodMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMddMMMMMMMMMMdodMMMMMddMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMdoodMMMMMMdoodMMMMMMdoodMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMdoodMMMMMdodMMMMMMMMdoodMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMddMMMdodMMMMMMMMMMMMddMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMddMdoodMMMMMMMMMMMMMddMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMdodddMMMMMMMMMMMMMMMdodMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMd-oMMMMMMMMMMMMMMMMMd-oMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMooMMMMMMMMMMMMMMMMMMooMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-oMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-dMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 Press <RETURN> to close this window...
 
 */
