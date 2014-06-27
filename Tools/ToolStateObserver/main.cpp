@@ -22,14 +22,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <QApplication>
-#include "qtstateobservermenudialog.h"
+#include "stateobservermenudialog.h"
 #pragma GCC diagnostic pop
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-  QApplication a(argc, argv);
-  ribi::QtStateObserverMenuDialog w;
-  w.show();
-  return a.exec();
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::StateObserverMenuDialog().Execute(args);
 }
