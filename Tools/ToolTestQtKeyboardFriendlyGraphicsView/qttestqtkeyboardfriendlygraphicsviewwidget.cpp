@@ -113,7 +113,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
-      item->setPos(x,y);
+      item->SetPos(x,y);
       scene()->addItem(item);
     }
   }
@@ -135,7 +135,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
-      item->setPos(x,y);
+      item->SetPos(x,y);
       //item->setRect(-16.0,-16.0,32.0,32.0);
       scene()->addItem(item);
     }
@@ -212,7 +212,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
         const double x = midx + std::sin(sub_angle) * sub_ray;
         const double y = midy - std::cos(sub_angle) * sub_ray;
         QtRoundedRectItem * const item = new QtRoundedRectItem;
-        item->setPos(x,y);
+        item->SetPos(x,y);
         item->SetRoundedRect(QRectF(-4.0,-4.0,8.0,8.0),1.0,1.0);
         scene()->addItem(item);
         v[j] = item;
@@ -297,7 +297,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       const double x = midx + (std::sin(angle) * 0.5 * ray);
       const double y = midy - (std::cos(angle) * 0.5 * ray);
       Item * const item = new Item;
-      item->setPos(x,y);
+      item->SetPos(x,y);
       std::vector<std::string> text;
       text.push_back("* *");
       for (int j=0; j!=i; ++j)

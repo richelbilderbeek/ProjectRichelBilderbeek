@@ -95,7 +95,7 @@ void ribi::QtTestQtRoundedTextRectItemWidget::Display(const QFont& font)
         + " "
         + boost::lexical_cast<std::string>(c);
       item->SetText(s);
-      item->setPos(x,y);
+      item->SetPos(x,y);
       assert(!item->scene());
       scene()->addItem(item);
     }

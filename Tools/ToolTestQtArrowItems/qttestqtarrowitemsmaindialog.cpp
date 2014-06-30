@@ -129,13 +129,14 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
         rect = new QtRoundedTextRectItem(boost::lexical_cast<std::string>(i));
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->setPos(x1,y1);
+      rect->SetPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
 
-      rect->m_signal_request_scene_update.connect(
-        boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+
+      //rect->m_signal_request_scene_update.connect(
+      //  boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
     }
     for (int i=0; i<n_items-2; i+=3)
     {
@@ -172,13 +173,13 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
         rect = new QtRoundedTextRectItem(boost::lexical_cast<std::string>(i));
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->setPos(x1,y1);
+      rect->SetPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
 
-      rect->m_signal_request_scene_update.connect(
-        boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+      //rect->m_signal_request_scene_update.connect(
+      //  boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
     }
     for (int i=0; i<n_items-1; i+=2)
     {
@@ -207,12 +208,12 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
       assert(rect);
       rect->SetRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
-      rect->setPos(x1,y1);
+      rect->SetPos(x1,y1);
       assert(!rect->scene());
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
-      rect->m_signal_request_scene_update.connect(
-        boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+      //rect->m_signal_request_scene_update.connect(
+      //  boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
     }
     for (int i=0; i<n_items-1; i+=2)
     {

@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttesthideandshowdialogmenudialog.h"
 
 #include <QDesktopWidget>
@@ -11,10 +13,11 @@
 #include "qthideandshowdialog.h"
 #include "trace.h"
 #include "ui_qttesthideandshowdialogmenudialog.h"
+
 #pragma GCC diagnostic pop
 
-ribi::QtTestHideAndShowDialogMenuDialog::QtTestHideAndShowDialogMenuDialog(QWidget *parent) :
-    QtHideAndShowDialog(parent),
+ribi::QtTestHideAndShowDialogMenuDialog::QtTestHideAndShowDialogMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestHideAndShowDialogMenuDialog)
 {
   #ifndef NDEBUG
@@ -36,7 +39,7 @@ void ribi::QtTestHideAndShowDialogMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtTestHideAndShowDialogMenuDialog::on_button_about_clicked()
 {
-  About a = TestQtHideAndShowDialogMenuDialog::GetAbout();
+  About a = TestHideAndShowDialogMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
@@ -51,7 +54,7 @@ void ribi::QtTestHideAndShowDialogMenuDialog::on_button_quit_clicked()
 
 void ribi::QtTestHideAndShowDialogMenuDialog::on_button_start_clicked()
 {
-  QtTestQtHideAndShowDialogMainDialog d(nullptr,nullptr);
+  QtTestHideAndShowMainDialog d;
   d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
@@ -65,11 +68,8 @@ void ribi::QtTestHideAndShowDialogMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestHideAndShowDialogMenuDialog::Test");
-  for (auto ai: Ais().GetAll())
-  {
-    QtTestQtHideAndShowDialogMainDialog(nullptr,ai);
-  }
-  assert(TestQtHideAndShowDialogMenuDialog().GetVersion().empty());
+  QtTestHideAndShowMainDialog();
+  assert(!QtTestHideAndShowDialogMenuDialog().GetVersion().empty());
   TRACE("Finished ribi::QtTestHideAndShowDialogMenuDialog::Test successfully");
 }
 #endif

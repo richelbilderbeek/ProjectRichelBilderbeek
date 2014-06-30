@@ -9,9 +9,9 @@
 #include <boost/lexical_cast.hpp>
 
 #include "fileio.h"
-#include "fparser.hh"
-#include "geometry.h"
-#include "plane.h"
+//#include "fparser.hh"
+//#include "geometry.h"
+//#include "plane.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -40,7 +40,7 @@ ribi::About ribi::TestHideAndShowDialogMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestHideAndShowDialog",
     "tests the TestHideAndShowDialog class",
-    "the 9th of May 2014",
+    "the 30th of June 2014",
     "2014",
     "http://www.richelbilderbeek.nl/ToolTestHideAndShowDialog.htm",
     GetVersion(),
@@ -74,7 +74,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestHideAndShowDialogMenuDialog::Ge
 
 std::string ribi::TestHideAndShowDialogMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::TestHideAndShowDialogMenuDialog::GetVersionHistory() const noexcept
@@ -82,6 +82,7 @@ std::vector<std::string> ribi::TestHideAndShowDialogMenuDialog::GetVersionHistor
   return {
     "2013-xx-xx: version 1.0: initial version",
     "2014-05-09: version 1.1: started versioning"
+    "2014-06-30: version 1.2: fixed desktop version"
   };
 }
 

@@ -9,5 +9,5 @@ HEADERS += \
     ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmenudialog.h
 
 FORMS += \
-    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmaindialog.ui
+    ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmaindialog.ui \
     ../../Tools/ToolTestQtHideAndShowDialog/qttesthideandshowdialogmenudialog.ui

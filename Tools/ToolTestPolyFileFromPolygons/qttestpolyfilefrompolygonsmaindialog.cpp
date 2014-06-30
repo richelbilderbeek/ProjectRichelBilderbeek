@@ -112,7 +112,7 @@ ribi::QtTestPolyFileFromPolygonsMainDialog::Shapes
 {
   Shapes shapes;
   const std::string text = ui->edit_shapes->toPlainText().toStdString();
-  const std::vector<std::string> lines = Container().SeperateString(text);
+  const std::vector<std::string> lines = Container().SeperateString(text,'\n');
   for (const std::string line: lines)
   {
     try

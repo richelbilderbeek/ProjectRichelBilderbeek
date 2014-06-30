@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTestHideAndShowMenuDialog</class>
- <widget class="QDialog" name="QtTestHideAndShowMenuDialog">
+ <class>QtTestHideAndShowDialogMenuDialog</class>
+ <widget class="QDialog" name="QtTestHideAndShowDialogMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
