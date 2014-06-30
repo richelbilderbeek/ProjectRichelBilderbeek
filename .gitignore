@@ -30,6 +30,7 @@ trace_out.txt
 autosave1.cmp
 autosave2.cmp
 /.directory
+/0/
 Examples/
 Libraries/.directory
 Libraries/Arduino/
