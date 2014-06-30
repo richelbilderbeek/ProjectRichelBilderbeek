@@ -617,6 +617,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         "--fraction", "0.9",
         "--triangle_max_area", "0.1",
         "--triangle_min_angle", "20.0",
+        "--show_mesh",
         "--profile"
       }
     );

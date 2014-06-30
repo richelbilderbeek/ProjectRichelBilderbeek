@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthreemove.h"
 #include "connectthreemovefactory.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::con3::ConnectThree::ConnectThree(
@@ -84,7 +85,7 @@ void ribi::con3::ConnectThree::DoMove(const int x, const int y)
 void ribi::con3::ConnectThree::DoMove(const boost::shared_ptr<Move> p) noexcept
 {
   assert(CanDoMove(p));
-  DoMove(p->GetX(),p->GetX());
+  DoMove(p->GetX(),p->GetY());
 }
 
 ribi::con3::Square ribi::con3::ConnectThree::GetSquare(const int x, const int y) const noexcept
@@ -98,7 +99,7 @@ ribi::con3::Square ribi::con3::ConnectThree::GetSquare(const int x, const int y)
 
 std::string ribi::con3::ConnectThree::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::con3::ConnectThree::GetVersionHistory() noexcept
@@ -109,6 +110,7 @@ std::vector<std::string> ribi::con3::ConnectThree::GetVersionHistory() noexcept
     "2011-01-11: version 1.0: added that the game can end in a draw. First tested and debugged version",
     "2011-04-19: version 1.1: added Restart method, removed m_is_player_human",
     "2014-02-13: version 1.2: improved interface",
+    "2014-06-30: version 1.3: fixed bug in ribi::con3::ConnectThree::DoMove",
   };
 }
 

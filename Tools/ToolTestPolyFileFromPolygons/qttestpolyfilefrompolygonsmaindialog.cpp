@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsSvgItem>
 #include <QKeyEvent>
 
+#include "container.h"
 #include "fileio.h"
 #include "geometry.h"
 #include "polyfilefrompolygons.h"
@@ -84,7 +85,7 @@ void ribi::QtTestPolyFileFromPolygonsMainDialog::DisplayPolygons() noexcept
   const std::string svg_filename = fileio::FileIo().GetTempFileName(".svg");
   {
     const std::string text_with_comments = ui->edit_shapes->toPlainText().toStdString();
-    const auto v = SeperateString(text_with_comments,'\n');
+    const auto v = Container().SeperateString(text_with_comments,'\n');
     std::string text;
     for (const auto s: v)
     {
@@ -111,7 +112,7 @@ ribi::QtTestPolyFileFromPolygonsMainDialog::Shapes
 {
   Shapes shapes;
   const std::string text = ui->edit_shapes->toPlainText().toStdString();
-  const std::vector<std::string> lines = SeperateString(text);
+  const std::vector<std::string> lines = Container().SeperateString(text);
   for (const std::string line: lines)
   {
     try

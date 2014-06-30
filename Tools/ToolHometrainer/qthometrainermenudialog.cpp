@@ -8,6 +8,7 @@
 #include "hometrainermaindialog.h"
 #include "multiplechoicequestion.h"
 #include "openquestion.h"
+#include "openquestionfactory.h"
 #include "qtaboutdialog.h"
 #include "qthometrainermaindialog.h"
 #include "trace.h"
@@ -95,10 +96,9 @@ void ribi::QtHometrainerMenuDialog::Test() noexcept
     v.push_back(q);
   }
   {
-    const boost::shared_ptr<const OpenQuestion> q {
-      new OpenQuestion("-,1+1=,2/Two/two")
-    };
-    v.push_back(q);
+    const auto openquestion = OpenQuestionFactory().Create("-,1+1=,2/Two/two");
+    assert(openquestion);
+    v.push_back(openquestion);
   }
   const boost::shared_ptr<const HometrainerMainDialog> dialog {
     new HometrainerMainDialog(v)

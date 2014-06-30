@@ -5135,7 +5135,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "  <a href=\"CppPimpl.htm\">pimpl</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
-        "<p>
+        "<p>",
         "  Most lizards remain having the same gender for all their live. Therefore, it is a",
         "  good idea to make a lizard's gender a const member variable. Problem is, that",
         "  this makes a lizard class uncopyable. In this example I solve this by making a",
