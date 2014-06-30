@@ -135,11 +135,12 @@ bool ribi::pylos::Move::IsValid() const noexcept
 #ifndef NDEBUG
 void ribi::pylos::Move::Test() noexcept
 {
-  static bool tested = false;
-  if (tested) return;
-  tested = true;
-
-  TRACE("Test Moves");
+  {
+    static bool tested = false;
+    if (tested) return;
+    tested = true;
+  }
+  TRACE("Starting ribi::pylos::Move::Test");
   {
     pylos::Move m;
     assert(!m.IsValid() && "An empty move is invalid");
@@ -177,6 +178,7 @@ void ribi::pylos::Move::Test() noexcept
       }
     );
   }
+  TRACE("Finished ribi::pylos::Move::Test successfully");
 }
 #endif
 

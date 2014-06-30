@@ -80,7 +80,7 @@ void ribi::QtOpenQuestionDialog::OnOpenQuestionChanged(const boost::shared_ptr<O
 
 void ribi::QtOpenQuestionDialog::SetDialog(const boost::shared_ptr<QuestionDialog>& dialog)
 {
-  const bool verbose = true;
+  const bool verbose = false;
 
   const boost::shared_ptr<OpenQuestionDialog> openquestiondialog
     = boost::dynamic_pointer_cast<OpenQuestionDialog>(dialog);

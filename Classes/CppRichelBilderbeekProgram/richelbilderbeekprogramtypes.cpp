@@ -103,7 +103,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::mazeCreatorVcl,"mazeCreatorVcl"));
   m.insert(Pair(ProgramType::maziak,"maziak"));
   m.insert(Pair(ProgramType::maziakVcl,"maziakVcl"));
-  m.insert(Pair(ProgramType::metZnDrieen,"metZnDrieen"));
+  //m.insert(Pair(ProgramType::metZnDrieen,"metZnDrieen"));
   m.insert(Pair(ProgramType::metZnDrieenVcl,"metZnDrieenVcl"));
   m.insert(Pair(ProgramType::midiLessonCreator,"midiLessonCreator"));
   m.insert(Pair(ProgramType::morpher,"morpher"));
@@ -120,7 +120,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::picToCode,"picToCode"));
   m.insert(Pair(ProgramType::pixelator,"pixelator"));
   m.insert(Pair(ProgramType::pixelatorVcl,"pixelatorVcl"));
-  m.insert(Pair(ProgramType::pokeVolley,"pokeVolley"));
+  m.insert(Pair(ProgramType::pokeVolleyVcl,"pokeVolleyVcl"));
   m.insert(Pair(ProgramType::pong,"pong"));
   m.insert(Pair(ProgramType::preDickAdvocaTor,"preDickAdvocaTor"));
   m.insert(Pair(ProgramType::primeExpert,"primeExpert"));
@@ -148,11 +148,11 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::simImmuneResponse,"simImmuneResponse"));
   m.insert(Pair(ProgramType::simMysteryMachine,"simMysteryMachine"));
   m.insert(Pair(ProgramType::simplifyNewick,"simplifyNewick"));
-  m.insert(Pair(ProgramType::simPredator,"simPredator"));
+  m.insert(Pair(ProgramType::simPredatorVcl,"simPredatorVcl"));
   m.insert(Pair(ProgramType::simStagecraft,"simStagecraft"));
   m.insert(Pair(ProgramType::soaSim,"soaSim"));
   m.insert(Pair(ProgramType::solvePuzzleX,"solvePuzzleX"));
-  m.insert(Pair(ProgramType::spaceHarry,"spaceHarry"));
+  //m.insert(Pair(ProgramType::spaceHarry,"spaceHarry"));
   m.insert(Pair(ProgramType::spaceHarryVcl,"spaceHarryVcl"));
   m.insert(Pair(ProgramType::staircaseCardCreator,"staircaseCardCreator"));
   m.insert(Pair(ProgramType::stateObserver,"stateObserver"));
@@ -326,7 +326,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::mazeCreatorVcl,"MazeCreator (VCL)"));
   m.insert(Pair(ProgramType::maziak,"Maziak"));
   m.insert(Pair(ProgramType::maziakVcl,"Maziak (VCL)"));
-  m.insert(Pair(ProgramType::metZnDrieen,"Met Z'n Drieen"));
+  //m.insert(Pair(ProgramType::metZnDrieen,"Met Z'n Drieen"));
   m.insert(Pair(ProgramType::metZnDrieenVcl,"Met Z'n Drieen (VCL)"));
   m.insert(Pair(ProgramType::midiLessonCreator,"MIDI Lesson Creator"));
   m.insert(Pair(ProgramType::morpher,"Morpher"));
@@ -343,7 +343,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::picToCode,"PicToCode"));
   m.insert(Pair(ProgramType::pixelator,"Pixelator"));
   m.insert(Pair(ProgramType::pixelatorVcl,"Pixelator (VCL)"));
-  m.insert(Pair(ProgramType::pokeVolley,"PokeVolley"));
+  m.insert(Pair(ProgramType::pokeVolleyVcl,"PokeVolley (VCL)"));
   m.insert(Pair(ProgramType::pong,"Pong"));
   m.insert(Pair(ProgramType::preDickAdvocaTor,"PreDickAdvocaTor"));
   m.insert(Pair(ProgramType::primeExpert,"PrimeExpert"));
@@ -371,11 +371,11 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::simImmuneResponse,"SimImmuneResponse"));
   m.insert(Pair(ProgramType::simMysteryMachine,"SimMysteryMachine"));
   m.insert(Pair(ProgramType::simplifyNewick,"SimplifyNewick"));
-  m.insert(Pair(ProgramType::simPredator,"SimPredator"));
+  m.insert(Pair(ProgramType::simPredatorVcl,"SimPredator (VCL)"));
   m.insert(Pair(ProgramType::simStagecraft,"SimStagecraft"));
   m.insert(Pair(ProgramType::soaSim,"SoaSim"));
   m.insert(Pair(ProgramType::solvePuzzleX,"SolvePuzzleX"));
-  m.insert(Pair(ProgramType::spaceHarry,"SpaceHarry"));
+  //m.insert(Pair(ProgramType::spaceHarry,"SpaceHarry"));
   m.insert(Pair(ProgramType::spaceHarryVcl,"SpaceHarry (VCL)"));
   m.insert(Pair(ProgramType::staircaseCardCreator,"StaircaseCardCreator"));
   m.insert(Pair(ProgramType::stateObserver,"StateObserver"));

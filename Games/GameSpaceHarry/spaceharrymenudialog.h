@@ -1,6 +1,6 @@
 #ifndef SPACEHARRYMENUDIALOG_H
 #define SPACEHARRYMENUDIALOG_H
-
+/*
 #include "menudialog.h"
 
 namespace ribi {
@@ -22,5 +22,5 @@ struct SpaceHarryMenuDialog : public MenuDialog
 };
 
 } //~namespace ribi
-
+*/
 #endif // SPACEHARRYMENUDIALOG_H

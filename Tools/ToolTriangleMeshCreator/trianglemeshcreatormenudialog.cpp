@@ -544,7 +544,8 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         //"--show_mesh",
         //"--verbose",
         "--triangle_max_area", "10.0",
-        "--triangle_min_angle", "20.0"
+        "--triangle_min_angle", "20.0",
+        "--profile"
       }
     );
     d.Execute(
@@ -558,7 +559,8 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         //"-m",
         //"-b",
         "--triangle_area", "10.0",
-        "--triangle_quality", "20.0"
+        "--triangle_quality", "20.0",
+        "--profile"
       }
     );
     d.Execute(
@@ -572,7 +574,8 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         //"-m",
         //"-b",
         "-r", "10.0",
-        "-q", "20.0"
+        "-q", "20.0",
+        "--profile"
       }
     );
     d.Execute(
@@ -586,7 +589,8 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         //"-m",
         //"-b",
         "-r", "10.0",
-        "-q", "20.0"
+        "-q", "20.0",
+        "--profile"
       }
     );
     /*
@@ -605,7 +609,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     );
     assert(!"Yay, pre-221 works");
     */
-    #define FIX_ISSUE_221
+    //#define FIX_ISSUE_221
     #ifdef  FIX_ISSUE_221
     d.Execute(
       {

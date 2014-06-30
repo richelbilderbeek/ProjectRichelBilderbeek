@@ -59,7 +59,8 @@ public:
   boost::shared_ptr<const QuestionDialog> GetDialog() const;
   void SetDialog(const boost::shared_ptr<QuestionDialog>& dialog);
 
-  void SetOpenQuestionDialog(const boost::shared_ptr<OpenQuestionDialog>& dialog);
+  void SetOpenQuestionDialog(const boost::shared_ptr<OpenQuestionDialog>& dialog) { SetOpenQuestionDialog(dialog); }
+
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;

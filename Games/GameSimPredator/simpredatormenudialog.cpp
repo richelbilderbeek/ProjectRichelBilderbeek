@@ -1,3 +1,4 @@
+/*
 #include "simpredatormenudialog.h"
 
 #include <cassert>
@@ -69,3 +70,4 @@ std::vector<std::string> ribi::SimPredatorMenuDialog::GetVersionHistory() const 
     "2013-07-13: version 1.1: conformized to ProjectRichelBilderbeekConsole"
   };
 }
+*/

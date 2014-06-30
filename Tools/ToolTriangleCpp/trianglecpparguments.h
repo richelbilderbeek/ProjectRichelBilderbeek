@@ -101,7 +101,7 @@ struct Arguments
   std::string m_outelefilename;
   std::string m_outnodefilename;
   std::string m_outpolyfilename;
-  static bool m_quality = true;
+  static bool m_quality; // = true;
   int m_quiet;
   int m_regionattrib;
   int m_splitseg;

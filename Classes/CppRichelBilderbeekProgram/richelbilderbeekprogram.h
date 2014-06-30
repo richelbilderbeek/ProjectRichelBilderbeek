@@ -1060,6 +1060,7 @@ struct ProgramMaziakVcl : public ProgramGame
   std::string GetUrl() const noexcept { return "GameMaziakVcl.htm"; }
 };
 
+/*
 struct ProgramMetZnDrieen : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
@@ -1074,6 +1075,7 @@ struct ProgramMetZnDrieen : public ProgramGame
   ProgramType GetType() const noexcept { return ProgramType::metZnDrieen; }
   std::string GetUrl() const noexcept { return "GameMetZnDrieen.htm"; }
 };
+*/
 
 struct ProgramMetZnDrieenVcl : public ProgramGame
 {
@@ -1315,18 +1317,18 @@ struct ProgramPixelatorVcl : public ProgramTool
   std::string GetUrl() const noexcept { return "ToolPixelatorVcl.htm"; }
 };
 
-struct ProgramPokeVolley : public ProgramGame
+struct ProgramPokeVolleyVcl : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
   std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GamePokeVolley_2_0.png"; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  std::string GetScreenName() const noexcept { return "PokeVolley"; }
+  std::string GetScreenName() const noexcept { return "PokeVolley (VCL)"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::pokeVolley; }
+  ProgramType GetType() const noexcept { return ProgramType::pokeVolleyVcl; }
   std::string GetUrl() const noexcept { return "GamePokeVolley.htm"; }
 };
 
@@ -1737,19 +1739,19 @@ struct ProgramSimplifyNewick : public ProgramTool
   std::string GetUrl() const noexcept { return "ToolSimplifyNewick.htm"; }
 };
 
-struct ProgramSimPredator : public ProgramGame
+struct ProgramSimPredatorVcl : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
   std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSimPredator_1_0.png"; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  std::string GetScreenName() const noexcept { return "SimPredator"; }
+  std::string GetScreenName() const noexcept { return "SimPredator (VCL)"; }
 
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::simPredator; }
+  ProgramType GetType() const noexcept { return ProgramType::simPredatorVcl; }
   std::string GetUrl() const noexcept { return "GameSimPredator.htm"; }
 };
 
@@ -1798,6 +1800,7 @@ struct ProgramSolvePuzzleX : public ProgramTool
   std::string GetUrl() const noexcept { return "ToolSolvePuzzleX.htm"; }
 };
 
+/*
 struct ProgramSpaceHarry : public ProgramGame
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
@@ -1812,6 +1815,7 @@ struct ProgramSpaceHarry : public ProgramGame
   ProgramType GetType() const noexcept { return ProgramType::spaceHarry; }
   std::string GetUrl() const noexcept { return "GameSpaceHarry.htm"; }
 };
+*/
 
 struct ProgramSpaceHarryVcl : public ProgramGame
 {

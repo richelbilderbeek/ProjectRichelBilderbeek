@@ -62,7 +62,7 @@ ribi::tricpp::Arguments::Arguments(
     m_outnodefilename{},
     m_outpolyfilename{},
     //m_poly{false},
-    m_quality{0},
+    m_quality{true},
     m_quiet{0},
     m_regionattrib{0},
     m_splitseg{0},

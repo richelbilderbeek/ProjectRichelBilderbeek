@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "openquestiondialogfactory.h"
 #include "qtmultiplechoicequestiondialog.h"
 #include "qtopenquestiondialog.h"
 #include "questiondialog.h"
@@ -66,8 +67,12 @@ boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtTestQuestionMainDialog::Create
 
   try
   {
-    boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(s));
-    if (d) p.reset(new QtOpenQuestionDialog(d));
+    const auto d = OpenQuestionDialogFactory().Create(s);
+    //boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(s));
+    boost::shared_ptr<QtOpenQuestionDialog> f(new QtOpenQuestionDialog);
+    f->SetOpenQuestionDialog(d);
+    //if (d) p.reset(new QtOpenQuestionDialog(d));
+    p = f;
     assert(p);
     return p;
   }

@@ -29,6 +29,7 @@ ribi::trim::Cell::Cell(
 
 ribi::trim::Cell::~Cell() noexcept
 {
+
 }
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Cell::CalculateCenter() const noexcept

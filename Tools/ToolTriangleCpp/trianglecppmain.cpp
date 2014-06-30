@@ -19,7 +19,7 @@
 #include <boost/make_shared.hpp>
 #include <boost/math/constants/constants.hpp>
 #include "fileio.h"
-#include "make_array.h"
+//#include "make_array.h"
 #include "polyfile.h"
 #include "trianglecppmeshbuilder.h"
 #include "trianglecppbadsubseg.h"

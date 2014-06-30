@@ -20,9 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpylosmenudialog.h"
 
 #include <iostream>
+
+#include <boost/make_shared.hpp>
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -166,7 +170,7 @@ void ribi::pylos::QtPylosMenuDialog::OnInstructions()
 
 void ribi::pylos::QtPylosMenuDialog::OnStart()
 {
-  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
   assert(p);
   //Set the game type
   if (m_type_basic) p->StartBasic();
@@ -189,14 +193,15 @@ void ribi::pylos::QtPylosMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::pylos::QtPylosMenuDialog::Test");
-  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
+  //QtPylosGameWidget * const p = new QtPylosGameWidget();
   assert(p);
   //Set the game type
   p->StartBasic();
   p->SetColorSchemeBlackWhite();
-  const QtPylosMainDialog d(p);
-  assert(!d.GetVersion().empty());
-  delete p;
+  const boost::shared_ptr<QtPylosMainDialog> d(new QtPylosMainDialog(p));
+  //const QtPylosMainDialog d(p);
+  assert(!d->GetVersion().empty());
   TRACE("Finished ribi::pylos::QtPylosMenuDialog::Test successfully");
 }
 #endif

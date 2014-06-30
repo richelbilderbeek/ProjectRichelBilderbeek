@@ -45,14 +45,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreewidget.h"
 #include "qtdialwidget.h"
 #include "qtdisplaypositem.h"
-#include "qtexercise.h"
+//#include "qtexercise.h"
 #include "qtgaborfilterwidget.h"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtlabeledquadbezierarrowitem.h"
 #include "qtledwidget.h"
 #include "qtleftrightrectitem.h"
 #include "qtmatrix.h"
-#include "qtmultiplechoicequestiondialog.h"
+//#include "qtmultiplechoicequestiondialog.h"
 #include "qtmysterymachinewidget.h"
 #include "qtopenquestiondialog.h"
 #include "qtpatharrowitem.h"
@@ -145,7 +145,7 @@ ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
   a.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
-  a.AddLibrary("QtExercise version: " + QtExercise::GetVersion());
+  //a.AddLibrary("QtExercise version: " + QtExercise::GetVersion());
   a.AddLibrary("QtGaborFilterWidget version: " + QtGaborFilterWidget::GetVersion());
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtKeyboardFriendlyGraphicsView version: " + QtKeyboardFriendlyGraphicsView::GetVersion());
@@ -153,7 +153,7 @@ ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   a.AddLibrary("QtLedWidget version: " + QtLedWidget::GetVersion());
   a.AddLibrary("QtLeftRightRectItem version: " + QtLeftRightRectItem::GetVersion());
   a.AddLibrary("QtMatrix version: " + QtMatrix::GetVersion());
-  a.AddLibrary("QtMultipleChoiceQuestionDialog version: " + QtMultipleChoiceQuestionDialog::GetVersion());
+  //a.AddLibrary("QtMultipleChoiceQuestionDialog version: " + QtMultipleChoiceQuestionDialog::GetVersion());
   a.AddLibrary("QtMysteryMachineWidget version: " + QtMysteryMachineWidget::GetVersion());
   a.AddLibrary("QtOpenQuestionDialog version: " + QtOpenQuestionDialog::GetVersion());
   a.AddLibrary("QtPathArrowItem version: " + QtPathArrowItem::GetVersion());

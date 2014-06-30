@@ -47,7 +47,6 @@ public:
   QtPylosGameWidget();
   QtPylosGameWidget(const QtPylosGameWidget&) = delete;
   QtPylosGameWidget& operator=(const QtPylosGameWidget&) = delete;
-  ~QtPylosGameWidget() noexcept {}
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).
@@ -116,6 +115,9 @@ public:
 
 
 private:
+  ~QtPylosGameWidget() noexcept;
+  friend void boost::checked_delete<>(      QtPylosGameWidget*);
+  friend void boost::checked_delete<>(const QtPylosGameWidget*);
 
   ///The pylos::Game class displayed and interacted with
   boost::shared_ptr<pylos::Game> m_pylos;

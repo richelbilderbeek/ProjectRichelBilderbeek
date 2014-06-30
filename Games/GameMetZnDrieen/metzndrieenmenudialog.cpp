@@ -1,3 +1,5 @@
+/*
+
 #include "metzndrieenmenudialog.h"
 
 #include <cassert>
@@ -88,3 +90,5 @@ void ribi::MetZnDrieenMenuDialog::Test() noexcept
   TRACE("Finished ribi::MetZnDrieenMenuDialog::Test successfully");
 }
 #endif
+
+*/

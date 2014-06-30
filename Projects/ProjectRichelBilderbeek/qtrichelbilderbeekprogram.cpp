@@ -49,7 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtgaborfiltermenudialog.h"
 #include "qtgraycodermenudialog.h"
 #include "qthistogramequalizationermenudialog.h"
-#include "qthometrainermenudialog.h"
+//#include "qthometrainermenudialog.h"
 #include "qttestpolyfilemenudialog.h"
 #include "qttestpolyfilefrompolygonsmenudialog.h"
 #include "qtwkttosvgmenudialog.h"
@@ -109,7 +109,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestmanydigitnewickmenudialog.h"
 #include "qttestmultiapproximatormenudialog.h"
 #include "qttestmulticanvasmenudialog.h"
-#include "qttestmultiplechoicequestionmenudialog.h"
+//#include "qttestmultiplechoicequestionmenudialog.h"
 #include "qttestnewickvectordialog.h"
 #include "qttestopenquestionmenudialog.h"
 #include "qttestplanemenudialog.h"
@@ -124,7 +124,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtroundededitrectitemmenudialog.h"
 #include "qttestqtroundedrectitemmenudialog.h"
 #include "qttestqtroundedtextrectitemmenudialog.h"
-#include "qttestquestionmenudialog.h"
+//#include "qttestquestionmenudialog.h"
 #include "qttestreversimaindialog.h"
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
@@ -196,7 +196,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::gtst: break;
     case ProgramType::histogramEqualizationer: p = new QtHistogramEqualizationerMenuDialog; break;
     case ProgramType::histogramEqualizationerVcl: break;
-    case ProgramType::hometrainer: p = new QtHometrainerMenuDialog; break;
+    case ProgramType::hometrainer: break; //p = new QtHometrainerMenuDialog; break;
     case ProgramType::hometrainerVcl: break;
     case ProgramType::imageRotater: p = new QtImageRotaterMenuDialog; break;
     case ProgramType::imageRotaterClx: break;
@@ -222,7 +222,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::mazeCreatorVcl: break;
     case ProgramType::maziak: p = new maziak::QtMaziakMenuDialog2; break;
     case ProgramType::maziakVcl: break;
-    case ProgramType::metZnDrieen: break;
+    //case ProgramType::metZnDrieen: break;
     case ProgramType::metZnDrieenVcl: break;
     case ProgramType::midiLessonCreator: break;
     case ProgramType::morpher: break;
@@ -240,7 +240,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::picToCode: p = new QtPicToCodeMenuDialog; break;
     case ProgramType::pixelator: p = new QtPixelatorMenuDialog; break;
     case ProgramType::pixelatorVcl: break;
-    case ProgramType::pokeVolley: break;
+    case ProgramType::pokeVolleyVcl: break;
     case ProgramType::pong: break;
     case ProgramType::primeExpert: p = new QtToolPrimeExpertMenuDialog;  break;
     case ProgramType::projectRichelBilderbeek: p = new QtRichelBilderbeekMenuDialog; break;
@@ -267,11 +267,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::simImmuneResponse: break;
     case ProgramType::simMysteryMachine: p = new QtSimMysteryMachineMenuDialog; break;
     case ProgramType::simplifyNewick: p = new QtToolSimplifyNewickMenuDialog; break;
-    case ProgramType::simPredator: break;
+    case ProgramType::simPredatorVcl: break;
     case ProgramType::simStagecraft: break;
     case ProgramType::soaSim: break;
     case ProgramType::solvePuzzleX: break;
-    case ProgramType::spaceHarry: break;
+    //case ProgramType::spaceHarry: break;
     case ProgramType::spaceHarryVcl: break;
     case ProgramType::staircaseCardCreator: break;
     case ProgramType::stateObserver: p = new QtStateObserverMenuDialog; break;
@@ -308,7 +308,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testManyDigitNewick: p = new QtTestManyDigitNewickMenuDialog; break;
     case ProgramType::testMultiApproximator: p = new QtToolTestMultiApproximatorMenuDialog; break;
     case ProgramType::testMultiCanvas: p = new QtTestMultiCanvasMenuDialog; break;
-    case ProgramType::testMultipleChoiceQuestion: p = new QtTestMultipleChoiceQuestionMenuDialog; break;
+    case ProgramType::testMultipleChoiceQuestion: break; //p = new QtTestMultipleChoiceQuestionMenuDialog; break;
     case ProgramType::testMultiVector: break;
     case ProgramType::testNdsmake: break;
     case ProgramType::testNeuralNet: /* p = new QtTestNeuralNetMenuDialog; */ break;
@@ -326,7 +326,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testQtRoundedEditRectItem: p = new QtTestQtRoundedEditRectItemMenuDialog; break;
     case ProgramType::testQtRoundedRectItem: p = new QtTestQtRoundedRectItemMenuDialog; break;
     case ProgramType::testQtRoundedTextRectItem: p = new QtTestQtRoundedTextRectItemMenuDialog; break;
-    case ProgramType::testQuestion: p = new QtTestQuestionMenuDialog; break;
+    case ProgramType::testQuestion: break; //p = new QtTestQuestionMenuDialog; break;
     case ProgramType::testReversi: p = new QtTestReversiMainDialog; break;
     case ProgramType::testSelectFileDialog: break;
     case ProgramType::testServerPusher: break;

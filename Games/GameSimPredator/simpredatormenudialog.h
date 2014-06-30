@@ -1,6 +1,8 @@
 #ifndef SIMPREDATORMENUDIALOG_H
 #define SIMPREDATORMENUDIALOG_H
 
+/*
+
 #include "menudialog.h"
 
 namespace ribi {
@@ -22,5 +24,7 @@ struct SimPredatorMenuDialog : public MenuDialog
 };
 
 } //~namespace ribi
+
+*/
 
 #endif // SIMPREDATORMENUDIALOG_H

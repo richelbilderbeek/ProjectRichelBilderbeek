@@ -125,11 +125,16 @@ void ribi::pylos::CurrentMoveState::SetRemove(const std::vector<Coordinat>& v)
 #ifndef NDEBUG
 void ribi::pylos::CurrentMoveState::Test() noexcept
 {
-  static bool tested = false;
-  if (tested) return;
-  tested = true;
+  {
+    static bool tested = false;
+    if (tested) return;
+    tested = true;
+  }
 
-  TRACE("Test PylosCurrentMoveState");
+  TRACE("Starting ribi::pylos::CurrentMoveState::Test");
+  const bool verbose = false;
+
+  if (verbose) { TRACE("Test PylosCurrentMoveState"); }
   {
     const Coordinat c(0,1,1);
     pylos::CurrentMoveState s;
@@ -145,6 +150,7 @@ void ribi::pylos::CurrentMoveState::Test() noexcept
     pylos::CurrentMoveState t;
     assert(s == t);
   }
+  TRACE("Finished ribi::pylos::CurrentMoveState::Test successfully");
 }
 #endif
 

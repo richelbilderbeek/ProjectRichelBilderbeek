@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 #include "pylosfwd.h"
 #include "pylosmove.h"
@@ -44,7 +45,6 @@ struct Board
   typedef std::vector<std::vector<PositionState> > Layer;
 
   Board() noexcept;
-  virtual ~Board() noexcept {}
 
   ///CanDo determines if a Pylos notation move is valid
   bool CanDo(const std::string& s, const Player player) const;
@@ -149,6 +149,8 @@ struct Board
 
 
   protected:
+  virtual ~Board() noexcept {}
+
   ///m_board holds the board structure.\n
   ///m_board[0]: bottom 4x4 layer\n
   ///m_board[1]: 3x3 layer\n
@@ -165,6 +167,9 @@ struct Board
 
 
   private:
+  friend void boost::checked_delete<>(      Board*);
+  friend void boost::checked_delete<>(const Board*);
+
   ///CreateEmptyBoard created an empty board.
   std::vector<Layer> CreateEmptyBoard() const noexcept;
 
@@ -188,7 +193,6 @@ struct Board
 struct BoardAdvanced : public Board
 {
   BoardAdvanced() noexcept;
-  ~BoardAdvanced() noexcept {}
 
   ///Clone a derived class of Board.
   boost::shared_ptr<Board> Clone() const noexcept;
@@ -203,6 +207,9 @@ struct BoardAdvanced : public Board
   //const std::string ToStr() const;
 
   private:
+  ~BoardAdvanced() noexcept {}
+  friend void boost::checked_delete<>(      BoardAdvanced*);
+  friend void boost::checked_delete<>(const BoardAdvanced*);
 
   ///Set sets the state of the given location.
   ///must_remove is set to true if the current player is allowed
@@ -211,9 +218,6 @@ struct BoardAdvanced : public Board
     const Coordinat& c,
     const Player state,
     MustRemoveState& must_remove);
-
-
-  friend void boost::checked_delete<>(BoardAdvanced* x);
 };
 
 ///A BoardBasic lets a player remove one or two marbles when
@@ -221,7 +225,6 @@ struct BoardAdvanced : public Board
 struct BoardBasic : public Board
 {
   BoardBasic() noexcept;
-  ~BoardBasic() noexcept {}
 
   ///Clone a derived class of Pylos.
   boost::shared_ptr<Board> Clone() const noexcept;
@@ -236,6 +239,9 @@ struct BoardBasic : public Board
   //const std::string ToStr() const;
 
   private:
+  ~BoardBasic() noexcept {}
+  friend void boost::checked_delete<>(      BoardBasic*);
+  friend void boost::checked_delete<>(const BoardBasic*);
 
   ///Set sets the state of the given location.
   ///must_remove is set to true if the current player is allowed
@@ -244,8 +250,6 @@ struct BoardBasic : public Board
     const Coordinat& c,
     const Player state,
     MustRemoveState& must_remove);
-
-  friend void boost::checked_delete<>(BoardBasic* x);
 };
 
 ///A BoardBeginner lets a player remove one or two marbles when

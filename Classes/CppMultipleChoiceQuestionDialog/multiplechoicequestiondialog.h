@@ -57,6 +57,8 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
 
   std::string ToStr() const noexcept;
 
+  mutable boost::signals2::signal<void (MultipleChoiceQuestionDialog*)> m_signal_mc_question_changed;
+
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestionDialog *);
   friend void boost::checked_delete<>(const MultipleChoiceQuestionDialog *);

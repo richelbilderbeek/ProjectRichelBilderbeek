@@ -20,22 +20,27 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpylosmaindialog.h"
+
+#include <boost/make_shared.hpp>
 
 #include <QDesktopWidget>
 
 #include "pylosgame.h"
+#include "qtpylosgamewidget.h"
 #include "qtpyloswondialog.h"
 #include "ui_qtpylosmaindialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
-  QtPylosGameWidget * const pylos_widget,
+  const boost::shared_ptr<QtPylosGameWidget>& pylos_widget,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPylosMainDialog),
-    m_pylos_widget(pylos_widget ? pylos_widget : new QtPylosGameWidget)
+    m_pylos_widget(pylos_widget)
 {
   #ifndef NDEBUG
   Test();
@@ -43,11 +48,11 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
   ui->setupUi(this);
 
   //Connect
-  QObject::connect(m_pylos_widget,SIGNAL(HasWinner()),
+  QObject::connect(m_pylos_widget.get(),SIGNAL(HasWinner()),
     this,SLOT(OnWinner()));
 
   //Place widget
-  this->layout()->addWidget(m_pylos_widget);
+  this->layout()->addWidget(m_pylos_widget.get());
 
   //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();
@@ -59,12 +64,11 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
 ribi::pylos::QtPylosMainDialog::~QtPylosMainDialog() noexcept
 {
   delete ui;
-  delete m_pylos_widget;
 }
 
 std::string ribi::pylos::QtPylosMainDialog::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 std::vector<std::string> ribi::pylos::QtPylosMainDialog::GetVersionHistory() noexcept
@@ -72,6 +76,7 @@ std::vector<std::string> ribi::pylos::QtPylosMainDialog::GetVersionHistory() noe
   return {
     "2010-09-22: version 1.0: initial release version",
     "2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek"
+    "2014-06-30: version 2.1: replaced raw by smart pointer"
   };
 }
 
@@ -92,14 +97,14 @@ void ribi::pylos::QtPylosMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::pylos::QtPylosMainDialog::Test");
-  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
   assert(p);
   //Set the game type
   p->StartBasic();
   p->SetColorSchemeBlackWhite();
-  const QtPylosMainDialog d(p);
-  assert(!d.GetVersion().empty());
-  delete p;
+  const boost::shared_ptr<QtPylosMainDialog> d(new QtPylosMainDialog(p));
+  assert(!d->GetVersion().empty());
+  //delete p;
   TRACE("Finished ribi::pylos::QtPylosMainDialog::Test successfully");
 }
 #endif

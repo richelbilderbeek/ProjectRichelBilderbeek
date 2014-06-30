@@ -134,7 +134,9 @@ void ribi::pylos::MenuDialog::Test() noexcept
   );
   assert(b);
   Coordinat(0,0,0);
-  CurrentMoveState();
+  {
+    boost::shared_ptr<CurrentMoveState>(new CurrentMoveState);
+  }
   const boost::shared_ptr<Game> g_a(
     new Game(a)
   );

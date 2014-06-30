@@ -1,6 +1,8 @@
 #ifndef METZNDRIEENMENUDIALOG_H
 #define METZNDRIEENMENUDIALOG_H
 
+/*
+
 #include "menudialog.h"
 
 namespace ribi {
@@ -22,5 +24,7 @@ struct MetZnDrieenMenuDialog : public MenuDialog
 };
 
 } //~namespace ribi
+
+*/
 
 #endif // METZNDRIEENMENUDIALOG_H

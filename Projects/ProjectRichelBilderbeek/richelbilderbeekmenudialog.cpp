@@ -78,7 +78,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "geometry.h"
 #include "graycodermenudialog.h"
 #include "histogramequalizationermenudialog.h"
-#include "hometrainermenudialog.h"
+//#include "hometrainermenudialog.h"
 #include "htmlpage.h"
 #include "imagecanvas.h"
 #include "imagerotatermenudialog.h"
@@ -121,7 +121,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pixelatormenudialog.h"
 #include "pixelatormenudialog.h"
 #include "plane.h"
-#include "pokevolleymenudialog.h"
+//#include "pokevolleymenudialog.h"
 #include "polyfile.h"
 #include "polyfilefrompolygons.h"
 #include "pongmenudialog.h"
@@ -204,7 +204,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testledmenudialog.h"
 #include "testmultiapproximatormenudialog.h"
 #include "testmulticanvasmenudialog.h"
-#include "testmultiplechoicequestionmenudialog.h"
+//#include "testmultiplechoicequestionmenudialog.h"
 #include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
 #include "testplanemenudialog.h"
@@ -219,7 +219,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testqtroundededitrectitemmenudialog.h"
 #include "testqtroundedrectitemmenudialog.h"
 #include "testqtroundedtextrectitemmenudialog.h"
-#include "testquestionmenudialog.h"
+//#include "testquestionmenudialog.h"
 #include "testshapemenudialog.h"
 #include "testshinybuttonmenudialog.h"
 #include "testsimplelinearregressionmenudialog.h"
@@ -362,7 +362,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("GaborFilterWidget version: " + GaborFilterWidget::GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Help version: " + Help::GetVersion());
-  a.AddLibrary("Hometrainer version: " + HometrainerMenuDialog().GetVersion());
+  //a.AddLibrary("Hometrainer version: " + HometrainerMenuDialog().GetVersion());
   a.AddLibrary("HtmlPage version: " + HtmlPage::GetVersion());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
   a.AddLibrary("IpAddress version: " + IpAddress::GetVersion());
@@ -385,7 +385,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("ManyDigitNewick version: " + ManyDigitNewick::GetVersion());
   a.AddLibrary("Matrix version: " + Matrix::GetVersion());
   a.AddLibrary("Maziak version: " + maziak::MenuDialog().GetVersion());
-  a.AddLibrary("MetZnDrieenMenu version: " + MetZnDrieenMenuDialog().GetVersion());
+  //a.AddLibrary("MetZnDrieenMenu version: " + MetZnDrieenMenuDialog().GetVersion());
   a.AddLibrary("MultiAlphaFilter version: " + MultiAlphaFilter::GetVersion());
   a.AddLibrary("MultiApproximator version: " + MultiApproximator<double,double>::GetVersion());
   a.AddLibrary("MultipleChoiceQuestion version: " + MultipleChoiceQuestion::GetVersion());
@@ -410,7 +410,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   );
   assert(plane);
   a.AddLibrary("Plane version: " + plane->GetVersion());
-  a.AddLibrary("PokeVolley version: " + PokeVolleyMenuDialog().GetVersion());
+  //a.AddLibrary("PokeVolley version: " + PokeVolleyMenuDialog().GetVersion());
   a.AddLibrary("PolyFile version: " + PolyFile::GetVersion());
   a.AddLibrary("PolyFileFromPolygons version: " + PolyFileFromPolygons::GetVersion());
   a.AddLibrary("Pong version: " + PongMenuDialog().GetVersion());
@@ -444,13 +444,13 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
 
   a.AddLibrary("Shape version: " + Shape::GetVersion());
   a.AddLibrary("ShapeWidget version: " + ShapeWidget::GetVersion());
-  a.AddLibrary("SimPredator version: " + SimPredatorMenuDialog().GetVersion());
+  //a.AddLibrary("SimPredator version: " + SimPredatorMenuDialog().GetVersion());
   a.AddLibrary("ShinyButton version: " + ShinyButton::GetVersion());
   a.AddLibrary("ShinyButtonWidget version: " + ShinyButtonWidget::GetVersion());
   a.AddLibrary("SimMysteryMachine version: " + SimMysteryMachineMenuDialog().GetVersion());
   a.AddLibrary("SimpleLinearRegression version: " + SimpleLinearRegression::GetVersion());
   a.AddLibrary("SortedBinaryNewickVector version: " + SortedBinaryNewickVector::GetVersion());
-  a.AddLibrary("SpaceHarry version: " + SpaceHarryMenuDialog().GetVersion());
+  //a.AddLibrary("SpaceHarry version: " + SpaceHarryMenuDialog().GetVersion());
   a.AddLibrary("StaircaseCardCreator version: " + scc::MenuDialog().GetVersion());
   a.AddLibrary("StateObserver version: " + StateObserverMenuDialog().GetVersion());
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
@@ -470,7 +470,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("TestPolyFileFromPolygons version: " + TestPolyFileFromPolygonsMenuDialog().GetVersion());
   a.AddLibrary("TestProFile version: " + TestQtCreatorProFileMenuDialog().GetVersion());
   a.AddLibrary("TestQrcFile version: " + TestQrcFileMenuDialog().GetVersion());
-  a.AddLibrary("TestQuestion version: " + TestQuestionMenuDialog().GetVersion());
+  //a.AddLibrary("TestQuestion version: " + TestQuestionMenuDialog().GetVersion());
   a.AddLibrary("TestShape version: " + TestShapeMenuDialog().GetVersion());
   a.AddLibrary("TestShinyButton version: " + TestShinyButtonMenuDialog().GetVersion());
   a.AddLibrary("TestSimpleLinearRegression version: " + ToolTestSimpleLinearRegressionMenuDialog().GetVersion());
@@ -1086,7 +1086,10 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::hometrainer: p.reset(new HometrainerMenuDialog); break;
+      case ProgramType::hometrainer:
+        assert(!"TODO");
+        //p.reset(new HometrainerMenuDialog);
+      break;
       case ProgramType::hometrainerVcl:
       {
         const std::string version = "x.x";
@@ -1457,7 +1460,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::metZnDrieen: p.reset(new MetZnDrieenMenuDialog); break;
+      //case ProgramType::metZnDrieen: p.reset(new MetZnDrieenMenuDialog); break;
       case ProgramType::metZnDrieenVcl:
       {
         const std::string version = "x.x";
@@ -1724,7 +1727,33 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::pokeVolley: p.reset(new PokeVolleyMenuDialog); break;
+      case ProgramType::pokeVolleyVcl:
+      //p.reset(new PokeVolleyMenuDialog); break;
+      {
+        const std::string version = "1.0";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version 1.0: initial version"
+        };
+        const About about(
+          "Richel Bilderbeek",
+          "PokeVolley",
+          "Pokemon-themed Volley game",
+          "today",
+          "200x-2014",
+          "http://www.richelbilderbeek.nl/GamePokeVolley.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramPokeVolleyVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::pong: p.reset(new PongMenuDialog); break;
       case ProgramType::preDickAdvocaTor: p.reset(new PreDickAdvocaTorMenuDialog); break;
       case ProgramType::primeExpert: p.reset(new PrimeExpertMenuDialog); break;
@@ -2031,7 +2060,32 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       break;
       case ProgramType::simMysteryMachine: p.reset(new SimMysteryMachineMenuDialog); break;
       case ProgramType::simplifyNewick: p.reset(new ToolSimplifyNewickMenuDialog); break;
-      case ProgramType::simPredator: p.reset(new SimPredatorMenuDialog); break;
+      case ProgramType::simPredatorVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "SimPredator",
+          "natural selection simulation",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/ToolSimPredator.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSimStagecraft),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::simStagecraft:
       {
         const std::string version = "x.x";
@@ -2110,7 +2164,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::spaceHarry: p.reset(new SpaceHarryMenuDialog); break;
+      //case ProgramType::spaceHarry: p.reset(new SpaceHarryMenuDialog); break;
       case ProgramType::spaceHarryVcl:
       {
         const std::string version = "x.x";
@@ -2471,7 +2525,10 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       break;
       case ProgramType::testMultiApproximator: p.reset(new ToolTestMultiApproximatorMenuDialog); break;
       case ProgramType::testMultiCanvas: p.reset(new TestMultiCanvasMenuDialog); break;
-      case ProgramType::testMultipleChoiceQuestion: p.reset(new TestMultipleChoiceQuestionMenuDialog); break;
+      case ProgramType::testMultipleChoiceQuestion:
+        assert(!"TODO");
+        //p.reset(new TestMultipleChoiceQuestionMenuDialog);
+      break;
       case ProgramType::testMultiVector:
       {
         const std::string version = "x.x";
@@ -2667,7 +2724,10 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       case ProgramType::testQtRoundedEditRectItem: p.reset(new TestQtRoundedEditRectItemMenuDialog); break;
       case ProgramType::testQtRoundedRectItem: p.reset(new TestQtRoundedRectItemMenuDialog); break;
       case ProgramType::testQtRoundedTextRectItem: p.reset(new TestQtRoundedTextRectItemMenuDialog); break;
-      case ProgramType::testQuestion: p.reset(new TestQuestionMenuDialog); break;
+      case ProgramType::testQuestion:
+        assert(!"TODO");
+        //p.reset(new TestQuestionMenuDialog);
+      break;
       case ProgramType::testReversi:
       {
         const std::string version = "x.x";

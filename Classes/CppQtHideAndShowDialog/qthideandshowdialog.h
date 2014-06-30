@@ -40,7 +40,7 @@ public:
   explicit QtHideAndShowDialog(QWidget* parent = 0) noexcept;
 
   ///Virtual destructor as this is a base class
-  virtual ~QtHideAndShowDialog() noexcept {}
+  virtual ~QtHideAndShowDialog() noexcept;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;

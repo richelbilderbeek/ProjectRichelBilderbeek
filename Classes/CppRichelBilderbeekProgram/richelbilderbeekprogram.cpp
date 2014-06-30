@@ -98,7 +98,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::mazeCreatorVcl: p.reset(new ProgramMazeCreatorVcl); break;
     case ProgramType::maziak: p.reset(new ProgramMaziak); break;
     case ProgramType::maziakVcl: p.reset(new ProgramMaziakVcl); break;
-    case ProgramType::metZnDrieen: p.reset(new ProgramMetZnDrieen); break;
+    //case ProgramType::metZnDrieen: p.reset(new ProgramMetZnDrieen); break;
     case ProgramType::metZnDrieenVcl: p.reset(new ProgramMetZnDrieenVcl); break;
     case ProgramType::midiLessonCreator: p.reset(new ProgramMidiLessonCreator); break;
     case ProgramType::morpher: p.reset(new ProgramMorpher); break;
@@ -115,7 +115,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::picToCode: p.reset(new ProgramPicToCode); break;
     case ProgramType::pixelator: p.reset(new ProgramPixelator); break;
     case ProgramType::pixelatorVcl: p.reset(new ProgramPixelatorVcl); break;
-    case ProgramType::pokeVolley: p.reset(new ProgramPokeVolley); break;
+    case ProgramType::pokeVolleyVcl: p.reset(new ProgramPokeVolleyVcl); break;
     case ProgramType::pong: p.reset(new ProgramPong); break;
     case ProgramType::preDickAdvocaTor: p.reset(new ProgramPreDickAdvocaTor); break;
     case ProgramType::primeExpert: p.reset(new ProgramPrimeExpert); break;
@@ -143,11 +143,11 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::simImmuneResponse: p.reset(new ProgramSimImmuneResponse); break;
     case ProgramType::simMysteryMachine: p.reset(new ProgramSimMysteryMachine); break;
     case ProgramType::simplifyNewick: p.reset(new ProgramSimplifyNewick); break;
-    case ProgramType::simPredator: p.reset(new ProgramSimPredator); break;
+    case ProgramType::simPredatorVcl: p.reset(new ProgramSimPredatorVcl); break;
     case ProgramType::simStagecraft: p.reset(new ProgramSimStagecraft); break;
     case ProgramType::soaSim: p.reset(new ProgramSoaSim); break;
     case ProgramType::solvePuzzleX: p.reset(new ProgramSolvePuzzleX); break;
-    case ProgramType::spaceHarry: p.reset(new ProgramSpaceHarry); break;
+    //case ProgramType::spaceHarry: p.reset(new ProgramSpaceHarry); break;
     case ProgramType::spaceHarryVcl: p.reset(new ProgramSpaceHarryVcl); break;
     case ProgramType::staircaseCardCreator: p.reset(new ProgramStaircaseCardCreator); break;
     case ProgramType::stateObserver: p.reset(new ProgramStateObserver); break;

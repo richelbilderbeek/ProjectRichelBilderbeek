@@ -37,6 +37,11 @@ ribi::QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent) noexcept
 
 }
 
+ribi::QtHideAndShowDialog::~QtHideAndShowDialog() noexcept
+{
+
+}
+
 void ribi::QtHideAndShowDialog::close_child()
 {
   m_show_child = false;

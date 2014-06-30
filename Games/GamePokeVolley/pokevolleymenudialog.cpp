@@ -58,7 +58,7 @@ ribi::Help ribi::PokeVolleyMenuDialog::GetHelp() const noexcept
 boost::shared_ptr<const ribi::Program> ribi::PokeVolleyMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
-    new ProgramPokeVolley
+    new ProgramPokeVolleyVcl
   };
   assert(p);
   return p;

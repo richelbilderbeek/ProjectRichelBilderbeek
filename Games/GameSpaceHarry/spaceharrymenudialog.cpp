@@ -1,3 +1,4 @@
+/*
 #include "spaceharrymenudialog.h"
 
 #include <cassert>
@@ -69,3 +70,4 @@ std::vector<std::string> ribi::SpaceHarryMenuDialog::GetVersionHistory() const n
     "2013-11-07: version 1.1: conformized to ProjectRichelBilderbeekConsole"
   };
 }
+*/

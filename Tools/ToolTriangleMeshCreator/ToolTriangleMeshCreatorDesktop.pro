@@ -1,6 +1,3 @@
-QMAKE_CXXFLAGS_DEBUG += -pg
-QMAKE_LFLAGS_DEBUG += -pg
-
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
@@ -25,5 +22,10 @@ include(../../Classes/CppXml/CppXml.pri)
 #Desktop
 include(../../Classes/CppQtNavigationableGraphicsView/CppQtNavigationableGraphicsView.pri)
 include(../../Tools/ToolTriangleMeshCreator/ToolTriangleMeshCreatorDesktop.pri)
+
+#gprof
+QMAKE_CXXFLAGS_DEBUG += -pg
+QMAKE_LFLAGS_DEBUG += -pg
+
 
 SOURCES += qtmain.cpp
