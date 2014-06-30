@@ -1,13 +1,15 @@
 #!/bin/sh
-echo "Removing user file"
-rm *.pro.user
+#echo "Removing user file"
+#rm *.pro.user
 
 echo "Creating profile executable"
 
 #Yes, must use '-config debug', otherwise gprof gives the following error:
 #  'file './ToolTriangleMeshCreatorConsole.exe' has no symbols'
 qmake -config debug ToolTriangleMeshCreatorConsole.pro
-make clean
+
+#make clean
+
 make
 
 #echo "Removing makefile"
