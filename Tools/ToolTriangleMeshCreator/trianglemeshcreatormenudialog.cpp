@@ -530,6 +530,8 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleMeshCreatorMenuDialog::Test");
+  const bool verbose = false;
+  const int testing_depth = 1;
   {
     TriangleMeshCreatorMenuDialog d;
     d.Execute( {"TriangleMeshCreator", "--help" } );
@@ -578,6 +580,8 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         "--profile"
       }
     );
+    if (testing_depth < 2) return;
+
     d.Execute(
       {
         "TriangleMeshCreator",
@@ -593,24 +597,10 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         "--profile"
       }
     );
-    /*
-    d.Execute(
-      {
-        "TriangleMeshCreator",
-        "--layer_height","1",
-        "--WKT", "POLYGON((10 10,10 -10,-10 -10,-10 10))",
-        "--strategy", "1",
-        "--n_layers", "3",
-        "--fraction", "0.5",
-        "--triangle_max_area", "0.001",
-        "--triangle_min_angle", "20.0",
-        "--profile"
-      }
-    );
-    assert(!"Yay, pre-221 works");
-    */
-    //#define FIX_ISSUE_221
-    #ifdef  FIX_ISSUE_221
+
+    if (testing_depth < 3) return;
+
+    if (verbose) { TRACE("Testing mesh of issue #221"); }
     d.Execute(
       {
         "TriangleMeshCreator",
@@ -625,10 +615,6 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
         "--profile"
       }
     );
-    assert(!"Yay, issue 221 fixed");
-    #endif
-
-
   }
   TRACE("Finished ribi::TriangleMeshCreatorMenuDialog::Test successfully");
 }
