@@ -1,10 +1,16 @@
 #!/bin/bash
 set -u
 
-#FILE=../build-ToolTriangleMeshCreatorConsole-Desktop_Qt_5_1_1_MinGW_32bit-Release/release/ToolTriangleMeshCreatorConsole.exe
-FILE=../build-ToolTriangleMeshCreatorConsole-Desktop_Qt_5_1_1_MinGW_32bit-Debug/debug/ToolTriangleMeshCreatorConsole.exe
+FILE=../build-ToolTriangleMeshCreatorConsole-Desktop_Qt_5_1_1_MinGW_32bit-Release/release/ToolTriangleMeshCreatorConsole.exe
+#FILE=../build-ToolTriangleMeshCreatorConsole-Desktop_Qt_5_1_1_MinGW_32bit-Debug/debug/ToolTriangleMeshCreatorConsole.exe
 
-for triangle_max_area in 8.0 4.0 2.0 1.0 0.5 0.25
+OUTPUT=ToolTriangleMeshCreatorMeasureRuntimeSpeedOutput.txt
+
+echo "Start" > $OUTPUT
+
+
+for n_layers in {1..10}
 do
- $FILE --layer_height 1 --WKT "POLYGON((10 10,10 -10,-10 -10,-10 10))" --strategy 1 --n_layers 10 --fraction 0.9 --triangle_max_area $triangle_max_area --triangle_min_angle 20.0 --profile
+ #echo $n_layers >> $OUTPUT
+ $FILE --layer_height 1 --WKT "POLYGON((10 10,10 -10,-10 -10,-10 10))" --strategy 1 --n_layers $n_layers --fraction 0.9 --triangle_max_area 0.1 --triangle_min_angle 20.0 --profile >> $OUTPUT
 done

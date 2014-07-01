@@ -37,6 +37,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #endif
   const bool verbose_show_faces = false;
   const bool verbose_show_cell_indices = false;
+  //const bool verbose = true;
 
   for (const std::string& folder: GetAllFolders())
   {
@@ -47,7 +48,8 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     assert(ribi::fileio::FileIo().IsFolder(folder));
   }
 
-  //Remove cells with less than 8 faces or less than 8 faces with an owner
+  if (verbose) { TRACE("Remove cells with less than 8 faces or less than 8 faces with an owner"); }
+
   assert(
     std::count_if(m_cells.begin(),m_cells.end(),
       [strategy](const boost::shared_ptr<Cell> cell)
@@ -94,7 +96,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   );
   #endif
 
-  //Remove faces without owners
+  if (verbose) { TRACE("Remove faces without owners"); }
   assert(
     std::count_if(m_faces.begin(),m_faces.end(),
       [](const boost::shared_ptr<const Face> face)
@@ -118,7 +120,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   );
   #endif // SO_THIS_CAN_BE_REMOVED_2
 
-  //Remove cells with less than 8 faces or less than 8 faces with an owner
+  if (verbose) { TRACE("Remove cells with less than 8 faces or less than 8 faces with an owner"); }
   assert(
     std::count_if(m_cells.begin(),m_cells.end(),
       [strategy](const boost::shared_ptr<Cell> cell)
@@ -168,8 +170,8 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   );
   #endif // SO_THIS_CAN_BE_REMOVED_2
 
-  //Check that all Faces know they belong to their Cell
   #ifndef NDEBUG
+  if (verbose) { TRACE("Check that all Faces know they belong to their Cell");
   for (const auto cell: m_cells)
   {
     for (const auto face: cell->GetFaces())
@@ -181,8 +183,8 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
   #endif
 
-  //Check that all Cells know they own their Faces
   #ifndef NDEBUG
+  if (verbose) { TRACE("Check that all Cells know they own their Faces");
   for (const auto face: m_faces)
   {
     assert(face);
@@ -465,8 +467,31 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
   //#4: Within each boundary, sort the faces by owner index
   //Use a bubble sort to order them
+  //#220: Try using a quicksort instead
   if (!m_faces.empty())
   {
+    #define ISSUE_220_USE_QUICKSORT
+    #ifdef  ISSUE_220_USE_QUICKSORT
+    const auto f = [](
+      const boost::shared_ptr<Face>& a,
+      const boost::shared_ptr<Face>& b) -> bool
+    {
+      if (a->GetBoundaryType() != b->GetBoundaryType()) return true;
+      if (a->GetConstOwner()->GetIndex() > b->GetConstOwner()->GetIndex())
+      {
+        return false;
+      }
+      if (a->GetConstOwner()->GetIndex() == b->GetConstOwner()->GetIndex()
+        && a->GetNeighbour() && b->GetNeighbour()
+        && a->GetNeighbour()->GetIndex() > b->GetNeighbour()->GetIndex()
+      )
+      {
+        return false;
+      }
+      return true;
+    };
+    std::sort(std::begin(m_faces),std::end(m_faces),f);
+    #else
     while (1)
     {
       bool do_break = true;
@@ -492,6 +517,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       }
       if (do_break) break;
     }
+    #endif
   }
 
 

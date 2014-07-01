@@ -52,9 +52,9 @@ struct Template
     const std::vector<boost::shared_ptr<Point>>& points
   );
   Template(const Template& ) = delete;
-  Template(      Template&&) = delete;
+  //Template(      Template&&) = delete;
   Template& operator=(const Template& ) = delete;
-  Template& operator=(      Template&&) = delete;
+  //Template& operator=(      Template&&) = delete;
   ~Template() noexcept {}
 
   ///ints are m_points indices
@@ -78,8 +78,8 @@ struct Template
   static void Test() noexcept;
   #endif
 
-  friend void boost::checked_delete<>(      Template* x);
-  friend void boost::checked_delete<>(const Template* x);
+  friend void boost::checked_delete<>(      Template*);
+  friend void boost::checked_delete<>(const Template*);
   friend class boost::detail::sp_ms_deleter<      Template>;
   friend class boost::detail::sp_ms_deleter<const Template>;
 };

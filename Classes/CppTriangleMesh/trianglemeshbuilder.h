@@ -42,9 +42,9 @@ class TriangleMeshBuilder
 
   private:
   TriangleMeshBuilder(const TriangleMeshBuilder& ) = delete;
-  TriangleMeshBuilder(      TriangleMeshBuilder&&) = delete;
+  //TriangleMeshBuilder(      TriangleMeshBuilder&&) = delete;
   TriangleMeshBuilder& operator=(const TriangleMeshBuilder& ) = delete;
-  TriangleMeshBuilder& operator=(      TriangleMeshBuilder&&) = delete;
+  //TriangleMeshBuilder& operator=(      TriangleMeshBuilder&&) = delete;
   ~TriangleMeshBuilder() noexcept {}
 
   boost::shared_ptr<TriangleMeshBuilderImpl> m_impl;

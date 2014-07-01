@@ -12,8 +12,8 @@ qmake -config debug ToolTriangleMeshCreatorConsole.pro
 
 make
 
-#echo "Removing makefile"
 #rm Makefile
+#echo "Removing makefile"
 
 #echo "Removing object files"
 #rm *.o
