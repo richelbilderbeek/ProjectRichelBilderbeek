@@ -171,7 +171,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #endif // SO_THIS_CAN_BE_REMOVED_2
 
   #ifndef NDEBUG
-  if (verbose) { TRACE("Check that all Faces know they belong to their Cell");
+  if (verbose) { TRACE("Check that all Faces know they belong to their Cell"); }
   for (const auto cell: m_cells)
   {
     for (const auto face: cell->GetFaces())
@@ -184,7 +184,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #endif
 
   #ifndef NDEBUG
-  if (verbose) { TRACE("Check that all Cells know they own their Faces");
+  if (verbose) { TRACE("Check that all Cells know they own their Faces"); }
   for (const auto face: m_faces)
   {
     assert(face);
@@ -473,17 +473,21 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     #define ISSUE_220_USE_QUICKSORT
     #ifdef  ISSUE_220_USE_QUICKSORT
     const auto f = [](
-      const boost::shared_ptr<Face>& a,
-      const boost::shared_ptr<Face>& b) -> bool
+      const boost::shared_ptr<Face>& lhs,
+      const boost::shared_ptr<Face>& rhs) -> bool
     {
-      if (a->GetBoundaryType() != b->GetBoundaryType()) return true;
-      if (a->GetConstOwner()->GetIndex() > b->GetConstOwner()->GetIndex())
+      if (!lhs) return true;
+      if (!rhs) return true;
+      assert(lhs);
+      assert(rhs);
+      if (lhs->GetBoundaryType() != rhs->GetBoundaryType()) return true;
+      if (lhs->GetConstOwner()->GetIndex() > rhs->GetConstOwner()->GetIndex())
       {
         return false;
       }
-      if (a->GetConstOwner()->GetIndex() == b->GetConstOwner()->GetIndex()
-        && a->GetNeighbour() && b->GetNeighbour()
-        && a->GetNeighbour()->GetIndex() > b->GetNeighbour()->GetIndex()
+      if (lhs->GetConstOwner()->GetIndex() == rhs->GetConstOwner()->GetIndex()
+        && lhs->GetNeighbour() && rhs->GetNeighbour()
+        && lhs->GetNeighbour()->GetIndex() > rhs->GetNeighbour()->GetIndex()
       )
       {
         return false;
