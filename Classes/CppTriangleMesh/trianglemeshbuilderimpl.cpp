@@ -21,7 +21,11 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   const std::vector<boost::shared_ptr<Cell>>& cells,
   const std::string& mesh_filename,
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function,
-  const CreateVerticalFacesStrategy strategy,
+  const CreateVerticalFacesStrategy
+  #ifndef NDEBUG
+    strategy
+  #endif
+  ,
   const bool verbose
 ) : m_cells(cells),
     //#1: Partition faces in boundaries
@@ -44,6 +48,29 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
 
   //Remove cells with less than 8 faces or less than 8 faces with an owner
+  assert(
+    std::count_if(m_cells.begin(),m_cells.end(),
+      [strategy](const boost::shared_ptr<Cell> cell)
+      {
+        const std::vector<boost::shared_ptr<Face>> faces { cell->GetFaces() };
+        const int n_faces_expected {
+          strategy == CreateVerticalFacesStrategy::one_face_per_square ? 5 : 8
+        };
+        assert(static_cast<int>(faces.size()) == n_faces_expected);
+        return std::count_if(faces.begin(),faces.end(),
+          [](const boost::shared_ptr<Face> face)
+          {
+            assert(face);
+            assert(face->GetConstOwner());
+            return face->GetConstOwner();
+          }
+        ) < n_faces_expected;
+      }
+    ) == 0
+    && "So the code below can be removed #1"
+  );
+  #define SO_THIS_CAN_BE_REMOVED_1
+  #ifndef SO_THIS_CAN_BE_REMOVED_1
   m_cells.erase(
     std::remove_if(m_cells.begin(),m_cells.end(),
       [strategy](const boost::shared_ptr<Cell> cell)
@@ -65,9 +92,21 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     ),
     m_cells.end()
   );
+  #endif
 
+  //Remove faces without owners
+  assert(
+    std::count_if(m_faces.begin(),m_faces.end(),
+      [](const boost::shared_ptr<const Face> face)
+      {
+        return !face->GetConstOwner();
+      }
+    ) == 0
+    && "So the code below can be removed #2"
+  );
 
-
+  #define SO_THIS_CAN_BE_REMOVED_2
+  #ifndef SO_THIS_CAN_BE_REMOVED_2
   m_faces.erase(
     std::remove_if(m_faces.begin(),m_faces.end(),
       [](const boost::shared_ptr<const Face> face)
@@ -77,8 +116,34 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     ),
     m_faces.end()
   );
+  #endif // SO_THIS_CAN_BE_REMOVED_2
 
   //Remove cells with less than 8 faces or less than 8 faces with an owner
+  assert(
+    std::count_if(m_cells.begin(),m_cells.end(),
+      [strategy](const boost::shared_ptr<Cell> cell)
+      {
+        const std::vector<boost::shared_ptr<Face>> faces { cell->GetFaces() };
+        const int n_faces_expected {
+          CreateVerticalFacesStrategies().GetFacesPerCell(strategy)
+        };
+
+        assert(static_cast<int>(faces.size()) == n_faces_expected);
+        return std::count_if(faces.begin(),faces.end(),
+          [](const boost::shared_ptr<Face> face)
+          {
+            assert(face);
+            assert(face->GetConstOwner());
+            return face->GetConstOwner();
+          }
+        ) < n_faces_expected;
+      }
+    ) == 0
+    && "So the code below can be removed #3"
+  );
+
+  #define SO_THIS_CAN_BE_REMOVED_2
+  #ifndef SO_THIS_CAN_BE_REMOVED_2
   m_cells.erase(
     std::remove_if(m_cells.begin(),m_cells.end(),
       [strategy](const boost::shared_ptr<Cell> cell)
@@ -101,8 +166,10 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     ),
     m_cells.end()
   );
+  #endif // SO_THIS_CAN_BE_REMOVED_2
 
   //Check that all Faces know they belong to their Cell
+  #ifndef NDEBUG
   for (const auto cell: m_cells)
   {
     for (const auto face: cell->GetFaces())
@@ -112,8 +179,10 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       );
     }
   }
+  #endif
 
   //Check that all Cells know they own their Faces
+  #ifndef NDEBUG
   for (const auto face: m_faces)
   {
     assert(face);
@@ -146,6 +215,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       );
     }
   }
+  #endif
 
   //Start setting the indices
   //Unset all Cell indices
@@ -182,11 +252,11 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       // * 1 = Does it have a neighbour?
       // * 2 = Assigned owner index yes/no?
       // * 3 = Assigned neighbour index yes/no?
-
-      if (m_faces[i]->GetNeighbour())
+      auto this_face = m_faces[i];
+      if (this_face->GetNeighbour())
       {
-        const int owner_index = m_faces[i]->GetConstOwner()->GetIndex();
-        const int neighbour_index = m_faces[i]->GetNeighbour()->GetIndex();
+        const int owner_index = this_face->GetConstOwner()->GetIndex();
+        const int neighbour_index = this_face->GetNeighbour()->GetIndex();
         if (owner_index == Cell::sm_cell_no_index)
         {
           //Scenario E or F
@@ -195,7 +265,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
             //Scenario F: No owner index, no neighbour index
             assert(owner_index == Cell::sm_cell_no_index);
             //Assign index to owner
-            m_faces[i]->GetNonConstOwner()->SetIndex(cell_index);
+            this_face->GetNonConstOwner()->SetIndex(cell_index);
             ++cell_index;
           }
           else
@@ -205,7 +275,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
             assert(neighbour_index != Cell::sm_cell_no_index);
             //Assign index to owner, transfer ownership if
             //neighbour's index is less than owner's index
-            m_faces[i]->GetNonConstOwner()->SetIndex(cell_index);
+            this_face->GetNonConstOwner()->SetIndex(cell_index);
             ++cell_index;
           }
         }
@@ -218,7 +288,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
             //Scenario C: An owner index, no neighbour index
             //Assign index to neighbour, transfer ownership if
             //neighbour's index is less than owner's index
-            m_faces[i]->GetNonConstNeighbour()->SetIndex(cell_index);
+            this_face->GetNonConstNeighbour()->SetIndex(cell_index);
             ++cell_index;
           }
           else
@@ -235,9 +305,9 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       {
         //Scenario A or B
         //No neighbour at all
-        assert(!m_faces[i]->GetNeighbour());
+        assert(!this_face->GetNeighbour());
 
-        auto owner = m_faces[i]->GetNonConstOwner();
+        auto owner = this_face->GetNonConstOwner();
         assert(owner);
         if (owner->GetIndex() == Cell::sm_cell_no_index)
         {
@@ -253,10 +323,10 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
           assert(owner->GetIndex() < cell_index);
         }
       }
-      assert(m_faces[i]->GetConstOwner()->GetIndex() != Cell::sm_cell_no_index);
+      assert(this_face->GetConstOwner()->GetIndex() != Cell::sm_cell_no_index);
     }
 
-    //Might fix #221:
+    //Fixed #221:
     //Assign the cells without an index an index
     for (auto& cell: m_cells)
     {
@@ -268,11 +338,13 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     }
   }
 
+  #ifndef NDEBUG
   for (auto cell: m_cells)
   {
     assert(cell->GetIndex() != Cell::sm_cell_no_index
       && "All cells must have been assigned an index, #221");
   }
+  #endif
 
   //Show all cells' indices
   if (verbose_show_cell_indices)
@@ -309,7 +381,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
         assert(i >= 0);
         assert(i < static_cast<int>(m_cells.size()));
         assert(m_cells[i]);
-        const int this_index = m_cells[i]->GetIndex();
+        const auto this_index = m_cells[i]->GetIndex();
         #ifndef NDEBUG
         if (this_index == Cell::sm_cell_no_index)
         {
@@ -584,7 +656,6 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       );
 
     const auto p = CreateCells();
-    //const std::pair<std::string,std::string> p { CreateCells() };
     const std::string& out_owner { p.first };
     const std::string& out_neighbour { p.second};
     fo << out_owner;
