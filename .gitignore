@@ -2391,3 +2391,4 @@ boundary
 ToolTriangleConsole
 ToolTriangleMeshDesktop
 gmon.out
+gprof.txt

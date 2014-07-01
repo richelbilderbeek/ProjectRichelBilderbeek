@@ -37,6 +37,8 @@ struct Cell
 
   Coordinat3D CalculateCenter() const noexcept;
 
+
+  //#220: This is the number 2 slowest function
   int GetIndex() const noexcept { return m_index; }
 
   ///Sets the Faces of a Cell by their index

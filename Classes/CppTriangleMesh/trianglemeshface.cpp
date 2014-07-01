@@ -161,8 +161,19 @@ void ribi::trim::Face::DoExtractCoordinats() const
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
 {
-  
+  //#220: This is the number 3 slowest function
   assert(m_belongs_to.size() <= 2);
+
+  #define FIX_ISSUE_220
+  #ifdef FIX_ISSUE_220
+  assert(
+    std::count_if(
+      m_belongs_to.begin(),m_belongs_to.end(),
+      [](const boost::weak_ptr<const Cell> cell) { return !cell.lock(); }
+    ) == 0
+    && "Ha, we can save the statement below to increase speed"
+  );
+  #else
   m_belongs_to.erase(
     std::remove_if(
       m_belongs_to.begin(),m_belongs_to.end(),
@@ -170,6 +181,7 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const
     ),
     m_belongs_to.end()
   );
+  #endif
   boost::shared_ptr<const Cell> p;
   if (m_belongs_to.size() < 2) return p;
   assert(m_belongs_to[0].lock() != m_belongs_to[1].lock());
@@ -187,8 +199,17 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::Face::GetNonConstNeighbour() noe
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetConstOwner() const noexcept
 {
-  //TODO: This is the slowest function
+  //#220: This is the number 1 slowest function
   assert(m_belongs_to.size() <= 2);
+
+  assert(
+    std::count_if(
+      m_belongs_to.begin(),m_belongs_to.end(),
+      [](const boost::weak_ptr<const Cell> cell) { return !cell.lock(); }
+    ) >= 0
+    && "Cells might and might not be deleted in other contexts"
+  );
+
   m_belongs_to.erase(
     std::remove_if(
       m_belongs_to.begin(),m_belongs_to.end(),
@@ -196,6 +217,10 @@ boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetConstOwner() cons
     ),
     m_belongs_to.end()
   );
+
+  assert( (m_belongs_to.empty() || m_belongs_to.size() > 0)
+    && "There might have been no owner assigned yet");
+
   if (m_belongs_to.empty())
   {
     return nullptr;

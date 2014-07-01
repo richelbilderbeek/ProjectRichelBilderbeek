@@ -601,6 +601,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     if (testing_depth < 3) return;
 
     if (verbose) { TRACE("Testing mesh of issue #221"); }
+
     d.Execute(
       {
         "TriangleMeshCreator",
