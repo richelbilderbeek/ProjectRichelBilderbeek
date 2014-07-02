@@ -36,6 +36,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
 
+#include "apfloat.h"
+
 struct QPen;
 struct QRect;
 struct QRectF;
@@ -50,6 +52,7 @@ struct Geometry
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> ApCoordinat3D;
 
   typedef boost::geometry::model::linestring<Coordinat2D> Linestring;
   typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
@@ -68,6 +71,12 @@ struct Geometry
     const Coordinat3D& a,
     const Coordinat3D& b
   ) const noexcept;
+
+  ApCoordinat3D CalcCrossProduct(
+    const ApCoordinat3D& a,
+    const ApCoordinat3D& b
+  ) const noexcept;
+
 
   double CalcDotProduct(
     const Coordinat3D& a,
@@ -383,6 +392,11 @@ struct Geometry
     const double scale_origin_x = 0.0,
     const double scale_origin_y = 0.0
   ) const noexcept;
+
+  ApCoordinat3D ToApfloat(const Coordinat3D& p) const noexcept;
+
+  ///Will throw a boost::bad_lexical_cast if it fails
+  double ToDouble(const apfloat& a) const;
 
   ///Convert a linestring to a closed polygon. If the linestring
   ///is open, close it

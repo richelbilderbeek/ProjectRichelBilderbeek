@@ -89,13 +89,26 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Geo
   return center;
 }
 
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Geometry::CalcCrossProduct(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
+ribi::Geometry::Coordinat3D ribi::Geometry::CalcCrossProduct(
+  const Coordinat3D& a,
+  const Coordinat3D& b
 ) const noexcept
 {
   using boost::geometry::get;
-  return boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(
+  return Coordinat3D(
+    (get<1>(a) * get<2>(b)) - (get<2>(a) * get<1>(b)),
+    (get<2>(a) * get<0>(b)) - (get<0>(a) * get<2>(b)),
+    (get<0>(a) * get<1>(b)) - (get<1>(a) * get<0>(b))
+  );
+}
+
+ribi::Geometry::ApCoordinat3D ribi::Geometry::CalcCrossProduct(
+  const ApCoordinat3D& a,
+  const ApCoordinat3D& b
+) const noexcept
+{
+  using boost::geometry::get;
+  return ApCoordinat3D(
     (get<1>(a) * get<2>(b)) - (get<2>(a) * get<1>(b)),
     (get<2>(a) * get<0>(b)) - (get<0>(a) * get<2>(b)),
     (get<0>(a) * get<1>(b)) - (get<1>(a) * get<0>(b))
@@ -135,22 +148,25 @@ std::vector<double> ribi::Geometry::CalcPlane(
   using boost::geometry::cs::cartesian;
   using boost::geometry::get;
   using boost::geometry::model::point;
-  const point<double,3,cartesian> v1 = p3 - p1;
-  const point<double,3,cartesian> v2 = p2 - p1;
+  const auto v1 = p3 - p1;
+  const auto v2 = p2 - p1;
 
-  const point<double,3,cartesian> cross = CalcCrossProduct(v1,v2);
+  //Convert to arbitrary precision float
+  const auto v1_ap = ToApfloat(v1);
+  const auto v2_ap = ToApfloat(v2);
 
-  const double a = get<0>(cross);
-  const double b = get<1>(cross);
-  const double c = get<2>(cross);
+  const auto cross = CalcCrossProduct(v1_ap,v2_ap);
 
-  const double x = get<0>(p1);
-  const double y = get<1>(p1);
-  const double z = get<2>(p1);
+  const auto a = get<0>(cross);
+  const auto b = get<1>(cross);
+  const auto c = get<2>(cross);
 
-  const double d = ((a * x) + (b * y) + (c * z));
-  return { a,b,c,d };
+  const auto x = get<0>(p1);
+  const auto y = get<1>(p1);
+  const auto z = get<2>(p1);
+  const auto d = ((a * x) + (b * y) + (c * z));
 
+  return { ToDouble(a),ToDouble(b),ToDouble(c),ToDouble(d) };
 }
 
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcProjection(
@@ -1151,6 +1167,19 @@ void ribi::Geometry::Test() noexcept
     const double expected = 5.0;
     assert(std::abs(distance-expected) < 0.01);
   }
+  if (verbose) TRACE("apfloat conversion to double");
+  {
+    const apfloat x = 1.0;
+    const double y = g.ToDouble(x);
+    const apfloat z = x;
+    assert(y == z);
+    std::cout
+      << x << '\n'
+      << y << '\n'
+      << z << '\n'
+    ;
+
+  }
   if (verbose) TRACE("IsClockWise of two angles, doubles");
   {
     assert( g.IsClockwise(-2.5 * pi,-2.0 * pi));
@@ -1997,6 +2026,24 @@ void ribi::Geometry::Test() noexcept
   TRACE("Finished ribi::Geometry::Test successfully");
 }
 #endif
+
+ribi::Geometry::ApCoordinat3D ribi::Geometry::ToApfloat(const Coordinat3D& p) const noexcept
+{
+  using boost::geometry::get;
+  return ApCoordinat3D(
+    get<0>(p),
+    get<1>(p),
+    get<2>(p)
+  );
+}
+
+double ribi::Geometry::ToDouble(const apfloat& a) const
+{
+  std::stringstream s;
+  s << a;
+  double x = boost::lexical_cast<double>(s.str());
+  return x;
+}
 
 ribi::Geometry::Polygon ribi::Geometry::ToPolygon(const Linestring& linestring) const noexcept
 {
