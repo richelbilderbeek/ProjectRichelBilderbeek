@@ -470,7 +470,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   //#220: Try using a quicksort instead
   if (!m_faces.empty())
   {
-    #define ISSUE_220_USE_QUICKSORT
+    //#define ISSUE_220_USE_QUICKSORT
     #ifdef  ISSUE_220_USE_QUICKSORT
     const auto f = [](
       const boost::shared_ptr<Face>& lhs,
