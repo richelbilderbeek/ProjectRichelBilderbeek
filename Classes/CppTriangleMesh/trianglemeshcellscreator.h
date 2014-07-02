@@ -26,13 +26,14 @@ namespace trim {
 /// - pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files
 class CellsCreator
 {
+
   friend class CellFactory;
   friend class Dialog;
 
   CellsCreator(const CellsCreator&) = delete;
-  //CellsCreator(CellsCreator&&) = delete;
+  CellsCreator(CellsCreator&&) = delete;
   CellsCreator& operator=(const CellsCreator&) = delete;
-  //CellsCreator& operator=(const CellsCreator&&) = delete;
+  CellsCreator& operator=(const CellsCreator&&) = delete;
 
   void Clear() noexcept { m_cells.clear(); }
 

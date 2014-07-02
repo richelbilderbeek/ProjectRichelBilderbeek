@@ -465,14 +465,12 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       }
     }
   }
-  //#4: Within each boundary, sort the faces by owner index
-  //Use a bubble sort to order them
-  //#220: Try using a quicksort instead
+  //#4: Within each boundary, sort the faces by
+  // 1) boundary type
+  // 2) its owner its (cell)index
+  // 3) its neighbour its (cell)index
   if (!m_faces.empty())
   {
-    #define ISSUE_220_USE_QUICKSORT
-    #ifdef  ISSUE_220_USE_QUICKSORT
-    std::clog << "ISSUE_220_USE_QUICKSORT" << std::endl;
     const auto f = [](
       const boost::shared_ptr<Face>& lhs,
       const boost::shared_ptr<Face>& rhs) -> bool
@@ -481,55 +479,30 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       if (!rhs) return true;
       assert(lhs);
       assert(rhs);
-      if (lhs->GetBoundaryType() != rhs->GetBoundaryType())
       {
-        return lhs->GetBoundaryType() < rhs->GetBoundaryType();
+        const auto lhs_boundary_type = lhs->GetBoundaryType();
+        const auto rhs_boundary_type = rhs->GetBoundaryType();
+        if (lhs_boundary_type != rhs_boundary_type)
+        {
+          return lhs_boundary_type < rhs_boundary_type;
+        }
       }
-      if (lhs->GetConstOwner()->GetIndex() != rhs->GetConstOwner()->GetIndex())
       {
-        return lhs->GetConstOwner()->GetIndex() < rhs->GetConstOwner()->GetIndex();
+        const auto lhs_owner_index = lhs->GetConstOwner()->GetIndex();
+        const auto rhs_owner_index = rhs->GetConstOwner()->GetIndex();
+        if (lhs_owner_index != rhs_owner_index)
+        {
+          return lhs_owner_index < rhs_owner_index;
+        }
       }
-      if ( lhs->GetNeighbour() && !rhs->GetNeighbour()) return true;
-      if (!lhs->GetNeighbour() &&  rhs->GetNeighbour()) return false;
-      if (!lhs->GetNeighbour() && !rhs->GetNeighbour()) return false;
-
-      return lhs->GetNeighbour()->GetIndex() < rhs->GetNeighbour()->GetIndex();
+      const auto lhs_neighbour = lhs->GetNeighbour();
+      const auto rhs_neighbour = lhs->GetNeighbour();
+      if ( lhs_neighbour && !rhs_neighbour) return true;
+      if (!lhs_neighbour && (rhs_neighbour || !rhs_neighbour)) return false;
+      return lhs_neighbour->GetIndex() < rhs_neighbour->GetIndex();
     };
     std::sort(std::begin(m_faces),std::end(m_faces),f);
-    #else
-    std::clog << "NOT ISSUE_220_USE_QUICKSORT" << std::endl;
-    while (1)
-    {
-      bool do_break = true;
-      const int n_faces = static_cast<int>(m_faces.size());
-      for (int i=0; i!=n_faces-1; ++i)
-      {
-        const auto a = m_faces[i  ];
-        const auto b = m_faces[i+1];
-        if (a->GetBoundaryType() != b->GetBoundaryType()) continue;
-        if (a->GetConstOwner()->GetIndex() > b->GetConstOwner()->GetIndex())
-        {
-          std::swap(m_faces[i],m_faces[i+1]);
-          do_break = false;
-        }
-        if (a->GetConstOwner()->GetIndex() == b->GetConstOwner()->GetIndex()
-          && a->GetNeighbour() && b->GetNeighbour()
-          && a->GetNeighbour()->GetIndex() > b->GetNeighbour()->GetIndex()
-        )
-        {
-          std::swap(m_faces[i],m_faces[i+1]);
-          do_break = false;
-        }
-      }
-      if (do_break) break;
-    }
-    #endif
   }
-
-
-
-
-
 
   //#5: Set the Faces' indices equal to their position in the vector
   {

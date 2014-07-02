@@ -769,6 +769,45 @@ void ribi::trim::CellsCreator::Test() noexcept
       )
     };
   }
+
+  //From bug
+  {
+    typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+    const double x1 = 0.0004035051226622692510832834944523028752882964909076690673828125;
+    const double y1 = 0.00023296416881187433805568132161312178141088224947452545166015625;
+    const double z1 = 0; //left out the '.0' intentionally
+
+    const double x2 = 0.000403505141811931846741734464245610070065595209598541259765625;
+    const double y2 = 0.00023296414405748076185791173298156309101614169776439666748046875;
+    const double z2 = 0; //left out the '.0' intentionally
+
+    const double x3 = 0.0004035051226622692510832834944523028752882964909076690673828125;
+    const double y3 = 0.00023296416881187433805568132161312178141088224947452545166015625;
+    const double z3 = 0.00025000000000000000520417042793042128323577344417572021484375;
+
+    const double x4 = 0.000403505141811931846741734464245610070065595209598541259765625;
+    const double y4 = 0.00023296414405748076185791173298156309101614169776439666748046875;
+    const double z4 = 0.00025000000000000000520417042793042128323577344417572021484375;
+    const auto c1 = boost::make_shared<Coordinat2D>(x1,y1);
+    const auto c2 = boost::make_shared<Coordinat2D>(x2,y2);
+    const auto c3 = boost::make_shared<Coordinat2D>(x3,y3);
+    const auto c4 = boost::make_shared<Coordinat2D>(x4,y4);
+    const auto p1 = PointFactory().Create(c1);
+    const auto p2 = PointFactory().Create(c2);
+    const auto p3 = PointFactory().Create(c3);
+    const auto p4 = PointFactory().Create(c4);
+    p1->SetZ(z1 * boost::units::si::meter);
+    p2->SetZ(z2 * boost::units::si::meter);
+    p3->SetZ(z3 * boost::units::si::meter);
+    p4->SetZ(z4 * boost::units::si::meter);
+    std::vector<boost::shared_ptr<Point>> face_points;
+    face_points.push_back(p1);
+    face_points.push_back(p2);
+    face_points.push_back(p3);
+    face_points.push_back(p4);
+    assert(IsPlane(face_points));
+  }
+  assert(!"Yay, bug fixed");
   TRACE("Finished ribi::trim::CellsCreator::Test successfully");
 }
 #endif
