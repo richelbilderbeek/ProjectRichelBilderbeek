@@ -36,6 +36,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
+
+#include "apfloat.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -119,7 +121,7 @@ struct Plane
   std::vector<double> GetCoefficientsY() const;
 
   ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients,
-  std::vector<double> GetCoefficientsZ() const;
+  std::vector<apfloat> GetCoefficientsZ() const;
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;

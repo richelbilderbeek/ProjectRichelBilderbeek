@@ -282,7 +282,7 @@ std::vector<double> ribi::Plane::GetCoefficientsY() const
   return m_plane_y->GetCoefficients();
 }
 
-std::vector<double> ribi::Plane::GetCoefficientsZ() const
+std::vector<apfloat> ribi::Plane::GetCoefficientsZ() const
 {
   if (!m_plane_z)
   {

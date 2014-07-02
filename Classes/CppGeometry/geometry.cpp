@@ -140,9 +140,9 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Geo
 }
 
 std::vector<double> ribi::Geometry::CalcPlane(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+  const Coordinat3D& p1,
+  const Coordinat3D& p2,
+  const Coordinat3D& p3
 ) const noexcept
 {
   using boost::geometry::cs::cartesian;
@@ -164,7 +164,11 @@ std::vector<double> ribi::Geometry::CalcPlane(
   const auto x = get<0>(p1);
   const auto y = get<1>(p1);
   const auto z = get<2>(p1);
-  const auto d = ((a * x) + (b * y) + (c * z));
+
+  const auto term1 = a * x;
+  const auto term2 = b * y;
+  const auto term3 = c * z;
+  const auto d = term1 + term2 + term3;
 
   return { ToDouble(a),ToDouble(b),ToDouble(c),ToDouble(d) };
 }

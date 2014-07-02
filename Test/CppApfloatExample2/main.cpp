@@ -13,7 +13,6 @@ double ToDouble(const apfloat& a)
   s << a;
   double x = boost::lexical_cast<double>(s.str());
   return x;
-
 }
 
 int main()

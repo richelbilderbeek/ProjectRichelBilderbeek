@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
+#include "apfloat.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -45,8 +46,11 @@ namespace ribi {
 //    z = -A/C.x - B/C.y + D/C
 struct PlaneZ
 {
+  //typedef apfloat Double;
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::d2::point_xy<apfloat> ApCoordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> ApCoordinat3D;
   typedef std::vector<Coordinat2D> Coordinats2D;
   typedef std::vector<Coordinat3D> Coordinats3D;
 
@@ -80,13 +84,13 @@ struct PlaneZ
 
   */
   Coordinats2D CalcProjection(
-    const std::vector<Coordinat3D>& points
+    const Coordinats3D& points
   ) const;
 
   ///Throws when cannot calculate Z, which is when the plane is vertical
   double CalcZ(const double x, const double y) const;
 
-  const std::vector<double>& GetCoefficients() const noexcept { return m_coefficients; }
+  const std::vector<apfloat>& GetCoefficients() const noexcept { return m_coefficients; }
 
   ///This plane has equation 'z = Ax + By + C'
   ///Will throw if A cannot be calculated
@@ -108,9 +112,9 @@ struct PlaneZ
   ~PlaneZ() noexcept;
 
   //m_coefficients.size == 4
-  const std::vector<double> m_coefficients;
+  const std::vector<apfloat> m_coefficients;
 
-  static std::vector<double> CalcPlaneZ(
+  static std::vector<apfloat> CalcPlaneZ(
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
@@ -119,6 +123,8 @@ struct PlaneZ
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  static std::vector<apfloat> ToApfloats(const std::vector<double>& v) noexcept;
 
   ///Convert the Plane to function z(x,y), e.g
   ///'z=(2*x) + (3*y) + 5' (spaces exactly as shown)

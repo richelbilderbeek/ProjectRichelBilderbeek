@@ -47,7 +47,7 @@ ribi::PlaneZ::PlaneZ() noexcept
 ribi::PlaneZ::PlaneZ(
   const std::vector<double>& coefficients
 )
-  : m_coefficients(coefficients)
+  : m_coefficients(ToApfloats(coefficients))
 {
   #ifndef NDEBUG
   Test();
@@ -59,7 +59,9 @@ ribi::PlaneZ::PlaneZ(
   //where it should have been. If m_coefficients[2] equals zero,
   //a division by itself is prevented by throwing an exception.
   //Throw an exception as if m_coefficients[2] equalled zero
-  if (std::abs(m_coefficients[2]) < 1.0e-14)
+  //if (std::abs(m_coefficients[2]) < 1.0e-14)
+  //Nonsense with abfloats
+  if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
     throw std::logic_error("Plane (from coeffients) that can be expressed in less than 3D space");
@@ -93,7 +95,7 @@ ribi::PlaneZ::~PlaneZ() noexcept
   //OK
 }
 
-std::vector<double> ribi::PlaneZ::CalcPlaneZ(
+std::vector<apfloat> ribi::PlaneZ::CalcPlaneZ(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
@@ -493,6 +495,13 @@ void ribi::PlaneZ::Test() noexcept
   TRACE("Finished ribi::PlaneZ::Test successfully");
 }
 #endif
+
+std::vector<apfloat> ribi::PlaneZ::ToApfloats(const std::vector<double>& v) noexcept
+{
+  std::vector<apfloat> w;
+  for (const auto i: v) { w.push_back(i); }
+  return w;
+}
 
 std::string ribi::PlaneZ::ToFunction() const
 {
