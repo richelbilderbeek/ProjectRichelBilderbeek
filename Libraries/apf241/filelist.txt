@@ -1,0 +1,88 @@
+Files in the apfloat package:
+
+ap.h            General header file for compiling the whole package
+apfloat.h       Apfloat class definitions (included in ap.h)
+apcplx.h        Apcomplex class definitions
+apint.h         Apint class definitions
+aprat.h         Aprational class definitions
+baseint.h       Baseint function declarations (included in ap.h)
+bigint.h        Bigint function declarations (included in ap.h)
+modint.h        Modint class definitions (included in ap.h)
+raw.h           Modint multiplication, version specific definitions (included in modint.h)
+tapfloat.h      Transformed apfloat class definitions
+
+apcfunc.cpp     Apcomplex overloaded mathematical functions
+apcplx.cpp      Apcomplex member function implementations
+apfloat.cpp     Apfloat member function implementations
+apfunc.cpp      Apfloat overloaded mathematical functions
+apifunc.cpp     Apint overloaded mathematical functions
+apint.cpp       Apint member function implementations
+aprat.cpp       Aprational overloaded mathematical functions
+aprfunc.cpp     Aprational member function implementations
+apstruct.cpp    Apfloat raw addition and multiplication functions
+aptest.cpp      Apfloat test program for calculating pi
+aptestm.cpp     Apfloat test program for calculating pi (multi-processing version)
+aptestp.cpp     Apfloat test program for calculating pi (partial processing version)
+baseint.cpp     Baseint functions (may be version specific)
+basetest.cpp    Baseint test program
+bigint.cpp      Bigint functions (version specific)
+bigtest.cpp     Bigint test program
+blocktes.cpp    Cacheblocksize test program
+carrycrt.cpp    Multiplication final carry and CRT function
+convolut.cpp    Convolution function for multiplication
+cplxtest.cpp    Apcomplex numbers test program
+crt.cpp         General CRT function
+crttest.cpp     CRT test program
+datastru.cpp    Datastruct member function implementations
+disktest.cpp    Disk I/O speed test program
+file.cpp        Filename function
+fnt.cpp         Normal fnt functions
+fntdisk.cpp     Disk fnt test program
+fnttest.cpp     Various fnt test functions
+fourstep.cpp    Basic four-step algorithm
+global.cpp      Global variables
+init.cpp        Initialization functions (apinit and apdeinit)
+inttest.cpp     Apint numbers test program
+makeprim.cpp    Program for making primetab.cpp
+makewfta.cpp    Program for making the wftatab?.cpp files
+mersenne.cpp    Test program for finding Mersenne primes
+modfunc.cpp     Modint overloaded mathematical functions
+modtest.cpp     Modint test program
+move.cpp        Data array copying functions
+mprint.cpp      Test program for printing Mersenne numbers
+ntt.cpp         Direct form ntt test function
+nttw.cpp        Direct form ntt test function with the WFTA algorithms moduli
+prime .cpp      Prime factorization functions
+primetab.cpp    Automatically created by makeprim
+rattest.cpp     Aprational numbers test program
+rsagen.cpp      Test program for generating RSA keys
+rsaenc.cpp      Test program for encoding data using RSA
+rsadec.cpp      Test program for decoding data using RSA
+scramble.cpp    Bit-reverse permutation functions
+sixstep.cpp     Basic six-step algorithm
+sixwftat.cpp    Optimized six-step algorithm using WFTA
+tablefnt.cpp    Optimized table-lookup fnt
+tablefou.cpp    Basic four-step algorithm using lookup table fnts
+tablesit.cpp    Convolution only six-step algorithm using lookup table fnts
+tablesix.cpp    Optimized six-step algorithm using lookup table fnts
+tabletwo.cpp    Optimized two-pass disk fnt algorithm
+tabletwt.cpp    Optimized two-pass disk fnt algorithm for convolution only
+tapfloat.cpp    Transformed apfloat class member function implementations
+tapstruc.cpp    Transformed apfloat raw addition and convolution functions
+taptest.cpp     Transformed apfloat test program
+transhot.cpp    Visual matrix transposition test program
+transhow.cpp    Visual matrix transposition test program
+transpos.cpp    Optimized matrix transposition algorithm
+trantest.cpp    Transposition test program
+truncate.c      Dummy truncate function replacement (if you don't have one)
+wfta.cpp        Basic WFTA algorithm
+wftatab1.cpp    Automatically created by makewfta
+wftatab2.cpp    Automatically created by makewfta
+wftatab3.cpp    Automatically created by makewfta
+wftatab4.cpp    Automatically created by makewfta
+wftatab5.cpp    Automatically created by makewfta
+wftatab6.cpp    Automatically created by makewfta
+wftatab7.cpp    Automatically created by makewfta
+wftatest.cpp    WFTA test program
+wftavect.cpp    Optimized "vector" WFTA functions (faster than wfta_asm)
+wfta_asm.cpp    Some assembler optimized basic WFTA functions
