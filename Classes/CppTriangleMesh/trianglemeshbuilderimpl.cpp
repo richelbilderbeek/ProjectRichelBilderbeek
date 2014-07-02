@@ -470,32 +470,34 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   //#220: Try using a quicksort instead
   if (!m_faces.empty())
   {
-    //#define ISSUE_220_USE_QUICKSORT
+    #define ISSUE_220_USE_QUICKSORT
     #ifdef  ISSUE_220_USE_QUICKSORT
+    std::clog << "ISSUE_220_USE_QUICKSORT" << std::endl;
     const auto f = [](
       const boost::shared_ptr<Face>& lhs,
       const boost::shared_ptr<Face>& rhs) -> bool
     {
-      if (!lhs) return true;
+      if (!lhs && (rhs || !rhs)) return false;
       if (!rhs) return true;
       assert(lhs);
       assert(rhs);
-      if (lhs->GetBoundaryType() != rhs->GetBoundaryType()) return true;
-      if (lhs->GetConstOwner()->GetIndex() > rhs->GetConstOwner()->GetIndex())
+      if (lhs->GetBoundaryType() != rhs->GetBoundaryType())
       {
-        return false;
+        return lhs->GetBoundaryType() < rhs->GetBoundaryType();
       }
-      if (lhs->GetConstOwner()->GetIndex() == rhs->GetConstOwner()->GetIndex()
-        && lhs->GetNeighbour() && rhs->GetNeighbour()
-        && lhs->GetNeighbour()->GetIndex() > rhs->GetNeighbour()->GetIndex()
-      )
+      if (lhs->GetConstOwner()->GetIndex() != rhs->GetConstOwner()->GetIndex())
       {
-        return false;
+        return lhs->GetConstOwner()->GetIndex() < rhs->GetConstOwner()->GetIndex();
       }
-      return true;
+      if ( lhs->GetNeighbour() && !rhs->GetNeighbour()) return true;
+      if (!lhs->GetNeighbour() &&  rhs->GetNeighbour()) return false;
+      if (!lhs->GetNeighbour() && !rhs->GetNeighbour()) return false;
+
+      return lhs->GetNeighbour()->GetIndex() < rhs->GetNeighbour()->GetIndex();
     };
     std::sort(std::begin(m_faces),std::end(m_faces),f);
     #else
+    std::clog << "NOT ISSUE_220_USE_QUICKSORT" << std::endl;
     while (1)
     {
       bool do_break = true;

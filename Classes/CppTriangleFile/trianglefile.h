@@ -122,7 +122,11 @@ struct TriangleFile
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const TriangleFile& f) noexcept;
 };
+
+std::ostream& operator<<(std::ostream& os, const TriangleFile& f) noexcept;
 
 } //~namespace ribi
 

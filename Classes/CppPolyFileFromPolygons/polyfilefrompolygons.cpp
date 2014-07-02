@@ -149,7 +149,10 @@ ribi::PolyFile::Edges ribi::PolyFileFromPolygons::ToEdges(
 
 std::string ribi::PolyFileFromPolygons::ToStr() const noexcept
 {
-  return m_polyfile.ToStr();
+  std::stringstream s;
+  s << (*this);
+  return s.str();
+  //return m_polyfile.ToStr();
 }
 
 ribi::PolyFile::Vertices ribi::PolyFileFromPolygons::ToVertices(
@@ -173,4 +176,10 @@ ribi::PolyFile::Vertices ribi::PolyFileFromPolygons::ToVertices(
     }
   }
   return v;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const PolyFileFromPolygons& polyfile) noexcept
+{
+  os << polyfile.m_polyfile;
+  return os;
 }

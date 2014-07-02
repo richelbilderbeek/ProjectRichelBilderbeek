@@ -64,9 +64,11 @@ struct PolyFileFromPolygons
   static PolyFile::Vertices ToVertices(
     const Polygons& polygons, const Linestrings& linestrings
   ) noexcept;
+
+  friend std::ostream& operator<<(std::ostream& os, const PolyFileFromPolygons& polyfile) noexcept;
 };
 
-//std::ostream& operator<<(std::ostream& os, const PolyFileFromPolygons& polyfile) noexcept;
+std::ostream& operator<<(std::ostream& os, const PolyFileFromPolygons& polyfile) noexcept;
 std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<PolyFileFromPolygons>& polyfile) = delete;
 std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<const PolyFileFromPolygons>& polyfile) = delete;
 

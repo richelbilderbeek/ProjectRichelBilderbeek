@@ -2,7 +2,8 @@
 
 #include <cassert>
 #include <fstream>
-
+#include <iostream>
+#include <sstream>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -199,12 +200,12 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   }
   {
     std::ofstream f(filename.c_str());
-    f << m_polyfile->ToStr();
+    f << (*m_polyfile);
+    //f << std::fixed << std::setprecision(11) << (*m_polyfile);
   }
 
   assert(fileio::FileIo().IsRegularFile(filename));
   #ifdef _WIN32
-  //const std::string exe_filename { "triangle.exe" };
   const std::string exe_filename { "ToolTriangleConsole.exe" };
   #else
   const std::string exe_filename { "ToolTriangleConsole" };
@@ -222,10 +223,13 @@ void ribi::TriangleFile::ExecuteTriangleExe(
   std::string area_str = "";
   {
     std::stringstream s;
-    s << std::fixed //<< std::setprecision(20)
+    s << std::fixed
+      //<< std::setprecision(20) //Works
+      << std::setprecision(99) //Works
       << triangle_max_area.value()
     ;
     area_str = s.str();
+    TRACE(area_str);
   }
 
   assert(quality_str.find(',') == std::string::npos && "No Dutch please");
@@ -271,7 +275,7 @@ void ribi::TriangleFile::ExecuteTriangleExe(
     if (verbose)
     {
       std::cout << "Finished command with an error" << std::endl;
-      TRACE(m_polyfile->ToStr());
+      TRACE(*m_polyfile);
     }
     std::stringstream s;
     s << "Error: '" << command.str() << "' failed, with error code " << error;
@@ -392,6 +396,16 @@ void ribi::TriangleFile::Test() noexcept
 
 std::string ribi::TriangleFile::ToStr() const noexcept
 {
-  assert(m_polyfile);
-  return m_polyfile->ToStr();
+  std::stringstream s;
+  s << (*this);
+  return s.str();
+  //assert(m_polyfile);
+  //return m_polyfile->ToStr();
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const TriangleFile& f) noexcept
+{
+  assert(f.m_polyfile);
+  os << (*f.m_polyfile);
+  return os;
 }
