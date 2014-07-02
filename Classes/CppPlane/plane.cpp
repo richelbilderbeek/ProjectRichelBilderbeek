@@ -549,6 +549,12 @@ void ribi::Plane::Test() noexcept
       const Point3D p2(0.0,i,0.0);
       const Point3D p3(i,0.0,0.0);
       const Plane p(p1,p2,p3);
+      if (!p.IsInPlane(Point3D( 2.0, 2.0,0.0)))
+      {
+        TRACE("ERROR");
+        TRACE(p);
+        TRACE("BREAK");
+      }
       assert(p.IsInPlane(Point3D( 2.0, 2.0,0.0)));
       assert(p.IsInPlane(Point3D( 2.0,-2.0,0.0)));
       assert(p.IsInPlane(Point3D(-2.0, 2.0,0.0)));

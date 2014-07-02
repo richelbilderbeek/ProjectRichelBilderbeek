@@ -135,20 +135,20 @@ std::vector<double> ribi::Geometry::CalcPlane(
   using boost::geometry::cs::cartesian;
   using boost::geometry::get;
   using boost::geometry::model::point;
-  const point<double,3,cartesian> v1 { p3 - p1 };
-  const point<double,3,cartesian> v2 { p2 - p1 };
+  const point<double,3,cartesian> v1 = p3 - p1;
+  const point<double,3,cartesian> v2 = p2 - p1;
 
-  const point<double,3,cartesian> cross { CalcCrossProduct(v1,v2) };
+  const point<double,3,cartesian> cross = CalcCrossProduct(v1,v2);
 
-  const double a { get<0>(cross) };
-  const double b { get<1>(cross) };
-  const double c { get<2>(cross) };
+  const double a = get<0>(cross);
+  const double b = get<1>(cross);
+  const double c = get<2>(cross);
 
-  const double x { get<0>(p1) };
-  const double y { get<1>(p1) };
-  const double z { get<2>(p1) };
+  const double x = get<0>(p1);
+  const double y = get<1>(p1);
+  const double z = get<2>(p1);
 
-  const double d { ((a * x) + (b * y) + (c * z)) };
+  const double d = ((a * x) + (b * y) + (c * z));
   return { a,b,c,d };
 
 }
