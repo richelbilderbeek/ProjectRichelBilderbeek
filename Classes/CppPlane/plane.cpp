@@ -309,7 +309,7 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
-  const bool verbose = true;
+  const bool verbose = false;
   const double x = boost::geometry::get<0>(coordinat);
   const double y = boost::geometry::get<1>(coordinat);
   const double z = boost::geometry::get<2>(coordinat);
@@ -321,21 +321,27 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     std::stringstream s;
     s << std::setprecision(99) << (*this);
     TRACE(s.str());
-    //TRACE(max_error);
-    //try { TRACE(ToFunctionX()); } catch (std::exception&) {}
-    //try { TRACE(ToFunctionY()); } catch (std::exception&) {}
-    //try { TRACE(ToFunctionZ()); } catch (std::exception&) {}
   }
   try
   {
     const double expected = x;
     if (verbose) { TRACE(expected); }
     const double calculated = CalcX(y,z);
+    if (verbose) { TRACE(calculated); }
     const double error = std::abs(calculated - expected);
     if (verbose) { TRACE(error); }
-    const double max_error = boost::numeric::bounds<double>::smallest();
-    //const double max_error
-    //  = m_plane_x->GetFunctionA() * boost::numeric::bounds<double>::smallest();
+    //const double max_error = boost::numeric::bounds<double>::smallest();
+    const apfloat e = std::sqrt(std::numeric_limits<double>::epsilon());
+    const double max_error_a = std::numeric_limits<double>::epsilon();
+    if (verbose) { TRACE(max_error_a); }
+    const double max_error_b
+      = Geometry().ToDouble(
+        abs(apfloat(m_plane_x->GetFunctionA()) * e * y)
+        + abs(apfloat(m_plane_x->GetFunctionB()) * e * z)
+      )
+    ;
+    if (verbose) { TRACE(max_error_b); }
+    const double max_error = std::max(max_error_a,max_error_b);
     if (verbose) { TRACE(max_error); }
     const bool is_in_plane = error <= max_error;
     if (verbose) { TRACE(is_in_plane); }
@@ -354,9 +360,7 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     if (verbose) { TRACE(calculated); }
     const double error = std::abs(calculated - expected);
     if (verbose) { TRACE(error); }
-    const double max_error = boost::numeric::bounds<double>::smallest();
-    //const double max_error
-    //  = m_plane_?->GetFunction?() * boost::numeric::bounds<double>::smallest();
+    const double max_error = std::numeric_limits<double>::epsilon();
     if (verbose) { TRACE(max_error); }
     const bool is_in_plane = error <= max_error;
     if (verbose) { TRACE(is_in_plane); }
@@ -375,16 +379,16 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     if (verbose) { TRACE(calculated); }
     const double error =  std::abs(calculated - expected);
     if (verbose) { TRACE(error); }
-    const double max_error = boost::numeric::bounds<double>::smallest();
+    //const double max_error = boost::numeric::bounds<double>::smallest();
+    const double max_error = std::numeric_limits<double>::epsilon();
 
-
+    #ifdef IMPROVE_ACCURACY_224
     //If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
     // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
     const auto a = GetCoefficientsZ()[0];
     const auto b = GetCoefficientsZ()[1];
     const auto c = GetCoefficientsZ()[2];
     const auto d = GetCoefficientsZ()[3];
-
     // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
     TRACE(c.sign());
     if (c.sign())
@@ -423,6 +427,8 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 
     //const double max_error
     //  = m_plane_?->GetFunction?() * boost::numeric::bounds<double>::smallest();
+    #endif
+
     if (verbose) { TRACE(max_error); }
     const bool is_in_plane = error <= max_error;
     if (verbose) { TRACE(is_in_plane); }

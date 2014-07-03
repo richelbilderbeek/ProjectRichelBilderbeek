@@ -138,7 +138,8 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D(0.0,-2.0, 2.0)));
     assert(p.IsInPlane(Point3D(0.0,-2.0,-2.0)));
 
-    const double e = boost::numeric::bounds<double>::smallest();
+    const double e = std::numeric_limits<double>::epsilon();
+
     assert(p.IsInPlane(Point3D(e, 2.0, 2.0)));
     assert(p.IsInPlane(Point3D(e, 2.0,-2.0)));
     assert(p.IsInPlane(Point3D(e,-2.0, 2.0)));
@@ -172,7 +173,8 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D( 2.0,0.0,-2.0)));
     assert(p.IsInPlane(Point3D(-2.0,0.0, 2.0)));
     assert(p.IsInPlane(Point3D(-2.0,0.0,-2.0)));
-    const double e = boost::numeric::bounds<double>::smallest();
+    const double e = std::numeric_limits<double>::epsilon();
+    //const double e = boost::numeric::bounds<double>::smallest();
     assert(p.IsInPlane(Point3D( 2.0,e, 2.0)));
     assert(p.IsInPlane(Point3D( 2.0,e,-2.0)));
     assert(p.IsInPlane(Point3D(-2.0,e, 2.0)));
@@ -206,7 +208,8 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D( 2.0,-2.0,0.0)));
     assert(p.IsInPlane(Point3D(-2.0, 2.0,0.0)));
     assert(p.IsInPlane(Point3D(-2.0,-2.0,0.0)));
-    const double e = boost::numeric::bounds<double>::smallest();
+    //const double e = boost::numeric::bounds<double>::smallest();
+    const double e = std::numeric_limits<double>::epsilon();
     assert(p.IsInPlane(Point3D( 2.0, 2.0,e)));
     assert(p.IsInPlane(Point3D( 2.0,-2.0,e)));
     assert(p.IsInPlane(Point3D(-2.0, 2.0,e)));
@@ -230,6 +233,91 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D(-2.0, 2.0,0.0)));
     assert(p.IsInPlane(Point3D(-2.0,-2.0,0.0)));
   }
+  //Create plane with different slopes
+  /*
+  |          /
+  |         /
+  |        /         __--D
+  |       /      __--   /|
+  |      /   __--      / |
+  |     /__--         /  |
+  |    B             /   +
+  |   /         __--C   /
+  |  /      __--    |  /
+  | /   __--        | /
+  |/__--            |/
+  A-----------------+---------------
+
+  A = p1 = Origin, fixed
+  B = p2 = At y axis, fixed
+  C = p3 = Above X axis, dependent on slope
+  D = p4 = To be calculated
+  */
+  if (verbose) TRACE("IsInPlane, Slope");
+  {
+    for (const double slope: { 1.0, 0.1 } )
+    {
+      TRACE(slope);
+      const double slope_less = slope * 0.9999999;
+      const double slope_more = slope * 1.0000001;
+      assert(slope_less < slope);
+      assert(slope_more > slope);
+      const Point3D p1(0.0,0.0,0.0);
+      const Point3D p2(0.0,1.0,0.0);
+      const Point3D p3(1.0,0.0,slope);
+      const Plane p(p1,p2,p3);
+      assert( p.IsInPlane(Point3D( 1.0, 1.0,slope)));
+      assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_more)));
+      assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_less)));
+    }
+  }
+  //Create plane with different slopes
+  /*
+  |          /
+  |         /
+  |        /__-D
+  |     __--   |
+  | __-- /     |
+  B-    /      |
+  |    /       |
+  |   /        |
+  |  /      __-C
+  | /   __--  /
+  |/__--     /
+  A---------+-----------------------
+
+  A = p1 = Origin, fixed
+  B = p2 = At y axis, fixed
+  C = p3 = Above X axis, dependent on slope
+  D = p4 = To be calculated
+  */
+  if (verbose) TRACE("IsInPlane, Slope, vertical plane");
+  {
+    typedef std::pair<double,double> Pair;
+    for (const Pair co:
+      {
+        std::make_pair(    1.0,    1.0),
+        std::make_pair(   10.0,   10.0),
+        std::make_pair(  100.0,  100.0),
+        std::make_pair( 1000.0, 1000.0),
+        std::make_pair(10000.0,10000.0),
+        std::make_pair(1.0,1.000),
+        std::make_pair(1.0,0.100),
+        std::make_pair(1.0,0.010),
+        std::make_pair(1.0,0.001),
+      }
+    )
+    {
+      //TRACE("----------------------------------------------------------");
+      //TRACE(co.first);
+      //TRACE(co.second);
+      const Point3D p1(0.0,0.0,0.0);
+      const Point3D p2(0.0,0.0,1.0);
+      const Point3D p3(co.first,co.second,0.0);
+      const Plane p(p1,p2,p3);
+      assert( p.IsInPlane(Point3D(co.first,co.second,1.0)));
+    }
+  }
   if (verbose) TRACE("CalcProjection, from a crash in the program");
   {
     const Point3D p1( 1.0,-0.0,0.0);
@@ -250,18 +338,17 @@ void ribi::Plane::Test() noexcept
   }
   if (verbose) TRACE("IsInPlane, from #218");
   {
-    TRACE("***********************************************");
     const double x1 = -0.5500000000000004884981308350688777863979339599609375;
     const double y1 = 2.000000000000000444089209850062616169452667236328125;
     const double z1 = 0; //left out the '.0' intentionally
     const double x2 = -3.78623595505618038004058689693920314311981201171875;
-    const double y2 = 2;
-    const double z2 = 0;
+    const double y2 = 2; //left out the '.0' intentionally
+    const double z2 = 0; //left out the '.0' intentionally
     const double x3 = -0.5500000000000004884981308350688777863979339599609375;
     const double y3 = 2.000000000000000444089209850062616169452667236328125;
-    const double z3 = 10;
+    const double z3 = 10; //left out the '.0' intentionally
     const double x4 = -3.78623595505618038004058689693920314311981201171875;
-    const double y4 = 2;
+    const double y4 = 2; //left out the '.0' intentionally
     const double z4 = 10; //left out the '.0' intentionally
 
     const Point3D p1(x1,y1,z1);
@@ -292,7 +379,6 @@ void ribi::Plane::Test() noexcept
   }
   if (verbose) TRACE("IsInPlane, from >#220");
   {
-    TRACE("***********************************************");
     const double x1 = 0.0004035051226622692510832834944523028752882964909076690673828125;
     const double y1 = 0.00023296416881187433805568132161312178141088224947452545166015625;
     const double z1 = 0; //left out the '.0' intentionally
@@ -334,7 +420,6 @@ void ribi::Plane::Test() noexcept
     }
     assert(p.IsInPlane(p4));
   }
-  assert(!"yay, solved");
   TRACE("Finished ribi::Plane::Test successfully");
 }
 #endif
