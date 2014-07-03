@@ -264,7 +264,7 @@ boost::shared_ptr<ribi::PlaneZ> ribi::Plane::CreatePlaneZ(
   }
 }
 
-std::vector<double> ribi::Plane::GetCoefficientsX() const
+std::vector<apfloat> ribi::Plane::GetCoefficientsX() const
 {
   if (!m_plane_x)
   {
@@ -273,7 +273,7 @@ std::vector<double> ribi::Plane::GetCoefficientsX() const
   return m_plane_x->GetCoefficients();
 }
 
-std::vector<double> ribi::Plane::GetCoefficientsY() const
+std::vector<apfloat> ribi::Plane::GetCoefficientsY() const
 {
   if (!m_plane_y)
   {
@@ -294,7 +294,7 @@ std::vector<apfloat> ribi::Plane::GetCoefficientsZ() const
 
 std::string ribi::Plane::GetVersion() noexcept
 {
-  return "1.5";
+  return "1.6";
 }
 
 std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
@@ -306,12 +306,13 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
     "2014-04-01: version 1.3: use of std::unique_ptr",
     "2014-06-13: version 1.4: added operator<<, ToStr calls operator<<, shortened time to compile",
     "2014-06-16: version 1.5: improved detection of planes that can be expressed in less than three dimensions"
+    "2014-07-03: version 1.6: use of apfloat"
   };
 }
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
-  const bool verbose = true;
+  const bool verbose = false;
   const double x = boost::geometry::get<0>(coordinat);
   const double y = boost::geometry::get<1>(coordinat);
   const double z = boost::geometry::get<2>(coordinat);
@@ -542,9 +543,11 @@ void ribi::Plane::Test() noexcept
   }
   if (verbose) TRACE("IsInPlane, Z = 0 plane, zooming in, #223");
   {
+    //min origanally was 1.0e-8 due to Plane internally working with doubles
+    //const double min = 1.0e-250;
     for (double i=1.0; i!=0.0; i/=10.0)
     {
-      TRACE(i);
+      //TRACE(i);
       const Point3D p1(0.0,0.0,0.0);
       const Point3D p2(0.0,i,0.0);
       const Point3D p3(i,0.0,0.0);

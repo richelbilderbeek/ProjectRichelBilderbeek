@@ -145,17 +145,25 @@ std::vector<double> ribi::Geometry::CalcPlane(
   const Coordinat3D& p3
 ) const noexcept
 {
-  using boost::geometry::cs::cartesian;
+  const std::vector<apfloat> v
+    = CalcPlane(ToApfloat(p1),ToApfloat(p2),ToApfloat(p3)
+  );
+  return ToDouble(v);
+}
+
+std::vector<apfloat> ribi::Geometry::CalcPlane(
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
+) const noexcept
+{
+  //using boost::geometry::cs::cartesian;
   using boost::geometry::get;
-  using boost::geometry::model::point;
+  //using boost::geometry::model::point;
   const auto v1 = p3 - p1;
   const auto v2 = p2 - p1;
 
-  //Convert to arbitrary precision float
-  const auto v1_ap = ToApfloat(v1);
-  const auto v2_ap = ToApfloat(v2);
-
-  const auto cross = CalcCrossProduct(v1_ap,v2_ap);
+  const auto cross = CalcCrossProduct(v1,v2);
 
   const auto a = get<0>(cross);
   const auto b = get<1>(cross);
@@ -170,7 +178,7 @@ std::vector<double> ribi::Geometry::CalcPlane(
   const auto term3 = c * z;
   const auto d = term1 + term2 + term3;
 
-  return { ToDouble(a),ToDouble(b),ToDouble(c),ToDouble(d) };
+  return { a,b,c,d };
 }
 
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcProjection(
@@ -2049,6 +2057,16 @@ double ribi::Geometry::ToDouble(const apfloat& a) const
   return x;
 }
 
+std::vector<double> ribi::Geometry::ToDouble(const std::vector<apfloat>& v) const
+{
+  std::vector<double> w;
+  std::transform(std::begin(v),std::end(v),std::back_inserter(w),
+    [this](const apfloat& f) { return ToDouble(f); }
+  );
+  assert(v.size() == w.size());
+  return w;
+}
+
 ribi::Geometry::Polygon ribi::Geometry::ToPolygon(const Linestring& linestring) const noexcept
 {
   std::vector<Coordinat2D> v;
@@ -2357,9 +2375,9 @@ std::string ribi::Geometry::WktToSvg(const std::vector<std::string>& wkt, const 
   return ToSvg(WktToShapes(wkt),svg_stroke_width);
 }
 
-boost::geometry::model::d2::point_xy<double> ribi::operator-(
-  const boost::geometry::model::d2::point_xy<double>& a,
-  const boost::geometry::model::d2::point_xy<double>& b
+ribi::Geometry::Coordinat2D ribi::operator-(
+  const ribi::Geometry::Coordinat2D& a,
+  const ribi::Geometry::Coordinat2D& b
 ) noexcept
 {
   return std::remove_const<std::remove_reference<decltype(a)>::type>::type(
@@ -2368,10 +2386,21 @@ boost::geometry::model::d2::point_xy<double> ribi::operator-(
   );
 }
 
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>
-  ribi::operator-(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
+ribi::Geometry::Coordinat3D ribi::operator-(
+    const ribi::Geometry::Coordinat3D& a,
+    const ribi::Geometry::Coordinat3D& b
+  ) noexcept
+{
+  return std::remove_const<std::remove_reference<decltype(a)>::type>::type(
+    boost::geometry::get<0>(a) - boost::geometry::get<0>(b),
+    boost::geometry::get<1>(a) - boost::geometry::get<1>(b),
+    boost::geometry::get<2>(a) - boost::geometry::get<2>(b)
+  );
+}
+
+ribi::Geometry::ApCoordinat3D ribi::operator-(
+    const ribi::Geometry::ApCoordinat3D& a,
+    const ribi::Geometry::ApCoordinat3D& b
   ) noexcept
 {
   return std::remove_const<std::remove_reference<decltype(a)>::type>::type(

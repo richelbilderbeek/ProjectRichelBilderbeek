@@ -102,6 +102,12 @@ struct Geometry
     const Coordinat3D& p3
   ) const noexcept;
 
+  std::vector<apfloat> CalcPlane(
+    const ApCoordinat3D& p1,
+    const ApCoordinat3D& p2,
+    const ApCoordinat3D& p3
+  ) const noexcept;
+
   std::vector<Coordinat2D> CalcProjection(const std::vector<Coordinat3D>& v) const;
 
   Coordinat2D Coordinat2DToBoostGeometryPointXy(
@@ -397,6 +403,7 @@ struct Geometry
 
   ///Will throw a boost::bad_lexical_cast if it fails
   double ToDouble(const apfloat& a) const;
+  std::vector<double> ToDouble(const std::vector<apfloat>& a) const;
 
   ///Convert a linestring to a closed polygon. If the linestring
   ///is open, close it
@@ -502,14 +509,19 @@ struct Geometry
 
 };
 
-boost::geometry::model::d2::point_xy<double> operator-(
-  const boost::geometry::model::d2::point_xy<double>& a,
-  const boost::geometry::model::d2::point_xy<double>& b
+ribi::Geometry::Coordinat2D operator-(
+  const ribi::Geometry::Coordinat2D& a,
+  const ribi::Geometry::Coordinat2D& b
 ) noexcept;
 
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> operator-(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
+ribi::Geometry::Coordinat3D operator-(
+  const ribi::Geometry::Coordinat3D& a,
+  const ribi::Geometry::Coordinat3D& b
+) noexcept;
+
+ribi::Geometry::ApCoordinat3D operator-(
+  const ribi::Geometry::ApCoordinat3D& a,
+  const ribi::Geometry::ApCoordinat3D& b
 ) noexcept;
 
 std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat2D& p) noexcept;

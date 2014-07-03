@@ -44,6 +44,8 @@ namespace ribi {
 //Converting this to z being a function of x and y:
 // -C.z =  A  .x + B  .y - D
 //    z = -A/C.x - B/C.y + D/C
+//
+//
 struct PlaneZ
 {
   //typedef apfloat Double;
@@ -57,8 +59,6 @@ struct PlaneZ
   ///Create plane Z = 0.0
   PlaneZ() noexcept;
 
-  ///Construct from its coefficients
-  PlaneZ(const std::vector<double>& coefficients);
 
   ///Construct from three points
   PlaneZ(
@@ -90,6 +90,7 @@ struct PlaneZ
   ///Throws when cannot calculate Z, which is when the plane is vertical
   double CalcZ(const double x, const double y) const;
 
+  //std::vector<double> GetCoefficients() const noexcept;
   const std::vector<apfloat>& GetCoefficients() const noexcept { return m_coefficients; }
 
   ///This plane has equation 'z = Ax + By + C'
@@ -109,6 +110,9 @@ struct PlaneZ
 
 
   private:
+  ///Construct from its coefficients
+  PlaneZ(const std::vector<apfloat>& coefficients);
+
   ~PlaneZ() noexcept;
 
   //m_coefficients.size == 4

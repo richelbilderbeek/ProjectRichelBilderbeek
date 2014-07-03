@@ -110,7 +110,7 @@ std::unique_ptr<ribi::PlaneZ> ribi::PlaneX::Create(
   return p;
 }
 
-std::vector<double> ribi::PlaneX::GetCoefficients() const noexcept
+std::vector<apfloat> ribi::PlaneX::GetCoefficients() const noexcept
 {
   const auto v(m_plane_z->GetCoefficients());
   assert(v.size() == 4);
@@ -137,7 +137,7 @@ double ribi::PlaneX::GetFunctionC() const
 
 std::string ribi::PlaneX::GetVersion() const noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::PlaneX::GetVersionHistory() const noexcept
@@ -147,10 +147,11 @@ std::vector<std::string> ribi::PlaneX::GetVersionHistory() const noexcept
     "2014-03-13: version 1.1: bug fixed",
     "2014-04-01: version 1.2: use of std::unique_ptr",
     "2014-06-13: version 1.3: shortened time to compile, allow obtaining the constants in function 'x = Ay + Bz + C'",
+    "2014-07-03: version 1.4: use of apfloat",
   };
 }
 
-std::vector<double> ribi::PlaneX::Rotate(const std::vector<double>& coefficients) noexcept
+std::vector<apfloat> ribi::PlaneX::Rotate(const std::vector<apfloat>& coefficients) noexcept
 {
   assert(coefficients.size() == 4);
   return

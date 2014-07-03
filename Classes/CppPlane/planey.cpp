@@ -26,10 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/xpressive/xpressive.hpp>
-
 #include "geometry.h"
-//#include "plane.h"
 #include "planez.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -104,7 +101,7 @@ std::unique_ptr<ribi::PlaneZ> ribi::PlaneY::Create(
   return p;
 }
 
-std::vector<double> ribi::PlaneY::GetCoefficients() const noexcept
+std::vector<apfloat> ribi::PlaneY::GetCoefficients() const noexcept
 {
   const auto v(m_plane_z->GetCoefficients());
   assert(v.size() == 4);
@@ -129,26 +126,9 @@ double ribi::PlaneY::GetFunctionC() const
   return m_plane_z->GetFunctionC();
 }
 
-std::vector<std::string>
-  ribi::PlaneY::GetRegexMatchesBoostXpressive(
-  const std::string& s,
-  const std::string& r_str)
-{
-  const boost::xpressive::sregex r(boost::xpressive::sregex::compile(r_str));
-  std::vector<std::string> v;
-  boost::xpressive::sregex_iterator cur(s.begin(),s.end(),r);
-  boost::xpressive::sregex_iterator end;
-  for( ; cur != end; ++cur )
-  {
-    const boost::xpressive::smatch& what = *cur;
-    v.push_back(what[0]);
-  }
-  return v;
-}
-
 std::string ribi::PlaneY::GetVersion() const noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
@@ -157,11 +137,12 @@ std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
     "2014-03-10: version 1.0: initial version, split off from PlaneX",
     "2014-03-13: version 1.1: bug fixed",
     "2014-04-01: version 1.2: use of std::unique_ptr",
-    "2014-06-13: version 1.3: shortened time to compile"
+    "2014-06-13: version 1.3: shortened time to compile",
+    "2014-07-03: version 1.4: use of apfloat"
   };
 }
 
-std::vector<double> ribi::PlaneY::Rotate(const std::vector<double>& coefficients) noexcept
+std::vector<apfloat> ribi::PlaneY::Rotate(const std::vector<apfloat>& coefficients) noexcept
 {
   assert(coefficients.size() == 4);
   return

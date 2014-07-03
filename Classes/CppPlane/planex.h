@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/make_shared.hpp>
 //#include "planez.h"
+#include "apfloat.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -83,7 +84,7 @@ struct PlaneX
   ///Throws when cannot calculate X, which is when the plane is horizontal
   double CalcX(const double y, const double z) const;
 
-  std::vector<double> GetCoefficients() const noexcept;
+  std::vector<apfloat> GetCoefficients() const noexcept;
 
   ///x = Ay + Bz + C
   ///Will throw if A cannot be calculated
@@ -115,7 +116,7 @@ struct PlaneX
     const Coordinat3D& p3
   );
 
-  static std::vector<double> Rotate(const std::vector<double>& coefficients) noexcept;
+  static std::vector<apfloat> Rotate(const std::vector<apfloat>& coefficients) noexcept;
   static Coordinat3D Rotate(
     const Coordinat3D& point
   ) noexcept;

@@ -115,10 +115,10 @@ struct Plane
   bool CanCalcZ() const noexcept;
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
-  std::vector<double> GetCoefficientsX() const;
+  std::vector<apfloat> GetCoefficientsX() const;
 
   ///If the Plane can be expressed as Y = A*X + B*Z + C, return the coefficients,
-  std::vector<double> GetCoefficientsY() const;
+  std::vector<apfloat> GetCoefficientsY() const;
 
   ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients,
   std::vector<apfloat> GetCoefficientsZ() const;

@@ -29,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/make_shared.hpp>
 //#include "planez.h"
+
+#include "apfloat.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -93,7 +95,7 @@ struct PlaneY
   ///Will throw if C cannot be calculated
   double GetFunctionC() const;
 
-  std::vector<double> GetCoefficients() const noexcept;
+  std::vector<apfloat> GetCoefficients() const noexcept;
 
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
@@ -111,14 +113,7 @@ struct PlaneY
     const Coordinat3D& p3
   );
 
-  //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static std::vector<std::string> GetRegexMatchesBoostXpressive(
-    const std::string& s,
-    const std::string& r_str
-  );
-
-
-  static std::vector<double> Rotate(const std::vector<double>& coefficients) noexcept;
+  static std::vector<apfloat> Rotate(const std::vector<apfloat>& coefficients) noexcept;
 
   static Coordinat3D Rotate(
     const Coordinat3D& point

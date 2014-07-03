@@ -45,9 +45,9 @@ ribi::PlaneZ::PlaneZ() noexcept
 }
 
 ribi::PlaneZ::PlaneZ(
-  const std::vector<double>& coefficients
+  const std::vector<apfloat>& coefficients
 )
-  : m_coefficients(ToApfloats(coefficients))
+  : m_coefficients(coefficients)
 {
   #ifndef NDEBUG
   Test();
@@ -83,7 +83,8 @@ ribi::PlaneZ::PlaneZ(
   //where it should have been. If m_coefficients[2] equals zero,
   //a division by itself is prevented by throwing an exception.
   //Throw an exception as if m_coefficients[2] equalled zero
-  if (std::abs(m_coefficients[2]) < 1.0e-14)
+  //if (std::abs(m_coefficients[2]) < 1.0e-14)
+  if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
     throw std::logic_error("Plane (from points) that can be expressed in less than 3D space");
@@ -96,13 +97,19 @@ ribi::PlaneZ::~PlaneZ() noexcept
 }
 
 std::vector<apfloat> ribi::PlaneZ::CalcPlaneZ(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+  const ribi::PlaneZ::Coordinat3D& p1,
+  const ribi::PlaneZ::Coordinat3D& p2,
+  const ribi::PlaneZ::Coordinat3D& p3
 ) noexcept
 {
   
-  const auto v(Geometry().CalcPlane(p1,p2,p3));
+  const auto v(
+    Geometry().CalcPlane(
+      Geometry().ToApfloat(p1),
+      Geometry().ToApfloat(p2),
+      Geometry().ToApfloat(p3)
+    )
+  );
   assert(v.size() == 4);
   return v;
 }
@@ -143,57 +150,57 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneZ::CalcProj
 double ribi::PlaneZ::CalcZ(const double x, const double y) const
 {
   // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
-  const double a = m_coefficients[0];
-  const double b = m_coefficients[1];
-  const double c = m_coefficients[2];
-  const double d = m_coefficients[3];
+  const auto a = m_coefficients[0];
+  const auto b = m_coefficients[1];
+  const auto c = m_coefficients[2];
+  const auto d = m_coefficients[3];
   if (c == 0.0)
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
   }
-  return ((-a*x) - (b*y) + d) / c;
+  return Geometry().ToDouble(((-a*x) - (b*y) + d) / c);
 }
 
 double ribi::PlaneZ::GetFunctionA() const
 {
-  const double coeff_a = m_coefficients[0];
-  const double coeff_c = m_coefficients[2];
+  const auto coeff_a = m_coefficients[0];
+  const auto coeff_c = m_coefficients[2];
 
   if (coeff_c == 0.0)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionA: cannot calculate A of a vertical plane");
   }
 
-  const double a = -coeff_a/coeff_c;
-  return a;
+  const auto a = -coeff_a/coeff_c;
+  return Geometry().ToDouble(a);
 }
 
 double ribi::PlaneZ::GetFunctionB() const
 {
-  const double coeff_b = m_coefficients[1];
-  const double coeff_c = m_coefficients[2];
+  const auto coeff_b = m_coefficients[1];
+  const auto coeff_c = m_coefficients[2];
 
   if (coeff_c == 0.0)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionB: cannot calculate B of a vertical plane");
   }
 
-  const double b = -coeff_b/coeff_c;
-  return b;
+  const auto b = -coeff_b/coeff_c;
+  return Geometry().ToDouble(b);
 }
 
 double ribi::PlaneZ::GetFunctionC() const
 {
-  const double coeff_c = m_coefficients[2];
-  const double coeff_d = m_coefficients[3];
+  const auto coeff_c = m_coefficients[2];
+  const auto coeff_d = m_coefficients[3];
 
   if (coeff_c == 0.0)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionC: cannot calculate C of a vertical plane");
   }
 
-  const double c =  coeff_d/coeff_c;
-  return c;
+  const auto c =  coeff_d/coeff_c;
+  return Geometry().ToDouble(c);
 }
 std::string ribi::PlaneZ::GetVersion() const noexcept
 {
@@ -206,7 +213,8 @@ std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
     "2014-03-10: version 1.0: initial version, split off from Plane",
     "2014-03-10: version 1.1: bug fixed, only occurred at debugging",
     "2014-03-13: version 1.2: bug fixed",
-    "2014-04-01: version 1.3: use of std::unique_ptr"
+    "2014-04-01: version 1.3: use of std::unique_ptr",
+    "2014-07-03: version 1.4: use of apfloat"
   };
 }
 
@@ -243,23 +251,23 @@ void ribi::PlaneZ::Test() noexcept
       Point3D(p2_x,p2_y,p2_z),
       Point3D(p3_x,p3_y,p3_z)
     );
-    const auto t(p.GetCoefficients());
+    const auto t(Geometry().ToDouble(p.GetCoefficients()));
     assert(t.size() == 4);
-    const double a { t[0] };
-    const double b { t[1] };
-    const double c { t[2] };
-    const double d { t[3] };
-    const double a_expected {  30.0 };
-    const double b_expected { -48.0 };
-    const double c_expected {  17.0 };
-    const double d_expected { -15.0 };
+    const auto a = t[0];
+    const auto b = t[1];
+    const auto c = t[2];
+    const auto d = t[3];
+    const auto a_expected =  30.0;
+    const auto b_expected = -48.0;
+    const auto c_expected =  17.0;
+    const auto d_expected = -15.0;
     assert(std::abs(a - a_expected) < 0.001);
     assert(std::abs(b - b_expected) < 0.001);
     assert(std::abs(c - c_expected) < 0.001);
     assert(std::abs(d - d_expected) < 0.001);
-    const double d_p1_expected { (a * p1_x) + (b * p1_y) + (c * p1_z) };
-    const double d_p2_expected { (a * p2_x) + (b * p2_y) + (c * p2_z) };
-    const double d_p3_expected { (a * p3_x) + (b * p3_y) + (c * p3_z) };
+    const auto d_p1_expected = (a * p1_x) + (b * p1_y) + (c * p1_z);
+    const auto d_p2_expected = (a * p2_x) + (b * p2_y) + (c * p2_z);
+    const auto d_p3_expected = (a * p3_x) + (b * p3_y) + (c * p3_z);
     if (verbose)
     {
       std::clog
@@ -313,22 +321,22 @@ void ribi::PlaneZ::Test() noexcept
     const Point3D p2(1.0,2.0,13.0);
     const Point3D p3(2.0,1.0,12.0);
     const PlaneZ p(p1,p2,p3);
-    const auto t(p.GetCoefficients());
-    const double a { t[0] };
-    const double b { t[1] };
-    const double c { t[2] };
-    const double d { t[3] };
-    const double a_expected { -2.0 };
-    const double b_expected { -3.0 };
-    const double c_expected {  1.0 };
-    const double d_expected {  5.0 };
+    const auto t(Geometry().ToDouble(p.GetCoefficients()));
+    const auto a = t[0];
+    const auto b = t[1];
+    const auto c = t[2];
+    const auto d = t[3];
+    const auto a_expected = -2.0;
+    const auto b_expected = -3.0;
+    const auto c_expected =  1.0;
+    const auto d_expected =  5.0;
     assert(std::abs(a - a_expected) < 0.001);
     assert(std::abs(b - b_expected) < 0.001);
     assert(std::abs(c - c_expected) < 0.001);
     assert(std::abs(d - d_expected) < 0.001);
-    const double d_p1_expected { (a * 1.0) + (b * 1.0) + (c * 10.0) };
-    const double d_p2_expected { (a * 1.0) + (b * 2.0) + (c * 13.0) };
-    const double d_p3_expected { (a * 2.0) + (b * 1.0) + (c * 12.0) };
+    const auto d_p1_expected = (a * 1.0) + (b * 1.0) + (c * 10.0);
+    const auto d_p2_expected = (a * 1.0) + (b * 2.0) + (c * 13.0);
+    const auto d_p3_expected = (a * 2.0) + (b * 1.0) + (c * 12.0);
     assert(std::abs(d - d_p1_expected) < 0.001);
     assert(std::abs(d - d_p2_expected) < 0.001);
     assert(std::abs(d - d_p3_expected) < 0.001);
@@ -378,14 +386,14 @@ void ribi::PlaneZ::Test() noexcept
     };
 
 
-    const double x1 { 2.0 };
-    const double y1 { 3.0 };
-    const double x2 { 5.0 };
-    const double y2 { 7.0 };
-    const double x3 { 11.0 };
-    const double y3 { 13.0 };
-    const double x4 { 17.0 };
-    const double y4 { 29.0 };
+    const double x1 =  2.0;
+    const double y1 =  3.0;
+    const double x2 =  5.0;
+    const double y2 =  7.0;
+    const double x3 = 11.0;
+    const double y3 = 13.0;
+    const double x4 = 17.0;
+    const double y4 = 29.0;
     const Point3D p1(x1,y1,f(x1,y1));
     const Point3D p2(x2,y2,f(x2,y2));
     const Point3D p3(x3,y3,f(x3,y3));
