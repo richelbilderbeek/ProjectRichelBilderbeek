@@ -243,9 +243,9 @@ boost::shared_ptr<ribi::PlaneY> ribi::Plane::CreatePlaneY(
 }
 
 boost::shared_ptr<ribi::PlaneZ> ribi::Plane::CreatePlaneZ(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+  const Coordinat3D& p1,
+  const Coordinat3D& p2,
+  const Coordinat3D& p3
 ) noexcept
 {
   try
@@ -303,7 +303,7 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
     "2014-04-01: version 1.3: use of std::unique_ptr",
     "2014-06-13: version 1.4: added operator<<, ToStr calls operator<<, shortened time to compile",
     "2014-06-16: version 1.5: improved detection of planes that can be expressed in less than three dimensions"
-    "2014-07-03: version 1.6: use of apfloat"
+    "2014-07-03: version 1.6: use of apfloat, improved accuracy"
   };
 }
 
@@ -318,7 +318,9 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     TRACE(x);
     TRACE(y);
     TRACE(z);
-    TRACE(*this);
+    std::stringstream s;
+    s << std::setprecision(99) << (*this);
+    TRACE(s.str());
     //TRACE(max_error);
     //try { TRACE(ToFunctionX()); } catch (std::exception&) {}
     //try { TRACE(ToFunctionY()); } catch (std::exception&) {}
@@ -329,54 +331,13 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     const double expected = x;
     if (verbose) { TRACE(expected); }
     const double calculated = CalcX(y,z);
-
-    const auto a = GetCoefficientsX()[0];
-    const auto b = GetCoefficientsX()[1];
-    const auto c = GetCoefficientsX()[2];
-    const auto d = GetCoefficientsX()[3];
-
-    // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
-    if (c.sign())
-    {
-      const auto rc_x = -a / c;
-      TRACE(rc_x);
-      const auto rc_y = -b / c;
-      TRACE(rc_y);
-      const auto rc = sqrt( (rc_x * rc_x) + (rc_y * rc_y));
-      const apfloat e = boost::numeric::bounds<double>::smallest();
-      const auto new_max_error = e * rc;
-      TRACE(rc_x);
-      TRACE(rc_y);
-      TRACE(rc);
-      TRACE(new_max_error);
-      TRACE(new_max_error);
-    }
-    if (verbose)
-    {
-      TRACE(a);
-      TRACE(b);
-      TRACE(c);
-      TRACE(c == 0.0);
-      TRACE(d);
-      TRACE(calculated);
-    }
-
-    //Error
-    // = the rounding off error
-    // * SQRT(
-    //     ((coefficient of direction Y) ^ 2)
-    //   + ((coefficient of direction Z) ^ 2)
-    // )
-
-
     const double error = std::abs(calculated - expected);
     if (verbose) { TRACE(error); }
-
-    const double max_error = 0.001;
+    const double max_error = boost::numeric::bounds<double>::smallest();
     //const double max_error
     //  = m_plane_x->GetFunctionA() * boost::numeric::bounds<double>::smallest();
     if (verbose) { TRACE(max_error); }
-    const bool is_in_plane = error < max_error;
+    const bool is_in_plane = error <= max_error;
     if (verbose) { TRACE(is_in_plane); }
     return is_in_plane;
   }
@@ -393,11 +354,11 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     if (verbose) { TRACE(calculated); }
     const double error = std::abs(calculated - expected);
     if (verbose) { TRACE(error); }
-    const double max_error = 0.001;
+    const double max_error = boost::numeric::bounds<double>::smallest();
     //const double max_error
     //  = m_plane_?->GetFunction?() * boost::numeric::bounds<double>::smallest();
     if (verbose) { TRACE(max_error); }
-    const bool is_in_plane = error < max_error;
+    const bool is_in_plane = error <= max_error;
     if (verbose) { TRACE(is_in_plane); }
     return is_in_plane;
   }
@@ -414,11 +375,56 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     if (verbose) { TRACE(calculated); }
     const double error =  std::abs(calculated - expected);
     if (verbose) { TRACE(error); }
-    const double max_error = 0.001;
+    const double max_error = boost::numeric::bounds<double>::smallest();
+
+
+    //If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
+    // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
+    const auto a = GetCoefficientsZ()[0];
+    const auto b = GetCoefficientsZ()[1];
+    const auto c = GetCoefficientsZ()[2];
+    const auto d = GetCoefficientsZ()[3];
+
+    // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
+    TRACE(c.sign());
+    if (c.sign())
+    {
+      std::stringstream s;
+      s << std::fixed << std::setprecision(99) << a << ' ' << b << ' ' << c;
+      TRACE(s.str());
+      //TRACE(b);
+      //TRACE(c);
+      const auto rc_x = -a / c;
+      TRACE(rc_x);
+      const auto rc_y = -b / c;
+      TRACE(rc_y);
+      const auto rc = sqrt( (rc_x * rc_x) + (rc_y * rc_y));
+      const apfloat e = boost::numeric::bounds<double>::smallest();
+      const auto new_max_error = e * rc;
+      TRACE(rc_x);
+      TRACE(rc_y);
+      TRACE(rc);
+      TRACE(new_max_error);
+      TRACE(new_max_error);
+    }
+    if (verbose)
+    {
+      TRACE(b);
+      TRACE(d);
+      TRACE(calculated);
+    }
+
+    //Error
+    // = the rounding off error
+    // * SQRT(
+    //     ((coefficient of direction Y) ^ 2)
+    //   + ((coefficient of direction Z) ^ 2)
+    // )
+
     //const double max_error
     //  = m_plane_?->GetFunction?() * boost::numeric::bounds<double>::smallest();
     if (verbose) { TRACE(max_error); }
-    const bool is_in_plane = error < max_error;
+    const bool is_in_plane = error <= max_error;
     if (verbose) { TRACE(is_in_plane); }
     return is_in_plane;
   }

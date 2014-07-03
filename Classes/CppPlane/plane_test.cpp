@@ -137,6 +137,17 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D(0.0, 2.0,-2.0)));
     assert(p.IsInPlane(Point3D(0.0,-2.0, 2.0)));
     assert(p.IsInPlane(Point3D(0.0,-2.0,-2.0)));
+
+    const double e = boost::numeric::bounds<double>::smallest();
+    assert(p.IsInPlane(Point3D(e, 2.0, 2.0)));
+    assert(p.IsInPlane(Point3D(e, 2.0,-2.0)));
+    assert(p.IsInPlane(Point3D(e,-2.0, 2.0)));
+    assert(p.IsInPlane(Point3D(e,-2.0,-2.0)));
+    const double f = 2.0 * e;
+    assert(!p.IsInPlane(Point3D(f, 2.0, 2.0)));
+    assert(!p.IsInPlane(Point3D(f, 2.0,-2.0)));
+    assert(!p.IsInPlane(Point3D(f,-2.0, 2.0)));
+    assert(!p.IsInPlane(Point3D(f,-2.0,-2.0)));
   }
   if (verbose) TRACE("IsInPlane, X = 0 plane, zooming in, #223");
   {
@@ -161,6 +172,16 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D( 2.0,0.0,-2.0)));
     assert(p.IsInPlane(Point3D(-2.0,0.0, 2.0)));
     assert(p.IsInPlane(Point3D(-2.0,0.0,-2.0)));
+    const double e = boost::numeric::bounds<double>::smallest();
+    assert(p.IsInPlane(Point3D( 2.0,e, 2.0)));
+    assert(p.IsInPlane(Point3D( 2.0,e,-2.0)));
+    assert(p.IsInPlane(Point3D(-2.0,e, 2.0)));
+    assert(p.IsInPlane(Point3D(-2.0,e,-2.0)));
+    const double f = 2.0 * e;
+    assert(!p.IsInPlane(Point3D( 2.0,f, 2.0)));
+    assert(!p.IsInPlane(Point3D( 2.0,f,-2.0)));
+    assert(!p.IsInPlane(Point3D(-2.0,f, 2.0)));
+    assert(!p.IsInPlane(Point3D(-2.0,f,-2.0)));
   }
   if (verbose) TRACE("IsInPlane, Y = 0 plane, zooming in, #223");
   {
@@ -185,20 +206,17 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D( 2.0,-2.0,0.0)));
     assert(p.IsInPlane(Point3D(-2.0, 2.0,0.0)));
     assert(p.IsInPlane(Point3D(-2.0,-2.0,0.0)));
-
     const double e = boost::numeric::bounds<double>::smallest();
     assert(p.IsInPlane(Point3D( 2.0, 2.0,e)));
     assert(p.IsInPlane(Point3D( 2.0,-2.0,e)));
     assert(p.IsInPlane(Point3D(-2.0, 2.0,e)));
     assert(p.IsInPlane(Point3D(-2.0,-2.0,e)));
-    const double f = 4.0 * e;
-    TRACE("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    const double f = 2.0 * e;
     assert(!p.IsInPlane(Point3D( 1.0, 1.0,f)));
     assert(!p.IsInPlane(Point3D( 1.0,-1.0,f)));
     assert(!p.IsInPlane(Point3D(-1.0, 1.0,f)));
     assert(!p.IsInPlane(Point3D(-1.0,-1.0,f)));
   }
-  assert(!"Yay, improved accuracy");
   if (verbose) TRACE("IsInPlane, Z = 0 plane, zooming in, #223");
   {
     const double i = boost::numeric::bounds<double>::smallest();

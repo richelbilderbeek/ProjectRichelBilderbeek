@@ -133,16 +133,6 @@ struct Plane
   private:
   ~Plane() noexcept {}
 
-  ///If possible, convert the Plane to a x(y,z), e.g 'x=(2*y) + (3*z) + 5' (spaces exactly as shown)
-  //std::string ToFunctionX() const; //TEMP, to be removed
-
-  ///If possible, convert the Plane to a y(x,z), e.g 'y=(2*x) + (3*z) + 5' (spaces exactly as shown)
-  //std::string ToFunctionY() const; //TEMP, to be removed
-
-  ///If possible, convert the Plane to a z(x,y), e.g 'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
-  //std::string ToFunctionZ() const; //TEMP, to be removed
-
-
   ///A non-horizontal plane; a plane that can be expressed as 'X(Y,Z) = A*Y + B*Z + C'
   const boost::shared_ptr<const PlaneX> m_plane_x;
 

@@ -157,9 +157,7 @@ std::vector<apfloat> ribi::Geometry::CalcPlane(
   const ApCoordinat3D& p3
 ) const noexcept
 {
-  //using boost::geometry::cs::cartesian;
   using boost::geometry::get;
-  //using boost::geometry::model::point;
   const auto v1 = p3 - p1;
   const auto v2 = p2 - p1;
 
