@@ -30,9 +30,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
-//#include "planex.h"
-//#include "planey.h"
-//#include "planez.h"
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif

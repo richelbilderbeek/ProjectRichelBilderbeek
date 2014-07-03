@@ -309,7 +309,7 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose = true;
   const double x = boost::geometry::get<0>(coordinat);
   const double y = boost::geometry::get<1>(coordinat);
   const double z = boost::geometry::get<2>(coordinat);

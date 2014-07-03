@@ -30,6 +30,8 @@ void ribi::Plane::Test() noexcept
   { const auto planey = boost::make_shared<PlaneY>(); assert(planey); }
   { const auto planez = boost::make_shared<PlaneZ>(); assert(planez); }
 
+  const double epsilon = std::numeric_limits<double>::epsilon();
+
   if (verbose) TRACE("Plane that can be expressed in all three forms");
   {
     const Point3D p1( 1.0, 2.0,3.0);
@@ -152,11 +154,10 @@ void ribi::Plane::Test() noexcept
   }
   if (verbose) TRACE("IsInPlane, X = 0 plane, zooming in, #223");
   {
-    const double i = boost::numeric::bounds<double>::smallest();
-    assert(i > 0.0);
+    assert(epsilon > 0.0);
     const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,0.0,i);
-    const Point3D p3(0.0,i,0.0);
+    const Point3D p2(0.0,0.0,epsilon);
+    const Point3D p3(0.0,epsilon,0.0);
     const Plane p(p1,p2,p3);
     assert(p.IsInPlane(Point3D(0.0, 2.0, 2.0)));
     assert(p.IsInPlane(Point3D(0.0, 2.0,-2.0)));
@@ -174,7 +175,6 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D(-2.0,0.0, 2.0)));
     assert(p.IsInPlane(Point3D(-2.0,0.0,-2.0)));
     const double e = std::numeric_limits<double>::epsilon();
-    //const double e = boost::numeric::bounds<double>::smallest();
     assert(p.IsInPlane(Point3D( 2.0,e, 2.0)));
     assert(p.IsInPlane(Point3D( 2.0,e,-2.0)));
     assert(p.IsInPlane(Point3D(-2.0,e, 2.0)));
@@ -187,11 +187,10 @@ void ribi::Plane::Test() noexcept
   }
   if (verbose) TRACE("IsInPlane, Y = 0 plane, zooming in, #223");
   {
-    const double i = boost::numeric::bounds<double>::smallest();
-    assert(i > 0.0);
+    assert(epsilon > 0.0);
     const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,0.0,i);
-    const Point3D p3(i,0.0,0.0);
+    const Point3D p2(0.0,0.0,epsilon);
+    const Point3D p3(epsilon,0.0,0.0);
     const Plane p(p1,p2,p3);
     assert(p.IsInPlane(Point3D( 2.0,0.0, 2.0)));
     assert(p.IsInPlane(Point3D( 2.0,0.0,-2.0)));
@@ -208,7 +207,6 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(Point3D( 2.0,-2.0,0.0)));
     assert(p.IsInPlane(Point3D(-2.0, 2.0,0.0)));
     assert(p.IsInPlane(Point3D(-2.0,-2.0,0.0)));
-    //const double e = boost::numeric::bounds<double>::smallest();
     const double e = std::numeric_limits<double>::epsilon();
     assert(p.IsInPlane(Point3D( 2.0, 2.0,e)));
     assert(p.IsInPlane(Point3D( 2.0,-2.0,e)));
@@ -222,11 +220,10 @@ void ribi::Plane::Test() noexcept
   }
   if (verbose) TRACE("IsInPlane, Z = 0 plane, zooming in, #223");
   {
-    const double i = boost::numeric::bounds<double>::smallest();
-    assert(i > 0.0);
+    assert(epsilon > 0.0);
     const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,i,0.0);
-    const Point3D p3(i,0.0,0.0);
+    const Point3D p2(0.0,epsilon,0.0);
+    const Point3D p3(epsilon,0.0,0.0);
     const Plane p(p1,p2,p3);
     assert(p.IsInPlane(Point3D( 2.0, 2.0,0.0)));
     assert(p.IsInPlane(Point3D( 2.0,-2.0,0.0)));
@@ -255,9 +252,9 @@ void ribi::Plane::Test() noexcept
   */
   if (verbose) TRACE("IsInPlane, Slope");
   {
-    for (const double slope: { 1.0, 0.1 } )
+    for (double slope = 1.0; slope > epsilon; slope /= 10.0)
     {
-      TRACE(slope);
+      //TRACE(slope);
       const double slope_less = slope * 0.9999999;
       const double slope_more = slope * 1.0000001;
       assert(slope_less < slope);
@@ -308,9 +305,6 @@ void ribi::Plane::Test() noexcept
       }
     )
     {
-      //TRACE("----------------------------------------------------------");
-      //TRACE(co.first);
-      //TRACE(co.second);
       const Point3D p1(0.0,0.0,0.0);
       const Point3D p2(0.0,0.0,1.0);
       const Point3D p3(co.first,co.second,0.0);
@@ -327,13 +321,8 @@ void ribi::Plane::Test() noexcept
     const Plane p(p1,p2,p3);
 
     assert(p.CanCalcY());
-    //assert(!p.ToFunctionY().empty());
-
     assert(!p.CanCalcX());
-    //try { p.ToFunctionX(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
-
     assert(!p.CanCalcZ());
-    //try { p.ToFunctionZ(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
     assert(!p.CalcProjection( { p1,p2,p3,p4 } ).empty());
   }
   if (verbose) TRACE("IsInPlane, from #218");

@@ -161,7 +161,18 @@ double ribi::PlaneZ::CalcZ(const double x_double, const double y_double) const
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
   }
-  return Geometry().ToDouble(((-a*x) - (b*y) + d) / c);
+  std::string s = "0.000000010000000000000008881e-108";
+  char * const cstr = const_cast<char*>(s.c_str()); //apfloat is not const-correct
+  if (abs(c) < apfloat(cstr))
+  {
+    throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a near-vertical plane");
+  }
+  const apfloat ap_result = ((-a*x) - (b*y) + d) / c;
+  const double result = Geometry().ToDouble(ap_result);
+  TRACE(c);
+  TRACE(ap_result);
+  TRACE(result);
+  return result;
 }
 
 double ribi::PlaneZ::GetFunctionA() const
