@@ -49,6 +49,7 @@ struct PlaneX
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::vector<Coordinat2D> Coordinats2D;
   typedef std::vector<Coordinat3D> Coordinats3D;
+  typedef apfloat Apfloat;
   ///Construct from its coefficients
   /*
   explicit PlaneX(const std::vector<double>& coefficients = {0.0,0.0,0.0,0.0});
@@ -83,8 +84,9 @@ struct PlaneX
 
   ///Throws when cannot calculate X, which is when the plane is horizontal
   double CalcX(const double y, const double z) const;
+  Apfloat CalcX(const Apfloat& y, const Apfloat& z) const;
 
-  std::vector<apfloat> GetCoefficients() const noexcept;
+  std::vector<Apfloat> GetCoefficients() const noexcept;
 
   ///x = Ay + Bz + C
   ///Will throw if A cannot be calculated

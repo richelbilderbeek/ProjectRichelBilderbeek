@@ -53,6 +53,7 @@ struct PlaneZ;
 struct Plane
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef apfloat Apfloat;
   ///Construct a Plane from three points
   /*
 
@@ -95,12 +96,15 @@ struct Plane
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the X
   double CalcX(const double y, const double z) const;
+  apfloat CalcX(const apfloat& y, const apfloat& z) const;
 
   ///If the Plane can be expressed as Y = A*X + B*Z + C, return the Y
   double CalcY(const double x, const double z) const;
+  apfloat CalcY(const apfloat& y, const apfloat& z) const;
 
   ///If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
   double CalcZ(const double x, const double y) const;
+  apfloat CalcZ(const apfloat& y, const apfloat& z) const;
 
   ///Can the Plane be expressed as X = A*Y + B*Z + C ?
   bool CanCalcX() const noexcept;

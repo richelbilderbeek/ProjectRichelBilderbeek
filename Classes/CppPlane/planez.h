@@ -55,6 +55,7 @@ struct PlaneZ
   typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> ApCoordinat3D;
   typedef std::vector<Coordinat2D> Coordinats2D;
   typedef std::vector<Coordinat3D> Coordinats3D;
+  typedef apfloat Apfloat;
 
   ///Create plane Z = 0.0
   PlaneZ() noexcept;
@@ -89,6 +90,7 @@ struct PlaneZ
 
   ///Throws when cannot calculate Z, which is when the plane is vertical
   double CalcZ(const double x, const double y) const;
+  Apfloat CalcZ(const Apfloat& x, const Apfloat& y) const;
 
   //std::vector<double> GetCoefficients() const noexcept;
   const std::vector<apfloat>& GetCoefficients() const noexcept { return m_coefficients; }

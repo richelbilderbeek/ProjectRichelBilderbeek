@@ -1153,6 +1153,38 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     }
   );
 
+
+
+  m.push_back(
+    { "CppClnExample1",
+      {
+        "<p><img src=\"PicCln.png\" alt=\"CLN\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppClnExample1.htm\">CLN example 1</a> is a <a href=\"CppCln.htm\">CLN</a>",
+        "  example that compares the regular and <a href=\"CppCln.htm\">CLN</a>",
+        "  <a href=\"CppInt.htm\">int</a> in calculating a huge factorial."
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppClnExample2",
+      {
+        "<p><img src=\"PicCln.png\" alt=\"CLN\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppClnExample2.htm\">CLN example 2</a> is a <a href=\"CppCln.htm\">CLN</a>",
+        "  example that shows how to to <a href=\"CppConvert.htm\">convert</a> an",
+        "  <a href=\"CppCl_I.htm\">cln::cl_I</a> to <a href=\"CppStdString.htm\">std::string</a>",
+        "  and adding the thousands seperators.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppCodeToHtml",
       {

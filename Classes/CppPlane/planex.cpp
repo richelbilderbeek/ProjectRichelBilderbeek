@@ -80,7 +80,7 @@ ribi::PlaneX::Coordinats2D ribi::PlaneX::CalcProjection(
   }
 }
 
-double ribi::PlaneX::CalcX(const double y, const double z) const
+ribi::PlaneX::Apfloat ribi::PlaneX::CalcX(const Apfloat& y, const Apfloat& z) const
 {
   assert(m_plane_z);
   try
@@ -91,6 +91,11 @@ double ribi::PlaneX::CalcX(const double y, const double z) const
   {
     throw std::logic_error("ribi::PlaneX::CalcX: cannot calculate X of a horizontal plane");
   }
+}
+
+double ribi::PlaneX::CalcX(const double y, const double z) const
+{
+  return Geometry().ToDouble(CalcX(Apfloat(y),Apfloat(z)));
 }
 
 std::unique_ptr<ribi::PlaneZ> ribi::PlaneX::Create(

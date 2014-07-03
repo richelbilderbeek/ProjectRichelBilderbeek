@@ -148,15 +148,13 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneZ::CalcProj
   return v;
 }
 
-double ribi::PlaneZ::CalcZ(const double x_double, const double y_double) const
+ribi::PlaneZ::Apfloat ribi::PlaneZ::CalcZ(const Apfloat& x, const Apfloat& y) const
 {
   // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
   const auto a = m_coefficients[0];
   const auto b = m_coefficients[1];
   const auto c = m_coefficients[2];
   const auto d = m_coefficients[3];
-  const apfloat x(x_double);
-  const apfloat y(y_double);
   if (c == 0.0)
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
@@ -167,12 +165,13 @@ double ribi::PlaneZ::CalcZ(const double x_double, const double y_double) const
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a near-vertical plane");
   }
-  const apfloat ap_result = ((-a*x) - (b*y) + d) / c;
-  const double result = Geometry().ToDouble(ap_result);
-  TRACE(c);
-  TRACE(ap_result);
-  TRACE(result);
+  const apfloat result = ((-a*x) - (b*y) + d) / c;
   return result;
+}
+
+double ribi::PlaneZ::CalcZ(const double x, const double y) const
+{
+  return Geometry().ToDouble(CalcZ(Apfloat(x),Apfloat(y)));
 }
 
 double ribi::PlaneZ::GetFunctionA() const

@@ -50,6 +50,7 @@ struct PlaneY
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::vector<Coordinat2D> Coordinats2D;
   typedef std::vector<Coordinat3D> Coordinats3D;
+  typedef apfloat Apfloat;
 
   ///Create plane Y = 0.0
   PlaneY() noexcept;
@@ -82,6 +83,7 @@ struct PlaneY
 
   ///Throws when cannot calculate Y, which is when the plane is horizontal
   double CalcY(const double y, const double z) const;
+  Apfloat CalcY(const Apfloat& y, const Apfloat& z) const;
 
   ///y = Ax + Bz + C
   ///Will throw if A cannot be calculated
