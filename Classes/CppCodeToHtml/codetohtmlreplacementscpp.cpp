@@ -1873,6 +1873,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "Address","<a href=\"C$ppAd$dress.htm\">Ad$dress</a>" },
     { "adelete","ad$elete" },
     { "Android","<a href=\"CppA$ndroid.htm\">A$ndroid</a>" },
+    { "apfloat","<a href=\"CppA$pf$loat.htm\">a$pf$loat</a>" },
+    { "Apfloat","<a href=\"CppA$pf$loat.htm\">A$pf$loat</a>" },
     { "asignal","as$ignal" },
     { "astruct","as$truct" },
     { "bdelete","bd$elete" },

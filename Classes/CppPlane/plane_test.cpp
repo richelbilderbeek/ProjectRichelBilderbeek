@@ -377,7 +377,7 @@ void ribi::Plane::Test() noexcept
     }
     assert(p.IsInPlane(p4));
   }
-  if (verbose) TRACE("IsInPlane, from >#220");
+  if (verbose) TRACE("IsInPlane, crashes with Plane v1.5");
   {
     const double x1 = 0.0004035051226622692510832834944523028752882964909076690673828125;
     const double y1 = 0.00023296416881187433805568132161312178141088224947452545166015625;
@@ -420,6 +420,60 @@ void ribi::Plane::Test() noexcept
     }
     assert(p.IsInPlane(p4));
   }
+
+
+
+  if (verbose) TRACE("IsInPlane, crashes with Plane v1.6");
+  {
+    // TRACE '"ERROR"' line 392 in file '..\..\Classes\CppTriangleMesh\trianglemeshcellscreator.cpp': 'ERROR'
+    // TRACE 's.str()' line 399 in file '..\..\Classes\CppTriangleMesh\trianglemeshcellscreator.cpp': '4
+    // (-5,5,0) (index: 659) (-5,-0.9999999999999997779553950749686919152736663818359375,0) (index: 666) (-5,5,1) (index: 700) (-5,-0.9999999999999997779553950749686919152736663818359375,1) (index: 707) '
+    // TRACE '"BREAK"' line 400 in file '..\..\Classes\CppTriangleMesh\trianglemeshcellscreator.cpp': 'BREAK'
+    // Assertion failed!
+    const double x1 = -5; //left out the '.0' intentionally
+    const double y1 = 5; //left out the '.0' intentionally
+    const double z1 = 0; //left out the '.0' intentionally
+
+    const double x2 = -5; //left out the '.0' intentionally
+    const double y2 = -0.9999999999999997779553950749686919152736663818359375;
+    const double z2 = 0; //left out the '.0' intentionally
+
+    const double x3 = -5; //left out the '.0' intentionally
+    const double y3 = 5; //left out the '.0' intentionally
+    const double z3 = 1; //left out the '.0' intentionally
+
+    const double x4 = -5; //left out the '.0' intentionally
+    const double y4 = -0.9999999999999997779553950749686919152736663818359375;
+    const double z4 = 1; //left out the '.0' intentionally
+
+
+    const Point3D p1(x1,y1,z1);
+    const Point3D p2(x2,y2,z2);
+    const Point3D p3(x3,y3,z3);
+    const Point3D p4(x4,y4,z4);
+    const Plane p(p1,p2,p3);
+    try
+    {
+      assert(p.IsInPlane(p4));
+    }
+    catch (std::exception&)
+    {
+      TRACE("ERROR");
+      std::stringstream s;
+      s
+        << std::setprecision(99)
+        << p << '\n'
+        << Container().ToStr(p.GetCoefficientsX()) << '\n'
+        << Container().ToStr(p.GetCoefficientsY()) << '\n'
+        << Container().ToStr(p.GetCoefficientsZ()) << '\n'
+      ;
+      TRACE(s.str());
+      TRACE("BREAK");
+    }
+    assert(p.IsInPlane(p4));
+  }
+
+
   TRACE("Finished ribi::Plane::Test successfully");
 }
 #endif

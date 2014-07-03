@@ -807,7 +807,6 @@ void ribi::trim::CellsCreator::Test() noexcept
     face_points.push_back(p4);
     assert(IsPlane(face_points));
   }
-  assert(!"Yay, bug fixed");
   TRACE("Finished ribi::trim::CellsCreator::Test successfully");
 }
 #endif

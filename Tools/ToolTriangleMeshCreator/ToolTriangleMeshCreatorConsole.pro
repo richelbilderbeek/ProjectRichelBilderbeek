@@ -4,6 +4,7 @@ QMAKE_CXXFLAGS_DEBUG += -pg
 QMAKE_LFLAGS_DEBUG += -pg
 
 include(../../ConsoleApplication.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
 

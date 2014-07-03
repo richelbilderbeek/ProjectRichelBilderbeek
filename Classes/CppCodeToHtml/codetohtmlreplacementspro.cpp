@@ -327,10 +327,11 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
   //15
     { "-lboost_signals","<a href=\"C$ppB$oostS$ignals.htm\">-l$b$oost_s$ignals</a>" },
     { "CppApproximator","<a href=\"C$ppA$pproximator.htm\">C$ppA$pproximator</a>" },
-    { "CppConnectThree","<a href=\"C$ppC$onnectT$hree.htm\">CppC$onnectT$hree</a>" },
-    { "CppKalmanFilter","<a href=\"C$ppK$almanF$ilter.htm\">CppK$almanF$ilter</a>" },
+    { "CppCaesarCipher","<a href=\"C$ppC$aesarC$ipher.htm\">C$ppC$aesarC$ipher</a>" },
+    { "CppConnectThree","<a href=\"C$ppC$onnectT$hree.htm\">C$ppC$onnectT$hree</a>" },
+    { "CppKalmanFilter","<a href=\"C$ppK$almanF$ilter.htm\">C$ppK$almanF$ilter</a>" },
     { "CppNewickVector","<a href=\"C$ppN$ewickV$ector.htm\">C$ppN$ewickV$ector</a>" },
-    { "CppOpenQuestion","<a href=\"C$ppO$penQ$uestion.htm\">CppO$penQ$uestion</a>" },
+    { "CppOpenQuestion","<a href=\"C$ppO$penQ$uestion.htm\">C$ppO$penQ$uestion</a>" },
     { "CppQtConceptMap","<a href=\"C$ppQ$tC$onceptM$ap.htm\">C$ppQ$tC$onceptM$ap</a>" },
     { "CppQtDialWidget","<a href=\"C$ppQ$tD$ialW$idget.htm\">C$ppQ$tD$ialW$idget</a>" },
     { "CppToggleButton","<a href=\"C$ppT$oggleB$utton.htm\">C$ppT$oggleB$utton</a>" },
@@ -361,6 +362,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "qtpatharrowitem","<a href=\"C$ppQ$tP$athA$rrowI$tem.htm\">q$tp$atha$rrowi$tem</a>" },
   //14
     { "-lboost_system","<a href=\"C$ppS$ystem.htm\">-l$b$oost_s$ystem</a>" },
+    { "CppCodeBreaker","<a href=\"C$ppC$odeB$reaker.htm\">C$ppC$odeB$reaker</a>" },
     { "CppGaborFilter","<a href=\"C$ppG$aborF$ilter.htm\">C$ppG$aborF$ilter</a>" },
     { "CppQtArrowItem","<a href=\"C$ppQ$t$A$r$rowI$tem.htm\">C$ppQ$t$A$rr$owI$tem</a>" },
     { "CppMultiVector","<a href=\"C$ppM$ultiV$ector.htm\">C$ppM$ultiV$ector</a>" },
