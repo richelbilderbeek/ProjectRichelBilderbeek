@@ -60,6 +60,7 @@ ribi::PlaneZ::PlaneZ(
   //a division by itself is prevented by throwing an exception.
   //Throw an exception as if m_coefficients[2] equalled zero
   //if (std::abs(m_coefficients[2]) < 1.0e-14)
+  //if (abs(m_coefficients[2]) < 1.0e-14)
   //Nonsense with abfloats
   if (m_coefficients[2] == 0.0)
   {
@@ -147,13 +148,15 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneZ::CalcProj
   return v;
 }
 
-double ribi::PlaneZ::CalcZ(const double x, const double y) const
+double ribi::PlaneZ::CalcZ(const double x_double, const double y_double) const
 {
   // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
   const auto a = m_coefficients[0];
   const auto b = m_coefficients[1];
   const auto c = m_coefficients[2];
   const auto d = m_coefficients[3];
+  const apfloat x(x_double);
+  const apfloat y(y_double);
   if (c == 0.0)
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");

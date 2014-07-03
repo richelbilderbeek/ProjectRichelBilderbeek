@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "codetohtmlinfo.h"
 
 #include <cassert>
@@ -2017,12 +2018,53 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppGetMaxDouble",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetMaxDouble.htm\">GetMaxDouble</a> is a <a href=\"CppCheck.htm\">checking</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to get the maximal value of an <a href=\"CppDouble.htm\">double</a>."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGetMaxDouble.zip\">Download the Qt Creator project 'CppGetMaxDouble' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppGetMaxInt",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetMaxInt.htm\">GetMaxInt</a> is a <a href=\"CppCheck.htm\">checking</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to get the maximal value of an <a href=\"CppInt.htm\">int</a>."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGetMaxInt.zip\">Download the Qt Creator project 'CppGetMaxInt' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppGetPath",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppGetPath.htm\">GetPath</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's path.</p>",
+        "<p>",
+        "  <a href=\"CppGetPath.htm\">GetPath</a> is a <a href=\"CppFileIo.htm\">file I/O</a>",
+        "  <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to get a filename's path.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetPath.zip\">Download the Qt Creator project 'CppGetPath' (zip)</a></li>",
@@ -2030,6 +2072,7 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
   m.push_back(
     { "CppGetPermutations",
       {
@@ -2059,6 +2102,24 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetRegexMatches.zip\">Download the Qt Creator project 'GetRegexMatches' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppGetSmallestDouble",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetSmallestDouble.htm\">GetSmallestDouble</a> is a <a href=\"CppCheck.htm\">checking</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to get the smallest value of an <a href=\"CppDouble.htm\">double</a>."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGetSmallestDouble.zip\">Download the Qt Creator project 'CppGetSmallestDouble' (zip)</a></li>",
         "</ul>"
       }
     }

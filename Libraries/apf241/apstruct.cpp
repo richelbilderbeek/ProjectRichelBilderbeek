@@ -1,6 +1,7 @@
 #include <cmath>
 #include "ap.h"
 
+#include "trace.h" //RJCB
 
 using namespace std;
 
@@ -821,6 +822,13 @@ apstruct *apdivshort (apstruct *a, apstruct *b)
     assert (a);                 // Won't work on uninitialized apfloats
     assert (b);
 
+    #ifndef NDEBUG
+    if (!b->sign)
+    {
+      TRACE("ERROR");
+      TRACE("BREAK");
+    }
+    #endif
     assert (b->sign);                           // Infinity
 
     sign = a->sign * b->sign;
