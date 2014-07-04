@@ -7,13 +7,8 @@
     <x>0</x>
     <y>0</y>
     <width>274</width>
-    <height>490</height>
+    <height>390</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <pointsize>36</pointsize>
-   </font>
   </property>
   <property name="windowTitle">
    <string>SurfacePlotter</string>
@@ -24,7 +19,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_welcome">
      <property name="text">
       <string/>
      </property>
@@ -39,7 +34,14 @@
    <item>
     <widget class="QPushButton" name="button_start">
      <property name="text">
-      <string>Start</string>
+      <string>&amp;ribi</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_qwt">
+     <property name="text">
+      <string>&amp;Qwt</string>
      </property>
     </widget>
    </item>

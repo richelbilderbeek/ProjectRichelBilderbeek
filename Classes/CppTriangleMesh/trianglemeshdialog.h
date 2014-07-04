@@ -86,7 +86,6 @@ struct Dialog
   typedef std::vector<Linestring> Linestrings;
   typedef std::pair<Polygons,Linestrings> Shapes;
 
-  ///Path is only used for CheckMesh
   Dialog();
 
   ///Uses OpenFOAM's checkMesh to check the 3D mesh

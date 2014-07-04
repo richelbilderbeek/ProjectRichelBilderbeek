@@ -268,7 +268,6 @@ void ribi::Plane::Test() noexcept
       assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_less)));
     }
   }
-  #ifdef FIX_ISSUE_22x
   //Create plane with different slopes
   /*
   |          /
@@ -412,7 +411,7 @@ void ribi::Plane::Test() noexcept
   }
 
 
-
+  #ifdef FIX_ISSUE_224
   if (verbose) TRACE("IsInPlane, crashes with Plane v1.6");
   {
     // TRACE '"ERROR"' line 392 in file '..\..\Classes\CppTriangleMesh\trianglemeshcellscreator.cpp': 'ERROR'
@@ -463,7 +462,7 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(p4));
   }
 
-  #endif
+  #endif // FIX_ISSUE_224
   TRACE("Finished ribi::Plane::Test successfully");
 }
 #endif

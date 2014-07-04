@@ -325,10 +325,10 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
   const bool verbose = false;
-  const apfloat max_error = 0.00000001; //One millionth
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
   const apfloat z = boost::geometry::get<2>(coordinat);
+
   if (verbose)
   {
     TRACE(x);
@@ -338,6 +338,10 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     s << std::setprecision(99) << (*this);
     TRACE(s.str());
   }
+
+
+  #ifdef IMPROVE_ACCURACY_224
+  const apfloat max_error = 0.00000001; //One millionth
   try
   {
     const auto expected = x;
@@ -392,6 +396,7 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     // OK
     if (verbose) { TRACE(e.what()); }
   }
+  #endif // IMPROVE_ACCURACY_224
 
   //Absolute method
   try

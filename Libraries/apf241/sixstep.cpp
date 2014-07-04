@@ -6,7 +6,7 @@
 void sixstepfnt (modint data[], modint pr, int isign, size_t nn)
 {
     size_t n1, n2, j, k;
-    modint w, tmp, tmp2, *p1 /*, *p2*/;
+    modint w, tmp, tmp2, *p1;
 
     if (nn < 2) return;
 
@@ -63,7 +63,7 @@ void sixstepfnt (modint data[], modint pr, int isign, size_t nn)
 void isixstepfnt (modint data[], modint pr, int isign, size_t nn)
 {
     size_t n1, n2, j, k;
-    modint w, tmp, tmp2, *p1 /*, *p2*/;
+    modint w, tmp, tmp2, *p1;
 
     if (nn < 2) return;
 

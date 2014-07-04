@@ -215,30 +215,37 @@ void ribi::foam::BoundaryFile::Test() noexcept
 
 bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs) noexcept
 {
+  const bool verbose = false;
   if (lhs.GetHeader() != rhs.GetHeader())
   {
-    //TRACE("Headers differ:");
-    //TRACE(lhs.GetHeader());
-    //TRACE(rhs.GetHeader());
+    if (verbose)
+    {
+      TRACE("Headers differ:");
+      TRACE(lhs.GetHeader());
+      TRACE(rhs.GetHeader());
+    }
     return false;
   }
   const std::vector<BoundaryFileItem>& lhs_items = lhs.GetItems();
   const std::vector<BoundaryFileItem>& rhs_items = rhs.GetItems();
   if (lhs_items.size() != rhs_items.size())
   {
-    //TRACE("Number of items differ:");
-    //TRACE(lhs_items.size());
-    //TRACE(rhs_items.size());
+    if (verbose)
+    {
+      TRACE("Number of items differ:");
+      TRACE(lhs_items.size());
+      TRACE(rhs_items.size());
+    }
     return false;
   }
   const bool all_items_equal {
     std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin())
   };
-  //if (!all_items_equal)
-  //{
-  //  TRACE("Items differ:");
-  //  TRACE(all_items_equal);
-  //}
+  if (verbose && !all_items_equal)
+  {
+    TRACE("Items differ:");
+    TRACE(all_items_equal);
+  }
   return all_items_equal;
 }
 

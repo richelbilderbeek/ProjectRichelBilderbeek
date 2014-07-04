@@ -24,7 +24,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
 #include "surfaceplottermenudialog.h"
-#include "qtsurfaceplottermaindialog.h"
+#include "qtsurfaceplotterqwtdialog.h"
+#include "qtsurfaceplotterribidialog.h"
 #include "qtsurfaceplottermenudialog.h"
 #include "trace.h"
 #include "ui_qtsurfaceplottermenudialog.h"
@@ -47,7 +48,7 @@ ribi::QtSurfacePlotterMenuDialog::~QtSurfacePlotterMenuDialog() noexcept
 
 void ribi::QtSurfacePlotterMenuDialog::on_button_start_clicked()
 {
-  QtSurfacePlotterMainDialog d;
+  QtSurfacePlotterRibiDialog d;
   this->ShowChild(&d);
 }
 
@@ -73,6 +74,14 @@ void ribi::QtSurfacePlotterMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtSurfacePlotterMenuDialog::Test");
+  QtSurfacePlotterRibiDialog();
+  QtSurfacePlotterQwtDialog();
   TRACE("Finished ribi::QtSurfacePlotterMenuDialog::Test successfully");
 }
 #endif
+
+void ribi::QtSurfacePlotterMenuDialog::on_button_qwt_clicked()
+{
+  QtSurfacePlotterQwtDialog d;
+  this->ShowChild(&d);
+}
