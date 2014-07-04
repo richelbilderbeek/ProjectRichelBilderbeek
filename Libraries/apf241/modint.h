@@ -82,12 +82,13 @@ private:
 // Inline functions
 
 inline modint::modint (rawtype val)
+  : value(val)
 {
     // value = (val >= modulus ? val - modulus : val);
-    value = val;
 }
 
 inline modint::modint ()
+  : value(0)
 {
     /* If you want your numbers initialized ...
     value = 0;

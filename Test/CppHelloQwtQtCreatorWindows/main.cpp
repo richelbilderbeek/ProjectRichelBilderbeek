@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
   QwtPlotCurve * const m_curve = new QwtPlotCurve("Sine");
-  QwtPlot * const m_plot = new QwtPlot(QwtText("CppHelloQwtQtCreatorLubuntu"));
+  QwtPlot * const m_plot = new QwtPlot(QwtText("CppHelloQwtQtCreatorWindows"));
 
   m_plot->setGeometry(0,0,640,400);
   m_plot->setAxisScale(QwtPlot::xBottom, 0.0,2.0 * M_PI);

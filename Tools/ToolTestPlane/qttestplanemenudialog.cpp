@@ -4,7 +4,7 @@
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
 #include "testplanemenudialog.h"
-#include "qttestplanemaindialog.h"
+#include "qttestplaneconstructplanedialog.h"
 #include "qttestplanemenudialog.h"
 #include "trace.h"
 #include "ui_qttestplanemenudialog.h"
@@ -27,7 +27,7 @@ ribi::QtTestPlaneMenuDialog::~QtTestPlaneMenuDialog() noexcept
 
 void ribi::QtTestPlaneMenuDialog::on_button_start_clicked()
 {
-  QtTestPlaneMainDialog d;
+  QtTestPlaneConstructPlaneDialog d;
   this->ShowChild(&d);
 }
 
@@ -62,7 +62,7 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
     assert(!d.GetVersion().empty());
   }
   {
-    const QtTestPlaneMainDialog d;
+    const QtTestPlaneConstructPlaneDialog d;
     assert(!d.GetVersion().empty());
   }
   TRACE("Finished ribi::QtTestPlaneMenuDialog::Test successfully");

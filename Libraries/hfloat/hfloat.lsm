@@ -1,0 +1,19 @@
+Begin4
+Title:          hfloat
+Version:        2012-11-17
+Entered-date:   2012-11-17
+Description:    hfloat stands for 'huge float'.  It is a library
+                for calculations with floating point numbers of extreme precision.
+                It is optimised for precisions of 1000 to 100 million digits.
+                hfloat uses the FXT package which is available at http://www.jjj.de/fxt/.
+                Several algorithms for the computation of Pi are implemented.
+                The computations can be done in (almost) arbitrary radix.
+                Example code for the usage of the library is given in examples/
+Keywords:       bignum, arithmetic, Pi, 3.1415
+Author:         arndt@jjj.de (Joerg Arndt)
+Maintained-by:  arndt@jjj.de (Joerg Arndt)
+Primary-site:   http://www.jjj.de/hfloat/
+Original-site:  http://www.jjj.de/hfloat/
+Platforms:      Unix with a C++ compiler
+Copying-policy: GPL
+End

@@ -40,6 +40,8 @@ Libraries/boost_*
 Libraries/bot.sh
 Libraries/bullet-2.81-rev2613/
 Libraries/cabalistic-ogredeps-70ef5cdddebb
+Libraries/cln-1.3.3
+Libraries/cln*
 Libraries/CMakeFiles/
 Libraries/CMakeCache.txt
 Libraries/dmalloc-5.5.2/

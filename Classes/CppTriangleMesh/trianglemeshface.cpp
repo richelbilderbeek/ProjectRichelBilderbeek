@@ -49,12 +49,14 @@ ribi::trim::Face::Face(
   assert(  m_points[0].use_count() >= 2);
   assert(any_points[0].use_count() >= 2);
   
+   #ifdef FIX_ISSUE_224
   assert(Helper().IsPlane(m_points));
   if (!Helper().IsConvex(m_points))
   {
     TRACE("ERROR");
     for (auto point: m_points) TRACE(point->ToStr());
   }
+  #endif
   assert(sm_faces.count(this) == 0);
   sm_faces.insert(this);
 
@@ -265,8 +267,12 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
     && "A Face its winding can only be set if it belongs to a cell"
   );
+  #ifdef FIX_ISSUE_224
+  //Must be fixed by #224
   assert(Helper().IsPlane(m_points));
+  //Is fuzzier due to #224
   assert(Helper().IsConvex(m_points));
+  #endif // FIX_ISSUE_224
 
   const boost::shared_ptr<const Cell> observer(
     !GetNeighbour()
@@ -274,7 +280,10 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     : GetConstOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetConstOwner() : GetNeighbour()
   );
   assert(observer);
+  #ifdef FIX_ISSUE_224
+  //Must be fixed by #224
   assert(Helper().IsPlane(m_points));
+  #endif // FIX_ISSUE_224
 
   if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
   {
@@ -303,9 +312,17 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     TRACE(Geometry().ToStr(observer->CalculateCenter()));
   }
   #endif
+
+  #ifdef FIX_ISSUE_224
+  //Fuzzy while #214 is not fixed
   assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
+
+  //Checks if #214 is fixed
   assert(Helper().IsPlane(m_points));
+
+  //Fuzzy while #214 is not fixed
   assert(Helper().IsConvex(m_points));
+  #endif // FIX_ISSUE_224
 }
 
 #ifndef NDEBUG

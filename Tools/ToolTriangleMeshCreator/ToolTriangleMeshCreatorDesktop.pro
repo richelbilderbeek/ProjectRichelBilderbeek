@@ -1,4 +1,5 @@
-include(../../DesktopApplication.pri)
+include(../../DesktopApplicationNoWeffcpp.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)

@@ -84,7 +84,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestFunctionParserMenuDialog::GetPr
 }
 std::string ribi::TestFunctionParserMenuDialog::GetVersion() const noexcept
 {
-  return "2.4";
+  return "2.5";
 }
 
 std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory() const noexcept
@@ -95,7 +95,8 @@ std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory()
     "2011-06-24: Version 2.1: added web version",
     "2011-08-31: Version 2.2: added image to Welcome to web version",
     "2013-04-22: Version 2.3: added image to Welcome to desktop version",
-    "2013-11-05: version 2.4: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 2.4: conformized for ProjectRichelBilderbeekConsole",
+    "2014-07-04: version 2.5: added console version"
   };
 }
 

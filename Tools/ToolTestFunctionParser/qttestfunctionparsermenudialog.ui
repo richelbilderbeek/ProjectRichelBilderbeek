@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>573</width>
-    <height>380</height>
+    <width>260</width>
+    <height>421</height>
    </rect>
   </property>
   <property name="font">
@@ -19,28 +19,12 @@
    <string>TestFunctionParser</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QDialog {
-    background-color: qlineargradient(x1: 0, y1: 1, x2: 1, y2: 0, stop: 0 #eef, stop: 1 #ffe);
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
 }
-
-QLabel { 
-  font-size: 18px;
-  font-family: Courier New, Courier, Courier, monospace;
-  font-weight: bold;
-  padding: 1px;
-} 
-    
-QLineEdit { 
-  font-size: 18px;
-  font-family: Courier New, Courier, Courier, monospace;
-  font-weight: bold;
-  padding: 1px;
-} 
-    
-QPushButton {
-  font-family: Courier New, Courier, Courier, monospace;
-  font-size: 24px;
-} ;</string>
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }
+QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="3" column="0">
@@ -79,14 +63,12 @@ QPushButton {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestFunctionParser.qrc">:/images/ToolTestFunctionParserWelcome.png</pixmap>
+      <pixmap>:/images/ToolTestFunctionParserWelcome.png</pixmap>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="ToolTestFunctionParser.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

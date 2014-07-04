@@ -15,7 +15,7 @@ class apcomplex
 {
 public:
     // Constructors
-    apcomplex (const apfloat &newre, const apfloat &newim = 0) { re = newre; im = newim; }
+    apcomplex (const apfloat &newre, const apfloat &newim = 0) : re(newre), im(newim) {}
     apcomplex ();
 
     // Create a complex object given polar coordinates
@@ -61,54 +61,54 @@ public:
     apcomplex operator- () const;
 
     // Type-converted functions, some compilers can't do these automatically
-    apcomplex (const apfloat &newre, int newim) { re = newre; im = apfloat (newim); }
-    apcomplex (const apfloat &newre, unsigned newim) { re = newre; im = apfloat (newim); }
-    apcomplex (const apfloat &newre, long newim) { re = newre; im = apfloat (newim); }
-    apcomplex (const apfloat &newre, unsigned long newim) { re = newre; im = apfloat (newim); }
-    apcomplex (const apfloat &newre, double newim) { re = newre; im = apfloat (newim); }
-    apcomplex (const apfloat &newre, char *newim) { re = newre; im = apfloat (newim); }
-    apcomplex (int newre, const apfloat &newim = 0) { re = apfloat (newre); im = newim; }
-    apcomplex (int newre, int newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (int newre, unsigned newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (int newre, long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (int newre, unsigned long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (int newre, double newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (int newre, char *newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned newre, const apfloat &newim = 0) { re = apfloat (newre); im = newim; }
-    apcomplex (unsigned newre, int newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned newre, unsigned newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned newre, long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned newre, unsigned long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned newre, double newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned newre, char *newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (long newre, const apfloat &newim = 0) { re = apfloat (newre); im = newim; }
-    apcomplex (long newre, int newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (long newre, unsigned newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (long newre, long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (long newre, unsigned long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (long newre, double newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (long newre, char *newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned long newre, const apfloat &newim = 0) { re = apfloat (newre); im = newim; }
-    apcomplex (unsigned long newre, int newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned long newre, unsigned newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned long newre, long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned long newre, unsigned long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned long newre, double newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (unsigned long newre, char *newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (double newre, const apfloat &newim = 0) { re = apfloat (newre); im = newim; }
-    apcomplex (double newre, int newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (double newre, unsigned newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (double newre, long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (double newre, unsigned long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (double newre, double newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (double newre, char *newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (char *newre, const apfloat &newim = 0) { re = apfloat (newre); im = newim; }
-    apcomplex (char *newre, int newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (char *newre, unsigned newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (char *newre, long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (char *newre, unsigned long newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (char *newre, double newim) { re = apfloat (newre); im = apfloat (newim); }
-    apcomplex (char *newre, char *newim) { re = apfloat (newre); im = apfloat (newim); }
+    apcomplex (const apfloat &newre, int newim) : re(newre), im(apfloat (newim)) {}
+    apcomplex (const apfloat &newre, unsigned newim) : re(newre), im(apfloat (newim)) {}
+    apcomplex (const apfloat &newre, long newim) : re(newre), im(apfloat (newim)) {}
+    apcomplex (const apfloat &newre, unsigned long newim) : re(newre), im(apfloat (newim)) {}
+    apcomplex (const apfloat &newre, double newim) : re(newre), im(apfloat (newim)) {}
+    apcomplex (const apfloat &newre, char *newim) : re(newre), im(apfloat (newim)) {}
+    apcomplex (int newre, const apfloat &newim = 0) : re(apfloat (newre)), im(newim) {}
+    apcomplex (int newre, int newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (int newre, unsigned newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (int newre, long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (int newre, unsigned long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (int newre, double newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (int newre, char *newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned newre, const apfloat &newim = 0) : re(apfloat (newre)), im(newim) {}
+    apcomplex (unsigned newre, int newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned newre, unsigned newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned newre, long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned newre, unsigned long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned newre, double newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned newre, char *newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (long newre, const apfloat &newim = 0) : re(apfloat (newre)), im(newim) {}
+    apcomplex (long newre, int newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (long newre, unsigned newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (long newre, long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (long newre, unsigned long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (long newre, double newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (long newre, char *newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned long newre, const apfloat &newim = 0) : re(apfloat (newre)), im(newim) {}
+    apcomplex (unsigned long newre, int newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned long newre, unsigned newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned long newre, long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned long newre, unsigned long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned long newre, double newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (unsigned long newre, char *newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (double newre, const apfloat &newim = 0) : re(apfloat (newre)), im(newim) {}
+    apcomplex (double newre, int newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (double newre, unsigned newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (double newre, long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (double newre, unsigned long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (double newre, double newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (double newre, char *newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (char *newre, const apfloat &newim = 0) : re(apfloat (newre)), im(newim) {}
+    apcomplex (char *newre, int newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (char *newre, unsigned newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (char *newre, long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (char *newre, unsigned long newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (char *newre, double newim) : re(apfloat (newre)), im(apfloat (newim)) {}
+    apcomplex (char *newre, char *newim) : re(apfloat (newre)), im(apfloat (newim)) {}
 
     friend apcomplex operator+ (int d1, const apcomplex &z2) { return apfloat (d1) + z2; }
     friend apcomplex operator+ (unsigned d1, const apcomplex &z2) { return apfloat (d1) + z2; }
@@ -230,6 +230,7 @@ public:
 // Inline apcomplex functions
 
 inline apcomplex::apcomplex ()
+  : re(0), im(0)
 {
 }
 

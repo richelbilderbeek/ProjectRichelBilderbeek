@@ -324,7 +324,8 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
-  const bool verbose = true;
+  const bool verbose = false;
+  const apfloat max_error = 0.00000001; //One millionth
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
   const apfloat z = boost::geometry::get<2>(coordinat);
@@ -337,6 +338,62 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     s << std::setprecision(99) << (*this);
     TRACE(s.str());
   }
+  try
+  {
+    const auto expected = x;
+    if (verbose) { TRACE(expected); }
+    const apfloat calculated = CalcX(y,z);
+    if (verbose) { TRACE(calculated); }
+    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
+    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error <= max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  try
+  {
+    const auto expected = y;
+    if (verbose) { TRACE(expected); }
+    const auto calculated = CalcY(x,z);
+    if (verbose) { TRACE(calculated); }
+    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
+    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error <= max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  try
+  {
+    const auto expected = z;
+    if (verbose) { TRACE(expected); }
+    const auto calculated = CalcZ(x,y);
+    if (verbose) { TRACE(calculated); }
+    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
+    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error <= max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+
+  //Absolute method
   try
   {
     const auto expected = x;

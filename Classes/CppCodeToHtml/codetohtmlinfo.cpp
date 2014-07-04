@@ -7178,6 +7178,121 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppQwtExample1",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample1.htm\">Qwt example 1: scatter plot</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to create a scatter plot.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample1.png\">View a screenshot of CppQwtExample1 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample1.zip\">Download the Qt Creator project 'CppQwtExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppQwtExample2",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample2.htm\">Qwt example 2: QwtPlot as QGraphicsItem</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to add a QwtPlot to a ",
+        "  <a href=\"CppQGraphicsScene.htm\">QGraphicsScene</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"CppQwtExample2Lubuntu.png\">View a screenshot of CppQwtExample2 (png)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Lubuntu\"/> <a href=\"CppQwtExample2Windows.png\">View a screenshot of CppQwtExample2 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample2.zip\">Download the Qt Creator project 'CppQwtExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample3",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample3.htm\">Qwt example 3: alpha beta filter</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to add two timeseries to a QwtPlot.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample3.png\">View a screenshot of CppQwtExample3 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample3.zip\">Download the Qt Creator project 'CppQwtExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample4",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample4.htm\">Qwt example 4: alpha beta filter with variable parameters</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to add two timeseries to a QwtPlot.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample4.png\">View a screenshot of CppQwtExample4 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample4.zip\">Download the Qt Creator project 'CppQwtExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample5",
+      {
+        "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample5.htm\">Qwt example 5: alpha filter added</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to add two timeseries to a QwtPlot.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample5.png\">View a screenshot of CppQwtExample5 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample5.zip\">Download the Qt Creator project 'CppQwtExample5' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQwtExample6",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppQwtExample6.htm\">Qwt example 6: scatter plot with smart pointers</a> is a <a href=\"CppQwt.htm\">Qwt</a>",
+        "  <a href=\"CppExample.htm\">example</a> that shows how to create a scatter plot using",
+        "  <a href=\"CppSmartPointer.htm\">smart pointers</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQwtExample6.png\">View a screenshot of CppQwtExample6 (png)</a></li>",
+        "  <li><a href=\"CppQwtExample6.zip\">Download the Qt Creator project 'CppQwtExample6' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+
   m.push_back(
     { "CppRainbow",
       {

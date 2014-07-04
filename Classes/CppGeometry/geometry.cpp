@@ -183,7 +183,16 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcPr
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points) const
 {
   assert(points.size() >= 3);
+  #ifdef FIX_ISSUE_224
   assert(IsPlane(points));
+  #else
+  #ifndef NDEBUG
+  if(!IsPlane(points))
+  {
+    TRACE("Warning: points appear not to be in a plane");
+  }
+  #endif
+  #endif
   const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
   assert(plane);
 
@@ -471,7 +480,9 @@ bool ribi::Geometry::IsClockwise(
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
+    #ifdef FIX_ISSUE_224
     assert(Geometry().IsPlane(points));
+    #endif
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
     const auto v(
@@ -596,6 +607,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     return true;
   }
   assert(points.size() == 4);
+  #ifdef FIXING_ISSUE_224
   if(!IsPlane(points))
   {
     TRACE("ERROR");
@@ -604,6 +616,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     TRACE("BREAK");
   }
   assert(IsPlane(points));
+  #endif // FIXING_ISSUE_224
   #endif // NDEBUG
   if (verbose)
   {
@@ -724,8 +737,9 @@ bool ribi::Geometry::IsCounterClockwise(
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
-    
+    #ifdef FIX_ISSUE_224
     assert(Geometry().IsPlane(points));
+    #endif // FIX_ISSUE_224
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
     const auto v(

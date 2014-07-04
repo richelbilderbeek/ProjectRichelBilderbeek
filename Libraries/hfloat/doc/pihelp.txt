@@ -1,0 +1,61 @@
+  ----============== HFLOAT version 11-February-2012 ===============---- 
+       author: Joerg Arndt,  email: arndt (AT) jjj.de 
+     compiler used: GNU C 4.5.0 20100604 [gcc-4_5-branch revision 160292]
+     compilation date: Nov 17 2012, 19:50:57
+     compilation flags were:
+    -O2 -fomit-frame-pointer -ffast-math
+       HFLOAT is online at http://www.jjj.de/hfloat/   
+  ----===========================================================----  
+
+USAGE:  '../pi LDN WHAT RADIX FNAME'   (or  '../pi --help'  for this help)
+ First arg (LDN) is the (base 2) logarithm of the desired precision in LIMBs
+   A LIMB is the 'superdigit' used by hfloat internally
+   (the decimal precision is prec*log_10(RADIX))
+   e.g. LDN=11 means 2^11=2048 LIMBS;  default is 10 (or 1024 LIMBs)
+ Second arg (WHAT) chooses what to do (see below)
+ Third arg (RADIX) gives radix (default is 10000)
+   (usually you'll use 10000 for decimal digits, 65536 for hex digits)
+ Fourth arg (FNAME) gives filename where to save the result.
+
+ Second arg chooses what to do:
+  Computations marked with '!' are for modest precisions only.
+    0 => pi, quartic iteration with r=4
+    1 => pi, quartic iteration with r=16
+    2 => pi, 2.order iteration
+    3 => pi, agm iteration
+    4 => pi, agm3 iteration, faster variant
+    5 => pi, agm3 iteration, slower variant
+    6 => pi, derived agm iteration
+    7 => pi, quintic iteration
+    8 => pi, 3.order iteration
+    9 => pi, 9.order iteration
+   10 => pi, cubic agm iteration
+   13 => pi, agm iteration, quartic variant
+   14 => pi, agm3 iteration, quartic faster variant
+   15 => pi, agm3 iteration, quartic slower variant
+   16 => pi, agm iteration a la Schoenhage (DEFAULT)
+   5N => ! pi, N-term arctan series (N=2...7)
+   60 => ! pi, as arctan(1) (via sumalt)
+  100 => ! eulers e  (2.7182818...) via exp(1)
+  101 => ! eulers e  (2.7182818...) via series
+  111 => log(2) =0.6931471805599453...  via agm
+  112 => ! log(2) =0.6931471805599453...  via sumalt
+  120 => ! zeta(3) =1.202056903159594...  via sumalt
+  141 => sqrt(2) =1.4142135623
+  161 => golden =(sqrt(5)+1)/2 =1.61803398874989...
+  163 => ! exp(pi*sqrt(163)) =262537412640768743.999...
+  207 => ! i**i =exp(-pi/2) =0.2078795763507619...
+  314 => pi-check (run different algorithms for pi & compare the results)
+  847 => agm(1,1/sqrt(2)) =0.8472130847939790866064991234...
+  915 => ! catalan=0.915965594177219015 ... via sumalt()
+  999 => (your) stuff in yourstuff.cc
+
+  e.g.: ../pi 11 1 65536
+    use method 1, precision= 2^11=2048 (radix 65536) LIMBs
+    (i.e. precision is 2048*16 bits= 4096 bytes)
+  e.g.: ../pi 8 0 10000  (default action)
+    use method 0, precision= 2^8=256 (radix 10000) LIMBs
+    (i.e. precision is 256*4=1024 decimal digits)
+  e.g.: ../pi 18 16 10000 result.txt
+    compute pi to 1 million decimal digits (4*2^18=1M)
+    use Schoenhage's agm, save result to result.txt

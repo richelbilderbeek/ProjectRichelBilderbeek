@@ -1,20 +1,21 @@
-#include "qttestplanemaindialog.h"
+#include "qttestplaneconstructplanedialog.h"
 
 #include <cassert>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
 #include "geometry.h"
 #include "plane.h"
 #include "trace.h"
-#include "ui_qttestplanemaindialog.h"
+#include "ui_qttestplaneconstructplanedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
+ribi::QtTestPlaneConstructPlaneDialog::QtTestPlaneConstructPlaneDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestPlaneMainDialog)
+    ui(new Ui::QtTestPlaneConstructPlaneDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -39,12 +40,12 @@ ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
   OnAnyChange();
 }
 
-ribi::QtTestPlaneMainDialog::~QtTestPlaneMainDialog() noexcept
+ribi::QtTestPlaneConstructPlaneDialog::~QtTestPlaneConstructPlaneDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestPlaneMainDialog::OnAnyChange()
+void ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange()
 {
   std::stringstream s;
   s << std::setprecision(ui->box_precision->value());
@@ -168,17 +169,17 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 }
 
 #ifndef NDEBUG
-void ribi::QtTestPlaneMainDialog::Test() noexcept
+void ribi::QtTestPlaneConstructPlaneDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestPlaneMainDialog::Test");
-  QtTestPlaneMainDialog d;
+  TRACE("Starting ribi::QtTestPlaneConstructPlaneDialog::Test");
+  QtTestPlaneConstructPlaneDialog d;
   assert(!d.GetVersion().empty());
-  TRACE("Finished ribi::QtTestPlaneMainDialog::Test successfully");
+  TRACE("Finished ribi::QtTestPlaneConstructPlaneDialog::Test successfully");
 }
 #endif
 

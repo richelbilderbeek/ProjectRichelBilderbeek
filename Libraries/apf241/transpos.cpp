@@ -102,7 +102,7 @@ void transposesquare (modint data[], size_t n1, size_t n2)
 // Permute the rows of matrix to correct order, must be n2 = 2*n1
 void permutewidetotall (modint data[], size_t n1, size_t n2)
 {
-    size_t j, k, o, m;
+    size_t j, /*k,*/ o, m;
 
     if (n2 < 4) return;
 
@@ -144,7 +144,7 @@ void permutewidetotall (modint data[], size_t n1, size_t n2)
 // Permute the rows of matrix to correct order, must be n1 = 2*n2
 void permutetalltowide (modint data[], size_t n1, size_t n2)
 {
-    size_t j, k, o, m;
+    size_t j, /*k,*/ o, m;
 
     if (n1 < 4) return;
 

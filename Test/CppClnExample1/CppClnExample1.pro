@@ -1,18 +1,8 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-24T12:57:24
-#
-#-------------------------------------------------
+#Apfloat will generate errors with -Weffc++
+include(../../ConsoleApplicationNoWeffcpp.pri)
 
-QT       += core
-
-QT       -= gui
-
-TARGET = CppClnExample1
-CONFIG   += console
-CONFIG   -= app_bundle
-LIBS += -L/usr/local/lib -lcln
-TEMPLATE = app
-
+include(../../Libraries/Cln.pri)
+#include(../../Libraries/Boost.pri)
+include(../../Libraries/FParser.pri)
 
 SOURCES += main.cpp

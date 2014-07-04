@@ -1,7 +1,13 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cmath>
 #include "ap.h"
 #include "apcplx.h"
 
+#include <boost/numeric/conversion/cast.hpp>
+#pragma GCC diagnostic pop
 
 using namespace std;
 
@@ -135,7 +141,7 @@ apcomplex invroot (apcomplex u, unsigned n)
     // Calculate initial guess from u
     if (!u.im.sign () ||
         (u.re.sign () && (expdiff > Basedigits ||
-                          expdiff >= 0 && dx >= dy * sqrt (MAX_PRECISE_DOUBLE))))
+                          (expdiff >= 0 && dx >= dy * sqrt (MAX_PRECISE_DOUBLE)))))
     {
         // Re z >> Im z
         apcomplex t;
@@ -173,7 +179,7 @@ apcomplex invroot (apcomplex u, unsigned n)
     }
     else if (!u.re.sign () ||
              (u.im.sign () && (expdiff < -Basedigits ||
-                               expdiff <= 0 && dy >= dx * sqrt (MAX_PRECISE_DOUBLE))))
+                               (expdiff <= 0 && dy >= dx * sqrt (MAX_PRECISE_DOUBLE)))))
     {
         // Im z >> Re z
         apcomplex t;
@@ -266,7 +272,7 @@ apcomplex invroot (apcomplex u, unsigned n)
     // Check where the precising iteration should be done
     for (k = 0, maxprec = prec; maxprec < destprec; k++, maxprec <<= 1);
     for (f = k, minprec = prec; f; f--, minprec <<= 1)
-        if (minprec >= 2 * Basedigits && (minprec - 2 * Basedigits) << f >= destprec)
+        if (boost::numeric_cast<int>(minprec) >= 2 * Basedigits && (minprec - 2 * Basedigits) << f >= destprec)
             break;
 
     // Newton's iteration
@@ -316,7 +322,7 @@ apcomplex agm (apcomplex a, apcomplex b)
         return apfloat (new apstruct);      // Zero
 
     // Precision must be at least 2 * Basedigits
-    if (destprec <= Basedigits)
+    if (boost::numeric_cast<int>(destprec) <= Basedigits)
     {
         destprec = 2 * Basedigits;
         a.re.prec (max (a.re.prec (), destprec));
@@ -582,7 +588,7 @@ apcomplex exp (apcomplex u)
     // Check where the precising iteration should be done
     for (k = 0, maxprec = prec; maxprec < destprec; k++, maxprec <<= 1);
     for (f = k, minprec = prec; f; f--, minprec <<= 1)
-        if (minprec >= 3 * Basedigits && (minprec - 3 * Basedigits) << f >= destprec)
+        if (boost::numeric_cast<int>(minprec) >= 3 * Basedigits && (minprec - 3 * Basedigits) << f >= destprec)
             break;
 
     // Newton's iteration

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>441</width>
-    <height>812</height>
+    <height>862</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,7 +46,14 @@ QPlainTextEdit { font: 12px &quot;Courier New&quot;, courier, monospace }</strin
    <item>
     <widget class="QPushButton" name="button_start">
      <property name="text">
-      <string>&amp;Start</string>
+      <string>&amp;Construct plane</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_investigate_accuracy">
+     <property name="text">
+      <string>&amp;Investigate accuracy</string>
      </property>
     </widget>
    </item>

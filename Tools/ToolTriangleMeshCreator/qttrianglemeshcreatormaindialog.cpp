@@ -100,6 +100,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::Create3dMesh() noexcept
       GetVerbose3dMesh()
     );
     m_dialog->Create3dMesh();
+    m_dialog->Check3dMesh( QApplication::arguments()[0].toStdString() );
     if (GetShowMesh())
     {
       m_dialog->Show3dMesh();
@@ -266,6 +267,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
   QtTriangleMeshCreatorMainDialog d;
   d.SetShowMesh(false);
   d.on_edit_shapes_textChanged();
+  d.on_button_create_2d_mesh_clicked();
   d.on_button_create_clicked();
 
   //Set a WKT that does not have any closed surfaces

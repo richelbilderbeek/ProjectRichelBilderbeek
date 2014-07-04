@@ -156,7 +156,9 @@ bool ribi::trim::Helper::IsClockwise(
     assert(point);
     coordinats.push_back(point->GetCoordinat3D());
   }
+  #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(coordinats));
+  #endif // FIX_ISSUE_224
   return Geometry().IsClockwise(coordinats,observer);
 }
 
@@ -260,7 +262,9 @@ bool ribi::trim::Helper::IsCounterClockwise(
   const Coordinat3D& observer) const noexcept
 {
   
+  #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(PointsToCoordinats3D(points)));
+  #endif
   return Geometry().IsCounterClockwise(PointsToCoordinats3D(points),observer);
 }
 
@@ -268,8 +272,9 @@ bool ribi::trim::Helper::IsCounterClockwise(
   const std::vector<boost::shared_ptr<Point>>& points,
   const Coordinat3D& observer) const noexcept
 {
-  
+  #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(PointsToCoordinats3D(AddConst(points))));
+  #endif
   return Geometry().IsCounterClockwise(PointsToCoordinats3D(AddConst(points)),observer);
 }
 

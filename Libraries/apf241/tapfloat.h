@@ -63,18 +63,20 @@ public:
 
 
 inline tapfloat::tapfloat ()
+  : ap1(0),
+    ap2(0),
+    ap3(0)
 {
-    ap1 = 0;
-    ap2 = 0;
-    ap3 = 0;
+
 }
 
 
 inline tapfloat::tapfloat (apstruct *d1, apstruct *d2, apstruct *d3)
+  : ap1(d1),
+    ap2(d2),
+    ap3(d3)
 {
-    ap1 = d1;
-    ap2 = d2;
-    ap3 = d3;
+
 }
 
 

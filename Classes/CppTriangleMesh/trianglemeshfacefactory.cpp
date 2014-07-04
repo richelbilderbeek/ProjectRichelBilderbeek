@@ -39,15 +39,15 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
 
   assert(points.size() == 3 || points.size() == 4);
   assert(std::count(points.begin(),points.end(),nullptr) == 0);
+  #ifdef FIX_ISSUE_224
   #ifndef NDEBUG
-  
   if(!Helper().IsPlane(points))
   {
     TRACE("ERROR");
   }
-  #endif
-
+  #endif //NDEBUG
   assert(Helper().IsPlane(points));
+  #endif // FIX_ISSUE_224
 
   if (!Helper().IsConvex(points))
   {

@@ -12,26 +12,26 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestPlaneMainDialog;
+  class QtTestPlaneConstructPlaneDialog;
 }
 
 namespace ribi {
 
-class QtTestPlaneMainDialog : public QtHideAndShowDialog
+class QtTestPlaneConstructPlaneDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
-  explicit QtTestPlaneMainDialog(QWidget *parent = 0);
-  QtTestPlaneMainDialog(const QtTestPlaneMainDialog&) = delete;
-  QtTestPlaneMainDialog& operator=(const QtTestPlaneMainDialog&) = delete;
-  ~QtTestPlaneMainDialog() noexcept;
+  explicit QtTestPlaneConstructPlaneDialog(QWidget *parent = 0);
+  QtTestPlaneConstructPlaneDialog(const QtTestPlaneConstructPlaneDialog&) = delete;
+  QtTestPlaneConstructPlaneDialog& operator=(const QtTestPlaneConstructPlaneDialog&) = delete;
+  ~QtTestPlaneConstructPlaneDialog() noexcept;
     
 private slots:
   void OnAnyChange();
 
 private:
-  Ui::QtTestPlaneMainDialog *ui;
+  Ui::QtTestPlaneConstructPlaneDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;
