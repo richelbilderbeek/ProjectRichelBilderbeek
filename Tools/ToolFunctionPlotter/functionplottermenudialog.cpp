@@ -106,7 +106,7 @@ boost::shared_ptr<const ribi::Program> ribi::FunctionPlotterMenuDialog::GetProgr
 
 std::string ribi::FunctionPlotterMenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
 std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory() const noexcept
@@ -116,6 +116,7 @@ std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory() co
     "2010-xx-xx: version 1.1: added integration",
     "2013-12-05: version 2.0: port to Qt"
     "2014-02-06: version 2.1: added command-line version"
+    "2014-07-04: version 2.2: desktop version plots nothing if function cannot be parsed"
   };
 }
 

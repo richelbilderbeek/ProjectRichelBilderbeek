@@ -1,10 +1,18 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cmath>
-#include "ap.h"
+#include <stdexcept>
+#include <sstream>
 
-#include "trace.h" //RJCB
+#include <boost/numeric/conversion/cast.hpp>
+//#include <boost/math/constants/constants.hpp>
+
+#include "ap.h"
+#pragma GCC diagnostic pop
 
 using namespace std;
-
 
 // Round up to the nearest power of two or three times a power of two
 size_t rnd23up (size_t x)
@@ -825,8 +833,12 @@ apstruct *apdivshort (apstruct *a, apstruct *b)
     #ifndef NDEBUG
     if (!b->sign)
     {
-      TRACE("ERROR");
-      TRACE("BREAK");
+      std::stringstream s;
+      s << "Error: "
+        << "Line: " << __LINE__
+        <<  ", file: " << __FILE__
+      ;
+      std::cerr << s.str();
     }
     #endif
     assert (b->sign);                           // Infinity
@@ -847,7 +859,7 @@ apstruct *apdivshort (apstruct *a, apstruct *b)
     {
         // Check for finite or infinite result sequence
         tmp1[0] = f;
-        for (t = 0; t < NBasefactors; t++)
+        for (t = 0; boost::numeric_cast<int>(t) < NBasefactors; t++)
             while (bigdiv (tmp2, tmp1, Basefactors[t], 1) == 0) tmp1[0] = tmp2[0];
         if (tmp1[0] != 1)
         {
@@ -1106,7 +1118,7 @@ apstruct *apabsceil (apstruct *a)
     }
 
     // Check if the fractional part is nonzero
-    if (a->size > a->exp)
+    if (boost::numeric_cast<long>(a->size) > a->exp)
         carry = 1;
     else
         carry = 0;

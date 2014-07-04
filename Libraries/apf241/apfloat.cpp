@@ -1,8 +1,16 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <iomanip>
 #include <sstream>
 #include <cstring>
 #include <cmath>
 #include "ap.h"
+
+#include <boost/numeric/conversion/cast.hpp>
+//#include <boost/math/constants/constants.hpp>
+#pragma GCC diagnostic pop
 
 
 using namespace std;
@@ -44,6 +52,7 @@ const char Expchar[2] = {'e', 'E'};
 
 // Construct an apfloat from an integer
 apfloat::apfloat (int value, size_t prec, int location)
+  : ap(nullptr)
 {
     int sign;
     size_t t, size;
@@ -100,6 +109,7 @@ apfloat::apfloat (int value, size_t prec, int location)
 
 // Construct an apfloat from an unsigned integer
 apfloat::apfloat (unsigned value, size_t prec, int location)
+  : ap(nullptr)
 {
     int sign;
     size_t t, size;
@@ -151,6 +161,7 @@ apfloat::apfloat (unsigned value, size_t prec, int location)
 
 // Construct an apfloat from a long integer
 apfloat::apfloat (long value, size_t prec, int location)
+  : ap(nullptr)
 {
     int sign;
     size_t t, size;
@@ -207,6 +218,7 @@ apfloat::apfloat (long value, size_t prec, int location)
 
 // Construct an apfloat from an unsigned long integer
 apfloat::apfloat (unsigned long value, size_t prec, int location)
+  : ap(nullptr)
 {
     int sign;
     size_t t, size;
@@ -258,6 +270,7 @@ apfloat::apfloat (unsigned long value, size_t prec, int location)
 
 // Construct an apfloat from a double
 apfloat::apfloat (double value, size_t prec, int location)
+  : ap(nullptr)
 {
     int sign;
     size_t t, size;
@@ -331,6 +344,7 @@ apfloat::apfloat (double value, size_t prec, int location)
 
 // Construct an apfloat from a character string
 apfloat::apfloat (char *valuestring, size_t prec, int location)
+  : ap(nullptr)
 {
     size_t t, r, l, e, d;
     int sign = 1, dot = 0;
@@ -476,9 +490,8 @@ apfloat::apfloat (char *valuestring, size_t prec, int location)
 }
 
 apfloat::apfloat (const apfloat &d)
+  : ap(d.ap)
 {
-    ap = d.ap;
-
     if (!ap) return;
 
     ap->nlinks++;
@@ -630,7 +643,7 @@ apfloat &apfloat::operator-- ()
 
 // Post-increment operators by Adam Pawlowski
 
-apfloat apfloat::operator++ (int d)
+apfloat apfloat::operator++ (int)
 {
     apfloat tmp = *this;
     ++(*this);
@@ -638,7 +651,7 @@ apfloat apfloat::operator++ (int d)
     return tmp;
 }
 
-apfloat apfloat::operator-- (int d)
+apfloat apfloat::operator-- (int)
 {
     apfloat tmp = *this;
     --(*this);
@@ -956,7 +969,7 @@ istream &operator>> (istream &str, apfloat &d)
         // Get the actual data
 
         val = val * Basedigit + valuetable[(unsigned char) c];
-        if (++r == Basedigits)
+        if (boost::numeric_cast<int>(++r) == Basedigits)
         {
             if (nonzero)
             {
@@ -1002,7 +1015,7 @@ istream &operator>> (istream &str, apfloat &d)
         buffercheck (&t, ap, &data);
 
         if (size || intcount <= leadzeros)      // Not first integer part base unit
-            for (; r < Basedigits; r++)
+            for (; boost::numeric_cast<int>(r) < Basedigits; r++)
                 val *= Basedigit;
 
         data[t++] = val;
@@ -1054,7 +1067,7 @@ istream &operator>> (istream &str, apfloat &d)
         tmpexp = tmpexp / Basedigits;
         e += (exp + l) % Basedigits;
         exp = (exp + l) / Basedigits - t + tmpexp;
-        if (e >= Basedigits)
+        if (boost::numeric_cast<int>(e) >= Basedigits)
         {
             e -= Basedigits;
             exp++;

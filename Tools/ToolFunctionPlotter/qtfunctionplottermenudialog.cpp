@@ -4,7 +4,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtaboutdialog.h"
 #include "functionplottermenudialog.h"
-#include "qtfunctionplottermaindialog.h"
+#include "qtfunctionplotterplot2ddialog.h"
 #include "qtfunctionplottermenudialog.h"
 #include "ui_qtfunctionplottermenudialog.h"
 #include "trace.h"
@@ -27,7 +27,7 @@ ribi::QtFunctionPlotterMenuDialog::~QtFunctionPlotterMenuDialog() noexcept
 
 void ribi::QtFunctionPlotterMenuDialog::on_button_start_clicked() noexcept
 {
-  QtFunctionPlotterMainDialog d;
+  QtFunctionPlotterPlot2dDialog d;
   this->ShowChild(&d);
 }
 

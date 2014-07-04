@@ -17,8 +17,8 @@ class apint
 {
 public:
     // Constructors
-    apint (const apfloat &newval) { val = floor (newval); }
-    apint () {};
+    apint (const apfloat &newval) : val(floor (newval)) {}
+    apint() : val(0.0) {}
 
     // Operator functions
     friend apint operator+ (const apint &, const apint &);
@@ -51,12 +51,12 @@ public:
     apint operator- () const;
 
     // Type-converted functions
-    apint (int newval) { val = apfloat (newval); }
-    apint (unsigned newval) { val = apfloat (newval); }
-    apint (long newval) { val = apfloat (newval); }
-    apint (unsigned long newval) { val = apfloat (newval); }
-    apint (double newval) { val = floor (apfloat (newval)); }
-    apint (char *newval) { val = floor (apfloat (newval)); }
+    apint (int newval) : val(apfloat (newval)) {}
+    apint (unsigned newval) : val(apfloat (newval)) {}
+    apint (long newval) : val(apfloat (newval)) {}
+    apint (unsigned long newval) : val(apfloat (newval)) {}
+    apint (double newval) : val(floor (apfloat (newval))) {}
+    apint (char *newval) : val(floor (apfloat (newval))) {}
 
     friend apint operator+ (int d1, const apint &d2) { return apint (d1) + d2; }
     friend apint operator+ (unsigned d1, const apint &d2) { return apint (d1) + d2; }
@@ -269,6 +269,7 @@ public:
 
 typedef struct apdiv_struct
 {
+  apdiv_struct() : quot(0), rem(0) {}
     apint quot;
     apint rem;
 } apdiv_t;

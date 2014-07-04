@@ -19,14 +19,14 @@
 //#include "fparser.hh"
 
 #include "functionplottermaindialog.h"
-#include "qtfunctionplottermaindialog.h"
+#include "qtfunctionplotterplot2ddialog.h"
 #include "trace.h"
-#include "ui_qtfunctionplottermaindialog.h"
+#include "ui_qtfunctionplotterplot2ddialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtFunctionPlotterMainDialog::QtFunctionPlotterMainDialog(QWidget *parent)
+ribi::QtFunctionPlotterPlot2dDialog::QtFunctionPlotterPlot2dDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtFunctionPlotterMainDialog),
+    ui(new Ui::QtFunctionPlotterPlot2dDialog),
     m_curve(new QwtPlotCurve),
     m_plot(new QwtPlot)
 {
@@ -58,7 +58,7 @@ ribi::QtFunctionPlotterMainDialog::QtFunctionPlotterMainDialog(QWidget *parent)
     this->ui->edit_equation,
     &QLineEdit::textChanged,
     this,
-    &ribi::QtFunctionPlotterMainDialog::OnAnyChange
+    &ribi::QtFunctionPlotterPlot2dDialog::OnAnyChange
   );
   QObject::connect(
     this->ui->box_minx,
@@ -88,17 +88,20 @@ ribi::QtFunctionPlotterMainDialog::QtFunctionPlotterMainDialog(QWidget *parent)
   }
 }
 
-ribi::QtFunctionPlotterMainDialog::~QtFunctionPlotterMainDialog() noexcept
+ribi::QtFunctionPlotterPlot2dDialog::~QtFunctionPlotterPlot2dDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtFunctionPlotterMainDialog::OnAnyChange() noexcept
+void ribi::QtFunctionPlotterPlot2dDialog::OnAnyChange() noexcept
 {
   const std::string formula { ui->edit_equation->text().toStdString() };
   const double x_min = ui->box_minx->value();
   const double x_max = ui->box_maxx->value();
   const int n_cols = ui->area_plot->width();
+
+  std::vector<double> v_x;
+  std::vector<double> v_y;
 
   try
   {
@@ -109,41 +112,41 @@ void ribi::QtFunctionPlotterMainDialog::OnAnyChange() noexcept
       n_cols
     );
 
-    const std::vector<double> v_x { d.GetXs() };
-    const std::vector<double> v_y { d.GetYs() };
+    v_x = d.GetXs();
+    v_y = d.GetYs();
 
     this->setWindowTitle("Function plotted successfully");
-
-    //Plot
-    #if QWT_VERSION >= 0x060100 || !WIN32
-    m_curve->setData(new QwtPointArrayData(&v_x[0],&v_y[0],v_y.size()));
-    #else
-    m_curve->setData(&v_x[0],&v_y[0],v_y.size());
-    #endif
-    m_plot->replot();
   }
   catch (std::runtime_error& e)
   {
     this->setWindowTitle(e.what());
   }
+
+  //Plot
+  #if QWT_VERSION >= 0x060100 || !WIN32
+  m_curve->setData(new QwtPointArrayData(&v_x[0],&v_y[0],v_y.size()));
+  #else
+  m_curve->setData(&v_x[0],&v_y[0],v_y.size());
+  #endif
+  m_plot->replot();
 }
 
 
 
-void ribi::QtFunctionPlotterMainDialog::resizeEvent(QResizeEvent *)
+void ribi::QtFunctionPlotterPlot2dDialog::resizeEvent(QResizeEvent *)
 {
   OnAnyChange();
 }
 
 #ifndef NDEBUG
-void ribi::QtFunctionPlotterMainDialog::Test() noexcept
+void ribi::QtFunctionPlotterPlot2dDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtFunctionPlotterMainDialog::Test");
-  TRACE("Finished ribi::QtFunctionPlotterMainDialog::Test successfully");
+  TRACE("Starting ribi::QtFunctionPlotterPlot2dDialog::Test");
+  TRACE("Finished ribi::QtFunctionPlotterPlot2dDialog::Test successfully");
 }
 #endif

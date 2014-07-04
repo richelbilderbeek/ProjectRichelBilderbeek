@@ -5,7 +5,7 @@
 
 void tablefourstepfnt (modint data[], modint pr, int isign, size_t nn)
 {
-    size_t n1, n2, j, k, m, o;
+    size_t n1, n2, j, k, m /*, o*/;
     modint w, tmp, tmp2, *p1, *p2;
 
     if (nn < 2) return;
@@ -127,7 +127,7 @@ void tablefourstepfnt (modint data[], modint pr, int isign, size_t nn)
 
 void itablefourstepfnt (modint data[], modint pr, int isign, size_t nn)
 {
-    size_t n1, n2, j, k, m, o;
+    size_t n1, n2, j, k, m /*, o*/;
     modint w, tmp, tmp2, *p1, *p2;
 
     if (nn < 2) return;

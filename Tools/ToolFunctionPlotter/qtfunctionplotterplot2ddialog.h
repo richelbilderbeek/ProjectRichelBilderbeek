@@ -4,7 +4,7 @@
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-  class QtFunctionPlotterMainDialog;
+  class QtFunctionPlotterPlot2dDialog;
 }
 
 struct QwtPlot;
@@ -12,22 +12,22 @@ struct QwtPlotCurve;
 
 namespace ribi {
 
-class QtFunctionPlotterMainDialog : public QtHideAndShowDialog
+class QtFunctionPlotterPlot2dDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
     
 public:
-    explicit QtFunctionPlotterMainDialog(QWidget *parent = 0);
-    QtFunctionPlotterMainDialog(const QtFunctionPlotterMainDialog&) = delete;
-    QtFunctionPlotterMainDialog& operator=(const QtFunctionPlotterMainDialog&) = delete;
-    ~QtFunctionPlotterMainDialog() noexcept;
+    explicit QtFunctionPlotterPlot2dDialog(QWidget *parent = 0);
+    QtFunctionPlotterPlot2dDialog(const QtFunctionPlotterPlot2dDialog&) = delete;
+    QtFunctionPlotterPlot2dDialog& operator=(const QtFunctionPlotterPlot2dDialog&) = delete;
+    ~QtFunctionPlotterPlot2dDialog() noexcept;
     
 private slots:
     void resizeEvent(QResizeEvent *);
     void OnAnyChange() noexcept;
 
 private:
-    Ui::QtFunctionPlotterMainDialog *ui;
+    Ui::QtFunctionPlotterPlot2dDialog *ui;
 
   QwtPlotCurve * const m_curve;
   QwtPlot * const m_plot;

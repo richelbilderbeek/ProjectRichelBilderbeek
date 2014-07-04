@@ -7,14 +7,10 @@
 #include "apcplx.h"
 
 #include <boost/numeric/conversion/cast.hpp>
+#include <boost/math/constants/constants.hpp>
 #pragma GCC diagnostic pop
 
 using namespace std;
-
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
 
 // Overloaded mathematical functions
 
@@ -165,7 +161,8 @@ apcomplex invroot (apcomplex u, unsigned n)
         else
         {
             m = pow (-m, -1.0 / (double) n);
-            a = (y.sign () >= 0 ? -M_PI : M_PI) / (double) n;
+            const double pi = boost::math::constants::pi<double>();
+            a = (y.sign () >= 0 ? -pi : pi) / (double) n;
             r = m * cos (a);
             i = m * sin (a);
         }
@@ -198,12 +195,14 @@ apcomplex invroot (apcomplex u, unsigned n)
         if ((m = ap2double (y.ap)) >= 0.0)
         {
             m = pow (m, -1.0 / (double) n);
-            a = -M_PI / (double) (2 * n);
+            const double pi = boost::math::constants::pi<double>();
+            a = -pi / (double) (2 * n);
         }
         else
         {
             m = pow (-m, -1.0 / (double) n);
-            a = M_PI / (double) (2 * n);
+            const double pi = boost::math::constants::pi<double>();
+            a = pi / (double) (2 * n);
         }
 
         r = m * cos (a);
@@ -426,9 +425,9 @@ void checkimsign (apcomplex x, apcomplex *y, apfloat twopi)
 
     dx = ap2double (x.im.ap);
     dy = ap2double (y->im.ap);
-
-    if (M_PI - fabs (dx) <= 1.0 / sqrt (MAX_PRECISE_DOUBLE) &&
-        M_PI - fabs (dy) <= 1.0 / sqrt (MAX_PRECISE_DOUBLE) &&
+    const double pi = boost::math::constants::pi<double>();
+    if (pi - fabs (dx) <= 1.0 / sqrt (MAX_PRECISE_DOUBLE) &&
+        pi - fabs (dy) <= 1.0 / sqrt (MAX_PRECISE_DOUBLE) &&
         dx * dy < 0.0)
     {
         // Both imaginary parts are near +-pi and of opposite sign
@@ -524,6 +523,7 @@ apcomplex exp (apcomplex u)
     checklogconst (destprec);
 
     d = ap2double (u.im.ap);
+    const double pi = boost::math::constants::pi<double>();
 
     if (fabs (d) <= 1.0 / sqrt (MAX_PRECISE_DOUBLE))
     {
@@ -533,7 +533,7 @@ apcomplex exp (apcomplex u)
         y.prec (doubledigits);
         z = apcomplex (1, y);
     }
-    else if (M_PI - fabs (d) <= 1.0 / sqrt (MAX_PRECISE_DOUBLE))
+    else if (pi - fabs (d) <= 1.0 / sqrt (MAX_PRECISE_DOUBLE))
     {
         // exp(z + i*pi) = exp(z)*exp(i*pi) = -exp(z)
         // exp(z - i*pi) = exp(z)/exp(i*pi) = -exp(z)

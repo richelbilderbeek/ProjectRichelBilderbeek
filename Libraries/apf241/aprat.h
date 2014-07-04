@@ -17,8 +17,8 @@ class aprational
 {
 public:
     // Constructors
-    aprational (const apint &newnom, const apint &newden = apint (1)) { nom = newnom; den = newden; if (autoreduce) reduce (); }
-    aprational () {};
+    aprational (const apint &newnom, const apint &newden = apint (1)) : nom(newnom), den(newden) { if (autoreduce) reduce (); }
+    aprational () : nom(0), den(0) {}
 
     // Operator functions
     friend aprational operator+ (const aprational &, const aprational &);
@@ -53,54 +53,54 @@ public:
     aprational operator- () const;
 
     // Type-converted functions, some compilers can't do these automatically
-    aprational (const apint &newnom, int newden) { nom = newnom; den = apint (newden); if (autoreduce) reduce (); }
-    aprational (const apint &newnom, unsigned newden) { nom = newnom; den = apint (newden); if (autoreduce) reduce (); }
-    aprational (const apint &newnom, long newden) { nom = newnom; den = apint (newden); if (autoreduce) reduce (); }
-    aprational (const apint &newnom, unsigned long newden) { nom = newnom; den = apint (newden); if (autoreduce) reduce (); }
-    aprational (const apint &newnom, double newden) { nom = newnom; den = apint (newden); if (autoreduce) reduce (); }
-    aprational (const apint &newnom, char *newden) { nom = newnom; den = apint (newden); if (autoreduce) reduce (); }
-    aprational (int newnom, const apint &newden = apint (1)) { nom = apint (newnom); den = newden; if (autoreduce) reduce (); }
-    aprational (int newnom, int newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (int newnom, unsigned newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (int newnom, long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (int newnom, unsigned long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (int newnom, double newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (int newnom, char *newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned newnom, const apint &newden = apint (1)) { nom = apint (newnom); den = newden; if (autoreduce) reduce (); }
-    aprational (unsigned newnom, int newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned newnom, unsigned newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned newnom, long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned newnom, unsigned long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned newnom, double newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned newnom, char *newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (long newnom, const apint &newden = apint (1)) { nom = apint (newnom); den = newden; if (autoreduce) reduce (); }
-    aprational (long newnom, int newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (long newnom, unsigned newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (long newnom, long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (long newnom, unsigned long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (long newnom, double newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (long newnom, char *newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned long newnom, const apint &newden = apint (1)) { nom = apint (newnom); den = newden; if (autoreduce) reduce (); }
-    aprational (unsigned long newnom, int newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned long newnom, unsigned newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned long newnom, long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned long newnom, unsigned long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned long newnom, double newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (unsigned long newnom, char *newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (double newnom, const apint &newden = apint (1)) { nom = apint (newnom); den = newden; if (autoreduce) reduce (); }
-    aprational (double newnom, int newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (double newnom, unsigned newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (double newnom, long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (double newnom, unsigned long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (double newnom, double newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (double newnom, char *newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (char *newnom, const apint &newden = apint (1)) { nom = apint (newnom); den = newden; if (autoreduce) reduce (); }
-    aprational (char *newnom, int newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (char *newnom, unsigned newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (char *newnom, long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (char *newnom, unsigned long newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (char *newnom, double newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
-    aprational (char *newnom, char *newden) { nom = apint (newnom); den = apint (newden); if (autoreduce) reduce (); }
+    aprational (const apint &newnom, int newden) : nom(newnom), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (const apint &newnom, unsigned newden) : nom(newnom), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (const apint &newnom, long newden) : nom(newnom), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (const apint &newnom, unsigned long newden) : nom(newnom), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (const apint &newnom, double newden) : nom(newnom), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (const apint &newnom, char *newden) : nom(newnom), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (int newnom, const apint &newden = apint (1)) : nom(apint (newnom)), den(newden) {  if (autoreduce) reduce (); }
+    aprational (int newnom, int newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (int newnom, unsigned newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (int newnom, long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (int newnom, unsigned long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (int newnom, double newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (int newnom, char *newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned newnom, const apint &newden = apint (1)) : nom(apint (newnom)), den(newden) {  if (autoreduce) reduce (); }
+    aprational (unsigned newnom, int newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned newnom, unsigned newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned newnom, long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned newnom, unsigned long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned newnom, double newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned newnom, char *newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (long newnom, const apint &newden = apint (1)) : nom(apint (newnom)), den(newden) {  if (autoreduce) reduce (); }
+    aprational (long newnom, int newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (long newnom, unsigned newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (long newnom, long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (long newnom, unsigned long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (long newnom, double newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (long newnom, char *newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned long newnom, const apint &newden = apint (1)) : nom(apint (newnom)), den(newden) {  if (autoreduce) reduce (); }
+    aprational (unsigned long newnom, int newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned long newnom, unsigned newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned long newnom, long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned long newnom, unsigned long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned long newnom, double newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (unsigned long newnom, char *newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (double newnom, const apint &newden = apint (1)) : nom(apint (newnom)), den(newden) {  if (autoreduce) reduce (); }
+    aprational (double newnom, int newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (double newnom, unsigned newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (double newnom, long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (double newnom, unsigned long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (double newnom, double newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (double newnom, char *newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (char *newnom, const apint &newden = apint (1)) : nom(apint (newnom)), den(newden) {  if (autoreduce) reduce (); }
+    aprational (char *newnom, int newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (char *newnom, unsigned newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (char *newnom, long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (char *newnom, unsigned long newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (char *newnom, double newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
+    aprational (char *newnom, char *newden) : nom(apint (newnom)), den(apint (newden)) {  if (autoreduce) reduce (); }
 
     friend aprational operator+ (int d1, const aprational &r2) { return apint (d1) + r2; }
     friend aprational operator+ (unsigned d1, const aprational &r2) { return apint (d1) + r2; }

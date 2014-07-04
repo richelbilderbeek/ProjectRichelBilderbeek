@@ -10,8 +10,15 @@ using namespace std;
 // Construct a datastruct from scratch: size, allocated data
 // Possibly fill the rest of it with zeros
 datastruct::datastruct (size_t newsize, modint *newdata, int newlocation, int fill)
+  : size(newsize),
+    location(0),
+    data(nullptr),
+    gotdata(false),
+    position(0),
+    blocksize(0),
+    fileno(0),
+    fs(nullptr)
 {
-    size = newsize;
 
     if (newlocation == DEFAULT)
         location = (size <= Memorytreshold ? MEMORY : DISK);
@@ -76,6 +83,14 @@ datastruct::datastruct (size_t newsize, modint *newdata, int newlocation, int fi
 // Construct a datastruct from another datastruct,
 // possibly with different size and/or location, padded with zeros to some size
 datastruct::datastruct (datastruct &d, size_t newsize, int newlocation, size_t padsize)
+  : size(0),
+    location(0),
+    data(nullptr),
+    gotdata(false),
+    position(0),
+    blocksize(0),
+    fileno(0),
+    fs(nullptr)
 {
     if (newsize == (size_t) DEFAULT)
         size = d.size;

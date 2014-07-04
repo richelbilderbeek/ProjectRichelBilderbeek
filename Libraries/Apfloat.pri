@@ -54,7 +54,6 @@ win32 {
       ../../Libraries/apf241/tapfunc.cpp \
       ../../Libraries/apf241/tapstruc.cpp \
       ../../Libraries/apf241/transpos.cpp \
-      ../../Libraries/apf241/truncate.c \
       ../../Libraries/apf241/wfta_asm.cpp
 }
 
@@ -120,7 +119,6 @@ unix:!macx {
       ../../Libraries/apf241/tapfunc.cpp \
       ../../Libraries/apf241/tapstruc.cpp \
       ../../Libraries/apf241/transpos.cpp \
-      ../../Libraries/apf241/truncate.c \
       ../../Libraries/apf241/wfta_asm.cpp
 
 

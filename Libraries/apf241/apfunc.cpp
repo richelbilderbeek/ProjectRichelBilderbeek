@@ -1,17 +1,18 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cmath>
 #include "ap.h"
+
+#include <boost/numeric/conversion/cast.hpp>
+//#include <boost/math/constants/constants.hpp>
+#pragma GCC diagnostic pop
 
 
 using namespace std;
 
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
-
-
 // Overloaded apfloat functions
-
 
 // Constants needed for log & exp
 apfloat Readypi;
@@ -184,7 +185,7 @@ apfloat invroot (apfloat u, unsigned n, size_t destprec, apfloat initguess, size
     // Check where the precising iteration should be done
     for (k = 0, maxprec = prec; maxprec < destprec; k++, maxprec <<= 1);
     for (f = k, minprec = prec; f; f--, minprec <<= 1)
-        if (minprec >= 2 * Basedigits && (minprec - 2 * Basedigits) << f >= destprec)
+        if (boost::numeric_cast<int>(minprec) >= 2 * Basedigits && (minprec - 2 * Basedigits) << f >= destprec)
             break;
 
     // Newton's iteration
@@ -258,7 +259,7 @@ apfloat fmod (apfloat x, apfloat y)
 
     if (a < b)
         return x;                   // abs (x) < abs (y)
-    else if (x.prec () <= x.exp () - y.exp ())
+    else if (boost::numeric_cast<int>(x.prec()) <= x.exp () - y.exp ())
         return 0;                   // Degenerate case; not enough precision to make any sense
     else
         s = x.exp () - y.exp () + 3 * Basedigits;   // Some extra precision
@@ -478,7 +479,7 @@ apfloat agm (apfloat a, apfloat b)
         return apfloat (new apstruct);      // Zero
 
     // Precision must be at least 2 * Basedigits
-    if (destprec <= Basedigits)
+    if (boost::numeric_cast<int>(destprec) <= Basedigits)
     {
         destprec = 2 * Basedigits;
         a.prec (max (a.prec (), destprec));
@@ -668,7 +669,7 @@ apfloat exp (apfloat u)
     // Check where the precising iteration should be done
     for (k = 0, maxprec = prec; maxprec < destprec; k++, maxprec <<= 1);
     for (f = k, minprec = prec; f; f--, minprec <<= 1)
-        if (minprec >= 3 * Basedigits && (minprec - 3 * Basedigits) << f >= destprec)
+        if (boost::numeric_cast<int>(minprec) >= 3 * Basedigits && (minprec - 3 * Basedigits) << f >= destprec)
             break;
 
     // Newton's iteration
