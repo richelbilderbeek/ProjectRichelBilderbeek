@@ -1,12 +1,5 @@
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "ap.h"
 #include "apint.h"
-
-#include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 using namespace std;
 
@@ -123,7 +116,7 @@ istream &operator>> (istream &str, apint &d)
         // Get the actual data
 
         val = val * Basedigit + valuetable[(unsigned char) c];
-        if (boost::numeric_cast<int>(++r) == Basedigits)
+        if (static_cast<int>(++r) == Basedigits)
         {
             if (nonzero)
             {
@@ -166,7 +159,7 @@ istream &operator>> (istream &str, apint &d)
         buffercheck (&t, ap, &data);
 
         if (size)                               // Not first base unit
-            for (; boost::numeric_cast<int>(r) < Basedigits; r++)
+            for (; static_cast<int>(r) < Basedigits; r++)
                 val *= Basedigit;
 
         data[t++] = val;

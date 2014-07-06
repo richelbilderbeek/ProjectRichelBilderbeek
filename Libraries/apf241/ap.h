@@ -87,10 +87,9 @@ extern int *ip[];
 
 
 // Truncate function may be a standard function or not
-
 extern "C"
 {
-    int truncate (const char *filename, long size);
+    int truncate (const char *filename, long size) throw();
 }
 
 

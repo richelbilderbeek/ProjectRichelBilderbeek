@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>274</width>
-    <height>390</height>
+    <width>427</width>
+    <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <iconset resource="ToolSurfacePlotter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <widget class="QLabel" name="label_welcome">
      <property name="text">
       <string/>
@@ -31,28 +31,28 @@
      </property>
     </widget>
    </item>
-   <item>
+   <item row="0" column="1">
     <widget class="QPushButton" name="button_start">
      <property name="text">
       <string>&amp;ribi</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="1" column="1">
     <widget class="QPushButton" name="button_qwt">
      <property name="text">
       <string>&amp;Qwt</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="2" column="1">
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>About</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="3" column="1">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>

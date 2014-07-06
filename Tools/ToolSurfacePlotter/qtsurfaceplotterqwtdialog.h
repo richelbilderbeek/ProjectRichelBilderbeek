@@ -18,33 +18,33 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
-#ifndef QTSURFACEPLOTTERRIBIDIALOG_H
-#define QTSURFACEPLOTTERRIBIDIALOG_H
+#ifndef QTSURFACEPLOTTERQWTDIALOG_H
+#define QTSURFACEPLOTTERQWTDIALOG_H
 
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-  class QtSurfacePlotterRibiDialog;
+  class QtSurfacePlotterQwtDialog;
 }
 
 namespace ribi {
 
-class QtSurfacePlotterRibiDialog : public QtHideAndShowDialog
+class QtSurfacePlotterQwtDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
-  explicit QtSurfacePlotterRibiDialog(QWidget *parent = 0);
-  QtSurfacePlotterRibiDialog(const QtSurfacePlotterRibiDialog&) = delete;
-  QtSurfacePlotterRibiDialog& operator=(const QtSurfacePlotterRibiDialog&) = delete;
-  ~QtSurfacePlotterRibiDialog() noexcept;
+  explicit QtSurfacePlotterQwtDialog(QWidget *parent = 0);
+  QtSurfacePlotterQwtDialog(const QtSurfacePlotterQwtDialog&) = delete;
+  QtSurfacePlotterQwtDialog& operator=(const QtSurfacePlotterQwtDialog&) = delete;
+  ~QtSurfacePlotterQwtDialog() noexcept;
     
 private slots:
   void OnAnyChange();
   void resizeEvent(QResizeEvent *);
 
 private:
-  Ui::QtSurfacePlotterRibiDialog *ui;
+  Ui::QtSurfacePlotterQwtDialog *ui;
 
   ///Rescale calculates a value between old_min and old_max its relative place and transforms
   ///this relative position to a new_min and new_max
@@ -64,4 +64,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTSURFACEPLOTTERRIBIDIALOG_H
+#endif // QTSURFACEPLOTTERQWTDIALOG_H

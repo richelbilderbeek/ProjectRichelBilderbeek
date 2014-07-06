@@ -22,20 +22,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qtsurfaceplotterqwtdialog.h"
+
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 #include <QDesktopWidget>
 
 #include "fparser.hh"
-#include "qtsurfaceplotterribidialog.h"
 #include "trace.h"
-#include "ui_qtsurfaceplotterribidialog.h"
+#include "ui_qtsurfaceplotterqwtdialog.h"
 
 #pragma GCC diagnostic pop
 
-ribi::QtSurfacePlotterRibiDialog::QtSurfacePlotterRibiDialog(QWidget *parent)
+ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtSurfacePlotterRibiDialog)
+    ui(new Ui::QtSurfacePlotterQwtDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -68,12 +69,12 @@ ribi::QtSurfacePlotterRibiDialog::QtSurfacePlotterRibiDialog(QWidget *parent)
   }
 }
 
-ribi::QtSurfacePlotterRibiDialog::~QtSurfacePlotterRibiDialog() noexcept
+ribi::QtSurfacePlotterQwtDialog::~QtSurfacePlotterQwtDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtSurfacePlotterRibiDialog::OnAnyChange()
+void ribi::QtSurfacePlotterQwtDialog::OnAnyChange()
 {
   try { boost::lexical_cast<double>(ui->edit_minx->text().toStdString()); }
   catch (boost::bad_lexical_cast&)
@@ -155,7 +156,7 @@ void ribi::QtSurfacePlotterRibiDialog::OnAnyChange()
   ui->surfaceplotwidget->SetSurfaceGrey(v);
 }
 
-double ribi::QtSurfacePlotterRibiDialog::Rescale(
+double ribi::QtSurfacePlotterQwtDialog::Rescale(
   const double value,
   const double old_min,
   const double old_max,
@@ -176,20 +177,20 @@ double ribi::QtSurfacePlotterRibiDialog::Rescale(
   return new_value;
 }
 
-void ribi::QtSurfacePlotterRibiDialog::resizeEvent(QResizeEvent *)
+void ribi::QtSurfacePlotterQwtDialog::resizeEvent(QResizeEvent *)
 {
   OnAnyChange();
 }
 
 #ifndef NDEBUG
-void ribi::QtSurfacePlotterRibiDialog::Test() noexcept
+void ribi::QtSurfacePlotterQwtDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtSurfacePlotterRibiDialog::Test");
-  TRACE("Finished ribi::QtSurfacePlotterRibiDialog::Test successfully");
+  TRACE("Starting ribi::QtSurfacePlotterQwtDialog::Test");
+  TRACE("Finished ribi::QtSurfacePlotterQwtDialog::Test successfully");
 }
 #endif

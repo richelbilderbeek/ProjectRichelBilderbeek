@@ -1,14 +1,5 @@
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cmath>
 #include "ap.h"
-
-#include <boost/numeric/conversion/cast.hpp>
-//#include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
-
 
 using namespace std;
 
@@ -185,7 +176,7 @@ apfloat invroot (apfloat u, unsigned n, size_t destprec, apfloat initguess, size
     // Check where the precising iteration should be done
     for (k = 0, maxprec = prec; maxprec < destprec; k++, maxprec <<= 1);
     for (f = k, minprec = prec; f; f--, minprec <<= 1)
-        if (boost::numeric_cast<int>(minprec) >= 2 * Basedigits && (minprec - 2 * Basedigits) << f >= destprec)
+        if (static_cast<int>(minprec) >= 2 * Basedigits && (minprec - 2 * Basedigits) << f >= destprec)
             break;
 
     // Newton's iteration
@@ -259,7 +250,7 @@ apfloat fmod (apfloat x, apfloat y)
 
     if (a < b)
         return x;                   // abs (x) < abs (y)
-    else if (boost::numeric_cast<int>(x.prec()) <= x.exp () - y.exp ())
+    else if (static_cast<int>(x.prec()) <= x.exp () - y.exp ())
         return 0;                   // Degenerate case; not enough precision to make any sense
     else
         s = x.exp () - y.exp () + 3 * Basedigits;   // Some extra precision
@@ -479,7 +470,7 @@ apfloat agm (apfloat a, apfloat b)
         return apfloat (new apstruct);      // Zero
 
     // Precision must be at least 2 * Basedigits
-    if (boost::numeric_cast<int>(destprec) <= Basedigits)
+    if (static_cast<int>(destprec) <= Basedigits)
     {
         destprec = 2 * Basedigits;
         a.prec (max (a.prec (), destprec));
@@ -669,7 +660,7 @@ apfloat exp (apfloat u)
     // Check where the precising iteration should be done
     for (k = 0, maxprec = prec; maxprec < destprec; k++, maxprec <<= 1);
     for (f = k, minprec = prec; f; f--, minprec <<= 1)
-        if (boost::numeric_cast<int>(minprec) >= 3 * Basedigits && (minprec - 3 * Basedigits) << f >= destprec)
+        if (static_cast<int>(minprec) >= 3 * Basedigits && (minprec - 3 * Basedigits) << f >= destprec)
             break;
 
     // Newton's iteration

@@ -22,12 +22,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qtsurfaceplotterribidialog.h"
+
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 #include <QDesktopWidget>
 
 #include "fparser.hh"
-#include "qtsurfaceplotterribidialog.h"
 #include "trace.h"
 #include "ui_qtsurfaceplotterribidialog.h"
 

@@ -1,16 +1,8 @@
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cmath>
 #include <stdexcept>
 #include <sstream>
 
-#include <boost/numeric/conversion/cast.hpp>
-//#include <boost/math/constants/constants.hpp>
-
 #include "ap.h"
-#pragma GCC diagnostic pop
 
 using namespace std;
 
@@ -859,7 +851,7 @@ apstruct *apdivshort (apstruct *a, apstruct *b)
     {
         // Check for finite or infinite result sequence
         tmp1[0] = f;
-        for (t = 0; boost::numeric_cast<int>(t) < NBasefactors; t++)
+        for (t = 0; static_cast<int>(t) < NBasefactors; t++)
             while (bigdiv (tmp2, tmp1, Basefactors[t], 1) == 0) tmp1[0] = tmp2[0];
         if (tmp1[0] != 1)
         {
@@ -1118,7 +1110,7 @@ apstruct *apabsceil (apstruct *a)
     }
 
     // Check if the fractional part is nonzero
-    if (boost::numeric_cast<long>(a->size) > a->exp)
+    if (static_cast<long>(a->size) > a->exp)
         carry = 1;
     else
         carry = 0;
