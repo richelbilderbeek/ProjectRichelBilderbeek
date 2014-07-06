@@ -1,5 +1,6 @@
 #Don't enable Effective C++ warnings when using Qwt
 include(../../DesktopApplicationNoWeffcpp.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/BigInteger.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)

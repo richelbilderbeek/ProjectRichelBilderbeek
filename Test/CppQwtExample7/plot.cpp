@@ -10,11 +10,13 @@
 #include <qwt_plot_renderer.h>
 #include "plot.h"
 
+#include <qwt_plot_canvas.h> //Linux
+
 class MyZoomer: public QwtPlotZoomer
 {
 public:
     MyZoomer( QWidget *canvas ):
-        QwtPlotZoomer( canvas )
+        QwtPlotZoomer(dynamic_cast<QwtPlotCanvas *>(canvas))
     {
         setTrackerMode( AlwaysOn );
     }
@@ -158,7 +160,9 @@ void Plot::printPlot()
         {
             renderer.setDiscardFlag( QwtPlotRenderer::DiscardBackground );
             renderer.setDiscardFlag( QwtPlotRenderer::DiscardCanvasBackground );
+            #ifdef WIN32_
             renderer.setDiscardFlag( QwtPlotRenderer::DiscardCanvasFrame );
+            #endif //WIN32_
             renderer.setLayoutFlag( QwtPlotRenderer::FrameWithScales );
         }
 

@@ -1,11 +1,7 @@
-#ifdef _WIN32
-#undef __STRICT_ANSI__
-#endif
-
 #include "qttextitem.h"
 
-QtTextItem::QtTextItem(const QString& text, QGraphicsItem* parent, QGraphicsScene* scene)
-  : QGraphicsSimpleTextItem(parent,scene)
+QtTextItem::QtTextItem(const QString& text, QGraphicsItem* parent)
+  : QGraphicsSimpleTextItem(parent)
 {
   this->setText(text);
   this->setFlags(

@@ -1,7 +1,3 @@
-#ifdef _WIN32
-#undef __STRICT_ANSI__
-#endif
-
 #include "qwtplotwidget.h"
 
 #include <cassert>
@@ -10,15 +6,13 @@
 
 #include <QVBoxLayout>
 
-#ifdef _WIN32
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 #include <qwt_plot_grid.h>
 #include <qwt_plot_zoomer.h>
-#else
-#include <qwt/qwt_plot.h>
-#include <qwt/qwt_plot_curve.h>
-#include <qwt/qwt_plot_grid.h>
+
+#if QWT_VERSION >= 0x060100 || !WIN32
+#include "qwt_point_data.h"
 #endif
 
 QwtPlotWidget::QwtPlotWidget(const int sz)
@@ -43,7 +37,12 @@ QwtPlotWidget::QwtPlotWidget(const int sz)
       const double y_val = 0.0;
       m_ys.push_back(y_val);
     }
-    m_curve->setData(new QwtPointArrayData(&m_xs[0],&m_ys[0],m_xs.size()));
+    #if QWT_VERSION >= 0x060100 || !WIN32
+    m_curve->setData(new QwtPointArrayData(&m_xs[0],&m_ys[0],m_ys.size()));
+    #else
+    m_curve->setData(&m_xs[0],&m_ys[0],m_ys.size());
+    #endif
+    //m_curve->setData(new QwtPointArrayData(&m_xs[0],&m_ys[0],m_xs.size()));
   }
 
   {

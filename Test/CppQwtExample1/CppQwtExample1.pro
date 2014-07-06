@@ -1,32 +1,5 @@
-#Qwt does not compile with -Weffc++
-exists (../../DesktopApplicationNoWeffcpp.pri) {
-  include(../../DesktopApplicationNoWeffcpp.pri)
-}
-!exists (../../DesktopApplicationNoWeffcpp.pri) {
-  QT       += core gui
-  greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-  TEMPLATE = app
-  SOURCES += main.cpp
-  QMAKE_CXXFLAGS += -Wall -Wextra -Werror
-}
-
-
-exists (../../Libraries/Qwt.pri) {
-  include(../../Libraries/Qwt.pri)
-}
-!exists (../../Libraries/Qwt.pri) {
-  INCLUDEPATH+= ../../Libraries/qwt-6.1/src
-  LIBS+= -L../../Libraries/qwt-6.1/lib
-
-  CONFIG(release, debug|release) {
-    message(Windows: Qwt: Linking to qwt)
-    LIBS += -lqwt
-  }
-
-  CONFIG(debug, debug|release) {
-    message(Windows: Qwt: Linking to qwtd)
-    LIBS += -lqwtd
-  }
-}
+#Qwt does not go together with Qwt
+include(../../DesktopApplicationNoWeffcpp.pri)
+include(../../Libraries/Qwt.pri)
 
 SOURCES += main.cpp

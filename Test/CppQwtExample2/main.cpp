@@ -1,7 +1,3 @@
-#ifdef _WIN32
-#undef __STRICT_ANSI__
-#endif
-
 #include <QApplication>
 #include "qtwidget.h"
 #include "qwtplotwidget.h"

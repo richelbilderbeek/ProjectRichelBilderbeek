@@ -1,7 +1,6 @@
 QT       += core gui
 QMAKE_CXXFLAGS += -Wextra -Werror
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TARGET = CppQPrinterExample1
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TEMPLATE = app
 SOURCES += main.cpp\
         dialog.cpp

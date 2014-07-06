@@ -3,10 +3,12 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "myzoomer.h"
+
+#include "qwt_plot_canvas.h"
 #pragma GCC diagnostic pop
 
-MyZoomer::MyZoomer(QWidget *canvas)
-  : QwtPlotZoomer(canvas)
+MyZoomer::MyZoomer(QWidget * const canvas)
+  : QwtPlotZoomer(dynamic_cast<QwtPlotCanvas *>(canvas))
 {
   setTrackerMode(AlwaysOn);
 }

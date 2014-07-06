@@ -12,7 +12,7 @@
 #include "qwt_plot_curve.h"
 #include "qwt_text.h"
 
-#ifdef _WIN32
+#if QWT_VERSION >= 0x060100 || !WIN32
 #include "qwt_point_data.h"
 #endif
 #pragma GCC diagnostic pop
@@ -35,11 +35,11 @@ int main(int argc, char *argv[])
     xs.push_back(x);
     ys.push_back(std::sin(x));
   }
-  #ifdef _WIN32
+  #if QWT_VERSION >= 0x060100 || !WIN32
   const auto data = boost::make_shared<QwtPointArrayData>(&xs[0],&ys[0],xs.size());
   curve->setData(data.get());
   #else
-  m_curve->setData(&xs[0],&ys[0],xs.size());
+  curve->setData(&xs[0],&ys[0],xs.size());
   #endif
   curve->attach(plot.get());
   plot->replot();

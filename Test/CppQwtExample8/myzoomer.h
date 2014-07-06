@@ -10,7 +10,7 @@
 
 struct MyZoomer: public QwtPlotZoomer
 {
-  MyZoomer(QWidget *canvas);
+  MyZoomer(QWidget * const canvas);
   QwtText trackerTextF(const QPointF &pos) const;
 };
 

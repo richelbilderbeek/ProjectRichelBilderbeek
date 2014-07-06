@@ -6,7 +6,7 @@
 
 struct QtTextItem : public QGraphicsSimpleTextItem
 {
-  QtTextItem(const QString& text, QGraphicsItem* parent = 0, QGraphicsScene* scene = 0);
+  QtTextItem(const QString& text, QGraphicsItem* parent = 0);
 
   boost::signals2::signal<void(double)> m_signal_value;
 

@@ -1,15 +1,12 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qtdialog.h"
 
 #include "qwt_plot.h"
 #include "qwt_plot_curve.h"
 #include "ui_qtdialog.h"
+
+#if QWT_VERSION >= 0x060100 || !WIN32
+#include "qwt_point_data.h"
+#endif
 
 QtDialog::QtDialog(QWidget *parent) :
   QDialog(parent),
@@ -67,6 +64,14 @@ void QtDialog::on_button_clicked()
     {
       timeseries.push_back(static_cast<double>(i));
     }
+    #if QWT_VERSION >= 0x060100 || !WIN32
+    m_curve_inputs->setData(new QwtPointArrayData(&timeseries[0],&inputs[0],inputs.size()));
+    m_curve_outputs->setData(new QwtPointArrayData(&timeseries[0],&outputs[0],outputs.size()));
+    #else
+    m_curve_inputs->setData(&timeseries[0],&inputs[0],inputs.size());
+    m_curve_outputs->setData(&timeseries[0],&outputs[0],outputs.size());
+    #endif
+    /*
     #ifdef _WIN32
     m_curve_inputs->setData(new QwtPointArrayData(&timeseries[0],&inputs[0],inputs.size()));
     m_curve_outputs->setData(new QwtPointArrayData(&timeseries[0],&outputs[0],outputs.size()));
@@ -74,6 +79,7 @@ void QtDialog::on_button_clicked()
     m_curve_inputs->setData(&timeseries[0],&inputs[0],inputs.size());
     m_curve_outputs->setData(&timeseries[0],&outputs[0],outputs.size());
     #endif
+    */
     ui->plot->replot();
   }
 }
