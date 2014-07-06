@@ -33,16 +33,16 @@
 <!-- start of code -->
 <table summary="./CppPolyFileFromPolygons/CppPolyFileFromPolygons.pri" border = "1"><tr><td><code>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppPolyFileFromPolygons<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppPolyFileFromPolygons.htm">CppPolyFileFromPolygons</a><br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppPolyFileFromPolygons/polyfilefrompolygons.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppPolyFileFromPolygons.htm">CppPolyFileFromPolygons</a>/polyfilefrompolygons.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppPolyFileFromPolygons/polyfilefrompolygons.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppPolyFileFromPolygons.htm">CppPolyFileFromPolygons</a>/polyfilefrompolygons.h<br/>
 <br/>
 <a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppPolyFileFromPolygons/Licence.txt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppPolyFileFromPolygons.htm">CppPolyFileFromPolygons</a>/Licence.txt<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -90,6 +90,13 @@
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Linestrings&amp; GetLinestrings() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_linestrings; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Count the number of input edges<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNedges() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Count the number of input vertices<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNvertices() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> PolyFile&amp; GetPolyFile() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_polyfile; }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; GetPolygons() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_polygons; }<br/>
 <br/>
@@ -113,9 +120,11 @@
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> PolyFile::Vertices ToVertices(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Polygons&amp; polygons, <b><a href="CppConst.htm">const</a></b> Linestrings&amp; linestrings<br/>
 &nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> PolyFileFromPolygons&amp; polyfile) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 };<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> PolyFileFromPolygons&amp; polyfile) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> PolyFileFromPolygons&amp; polyfile) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;PolyFileFromPolygons&gt;&amp; polyfile) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> PolyFileFromPolygons&gt;&amp; polyfile) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 <br/>
@@ -167,16 +176,27 @@
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::GetNedges() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_polyfile.GetEdges().size());<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::GetNvertices() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_polyfile.GetVertices().size());<br/>
+}<br/>
+<br/>
 <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
 <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2014-06-02: <a href="CppVersion.htm">Version</a> 1.0: split off from PolyFile",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2014-06-10: <a href="CppVersion.htm">Version</a> 1.1: added support <b><a href="CppFor.htm">for</a></b> linestrings"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-06-10: <a href="CppVersion.htm">Version</a> 1.1: added support <b><a href="CppFor.htm">for</a></b> linestrings",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-06-26: <a href="CppVersion.htm">Version</a> 1.2: added GetNvertices and GetNedges"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
@@ -273,7 +293,10 @@
 <br/>
 <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_polyfile.ToStr();<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> m_polyfile.ToStr();<br/>
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::PolyFile::Vertices <a href="CppRibi.htm">ribi</a>::PolyFileFromPolygons::ToVertices(<br/>
@@ -297,6 +320,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> PolyFileFromPolygons&amp; polyfile) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> polyfile.m_polyfile;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

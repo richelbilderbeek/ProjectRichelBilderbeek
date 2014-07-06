@@ -63,7 +63,7 @@
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qteditconceptmap.cpp \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtdisplayconceptmap.cpp \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtrateconceptmap.cpp \<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtitemdisplaystrategy.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtitemdisplaystrategy.cpp \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtconceptmapcenternode.cpp \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtconceptmap_test_qteditconceptmap.cpp \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtconceptmap_test_qtrateconceptmap.cpp \<br/>
@@ -100,7 +100,7 @@
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qteditconceptmap.h \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtdisplayconceptmap.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtrateconceptmap.h \<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtitemdisplaystrategy.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtitemdisplaystrategy.h \<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtconceptmapcenternode.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtconceptmapexamp<a href="CppLed.htm">led</a>ialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>/qtconceptmapexamplesdialog.h \<br/>
@@ -3341,6 +3341,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTCONCEPTMAPDISPLAYSTRATEGY_H<br/>
 <a href="CppDefine.htm">#define</a> QTCONCEPTMAPDISPLAYSTRATEGY_H<br/>
 <br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -3375,6 +3377,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> cmap<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCONCEPTMAPDISPLAYSTRATEGY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -3407,6 +3412,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -3610,6 +3617,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>("End of <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>DisplayStrategy::UpdateBrushesAndPens()");<br/>
 }<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -5363,6 +5372,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTCONCEPTMAPEDITSTRATEGY_H<br/>
 <a href="CppDefine.htm">#define</a> QTCONCEPTMAPEDITSTRATEGY_H<br/>
 <br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -5400,6 +5411,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> cmap<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCONCEPTMAPEDITSTRATEGY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -5432,6 +5445,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -5521,6 +5536,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Successfully finished <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditStrategy::Test()");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -5570,8 +5587,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>A focusable element of a concept map, which is either a Node or an Edge<br/>
 <a href="CppComment.htm">///</a><a href="CppQtRoundedTextRectItem.htm">QtRoundedTextRectItem</a>: single line<br/>
 <a href="CppComment.htm">///</a><a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a>: multiple lines<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>ConceptMapElement : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a> <a href="CppComment.htm">//</a>NEW 2013-09-15<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>ConceptMapElement : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ConceptMapElement();<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppQt.htm">Qt</a>ConceptMapElement() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> DisableAll() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -5581,8 +5599,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Node&gt;&nbsp;&nbsp;GetNode() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node&gt;&nbsp;&nbsp;GetNode()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVirtual.htm">virtual</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVirtual.htm">virtual</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the name of the concept<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> SetName(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; name) <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -5598,7 +5616,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/A more specific <a href="CppSignal.htm">signal</a>: a Concept requests an edit, <b><a href="CppThis.htm">this</a></b> is passed to<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/OnConceptRequestsEdit, which lets <b><a href="CppThis.htm">this</a></b> <a href="CppQt.htm">Qt</a>ConceptMapItem request <b><a href="CppFor.htm">for</a></b> an edit<br/>
-&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>(<a href="CppQt.htm">Qt</a>ConceptMapElement*)&gt; m_signal_conceptmapitem_requests_edit;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>(<a href="CppQt.htm">Qt</a>ConceptMapElement*)&gt; m_signal_conceptmapitem_requests_edit;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Slot <b><a href="CppFor.htm">for</a></b> a Concept its <a href="CppSignal.htm">signal</a> to be edited, all it does is add the ConceptMapItem<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/the Concept is a member of<br/>
@@ -5670,13 +5688,20 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMapElement::<a href="CppQt.htm">Qt</a>ConceptMapElement()<br/>
+&nbsp;&nbsp;: <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a>()<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMapElement::OnConceptRequestsEdit()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;GetNode());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;GetNode()-&gt;GetConcept()-&gt;GetExamples());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setAcceptHoverEvents(<b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;m_signal_conceptmapitem_requests_edit(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_signal_conceptmapitem_requests_edit(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMapElement::hoverMoveEvent(<a href="CppQGraphicsSceneHoverEvent.htm">QGraphicsSceneHoverEvent</a> *)<br/>
@@ -6692,6 +6717,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtQuadBezierArrowItem.htm">QtQuadBezierArrowItem</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>Dialog;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a>Dialog;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> cmap {<br/>
 <br/>
@@ -7233,7 +7261,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
-<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> cmap {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>Node displays a Node as a <a href="CppQt.htm">Qt</a>ConceptMapElement<br/>
@@ -7245,8 +7272,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Node cannot be <b><a href="CppConst.htm">const</a></b> as it contains a Concept that the user might want to edit<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/concept_item contains the <a href="CppState.htm">State</a>gy to display (and respond to the concept)<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Node(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; concept_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; concept_item<br/>
+&nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVirtual.htm">virtual</a></b> <a href="CppQRect.htm">QRect</a>F boundingRect() <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
@@ -7258,14 +7286,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Node&gt;&nbsp;&nbsp;GetNode() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node&gt;&nbsp;&nbsp;GetNode()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppFinal.htm">final</a></b> { <b><a href="CppReturn.htm">return</a></b> m_display_strategy; }<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppFinal.htm">final</a></b> { <b><a href="CppReturn.htm">return</a></b> m_display_strategy; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppFinal.htm">final</a></b> { <b><a href="CppReturn.htm">return</a></b> m_display_strategy; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> <b><a href="CppFinal.htm">final</a></b> { <b><a href="CppReturn.htm">return</a></b> m_display_strategy; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> cmap::Node&gt;&nbsp;&nbsp;GetNode() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_node; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmap::Node&gt;&amp; GetNode()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_node; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetNode(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt;&amp; node);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetDisplay(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt;&amp; display_strategy);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetDisplay(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt;&amp; display_strategy);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetName(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; name) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
@@ -7279,8 +7307,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/m_signal_request_rate_node is <a href="CppEmit.htm">emitted</a> due to a m_signal_request_rate_node<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/of the Node its <a href="CppQt.htm">Qt</a>RateConceptItem<br/>
-&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQt.htm">Qt</a>Node *)&gt; m_signal_node_requests_rate_concept;<br/>
-&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQt.htm">Qt</a>Node *)&gt; m_signal_node_requests_rate_examples;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQt.htm">Qt</a>Node *)&gt; m_signal_display_changed;<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQt.htm">Qt</a>Node *)&gt; m_signal_base_changed;<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQt.htm">Qt</a>Node *)&gt; m_signal_node_changed;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQt.htm">Qt</a>Node *)&gt; m_signal_node_requests_rate_concept;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQt.htm">Qt</a>Node *)&gt; m_signal_node_requests_rate_examples;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/No other <b><a href="CppQtSignals.htm">signals</a></b>, these are present in the ConceptItems<br/>
 <br/>
@@ -7299,7 +7330,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The Strategy <b><a href="CppFor.htm">for</a></b> displaying a Concept<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; m_display_strategy;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; m_display_strategy;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppQPen.htm">QPen</a> m_contour_pen;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppQPen.htm">QPen</a> m_focus_pen;<br/>
@@ -7318,8 +7349,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnRequestsSceneUpdate();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The item<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnItemRequestsRateConcept();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnItemRequestsRateExamples();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnItemRequestsRateConcept();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnItemRequestsRateExamples();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -7394,11 +7425,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node::<a href="CppQt.htm">Qt</a>Node(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; concept_item)<br/>
-&nbsp;&nbsp;: m_signal_node_requests_rate_concept{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_signal_node_requests_rate_examples{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_display_strategy(concept_item),<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; concept_item<br/>
+)<br/>
+&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>ConceptMapElement(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_signal_display_changed{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_node_changed{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_signal_node_requests_rate_concept{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_signal_node_requests_rate_examples{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_display_strategy(concept_item),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_contour_pen(concept_item-&gt;GetContourPen()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_focus_pen(concept_item-&gt;GetFocusPen()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_node(node)<br/>
@@ -7407,7 +7442,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_display_strategy);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(m_display_strategy);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_node);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(m_display_strategy-&gt;GetConcept().get() <a href="CppOperatorEqual.htm">==</a> m_node-&gt;GetConcept().get());<br/>
 <br/>
@@ -7636,7 +7671,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_display_strategy);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(m_display_strategy);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(m_display_strategy-&gt;GetConcept());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_display_strategy-&gt;keyPressEvent(event);<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
@@ -7659,6 +7694,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;m_signal_item_has_updated(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
+<a href="CppComment.htm">/*</a><br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node::OnItemRequestsRateConcept()<br/>
 {<br/>
 &nbsp;&nbsp;m_signal_node_requests_rate_concept(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -7668,6 +7704,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;m_signal_node_requests_rate_examples(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
+<a href="CppComment.htm">*/</a><br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node::OnNodeChanged(Node * <b><a href="CppConst.htm">const</a></b> node)<br/>
 {<br/>
@@ -7701,7 +7738,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 ) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_display_strategy);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(m_display_strategy);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!m_display_strategy-&gt;hasFocus());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!m_display_strategy-&gt;isSelected());<br/>
 <br/>
@@ -7722,7 +7759,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_display_strategy-&gt;paint(painter,item,<a href="CppWidget.htm">widget</a>);<br/>
 &nbsp;&nbsp;Base::paint(painter,item,<a href="CppWidget.htm">widget</a>);<br/>
-<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!GetNode()-&gt;GetConcept()-&gt;GetExamples()-&gt;Get().empty())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;setBrush(m_display_strategy-&gt;GetIndicatorBrush());<br/>
@@ -7735,7 +7772,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;}<br/>
-<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> item can move (as the center node cannot)<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> BRAINWEAVER_MOVE_ITEMS_ON_COLLISION<br/>
@@ -7833,11 +7870,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> n_nodes <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory().GetTests().size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> node_index=0; node_index<a href="CppOperatorNotEqual.htm">!=</a>n_nodes; <a href="CppOperatorIncrement.htm">++</a>node_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> nodes <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory().GetTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> nodes <a href="CppOperatorAssign.htm">=</a> NodeFactory().GetTests();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node <a href="CppOperatorAssign.htm">=</a> nodes[node_index];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node-&gt;GetConcept()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; qtnode(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Node(node,qtconcept_item));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node-&gt;GetConcept()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; qtnode(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Node(node,qtconcept_item));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; qtnode(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Node(node));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtnode-&gt;GetNode()-&gt;GetConcept() <a href="CppOperatorEqual.htm">==</a> node-&gt;GetConcept());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node <a href="CppOperatorEqual.htm">==</a> qtnode-&gt;GetNode());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -7946,9 +7984,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::cmap::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node&amp; qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*qtnode.GetNode())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " (" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*qtnode.GetDisplayStrategy())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")";<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*qtnode.GetNode())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " (" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*qtnode.GetDisplayStrategy()) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")"<br/>
+&nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
@@ -8339,6 +8378,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog();<br/>
 <br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> GetMinimumHeight(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node&amp; qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQt.htm">Qt</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt;&amp; qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; Get<a href="CppQt.htm">Qt</a>Node() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_qtnode; }<br/>
 <br/>
@@ -8346,11 +8387,20 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog *ui;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppQt.htm">Qt</a>Node to work on<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppQt.htm">Qt</a>Node is<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> (1) a Node<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> (2) inherited properties from <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a><br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; m_qtnode;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppQt.htm">Qt</a>Dialog that displays a Node (that is: a non-<a href="CppQt.htm">Qt</a> Node)<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppQt.htm">Qt</a>Dialog that displays (1) a Node<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>NodeDialog&gt; m_qtnodedialog;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppQt.htm">Qt</a>Dialog that displays (2) inherited properties from <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a><br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a>Dialog&gt; m_<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_dialog;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnDisplayStrategyChanged(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnNodeChanged(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>Changed(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> cmap<br/>
@@ -8397,7 +8447,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapnode.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapnodedialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapnode.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtitemdisplaystrategy.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qtconceptmapqtnodedialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -8405,7 +8462,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog),<br/>
 &nbsp;&nbsp;m_qtnode{},<br/>
-&nbsp;&nbsp;m_qtnodedialog{}<br/>
+&nbsp;&nbsp;m_qtnodedialog{},<br/>
+&nbsp;&nbsp;m_<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_dialog{}<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
@@ -8413,6 +8471,29 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::~<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::GetMinimumHeight(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node&amp; qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> margin <a href="CppOperatorAssign.htm">=</a> 16;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>NodeDialog::GetMinimumHeight(*qtnode.GetNode())<br/>
+&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> margin<br/>
+&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a>Dialog::GetMinimumHeight(qtnode)<br/>
+&nbsp;&nbsp;;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::OnNodeChanged(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( qtnode <a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp;m_qtnode.get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*qtnode <a href="CppOperatorEqual.htm">==</a> *m_qtnode);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a>&gt; base(m_qtnode);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_dialog-&gt;SetItem(base);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::On<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>Changed(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_qtnodedialog-&gt;SetNode(qtnode-&gt;GetNode());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::Set<a href="CppQt.htm">Qt</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt;&amp; qtnode) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -8431,96 +8512,72 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Setting node '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> qtnode-&gt;ToStr() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'\n";<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> concept_after <a href="CppOperatorAssign.htm">=</a> qtnode-&gt;GetConcept();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> x_after <a href="CppOperatorAssign.htm">=</a> qtnode-&gt;GetX();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> y_after <a href="CppOperatorAssign.htm">=</a> qtnode-&gt;GetY();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> <a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_after <a href="CppOperatorAssign.htm">=</a> qtnode.get();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> node_after <a href="CppOperatorAssign.htm">=</a> qtnode-&gt;GetNode();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> concept_changed&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> x_changed&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> y_changed <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> <a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_changed <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> node_changed <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_qtnode)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> concept_before <a href="CppOperatorAssign.htm">=</a> m_qtnode-&gt;GetConcept();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> x_before <a href="CppOperatorAssign.htm">=</a> m_qtnode-&gt;GetX();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> y_before <a href="CppOperatorAssign.htm">=</a> m_qtnode-&gt;GetY();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> <a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_before <a href="CppOperatorAssign.htm">=</a> m_qtnode.get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> node_before <a href="CppOperatorAssign.htm">=</a> m_qtnode-&gt;GetNode();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;concept_changed <a href="CppOperatorAssign.htm">=</a> concept_before <a href="CppOperatorNotEqual.htm">!=</a> concept_after;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;x_changed <a href="CppOperatorAssign.htm">=</a> x_before <a href="CppOperatorNotEqual.htm">!=</a> x_after;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;y_changed <a href="CppOperatorAssign.htm">=</a> y_before <a href="CppOperatorNotEqual.htm">!=</a> y_after;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_changed <a href="CppOperatorAssign.htm">=</a> <a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_before <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_after;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;node_changed <a href="CppOperatorAssign.htm">=</a> node_before <a href="CppOperatorNotEqual.htm">!=</a> node_after;<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (concept_changed)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_changed)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Concept will change from "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> concept_before-&gt;ToStr()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "DisplayStrategy will change from "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_before-&gt;ToStr()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " to "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> concept_after-&gt;ToStr()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_after-&gt;ToStr()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s.str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x_changed)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (node_changed)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "X will change from " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x_before<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x_after <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s.str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y_changed)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Y will change from " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y_before<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y_after <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppQt.htm">Qt</a>Node will change from " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*node_before)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " to " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*node_after) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s.str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Disconnect m_concept<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_concept_changed.disconnect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>NodeDialog::OnConceptChanged,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_base_changed.disconnect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::On<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>Changed,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_x_changed.disconnect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>NodeDialog::OnXchanged,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_y_changed.disconnect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>NodeDialog::OnYchanged,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_node_changed.disconnect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::OnNodeChanged,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Replace m_example by the <b><a href="CppNew.htm">new</a></b> one<br/>
 &nbsp;&nbsp;m_qtnode <a href="CppOperatorAssign.htm">=</a> qtnode;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtnode-&gt;GetNode() <a href="CppOperatorEqual.htm">==</a> node_after);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtnode-&gt;GetConcept() <a href="CppOperatorEqual.htm">==</a> concept_after );<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtnode-&gt;GetX() <a href="CppOperatorEqual.htm">==</a> x_after );<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtnode-&gt;GetY() <a href="CppOperatorEqual.htm">==</a> y_after);<br/>
-<br/>
-&nbsp;&nbsp;m_qtnode-&gt;m_signal_concept_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>NodeDialog::OnConceptChanged,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
+&nbsp;&nbsp;m_qtnode-&gt;m_signal_base_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::On<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>Changed,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
 &nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;m_qtnode-&gt;m_signal_x_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>NodeDialog::OnXchanged,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
-&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;m_qtnode-&gt;m_signal_y_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>NodeDialog::OnYchanged,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
+&nbsp;&nbsp;m_qtnode-&gt;m_signal_node_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a><a href="CppQt.htm">Qt</a>NodeDialog::OnNodeChanged,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppEmit.htm">Emit</a> everything that has changed<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (concept_changed)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>_changed)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_concept_changed(m_qtnode.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_base_changed(m_qtnode.get());<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x_changed)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (node_changed)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_x_changed(m_qtnode.get());<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y_changed)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_y_changed(m_qtnode.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtnode-&gt;m_signal_node_changed(m_qtnode.get());<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMinimumHeight(<br/>
@@ -10391,6 +10448,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTCONCEPTMAPRATESTRATEGY_H<br/>
 <a href="CppDefine.htm">#define</a> QTCONCEPTMAPRATESTRATEGY_H<br/>
 <br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -10435,6 +10494,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCONCEPTMAPRATESTRATEGY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -10467,6 +10528,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -10704,6 +10767,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -13261,6 +13326,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTCONCEPTMAPITEMDISPLAYSTRATEGY_H<br/>
 <a href="CppDefine.htm">#define</a> QTCONCEPTMAPITEMDISPLAYSTRATEGY_H<br/>
 <br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
@@ -13288,7 +13355,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>A Concept can be shown in multiple different ways, which is performed by its derived <b><a href="CppClass.htm">classes</a></b>.<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>ItemDisplayStrategy <a href="CppComment.htm">//</a>: <b><a href="CppPublic.htm">public</a></b> <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a> Base;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a> Base;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/concept cannot be <b><a href="CppConst.htm">const</a></b>, the user might edit it (in derived <b><a href="CppClass.htm">classes</a></b> <b><a href="CppFor.htm">for</a></b> example)<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>ItemDisplayStrategy(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt;&amp; concept);<br/>
@@ -13336,16 +13403,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *) <b><a href="CppFinal.htm">final</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The pen that draws the contours<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetContourPen(<b><a href="CppConst.htm">const</a></b> <a href="CppQPen.htm">QPen</a>&amp; pen);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetContourPen(<b><a href="CppConst.htm">const</a></b> <a href="CppQPen.htm">QPen</a>&amp; pen);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The pen that draws the contours when item is focussed or selected<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetFocusPen(<b><a href="CppConst.htm">const</a></b> <a href="CppQPen.htm">QPen</a>&amp; pen);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The brush by which the indicator is filled<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetIndicatorBrush(<b><a href="CppConst.htm">const</a></b> <a href="CppQBrush.htm">QBrush</a>&amp; brush);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetIndicatorBrush(<b><a href="CppConst.htm">const</a></b> <a href="CppQBrush.htm">QBrush</a>&amp; brush);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The pen by which the indicator is filled<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetIndicatorPen(<b><a href="CppConst.htm">const</a></b> <a href="CppQPen.htm">QPen</a>&amp; pen);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetIndicatorPen(<b><a href="CppConst.htm">const</a></b> <a href="CppQPen.htm">QPen</a>&amp; pen);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the ?<a href="CppMain.htm">main</a>? brush<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> SetMainBrush(<b><a href="CppConst.htm">const</a></b> <a href="CppQBrush.htm">QBrush</a>&amp; <a href="CppAny.htm">any</a>_brush);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetMainBrush(<b><a href="CppConst.htm">const</a></b> <a href="CppQBrush.htm">QBrush</a>&amp; <a href="CppAny.htm">any</a>_brush);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the name (the text), the <a href="CppBaseClass.htm">base class</a> (<a href="CppQtRoundedEditRectItem.htm">QtRoundedEditRectItem</a>)<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/will wordwrap it<br/>
@@ -13359,8 +13429,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppAdd.htm">Add</a> <b><a href="CppFinal.htm">final</a></b> to be sure that the <a href="CppShape.htm">shape</a> is not set smaller<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppFinal.htm">final</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppEmit.htm">Emitted</a> by SetPos<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>,<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>)&gt; m_signal_position_changed;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>(<a href="CppQt.htm">Qt</a>ItemDisplayStrategy*)&gt; m_signal_changed;<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>?Where is <b><a href="CppThis.htm">this</a></b> used <b><a href="CppFor.htm">for</a></b>?<br/>
@@ -13413,6 +13487,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> cmap<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCONCEPTMAPITEMDISPLAYSTRATEGY_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -13445,6 +13521,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtConceptMap.htm">CppQtConceptMap</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfdef.htm">#ifdef</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -13691,6 +13769,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ItemDisplayStrategy::ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str():<br/>
+}<br/>
+<br/>
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::cmap::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>ItemDisplayStrategy&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
@@ -13701,6 +13786,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> USE_ITEMDISPLAYSTRATEGY_20140622<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

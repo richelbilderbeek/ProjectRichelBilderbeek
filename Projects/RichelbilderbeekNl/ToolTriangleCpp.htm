@@ -60,12 +60,13 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri)<br
 include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
 include(../../<a href="CppLibrary.htm">Libraries</a>/GeneralConsole.pri)<br/>
 <br/>
-include(../../<a href="CppClass.htm">Classes</a>/CppContainer/CppContainer.pri)<br/>
-include(../../<a href="CppClass.htm">Classes</a>/CppGeometry/CppGeometry.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppContainer.htm">CppContainer</a>/<a href="CppContainer.htm">CppContainer</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppGeometry.htm">CppGeometry</a>/<a href="CppGeometry.htm">CppGeometry</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/CppMake_array/CppMake_array.pri)<br/>
-include(../../<a href="CppClass.htm">Classes</a>/CppPlane/CppPlane.pri)<br/>
-include(../../<a href="CppClass.htm">Classes</a>/CppPolyFile/CppPolyFile.pri)<br/>
-include(../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/ToolTriangleCppConsole.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppPlane.htm">CppPlane</a>/<a href="CppPlane.htm">CppPlane</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppPolyFile.htm">CppPolyFile</a>/<a href="CppPolyFile.htm">CppPolyFile</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppRibiRegex.htm">CppRibiRegex</a>/<a href="CppRibiRegex.htm">CppRibiRegex</a>.pri)<br/>
+include(../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>Console.pri)<br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
@@ -80,72 +81,72 @@ include(../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/ToolTriangleCppConso
 <!-- start of code -->
 <table summary="./ToolTriangleCpp/ToolTriangleCppConsole.pri" border = "1"><tr><td><code>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a><br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpp<a href="CppMain.htm">main</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppmesh.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppmemorypool.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpparguments.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpptriangle.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppotri.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppedge.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppinfo.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpposub.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppvertex.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppbadsubseg.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppbadtriang.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppflipstacker.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppevent.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppsplaynode.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppsyntax.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpptriangulateio.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpptrimalloc.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpplocateresult.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppinsertvertexresult.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppfinddirectionresult.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppfile.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppstring.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppglobals.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppdefines.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppvertextype.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpphelper.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppmeshbuilder.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpp<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppmesh.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppmemorypool.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpparguments.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpptriangle.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppotri.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppedge.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppinfo.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpposub.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppvertex.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppbadsubseg.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppbadtriang.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppflipstacker.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppevent.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppsplaynode.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppsyntax.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpptriangulateio.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpptrimalloc.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpplocateresult.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppinsertvertexresult.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppfinddirectionresult.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppfile.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppstring.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppglobals.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppdefines.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppvertextype.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpphelper.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppmeshbuilder.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpp<a href="CppMain.htm">main</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppmesh.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppmemorypool.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpparguments.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpptriangle.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppotri.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppedge.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppinfo.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpposub.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppvertex.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppbadsubseg.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppbadtriang.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppflipstacker.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppevent.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppsplaynode.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppsyntax.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpptriangulateio.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppglobals.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpptrimalloc.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppfwd.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppdefines.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpplocateresult.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppinsertvertexresult.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppfinddirectionresult.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppfile.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppstring.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppvertextype.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpphelper.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecpptypedefs.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/trianglecppmeshbuilder.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpp<a href="CppMain.htm">main</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppmesh.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppmemorypool.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpparguments.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpptriangle.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppotri.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppedge.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppinfo.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpposub.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppvertex.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppbadsubseg.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppbadtriang.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppflipstacker.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppevent.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppsplaynode.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppsyntax.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpptriangulateio.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppglobals.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpptrimalloc.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppfwd.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppdefines.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpplocateresult.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppinsertvertexresult.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppfinddirectionresult.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppfile.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppstring.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppvertextype.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpphelper.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecpptypedefs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/trianglecppmeshbuilder.h<br/>
 <br/>
 <a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../ToolTriangleCpp/ToolTriangleCpp.txt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>.txt<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -157,7 +158,7 @@ include(../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/ToolTriangleCppConso
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ToolTriangleCpp/ToolTriangleCppDesktop.pri" border = "1"><tr><td><code>
-include(../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/ToolTriangleCppConsole.pri)<br/>
+include(../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>Console.pri)<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a> +=<br/>
 <br/>
@@ -173,7 +174,7 @@ include(../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/ToolTriangleCppConso
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ToolTriangleCpp/ToolTriangleCppWebsite.pri" border = "1"><tr><td><code>
-include(../../<a href="Tools.htm">Tools</a>/ToolTriangleCpp/ToolTriangleCppConsole.pri)<br/>
+include(../../<a href="Tools.htm">Tools</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>/<a href="ToolTriangleCpp.htm">ToolTriangleCpp</a>Console.pri)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3695,7 +3696,7 @@ REAL ymax;<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_outelefilename;<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_outnodefilename;<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_outpolyfilename;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> m_quality <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> m_quality; <a href="CppComment.htm">//</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_quiet;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_regionattrib;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_splitseg;<br/>
@@ -3790,7 +3791,7 @@ REAL ymax;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_outnodefilename{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_outpolyfilename{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_poly{<b><a href="CppFalse.htm">false</a></b>},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_quality{0},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_quality{<b><a href="CppTrue.htm">true</a></b>},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_quiet{0},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_regionattrib{0},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_splitseg{0},<br/>
@@ -8630,7 +8631,7 @@ LocateResult preciselocate(<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "make_<a href="CppArray.htm">array</a>.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "make_<a href="CppArray.htm">array</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "polyfile.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglecppmeshbuilder.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglecppbadsubseg.h"<br/>

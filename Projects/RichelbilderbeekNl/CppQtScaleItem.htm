@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QtScaleItem</title>
+  <meta name="description" content="C++ QtScaleItem"/>
+  <meta name="keywords" content="C++ QtScaleItem "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQtScaleItem.htm">QtScaleItem</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQtScaleItem-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQtScaleItem/CppQtScaleItem.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQtScaleItem/CppQtScaleItem.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRubiksClockWidget.htm">CppQtRubiksClockWidget</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRubiksClockWidget.htm">CppQtRubiksClockWidget</a>/<a href="CppQtRubiksClockWidget.htm">qtrubiksclockwidget</a>.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRubiksClockWidget.htm">CppQtRubiksClockWidget</a>/<a href="CppQtRubiksClockWidget.htm">qtrubiksclockwidget</a>.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRubiksClockWidget.htm">CppQtRubiksClockWidget</a>/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQtScaleItem/qtscaleitem.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQtScaleItem/qtscaleitem.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTSCALEITEM_H<br/>
+<a href="CppDefine.htm">#define</a> QTSCALEITEM_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>This top item defines a scale<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>ScaleItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ScaleItem(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>F boundingRect() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> hoverEnterEvent(<a href="CppQGraphicsSceneHoverEvent.htm">QGraphicsSceneHoverEvent</a> *event);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *option, <a href="CppQWidget.htm">QWidget</a> *<a href="CppWidget.htm">widget</a>);<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> GetRgb(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; r,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; g,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; b);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The maximum scale length in meters<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/For example, with a length of 1.0 meter, then meters, decimeters, cen<a href="CppTime.htm">time</a>ters, etc. are displayed<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_length;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The type of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> as a <a href="CppStdString.htm">std::string</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_type_string;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSCALEITEM_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQtScaleItem/qtscaleitem.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQtScaleItem/qtscaleitem.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> "qtscaleitem.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQCursor.htm">QCursor</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "units.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppQt.htm">Qt</a>ScaleItem::m_length<br/>
+&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::centi * <a href="CppBoostUnits.htm">boost::units</a>::si::meter<br/>
+&nbsp;&nbsp;).value();<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppQt.htm">Qt</a>ScaleItem::m_type_string <a href="CppOperatorAssign.htm">=</a> "<a href="CppQt.htm">Qt</a>ScaleItem";<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>ScaleItem::<a href="CppQt.htm">Qt</a>ScaleItem(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setZValue(4.0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setAcceptHoverEvents(<b><a href="CppTrue.htm">true</a></b>);<br/>
+}<br/>
+<br/>
+<a href="CppQRect.htm">QRect</a>F <a href="CppQt.htm">Qt</a>ScaleItem::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQRect.htm">QRect</a>F(-m_length,-m_length,2.0*m_length,2.0*m_length);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ScaleItem::GetRgb(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; r,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; g,<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; b)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f_r <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMax.htm">std::max</a>(0.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(x &lt; 0.5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppStdCos.htm">std::cos</a>(x * 1.5 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppOperatorMinus.htm">-</a><a href="CppStdSin.htm">std::sin</a>(x * 1.5 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f_g <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMax.htm">std::max</a>(0.0, <a href="CppStdSin.htm">std::sin</a>( x * 1.5 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() ) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f_b <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMax.htm">std::max</a>(0.0, <a href="CppOperatorMinus.htm">-</a><a href="CppStdCos.htm">std::cos</a>( x * 1.5 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() ) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMax.htm">std::max</a>(f_r, <a href="CppStdMax.htm">std::max</a>(f_g,f_b));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(max<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+<br/>
+&nbsp;&nbsp;r <a href="CppOperatorAssign.htm">=</a> f_r <a href="CppOperatorDivide.htm">/</a> max;<br/>
+&nbsp;&nbsp;g <a href="CppOperatorAssign.htm">=</a> f_g <a href="CppOperatorDivide.htm">/</a> max;<br/>
+&nbsp;&nbsp;b <a href="CppOperatorAssign.htm">=</a> f_b <a href="CppOperatorDivide.htm">/</a> max;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ScaleItem::hoverEnterEvent(<a href="CppQGraphicsSceneHoverEvent.htm">QGraphicsSceneHoverEvent</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;flags() &amp; <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setCursor(<a href="CppQCursor.htm">QCursor</a>(<a href="CppQt.htm">Qt</a>::<a href="CppPoint.htm">Point</a>ingHandCursor));<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ScaleItem::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(painter);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(painter-&gt;isActive());<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mylength <a href="CppOperatorAssign.htm">=</a> m_length;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 6;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> r <a href="CppOperatorAssign.htm">=</a> 0.0; <b><a href="CppDouble.htm">double</a></b> g <a href="CppOperatorAssign.htm">=</a> 0.0; <b><a href="CppDouble.htm">double</a></b> b <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GetRgb(f,r,g,b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPen.htm">QPen</a> pen(<a href="CppQColor.htm">QColor</a>(r * 255.0, g * 255.0, b * 255.0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;setPen(pen);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cross<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> left(-mylength,0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> right(mylength,0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> top(&nbsp;&nbsp; 0.0,-mylength);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> bottom(0.0, mylength);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawLine(left,right);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawLine(top,bottom);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Crosshairs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> go_up(&nbsp;&nbsp;0.0,-mylength * 0.1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> go_down(0.0, mylength * 0.1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> go_left( <a href="CppOperatorMinus.htm">-</a>mylength * 0.1,0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> go_right( mylength * 0.1,0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawLine( left&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> go_up&nbsp;&nbsp;,&nbsp;&nbsp;left <a href="CppOperatorPlus.htm">+</a> go_down );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawLine(right&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> go_up&nbsp;&nbsp;, right <a href="CppOperatorPlus.htm">+</a> go_down );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawLine(&nbsp;&nbsp;top&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> go_left,&nbsp;&nbsp; top <a href="CppOperatorPlus.htm">+</a> go_right);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawLine(bottom <a href="CppOperatorPlus.htm">+</a> go_left,bottom <a href="CppOperatorPlus.htm">+</a> go_right);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mylength <a href="CppOperatorMultiplyAssign.htm">*=</a> 0.1;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppQt.htm">Qt</a>ScaleItem::<a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a> p;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> left(-m_length,0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> right(m_length,0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> top(&nbsp;&nbsp; 0.0,-m_length);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> bottom(0.0, m_length);<br/>
+&nbsp;&nbsp;p.moveTo(left);<br/>
+&nbsp;&nbsp;p.lineTo(right);<br/>
+&nbsp;&nbsp;p.moveTo(top);<br/>
+&nbsp;&nbsp;p.lineTo(bottom);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

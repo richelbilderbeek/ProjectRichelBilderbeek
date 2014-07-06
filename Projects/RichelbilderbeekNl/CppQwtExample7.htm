@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>QwtExample7</title>
+  <meta name="description" content="C++ QwtExample7"/>
+  <meta name="keywords" content="C++ QwtExample7 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppQwtExample7.htm">QwtExample7</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppQwtExample7-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 14.04 (trusty)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 3.0.1</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppQwtExample7/CppQwtExample7.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQwtExample7/CppQwtExample7.pro" border = "1"><tr><td><code>
+#Qwt does not go together with Qwt<br/>
+include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>NoWeffcpp.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Qwt.pri)<br/>
+<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;plot.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;plot.h<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQwtExample7/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQwtExample7/main.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;q<a href="CppApplication.htm">application</a>.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qmainwindow.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;q<a href="Tools.htm">tool</a>bar.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;q<a href="Tools.htm">tool</a>button.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qslider.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> "plot.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> MainWindow: <b><a href="CppPublic.htm">public</a></b> <a href="CppQMainWindow.htm">QMainWindow</a><br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MainWindow(<a href="CppQWidget.htm">QWidget</a> * parent <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MainWindow(<b><a href="CppConst.htm">const</a></b> MainWindow&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MainWindow&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> MainWindow&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Plot *d_plot;<br/>
+};<br/>
+<br/>
+MainWindow::MainWindow(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQMainWindow.htm">QMainWindow</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_plot(<b><a href="CppNew.htm">new</a></b> Plot(<b><a href="CppThis.htm">this</a></b>))<br/>
+{<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setCentral<a href="CppWidget.htm">Widget</a>( d_plot );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Q<a href="Tools.htm">Tool</a>Bar *<a href="Tools.htm">tool</a>Bar <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Q<a href="Tools.htm">Tool</a>Bar( <b><a href="CppThis.htm">this</a></b> );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Q<a href="Tools.htm">Tool</a>Button *btnSpectrogram <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Q<a href="Tools.htm">Tool</a>Button( <a href="Tools.htm">tool</a>Bar );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnSpectrogram-&gt;setText( "Spectrogram" );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnSpectrogram-&gt;setCheckable( <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnSpectrogram-&gt;set<a href="Tools.htm">Tool</a>ButtonStyle( <a href="CppQt.htm">Qt</a>::<a href="Tools.htm">Tool</a>ButtonTextUnderIcon );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">tool</a>Bar-&gt;addWidget( btnSpectrogram );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;connect( btnSpectrogram, <a href="CppSignalMacro.htm">SIGNAL</a>( toggled( <b><a href="CppBool.htm">bool</a></b> ) ),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d_plot, <a href="CppSLOT.htm">SLOT</a>( showSpectrogram( <b><a href="CppBool.htm">bool</a></b> ) ) );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Q<a href="Tools.htm">Tool</a>Button *btnContour <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Q<a href="Tools.htm">Tool</a>Button( <a href="Tools.htm">tool</a>Bar );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnContour-&gt;setText( "Contour" );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnContour-&gt;setCheckable( <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnContour-&gt;set<a href="Tools.htm">Tool</a>ButtonStyle( <a href="CppQt.htm">Qt</a>::<a href="Tools.htm">Tool</a>ButtonTextUnderIcon );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">tool</a>Bar-&gt;addWidget( btnContour );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;connect( btnContour, <a href="CppSignalMacro.htm">SIGNAL</a>( toggled( <b><a href="CppBool.htm">bool</a></b> ) ),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d_plot, <a href="CppSLOT.htm">SLOT</a>( showContour( <b><a href="CppBool.htm">bool</a></b> ) ) );<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> QT_NO_PRINTER<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Q<a href="Tools.htm">Tool</a>Button *btnPrint <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Q<a href="Tools.htm">Tool</a>Button( <a href="Tools.htm">tool</a>Bar );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnPrint-&gt;setText( "Print" );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnPrint-&gt;set<a href="Tools.htm">Tool</a>ButtonStyle( <a href="CppQt.htm">Qt</a>::<a href="Tools.htm">Tool</a>ButtonTextUnderIcon );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">tool</a>Bar-&gt;addWidget( btnPrint );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;connect( btnPrint, <a href="CppSignalMacro.htm">SIGNAL</a>( clicked() ),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d_plot, <a href="CppSLOT.htm">SLOT</a>( printPlot() ) );<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QSlider *slider <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QSlider( <a href="CppQt.htm">Qt</a>::Horizontal );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;slider-&gt;setRange( 0, 255 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;slider-&gt;setValue( 255 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;connect( slider, <a href="CppSignalMacro.htm">SIGNAL</a>( valueChanged( <b><a href="CppInt.htm">int</a></b> ) ),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d_plot, <a href="CppSLOT.htm">SLOT</a>( setAlpha( <b><a href="CppInt.htm">int</a></b> ) ) );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">tool</a>Bar-&gt;addWidget( slider );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;add<a href="Tools.htm">Tool</a>Bar( <a href="Tools.htm">tool</a>Bar );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnSpectrogram-&gt;setChecked( <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;btnContour-&gt;setChecked( <b><a href="CppFalse.htm">false</a></b> );<br/>
+<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>( <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a> )<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a( <a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a> );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MainWindow <a href="CppMain.htm">main</a>Window;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>Window.resize( 600, 400 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>Window.show();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppMake_shared.htm">make_shared</a>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "qwt_plot.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_plot_curve.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_text.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_plot_spectrogram.h"<br/>
+<a href="CppInclude.htm">#include</a> "qwt_<a href="CppMatrix.htm">matrix</a>_raster_data.h"<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
+<a href="CppInclude.htm">#include</a> "qwt_<a href="CppPointer.htm">point</a>_data.h"<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> curve <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;QwtPlotCurve&gt;("Sine");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;QwtPlotSpectrogram&gt; plot <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostMake_shared.htm">boost::make_shared</a>&lt;QwtPlotSpectrogram&gt;();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> tau <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::two_pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;Qwt<a href="CppMatrix.htm">Matrix</a>RasterData * <b><a href="CppConst.htm">const</a></b> data <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Qwt<a href="CppMatrix.htm">Matrix</a>RasterData;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> 0; row <a href="CppOperatorNotEqual.htm">!=</a> n_rows; <a href="CppOperatorIncrement.htm">++</a>row)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> 0; col <a href="CppOperatorNotEqual.htm">!=</a> n_cols; <a href="CppOperatorIncrement.htm">++</a>col)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> tau * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(col) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_cols);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> tau * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(row) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_rows);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> z <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSin.htm">std::sin</a>(x) * cos(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data-&gt;setValue(row,col,z);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;plot-&gt;setData(data);<br/>
+&nbsp;&nbsp;plot-&gt;setDisplayMode(QwtPlotSpectrogram::ImageMode);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>plot-&gt;renderContourLines(<a href="CppQRect.htm">QRect</a>F(0.0,0.0,10.0,10.0),QSize(10,10));<br/>
+&nbsp;&nbsp;plot-&gt;show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQwtExample7/plot.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQwtExample7/plot.h" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;qwt_plot.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_plot_spectrogram.h&gt;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> Plot: <b><a href="CppPublic.htm">public</a></b> QwtPlot<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Plot( <a href="CppQWidget.htm">QWidget</a> * <a href="CppOperatorAssign.htm">=</a> <a href="CppNULL.htm">NULL</a> );<br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b> Q_<a href="CppSLOT.htm">SLOT</a>S:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> showContour( <b><a href="CppBool.htm">bool</a></b> on );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> showSpectrogram( <b><a href="CppBool.htm">bool</a></b> on );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setAlpha( <b><a href="CppInt.htm">int</a></b> );<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> QT_NO_PRINTER<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> printPlot();<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QwtPlotSpectrogram *d_spectrogram;<br/>
+};<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQwtExample7/plot.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQwtExample7/plot.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;qprinter.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qprintdialog.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_color_map.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_plot_spectrogram.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_scale_<a href="CppWidget.htm">widget</a>.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_scale_draw.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_plot_zoomer.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_plot_panner.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_plot_layout.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_plot_renderer.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> "plot.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;qwt_plot_canvas.h&gt; <a href="CppComment.htm">//</a><a href="CppLinux.htm">Linux</a><br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> MyZoomer: <b><a href="CppPublic.htm">public</a></b> QwtPlotZoomer<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MyZoomer( <a href="CppQWidget.htm">QWidget</a> *canvas ):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QwtPlotZoomer(<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;QwtPlot<a href="CppCanvas.htm">Canvas</a> *&gt;(canvas))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTrackerMode( AlwaysOn );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> QwtText trackerTextF( <b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> &amp;pos ) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQColor.htm">QColor</a> bg( <a href="CppQt.htm">Qt</a>::white );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bg.setAlpha( 200 );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QwtText text <a href="CppOperatorAssign.htm">=</a> QwtPlotZoomer::trackerTextF( pos );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text.setBackgroundBrush( <a href="CppQBrush.htm">QBrush</a>( bg ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> text;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> SpectrogramData: <b><a href="CppPublic.htm">public</a></b> QwtRasterData<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SpectrogramData()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setInterval( <a href="CppQt.htm">Qt</a>::XAxis, QwtInterval( <a href="CppOperatorMinus.htm">-</a>1.5, 1.5 ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setInterval( <a href="CppQt.htm">Qt</a>::YAxis, QwtInterval( <a href="CppOperatorMinus.htm">-</a>1.5, 1.5 ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setInterval( <a href="CppQt.htm">Qt</a>::ZAxis, QwtInterval( 0.0, 10.0 ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppDouble.htm">double</a></b> value( <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppDouble.htm">double</a></b> y ) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> c <a href="CppOperatorAssign.htm">=</a> 0.842;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> v1 <a href="CppOperatorAssign.htm">=</a> x * x <a href="CppOperatorPlus.htm">+</a> ( y <a href="CppOperatorMinus.htm">-</a> c ) * ( y <a href="CppOperatorPlus.htm">+</a> c );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> v2 <a href="CppOperatorAssign.htm">=</a> x * ( y <a href="CppOperatorPlus.htm">+</a> c ) <a href="CppOperatorPlus.htm">+</a> x * ( y <a href="CppOperatorPlus.htm">+</a> c );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1.0 <a href="CppOperatorDivide.htm">/</a> ( v1 * v1 <a href="CppOperatorPlus.htm">+</a> v2 * v2 );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> ColorMap: <b><a href="CppPublic.htm">public</a></b> QwtLinearColorMap<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ColorMap():<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QwtLinearColorMap( <a href="CppQt.htm">Qt</a>::darkCyan, <a href="CppQt.htm">Qt</a>::red )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addColorStop( 0.1, <a href="CppQt.htm">Qt</a>::cyan );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addColorStop( 0.6, <a href="CppQt.htm">Qt</a>::green );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addColorStop( 0.95, <a href="CppQt.htm">Qt</a>::yellow );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+};<br/>
+<br/>
+Plot::Plot( <a href="CppQWidget.htm">QWidget</a> *parent ):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QwtPlot( parent )<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QwtPlotSpectrogram();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setRender<a href="CppThread.htm">Thread</a>Count( 0 ); <a href="CppComment.htm">//</a> use system specific <a href="CppThread.htm">thread</a> count<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setColorMap( <b><a href="CppNew.htm">new</a></b> ColorMap() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setCachePolicy( QwtPlotRasterItem::<a href="CppPaint.htm">Paint</a>Cache );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setData( <b><a href="CppNew.htm">new</a></b> SpectrogramData() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;attach( <b><a href="CppThis.htm">this</a></b> );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQList.htm">QList</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; contourLevels;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( <b><a href="CppDouble.htm">double</a></b> level <a href="CppOperatorAssign.htm">=</a> 0.5; level &lt; 10.0; level <a href="CppOperatorPlusAssign.htm">+=</a> 1.0 )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contourLevels <a href="CppOperatorPlusAssign.htm">+=</a> level;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setContourLevels( contourLevels );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QwtInterval zInterval <a href="CppOperatorAssign.htm">=</a> d_spectrogram-&gt;data()-&gt;interval( <a href="CppQt.htm">Qt</a>::ZAxis );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> A color bar on the right axis<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QwtScale<a href="CppWidget.htm">Widget</a> *rightAxis <a href="CppOperatorAssign.htm">=</a> axis<a href="CppWidget.htm">Widget</a>( QwtPlot::yRight );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rightAxis-&gt;setTitle( "Intensity" );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rightAxis-&gt;setColorBarEnabled( <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rightAxis-&gt;setColorMap( zInterval, <b><a href="CppNew.htm">new</a></b> ColorMap() );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setAxisScale( QwtPlot::yRight, zInterval.minValue(), zInterval.maxValue() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;enableAxis( QwtPlot::yRight );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;plotLayout()-&gt;setAlign<a href="CppCanvas.htm">Canvas</a>ToScales( <b><a href="CppTrue.htm">true</a></b> );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;replot();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> LeftButton <b><a href="CppFor.htm">for</a></b> the zooming<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> MidButton <b><a href="CppFor.htm">for</a></b> the panning<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> RightButton: zoom out by 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Ctrl+RighButton: zoom out to full size<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QwtPlotZoomer* zoomer <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> MyZoomer( canvas() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;zoomer-&gt;setMousePattern( QwtEventPattern::MouseSelect2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::RightButton, <a href="CppQt.htm">Qt</a>::ControlModifier );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;zoomer-&gt;setMousePattern( QwtEventPattern::MouseSelect3,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::RightButton );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QwtPlotPanner *panner <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QwtPlotPanner( canvas() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;panner-&gt;setAxisEnabled( QwtPlot::yRight, <b><a href="CppFalse.htm">false</a></b> );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;panner-&gt;setMouseButton( <a href="CppQt.htm">Qt</a>::MidButton );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Avoid jumping when labels with more/less digits<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> appear/disappear when scrolling vertically<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQFont.htm">QFont</a>Metrics fm( axis<a href="CppWidget.htm">Widget</a>( QwtPlot::yLeft )-&gt;font() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QwtScaleDraw *sd <a href="CppOperatorAssign.htm">=</a> axisScaleDraw( QwtPlot::yLeft );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;sd-&gt;setMinimumExtent( fm.width( "100.00" ) );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQColor.htm">QColor</a> c( <a href="CppQt.htm">Qt</a>::darkBlue );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;zoomer-&gt;setRubberBandPen( c );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;zoomer-&gt;setTrackerPen( c );<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Plot::showContour( <b><a href="CppBool.htm">bool</a></b> on )<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setDisplayMode( QwtPlotSpectrogram::ContourMode, on );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;replot();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Plot::showSpectrogram( <b><a href="CppBool.htm">bool</a></b> on )<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setDisplayMode( QwtPlotSpectrogram::ImageMode, on );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setDefaultContourPen(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on ? <a href="CppQPen.htm">QPen</a>( <a href="CppQt.htm">Qt</a>::black, 0 ) : <a href="CppQPen.htm">QPen</a>( <a href="CppQt.htm">Qt</a>::NoPen ) );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;replot();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Plot::setAlpha( <b><a href="CppInt.htm">int</a></b> alpha )<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d_spectrogram-&gt;setAlpha( alpha );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;replot();<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> QT_NO_PRINTER<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> Plot::printPlot()<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPrinter.htm">QPrinter</a> printer( <a href="CppQPrinter.htm">QPrinter</a>::HighResolution );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;printer.setOrientation( <a href="CppQPrinter.htm">QPrinter</a>::Landscape );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;printer.setOutputFileName( "spectrogram.pdf" );<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPrintDialog.htm">QPrintDialog</a> dialog( &amp;printer );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( dialog.exec() )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QwtPlotRenderer renderer;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( printer.colorMode() <a href="CppOperatorEqual.htm">==</a> <a href="CppQPrinter.htm">QPrinter</a>::GrayScale )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderer.setDiscardFlag( QwtPlotRenderer::DiscardBackground );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderer.setDiscardFlag( QwtPlotRenderer::Discard<a href="CppCanvas.htm">Canvas</a>Background );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> WIN32_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderer.setDiscardFlag( QwtPlotRenderer::Discard<a href="CppCanvas.htm">Canvas</a>Frame );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a>WIN32_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderer.setLayoutFlag( QwtPlotRenderer::FrameWithScales );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderer.renderTo( <b><a href="CppThis.htm">this</a></b>, printer );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
