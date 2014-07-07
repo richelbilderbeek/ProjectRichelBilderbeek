@@ -34,9 +34,7 @@ double ribi::QwtTestPlaneData::value(const double x, const double y) const noexc
   assert(m_plane);
   try
   {
-    const bool is_in_plane = m_plane->IsInPlane(m_f(x,y));
-    const double z = is_in_plane ? 1.0 : 0.0;
-    return z;
+    return m_plane->CalcDistanceFromPlane(m_f(x,y));
   }
   catch (std::exception&)
   {

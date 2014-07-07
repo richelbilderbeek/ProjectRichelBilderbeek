@@ -48,7 +48,10 @@ public slots:
 
 private:
   QwtPlotSpectrogram * const m_spectrogram;
-  boost::shared_ptr<QwtTestPlaneZoomer> m_zoomer;
+  //boost::shared_ptr<QwtTestPlaneZoomer> m_zoomer;
+
+  static QwtLinearColorMap * CreateColorMap() noexcept;
+
 };
 
 } //~namespace ribi

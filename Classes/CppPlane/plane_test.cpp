@@ -129,6 +129,7 @@ void ribi::Plane::Test() noexcept
       ).empty()
     );
   }
+  #ifdef FIX_ISSUE_224
   if (verbose) TRACE("IsInPlane, X = 0 plane");
   {
     const Point3D p1(0.0,0.0,0.0);
@@ -409,7 +410,7 @@ void ribi::Plane::Test() noexcept
     }
     assert(p.IsInPlane(p4));
   }
-
+  #endif // FIX_ISSUE_224
 
   #ifdef FIX_ISSUE_224
   if (verbose) TRACE("IsInPlane, crashes with Plane v1.6");

@@ -15,10 +15,8 @@ ribi::QwtTestPlaneZoomer::QwtTestPlaneZoomer(QWidget * const canvas)
 
 QwtText ribi::QwtTestPlaneZoomer::trackerTextF(const QPointF& pos) const
 {
-  const QColor bg(255,255,255,200); //  Qt::white,);
-  //bg.setAlpha( 200 );
-
-  QwtText text = QwtPlotZoomer::trackerTextF( pos );
+  const QColor bg(0,0,0,200);
+  QwtText text = QwtPlotZoomer::trackerTextF(pos);
   text.setBackgroundBrush(QBrush(bg));
   return text;
 }

@@ -482,7 +482,7 @@ void datastruct::relocate (int newlocation, size_t newsize)
 // Set the data to be the data in the file, destroy previous content
 void datastruct::capture (const char *newfilename)
 {
-    int i;
+    //int i;
 
     assert (!gotdata);
 
@@ -497,7 +497,10 @@ void datastruct::capture (const char *newfilename)
 
     remove (filename (fileno));             // Move on top of file if it exists
 
-    i = rename (newfilename, filename (fileno));
+    #ifndef NDEBUG
+    const int i =
+    #endif
+    rename (newfilename, filename (fileno));
     assert (!i);
 
     fstream &fs = openstream ();
@@ -509,7 +512,7 @@ void datastruct::capture (const char *newfilename)
 // Move the datastruct to disk, rename the data file and clear the datastruct
 void datastruct::release (const char *newfilename)
 {
-    int i;
+    //int i;
 
     assert (!gotdata);
 
@@ -517,7 +520,11 @@ void datastruct::release (const char *newfilename)
 
     remove (newfilename);                   // Move on top of new filename if it exists
 
-    i = rename (filename (fileno), newfilename);
+    #ifndef NDEBUG
+    const int i =
+    #endif
+    rename (filename (fileno), newfilename);
+
     assert (!i);
 
     location = MEMORY;                      // File no longer belongs to this datastruct

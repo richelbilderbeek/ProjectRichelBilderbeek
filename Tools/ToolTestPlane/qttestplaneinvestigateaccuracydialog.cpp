@@ -26,9 +26,9 @@ ribi::QtTestPlaneInvestigateAccuracyDialog::QtTestPlaneInvestigateAccuracyDialog
 
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
-  const Geometry::Coordinat3D p1(1.0,0.0,0.0);
-  const Geometry::Coordinat3D p2(0.0,1.0,0.0);
-  const Geometry::Coordinat3D p3(0.0,0.0,1.0);
+  const Geometry::Coordinat3D p1(0.1,0.0,0.0);
+  const Geometry::Coordinat3D p2(0.0,0.2,0.0);
+  const Geometry::Coordinat3D p3(0.0,0.0,0.3);
   const boost::shared_ptr<Plane> plane(new Plane(p1,p2,p3));
   assert(plane);
 
@@ -137,13 +137,13 @@ void ribi::QtTestPlaneInvestigateAccuracyDialog::OnAnyChange()
   );
   assert(plane);
   m_plot_x->SetData(
-    plane,[](const double x,const double y) { return Coordinat3D(0.0,x,y); },0.0,1.0,0.0,1.0
+    plane,[](const double x,const double y) { return Coordinat3D(0.0,x,y); },-1.0,1.0,-1.0,1.0
   );
   m_plot_y->SetData(
-    plane,[](const double x,const double y) { return Coordinat3D(x,0.0,y); },0.0,1.0,0.0,1.0
+    plane,[](const double x,const double y) { return Coordinat3D(x,0.0,y); },-1.0,1.0,-1.0,1.0
   );
   m_plot_z->SetData(
-    plane,[](const double x,const double y) { return Coordinat3D(x,y,0.0); },0.0,1.0,0.0,1.0
+    plane,[](const double x,const double y) { return Coordinat3D(x,y,0.0); },-1.0,1.0,-1.0,1.0
   );
 }
 

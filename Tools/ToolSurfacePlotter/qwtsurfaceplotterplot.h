@@ -44,10 +44,10 @@ public slots:
   void showSpectrogram(bool do_show);
 
 private:
-  boost::shared_ptr<QwtLinearColorMap> m_color_map;
-  //boost::shared_ptr<QwtSurfacePlotterData> m_data;
   QwtPlotSpectrogram * const m_spectrogram;
-  boost::shared_ptr<QwtSurfacePlotterZoomer> m_zoomer;
+  //boost::shared_ptr<QwtSurfacePlotterZoomer> m_zoomer;
+
+  static QwtLinearColorMap * CreateColorMap() noexcept;
 };
 
 } //~namespace ribi

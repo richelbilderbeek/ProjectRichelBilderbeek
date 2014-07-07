@@ -22,10 +22,7 @@
 
 ribi::QwtSurfacePlotterPlot::QwtSurfacePlotterPlot(QWidget *parent)
   : QwtPlot(parent),
-    m_color_map(),
-    //m_data(),
-    m_spectrogram(new QwtPlotSpectrogram),
-    m_zoomer()
+    m_spectrogram(new QwtPlotSpectrogram)
 {
   m_spectrogram->setRenderThreadCount(0); // use system specific thread count
   m_spectrogram->setCachePolicy(QwtPlotRasterItem::PaintCache );
@@ -52,12 +49,12 @@ ribi::QwtSurfacePlotterPlot::QwtSurfacePlotterPlot(QWidget *parent)
   // RightButton: zoom out by 1
   // Ctrl+RighButton: zoom out to full size
   {
-    m_zoomer = boost::make_shared<QwtSurfacePlotterZoomer>(canvas());
-    m_zoomer->setMousePattern( QwtEventPattern::MouseSelect2,Qt::RightButton, Qt::ControlModifier );
-    m_zoomer->setMousePattern( QwtEventPattern::MouseSelect3,Qt::RightButton );
+    QwtSurfacePlotterZoomer * const zoomer = new QwtSurfacePlotterZoomer(canvas());
+    zoomer->setMousePattern( QwtEventPattern::MouseSelect2,Qt::RightButton, Qt::ControlModifier );
+    zoomer->setMousePattern( QwtEventPattern::MouseSelect3,Qt::RightButton );
     const QColor c(Qt::white);
-    m_zoomer->setRubberBandPen(c);
-    m_zoomer->setTrackerPen(c);
+    zoomer->setRubberBandPen(c);
+    zoomer->setTrackerPen(c);
   }
 
   QwtPlotPanner *panner = new QwtPlotPanner(canvas());
@@ -71,6 +68,16 @@ ribi::QwtSurfacePlotterPlot::QwtSurfacePlotterPlot(QWidget *parent)
   QwtScaleDraw *sd = axisScaleDraw(QwtPlot::yLeft);
   sd->setMinimumExtent( fm.width("100.00") );
 
+}
+
+QwtLinearColorMap * ribi::QwtSurfacePlotterPlot::CreateColorMap() noexcept
+{
+  QwtLinearColorMap * const color_map = new QwtLinearColorMap(Qt::red,Qt::blue);
+  color_map->addColorStop(0.2,Qt::yellow);
+  color_map->addColorStop(0.4,Qt::green);
+  color_map->addColorStop(0.6,Qt::cyan);
+  color_map->addColorStop(0.8,Qt::blue);
+  return color_map;
 }
 
 void ribi::QwtSurfacePlotterPlot::SetData(
@@ -118,28 +125,14 @@ void ribi::QwtSurfacePlotterPlot::SetData(
   //Set the contour levels and colors
   {
     QList<double> contour_levels;
-    const double dz = (maxz-minz)/5.0;
-
+    const double dz = (maxz-minz)/6.0;
     contour_levels.append(minz + (0.0 * dz));
-    m_color_map = boost::make_shared<QwtLinearColorMap>(Qt::red,Qt::blue);
-
     contour_levels.append(minz + (1.0 * dz));
-    m_color_map->addColorStop(0.2,Qt::yellow);
-
     contour_levels.append(minz + (2.0 * dz));
-    m_color_map->addColorStop(0.4,Qt::green);
-
     contour_levels.append(minz + (3.0 * dz));
-    m_color_map->addColorStop(0.6,Qt::cyan);
-
     contour_levels.append(minz + (4.0 * dz));
-    m_color_map->addColorStop(0.8,Qt::blue);
-
     contour_levels.append(minz + (5.0 * dz));
-
     m_spectrogram->setContourLevels(contour_levels );
-
-
   }
 
 
@@ -149,9 +142,8 @@ void ribi::QwtSurfacePlotterPlot::SetData(
   QwtScaleWidget * const rightAxis = axisWidget( QwtPlot::yRight );
   rightAxis->setColorBarEnabled(true);
 
-  rightAxis->setColorMap(zInterval,m_color_map.get());
-  //rightAxis->setColorMap(zInterval,new QwtLinearColorMap(Qt::black,Qt::white));
-  m_spectrogram->setColorMap(m_color_map.get());
+  rightAxis->setColorMap(zInterval,CreateColorMap());
+  m_spectrogram->setColorMap(CreateColorMap());
 
   setAxisScale( QwtPlot::yRight,minz,maxz);
   rightAxis->repaint();

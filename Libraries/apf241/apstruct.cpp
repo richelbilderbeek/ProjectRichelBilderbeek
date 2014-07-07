@@ -650,7 +650,7 @@ apstruct *apmulmedium (apstruct *a, apstruct *b)
     size_t t, s, p, l, prec, size, ssize;
     apstruct *ap;
     modint *f, *src, *dest;
-    rawtype carry, tmpdest[USE_N2_MUL];
+    rawtype carry = 0, tmpdest[USE_N2_MUL];
     modint tmpf[USE_N2_MUL];
 
     assert (a);                 // Won't work on uninitialized apfloats

@@ -15,7 +15,10 @@ class apfloatinit
 public:
     apfloatinit ()
     {
-        int apfloatinitok = apinit ();
+        #ifndef NDEBUG
+        const int apfloatinitok =
+        #endif
+        apinit();
 
         assert (!apfloatinitok);
     };

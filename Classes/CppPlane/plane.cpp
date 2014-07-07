@@ -53,6 +53,171 @@ ribi::Plane::Plane(
   #endif
 }
 
+double ribi::Plane::CalcDistanceFromPlane(const Coordinat3D& coordinat) const noexcept
+{
+  const bool verbose = false;
+  const apfloat x = boost::geometry::get<0>(coordinat);
+  const apfloat y = boost::geometry::get<1>(coordinat);
+  const apfloat z = boost::geometry::get<2>(coordinat);
+
+  apfloat min_error = std::numeric_limits<double>::max();
+
+  if (verbose)
+  {
+    TRACE(x);
+    TRACE(y);
+    TRACE(z);
+    std::stringstream s;
+    s << std::setprecision(99) << (*this);
+    TRACE(s.str());
+  }
+
+
+  #ifdef IMPROVE_ACCURACY_224
+  const apfloat max_error = 0.00000001; //One millionth
+  try
+  {
+    const auto expected = x;
+    if (verbose) { TRACE(expected); }
+    const apfloat calculated = CalcX(y,z);
+    if (verbose) { TRACE(calculated); }
+    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
+    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error <= max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  try
+  {
+    const auto expected = y;
+    if (verbose) { TRACE(expected); }
+    const auto calculated = CalcY(x,z);
+    if (verbose) { TRACE(calculated); }
+    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
+    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error <= max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  try
+  {
+    const auto expected = z;
+    if (verbose) { TRACE(expected); }
+    const auto calculated = CalcZ(x,y);
+    if (verbose) { TRACE(calculated); }
+    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
+    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
+    if (verbose) { TRACE(error); }
+    const bool is_in_plane = error <= max_error;
+    if (verbose) { TRACE(is_in_plane); }
+    return is_in_plane;
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  #endif // IMPROVE_ACCURACY_224
+
+  //Absolute method
+  try
+  {
+    const auto expected = x;
+    const apfloat calculated = CalcX(y,z);
+    const apfloat error = abs(calculated - expected);
+    min_error = std::min(error,min_error);
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  try
+  {
+    const auto expected = y;
+    const auto calculated = CalcY(x,z);
+    const auto error = abs(calculated - expected);
+    min_error = std::min(error,min_error);
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  try
+  {
+    const auto expected = z;
+    const auto calculated = CalcZ(x,y);
+    const auto error = abs(calculated - expected);
+    min_error = std::min(error,min_error);
+
+    #ifdef IMPROVE_ACCURACY_224
+    //If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
+    // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
+    const auto a = GetCoefficientsZ()[0];
+    const auto b = GetCoefficientsZ()[1];
+    const auto c = GetCoefficientsZ()[2];
+    const auto d = GetCoefficientsZ()[3];
+    // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
+    TRACE(c.sign());
+    if (c.sign())
+    {
+      std::stringstream s;
+      s << std::fixed << std::setprecision(99) << a << ' ' << b << ' ' << c;
+      TRACE(s.str());
+      //TRACE(b);
+      //TRACE(c);
+      const auto rc_x = -a / c;
+      TRACE(rc_x);
+      const auto rc_y = -b / c;
+      TRACE(rc_y);
+      const auto rc = sqrt( (rc_x * rc_x) + (rc_y * rc_y));
+      const apfloat e = boost::numeric::bounds<double>::smallest();
+      const auto new_max_error = e * rc;
+      TRACE(rc_x);
+      TRACE(rc_y);
+      TRACE(rc);
+      TRACE(new_max_error);
+      TRACE(new_max_error);
+    }
+    if (verbose)
+    {
+      TRACE(b);
+      TRACE(d);
+      TRACE(calculated);
+    }
+
+    //Error
+    // = the rounding off error
+    // * SQRT(
+    //     ((coefficient of direction Y) ^ 2)
+    //   + ((coefficient of direction Z) ^ 2)
+    // )
+
+    //const double max_error
+    //  = m_plane_?->GetFunction?() * boost::numeric::bounds<double>::smallest();
+    #endif
+  }
+  catch (std::logic_error& e)
+  {
+    // OK
+    if (verbose) { TRACE(e.what()); }
+  }
+  return Geometry().ToDouble(min_error);
+}
+
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProjection(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
 ) const
@@ -324,6 +489,8 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
+  return CalcDistanceFromPlane(coordinat) < std::numeric_limits<double>::epsilon();
+  /*
   const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
@@ -517,6 +684,7 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     if (verbose) { TRACE(e.what()); }
   }
   return false;
+  */
 }
 
 

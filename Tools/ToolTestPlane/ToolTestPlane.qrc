@@ -3,5 +3,6 @@
         <file>ToolTestPlaneMenuImage.png</file>
         <file>ToolTestPlaneR.png</file>
         <file>ToolTestPlaneConstruct.png</file>
+        <file>ToolTestPlaneAccuracy.png</file>
     </qresource>
 </RCC>

@@ -104,7 +104,7 @@ apcomplex invroot (apcomplex u, unsigned n)
     apfloat one = 1, d = n;
     apfloat x, y;
     apcomplex z;
-    double r, i, m, a, dx, dy;
+    double r, i, m, a, dx = 0.0, dy = 0.0;
 
     if (!n) return 1;
 

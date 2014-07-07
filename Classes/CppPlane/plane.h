@@ -115,6 +115,12 @@ struct Plane
   ///Can the Plane be expressed as Z = A*X + B*Y + C ?
   bool CanCalcZ() const noexcept;
 
+  ///Calculates the distance to this plane
+  ///WARNING: This distance is calculated by taking the shortest distance
+  ///to the plane following either the X, Y or Z direction. In other words:
+  ///it does not take the shortest (perpendicular to the plane) path
+  double CalcDistanceFromPlane(const Coordinat3D& coordinat) const noexcept;
+
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
   std::vector<apfloat> GetCoefficientsX() const;
 
@@ -127,7 +133,7 @@ struct Plane
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Checks if the coordinat is in the plane
+  ///Checks if the coordinat is in the plane, uses CalcDistanceFromPlane
   bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
 
 
