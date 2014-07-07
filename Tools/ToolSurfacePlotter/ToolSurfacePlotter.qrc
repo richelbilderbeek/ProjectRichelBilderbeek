@@ -2,5 +2,8 @@
     <qresource prefix="/images">
         <file>R.png</file>
         <file>ToolSurfacePlotterMenuImage.png</file>
+        <file>ToolSurfacePlotterQwtImage.png</file>
+        <file>ToolSurfacePlotterQwtImageSmall.png</file>
+        <file>ToolSurfacePlotterRibiImageSmall.png</file>
     </qresource>
 </RCC>

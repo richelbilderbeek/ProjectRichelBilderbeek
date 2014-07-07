@@ -10,9 +10,9 @@
 
 namespace ribi {
 
-struct MyZoomer: public QwtPlotZoomer
+struct QwtSurfacePlotterZoomer: public QwtPlotZoomer
 {
-  MyZoomer(QWidget * const canvas);
+  QwtSurfacePlotterZoomer(QWidget * const canvas);
   QwtText trackerTextF(const QPointF &pos) const;
 };
 

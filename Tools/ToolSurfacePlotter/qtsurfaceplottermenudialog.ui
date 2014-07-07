@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>427</width>
-    <height>443</height>
+    <width>163</width>
+    <height>210</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolSurfacePlotter.qrc">:/images/ToolSurfacePlotterMenuImage.png</pixmap>
+      <pixmap resource="ToolSurfacePlotter.qrc">:/images/ToolSurfacePlotterRibiImageSmall.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -56,6 +56,19 @@
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolSurfacePlotter.qrc">:/images/ToolSurfacePlotterQwtImageSmall.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>

@@ -10,11 +10,13 @@
 
 
 struct FunctionParser;
+struct QwtLinearColorMap;
 struct QwtPlotSpectrogram;
 
 namespace ribi {
 
-struct MyData;
+struct QwtSurfacePlotterData;
+struct QwtSurfacePlotterZoomer;
 
 class QwtSurfacePlotterPlot: public QwtPlot
 {
@@ -38,11 +40,14 @@ public slots:
     const double miny, const double maxy,
     const double minz, const double maxz
   );
-  void showContour(bool on);
-  void showSpectrogram(bool on);
+  void showContour(bool do_show);
+  void showSpectrogram(bool do_show);
 
 private:
+  boost::shared_ptr<QwtLinearColorMap> m_color_map;
+  boost::shared_ptr<QwtSurfacePlotterData> m_data;
   QwtPlotSpectrogram * const m_spectrogram;
+  boost::shared_ptr<QwtSurfacePlotterZoomer> m_zoomer;
 };
 
 } //~namespace ribi

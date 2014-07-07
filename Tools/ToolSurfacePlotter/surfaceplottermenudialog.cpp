@@ -85,7 +85,7 @@ ribi::About ribi::SurfacePlotterMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "SurfacePlotter",
     "plots a bivariate function",
-    "the 14th of July 2012",
+    "the 7th of July 2014",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm",
     GetVersion(),
@@ -122,7 +122,7 @@ boost::shared_ptr<const ribi::Program> ribi::SurfacePlotterMenuDialog::GetProgra
 
 std::string ribi::SurfacePlotterMenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
 std::vector<std::string> ribi::SurfacePlotterMenuDialog::GetVersionHistory() const noexcept
@@ -131,7 +131,8 @@ std::vector<std::string> ribi::SurfacePlotterMenuDialog::GetVersionHistory() con
     "2010-02-07: version 1.0: initial Windows-only version",
     "2010-02-15: version 1.1: let user specify the range of x and y coordinats",
     "2012-07-07: version 2.0: port to Qt",
-    "2014-03-07: version 2.1: command-line version plots a hard-coded function"
+    "2014-03-07: version 2.1: command-line version plots a hard-coded function",
+    "2014-07-07: version 2.2: added Qwt spectrogram"
   };
 }
 

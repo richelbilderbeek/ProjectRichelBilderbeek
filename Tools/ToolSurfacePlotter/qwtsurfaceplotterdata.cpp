@@ -13,7 +13,7 @@
 #pragma GCC diagnostic pop
 
 
-ribi::MyData::MyData(
+ribi::QwtSurfacePlotterData::QwtSurfacePlotterData(
   const boost::shared_ptr<FunctionParser>& function_parser,
   //const std::string& function_str,
   const double minx, const double maxx,
@@ -37,8 +37,9 @@ ribi::MyData::MyData(
   setInterval(Qt::ZAxis, QwtInterval(minz,maxz));
 }
 
-double ribi::MyData::value(const double x, const double y) const noexcept
+double ribi::QwtSurfacePlotterData::value(const double x, const double y) const noexcept
 {
+
   const double xs[2] = { x,y };
   const double z = m_function_parser->Eval(xs);
   if (!m_function_parser->EvalError())
@@ -50,6 +51,7 @@ double ribi::MyData::value(const double x, const double y) const noexcept
     assert(!"Should not get here");
     return 0.0;
   }
+
   /*
   const double c = 0.842;
 
