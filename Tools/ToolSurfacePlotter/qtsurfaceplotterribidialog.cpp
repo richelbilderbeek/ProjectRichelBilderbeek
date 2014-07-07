@@ -26,7 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <boost/lexical_cast.hpp>
+
 #include <QDesktopWidget>
+#include <QKeyEvent>
 
 #include "fparser.hh"
 #include "trace.h"
@@ -72,6 +74,14 @@ ribi::QtSurfacePlotterRibiDialog::QtSurfacePlotterRibiDialog(QWidget *parent)
 ribi::QtSurfacePlotterRibiDialog::~QtSurfacePlotterRibiDialog() noexcept
 {
   delete ui;
+}
+
+void ribi::QtSurfacePlotterRibiDialog::keyPressEvent(QKeyEvent *event)
+{
+ switch (event->key())
+  {
+    case Qt::Key_Escape: close(); return;
+  }
 }
 
 void ribi::QtSurfacePlotterRibiDialog::OnAnyChange()

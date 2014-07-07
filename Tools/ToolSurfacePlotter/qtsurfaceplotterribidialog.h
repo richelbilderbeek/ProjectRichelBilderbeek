@@ -40,6 +40,7 @@ public:
   ~QtSurfacePlotterRibiDialog() noexcept;
     
 private slots:
+  void keyPressEvent(QKeyEvent *event);
   void OnAnyChange();
   void resizeEvent(QResizeEvent *);
 

@@ -25,27 +25,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsurfaceplotterqwtdialog.h"
 
 #include <cassert>
+
 #include <boost/lexical_cast.hpp>
+
 #include <QDesktopWidget>
+#include <QKeyEvent>
 
 #include "fparser.hh"
 #include "trace.h"
 #include "ui_qtsurfaceplotterqwtdialog.h"
+#include "qwtsurfaceplotterplot.h"
 
 #pragma GCC diagnostic pop
 
 ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtSurfacePlotterQwtDialog)
+    ui(new Ui::QtSurfacePlotterQwtDialog),
+    m_plot(new QwtSurfacePlotterPlot(this))
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
-
-  #ifndef NDEBUG
-  assert(Rescale(2.0,1.0,5.0,0.0,100.0) >= 24.9999 && Rescale(2.0,1.0,5.0,0.0,100.0) < 25.0001);
-  #endif
 
   QObject::connect(this->ui->edit_equation,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
   QObject::connect(this->ui->edit_minx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
@@ -53,13 +54,22 @@ ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
   QObject::connect(this->ui->edit_maxx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
   QObject::connect(this->ui->edit_maxy,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
 
-
   ui->edit_minx->setText(boost::lexical_cast<std::string>(-1.0).c_str());
   ui->edit_miny->setText(boost::lexical_cast<std::string>(-1.0).c_str());
   ui->edit_maxx->setText(boost::lexical_cast<std::string>( 1.0).c_str());
   ui->edit_maxy->setText(boost::lexical_cast<std::string>( 1.0).c_str());
 
   ui->edit_equation->setText("cos(x*y*100)");
+
+  {
+    assert(!ui->widget->layout());
+    QGridLayout * const my_layout = new QGridLayout;
+    ui->widget->setLayout(my_layout);
+    my_layout->addWidget(m_plot);
+  }
+
+  m_plot->showSpectrogram(true);
+  m_plot->showContour(true);
 
   {
     //Put the dialog in the screen center at 50% x 50% of its size
@@ -72,6 +82,18 @@ ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
 ribi::QtSurfacePlotterQwtDialog::~QtSurfacePlotterQwtDialog() noexcept
 {
   delete ui;
+}
+
+void ribi::QtSurfacePlotterQwtDialog::keyPressEvent(QKeyEvent * e)
+{
+  switch (e->key())
+  {
+    case Qt::Key_Up: m_plot->showSpectrogram(true); break;
+    case Qt::Key_Down: m_plot->showSpectrogram(false); break;
+    case Qt::Key_Right: m_plot->showContour(true); break;
+    case Qt::Key_Left: m_plot->showContour(false); break;
+    case Qt::Key_Escape: close(); return;
+  }
 }
 
 void ribi::QtSurfacePlotterQwtDialog::OnAnyChange()
@@ -123,6 +145,7 @@ void ribi::QtSurfacePlotterQwtDialog::OnAnyChange()
   }
 
   //Evaluate the function in a 2D std::vector
+  /*
   const int n_rows = ui->surfaceplotwidget->height();
   const int n_cols = ui->surfaceplotwidget->width();
   std::vector<std::vector<double> > v(n_rows,std::vector<double>(n_cols,0.0));
@@ -149,37 +172,12 @@ void ribi::QtSurfacePlotterQwtDialog::OnAnyChange()
       }
     }
   }
+  */
 
   this->setWindowTitle("Function plotted successfully");
 
   //Plot the 2D std::vector
-  ui->surfaceplotwidget->SetSurfaceGrey(v);
-}
-
-double ribi::QtSurfacePlotterQwtDialog::Rescale(
-  const double value,
-  const double old_min,
-  const double old_max,
-  const double new_min,
-  const double new_max)
-{
-  assert(value >= old_min);
-  assert(value <= old_max);
-  const double old_distance = old_max - old_min;
-  //At which relative distance is value on old_min to old_max ?
-  const double distance = (value - old_min) / old_distance;
-  assert(distance >= 0.0);
-  assert(distance <= 1.0);
-  const double new_distance = new_max - new_min;
-  const double new_value = new_min + (distance * new_distance);
-  assert(new_value >= new_min);
-  assert(new_value <= new_max);
-  return new_value;
-}
-
-void ribi::QtSurfacePlotterQwtDialog::resizeEvent(QResizeEvent *)
-{
-  OnAnyChange();
+  //ui->surfaceplotwidget->SetSurfaceGrey(v);
 }
 
 #ifndef NDEBUG

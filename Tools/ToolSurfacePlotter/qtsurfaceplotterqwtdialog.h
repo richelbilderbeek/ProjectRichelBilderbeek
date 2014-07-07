@@ -29,6 +29,8 @@ namespace Ui {
 
 namespace ribi {
 
+struct QwtSurfacePlotterPlot;
+
 class QtSurfacePlotterQwtDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -40,22 +42,12 @@ public:
   ~QtSurfacePlotterQwtDialog() noexcept;
     
 private slots:
+  void keyPressEvent(QKeyEvent *event);
   void OnAnyChange();
-  void resizeEvent(QResizeEvent *);
 
 private:
   Ui::QtSurfacePlotterQwtDialog *ui;
-
-  ///Rescale calculates a value between old_min and old_max its relative place and transforms
-  ///this relative position to a new_min and new_max
-  ///For example: for the old range [1,5], the value 2 is at 25% of this range. Transforming this
-  ///to the new range range [0,100] results in a 25
-  static double Rescale(
-    const double value,
-    const double oldMin,
-    const double oldMax,
-    const double newMin,
-    const double newMax);
+  QwtSurfacePlotterPlot * const m_plot;
 
   #ifndef NDEBUG
   static void Test() noexcept;

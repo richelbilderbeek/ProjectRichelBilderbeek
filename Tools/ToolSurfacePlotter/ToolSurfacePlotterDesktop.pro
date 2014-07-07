@@ -2,6 +2,7 @@ include(../../DesktopApplication.pri)
 include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
+include(../../Libraries/Qwt.pri)
 
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)

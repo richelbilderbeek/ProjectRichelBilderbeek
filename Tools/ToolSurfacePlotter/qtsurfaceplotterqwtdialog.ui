@@ -101,7 +101,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="ribi::QtSurfacePlotWidget" name="surfaceplotwidget" native="true">
+       <widget class="QWidget" name="widget" native="true">
         <property name="minimumSize">
          <size>
           <width>256</width>
@@ -168,14 +168,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>ribi::QtSurfacePlotWidget</class>
-   <extends>QWidget</extends>
-   <header>qtsurfaceplotwidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="ToolSurfacePlotter.qrc"/>
  </resources>
