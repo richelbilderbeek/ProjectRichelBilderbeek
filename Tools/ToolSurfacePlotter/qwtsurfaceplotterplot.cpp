@@ -2,47 +2,47 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-//#include <qprinter.h>
-//#include <qprintdialog.h>
-//#include <qwt_color_map.h>
+#include <cassert>
+
+#include <boost/make_shared.hpp>
+
 #include <qwt_plot_spectrogram.h>
-//#include <qwt_plot_spectrogram.h>
 #include <qwt_scale_widget.h>
-//#include <qwt_scale_draw.h>
 #include <qwt_plot_panner.h>
 #include <qwt_plot_layout.h>
-//#include <qwt_plot_renderer.h>
+
+#include "fparser.hh"
+
 #include "qwtsurfaceplotterplot.h"
+#include "qwt_color_map.h"
 #include "qwtsurfaceplotterzoomer.h"
 #include "qwtsurfaceplotterdata.h"
 #include "qwtsurfaceplottercolormap.h"
 #pragma GCC diagnostic pop
 
-ribi::QwtSurfacePlotterPlot::QwtSurfacePlotterPlot( QWidget *parent )
-  : QwtPlot( parent ),
-    m_spectrogram(new QwtPlotSpectrogram())
+ribi::QwtSurfacePlotterPlot::QwtSurfacePlotterPlot(QWidget *parent )
+  : QwtPlot(parent),
+    m_spectrogram(new QwtPlotSpectrogram)
 {
   m_spectrogram->setRenderThreadCount( 0 ); // use system specific thread count
 
-  m_spectrogram->setColorMap( new MyColorMap() );
+  m_spectrogram->setColorMap(new QwtLinearColorMap(Qt::black,Qt::white));
   m_spectrogram->setCachePolicy( QwtPlotRasterItem::PaintCache );
 
-  m_spectrogram->setData( new MyData() );
-  m_spectrogram->attach( this );
+  {
+    this->SetData(
+      "cos(x*y*100)",
+      -1.0,1.0,
+      -1.0,1.0,
+      -1.0,1.0
+    );
+  }
 
-  QList<double> contourLevels;
-  for ( double level = 0.5; level < 10.0; level += 1.0 )
-      contourLevels += level;
-  m_spectrogram->setContourLevels( contourLevels );
 
-  const QwtInterval zInterval = m_spectrogram->data()->interval( Qt::ZAxis );
-  // A color bar on the right axis
-  QwtScaleWidget *rightAxis = axisWidget( QwtPlot::yRight );
-  rightAxis->setTitle( "Intensity" );
-  rightAxis->setColorBarEnabled( true );
-  rightAxis->setColorMap( zInterval, new MyColorMap() );
+  m_spectrogram->attach(this);
 
-  setAxisScale( QwtPlot::yRight, zInterval.minValue(), zInterval.maxValue() );
+
+
   enableAxis( QwtPlot::yRight );
 
   plotLayout()->setAlignCanvasToScales( true );
@@ -73,6 +73,68 @@ ribi::QwtSurfacePlotterPlot::QwtSurfacePlotterPlot( QWidget *parent )
   const QColor c( Qt::darkBlue );
   zoomer->setRubberBandPen( c );
   zoomer->setTrackerPen( c );
+}
+
+void ribi::QwtSurfacePlotterPlot::SetData(
+  const std::string& function_str,
+  const double minx, const double maxx,
+  const double miny, const double maxy,
+  const double minz, const double maxz
+)
+{
+  const auto f = boost::make_shared<FunctionParser>();
+  f->Parse(function_str,"x,y");
+  if (f->GetParseErrorType() != FunctionParser::FP_NO_ERROR)
+  {
+    std::stringstream s;
+    s << "ribi::QwtSurfacePlotterPlot::SetData: Cannot parse " << function_str;
+    throw std::logic_error(s.str().c_str());
+  }
+  SetData(
+    f,
+    minx,maxx,
+    miny,maxy,
+    minz,maxz
+  );
+
+  //Set the contour levels
+  {
+    QList<double> contour_levels;
+    for (double contour_level = minz; contour_level<maxz; contour_level+=((maxz-minz)/4.0))
+    {
+      contour_levels.append(contour_level);
+    }
+    m_spectrogram->setContourLevels(contour_levels );
+  }
+
+  assert(m_spectrogram->data());
+  const QwtInterval zInterval = m_spectrogram->data()->interval(Qt::ZAxis );
+  // A color bar on the right axis
+  QwtScaleWidget * const rightAxis = axisWidget( QwtPlot::yRight );
+  rightAxis->setColorBarEnabled(true);
+  rightAxis->setColorMap(zInterval,new QwtLinearColorMap(Qt::black,Qt::white));
+  setAxisScale( QwtPlot::yRight,minz,maxz);
+
+  replot();
+}
+
+void ribi::QwtSurfacePlotterPlot::SetData(
+  const boost::shared_ptr<FunctionParser>& function_parser,
+  const double minx, const double maxx,
+  const double miny, const double maxy,
+  const double minz, const double maxz
+  )
+{
+  MyData * const data
+    = new MyData(
+      function_parser,
+      minx,maxx,
+      miny,maxy,
+      minz,maxz
+    );
+  assert(data);
+  m_spectrogram->setData(data);
+  replot();
 }
 
 void ribi::QwtSurfacePlotterPlot::showContour( bool on )

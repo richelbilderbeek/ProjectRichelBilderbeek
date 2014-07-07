@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
-    <height>541</height>
+    <width>897</width>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <iconset resource="ToolSurfacePlotter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
     <widget class="QWidget" name="widget_equation" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -44,7 +44,72 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="QWidget" name="widget_right" native="true">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_maxz">
+        <property name="text">
+         <string>z_max</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="edit_maxz">
+        <property name="minimum">
+         <double>-1000000000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000000000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="spacer_left_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>260</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_minz">
+        <property name="text">
+         <string>z_min</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="edit_minz">
+        <property name="minimum">
+         <double>-1000000000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000000000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>-1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QWidget" name="widget_main" native="true">
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
@@ -64,9 +129,15 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="edit_maxy">
-           <property name="text">
-            <string>1.0</string>
+          <widget class="QDoubleSpinBox" name="edit_maxy">
+           <property name="minimum">
+            <double>-1000000000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000000000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>1.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -84,16 +155,22 @@
           </spacer>
          </item>
          <item>
-          <widget class="QLabel" name="label_maxx">
+          <widget class="QLabel" name="label_miny">
            <property name="text">
             <string>y_min</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="edit_miny">
-           <property name="text">
-            <string>-1.0</string>
+          <widget class="QDoubleSpinBox" name="edit_miny">
+           <property name="minimum">
+            <double>-1000000000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000000000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>-1.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -120,23 +197,9 @@
         </property>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="2">
-          <widget class="QLabel" name="label_maxx_2">
+          <widget class="QLabel" name="label_maxx">
            <property name="text">
             <string>x_max</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLineEdit" name="edit_minx">
-           <property name="text">
-            <string>-1</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="edit_maxx">
-           <property name="text">
-            <string>1.0</string>
            </property>
           </widget>
          </item>
@@ -157,6 +220,32 @@
           <widget class="QLabel" name="label_minx">
            <property name="text">
             <string>x_min</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QDoubleSpinBox" name="edit_minx">
+           <property name="minimum">
+            <double>-1000000000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000000000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>-1.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QDoubleSpinBox" name="edit_maxx">
+           <property name="minimum">
+            <double>-1000000000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000000000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>1.000000000000000</double>
            </property>
           </widget>
          </item>

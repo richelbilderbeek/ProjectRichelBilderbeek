@@ -6,8 +6,7 @@ SOURCES += \
     ../../Tools/ToolSurfacePlotter/qtsurfaceplotterribidialog.cpp \
     ../../Tools/ToolSurfacePlotter/qwtsurfaceplotterzoomer.cpp \
     ../../Tools/ToolSurfacePlotter/qwtsurfaceplotterplot.cpp \
-    ../../Tools/ToolSurfacePlotter/qwtsurfaceplotterdata.cpp \
-    ../../Tools/ToolSurfacePlotter/qwtsurfaceplottercolormap.cpp
+    ../../Tools/ToolSurfacePlotter/qwtsurfaceplotterdata.cpp
 
 FORMS += \
     ../../Tools/ToolSurfacePlotter/qtsurfaceplottermenudialog.ui \
@@ -20,5 +19,4 @@ HEADERS += \
     ../../Tools/ToolSurfacePlotter/qtsurfaceplotterribidialog.h \
     ../../Tools/ToolSurfacePlotter/qwtsurfaceplotterzoomer.h \
     ../../Tools/ToolSurfacePlotter/qwtsurfaceplotterplot.h \
-    ../../Tools/ToolSurfacePlotter/qwtsurfaceplotterdata.h \
-    ../../Tools/ToolSurfacePlotter/qwtsurfaceplottercolormap.h
+    ../../Tools/ToolSurfacePlotter/qwtsurfaceplotterdata.h

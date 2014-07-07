@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include <boost/lexical_cast.hpp>
+#include <boost/make_shared.hpp>
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
@@ -48,16 +49,12 @@ ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
   #endif
   ui->setupUi(this);
 
-  QObject::connect(this->ui->edit_equation,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_minx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_miny,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxy,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-
-  ui->edit_minx->setText(boost::lexical_cast<std::string>(-1.0).c_str());
-  ui->edit_miny->setText(boost::lexical_cast<std::string>(-1.0).c_str());
-  ui->edit_maxx->setText(boost::lexical_cast<std::string>( 1.0).c_str());
-  ui->edit_maxy->setText(boost::lexical_cast<std::string>( 1.0).c_str());
+  ui->edit_maxx->setValue( 1.0);
+  ui->edit_maxy->setValue( 1.0);
+  ui->edit_maxz->setValue( 1.0);
+  ui->edit_minx->setValue(-1.0);
+  ui->edit_miny->setValue(-1.0);
+  ui->edit_minz->setValue(-1.0);
 
   ui->edit_equation->setText("cos(x*y*100)");
 
@@ -77,6 +74,16 @@ ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
     this->setGeometry(0,0,screen.width() / 2,screen.height() /2 );
     this->move( screen.center() - this->rect().center() );
   }
+
+  QObject::connect(this->ui->edit_equation,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_maxx,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_maxy,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_maxz,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_minx,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_miny,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_minz,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+
+  OnAnyChange();
 }
 
 ribi::QtSurfacePlotterQwtDialog::~QtSurfacePlotterQwtDialog() noexcept
@@ -98,41 +105,23 @@ void ribi::QtSurfacePlotterQwtDialog::keyPressEvent(QKeyEvent * e)
 
 void ribi::QtSurfacePlotterQwtDialog::OnAnyChange()
 {
-  try { boost::lexical_cast<double>(ui->edit_minx->text().toStdString()); }
-  catch (boost::bad_lexical_cast&)
-  {
-    this->setWindowTitle("Value of x_min is not a valid double"); return;
-  }
-  try { boost::lexical_cast<double>(ui->edit_miny->text().toStdString()); }
-  catch (boost::bad_lexical_cast&)
-  {
-    this->setWindowTitle("Value of y_min is not a valid double"); return;
-  }
-  try { boost::lexical_cast<double>(ui->edit_maxx->text().toStdString()); }
-  catch (boost::bad_lexical_cast&)
-  {
-    this->setWindowTitle("Value of x_max is not a valid double"); return;
-  }
-  try { boost::lexical_cast<double>(ui->edit_maxy->text().toStdString()); }
-  catch (boost::bad_lexical_cast&)
-  {
-    this->setWindowTitle("Value of y_max is not a valid double"); return;
-  }
-
-  FunctionParser f;
+  const auto f = boost::make_shared<FunctionParser>();
 
   //Parse the formula
-  f.Parse(ui->edit_equation->text().toStdString().c_str(),"x,y");
-  if (f.GetParseErrorType()!= FunctionParser::FP_NO_ERROR)
+  f->Parse(ui->edit_equation->text().toStdString().c_str(),"x,y");
+  if (f->GetParseErrorType() != FunctionParser::FP_NO_ERROR)
   {
     this->setWindowTitle("Function cannot not be parsed"); return;
   }
 
 
-  const double x_min = boost::lexical_cast<double>(ui->edit_minx->text().toStdString());
-  const double y_min = boost::lexical_cast<double>(ui->edit_miny->text().toStdString());
-  const double x_max = boost::lexical_cast<double>(ui->edit_maxx->text().toStdString());
-  const double y_max = boost::lexical_cast<double>(ui->edit_maxy->text().toStdString());
+  const double x_min = ui->edit_minx->value();
+  const double y_min = ui->edit_miny->value();
+  const double z_min = ui->edit_minz->value();
+  const double x_max = ui->edit_maxx->value();
+  const double y_max = ui->edit_maxy->value();
+  const double z_max = ui->edit_maxz->value();
+
 
   if (x_min >= x_max)
   {
@@ -143,6 +132,18 @@ void ribi::QtSurfacePlotterQwtDialog::OnAnyChange()
   {
     this->setWindowTitle("Value of y_min must be smaller than y_max"); return;
   }
+
+  if (z_min >= z_max)
+  {
+    this->setWindowTitle("Value of z_min must be smaller than z_max"); return;
+  }
+
+  m_plot->SetData(
+    f,
+    x_min,x_max,
+    y_min,y_max,
+    z_min,z_max
+  );
 
   //Evaluate the function in a 2D std::vector
   /*
@@ -173,6 +174,7 @@ void ribi::QtSurfacePlotterQwtDialog::OnAnyChange()
     }
   }
   */
+
 
   this->setWindowTitle("Function plotted successfully");
 
