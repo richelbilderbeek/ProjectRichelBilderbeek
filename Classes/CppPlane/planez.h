@@ -126,6 +126,10 @@ struct PlaneZ
     const Coordinat3D& p3
   ) noexcept;
 
+  ///The lowest coefficient supported; the highest coefficient
+  ///that will be treated as zero
+  static apfloat GetLeastCoefficient() noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

@@ -32,6 +32,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
   {
     //Desired replacements
     //38
+
     { "ToolRichelbilderbeekNlSitemapGenerator","<a href=\"T$oolR$ichelb$ilderbeekN$lS$item$apG$enerator.htm\">T$oolR$ichelb$ilderbeekN$l$S$item$apG$enerator</a>" },
     //37
     { "ToolTestQtKeyboardFriendlyGraphicsView","<a href=\"T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew</a>" },
@@ -48,6 +49,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     //32
     { "CppHelloQtQtCreatorUbuntuSymbian","<a href=\"C$ppH$elloQ$tQ$tC$reatorU$buntuS$ymbian.htm\">C$ppH$elloQ$tQ$tC$reatorU$buntuS$ymbian</a>" },
     //31
+    { "CppQtNavigationableGraphicsView","<a href=\"C$ppQ$tN$avigationableG$raphicsV$iew.htm\">C$ppQ$tN$avigationableG$raphicsV$iew</a>" },
     { "CppMultipleChoiceQuestionDialog","<a href=\"C$ppM$ultipleC$hoiceQ$uestionD$ialog.htm\">C$ppM$ultipleC$hoiceQ$uestionD$ialog</a>" },
     { "CppQtLabeledQuadBezierArrowItem","<a href=\"C$ppQ$tLa$bel$edQ$uadB$ezierA$rrowI$tem.htm\">C$ppQ$tL$ab$el$edQ$uadB$ezierA$rrowI$tem</a>" },
     { "qtrichelbilderbeekgallerydialog","<a href=\"C$ppQ$tR$ichelB$ilderbeekG$alleryD$ialog.htm\">q$tr$ichelb$ilderbeekg$alleryd$ialog</a>" },
@@ -68,11 +70,13 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "multiplechoicequestiondialog","<a href=\"C$ppM$ultipleC$hoiceQ$uestionD$ialog.htm\">m$ultiplec$hoiceq$uestiond$ialog</a>" },
     { "qtlabeledquadbezierarrowitem","<a href=\"C$ppQ$tLa$bel$edQ$uadB$ezierA$rrowI$tem.htm\">q$tl$ab$el$edq$uadb$eziera$rrowi$tem</a>" },
     { "CppHelloWorldQtCreatorUbuntu","<a href=\"C$ppH$elloW$orldQ$tC$reatorU$buntu.htm\">C$ppH$elloW$orldQ$tC$reatorU$buntu</a>" },
+    { "ToolTestPolyFileFromPolygons","<a href=\"T$oolT$estP$olyF$ileF$romP$olygons.htm\">T$oolT$estP$olyF$ileF$romP$olygons</a>" },
     //27
     { "CppSortedBinaryNewickVector","<a href=\"C$ppS$ortedB$inaryN$ewickV$ector.htm\">C$ppS$ortedB$inaryN$ewickV$ector</a>" },
     { "ToolPerfectElasticCollision","<a href=\"T$oolP$erfectE$lasticC$ollision.htm\">T$oolP$erfectE$lasticC$ollision</a>" },
     { "ToolRichelBilderbeekGallery","<a href=\"T$oolR$ichelB$ilderbeekG$allery.htm\">T$oolR$ichelB$ilderbeekG$allery</a>" },
     { "ToolHistogramEqualizationer","<a href=\"T$oolH$istogramE$qualizationer.htm\">T$oolH$istogramE$qualizationer</a>" },
+    { "ToolTestQtHideAndShowDialog","<a href=\"T$oolT$estQ$tH$ideA$ndS$howD$ialog.htm\">T$oolT$estQ$tH$ideA$ndS$howD$ialog</a>" },
     //26
     { "CppRichelBilderbeekProgram","<a href=\"C$ppR$ichelB$ilderbeekP$rogram.htm\">C$ppR$ichelB$ilderbeekP$rogram</a>" },
     { "ToolCreateQtProjectZipFile","<a href=\"T$oolC$reateQ$tP$rojectZ$ipF$ile.htm\">T$oolC$reateQ$tP$rojectZ$ipF$ile</a>" },
@@ -131,6 +135,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "richelbilderbeekprogram","<a href=\"C$ppR$ichelB$ilderbeekP$rogram.htm\">r$ichelb$ilderbeekp$rogram</a>" },
     { "RichelBilderbeekProgram","<a href=\"C$ppR$ichelB$ilderbeekP$rogram.htm\">R$ichelB$ilderbeekP$rogram</a>" },
     { "ToolTestBroadcastServer","<a href=\"T$oolT$estB$roadc$astS$erver.htm\">T$oolT$estB$roadcastS$erver</a>" },
+    { "ToolTestManyDigitNewick","<a href=\"T$oolT$estM$anyD$igitN$ewick.htm\">T$oolT$estM$anyD$igitN$ewick</a>" },
     { "ToolTriangleMeshCreator","<a href=\"T$oolT$riangleM$eshC$reator.htm\">T$oolT$riangleM$eshC$reator</a>" },
     { "wtbroadcastserverclient","<a href=\"C$ppW$tB$roadc$astS$erverC$lient.htm\">w$tb$roadc$asts$erverc$lient</a>" },
     { "WtBroadcastServerClient","<a href=\"C$ppW$tB$roadc$astS$erverC$lient.htm\">W$tB$roadc$astS$erverC$lient</a>" },
@@ -221,6 +226,9 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "ToolFunctionPlotter","<a href=\"T$oolF$unctionP$lotter.htm\">T$oolF$unctionP$lotter</a>" },
     { "ToolQuadraticSolver","<a href=\"T$oolQ$uadraticS$olver.htm\">T$oolQ$uadraticS$olver</a>" },
     { "ToolTestGroupWidget","<a href=\"T$oolT$estG$roupW$idget.htm\">T$oolT$estG$roupW$idget</a>" },
+    { "ToolTestImageCanvas","<a href=\"T$oolT$estI$mageC$anvas.htm\">T$oolT$estI$mageC$anvas</a>" },
+    { "ToolTestMultiVector","<a href=\"T$oolT$estM$ultiV$ector.htm\">T$oolT$estM$ultiV$ector</a>" },
+
     { "ToolTestShinyButton","<a href=\"T$oolT$estS$hinyB$utton.htm\">T$oolT$estS$hinyB$utton</a>" },
     { "QtRubiksClockWidget","<a href=\"C$ppQ$tR$ubiksC$lockW$idget.htm\">Q$tR$ubiksC$lockW$idget</a>" },
     { "qtgaborfilterwidget","<a href=\"C$ppQ$tG$aborF$ilterW$idget.htm\">q$tg$aborf$ilterw$idget</a>" },
@@ -253,6 +261,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "ToolSurfacePlotter","<a href=\"T$oolS$urfaceP$lotter.htm\">T$oolS$urfaceP$lotter</a>" },
     { "ToolTestAsciiArter","<a href=\"T$oolT$estA$sciiA$rter.htm\">T$oolT$estA$sciiA$rter</a>" },
     { "ToolTestConceptMap","<a href=\"T$oolT$estC$onceptM$ap.htm\">T$oolT$estC$onceptM$ap</a>" },
+    { "ToolTestDrawCanvas","<a href=\"T$oolT$estD$rawC$anvas.htm\">T$oolT$estD$rawC$anvas</a>" },
+    { "ToolTestMultiCanvas","<a href=\"T$oolT$estM$ultiC$anvas.htm\">T$oolT$estM$ultiC$anvas</a>" },
     { "ToolTestTextCanvas","<a href=\"T$oolT$estT$extC$anvas.htm\">T$oolT$estT$extC$anvas</a>" },
     { "TestTwoDigitNewick","<a href=\"T$oolT$estT$woD$igitN$ewick.htm\">T$estT$woD$igitN$ewick</a>" },
     { "ToolCreateGlossary","<a href=\"T$oolC$reateG$lossary.htm\">T$oolC$reateG$lossary</a>" },
@@ -320,6 +330,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "ToolQmakeWatcher","<a href=\"T$oolQ$m$akeW$atcher.htm\">T$oolQ$m$akeW$atcher</a>" },
     { "ToolTestEntrance","<a href=\"T$oolT$estE$ntrance.htm\">T$oolT$estE$ntrance</a>" },
     { "ToolTestExercise","<a href=\"T$oolT$estE$xercise.htm\">T$oolT$estE$xercise</a>" },
+    { "ToolTestPolyFile","<a href=\"T$oolT$estP$olyF$ile.htm\">T$oolT$estP$olyF$ile</a>" },
     { "ToolTestQtModels","<a href=\"T$oolT$estQ$t$M$od$els.htm\">T$oolT$estQ$tM$odels</a>" },
     { "ToolTestTriangle","<a href=\"T$oolT$estT$riangle.htm\">T$oolT$estT$riangle</a>" },
     { "TestQtArrowItems","<a href=\"T$oolT$estQ$tA$rrowI$tems.htm\">T$estQ$tA$rrowI$tems</a>" },
@@ -362,6 +373,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "ToolRegexTester","<a href=\"T$oolR$egexT$ester.htm\">T$oolR$egexT$ester</a>" },
     { "ToolPrimeExpert","<a href=\"T$oolP$rimeE$xpert.htm\">T$oolP$rimeE$xpert</a>" },
     { "ToolTestQrcFile","<a href=\"T$oolT$estQ$rcF$ile.htm\">T$oolT$estQ$rcF$ile</a>" },
+    { "ToolTestReversi","<a href=\"T$oolT$estR$eversi.htm\">T$oolT$estR$eversi</a>" },
     { "ToolTriangleCpp","<a href=\"T$oolT$riangleC$pp.htm\">T$oolT$riangleC$pp</a>" },
     { "TestShinyButton","<a href=\"T$oolT$estS$hinyB$utton.htm\">T$estS$hinyB$utton</a>" },
     { "libcvautomation","<a href=\"C$ppL$ibc$va$utom$at$i$on.htm\">l$ibc$va$ut$om$at$ion</a>" },
@@ -440,6 +452,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "ToolPixelator","<a href=\"T$oolP$ixelator.htm\">T$oolP$ixelator</a>" },
     { "ToolTestAbout","<a href=\"T$oolT$estA$bout.htm\">T$oolT$estA$bout</a>" },
     { "ToolTestChess","<a href=\"T$oolT$estC$hess.htm\">T$oolT$estC$hess</a>" },
+    { "ToolTestPlane","<a href=\"T$oolT$estP$lane.htm\">T$oolT$estP$lane</a>" },
     { "ToolTestPylos","<a href=\"T$oolT$estP$ylos.htm\">T$oolT$estP$ylos</a>" },
     { "ToolTestShape","<a href=\"T$oolT$estS$hape.htm\">T$oolT$estS$hape</a>" },
     { "ToolPicToCode","<a href=\"T$oolP$icT$oC$ode.htm\">T$oolP$icT$oC$ode</a>" },
@@ -481,6 +494,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppLazy_init","<a href=\"C$ppL$azy_i$nit.htm\">C$ppL$azy_i$nit</a>" },
     { "CppLedWidget","<a href=\"C$ppL$edW$idget.htm\">C$ppL$edW$idget</a>" },
     { "CppContainer","<a href=\"C$ppC$ontainer.htm\">C$ppC$ontainer</a>" },
+    { "CppQtReversi","<a href=\"C$ppQ$tR$eversi.htm\">C$ppQ$tR$eversi</a>" },
     { "CppQtSprites","<a href=\"C$ppQ$tS$prites.htm\">C$ppQ$tS$prites</a>" },
     { "CppRectangle","<a href=\"C$ppR$ectangle.htm\">C$ppR$ectangle</a>" },
     { "CppRibiRegex","<a href=\"C$ppR$ibiR$egex.htm\">C$ppR$ibiR$egex</a>" },
@@ -522,6 +536,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppHtmlPage","<a href=\"C$ppH$tmlP$age.htm\">C$ppH$tmlP$age</a>" },
     { "CppOpenFoam","<a href=\"C$ppO$penF$oam.htm\">C$ppO$penF$oam</a>" },
     { "CppPolyFile","<a href=\"C$ppP$olyF$ile.htm\">C$ppP$olyF$ile</a>" },
+    { "CppQtCanvas","<a href=\"C$ppQ$tC$anvas.htm\">C$ppQ$tC$anvas</a>" },
     { "CppQtMatrix","<a href=\"C$ppQ$tM$atrix.htm\">C$ppQ$tM$atrix</a>" },
     { "CppQuestion","<a href=\"C$ppQ$uestion.htm\">C$ppQ$uestion</a>" },
     { "DLL_DESTDIR","<a href=\"CppQ$m$akeD$ll_d$es$td$ir.htm\">D$LL_D$ES$TD$IR</a>" },
@@ -624,6 +639,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppMusic","<a href=\"C$ppM$usic.htm\">C$ppM$usic</a>" },
     { "CppPlane","<a href=\"C$ppP$lane.htm\">C$ppP$lane</a>" },
     { "CppPylos","<a href=\"C$ppP$ylos.htm\">C$ppP$ylos</a>" },
+    { "CppQtLed","<a href=\"C$ppQ$tL$ed.htm\">C$ppQ$tL$ed</a>" },
     { "CppShape","<a href=\"C$ppS$hape.htm\">C$ppS$hape</a>" },
     { "CppTrace","<a href=\"C$ppT$race.htm\">C$ppT$race</a>" },
     { "CppWMenu","<a href=\"C$ppW$M$enu.htm\">C$ppW$M$enu</a>" },
@@ -641,6 +657,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
   //7
     { "-Werror","<a href=\"C$ppW$e$rro$r.htm\">$-$W$e$r$ro$r</a>" },
     { "-Wextra","<a href=\"C$ppW$e$xtra.htm\">$-$W$e$xtra</a>" },
+
+    { "Apfloat","<a href=\"C$ppA$pf$loat.htm\">A$pf$loat</a>" },
     { "Boenken","<a href=\"G$ameB$oenken.htm\">B$oenken</a>" },
     { "Classes","<a href=\"C$ppC$lass.htm\">C$lasses</a>" },
     { "Copy_if","<a href=\"CppCo$py_i$f.htm\">Co$py_i$f</a>" },
@@ -648,6 +666,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppHelp","<a href=\"C$ppH$elp.htm\">C$ppH$elp</a>" },
     { "DEFINES","<a href=\"CppQ$m$akeD$efines.htm\">D$EFINES</a>" },
     { "DESTDIR","<a href=\"CppQ$m$akeD$es$td$ir.htm\">D$ES$TD$IR</a>" },
+    { "Fparser","<a href=\"C$ppF$p$arser.htm\">F$p$arser</a>" },
     { "HEADERS","<a href=\"CppQ$m$akeH$eaders.htm\">H$EAD$ERS</a>" },
     { "Rainbow","<a href=\"CppR$ainbow.htm\">R$ainbow</a>" },
     { "SOURCES","<a href=\"CppQ$m$akeS$ources.htm\">S$OURC$ES</a>" },
@@ -690,6 +709,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "shape","<a href=\"C$ppS$hape.htm\">s$hape</a>" },
     { "trace","<a href=\"CppT$race.htm\">t$race</a>" },
     { "About","<a href=\"C$ppA$bout.htm\">A$bout</a>" },
+    { "Boost","<a href=\"C$ppB$oost.htm\">B$oost</a>" },
     { "Chess","<a href=\"C$ppC$hess.htm\">C$hess</a>" },
     { "FORMS","<a href=\"CppF$ORMS.htm\">F$ORMS</a>" },
     { "Games","<a href=\"G$ames.htm\">G$ames</a>" },
@@ -706,6 +726,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "main","<a href=\"CppMa$in.htm\">m$ain</a>" },
     { "LIBS","<a href=\"CppQ$m$akeL$ibs.htm\">L$IBS</a>" },
   //3
-    { "led","<a href=\"C$ppL$ed.htm\">l$ed</a>" }
+    { "led","<a href=\"C$ppL$ed.htm\">l$ed</a>" },
+    { "Qwt","<a href=\"C$ppQ$wt.htm\">Qwt</a>" }
   };
 }

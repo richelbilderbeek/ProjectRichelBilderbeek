@@ -17,13 +17,13 @@
 #include "qwtsurfaceplotterplot.h"
 #include "qwtsurfaceplotterzoomer.h"
 #include "qwtsurfaceplotterdata.h"
-#include "qwtsurfaceplottercolormap.h"
+//#include "qwtsurfaceplottercolormap.h"
 #pragma GCC diagnostic pop
 
 ribi::QwtSurfacePlotterPlot::QwtSurfacePlotterPlot(QWidget *parent)
   : QwtPlot(parent),
     m_color_map(),
-    m_data(),
+    //m_data(),
     m_spectrogram(new QwtPlotSpectrogram),
     m_zoomer()
 {
@@ -32,7 +32,7 @@ ribi::QwtSurfacePlotterPlot::QwtSurfacePlotterPlot(QWidget *parent)
 
   {
     this->SetData(
-      "cos(x*y*100)",
+      "cos(x*y*10)",
       -1.0,1.0,
       -1.0,1.0,
       -1.0,1.0
@@ -103,15 +103,16 @@ void ribi::QwtSurfacePlotterPlot::SetData(
   const double minz, const double maxz
   )
 {
-  m_data
-    = boost::make_shared<QwtSurfacePlotterData>(
+  //data will be deleted by m_spectogram
+  QwtSurfacePlotterData * const data
+    = new QwtSurfacePlotterData(
       function_parser,
       minx,maxx,
       miny,maxy,
       minz,maxz
-    );
-  assert(m_data);
-  m_spectrogram->setData(m_data.get());
+  );
+  assert(data);
+  m_spectrogram->setData(data);
   replot();
 
   //Set the contour levels and colors

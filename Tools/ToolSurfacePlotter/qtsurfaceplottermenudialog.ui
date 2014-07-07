@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>163</width>
-    <height>210</height>
+    <width>229</width>
+    <height>292</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,15 @@
   <property name="windowIcon">
    <iconset resource="ToolSurfacePlotter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }
+QPushButton { font: 32px &quot;Courier New&quot;, courier, monospace }
+QPlainTextEdit { font: 12px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -33,6 +42,12 @@
    </item>
    <item row="0" column="1">
     <widget class="QPushButton" name="button_start">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>&amp;ribi</string>
      </property>
@@ -40,6 +55,12 @@
    </item>
    <item row="1" column="1">
     <widget class="QPushButton" name="button_qwt">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>&amp;Qwt</string>
      </property>
@@ -47,15 +68,27 @@
    </item>
    <item row="2" column="1">
     <widget class="QPushButton" name="button_about">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
-      <string>About</string>
+      <string> &amp;About </string>
      </property>
     </widget>
    </item>
    <item row="3" column="1">
     <widget class="QPushButton" name="button_quit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
-      <string>Quit</string>
+      <string>E&amp;xit</string>
      </property>
     </widget>
    </item>
@@ -66,6 +99,32 @@
      </property>
      <property name="pixmap">
       <pixmap resource="ToolSurfacePlotter.qrc">:/images/ToolSurfacePlotterQwtImageSmall.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolSurfacePlotter.qrc">:/images/ToolSurfacePlotterAbout.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolSurfacePlotter.qrc">:/images/ToolSurfacePlotterQuit.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

@@ -62,7 +62,8 @@ ribi::PlaneZ::PlaneZ(
   //if (std::abs(m_coefficients[2]) < 1.0e-14)
   //if (abs(m_coefficients[2]) < 1.0e-14)
   //Nonsense with abfloats
-  if (m_coefficients[2] == 0.0)
+  if (abs(m_coefficients[2]) < GetLeastCoefficient())
+  //if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
     throw std::logic_error("Plane (from coeffients) that can be expressed in less than 3D space");
@@ -85,7 +86,8 @@ ribi::PlaneZ::PlaneZ(
   //a division by itself is prevented by throwing an exception.
   //Throw an exception as if m_coefficients[2] equalled zero
   //if (std::abs(m_coefficients[2]) < 1.0e-14)
-  if (m_coefficients[2] == 0.0)
+  if (abs(m_coefficients[2]) < GetLeastCoefficient())
+  //if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
     throw std::logic_error("Plane (from points) that can be expressed in less than 3D space");
@@ -151,6 +153,7 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneZ::CalcProj
 ribi::PlaneZ::Apfloat ribi::PlaneZ::CalcZ(const Apfloat& x, const Apfloat& y) const
 {
   // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
+  const bool verbose = false;
   const auto a = m_coefficients[0];
   const auto b = m_coefficients[1];
   const auto c = m_coefficients[2];
@@ -159,13 +162,20 @@ ribi::PlaneZ::Apfloat ribi::PlaneZ::CalcZ(const Apfloat& x, const Apfloat& y) co
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
   }
-  std::string s = "0.000000010000000000000008881e-108";
-  char * const cstr = const_cast<char*>(s.c_str()); //apfloat is not const-correct
-  if (abs(c) < apfloat(cstr))
+  if (abs(c) < GetLeastCoefficient())
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a near-vertical plane");
   }
-  const apfloat result = ((-a*x) - (b*y) + d) / c;
+  //const apfloat result = ((-a*x) - (b*y) + d) / c;
+  const apfloat term1 = -a*x;
+  const apfloat term2 = -b*y;
+  const apfloat numerator = term1 + term2 + d;
+  if (verbose)
+  {
+    TRACE(numerator);
+    TRACE(c);
+  }
+  const apfloat result = numerator / c;
   return result;
 }
 
@@ -176,14 +186,20 @@ double ribi::PlaneZ::CalcZ(const double x, const double y) const
 
 double ribi::PlaneZ::GetFunctionA() const
 {
+  const bool verbose = false;
   const auto coeff_a = m_coefficients[0];
   const auto coeff_c = m_coefficients[2];
+  static const apfloat zero(0.0);
 
-  if (coeff_c == 0.0)
+  if (coeff_c == zero)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionA: cannot calculate A of a vertical plane");
   }
 
+  if (verbose)
+  {
+    TRACE(coeff_c);
+  }
   const auto a = -coeff_a/coeff_c;
   return Geometry().ToDouble(a);
 }
@@ -192,8 +208,9 @@ double ribi::PlaneZ::GetFunctionB() const
 {
   const auto coeff_b = m_coefficients[1];
   const auto coeff_c = m_coefficients[2];
+  static const apfloat zero(0.0);
 
-  if (coeff_c == 0.0)
+  if (coeff_c == zero)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionB: cannot calculate B of a vertical plane");
   }
@@ -206,8 +223,9 @@ double ribi::PlaneZ::GetFunctionC() const
 {
   const auto coeff_c = m_coefficients[2];
   const auto coeff_d = m_coefficients[3];
+  static const apfloat zero(0.0);
 
-  if (coeff_c == 0.0)
+  if (coeff_c == zero)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionC: cannot calculate C of a vertical plane");
   }
@@ -215,6 +233,17 @@ double ribi::PlaneZ::GetFunctionC() const
   const auto c =  coeff_d/coeff_c;
   return Geometry().ToDouble(c);
 }
+
+apfloat ribi::PlaneZ::GetLeastCoefficient() noexcept
+{
+  const std::string s = "0.000000010000000000000008881e-108";
+  char * const cstr = const_cast<char*>(s.c_str()); //apfloat is not const-correct
+  const apfloat result(cstr);
+  return result;
+
+}
+
+
 std::string ribi::PlaneZ::GetVersion() const noexcept
 {
   return "1.3";

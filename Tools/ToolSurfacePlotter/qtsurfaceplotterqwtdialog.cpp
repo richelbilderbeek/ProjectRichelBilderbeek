@@ -56,7 +56,7 @@ ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
   ui->edit_miny->setValue(-1.0);
   ui->edit_minz->setValue(-1.0);
 
-  ui->edit_equation->setText("cos(x*y*100)");
+  ui->edit_equation->setText("cos(x*y*10)");
 
   {
     assert(!ui->widget->layout());
@@ -65,8 +65,6 @@ ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
     my_layout->addWidget(m_plot);
   }
 
-  m_plot->showSpectrogram(true);
-  m_plot->showContour(true);
 
   {
     //Put the dialog in the screen center at 50% x 50% of its size
@@ -84,6 +82,8 @@ ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
   QObject::connect(this->ui->edit_minz,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
 
   OnAnyChange();
+  m_plot->showSpectrogram(true);
+  m_plot->showContour(true);
 }
 
 ribi::QtSurfacePlotterQwtDialog::~QtSurfacePlotterQwtDialog() noexcept

@@ -5,5 +5,7 @@
         <file>ToolSurfacePlotterQwtImage.png</file>
         <file>ToolSurfacePlotterQwtImageSmall.png</file>
         <file>ToolSurfacePlotterRibiImageSmall.png</file>
+        <file>ToolSurfacePlotterAbout.png</file>
+        <file>ToolSurfacePlotterQuit.png</file>
     </qresource>
 </RCC>

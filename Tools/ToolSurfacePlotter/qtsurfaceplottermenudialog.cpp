@@ -57,6 +57,7 @@ void ribi::QtSurfacePlotterMenuDialog::on_button_about_clicked()
   About a(SurfacePlotterMenuDialog().GetAbout());
   a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
+  d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 

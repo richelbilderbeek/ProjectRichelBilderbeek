@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+TestPlane, tests the Plane class
+Copyright (C) 2014-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ToolTestPlane.htm
+//---------------------------------------------------------------------------
 #include "testplanemenudialog.h"
 
 #include <cassert>
@@ -11,7 +31,7 @@
 
 #include "container.h"
 #include "fileio.h"
-#include "fparser.hh"
+
 #include "geometry.h"
 #include "plane.h"
 #include "richelbilderbeekprogram.h"
@@ -142,7 +162,7 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestPlane",
     "tests the Plane class",
-    "the 16th of June 2014",
+    "the 7th of July 2014",
     "2014",
     "http://www.richelbilderbeek.nl/ToolTestPlane.htm",
     GetVersion(),
@@ -160,7 +180,6 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
   a.AddLibrary("Plane version: "
     + plane->GetVersion()
   );
-  a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   return a;
 }
 
@@ -189,7 +208,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestPlaneMenuDialog::GetProgram() c
 
 std::string ribi::TestPlaneMenuDialog::GetVersion() const noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const noexcept
@@ -198,7 +217,8 @@ std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const no
     "2014-03-07: version 1.0: initial version",
     "2014-06-13: version 1.1: allow setting a high precision in desktop version",
     "2014-06-13: version 1.2: use of operator<< instead of ToStr",
-    "2014-06-16: version 1.3: use of QDoubleSpinBox instead of QSlider in desktop version"
+    "2014-06-16: version 1.3: use of QDoubleSpinBox instead of QSlider in desktop version",
+    "2014-07-07: version 1.4: investigate Plane::IsInPlane in desktop version"
   };
 }
 

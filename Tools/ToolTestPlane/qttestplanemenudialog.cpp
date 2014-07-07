@@ -1,11 +1,16 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qttestplanemenudialog.h"
+
+#include <cassert>
+
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
-#include "testplanemenudialog.h"
 #include "qttestplaneconstructplanedialog.h"
-#include "qttestplanemenudialog.h"
+#include "qttestplaneinvestigateaccuracydialog.h"
+#include "testplanemenudialog.h"
 #include "trace.h"
 #include "ui_qttestplanemenudialog.h"
 #pragma GCC diagnostic pop
@@ -28,7 +33,7 @@ ribi::QtTestPlaneMenuDialog::~QtTestPlaneMenuDialog() noexcept
 void ribi::QtTestPlaneMenuDialog::on_button_start_clicked()
 {
   QtTestPlaneConstructPlaneDialog d;
-  this->ShowChild(&d);
+  ShowChild(&d);
 }
 
 void ribi::QtTestPlaneMenuDialog::on_button_about_clicked()
@@ -36,7 +41,7 @@ void ribi::QtTestPlaneMenuDialog::on_button_about_clicked()
   About a(TestPlaneMenuDialog().GetAbout());
   //a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
-  this->ShowChild(&d);
+  ShowChild(&d);
 }
 
 void ribi::QtTestPlaneMenuDialog::on_button_quit_clicked()
@@ -68,3 +73,9 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
   TRACE("Finished ribi::QtTestPlaneMenuDialog::Test successfully");
 }
 #endif
+
+void ribi::QtTestPlaneMenuDialog::on_button_investigate_accuracy_clicked()
+{
+  QtTestPlaneInvestigateAccuracyDialog d;
+  ShowChild(&d);
+}

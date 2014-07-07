@@ -1,4 +1,4 @@
-#apfloat gives compile warnings with -Weffc++
+#Qwt does not go well with -Weffc++
 include(../../DesktopApplicationNoWeffcpp.pri)
 
 include(../../Libraries/Apfloat.pri)

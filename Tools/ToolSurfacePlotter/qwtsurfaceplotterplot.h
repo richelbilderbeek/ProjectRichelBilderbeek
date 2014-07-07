@@ -45,7 +45,7 @@ public slots:
 
 private:
   boost::shared_ptr<QwtLinearColorMap> m_color_map;
-  boost::shared_ptr<QwtSurfacePlotterData> m_data;
+  //boost::shared_ptr<QwtSurfacePlotterData> m_data;
   QwtPlotSpectrogram * const m_spectrogram;
   boost::shared_ptr<QwtSurfacePlotterZoomer> m_zoomer;
 };

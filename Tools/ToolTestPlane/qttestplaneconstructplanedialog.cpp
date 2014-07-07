@@ -51,23 +51,23 @@ void ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange()
   s << std::setprecision(ui->box_precision->value());
 
   const Geometry::Coordinat3D p1(
-    static_cast<double>(ui->box_x1->value()),
-    static_cast<double>(ui->box_y1->value()),
-    static_cast<double>(ui->box_z1->value())
+    ui->box_x1->value(),
+    ui->box_y1->value(),
+    ui->box_z1->value()
   );
   s << "Point 1: " << p1 << '\n';
 
   const Geometry::Coordinat3D p2(
-    static_cast<double>(ui->box_x2->value()),
-    static_cast<double>(ui->box_y2->value()),
-    static_cast<double>(ui->box_z2->value())
+    ui->box_x2->value(),
+    ui->box_y2->value(),
+    ui->box_z2->value()
   );
   s << "Point 2: " << p2 << '\n';
 
   const Geometry::Coordinat3D p3(
-    static_cast<double>(ui->box_x3->value()),
-    static_cast<double>(ui->box_y3->value()),
-    static_cast<double>(ui->box_z3->value())
+    ui->box_x3->value(),
+    ui->box_y3->value(),
+    ui->box_z3->value()
   );
   s << "Point 3: " << p3 << '\n';
 
@@ -122,9 +122,9 @@ void ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange()
   }
 
 
-  const double x = static_cast<double>(ui->box_x->value());
-  const double y = static_cast<double>(ui->box_y->value());
-  const double z = static_cast<double>(ui->box_z->value());
+  const double x = ui->box_x->value();
+  const double y = ui->box_y->value();
+  const double z = ui->box_z->value();
 
   try
   {

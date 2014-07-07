@@ -1,4 +1,6 @@
 #include <cstdio>
+#include <sstream>
+
 #include "ap.h"
 
 
@@ -201,6 +203,17 @@ datastruct::~datastruct ()
 // Allocate a buffer for reading or updating
 modint *datastruct::getdata (size_t getposition, size_t getsize)
 {
+    #ifndef NDEBUG
+    if (gotdata)
+    {
+      std::stringstream s;
+      s << "Error: "
+        << "Line: " << __LINE__
+        <<  ", file: " << __FILE__
+      ;
+      std::cerr << s.str();
+    }
+    #endif
     assert (!gotdata);
 
     gotdata = true;
@@ -212,6 +225,17 @@ modint *datastruct::getdata (size_t getposition, size_t getsize)
     }
     else
     {
+        #ifndef NDEBUG
+        if (data)
+        {
+          std::stringstream s;
+          s << "Error: "
+            << "Line: " << __LINE__
+            <<  ", file: " << __FILE__
+          ;
+          std::cerr << s.str();
+        }
+        #endif
         assert (!data);
         position = getposition;
         blocksize = getsize;
