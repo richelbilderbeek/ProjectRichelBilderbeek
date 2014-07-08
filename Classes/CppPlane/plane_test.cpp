@@ -392,9 +392,14 @@ void ribi::Plane::Test() noexcept
     try
     {
       #ifndef NDEBUG
-      if (!p.IsInPlane(p4)) { TRACE(p.CalcDistanceFromPlaneAsApfloat(p4)); }
+      if (!p.IsInPlane(p4))
+      {
+        TRACE("ERROR");
+        TRACE(p.CalcDistanceFromPlaneAsApfloat(p4));
+        TRACE("BREAK");
+      }
       #endif
-      assert(p.IsInPlane(p4)); //Here
+      assert(p.IsInPlane(p4));
     }
     catch (std::exception&)
     {

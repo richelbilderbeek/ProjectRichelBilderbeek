@@ -59,7 +59,7 @@ class FunctionParserBase
     const char* ErrorMsg() const;
     ParseErrorType GetParseErrorType() const;
 
-    Value_t Eval(const Value_t* Vars);
+    Value_t Eval(const Value_t* Vars) const;
     int EvalError() const;
 
     bool AddConstant(const std::string& name, Value_t value);
