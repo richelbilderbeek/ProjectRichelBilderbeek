@@ -1,5 +1,6 @@
 include(../../ConsoleApplication.pri)
 
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/BigInteger.pri)
 include(../../Libraries/Fparser.pri)

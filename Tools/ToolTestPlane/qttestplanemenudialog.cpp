@@ -10,6 +10,7 @@
 #include "qtsurfaceplotwidget.h"
 #include "qttestplaneconstructplanedialog.h"
 #include "qttestplaneinvestigateaccuracyqwtdialog.h"
+#include "qttestplaneinvestigateaccuracyribidialog.h"
 #include "testplanemenudialog.h"
 #include "trace.h"
 #include "ui_qttestplanemenudialog.h"
@@ -41,6 +42,7 @@ void ribi::QtTestPlaneMenuDialog::on_button_about_clicked()
   About a(TestPlaneMenuDialog().GetAbout());
   //a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
+  d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
@@ -70,17 +72,29 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
     const QtTestPlaneConstructPlaneDialog d;
     assert(!d.GetVersion().empty());
   }
+  {
+    const QtTestPlaneInvestigateAccuracyQwtDialog d;
+    assert(!d.GetVersion().empty());
+  }
+  {
+    const QtTestPlaneInvestigateAccuracyRibiDialog d;
+    assert(!d.GetVersion().empty());
+  }
   TRACE("Finished ribi::QtTestPlaneMenuDialog::Test successfully");
+  exit(0); //For profiling
 }
 #endif
 
-void ribi::QtTestPlaneMenuDialog::on_button_investigate_accuracy_clicked()
+void ribi::QtTestPlaneMenuDialog::on_button_investigate_accuracy_qwt_clicked()
 {
   QtTestPlaneInvestigateAccuracyQwtDialog d;
+  d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
 void ribi::QtTestPlaneMenuDialog::on_button_investigate_accuracy_ribi_clicked()
 {
-
+  QtTestPlaneInvestigateAccuracyRibiDialog d;
+  ShowChild(&d);
+  d.setStyleSheet(this->styleSheet());
 }

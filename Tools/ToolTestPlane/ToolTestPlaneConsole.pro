@@ -1,5 +1,4 @@
-#Apfloat will generate errors with -Weffc++
-include(../../ConsoleApplicationNoWeffcpp.pri)
+include(../../ConsoleApplication.pri)
 
 include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)

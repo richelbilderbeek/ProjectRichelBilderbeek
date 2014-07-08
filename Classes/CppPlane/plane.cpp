@@ -53,7 +53,12 @@ ribi::Plane::Plane(
   #endif
 }
 
-apfloat ribi::Plane::CalcDistanceFromPlaneAsApfloat(const Coordinat3D& coordinat) const noexcept
+double ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
+{
+  return Geometry().ToDouble(CalcErrorAsApfloat(coordinat));
+}
+
+apfloat ribi::Plane::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
 {
   const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);
@@ -218,10 +223,45 @@ apfloat ribi::Plane::CalcDistanceFromPlaneAsApfloat(const Coordinat3D& coordinat
   return min_error;
 }
 
-double ribi::Plane::CalcDistanceFromPlane(const Coordinat3D& coordinat) const noexcept
+double ribi::Plane::CalcMaxError(const Coordinat3D& coordinat) const noexcept
 {
-  return Geometry().ToDouble(CalcDistanceFromPlaneAsApfloat(coordinat));
+  return Geometry().ToDouble(CalcMaxErrorAsApfloat(coordinat));
 }
+
+apfloat ribi::Plane::CalcMaxErrorAsApfloat(const Coordinat3D& /*coordinat*/) const noexcept
+{
+  //If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
+  // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
+  const auto f_x = std::make_tuple(&ribi::Plane::CanCalcX,&ribi::Plane::GetCoefficientsX);
+  const auto f_y = std::make_tuple(&ribi::Plane::CanCalcY,&ribi::Plane::GetCoefficientsY);
+  const auto f_z = std::make_tuple(&ribi::Plane::CanCalcZ,&ribi::Plane::GetCoefficientsZ);
+  const auto fs = { f_x, f_y, f_z };
+  for (const auto f: fs)
+  {
+    if (std::bind(std::get<0>(f),this)())
+    {
+      const auto a = std::bind(std::get<1>(f),this)()[0];
+      const auto b = std::bind(std::get<1>(f),this)()[1];
+      const auto c = std::bind(std::get<1>(f),this)()[2];
+      //const auto d = GetCoefficientsZ()[3];
+      const apfloat e = boost::numeric::bounds<double>::smallest();
+      assert(e > 0.0);
+      // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
+      //TRACE(c.sign());
+      if (c.sign())
+      {
+        const auto rc_x = -a / c;
+        const auto rc_y = -b / c;
+        const auto rc = sqrt( (rc_x * rc_x) + (rc_y * rc_y));
+        const auto max_error = e * rc;
+        return max_error;
+      }
+      return e;
+    }
+  }
+  return std::numeric_limits<double>::epsilon();
+}
+
 
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProjection(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
@@ -494,8 +534,8 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
-  const apfloat error = CalcDistanceFromPlaneAsApfloat(coordinat);
-  const apfloat max_error = std::numeric_limits<double>::epsilon();
+  const apfloat error = CalcErrorAsApfloat(coordinat);
+  const apfloat max_error = CalcMaxErrorAsApfloat(coordinat); //std::numeric_limits<double>::epsilon();
   return error <= max_error;
   /*
   const bool verbose = false;

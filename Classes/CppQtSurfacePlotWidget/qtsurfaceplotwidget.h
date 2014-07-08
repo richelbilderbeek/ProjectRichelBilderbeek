@@ -41,12 +41,14 @@ public:
 
   explicit QtSurfacePlotWidget(QWidget *parent = 0);
 
+  ///A functor to do the plotting
   struct Function
   {
-    virtual ~Function() {}
+    virtual ~Function() noexcept {}
     virtual double operator()(const double x, const double y) const noexcept = 0;
   };
 
+  ///Plot a function for a certain range
   void Plot(
     const Function& f,
     const double x_min, const double x_max,
@@ -75,6 +77,10 @@ protected:
 private:
   std::vector<std::vector<unsigned char>> m_surface;
 
+  ///Rescale calculates a value between old_min and old_max its relative place and transforms
+  ///this relative position to a new_min and new_max
+  ///For example: for the old range [1,5], the value 2 is at 25% of this range. Transforming this
+  ///to the new range range [0,100] results in a 25
   static double Rescale(
     const double value,
     const double old_min,
@@ -82,6 +88,10 @@ private:
     const double new_min,
     const double new_max
   ) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 };
 

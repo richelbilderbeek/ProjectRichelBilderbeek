@@ -21,3 +21,8 @@ include(../../Tools/ToolTestPlane/ToolTestPlaneDesktop.pri)
 include(../../Classes/CppQtSurfacePlotWidget/CppQtSurfacePlotWidget.pri)
 
 SOURCES += qtmain.cpp
+
+#gprof
+QMAKE_CXXFLAGS_DEBUG += -pg
+QMAKE_LFLAGS_DEBUG += -pg
+

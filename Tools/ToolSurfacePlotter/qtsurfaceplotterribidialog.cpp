@@ -45,9 +45,6 @@ ribi::QtSurfacePlotterRibiDialog::QtSurfacePlotterRibiDialog(QWidget *parent)
   #endif
   ui->setupUi(this);
 
-  #ifndef NDEBUG
-  assert(Rescale(2.0,1.0,5.0,0.0,100.0) >= 24.9999 && Rescale(2.0,1.0,5.0,0.0,100.0) < 25.0001);
-  #endif
 
   QObject::connect(this->ui->edit_equation,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
   QObject::connect(this->ui->edit_minx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
@@ -187,6 +184,7 @@ void ribi::QtSurfacePlotterRibiDialog::OnAnyChange()
 
 }
 
+/*
 double ribi::QtSurfacePlotterRibiDialog::Rescale(
   const double value,
   const double old_min,
@@ -207,6 +205,7 @@ double ribi::QtSurfacePlotterRibiDialog::Rescale(
   assert(new_value <= new_max);
   return new_value;
 }
+*/
 
 void ribi::QtSurfacePlotterRibiDialog::resizeEvent(QResizeEvent *)
 {

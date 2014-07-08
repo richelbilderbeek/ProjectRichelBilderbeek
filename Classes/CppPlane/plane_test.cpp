@@ -135,13 +135,23 @@ void ribi::Plane::Test() noexcept
     const Point3D p2(0.0,0.0,1.0);
     const Point3D p3(0.0,1.0,0.0);
     const Plane p(p1,p2,p3);
-    assert(p.IsInPlane(Point3D(0.0, 2.0, 2.0)));
-    assert(p.IsInPlane(Point3D(0.0, 2.0,-2.0)));
-    assert(p.IsInPlane(Point3D(0.0,-2.0, 2.0)));
-    assert(p.IsInPlane(Point3D(0.0,-2.0,-2.0)));
 
+    for (double i = std::numeric_limits<double>::denorm_min() ; i < std::numeric_limits<double>::max(); i *= 10.0)
+    {
+      TRACE(i);
+      assert(p.IsInPlane(Point3D(0.0, i, i)));
+      assert(p.IsInPlane(Point3D(0.0, i,-i)));
+      assert(p.IsInPlane(Point3D(0.0,-i, i)));
+      assert(p.IsInPlane(Point3D(0.0,-i,-i)));
+    }
+    /*
     const double e = std::numeric_limits<double>::epsilon();
-
+    if (!p.IsInPlane(Point3D(e, 2.0, 2.0)))
+    {
+      TRACE("ERROR");
+      TRACE(p.CalcErrorAsApfloat(Point3D(e, 2.0, 2.0)));
+      TRACE(p.CalcMaxErrorAsApfloat(Point3D(e, 2.0, 2.0)));
+    }
     assert(p.IsInPlane(Point3D(e, 2.0, 2.0)));
     assert(p.IsInPlane(Point3D(e, 2.0,-2.0)));
     assert(p.IsInPlane(Point3D(e,-2.0, 2.0)));
@@ -151,18 +161,26 @@ void ribi::Plane::Test() noexcept
     assert(!p.IsInPlane(Point3D(f, 2.0,-2.0)));
     assert(!p.IsInPlane(Point3D(f,-2.0, 2.0)));
     assert(!p.IsInPlane(Point3D(f,-2.0,-2.0)));
+    */
   }
   if (verbose) TRACE("IsInPlane, X = 0 plane, zooming in, #223");
   {
-    assert(epsilon > 0.0);
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,0.0,epsilon);
-    const Point3D p3(0.0,epsilon,0.0);
-    const Plane p(p1,p2,p3);
-    assert(p.IsInPlane(Point3D(0.0, 2.0, 2.0)));
-    assert(p.IsInPlane(Point3D(0.0, 2.0,-2.0)));
-    assert(p.IsInPlane(Point3D(0.0,-2.0, 2.0)));
-    assert(p.IsInPlane(Point3D(0.0,-2.0,-2.0)));
+    for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
+    {
+      const Point3D p1(0.0,0.0,0.0);
+      const Point3D p2(0.0,0.0,i);
+      const Point3D p3(0.0,i,0.0);
+      const Plane p(p1,p2,p3);
+
+      for (double j = std::numeric_limits<double>::denorm_min() ; j < std::numeric_limits<double>::max(); j *= 10.0)
+      {
+        TRACE(j);
+        assert(p.IsInPlane(Point3D(0.0, j, j)));
+        assert(p.IsInPlane(Point3D(0.0, j,-j)));
+        assert(p.IsInPlane(Point3D(0.0,-j, j)));
+        assert(p.IsInPlane(Point3D(0.0,-j,-j)));
+      }
+    }
   }
   if (verbose) TRACE("IsInPlane, Y = 0 plane");
   {
@@ -252,7 +270,7 @@ void ribi::Plane::Test() noexcept
   */
   if (verbose) TRACE("IsInPlane, Slope");
   {
-    for (double slope = 1.0; slope > 1.0e-8; slope /= 10.0)
+    for (double slope = 1.0; slope > 0.0; slope /= 10.0)
     {
       TRACE(slope);
       const double slope_less = slope * 0.999999;
@@ -264,7 +282,19 @@ void ribi::Plane::Test() noexcept
       const Point3D p3(1.0,0.0,slope);
       const Plane p(p1,p2,p3);
       assert( p.IsInPlane(Point3D( 1.0, 1.0,slope)));
+      if (p.IsInPlane(Point3D( 1.0, 1.0,slope_more)))
+      {
+        TRACE("ERROR");
+        TRACE(p.CalcError(Point3D( 1.0, 1.0,slope_more)));
+      }
       assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_more)));
+
+      if (p.IsInPlane(Point3D(1.0, 1.0,slope_less)))
+      {
+        TRACE("ERROR");
+        TRACE(p.CalcError(Point3D(1.0, 1.0,slope_less)));
+        TRACE(p.CalcMaxError(Point3D(1.0, 1.0,slope_less)));
+      }
       assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_less)));
     }
   }
@@ -366,6 +396,7 @@ void ribi::Plane::Test() noexcept
     }
     assert(p.IsInPlane(p4));
   }
+
   if (verbose) TRACE("IsInPlane, crashes with Plane v1.5");
   {
     const double x1 = 0.0004035051226622692510832834944523028752882964909076690673828125;
@@ -395,7 +426,7 @@ void ribi::Plane::Test() noexcept
       if (!p.IsInPlane(p4))
       {
         TRACE("ERROR");
-        TRACE(p.CalcDistanceFromPlaneAsApfloat(p4));
+        TRACE(p.CalcErrorAsApfloat(p4));
         TRACE("BREAK");
       }
       #endif

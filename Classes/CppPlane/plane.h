@@ -119,8 +119,12 @@ struct Plane
   ///WARNING: This distance is calculated by taking the shortest distance
   ///to the plane following either the X, Y or Z direction. In other words:
   ///it does not take the shortest (perpendicular to the plane) path
-  double CalcDistanceFromPlane(const Coordinat3D& coordinat) const noexcept;
-  apfloat CalcDistanceFromPlaneAsApfloat(const Coordinat3D& coordinat) const noexcept;
+  double CalcError(const Coordinat3D& coordinat) const noexcept;
+  apfloat CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+
+  ///Calculates the maximum allowed error for that coordinat for it to be in the plane
+  double CalcMaxError(const Coordinat3D& coordinat) const noexcept;
+  apfloat CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
   std::vector<apfloat> GetCoefficientsX() const;
