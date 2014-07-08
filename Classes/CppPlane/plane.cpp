@@ -53,7 +53,7 @@ ribi::Plane::Plane(
   #endif
 }
 
-double ribi::Plane::CalcDistanceFromPlane(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::Plane::CalcDistanceFromPlaneAsApfloat(const Coordinat3D& coordinat) const noexcept
 {
   const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);
@@ -215,7 +215,12 @@ double ribi::Plane::CalcDistanceFromPlane(const Coordinat3D& coordinat) const no
     // OK
     if (verbose) { TRACE(e.what()); }
   }
-  return Geometry().ToDouble(min_error);
+  return min_error;
+}
+
+double ribi::Plane::CalcDistanceFromPlane(const Coordinat3D& coordinat) const noexcept
+{
+  return Geometry().ToDouble(CalcDistanceFromPlaneAsApfloat(coordinat));
 }
 
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProjection(
@@ -489,7 +494,9 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
-  return CalcDistanceFromPlane(coordinat) < std::numeric_limits<double>::epsilon();
+  const apfloat error = CalcDistanceFromPlaneAsApfloat(coordinat);
+  const apfloat max_error = std::numeric_limits<double>::epsilon();
+  return error <= max_error;
   /*
   const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);

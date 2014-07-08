@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTestPlaneInvestigateAccuracyDialog</class>
- <widget class="QDialog" name="QtTestPlaneInvestigateAccuracyDialog">
+ <class>QtTestPlaneInvestigateAccuracyQwtDialog</class>
+ <widget class="QDialog" name="QtTestPlaneInvestigateAccuracyQwtDialog">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -26,6 +26,8 @@ ribi::QwtTestPlanePlot::QwtTestPlanePlot(
 ) : QwtPlot(parent),
     m_spectrogram(new QwtPlotSpectrogram)
 {
+  //'0' Enables multithreaded rendering, use '1' for singethreaded
+  //Note that the program crashes when using multithreading/'0'
   m_spectrogram->setRenderThreadCount(1);
   m_spectrogram->setCachePolicy(QwtPlotRasterItem::PaintCache);
 

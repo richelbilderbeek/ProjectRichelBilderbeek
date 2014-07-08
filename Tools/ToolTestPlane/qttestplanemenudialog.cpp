@@ -9,7 +9,7 @@
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
 #include "qttestplaneconstructplanedialog.h"
-#include "qttestplaneinvestigateaccuracydialog.h"
+#include "qttestplaneinvestigateaccuracyqwtdialog.h"
 #include "testplanemenudialog.h"
 #include "trace.h"
 #include "ui_qttestplanemenudialog.h"
@@ -76,6 +76,11 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
 
 void ribi::QtTestPlaneMenuDialog::on_button_investigate_accuracy_clicked()
 {
-  QtTestPlaneInvestigateAccuracyDialog d;
+  QtTestPlaneInvestigateAccuracyQwtDialog d;
   ShowChild(&d);
+}
+
+void ribi::QtTestPlaneMenuDialog::on_button_investigate_accuracy_ribi_clicked()
+{
+
 }

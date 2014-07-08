@@ -131,6 +131,60 @@ void ribi::QtSurfacePlotWidget::paintEvent(QPaintEvent *)
 
 }
 
+
+void ribi::QtSurfacePlotWidget::Plot(
+  const Function& f,
+  const double x_min, const double x_max,
+  const double y_min, const double y_max
+) noexcept
+{
+  assert(x_min < x_max);
+  assert(y_min < y_max);
+  //Evaluate the function in a 2D std::vector
+  const int n_rows = height();
+  const int n_cols = width();
+  std::vector<std::vector<double>> v(n_rows,std::vector<double>(n_cols,0.0));
+  const double n_rows_d = static_cast<double>(n_rows);
+  const double n_cols_d = static_cast<double>(n_cols);
+
+  for (int y = 0; y!=n_rows; ++y)
+  {
+    const double yD = static_cast<double>(y);
+    const double y_scaled = Rescale(yD,0.0,n_rows_d,y_min,y_max);
+    for (int x = 0; x!=n_cols; ++x)
+    {
+      const double xD = static_cast<double>(x);
+      const double x_scaled = Rescale(xD,0.0,n_cols_d,x_min,x_max);
+      const double z = f(x_scaled,y_scaled);
+      v[y][x] = z;
+    }
+  }
+  //Plot the 2D std::vector
+  SetSurfaceGrey(v);
+}
+
+
+double ribi::QtSurfacePlotWidget::Rescale(
+  const double value,
+  const double old_min,
+  const double old_max,
+  const double new_min,
+  const double new_max) noexcept
+{
+  assert(value >= old_min);
+  assert(value <= old_max);
+  const double old_distance = old_max - old_min;
+  //At which relative distance is value on old_min to old_max ?
+  const double distance = (value - old_min) / old_distance;
+  assert(distance >= 0.0);
+  assert(distance <= 1.0);
+  const double new_distance = new_max - new_min;
+  const double new_value = new_min + (distance * new_distance);
+  assert(new_value >= new_min);
+  assert(new_value <= new_max);
+  return new_value;
+}
+
 void ribi::QtSurfacePlotWidget::resizeEvent(QResizeEvent *)
 {
   this->repaint();

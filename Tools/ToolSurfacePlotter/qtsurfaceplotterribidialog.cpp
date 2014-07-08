@@ -132,10 +132,30 @@ void ribi::QtSurfacePlotterRibiDialog::OnAnyChange()
     this->setWindowTitle("Value of y_min must be smaller than y_max"); return;
   }
 
+  struct MyFunction : public QtSurfacePlotWidget::Function
+  {
+    MyFunction(const FunctionParser& f) : m_f(f) {}
+    double operator()(const double x, const double y) const noexcept
+    {
+      const double xs[2] = { x,y };
+      const double z = m_f.Eval(xs);
+      return m_f.EvalError() ? 0.0 : z;
+    }
+    private:
+    const FunctionParser m_f;
+  };
+
+  ui->surfaceplotwidget->Plot(
+    MyFunction(f),
+    x_min, x_max,
+    y_min, y_max
+  );
+
+  /*
   //Evaluate the function in a 2D std::vector
   const int n_rows = ui->surfaceplotwidget->height();
   const int n_cols = ui->surfaceplotwidget->width();
-  std::vector<std::vector<double> > v(n_rows,std::vector<double>(n_cols,0.0));
+  std::vector<std::vector<double>> v(n_rows,std::vector<double>(n_cols,0.0));
   const double n_rows_d = static_cast<double>(n_rows);
   const double n_cols_d = static_cast<double>(n_cols);
 
@@ -159,11 +179,12 @@ void ribi::QtSurfacePlotterRibiDialog::OnAnyChange()
       }
     }
   }
+  //Plot the 2D std::vector
+  ui->surfaceplotwidget->SetSurfaceGrey(v);
+  */
 
   this->setWindowTitle("Function plotted successfully");
 
-  //Plot the 2D std::vector
-  ui->surfaceplotwidget->SetSurfaceGrey(v);
 }
 
 double ribi::QtSurfacePlotterRibiDialog::Rescale(

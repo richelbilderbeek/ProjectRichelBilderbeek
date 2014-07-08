@@ -46,12 +46,6 @@ ribi::QtSurfacePlotterMenuDialog::~QtSurfacePlotterMenuDialog() noexcept
   delete ui;
 }
 
-void ribi::QtSurfacePlotterMenuDialog::on_button_start_clicked()
-{
-  QtSurfacePlotterRibiDialog d;
-  this->ShowChild(&d);
-}
-
 void ribi::QtSurfacePlotterMenuDialog::on_button_about_clicked()
 {
   About a(SurfacePlotterMenuDialog().GetAbout());
@@ -64,6 +58,20 @@ void ribi::QtSurfacePlotterMenuDialog::on_button_about_clicked()
 void ribi::QtSurfacePlotterMenuDialog::on_button_quit_clicked()
 {
   this->close();
+}
+
+void ribi::QtSurfacePlotterMenuDialog::on_button_qwt_clicked()
+{
+  QtSurfacePlotterQwtDialog d;
+  d.setStyleSheet(this->styleSheet());
+  this->ShowChild(&d);
+}
+
+void ribi::QtSurfacePlotterMenuDialog::on_button_ribi_clicked()
+{
+  QtSurfacePlotterRibiDialog d;
+  d.setStyleSheet(this->styleSheet());
+  this->ShowChild(&d);
 }
 
 #ifndef NDEBUG
@@ -81,8 +89,3 @@ void ribi::QtSurfacePlotterMenuDialog::Test() noexcept
 }
 #endif
 
-void ribi::QtSurfacePlotterMenuDialog::on_button_qwt_clicked()
-{
-  QtSurfacePlotterQwtDialog d;
-  this->ShowChild(&d);
-}

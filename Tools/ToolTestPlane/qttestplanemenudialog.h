@@ -26,6 +26,8 @@ private slots:
 
   void on_button_investigate_accuracy_clicked();
 
+  void on_button_investigate_accuracy_ribi_clicked();
+
 private:
   Ui::QtTestPlaneMenuDialog *ui;
 

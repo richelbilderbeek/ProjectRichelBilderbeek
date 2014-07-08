@@ -120,6 +120,7 @@ struct Plane
   ///to the plane following either the X, Y or Z direction. In other words:
   ///it does not take the shortest (perpendicular to the plane) path
   double CalcDistanceFromPlane(const Coordinat3D& coordinat) const noexcept;
+  apfloat CalcDistanceFromPlaneAsApfloat(const Coordinat3D& coordinat) const noexcept;
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
   std::vector<apfloat> GetCoefficientsX() const;

@@ -129,7 +129,6 @@ void ribi::Plane::Test() noexcept
       ).empty()
     );
   }
-  #ifdef FIX_ISSUE_224
   if (verbose) TRACE("IsInPlane, X = 0 plane");
   {
     const Point3D p1(0.0,0.0,0.0);
@@ -253,9 +252,9 @@ void ribi::Plane::Test() noexcept
   */
   if (verbose) TRACE("IsInPlane, Slope");
   {
-    for (double slope = 1.0; slope > epsilon; slope /= 10.0)
+    for (double slope = 1.0; slope > 1.0e-8; slope /= 10.0)
     {
-      //TRACE(slope);
+      TRACE(slope);
       const double slope_less = slope * 0.999999;
       const double slope_more = slope * 1.000001;
       assert(slope_less < slope);
@@ -392,7 +391,10 @@ void ribi::Plane::Test() noexcept
     const Plane p(p1,p2,p3);
     try
     {
-      assert(p.IsInPlane(p4));
+      #ifndef NDEBUG
+      if (!p.IsInPlane(p4)) { TRACE(p.CalcDistanceFromPlaneAsApfloat(p4)); }
+      #endif
+      assert(p.IsInPlane(p4)); //Here
     }
     catch (std::exception&)
     {
@@ -410,9 +412,6 @@ void ribi::Plane::Test() noexcept
     }
     assert(p.IsInPlane(p4));
   }
-  #endif // FIX_ISSUE_224
-
-  #ifdef FIX_ISSUE_224
   if (verbose) TRACE("IsInPlane, crashes with Plane v1.6");
   {
     // TRACE '"ERROR"' line 392 in file '..\..\Classes\CppTriangleMesh\trianglemeshcellscreator.cpp': 'ERROR'
@@ -462,8 +461,6 @@ void ribi::Plane::Test() noexcept
     }
     assert(p.IsInPlane(p4));
   }
-
-  #endif // FIX_ISSUE_224
   TRACE("Finished ribi::Plane::Test successfully");
 }
 #endif

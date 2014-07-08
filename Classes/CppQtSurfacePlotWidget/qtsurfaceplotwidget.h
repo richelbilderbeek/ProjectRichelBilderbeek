@@ -21,11 +21,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTSURFACEPLOTWIDGET_H
 #define QTSURFACEPLOTWIDGET_H
 
+#include <string>
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
+
 #include <QWidget>
 #pragma GCC diagnostic pop
 
@@ -35,7 +38,20 @@ struct QtSurfacePlotWidget : public QWidget
 {
   Q_OBJECT
 public:
+
   explicit QtSurfacePlotWidget(QWidget *parent = 0);
+
+  struct Function
+  {
+    virtual ~Function() {}
+    virtual double operator()(const double x, const double y) const noexcept = 0;
+  };
+
+  void Plot(
+    const Function& f,
+    const double x_min, const double x_max,
+    const double y_min, const double y_max
+  ) noexcept;
 
   ///Sets the image of the surface plot to the values of the vector
   ///The doubles can be in any range
@@ -58,6 +74,15 @@ protected:
 
 private:
   std::vector<std::vector<unsigned char>> m_surface;
+
+  static double Rescale(
+    const double value,
+    const double old_min,
+    const double old_max,
+    const double new_min,
+    const double new_max
+  ) noexcept;
+
 };
 
 } //~namespace ribi

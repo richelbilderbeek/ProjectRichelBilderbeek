@@ -11,7 +11,7 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestPlaneInvestigateAccuracyDialog;
+  class QtTestPlaneInvestigateAccuracyQwtDialog;
 }
 
 namespace ribi {
@@ -19,20 +19,22 @@ namespace ribi {
 struct Plane;
 struct QwtTestPlanePlot;
 
-class QtTestPlaneInvestigateAccuracyDialog : public QtHideAndShowDialog
+class QtTestPlaneInvestigateAccuracyQwtDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestPlaneInvestigateAccuracyDialog(QWidget *parent = 0);
-  ~QtTestPlaneInvestigateAccuracyDialog();
+  explicit QtTestPlaneInvestigateAccuracyQwtDialog(QWidget *parent = 0);
+  QtTestPlaneInvestigateAccuracyQwtDialog(const QtTestPlaneInvestigateAccuracyQwtDialog&) = delete;
+  QtTestPlaneInvestigateAccuracyQwtDialog& operator=(const QtTestPlaneInvestigateAccuracyQwtDialog&) = delete;
+  ~QtTestPlaneInvestigateAccuracyQwtDialog();
 
 private slots:
   void OnAnyChange();
 
 private:
 
-  Ui::QtTestPlaneInvestigateAccuracyDialog *ui;
+  Ui::QtTestPlaneInvestigateAccuracyQwtDialog *ui;
   boost::shared_ptr<QwtTestPlanePlot> m_plot_x;
   boost::shared_ptr<QwtTestPlanePlot> m_plot_y;
   boost::shared_ptr<QwtTestPlanePlot> m_plot_z;

@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qttestplaneinvestigateaccuracydialog.h"
+#include "qttestplaneinvestigateaccuracyqwtdialog.h"
 
 #include <cassert>
 
@@ -12,12 +12,12 @@
 #include "plane.h"
 #include "trace.h"
 #include "qwttestplaneplot.h"
-#include "ui_qttestplaneinvestigateaccuracydialog.h"
+#include "ui_qttestplaneinvestigateaccuracyqwtdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestPlaneInvestigateAccuracyDialog::QtTestPlaneInvestigateAccuracyDialog(QWidget *parent)
+ribi::QtTestPlaneInvestigateAccuracyQwtDialog::QtTestPlaneInvestigateAccuracyQwtDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestPlaneInvestigateAccuracyDialog),
+    ui(new Ui::QtTestPlaneInvestigateAccuracyQwtDialog),
     m_plot_x(),
     m_plot_y(),
     m_plot_z()
@@ -99,12 +99,12 @@ ribi::QtTestPlaneInvestigateAccuracyDialog::QtTestPlaneInvestigateAccuracyDialog
   OnAnyChange();
 }
 
-ribi::QtTestPlaneInvestigateAccuracyDialog::~QtTestPlaneInvestigateAccuracyDialog()
+ribi::QtTestPlaneInvestigateAccuracyQwtDialog::~QtTestPlaneInvestigateAccuracyQwtDialog()
 {
   delete ui;
 }
 
-boost::shared_ptr<ribi::Plane> ribi::QtTestPlaneInvestigateAccuracyDialog::CreatePlane() const noexcept
+boost::shared_ptr<ribi::Plane> ribi::QtTestPlaneInvestigateAccuracyQwtDialog::CreatePlane() const noexcept
 {
   const Geometry::Coordinat3D p1(
     ui->box_x1->value(),
@@ -128,7 +128,7 @@ boost::shared_ptr<ribi::Plane> ribi::QtTestPlaneInvestigateAccuracyDialog::Creat
   return plane;
 }
 
-void ribi::QtTestPlaneInvestigateAccuracyDialog::OnAnyChange()
+void ribi::QtTestPlaneInvestigateAccuracyQwtDialog::OnAnyChange()
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
@@ -148,16 +148,16 @@ void ribi::QtTestPlaneInvestigateAccuracyDialog::OnAnyChange()
 }
 
 #ifndef NDEBUG
-void ribi::QtTestPlaneInvestigateAccuracyDialog::Test() noexcept
+void ribi::QtTestPlaneInvestigateAccuracyQwtDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestPlaneInvestigateAccuracyDialog::Test");
-  QtTestPlaneInvestigateAccuracyDialog d;
+  TRACE("Starting ribi::QtTestPlaneInvestigateAccuracyQwtDialog::Test");
+  QtTestPlaneInvestigateAccuracyQwtDialog d;
   assert(!d.GetVersion().empty());
-  TRACE("Finished ribi::QtTestPlaneInvestigateAccuracyDialog::Test successfully");
+  TRACE("Finished ribi::QtTestPlaneInvestigateAccuracyQwtDialog::Test successfully");
 }
 #endif
