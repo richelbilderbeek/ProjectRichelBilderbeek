@@ -136,32 +136,13 @@ void ribi::Plane::Test() noexcept
     const Point3D p3(0.0,1.0,0.0);
     const Plane p(p1,p2,p3);
 
-    for (double i = std::numeric_limits<double>::denorm_min() ; i < std::numeric_limits<double>::max(); i *= 10.0)
+    for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
     {
-      TRACE(i);
       assert(p.IsInPlane(Point3D(0.0, i, i)));
       assert(p.IsInPlane(Point3D(0.0, i,-i)));
       assert(p.IsInPlane(Point3D(0.0,-i, i)));
       assert(p.IsInPlane(Point3D(0.0,-i,-i)));
     }
-    /*
-    const double e = std::numeric_limits<double>::epsilon();
-    if (!p.IsInPlane(Point3D(e, 2.0, 2.0)))
-    {
-      TRACE("ERROR");
-      TRACE(p.CalcErrorAsApfloat(Point3D(e, 2.0, 2.0)));
-      TRACE(p.CalcMaxErrorAsApfloat(Point3D(e, 2.0, 2.0)));
-    }
-    assert(p.IsInPlane(Point3D(e, 2.0, 2.0)));
-    assert(p.IsInPlane(Point3D(e, 2.0,-2.0)));
-    assert(p.IsInPlane(Point3D(e,-2.0, 2.0)));
-    assert(p.IsInPlane(Point3D(e,-2.0,-2.0)));
-    const double f = 2.0 * e;
-    assert(!p.IsInPlane(Point3D(f, 2.0, 2.0)));
-    assert(!p.IsInPlane(Point3D(f, 2.0,-2.0)));
-    assert(!p.IsInPlane(Point3D(f,-2.0, 2.0)));
-    assert(!p.IsInPlane(Point3D(f,-2.0,-2.0)));
-    */
   }
   if (verbose) TRACE("IsInPlane, X = 0 plane, zooming in, #223");
   {
@@ -172,8 +153,9 @@ void ribi::Plane::Test() noexcept
       const Point3D p3(0.0,i,0.0);
       const Plane p(p1,p2,p3);
 
-      for (double j = std::numeric_limits<double>::denorm_min() ; j < std::numeric_limits<double>::max(); j *= 10.0)
+      for (double j = std::numeric_limits<double>::denorm_min(); j < std::numeric_limits<double>::max(); j *= 10.0)
       {
+        TRACE(i);
         TRACE(j);
         assert(p.IsInPlane(Point3D(0.0, j, j)));
         assert(p.IsInPlane(Point3D(0.0, j,-j)));
