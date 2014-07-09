@@ -38,11 +38,15 @@ struct PlaneZ;
 
 ///A 3D plane that can have its X expressed as a function of Y and Z.
 ///Can be constructed from its equation and at least three 3D points
-//A plane stores its coefficients in the following form:
-// A.z + B.x + C.y = D
-//Converting this to x being a function of y and z:
-// -B.x =  A  .z + C  .y - D
-//    x = -A/B.z - C/B.y + D/B
+///A plane stores its coefficients in the following form:
+/// A.z + B.x + C.y = D
+///Converting this to x being a function of y and z:
+/// -B.x =  A  .z + C  .y - D
+///    x = -A/B.z - C/B.y + D/B
+///where A,B,C and D can be obtained by GetCoefficients
+///Easier is to express X as
+///  x = Ay + Bz + C
+///where A,B,C can be obtained by GetFunctionA/B/C
 struct PlaneX
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
@@ -64,6 +68,8 @@ struct PlaneX
     const Coordinat3D& p2,
     const Coordinat3D& p3
   );
+
+  apfloat CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
 
   ///Get the 2D projection of these 3D points,
   /*

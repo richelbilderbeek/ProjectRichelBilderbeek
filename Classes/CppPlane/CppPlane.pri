@@ -6,7 +6,9 @@ SOURCES += \
     ../../Classes/CppPlane/planez.cpp \
     ../../Classes/CppPlane/planex.cpp \
     ../../Classes/CppPlane/planey.cpp \
-    ../../Classes/CppPlane/plane_test.cpp
+    ../../Classes/CppPlane/plane_test.cpp \
+    ../../Classes/CppPlane/planez_test.cpp \
+    ../../Classes/CppPlane/planey_test.cpp
 
 HEADERS  += \
     ../../Classes/CppPlane/plane.h \

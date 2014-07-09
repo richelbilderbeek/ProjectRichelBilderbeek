@@ -7826,8 +7826,10 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppTemplateClassExample1.htm\">Template class example 1: class holding a templated member variable</a>",
-        "is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample1.htm\">Template class example 1: class holding a templated member variable</a>",
+        "is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppTemplateClassExample1.zip\">Download the Qt Creator project 'CppTemplateClassExample1' (zip)</a></li>",
@@ -7840,11 +7842,93 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppTemplateClassExample2.htm\">Template class example 2: class that must be specialized; compile-time polymorphism</a>",
-        "is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample2.htm\">Template class example 2: class that must be specialized; compile-time polymorphism</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppTemplateClassExample2.zip\">Download the Qt Creator project 'CppTemplateClassExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample3",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample3.htm\">Template class example 3: class that has an integer template type</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample3.zip\">Download the Qt Creator project 'CppTemplateClassExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample4",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample4.htm\">Template class example 4: class that has an enum class template type</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample4.zip\">Download the Qt Creator project 'CppTemplateClassExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample5",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample5.htm\">Template class example 5: copy policy of integer class</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample5.zip\">Download the Qt Creator project 'CppTemplateClassExample5' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample6",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample6.htm\">Template class example 6: copy policy of template class type, two specialized classes</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample6.zip\">Download the Qt Creator project 'CppTemplateClassExample6' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppTemplateClassExample7",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTemplateClassExample7.htm\">Template class example 7: copy policy of template class type, two partially specialized classes</a>",
+        "  is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppTemplateClassExample7.zip\">Download the Qt Creator project 'CppTemplateClassExample7' (zip)</a></li>",
         "</ul>"
       }
     }

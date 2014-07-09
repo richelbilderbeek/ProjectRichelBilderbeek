@@ -37,7 +37,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-///A 3D plane that can have its Z expressed as a function of X and Y.
+///A 3D plane that can have its Z expressed as a function of X and Y;
+///A 3D plane that encompasses all X and Y coordinats;
+///Examples are:
+/// Z = X + Y
+/// Z = X
+/// Z = Y
+/// Z = 0
 ///Can be constructed from its equation and at least three 3D points
 //A plane stores its coefficients in the following form:
 // A.x + B.y + C.z = D
@@ -88,6 +94,9 @@ struct PlaneZ
     const Coordinats3D& points
   ) const;
 
+  ///Calculates the maximum allowed error for that coordinat for it to be in the plane
+  apfloat CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+
   ///Throws when cannot calculate Z, which is when the plane is vertical
   double CalcZ(const double x, const double y) const;
   Apfloat CalcZ(const Apfloat& x, const Apfloat& y) const;
@@ -97,14 +106,17 @@ struct PlaneZ
 
   ///This plane has equation 'z = Ax + By + C'
   ///Will throw if A cannot be calculated
+  apfloat GetFunctionAasApfloat() const;
   double GetFunctionA() const;
 
   ///This plane has equation 'z = Ax + By + C'
   ///Will throw if B cannot be calculated
+  apfloat GetFunctionBasApfloat() const;
   double GetFunctionB() const;
 
   ///This plane has equation 'z = Ax + By + C'
   ///Will throw if C cannot be calculated
+  apfloat GetFunctionCasApfloat() const;
   double GetFunctionC() const;
 
   std::string GetVersion() const noexcept;
@@ -128,7 +140,7 @@ struct PlaneZ
 
   ///The lowest coefficient supported; the highest coefficient
   ///that will be treated as zero
-  static apfloat GetLeastCoefficient() noexcept;
+  //static apfloat GetLeastCoefficient() noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

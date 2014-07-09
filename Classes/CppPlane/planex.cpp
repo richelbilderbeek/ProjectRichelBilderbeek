@@ -30,7 +30,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "geometry.h"
 #include "planez.h"
 #include "trace.h"
-//#include "plane.h"
 #pragma GCC diagnostic pop
 
 ///Create plane X = 0.0
@@ -61,6 +60,32 @@ ribi::PlaneX::PlaneX(
 ribi::PlaneX::~PlaneX() noexcept
 {
   //Nothing to do
+}
+
+apfloat ribi::PlaneX::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+{
+  //const apfloat x = boost::geometry::get<0>(coordinat);
+  const apfloat y = boost::geometry::get<1>(coordinat);
+  const apfloat z = boost::geometry::get<2>(coordinat);
+  const auto coefficients = GetCoefficients();
+  const auto a = coefficients[0];
+  const auto b = coefficients[1];
+  const auto c = coefficients[2];
+  const apfloat e = boost::numeric::bounds<double>::smallest();
+  assert(e > 0.0);
+  //    x = -A/B.z - C/B.y + D/B
+  //If B is zero, the slope in X and Y cannot be calculated
+  if (b.sign())
+  {
+    const auto rc_y = -c / b;
+    const auto rc_z = -a / b;
+    const auto max_error_x = 0.0;
+    const auto max_error_z = abs(e * rc_z * z) + 0.0;
+    const auto max_error_y = abs(e * rc_y * y) + 0.0;
+    const auto max_error = max_error_x + max_error_y + max_error_z;
+    return max_error;
+  }
+  return e;
 }
 
 ribi::PlaneX::Coordinats2D ribi::PlaneX::CalcProjection(

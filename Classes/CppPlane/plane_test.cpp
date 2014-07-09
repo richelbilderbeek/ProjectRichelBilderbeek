@@ -32,6 +32,7 @@ void ribi::Plane::Test() noexcept
 
   const double epsilon = std::numeric_limits<double>::epsilon();
 
+
   if (verbose) TRACE("Plane that can be expressed in all three forms");
   {
     const Point3D p1( 1.0, 2.0,3.0);
@@ -129,12 +130,139 @@ void ribi::Plane::Test() noexcept
       ).empty()
     );
   }
-  if (verbose) TRACE("IsInPlane, X = 0 plane");
+
+  //IsInPlane for Z=0 plane
+
+  if (verbose) TRACE("CanCalcZ and IsInPlane, Z = 0 plane, from 1.0 coordinat");
+  {
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,1.0,0.0);
+    const Point3D p3(1.0,0.0,0.0);
+    const Plane p(p1,p2,p3);
+    assert(!p.CanCalcX());
+    assert(!p.CanCalcY());
+    assert( p.CanCalcZ());
+
+    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+  }
+  if (verbose) TRACE("CanCalcZ and IsInPlane, Z = 0 plane, from smallest possible coordinat");
+  {
+    const double i = std::numeric_limits<double>::denorm_min();
+    assert(i > 0.0);
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,  i,0.0);
+    const Point3D p3(  i,0.0,0.0);
+    const Plane p(p1,p2,p3);
+    assert(!p.CanCalcX());
+    assert(!p.CanCalcY());
+    assert( p.CanCalcZ());
+
+    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+
+  }
+  if (verbose) TRACE("CanCalcZ, Z = 0 plane, from biggest possible coordinat");
+  {
+    const double i = std::numeric_limits<double>::max();
+    assert(i > 0.0);
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,  i,0.0);
+    const Point3D p3(  i,0.0,0.0);
+    const Plane p(p1,p2,p3);
+    assert(!p.CanCalcX());
+    assert(!p.CanCalcY());
+    assert( p.CanCalcZ());
+
+    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+  }
+
+  if (verbose) TRACE("CanCalcZ, Z = 0 plane, zooming in, #223");
+  {
+    //for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
+    for (const double i:
+      {
+        0.0,
+         std::numeric_limits<double>::denorm_min(),
+        -std::numeric_limits<double>::denorm_min(),
+         std::numeric_limits<double>::epsilon(),
+        -std::numeric_limits<double>::epsilon(),
+         1.0,
+        -1.0,
+         1.e8,
+        -1.e8,
+         1.e64,
+        -1.e64,
+        std::numeric_limits<double>::min(),
+        std::numeric_limits<double>::max()
+      }
+    )
+    {
+      if (i == 0.0) continue;
+      assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
+      const Point3D p1(0.0,0.0,0.0);
+      const Point3D p2(0.0,  i,0.0);
+      const Point3D p3(  i,0.0,0.0);
+      const Plane p(p1,p2,p3);
+      assert(!p.CanCalcX());
+      assert(!p.CanCalcY());
+      assert( p.CanCalcZ());
+
+      for (const double j:
+        {
+          0.0,
+           std::numeric_limits<double>::denorm_min(),
+           std::numeric_limits<double>::epsilon(),
+           1.0,
+           1.e8,
+           1.e64,
+          std::numeric_limits<double>::min(),
+          std::numeric_limits<double>::max()
+        }
+      )
+      {
+        assert(p.IsInPlane(Point3D(0.0,0.0,0.0)));
+        assert(p.IsInPlane(Point3D(  j,  j,0.0)));
+        assert(p.IsInPlane(Point3D(  j, -j,0.0)));
+        assert(p.IsInPlane(Point3D( -j,  j,0.0)));
+        assert(p.IsInPlane(Point3D( -j, -j,0.0)));
+      }
+    }
+  }
+  //IsInPlane for X=0 plane
+  /*
+
+     |####/
+     B###C
+     |##/
+     |#/
+     |/
+  ---A------
+    /|
+   /#|
+  /##|
+
+  */
+
+  if (verbose) TRACE("IsInPlane, X = 0 plane, from 1.0 coordinats");
   {
     const Point3D p1(0.0,0.0,0.0);
     const Point3D p2(0.0,0.0,1.0);
     const Point3D p3(0.0,1.0,0.0);
     const Plane p(p1,p2,p3);
+    assert( p.CanCalcX());
+    assert(!p.CanCalcY());
+    assert(!p.CanCalcZ());
 
     for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
     {
@@ -144,19 +272,73 @@ void ribi::Plane::Test() noexcept
       assert(p.IsInPlane(Point3D(0.0,-i,-i)));
     }
   }
+  if (verbose) TRACE("IsInPlane, X = 0 plane, from smallest possible coordinats");
+  {
+    const double i = std::numeric_limits<double>::denorm_min();
+    assert(i > 0.0);
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,0.0,i);
+    const Point3D p3(0.0,i,0.0);
+    const Plane p(p1,p2,p3);
+    assert( p.CanCalcX());
+    assert(!p.CanCalcY());
+    assert(!p.CanCalcZ());
+  }
   if (verbose) TRACE("IsInPlane, X = 0 plane, zooming in, #223");
   {
-    for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
+    for (const double i:
+      {
+        0.0,
+         std::numeric_limits<double>::denorm_min(),
+        -std::numeric_limits<double>::denorm_min(),
+         std::numeric_limits<double>::epsilon(),
+        -std::numeric_limits<double>::epsilon(),
+         1.0,
+        -1.0,
+         1.e8,
+        -1.e8,
+         1.e64,
+        -1.e64,
+        std::numeric_limits<double>::min(),
+        std::numeric_limits<double>::max()
+      }
+    )
     {
+      if (i == 0.0) continue;
+      assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
       const Point3D p1(0.0,0.0,0.0);
-      const Point3D p2(0.0,0.0,i);
-      const Point3D p3(0.0,i,0.0);
+      const Point3D p2(0.0,0.0,  i);
+      const Point3D p3(0.0,  i,0.0);
       const Plane p(p1,p2,p3);
 
-      for (double j = std::numeric_limits<double>::denorm_min(); j < std::numeric_limits<double>::max(); j *= 10.0)
+      for (const double j:
+        {
+          0.0,
+           std::numeric_limits<double>::denorm_min(),
+          -std::numeric_limits<double>::denorm_min(),
+           std::numeric_limits<double>::epsilon(),
+          -std::numeric_limits<double>::epsilon(),
+           1.0,
+          -1.0,
+           1.e8,
+          -1.e8,
+           1.e64,
+          -1.e64,
+          std::numeric_limits<double>::min(),
+          std::numeric_limits<double>::max()
+        }
+      )
       {
-        TRACE(i);
-        TRACE(j);
+        if (!p.IsInPlane(Point3D(0.0, j, j)))
+        {
+          TRACE(i);
+          TRACE(j);
+          TRACE(p.CalcErrorAsApfloat(Point3D(0.0, j, j)));
+          TRACE(p.CalcMaxErrorAsApfloat(Point3D(0.0, j, j)));
+          if (p.CanCalcX()) { TRACE(Container().ToStr(p.GetCoefficientsX())); }
+          if (p.CanCalcY()) { TRACE(Container().ToStr(p.GetCoefficientsY())); }
+          if (p.CanCalcZ()) { TRACE(Container().ToStr(p.GetCoefficientsZ())); }
+        }
         assert(p.IsInPlane(Point3D(0.0, j, j)));
         assert(p.IsInPlane(Point3D(0.0, j,-j)));
         assert(p.IsInPlane(Point3D(0.0,-j, j)));
@@ -164,71 +346,115 @@ void ribi::Plane::Test() noexcept
       }
     }
   }
-  if (verbose) TRACE("IsInPlane, Y = 0 plane");
+
+
+
+  //IsInPlane for Y=0 plane
+  /*
+
+     |####/
+     B###/#
+     |##/##
+     |#/###
+     |/####
+  ---A---C-
+    /|
+   / |
+  /  |
+
+  */
+
+  if (verbose) TRACE("IsInPlane, Y = 0 plane, from 1.0 coordinats");
   {
     const Point3D p1(0.0,0.0,0.0);
     const Point3D p2(0.0,0.0,1.0);
     const Point3D p3(1.0,0.0,0.0);
     const Plane p(p1,p2,p3);
-    assert(p.IsInPlane(Point3D( 2.0,0.0, 2.0)));
-    assert(p.IsInPlane(Point3D( 2.0,0.0,-2.0)));
-    assert(p.IsInPlane(Point3D(-2.0,0.0, 2.0)));
-    assert(p.IsInPlane(Point3D(-2.0,0.0,-2.0)));
-    const double e = std::numeric_limits<double>::epsilon();
-    assert(p.IsInPlane(Point3D( 2.0,e, 2.0)));
-    assert(p.IsInPlane(Point3D( 2.0,e,-2.0)));
-    assert(p.IsInPlane(Point3D(-2.0,e, 2.0)));
-    assert(p.IsInPlane(Point3D(-2.0,e,-2.0)));
-    const double f = 2.0 * e;
-    assert(!p.IsInPlane(Point3D( 2.0,f, 2.0)));
-    assert(!p.IsInPlane(Point3D( 2.0,f,-2.0)));
-    assert(!p.IsInPlane(Point3D(-2.0,f, 2.0)));
-    assert(!p.IsInPlane(Point3D(-2.0,f,-2.0)));
+    assert(!p.CanCalcX());
+    assert( p.CanCalcY());
+    assert(!p.CanCalcZ());
+
+    for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
+    {
+      assert(p.IsInPlane(Point3D( i,0.0, i)));
+      assert(p.IsInPlane(Point3D( i,0.0,-i)));
+      assert(p.IsInPlane(Point3D(-i,0.0, i)));
+      assert(p.IsInPlane(Point3D(-i,0.0,-i)));
+    }
+  }
+  if (verbose) TRACE("IsInPlane, Y = 0 plane, from smallest possible coordinats");
+  {
+    const double i = std::numeric_limits<double>::denorm_min();
+    assert(i > 0.0);
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,0.0,  i);
+    const Point3D p3(  i,0.0,0.0);
+    const Plane p(p1,p2,p3);
+    assert(!p.CanCalcX());
+    assert( p.CanCalcY());
+    assert(!p.CanCalcZ());
   }
   if (verbose) TRACE("IsInPlane, Y = 0 plane, zooming in, #223");
   {
-    assert(epsilon > 0.0);
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,0.0,epsilon);
-    const Point3D p3(epsilon,0.0,0.0);
-    const Plane p(p1,p2,p3);
-    assert(p.IsInPlane(Point3D( 2.0,0.0, 2.0)));
-    assert(p.IsInPlane(Point3D( 2.0,0.0,-2.0)));
-    assert(p.IsInPlane(Point3D(-2.0,0.0, 2.0)));
-    assert(p.IsInPlane(Point3D(-2.0,0.0,-2.0)));
-  }
-  if (verbose) TRACE("IsInPlane, Z = 0 plane");
-  {
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,1.0,0.0);
-    const Point3D p3(1.0,0.0,0.0);
-    const Plane p(p1,p2,p3);
-    assert(p.IsInPlane(Point3D( 2.0, 2.0,0.0)));
-    assert(p.IsInPlane(Point3D( 2.0,-2.0,0.0)));
-    assert(p.IsInPlane(Point3D(-2.0, 2.0,0.0)));
-    assert(p.IsInPlane(Point3D(-2.0,-2.0,0.0)));
-    const double e = std::numeric_limits<double>::epsilon();
-    assert(p.IsInPlane(Point3D( 2.0, 2.0,e)));
-    assert(p.IsInPlane(Point3D( 2.0,-2.0,e)));
-    assert(p.IsInPlane(Point3D(-2.0, 2.0,e)));
-    assert(p.IsInPlane(Point3D(-2.0,-2.0,e)));
-    const double f = 2.0 * e;
-    assert(!p.IsInPlane(Point3D( 1.0, 1.0,f)));
-    assert(!p.IsInPlane(Point3D( 1.0,-1.0,f)));
-    assert(!p.IsInPlane(Point3D(-1.0, 1.0,f)));
-    assert(!p.IsInPlane(Point3D(-1.0,-1.0,f)));
-  }
-  if (verbose) TRACE("IsInPlane, Z = 0 plane, zooming in, #223");
-  {
-    assert(epsilon > 0.0);
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,epsilon,0.0);
-    const Point3D p3(epsilon,0.0,0.0);
-    const Plane p(p1,p2,p3);
-    assert(p.IsInPlane(Point3D( 2.0, 2.0,0.0)));
-    assert(p.IsInPlane(Point3D( 2.0,-2.0,0.0)));
-    assert(p.IsInPlane(Point3D(-2.0, 2.0,0.0)));
-    assert(p.IsInPlane(Point3D(-2.0,-2.0,0.0)));
+    for (const double i:
+      {
+        0.0,
+         std::numeric_limits<double>::denorm_min(),
+        -std::numeric_limits<double>::denorm_min(),
+         std::numeric_limits<double>::epsilon(),
+        -std::numeric_limits<double>::epsilon(),
+         1.0,
+        -1.0,
+         1.e8,
+        -1.e8,
+         1.e64,
+        -1.e64,
+        std::numeric_limits<double>::min(),
+        std::numeric_limits<double>::max()
+      }
+    )
+    {
+      if (i == 0.0) continue;
+      assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
+      const Point3D p1(0.0,0.0,0.0);
+      const Point3D p2(0.0,0.0,  i);
+      const Point3D p3(  i,0.0,0.0);
+      const Plane p(p1,p2,p3);
+
+      for (const double j:
+        {
+          0.0,
+           std::numeric_limits<double>::denorm_min(),
+          -std::numeric_limits<double>::denorm_min(),
+           std::numeric_limits<double>::epsilon(),
+          -std::numeric_limits<double>::epsilon(),
+           1.0,
+          -1.0,
+           1.e8,
+          -1.e8,
+           1.e64,
+          -1.e64,
+          std::numeric_limits<double>::min(),
+          std::numeric_limits<double>::max()
+        }
+      )
+      {
+        if (!p.IsInPlane(Point3D(j,0.0, j)))
+        {
+          TRACE(i);
+          TRACE(j);
+          TRACE(p.CalcErrorAsApfloat(Point3D(j,0.0, j)));
+          TRACE(p.CalcMaxErrorAsApfloat(Point3D(j,0.0,j)));
+          if (p.CanCalcX()) { TRACE(Container().ToStr(p.GetCoefficientsX())); }
+          if (p.CanCalcY()) { TRACE(Container().ToStr(p.GetCoefficientsY())); }
+          if (p.CanCalcZ()) { TRACE(Container().ToStr(p.GetCoefficientsZ())); }
+        }
+        assert(p.IsInPlane(Point3D( j,0.0, j)));
+        assert(p.IsInPlane(Point3D( j,0.0,-j)));
+        assert(p.IsInPlane(Point3D(-j,0.0, j)));
+        assert(p.IsInPlane(Point3D(-j,0.0,-j)));
+      }
+    }
   }
   //Create plane with different slopes
   /*

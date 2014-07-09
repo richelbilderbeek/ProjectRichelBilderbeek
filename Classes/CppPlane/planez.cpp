@@ -28,7 +28,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "container.h"
 #include "geometry.h"
-//#include "plane.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -62,8 +61,8 @@ ribi::PlaneZ::PlaneZ(
   //if (std::abs(m_coefficients[2]) < 1.0e-14)
   //if (abs(m_coefficients[2]) < 1.0e-14)
   //Nonsense with abfloats
-  if (abs(m_coefficients[2]) < GetLeastCoefficient())
-  //if (m_coefficients[2] == 0.0)
+  //if (abs(m_coefficients[2]) < GetLeastCoefficient())
+  if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
     throw std::logic_error("Plane (from coeffients) that can be expressed in less than 3D space");
@@ -86,8 +85,8 @@ ribi::PlaneZ::PlaneZ(
   //a division by itself is prevented by throwing an exception.
   //Throw an exception as if m_coefficients[2] equalled zero
   //if (std::abs(m_coefficients[2]) < 1.0e-14)
-  if (abs(m_coefficients[2]) < GetLeastCoefficient())
-  //if (m_coefficients[2] == 0.0)
+  //if (abs(m_coefficients[2]) < GetLeastCoefficient())
+  if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
     throw std::logic_error("Plane (from points) that can be expressed in less than 3D space");
@@ -97,6 +96,32 @@ ribi::PlaneZ::PlaneZ(
 ribi::PlaneZ::~PlaneZ() noexcept
 {
   //OK
+}
+
+apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+{
+  const apfloat x = boost::geometry::get<0>(coordinat);
+  const apfloat y = boost::geometry::get<1>(coordinat);
+  //const apfloat z = boost::geometry::get<2>(coordinat);
+  const auto coefficients = GetCoefficients();
+  const auto a = coefficients[0];
+  const auto b = coefficients[1];
+  const auto c = coefficients[2];
+  const apfloat e = boost::numeric::bounds<double>::smallest();
+  assert(e > 0.0);
+  // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
+  //If C is zero, the slope in X and Y cannot be calculated
+  if (c.sign())
+  {
+    const auto rc_x = -a / c;
+    const auto rc_y = -b / c;
+    const auto max_error_x = abs(e * rc_x * x) + 0.0;
+    const auto max_error_y = abs(e * rc_y * y) + 0.0;
+    const auto max_error_z = 0.0;
+    const auto max_error = max_error_x + max_error_y + max_error_z;
+    return max_error;
+  }
+  return e;
 }
 
 std::vector<apfloat> ribi::PlaneZ::CalcPlaneZ(
@@ -162,10 +187,10 @@ ribi::PlaneZ::Apfloat ribi::PlaneZ::CalcZ(const Apfloat& x, const Apfloat& y) co
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
   }
-  if (abs(c) < GetLeastCoefficient())
-  {
-    throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a near-vertical plane");
-  }
+  //if (abs(c) < GetLeastCoefficient())
+  //{
+  //  throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a near-vertical plane");
+  //}
   //const apfloat result = ((-a*x) - (b*y) + d) / c;
   const apfloat term1 = -a*x;
   const apfloat term2 = -b*y;
@@ -184,7 +209,7 @@ double ribi::PlaneZ::CalcZ(const double x, const double y) const
   return Geometry().ToDouble(CalcZ(Apfloat(x),Apfloat(y)));
 }
 
-double ribi::PlaneZ::GetFunctionA() const
+apfloat ribi::PlaneZ::GetFunctionAasApfloat() const
 {
   const bool verbose = false;
   const auto coeff_a = m_coefficients[0];
@@ -201,10 +226,15 @@ double ribi::PlaneZ::GetFunctionA() const
     TRACE(coeff_c);
   }
   const auto a = -coeff_a/coeff_c;
-  return Geometry().ToDouble(a);
+  return a;
 }
 
-double ribi::PlaneZ::GetFunctionB() const
+double ribi::PlaneZ::GetFunctionA() const
+{
+  return Geometry().ToDouble(GetFunctionAasApfloat());
+}
+
+apfloat ribi::PlaneZ::GetFunctionBasApfloat() const
 {
   const auto coeff_b = m_coefficients[1];
   const auto coeff_c = m_coefficients[2];
@@ -216,10 +246,15 @@ double ribi::PlaneZ::GetFunctionB() const
   }
 
   const auto b = -coeff_b/coeff_c;
-  return Geometry().ToDouble(b);
+  return b;
 }
 
-double ribi::PlaneZ::GetFunctionC() const
+double ribi::PlaneZ::GetFunctionB() const
+{
+  return Geometry().ToDouble(GetFunctionBasApfloat());
+}
+
+apfloat ribi::PlaneZ::GetFunctionCasApfloat() const
 {
   const auto coeff_c = m_coefficients[2];
   const auto coeff_d = m_coefficients[3];
@@ -231,18 +266,23 @@ double ribi::PlaneZ::GetFunctionC() const
   }
 
   const auto c =  coeff_d/coeff_c;
-  return Geometry().ToDouble(c);
+  return c;
 }
 
+double ribi::PlaneZ::GetFunctionC() const
+{
+  return Geometry().ToDouble(GetFunctionCasApfloat());
+}
+
+/*
 apfloat ribi::PlaneZ::GetLeastCoefficient() noexcept
 {
   const std::string s = "0.000000010000000000000008881e-108";
   char * const cstr = const_cast<char*>(s.c_str()); //apfloat is not const-correct
   const apfloat result(cstr);
   return result;
-
 }
-
+*/
 
 std::string ribi::PlaneZ::GetVersion() const noexcept
 {
@@ -260,291 +300,6 @@ std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
   };
 }
 
-#ifndef NDEBUG
-void ribi::PlaneZ::Test() noexcept
-{
-  {
-    static bool is_tested { false };
-    if (is_tested) return;
-    is_tested = true;
-  }
-  TRACE("Starting ribi::PlaneZ::Test");
-  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
-  const bool verbose = false;
-  if (verbose) { TRACE("Default construction"); }
-  {
-    const PlaneZ p;
-    assert(!p.ToFunction().empty());
-    assert(!p.GetCoefficients().empty());
-  }
-  if (verbose) { TRACE("Check formulas"); }
-  {
-    const double p1_x { 1.0 };
-    const double p1_y { 2.0 };
-    const double p1_z { 3.0 };
-    const double p2_x { 4.0 };
-    const double p2_y { 6.0 };
-    const double p2_z { 9.0 };
-    const double p3_x {12.0 };
-    const double p3_y {11.0 };
-    const double p3_z { 9.0 };
-    PlaneZ p(
-      Point3D(p1_x,p1_y,p1_z),
-      Point3D(p2_x,p2_y,p2_z),
-      Point3D(p3_x,p3_y,p3_z)
-    );
-    const auto t(Geometry().ToDouble(p.GetCoefficients()));
-    assert(t.size() == 4);
-    const auto a = t[0];
-    const auto b = t[1];
-    const auto c = t[2];
-    const auto d = t[3];
-    const auto a_expected =  30.0;
-    const auto b_expected = -48.0;
-    const auto c_expected =  17.0;
-    const auto d_expected = -15.0;
-    assert(std::abs(a - a_expected) < 0.001);
-    assert(std::abs(b - b_expected) < 0.001);
-    assert(std::abs(c - c_expected) < 0.001);
-    assert(std::abs(d - d_expected) < 0.001);
-    const auto d_p1_expected = (a * p1_x) + (b * p1_y) + (c * p1_z);
-    const auto d_p2_expected = (a * p2_x) + (b * p2_y) + (c * p2_z);
-    const auto d_p3_expected = (a * p3_x) + (b * p3_y) + (c * p3_z);
-    if (verbose)
-    {
-      std::clog
-        << "(a * x) + (b * y) + (c * z) = d" << '\n'
-        << "(" << a << " * x) + (" << b << " * y) + (" << c << " * z) = " << d << '\n'
-        << "(" << a << " * " << p1_x << ") + (" << b << " * " << p1_y << ") + (" << c << " * " << p1_z << ") = " << d << '\n'
-        << "(" << (a * p1_x) << ") + (" << (b * p1_y) << ") + (" << (c * p1_z) << ") = " << d << '\n'
-        << "(" << a << " * " << p2_x << ") + (" << b << " * " << p2_y << ") + (" << c << " * " << p2_z << ") = " << d << '\n'
-        << "(" << (a * p2_x) << ") + (" << (b * p2_y) << ") + (" << (c * p2_z) << ") = " << d << '\n'
-        << "(" << a << " * " << p3_x << ") + (" << b << " * " << p3_y << ") + (" << c << " * " << p3_z << ") = " << d << '\n'
-        << "(" << (a * p3_x) << ") + (" << (b * p3_y) << ") + (" << (c * p3_z) << ") = " << d << '\n'
-      ;
-      /* Screen output
-
-      (a * x) + (b * y) + (c * z) = d
-      (30 * x) + (-48 * y) + (17 * z) = -15
-      (30 * 1) + (-48 * 2) + (17 * 3) = -15
-      (30) + (-96) + (51) = -15
-      (30 * 4) + (-48 * 6) + (17 * 9) = -15
-      (120) + (-288) + (153) = -15
-      (30 * 12) + (-48 * 11) + (17 * 9) = -15
-      (360) + (-528) + (153) = -15
-
-      */
-    }
-    assert(std::abs(d - d_p1_expected) < 0.001);
-    assert(std::abs(d - d_p2_expected) < 0.001);
-    assert(std::abs(d - d_p3_expected) < 0.001);
-  }
-  if (verbose) { TRACE("CalcPlaneZ"); }
-  {
-    //CalcPlaneZ return the coefficients in the following form:
-    // A.x + B.y + C.z = D
-    //Converting this to z being a function of x and y:
-    // -C.z = A.x + B.y - D
-    // z = -A/C.x - B/C.y + D/C
-    //In this test, use the formula:
-    //  z = (2.0 * x) + (3.0 * y) + (5.0)
-    //Coefficients must then become:
-    //  -A/C = 2.0
-    //  -B/C = 3.0
-    //   D/C = 5.0
-    //Coefficients are, when setting C to 1.0:
-    //  -A = 2.0 => A = -2.0
-    //  -B = 3.0 => B = -3.0
-    //   C = 1.0
-    //   D = 5.0
-
-
-    const Point3D p1(1.0,1.0,10.0);
-    const Point3D p2(1.0,2.0,13.0);
-    const Point3D p3(2.0,1.0,12.0);
-    const PlaneZ p(p1,p2,p3);
-    const auto t(Geometry().ToDouble(p.GetCoefficients()));
-    const auto a = t[0];
-    const auto b = t[1];
-    const auto c = t[2];
-    const auto d = t[3];
-    const auto a_expected = -2.0;
-    const auto b_expected = -3.0;
-    const auto c_expected =  1.0;
-    const auto d_expected =  5.0;
-    assert(std::abs(a - a_expected) < 0.001);
-    assert(std::abs(b - b_expected) < 0.001);
-    assert(std::abs(c - c_expected) < 0.001);
-    assert(std::abs(d - d_expected) < 0.001);
-    const auto d_p1_expected = (a * 1.0) + (b * 1.0) + (c * 10.0);
-    const auto d_p2_expected = (a * 1.0) + (b * 2.0) + (c * 13.0);
-    const auto d_p3_expected = (a * 2.0) + (b * 1.0) + (c * 12.0);
-    assert(std::abs(d - d_p1_expected) < 0.001);
-    assert(std::abs(d - d_p2_expected) < 0.001);
-    assert(std::abs(d - d_p3_expected) < 0.001);
-  }
-  if (verbose) { TRACE("CalcZ, diagonal plane"); }
-  {
-    const Point3D p1(1.0,2.0,3.0);
-    const Point3D p2(2.0,5.0,8.0);
-    const Point3D p3(3.0,7.0,11.0);
-    const PlaneZ p(p1,p2,p3);
-    assert(std::abs(p.CalcZ(1.0,2.0)- 3.0) < 0.001);
-    assert(std::abs(p.CalcZ(2.0,5.0)- 8.0) < 0.001);
-    assert(std::abs(p.CalcZ(3.0,7.0)-11.0) < 0.001);
-  }
-  if (verbose) { TRACE("CalcZ, horizontal plane Z = 5.0"); }
-  /*
-
-    |    /
-    |   /#
-    |  /##
-    | /###
-    |/####
- ---+-----
-   /|
-  / |
- /  |
-
-  */
-  {
-
-
-    const Point3D p1( 2.0, 3.0,5.0);
-    const Point3D p2( 7.0,11.0,5.0);
-    const Point3D p3(13.0,17.0,5.0);
-    const PlaneZ p(p1,p2,p3);
-    assert( std::abs(p.CalcZ(1.0,2.0)-5.0) < 0.001);
-    assert( std::abs(p.CalcZ(3.0,5.0)-5.0) < 0.001);
-    assert( std::abs(p.CalcZ(7.0,9.0)-5.0) < 0.001);
-  }
-  if (verbose) { TRACE("ToFunction, 3 points and 4 points"); }
-  {
-    std::function<double(double,double)> f {
-      [](const double x, const double y)
-      {
-        return (2.0 * x) + (3.0 * y) + 5.0;
-      }
-    };
-
-
-    const double x1 =  2.0;
-    const double y1 =  3.0;
-    const double x2 =  5.0;
-    const double y2 =  7.0;
-    const double x3 = 11.0;
-    const double y3 = 13.0;
-    const double x4 = 17.0;
-    const double y4 = 29.0;
-    const Point3D p1(x1,y1,f(x1,y1));
-    const Point3D p2(x2,y2,f(x2,y2));
-    const Point3D p3(x3,y3,f(x3,y3));
-    const PlaneZ a(p1,p2,p3);
-    assert(a.ToFunction() == "z=(2*x) + (3*y) + 5");
-    const Point3D p4(x4,y4,f(x4,y4));
-    assert(a.ToFunction() == PlaneZ(p1,p2,p4).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p1,p3,p4).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p1,p4,p3).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p2,p1,p3).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p2,p1,p4).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p2,p3,p1).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p2,p3,p4).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p2,p4,p1).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p2,p4,p3).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p3,p1,p2).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p3,p1,p4).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p3,p2,p1).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p3,p2,p4).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p3,p4,p1).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p3,p4,p2).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p4,p1,p2).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p4,p1,p3).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p4,p2,p1).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p4,p2,p3).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p4,p3,p1).ToFunction());
-    assert(a.ToFunction() == PlaneZ(p4,p3,p2).ToFunction());
-  }
-  if (verbose) { TRACE("GetProjection, for Z = 0 plane"); }
-  {
-    typedef boost::geometry::model::d2::point_xy<double> Point2D;
-    typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
-    using boost::geometry::get;
-    /*
-
-    A: (0,0,1)                  A: (0,0)
-    B: (1,0,0)                  B: (1,0)
-    C: (1,1,0)                  C: (1,1)
-
-    |    /
-    |   /                       |
-    A-----C                     |  C
-    |\/  /      -> becomes ->   | /|
-    |/\ /                       |/ |
-    +--B---                     A--B-----
-
-    */
-    const std::vector<Point2D> v {
-      PlaneZ().CalcProjection(
-        {
-          Point3D(0.0,0.0,1.0),
-          Point3D(1.0,0.0,0.0),
-          Point3D(1.0,1.0,0.0)
-        }
-      )
-    };
-    assert(v.size() == 3);
-    assert(std::abs(get<0>(v[0]) - 0.0 ) < 0.001);
-    assert(std::abs(get<1>(v[0]) - 0.0 ) < 0.001);
-    assert(std::abs(get<0>(v[1]) - 1.0 ) < 0.001);
-    assert(std::abs(get<1>(v[1]) - 0.0 ) < 0.001);
-    assert(std::abs(get<0>(v[2]) - 1.0 ) < 0.001);
-    assert(std::abs(get<1>(v[2]) - 1.0 ) < 0.001);
-
-  }
-  if (verbose) { TRACE("CalcProjection, for Z = 2 plane"); }
-  {
-    typedef boost::geometry::model::d2::point_xy<double> Point2D;
-    typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
-    using boost::geometry::get;
-    /*
-
-    A: (0,0,1+2)                  A: (0,0)
-    B: (1,0,0+2)                  B: (1,0)
-    C: (1,1,0+2)                  C: (1,1)
-
-    |    /
-    |   /                       |
-    A-----C                     |  C
-    |\/  /      -> becomes ->   | /|
-    |/\ /                       |/ |
-    +--B---                     A--B-----
-
-    */
-    const std::vector<Point2D> v {
-      PlaneZ(
-        Point3D(0.0,0.0,0.0+2.0),
-        Point3D(0.0,1.0,0.0+2.0),
-        Point3D(1.0,0.0,0.0+2.0)
-      ).CalcProjection(
-        {
-          Point3D(0.0,0.0,1.0+2.0),
-          Point3D(1.0,0.0,0.0+2.0),
-          Point3D(1.0,1.0,0.0+2.0)
-        }
-      )
-    };
-    assert(v.size() == 3);
-    assert(std::abs(get<0>(v[0]) - 0.0 ) < 0.001);
-    assert(std::abs(get<1>(v[0]) - 0.0 ) < 0.001);
-    assert(std::abs(get<0>(v[1]) - 1.0 ) < 0.001);
-    assert(std::abs(get<1>(v[1]) - 0.0 ) < 0.001);
-    assert(std::abs(get<0>(v[2]) - 1.0 ) < 0.001);
-    assert(std::abs(get<1>(v[2]) - 1.0 ) < 0.001);
-
-  }
-  TRACE("Finished ribi::PlaneZ::Test successfully");
-}
-#endif
 
 std::vector<apfloat> ribi::PlaneZ::ToApfloats(const std::vector<double>& v) noexcept
 {
@@ -558,31 +313,6 @@ std::string ribi::PlaneZ::ToFunction() const
   std::stringstream s;
   s << (*this);
   return s.str();
-  /*
-  assert(m_coefficients.size() == 4);
-  const double a = m_coefficients[0];
-  const double b = m_coefficients[1];
-  const double c = m_coefficients[2];
-  const double d = m_coefficients[3];
-  if (c == 0.0) throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
-  try
-  {
-    std::stringstream s;
-    s
-      << "z=("  << (-a/c) << "*x" << ")"
-      << " + (" << (-b/c) << "*y" << ")"
-      << " + "  << ( d/c);
-    const std::string t = s.str();
-    assert(!t.empty());
-    assert(t.size() <= t.max_size());
-    return t;
-  }
-  catch (std::exception&)
-  {
-    assert(!"Should not get here");
-    throw;
-  }
-  */
 }
 
 std::ostream& ribi::operator<<(std::ostream& os, const PlaneZ& planez)
@@ -603,28 +333,4 @@ std::ostream& ribi::operator<<(std::ostream& os, const PlaneZ& planez)
     throw std::logic_error(error.c_str());
   }
   return os;
-  /*
-  assert(m_coefficients.size() == 4);
-  const double a = m_coefficients[0];
-  const double b = m_coefficients[1];
-  const double c = m_coefficients[2];
-  const double d = m_coefficients[3];
-  if (c == 0.0) throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
-  try
-  {
-    os
-      << "z=("  << (-a/c) << "*x" << ")"
-      << " + (" << (-b/c) << "*y" << ")"
-      << " + "  << ( d/c);
-  }
-  catch (std::exception&)
-  {
-    assert(!"Should not get here");
-    throw;
-  }
-  return os;
-  */
 }
-
-
-
