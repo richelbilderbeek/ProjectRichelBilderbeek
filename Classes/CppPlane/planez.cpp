@@ -33,9 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::PlaneZ::PlaneZ() noexcept
   : PlaneZ(
-    Coordinat3D(0.0,0.0,0.0),
-    Coordinat3D(1.0,0.0,0.0),
-    Coordinat3D(0.0,1.0,0.0)
+    ApCoordinat3D(0.0,0.0,0.0),
+    ApCoordinat3D(1.0,0.0,0.0),
+    ApCoordinat3D(0.0,1.0,0.0)
   )
 {
   #ifndef NDEBUG
@@ -44,7 +44,7 @@ ribi::PlaneZ::PlaneZ() noexcept
 }
 
 ribi::PlaneZ::PlaneZ(
-  const std::vector<apfloat>& coefficients
+  const Apfloats& coefficients
 )
   : m_coefficients(coefficients)
 {
@@ -84,9 +84,9 @@ ribi::PlaneZ::PlaneZ(
 }
 
 ribi::PlaneZ::PlaneZ(
-  const Coordinat3D& p1,
-  const Coordinat3D& p2,
-  const Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 ) : PlaneZ(CalcPlaneZ(p1,p2,p3))
 {
   #ifndef NDEBUG
@@ -112,7 +112,7 @@ ribi::PlaneZ::~PlaneZ() noexcept
   //OK
 }
 
-apfloat ribi::PlaneZ::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneZ::CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
 {
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
@@ -123,7 +123,7 @@ apfloat ribi::PlaneZ::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noe
   return error;
 }
 
-apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
 {
   const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);
@@ -171,51 +171,52 @@ apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const 
 }
 
 std::vector<apfloat> ribi::PlaneZ::CalcPlaneZ(
-  const ribi::PlaneZ::Coordinat3D& p1,
-  const ribi::PlaneZ::Coordinat3D& p2,
-  const ribi::PlaneZ::Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 ) noexcept
 {
   
   const auto v(
     Geometry().CalcPlane(
-      Geometry().ToApfloat(p1),
-      Geometry().ToApfloat(p2),
-      Geometry().ToApfloat(p3)
+      p1,
+      p2,
+      p3
     )
   );
   assert(v.size() == 4);
   return v;
 }
 
-std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneZ::CalcProjection(
-  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
+ribi::PlaneZ::ApCoordinats2D ribi::PlaneZ::CalcProjection(
+  const ApCoordinats3D& points
 ) const
 {
   assert(points.size() >= 3);
-  const double x_origin { 0.0 };
-  const double y_origin { 0.0 };
-  const double z_origin { CalcZ(x_origin,y_origin) };
+  const apfloat x_origin = 0.0;
+  const apfloat y_origin = 0.0;
+  const apfloat z_origin = CalcZ(x_origin,y_origin);
 
-  std::vector<boost::geometry::model::d2::point_xy<double>> v;
+  ApCoordinats2D v;
   for (const auto point: points)
   {
-    const auto x(boost::geometry::get<0>(point));
-    const auto y(boost::geometry::get<1>(point));
-    const auto z(boost::geometry::get<2>(point));
-    const double dx {
-      std::sqrt(
+    const Apfloat x(boost::geometry::get<0>(point));
+    const Apfloat y(boost::geometry::get<1>(point));
+    const Apfloat z(boost::geometry::get<2>(point));
+    const Apfloat dx =
+      sqrt( //Apfloat does not add the std::
           ((x - x_origin) * (x - x_origin))
         + ((z - z_origin) * (z - z_origin))
       ) * (x - x_origin)
-    };
-    const double dy {
-      std::sqrt(
+    ;
+    const Apfloat dy =
+      sqrt( //Apfloat does not add the std::
           ((y - y_origin) * (y - y_origin))
         + ((z - z_origin) * (z - z_origin))
       ) * (y - y_origin)
-    };
-    boost::geometry::model::d2::point_xy<double> point_xy(dx,dy);
+    ;
+
+    ApCoordinat2D point_xy(dx,dy);
     v.push_back(point_xy);
   }
   return v;
@@ -250,11 +251,12 @@ ribi::PlaneZ::Apfloat ribi::PlaneZ::CalcZ(const Apfloat& x, const Apfloat& y) co
   return result;
 }
 
+/*
 double ribi::PlaneZ::CalcZ(const double x, const double y) const
 {
   return Geometry().ToDouble(CalcZ(Apfloat(x),Apfloat(y)));
 }
-
+*/
 apfloat ribi::PlaneZ::GetFunctionAasApfloat() const
 {
   const bool verbose = false;
@@ -276,10 +278,12 @@ apfloat ribi::PlaneZ::GetFunctionAasApfloat() const
   return a;
 }
 
+/*
 double ribi::PlaneZ::GetFunctionA() const
 {
   return Geometry().ToDouble(GetFunctionAasApfloat());
 }
+*/
 
 apfloat ribi::PlaneZ::GetFunctionBasApfloat() const
 {
@@ -374,11 +378,12 @@ std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
     "2014-03-10: version 1.1: bug fixed, only occurred at debugging",
     "2014-03-13: version 1.2: bug fixed",
     "2014-04-01: version 1.3: use of std::unique_ptr",
-    "2014-07-03: version 1.4: use of apfloat"
+    "2014-07-03: version 1.4: use of apfloat",
+    "2014-07-09: version 1.5: use double in interface only"
   };
 }
 
-bool ribi::PlaneZ::IsInPlane(const Coordinat3D& coordinat) const noexcept
+bool ribi::PlaneZ::IsInPlane(const ApCoordinat3D& coordinat) const noexcept
 {
   try
   {

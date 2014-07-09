@@ -35,9 +35,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::Plane::Plane(
-  const Coordinat3D& p1,
-  const Coordinat3D& p2,
-  const Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 ) noexcept
 : m_plane_x(CreatePlaneX(p1,p2,p3)),
   m_plane_y(CreatePlaneY(p1,p2,p3)),
@@ -47,9 +47,9 @@ ribi::Plane::Plane(
   #ifndef NDEBUG
   Test();
   
-  assert(Geometry().IsEqual(m_points[0],p1));
-  assert(Geometry().IsEqual(m_points[1],p2));
-  assert(Geometry().IsEqual(m_points[2],p3));
+  assert(Geometry().IsEqual3d(m_points[0],p1));
+  assert(Geometry().IsEqual3d(m_points[1],p2));
+  assert(Geometry().IsEqual3d(m_points[2],p3));
   #endif
 
   if (m_plane_z)
@@ -68,12 +68,14 @@ ribi::Plane::Plane(
 
 }
 
+/*
 double ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
 {
   return Geometry().ToDouble(CalcErrorAsApfloat(coordinat));
 }
+*/
 
-apfloat ribi::Plane::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::Plane::CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
 {
   const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);
@@ -226,12 +228,14 @@ apfloat ribi::Plane::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noex
   return min_error;
 }
 
+/*
 double ribi::Plane::CalcMaxError(const Coordinat3D& coordinat) const noexcept
 {
   return Geometry().ToDouble(CalcMaxErrorAsApfloat(coordinat));
 }
+*/
 
-apfloat ribi::Plane::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::Plane::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
 {
   apfloat max_error = 0.0;
   if (CanCalcX())
@@ -282,8 +286,8 @@ apfloat ribi::Plane::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const n
 }
 
 
-std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProjection(
-  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
+ribi::Plane::ApCoordinats2D ribi::Plane::CalcProjection(
+  const ApCoordinats3D& points
 ) const
 {
   if (!m_plane_x && !m_plane_y && !m_plane_z)
@@ -364,10 +368,12 @@ ribi::Plane::Apfloat ribi::Plane::CalcX(const Apfloat& y, const Apfloat& z) cons
   return m_plane_x->CalcX(y,z);
 }
 
+/*
 double ribi::Plane::CalcX(const double y, const double z) const
 {
   return Geometry().ToDouble(CalcX(Apfloat(y),Apfloat(z)));
 }
+*/
 
 ribi::Plane::Apfloat ribi::Plane::CalcY(const ribi::Plane::Apfloat& x, const ribi::Plane::Apfloat& z) const
 {
@@ -378,10 +384,12 @@ ribi::Plane::Apfloat ribi::Plane::CalcY(const ribi::Plane::Apfloat& x, const rib
   return m_plane_y->CalcY(x,z);
 }
 
+/*
 double ribi::Plane::CalcY(const double x, const double z) const
 {
   return Geometry().ToDouble(CalcY(Apfloat(x),Apfloat(z)));
 }
+*/
 
 ribi::Plane::Apfloat ribi::Plane::CalcZ(const ribi::Plane::Apfloat& x, const ribi::Plane::Apfloat& y) const
 {
@@ -392,10 +400,12 @@ ribi::Plane::Apfloat ribi::Plane::CalcZ(const ribi::Plane::Apfloat& x, const rib
   return m_plane_z->CalcZ(x,y);
 }
 
+/*
 double ribi::Plane::CalcZ(const double x, const double y) const
 {
   return Geometry().ToDouble(CalcZ(Apfloat(x),Apfloat(y)));
 }
+*/
 
 bool ribi::Plane::CanCalcX() const noexcept
 {
@@ -449,9 +459,9 @@ bool ribi::Plane::CanCalcZ() const noexcept
 }
 
 boost::shared_ptr<ribi::PlaneX> ribi::Plane::CreatePlaneX(
-  const Coordinat3D& p1,
-  const Coordinat3D& p2,
-  const Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 ) noexcept
 {
   const bool verbose = false;
@@ -471,9 +481,9 @@ boost::shared_ptr<ribi::PlaneX> ribi::Plane::CreatePlaneX(
 }
 
 boost::shared_ptr<ribi::PlaneY> ribi::Plane::CreatePlaneY(
-  const Coordinat3D& p1,
-  const Coordinat3D& p2,
-  const Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 ) noexcept
 {
   try
@@ -490,9 +500,9 @@ boost::shared_ptr<ribi::PlaneY> ribi::Plane::CreatePlaneY(
 }
 
 boost::shared_ptr<ribi::PlaneZ> ribi::Plane::CreatePlaneZ(
-  const Coordinat3D& p1,
-  const Coordinat3D& p2,
-  const Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 ) noexcept
 {
   try
@@ -554,7 +564,7 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
   };
 }
 
-bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
+bool ribi::Plane::IsInPlane(const ApCoordinat3D& coordinat) const noexcept
 {
   return
        (m_plane_x && m_plane_x->IsInPlane(coordinat))
@@ -588,7 +598,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const Plane& plane) noexcept
   const auto n_points = static_cast<int>(plane.m_points.size());
   for (/* const */ auto i=0; i!=n_points; ++i)
   {
-    os << plane.m_points[i];
+    os << Geometry().ToStr(plane.m_points[i]);
     os << (i != n_points - 1 ? ',' : ')');
   }
   os << ',';

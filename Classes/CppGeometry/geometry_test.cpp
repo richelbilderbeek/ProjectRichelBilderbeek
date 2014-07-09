@@ -805,11 +805,11 @@ void ribi::Geometry::Test() noexcept
   }
   //IsPlane
   {
-    const Coordinat3D a(-3.64472,-0.25,0.0);
-    const Coordinat3D b(-4.52988,-0.25,0.0);
-    const Coordinat3D c(-3.64472,-0.25,10.0);
-    const Coordinat3D d(-4.52988,-0.25,10.0);
-    const std::vector<Coordinat3D> v = { a,b,c,d };
+    const ApCoordinat3D a(-3.64472,-0.25,0.0);
+    const ApCoordinat3D b(-4.52988,-0.25,0.0);
+    const ApCoordinat3D c(-3.64472,-0.25,10.0);
+    const ApCoordinat3D d(-4.52988,-0.25,10.0);
+    const ApCoordinats3D v = { a,b,c,d };
     assert(Geometry().IsPlane(v));
   }
   if (verbose) TRACE("Translate");

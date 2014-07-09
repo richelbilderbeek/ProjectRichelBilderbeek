@@ -49,11 +49,17 @@ struct PlaneZ;
 ///where A,B,C can be obtained by GetFunctionA/B/C
 struct PlaneX
 {
+  typedef apfloat Apfloat;
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::d2::point_xy<apfloat> ApCoordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> ApCoordinat3D;
+  typedef std::vector<Apfloat> Apfloats;
   typedef std::vector<Coordinat2D> Coordinats2D;
   typedef std::vector<Coordinat3D> Coordinats3D;
-  typedef apfloat Apfloat;
+  typedef std::vector<ApCoordinat2D> ApCoordinats2D;
+  typedef std::vector<ApCoordinat3D> ApCoordinats3D;
+
   ///Construct from its coefficients
   /*
   explicit PlaneX(const std::vector<double>& coefficients = {0.0,0.0,0.0,0.0});
@@ -64,14 +70,14 @@ struct PlaneX
 
   ///Construct from three points
   PlaneX(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3
+    const ApCoordinat3D& p1,
+    const ApCoordinat3D& p2,
+    const ApCoordinat3D& p3
   );
 
-  apfloat CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+  Apfloat CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept;
 
-  apfloat CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+  Apfloat CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept;
 
   ///Get the 2D projection of these 3D points,
   /*
@@ -88,31 +94,31 @@ struct PlaneX
   +--B---                     A--B-----
 
   */
-  Coordinats2D CalcProjection(const Coordinats3D& points) const;
+  ApCoordinats2D CalcProjection(const ApCoordinats3D& points) const;
 
   ///Throws when cannot calculate X, which is when the plane is horizontal
-  double CalcX(const double y, const double z) const;
+  //double CalcX(const double y, const double z) const;
   Apfloat CalcX(const Apfloat& y, const Apfloat& z) const;
 
-  std::vector<Apfloat> GetCoefficients() const noexcept;
+  Apfloats GetCoefficients() const noexcept;
 
   ///x = Ay + Bz + C
   ///Will throw if A cannot be calculated
-  double GetFunctionA() const;
+  Apfloat GetFunctionA() const;
 
   ///x = Ay + Bz + C
   ///Will throw if B cannot be calculated
-  double GetFunctionB() const;
+  Apfloat GetFunctionB() const;
 
   ///x = Ay + Bz + C
   ///Will throw if C cannot be calculated
-  double GetFunctionC() const;
+  Apfloat GetFunctionC() const;
 
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///Checks if the coordinat is in the plane
-  bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
+  bool IsInPlane(const ApCoordinat3D& coordinat) const noexcept;
 
   private:
   ~PlaneX() noexcept;
@@ -122,14 +128,14 @@ struct PlaneX
 
   ///Will throw if plane cannot be created
   static std::unique_ptr<PlaneZ> Create(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3
+    const ApCoordinat3D& p1,
+    const ApCoordinat3D& p2,
+    const ApCoordinat3D& p3
   );
 
-  static std::vector<apfloat> Rotate(const std::vector<apfloat>& coefficients) noexcept;
-  static Coordinat3D Rotate(
-    const Coordinat3D& point
+  static Apfloats Rotate(const Apfloats& coefficients) noexcept;
+  static ApCoordinat3D Rotate(
+    const ApCoordinat3D& point
   ) noexcept;
 
   #ifndef NDEBUG

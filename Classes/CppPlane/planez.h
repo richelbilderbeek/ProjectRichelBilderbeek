@@ -54,14 +54,16 @@ namespace ribi {
 //
 struct PlaneZ
 {
-  //typedef apfloat Double;
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::d2::point_xy<apfloat> ApCoordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> ApCoordinat3D;
   typedef std::vector<Coordinat2D> Coordinats2D;
   typedef std::vector<Coordinat3D> Coordinats3D;
+  typedef std::vector<ApCoordinat2D> ApCoordinats2D;
+  typedef std::vector<ApCoordinat3D> ApCoordinats3D;
   typedef apfloat Apfloat;
+  typedef std::vector<Apfloat> Apfloats;
 
   ///Create plane Z = 0.0
   PlaneZ() noexcept;
@@ -69,12 +71,12 @@ struct PlaneZ
 
   ///Construct from three points
   PlaneZ(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3
+    const ApCoordinat3D& p1,
+    const ApCoordinat3D& p2,
+    const ApCoordinat3D& p3
   );
 
-  apfloat CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+  Apfloat CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept;
 
   ///Get the 2D projection of these 3D points,
   ///Assumes these are in a plane
@@ -92,40 +94,38 @@ struct PlaneZ
   +--B---                     A--B-----
 
   */
-  Coordinats2D CalcProjection(
-    const Coordinats3D& points
-  ) const;
+  ApCoordinats2D CalcProjection(const ApCoordinats3D& points) const;
 
   ///Calculates the maximum allowed error for that coordinat for it to be in the plane
-  apfloat CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+  Apfloat CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept;
 
   ///Throws when cannot calculate Z, which is when the plane is vertical
-  double CalcZ(const double x, const double y) const;
+  //double CalcZ(const double x, const double y) const;
   Apfloat CalcZ(const Apfloat& x, const Apfloat& y) const;
 
   //std::vector<double> GetCoefficients() const noexcept;
-  const std::vector<apfloat>& GetCoefficients() const noexcept { return m_coefficients; }
+  const Apfloats& GetCoefficients() const noexcept { return m_coefficients; }
 
   ///This plane has equation 'z = Ax + By + C'
   ///Will throw if A cannot be calculated
-  apfloat GetFunctionAasApfloat() const;
-  double GetFunctionA() const;
+  Apfloat GetFunctionAasApfloat() const;
+  //double GetFunctionA() const;
 
   ///This plane has equation 'z = Ax + By + C'
   ///Will throw if B cannot be calculated
-  apfloat GetFunctionBasApfloat() const;
-  double GetFunctionB() const;
+  Apfloat GetFunctionBasApfloat() const;
+  //double GetFunctionB() const;
 
   ///This plane has equation 'z = Ax + By + C'
   ///Will throw if C cannot be calculated
-  apfloat GetFunctionCasApfloat() const;
-  double GetFunctionC() const;
+  Apfloat GetFunctionCasApfloat() const;
+  //double GetFunctionC() const;
 
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///Checks if the coordinat is in the plane
-  bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
+  bool IsInPlane(const ApCoordinat3D& coordinat) const noexcept;
 
   ///Obtain a testing series of doubles (to be used as coordinat elements)
   ///in increasing order of difficulty
@@ -133,7 +133,7 @@ struct PlaneZ
 
   private:
   ///Construct from its coefficients
-  PlaneZ(const std::vector<apfloat>& coefficients);
+  PlaneZ(const Apfloats& coefficients);
 
   ~PlaneZ() noexcept;
 
@@ -141,9 +141,9 @@ struct PlaneZ
   const std::vector<apfloat> m_coefficients;
 
   static std::vector<apfloat> CalcPlaneZ(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3
+    const ApCoordinat3D& p1,
+    const ApCoordinat3D& p2,
+    const ApCoordinat3D& p3
   ) noexcept;
 
   ///The lowest coefficient supported; the highest coefficient
@@ -155,7 +155,7 @@ struct PlaneZ
   static void Test() noexcept;
   #endif
 
-  static std::vector<apfloat> ToApfloats(const std::vector<double>& v) noexcept;
+  static Apfloats ToApfloats(const std::vector<double>& v) noexcept;
 
   ///Convert the Plane to function z(x,y), e.g
   ///'z=(2*x) + (3*y) + 5' (spaces exactly as shown)

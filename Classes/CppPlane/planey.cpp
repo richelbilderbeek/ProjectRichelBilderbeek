@@ -60,7 +60,7 @@ ribi::PlaneY::~PlaneY()
   //OK
 }
 
-apfloat ribi::PlaneY::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneY::CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
 {
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
@@ -71,7 +71,7 @@ apfloat ribi::PlaneY::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noe
   return error;
 }
 
-apfloat ribi::PlaneY::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneY::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
 {
   const apfloat x = boost::geometry::get<0>(coordinat);
   //const apfloat y = boost::geometry::get<1>(coordinat);
@@ -170,7 +170,7 @@ double ribi::PlaneY::GetFunctionC() const
 
 std::string ribi::PlaneY::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
@@ -180,7 +180,8 @@ std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
     "2014-03-13: version 1.1: bug fixed",
     "2014-04-01: version 1.2: use of std::unique_ptr",
     "2014-06-13: version 1.3: shortened time to compile",
-    "2014-07-03: version 1.4: use of apfloat"
+    "2014-07-03: version 1.4: use of apfloat",
+    "2014-07-09: version 1.5: use double in interface only"
   };
 }
 

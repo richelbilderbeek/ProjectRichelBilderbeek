@@ -47,10 +47,11 @@ struct QPointF;
 
 namespace ribi {
 
-///Goemetry functions, working with Boost.Geometry
+///Geometry functions, working with Boost.Geometry
 struct Geometry
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::d2::point_xy<apfloat> ApCoordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> ApCoordinat3D;
 
@@ -58,6 +59,11 @@ struct Geometry
   typedef boost::geometry::model::polygon<Coordinat2D> Polygon;
   typedef boost::geometry::model::box<Coordinat2D> Rect;
 
+  typedef apfloat Apfloat;
+  typedef std::vector<ApCoordinat2D> ApCoordinats2D;
+  typedef std::vector<ApCoordinat3D> ApCoordinats3D;
+  typedef std::vector<Coordinat2D> Coordinats2D;
+  typedef std::vector<Coordinat3D> Coordinats3D;
   typedef std::vector<Linestring> Linestrings;
   typedef std::vector<Polygon> Polygons;
   typedef std::pair<Polygons,Linestrings> Shapes;
@@ -83,10 +89,21 @@ struct Geometry
     const Coordinat3D& b
   ) const noexcept;
 
+  Apfloat CalcDotProduct(
+    const ApCoordinat3D& a,
+    const ApCoordinat3D& b
+  ) const noexcept;
+
   Coordinat3D CalcNormal(
     const Coordinat3D& a,
     const Coordinat3D& b,
     const Coordinat3D& c
+  ) const noexcept;
+
+  ApCoordinat3D CalcNormal(
+    const ApCoordinat3D& a,
+    const ApCoordinat3D& b,
+    const ApCoordinat3D& c
   ) const noexcept;
 
   ///Determine the plane that goes through these three points
@@ -108,7 +125,8 @@ struct Geometry
     const ApCoordinat3D& p3
   ) const noexcept;
 
-  std::vector<Coordinat2D> CalcProjection(const std::vector<Coordinat3D>& v) const;
+  std::vector<  Coordinat2D> CalcProjection(const std::vector<  Coordinat3D>& v) const;
+  std::vector<ApCoordinat2D> CalcProjection(const std::vector<ApCoordinat3D>& v) const;
 
   Coordinat2D Coordinat2DToBoostGeometryPointXy(
     const Coordinat2D& c
@@ -140,8 +158,9 @@ struct Geometry
   Polygon CreateShapeTriangle(const double scale = 1.0) const noexcept;
 
   ///Functor for X-Y-Z ordering
-  std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)> Equals2d() const noexcept;
-  std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> Equals() const noexcept;
+  std::function<bool(const Coordinat2D& lhs, const Coordinat2D& rhs)> Equals2d() const noexcept;
+  std::function<bool(const Coordinat3D& lhs, const Coordinat3D& rhs)> Equals() const noexcept;
+  std::function<bool(const ApCoordinat3D& lhs, const ApCoordinat3D& rhs)> Equals3d() const noexcept;
 
   ///Obtain the angle in radians between two deltas
   ///12 o'clock is 0.0 * pi
@@ -295,7 +314,8 @@ struct Geometry
 
   ///Are the points ordered clockwise in the XYZ plane, seen from the observer?
   //bool IsClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept;
-  bool IsClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept;
+  bool IsClockwise(const   Coordinats3D& points, const   Coordinat3D& observer) const noexcept;
+  bool IsClockwise(const ApCoordinats3D& points, const ApCoordinat3D& observer) const noexcept;
 
   ///Are two angles ordered counter-clockwise
   ///12 o'clock is 0.0 * pi
@@ -318,14 +338,17 @@ struct Geometry
   bool IsCounterClockwise(const std::vector<double>& angles) const noexcept;
 
   ///Are the points ordered counterclockwise in the XYZ plane, seen from the observer?
-  bool IsCounterClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept;
+  bool IsCounterClockwise(const std::vector<  Coordinat3D>& points, const   Coordinat3D& observer) const noexcept;
+  bool IsCounterClockwise(const std::vector<ApCoordinat3D>& points, const ApCoordinat3D& observer) const noexcept;
 
   ///Are the points ordered clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
   //bool IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
   //bool IsClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept;
-  bool IsClockwiseHorizontal(const std::vector<Coordinat2D>& v) const noexcept;
-  bool IsClockwiseHorizontal(const std::vector<Coordinat3D>& v) const noexcept;
+  bool IsClockwiseHorizontal(const std::vector<  Coordinat2D>& v) const noexcept;
+  bool IsClockwiseHorizontal(const std::vector<ApCoordinat2D>& v) const noexcept;
+  bool IsClockwiseHorizontal(const std::vector<  Coordinat3D>& v) const noexcept;
+  bool IsClockwiseHorizontal(const std::vector<ApCoordinat3D>& v) const noexcept;
 
 
   ///Creates a polygon from the points and checks if the polygon is convex
@@ -340,20 +363,25 @@ struct Geometry
 
   */
   bool IsConvex(boost::geometry::model::polygon<Coordinat2D> polygon) const noexcept;
-  bool IsConvex(const std::vector<Coordinat2D>& points) const noexcept;
-  bool IsConvex(const std::vector<Coordinat3D>& points) const noexcept;
+  bool IsConvex(const   Coordinats2D& points) const noexcept;
+  bool IsConvex(const   Coordinats3D& points) const noexcept;
+  bool IsConvex(const ApCoordinats3D& points) const noexcept;
 
   ///Are the points ordered counter-clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
   //bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
-  bool IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& v) const noexcept;
-  bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& v) const noexcept;
+  bool IsCounterClockwiseHorizontal(const std::vector<  Coordinat2D>& v) const noexcept;
+  bool IsCounterClockwiseHorizontal(const std::vector<ApCoordinat2D>& v) const noexcept;
+  bool IsCounterClockwiseHorizontal(const std::vector<  Coordinat3D>& v) const noexcept;
+  bool IsCounterClockwiseHorizontal(const std::vector<ApCoordinat3D>& v) const noexcept;
 
-  bool IsEqual2d(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs) const noexcept { return Equals2d()(lhs,rhs); }
-  bool IsEqual(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs) const noexcept { return Equals()(lhs,rhs); }
+  bool IsEqual2d(const Coordinat2D& lhs, const Coordinat2D& rhs) const noexcept { return Equals2d()(lhs,rhs); }
+  bool IsEqual(const Coordinat3D& lhs, const Coordinat3D& rhs) const noexcept { return Equals()(lhs,rhs); }
+  bool IsEqual3d(const ApCoordinat3D& lhs, const ApCoordinat3D& rhs) const noexcept { return Equals3d()(lhs,rhs); }
 
   ///Determines if these coordinats are in a plane
-  bool IsPlane(const std::vector<Coordinat3D>& v) const noexcept;
+  //bool IsPlane(const std::vector<Coordinat3D>& v) const noexcept;
+  bool IsPlane(const std::vector<ApCoordinat3D>& v) const noexcept;
 
   ///Functor for X-Y ordering
   std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)> Order2dByX() const noexcept;
@@ -403,7 +431,12 @@ struct Geometry
 
   ///Will throw a boost::bad_lexical_cast if it fails
   double ToDouble(const apfloat& a) const;
+
+  ///Will convert the apfloat to its smallest value, zero or its heighest value
+  double ToDoubleSafe(const apfloat& a) const noexcept;
+
   std::vector<double> ToDouble(const std::vector<apfloat>& a) const;
+  std::vector<Coordinat2D> ToDoubleSafe(const std::vector<ApCoordinat2D>& a) const noexcept;
 
   ///Convert a linestring to a closed polygon. If the linestring
   ///is open, close it
@@ -424,8 +457,10 @@ struct Geometry
   ///will throw a boost::bad_lexical_cast if that value is too small
   std::string ToStr(const apfloat& f) const noexcept;
 
-  std::string ToStr(const Coordinat2D& p) const noexcept;
-  std::string ToStr(const Coordinat3D& p) const noexcept;
+  std::string ToStr(const   Coordinat2D& p) const noexcept;
+  std::string ToStr(const ApCoordinat2D& p) const noexcept;
+  std::string ToStr(const   Coordinat3D& p) const noexcept;
+  std::string ToStr(const ApCoordinat3D& p) const noexcept;
   std::string ToStr(const Linestring& polygon) const noexcept;
   std::string ToStr(const Polygon& polygon) const noexcept;
   std::string ToStr(const QPen& pen) noexcept;
@@ -516,6 +551,11 @@ struct Geometry
 ribi::Geometry::Coordinat2D operator-(
   const ribi::Geometry::Coordinat2D& a,
   const ribi::Geometry::Coordinat2D& b
+) noexcept;
+
+ribi::Geometry::ApCoordinat2D operator-(
+  const ribi::Geometry::ApCoordinat2D& a,
+  const ribi::Geometry::ApCoordinat2D& b
 ) noexcept;
 
 ribi::Geometry::Coordinat3D operator-(

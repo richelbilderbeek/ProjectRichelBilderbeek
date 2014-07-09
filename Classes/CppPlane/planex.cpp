@@ -158,22 +158,22 @@ std::vector<apfloat> ribi::PlaneX::GetCoefficients() const noexcept
   return { v[2],v[0],v[1],v[3] };
 }
 
-double ribi::PlaneX::GetFunctionA() const
+apfloat ribi::PlaneX::GetFunctionA() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionA();
+  return m_plane_z->GetFunctionAasApfloat();
 }
 
-double ribi::PlaneX::GetFunctionB() const
+apfloat ribi::PlaneX::GetFunctionB() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionB();
+  return m_plane_z->GetFunctionBasApfloat();
 }
 
-double ribi::PlaneX::GetFunctionC() const
+apfloat ribi::PlaneX::GetFunctionC() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionC();
+  return m_plane_z->GetFunctionCasApfloat();
 }
 
 std::string ribi::PlaneX::GetVersion() const noexcept
@@ -189,6 +189,7 @@ std::vector<std::string> ribi::PlaneX::GetVersionHistory() const noexcept
     "2014-04-01: version 1.2: use of std::unique_ptr",
     "2014-06-13: version 1.3: shortened time to compile, allow obtaining the constants in function 'x = Ay + Bz + C'",
     "2014-07-03: version 1.4: use of apfloat",
+    "2014-07-09: version 1.5: use double in interface only"
   };
 }
 

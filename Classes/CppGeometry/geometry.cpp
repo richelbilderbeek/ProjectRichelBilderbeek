@@ -116,8 +116,8 @@ ribi::Geometry::ApCoordinat3D ribi::Geometry::CalcCrossProduct(
 }
 
 double ribi::Geometry::CalcDotProduct(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
+  const Coordinat3D& a,
+  const Coordinat3D& b
 ) const noexcept
 {
   using boost::geometry::get;
@@ -128,10 +128,10 @@ double ribi::Geometry::CalcDotProduct(
   ;
 }
 
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Geometry::CalcNormal(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& c
+ribi::Geometry::Coordinat3D ribi::Geometry::CalcNormal(
+  const Coordinat3D& a,
+  const Coordinat3D& b,
+  const Coordinat3D& c
 ) const noexcept
 {
   const auto u(c - a);
@@ -179,8 +179,8 @@ std::vector<apfloat> ribi::Geometry::CalcPlane(
   return { a,b,c,d };
 }
 
-std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcProjection(
-  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points) const
+ribi::Geometry::ApCoordinats2D ribi::Geometry::CalcProjection(
+  const ribi::Geometry::ApCoordinats3D& points) const
 {
   assert(points.size() >= 3);
   #ifdef FIX_ISSUE_224
@@ -209,10 +209,7 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcPr
   }
   #endif
 
-  const std::vector<boost::geometry::model::d2::point_xy<double>> coordinats2d(
-    plane->CalcProjection(points)
-  );
-  return coordinats2d;
+  return plane->CalcProjection(points);
 }
 
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
@@ -460,8 +457,8 @@ bool ribi::Geometry::IsClockwise(const std::vector<double>& angles) const noexce
 }
 
 bool ribi::Geometry::IsClockwise(
-  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& observer
+  const ApCoordinats3D& points,
+  const ApCoordinat3D& observer
 ) const noexcept
 {
   const int n_points = static_cast<int>(points.size());
@@ -486,13 +483,15 @@ bool ribi::Geometry::IsClockwise(
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
     const auto v(
-      plane->CalcProjection(
-        {
-          points[0],
-          points[1],
-          points[2],
-          points[3]
-        }
+      ToDoubleSafe(
+        plane->CalcProjection(
+          {
+            points[0],
+            points[1],
+            points[2],
+            points[3]
+          }
+        )
       )
     );
     //If the points are messed up, they cannot be clockwise
@@ -592,7 +591,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
   return is_convex;
 }
 
-bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
+bool ribi::Geometry::IsConvex(const ApCoordinats3D& points) const noexcept
 {
   const bool verbose = false;
 
@@ -660,7 +659,13 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     }
   )
   {
-    const boost::shared_ptr<Plane> plane(new Plane(points[v[0]],points[v[1]],points[v[2]]));
+    const boost::shared_ptr<Plane> plane(
+      new Plane(
+        points[v[0]],
+        points[v[1]],
+        points[v[2]]
+      )
+    );
     assert(plane);
 
     #ifndef NDEBUG
@@ -676,26 +681,8 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     }
     #endif
 
-    const std::vector<boost::geometry::model::d2::point_xy<double>> coordinats2d(
-      plane->CalcProjection(points)
-    );
-
-    #ifndef NDEBUG
-    if (verbose)
-    {
-      std::stringstream s;
-      s << "{";
-      for (const auto coordinat2d: coordinats2d)
-      {
-
-        s << Geometry().ToStr(coordinat2d) << ",";
-      }
-      std::string co_str(s.str());
-      co_str[co_str.size() - 1] = '}';
-      TRACE(co_str);
-    }
-    #endif
-
+    const ApCoordinats2D apcoordinats2d = plane->CalcProjection(points);
+    const Coordinats2D coordinats2d = ToDoubleSafe(apcoordinats2d);
     if (IsConvex(coordinats2d)) return true;
   }
   return false;
@@ -718,8 +705,8 @@ bool ribi::Geometry::IsCounterClockwise(const std::vector<double>& angles) const
 }
 
 bool ribi::Geometry::IsCounterClockwise(
-  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& observer
+  const ribi::Geometry::ApCoordinats3D& points,
+  const ribi::Geometry::ApCoordinat3D& observer
 ) const noexcept
 {
   const int n_points = static_cast<int>(points.size());
@@ -821,7 +808,7 @@ std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry:
   };
 }
 
-bool ribi::Geometry::IsPlane(const std::vector<Coordinat3D>& v) const noexcept
+bool ribi::Geometry::IsPlane(const std::vector<ApCoordinat3D>& v) const noexcept
 {
   const bool verbose = false;
   using boost::geometry::get;
