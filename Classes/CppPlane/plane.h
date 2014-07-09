@@ -115,7 +115,7 @@ struct Plane
   ///Can the Plane be expressed as Z = A*X + B*Y + C ?
   bool CanCalcZ() const noexcept;
 
-  ///Calculates the distance to this plane
+  ///Calculates the error between plane and coordinat
   ///WARNING: This distance is calculated by taking the shortest distance
   ///to the plane following either the X, Y or Z direction. In other words:
   ///it does not take the shortest (perpendicular to the plane) path
@@ -138,7 +138,7 @@ struct Plane
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Checks if the coordinat is in the plane, uses CalcDistanceFromPlane
+  ///Checks if the coordinat is in the plane
   bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
 
 

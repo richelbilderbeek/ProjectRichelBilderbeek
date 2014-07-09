@@ -60,6 +60,17 @@ ribi::PlaneY::~PlaneY()
   //OK
 }
 
+apfloat ribi::PlaneY::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+{
+  const apfloat x = boost::geometry::get<0>(coordinat);
+  const apfloat y = boost::geometry::get<1>(coordinat);
+  const apfloat z = boost::geometry::get<2>(coordinat);
+  const auto expected = y;
+  const auto calculated = CalcY(x,z);
+  const auto error = abs(calculated - expected);
+  return error;
+}
+
 apfloat ribi::PlaneY::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
 {
   const apfloat x = boost::geometry::get<0>(coordinat);
@@ -171,6 +182,23 @@ std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
     "2014-06-13: version 1.3: shortened time to compile",
     "2014-07-03: version 1.4: use of apfloat"
   };
+}
+
+bool ribi::PlaneY::IsInPlane(const Coordinat3D& coordinat) const noexcept
+{
+  try
+  {
+    const apfloat error = CalcErrorAsApfloat(coordinat);
+    const apfloat max_error = CalcMaxErrorAsApfloat(coordinat); //std::numeric_limits<double>::epsilon();
+    return error <= max_error;
+  }
+  catch (std::exception& e)
+  {
+    TRACE("ERROR");
+    TRACE(e.what())
+    assert(!"Should not get here");
+    throw;
+  }
 }
 
 std::vector<apfloat> ribi::PlaneY::Rotate(const std::vector<apfloat>& coefficients) noexcept

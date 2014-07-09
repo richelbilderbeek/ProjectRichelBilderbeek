@@ -65,7 +65,21 @@ ribi::PlaneZ::PlaneZ(
   if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
-    throw std::logic_error("Plane (from coeffients) that can be expressed in less than 3D space");
+    throw std::logic_error("PlaneZ (from coeffients) cannot be expressed in less than 3D space");
+  }
+
+  try
+  {
+    TRACE(GetFunctionAasApfloat());
+    TRACE(GetFunctionBasApfloat());
+    TRACE(GetFunctionCasApfloat());
+    assert(GetFunctionAasApfloat() == 0.0 || GetFunctionAasApfloat() != 0.0);
+    assert(GetFunctionBasApfloat() == 0.0 || GetFunctionBasApfloat() != 0.0);
+    assert(GetFunctionCasApfloat() == 0.0 || GetFunctionCasApfloat() != 0.0);
+  }
+  catch (...)
+  {
+    assert(!"Should not get here");
   }
 }
 
@@ -98,8 +112,20 @@ ribi::PlaneZ::~PlaneZ() noexcept
   //OK
 }
 
+apfloat ribi::PlaneZ::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+{
+  const apfloat x = boost::geometry::get<0>(coordinat);
+  const apfloat y = boost::geometry::get<1>(coordinat);
+  const apfloat z = boost::geometry::get<2>(coordinat);
+  const auto expected = z;
+  const auto calculated = CalcZ(x,y);
+  const auto error = abs(calculated - expected);
+  return error;
+}
+
 apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
 {
+  const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
   //const apfloat z = boost::geometry::get<2>(coordinat);
@@ -109,6 +135,17 @@ apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const 
   const auto c = coefficients[2];
   const apfloat e = boost::numeric::bounds<double>::smallest();
   assert(e > 0.0);
+
+  if (verbose)
+  {
+    TRACE(Geometry().ToStr(coordinat));
+    TRACE(x);
+    TRACE(y);
+    TRACE(a);
+    TRACE(b);
+    TRACE(c);
+  }
+
   // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
   //If C is zero, the slope in X and Y cannot be calculated
   if (c.sign())
@@ -119,6 +156,15 @@ apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const 
     const auto max_error_y = abs(e * rc_y * y) + 0.0;
     const auto max_error_z = 0.0;
     const auto max_error = max_error_x + max_error_y + max_error_z;
+
+    if (verbose)
+    {
+      TRACE(rc_x);
+      TRACE(rc_y);
+      TRACE(max_error_x);
+      TRACE(max_error_y);
+      TRACE(max_error);
+    }
     return max_error;
   }
   return e;
@@ -215,12 +261,13 @@ apfloat ribi::PlaneZ::GetFunctionAasApfloat() const
   const auto coeff_a = m_coefficients[0];
   const auto coeff_c = m_coefficients[2];
   static const apfloat zero(0.0);
-
+  assert(coeff_c != zero);
+  /*
   if (coeff_c == zero)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionA: cannot calculate A of a vertical plane");
   }
-
+  */
   if (verbose)
   {
     TRACE(coeff_c);
@@ -239,12 +286,13 @@ apfloat ribi::PlaneZ::GetFunctionBasApfloat() const
   const auto coeff_b = m_coefficients[1];
   const auto coeff_c = m_coefficients[2];
   static const apfloat zero(0.0);
-
+  assert(coeff_c != zero);
+  /*
   if (coeff_c == zero)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionB: cannot calculate B of a vertical plane");
   }
-
+  */
   const auto b = -coeff_b/coeff_c;
   return b;
 }
@@ -259,14 +307,24 @@ apfloat ribi::PlaneZ::GetFunctionCasApfloat() const
   const auto coeff_c = m_coefficients[2];
   const auto coeff_d = m_coefficients[3];
   static const apfloat zero(0.0);
-
+  assert(coeff_c != zero);
+  /*
   if (coeff_c == zero)
   {
     throw std::logic_error("ribi::PlaneZ::GetFunctionC: cannot calculate C of a vertical plane");
   }
+  */
 
-  const auto c =  coeff_d/coeff_c;
-  return c;
+  try
+  {
+    const auto c = coeff_d/coeff_c;
+    return c;
+  }
+  catch (...)
+  {
+    assert(!"Should not get here");
+    throw;
+  }
 }
 
 double ribi::PlaneZ::GetFunctionC() const
@@ -284,6 +342,26 @@ apfloat ribi::PlaneZ::GetLeastCoefficient() noexcept
 }
 */
 
+std::vector<double> ribi::PlaneZ::GetTestSeries() noexcept
+{
+  return
+  {
+     1.0,
+    -1.0,
+     std::numeric_limits<double>::epsilon(),
+    -std::numeric_limits<double>::epsilon(),
+     1.e8,
+    -1.e8,
+    0.0,
+     std::numeric_limits<double>::denorm_min(),
+    -std::numeric_limits<double>::denorm_min(),
+     1.e64,
+    -1.e64,
+    std::numeric_limits<double>::min(),
+    std::numeric_limits<double>::max()
+  };
+}
+
 std::string ribi::PlaneZ::GetVersion() const noexcept
 {
   return "1.3";
@@ -300,6 +378,22 @@ std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
   };
 }
 
+bool ribi::PlaneZ::IsInPlane(const Coordinat3D& coordinat) const noexcept
+{
+  try
+  {
+    const apfloat error = CalcErrorAsApfloat(coordinat);
+    const apfloat max_error = CalcMaxErrorAsApfloat(coordinat); //std::numeric_limits<double>::epsilon();
+    return error <= max_error;
+  }
+  catch (std::exception& e)
+  {
+    TRACE("ERROR");
+    TRACE(e.what())
+    assert(!"Should not get here");
+    throw;
+  }
+}
 
 std::vector<apfloat> ribi::PlaneZ::ToApfloats(const std::vector<double>& v) noexcept
 {

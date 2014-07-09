@@ -420,6 +420,10 @@ struct Geometry
   */
   Polygon ToPolygon(const Linestring& linestring) const noexcept;
 
+  ///If an apfloat is converted to std::string, boost::lexical_cast
+  ///will throw a boost::bad_lexical_cast if that value is too small
+  std::string ToStr(const apfloat& f) const noexcept;
+
   std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;
   std::string ToStr(const Linestring& polygon) const noexcept;

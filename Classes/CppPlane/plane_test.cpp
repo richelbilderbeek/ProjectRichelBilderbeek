@@ -30,25 +30,9 @@ void ribi::Plane::Test() noexcept
   { const auto planey = boost::make_shared<PlaneY>(); assert(planey); }
   { const auto planez = boost::make_shared<PlaneZ>(); assert(planez); }
 
-  const double epsilon = std::numeric_limits<double>::epsilon();
-  const auto series
-    =
-    {
-      0.0,
-       std::numeric_limits<double>::denorm_min(),
-      -std::numeric_limits<double>::denorm_min(),
-       std::numeric_limits<double>::epsilon(),
-      -std::numeric_limits<double>::epsilon(),
-       1.0,
-      -1.0,
-       1.e8,
-      -1.e8,
-       1.e64,
-      -1.e64,
-      std::numeric_limits<double>::min(),
-      std::numeric_limits<double>::max()
-    };
-
+  //const double epsilon = std::numeric_limits<double>::epsilon();
+  //Sorted by difficulty
+  const auto series = PlaneZ::GetTestSeries();
 
   if (verbose) TRACE("Plane that can be expressed in all three forms");
   {
@@ -149,7 +133,6 @@ void ribi::Plane::Test() noexcept
   }
 
   //IsInPlane for Z=0 plane
-
   if (verbose) TRACE("CanCalcZ and IsInPlane, Z = 0 plane, from 1.0 coordinat");
   {
     const Point3D p1(0.0,0.0,0.0);
@@ -227,6 +210,20 @@ void ribi::Plane::Test() noexcept
       }
     }
   }
+  /*
+
+    |    /#/##########
+    |   B#/###########
+    |  /#/############
+    | /#/#############
+    |/#/##############
+    A-------C--------- Z = z
+    |/
+  --O----------------- Z = 0
+   /|
+
+
+  */
   if (verbose) TRACE("CanCalcZ, Z = z plane, zooming in");
   {
     for (const double z:series)
@@ -241,11 +238,48 @@ void ribi::Plane::Test() noexcept
         const Plane p(p1,p2,p3);
         assert(!p.CanCalcX());
         assert(!p.CanCalcY());
+        if (!p.CanCalcZ())
+        {
+          TRACE("ERROR");
+          TRACE(z);
+          TRACE(i);
+        }
+
         assert( p.CanCalcZ());
 
         for (const double j:series)
         {
-          assert(p.IsInPlane(Point3D(0.0,0.0,z)));
+          if (!p.IsInPlane(Point3D(j,j,z)))
+          {
+            std::stringstream s;
+            s << "Warning: coordinat " << Geometry().ToStr(Point3D(j,j,z))
+              << " is determined not to be in a Plane that was created from points "
+              << Geometry().ToStr(p1) << ", "
+              << Geometry().ToStr(p2) << " and "
+              << Geometry().ToStr(p3) << "."
+            ;
+            TRACE(s.str());
+            continue;
+          }
+          if (!p.IsInPlane(Point3D(j,j,z)))
+          {
+            TRACE("ERROR");
+            TRACE(z);
+            TRACE(i);
+            TRACE(j);
+            TRACE(p.CalcErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p.CalcMaxErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p);
+
+            TRACE("AGAIN");
+            TRACE(z);
+            TRACE(i);
+            TRACE(j);
+            TRACE(p.CalcErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p.CalcMaxErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p);
+
+          }
           assert(p.IsInPlane(Point3D(  j,  j,z)));
           assert(p.IsInPlane(Point3D(  j, -j,z)));
           assert(p.IsInPlane(Point3D( -j,  j,z)));

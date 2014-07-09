@@ -171,7 +171,8 @@ void ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange()
       ) : m_f(f), m_plane(plane) {}
     double operator()(const double x, const double y) const noexcept
     {
-      return m_plane.CalcDistanceFromPlane(m_f(x,y));
+      return m_plane.CalcError(m_f(x,y));
+      //return m_plane.CalcDistanceFromPlane(m_f(x,y));
       //return x * y;
     }
     private:

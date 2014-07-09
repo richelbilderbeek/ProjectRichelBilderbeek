@@ -51,6 +51,21 @@ ribi::Plane::Plane(
   assert(Geometry().IsEqual(m_points[1],p2));
   assert(Geometry().IsEqual(m_points[2],p3));
   #endif
+
+  if (m_plane_z)
+  {
+    try
+    {
+      m_plane_z->GetFunctionAasApfloat();
+      m_plane_z->GetFunctionBasApfloat();
+      m_plane_z->GetFunctionCasApfloat();
+    }
+    catch (...)
+    {
+      assert(!"Should not get here");
+    }
+  }
+
 }
 
 double ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
@@ -154,8 +169,11 @@ apfloat ribi::Plane::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noex
   if (CanCalcZ())
   {
     const auto expected = z;
+    TRACE(expected);
     const auto calculated = CalcZ(x,y);
+    TRACE(calculated);
     const auto error = abs(calculated - expected);
+    TRACE(error);
     min_error = std::min(error,min_error);
 
     #ifdef IMPROVE_ACCURACY_224
@@ -228,9 +246,6 @@ apfloat ribi::Plane::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const n
   {
     max_error = std::max(max_error,m_plane_z->CalcMaxErrorAsApfloat(coordinat));
   }
-  return max_error;
-  //if (CanCalcY()) { max_error = std::max(max_error,m_plane_y->CalcMaxErrorAsApfloat(coordinat)); }
-  //if (CanCalcX()) { max_error = std::max(max_error,m_plane_x->CalcMaxErrorAsApfloat(coordinat)); }
   return max_error;
   /*
   //If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
@@ -387,9 +402,9 @@ bool ribi::Plane::CanCalcX() const noexcept
   if (!m_plane_x.get()) return false;
   try
   {
-    m_plane_x->GetFunctionA();
-    m_plane_x->GetFunctionB();
-    m_plane_x->GetFunctionC();
+    //m_plane_x->GetFunctionAasApfloat();
+    //m_plane_x->GetFunctionBasApfloat();
+    //m_plane_x->GetFunctionCasApfloat();
     return true;
   }
   catch (std::exception&)
@@ -403,9 +418,9 @@ bool ribi::Plane::CanCalcY() const noexcept
   if (!m_plane_y.get()) return false;
   try
   {
-    m_plane_y->GetFunctionA();
-    m_plane_y->GetFunctionB();
-    m_plane_y->GetFunctionC();
+    //m_plane_y->GetFunctionAasApfloat();
+    //m_plane_y->GetFunctionBasApfloat();
+    //m_plane_y->GetFunctionCasApfloat();
     return true;
   }
   catch (std::exception&)
@@ -420,15 +435,16 @@ bool ribi::Plane::CanCalcZ() const noexcept
   if (!m_plane_z.get()) return false;
   try
   {
-    m_plane_z->GetFunctionA();
-    m_plane_z->GetFunctionB();
-    m_plane_z->GetFunctionC();
+    assert(m_plane_z->GetFunctionAasApfloat() == 0.0 || m_plane_z->GetFunctionAasApfloat() != 0.0);
+    assert(m_plane_z->GetFunctionBasApfloat() == 0.0 || m_plane_z->GetFunctionBasApfloat() != 0.0);
+    assert(m_plane_z->GetFunctionCasApfloat() == 0.0 || m_plane_z->GetFunctionCasApfloat() != 0.0);
     return true;
   }
-  catch (std::exception&)
+  catch (std::exception& e)
   {
-    //OK
-    return false;
+    TRACE(e.what())
+    assert(!"Should not get here");
+    throw;
   }
 }
 
@@ -540,6 +556,14 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
+  return
+       (m_plane_x && m_plane_x->IsInPlane(coordinat))
+    || (m_plane_y && m_plane_y->IsInPlane(coordinat))
+    || (m_plane_z && m_plane_z->IsInPlane(coordinat))
+  ;
+  /*
+
+  bool ribi::PlaneXYZ::IsInPlane(const Coordinat3D& coordinat) const noexcept
   try
   {
     const apfloat error = CalcErrorAsApfloat(coordinat);
@@ -553,6 +577,7 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     assert(!"Should not get here");
     throw;
   }
+  */
 }
 
 

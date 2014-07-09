@@ -67,6 +67,8 @@ struct PlaneY
     const Coordinat3D& p3
   );
 
+  apfloat CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+
   apfloat CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
 
   ///Get the 2D projection of these 3D points,
@@ -109,6 +111,8 @@ struct PlaneY
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
+  ///Checks if the coordinat is in the plane
+  bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
 
   private:
   ~PlaneY() noexcept;

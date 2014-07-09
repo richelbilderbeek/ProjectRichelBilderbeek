@@ -74,6 +74,8 @@ struct PlaneZ
     const Coordinat3D& p3
   );
 
+  apfloat CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+
   ///Get the 2D projection of these 3D points,
   ///Assumes these are in a plane
   /*
@@ -122,6 +124,12 @@ struct PlaneZ
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
+  ///Checks if the coordinat is in the plane
+  bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
+
+  ///Obtain a testing series of doubles (to be used as coordinat elements)
+  ///in increasing order of difficulty
+  static std::vector<double> GetTestSeries() noexcept;
 
   private:
   ///Construct from its coefficients
@@ -141,6 +149,7 @@ struct PlaneZ
   ///The lowest coefficient supported; the highest coefficient
   ///that will be treated as zero
   //static apfloat GetLeastCoefficient() noexcept;
+
 
   #ifndef NDEBUG
   static void Test() noexcept;

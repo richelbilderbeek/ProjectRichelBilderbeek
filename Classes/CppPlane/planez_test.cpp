@@ -17,12 +17,166 @@ void ribi::PlaneZ::Test() noexcept
   TRACE("Starting ribi::PlaneZ::Test");
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
   const bool verbose = false;
+  const auto series = GetTestSeries();
+
   if (verbose) { TRACE("Default construction"); }
   {
     const PlaneZ p;
     assert(!p.ToFunction().empty());
     assert(!p.GetCoefficients().empty());
   }
+
+  if (verbose) TRACE("PlaneZ, Z = 5");
+  {
+    const Point3D p1( 2.0, 3.0,5.0);
+    const Point3D p2( 7.0,11.0,5.0);
+    const Point3D p3(13.0,17.0,5.0);
+    const PlaneZ p(p1,p2,p3);
+    assert(
+      !p.CalcProjection(
+        {
+          Point3D(0.0,0.0,1.0),
+          Point3D(1.0,0.0,0.0),
+          Point3D(1.0,1.0,0.0)
+        }
+      ).empty()
+    );
+  }
+
+  //IsInPlane for Z=0 plane
+  if (verbose) TRACE("PlaneZ, preparation for Plane::CanCalcZ and Plane::IsInPlane, Z = 0 plane, from 1.0 coordinat");
+  {
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,1.0,0.0);
+    const Point3D p3(1.0,0.0,0.0);
+    const PlaneZ p(p1,p2,p3);
+    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+  }
+  if (verbose) TRACE("PlaneZ, preparation for Plane::CanCalcZ and Plane::IsInPlane, Z = 0 plane, from smallest possible coordinat");
+  {
+    const double i = std::numeric_limits<double>::denorm_min();
+    assert(i > 0.0);
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,  i,0.0);
+    const Point3D p3(  i,0.0,0.0);
+    const PlaneZ p(p1,p2,p3);
+    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+
+  }
+  if (verbose) TRACE("PlaneZ, preparation for Plane::CanCalcZ and Plane::IsInPlane, Z = 0 plane, from biggest possible coordinat");
+  {
+    const double i = std::numeric_limits<double>::max();
+    assert(i > 0.0);
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,  i,0.0);
+    const Point3D p3(  i,0.0,0.0);
+    const PlaneZ p(p1,p2,p3);
+    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+  }
+  if (verbose) TRACE("PlaneZ, preparation for Plane::CanCalcZ and Plane::IsInPlane, Z = 0 plane, zooming in");
+  {
+    for (const double i:series)
+    {
+      if (i == 0.0) continue;
+      assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
+      const Point3D p1(0.0,0.0,0.0);
+      const Point3D p2(0.0,  i,0.0);
+      const Point3D p3(  i,0.0,0.0);
+      const PlaneZ p(p1,p2,p3);
+      for (const double j:series)
+      {
+        assert(p.IsInPlane(Point3D(0.0,0.0,0.0)));
+        assert(p.IsInPlane(Point3D(  j,  j,0.0)));
+        assert(p.IsInPlane(Point3D(  j, -j,0.0)));
+        assert(p.IsInPlane(Point3D( -j,  j,0.0)));
+        assert(p.IsInPlane(Point3D( -j, -j,0.0)));
+      }
+    }
+  }
+  /*
+
+    |    /#/##########
+    |   B#/###########
+    |  /#/############
+    | /#/#############
+    |/#/##############
+    A-------C--------- Z = z
+    |/
+  --O----------------- Z = 0
+   /|
+
+
+  */
+  if (verbose) TRACE("PlaneZ, preparation for Plane::CanCalcZ and Plane::IsInPlane, Z = z plane, zooming in");
+  {
+    //The height of the plane
+    for (const double z:series)
+    {
+      //The distance from the origin, will be used by the two construction points
+      for (const double i:series)
+      {
+        if (i == 0.0) continue;
+        assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
+        const Point3D p1(0.0,0.0,z);
+        const Point3D p2(0.0,  i,z);
+        const Point3D p3(  i,0.0,z);
+        const PlaneZ p(p1,p2,p3);
+        //The distance (actually, half the Manhattan distance) from the origin,
+        //will be used by points tested to be in this plane
+        for (const double j:series)
+        {
+          if (!p.IsInPlane(Point3D(j,j,z)))
+          {
+            std::stringstream s;
+            s << "Warning: coordinat " << Geometry().ToStr(Point3D(j,j,z))
+              << " is determined not to be in a PlaneZ that was created from points "
+              << Geometry().ToStr(p1) << ", "
+              << Geometry().ToStr(p2) << " and "
+              << Geometry().ToStr(p3) << "."
+            ;
+            TRACE(s.str());
+            continue;
+          }
+          if (!p.IsInPlane(Point3D(j,j,z)))
+          {
+            TRACE("ERROR");
+            TRACE(z);
+            TRACE(i);
+            TRACE(j);
+            TRACE(p.CalcErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p.CalcMaxErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p);
+
+            TRACE("AGAIN");
+            TRACE(z);
+            TRACE(i);
+            TRACE(j);
+            TRACE(p.CalcErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p.CalcMaxErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p);
+
+          }
+          assert(p.IsInPlane(Point3D(  j,  j,z)));
+          assert(p.IsInPlane(Point3D(  j, -j,z)));
+          assert(p.IsInPlane(Point3D( -j,  j,z)));
+          assert(p.IsInPlane(Point3D( -j, -j,z)));
+        }
+      }
+    }
+  }
+
   if (verbose) { TRACE("Check formulas"); }
   {
     const double p1_x { 1.0 };
@@ -103,8 +257,6 @@ void ribi::PlaneZ::Test() noexcept
     //  -B = 3.0 => B = -3.0
     //   C = 1.0
     //   D = 5.0
-
-
     const Point3D p1(1.0,1.0,10.0);
     const Point3D p2(1.0,2.0,13.0);
     const Point3D p3(2.0,1.0,12.0);
@@ -209,6 +361,7 @@ void ribi::PlaneZ::Test() noexcept
     assert(a.ToFunction() == PlaneZ(p4,p2,p3).ToFunction());
     assert(a.ToFunction() == PlaneZ(p4,p3,p1).ToFunction());
     assert(a.ToFunction() == PlaneZ(p4,p3,p2).ToFunction());
+
   }
   if (verbose) { TRACE("GetProjection, for Z = 0 plane"); }
   {
@@ -288,6 +441,7 @@ void ribi::PlaneZ::Test() noexcept
     assert(std::abs(get<1>(v[2]) - 1.0 ) < 0.001);
 
   }
+
   TRACE("Finished ribi::PlaneZ::Test successfully");
 }
 #endif

@@ -1052,6 +1052,21 @@ ribi::Geometry::Polygon ribi::Geometry::ToPolygon(const Linestring& linestring) 
   return polygon;
 }
 
+std::string ribi::Geometry::ToStr(const apfloat& f) const noexcept
+{
+  try
+  {
+    std::stringstream s;
+    s << f;
+    return s.str();
+  }
+  catch (...)
+  {
+    assert(!"Should not get here");
+    throw;
+  }
+}
+
 std::string ribi::Geometry::ToStr(const Coordinat2D& p) const noexcept
 {
   std::stringstream s;

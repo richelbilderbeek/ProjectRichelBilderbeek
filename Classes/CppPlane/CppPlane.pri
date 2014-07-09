@@ -8,7 +8,8 @@ SOURCES += \
     ../../Classes/CppPlane/planey.cpp \
     ../../Classes/CppPlane/plane_test.cpp \
     ../../Classes/CppPlane/planez_test.cpp \
-    ../../Classes/CppPlane/planey_test.cpp
+    ../../Classes/CppPlane/planey_test.cpp \
+    ../../Classes/CppPlane/planex_test.cpp
 
 HEADERS  += \
     ../../Classes/CppPlane/plane.h \
