@@ -131,8 +131,8 @@ struct PlaneZ
   //m_coefficients.size == 4
   const Doubles m_coefficients;
 
-  ///Calculates m_min_error
-  static double CalcMinError() noexcept;
+  ///Calculates m_min_error per GetFunctionC()
+  static double CalcMinErrorPerC() noexcept;
 
   static Doubles CalcPlaneZ(
     const Coordinat3D& p1,

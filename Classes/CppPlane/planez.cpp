@@ -110,11 +110,12 @@ apfloat ribi::PlaneZ::CalcError(const Coordinat3D& coordinat) const noexcept
   return error;
 }
 
-double ribi::PlaneZ::CalcMinError() noexcept
+double ribi::PlaneZ::CalcMinErrorPerC() noexcept
 {
   //PlaneZ calculates its own tolerance for errors, by measuring it
-  static double min_error = 0.0;
-  if (min_error > 0.0) return min_error;
+  static double min_error_per_c_as_double = 0.0;
+  if (min_error_per_c_as_double > 0.0) return min_error_per_c_as_double;
+  apfloat min_error_per_c = 0.0;
 
   const double min_x = 1.0e-16; //std::numeric_limits<double>::denorm_min()
   const double max_x = 1.0e+16; //std::numeric_limits<double>::max()
@@ -123,12 +124,12 @@ double ribi::PlaneZ::CalcMinError() noexcept
   const double min_z = 1.0e-16; //std::numeric_limits<double>::denorm_min()
   const double max_z = 1.0e+16; //std::numeric_limits<double>::max()
 
-  for (double z = min_z; z < max_z; z *=10.0)
+  for (double z = min_z; z < max_z; z*=10.0)
   {
-    for (double y = min_y; y < max_y; y *=10.0)
+    for (double y = min_y; y < max_y; y*=10.0)
     {
       //TRACE(y);
-      for (double x = min_x; x < max_x; x *=10.0)
+      for (double x = min_x; x < max_x; x*=10.0)
       //const double x = y;
       {
         const Coordinat3D p1(0.0,0.0,z);
@@ -137,10 +138,17 @@ double ribi::PlaneZ::CalcMinError() noexcept
         const PlaneZ p(p1,p2,p3);
         for (const auto p4: { Coordinat3D(0.0,0.0,z), Coordinat3D(x,0.0,z), Coordinat3D(0.0,y,z) } )
         {
-          const double e = Geometry().ToDoubleSafe(p.CalcError(p4));
-          if (e > min_error)
+          const auto error = p.CalcError(p4);
+          const auto error_per_c = error / p.GetFunctionC();
+          if (error_per_c > min_error_per_c)
           {
-            min_error = e;
+            min_error_per_c = error_per_c;
+            TRACE(min_error_per_c);
+            TRACE(x);
+            TRACE(y);
+            TRACE(z);
+            TRACE(p.GetFunctionC());
+            //TRACE(apfloat(min_error_per_c) / p.GetFunctionC());
             //std::stringstream s;
             //s << Geometry().ToStr(p4) << " " << min_error;
             //TRACE(s.str());
@@ -148,11 +156,13 @@ double ribi::PlaneZ::CalcMinError() noexcept
         }
       }
     }
-    TRACE(min_error / z);
+    //TRACE(min_error_per_c);
   }
-  TRACE(min_error);
+  TRACE(min_error_per_c);
+  min_error_per_c_as_double = Geometry().ToDoubleSafe(min_error_per_c);
+  TRACE(min_error_per_c_as_double);
   assert(1==2);
-  return min_error;
+  return min_error_per_c_as_double;
 }
 
 apfloat ribi::PlaneZ::CalcMaxError(const Coordinat3D& coordinat) const noexcept
@@ -166,7 +176,7 @@ apfloat ribi::PlaneZ::CalcMaxError(const Coordinat3D& coordinat) const noexcept
   const auto b = coefficients[1];
   const auto c = coefficients[2];
   //const apfloat e = boost::numeric::bounds<double>::smallest();
-  const apfloat e = CalcMinError(); //std::sqrt(std::numeric_limits<double>::epsilon());
+  const apfloat e = CalcMinErrorPerC(); //std::sqrt(std::numeric_limits<double>::epsilon());
   assert(e > 0.0);
 
   if (verbose)
