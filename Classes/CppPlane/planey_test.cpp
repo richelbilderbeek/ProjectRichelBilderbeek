@@ -15,9 +15,6 @@ void ribi::PlaneY::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PlaneY::Test");
-  typedef apfloat Apfloat;
-  typedef boost::geometry::model::point<Apfloat,3,boost::geometry::cs::cartesian> Point3D;
-  typedef boost::geometry::model::d2::point_xy<Apfloat> Point2D;
   using boost::geometry::get;
 
   const bool verbose = false;
@@ -45,12 +42,12 @@ void ribi::PlaneY::Test() noexcept
   / |                           |
 
     */
-    const Point3D a(0.0,0.0,1.0);
-    const Point3D b(0.0,0.0,0.0);
-    const Point3D c(1.0,0.0,0.0);
+    const Coordinat3D a(0.0,0.0,1.0);
+    const Coordinat3D b(0.0,0.0,0.0);
+    const Coordinat3D c(1.0,0.0,0.0);
     assert(PlaneY().ToFunction() == PlaneY(a,b,c).ToFunction()
       && "The three points are on the Y = 0 plane");
-    const std::vector<Point2D> v { PlaneY().CalcProjection( { a,b,c } ) };
+    const std::vector<Coordinat2D> v { PlaneY().CalcProjection( { a,b,c } ) };
     assert(v.size() == 3);
     assert(abs(get<0>(v[0]) - 0.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
     assert(abs(get<1>(v[0]) - 1.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
@@ -166,9 +163,9 @@ void ribi::PlaneY::Test() noexcept
   {
 
 
-    const Point3D p1(1.0,2.0,3.0);
-    const Point3D p2(2.0,5.0,8.0);
-    const Point3D p3(3.0,7.0,11.0);
+    const Coordinat3D p1(1.0,2.0,3.0);
+    const Coordinat3D p2(2.0,5.0,8.0);
+    const Coordinat3D p3(3.0,7.0,11.0);
     PlaneY p(p1,p2,p3);
     assert( abs(p.CalcY(1.0, 3.0)- 2.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
     assert( abs(p.CalcY(2.0, 8.0)- 5.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
@@ -191,9 +188,9 @@ void ribi::PlaneY::Test() noexcept
   {
 
 
-    const Point3D p1( 2.0,3.0, 5.0);
-    const Point3D p2( 7.0,3.0,11.0);
-    const Point3D p3(13.0,3.0,17.0);
+    const Coordinat3D p1( 2.0,3.0, 5.0);
+    const Coordinat3D p2( 7.0,3.0,11.0);
+    const Coordinat3D p3(13.0,3.0,17.0);
     PlaneY p(p1,p2,p3);
     assert( abs(p.CalcY(1.0,2.0)-3.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
     assert( abs(p.CalcY(3.0,5.0)-3.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
@@ -217,13 +214,13 @@ void ribi::PlaneY::Test() noexcept
     const double z3 { 13.0 };
     const double x4 { 17.0 };
     const double z4 { 29.0 };
-    const Point3D p1(x1,f(x1,z1),z1);
-    const Point3D p2(x2,f(x2,z2),z2);
-    const Point3D p3(x3,f(x3,z3),z3);
+    const Coordinat3D p1(x1,f(x1,z1),z1);
+    const Coordinat3D p2(x2,f(x2,z2),z2);
+    const Coordinat3D p3(x3,f(x3,z3),z3);
     const PlaneY a(p1,p2,p3);
     //assert(a.ToFunction() == "y=(2*x) + (3*z) + 5");
     assert(!a.ToFunction().empty());
-    const Point3D p4(x4,f(x4,z4),z4);
+    const Coordinat3D p4(x4,f(x4,z4),z4);
     assert(a.ToFunction() == PlaneY(p1,p2,p4).ToFunction());
     assert(a.ToFunction() == PlaneY(p1,p3,p4).ToFunction());
     assert(a.ToFunction() == PlaneY(p1,p4,p3).ToFunction());
@@ -266,12 +263,12 @@ void ribi::PlaneY::Test() noexcept
   / |                           |
 
     */
-    const std::vector<Point2D> v {
+    const std::vector<Coordinat2D> v {
       PlaneY().CalcProjection(
         {
-          Point3D(0.0,0.0,1.0),
-          Point3D(1.0,0.0,0.0),
-          Point3D(1.0,1.0,0.0)
+          Coordinat3D(0.0,0.0,1.0),
+          Coordinat3D(1.0,0.0,0.0),
+          Coordinat3D(1.0,1.0,0.0)
         }
       )
     };

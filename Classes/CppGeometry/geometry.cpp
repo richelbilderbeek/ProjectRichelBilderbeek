@@ -1132,7 +1132,7 @@ ribi::Geometry::Polygon ribi::Geometry::ToPolygon(const Linestring& linestring) 
   return polygon;
 }
 
-std::string ribi::Geometry::ToStr(const apfloat& f) const noexcept
+std::string ribi::Geometry::ToStrSafe(const apfloat& f) const noexcept
 {
   try
   {
@@ -1140,10 +1140,11 @@ std::string ribi::Geometry::ToStr(const apfloat& f) const noexcept
     s << f;
     return s.str();
   }
-  catch (...)
+  catch (boost::bad_lexical_cast&)
   {
-    assert(!"Should not get here");
-    throw;
+    std::stringstream s;
+    s << ToDoubleSafe(f);
+    return s.str();
   }
 }
 
@@ -1151,8 +1152,8 @@ std::string ribi::Geometry::ToStr(const ApCoordinat2D& p) const noexcept
 {
   std::stringstream s;
   s << '('
-    << ToStr(boost::geometry::get<0>(p)) << ','
-    << ToStr(boost::geometry::get<1>(p))
+    << ToStrSafe(boost::geometry::get<0>(p)) << ','
+    << ToStrSafe(boost::geometry::get<1>(p))
     << ')'
   ;
   return s.str();
@@ -1162,9 +1163,9 @@ std::string ribi::Geometry::ToStr(const ApCoordinat3D& p) const noexcept
 {
   std::stringstream s;
   s << '('
-    << ToStr(boost::geometry::get<0>(p)) << ','
-    << ToStr(boost::geometry::get<1>(p)) << ','
-    << ToStr(boost::geometry::get<2>(p))
+    << ToStrSafe(boost::geometry::get<0>(p)) << ','
+    << ToStrSafe(boost::geometry::get<1>(p)) << ','
+    << ToStrSafe(boost::geometry::get<2>(p))
     << ')'
   ;
   return s.str();

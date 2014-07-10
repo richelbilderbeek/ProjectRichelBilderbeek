@@ -22,8 +22,6 @@ void ribi::Plane::Test() noexcept
   }
   TRACE("Starting ribi::Plane::Test");
   const bool verbose = true;
-  typedef apfloat Apfloat;
-  typedef boost::geometry::model::point<Apfloat,3,boost::geometry::cs::cartesian> Point3D;
   using boost::geometry::get;
   Container();
   Geometry();
@@ -37,9 +35,9 @@ void ribi::Plane::Test() noexcept
 
   if (verbose) TRACE("Plane that can be expressed in all three forms");
   {
-    const Point3D p1( 1.0, 2.0,3.0);
-    const Point3D p2( 4.0, 6.0,9.0);
-    const Point3D p3(12.0,11.0,9.0);
+    const Coordinat3D p1( 1.0, 2.0,3.0);
+    const Coordinat3D p2( 4.0, 6.0,9.0);
+    const Coordinat3D p3(12.0,11.0,9.0);
     const Plane p(p1,p2,p3);
     assert(p.CanCalcX());
     assert(p.CanCalcY());
@@ -47,9 +45,9 @@ void ribi::Plane::Test() noexcept
     assert(
       !p.CalcProjection(
         {
-          Point3D(0.0,0.0,1.0),
-          Point3D(1.0,0.0,0.0),
-          Point3D(1.0,1.0,0.0)
+          Coordinat3D(0.0,0.0,1.0),
+          Coordinat3D(1.0,0.0,0.0),
+          Coordinat3D(1.0,1.0,0.0)
         }
       ).empty()
     );
@@ -57,9 +55,9 @@ void ribi::Plane::Test() noexcept
   }
   if (verbose) TRACE("Plane X = 2");
   {
-    const Point3D p1(2.0, 2.0,3.0);
-    const Point3D p2(2.0, 6.0,9.0);
-    const Point3D p3(2.0,11.0,9.0);
+    const Coordinat3D p1(2.0, 2.0,3.0);
+    const Coordinat3D p2(2.0, 6.0,9.0);
+    const Coordinat3D p3(2.0,11.0,9.0);
     const Plane p(p1,p2,p3);
     assert(p.CanCalcX());
     assert(!p.CanCalcY());
@@ -67,18 +65,18 @@ void ribi::Plane::Test() noexcept
     assert(
       !p.CalcProjection(
         {
-          Point3D(0.0,0.0,1.0),
-          Point3D(1.0,0.0,0.0),
-          Point3D(1.0,1.0,0.0)
+          Coordinat3D(0.0,0.0,1.0),
+          Coordinat3D(1.0,0.0,0.0),
+          Coordinat3D(1.0,1.0,0.0)
         }
       ).empty()
     );
   }
   if (verbose) TRACE("Plane X = 123");
   {
-    const Point3D p1(123.0, 2.0,3.0);
-    const Point3D p2(123.0, 6.0,9.0);
-    const Point3D p3(123.0,11.0,9.0);
+    const Coordinat3D p1(123.0, 2.0,3.0);
+    const Coordinat3D p2(123.0, 6.0,9.0);
+    const Coordinat3D p3(123.0,11.0,9.0);
     const Plane p(p1,p2,p3);
     assert(p.CanCalcX());
     assert(!p.CanCalcY());
@@ -86,18 +84,18 @@ void ribi::Plane::Test() noexcept
     assert(
       !p.CalcProjection(
         {
-          Point3D(0.0,0.0,1.0),
-          Point3D(1.0,0.0,0.0),
-          Point3D(1.0,1.0,0.0)
+          Coordinat3D(0.0,0.0,1.0),
+          Coordinat3D(1.0,0.0,0.0),
+          Coordinat3D(1.0,1.0,0.0)
         }
       ).empty()
     );
   }
   if (verbose) TRACE("Plane Y = 3");
   {
-    const Point3D p1( 2.0, 3.0, 5.0);
-    const Point3D p2( 7.0, 3.0, 9.0);
-    const Point3D p3(11.0,3.0,13.0);
+    const Coordinat3D p1( 2.0, 3.0, 5.0);
+    const Coordinat3D p2( 7.0, 3.0, 9.0);
+    const Coordinat3D p3(11.0,3.0,13.0);
     const Plane p(p1,p2,p3);
 
     assert(p.CanCalcY());
@@ -106,18 +104,18 @@ void ribi::Plane::Test() noexcept
     assert(
       !p.CalcProjection(
         {
-          Point3D(0.0,0.0,1.0),
-          Point3D(1.0,0.0,0.0),
-          Point3D(1.0,1.0,0.0)
+          Coordinat3D(0.0,0.0,1.0),
+          Coordinat3D(1.0,0.0,0.0),
+          Coordinat3D(1.0,1.0,0.0)
         }
       ).empty()
     );
   }
   if (verbose) TRACE("Plane Z = 5");
   {
-    const Point3D p1( 2.0, 3.0,5.0);
-    const Point3D p2( 7.0,11.0,5.0);
-    const Point3D p3(13.0,17.0,5.0);
+    const Coordinat3D p1( 2.0, 3.0,5.0);
+    const Coordinat3D p2( 7.0,11.0,5.0);
+    const Coordinat3D p3(13.0,17.0,5.0);
     const Plane p(p1,p2,p3);
     assert(p.CanCalcZ());
     assert(!p.CanCalcX());
@@ -125,9 +123,9 @@ void ribi::Plane::Test() noexcept
     assert(
       !p.CalcProjection(
         {
-          Point3D(0.0,0.0,1.0),
-          Point3D(1.0,0.0,0.0),
-          Point3D(1.0,1.0,0.0)
+          Coordinat3D(0.0,0.0,1.0),
+          Coordinat3D(1.0,0.0,0.0),
+          Coordinat3D(1.0,1.0,0.0)
         }
       ).empty()
     );
@@ -136,56 +134,56 @@ void ribi::Plane::Test() noexcept
   //IsInPlane for Z=0 plane
   if (verbose) TRACE("CanCalcZ and IsInPlane, Z = 0 plane, from 1.0 coordinat");
   {
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,1.0,0.0);
-    const Point3D p3(1.0,0.0,0.0);
+    const Coordinat3D p1(0.0,0.0,0.0);
+    const Coordinat3D p2(0.0,1.0,0.0);
+    const Coordinat3D p3(1.0,0.0,0.0);
     const Plane p(p1,p2,p3);
     assert(!p.CanCalcX());
     assert(!p.CanCalcY());
     assert( p.CanCalcZ());
 
-    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
-    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
-    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
-    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
-    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 1.0, 1.0,0.0)));
   }
   if (verbose) TRACE("CanCalcZ and IsInPlane, Z = 0 plane, from smallest possible coordinat");
   {
     const double i = std::numeric_limits<double>::denorm_min();
     assert(i > 0.0);
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,  i,0.0);
-    const Point3D p3(  i,0.0,0.0);
+    const Coordinat3D p1(0.0,0.0,0.0);
+    const Coordinat3D p2(0.0,  i,0.0);
+    const Coordinat3D p3(  i,0.0,0.0);
     const Plane p(p1,p2,p3);
     assert(!p.CanCalcX());
     assert(!p.CanCalcY());
     assert( p.CanCalcZ());
 
-    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
-    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
-    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
-    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
-    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 1.0, 1.0,0.0)));
 
   }
   if (verbose) TRACE("CanCalcZ, Z = 0 plane, from biggest possible coordinat");
   {
     const double i = std::numeric_limits<double>::max();
     assert(i > 0.0);
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,  i,0.0);
-    const Point3D p3(  i,0.0,0.0);
+    const Coordinat3D p1(0.0,0.0,0.0);
+    const Coordinat3D p2(0.0,  i,0.0);
+    const Coordinat3D p3(  i,0.0,0.0);
     const Plane p(p1,p2,p3);
     assert(!p.CanCalcX());
     assert(!p.CanCalcY());
     assert( p.CanCalcZ());
 
-    assert( p.IsInPlane(Point3D( 0.0, 0.0,0.0)));
-    assert( p.IsInPlane(Point3D(-1.0,-1.0,0.0)));
-    assert( p.IsInPlane(Point3D( 1.0,-1.0,0.0)));
-    assert( p.IsInPlane(Point3D(-1.0, 1.0,0.0)));
-    assert( p.IsInPlane(Point3D( 1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 0.0, 0.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D(-1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 1.0,-1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D(-1.0, 1.0,0.0)));
+    assert( p.IsInPlane(Coordinat3D( 1.0, 1.0,0.0)));
   }
   if (verbose) TRACE("CanCalcZ, Z = 0 plane, zooming in");
   {
@@ -193,9 +191,9 @@ void ribi::Plane::Test() noexcept
     {
       if (i == 0.0) continue;
       assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
-      const Point3D p1(0.0,0.0,0.0);
-      const Point3D p2(0.0,  i,0.0);
-      const Point3D p3(  i,0.0,0.0);
+      const Coordinat3D p1(0.0,0.0,0.0);
+      const Coordinat3D p2(0.0,  i,0.0);
+      const Coordinat3D p3(  i,0.0,0.0);
       const Plane p(p1,p2,p3);
       assert(!p.CanCalcX());
       assert(!p.CanCalcY());
@@ -203,11 +201,11 @@ void ribi::Plane::Test() noexcept
 
       for (const double j:series)
       {
-        assert(p.IsInPlane(Point3D(0.0,0.0,0.0)));
-        assert(p.IsInPlane(Point3D(  j,  j,0.0)));
-        assert(p.IsInPlane(Point3D(  j, -j,0.0)));
-        assert(p.IsInPlane(Point3D( -j,  j,0.0)));
-        assert(p.IsInPlane(Point3D( -j, -j,0.0)));
+        assert(p.IsInPlane(Coordinat3D(0.0,0.0,0.0)));
+        assert(p.IsInPlane(Coordinat3D(  j,  j,0.0)));
+        assert(p.IsInPlane(Coordinat3D(  j, -j,0.0)));
+        assert(p.IsInPlane(Coordinat3D( -j,  j,0.0)));
+        assert(p.IsInPlane(Coordinat3D( -j, -j,0.0)));
       }
     }
   }
@@ -233,9 +231,9 @@ void ribi::Plane::Test() noexcept
       {
         if (i == 0.0) continue;
         assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
-        const Point3D p1(0.0,0.0,z);
-        const Point3D p2(0.0,  i,z);
-        const Point3D p3(  i,0.0,z);
+        const Coordinat3D p1(0.0,0.0,z);
+        const Coordinat3D p2(0.0,  i,z);
+        const Coordinat3D p3(  i,0.0,z);
         const Plane p(p1,p2,p3);
         assert(!p.CanCalcX());
         assert(!p.CanCalcY());
@@ -250,10 +248,10 @@ void ribi::Plane::Test() noexcept
 
         for (const double j:series)
         {
-          if (!p.IsInPlane(Point3D(j,j,z)))
+          if (!p.IsInPlane(Coordinat3D(j,j,z)))
           {
             std::stringstream s;
-            s << "Warning: coordinat " << Geometry().ToStr(Point3D(j,j,z))
+            s << "Warning: coordinat " << Geometry().ToStr(Coordinat3D(j,j,z))
               << " is determined not to be in a Plane that was created from points "
               << Geometry().ToStr(p1) << ", "
               << Geometry().ToStr(p2) << " and "
@@ -262,29 +260,29 @@ void ribi::Plane::Test() noexcept
             TRACE(s.str());
             continue;
           }
-          if (!p.IsInPlane(Point3D(j,j,z)))
+          if (!p.IsInPlane(Coordinat3D(j,j,z)))
           {
             TRACE("ERROR");
             TRACE(z);
             TRACE(i);
             TRACE(j);
-            TRACE(p.CalcErrorAsApfloat(Point3D(j,j,z)));
-            TRACE(p.CalcMaxErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p.CalcError(Coordinat3D(j,j,z)));
+            TRACE(p.CalcMaxError(Coordinat3D(j,j,z)));
             TRACE(p);
 
             TRACE("AGAIN");
             TRACE(z);
             TRACE(i);
             TRACE(j);
-            TRACE(p.CalcErrorAsApfloat(Point3D(j,j,z)));
-            TRACE(p.CalcMaxErrorAsApfloat(Point3D(j,j,z)));
+            TRACE(p.CalcError(Coordinat3D(j,j,z)));
+            TRACE(p.CalcMaxError(Coordinat3D(j,j,z)));
             TRACE(p);
 
           }
-          assert(p.IsInPlane(Point3D(  j,  j,z)));
-          assert(p.IsInPlane(Point3D(  j, -j,z)));
-          assert(p.IsInPlane(Point3D( -j,  j,z)));
-          assert(p.IsInPlane(Point3D( -j, -j,z)));
+          assert(p.IsInPlane(Coordinat3D(  j,  j,z)));
+          assert(p.IsInPlane(Coordinat3D(  j, -j,z)));
+          assert(p.IsInPlane(Coordinat3D( -j,  j,z)));
+          assert(p.IsInPlane(Coordinat3D( -j, -j,z)));
         }
       }
     }
@@ -306,9 +304,9 @@ void ribi::Plane::Test() noexcept
 
   if (verbose) TRACE("IsInPlane, X = 0 plane, from 1.0 coordinats");
   {
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,0.0,1.0);
-    const Point3D p3(0.0,1.0,0.0);
+    const Coordinat3D p1(0.0,0.0,0.0);
+    const Coordinat3D p2(0.0,0.0,1.0);
+    const Coordinat3D p3(0.0,1.0,0.0);
     const Plane p(p1,p2,p3);
     assert( p.CanCalcX());
     assert(!p.CanCalcY());
@@ -316,19 +314,19 @@ void ribi::Plane::Test() noexcept
 
     for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
     {
-      assert(p.IsInPlane(Point3D(0.0, i, i)));
-      assert(p.IsInPlane(Point3D(0.0, i,-i)));
-      assert(p.IsInPlane(Point3D(0.0,-i, i)));
-      assert(p.IsInPlane(Point3D(0.0,-i,-i)));
+      assert(p.IsInPlane(Coordinat3D(0.0, i, i)));
+      assert(p.IsInPlane(Coordinat3D(0.0, i,-i)));
+      assert(p.IsInPlane(Coordinat3D(0.0,-i, i)));
+      assert(p.IsInPlane(Coordinat3D(0.0,-i,-i)));
     }
   }
   if (verbose) TRACE("IsInPlane, X = 0 plane, from smallest possible coordinats");
   {
     const double i = std::numeric_limits<double>::denorm_min();
     assert(i > 0.0);
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,0.0,i);
-    const Point3D p3(0.0,i,0.0);
+    const Coordinat3D p1(0.0,0.0,0.0);
+    const Coordinat3D p2(0.0,0.0,i);
+    const Coordinat3D p3(0.0,i,0.0);
     const Plane p(p1,p2,p3);
     assert( p.CanCalcX());
     assert(!p.CanCalcY());
@@ -340,27 +338,27 @@ void ribi::Plane::Test() noexcept
     {
       if (i == 0.0) continue;
       assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
-      const Point3D p1(0.0,0.0,0.0);
-      const Point3D p2(0.0,0.0,  i);
-      const Point3D p3(0.0,  i,0.0);
+      const Coordinat3D p1(0.0,0.0,0.0);
+      const Coordinat3D p2(0.0,0.0,  i);
+      const Coordinat3D p3(0.0,  i,0.0);
       const Plane p(p1,p2,p3);
 
       for (const double j:series)
       {
-        if (!p.IsInPlane(Point3D(0.0, j, j)))
+        if (!p.IsInPlane(Coordinat3D(0.0, j, j)))
         {
           TRACE(i);
           TRACE(j);
-          TRACE(p.CalcErrorAsApfloat(Point3D(0.0, j, j)));
-          TRACE(p.CalcMaxErrorAsApfloat(Point3D(0.0, j, j)));
+          TRACE(p.CalcError(Coordinat3D(0.0, j, j)));
+          TRACE(p.CalcMaxError(Coordinat3D(0.0, j, j)));
           if (p.CanCalcX()) { TRACE(Container().ToStr(p.GetCoefficientsX())); }
           if (p.CanCalcY()) { TRACE(Container().ToStr(p.GetCoefficientsY())); }
           if (p.CanCalcZ()) { TRACE(Container().ToStr(p.GetCoefficientsZ())); }
         }
-        assert(p.IsInPlane(Point3D(0.0, j, j)));
-        assert(p.IsInPlane(Point3D(0.0, j,-j)));
-        assert(p.IsInPlane(Point3D(0.0,-j, j)));
-        assert(p.IsInPlane(Point3D(0.0,-j,-j)));
+        assert(p.IsInPlane(Coordinat3D(0.0, j, j)));
+        assert(p.IsInPlane(Coordinat3D(0.0, j,-j)));
+        assert(p.IsInPlane(Coordinat3D(0.0,-j, j)));
+        assert(p.IsInPlane(Coordinat3D(0.0,-j,-j)));
       }
     }
   }
@@ -384,9 +382,9 @@ void ribi::Plane::Test() noexcept
 
   if (verbose) TRACE("IsInPlane, Y = 0 plane, from 1.0 coordinats");
   {
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,0.0,1.0);
-    const Point3D p3(1.0,0.0,0.0);
+    const Coordinat3D p1(0.0,0.0,0.0);
+    const Coordinat3D p2(0.0,0.0,1.0);
+    const Coordinat3D p3(1.0,0.0,0.0);
     const Plane p(p1,p2,p3);
     assert(!p.CanCalcX());
     assert( p.CanCalcY());
@@ -394,19 +392,19 @@ void ribi::Plane::Test() noexcept
 
     for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
     {
-      assert(p.IsInPlane(Point3D( i,0.0, i)));
-      assert(p.IsInPlane(Point3D( i,0.0,-i)));
-      assert(p.IsInPlane(Point3D(-i,0.0, i)));
-      assert(p.IsInPlane(Point3D(-i,0.0,-i)));
+      assert(p.IsInPlane(Coordinat3D( i,0.0, i)));
+      assert(p.IsInPlane(Coordinat3D( i,0.0,-i)));
+      assert(p.IsInPlane(Coordinat3D(-i,0.0, i)));
+      assert(p.IsInPlane(Coordinat3D(-i,0.0,-i)));
     }
   }
   if (verbose) TRACE("IsInPlane, Y = 0 plane, from smallest possible coordinats");
   {
     const double i = std::numeric_limits<double>::denorm_min();
     assert(i > 0.0);
-    const Point3D p1(0.0,0.0,0.0);
-    const Point3D p2(0.0,0.0,  i);
-    const Point3D p3(  i,0.0,0.0);
+    const Coordinat3D p1(0.0,0.0,0.0);
+    const Coordinat3D p2(0.0,0.0,  i);
+    const Coordinat3D p3(  i,0.0,0.0);
     const Plane p(p1,p2,p3);
     assert(!p.CanCalcX());
     assert( p.CanCalcY());
@@ -418,27 +416,27 @@ void ribi::Plane::Test() noexcept
     {
       if (i == 0.0) continue;
       assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
-      const Point3D p1(0.0,0.0,0.0);
-      const Point3D p2(0.0,0.0,  i);
-      const Point3D p3(  i,0.0,0.0);
+      const Coordinat3D p1(0.0,0.0,0.0);
+      const Coordinat3D p2(0.0,0.0,  i);
+      const Coordinat3D p3(  i,0.0,0.0);
       const Plane p(p1,p2,p3);
 
       for (const double j:series)
       {
-        if (!p.IsInPlane(Point3D(j,0.0, j)))
+        if (!p.IsInPlane(Coordinat3D(j,0.0, j)))
         {
           TRACE(i);
           TRACE(j);
-          TRACE(p.CalcErrorAsApfloat(Point3D(j,0.0, j)));
-          TRACE(p.CalcMaxErrorAsApfloat(Point3D(j,0.0,j)));
+          TRACE(p.CalcError(Coordinat3D(j,0.0, j)));
+          TRACE(p.CalcMaxError(Coordinat3D(j,0.0,j)));
           if (p.CanCalcX()) { TRACE(Container().ToStr(p.GetCoefficientsX())); }
           if (p.CanCalcY()) { TRACE(Container().ToStr(p.GetCoefficientsY())); }
           if (p.CanCalcZ()) { TRACE(Container().ToStr(p.GetCoefficientsZ())); }
         }
-        assert(p.IsInPlane(Point3D( j,0.0, j)));
-        assert(p.IsInPlane(Point3D( j,0.0,-j)));
-        assert(p.IsInPlane(Point3D(-j,0.0, j)));
-        assert(p.IsInPlane(Point3D(-j,0.0,-j)));
+        assert(p.IsInPlane(Coordinat3D( j,0.0, j)));
+        assert(p.IsInPlane(Coordinat3D( j,0.0,-j)));
+        assert(p.IsInPlane(Coordinat3D(-j,0.0, j)));
+        assert(p.IsInPlane(Coordinat3D(-j,0.0,-j)));
       }
     }
   }
@@ -469,27 +467,32 @@ void ribi::Plane::Test() noexcept
       TRACE(slope);
       const double slope_less = slope * 0.999999;
       const double slope_more = slope * 1.000001;
-      assert(slope_less < slope);
-      assert(slope_more > slope);
-      const Point3D p1(0.0,0.0,0.0);
-      const Point3D p2(0.0,1.0,0.0);
-      const Point3D p3(1.0,0.0,slope);
-      const Plane p(p1,p2,p3);
-      assert( p.IsInPlane(Point3D( 1.0, 1.0,slope)));
-      if (p.IsInPlane(Point3D( 1.0, 1.0,slope_more)))
-      {
-        TRACE("ERROR");
-        TRACE(p.CalcErrorAsApfloat(Point3D( 1.0, 1.0,slope_more)));
-      }
-      assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_more)));
 
-      if (p.IsInPlane(Point3D(1.0, 1.0,slope_less)))
+      const Coordinat3D p1(0.0,0.0,0.0);
+      const Coordinat3D p2(0.0,1.0,0.0);
+      const Coordinat3D p3(1.0,0.0,slope);
+      const Plane p(p1,p2,p3);
+      assert( p.IsInPlane(Coordinat3D( 1.0, 1.0,slope)));
+
+      if (slope_less < slope) //Not always true, when slope is very small
       {
-        TRACE("ERROR");
-        TRACE(p.CalcErrorAsApfloat(Point3D(1.0, 1.0,slope_less)));
-        TRACE(p.CalcMaxErrorAsApfloat(Point3D(1.0, 1.0,slope_less)));
+        if (p.IsInPlane(Coordinat3D(1.0, 1.0,slope_less)))
+        {
+          TRACE("ERROR");
+          TRACE(p.CalcError(Coordinat3D(1.0, 1.0,slope_less)));
+          TRACE(p.CalcMaxError(Coordinat3D(1.0, 1.0,slope_less)));
+        }
+        assert(!p.IsInPlane(Coordinat3D( 1.0, 1.0,slope_less)));
       }
-      assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_less)));
+      if (slope_more > slope) //Not always true, when slope is very big
+      {
+        if (p.IsInPlane(Coordinat3D( 1.0, 1.0,slope_more)))
+        {
+          TRACE("ERROR");
+          TRACE(p.CalcError(Coordinat3D( 1.0, 1.0,slope_more)));
+        }
+        assert(!p.IsInPlane(Coordinat3D( 1.0, 1.0,slope_more)));
+      }
     }
   }
   //Create plane with different slopes
@@ -529,19 +532,19 @@ void ribi::Plane::Test() noexcept
       }
     )
     {
-      const Point3D p1(0.0,0.0,0.0);
-      const Point3D p2(0.0,0.0,1.0);
-      const Point3D p3(co.first,co.second,0.0);
+      const Coordinat3D p1(0.0,0.0,0.0);
+      const Coordinat3D p2(0.0,0.0,1.0);
+      const Coordinat3D p3(co.first,co.second,0.0);
       const Plane p(p1,p2,p3);
-      assert( p.IsInPlane(Point3D(co.first,co.second,1.0)));
+      assert( p.IsInPlane(Coordinat3D(co.first,co.second,1.0)));
     }
   }
   if (verbose) TRACE("CalcProjection, from a crash in the program");
   {
-    const Point3D p1( 1.0,-0.0,0.0);
-    const Point3D p2(-1.0, 0.0,0.0);
-    const Point3D p3( 1.0,-0.0,1.0);
-    const Point3D p4(-1.0, 0.0,1.0);
+    const Coordinat3D p1( 1.0,-0.0,0.0);
+    const Coordinat3D p2(-1.0, 0.0,0.0);
+    const Coordinat3D p3( 1.0,-0.0,1.0);
+    const Coordinat3D p4(-1.0, 0.0,1.0);
     const Plane p(p1,p2,p3);
 
     assert(p.CanCalcY());
@@ -564,10 +567,10 @@ void ribi::Plane::Test() noexcept
     const double y4 = 2; //left out the '.0' intentionally
     const double z4 = 10; //left out the '.0' intentionally
 
-    const Point3D p1(x1,y1,z1);
-    const Point3D p2(x2,y2,z2);
-    const Point3D p3(x3,y3,z3);
-    const Point3D p4(x4,y4,z4);
+    const Coordinat3D p1(x1,y1,z1);
+    const Coordinat3D p2(x2,y2,z2);
+    const Coordinat3D p3(x3,y3,z3);
+    const Coordinat3D p4(x4,y4,z4);
     const Plane p(p1,p2,p3);
     try
     {
@@ -609,10 +612,10 @@ void ribi::Plane::Test() noexcept
     const double y4 = 0.00023296414405748076185791173298156309101614169776439666748046875;
     const double z4 = 0.00025000000000000000520417042793042128323577344417572021484375;
 
-    const Point3D p1(x1,y1,z1);
-    const Point3D p2(x2,y2,z2);
-    const Point3D p3(x3,y3,z3);
-    const Point3D p4(x4,y4,z4);
+    const Coordinat3D p1(x1,y1,z1);
+    const Coordinat3D p2(x2,y2,z2);
+    const Coordinat3D p3(x3,y3,z3);
+    const Coordinat3D p4(x4,y4,z4);
     const Plane p(p1,p2,p3);
     try
     {
@@ -620,7 +623,7 @@ void ribi::Plane::Test() noexcept
       if (!p.IsInPlane(p4))
       {
         TRACE("ERROR");
-        TRACE(p.CalcErrorAsApfloat(p4));
+        TRACE(p.CalcError(p4));
         TRACE("BREAK");
       }
       #endif
@@ -666,10 +669,10 @@ void ribi::Plane::Test() noexcept
     const double z4 = 1; //left out the '.0' intentionally
 
 
-    const Point3D p1(x1,y1,z1);
-    const Point3D p2(x2,y2,z2);
-    const Point3D p3(x3,y3,z3);
-    const Point3D p4(x4,y4,z4);
+    const Coordinat3D p1(x1,y1,z1);
+    const Coordinat3D p2(x2,y2,z2);
+    const Coordinat3D p3(x3,y3,z3);
+    const Coordinat3D p4(x4,y4,z4);
     const Plane p(p1,p2,p3);
     try
     {

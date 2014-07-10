@@ -87,17 +87,17 @@ ribi::QtTestPlaneInvestigateAccuracyRibiDialog::~QtTestPlaneInvestigateAccuracyR
 
 boost::shared_ptr<ribi::Plane> ribi::QtTestPlaneInvestigateAccuracyRibiDialog::CreatePlane() const noexcept
 {
-  const Geometry::Coordinat3D p1(
+  const Plane::Coordinat3D p1(
     ui->box_x1->value(),
     ui->box_y1->value(),
     ui->box_z1->value()
   );
-  const Geometry::Coordinat3D p2(
+  const Plane::Coordinat3D p2(
     ui->box_x2->value(),
     ui->box_y2->value(),
     ui->box_z2->value()
   );
-  const Geometry::Coordinat3D p3(
+  const Plane::Coordinat3D p3(
     ui->box_x3->value(),
     ui->box_y3->value(),
     ui->box_z3->value()
@@ -171,9 +171,15 @@ void ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange()
       ) : m_f(f), m_plane(plane) {}
     double operator()(const double x, const double y) const noexcept
     {
-      return m_plane.CalcError(m_f(x,y));
-      //return m_plane.CalcDistanceFromPlane(m_f(x,y));
-      //return x * y;
+      const auto co_double = m_f(x,y);
+      const Plane::Coordinat3D co_apfloat(
+        apfloat(boost::geometry::get<0>(co_double)),
+        apfloat(boost::geometry::get<1>(co_double)),
+        apfloat(boost::geometry::get<2>(co_double))
+      );
+      const auto error_apfloat = m_plane.CalcError(co_apfloat);
+      return Geometry().ToDoubleSafe(error_apfloat);
+      //return m_plane.CalcError(m_f(x,y));
     }
     private:
     const ConvertFunction m_f;

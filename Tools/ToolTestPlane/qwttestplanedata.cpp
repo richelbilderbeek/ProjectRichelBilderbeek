@@ -8,6 +8,7 @@
 
 #include <boost/make_shared.hpp>
 
+#include "geometry.h"
 #include "plane.h"
 
 #pragma GCC diagnostic pop
@@ -34,7 +35,14 @@ double ribi::QwtTestPlaneData::value(const double x, const double y) const noexc
   assert(m_plane);
   try
   {
-    return m_plane->CalcError(m_f(x,y));
+    const auto co_double = m_f(x,y);
+    const Plane::Coordinat3D co_apfloat(
+      apfloat(boost::geometry::get<0>(co_double)),
+      apfloat(boost::geometry::get<1>(co_double)),
+      apfloat(boost::geometry::get<2>(co_double))
+    );
+    const auto error_apfloat = m_plane->CalcError(co_apfloat);
+    return Geometry().ToDoubleSafe(error_apfloat);
     //return m_plane->CalcDistanceFromPlane(m_f(x,y));
   }
   catch (std::exception&)

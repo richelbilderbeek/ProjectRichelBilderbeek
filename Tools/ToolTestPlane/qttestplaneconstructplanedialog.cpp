@@ -7,6 +7,9 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/lexical_cast.hpp>
+
+#include "apfloat.h"
+
 #include "geometry.h"
 #include "plane.h"
 #include "trace.h"
@@ -45,33 +48,33 @@ ribi::QtTestPlaneConstructPlaneDialog::~QtTestPlaneConstructPlaneDialog() noexce
   delete ui;
 }
 
-void ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange()
+void ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange() noexcept
 {
   std::stringstream s;
   s << std::setprecision(ui->box_precision->value());
 
-  const Geometry::Coordinat3D p1(
+  const Plane::Coordinat3D p1(
     ui->box_x1->value(),
     ui->box_y1->value(),
     ui->box_z1->value()
   );
-  s << "Point 1: " << p1 << '\n';
+  s << "Point 1: " << Geometry().ToStr(p1) << '\n';
 
-  const Geometry::Coordinat3D p2(
+  const Plane::Coordinat3D p2(
     ui->box_x2->value(),
     ui->box_y2->value(),
     ui->box_z2->value()
   );
-  s << "Point 2: " << p2 << '\n';
+  s << "Point 2: " << Geometry().ToStr(p2) << '\n';
 
-  const Geometry::Coordinat3D p3(
+  const Plane::Coordinat3D p3(
     ui->box_x3->value(),
     ui->box_y3->value(),
     ui->box_z3->value()
   );
-  s << "Point 3: " << p3 << '\n';
+  s << "Point 3: " << Geometry().ToStr(p3) << '\n';
 
-  const boost::shared_ptr<ribi::Plane> plane(
+  const boost::shared_ptr<Plane> plane(
     new Plane(p1,p2,p3)
   );
   assert(plane);
@@ -128,7 +131,7 @@ void ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange()
 
   try
   {
-    const double x_on_plane = plane->CalcX(y,z);
+    const auto x_on_plane = plane->CalcX(y,z);
     s << "X(Y,Z) = X(" << y << "," << z << ") = " << x_on_plane << '\n';
   }
   catch (std::logic_error& e)
@@ -138,7 +141,7 @@ void ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange()
 
   try
   {
-    const double y_on_plane = plane->CalcY(x,z);
+    const auto y_on_plane = plane->CalcY(x,z);
     s << "Y(X,Z) = Y(" << x << "," << z << ") = " << y_on_plane << '\n';
   }
   catch (std::logic_error& e)
@@ -148,7 +151,7 @@ void ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange()
 
   try
   {
-    const double z_on_plane = plane->CalcZ(x,y);
+    const auto z_on_plane = plane->CalcZ(x,y);
     s << "Z(X,Y) = Z(" << x << "," << y << ") = " << z_on_plane << '\n';
   }
   catch (std::logic_error& e)
@@ -182,20 +185,3 @@ void ribi::QtTestPlaneConstructPlaneDialog::Test() noexcept
   TRACE("Finished ribi::QtTestPlaneConstructPlaneDialog::Test successfully");
 }
 #endif
-
-/*
-std::ostream& ribi::operator<<(std::ostream& os, const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) noexcept
-{
-  os
-    << "("
-    << boost::geometry::get<0>(p)
-    << ","
-    << boost::geometry::get<1>(p)
-    << ","
-    << boost::geometry::get<2>(p)
-    << ")"
-  ;
-  return os;
-}
-*/
-

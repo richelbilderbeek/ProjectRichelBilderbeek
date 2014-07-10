@@ -466,9 +466,6 @@ struct Geometry
   */
   Polygon ToPolygon(const Linestring& linestring) const noexcept;
 
-  ///If an apfloat is converted to std::string, boost::lexical_cast
-  ///will throw a boost::bad_lexical_cast if that value is too small
-  std::string ToStr(const apfloat& f) const noexcept;
 
   std::string ToStr(const   Coordinat2D& p) const noexcept;
   std::string ToStr(const ApCoordinat2D& p) const noexcept;
@@ -481,6 +478,9 @@ struct Geometry
   std::string ToStr(const QPointF& rect) noexcept;
   std::string ToStr(const QRect& rect) noexcept;
   std::string ToStr(const QRectF& rect) noexcept;
+
+  ///Uses ToDoubleSafe(const apfloat&)
+  std::string ToStrSafe(const apfloat& f) const noexcept;
 
   //Create a complete SVG file contents
   std::string ToSvg(

@@ -33,9 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::PlaneZ::PlaneZ() noexcept
   : PlaneZ(
-    ApCoordinat3D(0.0,0.0,0.0),
-    ApCoordinat3D(1.0,0.0,0.0),
-    ApCoordinat3D(0.0,1.0,0.0)
+    Coordinat3D(0.0,0.0,0.0),
+    Coordinat3D(1.0,0.0,0.0),
+    Coordinat3D(0.0,1.0,0.0)
   )
 {
   #ifndef NDEBUG
@@ -44,7 +44,7 @@ ribi::PlaneZ::PlaneZ() noexcept
 }
 
 ribi::PlaneZ::PlaneZ(
-  const Apfloats& coefficients
+  const Doubles& coefficients
 )
   : m_coefficients(coefficients)
 {
@@ -54,14 +54,6 @@ ribi::PlaneZ::PlaneZ(
   const bool verbose = false;
   assert(GetCoefficients().size() == 4);
 
-  //Sometimes due to rounding errors, m_coefficients[2] is not zero,
-  //where it should have been. If m_coefficients[2] equals zero,
-  //a division by itself is prevented by throwing an exception.
-  //Throw an exception as if m_coefficients[2] equalled zero
-  //if (std::abs(m_coefficients[2]) < 1.0e-14)
-  //if (abs(m_coefficients[2]) < 1.0e-14)
-  //Nonsense with abfloats
-  //if (abs(m_coefficients[2]) < GetLeastCoefficient())
   if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
@@ -70,12 +62,12 @@ ribi::PlaneZ::PlaneZ(
 
   try
   {
-    TRACE(GetFunctionAasApfloat());
-    TRACE(GetFunctionBasApfloat());
-    TRACE(GetFunctionCasApfloat());
-    assert(GetFunctionAasApfloat() == 0.0 || GetFunctionAasApfloat() != 0.0);
-    assert(GetFunctionBasApfloat() == 0.0 || GetFunctionBasApfloat() != 0.0);
-    assert(GetFunctionCasApfloat() == 0.0 || GetFunctionCasApfloat() != 0.0);
+    TRACE(GetFunctionA());
+    TRACE(GetFunctionB());
+    TRACE(GetFunctionC());
+    assert(GetFunctionA() == 0.0 || GetFunctionA() != 0.0);
+    assert(GetFunctionB() == 0.0 || GetFunctionB() != 0.0);
+    assert(GetFunctionC() == 0.0 || GetFunctionC() != 0.0);
   }
   catch (...)
   {
@@ -84,9 +76,9 @@ ribi::PlaneZ::PlaneZ(
 }
 
 ribi::PlaneZ::PlaneZ(
-  const ApCoordinat3D& p1,
-  const ApCoordinat3D& p2,
-  const ApCoordinat3D& p3
+  const Coordinat3D& p1,
+  const Coordinat3D& p2,
+  const Coordinat3D& p3
 ) : PlaneZ(CalcPlaneZ(p1,p2,p3))
 {
   #ifndef NDEBUG
@@ -94,12 +86,7 @@ ribi::PlaneZ::PlaneZ(
   #endif
   const bool verbose = false;
   assert(GetCoefficients().size() == 4);
-  //Sometimes due to rounding errors, m_coefficients[2] is not zero,
-  //where it should have been. If m_coefficients[2] equals zero,
-  //a division by itself is prevented by throwing an exception.
-  //Throw an exception as if m_coefficients[2] equalled zero
-  //if (std::abs(m_coefficients[2]) < 1.0e-14)
-  //if (abs(m_coefficients[2]) < GetLeastCoefficient())
+
   if (m_coefficients[2] == 0.0)
   {
     if (verbose) { TRACE(Container().ToStr(m_coefficients)); }
@@ -112,7 +99,7 @@ ribi::PlaneZ::~PlaneZ() noexcept
   //OK
 }
 
-apfloat ribi::PlaneZ::CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneZ::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
 {
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
@@ -123,7 +110,7 @@ apfloat ribi::PlaneZ::CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const n
   return error;
 }
 
-apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneZ::CalcMaxError(const Coordinat3D& coordinat) const noexcept
 {
   const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);
@@ -171,9 +158,9 @@ apfloat ribi::PlaneZ::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) cons
 }
 
 std::vector<apfloat> ribi::PlaneZ::CalcPlaneZ(
-  const ApCoordinat3D& p1,
-  const ApCoordinat3D& p2,
-  const ApCoordinat3D& p3
+  const Coordinat3D& p1,
+  const Coordinat3D& p2,
+  const Coordinat3D& p3
 ) noexcept
 {
   
@@ -188,8 +175,8 @@ std::vector<apfloat> ribi::PlaneZ::CalcPlaneZ(
   return v;
 }
 
-ribi::PlaneZ::ApCoordinats2D ribi::PlaneZ::CalcProjection(
-  const ApCoordinats3D& points
+ribi::PlaneZ::Coordinats2D ribi::PlaneZ::CalcProjection(
+  const Coordinats3D& points
 ) const
 {
   assert(points.size() >= 3);
@@ -197,32 +184,32 @@ ribi::PlaneZ::ApCoordinats2D ribi::PlaneZ::CalcProjection(
   const apfloat y_origin = 0.0;
   const apfloat z_origin = CalcZ(x_origin,y_origin);
 
-  ApCoordinats2D v;
+  Coordinats2D v;
   for (const auto point: points)
   {
-    const Apfloat x(boost::geometry::get<0>(point));
-    const Apfloat y(boost::geometry::get<1>(point));
-    const Apfloat z(boost::geometry::get<2>(point));
-    const Apfloat dx =
+    const Double x(boost::geometry::get<0>(point));
+    const Double y(boost::geometry::get<1>(point));
+    const Double z(boost::geometry::get<2>(point));
+    const Double dx =
       sqrt( //Apfloat does not add the std::
           ((x - x_origin) * (x - x_origin))
         + ((z - z_origin) * (z - z_origin))
       ) * (x - x_origin)
     ;
-    const Apfloat dy =
+    const Double dy =
       sqrt( //Apfloat does not add the std::
           ((y - y_origin) * (y - y_origin))
         + ((z - z_origin) * (z - z_origin))
       ) * (y - y_origin)
     ;
 
-    ApCoordinat2D point_xy(dx,dy);
+    Coordinat2D point_xy(dx,dy);
     v.push_back(point_xy);
   }
   return v;
 }
 
-ribi::PlaneZ::Apfloat ribi::PlaneZ::CalcZ(const Apfloat& x, const Apfloat& y) const
+ribi::PlaneZ::Double ribi::PlaneZ::CalcZ(const Double& x, const Double& y) const
 {
   // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
   const bool verbose = false;
@@ -234,11 +221,6 @@ ribi::PlaneZ::Apfloat ribi::PlaneZ::CalcZ(const Apfloat& x, const Apfloat& y) co
   {
     throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
   }
-  //if (abs(c) < GetLeastCoefficient())
-  //{
-  //  throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a near-vertical plane");
-  //}
-  //const apfloat result = ((-a*x) - (b*y) + d) / c;
   const apfloat term1 = -a*x;
   const apfloat term2 = -b*y;
   const apfloat numerator = term1 + term2 + d;
@@ -251,25 +233,13 @@ ribi::PlaneZ::Apfloat ribi::PlaneZ::CalcZ(const Apfloat& x, const Apfloat& y) co
   return result;
 }
 
-/*
-double ribi::PlaneZ::CalcZ(const double x, const double y) const
-{
-  return Geometry().ToDouble(CalcZ(Apfloat(x),Apfloat(y)));
-}
-*/
-apfloat ribi::PlaneZ::GetFunctionAasApfloat() const
+apfloat ribi::PlaneZ::GetFunctionA() const
 {
   const bool verbose = false;
   const auto coeff_a = m_coefficients[0];
   const auto coeff_c = m_coefficients[2];
   static const apfloat zero(0.0);
   assert(coeff_c != zero);
-  /*
-  if (coeff_c == zero)
-  {
-    throw std::logic_error("ribi::PlaneZ::GetFunctionA: cannot calculate A of a vertical plane");
-  }
-  */
   if (verbose)
   {
     TRACE(coeff_c);
@@ -278,48 +248,22 @@ apfloat ribi::PlaneZ::GetFunctionAasApfloat() const
   return a;
 }
 
-/*
-double ribi::PlaneZ::GetFunctionA() const
-{
-  return Geometry().ToDouble(GetFunctionAasApfloat());
-}
-*/
-
-apfloat ribi::PlaneZ::GetFunctionBasApfloat() const
+apfloat ribi::PlaneZ::GetFunctionB() const
 {
   const auto coeff_b = m_coefficients[1];
   const auto coeff_c = m_coefficients[2];
   static const apfloat zero(0.0);
   assert(coeff_c != zero);
-  /*
-  if (coeff_c == zero)
-  {
-    throw std::logic_error("ribi::PlaneZ::GetFunctionB: cannot calculate B of a vertical plane");
-  }
-  */
   const auto b = -coeff_b/coeff_c;
   return b;
 }
 
-/*
-double ribi::PlaneZ::GetFunctionB() const
-{
-  return Geometry().ToDouble(GetFunctionBasApfloat());
-}
-*/
-
-apfloat ribi::PlaneZ::GetFunctionCasApfloat() const
+apfloat ribi::PlaneZ::GetFunctionC() const
 {
   const auto coeff_c = m_coefficients[2];
   const auto coeff_d = m_coefficients[3];
   static const apfloat zero(0.0);
   assert(coeff_c != zero);
-  /*
-  if (coeff_c == zero)
-  {
-    throw std::logic_error("ribi::PlaneZ::GetFunctionC: cannot calculate C of a vertical plane");
-  }
-  */
 
   try
   {
@@ -332,22 +276,6 @@ apfloat ribi::PlaneZ::GetFunctionCasApfloat() const
     throw;
   }
 }
-
-/*
-double ribi::PlaneZ::GetFunctionC() const
-{
-  return Geometry().ToDouble(GetFunctionCasApfloat());
-}
-*/
-/*
-apfloat ribi::PlaneZ::GetLeastCoefficient() noexcept
-{
-  const std::string s = "0.000000010000000000000008881e-108";
-  char * const cstr = const_cast<char*>(s.c_str()); //apfloat is not const-correct
-  const apfloat result(cstr);
-  return result;
-}
-*/
 
 std::vector<double> ribi::PlaneZ::GetTestSeries() noexcept
 {
@@ -387,12 +315,12 @@ std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
   };
 }
 
-bool ribi::PlaneZ::IsInPlane(const ApCoordinat3D& coordinat) const noexcept
+bool ribi::PlaneZ::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
   try
   {
     const apfloat error = CalcErrorAsApfloat(coordinat);
-    const apfloat max_error = CalcMaxErrorAsApfloat(coordinat); //std::numeric_limits<double>::epsilon();
+    const apfloat max_error = CalcMaxError(coordinat); //std::numeric_limits<double>::epsilon();
     return error <= max_error;
   }
   catch (std::exception& e)
@@ -404,12 +332,14 @@ bool ribi::PlaneZ::IsInPlane(const ApCoordinat3D& coordinat) const noexcept
   }
 }
 
+/*
 std::vector<apfloat> ribi::PlaneZ::ToApfloats(const std::vector<double>& v) noexcept
 {
   std::vector<apfloat> w;
   for (const auto i: v) { w.push_back(i); }
   return w;
 }
+*/
 
 std::string ribi::PlaneZ::ToFunction() const
 {
@@ -424,9 +354,9 @@ std::ostream& ribi::operator<<(std::ostream& os, const PlaneZ& planez)
   {
     os
       << "z=("
-      << planez.GetFunctionAasApfloat() << "*x) + ("
-      << planez.GetFunctionBasApfloat() << "*y) + "
-      << planez.GetFunctionCasApfloat()
+      << planez.GetFunctionA() << "*x) + ("
+      << planez.GetFunctionB() << "*y) + "
+      << planez.GetFunctionC()
     ;
   }
   catch (std::logic_error&)

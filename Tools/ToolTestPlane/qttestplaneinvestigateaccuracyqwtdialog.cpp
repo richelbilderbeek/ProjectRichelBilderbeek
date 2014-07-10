@@ -26,9 +26,9 @@ ribi::QtTestPlaneInvestigateAccuracyQwtDialog::QtTestPlaneInvestigateAccuracyQwt
 
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
-  const Geometry::Coordinat3D p1(0.1,0.0,0.0);
-  const Geometry::Coordinat3D p2(0.0,0.2,0.0);
-  const Geometry::Coordinat3D p3(0.0,0.0,0.3);
+  const Plane::Coordinat3D p1(0.1,0.0,0.0);
+  const Plane::Coordinat3D p2(0.0,0.2,0.0);
+  const Plane::Coordinat3D p3(0.0,0.0,0.3);
   const boost::shared_ptr<Plane> plane(new Plane(p1,p2,p3));
   assert(plane);
 
@@ -106,17 +106,17 @@ ribi::QtTestPlaneInvestigateAccuracyQwtDialog::~QtTestPlaneInvestigateAccuracyQw
 
 boost::shared_ptr<ribi::Plane> ribi::QtTestPlaneInvestigateAccuracyQwtDialog::CreatePlane() const noexcept
 {
-  const Geometry::Coordinat3D p1(
+  const Plane::Coordinat3D p1(
     ui->box_x1->value(),
     ui->box_y1->value(),
     ui->box_z1->value()
   );
-  const Geometry::Coordinat3D p2(
+  const Plane::Coordinat3D p2(
     ui->box_x2->value(),
     ui->box_y2->value(),
     ui->box_z2->value()
   );
-  const Geometry::Coordinat3D p3(
+  const Plane::Coordinat3D p3(
     ui->box_x3->value(),
     ui->box_y3->value(),
     ui->box_z3->value()

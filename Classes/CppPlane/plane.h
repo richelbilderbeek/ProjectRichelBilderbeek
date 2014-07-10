@@ -52,16 +52,12 @@ struct PlaneZ;
 //    z = -A/C.x - B/C.y + D/C
 struct Plane
 {
-  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
-  typedef boost::geometry::model::d2::point_xy<apfloat> ApCoordinat2D;
-  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
-  typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> ApCoordinat3D;
+  typedef apfloat Double;
+  typedef boost::geometry::model::d2::point_xy<apfloat> Coordinat2D;
+  typedef boost::geometry::model::point<apfloat,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::vector<Coordinat2D> Coordinats2D;
   typedef std::vector<Coordinat3D> Coordinats3D;
-  typedef std::vector<ApCoordinat2D> ApCoordinats2D;
-  typedef std::vector<ApCoordinat3D> ApCoordinats3D;
-  typedef apfloat Apfloat;
-  typedef std::vector<Apfloat> Apfloats;
+  typedef std::vector<Double> Doubles;
 
   ///Construct a Plane from three points
   /*
@@ -76,17 +72,10 @@ struct Plane
  / |
 
   */
-  ///By default, create the plane Z = 0
-  //explicit Plane(
-  //  const Coordinat3D& p1,
-  //  const Coordinat3D& p2,
-  //  const Coordinat3D& p3
-  //) noexcept;
-
   explicit Plane(
-    const ApCoordinat3D& p1,
-    const ApCoordinat3D& p2,
-    const ApCoordinat3D& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   ///Get the 2D projection of these 3D points,
@@ -105,19 +94,16 @@ struct Plane
   +--B---                     A--B-----
 
   */
-  ApCoordinats2D CalcProjection(const ApCoordinats3D& points) const;
+  Coordinats2D CalcProjection(const Coordinats3D& points) const;
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the X
-  //double CalcX(const double y, const double z) const;
-  Apfloat CalcX(const Apfloat& y, const Apfloat& z) const;
+  Double CalcX(const Double& y, const Double& z) const;
 
   ///If the Plane can be expressed as Y = A*X + B*Z + C, return the Y
-  //double CalcY(const double x, const double z) const;
-  Apfloat CalcY(const Apfloat& y, const Apfloat& z) const;
+  Double CalcY(const Double& y, const Double& z) const;
 
   ///If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
-  //double CalcZ(const double x, const double y) const;
-  Apfloat CalcZ(const Apfloat& y, const Apfloat& z) const;
+  Double CalcZ(const Double& y, const Double& z) const;
 
   ///Can the Plane be expressed as X = A*Y + B*Z + C ?
   bool CanCalcX() const noexcept;
@@ -129,30 +115,26 @@ struct Plane
   bool CanCalcZ() const noexcept;
 
   ///Calculates the error between plane and coordinat
-  ///WARNING: This distance is calculated by taking the shortest distance
-  ///to the plane following either the X, Y or Z direction. In other words:
-  ///it does not take the shortest (perpendicular to the plane) path
- // double CalcError(const Coordinat3D& coordinat) const noexcept;
-  Apfloat CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept;
+  Double CalcError(const Coordinat3D& coordinat) const noexcept;
 
   ///Calculates the maximum allowed error for that coordinat for it to be in the plane
   //double CalcMaxError(const Coordinat3D& coordinat) const noexcept;
-  Apfloat CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept;
+  Double CalcMaxError(const Coordinat3D& coordinat) const noexcept;
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
-  Apfloats GetCoefficientsX() const;
+  Doubles GetCoefficientsX() const;
 
   ///If the Plane can be expressed as Y = A*X + B*Z + C, return the coefficients,
-  Apfloats GetCoefficientsY() const;
+  Doubles GetCoefficientsY() const;
 
   ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients,
-  Apfloats GetCoefficientsZ() const;
+  Doubles GetCoefficientsZ() const;
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Checks if the coordinat is in the plane
-  bool IsInPlane(const ApCoordinat3D& coordinat) const noexcept;
+  bool IsInPlane(const Coordinat3D& coordinat) const noexcept;
 
 
   private:
@@ -167,36 +149,28 @@ struct Plane
   ///A non-vertical plane; a plane that can be expressed as 'Z(X,Y) = A*X + B*Y + C'
   const boost::shared_ptr<const PlaneZ> m_plane_z;
 
-  const ApCoordinats3D m_points;
+  const Coordinats3D m_points;
+
+  static boost::shared_ptr<PlaneX> CreatePlaneX(const Doubles& coefficients_x) noexcept;
+  static boost::shared_ptr<PlaneY> CreatePlaneY(const Doubles& coefficients_y) noexcept;
+  static boost::shared_ptr<PlaneZ> CreatePlaneZ(const Doubles& coefficients_z) noexcept;
 
   static boost::shared_ptr<PlaneX> CreatePlaneX(
-    const Apfloats& coefficients_x
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   static boost::shared_ptr<PlaneY> CreatePlaneY(
-    const Apfloats& coefficients_y
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   static boost::shared_ptr<PlaneZ> CreatePlaneZ(
-    const Apfloats& coefficients_z
-  ) noexcept;
-
-  static boost::shared_ptr<PlaneX> CreatePlaneX(
-    const ApCoordinat3D& p1,
-    const ApCoordinat3D& p2,
-    const ApCoordinat3D& p3
-  ) noexcept;
-
-  static boost::shared_ptr<PlaneY> CreatePlaneY(
-    const ApCoordinat3D& p1,
-    const ApCoordinat3D& p2,
-    const ApCoordinat3D& p3
-  ) noexcept;
-
-  static boost::shared_ptr<PlaneZ> CreatePlaneZ(
-    const ApCoordinat3D& p1,
-    const ApCoordinat3D& p2,
-    const ApCoordinat3D& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   #ifndef NDEBUG

@@ -33,9 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::PlaneY::PlaneY() noexcept
   : PlaneY(
-    ApCoordinat3D(0.0,0.0,0.0),
-    ApCoordinat3D(1.0,0.0,0.0),
-    ApCoordinat3D(0.0,0.0,1.0)
+    Coordinat3D(0.0,0.0,0.0),
+    Coordinat3D(1.0,0.0,0.0),
+    Coordinat3D(0.0,0.0,1.0)
   )
 {
   #ifndef NDEBUG
@@ -44,9 +44,9 @@ ribi::PlaneY::PlaneY() noexcept
 }
 
 ribi::PlaneY::PlaneY(
-    const ApCoordinat3D& p1,
-    const ApCoordinat3D& p2,
-    const ApCoordinat3D& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
 )
   : m_plane_z{Create(p1,p2,p3)}
 {
@@ -60,7 +60,7 @@ ribi::PlaneY::~PlaneY()
   //OK
 }
 
-apfloat ribi::PlaneY::CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneY::CalcError(const Coordinat3D& coordinat) const noexcept
 {
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
@@ -71,7 +71,7 @@ apfloat ribi::PlaneY::CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const n
   return error;
 }
 
-apfloat ribi::PlaneY::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneY::CalcMaxError(const Coordinat3D& coordinat) const noexcept
 {
   const apfloat x = boost::geometry::get<0>(coordinat);
   //const apfloat y = boost::geometry::get<1>(coordinat);
@@ -97,8 +97,8 @@ apfloat ribi::PlaneY::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) cons
   return e;
 }
 
-ribi::PlaneY::ApCoordinats2D ribi::PlaneY::CalcProjection(
-  const ApCoordinats3D& points
+ribi::PlaneY::Coordinats2D ribi::PlaneY::CalcProjection(
+  const Coordinats3D& points
 ) const
 {
   auto v(points);
@@ -113,7 +113,7 @@ ribi::PlaneY::ApCoordinats2D ribi::PlaneY::CalcProjection(
   }
 }
 
-ribi::PlaneY::Apfloat ribi::PlaneY::CalcY(const Apfloat& x, const Apfloat& z) const
+ribi::PlaneY::Double ribi::PlaneY::CalcY(const Double& x, const Double& z) const
 {
   try
   {
@@ -133,9 +133,9 @@ double ribi::PlaneY::CalcY(const double x, const double z) const
 */
 
 std::unique_ptr<ribi::PlaneZ> ribi::PlaneY::Create(
-  const ApCoordinat3D& p1,
-  const ApCoordinat3D& p2,
-  const ApCoordinat3D& p3
+  const Coordinat3D& p1,
+  const Coordinat3D& p2,
+  const Coordinat3D& p3
 )
 {
   std::unique_ptr<PlaneZ> p(
@@ -152,22 +152,22 @@ std::vector<apfloat> ribi::PlaneY::GetCoefficients() const noexcept
   return { v[1],v[2],v[0],v[3] };
 }
 
-ribi::PlaneY::Apfloat ribi::PlaneY::GetFunctionA() const
+ribi::PlaneY::Double ribi::PlaneY::GetFunctionA() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionAasApfloat();
+  return m_plane_z->GetFunctionA();
 }
 
-ribi::PlaneY::Apfloat ribi::PlaneY::GetFunctionB() const
+ribi::PlaneY::Double ribi::PlaneY::GetFunctionB() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionBasApfloat();
+  return m_plane_z->GetFunctionB();
 }
 
-ribi::PlaneY::Apfloat ribi::PlaneY::GetFunctionC() const
+ribi::PlaneY::Double ribi::PlaneY::GetFunctionC() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionCasApfloat();
+  return m_plane_z->GetFunctionC();
 }
 
 std::string ribi::PlaneY::GetVersion() const noexcept
@@ -188,12 +188,12 @@ std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
   };
 }
 
-bool ribi::PlaneY::IsInPlane(const ApCoordinat3D& coordinat) const noexcept
+bool ribi::PlaneY::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
   try
   {
-    const apfloat error = CalcErrorAsApfloat(coordinat);
-    const apfloat max_error = CalcMaxErrorAsApfloat(coordinat); //std::numeric_limits<double>::epsilon();
+    const apfloat error = CalcError(coordinat);
+    const apfloat max_error = CalcMaxError(coordinat); //std::numeric_limits<double>::epsilon();
     return error <= max_error;
   }
   catch (std::exception& e)
@@ -205,7 +205,7 @@ bool ribi::PlaneY::IsInPlane(const ApCoordinat3D& coordinat) const noexcept
   }
 }
 
-ribi::PlaneY::Apfloats ribi::PlaneY::Rotate(const Apfloats& coefficients) noexcept
+ribi::PlaneY::Doubles ribi::PlaneY::Rotate(const Doubles& coefficients) noexcept
 {
   assert(coefficients.size() == 4);
   return
@@ -217,13 +217,13 @@ ribi::PlaneY::Apfloats ribi::PlaneY::Rotate(const Apfloats& coefficients) noexce
   };
 }
 
-ribi::PlaneY::ApCoordinat3D ribi::PlaneY::Rotate(
-  const ApCoordinat3D& point
+ribi::PlaneY::Coordinat3D ribi::PlaneY::Rotate(
+  const Coordinat3D& point
 ) noexcept
 {
   //The 0-2-1 order is confirmed by doing a projection of a triangle on the Y=0 plane
   //on a Y=0 plane
-  return ApCoordinat3D(
+  return Coordinat3D(
     boost::geometry::get<0>(point),
     boost::geometry::get<2>(point),
     boost::geometry::get<1>(point)
@@ -244,9 +244,9 @@ std::ostream& ribi::operator<<(std::ostream& os,const PlaneY& planey)
   {
     os
       << "y=("
-      << planey.m_plane_z->GetFunctionAasApfloat() << "*x) + ("
-      << planey.m_plane_z->GetFunctionBasApfloat() << "*z) + "
-      << planey.m_plane_z->GetFunctionCasApfloat()
+      << planey.m_plane_z->GetFunctionA() << "*x) + ("
+      << planey.m_plane_z->GetFunctionB() << "*z) + "
+      << planey.m_plane_z->GetFunctionC()
     ;
   }
   catch (std::logic_error&)

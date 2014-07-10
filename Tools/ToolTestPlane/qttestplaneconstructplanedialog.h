@@ -32,7 +32,7 @@ public:
   ~QtTestPlaneConstructPlaneDialog() noexcept;
     
 private slots:
-  void OnAnyChange();
+  void OnAnyChange() noexcept;
 
 private:
   Ui::QtTestPlaneConstructPlaneDialog *ui;
@@ -41,8 +41,6 @@ private:
   static void Test() noexcept;
   #endif
 };
-
-//std::ostream& operator<<(std::ostream& os, const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) noexcept;
 
 } //~namespace ribi
 

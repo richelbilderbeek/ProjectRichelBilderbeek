@@ -41,9 +41,6 @@ void ribi::PlaneX::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PlaneX::Test");
-  typedef apfloat Apfloat;
-  typedef boost::geometry::model::point<Apfloat,3,boost::geometry::cs::cartesian> Point3D;
-  typedef boost::geometry::model::d2::point_xy<Apfloat> Point2D;
   using boost::geometry::get;
 
   const bool verbose = false;
@@ -159,9 +156,9 @@ void ribi::PlaneX::Test() noexcept
   {
 
 
-    const Point3D p1(1.0,2.0,3.0);
-    const Point3D p2(2.0,5.0,8.0);
-    const Point3D p3(3.0,7.0,11.0);
+    const Coordinat3D p1(1.0,2.0,3.0);
+    const Coordinat3D p2(2.0,5.0,8.0);
+    const Coordinat3D p3(3.0,7.0,11.0);
     PlaneX p(p1,p2,p3);
     assert( abs(p.CalcX(2.0, 3.0)- 1.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
     assert( abs(p.CalcX(5.0, 8.0)- 2.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
@@ -184,9 +181,9 @@ void ribi::PlaneX::Test() noexcept
   {
 
 
-    const Point3D p1(2.0, 3.0, 5.0);
-    const Point3D p2(2.0, 7.0,11.0);
-    const Point3D p3(2.0,13.0,17.0);
+    const Coordinat3D p1(2.0, 3.0, 5.0);
+    const Coordinat3D p2(2.0, 7.0,11.0);
+    const Coordinat3D p3(2.0,13.0,17.0);
     PlaneX p(p1,p2,p3);
     assert( abs(p.CalcX(1.0,2.0)-2.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
     assert( abs(p.CalcX(3.0,5.0)-2.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
@@ -210,13 +207,13 @@ void ribi::PlaneX::Test() noexcept
     const double z3 { 13.0 };
     const double y4 { 17.0 };
     const double z4 { 29.0 };
-    const Point3D p1(f(y1,z1),y1,z1);
-    const Point3D p2(f(y2,z2),y2,z2);
-    const Point3D p3(f(y3,z3),y3,z3);
+    const Coordinat3D p1(f(y1,z1),y1,z1);
+    const Coordinat3D p2(f(y2,z2),y2,z2);
+    const Coordinat3D p3(f(y3,z3),y3,z3);
     const PlaneX a(p1,p2,p3);
     //assert(a.ToFunction() == "x=(2*y) + (3*z) + 5");
     assert(!a.ToFunction().empty());
-    const Point3D p4(f(y4,z4),y4,z4);
+    const Coordinat3D p4(f(y4,z4),y4,z4);
     assert(a.ToFunction() == PlaneX(p1,p2,p4).ToFunction());
     assert(a.ToFunction() == PlaneX(p1,p3,p4).ToFunction());
     assert(a.ToFunction() == PlaneX(p1,p4,p3).ToFunction());
@@ -256,12 +253,12 @@ void ribi::PlaneX::Test() noexcept
    /|                              |
   / |                              |
     */
-    const std::vector<Point2D> v {
+    const std::vector<Coordinat2D> v {
       PlaneX().CalcProjection(
         {
-          Point3D(0.0,0.0,1.0),
-          Point3D(1.0,0.0,0.0),
-          Point3D(1.0,1.0,0.0)
+          Coordinat3D(0.0,0.0,1.0),
+          Coordinat3D(1.0,0.0,0.0),
+          Coordinat3D(1.0,1.0,0.0)
         }
       )
     };
@@ -295,17 +292,17 @@ void ribi::PlaneX::Test() noexcept
  /  |                        |
 
     */
-    const std::vector<Point2D> v {
+    const std::vector<Coordinat2D> v {
       PlaneX(
-        Point3D(0.0+2.0,0.0,0.0),
-        Point3D(0.0+2.0,1.0,0.0),
-        Point3D(0.0+2.0,0.0,1.0)
+        Coordinat3D(0.0+2.0,0.0,0.0),
+        Coordinat3D(0.0+2.0,1.0,0.0),
+        Coordinat3D(0.0+2.0,0.0,1.0)
 
       ).CalcProjection(
         {
-          Point3D(0.0+2.0,0.0,0.0),
-          Point3D(0.0+2.0,1.0,0.0),
-          Point3D(0.0+2.0,0.0,1.0)
+          Coordinat3D(0.0+2.0,0.0,0.0),
+          Coordinat3D(0.0+2.0,1.0,0.0),
+          Coordinat3D(0.0+2.0,0.0,1.0)
         }
       )
     };
