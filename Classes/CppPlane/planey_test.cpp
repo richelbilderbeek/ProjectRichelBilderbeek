@@ -15,7 +15,11 @@ void ribi::PlaneY::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PlaneY::Test");
-  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
+  typedef apfloat Apfloat;
+  typedef boost::geometry::model::point<Apfloat,3,boost::geometry::cs::cartesian> Point3D;
+  typedef boost::geometry::model::d2::point_xy<Apfloat> Point2D;
+  using boost::geometry::get;
+
   const bool verbose = false;
   if (verbose) TRACE("Default construction");
   {
@@ -25,9 +29,6 @@ void ribi::PlaneY::Test() noexcept
   }
   if (verbose) TRACE("GetProjection, for plane Y = 0.0, points on plane");
   {
-    typedef boost::geometry::model::d2::point_xy<double> Point2D;
-    typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
-    using boost::geometry::get;
     /*
 
     A: (0,0,1)                  A: (0,1)
@@ -51,18 +52,17 @@ void ribi::PlaneY::Test() noexcept
       && "The three points are on the Y = 0 plane");
     const std::vector<Point2D> v { PlaneY().CalcProjection( { a,b,c } ) };
     assert(v.size() == 3);
-    assert(std::abs(get<0>(v[0]) - 0.0 ) < 0.001);
-    assert(std::abs(get<1>(v[0]) - 1.0 ) < 0.001);
-    assert(std::abs(get<0>(v[1]) - 0.0 ) < 0.001);
-    assert(std::abs(get<1>(v[1]) - 0.0 ) < 0.001);
-    assert(std::abs(get<0>(v[2]) - 1.0 ) < 0.001);
-    assert(std::abs(get<1>(v[2]) - 0.0 ) < 0.001);
+    assert(abs(get<0>(v[0]) - 0.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<1>(v[0]) - 1.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<0>(v[1]) - 0.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<1>(v[1]) - 0.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<0>(v[2]) - 1.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<1>(v[2]) - 0.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
   }
   /*
   {
 
 
-    typedef Point3D Point;
     const double p1_x { 1.0 };
     const double p1_y { 2.0 };
     const double p1_z { 3.0 };
@@ -87,10 +87,10 @@ void ribi::PlaneY::Test() noexcept
     const double b_expected { -48.0 };
     const double c_expected {  17.0 };
     const double d_expected { -15.0 };
-    assert(std::abs(a - a_expected) < 0.001);
-    assert(std::abs(b - b_expected) < 0.001);
-    assert(std::abs(c - c_expected) < 0.001);
-    assert(std::abs(d - d_expected) < 0.001);
+    assert(abs(a - a_expected) < 0.001);
+    assert(abs(b - b_expected) < 0.001);
+    assert(abs(c - c_expected) < 0.001);
+    assert(abs(d - d_expected) < 0.001);
     const double d_p1_expected { (a * p1_x) + (b * p1_y) + (c * p1_z) };
     const double d_p2_expected { (a * p2_x) + (b * p2_y) + (c * p2_z) };
     const double d_p3_expected { (a * p3_x) + (b * p3_y) + (c * p3_z) };
@@ -110,9 +110,9 @@ void ribi::PlaneY::Test() noexcept
       ;
 
     }
-    assert(std::abs(d - d_p1_expected) < 0.001);
-    assert(std::abs(d - d_p2_expected) < 0.001);
-    assert(std::abs(d - d_p3_expected) < 0.001);
+    assert(abs(d - d_p1_expected) < 0.001);
+    assert(abs(d - d_p2_expected) < 0.001);
+    assert(abs(d - d_p3_expected) < 0.001);
   }
   */
   if (verbose) TRACE("CalcPlaneY");
@@ -149,16 +149,16 @@ void ribi::PlaneY::Test() noexcept
     const double b_expected { -3.0 };
     const double c_expected {  1.0 };
     const double d_expected {  5.0 };
-    assert(std::abs(a - a_expected) < 0.001);
-    assert(std::abs(b - b_expected) < 0.001);
-    assert(std::abs(c - c_expected) < 0.001);
-    assert(std::abs(d - d_expected) < 0.001);
+    assert(abs(a - a_expected) < 0.001);
+    assert(abs(b - b_expected) < 0.001);
+    assert(abs(c - c_expected) < 0.001);
+    assert(abs(d - d_expected) < 0.001);
     const double d_p1_expected { (a * 1.0) + (b * 1.0) + (c * 10.0) };
     const double d_p2_expected { (a * 1.0) + (b * 2.0) + (c * 13.0) };
     const double d_p3_expected { (a * 2.0) + (b * 1.0) + (c * 12.0) };
-    assert(std::abs(d - d_p1_expected) < 0.001);
-    assert(std::abs(d - d_p2_expected) < 0.001);
-    assert(std::abs(d - d_p3_expected) < 0.001);
+    assert(abs(d - d_p1_expected) < 0.001);
+    assert(abs(d - d_p2_expected) < 0.001);
+    assert(abs(d - d_p3_expected) < 0.001);
     TRACE(p.ToFunction());
   }
   */
@@ -170,9 +170,9 @@ void ribi::PlaneY::Test() noexcept
     const Point3D p2(2.0,5.0,8.0);
     const Point3D p3(3.0,7.0,11.0);
     PlaneY p(p1,p2,p3);
-    assert( std::abs(p.CalcY(1.0, 3.0)- 2.0) < 0.001);
-    assert( std::abs(p.CalcY(2.0, 8.0)- 5.0) < 0.001);
-    assert( std::abs(p.CalcY(3.0,11.0)- 7.0) < 0.001);
+    assert( abs(p.CalcY(1.0, 3.0)- 2.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert( abs(p.CalcY(2.0, 8.0)- 5.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert( abs(p.CalcY(3.0,11.0)- 7.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
   }
   if (verbose) TRACE("CalcY, vertical plane Y = 3.0");
   /*
@@ -195,9 +195,9 @@ void ribi::PlaneY::Test() noexcept
     const Point3D p2( 7.0,3.0,11.0);
     const Point3D p3(13.0,3.0,17.0);
     PlaneY p(p1,p2,p3);
-    assert( std::abs(p.CalcY(1.0,2.0)-3.0) < 0.001);
-    assert( std::abs(p.CalcY(3.0,5.0)-3.0) < 0.001);
-    assert( std::abs(p.CalcY(7.0,9.0)-3.0) < 0.001);
+    assert( abs(p.CalcY(1.0,2.0)-3.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert( abs(p.CalcY(3.0,5.0)-3.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert( abs(p.CalcY(7.0,9.0)-3.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
   }
   if (verbose) TRACE("ToFunction, 3 points and 4 points");
   {
@@ -221,7 +221,8 @@ void ribi::PlaneY::Test() noexcept
     const Point3D p2(x2,f(x2,z2),z2);
     const Point3D p3(x3,f(x3,z3),z3);
     const PlaneY a(p1,p2,p3);
-    assert(a.ToFunction() == "y=(2*x) + (3*z) + 5");
+    //assert(a.ToFunction() == "y=(2*x) + (3*z) + 5");
+    assert(!a.ToFunction().empty());
     const Point3D p4(x4,f(x4,z4),z4);
     assert(a.ToFunction() == PlaneY(p1,p2,p4).ToFunction());
     assert(a.ToFunction() == PlaneY(p1,p3,p4).ToFunction());
@@ -249,9 +250,6 @@ void ribi::PlaneY::Test() noexcept
 
   if (verbose) TRACE("GetProjection, for plane Y = 0.0, points not on plane");
   {
-    typedef boost::geometry::model::d2::point_xy<double> Point2D;
-    typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
-    using boost::geometry::get;
     /*
 
     A: (0,0,1)                  A: (0,1)
@@ -278,12 +276,12 @@ void ribi::PlaneY::Test() noexcept
       )
     };
     assert(v.size() == 3);
-    assert(std::abs(get<0>(v[0]) -           0.0 ) < 0.001);
-    assert(std::abs(get<1>(v[0]) -           1.0 ) < 0.001);
-    assert(std::abs(get<0>(v[1]) -           1.0 ) < 0.001);
-    assert(std::abs(get<1>(v[1]) -           0.0 ) < 0.001);
-    assert(std::abs(get<0>(v[2]) - std::sqrt(2.0)) < 0.001);
-    assert(std::abs(get<1>(v[2]) -           0.0 ) < 0.001);
+    assert(abs(get<0>(v[0]) -           0.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<1>(v[0]) -           1.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<0>(v[1]) -           1.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<1>(v[1]) -           0.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<0>(v[2]) - std::sqrt(2.0)) < 0.001); //no std:: , as apfloat puts abs in the global namespace
+    assert(abs(get<1>(v[2]) -           0.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
   }
   TRACE("Finished ribi::PlaneY::Test successfully");
 }

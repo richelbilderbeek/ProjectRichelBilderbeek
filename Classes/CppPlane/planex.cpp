@@ -35,9 +35,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///Create plane X = 0.0
 ribi::PlaneX::PlaneX() noexcept
   : PlaneX(
-    Coordinat3D(0.0,0.0,0.0),
-    Coordinat3D(0.0,1.0,0.0),
-    Coordinat3D(0.0,0.0,1.0)
+    ApCoordinat3D(0.0,0.0,0.0),
+    ApCoordinat3D(0.0,1.0,0.0),
+    ApCoordinat3D(0.0,0.0,1.0)
   )
 {
   #ifndef NDEBUG
@@ -47,9 +47,9 @@ ribi::PlaneX::PlaneX() noexcept
 
 
 ribi::PlaneX::PlaneX(
-  const Coordinat3D& p1,
-  const Coordinat3D& p2,
-  const Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 ) : m_plane_z{Create(p1,p2,p3)}
 {
   #ifndef NDEBUG
@@ -62,7 +62,7 @@ ribi::PlaneX::~PlaneX() noexcept
   //Nothing to do
 }
 
-apfloat ribi::PlaneX::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneX::CalcErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
 {
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
@@ -73,7 +73,7 @@ apfloat ribi::PlaneX::CalcErrorAsApfloat(const Coordinat3D& coordinat) const noe
   return error;
 }
 
-apfloat ribi::PlaneX::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneX::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) const noexcept
 {
   //const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
@@ -99,8 +99,8 @@ apfloat ribi::PlaneX::CalcMaxErrorAsApfloat(const Coordinat3D& coordinat) const 
   return e;
 }
 
-ribi::PlaneX::Coordinats2D ribi::PlaneX::CalcProjection(
-  const Coordinats3D& points
+ribi::PlaneX::ApCoordinats2D ribi::PlaneX::CalcProjection(
+  const ApCoordinats3D& points
 ) const
 {
   assert(m_plane_z);
@@ -129,15 +129,17 @@ ribi::PlaneX::Apfloat ribi::PlaneX::CalcX(const Apfloat& y, const Apfloat& z) co
   }
 }
 
+/*
 double ribi::PlaneX::CalcX(const double y, const double z) const
 {
   return Geometry().ToDouble(CalcX(Apfloat(y),Apfloat(z)));
 }
+*/
 
 std::unique_ptr<ribi::PlaneZ> ribi::PlaneX::Create(
-  const Coordinat3D& p1,
-  const Coordinat3D& p2,
-  const Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 )
 {
   std::unique_ptr<PlaneZ> p(
@@ -178,7 +180,7 @@ apfloat ribi::PlaneX::GetFunctionC() const
 
 std::string ribi::PlaneX::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.6";
 }
 
 std::vector<std::string> ribi::PlaneX::GetVersionHistory() const noexcept
@@ -189,11 +191,12 @@ std::vector<std::string> ribi::PlaneX::GetVersionHistory() const noexcept
     "2014-04-01: version 1.2: use of std::unique_ptr",
     "2014-06-13: version 1.3: shortened time to compile, allow obtaining the constants in function 'x = Ay + Bz + C'",
     "2014-07-03: version 1.4: use of apfloat",
-    "2014-07-09: version 1.5: use double in interface only"
+    "2014-07-09: version 1.5: use double in interface only",
+    "2014-07-10: version 1.6: use of apfloat only"
   };
 }
 
-bool ribi::PlaneX::IsInPlane(const Coordinat3D& coordinat) const noexcept
+bool ribi::PlaneX::IsInPlane(const ApCoordinat3D& coordinat) const noexcept
 {
   try
   {
@@ -210,7 +213,7 @@ bool ribi::PlaneX::IsInPlane(const Coordinat3D& coordinat) const noexcept
   }
 }
 
-std::vector<apfloat> ribi::PlaneX::Rotate(const std::vector<apfloat>& coefficients) noexcept
+std::vector<apfloat> ribi::PlaneX::Rotate(const Apfloats& coefficients) noexcept
 {
   assert(coefficients.size() == 4);
   return
@@ -222,11 +225,11 @@ std::vector<apfloat> ribi::PlaneX::Rotate(const std::vector<apfloat>& coefficien
   };
 }
 
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::PlaneX::Rotate(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& point
+ribi::PlaneX::ApCoordinat3D ribi::PlaneX::Rotate(
+  const ApCoordinat3D& point
 ) noexcept
 {
-  return Coordinat3D(
+  return ApCoordinat3D(
     boost::geometry::get<1>(point),
     boost::geometry::get<2>(point),
     boost::geometry::get<0>(point)
@@ -240,24 +243,6 @@ std::string ribi::PlaneX::ToFunction() const
   std::stringstream s;
   s << (*this);
   return s.str();
-  /*
-  try
-  {
-    std::string s = m_plane_z->ToFunction();
-    // 'z=(2*x) + (3*y) + 5'
-    //          =>
-    // 'x=(2*y) + (3*z) + 5'
-    assert(!s.empty());
-    s = boost::algorithm::replace_all_copy(s,"*y","*z");
-    s = boost::algorithm::replace_all_copy(s,"*x","*y");
-    s = boost::algorithm::replace_all_copy(s,"z=","x=");
-    return s;
-  }
-  catch (std::logic_error&)
-  {
-    throw std::logic_error("ribi::PlaneX::ToFunction: cannot calculate X of a horizontal plane");
-  }
-  */
 }
 
 std::ostream& ribi::operator<<(std::ostream& os,const PlaneX& planex)
@@ -268,9 +253,9 @@ std::ostream& ribi::operator<<(std::ostream& os,const PlaneX& planex)
   {
     os
       << "x=("
-      << planex.m_plane_z->GetFunctionA() << "*y) + ("
-      << planex.m_plane_z->GetFunctionB() << "*z) + "
-      << planex.m_plane_z->GetFunctionC()
+      << planex.m_plane_z->GetFunctionAasApfloat() << "*y) + ("
+      << planex.m_plane_z->GetFunctionBasApfloat() << "*z) + "
+      << planex.m_plane_z->GetFunctionCasApfloat()
       //<< ", coefficients: "
       //<< Container().ToStr(planex.GetCoefficients())
     ;

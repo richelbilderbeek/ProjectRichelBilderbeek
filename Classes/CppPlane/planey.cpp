@@ -33,9 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::PlaneY::PlaneY() noexcept
   : PlaneY(
-    Coordinat3D(0.0,0.0,0.0),
-    Coordinat3D(1.0,0.0,0.0),
-    Coordinat3D(0.0,0.0,1.0)
+    ApCoordinat3D(0.0,0.0,0.0),
+    ApCoordinat3D(1.0,0.0,0.0),
+    ApCoordinat3D(0.0,0.0,1.0)
   )
 {
   #ifndef NDEBUG
@@ -44,9 +44,9 @@ ribi::PlaneY::PlaneY() noexcept
 }
 
 ribi::PlaneY::PlaneY(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3
+    const ApCoordinat3D& p1,
+    const ApCoordinat3D& p2,
+    const ApCoordinat3D& p3
 )
   : m_plane_z{Create(p1,p2,p3)}
 {
@@ -97,8 +97,8 @@ apfloat ribi::PlaneY::CalcMaxErrorAsApfloat(const ApCoordinat3D& coordinat) cons
   return e;
 }
 
-ribi::PlaneY::Coordinats2D ribi::PlaneY::CalcProjection(
-  const Coordinats3D& points
+ribi::PlaneY::ApCoordinats2D ribi::PlaneY::CalcProjection(
+  const ApCoordinats3D& points
 ) const
 {
   auto v(points);
@@ -125,15 +125,17 @@ ribi::PlaneY::Apfloat ribi::PlaneY::CalcY(const Apfloat& x, const Apfloat& z) co
   }
 }
 
+/*
 double ribi::PlaneY::CalcY(const double x, const double z) const
 {
   return Geometry().ToDouble(CalcY(Apfloat(x),Apfloat(z)));
 }
+*/
 
 std::unique_ptr<ribi::PlaneZ> ribi::PlaneY::Create(
-  const Coordinat3D& p1,
-  const Coordinat3D& p2,
-  const Coordinat3D& p3
+  const ApCoordinat3D& p1,
+  const ApCoordinat3D& p2,
+  const ApCoordinat3D& p3
 )
 {
   std::unique_ptr<PlaneZ> p(
@@ -150,27 +152,27 @@ std::vector<apfloat> ribi::PlaneY::GetCoefficients() const noexcept
   return { v[1],v[2],v[0],v[3] };
 }
 
-double ribi::PlaneY::GetFunctionA() const
+ribi::PlaneY::Apfloat ribi::PlaneY::GetFunctionA() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionA();
+  return m_plane_z->GetFunctionAasApfloat();
 }
 
-double ribi::PlaneY::GetFunctionB() const
+ribi::PlaneY::Apfloat ribi::PlaneY::GetFunctionB() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionB();
+  return m_plane_z->GetFunctionBasApfloat();
 }
 
-double ribi::PlaneY::GetFunctionC() const
+ribi::PlaneY::Apfloat ribi::PlaneY::GetFunctionC() const
 {
   assert(m_plane_z);
-  return m_plane_z->GetFunctionC();
+  return m_plane_z->GetFunctionCasApfloat();
 }
 
 std::string ribi::PlaneY::GetVersion() const noexcept
 {
-  return "1.5";
+  return "1.6";
 }
 
 std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
@@ -181,11 +183,12 @@ std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
     "2014-04-01: version 1.2: use of std::unique_ptr",
     "2014-06-13: version 1.3: shortened time to compile",
     "2014-07-03: version 1.4: use of apfloat",
-    "2014-07-09: version 1.5: use double in interface only"
+    "2014-07-09: version 1.5: use double in interface only",
+    "2014-07-10: version 1.6: use of apfloat only"
   };
 }
 
-bool ribi::PlaneY::IsInPlane(const Coordinat3D& coordinat) const noexcept
+bool ribi::PlaneY::IsInPlane(const ApCoordinat3D& coordinat) const noexcept
 {
   try
   {
@@ -202,7 +205,7 @@ bool ribi::PlaneY::IsInPlane(const Coordinat3D& coordinat) const noexcept
   }
 }
 
-std::vector<apfloat> ribi::PlaneY::Rotate(const std::vector<apfloat>& coefficients) noexcept
+ribi::PlaneY::Apfloats ribi::PlaneY::Rotate(const Apfloats& coefficients) noexcept
 {
   assert(coefficients.size() == 4);
   return
@@ -214,20 +217,18 @@ std::vector<apfloat> ribi::PlaneY::Rotate(const std::vector<apfloat>& coefficien
   };
 }
 
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::PlaneY::Rotate(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& point
+ribi::PlaneY::ApCoordinat3D ribi::PlaneY::Rotate(
+  const ApCoordinat3D& point
 ) noexcept
 {
   //The 0-2-1 order is confirmed by doing a projection of a triangle on the Y=0 plane
   //on a Y=0 plane
-  return Coordinat3D(
+  return ApCoordinat3D(
     boost::geometry::get<0>(point),
     boost::geometry::get<2>(point),
     boost::geometry::get<1>(point)
   );
 }
-
-
 
 std::string ribi::PlaneY::ToFunction() const
 {
@@ -243,9 +244,9 @@ std::ostream& ribi::operator<<(std::ostream& os,const PlaneY& planey)
   {
     os
       << "y=("
-      << planey.m_plane_z->GetFunctionA() << "*x) + ("
-      << planey.m_plane_z->GetFunctionB() << "*z) + "
-      << planey.m_plane_z->GetFunctionC()
+      << planey.m_plane_z->GetFunctionAasApfloat() << "*x) + ("
+      << planey.m_plane_z->GetFunctionBasApfloat() << "*z) + "
+      << planey.m_plane_z->GetFunctionCasApfloat()
     ;
   }
   catch (std::logic_error&)

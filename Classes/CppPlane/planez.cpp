@@ -301,10 +301,12 @@ apfloat ribi::PlaneZ::GetFunctionBasApfloat() const
   return b;
 }
 
+/*
 double ribi::PlaneZ::GetFunctionB() const
 {
   return Geometry().ToDouble(GetFunctionBasApfloat());
 }
+*/
 
 apfloat ribi::PlaneZ::GetFunctionCasApfloat() const
 {
@@ -331,11 +333,12 @@ apfloat ribi::PlaneZ::GetFunctionCasApfloat() const
   }
 }
 
+/*
 double ribi::PlaneZ::GetFunctionC() const
 {
   return Geometry().ToDouble(GetFunctionCasApfloat());
 }
-
+*/
 /*
 apfloat ribi::PlaneZ::GetLeastCoefficient() noexcept
 {
@@ -368,7 +371,7 @@ std::vector<double> ribi::PlaneZ::GetTestSeries() noexcept
 
 std::string ribi::PlaneZ::GetVersion() const noexcept
 {
-  return "1.3";
+  return "1.6";
 }
 
 std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
@@ -380,6 +383,7 @@ std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
     "2014-04-01: version 1.3: use of std::unique_ptr",
     "2014-07-03: version 1.4: use of apfloat",
     "2014-07-09: version 1.5: use double in interface only"
+    "2014-07-10: version 1.6: use of apfloat only"
   };
 }
 
@@ -420,9 +424,9 @@ std::ostream& ribi::operator<<(std::ostream& os, const PlaneZ& planez)
   {
     os
       << "z=("
-      << planez.GetFunctionA() << "*x) + ("
-      << planez.GetFunctionB() << "*y) + "
-      << planez.GetFunctionC()
+      << planez.GetFunctionAasApfloat() << "*x) + ("
+      << planez.GetFunctionBasApfloat() << "*y) + "
+      << planez.GetFunctionCasApfloat()
     ;
   }
   catch (std::logic_error&)

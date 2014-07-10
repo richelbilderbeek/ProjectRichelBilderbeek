@@ -15,7 +15,6 @@ void ribi::Geometry::Test() noexcept
   TRACE("Starting ribi::Geometry::Test");
   const bool verbose = false;
   const double pi = boost::math::constants::pi<double>();
-  //typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   const Geometry g;
   if (verbose) { TRACE("CalcPlane"); }
   {
@@ -224,78 +223,78 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("IsClockWise of two, vector");
   {
-    assert( g.IsClockwise( {-2.5 * pi,-2.0 * pi } ));
-    assert(!g.IsClockwise( {-2.0 * pi,-2.5 * pi } ));
-    assert( g.IsClockwise( {-1.5 * pi,-1.0 * pi } ));
-    assert(!g.IsClockwise( {-1.0 * pi,-1.5 * pi } ));
-    assert( g.IsClockwise( {-0.5 * pi, 0.0 * pi } ));
-    assert(!g.IsClockwise( { 0.0 * pi,-0.5 * pi } ));
-    assert( g.IsClockwise( { 0.0 * pi, 0.5 * pi } ));
-    assert(!g.IsClockwise( { 0.5 * pi, 0.0 * pi } ));
-    assert( g.IsClockwise( { 0.5 * pi, 1.0 * pi } ));
-    assert(!g.IsClockwise( { 1.0 * pi, 0.5 * pi } ));
-    assert( g.IsClockwise( { 1.5 * pi, 2.0 * pi } ));
-    assert(!g.IsClockwise( { 2.0 * pi, 1.5 * pi } ));
-    assert( g.IsClockwise( { 2.5 * pi, 3.0 * pi } ));
-    assert(!g.IsClockwise( { 3.0 * pi, 2.5 * pi } ));
+    assert( g.IsClockwise(Doubles( {-2.5 * pi,-2.0 * pi } )));
+    assert(!g.IsClockwise(Doubles( {-2.0 * pi,-2.5 * pi } )));
+    assert( g.IsClockwise(Doubles( {-1.5 * pi,-1.0 * pi } )));
+    assert(!g.IsClockwise(Doubles( {-1.0 * pi,-1.5 * pi } )));
+    assert( g.IsClockwise(Doubles( {-0.5 * pi, 0.0 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 0.0 * pi,-0.5 * pi } )));
+    assert( g.IsClockwise(Doubles( { 0.0 * pi, 0.5 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 0.5 * pi, 0.0 * pi } )));
+    assert( g.IsClockwise(Doubles( { 0.5 * pi, 1.0 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 1.0 * pi, 0.5 * pi } )));
+    assert( g.IsClockwise(Doubles( { 1.5 * pi, 2.0 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 2.0 * pi, 1.5 * pi } )));
+    assert( g.IsClockwise(Doubles( { 2.5 * pi, 3.0 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 3.0 * pi, 2.5 * pi } )));
   }
   if (verbose) TRACE("IsClockWise of three, vector");
   {
-    assert( g.IsClockwise( {-2.5 * pi,-2.0 * pi,-1.75 * pi} ));
-    assert(!g.IsClockwise( {-2.0 * pi,-2.5 * pi,-1.75 * pi} ));
-    assert( g.IsClockwise( {-1.5 * pi,-1.0 * pi,-0.75 * pi} ));
-    assert(!g.IsClockwise( {-1.0 * pi,-1.5 * pi,-0.75 * pi} ));
-    assert( g.IsClockwise( {-0.5 * pi, 0.0 * pi, 0.25 * pi } ));
-    assert(!g.IsClockwise( { 0.0 * pi,-0.5 * pi, 0.25 * pi } ));
-    assert( g.IsClockwise( { 0.0 * pi, 0.5 * pi, 0.75 * pi } ));
-    assert(!g.IsClockwise( { 0.5 * pi, 0.0 * pi, 0.75 * pi } ));
-    assert( g.IsClockwise( { 0.5 * pi, 1.0 * pi, 1.25 * pi } ));
-    assert(!g.IsClockwise( { 1.0 * pi, 0.5 * pi, 1.25 * pi } ));
-    assert( g.IsClockwise( { 1.5 * pi, 2.0 * pi, 2.25 * pi } ));
-    assert(!g.IsClockwise( { 2.0 * pi, 1.5 * pi, 2.25 * pi } ));
-    assert( g.IsClockwise( { 2.5 * pi, 3.0 * pi, 3.25 * pi } ));
-    assert(!g.IsClockwise( { 3.0 * pi, 2.5 * pi, 3.25 * pi } ));
+    assert( g.IsClockwise(Doubles( {-2.5 * pi,-2.0 * pi,-1.75 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-2.0 * pi,-2.5 * pi,-1.75 * pi} )));
+    assert( g.IsClockwise(Doubles( {-1.5 * pi,-1.0 * pi,-0.75 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-1.0 * pi,-1.5 * pi,-0.75 * pi} )));
+    assert( g.IsClockwise(Doubles( {-0.5 * pi, 0.0 * pi, 0.25 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 0.0 * pi,-0.5 * pi, 0.25 * pi } )));
+    assert( g.IsClockwise(Doubles( { 0.0 * pi, 0.5 * pi, 0.75 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 0.5 * pi, 0.0 * pi, 0.75 * pi } )));
+    assert( g.IsClockwise(Doubles( { 0.5 * pi, 1.0 * pi, 1.25 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 1.0 * pi, 0.5 * pi, 1.25 * pi } )));
+    assert( g.IsClockwise(Doubles( { 1.5 * pi, 2.0 * pi, 2.25 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 2.0 * pi, 1.5 * pi, 2.25 * pi } )));
+    assert( g.IsClockwise(Doubles( { 2.5 * pi, 3.0 * pi, 3.25 * pi } )));
+    assert(!g.IsClockwise(Doubles( { 3.0 * pi, 2.5 * pi, 3.25 * pi } )));
   }
   if (verbose) TRACE("IsClockWise of four, vector");
   {
     //Correct order
-    assert( g.IsClockwise( {-2.5 * pi,-2.0 * pi,-1.5 * pi,-1.0 * pi} ));
-    assert( g.IsClockwise( {-2.0 * pi,-1.5 * pi,-1.0 * pi,-0.5 * pi} ));
-    assert( g.IsClockwise( {-1.5 * pi,-1.0 * pi,-0.5 * pi, 0.0 * pi} ));
-    assert( g.IsClockwise( {-1.0 * pi,-0.5 * pi, 0.0 * pi, 0.5 * pi} ));
-    assert( g.IsClockwise( {-0.5 * pi, 0.0 * pi, 0.5 * pi, 1.0 * pi} ));
-    assert( g.IsClockwise( { 0.0 * pi, 0.5 * pi, 1.0 * pi, 1.5 * pi} ));
-    assert( g.IsClockwise( { 0.5 * pi, 1.0 * pi, 1.5 * pi, 2.0 * pi} ));
-    assert( g.IsClockwise( { 1.0 * pi, 1.5 * pi, 2.0 * pi, 2.5 * pi} ));
-    assert( g.IsClockwise( { 1.5 * pi, 2.0 * pi, 2.5 * pi, 3.0 * pi} ));
-    assert( g.IsClockwise( { 2.0 * pi, 2.5 * pi, 3.0 * pi, 3.5 * pi} ));
-    assert( g.IsClockwise( { 2.5 * pi, 3.0 * pi, 3.5 * pi, 4.0 * pi} ));
+    assert( g.IsClockwise(Doubles( {-2.5 * pi,-2.0 * pi,-1.5 * pi,-1.0 * pi} )));
+    assert( g.IsClockwise(Doubles( {-2.0 * pi,-1.5 * pi,-1.0 * pi,-0.5 * pi} )));
+    assert( g.IsClockwise(Doubles( {-1.5 * pi,-1.0 * pi,-0.5 * pi, 0.0 * pi} )));
+    assert( g.IsClockwise(Doubles( {-1.0 * pi,-0.5 * pi, 0.0 * pi, 0.5 * pi} )));
+    assert( g.IsClockwise(Doubles( {-0.5 * pi, 0.0 * pi, 0.5 * pi, 1.0 * pi} )));
+    assert( g.IsClockwise(Doubles( { 0.0 * pi, 0.5 * pi, 1.0 * pi, 1.5 * pi} )));
+    assert( g.IsClockwise(Doubles( { 0.5 * pi, 1.0 * pi, 1.5 * pi, 2.0 * pi} )));
+    assert( g.IsClockwise(Doubles( { 1.0 * pi, 1.5 * pi, 2.0 * pi, 2.5 * pi} )));
+    assert( g.IsClockwise(Doubles( { 1.5 * pi, 2.0 * pi, 2.5 * pi, 3.0 * pi} )));
+    assert( g.IsClockwise(Doubles( { 2.0 * pi, 2.5 * pi, 3.0 * pi, 3.5 * pi} )));
+    assert( g.IsClockwise(Doubles( { 2.5 * pi, 3.0 * pi, 3.5 * pi, 4.0 * pi} )));
 
     //Swap [0] and [1]
-    assert(!g.IsClockwise( {-2.0 * pi,-2.5 * pi,-1.5 * pi,-1.0 * pi} ));
-    assert(!g.IsClockwise( {-1.5 * pi,-2.0 * pi,-1.0 * pi,-0.5 * pi} ));
-    assert(!g.IsClockwise( {-1.0 * pi,-1.5 * pi,-0.5 * pi, 0.0 * pi} ));
-    assert(!g.IsClockwise( {-0.5 * pi,-1.0 * pi, 0.0 * pi, 0.5 * pi} ));
-    assert(!g.IsClockwise( { 0.0 * pi,-0.5 * pi, 0.5 * pi, 1.0 * pi} ));
-    assert(!g.IsClockwise( { 0.5 * pi, 0.0 * pi, 1.0 * pi, 1.5 * pi} ));
-    assert(!g.IsClockwise( { 1.0 * pi, 0.5 * pi, 1.5 * pi, 2.0 * pi} ));
-    assert(!g.IsClockwise( { 1.5 * pi, 1.0 * pi, 2.0 * pi, 2.5 * pi} ));
-    assert(!g.IsClockwise( { 2.0 * pi, 1.5 * pi, 2.5 * pi, 3.0 * pi} ));
-    assert(!g.IsClockwise( { 2.5 * pi, 2.0 * pi, 3.0 * pi, 3.5 * pi} ));
-    assert(!g.IsClockwise( { 3.0 * pi, 2.5 * pi, 3.5 * pi, 4.0 * pi} ));
+    assert(!g.IsClockwise(Doubles( {-2.0 * pi,-2.5 * pi,-1.5 * pi,-1.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-1.5 * pi,-2.0 * pi,-1.0 * pi,-0.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-1.0 * pi,-1.5 * pi,-0.5 * pi, 0.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-0.5 * pi,-1.0 * pi, 0.0 * pi, 0.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 0.0 * pi,-0.5 * pi, 0.5 * pi, 1.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 0.5 * pi, 0.0 * pi, 1.0 * pi, 1.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 1.0 * pi, 0.5 * pi, 1.5 * pi, 2.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 1.5 * pi, 1.0 * pi, 2.0 * pi, 2.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 2.0 * pi, 1.5 * pi, 2.5 * pi, 3.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 2.5 * pi, 2.0 * pi, 3.0 * pi, 3.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 3.0 * pi, 2.5 * pi, 3.5 * pi, 4.0 * pi} )));
 
     //Swap [2] and [3]
-    assert(!g.IsClockwise( {-2.5 * pi,-2.0 * pi,-1.0 * pi,-1.5 * pi} ));
-    assert(!g.IsClockwise( {-2.0 * pi,-1.5 * pi,-0.5 * pi,-1.0 * pi} ));
-    assert(!g.IsClockwise( {-1.5 * pi,-1.0 * pi, 0.0 * pi,-0.5 * pi} ));
-    assert(!g.IsClockwise( {-1.0 * pi,-0.5 * pi, 0.5 * pi, 0.0 * pi} ));
-    assert(!g.IsClockwise( {-0.5 * pi, 0.0 * pi, 1.0 * pi, 0.5 * pi} ));
-    assert(!g.IsClockwise( { 0.0 * pi, 0.5 * pi, 1.5 * pi, 1.0 * pi} ));
-    assert(!g.IsClockwise( { 0.5 * pi, 1.0 * pi, 2.0 * pi, 1.5 * pi} ));
-    assert(!g.IsClockwise( { 1.0 * pi, 1.5 * pi, 2.5 * pi, 2.0 * pi} ));
-    assert(!g.IsClockwise( { 1.5 * pi, 2.0 * pi, 3.0 * pi, 2.5 * pi} ));
-    assert(!g.IsClockwise( { 2.0 * pi, 2.5 * pi, 3.5 * pi, 3.0 * pi} ));
-    assert(!g.IsClockwise( { 2.5 * pi, 3.0 * pi, 4.0 * pi, 3.5 * pi} ));
+    assert(!g.IsClockwise(Doubles( {-2.5 * pi,-2.0 * pi,-1.0 * pi,-1.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-2.0 * pi,-1.5 * pi,-0.5 * pi,-1.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-1.5 * pi,-1.0 * pi, 0.0 * pi,-0.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-1.0 * pi,-0.5 * pi, 0.5 * pi, 0.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( {-0.5 * pi, 0.0 * pi, 1.0 * pi, 0.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 0.0 * pi, 0.5 * pi, 1.5 * pi, 1.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 0.5 * pi, 1.0 * pi, 2.0 * pi, 1.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 1.0 * pi, 1.5 * pi, 2.5 * pi, 2.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 1.5 * pi, 2.0 * pi, 3.0 * pi, 2.5 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 2.0 * pi, 2.5 * pi, 3.5 * pi, 3.0 * pi} )));
+    assert(!g.IsClockwise(Doubles( { 2.5 * pi, 3.0 * pi, 4.0 * pi, 3.5 * pi} )));
   }
   if (verbose) TRACE("IsConvex, two dimensions");
   {
@@ -485,11 +484,11 @@ void ribi::Geometry::Test() noexcept
         1---0   --+--+--
                  /|
       */
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(1.0,0.0,0.0),
-        g.CreatePoint(0.0,0.0,0.0),
-        g.CreatePoint(1.0,0.0,1.0),
-        g.CreatePoint(0.0,0.0,1.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(1.0,0.0,0.0),
+        ApCoordinat3D(0.0,0.0,0.0),
+        ApCoordinat3D(1.0,0.0,1.0),
+        ApCoordinat3D(0.0,0.0,1.0)
       };
 
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
@@ -505,11 +504,11 @@ void ribi::Geometry::Test() noexcept
         1---0 Z=0.0
 
       */
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(1.0,0.0,0.0),
-        g.CreatePoint(0.0,0.0,0.0),
-        g.CreatePoint(0.0,0.0,1.0),
-        g.CreatePoint(1.0,0.0,1.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(1.0,0.0,0.0),
+        ApCoordinat3D(0.0,0.0,0.0),
+        ApCoordinat3D(0.0,0.0,1.0),
+        ApCoordinat3D(1.0,0.0,1.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -527,11 +526,11 @@ void ribi::Geometry::Test() noexcept
         1---0   --1-----
                  /|
       */
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(1.0,1.0,0.0),
-        g.CreatePoint(0.0,0.0,0.0),
-        g.CreatePoint(1.0,1.0,1.0),
-        g.CreatePoint(0.0,0.0,1.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(1.0,1.0,0.0),
+        ApCoordinat3D(0.0,0.0,0.0),
+        ApCoordinat3D(1.0,1.0,1.0),
+        ApCoordinat3D(0.0,0.0,1.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
@@ -549,11 +548,11 @@ void ribi::Geometry::Test() noexcept
                  /|
 
       */
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(1.0,1.0,0.0),
-        g.CreatePoint(0.0,0.0,0.0),
-        g.CreatePoint(0.0,0.0,1.0),
-        g.CreatePoint(1.0,1.0,1.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(1.0,1.0,0.0),
+        ApCoordinat3D(0.0,0.0,0.0),
+        ApCoordinat3D(0.0,0.0,1.0),
+        ApCoordinat3D(1.0,1.0,1.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -561,20 +560,20 @@ void ribi::Geometry::Test() noexcept
   if (verbose) TRACE("Convex shape, 3D, points in 2X=Y plane, not at origin");
   {
     {
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(2.0,4.0,0.0),
-        g.CreatePoint(1.0,1.0,0.0),
-        g.CreatePoint(2.0,4.0,1.0),
-        g.CreatePoint(1.0,1.0,1.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(2.0,4.0,0.0),
+        ApCoordinat3D(1.0,1.0,0.0),
+        ApCoordinat3D(2.0,4.0,1.0),
+        ApCoordinat3D(1.0,1.0,1.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
     {
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(2.0,2.0,0.0),
-        g.CreatePoint(1.0,1.0,0.0),
-        g.CreatePoint(1.0,1.0,1.0),
-        g.CreatePoint(2.0,2.0,1.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(2.0,2.0,0.0),
+        ApCoordinat3D(1.0,1.0,0.0),
+        ApCoordinat3D(1.0,1.0,1.0),
+        ApCoordinat3D(2.0,2.0,1.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -582,20 +581,20 @@ void ribi::Geometry::Test() noexcept
   if (verbose) TRACE("Convex shape, 3D, points in 2X=Y plane, above Z=0");
   {
     {
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(2.0,4.0,1.0),
-        g.CreatePoint(1.0,1.0,1.0),
-        g.CreatePoint(2.0,4.0,2.0),
-        g.CreatePoint(1.0,1.0,2.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(2.0,4.0,1.0),
+        ApCoordinat3D(1.0,1.0,1.0),
+        ApCoordinat3D(2.0,4.0,2.0),
+        ApCoordinat3D(1.0,1.0,2.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
     {
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(2.0,2.0,1.0),
-        g.CreatePoint(1.0,1.0,1.0),
-        g.CreatePoint(1.0,1.0,2.0),
-        g.CreatePoint(2.0,2.0,2.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(2.0,2.0,1.0),
+        ApCoordinat3D(1.0,1.0,1.0),
+        ApCoordinat3D(1.0,1.0,2.0),
+        ApCoordinat3D(2.0,2.0,2.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -612,11 +611,11 @@ void ribi::Geometry::Test() noexcept
         1---0 Z=5.0
 
       */
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(2.35114,3.23607,5.0),
-        g.CreatePoint(1.17557,2.35781,5.0),
-        g.CreatePoint(2.35114,3.23607,6.0),
-        g.CreatePoint(1.17557,2.35781,6.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(2.35114,3.23607,5.0),
+        ApCoordinat3D(1.17557,2.35781,5.0),
+        ApCoordinat3D(2.35114,3.23607,6.0),
+        ApCoordinat3D(1.17557,2.35781,6.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
@@ -630,11 +629,11 @@ void ribi::Geometry::Test() noexcept
         1---0 Z=5.0
 
       */
-      const std::vector<Coordinat3D> points {
-        g.CreatePoint(2.35114,3.23607,5.0),
-        g.CreatePoint(1.17557,2.35781,5.0),
-        g.CreatePoint(1.17557,2.35781,6.0),
-        g.CreatePoint(2.35114,3.23607,6.0)
+      const ApCoordinats3D points {
+        ApCoordinat3D(2.35114,3.23607,5.0),
+        ApCoordinat3D(1.17557,2.35781,5.0),
+        ApCoordinat3D(1.17557,2.35781,6.0),
+        ApCoordinat3D(2.35114,3.23607,6.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -656,18 +655,18 @@ void ribi::Geometry::Test() noexcept
 
     */
 
-    const Coordinat3D a(1.0, 1.0, 1.0);
-    const Coordinat3D b(2.0, 2.0, 1.0);
-    const Coordinat3D c(1.0, 2.0, 1.0);
-    const std::vector<Coordinat3D> coordinats { a,b,c };
+    const ApCoordinat3D a(1.0, 1.0, 1.0);
+    const ApCoordinat3D b(2.0, 2.0, 1.0);
+    const ApCoordinat3D c(1.0, 2.0, 1.0);
+    const ApCoordinats3D coordinats { a,b,c };
     for (int i = 0; i!=3; ++i)
     {
       for (int j=0; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
-        const Coordinat3D above(x, y, 2.0);
-        const Coordinat3D below(x, y,-1.0);
+        const ApCoordinat3D above(x, y, 2.0);
+        const ApCoordinat3D below(x, y,-1.0);
         assert( g.IsClockwise(coordinats,above));
         assert(!g.IsClockwise(coordinats,below));
       }
@@ -687,18 +686,18 @@ void ribi::Geometry::Test() noexcept
        Y
 
     */
-    const Coordinat3D a(1.0, 1.0, 1.0);
-    const Coordinat3D b(1.0, 2.0, 1.0);
-    const Coordinat3D c(2.0, 2.0, 1.0);
-    const std::vector<Coordinat3D> coordinats { a,b,c };
+    const ApCoordinat3D a(1.0, 1.0, 1.0);
+    const ApCoordinat3D b(1.0, 2.0, 1.0);
+    const ApCoordinat3D c(2.0, 2.0, 1.0);
+    const ApCoordinats3D coordinats { a,b,c };
     for (int i = 0; i!=3; ++i)
     {
       for (int j=0; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
-        const Coordinat3D above(x, y, 2.0);
-        const Coordinat3D below(x, y,-1.0);
+        const ApCoordinat3D above(x, y, 2.0);
+        const ApCoordinat3D below(x, y,-1.0);
         assert(!g.IsClockwise(coordinats,above));
         assert( g.IsClockwise(coordinats,below));
       }
@@ -719,19 +718,19 @@ void ribi::Geometry::Test() noexcept
        Y
 
     */
-    const Coordinat3D a(1.0, 1.0, 1.0);
-    const Coordinat3D b(2.0, 1.0, 1.0);
-    const Coordinat3D c(2.0, 2.0, 1.0);
-    const Coordinat3D d(1.0, 2.0, 1.0);
-    const std::vector<Coordinat3D> coordinats { a,b,c,d };
+    const ApCoordinat3D a(1.0, 1.0, 1.0);
+    const ApCoordinat3D b(2.0, 1.0, 1.0);
+    const ApCoordinat3D c(2.0, 2.0, 1.0);
+    const ApCoordinat3D d(1.0, 2.0, 1.0);
+    const ApCoordinats3D coordinats { a,b,c,d };
     for (int i = 0; i!=3; ++i)
     {
       for (int j=0; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
-        const Coordinat3D above(x, y, 2.0);
-        const Coordinat3D below(x, y,-1.0);
+        const ApCoordinat3D above(x, y, 2.0);
+        const ApCoordinat3D below(x, y,-1.0);
         assert( g.IsClockwiseHorizontal(coordinats));
         assert( g.IsClockwise(coordinats,above));
         assert(!g.IsCounterClockwiseHorizontal(coordinats));
@@ -753,19 +752,19 @@ void ribi::Geometry::Test() noexcept
        Y
 
     */
-    const Coordinat3D a(1.0, 1.0, 1.0);
-    const Coordinat3D b(1.0, 2.0, 1.0);
-    const Coordinat3D c(2.0, 2.0, 1.0);
-    const Coordinat3D d(2.0, 1.0, 1.0);
-    const std::vector<Coordinat3D> coordinats { a,b,c,d };
+    const ApCoordinat3D a(1.0, 1.0, 1.0);
+    const ApCoordinat3D b(1.0, 2.0, 1.0);
+    const ApCoordinat3D c(2.0, 2.0, 1.0);
+    const ApCoordinat3D d(2.0, 1.0, 1.0);
+    const ApCoordinats3D coordinats { a,b,c,d };
     for (int i = 0; i!=3; ++i)
     {
       for (int j=0; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
-        const Coordinat3D above(x, y, 2.0);
-        const Coordinat3D below(x, y,-1.0);
+        const ApCoordinat3D above(x, y, 2.0);
+        const ApCoordinat3D below(x, y,-1.0);
         assert(!g.IsClockwise(coordinats,above));
         assert( g.IsClockwise(coordinats,below));
       }
@@ -785,19 +784,19 @@ void ribi::Geometry::Test() noexcept
        Y
 
     */
-    const Coordinat3D a(1.0, 1.0, 1.0);
-    const Coordinat3D b(2.0, 2.0, 1.0);
-    const Coordinat3D c(1.0, 2.0, 1.0);
-    const Coordinat3D d(2.0, 1.0, 1.0);
-    const std::vector<Coordinat3D> coordinats { a,b,c,d };
+    const ApCoordinat3D a(1.0, 1.0, 1.0);
+    const ApCoordinat3D b(2.0, 2.0, 1.0);
+    const ApCoordinat3D c(1.0, 2.0, 1.0);
+    const ApCoordinat3D d(2.0, 1.0, 1.0);
+    const ApCoordinats3D coordinats { a,b,c,d };
     for (int i = 0; i!=3; ++i)
     {
       for (int j=0; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
-        const Coordinat3D above(x, y, 2.0);
-        const Coordinat3D below(x, y,-1.0);
+        const ApCoordinat3D above(x, y, 2.0);
+        const ApCoordinat3D below(x, y,-1.0);
         assert(!g.IsClockwise(coordinats,above));
         assert(!g.IsClockwise(coordinats,below));
       }

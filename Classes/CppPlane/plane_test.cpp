@@ -22,7 +22,8 @@ void ribi::Plane::Test() noexcept
   }
   TRACE("Starting ribi::Plane::Test");
   const bool verbose = true;
-  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
+  typedef apfloat Apfloat;
+  typedef boost::geometry::model::point<Apfloat,3,boost::geometry::cs::cartesian> Point3D;
   using boost::geometry::get;
   Container();
   Geometry();
@@ -478,15 +479,15 @@ void ribi::Plane::Test() noexcept
       if (p.IsInPlane(Point3D( 1.0, 1.0,slope_more)))
       {
         TRACE("ERROR");
-        TRACE(p.CalcError(Point3D( 1.0, 1.0,slope_more)));
+        TRACE(p.CalcErrorAsApfloat(Point3D( 1.0, 1.0,slope_more)));
       }
       assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_more)));
 
       if (p.IsInPlane(Point3D(1.0, 1.0,slope_less)))
       {
         TRACE("ERROR");
-        TRACE(p.CalcError(Point3D(1.0, 1.0,slope_less)));
-        TRACE(p.CalcMaxError(Point3D(1.0, 1.0,slope_less)));
+        TRACE(p.CalcErrorAsApfloat(Point3D(1.0, 1.0,slope_less)));
+        TRACE(p.CalcMaxErrorAsApfloat(Point3D(1.0, 1.0,slope_less)));
       }
       assert(!p.IsInPlane(Point3D( 1.0, 1.0,slope_less)));
     }

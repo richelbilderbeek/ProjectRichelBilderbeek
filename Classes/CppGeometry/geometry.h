@@ -60,28 +60,27 @@ struct Geometry
   typedef boost::geometry::model::box<Coordinat2D> Rect;
 
   typedef apfloat Apfloat;
+  typedef double Double;
   typedef std::vector<ApCoordinat2D> ApCoordinats2D;
   typedef std::vector<ApCoordinat3D> ApCoordinats3D;
+  typedef std::vector<Apfloat> Apfloats;
   typedef std::vector<Coordinat2D> Coordinats2D;
   typedef std::vector<Coordinat3D> Coordinats3D;
+  typedef std::vector<Double> Doubles;
   typedef std::vector<Linestring> Linestrings;
   typedef std::vector<Polygon> Polygons;
+
   typedef std::pair<Polygons,Linestrings> Shapes;
 
   Geometry();
 
-  Coordinat2D CalcCenter(const std::vector<Coordinat2D>& v) const noexcept;
-  Coordinat3D CalcCenter(const std::vector<Coordinat3D>& v) const noexcept;
+  Coordinat2D CalcCenter(const Coordinats2D& v) const noexcept;
+  Coordinat3D CalcCenter(const Coordinats3D& v) const noexcept;
+  ApCoordinat2D CalcCenter(const ApCoordinats2D& v) const noexcept;
+  ApCoordinat3D CalcCenter(const ApCoordinats3D& v) const noexcept;
 
-  Coordinat3D CalcCrossProduct(
-    const Coordinat3D& a,
-    const Coordinat3D& b
-  ) const noexcept;
-
-  ApCoordinat3D CalcCrossProduct(
-    const ApCoordinat3D& a,
-    const ApCoordinat3D& b
-  ) const noexcept;
+  Coordinat3D CalcCrossProduct(const Coordinat3D& a,const Coordinat3D& b) const noexcept;
+  ApCoordinat3D CalcCrossProduct(const ApCoordinat3D& a,const ApCoordinat3D& b) const noexcept;
 
 
   double CalcDotProduct(
@@ -162,6 +161,10 @@ struct Geometry
   std::function<bool(const Coordinat3D& lhs, const Coordinat3D& rhs)> Equals() const noexcept;
   std::function<bool(const ApCoordinat3D& lhs, const ApCoordinat3D& rhs)> Equals3d() const noexcept;
 
+  ///Take the floating point modulus
+  double Fmod(const double x, const double mod) const noexcept;
+  Apfloat Fmod(const Apfloat& x, const Apfloat& mod) const noexcept;
+
   ///Obtain the angle in radians between two deltas
   ///12 o'clock is 0.0 * pi
   /// 3 o'clock is 0.5 * pi
@@ -202,8 +205,9 @@ struct Geometry
   */
   //From www.richelbilderbeek.nl/CppGetAngle.htm
   double GetAngle(const double dx, const double dy) const noexcept;
-
+  Apfloat GetAngle(const Apfloat& dx, const Apfloat& dy) const noexcept;
   double GetAngle(const Coordinat2D& p) const noexcept;
+  Apfloat GetAngle(const ApCoordinat2D& p) const noexcept;
 
   template <class T>
   T GetBottom(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
@@ -301,6 +305,7 @@ struct Geometry
   ///Yes: 0.0 * pi and 0.5 * pi
   ///No : 0.5 * pi and 0.0 * pi
   bool IsClockwise(const double a, const double b) const noexcept;
+  bool IsClockwise(const Apfloat& a, const Apfloat& b) const noexcept;
 
   ///Are the angles ordered clockwise?
   ///12 o'clock is 0.0 * pi
@@ -311,6 +316,7 @@ struct Geometry
   ///Yes: 0.0 * pi and 0.5 * pi
   ///No : 0.5 * pi and 0.0 * pi
   bool IsClockwise(const std::vector<double>& angles) const noexcept;
+  bool IsClockwise(const Apfloats& angles) const noexcept;
 
   ///Are the points ordered clockwise in the XYZ plane, seen from the observer?
   //bool IsClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept;
@@ -326,6 +332,7 @@ struct Geometry
   ///Yes: 0.5 * pi and 0.0 * pi
   ///No : 0.0 * pi and 0.5 * pi
   bool IsCounterClockwise(const double a, const double b) const noexcept;
+  bool IsCounterClockwise(const Apfloat& a, const Apfloat& b) const noexcept;
 
   ///Are the angles ordered counter-clockwise?
   ///12 o'clock is 0.0 * pi
@@ -335,7 +342,8 @@ struct Geometry
   ///
   ///Yes: 0.5 * pi and 0.0 * pi
   ///No : 0.0 * pi and 0.5 * pi
-  bool IsCounterClockwise(const std::vector<double>& angles) const noexcept;
+  bool IsCounterClockwise(const Doubles& angles) const noexcept;
+  bool IsCounterClockwise(const Apfloats& angles) const noexcept;
 
   ///Are the points ordered counterclockwise in the XYZ plane, seen from the observer?
   bool IsCounterClockwise(const std::vector<  Coordinat3D>& points, const   Coordinat3D& observer) const noexcept;
@@ -427,16 +435,21 @@ struct Geometry
     const double scale_origin_y = 0.0
   ) const noexcept;
 
+  Apfloats ToApfloat(const Doubles& v) const noexcept;
+  ApCoordinat2D ToApfloat(const Coordinat2D& p) const noexcept;
   ApCoordinat3D ToApfloat(const Coordinat3D& p) const noexcept;
+  ApCoordinats2D ToApfloat(const Coordinats2D& p) const noexcept;
+  ApCoordinats3D ToApfloat(const Coordinats3D& p) const noexcept;
 
   ///Will throw a boost::bad_lexical_cast if it fails
   double ToDouble(const apfloat& a) const;
+  std::vector<double> ToDouble(const std::vector<apfloat>& a) const;
 
   ///Will convert the apfloat to its smallest value, zero or its heighest value
   double ToDoubleSafe(const apfloat& a) const noexcept;
-
-  std::vector<double> ToDouble(const std::vector<apfloat>& a) const;
-  std::vector<Coordinat2D> ToDoubleSafe(const std::vector<ApCoordinat2D>& a) const noexcept;
+  Coordinat2D ToDoubleSafe(const ApCoordinat2D& a) const noexcept;
+  Coordinat3D ToDoubleSafe(const ApCoordinat3D& a) const noexcept;
+  Coordinats2D ToDoubleSafe(const ApCoordinats2D& a) const noexcept;
 
   ///Convert a linestring to a closed polygon. If the linestring
   ///is open, close it
@@ -518,12 +531,13 @@ struct Geometry
   std::string WktToSvg(const std::vector<std::string>& wkt, const double svg_stroke_width) const;
 
   private:
-  ///Take the floating point modulus
-  double Fmod(const double x, const double mod) const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  ///Replaces what static_cast<int>(a) would do
+  int ToInt(const Apfloat& a) const noexcept;
 
   //Create the line this geometry is in an SVG file
   std::string ToSvgStr(
@@ -567,6 +581,8 @@ ribi::Geometry::ApCoordinat3D operator-(
   const ribi::Geometry::ApCoordinat3D& a,
   const ribi::Geometry::ApCoordinat3D& b
 ) noexcept;
+
+
 
 std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat2D& p) noexcept;
 std::ostream& operator<<(std::ostream& os, const Geometry::Coordinat3D& p) noexcept;

@@ -33,6 +33,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/linestring.hpp>
 #endif
 
+//#include "apcplx.h" //apfloat
+
 #include <QPen>
 #include <QPoint>
 #include <QRect>
@@ -50,74 +52,13 @@ ribi::Geometry::Geometry()
   #endif
 }
 
-boost::geometry::model::d2::point_xy<double> ribi::Geometry::CalcCenter(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
-{
-  typedef Coordinat2D T;
-  T sum(0.0,0.0);
-  for (const auto& point: points)
-  {
-    sum.x(sum.x() + point.x());
-    sum.y(sum.y() + point.y());
-  }
-  const double n { static_cast<double>(points.size()) };
-  const T center(
-    sum.x() / n,
-    sum.y() / n
-  );
-  return center;
 
-}
 
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Geometry::CalcCenter(const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points) const noexcept
-{
-  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> T;
-  double sum_x = 0.0;
-  double sum_y = 0.0;
-  double sum_z = 0.0;
-  for (const auto& point: points)
-  {
-    sum_x += boost::geometry::get<0>(point);
-    sum_y += boost::geometry::get<1>(point);
-    sum_z += boost::geometry::get<2>(point);
-  }
-  const double n { static_cast<double>(points.size()) };
-  const T center(
-    sum_x / n,
-    sum_y / n,
-    sum_z / n
-  );
-  return center;
-}
 
-ribi::Geometry::Coordinat3D ribi::Geometry::CalcCrossProduct(
-  const Coordinat3D& a,
-  const Coordinat3D& b
-) const noexcept
-{
-  using boost::geometry::get;
-  return Coordinat3D(
-    (get<1>(a) * get<2>(b)) - (get<2>(a) * get<1>(b)),
-    (get<2>(a) * get<0>(b)) - (get<0>(a) * get<2>(b)),
-    (get<0>(a) * get<1>(b)) - (get<1>(a) * get<0>(b))
-  );
-}
 
-ribi::Geometry::ApCoordinat3D ribi::Geometry::CalcCrossProduct(
+ribi::Geometry::Apfloat ribi::Geometry::CalcDotProduct(
   const ApCoordinat3D& a,
   const ApCoordinat3D& b
-) const noexcept
-{
-  using boost::geometry::get;
-  return ApCoordinat3D(
-    (get<1>(a) * get<2>(b)) - (get<2>(a) * get<1>(b)),
-    (get<2>(a) * get<0>(b)) - (get<0>(a) * get<2>(b)),
-    (get<0>(a) * get<1>(b)) - (get<1>(a) * get<0>(b))
-  );
-}
-
-double ribi::Geometry::CalcDotProduct(
-  const Coordinat3D& a,
-  const Coordinat3D& b
 ) const noexcept
 {
   using boost::geometry::get;
@@ -128,15 +69,37 @@ double ribi::Geometry::CalcDotProduct(
   ;
 }
 
+double ribi::Geometry::CalcDotProduct(
+  const Coordinat3D& a,
+  const Coordinat3D& b
+) const noexcept
+{
+  return ToDoubleSafe(
+    CalcDotProduct(
+      ToApfloat(a),
+      ToApfloat(b)
+    )
+  );
+}
+
+ribi::Geometry::ApCoordinat3D ribi::Geometry::CalcNormal(
+  const ApCoordinat3D& a,
+  const ApCoordinat3D& b,
+  const ApCoordinat3D& c
+) const noexcept
+{
+  const auto u(c - a);
+  const auto v(b - a);
+  return CalcCrossProduct(u,v);
+}
+
 ribi::Geometry::Coordinat3D ribi::Geometry::CalcNormal(
   const Coordinat3D& a,
   const Coordinat3D& b,
   const Coordinat3D& c
 ) const noexcept
 {
-  const auto u(c - a);
-  const auto v(b - a);
-  return CalcCrossProduct(u,v);
+  return ToDoubleSafe(CalcNormal(ToApfloat(a),ToApfloat(b),ToApfloat(c)));
 }
 
 std::vector<double> ribi::Geometry::CalcPlane(
@@ -377,23 +340,24 @@ double ribi::Geometry::Fmod(const double x, const double mod) const noexcept
   return result;
 }
 
-double ribi::Geometry::GetAngle(const double dx, const double dy) const noexcept
+ribi::Geometry::Apfloat ribi::Geometry::Fmod(const Apfloat& x, const Apfloat& mod) const noexcept
 {
-  const double pi = boost::math::constants::pi<double>();
-  const double tau = boost::math::constants::two_pi<double>();
-  const double angle = Fmod(pi - (std::atan2(dx,dy)),tau);
-  assert(angle >= 0.0 && "GetAngle must return a value between zero and two pi");
-  assert(angle < tau  && "GetAngle must return a value between zero and two pi");
-  return angle;
+  if (x < 0.0)
+  {
+    const Apfloat new_x(
+      x + (mod * (1 + ToInt(-x / mod)))
+    );
+    assert(new_x >= 0.0);
+    return Fmod(new_x,mod);
+  }
+  Apfloat result = x - (mod * ToInt(x / mod));
+
+  assert(result >= 0.0 && "Fmod must return a value between zero and mod");
+  assert(result < mod  && "Fmod must return a value between zero and mod");
+  return result;
 }
 
-double ribi::Geometry::GetAngle(const Coordinat2D& p) const noexcept
-{
-  return GetAngle(
-    boost::geometry::get<0>(p),
-    boost::geometry::get<1>(p)
-  );
-}
+
 
 double ribi::Geometry::GetDistance(const double dx, const double dy) const noexcept
 {
@@ -405,8 +369,8 @@ double ribi::Geometry::GetDistance(const double dx, const double dy) const noexc
 }
 
 double ribi::Geometry::GetDistance(
-  const boost::geometry::model::d2::point_xy<double>& a,
-  const boost::geometry::model::d2::point_xy<double>& b
+  const Coordinat2D& a,
+  const Coordinat2D& b
   ) const noexcept
 {
   //return GetDistance(a.x() - b.x(),a.y() - b.y());
@@ -430,12 +394,12 @@ std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
   };
 }
 
-bool ribi::Geometry::IsClockwise(const double a, const double b) const noexcept
+bool ribi::Geometry::IsClockwise(const Apfloat& a, const Apfloat&b) const noexcept
 {
-  const double pi  = boost::math::constants::pi<double>();
-  const double tau = boost::math::constants::two_pi<double>();
-  const double c { Fmod(a,tau) };
-  const double d { Fmod(b,tau) };
+  const Apfloat pi  = boost::math::constants::pi<double>();
+  const Apfloat tau = boost::math::constants::two_pi<double>();
+  const Apfloat c { Fmod(a,tau) };
+  const Apfloat d { Fmod(b,tau) };
   assert(c >= 0);
   assert(c < tau);
   assert(d >= 0);
@@ -445,7 +409,12 @@ bool ribi::Geometry::IsClockwise(const double a, const double b) const noexcept
   return false;
 }
 
-bool ribi::Geometry::IsClockwise(const std::vector<double>& angles) const noexcept
+bool ribi::Geometry::IsClockwise(const double a, const double b) const noexcept
+{
+  return IsClockwise(Apfloat(a),Apfloat(b));
+}
+
+bool ribi::Geometry::IsClockwise(const Apfloats& angles) const noexcept
 {
   const int sz = static_cast<int>(angles.size());
   assert(sz >= 2 && "Need at least two angles to determine if these are clockwise");
@@ -454,6 +423,11 @@ bool ribi::Geometry::IsClockwise(const std::vector<double>& angles) const noexce
     if (!IsClockwise(angles[i],angles[i+1])) return false;
   }
   return true;
+}
+
+bool ribi::Geometry::IsClockwise(const std::vector<double>& angles) const noexcept
+{
+  return IsClockwise(ToApfloat(angles));
 }
 
 bool ribi::Geometry::IsClockwise(
@@ -483,7 +457,6 @@ bool ribi::Geometry::IsClockwise(
     const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
     assert(plane);
     const auto v(
-      ToDoubleSafe(
         plane->CalcProjection(
           {
             points[0],
@@ -492,7 +465,6 @@ bool ribi::Geometry::IsClockwise(
             points[3]
           }
         )
-      )
     );
     //If the points are messed up, they cannot be clockwise
     if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
@@ -503,15 +475,15 @@ bool ribi::Geometry::IsClockwise(
   }
 }
 
-bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept
+bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats3D& points) const noexcept
 {
   using boost::geometry::get;
   const auto center(CalcCenter(points));
-  std::vector<double> angles;
+  Apfloats angles;
   angles.reserve(points.size());
   std::transform(points.begin(),points.end(),
     std::back_inserter(angles),
-    [this,center](const Coordinat3D& coordinat)
+    [this,center](const ApCoordinat3D& coordinat)
     {
       return GetAngle(
         get<0>(coordinat) - get<0>(center),
@@ -522,15 +494,19 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& point
   return IsClockwise(angles);
 }
 
-bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
+bool ribi::Geometry::IsClockwiseHorizontal(const Coordinats3D& points) const noexcept
+{
+  return IsClockwiseHorizontal(ToApfloat(points));
+}
+
+bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats2D& points) const noexcept
 {
   //Points are determined from their center
   const auto center(CalcCenter(points));
-  std::vector<double> angles;
-  angles.reserve(points.size());
+  Apfloats angles;
   std::transform(points.begin(),points.end(),
     std::back_inserter(angles),
-    [this,center](const Coordinat2D& coordinat)
+    [this,center](const ApCoordinat2D& coordinat)
     {
       return GetAngle(
         coordinat.x() - center.x(),
@@ -688,12 +664,17 @@ bool ribi::Geometry::IsConvex(const ApCoordinats3D& points) const noexcept
   return false;
 }
 
-bool ribi::Geometry::IsCounterClockwise(const double a, const double b) const noexcept
+bool ribi::Geometry::IsCounterClockwise(const Apfloat& a, const Apfloat& b) const noexcept
 {
   return !IsClockwise(a,b);
 }
 
-bool ribi::Geometry::IsCounterClockwise(const std::vector<double>& angles) const noexcept
+bool ribi::Geometry::IsCounterClockwise(const double a, const double b) const noexcept
+{
+  return IsCounterClockwise(Apfloat(a),Apfloat(b));
+}
+
+bool ribi::Geometry::IsCounterClockwise(const Apfloats& angles) const noexcept
 {
   const int sz = static_cast<int>(angles.size());
   assert(sz >= 2 && "Need at least two angles to determine if these are counter-clockwise");
@@ -702,6 +683,11 @@ bool ribi::Geometry::IsCounterClockwise(const std::vector<double>& angles) const
     if (!IsCounterClockwise(angles[i],angles[i+1])) return false;
   }
   return true;
+}
+
+bool ribi::Geometry::IsCounterClockwise(const Doubles& angles) const noexcept
+{
+  return IsCounterClockwise(ToApfloat(angles));
 }
 
 bool ribi::Geometry::IsCounterClockwise(
@@ -748,15 +734,15 @@ bool ribi::Geometry::IsCounterClockwise(
   }
 }
 
-bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept
+bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats2D& points) const noexcept
 {
   //Points are determined from their center
   const auto center(CalcCenter(points));
-  std::vector<double> angles;
+  Apfloats angles;
   angles.reserve(points.size());
   std::transform(points.begin(),points.end(),
     std::back_inserter(angles),
-    [this,center](const Coordinat2D& coordinat)
+    [this,center](const ApCoordinat2D& coordinat)
     {
       return GetAngle(
         coordinat - center
@@ -766,9 +752,9 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>
   return IsCounterClockwise(angles);
 }
 
-bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points3d) const noexcept
+bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats3D& points3d) const noexcept
 {
-  std::vector<Coordinat2D> points2d;
+  ApCoordinats2D points2d;
   for (const auto point3d: points3d)
   {
     points2d.push_back(
@@ -797,7 +783,21 @@ std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry:
 std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)>
   ribi::Geometry::Equals() const noexcept
 {
-  return [](const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)
+  return [](const Coordinat3D& lhs, const Coordinat3D& rhs)
+  {
+    using boost::geometry::get;
+    return
+      get<0>(lhs) == get<0>(rhs)
+      && get<1>(lhs) == get<1>(rhs)
+      && get<2>(lhs) == get<2>(rhs)
+    ;
+  };
+}
+
+std::function<bool(const ribi::Geometry::ApCoordinat3D& lhs, const ribi::Geometry::ApCoordinat3D& rhs)>
+  ribi::Geometry::Equals3d() const noexcept
+{
+  return [](const ApCoordinat3D& lhs, const ApCoordinat3D& rhs)
   {
     using boost::geometry::get;
     return
@@ -995,16 +995,50 @@ ribi::Geometry::Shapes ribi::Geometry::Rescale(
   return new_shapes;
 }
 
+ribi::Geometry::Apfloats ribi::Geometry::ToApfloat(const Doubles& v) const noexcept
+{
+  Apfloats w;
+  std::transform(std::begin(v),std::end(v),std::back_inserter(w),
+    [](const double d) { return Apfloat(d); }
+  );
+  return w;
+}
+
+ribi::Geometry::ApCoordinat2D ribi::Geometry::ToApfloat(const Coordinat2D& p) const noexcept
+{
+  return ApCoordinat2D(
+    boost::geometry::get<0>(p),
+    boost::geometry::get<1>(p)
+  );
+}
 
 ribi::Geometry::ApCoordinat3D ribi::Geometry::ToApfloat(const Coordinat3D& p) const noexcept
 {
-  using boost::geometry::get;
   return ApCoordinat3D(
-    get<0>(p),
-    get<1>(p),
-    get<2>(p)
+    boost::geometry::get<0>(p),
+    boost::geometry::get<1>(p),
+    boost::geometry::get<2>(p)
   );
 }
+
+ribi::Geometry::ApCoordinats2D ribi::Geometry::ToApfloat(const Coordinats2D& v) const noexcept
+{
+  ApCoordinats2D w;
+  std::transform(std::begin(v),std::end(v),std::back_inserter(w),
+    [this](const Coordinat2D& c) { return ToApfloat(c); }
+  );
+  return w;
+}
+
+ribi::Geometry::ApCoordinats3D ribi::Geometry::ToApfloat(const Coordinats3D& v) const noexcept
+{
+  ApCoordinats3D w;
+  std::transform(std::begin(v),std::end(v),std::back_inserter(w),
+    [this](const Coordinat3D& c) { return ToApfloat(c); }
+  );
+  return w;
+}
+
 
 double ribi::Geometry::ToDouble(const apfloat& a) const
 {
@@ -1024,6 +1058,65 @@ std::vector<double> ribi::Geometry::ToDouble(const std::vector<apfloat>& v) cons
   );
   assert(v.size() == w.size());
   return w;
+}
+
+double ribi::Geometry::ToDoubleSafe(const apfloat& a) const noexcept
+{
+  try
+  {
+    return ToDouble(a);
+  }
+  catch (boost::bad_lexical_cast&)
+  {
+    if (a < apfloat(std::numeric_limits<double>::lowest())) { return std::numeric_limits<double>::lowest(); }
+    if (a > apfloat(std::numeric_limits<double>::max())) { return std::numeric_limits<double>::max(); }
+    if (a > apfloat(0.0))
+    {
+       if (a < apfloat(0.5) * apfloat(std::numeric_limits<double>::denorm_min())) { return 0.0; }
+       return std::numeric_limits<double>::denorm_min();
+    }
+    if (a < apfloat(0.0))
+    {
+       if (a > apfloat(-0.5) * apfloat(std::numeric_limits<double>::denorm_min())) { return 0.0; }
+       const double r = -std::numeric_limits<double>::denorm_min();
+       assert(r != 0.0);
+       return r;
+    }
+    TRACE(a);
+    assert(!"Should not get here");
+    return 0.0;
+  }
+}
+
+ribi::Geometry::Coordinat2D ribi::Geometry::ToDoubleSafe(const ApCoordinat2D& a) const noexcept
+{
+  return Coordinat2D(
+    ToDoubleSafe(boost::geometry::get<0>(a)),
+    ToDoubleSafe(boost::geometry::get<1>(a))
+  );
+}
+
+ribi::Geometry::Coordinat3D ribi::Geometry::ToDoubleSafe(const ApCoordinat3D& a) const noexcept
+{
+  return Coordinat3D(
+    ToDoubleSafe(boost::geometry::get<0>(a)),
+    ToDoubleSafe(boost::geometry::get<1>(a)),
+    ToDoubleSafe(boost::geometry::get<2>(a))
+  );
+}
+
+ribi::Geometry::Coordinats2D ribi::Geometry::ToDoubleSafe(const ribi::Geometry::ApCoordinats2D& v) const noexcept
+{
+  Coordinats2D w;
+  std::transform(std::begin(v),std::end(v),std::back_inserter(w),
+    [this](const ApCoordinat2D& c) { return ToDoubleSafe(c); }
+  );
+  return w;
+}
+
+int ribi::Geometry::ToInt(const Apfloat& a) const noexcept
+{
+  return static_cast<int>(ToDoubleSafe(a));
 }
 
 ribi::Geometry::Polygon ribi::Geometry::ToPolygon(const Linestring& linestring) const noexcept
@@ -1052,6 +1145,29 @@ std::string ribi::Geometry::ToStr(const apfloat& f) const noexcept
     assert(!"Should not get here");
     throw;
   }
+}
+
+std::string ribi::Geometry::ToStr(const ApCoordinat2D& p) const noexcept
+{
+  std::stringstream s;
+  s << '('
+    << ToStr(boost::geometry::get<0>(p)) << ','
+    << ToStr(boost::geometry::get<1>(p))
+    << ')'
+  ;
+  return s.str();
+}
+
+std::string ribi::Geometry::ToStr(const ApCoordinat3D& p) const noexcept
+{
+  std::stringstream s;
+  s << '('
+    << ToStr(boost::geometry::get<0>(p)) << ','
+    << ToStr(boost::geometry::get<1>(p)) << ','
+    << ToStr(boost::geometry::get<2>(p))
+    << ')'
+  ;
+  return s.str();
 }
 
 std::string ribi::Geometry::ToStr(const Coordinat2D& p) const noexcept
@@ -1352,6 +1468,17 @@ std::string ribi::Geometry::WktToSvg(const std::vector<std::string>& wkt, const 
 ribi::Geometry::Coordinat2D ribi::operator-(
   const ribi::Geometry::Coordinat2D& a,
   const ribi::Geometry::Coordinat2D& b
+) noexcept
+{
+  return std::remove_const<std::remove_reference<decltype(a)>::type>::type(
+    boost::geometry::get<0>(a) - boost::geometry::get<0>(b),
+    boost::geometry::get<1>(a) - boost::geometry::get<1>(b)
+  );
+}
+
+ribi::Geometry::ApCoordinat2D ribi::operator-(
+  const ribi::Geometry::ApCoordinat2D& a,
+  const ribi::Geometry::ApCoordinat2D& b
 ) noexcept
 {
   return std::remove_const<std::remove_reference<decltype(a)>::type>::type(

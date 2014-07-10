@@ -44,15 +44,6 @@
   fails, the standard header file directory is checked for this <a href="CppHeaderFile.htm">header file</a>.
 </p>
 <p>&nbsp;</p>
-<p>
-  Use <a href="CppInclude.htm">#include</a> only at <a href="CppGlobal.htm">global</a> <a href="CppScope.htm">scope</a> and in <a href="CppNamespace.htm">namespaces</a> [9].
-  <a href="CppInclude.htm">#include</a> only complete <a href="CppDeclaration.htm">declarations</a> [10]
-  Never <a href="CppInclude.htm">#include</a> unnecessary header files [1]. 
-  Prefer to <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt; when a <a href="CppForwardDeclaration.htm">forward declaration</a> 
-  of a <a href="CppStream.htm">stream</a> will suffice [2]. 
-  Never <a href="CppInclude.htm">#include</a> a header when a <a href="CppForwardDeclaration.htm">forward declaration</a> will suffice [3].
-  The <a href="CppImplementationFile.htm">implementation (.cpp) file</a> of every component should <a href="CppInclude.htm">#include</a> its 
-  own <a href="CppHeaderFile.htm">header (.h) file</a> as the first substantive line of code [7].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -60,10 +51,12 @@
 <p>&nbsp;</p>
 <h2>The C style include on <a href="CppStl.htm">STL</a> headers</h2>
 <p>&nbsp;</p>
-<p>For backwards compatibility with C one can <a href="CppInclude.htm">#include</a>
-C++ header files with the .h extension. Do not do this: call the correct C++ 
-<a href="CppHeaderFile.htm">header file</a>. For a list of all C++ standard 
-<a href="CppHeaderFile.htm">header files</a>, <a href="CppHeaderFile.htm">go to the header file page</a>.</p>
+<p>
+  For backwards compatibility with C one can <a href="CppInclude.htm">#include</a>
+  C++ header files with the .h extension. Do not do this: call the correct C++ 
+  <a href="CppHeaderFile.htm">header file</a>. For a list of all C++ standard 
+  <a href="CppHeaderFile.htm">header files</a>, <a href="CppHeaderFile.htm">go to the header file page</a>.
+</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table border = "1"><tr><td><code>
@@ -71,17 +64,25 @@ C++ header files with the .h extension. Do not do this: call the correct C++
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>The <a href="CppHeaderFile.htm">header file</a> 'stdio.h' is a wrapper: all it does
-is call the C++ <a href="CppHeaderFile.htm">header file</a> <a href="CppCstdioH.htm">cstdio</a> and then adds a '<a href="CppUsing.htm">using</a>
-<a href="CppNamespace.htm">namespace</a> <a href="CppStd.htm">std</a>', as C does not have <a href="CppNamespace.htm">namespaces</a>.</p>
+<p>
+  The <a href="CppHeaderFile.htm">header file</a> 'stdio.h' is a wrapper: all it does
+  is call the C++ <a href="CppHeaderFile.htm">header file</a> <a href="CppCstdioH.htm">cstdio</a> 
+  and then adds a '<a href="CppUsing.htm">using</a>
+  <a href="CppNamespace.htm">namespace</a> <a href="CppStd.htm">std</a>', as C does not have 
+  <a href="CppNamespace.htm">namespaces</a>.
+</p>
 <p>&nbsp;</p>
-<p>This has the unfortunate side-effect that after calling such a 
-<a href="CppHeaderFile.htm">header file</a> all functions and classes in 
-<a href="CppNamespace.htm">namespace</a> <a href="CppStd.htm">std</a> will be in
-the global <a href="CppNamespace.htm">namespace</a>.</p>
+<p>
+  This has the unfortunate side-effect that after calling such a 
+  <a href="CppHeaderFile.htm">header file</a> all functions and classes in 
+  <a href="CppNamespace.htm">namespace</a> <a href="CppStd.htm">std</a> will be in
+  the global <a href="CppNamespace.htm">namespace</a>.
+</p>
 <p>&nbsp;</p>
-<p>As it pollutes the global <a href="CppNamespace.htm">namespace</a>, avoid <a href="CppUsing.htm">using</a> <a href="CppNamespace.htm">namespace</a> 
-<a href="CppStd.htm">std</a> [4-5].</p>
+<p>
+  As it pollutes the global <a href="CppNamespace.htm">namespace</a>, avoid <a href="CppUsing.htm">using</a> <a href="CppNamespace.htm">namespace</a> 
+  <a href="CppStd.htm">std</a> [4-5].
+</p>
 <p>&nbsp;</p>
 <p>An example from [6]:</p>
 <p>&nbsp;</p>
@@ -103,16 +104,58 @@ vector v2; <a href="CppComment.htm">//</a>Oops: <b><a href="CppThis.htm">this</a
 <p>&nbsp;</p>
 <h2><a href="CppInclude.htm">#including</a> <a href="CppImplementationFile.htm">implementation (.c or .cpp) files</a></h2>
 <p>&nbsp;</p>
-<p>Conside not <a href="CppInclude.htm">#including</a> these [8], but add these to your project instead. For
-example, in <a href="CppBuilder.htm">C++ Builder</a>, select 'Project | Add to Project'.</p>
+<p>
+  Conside not <a href="CppInclude.htm">#including</a> these [8], but add these to your project instead. For
+  example, in <a href="CppBuilder.htm">C++ Builder</a>, select 'Project | Add to Project'.
+</p>
 <p>&nbsp;</p>
-<p>Forgetting to add an implementation file to you project results in a <a href="CppLinkError.htm">link error</a>.</p>
+<p>
+  Forgetting to add an implementation file to you project results in a <a href="CppLinkError.htm">link error</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppReference.htm"> References</a></h2>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Use <a href="CppInclude.htm">#include</a> only at <a href="CppGlobal.htm">global</a> <a href="CppScope.htm">scope</a> and in <a href="CppNamespace.htm">namespaces</a> [9]
+  </li>
+  <li>
+    <a href="CppInclude.htm">#include</a> only complete <a href="CppDeclaration.htm">declarations</a> [10]
+  </li>
+  <li>
+    Never <a href="CppInclude.htm">#include</a> unnecessary header files [1]
+  </li>
+  <li>
+    Prefer to <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt; when a 
+    <a href="CppForwardDeclaration.htm">forward declaration</a> of a <a href="CppStream.htm">stream</a> will suffice [2]
+  </li>
+  <li>
+    Never <a href="CppInclude.htm">#include</a> a header when a 
+    <a href="CppForwardDeclaration.htm">forward declaration</a> will suffice [3]
+  </li>
+  <li>
+    The <a href="CppImplementationFile.htm">implementation (.cpp) file</a> of every component should 
+    <a href="CppInclude.htm">#include</a> its own <a href="CppHeaderFile.htm">header (.h) file</a> 
+    as the first substantive line of code [7]
+  </li>
+  <li>
+    Forgetting to <a href="CppInclude.htm">include</a> the 
+    &lt;<a href="CppIostreamH.htm">iostream</a>&gt; <a href="CppHeaderFile.htm">header</a> 
+    in a program that inputs data from the keyboard or outputs data to the screen causes the 
+    <a href="CppCompiler.htm">compiler</a> to issue an <a href="CppCompileError.htm">error</a> message [11],
+    for example <a href="CppCompileErrorCoutIsNotAmemberOfStd.htm">'cout' is not a member of 'std'</a>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReference.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
   <li><!--  1 --> <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++. 2000. ISBN: 0-201-61562-2. Item 26: 'Never #include unnecessary header files'.</li>
@@ -125,6 +168,7 @@ example, in <a href="CppBuilder.htm">C++ Builder</a>, select 'Project | Add to P
   <li><!--  8 -->Joint Strike Fighter Air Vehicle C++ Coding Standards for the System Development and Demonstration Program. Document Number 2RDU00001 Rev C. December 2005. AV Rule 32: 'The #include pre-processor directive will only be used to include header (*.h) files.'</li>
   <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 15.5. Advice. page 444: '[5] Use #include only at global scope and in namespaces'</li>
   <li><!-- 10 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 15.5. Advice. page 444: '[6] #include only complete declarations'</li>
+  <li><!-- 11 -->Paul Deitel, Harvey Deitel. C++11 for progrgrammers (2nd edition). 2014. ISBN: 978-0-13-343985-4. Chapter 2.2, Common Programming Error 2.1. page 21: 'Forgetting to include the &lt;iostream&gt; header in a program that inputs data from the keyboard or outputs data to the screen causes the compiler to issue an error message'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

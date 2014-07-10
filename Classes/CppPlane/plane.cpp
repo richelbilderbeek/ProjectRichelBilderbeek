@@ -548,7 +548,7 @@ std::vector<apfloat> ribi::Plane::GetCoefficientsZ() const
 
 std::string ribi::Plane::GetVersion() noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
 std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
@@ -560,7 +560,8 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
     "2014-04-01: version 1.3: use of std::unique_ptr",
     "2014-06-13: version 1.4: added operator<<, ToStr calls operator<<, shortened time to compile",
     "2014-06-16: version 1.5: improved detection of planes that can be expressed in less than three dimensions"
-    "2014-07-03: version 1.6: use of apfloat, improved accuracy"
+    "2014-07-03: version 1.6: use of apfloat, improved accuracy",
+    "2014-07-10: version 1.7: use of apfloat only"
   };
 }
 

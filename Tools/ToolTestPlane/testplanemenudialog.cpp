@@ -47,6 +47,9 @@ ribi::TestPlaneMenuDialog::TestPlaneMenuDialog()
 
 int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  typedef apfloat Apfloat;
+  typedef boost::geometry::model::point<Apfloat,3,boost::geometry::cs::cartesian> Point3D;
+
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -80,7 +83,7 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
     std::stringstream s;
     s << "Construct plane from three points" << '\n';
 
-    boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p1(
+    const Point3D p1(
       boost::lexical_cast<double>(argv[1]),
       boost::lexical_cast<double>(argv[2]),
       boost::lexical_cast<double>(argv[3])
@@ -88,7 +91,7 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
 
     s << "Point 1: " << Geometry().ToStr(p1) << '\n';
 
-    boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p2(
+    const Point3D p2(
       boost::lexical_cast<double>(argv[4]),
       boost::lexical_cast<double>(argv[5]),
       boost::lexical_cast<double>(argv[6])
@@ -96,7 +99,7 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
 
     s << "Point 2: " << Geometry().ToStr(p2) << '\n';
 
-    boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p3(
+    const Point3D p3(
       boost::lexical_cast<double>(argv[7]),
       boost::lexical_cast<double>(argv[8]),
       boost::lexical_cast<double>(argv[9])
@@ -170,16 +173,7 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
   a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
-  const boost::shared_ptr<Plane> plane(
-    new Plane(
-      Plane::Coordinat3D(0.0,0.0,0.0),
-      Plane::Coordinat3D(1.0,0.0,0.0),
-      Plane::Coordinat3D(0.0,1.0,0.0)
-    )
-  );
-  a.AddLibrary("Plane version: "
-    + plane->GetVersion()
-  );
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
   return a;
 }
 
@@ -208,7 +202,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestPlaneMenuDialog::GetProgram() c
 
 std::string ribi::TestPlaneMenuDialog::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const noexcept
@@ -218,7 +212,8 @@ std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const no
     "2014-06-13: version 1.1: allow setting a high precision in desktop version",
     "2014-06-13: version 1.2: use of operator<< instead of ToStr",
     "2014-06-16: version 1.3: use of QDoubleSpinBox instead of QSlider in desktop version",
-    "2014-07-07: version 1.4: investigate Plane::IsInPlane in desktop version"
+    "2014-07-07: version 1.4: investigate Plane::IsInPlane in desktop version",
+    "2014-07-10: version 1.5: use of apfloat in Plane"
   };
 }
 
