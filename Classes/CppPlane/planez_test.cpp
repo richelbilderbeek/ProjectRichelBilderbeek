@@ -105,6 +105,60 @@ void ribi::PlaneZ::Test() noexcept
       }
     }
   }
+  if (verbose) TRACE("CanCalcZ, Z = 1, zooming to smallest three points to determine a plane, point above origin");
+  {
+      for (double i = 1.0; i > 0.0; i/=10.0)
+      {
+        const Coordinat3D p1(0.0,0.0,1.0);
+        const Coordinat3D p2(0.0,  i,1.0);
+        const Coordinat3D p3(  i,0.0,1.0);
+        const Coordinat3D p4(0.0,0.0,1.0);
+        const PlaneZ p(p1,p2,p3);
+        TRACE("----------------------------");
+        TRACE(i);
+        TRACE(p.CalcMaxError(p4));
+        TRACE(p.CalcError(p4));
+        TRACE(p.GetFunctionA());
+        TRACE(p.GetFunctionB());
+        TRACE(p.GetFunctionC());
+        TRACE(p.GetCoefficients()[0]);
+        TRACE(p.GetCoefficients()[1]);
+        TRACE(p.GetCoefficients()[2]);
+        TRACE(p.GetCoefficients()[3]);
+        TRACE(std::numeric_limits<double>::epsilon());
+        TRACE(std::sqrt(std::numeric_limits<double>::epsilon()));
+        TRACE(std::numeric_limits<double>::denorm_min());
+        assert(p.IsInPlane(p4));
+      }
+  }
+  assert(!"Yay, solved this");
+  if (verbose) TRACE("CanCalcZ, Z = 1.0 plane, zooming in");
+  {
+    for (const double i:series)
+    {
+      if (i == 0.0) continue;
+      assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
+      const Coordinat3D p1(0.0,0.0,1.0);
+      const Coordinat3D p2(0.0,  i,1.0);
+      const Coordinat3D p3(  i,0.0,1.0);
+      const PlaneZ p(p1,p2,p3);
+      for (const double j:series)
+      {
+        if (!p.IsInPlane(Coordinat3D(0.0,0.0,1.0)))
+        {
+          TRACE(i);
+          TRACE(p.CalcMaxError(Coordinat3D(0.0,0.0,1.0)));
+          TRACE(p.CalcError(Coordinat3D(0.0,0.0,1.0)));
+        }
+        assert(p.IsInPlane(Coordinat3D(0.0,0.0,1.0)));
+        assert(p.IsInPlane(Coordinat3D(  j,  j,1.0)));
+        assert(p.IsInPlane(Coordinat3D(  j, -j,1.0)));
+        assert(p.IsInPlane(Coordinat3D( -j,  j,1.0)));
+        assert(p.IsInPlane(Coordinat3D( -j, -j,1.0)));
+      }
+    }
+  }
+
   /*
 
     |    /#/##########
@@ -155,7 +209,7 @@ void ribi::PlaneZ::Test() noexcept
             TRACE(z);
             TRACE(i);
             TRACE(j);
-            TRACE(p.CalcErrorAsApfloat(Coordinat3D(j,j,z)));
+            TRACE(p.CalcError(Coordinat3D(j,j,z)));
             TRACE(p.CalcMaxError(Coordinat3D(j,j,z)));
             TRACE(p);
 
@@ -163,7 +217,7 @@ void ribi::PlaneZ::Test() noexcept
             TRACE(z);
             TRACE(i);
             TRACE(j);
-            TRACE(p.CalcErrorAsApfloat(Coordinat3D(j,j,z)));
+            TRACE(p.CalcError(Coordinat3D(j,j,z)));
             TRACE(p.CalcMaxError(Coordinat3D(j,j,z)));
             TRACE(p);
 

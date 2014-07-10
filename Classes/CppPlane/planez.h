@@ -72,7 +72,7 @@ struct PlaneZ
     const Coordinat3D& p3
   );
 
-  Double CalcErrorAsApfloat(const Coordinat3D& coordinat) const noexcept;
+  Double CalcError(const Coordinat3D& coordinat) const noexcept;
 
   ///Get the 2D projection of these 3D points,
   ///Assumes these are in a plane
@@ -130,6 +130,9 @@ struct PlaneZ
 
   //m_coefficients.size == 4
   const Doubles m_coefficients;
+
+  ///Calculates m_min_error
+  static double CalcMinError() noexcept;
 
   static Doubles CalcPlaneZ(
     const Coordinat3D& p1,

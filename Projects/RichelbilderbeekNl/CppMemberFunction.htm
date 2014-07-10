@@ -53,6 +53,13 @@
   <li>
     Calling a <a href="CppMemberFunction.htm">member function</a> a 'method' is wrong [1]
   </li>
+  <li>
+    Always try to localize the effects of change to a <a href="CppClass.htm">class</a>'s 
+    <a href="CppDataMember.htm">data members</a> by accessing and manipulating the 
+    <a href="CppDataMember.htm">data members</a> through their corresponding get and set 
+    <a href="CppMemberFunction.htm">functions</a> [2]
+  </li>
+
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -63,8 +70,7 @@
 <p>&nbsp;</p>
 <ol>
   <li><!--  1 -->Stephen C. Dewhurst. C++ Gotchas. 2003. ISBN: 0-321-12518-5. Gotcha #9: 'Wrong: method, right: member function'</li>
-  <li><!-- 38 -->Paul Deitel, Harvey Deitel. C++11 for programmers (2nd edition). 2014. ISBN: 978-0-13-343985-4. Chapter 3.4, Common Programming Error 3.2. page 47: 'An attempt by a function, which is not a member of a particular class (or a friend of that class) to access a private member of that class is a compilation error.'</li>
-
+  <li><!--  2 -->Paul Deitel, Harvey Deitel. C++11 for programmers (2nd edition). 2014. ISBN: 978-0-13-343985-4. Chapter 3.4, Good Programming Practice 3.1. page 50: 'Always try to localize the effects of change to a class's data members by accessing and manipulating the data members through their corresponding get and set functions'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

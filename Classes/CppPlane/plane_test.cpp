@@ -223,6 +223,72 @@ void ribi::Plane::Test() noexcept
 
 
   */
+  if (verbose) TRACE("CanCalcZ, Z = z plane, varying height");
+  {
+    for (const double z:series)
+    {
+      const double i = 1.0;
+      const Coordinat3D p1(0.0,0.0,z);
+      const Coordinat3D p2(0.0,  i,z);
+      const Coordinat3D p3(  i,0.0,z);
+      const Plane p(p1,p2,p3);
+      assert(!p.CanCalcX());
+      assert(!p.CanCalcY());
+      if (!p.CanCalcZ())
+      {
+        TRACE("ERROR");
+        TRACE(z);
+        TRACE(i);
+      }
+
+      assert( p.CanCalcZ());
+
+      for (const double j:series)
+      {
+        if (!p.IsInPlane(Coordinat3D(j,j,z)))
+        {
+          std::stringstream s;
+          s << "Warning: coordinat " << Geometry().ToStr(Coordinat3D(j,j,z))
+            << " is determined not to be in a Plane that was created from points "
+            << Geometry().ToStr(p1) << ", "
+            << Geometry().ToStr(p2) << " and "
+            << Geometry().ToStr(p3) << ". Error: "
+            << p.CalcError(Coordinat3D(j,j,z))
+            << ", max error: "
+            << p.CalcMaxError(Coordinat3D(j,j,z))
+            << " ("
+            << (p.CalcError(Coordinat3D(j,j,z)) / p.CalcMaxError(Coordinat3D(j,j,z)))
+            << "x)"
+          ;
+          TRACE(s.str());
+          //continue;
+        }
+        if (!p.IsInPlane(Coordinat3D(j,j,z)))
+        {
+          TRACE("ERROR");
+          TRACE(z);
+          TRACE(i);
+          TRACE(j);
+          TRACE(p.CalcError(Coordinat3D(j,j,z)));
+          TRACE(p.CalcMaxError(Coordinat3D(j,j,z)));
+          TRACE(p);
+
+          TRACE("AGAIN");
+          TRACE(z);
+          TRACE(i);
+          TRACE(j);
+          TRACE(p.CalcError(Coordinat3D(j,j,z)));
+          TRACE(p.CalcMaxError(Coordinat3D(j,j,z)));
+          TRACE(p);
+
+        }
+        assert(p.IsInPlane(Coordinat3D(  j,  j,z)));
+        assert(p.IsInPlane(Coordinat3D(  j, -j,z)));
+        assert(p.IsInPlane(Coordinat3D( -j,  j,z)));
+        assert(p.IsInPlane(Coordinat3D( -j, -j,z)));
+      }
+    }
+  }
   if (verbose) TRACE("CanCalcZ, Z = z plane, zooming in");
   {
     for (const double z:series)
@@ -255,10 +321,16 @@ void ribi::Plane::Test() noexcept
               << " is determined not to be in a Plane that was created from points "
               << Geometry().ToStr(p1) << ", "
               << Geometry().ToStr(p2) << " and "
-              << Geometry().ToStr(p3) << "."
+              << Geometry().ToStr(p3) << ". Error: "
+              << p.CalcError(Coordinat3D(j,j,z))
+              << ", max error: "
+              << p.CalcMaxError(Coordinat3D(j,j,z))
+              << " ("
+              << (p.CalcError(Coordinat3D(j,j,z)) / p.CalcMaxError(Coordinat3D(j,j,z)))
+              << "x)"
             ;
             TRACE(s.str());
-            continue;
+            //continue;
           }
           if (!p.IsInPlane(Coordinat3D(j,j,z)))
           {
@@ -460,11 +532,11 @@ void ribi::Plane::Test() noexcept
   C = p3 = Above X axis, dependent on slope
   D = p4 = To be calculated
   */
-  if (verbose) TRACE("IsInPlane, Slope");
+  if (verbose) TRACE("IsInPlane, Slope, Slope in Z direction");
   {
     for (double slope = 1.0; slope > 0.0; slope /= 10.0)
     {
-      TRACE(slope);
+      //if (verbose) { TRACE(slope); }
       const double slope_less = slope * 0.999999;
       const double slope_more = slope * 1.000001;
 
@@ -612,37 +684,27 @@ void ribi::Plane::Test() noexcept
     const double y4 = 0.00023296414405748076185791173298156309101614169776439666748046875;
     const double z4 = 0.00025000000000000000520417042793042128323577344417572021484375;
 
+    {
+      const apfloat x1_as_apfloat(x1);
+      const double  x1_as_double(Geometry().ToDoubleSafe(x1_as_apfloat));
+      assert(x1 == x1_as_double);
+    }
+
     const Coordinat3D p1(x1,y1,z1);
     const Coordinat3D p2(x2,y2,z2);
     const Coordinat3D p3(x3,y3,z3);
     const Coordinat3D p4(x4,y4,z4);
     const Plane p(p1,p2,p3);
-    try
-    {
-      #ifndef NDEBUG
-      if (!p.IsInPlane(p4))
-      {
-        TRACE("ERROR");
-        TRACE(p.CalcError(p4));
-        TRACE("BREAK");
-      }
-      #endif
-      assert(p.IsInPlane(p4));
-    }
-    catch (std::exception&)
+
+    if (!p.IsInPlane(p4))
     {
       TRACE("ERROR");
-      std::stringstream s;
-      s
-        << std::setprecision(99)
-        << p << '\n'
-        << Container().ToStr(p.GetCoefficientsX()) << '\n'
-        << Container().ToStr(p.GetCoefficientsY()) << '\n'
-        << Container().ToStr(p.GetCoefficientsZ()) << '\n'
-      ;
-      TRACE(s.str());
+      TRACE(p.CalcError(p4));
+      TRACE(p.CalcMaxError(p4));
+
       TRACE("BREAK");
     }
+
     assert(p.IsInPlane(p4));
   }
   if (verbose) TRACE("IsInPlane, crashes with Plane v1.6");

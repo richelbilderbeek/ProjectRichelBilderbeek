@@ -68,13 +68,6 @@ ribi::Plane::Plane(
 
 }
 
-/*
-double ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
-{
-  return Geometry().ToDouble(CalcErrorAsApfloat(coordinat));
-}
-*/
-
 apfloat ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
 {
   const bool verbose = false;
@@ -93,65 +86,6 @@ apfloat ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
     if (CanCalcY()) { TRACE(Container().ToStr(GetCoefficientsY())); }
     if (CanCalcZ()) { TRACE(Container().ToStr(GetCoefficientsZ())); }
   }
-
-
-  #ifdef IMPROVE_ACCURACY_224
-  const apfloat max_error = 0.00000001; //One millionth
-  try
-  {
-    const auto expected = x;
-    if (verbose) { TRACE(expected); }
-    const apfloat calculated = CalcX(y,z);
-    if (verbose) { TRACE(calculated); }
-    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
-    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
-    if (verbose) { TRACE(error); }
-    const bool is_in_plane = error <= max_error;
-    if (verbose) { TRACE(is_in_plane); }
-    return is_in_plane;
-  }
-  catch (std::logic_error& e)
-  {
-    // OK
-    if (verbose) { TRACE(e.what()); }
-  }
-  try
-  {
-    const auto expected = y;
-    if (verbose) { TRACE(expected); }
-    const auto calculated = CalcY(x,z);
-    if (verbose) { TRACE(calculated); }
-    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
-    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
-    if (verbose) { TRACE(error); }
-    const bool is_in_plane = error <= max_error;
-    if (verbose) { TRACE(is_in_plane); }
-    return is_in_plane;
-  }
-  catch (std::logic_error& e)
-  {
-    // OK
-    if (verbose) { TRACE(e.what()); }
-  }
-  try
-  {
-    const auto expected = z;
-    if (verbose) { TRACE(expected); }
-    const auto calculated = CalcZ(x,y);
-    if (verbose) { TRACE(calculated); }
-    if (expected == 0.0 || calculated == 0.0) throw std::logic_error("Cannot use a fractional error for values of zero");
-    const apfloat error = abs(apfloat(1.0) - abs(calculated / expected));
-    if (verbose) { TRACE(error); }
-    const bool is_in_plane = error <= max_error;
-    if (verbose) { TRACE(is_in_plane); }
-    return is_in_plane;
-  }
-  catch (std::logic_error& e)
-  {
-    // OK
-    if (verbose) { TRACE(e.what()); }
-  }
-  #endif // IMPROVE_ACCURACY_224
 
   //Absolute method
   if (CanCalcX())
@@ -177,67 +111,14 @@ apfloat ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
     const auto error = abs(calculated - expected);
     TRACE(error);
     min_error = std::min(error,min_error);
-
-    #ifdef IMPROVE_ACCURACY_224
-    //If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
-    // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
-    const auto a = GetCoefficientsZ()[0];
-    const auto b = GetCoefficientsZ()[1];
-    const auto c = GetCoefficientsZ()[2];
-    const auto d = GetCoefficientsZ()[3];
-    // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
-    TRACE(c.sign());
-    if (c.sign())
-    {
-      std::stringstream s;
-      s << std::fixed << std::setprecision(99) << a << ' ' << b << ' ' << c;
-      TRACE(s.str());
-      //TRACE(b);
-      //TRACE(c);
-      const auto rc_x = -a / c;
-      TRACE(rc_x);
-      const auto rc_y = -b / c;
-      TRACE(rc_y);
-      const auto rc = sqrt( (rc_x * rc_x) + (rc_y * rc_y));
-      const apfloat e = boost::numeric::bounds<double>::smallest();
-      const auto new_max_error = e * rc;
-      TRACE(rc_x);
-      TRACE(rc_y);
-      TRACE(rc);
-      TRACE(new_max_error);
-      TRACE(new_max_error);
-    }
-    if (verbose)
-    {
-      TRACE(b);
-      TRACE(d);
-      TRACE(calculated);
-    }
-
-    //Error
-    // = the rounding off error
-    // * SQRT(
-    //     ((coefficient of direction Y) ^ 2)
-    //   + ((coefficient of direction Z) ^ 2)
-    // )
-
-    //const double max_error
-    //  = m_plane_?->GetFunction?() * boost::numeric::bounds<double>::smallest();
-    #endif
   }
+  assert(min_error >= 0.0);
   return min_error;
 }
 
-/*
-double ribi::Plane::CalcMaxError(const Coordinat3D& coordinat) const noexcept
-{
-  return Geometry().ToDouble(CalcMaxErrorAsApfloat(coordinat));
-}
-*/
-
 apfloat ribi::Plane::CalcMaxError(const Coordinat3D& coordinat) const noexcept
 {
-  apfloat max_error = 0.0;
+  apfloat max_error = std::numeric_limits<double>::denorm_min();
   if (CanCalcX())
   {
     max_error = std::max(max_error,m_plane_x->CalcMaxError(coordinat));
@@ -251,38 +132,6 @@ apfloat ribi::Plane::CalcMaxError(const Coordinat3D& coordinat) const noexcept
     max_error = std::max(max_error,m_plane_z->CalcMaxError(coordinat));
   }
   return max_error;
-  /*
-  //If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
-  // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
-  const auto f_x = std::make_tuple(&ribi::Plane::CanCalcX,&ribi::Plane::GetCoefficientsX);
-  const auto f_y = std::make_tuple(&ribi::Plane::CanCalcY,&ribi::Plane::GetCoefficientsY);
-  const auto f_z = std::make_tuple(&ribi::Plane::CanCalcZ,&ribi::Plane::GetCoefficientsZ);
-  const auto fs = { f_x, f_y, f_z };
-  for (const auto f: fs)
-  {
-    if (std::bind(std::get<0>(f),this)())
-    {
-      const auto a = std::bind(std::get<1>(f),this)()[0];
-      const auto b = std::bind(std::get<1>(f),this)()[1];
-      const auto c = std::bind(std::get<1>(f),this)()[2];
-      //const auto d = GetCoefficientsZ()[3];
-      const apfloat e = boost::numeric::bounds<double>::smallest();
-      assert(e > 0.0);
-      // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
-      //TRACE(c.sign());
-      if (c.sign())
-      {
-        const auto rc_x = -a / c;
-        const auto rc_y = -b / c;
-        const auto rc = sqrt( (rc_x * rc_x) + (rc_y * rc_y));
-        const auto max_error = e * rc;
-        return max_error;
-      }
-      return e;
-    }
-  }
-  return std::numeric_limits<double>::epsilon();
-  */
 }
 
 
@@ -323,7 +172,6 @@ ribi::Plane::Coordinats2D ribi::Plane::CalcProjection(
     if (m_plane_x)
     {
       try { TRACE(*m_plane_x); } catch(std::logic_error&) { TRACE("Failed m_plane_x"); }
-      //try { TRACE(m_plane_x->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_x->ToFunction()"); }
       try { m_plane_x->CalcProjection(points); } catch (std::logic_error&) { TRACE("Failed m_plane_x->CalcProjection"); }
     }
   }
@@ -331,7 +179,6 @@ ribi::Plane::Coordinats2D ribi::Plane::CalcProjection(
     if (m_plane_y)
     {
       try { TRACE(*m_plane_y); } catch(std::logic_error&) { TRACE("Failed m_plane_y"); }
-      //try { TRACE(m_plane_y->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_y->ToFunction()"); }
       try { m_plane_y->CalcProjection(points); } catch (std::logic_error&) { TRACE("Failed m_plane_y->CalcProjection"); }
     }
   }
@@ -339,7 +186,6 @@ ribi::Plane::Coordinats2D ribi::Plane::CalcProjection(
     if (m_plane_z)
     {
       try { TRACE(*m_plane_z); } catch(std::logic_error&) { TRACE("Failed m_plane_z"); }
-      //try { TRACE(m_plane_z->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_z->ToFunction()"); }
       try { m_plane_z->CalcProjection(points); } catch (std::logic_error&) { TRACE("Failed m_plane_z->CalcProjection"); }
     }
   }
@@ -368,13 +214,6 @@ ribi::Plane::Double ribi::Plane::CalcX(const Double& y, const Double& z) const
   return m_plane_x->CalcX(y,z);
 }
 
-/*
-double ribi::Plane::CalcX(const double y, const double z) const
-{
-  return Geometry().ToDouble(CalcX(Apfloat(y),Apfloat(z)));
-}
-*/
-
 ribi::Plane::Double ribi::Plane::CalcY(const ribi::Plane::Double& x, const ribi::Plane::Double& z) const
 {
   if (!CanCalcY())
@@ -383,13 +222,6 @@ ribi::Plane::Double ribi::Plane::CalcY(const ribi::Plane::Double& x, const ribi:
   }
   return m_plane_y->CalcY(x,z);
 }
-
-/*
-double ribi::Plane::CalcY(const double x, const double z) const
-{
-  return Geometry().ToDouble(CalcY(Apfloat(x),Apfloat(z)));
-}
-*/
 
 ribi::Plane::Double ribi::Plane::CalcZ(const ribi::Plane::Double& x, const ribi::Plane::Double& y) const
 {
@@ -400,62 +232,18 @@ ribi::Plane::Double ribi::Plane::CalcZ(const ribi::Plane::Double& x, const ribi:
   return m_plane_z->CalcZ(x,y);
 }
 
-/*
-double ribi::Plane::CalcZ(const double x, const double y) const
-{
-  return Geometry().ToDouble(CalcZ(Apfloat(x),Apfloat(y)));
-}
-*/
-
 bool ribi::Plane::CanCalcX() const noexcept
 {
-  if (!m_plane_x.get()) return false;
-  try
-  {
-    //m_plane_x->GetFunctionAasApfloat();
-    //m_plane_x->GetFunctionBasApfloat();
-    //m_plane_x->GetFunctionCasApfloat();
-    return true;
-  }
-  catch (std::exception&)
-  {
-    //OK
-    return false;
-  }
+  return m_plane_x.get();
 }
 bool ribi::Plane::CanCalcY() const noexcept
 {
-  if (!m_plane_y.get()) return false;
-  try
-  {
-    //m_plane_y->GetFunctionAasApfloat();
-    //m_plane_y->GetFunctionBasApfloat();
-    //m_plane_y->GetFunctionCasApfloat();
-    return true;
-  }
-  catch (std::exception&)
-  {
-    //OK
-    return false;
-  }
+  return m_plane_y.get();
 }
 
 bool ribi::Plane::CanCalcZ() const noexcept
 {
-  if (!m_plane_z.get()) return false;
-  try
-  {
-    assert(m_plane_z->GetFunctionA() == 0.0 || m_plane_z->GetFunctionA() != 0.0);
-    assert(m_plane_z->GetFunctionB() == 0.0 || m_plane_z->GetFunctionB() != 0.0);
-    assert(m_plane_z->GetFunctionC() == 0.0 || m_plane_z->GetFunctionC() != 0.0);
-    return true;
-  }
-  catch (std::exception& e)
-  {
-    TRACE(e.what())
-    assert(!"Should not get here");
-    throw;
-  }
+  return m_plane_z.get();
 }
 
 boost::shared_ptr<ribi::PlaneX> ribi::Plane::CreatePlaneX(
@@ -567,31 +355,13 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
+  assert(m_plane_x || m_plane_y || m_plane_z);
   return
        (m_plane_x && m_plane_x->IsInPlane(coordinat))
     || (m_plane_y && m_plane_y->IsInPlane(coordinat))
     || (m_plane_z && m_plane_z->IsInPlane(coordinat))
   ;
-  /*
-
-  bool ribi::PlaneXYZ::IsInPlane(const Coordinat3D& coordinat) const noexcept
-  try
-  {
-    const apfloat error = CalcErrorAsApfloat(coordinat);
-    const apfloat max_error = CalcMaxErrorAsApfloat(coordinat); //std::numeric_limits<double>::epsilon();
-    return error <= max_error;
-  }
-  catch (std::exception& e)
-  {
-    TRACE("ERROR");
-    TRACE(e.what())
-    assert(!"Should not get here");
-    throw;
-  }
-  */
 }
-
-
 
 std::ostream& ribi::operator<<(std::ostream& os, const Plane& plane) noexcept
 {

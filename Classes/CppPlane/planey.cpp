@@ -92,8 +92,10 @@ apfloat ribi::PlaneY::CalcMaxError(const Coordinat3D& coordinat) const noexcept
     const auto max_error_y = 0.0;
     const auto max_error_z = abs(e * rc_z * z) + 0.0;
     const auto max_error = max_error_x + max_error_y + max_error_z;
+    assert(max_error >= 0.0);
     return max_error;
   }
+  assert(e > 0.0);
   return e;
 }
 
