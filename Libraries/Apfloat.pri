@@ -40,10 +40,8 @@ win32 {
       ../../Libraries/apf241/init.cpp \
       ../../Libraries/apf241/modfunc.cpp \
       ../../Libraries/apf241/move.cpp \
-      #../../Libraries/apf241/prime.cpp \
       ../../Libraries/apf241/scramble.cpp \
       ../../Libraries/apf241/sixstep.cpp \
-      #../../Libraries/apf241/sixwftat.cpp \
       ../../Libraries/apf241/tablefnt.cpp \
       ../../Libraries/apf241/tablefou.cpp \
       ../../Libraries/apf241/tablesit.cpp \
@@ -55,6 +53,7 @@ win32 {
       ../../Libraries/apf241/tapstruc.cpp \
       ../../Libraries/apf241/transpos.cpp \
       ../../Libraries/apf241/wfta_asm.cpp
+
 }
 
 macx {
@@ -105,10 +104,8 @@ unix:!macx {
       ../../Libraries/apf241/init.cpp \
       ../../Libraries/apf241/modfunc.cpp \
       ../../Libraries/apf241/move.cpp \
-      #../../Libraries/apf241/prime.cpp \
       ../../Libraries/apf241/scramble.cpp \
       ../../Libraries/apf241/sixstep.cpp \
-      #../../Libraries/apf241/sixwftat.cpp \
       ../../Libraries/apf241/tablefnt.cpp \
       ../../Libraries/apf241/tablefou.cpp \
       ../../Libraries/apf241/tablesit.cpp \
@@ -120,8 +117,6 @@ unix:!macx {
       ../../Libraries/apf241/tapstruc.cpp \
       ../../Libraries/apf241/transpos.cpp \
       ../../Libraries/apf241/wfta_asm.cpp
-
-
 }
 
 cross_compile {

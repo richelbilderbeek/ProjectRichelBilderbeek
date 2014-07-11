@@ -196,6 +196,42 @@ void ribi::PlaneY::Test() noexcept
     assert( abs(p.CalcY(3.0,5.0)-3.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
     assert( abs(p.CalcY(7.0,9.0)-3.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
   }
+
+  if (verbose) TRACE("IsInPlane, Y = 1, zooming to smallest three points to determine a plane, point above origin");
+  {
+    for (double i = 1.0; i > 0.0; i/=10.0)
+    {
+      const Coordinat3D p1(0.0,1.0,0.0);
+      const Coordinat3D p2(  i,1.0,0.0);
+      const Coordinat3D p3(0.0,1.0,  i);
+      const PlaneY p(p1,p2,p3);
+      if (verbose)
+      {
+        TRACE("----------------------------");
+        TRACE(i);
+        TRACE(p.CalcMaxError(p1));
+        TRACE(p.CalcError(p1));
+        TRACE(p.CalcMaxError(p2));
+        TRACE(p.CalcError(p2));
+        TRACE(p.CalcMaxError(p3));
+        TRACE(p.CalcError(p3));
+        TRACE(p.GetFunctionA());
+        TRACE(p.GetFunctionB());
+        TRACE(p.GetFunctionC());
+        TRACE(p.GetCoefficients()[0]);
+        TRACE(p.GetCoefficients()[1]);
+        TRACE(p.GetCoefficients()[2]);
+        TRACE(p.GetCoefficients()[3]);
+        TRACE(std::numeric_limits<double>::epsilon());
+        TRACE(std::sqrt(std::numeric_limits<double>::epsilon()));
+        TRACE(std::numeric_limits<double>::denorm_min());
+      }
+      assert(p.IsInPlane(p1));
+      assert(p.IsInPlane(p2));
+      assert(p.IsInPlane(p3));
+    }
+  }
+
   if (verbose) TRACE("ToFunction, 3 points and 4 points");
   {
     std::function<double(double,double)> f {

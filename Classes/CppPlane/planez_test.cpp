@@ -112,14 +112,13 @@ void ribi::PlaneZ::Test() noexcept
       const Coordinat3D p1(0.0,0.0,1.0);
       const Coordinat3D p2(0.0,  i,1.0);
       const Coordinat3D p3(  i,0.0,1.0);
-      const Coordinat3D p4(0.0,0.0,1.0);
       const PlaneZ p(p1,p2,p3);
       if (verbose)
       {
         TRACE("----------------------------");
         TRACE(i);
-        TRACE(p.CalcMaxError(p4));
-        TRACE(p.CalcError(p4));
+        TRACE(p.CalcMaxError(p1));
+        TRACE(p.CalcError(p1));
         TRACE(p.GetFunctionA());
         TRACE(p.GetFunctionB());
         TRACE(p.GetFunctionC());
@@ -131,9 +130,51 @@ void ribi::PlaneZ::Test() noexcept
         TRACE(std::sqrt(std::numeric_limits<double>::epsilon()));
         TRACE(std::numeric_limits<double>::denorm_min());
       }
-      assert(p.IsInPlane(p4));
+      assert(p.IsInPlane(p1));
+      assert(p.IsInPlane(p2));
+      assert(p.IsInPlane(p3));
     }
   }
+  if (verbose) TRACE("IsInPlane, Z = 1, zooming to smallest three points to determine a plane, point above origin");
+  {
+    const double min = 1.0e-16;
+    const double max = 1.0e+16;
+    for (double z = min; z < max; z*=10.0)
+    {
+      for (double i = min; i < max; i*=10.0)
+      {
+        const Coordinat3D p1(0.0,0.0,z);
+        const Coordinat3D p2(0.0,  i,z);
+        const Coordinat3D p3(  i,0.0,z);
+        assert(i != 0.0);
+        const PlaneZ p(p1,p2,p3);
+        if ( (!p.IsInPlane(p1) || !p.IsInPlane(p2) || !p.IsInPlane(p3)))
+        {
+          TRACE("ERROR");
+          assert(p.IsInPlane(p1) == p.IsInPlane(p2) && p.IsInPlane(p2) == p.IsInPlane(p3));
+          TRACE(p);
+          TRACE(z);
+          TRACE(i);
+          TRACE(p.CalcMaxError(p1));
+          TRACE(p.CalcError(p1));
+          TRACE(p.CalcMaxError(p1) / p.CalcError(p1));
+          TRACE(p.CalcMaxError(p2));
+          TRACE(p.CalcError(p2));
+          TRACE(p.CalcMaxError(p2) / p.CalcError(p2));
+          TRACE(p.CalcMaxError(p3));
+          TRACE(p.CalcError(p3));
+          TRACE(p.CalcMaxError(p3) / p.CalcError(p3));
+          TRACE(p.GetFunctionA());
+          TRACE(p.GetFunctionB());
+          TRACE(p.GetFunctionC());
+        }
+        assert(p.IsInPlane(p1));
+        assert(p.IsInPlane(p2));
+        assert(p.IsInPlane(p3));
+      }
+    }
+  }
+  assert(!"Solved this test");
   if (verbose) TRACE("CanCalcZ, Z = 1.0 plane, zooming in");
   {
     for (const double i:series)

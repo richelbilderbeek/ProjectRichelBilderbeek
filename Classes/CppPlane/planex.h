@@ -88,7 +88,6 @@ struct PlaneX
   Coordinats2D CalcProjection(const Coordinats3D& points) const;
 
   ///Throws when cannot calculate X, which is when the plane is horizontal
-  //double CalcX(const double y, const double z) const;
   Double CalcX(const Double& y, const Double& z) const;
 
   Doubles GetCoefficients() const noexcept;
@@ -118,7 +117,7 @@ struct PlaneX
   const std::unique_ptr<PlaneZ> m_plane_z;
 
   ///Calculates m_min_error per GetFunctionC()
-  static double CalcMinErrorPerC() noexcept;
+  static Double CalcMinErrorPerC() noexcept;
 
   ///Will throw if plane cannot be created
   static std::unique_ptr<PlaneZ> Create(

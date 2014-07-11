@@ -73,12 +73,11 @@ apfloat ribi::PlaneX::CalcError(const Coordinat3D& coordinat) const noexcept
   return error;
 }
 
-double ribi::PlaneX::CalcMinErrorPerC() noexcept
+ribi::PlaneX::Double ribi::PlaneX::CalcMinErrorPerC() noexcept
 {
   //PlaneX calculates its own tolerance for errors, by measuring it
-  static double min_error_per_c_as_double = 0.0;
-  if (min_error_per_c_as_double > 0.0) return min_error_per_c_as_double;
-  apfloat min_error_per_c = 0.0;
+  static Double min_error_per_c = 0.0;
+  if (min_error_per_c > 0.0) return min_error_per_c;
 
   //const double low = std::numeric_limits<double>::denorm_min();
   //const double high = std::numeric_limits<double>::max();
@@ -103,20 +102,20 @@ double ribi::PlaneX::CalcMinErrorPerC() noexcept
         const Coordinat3D p2(  x,  y,0.0);
         const Coordinat3D p3(  x,0.0,z);
         const PlaneX p(p1,p2,p3);
-        for (const auto p4: { Coordinat3D(0.0,0.0,z), Coordinat3D(x,0.0,z), Coordinat3D(0.0,y,z) } )
+        for (const auto p4: { p1, p2, p3 } )
         {
           const auto error = p.CalcError(p4);
           const auto error_per_c = error / p.GetFunctionC();
-          TRACE(apfloat(min_error_per_c) / p.GetFunctionC());
+          //TRACE(apfloat(min_error_per_c) / p.GetFunctionC());
           if (error_per_c > min_error_per_c)
           {
             min_error_per_c = error_per_c;
-            TRACE(min_error_per_c);
+            //TRACE(min_error_per_c);
             //TRACE(x);
             //TRACE(y);
             //TRACE(z);
             //TRACE(p.GetFunctionC());
-            TRACE(apfloat(min_error_per_c) / p.GetFunctionC());
+            //TRACE(apfloat(min_error_per_c) / p.GetFunctionC());
             //std::stringstream s;
             //s << Geometry().ToStr(p4) << " " << min_error;
             //TRACE(s.str());
@@ -126,14 +125,11 @@ double ribi::PlaneX::CalcMinErrorPerC() noexcept
     }
     //TRACE(min_error_per_c);
   }
-  TRACE(min_error_per_c);
-  min_error_per_c_as_double = Geometry().ToDoubleSafe(min_error_per_c);
-  assert(1==2);
-  TRACE(min_error_per_c_as_double);
-  return min_error_per_c_as_double;
+  TRACE(min_error_per_c); //0.000000001e0
+  return min_error_per_c;
 }
 
-apfloat ribi::PlaneX::CalcMaxError(const Coordinat3D& coordinat) const noexcept
+apfloat ribi::PlaneX::CalcMaxError(const Coordinat3D& /*coordinat*/) const noexcept
 {
   return CalcMinErrorPerC() * GetFunctionC();
   /*
@@ -193,13 +189,6 @@ ribi::PlaneX::Double ribi::PlaneX::CalcX(const Double& y, const Double& z) const
     throw std::logic_error("ribi::PlaneX::CalcX: cannot calculate X of a horizontal plane");
   }
 }
-
-/*
-double ribi::PlaneX::CalcX(const double y, const double z) const
-{
-  return Geometry().ToDouble(CalcX(Apfloat(y),Apfloat(z)));
-}
-*/
 
 std::unique_ptr<ribi::PlaneZ> ribi::PlaneX::Create(
   const Coordinat3D& p1,
@@ -266,13 +255,13 @@ bool ribi::PlaneX::IsInPlane(const Coordinat3D& coordinat) const noexcept
   try
   {
     const apfloat error = CalcError(coordinat);
-    const apfloat max_error = CalcMaxError(coordinat); //std::numeric_limits<double>::epsilon();
+    const apfloat max_error = CalcMaxError(coordinat);
     return error <= max_error;
   }
   catch (std::exception& e)
   {
     TRACE("ERROR");
-    TRACE(e.what())
+    TRACE(e.what());
     assert(!"Should not get here");
     throw;
   }

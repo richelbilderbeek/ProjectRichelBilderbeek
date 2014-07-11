@@ -90,7 +90,6 @@ struct PlaneY
   Coordinats2D CalcProjection(const Coordinats3D& points) const;
 
   ///Throws when cannot calculate Y, which is when the plane is horizontal
-  //double CalcY(const double y, const double z) const;
   Double CalcY(const Double& y, const Double& z) const;
 
   ///y = Ax + Bz + C
@@ -118,6 +117,9 @@ struct PlaneY
 
   ///A PlaneY is actually a PlaneZ used with its coordinats rotated from (X,Y,Z) to (Z,Y,Y)
   const std::unique_ptr<PlaneZ> m_plane_z;
+
+  ///Calculates m_min_error per GetFunctionC()
+  static Double CalcMinErrorPerC() noexcept;
 
   static std::unique_ptr<PlaneZ> Create(
     const Coordinat3D& p1,

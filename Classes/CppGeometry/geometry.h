@@ -388,7 +388,7 @@ struct Geometry
   bool IsEqual3d(const ApCoordinat3D& lhs, const ApCoordinat3D& rhs) const noexcept { return Equals3d()(lhs,rhs); }
 
   ///Determines if these coordinats are in a plane
-  //bool IsPlane(const std::vector<Coordinat3D>& v) const noexcept;
+  bool IsPlane(const std::vector<Coordinat3D>& v) const noexcept;
   bool IsPlane(const std::vector<ApCoordinat3D>& v) const noexcept;
 
   ///Functor for X-Y ordering

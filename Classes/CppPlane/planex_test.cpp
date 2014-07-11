@@ -244,14 +244,17 @@ void ribi::PlaneX::Test() noexcept
       const Coordinat3D p1(1.0,0.0,0.0);
       const Coordinat3D p2(1.0,  i,0.0);
       const Coordinat3D p3(1.0,0.0,  i);
-      const Coordinat3D p4(1.0,0.0,0.0);
       const PlaneX p(p1,p2,p3);
       if (verbose)
       {
         TRACE("----------------------------");
         TRACE(i);
-        TRACE(p.CalcMaxError(p4));
-        TRACE(p.CalcError(p4));
+        TRACE(p.CalcMaxError(p1));
+        TRACE(p.CalcError(p1));
+        TRACE(p.CalcMaxError(p2));
+        TRACE(p.CalcError(p2));
+        TRACE(p.CalcMaxError(p3));
+        TRACE(p.CalcError(p3));
         TRACE(p.GetFunctionA());
         TRACE(p.GetFunctionB());
         TRACE(p.GetFunctionC());
@@ -263,10 +266,11 @@ void ribi::PlaneX::Test() noexcept
         TRACE(std::sqrt(std::numeric_limits<double>::epsilon()));
         TRACE(std::numeric_limits<double>::denorm_min());
       }
-      assert(p.IsInPlane(p4));
+      assert(p.IsInPlane(p1));
+      assert(p.IsInPlane(p2));
+      assert(p.IsInPlane(p3));
     }
   }
-
 
   if (verbose) TRACE("GetProjection");
   {

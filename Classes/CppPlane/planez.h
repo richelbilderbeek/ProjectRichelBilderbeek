@@ -132,7 +132,7 @@ struct PlaneZ
   const Doubles m_coefficients;
 
   ///Calculates m_min_error per GetFunctionC()
-  static double CalcMinErrorPerC() noexcept;
+  static Double CalcMinErrorPerC() noexcept;
 
   static Doubles CalcPlaneZ(
     const Coordinat3D& p1,
@@ -143,8 +143,6 @@ struct PlaneZ
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-
-  //static Doubles ToApfloats(const std::vector<double>& v) noexcept;
 
   ///Convert the Plane to function z(x,y), e.g
   ///'z=(2*x) + (3*y) + 5' (spaces exactly as shown)

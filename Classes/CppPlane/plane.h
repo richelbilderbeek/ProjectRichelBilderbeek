@@ -118,7 +118,6 @@ struct Plane
   Double CalcError(const Coordinat3D& coordinat) const noexcept;
 
   ///Calculates the maximum allowed error for that coordinat for it to be in the plane
-  //double CalcMaxError(const Coordinat3D& coordinat) const noexcept;
   Double CalcMaxError(const Coordinat3D& coordinat) const noexcept;
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
