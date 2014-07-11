@@ -117,12 +117,16 @@ double ribi::PlaneZ::CalcMinErrorPerC() noexcept
   if (min_error_per_c_as_double > 0.0) return min_error_per_c_as_double;
   apfloat min_error_per_c = 0.0;
 
-  const double min_x = 1.0e-16; //std::numeric_limits<double>::denorm_min()
-  const double max_x = 1.0e+16; //std::numeric_limits<double>::max()
-  const double min_y = 1.0e-16; //std::numeric_limits<double>::denorm_min()
-  const double max_y = 1.0e+16; //std::numeric_limits<double>::max()
-  const double min_z = 1.0e-16; //std::numeric_limits<double>::denorm_min()
-  const double max_z = 1.0e+16; //std::numeric_limits<double>::max()
+  //const double low = std::numeric_limits<double>::denorm_min();
+  //const double high = std::numeric_limits<double>::max();
+  const double low  = 1.0e-16;
+  const double high = 1.0e+16;
+  const double min_x = low;
+  const double max_x = high;
+  const double min_y = low;
+  const double max_y = high;
+  const double min_z = low;
+  const double max_z = high;
 
   for (double z = min_z; z < max_z; z*=10.0)
   {
@@ -144,11 +148,11 @@ double ribi::PlaneZ::CalcMinErrorPerC() noexcept
           {
             min_error_per_c = error_per_c;
             TRACE(min_error_per_c);
-            TRACE(x);
-            TRACE(y);
-            TRACE(z);
-            TRACE(p.GetFunctionC());
-            //TRACE(apfloat(min_error_per_c) / p.GetFunctionC());
+            //TRACE(x);
+            //TRACE(y);
+            //TRACE(z);
+            //TRACE(p.GetFunctionC());
+            TRACE(apfloat(min_error_per_c) / p.GetFunctionC());
             //std::stringstream s;
             //s << Geometry().ToStr(p4) << " " << min_error;
             //TRACE(s.str());
@@ -161,12 +165,13 @@ double ribi::PlaneZ::CalcMinErrorPerC() noexcept
   TRACE(min_error_per_c);
   min_error_per_c_as_double = Geometry().ToDoubleSafe(min_error_per_c);
   TRACE(min_error_per_c_as_double);
-  assert(1==2);
   return min_error_per_c_as_double;
 }
 
 apfloat ribi::PlaneZ::CalcMaxError(const Coordinat3D& coordinat) const noexcept
 {
+  return CalcMinErrorPerC() * GetFunctionC();
+  /*
   const bool verbose = false;
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
@@ -213,6 +218,7 @@ apfloat ribi::PlaneZ::CalcMaxError(const Coordinat3D& coordinat) const noexcept
   }
   assert(e > 0.0);
   return e;
+  */
 }
 
 std::vector<apfloat> ribi::PlaneZ::CalcPlaneZ(

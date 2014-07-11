@@ -727,6 +727,9 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "LIBS","<a href=\"CppQ$m$akeL$ibs.htm\">L$IBS</a>" },
   //3
     { "led","<a href=\"C$ppL$ed.htm\">l$ed</a>" },
-    { "Qwt","<a href=\"C$ppQ$wt.htm\">Qwt</a>" }
+    { "Qwt","<a href=\"C$ppQ$wt.htm\">Qwt</a>" },
+  //1
+    { "è","e" }
+
   };
 }

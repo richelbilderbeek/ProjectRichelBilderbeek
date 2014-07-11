@@ -13942,11 +13942,13 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   m.push_back(
     { "ToolKeySender",
       {
-        "<p><a href=\"ToolKeySender.htm\">KeySender</a> is a demonstration tool of ",
-        "<a href=\"http://www.codeproject.com/KB/cpp/sendkeys_cpp_Article.aspx\">Lallous' CSendKey class</a> ",
-        "with which you can send virtual key presses to any window. ",
-        "For example, you can let <a href=\"ToolKeySender.htm\">KeySender</a> type a",
-        "notepad document for you (as seen in the screenshot).</p>",
+        "<p>",
+        "  <a href=\"ToolKeySender.htm\">KeySender</a> is a demonstration tool of ",
+        "  <a href=\"http://www.codeproject.com/KB/cpp/sendkeys_cpp_Article.aspx\">Lallous' CSendKey class</a> ",
+        "  with which you can send virtual key presses to any window. ",
+        "  For example, you can let <a href=\"ToolKeySender.htm\">KeySender</a> type a",
+        "  notepad document for you (as seen in the screenshot).",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolKeySender_1_0.png\">View a screenshot of 'KeySender' (version 1.0)(png)</a></li>",

@@ -114,24 +114,26 @@ void ribi::PlaneZ::Test() noexcept
         const Coordinat3D p3(  i,0.0,1.0);
         const Coordinat3D p4(0.0,0.0,1.0);
         const PlaneZ p(p1,p2,p3);
-        TRACE("----------------------------");
-        TRACE(i);
-        TRACE(p.CalcMaxError(p4));
-        TRACE(p.CalcError(p4));
-        TRACE(p.GetFunctionA());
-        TRACE(p.GetFunctionB());
-        TRACE(p.GetFunctionC());
-        TRACE(p.GetCoefficients()[0]);
-        TRACE(p.GetCoefficients()[1]);
-        TRACE(p.GetCoefficients()[2]);
-        TRACE(p.GetCoefficients()[3]);
-        TRACE(std::numeric_limits<double>::epsilon());
-        TRACE(std::sqrt(std::numeric_limits<double>::epsilon()));
-        TRACE(std::numeric_limits<double>::denorm_min());
+        if (verbose)
+        {
+          TRACE("----------------------------");
+          TRACE(i);
+          TRACE(p.CalcMaxError(p4));
+          TRACE(p.CalcError(p4));
+          TRACE(p.GetFunctionA());
+          TRACE(p.GetFunctionB());
+          TRACE(p.GetFunctionC());
+          TRACE(p.GetCoefficients()[0]);
+          TRACE(p.GetCoefficients()[1]);
+          TRACE(p.GetCoefficients()[2]);
+          TRACE(p.GetCoefficients()[3]);
+          TRACE(std::numeric_limits<double>::epsilon());
+          TRACE(std::sqrt(std::numeric_limits<double>::epsilon()));
+          TRACE(std::numeric_limits<double>::denorm_min());
+        }
         assert(p.IsInPlane(p4));
       }
   }
-  assert(!"Yay, solved this");
   if (verbose) TRACE("CanCalcZ, Z = 1.0 plane, zooming in");
   {
     for (const double i:series)
