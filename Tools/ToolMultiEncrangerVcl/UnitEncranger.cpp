@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
   MultiEncranger, encryption and de-encryption tool
-  Copyright (C) 2010  Richèl Bilderbeek
+  Copyright (C) 2010  Richel Bilderbeek
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

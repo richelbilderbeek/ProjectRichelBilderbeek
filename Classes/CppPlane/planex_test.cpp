@@ -236,6 +236,38 @@ void ribi::PlaneX::Test() noexcept
     assert(a.ToFunction() == PlaneX(p4,p3,p1).ToFunction());
     assert(a.ToFunction() == PlaneX(p4,p3,p2).ToFunction());
   }
+
+  if (verbose) TRACE("IsInPlane, X = 1, zooming to smallest three points to determine a plane, point above origin");
+  {
+    for (double i = 1.0; i > 0.0; i/=10.0)
+    {
+      const Coordinat3D p1(1.0,0.0,0.0);
+      const Coordinat3D p2(1.0,  i,0.0);
+      const Coordinat3D p3(1.0,0.0,  i);
+      const Coordinat3D p4(1.0,0.0,0.0);
+      const PlaneX p(p1,p2,p3);
+      if (verbose)
+      {
+        TRACE("----------------------------");
+        TRACE(i);
+        TRACE(p.CalcMaxError(p4));
+        TRACE(p.CalcError(p4));
+        TRACE(p.GetFunctionA());
+        TRACE(p.GetFunctionB());
+        TRACE(p.GetFunctionC());
+        TRACE(p.GetCoefficients()[0]);
+        TRACE(p.GetCoefficients()[1]);
+        TRACE(p.GetCoefficients()[2]);
+        TRACE(p.GetCoefficients()[3]);
+        TRACE(std::numeric_limits<double>::epsilon());
+        TRACE(std::sqrt(std::numeric_limits<double>::epsilon()));
+        TRACE(std::numeric_limits<double>::denorm_min());
+      }
+      assert(p.IsInPlane(p4));
+    }
+  }
+
+
   if (verbose) TRACE("GetProjection");
   {
     /*

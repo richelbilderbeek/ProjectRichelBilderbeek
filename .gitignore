@@ -2389,3 +2389,5 @@ gmon.out
 gprof.txtLibraries/qwt-6.1/.svn
 Libraries/qwt-6.1/.svn/*
 Libraries/qwt-6.1/.svn/
+*.backup
+.backup

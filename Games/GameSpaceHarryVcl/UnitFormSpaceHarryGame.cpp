@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
   Space Harry, a simple 'Space Harrier' clone
-  Copyright (C) 2007  Richèl Bilderbeek
+  Copyright (C) 2007  Richel Bilderbeek
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ __fastcall TFormSpaceHarryGame::TFormSpaceHarryGame(TComponent* Owner)
   mX = (ClientWidth  / 2);
   mY = (ClientHeight / 2);
   mZ = 0.0;
-  Caption = "Space Harry (C) 2007 Richèl Bilderbeek. Score: " + IntToStr(mScore);
+  Caption = "Space Harry (C) 2007 Richel Bilderbeek. Score: " + IntToStr(mScore);
 
 }
 //---------------------------------------------------------------------------
@@ -264,7 +264,7 @@ void __fastcall TFormSpaceHarryGame::TimerGameTimer(TObject *Sender)
               mEnemies.erase(j);
               --j;
               ++mScore; //Harry scored!
-              Caption = "Space Harry (C) 2007 Richèl Bilderbeek. Score: " + IntToStr(mScore);
+              Caption = "Space Harry (C) 2007 Richel Bilderbeek. Score: " + IntToStr(mScore);
             }
           }
         }

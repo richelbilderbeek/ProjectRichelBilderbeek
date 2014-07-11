@@ -50,7 +50,7 @@ public:		// User declarations
   __fastcall TFormMain(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-const String TFormMain::mCaptionBegin("BeerWanter 3. Copyright (C) 2005 Richèl Bilderbeek. Beer already got: ");
+const String TFormMain::mCaptionBegin("BeerWanter 3. Copyright (C) 2005 Richel Bilderbeek. Beer already got: ");
 //---------------------------------------------------------------------------
 void EmptyBitmap(TImage * const pImage)
 {

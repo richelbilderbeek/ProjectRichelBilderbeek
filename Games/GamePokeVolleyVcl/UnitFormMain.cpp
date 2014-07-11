@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
   PokeVolley, Pokemon volleyball game
-  Copyright (C) 2005  Richèl Bilderbeek
+  Copyright (C) 2005  Richel Bilderbeek
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ void TFormMain::resetCoordinats()
   ImageBasket2->Left = ClientWidth - ImageBasket2->Width;
   ImageBasket2->Top = (ClientHeight / 2) - (ImageBasket2->Height / 2);
 
-  Caption = "PokeVolley (C) 2005 Richèl Bilderbeek: " + IntToStr(mScoreLeft) + " : " + IntToStr(mScoreRight);
+  Caption = "PokeVolley (C) 2005 Richel Bilderbeek: " + IntToStr(mScoreLeft) + " : " + IntToStr(mScoreRight);
 }
 //---------------------------------------------------------------------------
 

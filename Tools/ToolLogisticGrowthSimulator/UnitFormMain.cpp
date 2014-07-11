@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
   Logistic Growth Simulator, logistic growth simulation
-  Copyright (C) 2009  Richèl Bilderbeek
+  Copyright (C) 2009  Richel Bilderbeek
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -192,7 +192,7 @@ void __fastcall TFormMain::ButtonAboutClick(TObject *Sender)
 {
   ShowMessage(
     "  Logistic Growth Simulator, logistic growth simulation                  \n"
-    "  Copyright (C) 2009  Richèl Bilderbeek                                  \n"
+    "  Copyright (C) 2009  Richel Bilderbeek                                  \n"
     "                                                                         \n"
     "  This program is free software: you can redistribute it and/or modify   \n"
     "  it under the terms of the GNU General Public License as published by   \n"
