@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "apcplx.h" //apfloat's atan2
 #include "trace.h"
 
 #ifndef NDEBUG
@@ -124,7 +125,35 @@ void ribi::Geometry::Test() noexcept
     assert(g.Fmod(-3.0,2.0) > expected_min && g.Fmod(-3.0,2.0) < expected_max);
     assert(g.Fmod(-13.0,2.0) > expected_min && g.Fmod(-13.0,2.0) < expected_max);
   }
-  if (verbose) { TRACE("GetAngle"); }
+  //std::atan2 versus apfloat's atan2
+  {
+    for (double dx = -1.0; dx < 1.01; dx += 1.0)
+    {
+      for (double dy = -1.0; dy < 1.01; dy += 1.0)
+      {
+        if (dx == 0.0 && dy == 0.0) continue;
+        const auto a = std::atan2(dx,dy);
+        const auto b = atan2(Apfloat(dx),Apfloat(dy));
+        const auto c = g.Atan2(Apfloat(dx),Apfloat(dy));
+        //std::stringstream s;
+        //s << dx << '\t' << dy << '\t' << (a/pi) << " pi\t" << (b/pi) << " pi\t" << g.ToStrSafe(c/Apfloat(pi)) << " pi\n";
+        //TRACE(s.str());
+        const auto error = abs(a - c);
+        if (error >= 0.01)
+        {
+          TRACE("ERROR");
+          TRACE(dx);
+          TRACE(dy);
+          TRACE(Geometry().ToStrSafe(a));
+          TRACE(b);
+          TRACE(Geometry().ToStrSafe(error));
+          TRACE("BREAK");
+        }
+        assert(error < 0.01); //abfloat does not use namespace std::
+      }
+    }
+  }
+  if (verbose) { TRACE("GetAngle, double"); }
   {
     const double angle =  g.GetAngle(0.0,-1.0); //North
     const double expected = 0.0 * pi;
@@ -164,6 +193,59 @@ void ribi::Geometry::Test() noexcept
     const double angle =  g.GetAngle(-1.0,-1.0); //North-West
     const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
+  }
+  if (verbose) { TRACE("GetAngle, Apfloat"); }
+  {
+    //const Apfloats v_x { 0.0, 1.0, 1.0, 1.0, 0.0,-1.0,-1.0,-1.0 };
+    //const Apfloats v_y {-1.0,-1.0, 0.0, 1.0, 1.0, 1.0, 0.0,-1.0 };
+    //const Apfloats v_expected_angle {-1.0,-1.0, 0.0, 1.0, 1.0, 1.0, 0.0,-1.0 };
+    const auto angle =  g.GetAngle(Apfloat(0.0),Apfloat(-1.0)); //North
+    const auto expected = 0.0 * pi;
+    const auto error = abs(angle-expected);
+    if (error >= 0.01)
+    {
+      TRACE("ERROR");
+      TRACE(Geometry().ToStrSafe(angle));
+      TRACE(Geometry().ToStrSafe(expected));
+      TRACE(Geometry().ToStrSafe(error));
+      TRACE("BREAK");
+    }
+    assert(error < 0.01); //abfloat does not use namespace std::
+  }
+  {
+    const auto angle =  g.GetAngle(Apfloat(1.0),Apfloat(-1.0)); //North-East
+    const auto expected = 0.25 * pi;
+    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
+  }
+  {
+    const auto angle =  g.GetAngle(Apfloat(1.0),Apfloat(0.0)); //East
+    const auto expected = 0.5 * pi;
+    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
+  }
+  {
+    const auto angle =  g.GetAngle(Apfloat(1.0),Apfloat(1.0)); //South-East
+    const auto expected = 0.75 * pi;
+    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
+  }
+  {
+    const auto angle =  g.GetAngle(Apfloat(0.0),Apfloat(1.0)); //South
+    const auto expected = 1.0 * pi;
+    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
+  }
+  {
+    const auto angle =  g.GetAngle(Apfloat(-1.0),Apfloat(1.0)); //South-West
+    const auto expected = 1.25 * pi;
+    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
+  }
+  {
+    const auto angle =  g.GetAngle(Apfloat(-1.0),Apfloat(0.0)); //West
+    const auto expected = 1.5 * pi;
+    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
+  }
+  {
+    const auto angle =  g.GetAngle(Apfloat(-1.0),Apfloat(-1.0)); //North-West
+    const auto expected = 1.75 * pi;
+    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
   }
   if (verbose) { TRACE("GetDistance"); }
   {
@@ -731,7 +813,31 @@ void ribi::Geometry::Test() noexcept
         const double y = static_cast<double>(j-1) * 5.0;
         const ApCoordinat3D above(x, y, 2.0);
         const ApCoordinat3D below(x, y,-1.0);
+        //Check CalcCenter
+        {
+          const auto center = g.CalcCenter(coordinats);
+          const auto center_x = boost::geometry::get<0>(center);
+          const auto center_y = boost::geometry::get<1>(center);
+          const auto center_z = boost::geometry::get<2>(center);
+          assert(center_x > 1.49 && center_x < 1.51);
+          assert(center_y > 1.49 && center_y < 1.51);
+          assert(center_z > 0.99 && center_z < 1.01);
+        }
+        if (!g.IsClockwiseHorizontal(coordinats))
+        {
+          TRACE("ERROR");
+          TRACE(Geometry().ToStr(coordinats));
+          TRACE(Geometry().ToStr(above));
+          TRACE("BREAK");
+        }
         assert( g.IsClockwiseHorizontal(coordinats));
+        if (!g.IsClockwise(coordinats,above))
+        {
+          TRACE("ERROR");
+          TRACE(Geometry().ToStr(coordinats));
+          TRACE(Geometry().ToStr(above));
+          TRACE("BREAK");
+        }
         assert( g.IsClockwise(coordinats,above));
         assert(!g.IsCounterClockwiseHorizontal(coordinats));
         assert(!g.IsClockwise(coordinats,below));
@@ -793,10 +899,21 @@ void ribi::Geometry::Test() noexcept
     {
       for (int j=0; j!=3; ++j)
       {
-        const double x = static_cast<double>(i-1) * 5.0;
-        const double y = static_cast<double>(j-1) * 5.0;
+        const Apfloat x = static_cast<double>(i-1) * 5.0;
+        const Apfloat y = static_cast<double>(j-1) * 5.0;
         const ApCoordinat3D above(x, y, 2.0);
         const ApCoordinat3D below(x, y,-1.0);
+        if (g.IsClockwise(coordinats,above))
+        {
+          TRACE("ERROR");
+          TRACE("BREAK");
+        }
+        if(g.IsClockwise(coordinats,below))
+        {
+          TRACE("ERROR");
+          TRACE("BREAK");
+        }
+
         assert(!g.IsClockwise(coordinats,above));
         assert(!g.IsClockwise(coordinats,below));
       }

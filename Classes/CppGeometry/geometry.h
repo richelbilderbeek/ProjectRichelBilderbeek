@@ -74,6 +74,10 @@ struct Geometry
 
   Geometry();
 
+  ///apfloat its atan2 does not correspond to std::atan2
+  ///Atan2 makes it correspond
+  Apfloat Atan2(const Apfloat& dx, const Apfloat& b) const noexcept;
+
   Coordinat2D CalcCenter(const Coordinats2D& v) const noexcept;
   Coordinat3D CalcCenter(const Coordinats3D& v) const noexcept;
   ApCoordinat2D CalcCenter(const ApCoordinats2D& v) const noexcept;
@@ -124,8 +128,8 @@ struct Geometry
     const ApCoordinat3D& p3
   ) const noexcept;
 
-  std::vector<  Coordinat2D> CalcProjection(const std::vector<  Coordinat3D>& v) const;
-  std::vector<ApCoordinat2D> CalcProjection(const std::vector<ApCoordinat3D>& v) const;
+    Coordinats2D CalcProjection(const   Coordinats3D& v) const;
+  ApCoordinats2D CalcProjection(const ApCoordinats3D& v) const;
 
   Coordinat2D Coordinat2DToBoostGeometryPointXy(
     const Coordinat2D& c
@@ -346,8 +350,8 @@ struct Geometry
   bool IsCounterClockwise(const Apfloats& angles) const noexcept;
 
   ///Are the points ordered counterclockwise in the XYZ plane, seen from the observer?
-  bool IsCounterClockwise(const std::vector<  Coordinat3D>& points, const   Coordinat3D& observer) const noexcept;
-  bool IsCounterClockwise(const std::vector<ApCoordinat3D>& points, const ApCoordinat3D& observer) const noexcept;
+  bool IsCounterClockwise(const   Coordinats3D& points, const   Coordinat3D& observer) const noexcept;
+  bool IsCounterClockwise(const ApCoordinats3D& points, const ApCoordinat3D& observer) const noexcept;
 
   ///Are the points ordered clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
@@ -467,10 +471,13 @@ struct Geometry
   Polygon ToPolygon(const Linestring& linestring) const noexcept;
 
 
+  std::string ToStr(const Apfloats& p) const noexcept;
   std::string ToStr(const   Coordinat2D& p) const noexcept;
   std::string ToStr(const ApCoordinat2D& p) const noexcept;
+  std::string ToStr(const ApCoordinats2D& p) const noexcept;
   std::string ToStr(const   Coordinat3D& p) const noexcept;
   std::string ToStr(const ApCoordinat3D& p) const noexcept;
+  std::string ToStr(const ApCoordinats3D& p) const noexcept;
   std::string ToStr(const Linestring& polygon) const noexcept;
   std::string ToStr(const Polygon& polygon) const noexcept;
   std::string ToStr(const QPen& pen) noexcept;
@@ -480,7 +487,7 @@ struct Geometry
   std::string ToStr(const QRectF& rect) noexcept;
 
   ///Uses ToDoubleSafe(const apfloat&)
-  std::string ToStrSafe(const apfloat& f) const noexcept;
+  std::string ToStrSafe(const Apfloat& f) const noexcept;
 
   //Create a complete SVG file contents
   std::string ToSvg(

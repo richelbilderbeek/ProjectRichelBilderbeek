@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/geometry/geometries/linestring.hpp>
 #endif
 
-//#include "apcplx.h" //apfloat
+#include "apcplx.h"
 
 #include <QPen>
 #include <QPoint>
@@ -52,9 +52,11 @@ ribi::Geometry::Geometry()
   #endif
 }
 
-
-
-
+ribi::Geometry::Apfloat ribi::Geometry::Atan2(const Apfloat& dx, const Apfloat& dy) const noexcept
+{
+  const apfloat pi(boost::math::constants::pi<double>());
+  return atan2(dy,dx); //apfloats's atan has reversed arguments
+}
 
 ribi::Geometry::Apfloat ribi::Geometry::CalcDotProduct(
   const ApCoordinat3D& a,
@@ -173,6 +175,11 @@ ribi::Geometry::ApCoordinats2D ribi::Geometry::CalcProjection(
   #endif
 
   return plane->CalcProjection(points);
+}
+
+ribi::Geometry::Coordinats2D ribi::Geometry::CalcProjection(const Coordinats3D& v) const
+{
+  return ToDoubleSafe(CalcProjection(ToApfloat(v)));
 }
 
 boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>
@@ -350,8 +357,30 @@ ribi::Geometry::Apfloat ribi::Geometry::Fmod(const Apfloat& x, const Apfloat& mo
     assert(new_x >= 0.0);
     return Fmod(new_x,mod);
   }
-  Apfloat result = x - (mod * ToInt(x / mod));
+  const Apfloat result = x - (mod * Apfloat(ToInt(x / mod)));
 
+  if (result < 0.0) //Happens due to rounding errors
+  {
+    assert(result > -0.000000001);
+    return 0.0;
+  }
+  if (result >= mod)
+  {
+    assert(result - mod < Apfloat(0.000000001));
+    const Apfloat new_result = mod - Apfloat(std::numeric_limits<double>::epsilon());
+    assert(new_result < mod);
+    return new_result;
+  }
+
+  #ifndef NDEBUG
+  if(result < 0.0 || result >= mod)
+  {
+    TRACE("ERROR");
+    TRACE(ToStrSafe(result));
+    TRACE(ToStrSafe(mod));
+    TRACE("BREAK");
+  }
+  #endif
   assert(result >= 0.0 && "Fmod must return a value between zero and mod");
   assert(result < mod  && "Fmod must return a value between zero and mod");
   return result;
@@ -425,7 +454,7 @@ bool ribi::Geometry::IsClockwise(const Apfloats& angles) const noexcept
   return true;
 }
 
-bool ribi::Geometry::IsClockwise(const std::vector<double>& angles) const noexcept
+bool ribi::Geometry::IsClockwise(const Doubles& angles) const noexcept
 {
   return IsClockwise(ToApfloat(angles));
 }
@@ -466,19 +495,31 @@ bool ribi::Geometry::IsClockwise(
           }
         )
     );
+    TRACE(ToStr(v));
+    TRACE(IsClockwiseHorizontal(v));
+    TRACE(IsCounterClockwiseHorizontal(v));
     //If the points are messed up, they cannot be clockwise
     if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
-    //The neatly orderder point have the same winding as the first three
+    //The neatly orderder points have the same winding as the first three
     std::remove_const<std::remove_reference<decltype(points)>::type>::type a;
     std::copy(points.begin() + 0,points.begin() + 3,std::back_inserter(a));
     return IsClockwise(a,observer);
   }
 }
 
+bool ribi::Geometry::IsClockwise(
+  const Coordinats3D& points,
+  const Coordinat3D& observer
+) const noexcept
+{
+  return IsClockwise(ToApfloat(points),ToApfloat(observer));
+}
+
 bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats3D& points) const noexcept
 {
   using boost::geometry::get;
   const auto center(CalcCenter(points));
+  TRACE(ToStr(center));
   Apfloats angles;
   angles.reserve(points.size());
   std::transform(points.begin(),points.end(),
@@ -491,6 +532,7 @@ bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats3D& points) const n
       );
     }
   );
+  TRACE(ToStr(angles));
   return IsClockwise(angles);
 }
 
@@ -554,7 +596,7 @@ bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
   return true;
 }
 
-bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
+bool ribi::Geometry::IsConvex(const Coordinats2D& points) const noexcept
 {
   Polygon polygon;
   for (const auto point: points)
@@ -664,6 +706,11 @@ bool ribi::Geometry::IsConvex(const ApCoordinats3D& points) const noexcept
   return false;
 }
 
+bool ribi::Geometry::IsConvex(const Coordinats3D& points) const noexcept
+{
+  return IsConvex(ToApfloat(points));
+}
+
 bool ribi::Geometry::IsCounterClockwise(const Apfloat& a, const Apfloat& b) const noexcept
 {
   return !IsClockwise(a,b);
@@ -691,8 +738,8 @@ bool ribi::Geometry::IsCounterClockwise(const Doubles& angles) const noexcept
 }
 
 bool ribi::Geometry::IsCounterClockwise(
-  const ribi::Geometry::ApCoordinats3D& points,
-  const ribi::Geometry::ApCoordinat3D& observer
+  const ApCoordinats3D& points,
+  const ApCoordinat3D& observer
 ) const noexcept
 {
   const int n_points = static_cast<int>(points.size());
@@ -734,6 +781,14 @@ bool ribi::Geometry::IsCounterClockwise(
   }
 }
 
+bool ribi::Geometry::IsCounterClockwise(
+  const Coordinats3D& points,
+  const Coordinat3D& observer
+) const noexcept
+{
+  return IsCounterClockwise(ToApfloat(points),ToApfloat(observer));
+}
+
 bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats2D& points) const noexcept
 {
   //Points are determined from their center
@@ -752,6 +807,11 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats2D& points) 
   return IsCounterClockwise(angles);
 }
 
+bool ribi::Geometry::IsCounterClockwiseHorizontal(const Coordinats2D& points) const noexcept
+{
+  return IsCounterClockwiseHorizontal(ToApfloat(points));
+}
+
 bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats3D& points3d) const noexcept
 {
   ApCoordinats2D points2d;
@@ -765,6 +825,11 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats3D& points3d
     );
   }
   return IsCounterClockwiseHorizontal(points2d);
+}
+
+bool ribi::Geometry::IsCounterClockwiseHorizontal(const Coordinats3D& points) const noexcept
+{
+  return IsCounterClockwiseHorizontal(ToApfloat(points));
 }
 
 std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)>
@@ -843,6 +908,11 @@ bool ribi::Geometry::IsPlane(const std::vector<ApCoordinat3D>& v) const noexcept
     }
     return false;
   }
+}
+
+bool ribi::Geometry::IsPlane(const std::vector<Coordinat3D>& v) const noexcept
+{
+  return IsPlane(ToApfloat(v));
 }
 
 
@@ -1137,7 +1207,7 @@ std::string ribi::Geometry::ToStrSafe(const apfloat& f) const noexcept
   try
   {
     std::stringstream s;
-    s << f;
+    s << pretty << f;
     return s.str();
   }
   catch (boost::bad_lexical_cast&)
@@ -1146,6 +1216,15 @@ std::string ribi::Geometry::ToStrSafe(const apfloat& f) const noexcept
     s << ToDoubleSafe(f);
     return s.str();
   }
+}
+
+std::string ribi::Geometry::ToStr(const Apfloats& v) const noexcept
+{
+  std::stringstream s;
+  for (const auto i:v) { s << ToStrSafe(i) << ','; }
+  std::string t = s.str();
+  if (!t.empty()) t.pop_back();
+  return t;
 }
 
 std::string ribi::Geometry::ToStr(const ApCoordinat2D& p) const noexcept
@@ -1159,6 +1238,15 @@ std::string ribi::Geometry::ToStr(const ApCoordinat2D& p) const noexcept
   return s.str();
 }
 
+std::string ribi::Geometry::ToStr(const ApCoordinats2D& v) const noexcept
+{
+  std::stringstream s;
+  for (const auto i:v) { s << ToStr(i) << '-'; }
+  std::string t = s.str();
+  if (!t.empty()) t.pop_back();
+  return t;
+}
+
 std::string ribi::Geometry::ToStr(const ApCoordinat3D& p) const noexcept
 {
   std::stringstream s;
@@ -1169,6 +1257,15 @@ std::string ribi::Geometry::ToStr(const ApCoordinat3D& p) const noexcept
     << ')'
   ;
   return s.str();
+}
+
+std::string ribi::Geometry::ToStr(const ApCoordinats3D& v) const noexcept
+{
+  std::stringstream s;
+  for (const auto i:v) { s << ToStr(i) << '-'; }
+  std::string t = s.str();
+  if (!t.empty()) t.pop_back();
+  return t;
 }
 
 std::string ribi::Geometry::ToStr(const Coordinat2D& p) const noexcept

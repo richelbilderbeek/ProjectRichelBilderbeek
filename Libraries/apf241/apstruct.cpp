@@ -822,17 +822,6 @@ apstruct *apdivshort (apstruct *a, apstruct *b)
     assert (a);                 // Won't work on uninitialized apfloats
     assert (b);
 
-    #ifndef NDEBUG
-    if (!b->sign)
-    {
-      std::stringstream s;
-      s << "Error: "
-        << "Line: " << __LINE__
-        <<  ", file: " << __FILE__
-      ;
-      std::cerr << s.str();
-    }
-    #endif
     assert (b->sign);                           // Infinity
 
     sign = a->sign * b->sign;

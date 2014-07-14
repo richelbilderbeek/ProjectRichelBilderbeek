@@ -4,7 +4,7 @@
 
 template <class T> T Atan2Impl(const T& a, const T& b) noexcept;
 template <> double Atan2Impl(const double& a, const double& b) noexcept { return std::atan2(a,b); }
-template <> apfloat Atan2Impl(const apfloat& a, const apfloat& b) noexcept { return atan2(a,b); }
+template <> apfloat Atan2Impl(const apfloat& a, const apfloat& b) noexcept { return ribi::Geometry().Atan2(a,b); }
 
 
 template <class T>

@@ -8,7 +8,7 @@ ribi::Geometry::ApCoordinat2D ribi::Geometry::CalcCenter(const ApCoordinats2D& p
     sum.x(sum.x() + point.x());
     sum.y(sum.y() + point.y());
   }
-  const double n { static_cast<double>(points.size()) };
+  const Apfloat n(static_cast<double>(points.size()));
   const ApCoordinat2D center(
     sum.x() / n,
     sum.y() / n
@@ -28,7 +28,7 @@ ribi::Geometry::ApCoordinat3D ribi::Geometry::CalcCenter(const ApCoordinats3D& p
     sum_y += boost::geometry::get<1>(point);
     sum_z += boost::geometry::get<2>(point);
   }
-  const Apfloat n { static_cast<double>(points.size()) };
+  const Apfloat n(static_cast<double>(points.size()));
   const ApCoordinat3D center(
     sum_x / n,
     sum_y / n,
