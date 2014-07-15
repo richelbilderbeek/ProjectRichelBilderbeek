@@ -6,6 +6,8 @@
 
 #include <cassert>
 
+#include <qwt.h>
+
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
 #include "qttestplaneconstructplanedialog.h"
@@ -40,8 +42,11 @@ void ribi::QtTestPlaneMenuDialog::on_button_start_clicked()
 void ribi::QtTestPlaneMenuDialog::on_button_about_clicked()
 {
   About a(TestPlaneMenuDialog().GetAbout());
-  //a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
+  a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
+  a.AddLibrary("Warp's FunctionParser version: 4.4.3");
+  a.AddLibrary(std::string("Qwt version: ") + QWT_VERSION_STR);
   QtAboutDialog d(a);
+
   d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
@@ -81,7 +86,6 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
     assert(!d.GetVersion().empty());
   }
   TRACE("Finished ribi::QtTestPlaneMenuDialog::Test successfully");
-  exit(0); //For profiling
 }
 #endif
 

@@ -107,6 +107,10 @@
     apfloat functions sometimes have unused variables, either as function arguments
     or as local variables
   </li>
+  <li>
+    apfloat its implementation of std::atan2 has its arguments the other way around. In other
+    words, std::atan(1.0,2.0) equals atan(apfloat(2.0),apfloat(1.0))
+  </li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

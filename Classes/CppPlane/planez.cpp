@@ -159,7 +159,7 @@ ribi::PlaneZ::Double ribi::PlaneZ::CalcMinErrorPerC() noexcept
     }
     //TRACE(min_error_per_c);
   }
-  TRACE(min_error_per_c);
+  //TRACE(min_error_per_c);
   return min_error_per_c;
 }
 

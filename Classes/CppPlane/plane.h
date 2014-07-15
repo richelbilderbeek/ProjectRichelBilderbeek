@@ -120,13 +120,13 @@ struct Plane
   ///Calculates the maximum allowed error for that coordinat for it to be in the plane
   Double CalcMaxError(const Coordinat3D& coordinat) const noexcept;
 
-  ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
+  ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients
   Doubles GetCoefficientsX() const;
 
-  ///If the Plane can be expressed as Y = A*X + B*Z + C, return the coefficients,
+  ///If the Plane can be expressed as Y = A*X + B*Z + C, return the coefficients
   Doubles GetCoefficientsY() const;
 
-  ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients,
+  ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients
   Doubles GetCoefficientsZ() const;
 
   static std::string GetVersion() noexcept;

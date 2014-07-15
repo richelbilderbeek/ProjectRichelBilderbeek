@@ -59,8 +59,8 @@ void ribi::fileio::FileIo::CopyFile(
     //DeleteFile ensures a correct deletion
     DeleteFile(fileNameTo);
   }
-  std::ifstream in (fileNameFrom.c_str());
-  std::ofstream out(fileNameTo.c_str());
+  std::ifstream in{fileNameFrom.c_str()};
+  std::ofstream out{fileNameTo.c_str()};
   out << in.rdbuf();
   out.close();
   in.close();
@@ -77,8 +77,8 @@ void ribi::fileio::FileIo::CreateFolder(const std::string& folder) const
   #endif
   assert(!IsFolder(folder)
     && "Can only create folders that do not exist yet");
-  const std::string cmd = "mkdir " + folder;
-  const int error = std::system(cmd.c_str());
+  const auto cmd = "mkdir " + folder;
+  const auto error = std::system(cmd.c_str());
   #ifndef NDEBUG
   if (error) { TRACE(cmd); }
   #endif
@@ -112,7 +112,7 @@ void ribi::fileio::FileIo::DeleteFile(const std::string& filename) const
   if (IsRegularFile(filename))
   {
     #ifdef _WIN32
-    const std::string cmd = "attrib -r " + filename;
+    const auto cmd = "attrib -r " + filename;
     std::system(cmd.c_str());
     std::remove(filename.c_str());
     #endif
@@ -121,7 +121,7 @@ void ribi::fileio::FileIo::DeleteFile(const std::string& filename) const
   #ifndef NDEBUG
   if (IsRegularFile(filename))
   {
-    const std::string s = "Failed to delete " + filename;
+    const auto s = "Failed to delete " + filename;
     TRACE(s);
   }
   #endif
@@ -135,7 +135,7 @@ void ribi::fileio::FileIo::DeleteFolder(const std::string& folder) const
     && "Can only delete folders that do exist");
 
   //Delete all files
-  for (const std::string& subfolder: GetFoldersInFolder(folder))
+  for (const auto subfolder: GetFoldersInFolder(folder))
   {
     DeleteFolder(
       (folder.empty() ? folder : folder + GetPathSeperator())
@@ -143,7 +143,7 @@ void ribi::fileio::FileIo::DeleteFolder(const std::string& folder) const
     );
   }
   assert(GetFoldersInFolder(folder).empty());
-  for (const std::string& filename: GetFilesInFolder(folder))
+  for (const auto filename: GetFilesInFolder(folder))
   {
     DeleteFile(
       (folder.empty() ? folder : folder + GetPathSeperator())
@@ -151,8 +151,8 @@ void ribi::fileio::FileIo::DeleteFolder(const std::string& folder) const
    );
   }
   assert(GetFilesInFolder(folder).empty());
-  const std::string cmd = "rmdir " + folder;
-  const int error = std::system(cmd.c_str());
+  const auto cmd = "rmdir " + folder;
+  const auto error = std::system(cmd.c_str());
   assert(!error && "Assume rmdir works under both Windows and Linux");
   if (error)
   {
@@ -192,15 +192,14 @@ bool ribi::fileio::FileIo::FilesAreIdentical(
   #endif
   assert(IsRegularFile(filename_a) && "File must exist to be compared");
   assert(IsRegularFile(filename_b) && "File must exist to be compared");
-  const std::vector<std::string> v { FileToVector(filename_a) };
-  const std::vector<std::string> w { FileToVector(filename_b) };
+  const auto v = FileToVector(filename_a);
+  const auto w = FileToVector(filename_b);
   return v == w;
 }
 
 std::string ribi::fileio::FileIo::FileToStr(
   const std::string& filename) const
 {
-
   std::string s;
   for (const auto t: FileToVector(filename))
   {
@@ -222,14 +221,14 @@ std::vector<std::string> ribi::fileio::FileIo::FileToVector(
   assert(IsRegularFile(filename));
   assert(!IsFolder(filename));
   std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
+  std::ifstream in{filename.c_str()};
   assert(in.is_open());
   //Without this test in release mode,
   //the program might run indefinitely when the file does not exists
   if (!in.is_open())
   {
-    const std::string s = "ERROR: file does not exist: " + filename;
-    throw std::logic_error(s.c_str());
+    const std::string s{"ERROR: file does not exist: " + filename};
+    throw std::logic_error{s.c_str()};
   }
   for (int i=0; !in.eof(); ++i)
   {
@@ -250,9 +249,9 @@ std::string ribi::fileio::FileIo::GetExtension(
 
 std::string ribi::fileio::FileIo::GetExtensionNoDot(const std::string& filename) const noexcept
 {
-  static const boost::xpressive::sregex rex
-    = boost::xpressive::sregex::compile(
-      "(.*)?(\\.)([A-Za-z]*)?" );
+  static const boost::xpressive::sregex rex{
+    boost::xpressive::sregex::compile("(.*)?(\\.)([A-Za-z]*)?" )
+  };
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what, rex ) )
@@ -275,12 +274,12 @@ std::string ribi::fileio::FileIo::GetExtensionWithDot(const std::string& filenam
 
 std::string ribi::fileio::FileIo::GetFileBasename(const std::string& filename) const
 {
-  const boost::xpressive::sregex rex
-    = boost::xpressive::sregex::compile(
-      "((.*)(/|\\\\))?([A-Za-z0-9_-]*)((\\.)([A-Za-z0-9]*))?" );
+  const boost::xpressive::sregex rex{
+    boost::xpressive::sregex::compile("((.*)(/|\\\\))?([A-Za-z0-9_-]*)((\\.)([A-Za-z0-9]*))?" )
+  };
   boost::xpressive::smatch what;
 
-  if( boost::xpressive::regex_match( filename, what, rex ) )
+  if(boost::xpressive::regex_match( filename, what, rex ))
   {
     return what[4];
   }
@@ -292,16 +291,16 @@ std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolder(
   const std::string& folder) const
 {
   assert(IsFolder(folder));
-  QDir dir(folder.c_str());
+  QDir dir{folder.c_str()};
   dir.setFilter(QDir::Files);
-  const QFileInfoList list = dir.entryInfoList();
+  const QFileInfoList list{dir.entryInfoList()};
 
   //Convert QFileInfoList to std::vector<std::string> of filenames
   std::vector<std::string> v;
-  const int size = list.size();
-  for (int i = 0; i != size; ++i)
+  const int size{list.size()};
+  for (int i{0}; i != size; ++i)
   {
-    const std::string file_name = list.at(i).fileName().toStdString();
+    const std::string file_name{list.at(i).fileName().toStdString()};
     v.push_back(file_name);
   }
   return v;
@@ -315,14 +314,14 @@ std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolderRecursive(
   //Files in root_folder
   std::vector<std::string> v;
   {
-    const std::vector<std::string> files_here {
+    const std::vector<std::string> files_here{
       GetFilesInFolder(root_folder)
     };
     //Copy the files and folders with path added
     std::transform(files_here.begin(),files_here.end(),std::back_inserter(v),
       [this,root_folder](const std::string& filename)
       {
-        const std::string filename_here {
+        const std::string filename_here{
           root_folder + GetPathSeperator() + filename
         };
         assert(IsRegularFile(filename_here));
@@ -333,15 +332,11 @@ std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolderRecursive(
   //Folders in root_folder
   std::vector<std::string> folders_todo;
   {
-    const std::vector<std::string> folders_here {
-      GetFoldersInFolder(root_folder)
-    };
+    const auto folders_here = GetFoldersInFolder(root_folder);
     std::transform(folders_here.begin(),folders_here.end(),std::back_inserter(folders_todo),
       [this,root_folder](const std::string& foldername)
       {
-        const std::string folder_here {
-          root_folder + GetPathSeperator() + foldername
-        };
+        const auto folder_here = root_folder + GetPathSeperator() + foldername;
         assert(IsFolder(folder_here));
         return folder_here;
       }
@@ -351,9 +346,9 @@ std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolderRecursive(
   //Search through all sub folders
   while (!folders_todo.empty())
   {
-    const std::string folder_todo {
-      folders_todo.back() //Read from the back, so push_back can be used
-    };
+    const auto folder_todo =
+      folders_todo.back(); //Read from the back, so push_back can be used
+
     //Done with this folder
     folders_todo.pop_back();
 
@@ -361,23 +356,19 @@ std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolderRecursive(
     if(!(folders_todo.empty() || folders_todo.back() != folder_todo))
     {
       TRACE("ERROR");
-      for (const std::string& todo: folders_todo) { TRACE(todo); }
-      for (const std::string& result: v) { TRACE(result); }
+      for (const auto& todo: folders_todo) { TRACE(todo); }
+      for (const auto& result: v) { TRACE(result); }
     }
     #endif
     assert( (folders_todo.empty() || folders_todo.back() != folder_todo)
       && "Next folder must not be the one that is just processed");
 
 
-    const std::vector<std::string> files_here {
-      GetFilesInFolder(folder_todo)
-    };
+    const auto files_here = GetFilesInFolder(folder_todo);
+    const auto folders_here = GetFoldersInFolder(folder_todo);
 
-    const std::vector<std::string> folders_here {
-      GetFoldersInFolder(folder_todo)
-    };
     #ifndef NDEBUG
-    for (const std::string& folder_here: folders_here) { TRACE(folder_here); }
+    for (const auto& folder_here: folders_here) { TRACE(folder_here); }
     #endif
 
     //Copy the files and folders with path added
@@ -421,10 +412,10 @@ std::vector<std::string> ribi::fileio::FileIo::GetFilesInFolderByRegex(
 
   //Get all filenames
   assert(IsFolder(folder));
-  const std::vector<std::string> v = GetFilesInFolder(folder);
+  const auto v = GetFilesInFolder(folder);
 
   //Create the regex
-  const boost::xpressive::sregex rex = boost::xpressive::sregex::compile(regex_str);
+  const auto rex = boost::xpressive::sregex::compile(regex_str);
 
   //Create the resulting std::vector
   std::vector<std::string> w;
@@ -445,21 +436,22 @@ std::vector<std::string> ribi::fileio::FileIo::GetFoldersInFolder(
   const std::string& folder) const
 {
   assert(IsFolder(folder));
-  QDir dir(folder.c_str());
-  dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot   );
-  const QFileInfoList list = dir.entryInfoList();
+  QDir dir{folder.c_str()};
+  dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot );
+  //const QFileInfoList list{dir.entryInfoList()};
+  const auto list = dir.entryInfoList();
 
   //Convert QFileInfoList to std::vector<std::string> of filenames
   std::vector<std::string> v;
-  const int size = list.size();
-  for (int i = 0; i != size; ++i)
+  const auto size = list.size();
+  for (auto i = 0; i != size; ++i)
   {
-    const std::string folder_name = list.at(i).fileName().toStdString();
+    const auto folder_name = list.at(i).fileName().toStdString();
     assert(!folder_name.empty());
     v.push_back(folder_name);
   }
   #ifndef NDEBUG
-  for (const std::string s: v)
+  for (const auto& s: v)
   {
     assert(std::count(v.begin(),v.end(),s) == 1
       && "Every folder name is unique");
@@ -470,10 +462,22 @@ std::vector<std::string> ribi::fileio::FileIo::GetFoldersInFolder(
 
 std::string ribi::fileio::FileIo::GetPath(const std::string& filename) const
 {
-  const int a = filename.rfind("\\",filename.size());
-  const int b = filename.rfind("/",filename.size());
-  const int i = std::max(a,b);
-  assert(i < static_cast<int>(filename.size()));
+  const auto a = filename.rfind("\\",filename.size());
+  const auto b = filename.rfind("/",filename.size());
+  std::size_t i{0};
+  if (a != std::string::npos) { i = a; }
+  if (b != std::string::npos) { i = std::max(i,b); }
+  if (i >= filename.size())
+  {
+    TRACE("ERROR");
+    TRACE(filename);
+    TRACE(a);
+    TRACE(b);
+    TRACE(i);
+    TRACE("BREAK");
+  }
+  //assert(i >= 0);
+  assert(i < filename.size());
   return filename.substr(0,i);
 }
 
@@ -488,12 +492,16 @@ std::string ribi::fileio::FileIo::GetPathSeperator() const noexcept
 
 std::string ribi::fileio::FileIo::GetSuperFolder(const std::string& folder) const
 {
-  const int a = folder.rfind("\\",folder.size());
-  const int b = folder.rfind("/",folder.size());
-  const int i = std::max(a,b);
-  assert(i < static_cast<int>(folder.size()));
+  const auto a = folder.rfind("\\",folder.size());
+  const auto b = folder.rfind("/",folder.size());
+  std::size_t i{0};
+  if (a != std::string::npos) { i = a; }
+  if (b != std::string::npos) { i = std::max(i,b); }
+
+  //assert(i >= 0);
+  assert(i < folder.size());
   return
-    i == static_cast<int>(std::string::npos)
+    i == 0
     ? ""
     : folder.substr(0,i);
 }
@@ -503,7 +511,7 @@ std::string ribi::fileio::FileIo::GetTempFileName(const std::string& post) const
   //Limit the number of searches, to prevent the program from freezing
   //It might occur that the first random names are taken, because
   //of working without a randomize timer first
-  for (int i=0; i!=1000; ++i)
+  for (auto i = 0; i!=1000; ++i)
   {
     std::stringstream s;
     s << "tmpfilename"
@@ -529,7 +537,7 @@ std::string ribi::fileio::FileIo::GetTempFolderName() const
   //Limit the number of searches, to prevent the program from freezing
   //It might occur that the first random names are taken, because
   //of working without a randomize timer first
-  for (int i=0; i!=1000; ++i)
+  for (auto i = 0; i!=1000; ++i)
   {
     std::stringstream s;
     s << "tmpfoldername"
@@ -550,7 +558,7 @@ std::string ribi::fileio::FileIo::GetTempFolderName() const
 
 std::string ribi::fileio::FileIo::GetVersion() const noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::fileio::FileIo::GetVersionHistory() const noexcept
@@ -559,16 +567,17 @@ std::vector<std::string> ribi::fileio::FileIo::GetVersionHistory() const noexcep
     "2013-10-14: Version 1.0: initial version, used free functions only",
     "2013-11-08: Version 1.1: improved FileToVector, improved GetFileBasename, added some functions",
     "2013-12-10: Version 1.2: improved existing function, added some functions",
-    "2014-03-24: Version 1.3: put free functions in FileIo class"
+    "2014-03-24: Version 1.3: put free functions in FileIo class",
+    "2014-07-15: Version 1.4: increased use of auto and initializer lists"
   };
 }
 
 bool ribi::fileio::FileIo::HasRightPathSeperators(const std::string& path) const noexcept
 {
   #ifdef _WIN32
-  const char wrong = '/';
+  const auto wrong = '/';
   #else
-  const char wrong = '\\';
+  const auto wrong = '\\';
   #endif
   return path.find(wrong) == std::string::npos;
 }
@@ -601,16 +610,16 @@ bool ribi::fileio::FileIo::IsUnixPath(const std::string& path) const noexcept
 std::string ribi::fileio::FileIo::RemovePath(const std::string& filename) const
 {
   std::vector<std::size_t> v;
-  const std::size_t a = filename.rfind("\\",filename.size());
+  const auto a = filename.rfind("\\",filename.size());
   if (a != std::string::npos) v.push_back(a);
-  const std::size_t b = filename.rfind("/",filename.size());
+  const auto b = filename.rfind("/",filename.size());
   if (b != std::string::npos) v.push_back(b);
   if (v.empty()) return filename;
-  const std::size_t i = *std::max_element(v.begin(),v.end());
+  const auto i = *std::max_element(v.begin(),v.end());
   assert(i < filename.size());
-  const std::size_t j = i + 1;
+  const auto j = i + 1;
   assert(j < filename.size());
-  const std::string s = filename.substr(j,filename.size() - j);
+  const auto s = filename.substr(j,filename.size() - j);
   return s;
 }
 
@@ -636,7 +645,7 @@ void ribi::fileio::FileIo::RenameFile(
     //DeleteFile ensures a correct deletion
     DeleteFile(to);
   }
-  const int result = std::rename(from.c_str(),to.c_str());
+  const int result{std::rename(from.c_str(),to.c_str())};
   if (result == 0)
   {
     assert( IsRegularFile(to)  );
@@ -654,43 +663,36 @@ void ribi::fileio::FileIo::RenameFile(
 
 std::string ribi::fileio::FileIo::SimplifyPath(const std::string& s) const noexcept
 {
-  std::string t = s;
+  std::string t{s};
   //UNIX
   while (1)
   {
-    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(R"((/\w*/\.\./))");
+    static const boost::xpressive::sregex regex{boost::xpressive::sregex::compile(R"((/\w*/\.\./))")};
 
-    const std::string new_t = boost::xpressive::regex_replace(
-      t,
-      regex,
-      "/"
-    );
+    const std::string new_t{boost::xpressive::regex_replace(
+      t,regex,"/")
+    };
     if (t == new_t) break;
     t = new_t;
   }
   //Win32
   while (1)
   {
-    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(R"((\\\w*\\\.\.\\))");
+    static const boost::xpressive::sregex regex{boost::xpressive::sregex::compile(R"((\\\w*\\\.\.\\))")};
 
-    const std::string new_t = boost::xpressive::regex_replace(
-      t,
-      regex,
-      "\\"
-    );
+    const std::string new_t{
+      boost::xpressive::regex_replace(t,regex,"\\")
+    };
     if (t == new_t) break;
     t = new_t;
   }
   //UNIX
   while (1)
   {
-    static const boost::xpressive::sregex regex = boost::xpressive::sregex::compile(R"((^\w*/\.\.))");
+    static const boost::xpressive::sregex regex{boost::xpressive::sregex::compile(R"((^\w*/\.\.))")};
 
-    const std::string new_t = boost::xpressive::regex_replace(
-      t,
-      regex,
-      ""
-    );
+    const std::string new_t{
+      boost::xpressive::regex_replace(t,regex,"")};
     if (t == new_t) break;
     t = new_t;
   }

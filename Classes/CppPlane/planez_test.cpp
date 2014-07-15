@@ -10,13 +10,14 @@
 void ribi::PlaneZ::Test() noexcept
 {
   {
-    static bool is_tested { false };
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
   TRACE("Starting ribi::PlaneZ::Test");
   using boost::geometry::get;
-  const bool verbose = false;
+  const bool verbose{false};
+  const bool show_warning{false};
   const auto series = GetTestSeries();
 
   if (verbose) { TRACE("Default construction"); }
@@ -156,13 +157,14 @@ void ribi::PlaneZ::Test() noexcept
             << " and " << Geometry().ToStr(p3)
             << " are determined not to be in a PlaneZ that was created from points"
           ;
-          TRACE(s.str());
           if (abs(1.0 - (p.CalcMaxError(p1) / p.CalcError(p1))) < 0.01)
           {
             //Allow another percent of freedom
             continue;
           }
+          if (!show_warning) continue;
 
+          TRACE(s.str());
           assert(p.IsInPlane(p1) == p.IsInPlane(p2) && p.IsInPlane(p2) == p.IsInPlane(p3));
           TRACE(p);
           TRACE(z);
@@ -247,14 +249,17 @@ void ribi::PlaneZ::Test() noexcept
         {
           if (!p.IsInPlane(Coordinat3D(j,j,z)))
           {
-            std::stringstream s;
-            s << "Warning: coordinat " << Geometry().ToStr(Coordinat3D(j,j,z))
-              << " is determined not to be in a PlaneZ that was created from points "
-              << Geometry().ToStr(p1) << ", "
-              << Geometry().ToStr(p2) << " and "
-              << Geometry().ToStr(p3) << "."
-            ;
-            TRACE(s.str());
+            if (show_warning)
+            {
+              std::stringstream s;
+              s << "Warning: coordinat " << Geometry().ToStr(Coordinat3D(j,j,z))
+                << " is determined not to be in a PlaneZ that was created from points "
+                << Geometry().ToStr(p1) << ", "
+                << Geometry().ToStr(p2) << " and "
+                << Geometry().ToStr(p3) << "."
+              ;
+              TRACE(s.str());
+            }
             continue;
           }
           if (!p.IsInPlane(Coordinat3D(j,j,z)))
@@ -287,15 +292,15 @@ void ribi::PlaneZ::Test() noexcept
 
   if (verbose) { TRACE("Check formulas"); }
   {
-    const double p1_x { 1.0 };
-    const double p1_y { 2.0 };
-    const double p1_z { 3.0 };
-    const double p2_x { 4.0 };
-    const double p2_y { 6.0 };
-    const double p2_z { 9.0 };
-    const double p3_x {12.0 };
-    const double p3_y {11.0 };
-    const double p3_z { 9.0 };
+    const double p1_x{ 1.0};
+    const double p1_y{ 2.0};
+    const double p1_z{ 3.0};
+    const double p2_x{ 4.0};
+    const double p2_y{ 6.0};
+    const double p2_z{ 9.0};
+    const double p3_x{12.0};
+    const double p3_y{11.0};
+    const double p3_z{ 9.0};
     PlaneZ p(
       Coordinat3D(p1_x,p1_y,p1_z),
       Coordinat3D(p2_x,p2_y,p2_z),

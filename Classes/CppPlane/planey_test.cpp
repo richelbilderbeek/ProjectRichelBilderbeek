@@ -231,7 +231,39 @@ void ribi::PlaneY::Test() noexcept
       assert(p.IsInPlane(p3));
     }
   }
-
+  if (verbose) TRACE("IsPlane");
+  {
+    const Coordinat3D p1(-3.64472,-0.25,0.0);
+    const Coordinat3D p2(-4.52988,-0.25,0.0);
+    const Coordinat3D p3(-3.64472,-0.25,10.0);
+    const Coordinat3D p4(-4.52988,-0.25,10.0);
+    const PlaneY p(p1,p2,p3);
+    if (verbose)
+    {
+      TRACE("----------------------------");
+      TRACE(Geometry().ToStrSafe(p.CalcMaxError(p1)));
+      TRACE(Geometry().ToStrSafe(p.CalcError(p1)));
+      TRACE(Geometry().ToStrSafe(p.CalcMaxError(p2)));
+      TRACE(Geometry().ToStrSafe(p.CalcError(p2)));
+      TRACE(Geometry().ToStrSafe(p.CalcMaxError(p3)));
+      TRACE(Geometry().ToStrSafe(p.CalcError(p3)));
+      TRACE(Geometry().ToStrSafe(p.CalcMaxError(p4)));
+      TRACE(Geometry().ToStrSafe(p.CalcError(p4)));
+      TRACE(Geometry().ToStrSafe(p.GetFunctionA()));
+      TRACE(Geometry().ToStrSafe(p.GetFunctionB()));
+      TRACE(Geometry().ToStrSafe(p.GetFunctionC()));
+      TRACE(Geometry().ToStrSafe(p.GetCoefficients()[0]));
+      TRACE(Geometry().ToStrSafe(p.GetCoefficients()[1]));
+      TRACE(Geometry().ToStrSafe(p.GetCoefficients()[2]));
+      TRACE(Geometry().ToStrSafe(p.GetCoefficients()[3]));
+    }
+    assert(p.IsInPlane(p1));
+    assert(p.IsInPlane(p2));
+    assert(p.IsInPlane(p3));
+    assert(p.IsInPlane(p4));
+    const Coordinats3D v{p1,p2,p3,p4};
+    assert(Geometry().IsPlane(v));
+  }
   if (verbose) TRACE("ToFunction, 3 points and 4 points");
   {
     std::function<double(double,double)> f {

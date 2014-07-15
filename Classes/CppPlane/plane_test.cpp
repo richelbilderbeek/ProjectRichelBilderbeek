@@ -16,12 +16,13 @@
 void ribi::Plane::Test() noexcept
 {
   {
-    static bool is_tested { false };
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
   TRACE("Starting ribi::Plane::Test");
-  const bool verbose = true;
+  const bool verbose{false};
+  const bool show_warning{false};
   using boost::geometry::get;
   Container();
   Geometry();
@@ -29,7 +30,6 @@ void ribi::Plane::Test() noexcept
   { const auto planey = boost::make_shared<PlaneY>(); assert(planey); }
   { const auto planez = boost::make_shared<PlaneZ>(); assert(planez); }
 
-  //const double epsilon = std::numeric_limits<double>::epsilon();
   //Sorted by difficulty
   const auto series = PlaneZ::GetTestSeries();
 
@@ -245,7 +245,7 @@ void ribi::Plane::Test() noexcept
 
       for (const double j:series)
       {
-        if (!p.IsInPlane(Coordinat3D(j,j,z)))
+        if (show_warning && !p.IsInPlane(Coordinat3D(j,j,z)))
         {
           std::stringstream s;
           s << "Warning: coordinat " << Geometry().ToStr(Coordinat3D(j,j,z))
@@ -261,7 +261,6 @@ void ribi::Plane::Test() noexcept
             << "x)"
           ;
           TRACE(s.str());
-          //continue;
         }
         if (!p.IsInPlane(Coordinat3D(j,j,z)))
         {

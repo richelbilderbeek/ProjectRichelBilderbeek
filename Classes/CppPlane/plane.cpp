@@ -105,11 +105,8 @@ apfloat ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
   if (CanCalcZ())
   {
     const auto expected = z;
-    TRACE(expected);
     const auto calculated = CalcZ(x,y);
-    TRACE(calculated);
     const auto error = abs(calculated - expected);
-    TRACE(error);
     min_error = std::min(error,min_error);
   }
   assert(min_error >= 0.0);
@@ -118,7 +115,7 @@ apfloat ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
 
 apfloat ribi::Plane::CalcMaxError(const Coordinat3D& coordinat) const noexcept
 {
-  apfloat max_error = std::numeric_limits<double>::denorm_min();
+  apfloat max_error{std::numeric_limits<double>::denorm_min()};
   if (CanCalcX())
   {
     max_error = std::max(max_error,m_plane_x->CalcMaxError(coordinat));
@@ -349,7 +346,8 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
     "2014-06-13: version 1.4: added operator<<, ToStr calls operator<<, shortened time to compile",
     "2014-06-16: version 1.5: improved detection of planes that can be expressed in less than three dimensions"
     "2014-07-03: version 1.6: use of apfloat, improved accuracy",
-    "2014-07-10: version 1.7: use of apfloat only"
+    "2014-07-10: version 1.7: use of apfloat only",
+    "2014-07-15: version 1.8: multiple bugfixes"
   };
 }
 

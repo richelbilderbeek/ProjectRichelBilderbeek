@@ -125,7 +125,7 @@ ribi::PlaneX::Double ribi::PlaneX::CalcMinErrorPerC() noexcept
     }
     //TRACE(min_error_per_c);
   }
-  TRACE(min_error_per_c); //0.000000001e0
+  //TRACE(min_error_per_c); //0.000000001e0
   return min_error_per_c;
 }
 

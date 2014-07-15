@@ -410,7 +410,7 @@ double ribi::Geometry::GetDistance(
 
 std::string ribi::Geometry::GetVersion() const noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
@@ -419,7 +419,8 @@ std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
     "2014-02-25: version 1.0: initial version",
     "2014-03-11: version 1.1: removed use of custom coordinat classes, use Boost.Geometry instead"
     "2014-03-25: version 1.2: fixed bug in IsConvex",
-    "2014-05-01: version 1.3: minor improments and cleanup"
+    "2014-05-01: version 1.3: minor improments and cleanup",
+    "2014-07-15: version 1.4: multiple bugfixes"
   };
 }
 
@@ -451,7 +452,24 @@ bool ribi::Geometry::IsClockwise(const Apfloats& angles) const noexcept
   {
     if (!IsClockwise(angles[i],angles[i+1])) return false;
   }
-  return true;
+
+  //Calculate cumulative clockwise distance
+  const Apfloat tau{boost::math::constants::two_pi<double>()};
+  Apfloat sum{0.0};
+  for (int i=0; i!=sz-1; ++i)
+  {
+    const Apfloat diff{angles[i+1] - angles[i]};
+    if (diff > 0.0)
+    {
+      sum += diff;
+    }
+    else
+    {
+      assert(diff + tau > 0.0);
+      sum += (diff + tau);
+    }
+  }
+  return sum < tau;
 }
 
 bool ribi::Geometry::IsClockwise(const Doubles& angles) const noexcept
@@ -495,9 +513,6 @@ bool ribi::Geometry::IsClockwise(
           }
         )
     );
-    TRACE(ToStr(v));
-    TRACE(IsClockwiseHorizontal(v));
-    TRACE(IsCounterClockwiseHorizontal(v));
     //If the points are messed up, they cannot be clockwise
     if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
     //The neatly orderder points have the same winding as the first three
@@ -518,8 +533,7 @@ bool ribi::Geometry::IsClockwise(
 bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats3D& points) const noexcept
 {
   using boost::geometry::get;
-  const auto center(CalcCenter(points));
-  TRACE(ToStr(center));
+  const auto center = CalcCenter(points);
   Apfloats angles;
   angles.reserve(points.size());
   std::transform(points.begin(),points.end(),
@@ -532,7 +546,6 @@ bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats3D& points) const n
       );
     }
   );
-  TRACE(ToStr(angles));
   return IsClockwise(angles);
 }
 
@@ -544,7 +557,7 @@ bool ribi::Geometry::IsClockwiseHorizontal(const Coordinats3D& points) const noe
 bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats2D& points) const noexcept
 {
   //Points are determined from their center
-  const auto center(CalcCenter(points));
+  const auto center = CalcCenter(points);
   Apfloats angles;
   std::transform(points.begin(),points.end(),
     std::back_inserter(angles),

@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "geometry.h"
 #include "plane.h"
+#include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -165,7 +166,7 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestPlane",
     "tests the Plane class",
-    "the 7th of July 2014",
+    "the 15th of July 2014",
     "2014",
     "http://www.richelbilderbeek.nl/ToolTestPlane.htm",
     GetVersion(),
@@ -174,6 +175,7 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Plane version: " + Plane::GetVersion());
+  a.AddLibrary("ribi::Regex version: " + Regex::GetVersion());
   return a;
 }
 
@@ -202,7 +204,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestPlaneMenuDialog::GetProgram() c
 
 std::string ribi::TestPlaneMenuDialog::GetVersion() const noexcept
 {
-  return "1.5";
+  return "1.6";
 }
 
 std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const noexcept
@@ -213,7 +215,8 @@ std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const no
     "2014-06-13: version 1.2: use of operator<< instead of ToStr",
     "2014-06-16: version 1.3: use of QDoubleSpinBox instead of QSlider in desktop version",
     "2014-07-07: version 1.4: investigate Plane::IsInPlane in desktop version",
-    "2014-07-10: version 1.5: use of apfloat in Plane"
+    "2014-07-10: version 1.5: use of apfloat in Plane",
+    "2014-07-15: version 1.6: multiple bugfixes"
   };
 }
 

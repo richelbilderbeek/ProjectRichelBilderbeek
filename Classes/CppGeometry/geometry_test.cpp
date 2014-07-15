@@ -378,6 +378,21 @@ void ribi::Geometry::Test() noexcept
     assert(!g.IsClockwise(Doubles( { 2.0 * pi, 2.5 * pi, 3.5 * pi, 3.0 * pi} )));
     assert(!g.IsClockwise(Doubles( { 2.5 * pi, 3.0 * pi, 4.0 * pi, 3.5 * pi} )));
   }
+  if (verbose) TRACE("IsClockWise of four, vector, going round more than once");
+  /*
+       A
+       | _-D
+     _-+-
+    C  |
+     \  |
+      \ |
+       \|
+        B
+
+  */
+  {
+    assert(!g.IsClockwise(Doubles( {0.0 * pi,0.9 * pi,1.8 * pi,2.7 * pi} )));
+  }
   if (verbose) TRACE("IsConvex, two dimensions");
   {
     /* Polygons used:
@@ -903,17 +918,6 @@ void ribi::Geometry::Test() noexcept
         const Apfloat y = static_cast<double>(j-1) * 5.0;
         const ApCoordinat3D above(x, y, 2.0);
         const ApCoordinat3D below(x, y,-1.0);
-        if (g.IsClockwise(coordinats,above))
-        {
-          TRACE("ERROR");
-          TRACE("BREAK");
-        }
-        if(g.IsClockwise(coordinats,below))
-        {
-          TRACE("ERROR");
-          TRACE("BREAK");
-        }
-
         assert(!g.IsClockwise(coordinats,above));
         assert(!g.IsClockwise(coordinats,below));
       }
@@ -925,7 +929,7 @@ void ribi::Geometry::Test() noexcept
     const ApCoordinat3D b(-4.52988,-0.25,0.0);
     const ApCoordinat3D c(-3.64472,-0.25,10.0);
     const ApCoordinat3D d(-4.52988,-0.25,10.0);
-    const ApCoordinats3D v = { a,b,c,d };
+    const ApCoordinats3D v{a,b,c,d};
     assert(Geometry().IsPlane(v));
   }
   if (verbose) TRACE("Translate");

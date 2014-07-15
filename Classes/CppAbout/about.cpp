@@ -44,15 +44,15 @@ ribi::About::About(
     const std::string url,
     const std::string version,
     const std::vector<std::string>& version_history) noexcept
-  : m_author { author },
-    m_file_title(file_title),
-    m_file_description(file_description),
-    m_libraries( {} ),
-    m_programmed_on(programmed_on),
-    m_years(years),
-    m_url(url),
-    m_version(version),
-    m_version_history(version_history)
+  : m_author{author},
+    m_file_title{file_title},
+    m_file_description{file_description},
+    m_libraries{},
+    m_programmed_on{programmed_on},
+    m_years{years},
+    m_url{url},
+    m_version{version},
+    m_version_history{version_history}
 {
   AddLibrary(
     "About version: "
@@ -100,7 +100,7 @@ std::vector<std::string> ribi::About::CreateLibrariesUsedText() const noexcept
 
 std::vector<std::string> ribi::About::CreateLicenceText() const noexcept
 {
-  std::vector<std::string> v {
+  std::vector<std::string> v{
     m_file_title + ", " + m_file_description,
     "Copyright (C) " + m_years + " " + m_author,
     "",
@@ -165,26 +165,26 @@ std::string ribi::About::GetStlVersion() noexcept
 std::ostream& ribi::operator<<(std::ostream& os,const About& a) noexcept
 {
   {
-    const std::vector<std::string> v = a.CreateAboutText();
+    const std::vector<std::string> v{a.CreateAboutText()};
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"));
   }
   os
     << '\n';
   {
-    std::vector<std::string> v = a.CreateLibrariesUsedText();
+    std::vector<std::string> v{a.CreateLibrariesUsedText()};
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"));
   }
   os
     << '\n';
   {
-    std::vector<std::string> v = a.CreateVersionHistory();
+    std::vector<std::string> v{a.CreateVersionHistory()};
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"));
   }
   os
     << '\n'
     << "Licence:\n";
   {
-    std::vector<std::string> v = a.CreateLicenceText();
+    std::vector<std::string> v{a.CreateLicenceText()};
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"));
   }
   os

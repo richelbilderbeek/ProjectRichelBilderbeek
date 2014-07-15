@@ -124,13 +124,16 @@ ribi::PlaneY::Double ribi::PlaneY::CalcMinErrorPerC() noexcept
     //TRACE(min_error_per_c);
   }
   //TRACE 'min_error_per_c' line 127 in file '..\..\Classes\CppPlane\planey.cpp': '0.000000001e0'
-  TRACE(min_error_per_c);
+  //TRACE(min_error_per_c);
   return min_error_per_c;
 }
 
 apfloat ribi::PlaneY::CalcMaxError(const Coordinat3D& /*coordinat*/) const noexcept
 {
-  return CalcMinErrorPerC() * GetFunctionC();
+  assert(CalcMinErrorPerC() >= 0.0);
+  const auto max_error = abs(CalcMinErrorPerC() * GetFunctionC());
+  assert(max_error >= 0.0);
+  return max_error;
   /*
   const apfloat x = boost::geometry::get<0>(coordinat);
   //const apfloat y = boost::geometry::get<1>(coordinat);
