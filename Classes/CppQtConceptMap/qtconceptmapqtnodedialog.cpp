@@ -67,7 +67,7 @@ void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
 {
   assert( qtnode ==  m_qtnode.get());
   assert(*qtnode == *m_qtnode);
-  boost::shared_ptr<QtRoundedEditRectItem> base(m_qtnode);
+  boost::shared_ptr<QtRoundedEditRectItem> base(qtnode);
   this->m_qtroundededitrectitem_dialog->SetItem(base);
 }
 

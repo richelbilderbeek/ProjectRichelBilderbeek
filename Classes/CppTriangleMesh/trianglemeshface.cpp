@@ -261,8 +261,6 @@ void ribi::trim::Face::OnCellDestroyed(const Cell* const cell) noexcept
 
 void ribi::trim::Face::SetCorrectWinding() noexcept
 {
-  
-  
   assert(m_points.size() == 3 || m_points.size() == 4);
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
     && "A Face its winding can only be set if it belongs to a cell"
@@ -291,6 +289,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     //Must be ordered counter-clockwise (although the documentation says otherwise?)
     while (std::next_permutation(m_points.begin(),m_points.end(),Helper().OrderByX()))
     {
+      TRACE("."); HIERO
       assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
       if (
         Helper().IsCounterClockwise(m_points,observer->CalculateCenter())

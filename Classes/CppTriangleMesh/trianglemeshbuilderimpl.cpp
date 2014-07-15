@@ -48,7 +48,13 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     assert(ribi::fileio::FileIo().IsFolder(folder));
   }
 
-  if (verbose) { TRACE("Remove cells with less than 8 faces or less than 8 faces with an owner"); }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Remove cells with less than 8 faces or less than 8 faces with an owner"
+      << std::endl
+    ;
+  }
 
   assert(
     std::count_if(m_cells.begin(),m_cells.end(),
@@ -96,7 +102,13 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   );
   #endif
 
-  if (verbose) { TRACE("Remove faces without owners"); }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Remove faces without owners"
+      << std::endl
+    ;
+  }
   assert(
     std::count_if(m_faces.begin(),m_faces.end(),
       [](const boost::shared_ptr<const Face> face)
@@ -120,7 +132,14 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   );
   #endif // SO_THIS_CAN_BE_REMOVED_2
 
-  if (verbose) { TRACE("Remove cells with less than 8 faces or less than 8 faces with an owner"); }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Remove cells with less than 8 faces or less than 8 faces with an owner"
+      << std::endl
+    ;
+  }
+
   assert(
     std::count_if(m_cells.begin(),m_cells.end(),
       [strategy](const boost::shared_ptr<Cell> cell)
@@ -171,7 +190,13 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #endif // SO_THIS_CAN_BE_REMOVED_2
 
   #ifndef NDEBUG
-  if (verbose) { TRACE("Check that all Faces know they belong to their Cell"); }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Check that all Faces know they belong to their Cell"
+      << std::endl
+    ;
+  }
   for (const auto cell: m_cells)
   {
     for (const auto face: cell->GetFaces())
@@ -184,7 +209,13 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #endif
 
   #ifndef NDEBUG
-  if (verbose) { TRACE("Check that all Cells know they own their Faces"); }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Check that all Cells know they own their Faces"
+      << std::endl
+    ;
+  }
   for (const auto face: m_faces)
   {
     assert(face);
@@ -220,12 +251,31 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #endif
 
   //Start setting the indices
-  //Unset all Cell indices
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Unset all Cell indices"
+      << std::endl
+    ;
+  }
   for (auto cell: m_cells) { cell->SetIndex(Cell::sm_cell_no_index); }
 
-  //Unset all Face indices
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Unset all Face indices"
+      << std::endl
+    ;
+  }
   for (auto face: m_faces) { face->SetIndex(Face::sm_face_no_index); }
 
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Set Cell indices"
+      << std::endl
+    ;
+  }
   //#2: For each face, find its owner (a cell), and assign these increasing cell indices
   //Set all Cell indices, following the Face order:
   //The faces are ordered correctly, by the boundary.
@@ -373,7 +423,13 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     }
   }
 
-  //Order all cells by their index
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Order all cells by their index"
+      << std::endl
+    ;
+  }
   {
     //const int n_cells = static_cast<int>(m_cells.size());
     for (int i=0; i!=static_cast<int>(m_cells.size()); ++i)
@@ -434,8 +490,14 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     }
   }
 
-  //#3: Go though all cells by increasing index. For each cell,
-  //find the faces it owns, assign an increasing face index
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "#3: Go though all cells by increasing index. For each cell,"
+      << "    find the faces it owns, assign an increasing face index"
+      << std::endl
+    ;
+  }
   {
     int face_index = 0;
     const int max_cell_index
@@ -465,10 +527,17 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       }
     }
   }
-  //#4: Within each boundary, sort the faces by
-  // 1) boundary type
-  // 2) its owner its (cell)index
-  // 3) its neighbour its (cell)index
+
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "#4: Within each boundary, sort the faces by"
+      << "    1) boundary type"
+      << "    2) its owner its (cell)index"
+      << "    3) its neighbour its (cell)index"
+      << std::endl
+    ;
+  }
   if (!m_faces.empty())
   {
     const auto f = [](
@@ -504,7 +573,13 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     std::sort(std::begin(m_faces),std::end(m_faces),f);
   }
 
-  //#5: Set the Faces' indices equal to their position in the vector
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "#5: Set the Faces' indices equal to their position in the vector"
+      << std::endl
+    ;
+  }
   {
     const int n_faces = static_cast<int>(m_faces.size());
     for (int i=0; i!=n_faces; ++i)
@@ -528,13 +603,32 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
   */
 
-  //Set the Points in the correct order
-  for (auto face: m_faces)
+  if (verbose)
   {
-    face->SetCorrectWinding();
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Set the " << m_faces.size() << " Faces their points in the correct order"
+      << std::endl
+    ;
+  }
+  {
+    int i=0;
+    const int n = static_cast<int>(m_faces.size());
+    const int p = n / 100;
+    for (auto& face: m_faces)
+    {
+      face->SetCorrectWinding();
+      ++i;
+      if (i % p == 0) { std::clog << "%"; }
+    }
   }
 
-  //Set all Point indices
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Set all Point indices"
+      << std::endl
+    ;
+  }
   {
     const int n_points = static_cast<int>(m_points.size());
     for (int i=0; i!=n_points; ++i)
@@ -542,7 +636,6 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       m_points[i]->SetIndex(i);
     }
   }
-
 
   //Show the faces
   if (verbose_show_faces)
@@ -611,10 +704,23 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
   #endif
 
-  if (verbose) std::cout << "Writing output...\n";
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      "Start writing output\n"
+      << std::endl
+    ;
+  }
   //Mesh
   {
-    if (verbose) std::cout << "\tGenerating mesh (.ply)\n";
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Start generating mesh (.ply)"
+      << std::endl
+      ;
+    }
+
 
     std::ofstream f(mesh_filename.c_str());
     f << CreateHeader();
@@ -622,6 +728,13 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     f << CreateFaces();
   }
   {
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Start creating file 'points'"
+        << std::endl
+      ;
+    }
 
     std::ofstream f(ribi::foam::Filenames().GetPoints().c_str());
     f << CreateOpenFoamHeader("vectorField","points","constant/polyMesh");

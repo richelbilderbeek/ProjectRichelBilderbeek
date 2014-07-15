@@ -6,6 +6,8 @@
 
 #include <cassert>
 
+#include <boost/lexical_cast.hpp>
+
 #include <QDesktopWidget>
 #include <QKeyEvent>
 #include <QLabel>

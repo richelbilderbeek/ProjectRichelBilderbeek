@@ -74,7 +74,7 @@ int ribi::TriangleMeshCreatorMenuDialog::ExecuteSpecific(const std::vector<std::
 
   //Show mesh
   bool show_mesh = false;
-  if (std::count(args.begin(),args.end(),"-m") || std::count(args.begin(),args.end(),"--show_mesh"))
+  if (std::count(args.begin(),args.end(),"-m") || std::count(args.begin(),args.end(),"--show_mesh") || std::count(args.begin(),args.end(),"--showmesh"))
   {
     show_mesh = true;
   }

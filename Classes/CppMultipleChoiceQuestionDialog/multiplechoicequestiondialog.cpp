@@ -34,7 +34,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
   const boost::shared_ptr<const MultipleChoiceQuestion> question)
-  : m_question(question)
+  : m_signal_mc_question_changed{},
+    m_question(question)
 {
   #ifndef NDEBUG
   Test();
@@ -44,7 +45,8 @@ ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
 }
 
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::string& question)
-  : m_question(new MultipleChoiceQuestion(question))
+  : m_signal_mc_question_changed{},
+    m_question(new MultipleChoiceQuestion(question))
 {
   #ifndef NDEBUG
   Test();

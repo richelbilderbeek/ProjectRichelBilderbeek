@@ -158,7 +158,9 @@ void ribi::QtRoundedRectItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) no
 
 void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept
 {
+  #ifndef NDEBUG
   const auto rect_before = GetRectIncludingPen();
+  #endif // NDEBUG
 
   painter->setBrush(brush());
   //The item can be selected by clicking on it, or can have focus by moving towards it
@@ -193,8 +195,10 @@ void ribi::QtRoundedRectItem::paint(QPainter *painter, const QStyleOptionGraphic
     );
   }
 
+  #ifndef NDEBUG
   const auto rect_after = GetRectIncludingPen();
   assert(rect_before == rect_after);
+  #endif
 }
 
 void ribi::QtRoundedRectItem::SetContourPen(const QPen& pen) noexcept
