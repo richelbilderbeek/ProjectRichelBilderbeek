@@ -68,8 +68,10 @@ ribi::QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(Q
   QObject::connect(
     this->ui->check_demo,SIGNAL(toggled(bool)),
     this,SLOT(onCheck()));
-  QObject::connect(m_timer,SIGNAL(timeout()),
-    this,SLOT(onTimer()));
+  QObject::connect(m_timer,&QTimer::timeout,
+    this,
+    &ribi::QtPerfectElasticCollisionMainDialog::onTimer // SLOT(onTimer())
+  );
 }
 
 ribi::QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog() noexcept

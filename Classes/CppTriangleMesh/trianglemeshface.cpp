@@ -265,6 +265,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
     && "A Face its winding can only be set if it belongs to a cell"
   );
+  #define FIX_ISSUE_224
   #ifdef FIX_ISSUE_224
   //Must be fixed by #224
   assert(Helper().IsPlane(m_points));
@@ -278,7 +279,8 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     : GetConstOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetConstOwner() : GetNeighbour()
   );
   assert(observer);
-  #ifdef FIX_ISSUE_224
+  #define FIX_ISSUE_224
+  #ifdef  FIX_ISSUE_224
   //Must be fixed by #224
   assert(Helper().IsPlane(m_points));
   #endif // FIX_ISSUE_224
@@ -286,6 +288,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
   {
     std::sort(m_points.begin(),m_points.end(),Helper().OrderByX()); //For std::next_permutation
+
     //Must be ordered counter-clockwise (although the documentation says otherwise?)
     while (std::next_permutation(m_points.begin(),m_points.end(),Helper().OrderByX()))
     {
@@ -299,6 +302,18 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
         break;
       }
     }
+    #ifndef NDEBUG
+    if ( !Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
+      || !Helper().IsConvex(m_points))
+    {
+      TRACE("ERROR");
+      for (const auto& point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
+      TRACE(Geometry().ToStr(observer->CalculateCenter()));
+      TRACE("BREAK");
+    }
+    #endif
+    assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
+    assert(Helper().IsConvex(m_points));
   }
 
   #ifndef NDEBUG

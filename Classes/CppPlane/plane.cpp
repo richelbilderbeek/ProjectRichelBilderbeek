@@ -353,12 +353,27 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() noexcept
 
 bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
 {
+  //return CalcError(coordinat) <= CalcMaxError(coordinat);;
   assert(m_plane_x || m_plane_y || m_plane_z);
-  return
+  const bool is_in_plane {
        (m_plane_x && m_plane_x->IsInPlane(coordinat))
     || (m_plane_y && m_plane_y->IsInPlane(coordinat))
     || (m_plane_z && m_plane_z->IsInPlane(coordinat))
-  ;
+  };
+  const bool has_error_below_max = CalcError(coordinat) <= CalcMaxError(coordinat);
+  #ifndef NDEBUG
+  if (is_in_plane != has_error_below_max)
+  {
+    TRACE("ERROR");
+    TRACE(is_in_plane);
+    TRACE(has_error_below_max);
+    TRACE(CalcError(coordinat));
+    TRACE(CalcMaxError(coordinat));
+    TRACE("BREAK");
+  }
+  #endif
+  assert(is_in_plane == has_error_below_max);
+  return is_in_plane;
 }
 
 std::ostream& ribi::operator<<(std::ostream& os, const Plane& plane) noexcept

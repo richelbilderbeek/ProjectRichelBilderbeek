@@ -320,8 +320,13 @@ void ribi::trim::Helper::MakeConvex(
   assert(!points.empty());
   assert(points.size() == 4);
   #endif
-  
-  
+
+  if (verbose)
+  {
+    TRACE(Helper().ToStr(AddConst(points)));
+    for (const auto& p: points) { TRACE(*p); }
+    TRACE("BREAK");
+  }
 
   if (IsConvex(points))
   {
@@ -346,11 +351,22 @@ void ribi::trim::Helper::MakeConvex(
       TRACE("BREAK");
     }
     assert(i!=max_i-1 && "There must be a permutation of the points that renders them convex");
+
     if (IsConvex(points))
     {
       break;
     }
+
+    #ifndef NDEBUG
+    const auto before = points;
+    #endif
+
     std::next_permutation(points.begin(),points.end(),OrderByX());
+
+    #ifndef NDEBUG
+    const auto after = points;
+    assert(before != after);
+    #endif
   }
 
   #ifndef NDEBUG
@@ -427,10 +443,14 @@ std::function<
     assert(rhs);
     assert(lhs->GetCoordinat());
     assert(rhs->GetCoordinat());
-    if (get<0>(*lhs->GetCoordinat()) < get<0>(*rhs->GetCoordinat())) return true;
-    if (get<0>(*lhs->GetCoordinat()) > get<0>(*rhs->GetCoordinat())) return false;
-    if (get<1>(*lhs->GetCoordinat()) < get<1>(*rhs->GetCoordinat())) return true;
-    if (get<1>(*lhs->GetCoordinat()) > get<1>(*rhs->GetCoordinat())) return false;
+    const auto lhs_coordinat = lhs->GetCoordinat();
+    const auto rhs_coordinat = rhs->GetCoordinat();
+    assert(lhs_coordinat);
+    assert(rhs_coordinat);
+    if (get<0>(*lhs_coordinat) < get<0>(*rhs_coordinat)) return true;
+    if (get<0>(*lhs_coordinat) > get<0>(*rhs_coordinat)) return false;
+    if (get<1>(*lhs_coordinat) < get<1>(*rhs_coordinat)) return true;
+    if (get<1>(*lhs_coordinat) > get<1>(*rhs_coordinat)) return false;
     assert(lhs->CanGetZ());
     assert(rhs->CanGetZ());
     return lhs->GetZ() < rhs->GetZ();
@@ -646,22 +666,22 @@ void ribi::trim::Helper::Test() noexcept
   {
     std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
     {
-      const auto coordinat = boost::make_shared<Coordinat3D>(2.23114,3.23607,6);
+      const auto coordinat = boost::make_shared<Coordinat3D>(2.23114,3.23607,6); //Left out the .0 intentionally
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const auto coordinat = boost::make_shared<Coordinat3D>(2.23114,3.23607,5);
+      const auto coordinat = boost::make_shared<Coordinat3D>(2.23114,3.23607,5); //Left out the .0 intentionally
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const auto coordinat = boost::make_shared<Coordinat3D>(1.17557,2.35781,6);
+      const auto coordinat = boost::make_shared<Coordinat3D>(1.17557,2.35781,6); //Left out the .0 intentionally
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const auto coordinat = boost::make_shared<Coordinat3D>(1.17557,2.35781,5);
+      const auto coordinat = boost::make_shared<Coordinat3D>(1.17557,2.35781,5); //Left out the .0 intentionally
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
@@ -691,6 +711,66 @@ void ribi::trim::Helper::Test() noexcept
     #endif
     assert(h.IsConvex(points));
   }
+  //MakeConvex, #228
+  {
+    /*
+    (-3.78624,2,10)
+    (-0.55,2,10)
+    (-0.55,2,20)
+    (-3.78624,2,20)
+    */
+    std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
+    {
+      const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,10); //Left out the .0 intentionally
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    {
+      const auto coordinat = boost::make_shared<Coordinat3D>(-0.55,2,10); //Left out the .0 intentionally
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    {
+      const auto coordinat = boost::make_shared<Coordinat3D>(-0.55,2,20); //Left out the .0 intentionally
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    {
+      const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,20); //Left out the .0 intentionally
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+
+    std::vector<boost::shared_ptr<Point>> points;
+    for (const auto& coordinat: coordinats3d)
+    {
+      boost::shared_ptr<const Coordinat2D> coordinat2d(
+        new Coordinat2D(
+          boost::geometry::get<0>(*coordinat),
+          boost::geometry::get<1>(*coordinat)
+        )
+      );
+      const auto point(PointFactory().Create(coordinat2d));
+      assert(point);
+      point->SetZ(boost::geometry::get<2>(*coordinat) * boost::units::si::meter);
+      points.push_back(point);
+    }
+    assert(points.size() == coordinats3d.size());
+    for (int i=0; i!=5*4*3*2*1; ++i)
+    {
+      std::random_shuffle(std::begin(points),std::end(points));
+      h.MakeConvex(points);
+      #ifndef NDEBUG
+      if(!h.IsConvex(points))
+      {
+        TRACE("ERROR");
+      }
+      #endif
+      assert(h.IsConvex(points));
+    }
+
+  }
+  //assert(!"Yay, fixed #228");
   TRACE("Finished ribi::trim::Helper::Point::Test successfully");
 }
 #endif

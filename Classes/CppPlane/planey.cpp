@@ -87,6 +87,7 @@ ribi::PlaneY::Double ribi::PlaneY::CalcMinErrorPerC() noexcept
   const double max_y = high;
   const double min_z = low;
   const double max_z = high;
+  const apfloat zero(0.0);
 
   for (double z = min_z; z < max_z; z*=10.0)
   {
@@ -104,6 +105,7 @@ ribi::PlaneY::Double ribi::PlaneY::CalcMinErrorPerC() noexcept
         {
           const auto error = p.CalcError(p4);
           const auto error_per_c = error / p.GetFunctionC();
+          assert(error_per_c >= zero);
           //TRACE(apfloat(min_error_per_c) / p.GetFunctionC());
           if (error_per_c > min_error_per_c)
           {
@@ -125,12 +127,15 @@ ribi::PlaneY::Double ribi::PlaneY::CalcMinErrorPerC() noexcept
   }
   //TRACE 'min_error_per_c' line 127 in file '..\..\Classes\CppPlane\planey.cpp': '0.000000001e0'
   //TRACE(min_error_per_c);
+  #ifndef NDEBUG
+  assert(min_error_per_c > zero);
+  #endif
   return min_error_per_c;
 }
 
 apfloat ribi::PlaneY::CalcMaxError(const Coordinat3D& /*coordinat*/) const noexcept
 {
-  assert(CalcMinErrorPerC() >= 0.0);
+  assert(CalcMinErrorPerC() > 0.0);
   const auto max_error = abs(CalcMinErrorPerC() * GetFunctionC());
   assert(max_error >= 0.0);
   return max_error;

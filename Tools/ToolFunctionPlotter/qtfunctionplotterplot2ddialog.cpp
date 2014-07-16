@@ -63,7 +63,6 @@ ribi::QtFunctionPlotterPlot2dDialog::QtFunctionPlotterPlot2dDialog(QWidget *pare
   QObject::connect(
     this->ui->box_minx,
     static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
-    //SIGNAL(valueChanged(QString)),
     this,
     &ribi::QtFunctionPlotterPlot2dDialog::OnAnyChange
     //SLOT(OnAnyChange())
@@ -71,7 +70,6 @@ ribi::QtFunctionPlotterPlot2dDialog::QtFunctionPlotterPlot2dDialog(QWidget *pare
   QObject::connect(
     this->ui->box_maxx,
     static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
-    //SIGNAL(valueChanged(QString)),
     this,
     &ribi::QtFunctionPlotterPlot2dDialog::OnAnyChange
     //SLOT(OnAnyChange())

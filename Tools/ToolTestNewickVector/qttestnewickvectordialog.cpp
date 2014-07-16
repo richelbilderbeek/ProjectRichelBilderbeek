@@ -72,8 +72,9 @@ ribi::QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) noexce
 
 
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnDemoTick()));
+    m_timer,&QTimer::timeout,
+    this,&ribi::QtTestNewickVectorDialog::OnDemoTick // SLOT(OnDemoTick())
+  );
 
   #ifndef NDEBUG
   setWindowTitle(windowTitle()+" (debug)");

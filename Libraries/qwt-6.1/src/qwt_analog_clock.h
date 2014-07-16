@@ -32,7 +32,7 @@
 
   // update the clock every second
   QTimer *timer = new QTimer(clock);
-  timer->connect(timer, SIGNAL(timeout()), clock, SLOT(setCurrentTime()));
+  timer->connect(timer, SIGNAL clock, SLOT(setCurrentTime()));
   timer->start(1000);
 
   \endcode

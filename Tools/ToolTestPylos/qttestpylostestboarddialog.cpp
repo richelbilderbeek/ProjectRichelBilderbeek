@@ -61,8 +61,9 @@ ribi::pylos::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *par
 
   //Connect the timer
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnTimer()));
+    m_timer,&QTimer::timeout,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::OnTimer
+  );
 
   //When there's a winner, only the log needs to be informed
   QObject::connect(this->m_widget.get(),SIGNAL(HasWinner()),

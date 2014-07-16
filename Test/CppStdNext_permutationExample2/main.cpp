@@ -8,38 +8,38 @@ int main()
 {
   std::vector<int> v = {1,2,3};
 
-  assert(std::is_sorted(v.begin(),v.end())
+  assert(std::is_sorted(std::begin(v),std::end(v))
     && "The vector must be sorted to see all permutations");
 
   //Display std::vector
   std::cout << "Initial v: ";
-  std::copy(v.begin(),v.end(),std::ostream_iterator<int>(std::cout," "));
+  std::copy(std::begin(v),std::end(v),std::ostream_iterator<int>(std::cout," "));
   std::cout << '\n';
 
   //Obtain the next permutation
-  while(std::next_permutation(v.begin(),v.end()))
+  while(std::next_permutation(std::begin(v),std::end(v)))
   {
     //Display std::vector
     std::cout << "Next permutation: ";
-    std::copy(v.begin(),v.end(),std::ostream_iterator<int>(std::cout," "));
+    std::copy(std::begin(v),std::end(v),std::ostream_iterator<int>(std::cout," "));
     std::cout << '\n';
   }
 
   //Sort and reverse the std::vector
-  std::sort(v.begin(),v.end());
-  std::reverse(v.begin(),v.end());
+  std::sort(std::begin(v),std::end(v));
+  std::reverse(std::begin(v),std::end(v));
 
   //Display std::vector
   std::cout << "Reverse-sorted v: ";
-  std::copy(v.begin(),v.end(),std::ostream_iterator<int>(std::cout," "));
+  std::copy(std::begin(v),std::end(v),std::ostream_iterator<int>(std::cout," "));
   std::cout << '\n';
 
   //Obtain the previous permutation
-  while(std::prev_permutation(v.begin(),v.end()))
+  while(std::prev_permutation(std::begin(v),std::end(v)))
   {
     //Display std::vector
     std::cout << "Previous permutation: ";
-    std::copy(v.begin(),v.end(),std::ostream_iterator<int>(std::cout," "));
+    std::copy(std::begin(v),std::end(v),std::ostream_iterator<int>(std::cout," "));
     std::cout << '\n';
   }
 }

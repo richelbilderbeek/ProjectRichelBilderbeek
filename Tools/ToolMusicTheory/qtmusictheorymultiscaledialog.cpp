@@ -60,7 +60,13 @@ ribi::QtMusicTheoryMultiScaleDialog::QtMusicTheoryMultiScaleDialog(QWidget *pare
     );
   }
 
-  QObject::connect(ui->scale_1,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));
+  QObject::connect(ui->scale_1,
+
+    static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    //SIGNAL(currentIndexChanged(int)),
+    this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change // SLOT(any_change())
+  );
   QObject::connect(ui->scale_2,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));
   QObject::connect(ui->root_1,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));
   QObject::connect(ui->root_2,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));

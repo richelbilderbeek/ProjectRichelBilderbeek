@@ -637,7 +637,8 @@ bool ribi::Geometry::IsConvex(const ApCoordinats3D& points) const noexcept
     return true;
   }
   assert(points.size() == 4);
-  #ifdef FIXING_ISSUE_224
+  #define FIXING_ISSUE_224
+  #ifdef  FIXING_ISSUE_224
   if(!IsPlane(points))
   {
     TRACE("ERROR");
@@ -907,6 +908,9 @@ bool ribi::Geometry::IsPlane(const std::vector<ApCoordinat3D>& v) const noexcept
   {
     const std::unique_ptr<Plane> plane(new Plane(v[0],v[1],v[2]));
     assert(plane);
+    //TRACE(plane->CalcMaxError(v[3]));
+    //TRACE(plane->CalcError(v[3]));
+    assert(plane->IsInPlane(v[3]) == (plane->CalcError(v[3]) <= plane->CalcMaxError(v[3])));
     return plane->IsInPlane(v[3]);
   }
   catch (std::logic_error& e)

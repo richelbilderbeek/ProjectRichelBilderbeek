@@ -272,6 +272,38 @@ void ribi::PlaneX::Test() noexcept
     }
   }
 
+  if (verbose) TRACE("IsInPlane, for bug #228");
+  {
+    //Values copied literally, so no .0 on purpose
+    const Coordinat3D p1(-5,-5,0);
+    const Coordinat3D p2(-5,-0.999999999999999880,0);
+    const Coordinat3D p3(-5,-5,10);
+    const Coordinat3D p4(-5,-0.999999999999999880,10);
+    const PlaneX p(p1,p2,p3);
+    //if (verbose)
+    {
+      TRACE("----------------------------");
+      TRACE(p.CalcMaxError(p1));
+      TRACE(p.CalcError(p1));
+      TRACE(p.CalcMaxError(p2));
+      TRACE(p.CalcError(p2));
+      TRACE(p.CalcMaxError(p3));
+      TRACE(p.CalcError(p3));
+      TRACE(p.CalcMaxError(p4));
+      TRACE(p.CalcError(p4));
+      TRACE(p.GetFunctionA());
+      TRACE(p.GetFunctionB());
+      TRACE(p.GetFunctionC());
+      TRACE(p.GetCoefficients()[0]);
+      TRACE(p.GetCoefficients()[1]);
+      TRACE(p.GetCoefficients()[2]);
+      TRACE(p.GetCoefficients()[3]);
+    }
+    assert(p.IsInPlane(p1));
+    assert(p.IsInPlane(p2));
+    assert(p.IsInPlane(p3));
+    assert(p.IsInPlane(p4));
+  }
   if (verbose) TRACE("GetProjection");
   {
     /*

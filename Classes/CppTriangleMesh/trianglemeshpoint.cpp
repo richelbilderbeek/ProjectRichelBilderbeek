@@ -66,9 +66,7 @@ bool ribi::trim::Point::CanGetZ() const noexcept
   return m_z.get();
 }
 
-
-
-const boost::units::quantity<boost::units::si::length> ribi::trim::Point::GetZ() const noexcept
+boost::units::quantity<boost::units::si::length> ribi::trim::Point::GetZ() const noexcept
 {
   if (!CanGetZ())
   {

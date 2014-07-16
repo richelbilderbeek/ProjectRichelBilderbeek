@@ -47,8 +47,18 @@ ribi::QtWktToSvgMainDialog::QtWktToSvgMainDialog(QWidget *parent) noexcept
   #endif
   ui->setupUi(this);
 
-  QObject::connect(ui->edit,SIGNAL(textChanged(QString)),this,SLOT(OnInputChanged()));
-  QObject::connect(ui->box_stroke_width,SIGNAL(valueChanged(double)),this,SLOT(OnInputChanged()));
+  QObject::connect(
+    ui->edit,
+    static_cast<void (QLineEdit::*)(QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    this,
+    &ribi::QtWktToSvgMainDialog::OnInputChanged // SxLOT(OnInputChanged())
+  );
+  QObject::connect(
+    ui->box_stroke_width,
+    SIGNAL(valueChanged(double)),
+    this,
+    &ribi::QtWktToSvgMainDialog::OnInputChanged // SxLOT(OnInputChanged())
+  );
 
   OnInputChanged();
 }

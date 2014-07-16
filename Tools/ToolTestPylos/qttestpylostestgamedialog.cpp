@@ -56,21 +56,27 @@ ribi::pylos::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *paren
 
   //Connect the timer
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnTimer()));
+    m_timer,&QTimer::timeout,
+    this,&ribi::pylos::QtTestPylosTestGameDialog::OnTimer
+  );
 
   //When there's a winner, only the log needs to be informed
   QObject::connect(this->m_widget.get(),SIGNAL(HasWinner()),
-    this,SLOT(UpdateLog()));
+    this,
+    SLOT(UpdateLog())
+  );
   //When one of the other selectors changes, only the log needs to be informed
   QObject::connect(this->m_widget.get(),SIGNAL(Toggle()),
-    this,SLOT(UpdateLog()));
+    this,SLOT(UpdateLog())
+  );
   //When the selector changes, only the log needs to be informed
   QObject::connect(this->m_widget.get(),SIGNAL(SelectorChanged()),
-    this,SLOT(UpdateLog()));
+    this,SLOT(UpdateLog())
+  );
   //When the active player changes, only the log needs to be informed
   QObject::connect(this->m_widget.get(),SIGNAL(DoneMove()),
-    this,SLOT(UpdateLog()));
+    this,SLOT(UpdateLog())
+  );
 
   UpdateLog();
 }

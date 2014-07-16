@@ -55,14 +55,22 @@ ribi::QtTestBinaryNewickVectorMainDialog::QtTestBinaryNewickVectorMainDialog(QWi
   #endif
   ui->setupUi(this);
   QObject::connect(
-    ui->edit_newick,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_newick,
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    this,
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange // SxLOT(OnAnyChange())
+  );
   QObject::connect(
-    ui->edit_theta,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_theta,
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    this,
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange // SxLOT(OnAnyChange())
+  );
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnDemoTick()));
+    m_timer,&QTimer::timeout, // SxIGNAL(timeout()),
+    this,
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange // SxLOT(OnDemoTick())
+  );
 
   #ifndef NDEBUG
   setWindowTitle(windowTitle()+" (debug)");

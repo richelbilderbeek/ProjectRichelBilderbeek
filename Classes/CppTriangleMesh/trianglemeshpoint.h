@@ -37,7 +37,7 @@ struct Point
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::vector<boost::weak_ptr<Face>> Faces;
 
-  const boost::shared_ptr<const Coordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
+  const boost::shared_ptr<const Coordinat2D>& GetCoordinat() const noexcept { return m_coordinat; }
   Coordinat3D GetCoordinat3D() const noexcept;
 
   bool CanGetZ() const noexcept;
@@ -46,7 +46,7 @@ struct Point
 
   int GetIndex() const noexcept { return m_index; }
 
-  const boost::units::quantity<boost::units::si::length> GetZ() const noexcept;
+  boost::units::quantity<boost::units::si::length> GetZ() const noexcept;
 
   ///Let the Point know its Z coordinat itself
   ///Similar to SetLayer
