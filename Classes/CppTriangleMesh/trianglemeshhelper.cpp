@@ -770,7 +770,67 @@ void ribi::trim::Helper::Test() noexcept
     }
 
   }
-  //assert(!"Yay, fixed #228");
+  //
+  {
+  /* Make these counterclockwise
+
+'ERROR'
+(-3.78624,2,0)'
+(-3.78624,2,10)'
+(-0.55,2,0)'
+(-0.55,2,10)'
+Observer: (-2.1871,3.74169,5)'
+TRACE '"BREAK"' line 312 in file '..\..\Classes\CppTriangleMesh\trianglemeshface.cpp': 'BREAK'
+  */
+    std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
+    {
+      const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,0); //Left out the .0 intentionally
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    {
+      const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,10); //Left out the .0 intentionally
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    {
+      const auto coordinat = boost::make_shared<Coordinat3D>(-0.55,2,0); //Left out the .0 intentionally
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    {
+      const auto coordinat = boost::make_shared<Coordinat3D>(-0.55,2,10); //Left out the .0 intentionally
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+
+    std::vector<boost::shared_ptr<Point>> points;
+    for (const auto& coordinat: coordinats3d)
+    {
+      boost::shared_ptr<const Coordinat2D> coordinat2d(
+        new Coordinat2D(
+          boost::geometry::get<0>(*coordinat),
+          boost::geometry::get<1>(*coordinat)
+        )
+      );
+      const auto point(PointFactory().Create(coordinat2d));
+      assert(point);
+      point->SetZ(boost::geometry::get<2>(*coordinat) * boost::units::si::meter);
+      points.push_back(point);
+    }
+    assert(points.size() == coordinats3d.size());
+    const Coordinat3D observer(-2.1871,3.74169,5);
+
+    std::sort(std::begin(points),std::end(points),OrderByX());
+
+    for (int i=0; i!=5*4*3*2*1; ++i)
+    {
+      if (Helper().IsCounterClockwise(points,observer)) break;
+      std::next_permutation(std::begin(points),std::end(points),OrderByX());
+    }
+    assert(Helper().IsCounterClockwise(points,observer));
+  }
+  assert(!"Yay, fixed #228");
   TRACE("Finished ribi::trim::Helper::Point::Test successfully");
 }
 #endif

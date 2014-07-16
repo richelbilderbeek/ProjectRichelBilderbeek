@@ -49,7 +49,7 @@ ribi::QtWktToSvgMainDialog::QtWktToSvgMainDialog(QWidget *parent) noexcept
 
   QObject::connect(
     ui->edit,
-    static_cast<void (QLineEdit::*)(QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
     this,
     &ribi::QtWktToSvgMainDialog::OnInputChanged // SxLOT(OnInputChanged())
   );
