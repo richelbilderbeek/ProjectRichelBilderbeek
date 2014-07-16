@@ -48,8 +48,12 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
   ui->setupUi(this);
 
   //Connect
-  QObject::connect(m_pylos_widget.get(),SIGNAL(HasWinner()),
-    this,SLOT(OnWinner()));
+  QObject::connect(
+    m_pylos_widget.get(),
+    &QtPylosGameWidget::HasWinner, //SxIGNAL(HasWinner()),
+    this,
+    &ribi::pylos::QtPylosMainDialog::OnWinner //SxLOT(OnWinner())
+  );
 
   //Place widget
   this->layout()->addWidget(m_pylos_widget.get());

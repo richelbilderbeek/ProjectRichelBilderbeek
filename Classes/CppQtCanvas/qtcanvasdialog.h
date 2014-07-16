@@ -30,9 +30,9 @@ public:
   QtCanvasDialog& operator=(const QtCanvasDialog&) = delete;
 
   protected:
-  void keyPressEvent(QKeyEvent *event);
-  void keyReleaseEvent(QKeyEvent *event);
-  void resizeEvent(QResizeEvent *);
+  void keyPressEvent(QKeyEvent *event) override;
+  void keyReleaseEvent(QKeyEvent *event) override;
+  void resizeEvent(QResizeEvent *) override;
 
   private:
   ~QtCanvasDialog() noexcept;

@@ -516,7 +516,7 @@ void ribi::pylos::Board::Test() noexcept
     if (tested) return;
     tested = true;
   }
-  const bool verbose = false;
+  const bool verbose{false};
   const int testing_depth = 1;
 
   if (verbose) { TRACE("Test operator=="); }

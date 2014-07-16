@@ -71,8 +71,8 @@ public:
   static std::vector<std::string> GetVersionHistory();
 
 protected:
-  void paintEvent(QPaintEvent *);
-  void resizeEvent(QResizeEvent *);
+  void paintEvent(QPaintEvent *) override;
+  void resizeEvent(QResizeEvent *) override;
 
 private:
   std::vector<std::vector<unsigned char>> m_surface;

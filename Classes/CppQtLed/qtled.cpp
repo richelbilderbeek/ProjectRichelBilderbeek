@@ -195,7 +195,7 @@ void ribi::QtLed::paintEvent(QPaintEvent *)
 
 void ribi::QtLed::SetLed(const boost::shared_ptr<Led>& led) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(led);
   if (m_led == led)

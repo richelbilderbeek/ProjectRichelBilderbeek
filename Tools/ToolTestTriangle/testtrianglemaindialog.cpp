@@ -83,7 +83,7 @@ void ribi::TestTriangleMainDialog::Test() noexcept
       * boost::units::si::radians //Radians
     ;
     const Area triangle_max_area = 1.0 * boost::units::si::square_meter;
-    const bool verbose = false;
+    const bool verbose{false};
     const ribi::TestTriangleMainDialog d(
       shapes,
       triangle_max_area,

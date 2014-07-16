@@ -13,7 +13,7 @@ bool ribi::cmap::CommandUnselectRandom::CanDoCommandSpecific(const Widget * cons
 {
   assert(widget);
   assert(widget->GetConceptMap() || !widget->GetConceptMap());
-  const bool verbose = false;
+  const bool verbose{false};
   if (!widget->GetConceptMap())
   {
     if (verbose) TRACE("Unselect needs a concept map");

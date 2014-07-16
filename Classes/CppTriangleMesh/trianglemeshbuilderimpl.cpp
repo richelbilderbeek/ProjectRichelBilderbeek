@@ -37,7 +37,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #endif
   const bool verbose_show_faces = false;
   const bool verbose_show_cell_indices = false;
-  //const bool verbose = true;
+  //const bool verbose{true};
 
   for (const std::string& folder: GetAllFolders())
   {
@@ -741,6 +741,14 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     f << CreateOpenFoamNodes();
   }
   {
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Start creating file 'faces'"
+        << std::endl
+      ;
+    }
+
     std::ofstream fp(ribi::foam::Filenames().GetFaces().c_str());
 
     fp << CreateOpenFoamHeader("faceList","faces","constant/polyMesh");
@@ -748,7 +756,15 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
   {
     const int n_cells = static_cast<int>(m_cells.size());
-    if (verbose) std::cout << "\tGenerating cells (" << n_cells << ")\n";
+
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Start creating files 'owner' and 'neighbour' ("
+        << n_cells << " cells)"
+        << std::endl
+      ;
+    }
 
     std::ofstream fo(ribi::foam::Filenames().GetOwner().c_str());
     std::ofstream fn(ribi::foam::Filenames().GetNeighbour().c_str());
@@ -780,10 +796,26 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     fn << out_neighbour;
   }
   {
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Start creating file 'boundary'"
+        << std::endl
+      ;
+    }
+
     std::ofstream f(ribi::foam::Filenames().GetBoundary().c_str());
     f << CreateBoundary(boundary_to_patch_field_type_function);
   }
   {
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Start creating file 'case.foam'"
+        << std::endl
+      ;
+    }
+
     std::ofstream f(ribi::foam::Filenames().GetCase().c_str());
     //Need nothing to stream
   }
@@ -1042,7 +1074,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   const std::vector<boost::shared_ptr<Cell>>& cells
 ) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   std::vector<boost::shared_ptr<Face>> v;
   for (const boost::shared_ptr<Cell>& cell: cells)

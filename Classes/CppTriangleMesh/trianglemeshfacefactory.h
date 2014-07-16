@@ -34,7 +34,8 @@ class FaceFactory
 
   boost::shared_ptr<Face> Create(
     std::vector<boost::shared_ptr<Point>> points,
-    const FaceOrientation any_orientation
+    const FaceOrientation any_orientation,
+    const bool verbose
   ) const noexcept;
 
   ///Create the faces of a testing prism from points

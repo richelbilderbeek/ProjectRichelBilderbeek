@@ -764,7 +764,7 @@ bool ribi::operator!=(const DrawCanvas& lhs, const DrawCanvas& rhs) noexcept
 
 bool ribi::IsAboutEqual(const DrawCanvas& lhs, const DrawCanvas& rhs) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   if (lhs.GetColorSystem() != rhs.GetColorSystem())
   {
     if (verbose) { TRACE("Color systems differ"); }

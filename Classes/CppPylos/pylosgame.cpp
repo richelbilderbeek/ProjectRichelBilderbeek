@@ -327,7 +327,7 @@ void ribi::pylos::Game::Test() noexcept
 
   TRACE("Starting ribi::pylos::Game::Test");
 
-  const bool verbose = false;
+  const bool verbose{false};
   const int testing_depth = 1;
 
   if (verbose) { TRACE("Test ribi::pylos::Game::operator== for different game types"); }

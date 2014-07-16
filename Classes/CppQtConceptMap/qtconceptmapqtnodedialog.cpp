@@ -78,7 +78,7 @@ void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnod
 
 void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(qtnode);
   if (m_qtnode == qtnode)

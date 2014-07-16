@@ -32,7 +32,12 @@ ribi::QtBoenkenPlayersDialog::QtBoenkenPlayersDialog(QWidget *parent) :
     ui(new Ui::QtBoenkenPlayersDialog)
 {
   ui->setupUi(this);
-  QObject::connect(ui->button_done,SIGNAL(clicked()),this,SLOT(close()));
+  QObject::connect(
+    ui->button_done,
+    &QPushButton::clicked, //SxIGNAL(clicked()),
+    this,
+    &ribi::QtBoenkenPlayersDialog::close //SxLOT(close())
+  );
 }
 
 ribi::QtBoenkenPlayersDialog::~QtBoenkenPlayersDialog() noexcept

@@ -65,8 +65,11 @@ ribi::con3::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
     ui->widget->setLayout(mylayout);
   }
 
-  QObject::connect(ui->button_quit,SIGNAL(clicked()),
-    this,SLOT(close()));
+  QObject::connect(ui->button_quit,
+    &QPushButton::clicked, //SxIGNAL(clicked()),
+    this,
+    &ribi::con3::QtConnectThreeGameDialog::close //SxLOT(close())
+  );
 
   m_board->m_signal_valid_move.connect(
     boost::bind(

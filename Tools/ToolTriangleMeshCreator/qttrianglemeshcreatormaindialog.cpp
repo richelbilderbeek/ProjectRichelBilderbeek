@@ -74,10 +74,21 @@ ribi::QtTriangleMeshCreatorMainDialog::QtTriangleMeshCreatorMainDialog(QWidget *
   }
 
 
-  connect(ui->edit_wkt,SIGNAL(textChanged()),this,SLOT(DisplayPolygons()));
-  connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(on_button_create_2d_mesh_clicked()));
-  connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(on_button_create_2d_mesh_clicked()));
-  on_edit_shapes_textChanged();
+  QObject::connect(ui->edit_wkt,&QPlainTextEdit::textChanged,this,&ribi::QtTriangleMeshCreatorMainDialog::DisplayPolygons);
+  QObject::connect(
+    ui->box_triangle_max_area,
+    static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+    this,
+    &ribi::QtTriangleMeshCreatorMainDialog::on_button_create_2d_mesh_clicked
+  );
+  QObject::connect(
+    ui->box_triangle_min_angle,
+    static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+    this,
+    &ribi::QtTriangleMeshCreatorMainDialog::on_button_create_2d_mesh_clicked
+  );
+
+  DisplayPolygons();
 }
 
 ribi::QtTriangleMeshCreatorMainDialog::~QtTriangleMeshCreatorMainDialog() noexcept
@@ -240,11 +251,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::on_button_create_clicked()
   Create3dMesh();
 }
 
-void ribi::QtTriangleMeshCreatorMainDialog::on_edit_shapes_textChanged()
-{
-  DisplayPolygons();
-}
-
 void ribi::QtTriangleMeshCreatorMainDialog::SetShowMesh(const bool show_mesh) noexcept
 {
   ui->check_show_mesh->setChecked(show_mesh);
@@ -266,7 +272,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
   TRACE("Starting QtTriangleMeshCreatorMainDialog::Test");
   QtTriangleMeshCreatorMainDialog d;
   d.SetShowMesh(false);
-  d.on_edit_shapes_textChanged();
+  d.DisplayPolygons();
   d.on_button_create_2d_mesh_clicked();
   d.on_button_create_clicked();
 

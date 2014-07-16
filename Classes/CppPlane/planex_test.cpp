@@ -43,7 +43,7 @@ void ribi::PlaneX::Test() noexcept
   TRACE("Starting ribi::PlaneX::Test");
   using boost::geometry::get;
 
-  const bool verbose = false;
+  const bool verbose{false};
   if (verbose) TRACE("Default construction");
   {
     const PlaneX p;
@@ -86,7 +86,7 @@ void ribi::PlaneX::Test() noexcept
     const double d_p2_expected { (a * p2_x) + (b * p2_y) + (c * p2_z) };
     const double d_p3_expected { (a * p3_x) + (b * p3_y) + (c * p3_z) };
 
-    const bool verbose = false;
+    const bool verbose{false};
     if (verbose)
     {
       std::clog

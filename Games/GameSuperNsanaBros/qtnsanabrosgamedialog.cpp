@@ -22,13 +22,6 @@ ribi::QtNsanaBrosGameDialog::QtNsanaBrosGameDialog(
 
   if (!options) return;
 
-  //if (options->GetShowOneDimension())
-  //{
-  //  QtNsanaBrosGameArea1dWidget * widget
-  //    = new QtNsanaBrosGameArea1dWidget(
-  //      m_game);
-  //  ui->layout->addWidget(widget);
-  //}
   if (options->GetShowTwoDimension())
   {
     QtNsanaBrosGameArea2dWidget * widget
@@ -44,26 +37,16 @@ ribi::QtNsanaBrosGameDialog::QtNsanaBrosGameDialog(
     ui->layout->addWidget(widget);
   }
 
-  QObject::connect(&m_timer,SIGNAL(timeout()),this,SLOT(OnTimerQt()));
+  QObject::connect(&m_timer,&QTimer::timeout, //SxIGNAL(timeout()),
+    this,&ribi::QtNsanaBrosGameDialog::OnTimerQt // SxLOT(OnTimerQt())
+  );
   m_timer.setInterval(50);
   m_timer.start();
 }
 
-ribi::QtNsanaBrosGameDialog::~QtNsanaBrosGameDialog()
+ribi::QtNsanaBrosGameDialog::~QtNsanaBrosGameDialog() noexcept
 {
   delete ui;
-}
-
-void ribi::QtNsanaBrosGameDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
 }
 
 void ribi::QtNsanaBrosGameDialog::keyPressEvent(QKeyEvent * e)

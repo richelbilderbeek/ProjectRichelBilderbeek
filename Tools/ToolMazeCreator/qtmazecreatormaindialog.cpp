@@ -57,8 +57,9 @@ ribi::QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
   this->drawMaze();
 
   //Set all connections
-  QObject::connect(m_timer.get(),SIGNAL(timeout()),
-    this,SLOT(onTimer()));
+  QObject::connect(m_timer.get(),&QTimer::timeout, //SIGNAL(timeout()),
+    this,&ribi::QtMazeCreatorMainDialog::onTimer // SLOT(onTimer())
+  );
 
   //Set the rotation timer to work
   m_timer->start(50);

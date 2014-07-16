@@ -142,7 +142,7 @@ struct DrawCanvas : public Canvas
   const std::vector<std::vector<double>>& GetGreynesses() const noexcept { return m_canvas; }
 
   ///Obtain the height of the canvas is characters
-  int GetHeight() const noexcept { return m_canvas.size(); }
+  int GetHeight() const noexcept override { return m_canvas.size(); }
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -151,7 +151,7 @@ struct DrawCanvas : public Canvas
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters
-  int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
+  int GetWidth() const noexcept override { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
 
   ///Save to file
   void Save(const std::string& filename) const noexcept;
@@ -162,7 +162,7 @@ struct DrawCanvas : public Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
 
-  std::vector<std::string> ToStrings() const noexcept;
+  std::vector<std::string> ToStrings() const noexcept override;
 
   private:
   ///The DrawCanvas its internal data: a 2D y-x-ordered std::vector

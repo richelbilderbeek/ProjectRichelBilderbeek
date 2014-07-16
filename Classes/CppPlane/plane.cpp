@@ -70,7 +70,7 @@ ribi::Plane::Plane(
 
 apfloat ribi::Plane::CalcError(const Coordinat3D& coordinat) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
   const apfloat z = boost::geometry::get<2>(coordinat);
@@ -249,7 +249,7 @@ boost::shared_ptr<ribi::PlaneX> ribi::Plane::CreatePlaneX(
   const Coordinat3D& p3
 ) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   try
   {
     const boost::shared_ptr<PlaneX> p(

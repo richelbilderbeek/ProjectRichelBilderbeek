@@ -135,7 +135,7 @@ void ribi::Regex::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Regex::Test");
-  const bool verbose = false;
+  const bool verbose{false};
   Regex r;
 
   if (verbose) { TRACE("GetRegexMatches, plain, on Dutch postal codes"); }

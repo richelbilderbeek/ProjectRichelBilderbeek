@@ -69,8 +69,14 @@ ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(
   this->setFixedHeight(m_boenken->getHeight());
 
   ///Start the timer
-  QObject::connect( m_timer.get(),SIGNAL(timeout()),this,SLOT(onTimer()));
-  QObject::connect( m_timer_countdown.get(),SIGNAL(timeout()),this,SLOT(onCountdownTimer()));
+  QObject::connect(
+    m_timer.get(),&QTimer::timeout, //SxIGNAL(timeout()),
+    this,&ribi::QtBoenkenMainDialog::onTimer //SxLOT(onTimer())
+  );
+  QObject::connect(
+    m_timer_countdown.get(),&QTimer::timeout, //SxIGNAL(timeout()),
+    this,&ribi::QtBoenkenMainDialog::onCountdownTimer // SxLOT(onCountdownTimer())
+  );
   if (!m_is_training)
   {
     m_timer_countdown->start(1000);

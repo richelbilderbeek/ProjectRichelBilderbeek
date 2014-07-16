@@ -48,6 +48,7 @@ class CellsCreator
     const int n_cell_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
     const CreateVerticalFacesStrategy strategy,
+    const bool verbose,
     const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
   );
   ~CellsCreator() noexcept {}
@@ -64,7 +65,8 @@ class CellsCreator
     const boost::shared_ptr<const Template> t,
     const int n_face_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
-    const CreateVerticalFacesStrategy strategy
+    const CreateVerticalFacesStrategy strategy,
+    const bool verbose
   ) noexcept;
 
   static std::vector<boost::shared_ptr<Face>> CreateHorizontalFaces(
@@ -85,7 +87,8 @@ class CellsCreator
     const std::vector<boost::shared_ptr<Point>>& points,
     const int n_face_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
-    const CreateVerticalFacesStrategy strategy
+    const CreateVerticalFacesStrategy strategy,
+    const bool verbose
   ) noexcept;
 
   static std::vector<boost::shared_ptr<Face>> FindKnownFacesBetween(

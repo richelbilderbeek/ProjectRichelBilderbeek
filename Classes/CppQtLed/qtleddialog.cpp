@@ -84,7 +84,7 @@ void ribi::QtLedDialog::OnIntensityChanged(Led * const led) noexcept
 
 void ribi::QtLedDialog::SetLed(const boost::shared_ptr<Led>& led) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(led);
   if (m_led == led)

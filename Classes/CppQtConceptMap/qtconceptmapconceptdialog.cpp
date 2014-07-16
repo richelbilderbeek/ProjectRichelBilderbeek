@@ -77,7 +77,7 @@ int ribi::cmap::QtConceptDialog::GetMinimumHeight(const Concept& concept) noexce
 
 void ribi::cmap::QtConceptDialog::SetConcept(const boost::shared_ptr<Concept>& concept) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(concept);
   if (m_concept == concept)
@@ -256,7 +256,7 @@ void ribi::cmap::QtConceptDialog::SetConcept(const boost::shared_ptr<Concept>& c
 
 void ribi::cmap::QtConceptDialog::OnExamplesChanged(Concept * const concept) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   assert(concept);
 
   const auto examples_before = m_qtexamplesdialog->GetExamples();
@@ -330,7 +330,7 @@ void ribi::cmap::QtConceptDialog::Test() noexcept
 /*
 void ribi::cmap::QtConceptDialog::on_box_competency_currentIndexChanged(int index)
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   if (!m_concept)
   {

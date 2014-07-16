@@ -71,7 +71,7 @@ int ribi::cmap::QtNodeDialog::GetMinimumHeight(const Node& node) noexcept
 
 void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(node);
   if (m_node == node)
@@ -188,7 +188,7 @@ void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node) noex
 
 void ribi::cmap::QtNodeDialog::OnConceptChanged(Node * const node)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   assert(node);
 
   const auto concept_before = m_qtconceptdialog->GetConcept();

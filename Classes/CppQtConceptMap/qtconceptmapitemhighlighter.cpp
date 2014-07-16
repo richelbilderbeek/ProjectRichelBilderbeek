@@ -41,8 +41,13 @@ ribi::cmap::QtItemHighlighter::QtItemHighlighter(QObject *parent)
 {
   m_timer->setInterval(10); //ms
   QObject::connect(
-    m_timer,SIGNAL(timeout()),
-    this,SLOT(OnTimer()));
+    m_timer,
+    &QTimer::timeout,
+    //SxIGNAL(timeout()),
+    this,
+    //SLOT(OnTimer())
+    &ribi::cmap::QtItemHighlighter::OnTimer
+  );
 }
 
 void ribi::cmap::QtItemHighlighter::SetItem(QtNode* const item)

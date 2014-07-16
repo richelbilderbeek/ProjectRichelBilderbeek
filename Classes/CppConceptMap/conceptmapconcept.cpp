@@ -196,7 +196,7 @@ std::ostream& ribi::cmap::operator<<(std::ostream& os, const Concept& concept) n
 
 bool ribi::cmap::operator==(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   if (lhs.GetIsComplex() != rhs.GetIsComplex())
   {
     if (verbose) { TRACE("Concept::IsComplex differs"); }

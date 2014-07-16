@@ -46,7 +46,7 @@ ribi::QtLedWidgetDialog::~QtLedWidgetDialog()
 void ribi::QtLedWidgetDialog::SetWidget(const boost::shared_ptr<LedWidget>& /* widget */) noexcept
 {
   /*
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(widget);
   if (m_widget == widget)

@@ -51,7 +51,7 @@ ribi::PlaneZ::PlaneZ(
   #ifndef NDEBUG
   Test();
   #endif
-  const bool verbose = false;
+  const bool verbose{false};
   assert(GetCoefficients().size() == 4);
 
   if (m_coefficients[2] == 0.0)
@@ -84,7 +84,7 @@ ribi::PlaneZ::PlaneZ(
   #ifndef NDEBUG
   Test();
   #endif
-  const bool verbose = false;
+  const bool verbose{false};
   assert(GetCoefficients().size() == 4);
 
   if (m_coefficients[2] == 0.0)
@@ -167,7 +167,7 @@ apfloat ribi::PlaneZ::CalcMaxError(const Coordinat3D& /*coordinat*/) const noexc
 {
   return CalcMinErrorPerC() * GetFunctionC();
   /*
-  const bool verbose = false;
+  const bool verbose{false};
   const apfloat x = boost::geometry::get<0>(coordinat);
   const apfloat y = boost::geometry::get<1>(coordinat);
   //const apfloat z = boost::geometry::get<2>(coordinat);
@@ -271,7 +271,7 @@ ribi::PlaneZ::Coordinats2D ribi::PlaneZ::CalcProjection(
 ribi::PlaneZ::Double ribi::PlaneZ::CalcZ(const Double& x, const Double& y) const
 {
   // z = -A/C.x - B/C.y + D/C = (-A.x - B.y + D) / C
-  const bool verbose = false;
+  const bool verbose{false};
   const auto a = m_coefficients[0];
   const auto b = m_coefficients[1];
   const auto c = m_coefficients[2];
@@ -294,7 +294,7 @@ ribi::PlaneZ::Double ribi::PlaneZ::CalcZ(const Double& x, const Double& y) const
 
 apfloat ribi::PlaneZ::GetFunctionA() const
 {
-  const bool verbose = false;
+  const bool verbose{false};
   const auto coeff_a = m_coefficients[0];
   const auto coeff_c = m_coefficients[2];
   static const apfloat zero(0.0);

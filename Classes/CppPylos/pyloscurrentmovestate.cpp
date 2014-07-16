@@ -132,7 +132,7 @@ void ribi::pylos::CurrentMoveState::Test() noexcept
   }
 
   TRACE("Starting ribi::pylos::CurrentMoveState::Test");
-  const bool verbose = false;
+  const bool verbose{false};
 
   if (verbose) { TRACE("Test PylosCurrentMoveState"); }
   {

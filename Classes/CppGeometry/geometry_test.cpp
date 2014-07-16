@@ -14,7 +14,7 @@ void ribi::Geometry::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Geometry::Test");
-  const bool verbose = false;
+  const bool verbose{false};
   const double pi = boost::math::constants::pi<double>();
   const Geometry g;
   if (verbose) { TRACE("CalcPlane"); }
@@ -41,7 +41,7 @@ void ribi::Geometry::Test() noexcept
     const double d_p1_expected = (a * p1_x) + (b * p1_y) + (c * p1_z);
     const double d_p2_expected = (a * p2_x) + (b * p2_y) + (c * p2_z);
     const double d_p3_expected = (a * p3_x) + (b * p3_y) + (c * p3_z);
-    const bool verbose = false;
+    const bool verbose{false};
     if (verbose)
     {
       std::clog

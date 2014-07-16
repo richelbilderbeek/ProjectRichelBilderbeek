@@ -59,10 +59,10 @@ protected:
   bool m_show_child;
 
   ///closeEvent that emits the close_me signal
-  void closeEvent(QCloseEvent *);
+  void closeEvent(QCloseEvent *) override;
 
   ///Close on escape key
-  virtual void keyPressEvent(QKeyEvent* event);
+  virtual void keyPressEvent(QKeyEvent* event) override;
 
 signals:
   ///Emit the closeEvent of this dialog

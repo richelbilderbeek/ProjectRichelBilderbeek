@@ -155,7 +155,7 @@ void ribi::cmap::Regex::Test() noexcept
     is_tested = true;
   }
   TRACE("Started ribi::cmap::Regex::Test");
-  const bool verbose = false;
+  const bool verbose{false};
   const Regex r;
 
   if (verbose) { TRACE("GetRegexExample"); }

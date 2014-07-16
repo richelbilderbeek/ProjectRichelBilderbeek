@@ -22,13 +22,14 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
   const boost::shared_ptr<const Template> t,
   const int n_cell_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
-  const CreateVerticalFacesStrategy strategy
+  const CreateVerticalFacesStrategy strategy,
+  const bool verbose
 ) const noexcept
 {
   assert(t);
   assert(n_cell_layers >= 0);
   const boost::shared_ptr<CellsCreator> creator(
-    new CellsCreator(t,n_cell_layers,layer_height,strategy,*this)
+    new CellsCreator(t,n_cell_layers,layer_height,strategy,verbose,*this)
   );
   assert(creator);
   return creator;
@@ -43,12 +44,14 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
   };
   assert(my_template->CountFaces() == 2);
   const int n_cell_layers = 1;
+  const bool verbose{false};
   const boost::shared_ptr<CellsCreator> cells_creator {
     CellsCreatorFactory().Create(
       my_template,
       n_cell_layers,
       1.0 * boost::units::si::meter,
-      strategy
+      strategy,
+      verbose
     )
   };
   #ifndef NDEBUG
@@ -76,12 +79,14 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
   assert(my_template);
   assert(my_template->CountFaces() == 1);
   const int n_cell_layers = 1;
+  const bool verbose{false};
   const boost::shared_ptr<CellsCreator> cells_creator
     = cells_creator_factory.Create(
       my_template,
       n_cell_layers,
       1.0 * boost::units::si::meter,
-      strategy
+      strategy,
+      verbose
   );
   assert(cells_creator);
   #ifndef NDEBUG
@@ -113,13 +118,12 @@ void ribi::trim::CellsCreatorFactory::Test() noexcept
   const CellsCreatorFactory cells_creator;
   const CreateVerticalFacesStrategies create_vertical_faces_strategies;
   //Create prism
-  for (CreateVerticalFacesStrategy strategy: create_vertical_faces_strategies.GetAll())
+  for (const auto strategy: create_vertical_faces_strategies.GetAll())
   {
     const boost::shared_ptr<CellsCreator> prism
       = cells_creator.CreateTestPrism(strategy);
     assert(prism);
-    const std::vector<boost::shared_ptr<Cell>> cells
-      = prism->GetCells();
+    const auto cells = prism->GetCells();
     TRACE(cells.size());
     assert(cells.size() == 1 && "A prism consists of 1 prisms");
     assert(cells[0]);

@@ -31,7 +31,8 @@ struct Template
 
   Template(
     const std::string& filename_node,
-    const std::string& filename_ele
+    const std::string& filename_ele,
+    const bool verbose
   );
 
   int CountFaces() const noexcept { return static_cast<int>(m_faces.size() ); }

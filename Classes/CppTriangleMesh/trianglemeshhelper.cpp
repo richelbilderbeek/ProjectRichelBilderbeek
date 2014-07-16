@@ -211,7 +211,7 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<const ribi
 
 bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   if (points.size() == 3)
   {
     if (verbose) { TRACE("Three points are always convex"); }
@@ -314,7 +314,7 @@ void ribi::trim::Helper::MakeConvex(
   std::vector<boost::shared_ptr<ribi::trim::Point>>& points
 ) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   #ifndef NDEBUG
   for (const auto& p: points) { assert(p); }
   assert(!points.empty());
@@ -331,8 +331,21 @@ void ribi::trim::Helper::MakeConvex(
 
   std::sort(points.begin(),points.end(),OrderByX());
 
+  #ifndef NDEBUG
+  const int max_i = (4*3*2*1) + 4; //Number of permutations, plus four to be sure
+  for (int i=0; i!=max_i; ++i)
+  #else
   while (1)
+  #endif
   {
+    if (i == max_i-1)
+    {
+      TRACE("ERROR");
+      TRACE(Helper().ToStr(AddConst(points)));
+      for (const auto& p: points) { TRACE(*p); }
+      TRACE("BREAK");
+    }
+    assert(i!=max_i-1 && "There must be a permutation of the points that renders them convex");
     if (IsConvex(points))
     {
       break;
@@ -451,7 +464,7 @@ void ribi::trim::Helper::Test() noexcept
   TRACE("Starting ribi::trim::Helper::Point::Test");
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   using boost::geometry::get;
-  const bool verbose = false;
+  const bool verbose{false};
 
   //CalcCenter
   //CalcWindingHorizontal

@@ -64,7 +64,7 @@ private:
   #endif
 
 private slots:
-  void HasWinner();
+  void HasWinner(const QtTicTacToeWidget* const);
 };
 
 } //~namespace tictactoe

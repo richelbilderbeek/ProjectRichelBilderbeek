@@ -25,7 +25,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoegamedialog.h"
 
 #include <cassert>
+#include <functional>
 #include <stdexcept>
+
+#include <boost/lambda/bind.hpp>
 
 #include <QDesktopWidget>
 
@@ -52,13 +55,21 @@ ribi::tictactoe::QtTicTacToeGameDialog::QtTicTacToeGameDialog(
 
   ui->setupUi(this);
   ui->layout->addWidget(m_tictactoe.get());
-  QObject::connect(m_tictactoe.get(),SIGNAL(hasWinner()),
-    this,SLOT(HasWinner()));
 
-  //Put the dialog in the screen center
-  const QRect screen = QApplication::desktop()->screenGeometry();
-  this->setGeometry(0,0,3 * screen.width() / 4,3 * screen.height() / 4);
-  this->move( screen.center() - this->rect().center() );
+
+  m_tictactoe->m_signal_has_winner.connect(
+    boost::bind(&ribi::tictactoe::QtTicTacToeGameDialog::HasWinner,this,boost::lambda::_1)
+  );
+  //QObject::connect(m_tictactoe.get(),&QtTicTacToeWidget::m_signal_has_winner, // SxIGNAL(hasWinner()),
+  //  this,&ribi::tictactoe::QtTicTacToeGameDialog::HasWinner // SxLOT(HasWinner())
+  //);
+
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(0,0,3 * screen.width() / 4,3 * screen.height() / 4);
+    this->move( screen.center() - this->rect().center() );
+  }
 }
 
 ribi::tictactoe::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
@@ -66,7 +77,7 @@ ribi::tictactoe::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
   delete ui;
 }
 
-void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner()
+void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner(const QtTicTacToeWidget* const)
 {
 
   QtTicTacToeWinnerDialog d;

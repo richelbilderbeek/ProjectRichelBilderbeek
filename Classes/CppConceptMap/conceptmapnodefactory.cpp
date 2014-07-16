@@ -122,7 +122,7 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::
     if (center_node) { return center_node; }
   }
 
-  const bool verbose = false;
+  const bool verbose{false};
   if (s.size() < 13)
   {
     if (verbose) TRACE("string too short");

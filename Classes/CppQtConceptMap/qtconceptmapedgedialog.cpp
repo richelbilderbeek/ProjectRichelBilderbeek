@@ -92,7 +92,7 @@ int ribi::cmap::QtEdgeDialog::GetMinimumHeight(const Edge& edge) noexcept
 
 void ribi::cmap::QtEdgeDialog::SetEdge(const boost::shared_ptr<Edge>& edge)
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(edge);
   if (m_edge == edge)
@@ -270,7 +270,7 @@ void ribi::cmap::QtEdgeDialog::SetEdge(const boost::shared_ptr<Edge>& edge)
 
 void ribi::cmap::QtEdgeDialog::OnFromChanged(Edge * const edge)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   assert(edge);
 
   const auto from_before = m_qtnodedialog_from->GetNode();
@@ -292,7 +292,7 @@ void ribi::cmap::QtEdgeDialog::OnFromChanged(Edge * const edge)
 
 void ribi::cmap::QtEdgeDialog::OnHeadArrowChanged(Edge * const edge)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   assert(edge);
 
   const auto head_arrow_before = ui->box_head_arrow->isChecked();
@@ -315,7 +315,7 @@ void ribi::cmap::QtEdgeDialog::OnHeadArrowChanged(Edge * const edge)
 
 void ribi::cmap::QtEdgeDialog::OnNodeChanged(Edge * const edge)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   assert(edge);
 
   const auto node_before = m_qtnodedialog->GetNode();
@@ -338,7 +338,7 @@ void ribi::cmap::QtEdgeDialog::OnNodeChanged(Edge * const edge)
 
 void ribi::cmap::QtEdgeDialog::OnTailArrowChanged(Edge * const edge)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   assert(edge);
 
   const auto tail_arrow_before = ui->box_tail_arrow->isChecked();
@@ -362,7 +362,7 @@ void ribi::cmap::QtEdgeDialog::OnTailArrowChanged(Edge * const edge)
 
 void ribi::cmap::QtEdgeDialog::OnToChanged(Edge * const edge)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   assert(edge);
 
   const auto to_before = m_qtnodedialog_to->GetNode();

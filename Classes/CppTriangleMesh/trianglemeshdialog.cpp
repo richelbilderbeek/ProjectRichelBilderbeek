@@ -410,7 +410,12 @@ std::function<void(std::vector<boost::shared_ptr<ribi::trim::Cell>>&)>
 void ribi::trim::Dialog::CreateTriangleMesh() noexcept
 {
   const auto verbose = m_triangle_verbose;
-  if (verbose) { std::clog << "Write some geometries, let Triangle.exe work on it" << std::endl; }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Write some geometries, let Triangle.exe work on it" << std::endl
+    ;
+  }
 
   //m_triangle_input_poly = "";
   m_triangle_shapes = Shapes();
@@ -422,7 +427,12 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
 
   try
   {
-    if (verbose) { std::clog << "Create Triangle.exe input" << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Create Triangle.exe input" << std::endl
+      ;
+    }
 
     //const auto file = boost::make_shared<TriangleFile>(m_shapes);
     m_triangle_file = boost::make_shared<TriangleFile>(m_shapes);
@@ -430,7 +440,12 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
     //m_triangle_input_vertices = file->GetNumberOfVertices();
     //m_triangle_input_edges = file->GetNumberOfEdges();
 
-    if (verbose) { std::clog << "Store the Triangle.exe input" << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Store the Triangle.exe input" << std::endl
+      ;
+    }
 
     //m_triangle_input_poly = file->GetTriangleInputPoly();
 
@@ -438,7 +453,12 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
     std::string filename_ele;
     std::string filename_poly;
 
-    if (verbose) { std::clog << "Calling Triangle.exe" << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Calling Triangle.exe" << std::endl
+      ;
+    }
 
     m_triangle_file->ExecuteTriangleExe(
       filename_node,
@@ -449,24 +469,39 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
       verbose
     );
 
-    if (verbose) { std::clog << "Saving Triangle.exe output" << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Saving Triangle.exe output" << std::endl
+      ;
+    }
 
     m_triangle_output_ele = fileio::FileIo().FileToStr(filename_ele);
     m_triangle_output_node = fileio::FileIo().FileToStr(filename_node);
     m_triangle_output_poly = fileio::FileIo().FileToStr(filename_poly);
 
-    if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Read data from Triangle.exe output" << std::endl
+      ;
+    }
 
     const boost::shared_ptr<const ribi::trim::Template> t(
-      //= boost::make_shared<ribi::trim::Template>(
       new ribi::trim::Template(
         filename_node,
-        filename_ele
+        filename_ele,
+        verbose
       )
     );
     assert(t);
 
-    if (verbose) { std::clog << "Convert Triangle.exe output to polygons" << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Convert Triangle.exe output to polygons" << std::endl
+      ;
+    }
 
     for (const boost::shared_ptr<trim::Face> face: t->GetFaces())
     {
@@ -480,7 +515,12 @@ void ribi::trim::Dialog::CreateTriangleMesh() noexcept
       m_triangle_shapes.first.push_back(polygon);
     }
 
-    if (verbose) { std::clog << "Delete Triangle.exe output" << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Delete Triangle.exe output" << std::endl
+      ;
+    }
     fileio::FileIo().DeleteFile(filename_ele);
     fileio::FileIo().DeleteFile(filename_node);
     fileio::FileIo().DeleteFile(filename_poly);
@@ -501,7 +541,12 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
 {
   const auto verbose = m_3dmesh_verbose;
 
-  if (verbose) { std::clog << "Read data from Triangle.exe output" << std::endl; }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Read data from Triangle.exe output" << std::endl
+    ;
+  }
 
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
@@ -514,7 +559,8 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
     const boost::shared_ptr<const ribi::trim::Template> t(
       new ribi::trim::Template(
         filename_node,
-        filename_ele
+        filename_ele,
+        verbose
       )
     );
     assert(t);
@@ -531,7 +577,8 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
           t,
           m_3dmesh_n_cell_layers,
           m_3dmesh_layer_height,
-          m_3dmesh_strategy
+          m_3dmesh_strategy,
+          verbose
       );
       assert(c);
       cells = c->GetCells();
@@ -541,11 +588,21 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
     }
 
     //Sculpting
-    if (verbose) { std::clog << "Number of cells before sculpting: " << cells.size() << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Number of cells before sculpting: " << cells.size() << std::endl
+      ;
+    }
     m_3dmesh_sculpt_function(cells);
 
     m_n_cells = static_cast<int>(cells.size());
-    if (verbose) { std::clog << "Number of cells after sculpting: " << m_n_cells << std::endl; }
+    if (verbose)
+    {
+      std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+        << "Number of cells after sculpting: " << m_n_cells << std::endl
+      ;
+    }
 
     //Remove weak faces
     {
@@ -555,7 +612,12 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
         const std::vector<boost::shared_ptr<ribi::trim::Face>> w { cell->GetFaces() };
         std::copy(w.begin(),w.end(),std::back_inserter(faces));
       }
-      if (verbose) { std::clog << "Number of weak faces: " << faces.size() << std::endl; }
+      if (verbose)
+      {
+        std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+          << "Number of weak faces: " << faces.size() << std::endl
+        ;
+      }
       assert(std::unique(faces.begin(),faces.end()) == faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       //Clean all weakened faces
@@ -571,7 +633,12 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
 
       m_n_faces = static_cast<int>(faces.size());
-      if (verbose) { std::clog << "Number of strong faces: " << m_n_faces << std::endl; }
+      if (verbose)
+      {
+        std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+          << "Number of strong faces: " << m_n_faces << std::endl
+        ;
+      }
       //const ribi::trim::Helper helper;
       std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
       const auto new_end = std::unique(faces.begin(),faces.end());
@@ -583,7 +650,12 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
     m_3dmesh_assign_boundary_function(cells);
   }
 
-  if (verbose) { std::clog << "Checking the cells" << std::endl; }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Checking the cells" << std::endl
+    ;
+  }
   {
     for (const auto& cell: cells)
     {
@@ -599,7 +671,12 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
     }
   }
 
-  if (verbose) { std::clog << "Build the OpenFOAM files" << std::endl; }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Build the OpenFOAM files" << std::endl
+    ;
+  }
   {
     std::string filename_result_mesh = fileio::FileIo().GetTempFileName(".ply");
 
@@ -619,7 +696,12 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
     fileio::FileIo().DeleteFile(filename_result_mesh);
   }
 
-  if (verbose) { std::clog << "Create some files (checkMesh needs these)" << std::endl; }
+  if (verbose)
+  {
+    std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
+      << "Create some files (checkMesh needs these)" << std::endl
+    ;
+  }
   CreateDefaultControlDict();
   CreateDefaultPressureField();
   CreateDefaultTemperatureField();
@@ -636,13 +718,6 @@ std::string ribi::trim::Dialog::GetShapesAsWkt() const noexcept
   return Geometry().ToWkt(m_shapes);
 }
 
-/*
-std::string ribi::trim::Dialog::GetTriangleInput() const noexcept
-{
-  if (!m_triangle_file) { return ""; }
-  return m_triangle_file->GetTriangleInputPoly();
-}
-*/
 std::string ribi::trim::Dialog::GetTriangleMeshAsSvg(const double line_width) const noexcept
 {
   return Geometry().ToSvg(m_triangle_shapes,line_width);
@@ -750,7 +825,7 @@ void ribi::trim::Dialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Dialog::Test");
-  //typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Coordinat2D;
+  const bool verbose{false};
   ribi::trim::CellsCreatorFactory();
   //Flow of Dialog
   {
@@ -765,7 +840,8 @@ void ribi::trim::Dialog::Test() noexcept
       ribi::trim::Template::CreateTest(0),
       2,
       1.0 * boost::units::si::meter,
-      ribi::trim::CreateVerticalFacesStrategy::one_face_per_square
+      ribi::trim::CreateVerticalFacesStrategy::one_face_per_square,
+      verbose
     );
   }
 
@@ -788,7 +864,7 @@ void ribi::trim::Dialog::Test() noexcept
       ;
       const Area triangle_max_area = 1.0 * boost::units::si::square_meter;
       const int n_cell_layers = 1;
-      const bool verbose = false;
+      const bool verbose{false};
       const ribi::trim::Dialog d(
         shapes,
         n_cell_layers,

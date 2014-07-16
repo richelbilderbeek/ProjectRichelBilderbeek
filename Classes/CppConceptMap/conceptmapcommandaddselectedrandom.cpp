@@ -13,7 +13,7 @@ bool ribi::cmap::CommandAddSelectedRandom::CanDoCommandSpecific(const Widget * c
 {
   assert(widget);
   assert(widget->GetConceptMap() || !widget->GetConceptMap());
-  const bool verbose = false;
+  const bool verbose{false};
   if (!widget->GetConceptMap())
   {
     if (verbose) TRACE("AddSelected needs a concept map");

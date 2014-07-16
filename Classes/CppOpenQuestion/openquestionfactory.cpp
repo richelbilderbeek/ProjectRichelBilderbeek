@@ -26,7 +26,7 @@ boost::shared_ptr<ribi::OpenQuestion>
   ribi::OpenQuestionFactory::Create(const std::string& s
 ) const
 {
-  const bool verbose = true;
+  const bool verbose{true};
   if (s.empty())
   {
     throw std::logic_error("An open question must contain text");

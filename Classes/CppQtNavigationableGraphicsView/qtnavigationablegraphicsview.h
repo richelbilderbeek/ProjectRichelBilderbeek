@@ -41,7 +41,7 @@ class QtNavigationableGraphicsView : public QGraphicsView
   QtNavigationableGraphicsView(const QtNavigationableGraphicsView&) = delete;
   QtNavigationableGraphicsView& operator=(const QtNavigationableGraphicsView&) = delete;
 
-  void wheelEvent(QWheelEvent *event);
+  void wheelEvent(QWheelEvent *event) override;
 };
 
 } //~namespace ribi

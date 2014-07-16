@@ -51,7 +51,7 @@ std::pair<double,double> ribi::CodeBreaker::CalculateChiSquared(
   const std::map<char,double>& frequency_expected
 ) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   std::vector<double> tally_expected;
   std::vector<double> tally_measured;
 
@@ -324,7 +324,7 @@ int ribi::CodeBreaker::GuessCaesarCipherKey(
   const std::map<char,double>& expected_char_frequency
   ) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   std::vector<double> v;
 
   for (int key=0; key!=26; ++key)
@@ -417,7 +417,7 @@ void ribi::CodeBreaker::Test() noexcept
     is_tested = true;
   }
   const CodeBreaker b;
-  //const bool verbose = false;
+  //const bool verbose{false};
   TRACE("Starting ribi::CodeBreaker::Test");
   {
     const auto p(

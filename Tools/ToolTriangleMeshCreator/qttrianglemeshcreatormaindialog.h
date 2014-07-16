@@ -94,8 +94,6 @@ private:
   boost::shared_ptr<ribi::trim::Dialog> m_dialog;
 
 private slots:
-
-  void on_edit_shapes_textChanged();
   void on_button_create_clicked();
   void DisplayPolygons() noexcept;
   void DisplayTriangleMesh() noexcept;

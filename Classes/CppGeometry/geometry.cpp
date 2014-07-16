@@ -162,7 +162,7 @@ ribi::Geometry::ApCoordinats2D ribi::Geometry::CalcProjection(
   assert(plane);
 
   #ifndef NDEBUG
-  const bool verbose = false;
+  const bool verbose{false};
   if (verbose)
   {
     TRACE(plane->CanCalcX());
@@ -576,7 +576,7 @@ bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
 {
   //assert(boost::geometry::num_points(polygon) == points.size()
   //  && "Points and polygon have the same number of points");
-  const bool verbose = false;
+  const bool verbose{false};
   boost::geometry::correct(polygon);
   Polygon hull;
   boost::geometry::convex_hull(polygon, hull);
@@ -624,7 +624,7 @@ bool ribi::Geometry::IsConvex(const Coordinats2D& points) const noexcept
 
 bool ribi::Geometry::IsConvex(const ApCoordinats3D& points) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   #ifndef NDEBUG
   assert(points.size() >= 3);
@@ -888,7 +888,7 @@ std::function<bool(const ribi::Geometry::ApCoordinat3D& lhs, const ribi::Geometr
 
 bool ribi::Geometry::IsPlane(const std::vector<ApCoordinat3D>& v) const noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   using boost::geometry::get;
 
   if (v.size() < 3) return false;

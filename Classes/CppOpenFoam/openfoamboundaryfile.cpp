@@ -215,7 +215,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
 
 bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
   if (lhs.GetHeader() != rhs.GetHeader())
   {
     if (verbose)

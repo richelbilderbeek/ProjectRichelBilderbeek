@@ -19,7 +19,8 @@
 
 ribi::trim::Template::Template(
   const std::string& filename_node,
-  const std::string& filename_ele
+  const std::string& filename_ele,
+  const bool verbose
 )
   : m_edges{},
     m_faces{},
@@ -29,8 +30,6 @@ ribi::trim::Template::Template(
   #ifndef NDEBUG
   Test();
   #endif
-
-  const bool verbose = false;
 
   if (verbose) { TRACE("Load the points and faces created by Triangle"); }
   {
@@ -141,12 +140,13 @@ ribi::trim::Template::Template(
       }
       assert(Helper().IsClockwiseHorizontal(face_points));
       if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
-      assert(Helper().IsConvex(face_points) && "FaceFacory only accepts convex ordered points");
+      assert(Helper().IsConvex(face_points) && "FaceFactory only accepts convex ordered points");
 
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       m_faces.push_back(face);
@@ -221,9 +221,10 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSquare2x
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
   std::vector<boost::shared_ptr<Point>> points;
-  const int width = 2;
-  const int height = 2;
-  const int n_points = width * height;
+  const int width{2};
+  const int height{2};
+  const int n_points{width * height};
+  const bool verbose{false};
   points.reserve(n_points);
 
   //Create points
@@ -302,7 +303,8 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSquare2x
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       faces.push_back(face);
@@ -342,9 +344,10 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
   std::vector<boost::shared_ptr<Point>> points;
-  const int width = 2;
+  const int width{2};
   //const int height = 2;
-  const int n_points = 3; //Triangle
+  const int n_points{3}; //Triangle
+  const bool verbose{false};
   points.reserve(n_points);
 
   //Create points
@@ -353,7 +356,7 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle
     {
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
-      const std::string boundary_type = "two_times_two";
+      const std::string boundary_type{"two_times_two"};
       const boost::shared_ptr<const ConstCoordinat2D> bottom {
         new ConstCoordinat2D(x,y)
       };
@@ -428,7 +431,8 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       faces.push_back(face);
@@ -467,21 +471,22 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x3() no
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
   std::vector<boost::shared_ptr<Point>> points;
-  const int width = 3;
-  const int height = 2;
-  const int n_points = width * height;
+  const int width{3};
+  const int height{2};
+  const int n_points{width * height};
+  const bool verbose{false};
   points.reserve(n_points);
 
   //Create points
   {
     for(int i=0; i!=n_points; ++i)
     {
-      const double x = static_cast<double>(i % width);
-      const double y = static_cast<double>(i / width);
-      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+      const double x{static_cast<double>(i % width)};
+      const double y{static_cast<double>(i / width)};
+      const boost::shared_ptr<const ConstCoordinat2D> bottom{
         new ConstCoordinat2D(x,y)
       };
-      const boost::shared_ptr<Point> point {
+      const boost::shared_ptr<Point> point{
         PointFactory().Create(bottom)
       };
       points.push_back(point);
@@ -559,7 +564,8 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x3() no
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       faces.push_back(face);
@@ -606,24 +612,23 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x3() no
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
   std::vector<boost::shared_ptr<Point>> points;
-  const int width = 3;
-  const int height = 3;
-  const int n_points = width * height;
+  const int width{3};
+  const int height{3};
+  const int n_points{width * height};
+  const bool verbose{false};
   points.reserve(n_points);
 
   //Create points
   {
     for(int i=0; i!=n_points; ++i)
     {
-      const double x = static_cast<double>(i % width);
-      const double y = static_cast<double>(i / width);
+      const double x{static_cast<double>(i % width)};
+      const double y{static_cast<double>(i / width)};
       const std::string boundary_type = "three_times_three";
-      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+      const boost::shared_ptr<const ConstCoordinat2D> bottom{
         new ConstCoordinat2D(x,y)
       };
-      const boost::shared_ptr<Point> point {
-        PointFactory().Create(bottom)
-      };
+      const auto point = PointFactory().Create(bottom);
       points.push_back(point);
     }
   }
@@ -710,7 +715,8 @@ boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x3() no
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::horizontal,
+          verbose
         )
       };
       faces.push_back(face);
@@ -776,7 +782,7 @@ std::vector<std::string> ribi::trim::Template::CleanAndSplitString(
 void ribi::trim::Template::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -55,7 +55,7 @@ struct TriangleFile
     std::string& poly_filename,
     const Angle triangle_min_angle,
     const Area triangle_max_area,
-    const bool verbose = false
+    const bool verbose
   ) const;
 
   ///Call Triangle its C++ equivalent
@@ -65,7 +65,7 @@ struct TriangleFile
     std::string& poly_filename,
     const Angle triangle_min_angle,
     const Area triangle_max_area,
-    const bool verbose = false
+    const bool verbose
   ) const;
   #endif
   ///Executes Triangle.exe from a Windows command line
@@ -79,7 +79,7 @@ struct TriangleFile
     std::string& poly_filename,
     const Angle triangle_min_angle,
     const Area triangle_max_area,
-    const bool verbose = false
+    const bool verbose
   ) const;
 
   ///Executes TriangleCpp.exe from command line
@@ -93,7 +93,7 @@ struct TriangleFile
     std::string& poly_filename,
     const Angle triangle_min_angle,
     const Area triangle_max_area,
-    const bool verbose = false
+    const bool verbose
   ) const;
 
   ///Count the number of input edges

@@ -134,8 +134,8 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   this->GetFilterDialog()->m_signal_kalman_filter_type_changed.connect(
     boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetKalmanFilterType,this,boost::lambda::_1));
   //QObject::connect(
-  //  this->m_filter_dialog,SIGNAL(signal_kalman_filter_type_changed(KalmanFilterType)),
-  //  this,SLOT(SetKalmanFilterType(KalmanFilterType)));
+  //  this->m_filter_dialog,SxIGNAL(signal_kalman_filter_type_changed(KalmanFilterType)),
+  //  this,SxLOT(SetKalmanFilterType(KalmanFilterType)));
 
   ui->box_n_timesteps->setValue(5);
 

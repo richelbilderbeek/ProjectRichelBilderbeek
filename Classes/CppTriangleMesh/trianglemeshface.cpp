@@ -285,13 +285,10 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
 
   if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
   {
-    TRACE(".");
     std::sort(m_points.begin(),m_points.end(),Helper().OrderByX()); //For std::next_permutation
-    TRACE(".");
     //Must be ordered counter-clockwise (although the documentation says otherwise?)
     while (std::next_permutation(m_points.begin(),m_points.end(),Helper().OrderByX()))
     {
-      TRACE(".");
       assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
       if (
         Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
@@ -313,8 +310,6 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     TRACE(Geometry().ToStr(observer->CalculateCenter()));
   }
   #endif
-
-  TRACE(".");
 
   #ifdef FIX_ISSUE_224
   //Fuzzy while #214 is not fixed

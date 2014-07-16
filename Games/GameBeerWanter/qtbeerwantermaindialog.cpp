@@ -45,12 +45,25 @@ ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent)
     m_widget->GetBeerWanter()->GetWindowX(),
     m_widget->GetBeerWanter()->GetWindowY(),
     m_widget->GetBeerWanter()->GetWindowWidth(),
-    m_widget->GetBeerWanter()->GetWindowHeight());
+    m_widget->GetBeerWanter()->GetWindowHeight()
+  );
 
-  QObject::connect(m_widget.get(),SIGNAL(LevelUp(const std::string&)),
-    this,SLOT(ChangeTitle(const std::string&)));
-  QObject::connect(m_widget.get(),SIGNAL(DoShake(const int,const int)),
-    this,SLOT(OnShake(const int,const int)));
+  QObject::connect(
+    m_widget.get(),
+    &QtBeerWanterWidget::LevelUp,
+    //SxIGNAL(LevelUp(const std::string&)),
+    this,
+    &ribi::QtBeerWanterMainDialog::ChangeTitle
+    //SxLOT(ChangeTitle(const std::string&))
+  );
+  QObject::connect(
+    m_widget.get(),
+    &QtBeerWanterWidget::DoShake,
+    //SxIGNAL(DoShake(const int,const int)),
+    this,
+    &ribi::QtBeerWanterMainDialog::OnShake
+    //SxLOT(OnShake(const int,const int))
+  );
 }
 
 ribi::QtBeerWanterMainDialog::~QtBeerWanterMainDialog() noexcept

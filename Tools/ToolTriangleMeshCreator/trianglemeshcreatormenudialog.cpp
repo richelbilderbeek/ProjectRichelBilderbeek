@@ -530,7 +530,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TriangleMeshCreatorMenuDialog::Test");
-  const bool verbose = false;
+  const bool verbose{false};
   const int testing_depth = 1;
   {
     TriangleMeshCreatorMenuDialog d;

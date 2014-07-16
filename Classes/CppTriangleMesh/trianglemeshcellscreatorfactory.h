@@ -33,7 +33,8 @@ class CellsCreatorFactory
     const boost::shared_ptr<const Template> t,
     const int n_cell_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
-    const CreateVerticalFacesStrategy strategy
+    const CreateVerticalFacesStrategy strategy,
+    const bool verbose
   ) const noexcept;
 
 

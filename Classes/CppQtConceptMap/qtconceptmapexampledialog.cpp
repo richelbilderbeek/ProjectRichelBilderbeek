@@ -71,7 +71,7 @@ int ribi::cmap::QtExampleDialog::GetMinimumHeight(const Example& /*example*/) no
 
 void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& example)
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(example);
   if (m_example == example)
@@ -230,7 +230,7 @@ void ribi::cmap::QtExampleDialog::SetExample(const boost::shared_ptr<Example>& e
 
 void ribi::cmap::QtExampleDialog::OnCompetencyChanged(const Example * const example)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   assert(example);
 
   const int index_before = ui->box_competency->currentIndex();
@@ -289,7 +289,7 @@ void ribi::cmap::QtExampleDialog::Test() noexcept
 
 void ribi::cmap::QtExampleDialog::on_box_competency_currentIndexChanged(int index)
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   if (!m_example)
   {

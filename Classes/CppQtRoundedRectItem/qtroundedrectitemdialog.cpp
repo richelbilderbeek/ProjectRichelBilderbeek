@@ -233,7 +233,7 @@ void ribi::QtRoundedRectItemDialog::on_box_y_valueChanged(double arg1)
 
 void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRectItem>& item) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   assert(item);
   if (m_item == item)

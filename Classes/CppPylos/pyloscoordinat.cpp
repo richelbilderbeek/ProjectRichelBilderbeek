@@ -242,7 +242,7 @@ void ribi::pylos::Coordinat::Test() noexcept
     tested = true;
   }
   TRACE("Starting ribi::pylos::Coordinat::Test");
-  const bool verbose = false;
+  const bool verbose{false};
 
   if (verbose) { TRACE("Test PylosCoordinat operators"); }
   {

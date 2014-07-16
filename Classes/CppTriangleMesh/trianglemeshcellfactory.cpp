@@ -59,12 +59,14 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::Create
   assert(my_template);
   assert(my_template->CountFaces() == 2);
   const int n_cell_layers = 1;
+  const bool verbose{false};
   const boost::shared_ptr<CellsCreator> cells_creator {
     CellsCreatorFactory().Create(
       my_template,
       n_cell_layers,
       1.0 * boost::units::si::meter,
-      strategy
+      strategy,
+      verbose
     )
   };
   const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };

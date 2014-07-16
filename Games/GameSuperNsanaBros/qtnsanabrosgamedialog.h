@@ -30,10 +30,9 @@ public:
     QWidget *parent = 0);
   QtNsanaBrosGameDialog(const QtNsanaBrosGameDialog&) = delete;
   QtNsanaBrosGameDialog& operator=(const QtNsanaBrosGameDialog&) = delete;
-  ~QtNsanaBrosGameDialog();
+  ~QtNsanaBrosGameDialog() noexcept;
 
 protected:
-  void changeEvent(QEvent *e);
   void keyPressEvent(QKeyEvent *);
   void keyReleaseEvent(QKeyEvent *);
 

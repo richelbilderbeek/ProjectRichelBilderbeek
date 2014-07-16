@@ -193,7 +193,12 @@ ribi::kalman::QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel(QObje
   {
     QAbstractTableModel * const m = Find(KalmanFilterExperimentParameterType::state_names);
     assert(m);
-    QObject::connect(m,SIGNAL(dataChanged(QModelIndex,QModelIndex)),this,SLOT(OnStateNamesChanged()));
+    QObject::connect(
+      m,
+      &QAbstractTableModel::dataChanged, // SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+      this,
+      &ribi::kalman::QtKalmanFilterExperimentModel::OnStateNamesChanged //SLOT(OnStateNamesChanged())
+    );
   }
 }
 

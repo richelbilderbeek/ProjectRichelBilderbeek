@@ -335,7 +335,7 @@ void ribi::QtRoundedEditRectItem::SetPadding(const Padding& padding) noexcept
 
 void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text) noexcept
 {
-  const bool verbose = false;
+  const bool verbose{false};
 
   if (text != m_text)
   {

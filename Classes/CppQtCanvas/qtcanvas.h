@@ -36,16 +36,15 @@ public:
   ///Emitted when the QtCanvas is destroyed
   boost::signals2::signal<void()> m_signal_on_destroy;
 
-  virtual void keyPressEvent(QKeyEvent * e);
-  virtual void keyReleaseEvent(QKeyEvent * e);
-  virtual void paintEvent(QPaintEvent *);
+  virtual void keyPressEvent(QKeyEvent * e) override;
+  virtual void keyReleaseEvent(QKeyEvent * e) override;
+  virtual void paintEvent(QPaintEvent *) override;
 
 private:
   friend void boost::checked_delete<>(QtCanvas* x);
   friend void boost::checked_delete<>(const QtCanvas* x);
 
   boost::shared_ptr<Canvas> m_canvas;
-
 
   boost::shared_ptr<QImage> m_image; //Used as buffer
   //QTimer * const m_resize_timer;

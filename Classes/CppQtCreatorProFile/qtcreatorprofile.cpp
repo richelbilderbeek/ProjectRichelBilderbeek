@@ -124,7 +124,7 @@ std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
 
 void ribi::QtCreatorProFile::Parse(std::stringstream& data)
 {
-  const bool verbose = false;
+  const bool verbose{false};
   std::set<std::string> * p = nullptr; //A set to write to
   enum class Prefix { none, plus, minus };
   Prefix prefix = Prefix::none;
