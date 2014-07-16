@@ -62,7 +62,7 @@ boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexcept
 std::string ribi::DotMatrixString::GetString() const noexcept
 {
   std::string s;
-  for (const auto c: m_v) { s += c->GetChar(); }
+  for (const auto& c: m_v) { s += c->GetChar(); }
   return s;
 }
 

@@ -112,7 +112,7 @@ ribi::PolyFile::Edges ribi::PolyFileFromPolygons::ToEdges(
   ribi::PolyFile::Edges edges;
   int vertex_index = 0;
   int shape_first_vertex_index = 0;
-  for (const auto shape: polygons)
+  for (const auto& shape: polygons)
   {
     const int n = static_cast<int>(shape.outer().size());
 
@@ -130,7 +130,7 @@ ribi::PolyFile::Edges ribi::PolyFileFromPolygons::ToEdges(
     shape_first_vertex_index += n;
   }
 
-  for (const auto linestring: linestrings)
+  for (const auto& linestring: linestrings)
   {
     const int n = static_cast<int>(linestring.size());
 
@@ -161,16 +161,16 @@ ribi::PolyFile::Vertices ribi::PolyFileFromPolygons::ToVertices(
 ) noexcept
 {
   ribi::PolyFile::Vertices v;
-  for (const auto polygon: polygons)
+  for (const auto& polygon: polygons)
   {
-    for (const auto vertex: polygon.outer())
+    for (const auto& vertex: polygon.outer())
     {
       v.push_back(vertex);
     }
   }
-  for (const auto linestring: linestrings)
+  for (const auto& linestring: linestrings)
   {
-    for (const auto vertex: linestring)
+    for (const auto& vertex: linestring)
     {
       v.push_back(vertex);
     }

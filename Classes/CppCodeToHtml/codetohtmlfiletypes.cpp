@@ -174,7 +174,7 @@ void ribi::c2h::FileTypes::Test() noexcept
   //Test conversion between
   {
     const auto v = f.GetAllFileTypes();
-    for (auto t:v)
+    for (const auto& t:v)
     {
       assert(f.StrToFileType(f.FileTypeToStr(t)) == t);
     }

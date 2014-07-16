@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "codetohtml.h"
 
 #include <algorithm>
@@ -172,7 +173,7 @@ void ribi::c2h::Test()
 }
 #endif
 
-std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder) noexcept
 {
   std::vector<std::string> files {
     FilterFiles(
@@ -183,7 +184,7 @@ std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& fo
   return files;
 }
 
-std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& files)
+std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& files) noexcept
 {
   std::vector<std::string> v;
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
@@ -218,7 +219,7 @@ std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& 
 }
 
 
-std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files)
+std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files) noexcept
 {
   std::sort(files.begin(), files.end(),
     [](const std::string& lhs,const std::string& rhs)

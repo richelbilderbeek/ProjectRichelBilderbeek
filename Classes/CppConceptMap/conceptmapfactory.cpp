@@ -240,15 +240,15 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
     }
   }
   #ifndef NDEBUG
-  for (const auto concept_map: v)
+  for (const auto& concept_map: v)
   {
     assert(concept_map);
     assert(concept_map->IsValid());
-    for (const auto node: concept_map->GetNodes())
+    for (const auto& node: concept_map->GetNodes())
     {
       assert(node);
     }
-    for (const auto edge: concept_map->GetEdges())
+    for (const auto& edge: concept_map->GetEdges())
     {
       assert(edge);
       assert(edge->GetTo());
@@ -1013,14 +1013,14 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
 
 
   #ifndef NDEBUG
-  for (const auto concept_map: v)
+  for (const auto& concept_map: v)
   {
     assert(concept_map);
-    for (const auto node: concept_map->GetNodes())
+    for (const auto& node: concept_map->GetNodes())
     {
       assert(node);
     }
-    for (const auto edge: concept_map->GetEdges())
+    for (const auto& edge: concept_map->GetEdges())
     {
       assert(edge);
       assert(edge->GetTo());
@@ -1453,14 +1453,14 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
 
   assert(v.size() == 12);
   #ifndef NDEBUG
-  for (const auto concept_map: v)
+  for (const auto& concept_map: v)
   {
     assert(concept_map);
-    for (const auto node: concept_map->GetNodes())
+    for (const auto& node: concept_map->GetNodes())
     {
       assert(node);
     }
-    for (const auto edge: concept_map->GetEdges())
+    for (const auto& edge: concept_map->GetEdges())
     {
       assert(edge);
       assert(edge->GetTo());
@@ -1619,14 +1619,14 @@ std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFa
   }
 
   #ifndef NDEBUG
-  for (const auto concept_map: v)
+  for (const auto& concept_map: v)
   {
     assert(concept_map);
-    for (const auto node: concept_map->GetNodes())
+    for (const auto& node: concept_map->GetNodes())
     {
       assert(node);
     }
-    for (const auto edge: concept_map->GetEdges())
+    for (const auto& edge: concept_map->GetEdges())
     {
       assert(edge);
       assert(edge->GetTo());

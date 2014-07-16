@@ -150,7 +150,7 @@ std::vector<ValueType> array_values(
   const std::map<KeyType,ValueType>& m) noexcept
 {
   std::vector<ValueType> v;
-  for (auto p: m)
+  for (const auto& p: m)
   {
     v.push_back(p.second);
   }
@@ -163,7 +163,7 @@ std::map<KeyType,ValueType> array_values(
 {
   std::map<KeyType,ValueType> v;
   KeyType key = 0;
-  for (auto p: m)
+  for (const auto& p: m)
   {
     v[key] = p.second;
     ++key;

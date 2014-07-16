@@ -44,7 +44,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "[LESS_THAN]stdexcept[GREATER_THAN]","[$LESS_THAN]<a href=\"CppSt$dexceptH.htm\">st$dexcept</a>[GREATER_THAN]" },
     { "[LESS_THAN]streambuf[GREATER_THAN]","[$LESS_THAN]<a href=\"CppSt$reambufH.htm\">st$reambuf</a>[GREATER_THAN]" },
     { "[LESS_THAN]strstream[GREATER_THAN]","[$LESS_THAN]<a href=\"CppSt$rstreamH.htm\">st$rstream</a>[GREATER_THAN]" },
-    { "std::chrono::high_resolution_clock","<a href=\"C$ppS$tdH$igh_r$esolution_c$l$ock.htm\">s$td::c$hrono::h$igh_r$esolution_c$l$ock</a>" },
+    { "std::chrono::high_resolution_clock","<a href=\"C$ppS$tdS$tdH$igh_r$esolution_c$l$ock.htm\">s$td::c$hrono::h$igh_r$esolution_c$l$ock</a>" },
     { "richelbilderbeeknlsitemapgenerator","<a href=\"T$oolR$ichelb$ilderbeekN$lS$item$apG$enerator.htm\">r$ichelb$ilderbeekn$l$s$item$apg$enerator</a>" },
     { "testQtKeyboardFriendlyGraphicsView","<a href=\"T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">t$estQ$tK$eyboardF$riendlyG$raphicsV$iew</a>" },
     { "TestQtKeyboardFriendlyGraphicsView","<a href=\"T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">T$estQ$tK$eyboardF$riendlyG$raphicsV$iew</a>" },
@@ -397,7 +397,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "std::random_shuffle","<a href=\"C$ppS$tdRa$nd$om_shuffle.htm\">st$d::ra$nd$om_shuffle</a>" },
     { "std::remove_copy_if","<a href=\"C$ppS$tdRemove_copy_i$f.htm\">st$d::remove_copy_i$f</a>" },
     { "std::set_difference","<a href=\"C$ppS$tdSet_di$fference.htm\">st$d::set_di$fference</a>" },
-    { "std::unary_function","<a href=\"CppU$nary_f$unction.htm\">s$td::un$ary_fu$nction</a>" },
+    { "std::unary_function","<a href=\"C$ppS$tdU$nary_f$unction.htm\">s$td::un$ary_fu$nction</a>" },
     { "TestManyDigitNewick","<a href=\"T$oolT$estM$a$nyD$igitN$ewick.htm\">T$estM$a$nyD$igitN$ewick</a>" },
     { "testManyDigitNewick","<a href=\"T$oolT$estM$a$nyD$igitN$ewick.htm\">t$estM$a$nyD$igitN$ewick</a>" },
     { "thresholdfiltererVcl","<a href=\"T$oolT$hresholdF$iltererV$cl.htm\">t$hresholdf$iltererV$cl</a>" },
@@ -595,7 +595,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "std::timed_mutex","<a href=\"C$ppS$tdT$imed_m$utex.htm\">s$td::t$imed_m$utex</a>" },
     { "std::unique_copy","<a href=\"C$ppS$tdU$nique_c$opy.htm\">s$td::u$nique_c$opy</a>" },
     { "std::unique_lock","<a href=\"C$ppS$tdU$nique_l$ock.htm\">s$td::u$nique_l$ock</a>" },
-    { "std::upper_bound","<a href=\"CppUpper_bound.htm\">st$d::upper_bound</a>" },
+    { "std::upper_bound","<a href=\"C$ppS$tdU$pper_b$ound.htm\">st$d::u$pper_b$ound</a>" },
     { "styleSheetSetter","<a href=\"T$oolS$tyleS$heetS$etter.htm\">s$tyleS$heetS$etter</a>" },
     { "StyleSheetSetter","<a href=\"T$oolS$tyleS$heetS$etter.htm\">S$tyleS$heetS$etter</a>" },
     { "stylesheetsetter","<a href=\"T$oolS$tyleS$heetS$etter.htm\">s$tyles$heets$etter</a>" },
@@ -1305,7 +1305,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "std::strtok","<a href=\"C$ppS$tdS$trtok.htm\">s$td::st$rtok</a>" },
     { "std::strtol","<a href=\"C$ppS$tdS$trtol.htm\">s$td::st$rtol</a>" },
     { "std::system","<a href=\"C$ppS$tdS$ystem.htm\">s$td::sy$stem</a>" },
-    { "std::thread","<a href=\"C$ppT$hread.htm\">s$td::t$hread</a>" },
+    { "std::thread","<a href=\"C$ppS$tdT$hread.htm\">s$td::t$hread</a>" },
     { "std::time_t","<a href=\"C$ppS$tdT$$ime_t.htm\">s$td::ti$me_t</a>" },
     { "std::tmpnam","<a href=\"C$ppS$tdT$mpnam.htm\">s$td::tm$pnam</a>" },
     { "std::ungetc","<a href=\"C$ppS$tdU$ngetc.htm\">s$td::un$getc</a>" },
@@ -1796,7 +1796,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "Multiply","<a href=\"CppMult$iply.htm\">Mult$iply</a>" },
     { "ndsPaint","<a href=\"T$oolN$dsP$ai$nt.htm\">n$dsP$ai$nt</a>" },
     { "noexcept","<b><a href=\"C$ppN$oe$xcept.htm\">n$oe$xcept</a></b>" },
-    { "operator","<b><a href=\"CppOp$erator.htm\">ope$rator</a></b>" },
+    { "operator","<b><a href=\"C$ppOp$erator.htm\">ope$rator</a></b>" },
+    { "override","<b><a href=\"C$ppO$verr$ide.htm\">o$verr$ide</a></b>" },
     { "Profiler","<a href=\"CppP$rofiler.htm\">P$rofiler</a>" },
     { "profiler","<a href=\"CppP$rofiler.htm\">p$rofiler</a>" },
     { "ptr_list","<a href=\"C$ppP$tr_l$ist.htm\">p$tr_l$ist</a>" },
@@ -1874,7 +1875,6 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "adelete","ad$elete" },
     { "Android","<a href=\"CppA$ndroid.htm\">A$ndroid</a>" },
     { "apfloat","<a href=\"CppA$pf$loat.htm\">a$pf$loat</a>" },
-    { "Apfloat","<a href=\"CppA$pf$loat.htm\">A$pf$loat</a>" },
     { "asignal","as$ignal" },
     { "astruct","as$truct" },
     { "bdelete","bd$elete" },
@@ -2392,11 +2392,11 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "bemit","be$mit" },
     { "blong","bl$ong" },
     { "bmain","bm$ain" },
-    { "Boost","<a href=\"CppB$oost.htm\">Bo$ost</a>" },
     { "boost","<a href=\"CppB$oost.htm\">bo$ost</a>" },
     { "break","<b><a href=\"CppBr$eak.htm\">br$eak</a></b>" },
     { "C++0x","<a href=\"Cpp0x.htm\">C$+$+0x</a>" },
     { "C++11","<a href=\"Cpp11.htm\">C$+$+11</a>" },
+    { "C++1y","<a href=\"Cpp1y.htm\">C$+$+1y</a>" },
     { "C++98","<a href=\"Cpp98.htm\">C$+$+98</a>" },
     { "catch","<b><a href=\"CppCa$tch.htm\">ca$tch</a></b>" },
     { "cDial","cD$ial" },
@@ -2460,6 +2460,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "class","<b><a href=\"CppCl$ass.htm\">cl$ass</a></b>" },
     { "cln::","<a href=\"CppCln.htm\">c$ln</a>::" },
     { "clong","cl$ong" },
+    { "compl","<b><a href=\"C$ppC$ompl.htm\">c$ompl</a></b>" },
     { "cmain","cm$ain" },
     { "const","<b><a href=\"CppCo$nst.htm\">co$nst</a></b>" },
     { "dDial","dD$ial" },
@@ -3436,9 +3437,5 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "= ","<a href=\"CppO$peratorA$ssign.$htm\">=$</a> " }
  };
  std::copy(w.begin(),w.end(),std::back_inserter(v));
- {
-   TRACE("Number of replacements: ");
-   TRACE(v.size());
- }
  return v;
 }

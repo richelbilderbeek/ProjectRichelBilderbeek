@@ -151,7 +151,7 @@ ribi::Plane::Coordinats2D ribi::Plane::CalcProjection(
 
   TRACE("ERROR");
   TRACE("INITIAL POINTS");
-  for (const auto point: m_points)
+  for (const auto& point: m_points)
   {
     std::stringstream s;
     s
@@ -186,7 +186,7 @@ ribi::Plane::Coordinats2D ribi::Plane::CalcProjection(
       try { m_plane_z->CalcProjection(points); } catch (std::logic_error&) { TRACE("Failed m_plane_z->CalcProjection"); }
     }
   }
-  for (const auto point: points)
+  for (const auto& point: points)
   {
     std::stringstream s;
     s

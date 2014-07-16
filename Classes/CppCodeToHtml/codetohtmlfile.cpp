@@ -127,8 +127,7 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
           std::swap(lines_shorter,lines_text);
         }
       }
-      const std::vector<std::string> lines_html
-        = Replacer::ToHtml(lines_text,file_type);
+      const auto lines_html = Replacer().ToHtml(lines_text,file_type);
       std::transform(lines_html.begin(),lines_html.end(),std::back_inserter(v),
         [](const std::string& s)
         {

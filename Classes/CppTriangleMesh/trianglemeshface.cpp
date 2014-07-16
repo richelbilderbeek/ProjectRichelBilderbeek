@@ -54,7 +54,7 @@ ribi::trim::Face::Face(
   if (!Helper().IsConvex(m_points))
   {
     TRACE("ERROR");
-    for (auto point: m_points) TRACE(point->ToStr());
+    for (const auto& point: m_points) TRACE(point->ToStr());
   }
   #endif
   assert(sm_faces.count(this) == 0);
@@ -73,7 +73,7 @@ ribi::trim::Face::Face(
     if (m_points[0]->CanGetZ())
     {
       const auto z = m_points[0]->GetZ();
-      for (const auto p: m_points)
+      for (const auto& p: m_points)
       {
         assert(p->CanGetZ());
         assert(z == p->GetZ());
@@ -130,7 +130,7 @@ int ribi::trim::Face::CalcPriority() const noexcept
 
 bool ribi::trim::Face::CanExtractCoordinats() const noexcept
 {
-  for (const auto point: m_points)
+  for (const auto& point: m_points)
   {
     if (!point->CanGetZ()) return false;
   }
@@ -141,7 +141,7 @@ void ribi::trim::Face::CheckOrientation() const
 {
   assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
   std::set<double> zs;
-  for (auto point: m_points)
+  for (const auto& point: m_points)
   {
     if (point->CanGetZ()) { zs.insert(zs.begin(),point->GetZ().value()); }
   }
@@ -285,11 +285,13 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
 
   if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
   {
+    TRACE(".");
     std::sort(m_points.begin(),m_points.end(),Helper().OrderByX()); //For std::next_permutation
+    TRACE(".");
     //Must be ordered counter-clockwise (although the documentation says otherwise?)
     while (std::next_permutation(m_points.begin(),m_points.end(),Helper().OrderByX()))
     {
-      TRACE("."); HIERO
+      TRACE(".");
       assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
       if (
         Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
@@ -307,10 +309,12 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   {
     TRACE(m_points.size());
     
-    for (const auto point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
+    for (const auto& point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
     TRACE(Geometry().ToStr(observer->CalculateCenter()));
   }
   #endif
+
+  TRACE(".");
 
   #ifdef FIX_ISSUE_224
   //Fuzzy while #214 is not fixed
@@ -334,12 +338,12 @@ void ribi::trim::Face::Test() noexcept
   }
   TRACE("Starting ribi::trim::Face::Test");
   //Check that a Face has no owner nor neighbour when not added to a Cell
-  for (auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Face>> faces {
       FaceFactory().CreateTestPrism(strategy)
     };
-    for (auto face: faces)
+    for (const auto& face: faces)
     {
       assert(!(face->GetConstOwner().get()) && "Faces obtain an owner when being added to a Cell");
       assert(!(face->GetNeighbour().get()) && "Faces obtain a neighbour when beging added to a Cell twice");

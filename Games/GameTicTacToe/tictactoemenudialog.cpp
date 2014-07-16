@@ -47,7 +47,7 @@ int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std:
 {
   boost::shared_ptr<Ai> p1;
   boost::shared_ptr<Ai> p2;
-  for (const auto arg: argv)
+  for (const auto& arg: argv)
   {
     if (arg == "-e" || arg == "--1e") p1.reset(new AiEnforceDraw);
     if (arg == "-m" || arg == "--1m") p1.reset(new AiPlayRandom);

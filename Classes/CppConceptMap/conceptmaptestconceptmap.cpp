@@ -536,7 +536,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
   if (trace_verbose) { TRACE("Add nodes and edges"); }
   {
     const auto concept_maps = ConceptMapFactory::GetHeteromorphousTestConceptMaps();
-    for (const auto concept_map: concept_maps)
+    for (const auto& concept_map: concept_maps)
     {
       assert(concept_map);
       const int n_nodes_before = concept_map->GetNodes().size();

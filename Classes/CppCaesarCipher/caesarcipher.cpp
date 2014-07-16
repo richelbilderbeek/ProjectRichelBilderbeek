@@ -143,7 +143,7 @@ std::vector<std::string> ribi::CaesarCipher::GetVersionHistory() noexcept
 
 bool ribi::CaesarCipher::IsClean(const std::string& s) noexcept
 {
-  for (const auto c:s) { if (c < 'a' || c > 'z') return false; }
+  for (const auto& c:s) { if (c < 'a' || c > 'z') return false; }
   return true;
 }
 

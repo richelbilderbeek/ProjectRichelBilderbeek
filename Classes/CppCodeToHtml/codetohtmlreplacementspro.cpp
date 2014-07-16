@@ -135,7 +135,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "richelbilderbeekprogram","<a href=\"C$ppR$ichelB$ilderbeekP$rogram.htm\">r$ichelb$ilderbeekp$rogram</a>" },
     { "RichelBilderbeekProgram","<a href=\"C$ppR$ichelB$ilderbeekP$rogram.htm\">R$ichelB$ilderbeekP$rogram</a>" },
     { "ToolTestBroadcastServer","<a href=\"T$oolT$estB$roadc$astS$erver.htm\">T$oolT$estB$roadcastS$erver</a>" },
-    { "ToolTestManyDigitNewick","<a href=\"T$oolT$estM$anyD$igitN$ewick.htm\">T$oolT$estM$anyD$igitN$ewick</a>" },
+    { "ToolTestManyDigitNewick","<a href=\"T$oolT$estM$a$nyD$igitN$ewick.htm\">T$oolT$estM$a$nyD$igitN$ewick</a>" },
     { "ToolTriangleMeshCreator","<a href=\"T$oolT$riangleM$eshC$reator.htm\">T$oolT$riangleM$eshC$reator</a>" },
     { "wtbroadcastserverclient","<a href=\"C$ppW$tB$roadc$astS$erverC$lient.htm\">w$tb$roadc$asts$erverc$lient</a>" },
     { "WtBroadcastServerClient","<a href=\"C$ppW$tB$roadc$astS$erverC$lient.htm\">W$tB$roadc$astS$erverC$lient</a>" },
@@ -532,7 +532,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "wtsafetimer","<a href=\"C$ppW$tS$afeT$imer.htm\">w$ts$afet$imer</a>" },
     { "Brainweaver","<a href=\"P$rojectB$rai$nw$eaver.htm\">B$rai$nw$eaver</a>" },
     { "CppExercise","<a href=\"C$ppE$xercise.htm\">C$ppE$xercise</a>" },
-    { "CppGeometry","<a href=\"C$ppG$eometry.htm\">C$ppG$eometry</a>" },
+    { "CppGeometry","<a href=\"C$ppG$eomet$ry.htm\">C$ppG$eomet$ry</a>" },
     { "CppHtmlPage","<a href=\"C$ppH$tmlP$age.htm\">C$ppH$tmlP$age</a>" },
     { "CppOpenFoam","<a href=\"C$ppO$penF$oam.htm\">C$ppO$penF$oam</a>" },
     { "CppPolyFile","<a href=\"C$ppP$olyF$ile.htm\">C$ppP$olyF$ile</a>" },
@@ -727,7 +727,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "LIBS","<a href=\"CppQ$m$akeL$ibs.htm\">L$IBS</a>" },
   //3
     { "led","<a href=\"C$ppL$ed.htm\">l$ed</a>" },
-    { "Qwt","<a href=\"C$ppQ$wt.htm\">Qwt</a>" },
+    { "Qwt","<a href=\"C$ppQ$wt.htm\">Q$w$t</a>" },
   //1
     { "è","e" }
 

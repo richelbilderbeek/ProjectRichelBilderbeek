@@ -66,7 +66,7 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::tictactoe::QtTestTicTacToeMenuDialog::Test");
-  for (auto ai: Ais().GetAll())
+  for (const auto& ai: Ais().GetAll())
   {
     QtTestTicTacToeMainDialog(nullptr,ai);
   }

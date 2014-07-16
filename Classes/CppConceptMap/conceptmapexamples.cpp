@@ -235,7 +235,7 @@ std::string ribi::cmap::Examples::ToStr() const noexcept
   s << "{ ";
 
   //const std::vector<boost::shared_ptr<const Example> > examples = c->GetExamples();
-  for (const auto example: Get())
+  for (const auto& example: Get())
   {
     s << example->ToStr() << " ";
   };

@@ -37,7 +37,7 @@ void ribi::kalman::WhiteNoiseSystemTypes::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  for (const auto t: GetAllTypes())
+  for (const auto& t: GetAllTypes())
   {
     const std::string s = ToStr(t);
     assert(!s.empty());

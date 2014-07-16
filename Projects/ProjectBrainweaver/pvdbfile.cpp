@@ -314,7 +314,7 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::string &fi
     //FileToVector allowed an empty line after text, due to difference in line ending
     //SafeFileToVector should remove this line
 
-    for (const auto s: v) { xml+=s; }
+    for (const auto& s: v) { xml+=s; }
 
     xml.erase(std::remove(xml.begin(),xml.end(),'\r'),xml.end());
     xml.erase(std::remove(xml.begin(),xml.end(),'\t'),xml.end());

@@ -34,7 +34,7 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
   if (argc == 1)
   {
 
-    for (auto s: ValentineCardSymbols().CreateAlphabet().left)
+    for (const auto& s: ValentineCardSymbols().CreateAlphabet().left)
     {
       std::cout << s.first << "\n" << (*s.second->ToTextCanvas()) << std::endl;
     }

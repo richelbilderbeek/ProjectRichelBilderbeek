@@ -121,7 +121,7 @@ void ribi::trim::Point::SetZ(const boost::units::quantity<boost::units::si::leng
   //Let the Point check for themselves for being horizontal or vertical
   #ifndef NDEBUG
   if (GetConnected().empty()) return;
-  for (auto face: GetConnected())
+  for (const auto& face: GetConnected())
   {
     assert(face.lock());
     face.lock()->CheckOrientation();

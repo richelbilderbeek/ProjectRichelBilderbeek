@@ -2,18 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <vector>
-
-#include <QDir>
-#include <QFile>
-#include <QFileInfoList>
-
-#include "codetohtmlinfo.h"
 #include "codetohtmlmenudialog.h"
-#include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

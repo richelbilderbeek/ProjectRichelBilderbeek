@@ -50,11 +50,11 @@ struct Replacements
   Replacements(const Replacements&) = delete;
   Replacements& operator=(const Replacements&) = delete;
 
-  const std::vector<std::pair<std::string,std::string>>& Get() const { return m_replacements; }
+  const std::vector<std::pair<std::string,std::string>>& Get() const noexcept { return m_replacements; }
 
   private:
   friend struct Replacer;
-  Replacements(const std::vector<std::pair<std::string,std::string> >& replacements);
+  Replacements(const std::vector<std::pair<std::string,std::string> >& replacements) noexcept;
 
   ~Replacements() noexcept {}
   friend void boost::checked_delete<>(Replacements*);
@@ -65,9 +65,9 @@ struct Replacements
   const std::vector<std::pair<std::string,std::string>> m_replacements;
 
   static std::vector<std::pair<std::string,std::string>> CreateAllReplacements(
-    const std::vector<std::pair<std::string,std::string>>& replacements);
-  static std::vector<std::pair<std::string,std::string>> CreateEndReplacements();
-  static std::vector<std::pair<std::string,std::string>> CreateInitialReplacements();
+    const std::vector<std::pair<std::string,std::string>>& replacements) noexcept;
+  static std::vector<std::pair<std::string,std::string>> CreateEndReplacements() noexcept;
+  static std::vector<std::pair<std::string,std::string>> CreateInitialReplacements() noexcept;
 };
 
 } //~namespace c2h

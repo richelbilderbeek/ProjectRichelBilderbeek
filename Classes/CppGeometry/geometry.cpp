@@ -612,7 +612,7 @@ bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
 bool ribi::Geometry::IsConvex(const Coordinats2D& points) const noexcept
 {
   Polygon polygon;
-  for (const auto point: points)
+  for (const auto& point: points)
   {
     //TRACE(ToStr(point));
     boost::geometry::append(polygon,point);
@@ -642,7 +642,7 @@ bool ribi::Geometry::IsConvex(const ApCoordinats3D& points) const noexcept
   {
     TRACE("ERROR");
     TRACE(points.size());
-    for (const auto point: points) { TRACE(Geometry().ToStr(point)); }
+    for (const auto& point: points) { TRACE(Geometry().ToStr(point)); }
     TRACE("BREAK");
   }
   assert(IsPlane(points));
@@ -652,7 +652,7 @@ bool ribi::Geometry::IsConvex(const ApCoordinats3D& points) const noexcept
   {
     std::stringstream s;
     s << "{";
-    for (const auto point3d: points)
+    for (const auto& point3d: points)
     {
       s << ToStr(point3d) << ",";
     }
@@ -828,7 +828,7 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const Coordinats2D& points) co
 bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats3D& points3d) const noexcept
 {
   ApCoordinats2D points2d;
-  for (const auto point3d: points3d)
+  for (const auto& point3d: points3d)
   {
     points2d.push_back(
       {
@@ -1006,7 +1006,7 @@ ribi::Geometry::Linestrings ribi::Geometry::Rescale(
 ) const noexcept
 {
   Linestrings new_linestrings;
-  for (const auto linestring: linestrings)
+  for (const auto& linestring: linestrings)
   {
     new_linestrings.push_back(
       Rescale(linestring,scale,scale_origin_x,scale_origin_y)
@@ -1054,7 +1054,7 @@ ribi::Geometry::Polygons ribi::Geometry::Rescale(
 ) const noexcept
 {
   Polygons new_polygons;
-  for (const auto polygon: polygons)
+  for (const auto& polygon: polygons)
   {
     new_polygons.push_back(
       Rescale(polygon,scale,scale_origin_x,scale_origin_y)
@@ -1205,7 +1205,7 @@ int ribi::Geometry::ToInt(const Apfloat& a) const noexcept
 ribi::Geometry::Polygon ribi::Geometry::ToPolygon(const Linestring& linestring) const noexcept
 {
   std::vector<Coordinat2D> v;
-  for (const auto point: linestring) { v.push_back(point); }
+  for (const auto& point: linestring) { v.push_back(point); }
 
   Polygon polygon;
   if (v.empty()) return polygon;
@@ -1234,7 +1234,7 @@ std::string ribi::Geometry::ToStrSafe(const apfloat& f) const noexcept
 std::string ribi::Geometry::ToStr(const Apfloats& v) const noexcept
 {
   std::stringstream s;
-  for (const auto i:v) { s << ToStrSafe(i) << ','; }
+  for (const auto& i:v) { s << ToStrSafe(i) << ','; }
   std::string t = s.str();
   if (!t.empty()) t.pop_back();
   return t;
@@ -1254,7 +1254,7 @@ std::string ribi::Geometry::ToStr(const ApCoordinat2D& p) const noexcept
 std::string ribi::Geometry::ToStr(const ApCoordinats2D& v) const noexcept
 {
   std::stringstream s;
-  for (const auto i:v) { s << ToStr(i) << '-'; }
+  for (const auto& i:v) { s << ToStr(i) << '-'; }
   std::string t = s.str();
   if (!t.empty()) t.pop_back();
   return t;
@@ -1275,7 +1275,7 @@ std::string ribi::Geometry::ToStr(const ApCoordinat3D& p) const noexcept
 std::string ribi::Geometry::ToStr(const ApCoordinats3D& v) const noexcept
 {
   std::stringstream s;
-  for (const auto i:v) { s << ToStr(i) << '-'; }
+  for (const auto& i:v) { s << ToStr(i) << '-'; }
   std::string t = s.str();
   if (!t.empty()) t.pop_back();
   return t;
@@ -1466,14 +1466,14 @@ std::string ribi::Geometry::ToWkt(
 ) const noexcept
 {
   std::string s;
-  for (const auto polygon:polygons)
+  for (const auto& polygon:polygons)
   {
     const auto w = boost::geometry::wkt<>(polygon);
     std::stringstream t;
     t << w << ',';
     s += t.str();
   }
-  for (const auto linestring:linestrings)
+  for (const auto& linestring:linestrings)
   {
     const auto w = boost::geometry::wkt<>(linestring);
     std::stringstream t;
@@ -1525,7 +1525,7 @@ ribi::Geometry::Shapes ribi::Geometry::WktToShapes(const std::string& wkt) const
 {
   std::vector<std::string> v;
   const std::string regex_str = Regex().GetRegexShapes();
-  for (const auto s: Regex().GetRegexMatches(wkt,regex_str))
+  for (const auto& s: Regex().GetRegexMatches(wkt,regex_str))
   {
     v.push_back(s);
   }
@@ -1536,7 +1536,7 @@ ribi::Geometry::Shapes ribi::Geometry::WktToShapes(const std::vector<std::string
 {
   Polygons polygons;
   Linestrings linestrings;
-  for (const auto s: wkt)
+  for (const auto& s: wkt)
   {
     try
     {

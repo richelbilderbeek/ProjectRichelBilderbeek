@@ -169,7 +169,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
       TRACE(s);
       TRACE(Regex().GetRegexName());
       TRACE(v.size());
-      for (const auto t: v) { TRACE(t); }
+      for (const auto& t: v) { TRACE(t); }
       TRACE("BREAK");
     }
     #endif

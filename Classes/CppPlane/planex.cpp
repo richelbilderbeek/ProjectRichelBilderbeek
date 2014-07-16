@@ -102,7 +102,7 @@ ribi::PlaneX::Double ribi::PlaneX::CalcMinErrorPerC() noexcept
         const Coordinat3D p2(  x,  y,0.0);
         const Coordinat3D p3(  x,0.0,z);
         const PlaneX p(p1,p2,p3);
-        for (const auto p4: { p1, p2, p3 } )
+        for (const auto& p4: { p1, p2, p3 } )
         {
           const auto error = p.CalcError(p4);
           const auto error_per_c = error / p.GetFunctionC();

@@ -37,7 +37,7 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
 
   assert(!points.empty());
   Value sum(0.0,0.0,0.0);
-  for (const auto point: points)
+  for (const auto& point: points)
   {
     assert(point);
     assert(point->GetCoordinat());
@@ -115,7 +115,7 @@ std::set<
       return ribi::trim::Less(lhs,rhs);
     }
   );
-  for (const auto point: points)
+  for (const auto& point: points)
   {
     if (!point->CanGetZ())
     {
@@ -151,7 +151,7 @@ bool ribi::trim::Helper::IsClockwise(
 {
   
   std::vector<Coordinat3D> coordinats;
-  for (auto point: points)
+  for (const auto& point: points)
   {
     assert(point);
     coordinats.push_back(point->GetCoordinat3D());
@@ -224,7 +224,7 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim
   {
     std::stringstream s;
     s << "{";
-    for (auto point3d: points)
+    for (const auto& point3d: points)
     {
       assert(point3d);
       s << (*point3d) << ",";
@@ -252,7 +252,7 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim
   assert(points[3]->GetZ() == const_points[3]->GetZ());
 
   #ifndef NDEBUG
-  for (auto point: const_points) { assert(point); }
+  for (const auto& point: const_points) { assert(point); }
   #endif
   return IsConvex(const_points);
 }
@@ -316,7 +316,7 @@ void ribi::trim::Helper::MakeConvex(
 {
   const bool verbose = false;
   #ifndef NDEBUG
-  for (auto p: points) { assert(p); }
+  for (const auto& p: points) { assert(p); }
   assert(!points.empty());
   assert(points.size() == 4);
   #endif
@@ -431,7 +431,7 @@ std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesia
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   std::vector<Coordinat3D> v;
-  for (auto p: points)
+  for (const auto& p: points)
   {
     assert(p);
     assert(p->GetCoordinat());
@@ -580,7 +580,7 @@ void ribi::trim::Helper::Test() noexcept
       coordinats2d.push_back(coordinat);
     }
     std::vector<boost::shared_ptr<Point>> points;
-    for (const auto coordinat2d: coordinats2d)
+    for (const auto& coordinat2d: coordinats2d)
     {
       const auto point(PointFactory().Create(coordinat2d));
       assert(point);
@@ -610,7 +610,7 @@ void ribi::trim::Helper::Test() noexcept
       coordinats3d.push_back(coordinat);
     }
     std::vector<boost::shared_ptr<Point>> points;
-    for (auto coordinat: coordinats3d)
+    for (const auto& coordinat: coordinats3d)
     {
       boost::shared_ptr<const Coordinat2D> coordinat2d(
         new Coordinat2D(
@@ -654,7 +654,7 @@ void ribi::trim::Helper::Test() noexcept
     }
 
     std::vector<boost::shared_ptr<Point>> points;
-    for (auto coordinat: coordinats3d)
+    for (const auto& coordinat: coordinats3d)
     {
       boost::shared_ptr<const Coordinat2D> coordinat2d(
         new Coordinat2D(
@@ -688,7 +688,7 @@ std::string ribi::trim::Helper::ToStr(
 {
   std::stringstream s;
   s << " {";
-  for (auto point:points) { s << point->GetIndex() << ","; }
+  for (const auto& point:points) { s << point->GetIndex() << ","; }
   std::string t(s.str());
   t[ t.size() - 1] = '}';
   return t;

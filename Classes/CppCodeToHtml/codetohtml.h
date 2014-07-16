@@ -45,18 +45,17 @@ namespace c2h {
   ///Convert a code snippet
   std::vector<std::string> ConvertCodeSnippet(
     const std::vector<std::string>& code,
-    const SnippetType snippet_type);
+    const SnippetType snippet_type
+  ) noexcept;
 
   ///Convert a file
   std::vector<std::string> ConvertFile(
     const std::string& filename,
-    const FileType file_type);
-
-  ///Convert a .pro file
-  //std::vector<std::string> ConvertProject(const std::string& filename);
+    const FileType file_type
+  ) noexcept;
 
   ///Filter files: only let .pro, .h, .hpp, . cpp, .c and .sh files pass
-  std::vector<std::string> FilterFiles(const std::vector<std::string>& files);
+  std::vector<std::string> FilterFiles(const std::vector<std::string>& files) noexcept;
 
   #ifndef _WIN32
   ///Tests if the HTML is clean, this will be checked by the tool 'tidy'
@@ -71,10 +70,10 @@ namespace c2h {
   #endif
 
   ///Sort files: .pro files first, then X.h, X.cpp, then .sh files
-  std::vector<std::string> SortFiles(std::vector<std::string> files);
+  std::vector<std::string> SortFiles(std::vector<std::string> files) noexcept;
 
   ///Obtain the sorted files in a folder
-  std::vector<std::string> GetSortedFilesInFolder(const std::string& folder);
+  std::vector<std::string> GetSortedFilesInFolder(const std::string& folder) noexcept;
 
 } //~namespace c2h
 } //~namespace ribi

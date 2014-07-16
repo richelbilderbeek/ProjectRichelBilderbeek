@@ -182,7 +182,7 @@ std::map<char,double> ribi::CodeBreaker::GetCharFrequency(const std::string& tex
   );
   assert(sum > 0);
   std::map<char,double> n;
-  for (const auto p: m)
+  for (const auto& p: m)
   {
     n.insert(std::make_pair(p.first, static_cast<double>(p.second) / static_cast<double>(sum)));
   }
@@ -192,7 +192,7 @@ std::map<char,double> ribi::CodeBreaker::GetCharFrequency(const std::string& tex
 std::map<char,int> ribi::CodeBreaker::GetCharTally(const std::string& text) const noexcept
 {
   std::map<char,int> m;
-  for (const auto c:text)
+  for (const auto& c:text)
   {
     if (m.count(c) == 0) m.insert(std::make_pair(c,0));
     ++m[c];
@@ -216,7 +216,7 @@ std::vector<std::map<char,double>> ribi::CodeBreaker::GetCharFrequency(const std
     );
     assert(sum > 0);
     std::map<char,double> n;
-    for (const auto p: m)
+    for (const auto& p: m)
     {
       n.insert(std::make_pair(p.first, static_cast<double>(p.second) / static_cast<double>(sum)));
     }

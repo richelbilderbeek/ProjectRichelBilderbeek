@@ -19,7 +19,7 @@ ribi::foam::Face::Face(
   #ifndef NDEBUG
   assert(!m_neighbour);
   assert(!m_owner);
-  for (auto p: m_points) { assert(p); }
+  for (const auto& p: m_points) { assert(p); }
   #endif
 }
 

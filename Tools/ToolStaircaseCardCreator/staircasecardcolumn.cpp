@@ -94,7 +94,7 @@ void ribi::scc::Column::Swap(const int a, const int b) noexcept
 std::string ribi::scc::Column::ToStr() const noexcept
 {
   std::string s;
-  for (auto c: m_v)
+  for (const auto& c: m_v)
   {
     s += (c == Orientation::horizontal ? 'h' : 'v');
   }

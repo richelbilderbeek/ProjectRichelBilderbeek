@@ -17547,14 +17547,15 @@ std::string ribi::c2h::Info::GetTime() noexcept
 
 std::string ribi::c2h::Info::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
 {
   return {
     "2013-09-20: version 1.0: initial versioning, added tests",
-    "2013-10-04: version 1.1: added display of when the program is executed"
+    "2013-10-04: version 1.1: added display of when the program is executed",
+    "2014-07-16: version 1.2: let std::x go to page CppStdX.htm, 4000 C++ replacements"
   };
 }
 

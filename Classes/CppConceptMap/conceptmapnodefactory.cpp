@@ -152,8 +152,8 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::
       TRACE(s);
       TRACE(Regex().GetRegexConcept());
       TRACE(v.size());
-      for (const auto t:v) { TRACE(t); }
-      for (const auto t: xml::XmlToPretty(s)) { TRACE(t); }
+      for (const auto& t:v) { TRACE(t); }
+      for (const auto& t: xml::XmlToPretty(s)) { TRACE(t); }
       TRACE("BREAK");
     }
     #endif

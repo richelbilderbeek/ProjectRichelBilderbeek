@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::c2h::Replacements::Replacements(
-  const std::vector<std::pair<std::string,std::string> >& replacements)
+  const std::vector<std::pair<std::string,std::string>>& replacements) noexcept
   : m_replacements(CreateAllReplacements(replacements))
 {
   #ifndef NDEBUG
@@ -134,7 +134,8 @@ ribi::c2h::Replacements::Replacements(
 
 std::vector<std::pair<std::string,std::string>>
   ribi::c2h::Replacements::CreateAllReplacements(
-    const std::vector<std::pair<std::string,std::string> >& replacements)
+    const std::vector<std::pair<std::string,std::string> >& replacements
+) noexcept
 {
   std::vector<std::pair<std::string,std::string> > v;
   //Initial
@@ -176,7 +177,7 @@ std::vector<std::pair<std::string,std::string>>
   return v;
 }
 
-std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateEndReplacements()
+std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateEndReplacements() noexcept
 {
   return
   {
@@ -192,7 +193,7 @@ std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::Create
   };
 }
 
-std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateInitialReplacements()
+std::vector<std::pair<std::string,std::string>> ribi::c2h::Replacements::CreateInitialReplacements() noexcept
 {
   return
   {

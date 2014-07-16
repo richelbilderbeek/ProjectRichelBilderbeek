@@ -160,7 +160,7 @@ void ribi::xnz::Dialog::DrawSprites()
     mSpritePlayer->GetY(),
     mSpritePlayer->GetGraphic());
 
-  for(auto s: mSprites)
+  for(const auto& s: mSprites)
   {
     mArea->Draw(s->GetX(), s->GetY(), s->GetGraphic());
   }

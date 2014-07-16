@@ -54,7 +54,7 @@ boost::shared_ptr<QImage> ribi::DotMatrixText::CreateImage() const noexcept
     new QImage(total_width,total_height,QImage::Format_RGB32)
   };
   int offset = 0;
-  for (const auto v: m_v)
+  for (const auto& v: m_v)
   {
     const int height = line_height;
     const int width  = total_width;
@@ -84,7 +84,7 @@ boost::shared_ptr<QImage> ribi::DotMatrixText::CreateImage() const noexcept
 std::vector<std::string> ribi::DotMatrixText::GetText() const noexcept
 {
   std::vector<std::string> s;
-  for (const auto c: m_v) { s.push_back(c->GetString()); }
+  for (const auto& c: m_v) { s.push_back(c->GetString()); }
   return s;
 }
 

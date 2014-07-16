@@ -40,7 +40,7 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
   };
   assert(cell);
 
-  for (auto face: faces)
+  for (const auto& face: faces)
   {
     assert(face);
     face->AddBelongsTo(cell);
@@ -74,7 +74,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::Create
   for (int i=0; i!=2; ++i)
   {
     const std::vector<boost::shared_ptr<Face>> faces { cells[i]->GetFaces() };
-    for (const auto face: faces)
+    for (const auto& face: faces)
     {
       assert(face);
       assert(face->GetPoints().size() == 3 || face->GetPoints().size() == 4);
@@ -109,7 +109,7 @@ void ribi::trim::CellFactory::Test() noexcept
   }
   TRACE("Starting ribi::trim::CellFactory::Test");
   //Create prism
-  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const boost::shared_ptr<Cell> prism {
       CellFactory().CreateTestPrism(strategy)

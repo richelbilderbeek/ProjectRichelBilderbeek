@@ -47,7 +47,7 @@ ribi::QtTestQtRoundedRectItemModifyDialog::QtTestQtRoundedRectItemModifyDialog(Q
   #endif
   ui->setupUi(this);
 
-  for (auto widget: { ui->widget_left,ui->widget_right })
+  for (const auto& widget: { ui->widget_left,ui->widget_right })
   {
     if (!widget->layout())
     {

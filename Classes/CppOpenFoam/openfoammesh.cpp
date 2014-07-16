@@ -117,7 +117,7 @@ ribi::foam::Mesh::Mesh(
       assert(m.find(owner) != m.end());
       (*m.find(owner)).second.push_back(face);
     }
-    for (auto p: m)
+    for (const auto& p: m)
     {
       p.first->AssignOwnedFaces(p.second);
     }

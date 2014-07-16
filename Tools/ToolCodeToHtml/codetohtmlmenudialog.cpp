@@ -21,7 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "codetohtmlmenudialog.h"
 
 #include <algorithm>
@@ -154,12 +154,13 @@ ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
-    "the 27th of April 2014",
+    "the 16th of July 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
     GetVersionHistory()
   };
+  a.AddLibrary("CodeToHtml (class) version: " + c2h::Info::GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
@@ -190,7 +191,7 @@ boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::GetProgr
 
 std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
 {
-  return "3.1";
+  return "3.2";
 }
 
 std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
@@ -233,7 +234,8 @@ std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() co
     "2013-09-26: version 2.9: use of boost::checked_delete on all classes, removed use of Boost.Program_options"
     "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek",
     "2013-11-26: version 3.0: improved interface and architecture, support for OpenFOAM projects",
-    "2014-04-27: version 3.1: prevents huge HTML file creation"
+    "2014-04-27: version 3.1: prevents huge HTML file creation",
+    "2014-07-16: version 3.2: 4000 replacements, increased use of C++11, link std::x to CppStdX.htm"
   };
   return v;
 }

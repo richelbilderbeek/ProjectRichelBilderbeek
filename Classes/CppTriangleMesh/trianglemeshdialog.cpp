@@ -536,7 +536,7 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
       assert(c);
       cells = c->GetCells();
       #ifndef NDEBUG
-      for (const auto cell:cells) { assert(cell); }
+      for (const auto& cell:cells) { assert(cell); }
       #endif
     }
 
@@ -585,13 +585,13 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
 
   if (verbose) { std::clog << "Checking the cells" << std::endl; }
   {
-    for (const auto cell: cells)
+    for (const auto& cell: cells)
     {
       assert(cell);
-      for (const auto face: cell->GetFaces())
+      for (const auto& face: cell->GetFaces())
       {
         assert(face);
-        for (const auto point: face->GetPoints())
+        for (const auto& point: face->GetPoints())
         {
           assert(point);
         }

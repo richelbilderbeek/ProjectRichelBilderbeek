@@ -64,7 +64,7 @@ ribi::QtCreatorProFileZipScript::QtCreatorProFileZipScript(
   ribi::QtCreatorProFileZipScript::Test();
   assert(fileio::FileIo().IsUnixPath(m_pro_file_name));
   assert(pro_file);
-  for (auto s: m_filenames)
+  for (const auto& s: m_filenames)
   {
     assert(ribi::fileio::FileIo().IsRegularFile(s));
   }
@@ -320,9 +320,9 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
       filenames.push_back(t);
     }
   }
-  for (const auto s: filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
+  for (const auto& s: filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
   for (std::string& s: filenames) { s = fileio::FileIo().SimplifyPath(s); }
-  for (const auto s: filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
+  for (const auto& s: filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
   std::sort(filenames.begin(),filenames.end());
   filenames.erase( std::unique(filenames.begin(),filenames.end()), filenames.end() );
 

@@ -155,14 +155,14 @@ std::vector<std::string> ribi::VigenereCipher::GetVersionHistory() noexcept
 
 bool ribi::VigenereCipher::IsClean(const std::string& s) noexcept
 {
-  for (const auto c:s) { if (c < 'a' || c > 'z') return false; }
+  for (const auto& c:s) { if (c < 'a' || c > 'z') return false; }
   return true;
 }
 
 std::vector<int> ribi::VigenereCipher::StrToKey(const std::string& s) noexcept
 {
   std::vector<int> v;
-  for (const auto c: s)
+  for (const auto& c: s)
   {
     #ifndef NDEBUG
     if (!(c >= 'a'))

@@ -71,7 +71,7 @@ int ribi::ToolTestApproximatorMenuDialog::ExecuteSpecific(const std::vector<std:
   {
     std::vector<double> xs;
     std::vector<double> ys;
-    for (const auto p: a.Get())
+    for (const auto& p: a.Get())
     {
       c.DrawDot(
         static_cast<double>(p.first),

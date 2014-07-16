@@ -52,7 +52,7 @@ void ribi::TextCanvas::Clear() noexcept
   }
 
   #ifndef NDEBUG
-  for (auto row: m_canvas)
+  for (const auto& row: m_canvas)
   {
     assert(std::count(row.begin(),row.end(),' ') == static_cast<int>(row.size()));
   }
@@ -118,7 +118,7 @@ void ribi::TextCanvas::PutChar(const int x, const int y, const char c) noexcept
 void ribi::TextCanvas::PutText(const int x, const int y, const std::string& text) noexcept
 {
   int i=0;
-  for (const auto c: text)
+  for (const auto& c: text)
   {
     const int x_here = x + i;
     const int y_here = y;
@@ -192,7 +192,7 @@ std::string ribi::TextCanvas::ToString() const noexcept
 {
   const std::vector<std::string> v { ToStrings() };
   std::string s;
-  for (const auto t: v)
+  for (const auto& t: v)
   {
     s += t;
     s += '\n';

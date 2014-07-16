@@ -54,7 +54,7 @@ struct File
 
   ///Get the HTML version of the file.
   ///The content is created by CreateHtml
-  const std::vector<std::string>& GetHtml() const { return m_html; }
+  const std::vector<std::string>& GetHtml() const noexcept { return m_html; }
 
   private:
   ~File() noexcept {}

@@ -46,9 +46,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::BinaryNewickVector::BinaryNewickVector(const std::string& s)
+ribi::BinaryNewickVector::BinaryNewickVector(const std::string& s) noexcept
   : m_v{Newick::StringToNewick(s)}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   assert(Newick::IsUnaryNewick(Newick::StringToNewick(s))
       || Newick::IsBinaryNewick(Newick::StringToNewick(s)));
 
@@ -57,31 +61,35 @@ ribi::BinaryNewickVector::BinaryNewickVector(const std::string& s)
   //assert(m_v.empty() || Newick::IsNewick(m_v));
 }
 
-ribi::BinaryNewickVector::BinaryNewickVector(const std::vector<int>& v)
+ribi::BinaryNewickVector::BinaryNewickVector(const std::vector<int>& v) noexcept
   : m_v{v}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   assert(Newick::IsUnaryNewick(m_v) || Newick::IsBinaryNewick(m_v));
   assert(m_v.empty() || Newick::IsNewick(m_v));
 }
 
-double ribi::BinaryNewickVector::CalcDenominator(const double theta) const
+double ribi::BinaryNewickVector::CalcDenominator(const double theta) const noexcept
 {
   return Newick::CalcDenominator(Peek(),theta);
 }
 
-const BigInteger ribi::BinaryNewickVector::CalcNumOfCombinations() const
+const BigInteger ribi::BinaryNewickVector::CalcNumOfCombinations() const noexcept
 {
   assert(Newick::IsNewick(m_v));
   return Newick::CalcNumOfCombinationsBinary(m_v);
 }
 
-const BigInteger ribi::BinaryNewickVector::CalcNumOfSymmetries() const
+const BigInteger ribi::BinaryNewickVector::CalcNumOfSymmetries() const noexcept
 {
   assert(Newick::IsNewick(m_v));
   return Newick::CalcNumOfSymmetriesBinary(m_v);
 }
 
-double ribi::BinaryNewickVector::CalcProbabilitySimpleNewick(const double theta) const
+double ribi::BinaryNewickVector::CalcProbabilitySimpleNewick(const double theta) const noexcept
 {
   assert(Newick::IsSimple(m_v));
   assert(theta > 0.0);
@@ -90,7 +98,8 @@ double ribi::BinaryNewickVector::CalcProbabilitySimpleNewick(const double theta)
 
 double ribi::BinaryNewickVector::CalculateProbability(
   const std::string& newick_str,
-  const double theta)
+  const double theta
+) noexcept
 {
   assert(Newick::IsNewick(newick_str));
   assert(Newick::IsUnaryNewick(Newick::StringToNewick(newick_str))
@@ -108,7 +117,7 @@ double ribi::BinaryNewickVector::CalculateProbability(
 double ribi::BinaryNewickVector::CalculateProbabilityInternal(
   const BinaryNewickVector& n,
   const double theta,
-  NewickStorage<BinaryNewickVector>& storage)
+  NewickStorage<BinaryNewickVector>& storage) noexcept
 {
   //#define DEBUG_BINARYNEWICKVECTOR_CALCULATEPROBABILITYINTERNAL
   while(1)
@@ -202,7 +211,7 @@ double ribi::BinaryNewickVector::CalculateProbabilityInternal(
   }
 }
 
-const std::vector<ribi::BinaryNewickVector> ribi::BinaryNewickVector::GetSimplerNewicks() const
+std::vector<ribi::BinaryNewickVector> ribi::BinaryNewickVector::GetSimplerNewicks() const noexcept
 {
   assert(Newick::IsNewick(m_v));
   const std::vector<std::vector<int> > v = Newick::GetSimplerBinaryNewicks(m_v);
@@ -210,7 +219,8 @@ const std::vector<ribi::BinaryNewickVector> ribi::BinaryNewickVector::GetSimpler
   return w;
 }
 
-const std::pair<ribi::BinaryNewickVector,ribi::BinaryNewickVector> ribi::BinaryNewickVector::GetRootBranches() const
+std::pair<ribi::BinaryNewickVector,ribi::BinaryNewickVector>
+  ribi::BinaryNewickVector::GetRootBranches() const noexcept
 {
   assert(Newick::IsNewick(m_v));
   std::pair<std::vector<int>,std::vector<int> > p
@@ -235,7 +245,7 @@ std::vector<std::string> ribi::BinaryNewickVector::GetVersionHistory() noexcept
   };
 }
 
- bool ribi::BinaryNewickVector::IsCloseBracketRight(const int pos) const
+ bool ribi::BinaryNewickVector::IsCloseBracketRight(const int pos) const noexcept
 {
   const int sz = m_v.size();
 
@@ -254,7 +264,7 @@ std::vector<std::string> ribi::BinaryNewickVector::GetVersionHistory() noexcept
   return true;
 }
 
-bool ribi::BinaryNewickVector::IsOpenBracketLeft(const int pos) const
+bool ribi::BinaryNewickVector::IsOpenBracketLeft(const int pos) const noexcept
 {
   assert(pos >= 0);
   assert(pos < static_cast<int>(m_v.size()));
@@ -271,7 +281,7 @@ bool ribi::BinaryNewickVector::IsOpenBracketLeft(const int pos) const
   return true;
 }
 
-bool ribi::BinaryNewickVector::IsSimple() const
+bool ribi::BinaryNewickVector::IsSimple() const noexcept
 {
   return Newick::IsSimple(m_v);
 }
@@ -297,7 +307,7 @@ bool ribi::BinaryNewickVector::IsSimple() const
 // -> bracket_close_pos = 7
 // -> sz_loss = 4 = 7 - 3 = bracket_close_pos - bracket_open_pos
 // -> new_sz = 5
-const ribi::BinaryNewickVector ribi::BinaryNewickVector::LoseBrackets(const int x, const int i) const
+ribi::BinaryNewickVector ribi::BinaryNewickVector::LoseBrackets(const int x, const int i) const noexcept
 {
   assert(i >= 0);
   assert(i < Size());
@@ -352,7 +362,7 @@ int ribi::BinaryNewickVector::Size() const noexcept
   return boost::numeric_cast<int>(m_v.size());
 }
 
-const ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsNotOne(const int i) const
+ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsNotOne(const int i) const noexcept
 {
   assert(m_v[i]>1);
   std::vector<int> v(m_v);
@@ -383,7 +393,7 @@ const ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsNotOne(const int 
 //        ^    EXIT-1
 // ((1,2,3),3), string_pos 3 -> (3,3) //Might be incorrect: algorithm holds for two numbers between brackets
 //    ^
-const ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsOne(const int i) const
+ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsOne(const int i) const noexcept
 {
   const int sz = m_v.size();
 
@@ -422,17 +432,19 @@ const ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsOne(const int i) 
   return BinaryNewickVector(std::vector<int>());
 }
 
+
+#ifndef NDEBUG
 void ribi::BinaryNewickVector::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
   //Check that well-formed Newicks are confirmed valid
   {
-    const std::vector<std::string> v = Newick::CreateValidNewicks();
-    for(const std::string& s: v)
+    const auto v = Newick::CreateValidNewicks();
+    for(const auto& s: v)
     {
       TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
@@ -511,6 +523,7 @@ void ribi::BinaryNewickVector::Test() noexcept
     }
   }
 }
+#endif
 
 std::string ribi::BinaryNewickVector::ToStr() const noexcept
 {
@@ -520,7 +533,6 @@ std::string ribi::BinaryNewickVector::ToStr() const noexcept
 
 bool ribi::operator<(const BinaryNewickVector& lhs, const BinaryNewickVector& rhs) noexcept
 {
-  //return lhs.v < rhs.v;
   return ribi::BinaryNewickVector::NewickCompare(lhs.Peek(),rhs.Peek());
 }
 

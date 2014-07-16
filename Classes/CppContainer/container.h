@@ -62,7 +62,7 @@ struct Container
   {
     std::string str;
     std::stringstream s;
-    for (const auto t: set) { s << t << ","; }
+    for (const auto& t: set) { s << t << ","; }
     str = s.str();
     str.pop_back();
     str = "{" + str + "}";
@@ -74,7 +74,7 @@ struct Container
   {
     std::string str;
     std::stringstream s;
-    for (const auto t: v) { s << t << ","; }
+    for (const auto& t: v) { s << t << ","; }
     str = s.str();
     str.pop_back();
     str = "{" + str + "}";

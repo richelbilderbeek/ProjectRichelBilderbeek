@@ -129,7 +129,7 @@ std::vector<boost::shared_ptr<ribi::OpenQuestion>>
   ribi::OpenQuestionFactory::GetTestOpenQuestions() const noexcept
 {
   std::vector<boost::shared_ptr<OpenQuestion>> v;
-  for (auto s: GetValidOpenQuestionStrings())
+  for (const auto& s: GetValidOpenQuestionStrings())
   {
     v.push_back(Create(s));
   }

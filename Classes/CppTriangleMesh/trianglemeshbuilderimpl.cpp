@@ -197,9 +197,9 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       << std::endl
     ;
   }
-  for (const auto cell: m_cells)
+  for (const auto& cell: m_cells)
   {
-    for (const auto face: cell->GetFaces())
+    for (const auto& face: cell->GetFaces())
     {
       assert(face->GetConstOwner() == cell
         || face->GetNeighbour() == cell
@@ -216,7 +216,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       << std::endl
     ;
   }
-  for (const auto face: m_faces)
+  for (const auto& face: m_faces)
   {
     assert(face);
     const auto owner = face->GetConstOwner();
@@ -258,7 +258,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       << std::endl
     ;
   }
-  for (auto cell: m_cells) { cell->SetIndex(Cell::sm_cell_no_index); }
+  for (const auto& cell: m_cells) { cell->SetIndex(Cell::sm_cell_no_index); }
 
   if (verbose)
   {
@@ -267,7 +267,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
       << std::endl
     ;
   }
-  for (auto face: m_faces) { face->SetIndex(Face::sm_face_no_index); }
+  for (const auto& face: m_faces) { face->SetIndex(Face::sm_face_no_index); }
 
   if (verbose)
   {
@@ -391,7 +391,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   }
 
   #ifndef NDEBUG
-  for (auto cell: m_cells)
+  for (const auto& cell: m_cells)
   {
     assert(cell->GetIndex() != Cell::sm_cell_no_index
       && "All cells must have been assigned an index, #221");
@@ -412,7 +412,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
           << " and " << m_cells[i]->GetFaces().size() << " faces:";
         TRACE(s.str());
       }
-      for (auto face: m_cells[i]->GetFaces())
+      for (const auto& face: m_cells[i]->GetFaces())
       {
         std::stringstream s;
         s << "owner: " << face->GetConstOwner()->GetIndex()
@@ -450,7 +450,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
           TRACE(m_faces.max_size());
           TRACE(i);
           TRACE(m_cells[i]->GetFaces().size());
-          for (auto face: m_cells[i]->GetFaces())
+          for (const auto& face: m_cells[i]->GetFaces())
           {
             std::stringstream s;
             s << "owner: " << face->GetConstOwner()->GetIndex()
@@ -513,10 +513,10 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
 
     for (int cell_index=0; cell_index!=max_cell_index; ++cell_index)
     {
-      for (auto cell: m_cells)
+      for (const auto& cell: m_cells)
       {
         if (cell->GetIndex() != cell_index) continue;
-        for (auto face: cell->GetFaces())
+        for (const auto& face: cell->GetFaces())
         {
           if (face->GetIndex() == Face::sm_face_no_index)
           {
@@ -692,7 +692,7 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
         assert(!face->GetNeighbour() || face->GetNeighbour()->GetIndex() >= 0);
         //assert(!face->GetNeighbour() || face->GetNeighbour()->GetIndex() <  static_cast<int>(m_cells.size())
         // && "Index actually might be bigger than the size");
-        for (const auto point: face->GetPoints())
+        for (const auto& point: face->GetPoints())
         {
           assert(point);
           //All Faces must exists of Points with an existing index
@@ -807,7 +807,7 @@ std::string ribi::trim::TriangleMeshBuilderImpl::CreateBoundary(
   //Tally all boundary names
   std::map<std::string,int> sorted_tally;
 
-  for (auto face: m_faces)
+  for (const auto& face: m_faces)
   {
     const std::string s { face->GetBoundaryType() };
     const auto iter(sorted_tally.find(s));
@@ -842,7 +842,7 @@ std::string ribi::trim::TriangleMeshBuilderImpl::CreateBoundary(
   //Create the items
   std::vector<ribi::foam::BoundaryFileItem> items;
   int start_index = 0;
-  for (auto p: tally)
+  for (const auto& p: tally)
   {
     const std::string boundary_name = p.first;
     const int n_faces = p.second;
@@ -879,7 +879,7 @@ std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilderImpl::CreateCe
     << "\n(\n";
 
 
-  for (auto face: m_faces)
+  for (const auto& face: m_faces)
   {
     assert(face);
     assert(face->GetConstOwner());
@@ -904,7 +904,7 @@ std::string ribi::trim::TriangleMeshBuilderImpl::CreateFaces() const noexcept
 {
   std::stringstream s;
   s << std::setprecision(17);
-  for (auto face: m_faces)
+  for (const auto& face: m_faces)
   {
     s << face->GetPoints().size();
 
@@ -942,7 +942,7 @@ std::string ribi::trim::TriangleMeshBuilderImpl::CreateNodes() const noexcept
   using boost::geometry::get;
 
   std::string text;
-  for (const auto point: m_points)
+  for (const auto& point: m_points)
   {
     std::stringstream s;
     int cnt = 0;
@@ -976,11 +976,11 @@ std::string ribi::trim::TriangleMeshBuilderImpl::CreateOpenFoamFaces() const noe
     << "\n(\n";
 
   //Build a list of nodes
-  for (auto face: m_faces)
+  for (const auto& face: m_faces)
   {
     assert(face);
     std::vector<int> points_indices;
-    for (auto point: face->GetPoints())
+    for (const auto& point: face->GetPoints())
     {
       points_indices.push_back(point->GetIndex());
     }
@@ -1024,7 +1024,7 @@ std::string ribi::trim::TriangleMeshBuilderImpl::CreateOpenFoamNodes() const noe
     << "\n(\n";
 
   //Build a list of nodes
-  for (const auto point: m_points)
+  for (const auto& point: m_points)
   {
     const std::array<double,3> co {
       get<0>(*point->GetCoordinat()),
@@ -1078,7 +1078,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilde
   std::vector<boost::shared_ptr<Point>> v;
   for (const boost::shared_ptr<Cell>& cell: cells)
   {
-    for (const auto face: cell->GetFaces())
+    for (const auto& face: cell->GetFaces())
     {
       const std::vector<boost::shared_ptr<Point>> w { face->GetPoints() };
       std::copy(w.begin(),w.end(),std::back_inserter(v));

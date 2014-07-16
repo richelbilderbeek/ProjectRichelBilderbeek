@@ -50,7 +50,7 @@ ribi::trim::CellsCreator::CellsCreator(
 
 void ribi::trim::CellsCreator::CheckCells(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept
 {
-  for (const auto cell: cells)
+  for (const auto& cell: cells)
   {
     assert(cell);
     assert(cell->GetFaces().size() == 5 || cell->GetFaces().size() == 8);
@@ -312,7 +312,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   const FaceFactory face_factory;
   if (verbose) { TRACE("Checking points"); }
 
-  for (const auto point: all_points) { assert(point); }
+  for (const auto& point: all_points) { assert(point); }
 
   if (verbose) { TRACE("Get edges"); }
   #endif
@@ -397,7 +397,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
             << face_points.size() << '\n'
             << std::setprecision(99)
           ;
-          for (auto point: face_points) { s << (*point) << " "; }
+          for (const auto& point: face_points) { s << (*point) << " "; }
           TRACE(s.str());
           TRACE("BREAK");
         }
@@ -476,7 +476,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         {
           TRACE("ERROR");
 
-          for (auto point:face_points_2) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+          for (const auto& point:face_points_2) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
         }
         #endif
 
@@ -513,7 +513,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   std::vector<boost::shared_ptr<Point>> points {
     a->GetPoints()
   };
-  for (auto p: b->GetPoints()) { points.push_back(p); }
+  for (const auto& p: b->GetPoints()) { points.push_back(p); }
 
   std::sort(points.begin(),points.end(),Helper().OrderByX());
   assert(std::unique(points.begin(),points.end()) == points.end());
@@ -521,19 +521,19 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
 
   //Collect the candidates
   std::vector<boost::weak_ptr<Face>> weak_candidates;
-  for (auto p: a->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
-  for (auto p: b->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
+  for (const auto& p: a->GetPoints()) { for (const auto& q: p->GetConnected()) { weak_candidates.push_back(q); } }
+  for (const auto& p: b->GetPoints()) { for (const auto& q: p->GetConnected()) { weak_candidates.push_back(q); } }
   std::vector<boost::shared_ptr<Face>> candidates;
-  for (auto p: weak_candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
+  for (const auto& p: weak_candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
   //std::vector<boost::shared_ptr<Face>> candidates;
-  //for (auto p: candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
+  //for (const auto& p: candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
   std::sort(candidates.begin(),candidates.end(),Helper().OrderByIndex());
   candidates.erase(std::unique(candidates.begin(),candidates.end()),candidates.end());
   assert(std::count(candidates.begin(),candidates.end(),nullptr) == 0);
 
   //Collect the faces between
   std::vector<boost::shared_ptr<Face>> faces;
-  for (auto c: candidates)
+  for (const auto& c: candidates)
   {
     if (IsSubset(c->GetPoints(),points)) { faces.push_back(c); }
   }
@@ -747,7 +747,7 @@ void ribi::trim::CellsCreator::Test() noexcept
     if (!Helper().IsConvex(face_points))
     {
       TRACE("NOT CONVEX");
-      for (auto p: face_points) { assert(p); TRACE(*p); }
+      for (const auto& p: face_points) { assert(p); TRACE(*p); }
     }
     #endif
 
@@ -758,7 +758,7 @@ void ribi::trim::CellsCreator::Test() noexcept
     if (!Helper().IsConvex(face_points))
     {
       TRACE("ERROR");
-      for (auto p: face_points) { TRACE(*p); }
+      for (const auto& p: face_points) { TRACE(*p); }
       TRACE("BREAK");
     }
     #endif

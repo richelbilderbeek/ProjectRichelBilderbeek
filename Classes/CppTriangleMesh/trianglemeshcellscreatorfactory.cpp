@@ -57,7 +57,7 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
   for (int i=0; i!=2; ++i)
   {
     const std::vector<boost::shared_ptr<Face>> faces { cells[i]->GetFaces() };
-    for (const auto face: faces)
+    for (const auto& face: faces)
     {
       assert(face);
     }
@@ -92,7 +92,7 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
   {
     const std::vector<boost::shared_ptr<Face>> faces
       = cells[i]->GetFaces();
-    for (const auto face: faces)
+    for (const auto& face: faces)
     {
       assert(face);
     }

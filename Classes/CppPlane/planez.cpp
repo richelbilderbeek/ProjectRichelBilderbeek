@@ -137,7 +137,7 @@ ribi::PlaneZ::Double ribi::PlaneZ::CalcMinErrorPerC() noexcept
         const Coordinat3D p2(0.0,  y,z);
         const Coordinat3D p3(  x,0.0,z);
         const PlaneZ p(p1,p2,p3);
-        for (const auto p4: { p1,p2,p3 } )
+        for (const auto& p4: { p1,p2,p3 } )
         {
           const auto error = p.CalcError(p4);
           const auto error_per_c = error / p.GetFunctionC();
@@ -244,7 +244,7 @@ ribi::PlaneZ::Coordinats2D ribi::PlaneZ::CalcProjection(
   const apfloat z_origin = CalcZ(x_origin,y_origin);
 
   Coordinats2D v;
-  for (const auto point: points)
+  for (const auto& point: points)
   {
     const Double x(boost::geometry::get<0>(point));
     const Double y(boost::geometry::get<1>(point));

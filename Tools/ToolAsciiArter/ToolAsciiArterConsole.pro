@@ -13,6 +13,6 @@ include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 #include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppXml/CppXml.pri)
-include(ToolAsciiArterConsole.pri )
+include(ToolAsciiArterConsole.pri)
 
 SOURCES += main.cpp

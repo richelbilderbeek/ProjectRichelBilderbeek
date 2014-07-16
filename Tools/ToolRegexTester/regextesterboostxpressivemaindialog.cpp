@@ -146,11 +146,11 @@ void ribi::RegexTesterBoostXpressiveMainDialog::Test() noexcept
   TRACE("Started ribi::RegexTesterBoostXpressiveMainDialog::Test")
   RegexTesterBoostXpressiveMainDialog d;
   assert(!d.GetExampleRegex().empty());
-  for (auto v: d.GetTestRegexes() )
+  for (const auto& v: d.GetTestRegexes() )
   {
     TRACE(v);
     d.GetRegexValid(v);
-    for (auto w: d.GetTestStrings() )
+    for (const auto& w: d.GetTestStrings() )
     {
       TRACE(w);
       d.GetRegexMatches(v,w);

@@ -65,9 +65,7 @@ std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
       throw std::logic_error("Never use SnippetType::n_snippets");
   }
   //Convert to HTML, no <code> nor <br/> added yet
-  const std::vector<std::string> v {
-    Replacer::ToHtml(code,file_type)
-  };
+  const auto v = Replacer().ToHtml(code,file_type);
 
   std::vector<std::string> w;
   w.push_back("<p>&nbsp;</p>");
@@ -170,11 +168,9 @@ std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
 std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
   const std::string& filename) noexcept
 {
-  const std::vector<std::string> v {
-    ribi::fileio::FileIo().FileToVector(filename)
-  };
+  const auto v = ribi::fileio::FileIo().FileToVector(filename);
   const FileType file_type = FileTypes().DeduceFileType(filename);
-  return Replacer::ToHtml(v,file_type);
+  return Replacer().ToHtml(v,file_type);
 }
 
 std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(

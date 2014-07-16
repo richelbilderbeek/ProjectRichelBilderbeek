@@ -67,7 +67,7 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
     )
   );
   assert(face);
-  for (auto point: face->GetPoints())
+  for (const auto& point: face->GetPoints())
   {
     assert(point);
     point->AddConnected(face);
@@ -199,7 +199,7 @@ void ribi::trim::FaceFactory::Test() noexcept
   
   const bool verbose = false;
   if (verbose) TRACE("Create a testing prism");
-  for (auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Face>> prism {
       FaceFactory().CreateTestPrism(strategy)

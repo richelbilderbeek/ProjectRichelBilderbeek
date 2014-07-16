@@ -33,7 +33,7 @@ void ribi::ToolMultiEncrangerMainDialog::Deencrypt()
 
   //Convert plaintext lines to string
   m_plain_text.clear();
-  for (const auto s: v) { m_plain_text += s + '\n'; }
+  for (const auto& s: v) { m_plain_text += s + '\n'; }
   m_plain_text.resize(m_plain_text.size() - 1); //Pop trailing newline
 }
 
@@ -47,7 +47,7 @@ void ribi::ToolMultiEncrangerMainDialog::Encrypt()
 
   //Convert plaintext lines to string
   m_encrypted_text.clear();
-  for (const auto s: v) { m_encrypted_text += s + '\n'; }
+  for (const auto& s: v) { m_encrypted_text += s + '\n'; }
   m_encrypted_text.resize(m_plain_text.size() - 1); //Pop trailing newline
 }
 

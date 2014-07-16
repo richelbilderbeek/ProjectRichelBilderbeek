@@ -54,7 +54,7 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
     m_libs{},
     m_other_files{},
     m_pri_files{},
-    m_pro_filename{filename},
+    m_pro_filename{fileio::FileIo().ConvertPathToUnix(filename)},
     m_qmake_cxxflags{},
     m_qt{},
     m_resources{},
@@ -64,11 +64,11 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  assert(ribi::fileio::FileIo().IsRegularFile(filename));
-  assert(ribi::fileio::FileIo().IsUnixPath(filename));
+  assert(ribi::fileio::FileIo().IsRegularFile(m_pro_filename));
+  assert(fileio::FileIo().IsUnixPath(m_pro_filename));
   #endif
 
-  std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
+  std::vector<std::string> v{ribi::fileio::FileIo().FileToVector(m_pro_filename)};
   RemoveComments(v);
   DoReplacements(v);
   std::stringstream data;

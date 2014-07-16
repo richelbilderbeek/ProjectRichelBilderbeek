@@ -841,7 +841,7 @@ void ribi::trim::Template::Test() noexcept
       CreateTest(i)
     };
     assert(my_template);
-    for (const auto face: my_template->GetFaces())
+    for (const auto& face: my_template->GetFaces())
     {
       if (!Helper().IsClockwiseHorizontal(face->GetPoints()))
       {

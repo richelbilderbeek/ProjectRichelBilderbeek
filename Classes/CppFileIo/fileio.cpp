@@ -43,6 +43,14 @@ ribi::fileio::FileIo::FileIo()
   #endif
 }
 
+std::string ribi::fileio::FileIo::ConvertPathToUnix(const std::string& path) const noexcept
+{
+  std::string s = path;
+  std::replace(std::begin(s),std::end(s),'\\','/');
+  assert(IsUnixPath(s));
+  return s;
+}
+
 void ribi::fileio::FileIo::CopyFile(
   const std::string& fileNameFrom,
   const std::string& fileNameTo,
@@ -135,7 +143,7 @@ void ribi::fileio::FileIo::DeleteFolder(const std::string& folder) const
     && "Can only delete folders that do exist");
 
   //Delete all files
-  for (const auto subfolder: GetFoldersInFolder(folder))
+  for (const auto& subfolder: GetFoldersInFolder(folder))
   {
     DeleteFolder(
       (folder.empty() ? folder : folder + GetPathSeperator())
@@ -143,7 +151,7 @@ void ribi::fileio::FileIo::DeleteFolder(const std::string& folder) const
     );
   }
   assert(GetFoldersInFolder(folder).empty());
-  for (const auto filename: GetFilesInFolder(folder))
+  for (const auto& filename: GetFilesInFolder(folder))
   {
     DeleteFile(
       (folder.empty() ? folder : folder + GetPathSeperator())
@@ -201,7 +209,7 @@ std::string ribi::fileio::FileIo::FileToStr(
   const std::string& filename) const
 {
   std::string s;
-  for (const auto t: FileToVector(filename))
+  for (const auto& t: FileToVector(filename))
   {
     s += t + '\n';
   }
@@ -1199,6 +1207,17 @@ void ribi::fileio::FileIo::Test() noexcept
     assert(!IsUnixPath("/A\\B\\text.txt"));
     assert(!IsUnixPath("\\A\\B/text.txt"));
     assert(!IsUnixPath("\\A/B\\text.txt"));
+  }
+  //ConvertPathToUnix
+  {
+    assert(IsUnixPath(ConvertPathToUnix("\\A\\B\\text.txt")));
+    assert(IsUnixPath(ConvertPathToUnix("/A/B/text.txt")));
+    assert(IsUnixPath(ConvertPathToUnix("/A\\B/text.txt")));
+    assert(IsUnixPath(ConvertPathToUnix("\\A/B/text.txt")));
+    assert(IsUnixPath(ConvertPathToUnix("/A/B\\text.txt")));
+    assert(IsUnixPath(ConvertPathToUnix("/A\\B\\text.txt")));
+    assert(IsUnixPath(ConvertPathToUnix("\\A\\B/text.txt")));
+    assert(IsUnixPath(ConvertPathToUnix("\\A/B\\text.txt")));
   }
   TRACE("Finished ribi::fileio::FileIo::Test successfully");
 }

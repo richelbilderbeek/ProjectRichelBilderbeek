@@ -151,7 +151,7 @@ void ribi::DrawCanvas::Clear() noexcept
   }
 
   #ifndef NDEBUG
-  for (const auto row: m_canvas)
+  for (const auto& row: m_canvas)
   {
     assert(std::accumulate(row.begin(),row.end(),0.0) == 0.0);
   }
@@ -440,7 +440,7 @@ void ribi::DrawCanvas::PlotSurface(
   //Iterator through all rows
   if (as_screen_coordinat_system)
   {
-    for (const auto row: v)
+    for (const auto& row: v)
     {
       row_function(row,os,minVal,maxVal,use_normal_color_system);
     }
@@ -504,9 +504,9 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
   std::stringstream s;
   {
     std::vector<std::string> v;
-    for (const auto line: m_canvas)
+    for (const auto& line: m_canvas)
     {
-      for (const auto element: line)
+      for (const auto& element: line)
       {
         const std::string t { boost::lexical_cast<std::string>(element) };
         v.push_back(t);

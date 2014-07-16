@@ -39,8 +39,10 @@ namespace c2h {
 ///Stores the re
 struct Replacer
 {
+  Replacer();
+
   ///Convert text to its HTML equivalent
-  static std::vector<std::string> ToHtml(
+  std::vector<std::string> ToHtml(
     const std::vector<std::string>& text,
     const FileType file_type
   ) noexcept;

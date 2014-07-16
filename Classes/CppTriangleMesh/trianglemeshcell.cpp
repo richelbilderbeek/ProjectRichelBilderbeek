@@ -85,7 +85,7 @@ void ribi::trim::Cell::SetIndex(const int index) noexcept
 
   //If there is a Face that has this cell as its neighbour, yet that Face its Owner
   //does not have an index yet, transfer the Face its ownership from neighbour to owner
-  for (auto face: m_faces)
+  for (const auto& face: m_faces)
   {
     assert(face->GetConstOwner());
 
@@ -108,7 +108,7 @@ void ribi::trim::Cell::Test() noexcept
   }
   TRACE("Starting ribi::trim::Cell::Test");
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
-  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const boost::shared_ptr<Cell> prism {
       CellFactory().CreateTestPrism(strategy)
@@ -199,7 +199,7 @@ void ribi::trim::Cell::Test() noexcept
 
   //Test that CalcCenter returns the same value each time
   //Failed once...
-  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
+  for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const auto center(CellFactory().CreateTestPrism(strategy)->CalculateCenter());
     

@@ -253,7 +253,7 @@ ribi::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()
 {
   #ifndef NDEBUG
   Test();
-  for (auto p: CreateMenus())
+  for (const auto& p: CreateMenus())
   {
     assert(p);
   }
@@ -277,7 +277,7 @@ int ribi::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<s
   }
   if (s == "--program" || s == "-p")
   {
-    for (const auto m: CreateMenus())
+    for (const auto& m: CreateMenus())
     {
       assert(m);
       std::cout << m->GetProgram()->GetName() << '\n';
@@ -285,7 +285,7 @@ int ribi::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<s
     return 0;
   }
   //Find menu dialog and execute it with one argument less
-  for (const auto m: CreateMenus())
+  for (const auto& m: CreateMenus())
   {
     assert(m);
     if (s == m->GetProgram()->GetName() || s == m->GetAbout().GetFileTitle())
@@ -3311,7 +3311,7 @@ void ribi::ProjectRichelBilderbeekMenuDialog::ShowStatus() const noexcept
   typedef boost::shared_ptr<const ribi::Program> ProgramType;
 
   std::vector<ProgramType> v;
-  for (auto p: CreateMenus())
+  for (const auto& p: CreateMenus())
   {
     assert(p);
     assert(p->GetProgram());
@@ -3368,7 +3368,7 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
   d.Execute( { "ProjectRichelBilderbeek", "--program" } );
   d.Execute( { "ProjectRichelBilderbeek", "--status"  } );
   //Create all menus
-  for (const auto m: CreateMenus())
+  for (const auto& m: CreateMenus())
   {
 
     assert(!m->GetVersion().empty());

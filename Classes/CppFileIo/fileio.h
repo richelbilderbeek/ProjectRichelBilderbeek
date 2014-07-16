@@ -35,6 +35,10 @@ struct FileIo
 
   FileIo();
 
+  ///Converts a Windows path to a Unix path. A Unix path will remain unaltered.
+  //Does so by replacing '\' by '/'
+  std::string ConvertPathToUnix(const std::string& path) const noexcept;
+
   ///Creates a folder
   ///Will abort if it already exists
   void CreateFolder(const std::string& folder) const;
@@ -173,7 +177,6 @@ struct FileIo
 
   ///Checks if the path is a valid UNIX path
   bool IsUnixPath(const std::string& path) const noexcept;
-
 
   ///Removes the path of a filename
   ///From http://www.richelbilderbeek.nl/CppRemovePath.htm

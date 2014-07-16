@@ -50,7 +50,7 @@ std::vector<boost::shared_ptr<ribi::OpenQuestionDialog>>
   ribi::OpenQuestionDialogFactory::GetTestOpenQuestionDialogs() const noexcept
 {
   std::vector<boost::shared_ptr<OpenQuestionDialog>> v;
-  for (auto open_question: OpenQuestionFactory().GetTestOpenQuestions())
+  for (const auto& open_question: OpenQuestionFactory().GetTestOpenQuestions())
   {
     v.push_back(Create(open_question));
   }
