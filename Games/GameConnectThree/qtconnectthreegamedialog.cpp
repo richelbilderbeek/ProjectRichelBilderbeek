@@ -119,7 +119,8 @@ void ribi::con3::QtConnectThreeGameDialog::OnValidMove() noexcept
       //Do a computer turn after a second
       QTimer::singleShot(100,
         this,
-        &ribi::con3::QtConnectThreeGameDialog::DoComputerTurn
+        //&ribi::con3::QtConnectThreeGameDialog::DoComputerTurn //Does not work
+        SLOT(DoComputerTurn())
       );
     }
 
