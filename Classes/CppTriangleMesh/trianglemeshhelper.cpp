@@ -437,10 +437,8 @@ void ribi::trim::Helper::MakeCounterClockwise(
 
   for (const auto& sequence: GetPermutations(indices))
   {
-    TRACE("New sequence");
     for (int i=0; i!=n_points; ++i)
     {
-      TRACE(sequence[i]);
       points[i] = original[ sequence[i] ];
     }
     if (Helper().IsCounterClockwise(points,observer)) return;
@@ -950,9 +948,12 @@ void ribi::trim::Helper::Test() noexcept
       }
     )
     {
-      std::sort(points.rbegin(),points.rend(),h.OrderByX()); //Try to make it hard
-      Helper().MakeCounterClockwise(points,observer);
-      assert(Helper().IsCounterClockwise(points,observer));
+      for (int i=0; i!=4*3*2*1*2; ++i) //Try -on average- each permutation twice
+      {
+        std::random_shuffle(std::begin(points),std::end(points));
+        Helper().MakeCounterClockwise(points,observer);
+        assert(Helper().IsCounterClockwise(points,observer));
+      }
     }
   }
 
