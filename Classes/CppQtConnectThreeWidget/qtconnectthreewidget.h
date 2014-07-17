@@ -46,8 +46,8 @@ signals:
 public slots:
 
 protected:
-  void mousePressEvent(QMouseEvent * e);
-  void paintEvent(QPaintEvent *);
+  void mousePressEvent(QMouseEvent * e) override final;
+  void paintEvent(QPaintEvent *) override final;
 
 
   private:

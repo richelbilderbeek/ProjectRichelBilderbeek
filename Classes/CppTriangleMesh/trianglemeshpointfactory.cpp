@@ -53,6 +53,28 @@ boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
   return point;
 }
 
+std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::PointFactory::CreateTestCube() const noexcept
+{
+  const boost::shared_ptr<Coordinat2D> co_a { new Coordinat2D(-1.0,-1.0) };
+  const boost::shared_ptr<Coordinat2D> co_b { new Coordinat2D(-1.0, 1.0) };
+  const boost::shared_ptr<Coordinat2D> co_c { new Coordinat2D( 1.0,-1.0) };
+  const boost::shared_ptr<Coordinat2D> co_d { new Coordinat2D( 1.0, 1.0) };
+
+  const auto a = PointFactory().Create(co_a,-1.0 * boost::units::si::meter);
+  const auto b = PointFactory().Create(co_b,-1.0 * boost::units::si::meter);
+  const auto c = PointFactory().Create(co_c,-1.0 * boost::units::si::meter);
+  const auto d = PointFactory().Create(co_d,-1.0 * boost::units::si::meter);
+
+  const auto e = PointFactory().Create(co_a,1.0 * boost::units::si::meter);
+  const auto f = PointFactory().Create(co_b,1.0 * boost::units::si::meter);
+  const auto g = PointFactory().Create(co_c,1.0 * boost::units::si::meter);
+  const auto h = PointFactory().Create(co_d,1.0 * boost::units::si::meter);
+
+  const std::vector<boost::shared_ptr<Point>> cube {
+    a,b,c,d,e,f,g,h
+  };
+  return cube;
+}
 
 std::vector<boost::shared_ptr<ribi::trim::Point>>
   ribi::trim::PointFactory::CreateTestInvalid() const noexcept

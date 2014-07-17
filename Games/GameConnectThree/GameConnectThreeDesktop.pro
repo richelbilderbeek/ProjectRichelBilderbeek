@@ -11,7 +11,6 @@ include(../../Classes/CppConnectThreeWidget/CppConnectThreeWidget.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 
-
 #Specific, desktop
 include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
 include(../../Classes/CppQtConnectThreeWidget/CppQtConnectThreeWidget.pri)

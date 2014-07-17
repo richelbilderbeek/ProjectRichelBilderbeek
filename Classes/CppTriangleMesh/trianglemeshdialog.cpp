@@ -656,6 +656,7 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
       << "Checking the cells" << std::endl
     ;
   }
+  #ifndef NDEBUG
   {
     for (const auto& cell: cells)
     {
@@ -670,6 +671,7 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
       }
     }
   }
+  #endif //NDEBUG
 
   if (verbose)
   {

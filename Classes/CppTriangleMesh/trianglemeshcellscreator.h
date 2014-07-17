@@ -57,7 +57,9 @@ class CellsCreator
 
   const CreateVerticalFacesStrategy m_strategy;
 
+  #ifndef NDEBUG
   static void CheckCells(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept;
+  #endif // NDEBUG
 
   //Must be static: it is used in the constructor
   //n_face_layers - 1 == n_cell_layers

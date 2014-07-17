@@ -50,6 +50,7 @@ ribi::trim::CellsCreator::CellsCreator(
   #endif
 }
 
+#ifndef NDEBUG
 void ribi::trim::CellsCreator::CheckCells(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept
 {
   for (const auto& cell: cells)
@@ -58,6 +59,7 @@ void ribi::trim::CellsCreator::CheckCells(const std::vector<boost::shared_ptr<Ce
     assert(cell->GetFaces().size() == 5 || cell->GetFaces().size() == 8);
   }
 }
+#endif // NDEBUG
 
 std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::CreateCells(
   const boost::shared_ptr<const Template> t,
@@ -459,6 +461,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         face_points[1]->SetZ(z_here);
         face_points[2]->SetZ(z_above);
         face_points[3]->SetZ(z_above);
+        #define FIX_ISSUE_224
         #ifdef FIX_ISSUE_224
         #ifndef NDEBUG
         if(!IsPlane(face_points))

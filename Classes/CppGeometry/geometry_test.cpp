@@ -393,6 +393,22 @@ void ribi::Geometry::Test() noexcept
   {
     assert(!g.IsClockwise(Doubles( {0.0 * pi,0.9 * pi,1.8 * pi,2.7 * pi} )));
   }
+  if (verbose) TRACE("IsCounterClockWise of four, vector, going round more than once");
+  /*
+       D
+       | _-A
+     _-+-
+    B  |
+     \  |
+      \ |
+       \|
+        C
+
+  */
+  {
+    assert(!g.IsCounterClockwise(Doubles( {2.0 * pi,1.1 * pi,0.2 * pi,-0.7 * pi} )));
+    assert(!g.IsCounterClockwise(Doubles( {2.7 * pi,1.8 * pi,0.9 * pi,0.0 * pi} )));
+  }
   if (verbose) TRACE("IsConvex, two dimensions");
   {
     /* Polygons used:

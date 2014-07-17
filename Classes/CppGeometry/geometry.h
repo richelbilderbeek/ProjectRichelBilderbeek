@@ -473,6 +473,7 @@ struct Geometry
 
   std::string ToStr(const Apfloats& p) const noexcept;
   std::string ToStr(const   Coordinat2D& p) const noexcept;
+  std::string ToStr(const   Coordinats2D& p) const noexcept;
   std::string ToStr(const ApCoordinat2D& p) const noexcept;
   std::string ToStr(const ApCoordinats2D& p) const noexcept;
   std::string ToStr(const   Coordinat3D& p) const noexcept;

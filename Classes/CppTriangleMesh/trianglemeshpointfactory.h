@@ -11,6 +11,8 @@
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/units/quantity.hpp>
+#include <boost/units/systems/si/length.hpp>
 #include "trianglemeshfwd.h"
 #include "trianglemeshwinding.h"
 #pragma GCC diagnostic pop
@@ -43,6 +45,28 @@ class PointFactory
     const boost::shared_ptr<const Coordinat2D> coordinat,
     const boost::units::quantity<boost::units::si::length> z
   ) const noexcept;
+
+  ///Create the points of a testing cube
+  /*
+      |
+    +-+-+
+    | | |
+   -+-O-+-  View from above, for Z = -1 and Z = 1
+    | | |
+    +-+-+
+      |
+
+  [0]: -1,-1,-1
+  [1]: -1,-1, 1
+  [2]: -1, 1,-1
+  [3]: -1, 1, 1
+  [4]:  1,-1,-1
+  [5]:  1,-1, 1
+  [6]:  1, 1,-1
+  [7]:  1, 1, 1
+
+  */
+  std::vector<boost::shared_ptr<Point>> CreateTestCube() const noexcept;
 
   //Create points that should fail to construct a Face from
   std::vector<boost::shared_ptr<Point>> CreateTestInvalid() const noexcept;

@@ -156,6 +156,7 @@ bool ribi::trim::Helper::IsClockwise(
     assert(point);
     coordinats.push_back(point->GetCoordinat3D());
   }
+  #define FIX_ISSUE_224
   #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(coordinats));
   #endif // FIX_ISSUE_224
@@ -262,6 +263,7 @@ bool ribi::trim::Helper::IsCounterClockwise(
   const Coordinat3D& observer) const noexcept
 {
   
+  #define FIX_ISSUE_224
   #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(PointsToCoordinats3D(points)));
   #endif
@@ -272,6 +274,7 @@ bool ribi::trim::Helper::IsCounterClockwise(
   const std::vector<boost::shared_ptr<Point>>& points,
   const Coordinat3D& observer) const noexcept
 {
+  #define FIX_ISSUE_224
   #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(PointsToCoordinats3D(AddConst(points))));
   #endif
@@ -455,12 +458,7 @@ std::function<
     if (get<1>(*lhs_coordinat) > get<1>(*rhs_coordinat)) return false;
     assert(lhs->CanGetZ());
     assert(rhs->CanGetZ());
-    const bool is_ordered = lhs->GetZ() < rhs->GetZ();
-    assert(
-         (*lhs == *rhs && is_ordered == false) //Either they are the same
-      || (*lhs != *rhs && is_ordered != Helper().OrderByX()(rhs,lhs) ) //Or the functor responds symmetrical
-    );
-    return is_ordered;
+    return lhs->GetZ() < rhs->GetZ();
   };
 }
 
@@ -667,15 +665,93 @@ void ribi::trim::Helper::Test() noexcept
     assert(h.IsConvex(points));
     assert(h.IsConvex(AddConst(points)));
   }
+  if (verbose) { TRACE("IsConvex, 2D, from #228, this is the 2D projection of the next test"); }
+  {
+  /*
+    This is not convex
+
+    (-14.335613337899998705,100)
+    (-14.335613337899998705,0)
+    (-0.302499999969750000,100)
+    (-0.302499999969750000,0)
+  */
+
+    const Geometry::Coordinats2D points {
+      Geometry::Coordinat2D(-14.335613337899998705,100),
+      Geometry::Coordinat2D(-14.335613337899998705,0),
+      Geometry::Coordinat2D(-0.302499999969750000,100),
+      Geometry::Coordinat2D(-0.302499999969750000,0)
+    };
+    assert(!Geometry().IsConvex(points));
+  }
+  if (verbose) { TRACE("IsConvex, 3D, from #228"); }
+  {
+    /*
+    This is not convex, it is a Z shape on the Y=2 plane
+
+    (-3.78624,2,10)
+    (-3.78624,2,0)
+    (-0.55,2,10)
+    (-0.55,2,0)
+    */
+    boost::shared_ptr<const Coordinat2D> left{new Coordinat2D(-3.78624,2)};
+    boost::shared_ptr<const Coordinat2D> right{new Coordinat2D(-0.55,2)};
+    const std::vector<boost::shared_ptr<ribi::trim::Point>> points {
+      PointFactory().Create( left,10.0 * boost::units::si::meter),
+      PointFactory().Create( left, 0.0 * boost::units::si::meter),
+      PointFactory().Create(right,10.0 * boost::units::si::meter),
+      PointFactory().Create(right, 0.0 * boost::units::si::meter)
+    };
+    assert(!h.IsConvex(points));
+    assert(!h.IsConvex(AddConst(points)));
+  }
+  if (verbose) { TRACE("IsCounterClockwise, 3D, from #228"); }
+  {
+    /*
+    This is not counterclockwise, it is a Z shape on the Y=2 plane
+
+    (-3.78624,2,10)'
+    (-3.78624,2,0)'
+    (-0.55,2,10)'
+    (-0.55,2,0)'
+    Observer: (-2.1871,3.74169,5)
+    */
+    boost::shared_ptr<const Coordinat2D> left{new Coordinat2D(-3.78624,2)};
+    boost::shared_ptr<const Coordinat2D> right{new Coordinat2D(-0.55,2)};
+    const std::vector<boost::shared_ptr<ribi::trim::Point>> points {
+      PointFactory().Create( left,10.0 * boost::units::si::meter),
+      PointFactory().Create( left, 0.0 * boost::units::si::meter),
+      PointFactory().Create(right,10.0 * boost::units::si::meter),
+      PointFactory().Create(right, 0.0 * boost::units::si::meter)
+    };
+    const Coordinat3D observer{-2.1871,3.74169,5};
+    assert(!h.IsCounterClockwise(points,observer));
+    assert(!h.IsCounterClockwise(AddConst(points),observer));
+  }
   //OrderByX
   {
     const auto f = h.OrderByX();
-    const boost::shared_ptr<const PointFactory::Coordinat2D> lhs_2d{new PointFactory::Coordinat2D(1.0,2.0)};
-    const boost::shared_ptr<const PointFactory::Coordinat2D> rhs_2d{new PointFactory::Coordinat2D(2.0,1.0)};
-    const boost::shared_ptr<const ribi::trim::Point>& lhs = ribi::trim::PointFactory().Create(lhs_2d,1.0 * boost::units::si::meter);
-    const boost::shared_ptr<const ribi::trim::Point>& rhs = ribi::trim::PointFactory().Create(rhs_2d,1.0 * boost::units::si::meter);
-    assert(f(lhs,rhs) != f(rhs,lhs));
-    assert(!"Add more");
+    const auto v = ribi::trim::PointFactory().CreateTestPrism();
+    const int sz { static_cast<int>(v.size()) };
+    for (int i=0; i!=sz; ++i)
+    {
+      const auto lhs = v[i];
+      for (int j=0; j!=sz; ++j)
+      {
+        const auto rhs = v[j];
+        if (i == j)
+        {
+          assert(*lhs == *rhs);
+          assert(!f(lhs,rhs));
+          assert(!f(rhs,lhs));
+        }
+        if (i != j)
+        {
+          assert(*lhs != *rhs);
+          assert(f(lhs,rhs) != f(rhs,lhs));
+        }
+      }
+    }
   }
   //SetWindingHorizontal
   if (verbose) { TRACE("MakeConvex"); }

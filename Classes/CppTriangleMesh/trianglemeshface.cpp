@@ -48,8 +48,9 @@ ribi::trim::Face::Face(
   assert(!m_points.empty());
   assert(  m_points[0].use_count() >= 2);
   assert(any_points[0].use_count() >= 2);
-  
-   #ifdef FIX_ISSUE_224
+
+  #define FIX_ISSUE_224
+  #ifdef FIX_ISSUE_224
   assert(Helper().IsPlane(m_points));
   if (!Helper().IsConvex(m_points))
   {
@@ -273,11 +274,11 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert(Helper().IsConvex(m_points));
   #endif // FIX_ISSUE_224
 
-  const boost::shared_ptr<const Cell> observer(
+  const boost::shared_ptr<const Cell> observer {
     !GetNeighbour()
     ? GetConstOwner()
     : GetConstOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetConstOwner() : GetNeighbour()
-  );
+  };
   assert(observer);
   #define FIX_ISSUE_224
   #ifdef  FIX_ISSUE_224
@@ -285,33 +286,50 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert(Helper().IsPlane(m_points));
   #endif // FIX_ISSUE_224
 
+  const auto f = Helper().OrderByX();
+
   if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
   {
-    std::sort(m_points.begin(),m_points.end(),Helper().OrderByX()); //For std::next_permutation
+
+    std::sort(m_points.begin(),m_points.end(),f); //For std::next_permutation
 
     //Must be ordered counter-clockwise (although the documentation says otherwise?)
-    while (std::next_permutation(m_points.begin(),m_points.end(),Helper().OrderByX()))
+    #ifndef NDEBUG
+    bool found = false;
+    #endif
+    int cnt = 0;
+
+    while (std::next_permutation(m_points.begin(),m_points.end(),f))
     {
       assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
       if (
         Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
-        && Helper().IsConvex(m_points)
+        //&& Helper().IsConvex(m_points)
       )
       {
+        assert(Helper().IsConvex(m_points));
+        found = true;
         assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
         break;
       }
+      else
+      {
+        ++cnt;
+      }
     }
     #ifndef NDEBUG
-    if ( !Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
-      || !Helper().IsConvex(m_points))
+    if (!found)
     {
       TRACE("ERROR");
+      TRACE(cnt);
+      TRACE(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
+      TRACE(Helper().IsConvex(m_points));
       for (const auto& point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
       TRACE(Geometry().ToStr(observer->CalculateCenter()));
       TRACE("BREAK");
     }
     #endif
+    assert(found);
     assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
     assert(Helper().IsConvex(m_points));
   }
@@ -320,7 +338,6 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   if (!Helper().IsCounterClockwise(AddConst(m_points),observer->CalculateCenter()))
   {
     TRACE(m_points.size());
-    
     for (const auto& point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
     TRACE(Geometry().ToStr(observer->CalculateCenter()));
   }

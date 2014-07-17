@@ -46,6 +46,13 @@ ribi::con3::ConnectThreeWidget::ConnectThreeWidget(
   Test();
   #endif
   assert(m_game);
+  assert(m_x >= 0);
+  assert(m_y >= 0);
+  assert(n_cols > 0);
+  assert(n_rows > 0);
+  assert(m_x < n_cols);
+  assert(m_y < n_rows);
+
 }
 
 bool ribi::con3::ConnectThreeWidget::CanDoMove(const int x,const int y) const noexcept
@@ -110,7 +117,7 @@ bool ribi::con3::ConnectThreeWidget::IsComputerTurn() const noexcept
 
 bool ribi::con3::ConnectThreeWidget::IsHuman(const Player player) const noexcept
 {
-  const int player_index = PlayerToIndex(player);
+  const int player_index{PlayerToIndex(player)};
   assert(player_index >= 0);
   assert(player_index < static_cast<int>(m_is_player_human.size()));
   return m_is_player_human[player_index];
@@ -118,6 +125,11 @@ bool ribi::con3::ConnectThreeWidget::IsHuman(const Player player) const noexcept
 
 void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key) noexcept
 {
+  assert(m_x >= 0);
+  assert(m_y >= 0);
+  assert(m_x < m_game->GetCols());
+  assert(m_x < m_game->GetRows());
+
   switch (key)
   {
     case Key::up   : if (m_y > 0) --m_y; break;
@@ -128,6 +140,11 @@ void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key) noexcept
       if (m_game->CanDoMove(m_x,m_y)) { m_game->DoMove(m_x,m_y); }
       break;
   }
+
+  assert(m_x >= 0);
+  assert(m_y >= 0);
+  assert(m_x < m_game->GetCols());
+  assert(m_x < m_game->GetRows());
 }
 
 int ribi::con3::ConnectThreeWidget::PlayerToIndex(const Player player) const noexcept
@@ -175,7 +192,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThreeWidget::Sugges
 void ribi::con3::ConnectThreeWidget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

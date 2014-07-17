@@ -148,6 +148,7 @@ ribi::Geometry::ApCoordinats2D ribi::Geometry::CalcProjection(
   const ribi::Geometry::ApCoordinats3D& points) const
 {
   assert(points.size() >= 3);
+  #define FIX_ISSUE_224
   #ifdef FIX_ISSUE_224
   assert(IsPlane(points));
   #else
@@ -410,7 +411,7 @@ double ribi::Geometry::GetDistance(
 
 std::string ribi::Geometry::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
@@ -420,7 +421,8 @@ std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
     "2014-03-11: version 1.1: removed use of custom coordinat classes, use Boost.Geometry instead"
     "2014-03-25: version 1.2: fixed bug in IsConvex",
     "2014-05-01: version 1.3: minor improments and cleanup",
-    "2014-07-15: version 1.4: multiple bugfixes"
+    "2014-07-15: version 1.4: fixed bug in IsClockwise"
+    "2014-07-17: version 1.5: fixed bug in IsCounterClockwise"
   };
 }
 
@@ -707,14 +709,19 @@ bool ribi::Geometry::IsConvex(const ApCoordinats3D& points) const noexcept
       TRACE(plane->CanCalcX());
       TRACE(plane->CanCalcY());
       TRACE(plane->CanCalcZ());
-      //try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}
-      //try { TRACE(plane->ToFunctionY()); } catch (std::exception&) {}
-      //try { TRACE(plane->ToFunctionZ()); } catch (std::exception&) {}
     }
     #endif
 
     const ApCoordinats2D apcoordinats2d = plane->CalcProjection(points);
+    if (verbose)
+    {
+      TRACE(ToStr(apcoordinats2d));
+    }
     const Coordinats2D coordinats2d = ToDoubleSafe(apcoordinats2d);
+    if (verbose)
+    {
+      TRACE(ToStr(coordinats2d));
+    }
     if (IsConvex(coordinats2d)) return true;
   }
   return false;
@@ -743,7 +750,24 @@ bool ribi::Geometry::IsCounterClockwise(const Apfloats& angles) const noexcept
   {
     if (!IsCounterClockwise(angles[i],angles[i+1])) return false;
   }
-  return true;
+
+  //Calculate cumulative clockwise distance
+  const Apfloat tau{boost::math::constants::two_pi<double>()};
+  Apfloat sum{0.0};
+  for (int i=0; i!=sz-1; ++i)
+  {
+    const Apfloat diff{angles[i] - angles[i+1]}; //Order reversed compared to IsClockwise
+    if (diff > 0.0)
+    {
+      sum += diff;
+    }
+    else
+    {
+      assert(diff + tau > 0.0);
+      sum += (diff + tau);
+    }
+  }
+  return sum < tau;
 }
 
 bool ribi::Geometry::IsCounterClockwise(const Doubles& angles) const noexcept
@@ -1297,6 +1321,15 @@ std::string ribi::Geometry::ToStr(const Coordinat3D& p) const noexcept
   std::stringstream s;
   s << p;
   return s.str();
+}
+
+std::string ribi::Geometry::ToStr(const Coordinats2D& v) const noexcept
+{
+  std::stringstream s;
+  for (const auto& i:v) { s << ToStr(i) << '-'; }
+  std::string t = s.str();
+  if (!t.empty()) t.pop_back();
+  return t;
 }
 
 std::string ribi::Geometry::ToStr(const Linestring& linestring) const noexcept
