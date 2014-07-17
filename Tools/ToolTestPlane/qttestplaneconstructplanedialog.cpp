@@ -25,20 +25,19 @@ ribi::QtTestPlaneConstructPlaneDialog::QtTestPlaneConstructPlaneDialog(QWidget *
   #endif
   ui->setupUi(this);
 
-  QObject::connect(this->ui->box_x1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_y1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_z1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_x2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_y2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_z2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_x3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_y3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_z3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_x,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_y,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_z,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-
-  QObject::connect(this->ui->box_precision,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_x1,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_y1,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_z1,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_x2,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_y2,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_z2,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_x3,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_y3,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_z3,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_x,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_y,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_z,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
+  QObject::connect(this->ui->box_precision,static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,&ribi::QtTestPlaneConstructPlaneDialog::OnAnyChange);
 
   OnAnyChange();
 }

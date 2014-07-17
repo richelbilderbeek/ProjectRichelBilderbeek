@@ -75,10 +75,8 @@ ribi::QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
   m_timer->connect(
     m_timer.get(),
     &QTimer::timeout,
-    //SxIGNAL(timeout()),
     this,
     &ribi::QtBeerWanterWidget::onTimer
-    //SxLOT(onTimer())
   );
   m_timer->start(20); //Framerate about (1000/20=) 50 fps
 }

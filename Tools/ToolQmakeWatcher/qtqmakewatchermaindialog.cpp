@@ -50,8 +50,9 @@ ribi::QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent)
   ui->edit_makefile->setWordWrapMode(QTextOption::NoWrap);
   ui->edit_diff->setWordWrapMode(QTextOption::NoWrap);
 
-  QObject::connect(ui->button_qmake,SIGNAL(clicked()),
-    this,SLOT(OnQmake()));
+  QObject::connect(ui->button_qmake,&QPushButton::clicked,
+    this,&ribi::QtQmakeWatcherMainDialog::OnQmake
+  );
 
 
 

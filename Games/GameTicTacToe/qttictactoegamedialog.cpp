@@ -60,8 +60,8 @@ ribi::tictactoe::QtTicTacToeGameDialog::QtTicTacToeGameDialog(
   m_tictactoe->m_signal_has_winner.connect(
     boost::bind(&ribi::tictactoe::QtTicTacToeGameDialog::HasWinner,this,boost::lambda::_1)
   );
-  //QObject::connect(m_tictactoe.get(),&QtTicTacToeWidget::m_signal_has_winner, // SxIGNAL(hasWinner()),
-  //  this,&ribi::tictactoe::QtTicTacToeGameDialog::HasWinner // SxLOT(HasWinner())
+  //QObject::connect(m_tictactoe.get(),&QtTicTacToeWidget::m_signal_has_winner,
+  //  this,&ribi::tictactoe::QtTicTacToeGameDialog::HasWinner
   //);
 
   {

@@ -58,9 +58,9 @@ ribi::QtTestTriangleMainDialog::QtTestTriangleMainDialog(QWidget *parent) noexce
   #endif
   ui->setupUi(this);
 
-  connect(ui->box_triangle_max_area,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
-  connect(ui->box_triangle_min_angle,SIGNAL(valueChanged(double)),this,SLOT(DisplayTriangleMesh()));
-  connect(ui->edit_wkt,SIGNAL(textChanged()),this,SLOT(DisplayPolygons()));
+  connect(ui->box_triangle_max_area,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestTriangleMainDialog::DisplayTriangleMesh);
+  connect(ui->box_triangle_min_angle,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestTriangleMainDialog::DisplayTriangleMesh);
+  connect(ui->edit_wkt,&QPlainTextEdit::textChanged,this,&ribi::QtTestTriangleMainDialog::DisplayPolygons);
   DisplayPolygons();
 
 }
@@ -73,8 +73,6 @@ ribi::QtTestTriangleMainDialog::~QtTestTriangleMainDialog() noexcept
 void ribi::QtTestTriangleMainDialog::DisplayPolygons() noexcept
 {
   const std::string wkt = ui->edit_wkt->toPlainText().toStdString();
-
-  //const auto lines = SeperateString(text);
   const auto verbose = GetVerbose();
 
   if (verbose)
@@ -88,8 +86,6 @@ void ribi::QtTestTriangleMainDialog::DisplayPolygons() noexcept
   {
 
     std::ofstream f(svg_filename.c_str());
-    //f << Geometry().ToSvgStr(polygons,0.1);
-    //const std::string svg_text = Geometry().WktToSvg(text,0.1);
     const std::string svg_text = m_dialog->GetShapesAsSvg();
 
     if (verbose)

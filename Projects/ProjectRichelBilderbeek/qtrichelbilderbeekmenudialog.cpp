@@ -115,9 +115,9 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
     button->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Maximum);
     QObject::connect(
       button,
-      &QPushButton::clicked, // SxIGNAL(clicked()),
+      &QPushButton::clicked,
       this,
-      &ribi::QtRichelBilderbeekMenuDialog::OnAbout // SxLOT(OnAbout())
+      &ribi::QtRichelBilderbeekMenuDialog::OnAbout
     );
     layout->addWidget(button);
   }

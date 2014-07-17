@@ -51,18 +51,14 @@ ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent)
   QObject::connect(
     m_widget.get(),
     &QtBeerWanterWidget::LevelUp,
-    //SxIGNAL(LevelUp(const std::string&)),
     this,
     &ribi::QtBeerWanterMainDialog::ChangeTitle
-    //SxLOT(ChangeTitle(const std::string&))
   );
   QObject::connect(
     m_widget.get(),
     &QtBeerWanterWidget::DoShake,
-    //SxIGNAL(DoShake(const int,const int)),
     this,
     &ribi::QtBeerWanterMainDialog::OnShake
-    //SxLOT(OnShake(const int,const int))
   );
 }
 

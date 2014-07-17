@@ -46,13 +46,13 @@ ribi::QtKnokfighterMainWidget::QtKnokfighterMainWidget(QWidget *parent) :
   {
     QTimer * const timer = new QTimer(this);
     QObject::connect(
-      timer,&QTimer::timeout, //SxIGNAL(timeout()),
-      m_scene,&QGraphicsScene::advance //SxLOT(advance())
+      timer,&QTimer::timeout,
+      m_scene,&QGraphicsScene::advance
     );
     QObject::connect(
-      timer,&QTimer::timeout, //SxIGNAL(timeout()),
+      timer,&QTimer::timeout,
       this,
-      &ribi::QtKnokfighterMainWidget::do_main_timer //SxLOT(do_main_timer())
+      &ribi::QtKnokfighterMainWidget::do_main_timer
     );
     timer->setInterval(20);
     timer->start();

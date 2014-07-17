@@ -70,12 +70,12 @@ ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(
 
   ///Start the timer
   QObject::connect(
-    m_timer.get(),&QTimer::timeout, //SxIGNAL(timeout()),
-    this,&ribi::QtBoenkenMainDialog::onTimer //SxLOT(onTimer())
+    m_timer.get(),&QTimer::timeout,
+    this,&ribi::QtBoenkenMainDialog::onTimer
   );
   QObject::connect(
-    m_timer_countdown.get(),&QTimer::timeout, //SxIGNAL(timeout()),
-    this,&ribi::QtBoenkenMainDialog::onCountdownTimer // SxLOT(onCountdownTimer())
+    m_timer_countdown.get(),&QTimer::timeout,
+    this,&ribi::QtBoenkenMainDialog::onCountdownTimer
   );
   if (!m_is_training)
   {

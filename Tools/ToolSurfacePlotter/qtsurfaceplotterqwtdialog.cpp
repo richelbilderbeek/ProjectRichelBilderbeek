@@ -73,13 +73,13 @@ ribi::QtSurfacePlotterQwtDialog::QtSurfacePlotterQwtDialog(QWidget *parent)
     this->move( screen.center() - this->rect().center() );
   }
 
-  QObject::connect(this->ui->edit_equation,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxx,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxy,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxz,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_minx,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_miny,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_minz,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_equation,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtSurfacePlotterQwtDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_maxx,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtSurfacePlotterQwtDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_maxy,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtSurfacePlotterQwtDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_maxz,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtSurfacePlotterQwtDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_minx,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtSurfacePlotterQwtDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_miny,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtSurfacePlotterQwtDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_minz,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtSurfacePlotterQwtDialog::OnAnyChange);
 
   OnAnyChange();
   m_plot->showSpectrogram(true);

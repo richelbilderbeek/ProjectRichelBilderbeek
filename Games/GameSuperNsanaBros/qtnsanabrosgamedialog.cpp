@@ -37,8 +37,8 @@ ribi::QtNsanaBrosGameDialog::QtNsanaBrosGameDialog(
     ui->layout->addWidget(widget);
   }
 
-  QObject::connect(&m_timer,&QTimer::timeout, //SxIGNAL(timeout()),
-    this,&ribi::QtNsanaBrosGameDialog::OnTimerQt // SxLOT(OnTimerQt())
+  QObject::connect(&m_timer,&QTimer::timeout,
+    this,&ribi::QtNsanaBrosGameDialog::OnTimerQt
   );
   m_timer.setInterval(50);
   m_timer.start();

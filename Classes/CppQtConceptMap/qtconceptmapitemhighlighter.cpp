@@ -43,9 +43,7 @@ ribi::cmap::QtItemHighlighter::QtItemHighlighter(QObject *parent)
   QObject::connect(
     m_timer,
     &QTimer::timeout,
-    //SxIGNAL(timeout()),
     this,
-    //SLOT(OnTimer())
     &ribi::cmap::QtItemHighlighter::OnTimer
   );
 }

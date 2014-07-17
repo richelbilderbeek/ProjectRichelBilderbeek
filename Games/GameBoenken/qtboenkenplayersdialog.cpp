@@ -34,9 +34,9 @@ ribi::QtBoenkenPlayersDialog::QtBoenkenPlayersDialog(QWidget *parent) :
   ui->setupUi(this);
   QObject::connect(
     ui->button_done,
-    &QPushButton::clicked, //SxIGNAL(clicked()),
+    &QPushButton::clicked,
     this,
-    &ribi::QtBoenkenPlayersDialog::close //SxLOT(close())
+    &ribi::QtBoenkenPlayersDialog::close
   );
 }
 

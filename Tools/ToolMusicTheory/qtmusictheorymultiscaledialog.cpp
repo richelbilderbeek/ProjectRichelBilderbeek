@@ -60,24 +60,58 @@ ribi::QtMusicTheoryMultiScaleDialog::QtMusicTheoryMultiScaleDialog(QWidget *pare
     );
   }
 
-  QObject::connect(ui->scale_1,
-
+  QObject::connect(
+    ui->scale_1,
     static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-    //SIGNAL(currentIndexChanged(int)),
     this,
-    &ribi::QtMusicTheoryMultiScaleDialog::any_change // SLOT(any_change())
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
   );
-  QObject::connect(ui->scale_2,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->root_1,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->root_2,SIGNAL(currentIndexChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_major,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_minor,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_aug,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_dim,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_6,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_m6,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_7,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
-  QObject::connect(ui->display_m7,SIGNAL(stateChanged(int)),this,SLOT(any_change()));
+  QObject::connect(
+    ui->scale_2,
+    static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(
+    ui->root_1,
+    static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(
+    ui->root_2,
+    static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(
+    ui->display_major,
+    static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),
+    this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(
+    ui->display_minor,
+    static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(ui->display_aug,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(ui->display_dim,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(ui->display_6,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(ui->display_m6,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+  );
+  QObject::connect(ui->display_7,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+    );
+  QObject::connect(ui->display_m7,static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged),this,
+    &ribi::QtMusicTheoryMultiScaleDialog::any_change
+    );
 
 
   //any_change();

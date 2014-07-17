@@ -49,15 +49,15 @@ ribi::QtWktToSvgMainDialog::QtWktToSvgMainDialog(QWidget *parent) noexcept
 
   QObject::connect(
     ui->edit,
-    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
     this,
-    &ribi::QtWktToSvgMainDialog::OnInputChanged // SxLOT(OnInputChanged())
+    &ribi::QtWktToSvgMainDialog::OnInputChanged
   );
   QObject::connect(
     ui->box_stroke_width,
-    SIGNAL(valueChanged(double)),
+    static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
     this,
-    &ribi::QtWktToSvgMainDialog::OnInputChanged // SxLOT(OnInputChanged())
+    &ribi::QtWktToSvgMainDialog::OnInputChanged
   );
 
   OnInputChanged();

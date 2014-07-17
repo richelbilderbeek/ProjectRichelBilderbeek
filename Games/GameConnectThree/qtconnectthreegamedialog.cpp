@@ -65,16 +65,8 @@ ribi::con3::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
     ui->widget->setLayout(mylayout);
   }
 
-  QObject::connect(ui->button_quit,
-    &QPushButton::clicked, //SxIGNAL(clicked()),
-    this,
-    &ribi::con3::QtConnectThreeGameDialog::close //SxLOT(close())
-  );
-
-  m_board->m_signal_valid_move.connect(
-    boost::bind(
-      &ribi::con3::QtConnectThreeGameDialog::OnValidMove,
-      this));
+  QObject::connect(ui->button_quit,&QPushButton::clicked,this,&ribi::con3::QtConnectThreeGameDialog::close);
+  m_board->m_signal_valid_move.connect(boost::bind(&ribi::con3::QtConnectThreeGameDialog::OnValidMove,this));
 
   //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();
@@ -126,7 +118,9 @@ void ribi::con3::QtConnectThreeGameDialog::OnValidMove() noexcept
     {
       //Do a computer turn after a second
       QTimer::singleShot(100,
-        this, SLOT(DoComputerTurn()));
+        this,
+        &ribi::con3::QtConnectThreeGameDialog::DoComputerTurn
+      );
     }
 
     return;

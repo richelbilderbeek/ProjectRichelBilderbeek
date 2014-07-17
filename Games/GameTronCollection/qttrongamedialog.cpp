@@ -31,7 +31,6 @@ ribi::tron::QtTronGameDialog::QtTronGameDialog(
   ui->setupUi(this);
 
   Player::m_world.reset(new WorldTypeDonut(320,200));
-  //QObject::connect(m_timer,SxIGNAL(timeout()),this,SxLOT(repaint()));
   QObject::connect(m_timer,&QTimer::timeout,this,&ribi::tron::QtTronGameDialog::OnTimer);
   m_timer->start(20);
 }

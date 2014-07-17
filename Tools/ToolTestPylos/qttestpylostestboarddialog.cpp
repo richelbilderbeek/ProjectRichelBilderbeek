@@ -66,17 +66,17 @@ ribi::pylos::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *par
   );
 
   //When there's a winner, only the log needs to be informed
-  QObject::connect(this->m_widget.get(),SIGNAL(HasWinner()),
-    this,SLOT(UpdateLog()));
+  QObject::connect(m_widget.get(),&QtPylosBoardWidget::HasWinner,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog);
   //When one of the other selectors changes, only the log needs to be informed
-  QObject::connect(this->m_widget.get(),SIGNAL(Toggle()),
-    this,SLOT(UpdateLog()));
+  QObject::connect(m_widget.get(),&QtPylosBoardWidget::Toggle,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog);
   //When the selector changes, only the log needs to be informed
-  QObject::connect(this->m_widget.get(),SIGNAL(SelectorChanged()),
-    this,SLOT(UpdateLog()));
+  QObject::connect(m_widget.get(),&QtPylosBoardWidget::SelectorChanged,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog);
   //When the active player changes, only the log needs to be informed
-  QObject::connect(this->m_widget.get(),SIGNAL(PlayerChanged()),
-    this,SLOT(UpdateLog()));
+  QObject::connect(m_widget.get(),&QtPylosBoardWidget::PlayerChanged,
+    this,&ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog);
 
   UpdateLog();
 }

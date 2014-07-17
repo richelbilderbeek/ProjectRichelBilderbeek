@@ -55,25 +55,27 @@ ribi::QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) noexce
   #endif
   ui->setupUi(this);
   QObject::connect(
-    ui->edit_newick,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_newick,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
   QObject::connect(
-    ui->edit_theta,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_theta,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
   QObject::connect(
-    ui->edit_max_complexity,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
+    ui->edit_max_complexity,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
   QObject::connect(
-    ui->box_show_calculation,SIGNAL(clicked()),
-    this,SLOT(OnAnyChange()));
+    ui->box_show_calculation,
+    static_cast<void (QAbstractButton::*)(bool)>(&QAbstractButton::clicked),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
   QObject::connect(
-    ui->box_compare,SIGNAL(clicked()),
-    this,SLOT(OnAnyChange()));
+    ui->box_compare,
+    static_cast<void (QAbstractButton::*)(bool)>(&QAbstractButton::clicked),
+    this,&ribi::QtTestNewickVectorDialog::OnAnyChange);
 
 
   QObject::connect(
     m_timer,&QTimer::timeout,
-    this,&ribi::QtTestNewickVectorDialog::OnDemoTick // SLOT(OnDemoTick())
+    this,&ribi::QtTestNewickVectorDialog::OnDemoTick
   );
 
   #ifndef NDEBUG

@@ -52,15 +52,15 @@ ribi::QtTestManyDigitNewickMainDialog::QtTestManyDigitNewickMainDialog(QWidget *
   ui->setupUi(this);
   QObject::connect(
     ui->edit_newick,
-    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
     this,
-    &ribi::QtTestManyDigitNewickMainDialog::OnAnyChange //SLOT(OnAnyChange())
+    &ribi::QtTestManyDigitNewickMainDialog::OnAnyChange
   );
   QObject::connect(
     ui->edit_theta,
-    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
     this,
-    &ribi::QtTestManyDigitNewickMainDialog::OnAnyChange //SLOT(OnAnyChange())
+    &ribi::QtTestManyDigitNewickMainDialog::OnAnyChange
   );
 
   //Put the dialog in the screen center

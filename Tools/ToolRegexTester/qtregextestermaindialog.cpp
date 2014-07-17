@@ -42,10 +42,9 @@ ribi::QtRegexTesterMainDialog::QtRegexTesterMainDialog(
   #endif
   ui->setupUi(this);
 
-  QObject::connect(ui->edit_line,SIGNAL(textEdited(QString)),this,SLOT(onAnyChange()));
-  QObject::connect(ui->edit_regex,SIGNAL(textEdited(QString)),this,SLOT(onAnyChange()));
-  QObject::connect(ui->edit_format,SIGNAL(textEdited(QString)),this,SLOT(onAnyChange()));
-
+  QObject::connect(ui->edit_line,&QLineEdit::textEdited,this,&ribi::QtRegexTesterMainDialog::onAnyChange);
+  QObject::connect(ui->edit_regex,&QLineEdit::textEdited,this,&ribi::QtRegexTesterMainDialog::onAnyChange);
+  QObject::connect(ui->edit_format,&QLineEdit::textEdited,this,&ribi::QtRegexTesterMainDialog::onAnyChange);
 
   ui->edit_regex->setText(m_dialog->GetExampleRegex().c_str());
   ui->edit_format->setText(m_dialog->GetExampleFormat().c_str());

@@ -62,20 +62,20 @@ ribi::QtTestPlaneInvestigateAccuracyRibiDialog::QtTestPlaneInvestigateAccuracyRi
   ui->edit_maxx->setText(boost::lexical_cast<std::string>( 1.0).c_str());
   ui->edit_maxy->setText(boost::lexical_cast<std::string>( 1.0).c_str());
 
-  QObject::connect(this->ui->edit_minx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_miny,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxy,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_minx,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_miny,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_maxx,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_maxy,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
 
-  QObject::connect(this->ui->box_x1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_y1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_z1,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_x2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_y2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_z2,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_x3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_y3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->box_z3,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->box_x1,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->box_y1,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->box_z1,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->box_x2,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->box_y2,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->box_z2,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->box_x3,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->box_y3,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->box_z3,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtTestPlaneInvestigateAccuracyRibiDialog::OnAnyChange);
 
   OnAnyChange();
 }

@@ -360,8 +360,8 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     || (m_plane_y && m_plane_y->IsInPlane(coordinat))
     || (m_plane_z && m_plane_z->IsInPlane(coordinat))
   };
-  const bool has_error_below_max = CalcError(coordinat) <= CalcMaxError(coordinat);
   #ifndef NDEBUG
+  const bool has_error_below_max = CalcError(coordinat) <= CalcMaxError(coordinat);
   if (is_in_plane != has_error_below_max)
   {
     TRACE("ERROR");
@@ -371,8 +371,8 @@ bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
     TRACE(CalcMaxError(coordinat));
     TRACE("BREAK");
   }
-  #endif
   assert(is_in_plane == has_error_below_max);
+  #endif
   return is_in_plane;
 }
 

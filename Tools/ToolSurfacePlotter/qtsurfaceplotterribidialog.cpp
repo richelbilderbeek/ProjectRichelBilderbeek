@@ -46,11 +46,11 @@ ribi::QtSurfacePlotterRibiDialog::QtSurfacePlotterRibiDialog(QWidget *parent)
   ui->setupUi(this);
 
 
-  QObject::connect(this->ui->edit_equation,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_minx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_miny,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxy,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->edit_equation,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtSurfacePlotterRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_minx,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtSurfacePlotterRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_miny,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtSurfacePlotterRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_maxx,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtSurfacePlotterRibiDialog::OnAnyChange);
+  QObject::connect(this->ui->edit_maxy,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtSurfacePlotterRibiDialog::OnAnyChange);
 
 
   ui->edit_minx->setText(boost::lexical_cast<std::string>(-1.0).c_str());

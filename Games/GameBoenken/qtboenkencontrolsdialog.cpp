@@ -40,9 +40,9 @@ ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent)
 
   QObject::connect(
     ui->button_done,
-    &QPushButton::clicked, //SxIGNAL(clicked()),
+    &QPushButton::clicked,
     this,
-    &ribi::QtBoenkenControlsDialog::close //SLOT(close())
+    &ribi::QtBoenkenControlsDialog::close
   );
   m_keys_accel.push_back(Qt::Key_W);
   m_keys_accel.push_back(Qt::Key_Up);
@@ -51,26 +51,26 @@ ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent)
 
   QObject::connect(
     ui->button_accelerate_1,
-    &QPushButton::clicked, //SxIGNAL(clicked()),
+    &QPushButton::clicked,
     this,
-    &ribi::QtBoenkenControlsDialog::onAccelerate1 // SLOT(onAccelerate1())
+    &ribi::QtBoenkenControlsDialog::onAccelerate1
   );
   QObject::connect(
     ui->button_accelerate_2,
-    &QPushButton::clicked, //SxIGNAL(clicked()),
+    &QPushButton::clicked,
     this,
-    &ribi::QtBoenkenControlsDialog::onAccelerate2 //SLOT(onAccelerate2())
+    &ribi::QtBoenkenControlsDialog::onAccelerate2
   );
   QObject::connect(
     ui->button_turn_1,
-    &QPushButton::clicked, //SxIGNAL(clicked()),
+    &QPushButton::clicked,
     this,
-    &ribi::QtBoenkenControlsDialog::onTurn1 //SLOT(onTurn1())
+    &ribi::QtBoenkenControlsDialog::onTurn1
   );
   QObject::connect(ui->button_turn_2,
-    &QPushButton::clicked, //SxIGNAL(clicked()),
+    &QPushButton::clicked,
     this,
-    &ribi::QtBoenkenControlsDialog::onTurn2 //SLOT(onTurn2())
+    &ribi::QtBoenkenControlsDialog::onTurn2
   );
 
   showKeys();

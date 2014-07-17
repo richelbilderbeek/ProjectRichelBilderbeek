@@ -41,8 +41,8 @@ ribi::QtMaziakGameOverDialog::QtMaziakGameOverDialog(QWidget *parent) :
   ui->setupUi(this);
   m_timer->setInterval(2500);
   QObject::connect(
-    m_timer.get(),&QTimer::timeout, //SxIGNAL(timeout()),
-    this,&ribi::QtMaziakGameOverDialog::onTimer // SxLOT(onTimer())
+    m_timer.get(),&QTimer::timeout,
+    this,&ribi::QtMaziakGameOverDialog::onTimer
   );
   m_timer->start();
 }

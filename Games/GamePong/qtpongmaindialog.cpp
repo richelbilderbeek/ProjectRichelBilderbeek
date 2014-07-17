@@ -62,8 +62,8 @@ ribi::QtPongMainDialog::QtPongMainDialog(QWidget *parent)
 
   //Create a timer to call 'advance' on all sprites
   QTimer * const timer(new QTimer(this));
-  timer->connect(timer,&QTimer::timeout, // SxIGNAL(timeout()),
-    scene, &QGraphicsScene::advance //SxLOT(advance())
+  timer->connect(timer,&QTimer::timeout,
+    scene, &QGraphicsScene::advance
   );
   timer->start(20);
 }

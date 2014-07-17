@@ -137,31 +137,29 @@ ribi::QtStateObserverMainDialog::QtStateObserverMainDialog(
     ui->plot->insertLegend(legend, QwtPlot::RightLegend);
   }
 
-  QObject::connect(ui->box_alpha_a,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_alpha_ab,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_alpha_abg,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_beta_ab,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_beta_abg,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_gamma_abg,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_lsq_shift,SIGNAL(valueChanged(int)),this,SLOT(Run()));
-  QObject::connect(ui->check_miso_1,SIGNAL(clicked()),this,SLOT(Run()));
-  QObject::connect(ui->check_miso_2,SIGNAL(clicked()),this,SLOT(Run()));
-  QObject::connect(ui->box_slsq_shift,SIGNAL(valueChanged(int)),this,SLOT(Run()));
-  QObject::connect(ui->box_miso_shift_1,SIGNAL(valueChanged(int)),this,SLOT(Run()));
-  QObject::connect(ui->box_miso_shift_2,SIGNAL(valueChanged(int)),this,SLOT(Run()));
-  QObject::connect(ui->box_timesteps,SIGNAL(valueChanged(int)),this,SLOT(Run()));
-  QObject::connect(ui->edit_noise,SIGNAL(textChanged(QString)),this,SLOT(Run()));
-  QObject::connect(ui->box_ma_1,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-  QObject::connect(ui->box_ma_2,SIGNAL(valueChanged(double)),this,SLOT(Run()));
-
-  QObject::connect(ui->groupbox_abg,SIGNAL(clicked()),this,SLOT(Run()));
-  QObject::connect(ui->groupbox_alpha,SIGNAL(clicked()),this,SLOT(Run()));
-  QObject::connect(ui->groupbox_beta,SIGNAL(clicked()),this,SLOT(Run()));
-  QObject::connect(ui->groupbox_lsq,SIGNAL(clicked()),this,SLOT(Run()));
-  QObject::connect(ui->groupBox_ma,SIGNAL(clicked()),this,SLOT(Run()));
-  QObject::connect(ui->groupBox_miso,SIGNAL(clicked()),this,SLOT(Run()));
-  QObject::connect(ui->groupBox_slsq,SIGNAL(clicked()),this,SLOT(Run()));
-
+  QObject::connect(ui->box_alpha_a,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_alpha_ab,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_alpha_abg,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_beta_ab,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_beta_abg,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_gamma_abg,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_lsq_shift,static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->check_miso_1,static_cast<void (QAbstractButton::*)(bool)>(&QAbstractButton::clicked),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->check_miso_2,static_cast<void (QAbstractButton::*)(bool)>(&QAbstractButton::clicked),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_slsq_shift,static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_miso_shift_1,static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_miso_shift_2,static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_timesteps,static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->edit_noise,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_ma_1,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->box_ma_2,static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->groupbox_abg,static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->groupbox_alpha,static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->groupbox_beta,static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->groupbox_lsq,static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->groupBox_ma,static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->groupBox_miso,static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked),this,&ribi::QtStateObserverMainDialog::Run);
+  QObject::connect(ui->groupBox_slsq,static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked),this,&ribi::QtStateObserverMainDialog::Run);
   Run();
 }
 

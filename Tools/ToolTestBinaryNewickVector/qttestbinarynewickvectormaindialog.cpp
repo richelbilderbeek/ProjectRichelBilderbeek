@@ -56,20 +56,20 @@ ribi::QtTestBinaryNewickVectorMainDialog::QtTestBinaryNewickVectorMainDialog(QWi
   ui->setupUi(this);
   QObject::connect(
     ui->edit_newick,
-    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
     this,
-    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange // SxLOT(OnAnyChange())
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
   );
   QObject::connect(
     ui->edit_theta,
-    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged), //SxIGNAL(textChanged(QString)),
+    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
     this,
-    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange // SxLOT(OnAnyChange())
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
   );
   QObject::connect(
-    m_timer,&QTimer::timeout, // SxIGNAL(timeout()),
+    m_timer,&QTimer::timeout,
     this,
-    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange // SxLOT(OnDemoTick())
+    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
   );
 
   #ifndef NDEBUG

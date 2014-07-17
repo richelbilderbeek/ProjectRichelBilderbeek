@@ -324,7 +324,7 @@ void ribi::trim::Helper::MakeConvex(
   if (verbose)
   {
     TRACE(Helper().ToStr(AddConst(points)));
-    for (const auto& p: points) { TRACE(*p); }
+    for (const auto& p: points) { std::cerr << (*p) << std::endl; }
     TRACE("BREAK");
   }
 
@@ -343,6 +343,7 @@ void ribi::trim::Helper::MakeConvex(
   while (1)
   #endif
   {
+    #ifndef NDEBUG
     if (i == max_i-1)
     {
       TRACE("ERROR");
@@ -351,6 +352,7 @@ void ribi::trim::Helper::MakeConvex(
       TRACE("BREAK");
     }
     assert(i!=max_i-1 && "There must be a permutation of the points that renders them convex");
+    #endif
 
     if (IsConvex(points))
     {
@@ -821,16 +823,16 @@ TRACE '"BREAK"' line 312 in file '..\..\Classes\CppTriangleMesh\trianglemeshface
     assert(points.size() == coordinats3d.size());
     const Coordinat3D observer(-2.1871,3.74169,5);
 
-    std::sort(std::begin(points),std::end(points),OrderByX());
+    std::sort(std::begin(points),std::end(points),Helper().OrderByX());
 
     for (int i=0; i!=5*4*3*2*1; ++i)
     {
       if (Helper().IsCounterClockwise(points,observer)) break;
-      std::next_permutation(std::begin(points),std::end(points),OrderByX());
+      std::next_permutation(std::begin(points),std::end(points),Helper().OrderByX());
     }
     assert(Helper().IsCounterClockwise(points,observer));
   }
-  assert(!"Yay, fixed #228");
+  //assert(!"Yay, fixed #228");
   TRACE("Finished ribi::trim::Helper::Point::Test successfully");
 }
 #endif

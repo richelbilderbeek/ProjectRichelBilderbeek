@@ -54,13 +54,12 @@ ribi::QtTestTwoDigitNewickMainDialog::QtTestTwoDigitNewickMainDialog(QWidget *pa
   Test();
   #endif
   ui->setupUi(this);
-  QObject::connect(ui->edit_newick,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
-  QObject::connect(ui->edit_theta,SIGNAL(textChanged(QString)),
-    this,SLOT(OnAnyChange()));
-
-  QObject::connect(ui->button_about,SIGNAL(clicked()),
-    this,SLOT(OnAboutClick()));
+  QObject::connect(ui->edit_newick,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestTwoDigitNewickMainDialog::OnAnyChange);
+  QObject::connect(ui->edit_theta,static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    this,&ribi::QtTestTwoDigitNewickMainDialog::OnAnyChange);
+  QObject::connect(ui->button_about,&QPushButton::clicked,
+    this,&ribi::QtTestTwoDigitNewickMainDialog::OnAboutClick);
 
   //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();

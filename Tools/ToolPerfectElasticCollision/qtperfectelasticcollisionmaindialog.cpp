@@ -50,28 +50,13 @@ ribi::QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(Q
   #endif
   ui->setupUi(this);
 
-  QObject::connect(
-    this->ui->dial_angle,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->dial_impulse_angle1,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->dial_impulse_angle2,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->slider_impulse_1,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->slider_impulse_2,SIGNAL(sliderMoved(int)),
-    this,SLOT(onAnyChange()));
-  QObject::connect(
-    this->ui->check_demo,SIGNAL(toggled(bool)),
-    this,SLOT(onCheck()));
-  QObject::connect(m_timer,&QTimer::timeout,
-    this,
-    &ribi::QtPerfectElasticCollisionMainDialog::onTimer // SLOT(onTimer())
-  );
+  QObject::connect(this->ui->dial_angle,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->dial_impulse_angle1,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->dial_impulse_angle2,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->slider_impulse_1,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->slider_impulse_2,&QDial::sliderMoved,this,&ribi::QtPerfectElasticCollisionMainDialog::onAnyChange);
+  QObject::connect(this->ui->check_demo,&QCheckBox::toggled,this,&ribi::QtPerfectElasticCollisionMainDialog::onCheck);
+  QObject::connect(m_timer,&QTimer::timeout,this,&ribi::QtPerfectElasticCollisionMainDialog::onTimer);
 }
 
 ribi::QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog() noexcept

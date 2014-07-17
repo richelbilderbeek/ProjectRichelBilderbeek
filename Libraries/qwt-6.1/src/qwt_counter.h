@@ -41,7 +41,7 @@ counter->setNumButtons(2);                      // Two buttons each side
 counter->setIncSteps(QwtCounter::Button1, 1);   // Button 1 increments 1 step
 counter->setIncSteps(QwtCounter::Button2, 20);  // Button 2 increments 20 steps
 
-connect(counter, SIGNAL(valueChanged(double)), myClass, SLOT(newValue(double)));
+connect(counter, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), myClass, SLOT(newValue(double)));
 \endcode
  */
 

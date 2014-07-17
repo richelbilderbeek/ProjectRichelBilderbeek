@@ -125,18 +125,12 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   //Connect clicking on the example buttons to setting (and showing) these
   m_examples_dialog->m_signal_example.connect(
     boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetExample,this,boost::lambda::_1));
-
   //When the model changes its number of timesteps, also display this new number
   m_model->m_signal_number_of_timesteps_changed.connect(
     boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps,this,boost::lambda::_1));
-
   //Make the white noise system parameters follow the possible tab changes in parameters
   this->GetFilterDialog()->m_signal_kalman_filter_type_changed.connect(
     boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetKalmanFilterType,this,boost::lambda::_1));
-  //QObject::connect(
-  //  this->m_filter_dialog,SxIGNAL(signal_kalman_filter_type_changed(KalmanFilterType)),
-  //  this,SxLOT(SetKalmanFilterType(KalmanFilterType)));
-
   ui->box_n_timesteps->setValue(5);
 
   assert(IsValid());

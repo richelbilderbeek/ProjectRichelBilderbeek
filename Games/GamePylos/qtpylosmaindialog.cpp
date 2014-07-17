@@ -50,9 +50,9 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
   //Connect
   QObject::connect(
     m_pylos_widget.get(),
-    &QtPylosGameWidget::HasWinner, //SxIGNAL(HasWinner()),
+    &QtPylosGameWidget::HasWinner,
     this,
-    &ribi::pylos::QtPylosMainDialog::OnWinner //SxLOT(OnWinner())
+    &ribi::pylos::QtPylosMainDialog::OnWinner
   );
 
   //Place widget
