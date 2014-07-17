@@ -611,14 +611,17 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     ;
   }
   {
-    int i=0;
+    int index=0;
     const int n = static_cast<int>(m_faces.size());
     const int p = n / 100;
-    for (auto& face: m_faces)
+    const auto j = std::end(m_faces);
+    //for (const boost::shared_ptr<Face>& face: m_faces)
+    for (auto i = std::begin(m_faces); i!=j; ++i)
     {
-      face->SetCorrectWinding();
-      ++i;
-      if (i % p == 0) { std::clog << "%"; }
+      assert(*i);
+      (*i)->SetCorrectWinding();
+      ++index;
+      if (index % p == 0) { std::clog << "%"; }
     }
   }
 

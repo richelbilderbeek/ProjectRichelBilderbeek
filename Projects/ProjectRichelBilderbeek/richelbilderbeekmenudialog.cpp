@@ -78,7 +78,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "geometry.h"
 #include "graycodermenudialog.h"
 #include "histogramequalizationermenudialog.h"
-//#include "hometrainermenudialog.h"
+#include "hometrainermenudialog.h"
 #include "htmlpage.h"
 #include "imagecanvas.h"
 #include "imagerotatermenudialog.h"
@@ -1087,8 +1087,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       }
       break;
       case ProgramType::hometrainer:
-        assert(!"TODO");
-        //p.reset(new HometrainerMenuDialog);
+        p.reset(new HometrainerMenuDialog);
       break;
       case ProgramType::hometrainerVcl:
       {

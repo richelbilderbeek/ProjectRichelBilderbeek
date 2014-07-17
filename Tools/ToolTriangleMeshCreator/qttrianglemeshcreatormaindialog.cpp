@@ -101,6 +101,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::Create3dMesh() noexcept
 
   try
   {
+    assert(m_dialog);
     m_dialog->Set3dMeshParameters(
       GetNumberOfCellLayers(),
       GetLayerHeight(),

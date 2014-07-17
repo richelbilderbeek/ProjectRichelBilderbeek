@@ -126,6 +126,7 @@ class Helper
     const std::vector<boost::shared_ptr<const Point>>& points,
     const Coordinat3D& observer
   ) const noexcept;
+
   bool IsCounterClockwise(
     const std::vector<boost::shared_ptr<Point>>& points,
     const Coordinat3D& observer
@@ -145,6 +146,8 @@ class Helper
 
   ///Order the points so that these are convex
   void MakeConvex(std::vector<boost::shared_ptr<Point>>& points) const noexcept;
+
+  void MakeCounterClockwise(std::vector<boost::shared_ptr<Point>>& points,const Coordinat3D& observer) const noexcept;
 
   std::function<bool(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs)>
     OrderByIndex() const noexcept;

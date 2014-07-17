@@ -11,15 +11,15 @@
 
 namespace ribi {
 
-struct NsanaBrosMenuDialog : public MenuDialog
+struct NsanaBrosMenuDialog final : public MenuDialog
 {
   NsanaBrosMenuDialog();
 
-  About GetAbout() const noexcept;
-  Help GetHelp() const noexcept;
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
-  std::string GetVersion() const noexcept;
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
 
   const NsanaBrosOptionsDialog * GetOptionsDialog() const;
   boost::shared_ptr<NsanaBrosOptionsDialog> UseOptionsDialog();
@@ -28,7 +28,7 @@ struct NsanaBrosMenuDialog : public MenuDialog
   //friend void boost::checked_delete<>(NsanaBrosMenuDialog *);
   private:
 
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   boost::scoped_ptr<NsanaBrosGameDialog> m_game;
   boost::shared_ptr<NsanaBrosOptionsDialog> m_options;

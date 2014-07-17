@@ -31,19 +31,19 @@ namespace ribi {
 namespace scc {
 
 ///GUI independent staircasecardcreator menu dialog
-struct MenuDialog : public ::ribi::MenuDialog
+struct MenuDialog final : public ::ribi::MenuDialog
 {
   MenuDialog();
   ~MenuDialog() noexcept {}
-  About GetAbout() const noexcept;
-  Help GetHelp() const noexcept;
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
-  std::string GetVersion() const noexcept;
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
 
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
 
   private:
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -31,16 +31,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-struct SitemapGeneratorMenuDialog : public MenuDialog
+struct SitemapGeneratorMenuDialog final : public MenuDialog
 {
   SitemapGeneratorMenuDialog();
   ~SitemapGeneratorMenuDialog() noexcept {}
 
-  About GetAbout() const noexcept;
-  Help GetHelp() const noexcept;
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
-  std::string GetVersion() const noexcept;
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
 
   boost::signals2::signal<void(const std::string)> m_signal_log;
 

@@ -36,14 +36,14 @@ namespace ribi {
 ///GUI independent TriangleMeshCreator menu dialog
 struct TriangleMeshCreatorMenuDialog : public MenuDialog
 {
-  About GetAbout() const noexcept;
-  Help GetHelp() const noexcept;
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
-  std::string GetVersion() const noexcept;
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  About GetAbout() const noexcept override final;
+  Help GetHelp() const noexcept override final;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override final;
+  std::string GetVersion() const noexcept override final;
+  std::vector<std::string> GetVersionHistory() const noexcept override final;
 
   private:
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override final;
 
   #ifndef NDEBUG
   static void Test() noexcept;

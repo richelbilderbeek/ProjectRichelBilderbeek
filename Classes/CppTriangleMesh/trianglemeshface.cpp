@@ -43,26 +43,23 @@ ribi::trim::Face::Face(
 {
   #ifndef NDEBUG
   Test();
-  
   assert(m_points == any_points);
   assert(!m_points.empty());
   assert(  m_points[0].use_count() >= 2);
   assert(any_points[0].use_count() >= 2);
-
-  #define FIX_ISSUE_224
-  #ifdef FIX_ISSUE_224
   assert(Helper().IsPlane(m_points));
   if (!Helper().IsConvex(m_points))
   {
     TRACE("ERROR");
     for (const auto& point: m_points) TRACE(point->ToStr());
   }
-  #endif
   assert(sm_faces.count(this) == 0);
+  #endif
+
   sm_faces.insert(this);
 
+  #ifndef NDEBUG
   assert(Helper().IsConvex(m_points));
-
   if (m_orientation == FaceOrientation::horizontal)
   {
     const int n_points = static_cast<int>(m_points.size());
@@ -266,93 +263,23 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
     && "A Face its winding can only be set if it belongs to a cell"
   );
-  #define FIX_ISSUE_224
-  #ifdef FIX_ISSUE_224
-  //Must be fixed by #224
   assert(Helper().IsPlane(m_points));
-  //Is fuzzier due to #224
   assert(Helper().IsConvex(m_points));
-  #endif // FIX_ISSUE_224
 
-  const boost::shared_ptr<const Cell> observer {
+  const boost::shared_ptr<const Cell> observer{
     !GetNeighbour()
     ? GetConstOwner()
     : GetConstOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetConstOwner() : GetNeighbour()
   };
   assert(observer);
-  #define FIX_ISSUE_224
-  #ifdef  FIX_ISSUE_224
-  //Must be fixed by #224
   assert(Helper().IsPlane(m_points));
-  #endif // FIX_ISSUE_224
 
-  const auto f = Helper().OrderByX();
+  //Must be ordered counter-clockwise (although the documentation says otherwise?)
+  Helper().MakeCounterClockwise(m_points,observer->CalculateCenter());
 
-  if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
-  {
-
-    std::sort(m_points.begin(),m_points.end(),f); //For std::next_permutation
-
-    //Must be ordered counter-clockwise (although the documentation says otherwise?)
-    #ifndef NDEBUG
-    bool found = false;
-    #endif
-    int cnt = 0;
-
-    while (std::next_permutation(m_points.begin(),m_points.end(),f))
-    {
-      assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
-      if (
-        Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
-        //&& Helper().IsConvex(m_points)
-      )
-      {
-        assert(Helper().IsConvex(m_points));
-        found = true;
-        assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
-        break;
-      }
-      else
-      {
-        ++cnt;
-      }
-    }
-    #ifndef NDEBUG
-    if (!found)
-    {
-      TRACE("ERROR");
-      TRACE(cnt);
-      TRACE(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
-      TRACE(Helper().IsConvex(m_points));
-      for (const auto& point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
-      TRACE(Geometry().ToStr(observer->CalculateCenter()));
-      TRACE("BREAK");
-    }
-    #endif
-    assert(found);
-    assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
-    assert(Helper().IsConvex(m_points));
-  }
-
-  #ifndef NDEBUG
-  if (!Helper().IsCounterClockwise(AddConst(m_points),observer->CalculateCenter()))
-  {
-    TRACE(m_points.size());
-    for (const auto& point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
-    TRACE(Geometry().ToStr(observer->CalculateCenter()));
-  }
-  #endif
-
-  #ifdef FIX_ISSUE_224
-  //Fuzzy while #214 is not fixed
   assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
-
-  //Checks if #214 is fixed
   assert(Helper().IsPlane(m_points));
-
-  //Fuzzy while #214 is not fixed
   assert(Helper().IsConvex(m_points));
-  #endif // FIX_ISSUE_224
 }
 
 #ifndef NDEBUG

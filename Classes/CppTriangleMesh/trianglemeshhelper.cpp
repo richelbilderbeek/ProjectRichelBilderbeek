@@ -156,10 +156,7 @@ bool ribi::trim::Helper::IsClockwise(
     assert(point);
     coordinats.push_back(point->GetCoordinat3D());
   }
-  #define FIX_ISSUE_224
-  #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(coordinats));
-  #endif // FIX_ISSUE_224
   return Geometry().IsClockwise(coordinats,observer);
 }
 
@@ -263,10 +260,7 @@ bool ribi::trim::Helper::IsCounterClockwise(
   const Coordinat3D& observer) const noexcept
 {
   
-  #define FIX_ISSUE_224
-  #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(PointsToCoordinats3D(points)));
-  #endif
   return Geometry().IsCounterClockwise(PointsToCoordinats3D(points),observer);
 }
 
@@ -274,10 +268,7 @@ bool ribi::trim::Helper::IsCounterClockwise(
   const std::vector<boost::shared_ptr<Point>>& points,
   const Coordinat3D& observer) const noexcept
 {
-  #define FIX_ISSUE_224
-  #ifdef FIX_ISSUE_224
   assert(Geometry().IsPlane(PointsToCoordinats3D(AddConst(points))));
-  #endif
   return Geometry().IsCounterClockwise(PointsToCoordinats3D(AddConst(points)),observer);
 }
 
@@ -415,6 +406,55 @@ void ribi::trim::Helper::MakeConvex(
   return;
 }
 
+void ribi::trim::Helper::MakeCounterClockwise(
+  std::vector<boost::shared_ptr<Point>>& points,
+  const Coordinat3D& observer) const noexcept
+{
+  #ifndef NDEBUG
+  const auto tmp_copy = points;
+  #endif
+
+  const auto f = Helper().OrderByX();
+
+  if (IsCounterClockwise(points,observer)) return;
+
+  std::sort(points.begin(),points.end(),f); //For std::next_permutation
+
+  if (Helper().IsCounterClockwise(points,observer)) return;
+
+  while (std::next_permutation(std::begin(points),std::end(points),f))
+  {
+    if (Helper().IsCounterClockwise(points,observer))
+    {
+      return;
+    }
+  }
+
+  TRACE("ERROR: failed making these points counterclockwards:");
+  for (const auto& point: tmp_copy) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+  TRACE(Geometry().ToStr(observer));
+  TRACE(Helper().IsCounterClockwise(tmp_copy,observer));
+  TRACE(Helper().IsPlane(tmp_copy));
+  TRACE(Helper().IsConvex(tmp_copy));
+  TRACE("Let's try again");
+  for (const auto& point: tmp_copy) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+  TRACE(IsCounterClockwise(points,observer));
+
+  std::sort(points.begin(),points.end(),f);
+
+  for (const auto& point: tmp_copy) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+  TRACE(Helper().IsCounterClockwise(points,observer));
+
+  while (std::next_permutation(std::begin(points),std::end(points),f))
+  {
+    for (const auto& point: tmp_copy) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+    TRACE(Helper().IsCounterClockwise(points,observer));
+  }
+
+  assert(!"Should not get here");
+  assert(Helper().IsCounterClockwise(points,observer));
+}
+
 std::function<
     bool(
       const boost::shared_ptr<const ribi::trim::Face>& lhs,
@@ -482,7 +522,7 @@ std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesia
 void ribi::trim::Helper::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
@@ -494,7 +534,7 @@ void ribi::trim::Helper::Test() noexcept
   //CalcCenter
   //CalcWindingHorizontal
   const Helper h;
-  const double pi { boost::math::constants::pi<double>() };
+  const double pi{boost::math::constants::pi<double>()};
   if (verbose) { TRACE("GetAngle"); }
   {
     {
@@ -504,8 +544,8 @@ void ribi::trim::Helper::Test() noexcept
       const boost::shared_ptr<Point> point {
         PointFactory().Create(coordinat)
       };
-      const double angle = h.GetAngle(point); //North
-      const double expected = 0.0 * pi;
+      const double angle{h.GetAngle(point)}; //North
+      const double expected{0.0 * pi};
       assert(std::abs(angle-expected) < 0.01);
     }
     {
@@ -515,8 +555,8 @@ void ribi::trim::Helper::Test() noexcept
       const boost::shared_ptr<Point> point {
         PointFactory().Create(coordinat)
       };
-      const double angle =  h.GetAngle(point); //North-East
-      const double expected = 0.25 * pi;
+      const double angle{h.GetAngle(point)}; //North-East
+      const double expected{0.25 * pi};
       assert(std::abs(angle-expected) < 0.01);
     }
     {
@@ -526,8 +566,8 @@ void ribi::trim::Helper::Test() noexcept
       const boost::shared_ptr<Point> point {
         PointFactory().Create(coordinat)
       };
-      const double angle =  h.GetAngle(point); //East
-      const double expected = 0.5 * pi;
+      const double angle{h.GetAngle(point)}; //East
+      const double expected{0.5 * pi};
       assert(std::abs(angle-expected) < 0.01);
     }
     {
@@ -537,8 +577,8 @@ void ribi::trim::Helper::Test() noexcept
       const boost::shared_ptr<Point> point {
         PointFactory().Create(coordinat)
       };
-      const double angle =  h.GetAngle(point); //South-East
-      const double expected = 0.75 * pi;
+      const double angle{h.GetAngle(point)}; //South-East
+      const double expected{0.75 * pi};
       assert(std::abs(angle-expected) < 0.01);
     }
     {
@@ -548,8 +588,8 @@ void ribi::trim::Helper::Test() noexcept
       const boost::shared_ptr<Point> point {
         PointFactory().Create(coordinat)
       };
-      const double angle =  h.GetAngle(point); //South
-      const double expected = 1.0 * pi;
+      const double angle{h.GetAngle(point)}; //South
+      const double expected{1.0 * pi};
       assert(std::abs(angle-expected) < 0.01);
     }
     {
@@ -559,8 +599,8 @@ void ribi::trim::Helper::Test() noexcept
       const boost::shared_ptr<Point> point {
         PointFactory().Create(coordinat)
       };
-      const double angle =  h.GetAngle(point); //South-West
-      const double expected = 1.25 * pi;
+      const double angle{h.GetAngle(point)}; //South-West
+      const double expected{1.25 * pi};
       assert(std::abs(angle-expected) < 0.01);
     }
     {
@@ -570,8 +610,8 @@ void ribi::trim::Helper::Test() noexcept
       const boost::shared_ptr<Point> point {
         PointFactory().Create(coordinat)
       };
-      const double angle =  h.GetAngle(point); //West
-      const double expected = 1.5 * pi;
+      const double angle{h.GetAngle(point)}; //West
+      const double expected{1.5 * pi};
       assert(std::abs(angle-expected) < 0.01);
     }
     {
@@ -581,8 +621,8 @@ void ribi::trim::Helper::Test() noexcept
       const boost::shared_ptr<Point> point {
         PointFactory().Create(coordinat)
       };
-      const double angle =  h.GetAngle(point); //North-West
-      const double expected = 1.75 * pi;
+      const double angle{h.GetAngle(point)}; //North-West
+      const double expected{1.75 * pi};
       assert(std::abs(angle-expected) < 0.01);
     }
   }
@@ -753,47 +793,46 @@ void ribi::trim::Helper::Test() noexcept
       }
     }
   }
-  //SetWindingHorizontal
+  //MakeConvex
   if (verbose) { TRACE("MakeConvex"); }
   {
-    std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
+    boost::shared_ptr<const Coordinat2D> left {new Coordinat2D(1.17557,2.35781)};
+    boost::shared_ptr<const Coordinat2D> right{new Coordinat2D(2.23114,3.23607)};
+    std::vector<boost::shared_ptr<ribi::trim::Point>> points {
+      PointFactory().Create(right,6.0 * boost::units::si::meter),
+      PointFactory().Create(right,5.0 * boost::units::si::meter),
+      PointFactory().Create( left,6.0 * boost::units::si::meter),
+      PointFactory().Create( left,5.0 * boost::units::si::meter)
+    };
+    h.MakeConvex(points);
+    #ifndef NDEBUG
+    if(!h.IsConvex(points))
     {
-      const auto coordinat = boost::make_shared<Coordinat3D>(2.23114,3.23607,6); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
+      TRACE("ERROR");
     }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(2.23114,3.23607,5); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(1.17557,2.35781,6); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(1.17557,2.35781,5); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
+    #endif
+    assert(h.IsConvex(points));
+  }
 
-    std::vector<boost::shared_ptr<Point>> points;
-    for (const auto& coordinat: coordinats3d)
-    {
-      boost::shared_ptr<const Coordinat2D> coordinat2d(
-        new Coordinat2D(
-          boost::geometry::get<0>(*coordinat),
-          boost::geometry::get<1>(*coordinat)
-        )
-      );
-      const auto point(PointFactory().Create(coordinat2d));
-      assert(point);
-      point->SetZ(boost::geometry::get<2>(*coordinat) * boost::units::si::meter);
-      points.push_back(point);
-    }
-    assert(points.size() == coordinats3d.size());
+  //MakeConvex
+  if (verbose) { TRACE("MakeConvex, from #228"); }
+  {
+    /*
+    (-0.55,2,0)
+    (-3.78624,2,0)
+    (-0.55,2,10)
+    (-3.78624,2,10)
+    Observer: (-2.1871,3.74169,5)
+    */
 
+    boost::shared_ptr<const Coordinat2D> left {new Coordinat2D(-3.78624,2)};
+    boost::shared_ptr<const Coordinat2D> right{new Coordinat2D(-0.55,2)};
+    std::vector<boost::shared_ptr<ribi::trim::Point>> points {
+      PointFactory().Create(right, 0.0 * boost::units::si::meter),
+      PointFactory().Create( left, 0.0 * boost::units::si::meter),
+      PointFactory().Create(right,10.0 * boost::units::si::meter),
+      PointFactory().Create( left,10.0 * boost::units::si::meter)
+    };
     h.MakeConvex(points);
     #ifndef NDEBUG
     if(!h.IsConvex(points))
@@ -811,43 +850,14 @@ void ribi::trim::Helper::Test() noexcept
     (-0.55,2,20)
     (-3.78624,2,20)
     */
-    std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,10); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(-0.55,2,10); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(-0.55,2,20); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,20); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-
-    std::vector<boost::shared_ptr<Point>> points;
-    for (const auto& coordinat: coordinats3d)
-    {
-      boost::shared_ptr<const Coordinat2D> coordinat2d(
-        new Coordinat2D(
-          boost::geometry::get<0>(*coordinat),
-          boost::geometry::get<1>(*coordinat)
-        )
-      );
-      const auto point(PointFactory().Create(coordinat2d));
-      assert(point);
-      point->SetZ(boost::geometry::get<2>(*coordinat) * boost::units::si::meter);
-      points.push_back(point);
-    }
-    assert(points.size() == coordinats3d.size());
+    boost::shared_ptr<const Coordinat2D> left{new Coordinat2D(-3.78624,2)};
+    boost::shared_ptr<const Coordinat2D> right{new Coordinat2D(-0.55,2)};
+    std::vector<boost::shared_ptr<ribi::trim::Point>> points {
+      PointFactory().Create( left,10.0 * boost::units::si::meter),
+      PointFactory().Create(right,10.0 * boost::units::si::meter),
+      PointFactory().Create(right,20.0 * boost::units::si::meter),
+      PointFactory().Create( left,20.0 * boost::units::si::meter)
+    };
     for (int i=0; i!=5*4*3*2*1; ++i)
     {
       std::random_shuffle(std::begin(points),std::end(points));
@@ -860,54 +870,25 @@ void ribi::trim::Helper::Test() noexcept
       #endif
       assert(h.IsConvex(points));
     }
-
   }
   if (verbose) { TRACE("Making CounterClockWise (seen from an observer), #228"); }
   {
     /* Make these counterclockwise
-    (-3.78624,2,0)'
-    (-3.78624,2,10)'
-    (-0.55,2,0)'
-    (-0.55,2,10)'
-    Observer: (-2.1871,3.74169,5)'
+    (-3.78624,2,0)
+    (-3.78624,2,10)
+    (-0.55,2,0)
+    (-0.55,2,10)
+    Observer: (-2.1871,3.74169,5) and others
     */
-    std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,0); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,10); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(-0.55,2,0); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
-    {
-      const auto coordinat = boost::make_shared<Coordinat3D>(-0.55,2,10); //Left out the .0 intentionally
-      assert(coordinat);
-      coordinats3d.push_back(coordinat);
-    }
+    boost::shared_ptr<const Coordinat2D> left{new Coordinat2D(-3.78624,2)};
+    boost::shared_ptr<const Coordinat2D> right{new Coordinat2D(-0.55,2)};
+    std::vector<boost::shared_ptr<ribi::trim::Point>> points {
+      PointFactory().Create( left, 0.0 * boost::units::si::meter),
+      PointFactory().Create(right,10.0 * boost::units::si::meter),
+      PointFactory().Create(right, 0.0 * boost::units::si::meter),
+      PointFactory().Create( left,10.0 * boost::units::si::meter)
+    };
 
-    std::vector<boost::shared_ptr<Point>> points;
-    for (const auto& coordinat: coordinats3d)
-    {
-      boost::shared_ptr<const Coordinat2D> coordinat2d(
-        new Coordinat2D(
-          boost::geometry::get<0>(*coordinat),
-          boost::geometry::get<1>(*coordinat)
-        )
-      );
-      const auto point(PointFactory().Create(coordinat2d));
-      assert(point);
-      point->SetZ(boost::geometry::get<2>(*coordinat) * boost::units::si::meter);
-      points.push_back(point);
-    }
-    assert(points.size() == coordinats3d.size());
     for (const Coordinat3D& observer:
       {
         Coordinat3D(-2.1871 ,3.74169 ,5),
@@ -923,6 +904,39 @@ void ribi::trim::Helper::Test() noexcept
         if (Helper().IsCounterClockwise(points,observer)) break;
         std::next_permutation(std::begin(points),std::end(points),Helper().OrderByX());
       }
+      assert(Helper().IsCounterClockwise(points,observer));
+    }
+  }
+  if (verbose) { TRACE("MakCounterClockWise, #228"); }
+  {
+    /* Make these counterclockwise
+
+    (-0.55,2,0)
+    (-3.78624,2,0)
+    (-0.55,2,10)
+    (-3.78624,2,10)
+    Observer: (-2.1871,3.74169,5)
+
+    */
+    boost::shared_ptr<const Coordinat2D> left{new Coordinat2D(-3.78624,2)};
+    boost::shared_ptr<const Coordinat2D> right{new Coordinat2D(-0.55,2)};
+    std::vector<boost::shared_ptr<ribi::trim::Point>> points {
+      PointFactory().Create( left, 0.0 * boost::units::si::meter),
+      PointFactory().Create(right, 0.0 * boost::units::si::meter),
+      PointFactory().Create(right,10.0 * boost::units::si::meter),
+      PointFactory().Create( left,10.0 * boost::units::si::meter)
+    };
+
+    for (const Coordinat3D& observer:
+      {
+        Coordinat3D(-2.1871 ,3.74169 ,5),
+        Coordinat3D(-1.50283,0.990808,5),
+        Coordinat3D(-2.1871 ,3.74169 ,5)
+      }
+    )
+    {
+      std::sort(points.rbegin(),points.rend(),h.OrderByX()); //Try to make it hard
+      Helper().MakeCounterClockwise(points,observer);
       assert(Helper().IsCounterClockwise(points,observer));
     }
   }

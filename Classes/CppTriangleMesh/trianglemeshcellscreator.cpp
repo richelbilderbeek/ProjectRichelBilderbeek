@@ -222,6 +222,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
       }
     }
   }
+  #ifndef NDEBUG
   if (verbose)
   {
     std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
@@ -229,6 +230,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
     ;
   }
   CheckCells(cells);
+  #endif // NDEBUG
   if (verbose)
   {
     std::clog << __FILE__ << "(" <<  (__LINE__) <<  ") : "
@@ -461,8 +463,6 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         face_points[1]->SetZ(z_here);
         face_points[2]->SetZ(z_above);
         face_points[3]->SetZ(z_above);
-        #define FIX_ISSUE_224
-        #ifdef FIX_ISSUE_224
         #ifndef NDEBUG
         if(!IsPlane(face_points))
         {
@@ -478,7 +478,6 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         }
         #endif
         assert(IsPlane(face_points));
-        #endif // FIX_ISSUE_224
 
         //Order face_points
         if (!Helper().IsConvex(face_points))

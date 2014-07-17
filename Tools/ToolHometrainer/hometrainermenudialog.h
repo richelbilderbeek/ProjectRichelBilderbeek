@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 ///The logic behind the menu dialog
-struct HometrainerMenuDialog : public MenuDialog
+struct HometrainerMenuDialog final : public MenuDialog
 {
   HometrainerMenuDialog();
 
@@ -36,13 +36,13 @@ struct HometrainerMenuDialog : public MenuDialog
 
   ///Execute Hometrainer from the command line
   ///The return code is the error code given back to main
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
-  About GetAbout() const noexcept;
-  Help GetHelp() const noexcept;
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
-  std::string GetVersion() const noexcept;
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
 
   private:
   #ifndef NDEBUG
