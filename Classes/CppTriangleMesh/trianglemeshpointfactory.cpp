@@ -42,6 +42,18 @@ boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
   return point;
 }
 
+boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
+  const boost::shared_ptr<const Coordinat2D> coordinat,
+  const boost::units::quantity<boost::units::si::length> z
+) const noexcept
+{
+  const auto point = Create(coordinat);
+  assert(point);
+  point->SetZ(z);
+  return point;
+}
+
+
 std::vector<boost::shared_ptr<ribi::trim::Point>>
   ribi::trim::PointFactory::CreateTestInvalid() const noexcept
 {

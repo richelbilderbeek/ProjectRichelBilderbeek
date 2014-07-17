@@ -455,7 +455,12 @@ std::function<
     if (get<1>(*lhs_coordinat) > get<1>(*rhs_coordinat)) return false;
     assert(lhs->CanGetZ());
     assert(rhs->CanGetZ());
-    return lhs->GetZ() < rhs->GetZ();
+    const bool is_ordered = lhs->GetZ() < rhs->GetZ();
+    assert(
+         (*lhs == *rhs && is_ordered == false) //Either they are the same
+      || (*lhs != *rhs && is_ordered != Helper().OrderByX()(rhs,lhs) ) //Or the functor responds symmetrical
+    );
+    return is_ordered;
   };
 }
 
@@ -662,7 +667,16 @@ void ribi::trim::Helper::Test() noexcept
     assert(h.IsConvex(points));
     assert(h.IsConvex(AddConst(points)));
   }
-
+  //OrderByX
+  {
+    const auto f = h.OrderByX();
+    const boost::shared_ptr<const PointFactory::Coordinat2D> lhs_2d{new PointFactory::Coordinat2D(1.0,2.0)};
+    const boost::shared_ptr<const PointFactory::Coordinat2D> rhs_2d{new PointFactory::Coordinat2D(2.0,1.0)};
+    const boost::shared_ptr<const ribi::trim::Point>& lhs = ribi::trim::PointFactory().Create(lhs_2d,1.0 * boost::units::si::meter);
+    const boost::shared_ptr<const ribi::trim::Point>& rhs = ribi::trim::PointFactory().Create(rhs_2d,1.0 * boost::units::si::meter);
+    assert(f(lhs,rhs) != f(rhs,lhs));
+    assert(!"Add more");
+  }
   //SetWindingHorizontal
   if (verbose) { TRACE("MakeConvex"); }
   {
@@ -713,7 +727,7 @@ void ribi::trim::Helper::Test() noexcept
     #endif
     assert(h.IsConvex(points));
   }
-  //MakeConvex, #228
+  if (verbose) { TRACE("MakeConvex, #228"); }
   {
     /*
     (-3.78624,2,10)
@@ -772,18 +786,15 @@ void ribi::trim::Helper::Test() noexcept
     }
 
   }
-  //
+  if (verbose) { TRACE("Making CounterClockWise (seen from an observer), #228"); }
   {
-  /* Make these counterclockwise
-
-'ERROR'
-(-3.78624,2,0)'
-(-3.78624,2,10)'
-(-0.55,2,0)'
-(-0.55,2,10)'
-Observer: (-2.1871,3.74169,5)'
-TRACE '"BREAK"' line 312 in file '..\..\Classes\CppTriangleMesh\trianglemeshface.cpp': 'BREAK'
-  */
+    /* Make these counterclockwise
+    (-3.78624,2,0)'
+    (-3.78624,2,10)'
+    (-0.55,2,0)'
+    (-0.55,2,10)'
+    Observer: (-2.1871,3.74169,5)'
+    */
     std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
     {
       const auto coordinat = boost::make_shared<Coordinat3D>(-3.78624,2,0); //Left out the .0 intentionally
@@ -821,17 +832,25 @@ TRACE '"BREAK"' line 312 in file '..\..\Classes\CppTriangleMesh\trianglemeshface
       points.push_back(point);
     }
     assert(points.size() == coordinats3d.size());
-    const Coordinat3D observer(-2.1871,3.74169,5);
-
-    std::sort(std::begin(points),std::end(points),Helper().OrderByX());
-
-    for (int i=0; i!=5*4*3*2*1; ++i)
+    for (const Coordinat3D& observer:
+      {
+        Coordinat3D(-2.1871 ,3.74169 ,5),
+        Coordinat3D(-1.50283,0.990808,5),
+        Coordinat3D(-2.1871 ,3.74169 ,5)
+      }
+    )
     {
-      if (Helper().IsCounterClockwise(points,observer)) break;
-      std::next_permutation(std::begin(points),std::end(points),Helper().OrderByX());
+      std::sort(std::begin(points),std::end(points),Helper().OrderByX());
+
+      for (int i=0; i!=5*4*3*2*1; ++i)
+      {
+        if (Helper().IsCounterClockwise(points,observer)) break;
+        std::next_permutation(std::begin(points),std::end(points),Helper().OrderByX());
+      }
+      assert(Helper().IsCounterClockwise(points,observer));
     }
-    assert(Helper().IsCounterClockwise(points,observer));
   }
+
   //assert(!"Yay, fixed #228");
   TRACE("Finished ribi::trim::Helper::Point::Test successfully");
 }

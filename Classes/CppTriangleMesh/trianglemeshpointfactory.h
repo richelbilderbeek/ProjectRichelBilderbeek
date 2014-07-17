@@ -37,6 +37,13 @@ class PointFactory
     const boost::shared_ptr<const Coordinat2D> coordinat
   ) const noexcept;
 
+  ///This way is used in mesh creation: every 3D point shares the same
+  ///ConstCoordinat2D
+  boost::shared_ptr<Point> Create(
+    const boost::shared_ptr<const Coordinat2D> coordinat,
+    const boost::units::quantity<boost::units::si::length> z
+  ) const noexcept;
+
   //Create points that should fail to construct a Face from
   std::vector<boost::shared_ptr<Point>> CreateTestInvalid() const noexcept;
 

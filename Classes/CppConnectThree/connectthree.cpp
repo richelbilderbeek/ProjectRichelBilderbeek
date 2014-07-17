@@ -92,7 +92,19 @@ ribi::con3::Square ribi::con3::ConnectThree::GetSquare(const int x, const int y)
 {
   assert(CanGetSquare(x,y));
   assert(!m_area.empty());
+  assert(x >= 0);
   assert(x < static_cast<int>(m_area.size()));
+  assert(y >= 0);
+  #ifndef NDEBUG
+  if (y >= static_cast<int>(m_area[0].size()))
+  {
+    TRACE("ERROR");
+    TRACE(y);
+    TRACE(m_area.size());
+    TRACE(m_area[0].size());
+    TRACE("BREAK");
+  }
+  #endif
   assert(y < static_cast<int>(m_area[0].size()));
   return m_area[x][y];
 }
