@@ -103,6 +103,14 @@ class Helper
   */
   double GetAngle(const boost::shared_ptr<const Point> point) const noexcept;
 
+  ///Obtain all permutations of a std::vector
+  ///Examples:
+  /// {1    } -> { {1} }
+  /// {1,2  } -> { {1,2} , {2,1} }
+  /// {1,2,3} -> { {1,2,3} , {1,3,2} , {2,1,3} , {2,3,1} , {3,1,2} , {3,2,1} }
+  //From http://www.richelbilderbeek.nl/CppGetPermutations.htm
+  std::vector<std::vector<int>> GetPermutations(std::vector<int> v) const noexcept;
+
   bool IsClockwise(
     const std::vector<boost::shared_ptr<const Point>>& points,
     const Coordinat3D& observer

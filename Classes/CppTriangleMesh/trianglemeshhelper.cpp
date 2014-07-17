@@ -145,6 +145,18 @@ double ribi::trim::Helper::GetAngle(const boost::shared_ptr<const Point> point) 
   );
 }
 
+std::vector<std::vector<int>> ribi::trim::Helper::GetPermutations(std::vector<int> v) const noexcept
+{
+  std::sort(std::begin(v),std::end(v));
+  std::vector<std::vector<int>> w;
+  w.push_back(v);
+  while(std::next_permutation(std::begin(v),std::end(v)))
+  {
+    w.push_back(v);
+  }
+  return w;
+}
+
 bool ribi::trim::Helper::IsClockwise(
   const std::vector<boost::shared_ptr<const Point>>& points,
   const Coordinat3D& observer) const noexcept
@@ -410,44 +422,47 @@ void ribi::trim::Helper::MakeCounterClockwise(
   std::vector<boost::shared_ptr<Point>>& points,
   const Coordinat3D& observer) const noexcept
 {
-  #ifndef NDEBUG
-  const auto tmp_copy = points;
-  #endif
-
-  const auto f = Helper().OrderByX();
-
+  //Sure, will be repeated later, but perhaps the points are already ordered by a smart client
   if (IsCounterClockwise(points,observer)) return;
 
-  std::sort(points.begin(),points.end(),f); //For std::next_permutation
+  assert(points.size() == 3 || points.size() == 4);
 
-  if (Helper().IsCounterClockwise(points,observer)) return;
+  const std::vector<boost::shared_ptr<Point>> original = points;
 
-  while (std::next_permutation(std::begin(points),std::end(points),f))
+  assert(original == points);
+
+  const int n_points{static_cast<int>(points.size())};
+  const std::vector<int> indices
+    = n_points == 3 ? std::vector<int>({0,1,2}) : std::vector<int>({0,1,2,3});
+
+  for (const auto& sequence: GetPermutations(indices))
   {
-    if (Helper().IsCounterClockwise(points,observer))
+    TRACE("New sequence");
+    for (int i=0; i!=n_points; ++i)
     {
-      return;
+      TRACE(sequence[i]);
+      points[i] = original[ sequence[i] ];
     }
+    if (Helper().IsCounterClockwise(points,observer)) return;
   }
 
   TRACE("ERROR: failed making these points counterclockwards:");
-  for (const auto& point: tmp_copy) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+  for (const auto& point: original) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
   TRACE(Geometry().ToStr(observer));
-  TRACE(Helper().IsCounterClockwise(tmp_copy,observer));
-  TRACE(Helper().IsPlane(tmp_copy));
-  TRACE(Helper().IsConvex(tmp_copy));
+  TRACE(Helper().IsCounterClockwise(original,observer));
+  TRACE(Helper().IsPlane(original));
+  TRACE(Helper().IsConvex(original));
   TRACE("Let's try again");
-  for (const auto& point: tmp_copy) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+  for (const auto& point: points) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
   TRACE(IsCounterClockwise(points,observer));
 
-  std::sort(points.begin(),points.end(),f);
-
-  for (const auto& point: tmp_copy) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
-  TRACE(Helper().IsCounterClockwise(points,observer));
-
-  while (std::next_permutation(std::begin(points),std::end(points),f))
+  for (const auto& sequence: GetPermutations(indices))
   {
-    for (const auto& point: tmp_copy) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+    for (int i=0; i!=n_points; ++i)
+    {
+      points[i] = original[ sequence[i] ];
+    }
+    for (const auto& point: points) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
     TRACE(Helper().IsCounterClockwise(points,observer));
   }
 
