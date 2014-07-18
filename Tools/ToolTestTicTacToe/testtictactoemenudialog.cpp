@@ -105,7 +105,6 @@ void ribi::TestTicTacToeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestTicTacToeMenuDialog::Test");
-  ribi::TextCanvas();
   TRACE("Finished ribi::TestTicTacToeMenuDialog::Test successfully");
 }
 #endif

@@ -18,22 +18,22 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function,
   const CreateVerticalFacesStrategy strategy,
   const bool verbose
-) : m_impl{
-      //boost::make_shared<TriangleMeshBuilderImpl>(
-      new TriangleMeshBuilderImpl(
-        cells,
-        mesh_filename,
-        boundary_to_patch_field_type_function,
-        strategy,
-        verbose
-      )
-    }
+) : m_impl{}
 {
   #ifndef NDEBUG
   Test();
   #endif
+  boost::shared_ptr<TriangleMeshBuilderImpl> impl{
+    new TriangleMeshBuilderImpl(
+      cells,
+      mesh_filename,
+      boundary_to_patch_field_type_function,
+      strategy,
+      verbose
+    )
+  };
+  m_impl = impl;
   assert(m_impl);
-
 }
 
 ribi::trim::TriangleMeshBuilder::~TriangleMeshBuilder() noexcept
