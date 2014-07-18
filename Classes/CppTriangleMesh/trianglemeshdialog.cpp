@@ -732,15 +732,16 @@ std::string ribi::trim::Dialog::GetTriangleMeshAsWkt() const noexcept
 
 std::string ribi::trim::Dialog::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::trim::Dialog::GetVersionHistory() noexcept
 {
   return {
-    "2014-06-24: version 1.0: initial version"
-    "2014-06-25: version 1.1: checkMesh works again"
-    "2014-07-02: version 1.2: changed O(n^2) to something better (#220)"
+    "2014-06-24: version 1.0: initial version",
+    "2014-06-25: version 1.1: checkMesh works again",
+    "2014-07-02: version 1.2: changed O(n^2) to something better (#220)",
+    "2014-07-18: version 1.3: the points of faces are wound clockwards, as in accordance with the OpenFOAM documentation"
   };
 }
 

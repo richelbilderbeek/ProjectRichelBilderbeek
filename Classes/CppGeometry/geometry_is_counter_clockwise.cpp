@@ -92,12 +92,14 @@ bool ribi::Geometry::IsCounterClockwiseCartesian(
         }
       )
     ;
+    #ifndef NDEBUG
     if (verbose)
     {
       for (const auto& p: v) TRACE(ToStr(p));
       TRACE(IsClockwiseCartesianHorizontal(v));
       TRACE(IsCounterClockwiseCartesianHorizontal(v));
     }
+    #endif
     //If the points are messed up, they cannot be clockwise
     if (!IsClockwiseCartesianHorizontal(v) && !IsCounterClockwiseCartesianHorizontal(v)) return false;
     //The neatly orderder point have the same winding as the first three

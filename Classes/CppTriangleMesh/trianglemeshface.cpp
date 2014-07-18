@@ -274,10 +274,10 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert(observer);
   assert(Helper().IsPlane(m_points));
 
-  //Must be ordered counter-clockwise (although the documentation says otherwise?)
-  Helper().MakeCounterClockwise(this->m_points,observer->CalculateCenter());
+  //Must be ordered clockwise, according to the OpenFOAM documentation
+  Helper().MakeClockwise(this->m_points,observer->CalculateCenter());
 
-  assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
+  assert(Helper().IsClockwise(m_points,observer->CalculateCenter()));
   assert(Helper().IsPlane(m_points));
   assert(Helper().IsConvex(m_points));
 }

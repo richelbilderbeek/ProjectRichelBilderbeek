@@ -160,6 +160,8 @@ class Helper
   ///Order the points so that these are convex
   void MakeConvex(std::vector<boost::shared_ptr<Point>>& points) const noexcept;
 
+  //The points of face must be ordered clockwise, according to the documentation
+  void MakeClockwise(std::vector<boost::shared_ptr<Point>>& points,const Coordinat3D& observer) const noexcept;
   void MakeCounterClockwise(std::vector<boost::shared_ptr<Point>>& points,const Coordinat3D& observer) const noexcept;
 
   std::function<bool(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs)>

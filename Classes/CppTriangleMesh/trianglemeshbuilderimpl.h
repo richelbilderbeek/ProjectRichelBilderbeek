@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-variable"
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "openfoamfwd.h"
@@ -29,11 +30,12 @@ class TriangleMeshBuilderImpl
     const CreateVerticalFacesStrategy strategy,
     const bool verbose
   );
-  ~TriangleMeshBuilderImpl() noexcept;
   int CountCells() const noexcept;
   int CountFaces() const noexcept;
 
   private:
+  ~TriangleMeshBuilderImpl() noexcept;
+
   std::vector<boost::shared_ptr<Cell>> m_cells;
   std::vector<boost::shared_ptr<Face>> m_faces;
   const std::vector<boost::shared_ptr<Point>> m_points;
@@ -93,6 +95,11 @@ class TriangleMeshBuilderImpl
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      TriangleMeshBuilderImpl*);
+  friend void boost::checked_delete<>(const TriangleMeshBuilderImpl*);
+  friend class boost::detail::sp_ms_deleter<      TriangleMeshBuilderImpl>;
+  friend class boost::detail::sp_ms_deleter<const TriangleMeshBuilderImpl>;
 };
 
 } //~namespace trim
