@@ -129,7 +129,7 @@ bool ribi::c2h::IsTidyInstalled()
 void ribi::c2h::Test()
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
@@ -163,8 +163,8 @@ void ribi::c2h::Test()
         "e.sh"
       };
     std::vector<std::string> v = result;
-    v.push_back("x.txt"); //Should not be added
-    v.push_back("y.txt"); //Should not be added
+    v.push_back("x.txt"); //Text files should be filtered away
+    v.push_back("y.txt"); //Text files should be filtered away
     std::random_shuffle(v.begin(),v.end());
     v = SortFiles(FilterFiles(v));
     assert(v == result);

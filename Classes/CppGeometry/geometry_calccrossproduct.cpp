@@ -7,11 +7,13 @@ CalcCrossProductImpl(
   const boost::geometry::model::point<T,3,boost::geometry::cs::cartesian>& b)
 {
   using boost::geometry::get;
-  return boost::geometry::model::point<T,3,boost::geometry::cs::cartesian>(
+  const boost::geometry::model::point<T,3,boost::geometry::cs::cartesian> result{
     (get<1>(a) * get<2>(b)) - (get<2>(a) * get<1>(b)),
     (get<2>(a) * get<0>(b)) - (get<0>(a) * get<2>(b)),
     (get<0>(a) * get<1>(b)) - (get<1>(a) * get<0>(b))
-  );
+  };
+
+  return result;
 }
 
 ribi::Geometry::Coordinat3D ribi::Geometry::CalcCrossProduct(
@@ -35,7 +37,7 @@ ribi::Geometry::ApCoordinat3D ribi::Geometry::CalcCrossProduct(
   const ApCoordinat3D& b
 ) const noexcept
 {
-  return CalcCrossProductImpl<apfloat>(a,b);
+  return CalcCrossProductImpl<Apfloat>(a,b);
   /*
   using boost::geometry::get;
   return ApCoordinat3D(

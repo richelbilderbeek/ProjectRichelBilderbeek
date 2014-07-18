@@ -157,7 +157,7 @@ std::vector<std::string> ribi::ToolTestApproximatorMenuDialog::GetVersionHistory
 void ribi::ToolTestApproximatorMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

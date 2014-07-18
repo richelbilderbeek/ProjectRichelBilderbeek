@@ -124,7 +124,7 @@ void ribi::aaf::QtAafMainDialog::onButtonRight()
 void ribi::aaf::QtAafMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

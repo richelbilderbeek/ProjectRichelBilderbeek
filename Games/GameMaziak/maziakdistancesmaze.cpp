@@ -97,7 +97,7 @@ int ribi::maziak::DistancesMaze::Get(const int x, const int y) const noexcept
 void ribi::maziak::DistancesMaze::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

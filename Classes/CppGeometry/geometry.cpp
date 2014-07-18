@@ -90,8 +90,8 @@ ribi::Geometry::ApCoordinat3D ribi::Geometry::CalcNormal(
   const ApCoordinat3D& c
 ) const noexcept
 {
-  const auto u(c - a);
-  const auto v(b - a);
+  const auto u = c - a;
+  const auto v = b - a;
   return CalcCrossProduct(u,v);
 }
 
@@ -398,7 +398,7 @@ double ribi::Geometry::GetDistance(
 
 std::string ribi::Geometry::GetVersion() const noexcept
 {
-  return "1.5";
+  return "1.6";
 }
 
 std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
@@ -408,156 +408,13 @@ std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
     "2014-03-11: version 1.1: removed use of custom coordinat classes, use Boost.Geometry instead"
     "2014-03-25: version 1.2: fixed bug in IsConvex",
     "2014-05-01: version 1.3: minor improments and cleanup",
-    "2014-07-15: version 1.4: fixed bug in IsClockwise"
-    "2014-07-17: version 1.5: fixed bug in IsCounterClockwise"
+    "2014-07-15: version 1.4: fixed bug in IsClockwise",
+    "2014-07-17: version 1.5: fixed bug in IsCounterClockwise",
+    "2014-07-18: version 1.6: renamed some member functions to explicitly mention the coordinat system (Cartesian or screen) used"
   };
 }
 
-bool ribi::Geometry::IsClockwise(const Apfloat& a, const Apfloat&b) const noexcept
-{
-  const Apfloat pi  = boost::math::constants::pi<double>();
-  const Apfloat tau = boost::math::constants::two_pi<double>();
-  const Apfloat c { Fmod(a,tau) };
-  const Apfloat d { Fmod(b,tau) };
-  assert(c >= 0);
-  assert(c < tau);
-  assert(d >= 0);
-  assert(d < tau);
-  if (d - c >= 0.0 && d - c < pi) return true;
-  if (d + tau - c >= 0.0 && d + tau - c < pi) return true;
-  return false;
-}
 
-bool ribi::Geometry::IsClockwise(const double a, const double b) const noexcept
-{
-  return IsClockwise(Apfloat(a),Apfloat(b));
-}
-
-bool ribi::Geometry::IsClockwise(const Apfloats& angles) const noexcept
-{
-  const int sz = static_cast<int>(angles.size());
-  assert(sz >= 2 && "Need at least two angles to determine if these are clockwise");
-  for (int i=0; i!=sz-1; ++i)
-  {
-    if (!IsClockwise(angles[i],angles[i+1])) return false;
-  }
-
-  //Calculate cumulative clockwise distance
-  const Apfloat tau{boost::math::constants::two_pi<double>()};
-  Apfloat sum{0.0};
-  for (int i=0; i!=sz-1; ++i)
-  {
-    const Apfloat diff{angles[i+1] - angles[i]};
-    if (diff > 0.0)
-    {
-      sum += diff;
-    }
-    else
-    {
-      assert(diff + tau > 0.0);
-      sum += (diff + tau);
-    }
-  }
-  return sum < tau;
-}
-
-bool ribi::Geometry::IsClockwise(const Doubles& angles) const noexcept
-{
-  return IsClockwise(ToApfloat(angles));
-}
-
-bool ribi::Geometry::IsClockwise(
-  const ApCoordinats3D& points,
-  const ApCoordinat3D& observer
-) const noexcept
-{
-  const int n_points = static_cast<int>(points.size());
-  assert(n_points == 3 || n_points == 4);
-  if (n_points == 3)
-  {
-    const auto a(points[0]);
-    const auto b(points[1]);
-    const auto c(points[2]);
-    const auto normal(CalcNormal(a,b,c));
-    const auto direction(CalcDotProduct(normal,a - observer));
-    const bool is_clockwise { direction > 0.0 };
-    return is_clockwise;
-  }
-  else
-  {
-    assert(n_points == 4);
-    //See if the points in the projection are in the same direction
-    assert(Geometry().IsPlane(points));
-    const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
-    assert(plane);
-    const auto v(
-        plane->CalcProjection(
-          {
-            points[0],
-            points[1],
-            points[2],
-            points[3]
-          }
-        )
-    );
-    //If the points are messed up, they cannot be clockwise
-    if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
-    //The neatly orderder points have the same winding as the first three
-    std::remove_const<std::remove_reference<decltype(points)>::type>::type a;
-    std::copy(points.begin() + 0,points.begin() + 3,std::back_inserter(a));
-    return IsClockwise(a,observer);
-  }
-}
-
-bool ribi::Geometry::IsClockwise(
-  const Coordinats3D& points,
-  const Coordinat3D& observer
-) const noexcept
-{
-  return IsClockwise(ToApfloat(points),ToApfloat(observer));
-}
-
-bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats3D& points) const noexcept
-{
-  using boost::geometry::get;
-  const auto center = CalcCenter(points);
-  Apfloats angles;
-  angles.reserve(points.size());
-  std::transform(points.begin(),points.end(),
-    std::back_inserter(angles),
-    [this,center](const ApCoordinat3D& coordinat)
-    {
-      return GetAngle(
-        get<0>(coordinat) - get<0>(center),
-        get<1>(coordinat) - get<1>(center)
-      );
-    }
-  );
-  return IsClockwise(angles);
-}
-
-bool ribi::Geometry::IsClockwiseHorizontal(const Coordinats3D& points) const noexcept
-{
-  return IsClockwiseHorizontal(ToApfloat(points));
-}
-
-bool ribi::Geometry::IsClockwiseHorizontal(const ApCoordinats2D& points) const noexcept
-{
-  //Points are determined from their center
-  const auto center = CalcCenter(points);
-  Apfloats angles;
-  std::transform(points.begin(),points.end(),
-    std::back_inserter(angles),
-    [this,center](const ApCoordinat2D& coordinat)
-    {
-      return GetAngle(
-        coordinat.x() - center.x(),
-        coordinat.y() - center.y()
-      );
-    }
-  );
-  return IsClockwise(angles);
-}
 
 bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
 {
@@ -714,141 +571,7 @@ bool ribi::Geometry::IsConvex(const Coordinats3D& points) const noexcept
   return IsConvex(ToApfloat(points));
 }
 
-bool ribi::Geometry::IsCounterClockwise(const Apfloat& a, const Apfloat& b) const noexcept
-{
-  return !IsClockwise(a,b);
-}
 
-bool ribi::Geometry::IsCounterClockwise(const double a, const double b) const noexcept
-{
-  return IsCounterClockwise(Apfloat(a),Apfloat(b));
-}
-
-bool ribi::Geometry::IsCounterClockwise(const Apfloats& angles) const noexcept
-{
-  const int sz = static_cast<int>(angles.size());
-  assert(sz >= 2 && "Need at least two angles to determine if these are counter-clockwise");
-  for (int i=0; i!=sz-1; ++i)
-  {
-    if (!IsCounterClockwise(angles[i],angles[i+1])) return false;
-  }
-
-  //Calculate cumulative clockwise distance
-  const Apfloat tau{boost::math::constants::two_pi<double>()};
-  Apfloat sum{0.0};
-  for (int i=0; i!=sz-1; ++i)
-  {
-    const Apfloat diff{angles[i] - angles[i+1]}; //Order reversed compared to IsClockwise
-    if (diff > 0.0)
-    {
-      sum += diff;
-    }
-    else
-    {
-      assert(diff + tau > 0.0);
-      sum += (diff + tau);
-    }
-  }
-  return sum < tau;
-}
-
-bool ribi::Geometry::IsCounterClockwise(const Doubles& angles) const noexcept
-{
-  return IsCounterClockwise(ToApfloat(angles));
-}
-
-bool ribi::Geometry::IsCounterClockwise(
-  const ApCoordinats3D& points,
-  const ApCoordinat3D& observer
-) const noexcept
-{
-  const int n_points = static_cast<int>(points.size());
-  assert(n_points == 3 || n_points == 4);
-  if (n_points == 3)
-  {
-    const auto a(points[0]);
-    const auto b(points[1]);
-    const auto c(points[2]);
-    const auto normal(CalcNormal(a,b,c));
-    const auto direction(CalcDotProduct(normal,a - observer));
-    return direction < 0.0; //Difference between CW ('>') and CCW ('<')
-  }
-  else
-  {
-    assert(n_points == 4);
-    //See if the points in the projection are in the same direction
-    assert(Geometry().IsPlane(points));
-    const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
-    assert(plane);
-    const auto v(
-      plane->CalcProjection(
-        {
-          points[0],
-          points[1],
-          points[2],
-          points[3]
-        }
-      )
-    );
-    //If the points are messed up, they cannot be clockwise
-    if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
-    //The neatly orderder point have the same winding as the first three
-    std::remove_const<std::remove_reference<decltype(points)>::type>::type a;
-    std::copy(points.begin() + 0,points.begin() + 3,std::back_inserter(a));
-    return IsCounterClockwise(a,observer);
-  }
-}
-
-bool ribi::Geometry::IsCounterClockwise(
-  const Coordinats3D& points,
-  const Coordinat3D& observer
-) const noexcept
-{
-  return IsCounterClockwise(ToApfloat(points),ToApfloat(observer));
-}
-
-bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats2D& points) const noexcept
-{
-  //Points are determined from their center
-  const auto center(CalcCenter(points));
-  Apfloats angles;
-  angles.reserve(points.size());
-  std::transform(points.begin(),points.end(),
-    std::back_inserter(angles),
-    [this,center](const ApCoordinat2D& coordinat)
-    {
-      return GetAngle(
-        coordinat - center
-      );
-    }
-  );
-  return IsCounterClockwise(angles);
-}
-
-bool ribi::Geometry::IsCounterClockwiseHorizontal(const Coordinats2D& points) const noexcept
-{
-  return IsCounterClockwiseHorizontal(ToApfloat(points));
-}
-
-bool ribi::Geometry::IsCounterClockwiseHorizontal(const ApCoordinats3D& points3d) const noexcept
-{
-  ApCoordinats2D points2d;
-  for (const auto& point3d: points3d)
-  {
-    points2d.push_back(
-      {
-        boost::geometry::get<0>(point3d),
-        boost::geometry::get<1>(point3d)
-      }
-    );
-  }
-  return IsCounterClockwiseHorizontal(points2d);
-}
-
-bool ribi::Geometry::IsCounterClockwiseHorizontal(const Coordinats3D& points) const noexcept
-{
-  return IsCounterClockwiseHorizontal(ToApfloat(points));
-}
 
 std::function<bool(const ribi::Geometry::Coordinat2D& lhs, const ribi::Geometry::Coordinat2D& rhs)>
   ribi::Geometry::Equals2d() const noexcept

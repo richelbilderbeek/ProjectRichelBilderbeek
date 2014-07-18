@@ -70,7 +70,7 @@ void ribi::ToolMultiEncrangerMainDialog::SetPlainText(const std::string& s)
 void ribi::ToolMultiEncrangerMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

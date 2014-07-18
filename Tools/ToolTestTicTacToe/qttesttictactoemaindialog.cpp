@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTicTacToe, tool to test the TicTacToe class
-Copyright (C) 2011-2013 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -161,7 +161,7 @@ void ribi::tictactoe::QtTestTicTacToeMainDialog::OnStateChange(QtTicTacToeWidget
 void ribi::tictactoe::QtTestTicTacToeMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

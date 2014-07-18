@@ -98,7 +98,7 @@ void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner(const QtTicTacToeWidget* 
 void ribi::tictactoe::QtTicTacToeGameDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

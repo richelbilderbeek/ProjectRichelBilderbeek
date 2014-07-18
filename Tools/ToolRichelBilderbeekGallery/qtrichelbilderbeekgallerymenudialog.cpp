@@ -153,7 +153,7 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
 void ribi::QtRichelBilderbeekGalleryMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

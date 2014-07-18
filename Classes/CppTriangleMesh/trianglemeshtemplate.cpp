@@ -787,59 +787,92 @@ void ribi::trim::Template::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Template::Test");
-  
-  //IsClockWise
+  const bool verbose{false};
+  if (verbose) { TRACE("IsClockWise, confirmation"); }
   {
-    {
-      //12 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> a {
-        new ConstCoordinat2D(0.0,-1.0)
-      };
-      //4 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> b {
-        new ConstCoordinat2D(0.83,0.5)
-      };
-      //8 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> c {
-        new ConstCoordinat2D(-0.83,0.5)
-      };
-      std::vector<boost::shared_ptr<Point>> points {
-        PointFactory().Create(a),
-        PointFactory().Create(b),
-        PointFactory().Create(c)
-      };
-      points[0]->SetZ(1.0 * boost::units::si::meter);
-      points[1]->SetZ(1.0 * boost::units::si::meter);
-      points[2]->SetZ(1.0 * boost::units::si::meter);
-      assert(Helper().IsClockwiseHorizontal(points));
-      std::reverse(points.begin(),points.end());
-      assert(!Helper().IsClockwiseHorizontal(points));
-    }
-    {
-      //12 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> a {
-        new ConstCoordinat2D(0.0,-1.0)
-      };
-      //8 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> b {
-        new ConstCoordinat2D(-0.83,0.5)
-      };
-      //4 o'clock
-      const boost::shared_ptr<const ConstCoordinat2D> c {
-        new ConstCoordinat2D(0.83,0.5)
-      };
-      std::vector<boost::shared_ptr<Point>> points {
-        PointFactory().Create(a),
-        PointFactory().Create(b),
-        PointFactory().Create(c)
-      };
-      points[0]->SetZ(1.0 * boost::units::si::meter);
-      points[1]->SetZ(1.0 * boost::units::si::meter);
-      points[2]->SetZ(1.0 * boost::units::si::meter);
-      assert(!Helper().IsClockwiseHorizontal(points));
-      std::reverse(points.begin(),points.end());
-      assert(Helper().IsClockwiseHorizontal(points));
-    }
+    /*
+
+    Cartesian plane
+
+          |
+          |
+          A = (0,1)
+         /|\
+        / | \
+    ---+--+--+----
+      /   |   \
+     C----+----B
+          |
+          |
+
+
+    */
+    //12 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> a {
+      new ConstCoordinat2D(0.0,1.0)
+    };
+    //4 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> b {
+      new ConstCoordinat2D(0.83,-0.5)
+    };
+    //8 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> c {
+      new ConstCoordinat2D(-0.83,-0.5)
+    };
+    std::vector<boost::shared_ptr<Point>> points {
+      PointFactory().Create(a),
+      PointFactory().Create(b),
+      PointFactory().Create(c)
+    };
+    points[0]->SetZ(1.0 * boost::units::si::meter);
+    points[1]->SetZ(1.0 * boost::units::si::meter);
+    points[2]->SetZ(1.0 * boost::units::si::meter);
+    assert( Helper().IsClockwiseHorizontal(points));
+    std::reverse(points.begin(),points.end());
+    assert(!Helper().IsClockwiseHorizontal(points));
+  }
+  if (verbose) { TRACE("IsClockWise, rejection"); }
+  {
+    /*
+
+    Cartesian plane
+
+          |
+          |
+          A = (0,1)
+         /|\
+        / | \
+    ---+--+--+----
+      /   |   \
+     B----+----C
+          |
+          |
+
+
+    */
+    //12 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> a {
+      new ConstCoordinat2D(0.0,1.0)
+    };
+    //8 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> b {
+      new ConstCoordinat2D(-0.83,-0.5)
+    };
+    //4 o'clock
+    const boost::shared_ptr<const ConstCoordinat2D> c {
+      new ConstCoordinat2D(0.83,-0.5)
+    };
+    std::vector<boost::shared_ptr<Point>> points {
+      PointFactory().Create(a),
+      PointFactory().Create(b),
+      PointFactory().Create(c)
+    };
+    points[0]->SetZ(1.0 * boost::units::si::meter);
+    points[1]->SetZ(1.0 * boost::units::si::meter);
+    points[2]->SetZ(1.0 * boost::units::si::meter);
+    assert(!Helper().IsClockwiseHorizontal(points));
+    std::reverse(points.begin(),points.end());
+    assert(Helper().IsClockwiseHorizontal(points));
   }
   for (int i=0; i!=4; ++i)
   {

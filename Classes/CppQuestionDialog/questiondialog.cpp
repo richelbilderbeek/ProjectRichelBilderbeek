@@ -152,7 +152,7 @@ void ribi::QuestionDialog::SetIsCorrect(const bool is_correct)
 void ribi::QuestionDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

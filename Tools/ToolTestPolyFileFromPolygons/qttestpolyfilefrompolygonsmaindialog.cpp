@@ -168,7 +168,7 @@ std::vector<std::string> ribi::QtTestPolyFileFromPolygonsMainDialog::SeperateStr
 void ribi::QtTestPolyFileFromPolygonsMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

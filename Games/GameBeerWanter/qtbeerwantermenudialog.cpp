@@ -71,7 +71,7 @@ void ribi::QtBeerWanterMenuDialog::on_button_quit_clicked() noexcept
 void ribi::QtBeerWanterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

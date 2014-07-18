@@ -75,7 +75,7 @@ std::vector<ribi::aaf::AminoAcid> ribi::aaf::AminoAcids::GetAll() const noexcept
 void ribi::aaf::AminoAcids::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

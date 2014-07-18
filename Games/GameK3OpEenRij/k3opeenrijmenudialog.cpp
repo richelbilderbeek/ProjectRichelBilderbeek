@@ -174,7 +174,7 @@ void ribi::K3OpEenRijMenuDialog::Show(const int girl_index) const noexcept
 void ribi::K3OpEenRijMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

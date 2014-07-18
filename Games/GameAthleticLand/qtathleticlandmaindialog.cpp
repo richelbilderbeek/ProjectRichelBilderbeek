@@ -54,7 +54,7 @@ void ribi::athl::QtAthleticLandMainDialog::keyPressEvent(QKeyEvent *event)
 void ribi::athl::QtAthleticLandMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

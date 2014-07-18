@@ -43,7 +43,7 @@ ribi::foam::Header ribi::foam::ThermophysicalPropertiesFile::GetDefaultHeader() 
 void ribi::foam::ThermophysicalPropertiesFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

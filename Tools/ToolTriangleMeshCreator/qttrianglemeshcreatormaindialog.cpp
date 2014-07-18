@@ -266,7 +266,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::SetWkt(const std::string& wkt) noexc
 void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

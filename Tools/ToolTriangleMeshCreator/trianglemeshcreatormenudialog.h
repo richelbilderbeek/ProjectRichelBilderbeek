@@ -21,29 +21,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef RIBI_TOOLTRIANGLEMESHCREATORMENUDIALOG_H
 #define RIBI_TOOLTRIANGLEMESHCREATORMENUDIALOG_H
 
-#include <string>
-#include <vector>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-struct QRegExp;
+//struct QRegExp;
 #include "menudialog.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///GUI independent TriangleMeshCreator menu dialog
-struct TriangleMeshCreatorMenuDialog : public MenuDialog
+struct TriangleMeshCreatorMenuDialog final : public MenuDialog
 {
-  About GetAbout() const noexcept override final;
-  Help GetHelp() const noexcept override final;
-  boost::shared_ptr<const Program> GetProgram() const noexcept override final;
-  std::string GetVersion() const noexcept override final;
-  std::vector<std::string> GetVersionHistory() const noexcept override final;
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
 
   private:
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override final;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   #ifndef NDEBUG
   static void Test() noexcept;

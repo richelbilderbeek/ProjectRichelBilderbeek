@@ -110,7 +110,7 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
 void ribi::trim::CellsCreatorFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

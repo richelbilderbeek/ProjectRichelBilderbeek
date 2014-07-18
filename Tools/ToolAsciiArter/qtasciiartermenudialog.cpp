@@ -76,7 +76,7 @@ void ribi::QtAsciiArterMenuDialog::on_button_quit_clicked()
 void ribi::QtAsciiArterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

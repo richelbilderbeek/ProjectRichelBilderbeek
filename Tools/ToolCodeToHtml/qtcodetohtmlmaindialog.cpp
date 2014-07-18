@@ -226,7 +226,7 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString ) noe
 void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

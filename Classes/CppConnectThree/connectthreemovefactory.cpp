@@ -19,7 +19,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::MoveFactory::Create(
 void ribi::con3::MoveFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

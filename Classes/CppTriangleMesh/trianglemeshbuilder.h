@@ -45,7 +45,7 @@ class TriangleMeshBuilder
   //TriangleMeshBuilder(      TriangleMeshBuilder&&) = delete;
   TriangleMeshBuilder& operator=(const TriangleMeshBuilder& ) = delete;
   //TriangleMeshBuilder& operator=(      TriangleMeshBuilder&&) = delete;
-  ~TriangleMeshBuilder() noexcept {}
+  ~TriangleMeshBuilder() noexcept;
 
   boost::shared_ptr<TriangleMeshBuilderImpl> m_impl;
 

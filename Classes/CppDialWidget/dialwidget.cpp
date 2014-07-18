@@ -65,7 +65,7 @@ void ribi::DialWidget::Click(const int x,const int y) noexcept
   const int midy = h.GetTop( g) + (h.GetHeight(g) / 2);
   const double dx = boost::numeric_cast<double>(x - midx);
   const double dy = boost::numeric_cast<double>(y - midy);
-  const double angle = Geometry().GetAngle(dx,dy);
+  const double angle = Geometry().GetAngleClockScreen(dx,dy);
   const double pi = boost::math::constants::pi<double>();
   const double position = angle / (2.0 * pi);
   assert(position >= 0.0);
@@ -110,7 +110,7 @@ bool ribi::DialWidget::IsClicked(const int x, const int y) const noexcept
 void ribi::DialWidget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -155,7 +155,7 @@ bool ribi::maziak::IntMaze::IsSquare() const noexcept
 void ribi::maziak::IntMaze::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

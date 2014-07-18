@@ -34,7 +34,7 @@ ribi::foam::CellIndex ribi::foam::CellIndex::operator++(int) noexcept
 void ribi::foam::CellIndex::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

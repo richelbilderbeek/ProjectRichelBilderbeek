@@ -78,7 +78,7 @@ const boost::shared_ptr<ribi::ImageCanvas> ribi::AsciiArterMainDialog::GetImageC
 void ribi::AsciiArterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

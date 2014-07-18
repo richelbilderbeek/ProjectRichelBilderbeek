@@ -47,7 +47,7 @@ void ribi::QtPixelatorMenuDialog::on_button_quit_clicked()
 void ribi::QtPixelatorMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

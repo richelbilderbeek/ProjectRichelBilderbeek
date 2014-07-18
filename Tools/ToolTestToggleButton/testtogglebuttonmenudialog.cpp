@@ -128,7 +128,7 @@ std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHistory() c
 void ribi::TestToggleButtonMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

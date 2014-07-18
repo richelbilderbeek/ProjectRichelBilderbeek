@@ -64,7 +64,7 @@ void ribi::QtValentineCardDecrypterMainDialog::on_edit_textChanged(const QString
 void ribi::QtValentineCardDecrypterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

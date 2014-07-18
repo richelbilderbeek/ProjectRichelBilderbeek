@@ -147,7 +147,7 @@ std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() const n
 void ribi::BeerWanterMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -100,7 +100,7 @@ void ribi::Boenken::Sprite::setArenaSize(const int width, const int height)
 void ribi::Boenken::Sprite::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
@@ -220,9 +220,7 @@ QPixmap ribi::Boenken::Sprite::DrawGlobe(
 
 double ribi::Boenken::Sprite::GetAngle(const double dx, const double dy) noexcept
 {
-  return Geometry().GetAngle(dx,dy);
-  //const double pi = boost::math::constants::pi<double>();
-  //return pi - std::atan2(dx,dy);
+  return Geometry().GetAngleClockScreen(dx,dy);
 }
 
 //From http://www.richelbilderbeek.nl/CppDoPerfectElasticCollision.htm
@@ -233,47 +231,47 @@ void ribi::Boenken::Sprite::DoPerfectElasticCollision(
   double& angle2,
   double& speed2) noexcept
 {
-  const double pi = boost::math::constants::pi<double>();
+  const double pi{boost::math::constants::pi<double>()};
   //The length of the impulse of player 1 (assumes both players have equal mass!)
-  const double A = speed1;
+  const double A{speed1};
   //The length of the impulse of player 2 (assumes both players have equal mass!)
-  const double E = speed2;
+  const double E{speed2};
   //The angles between the two globes
-  const double c = angleCollision;
+  const double c{angleCollision};
   //The angle between c and the impulse direction of player 1
-  const double a = c - angle1;
+  const double a{c - angle1};
   //The angle between c and the impulse direction of player 2
-  const double b = c + pi - angle2;
+  const double b{c + pi - angle2};
 
   //Seperate the impulses to their impulses paralel and othoganal the angle of collision
   //The length of the impulse of player 1 parallel to the collision
-  const double B = A * std::cos(a);
+  const double B{A * std::cos(a)};
   //The length of the impulse of player 1 orthogonal to the collision
-  const double C = A * std::sin(a);
+  const double C{A * std::sin(a)};
   //The length of the impulse of player 2 parallel to the collision
-  const double F = E * std::cos(b);
+  const double F{E * std::cos(b)};
   //The length of the impulse of player 2 orthogonal to the collision
-  const double G = E * std::sin(b);
+  const double G{E * std::sin(b)};
 
   //Seperate the impulses in X and Y directions
-  const double BdX = B *  std::sin(c + (0.0 * pi));
-  const double BdY = B * -std::cos(c + (0.0 * pi));
-  const double CdX = C *  std::sin(c + (1.5 * pi));
-  const double CdY = C * -std::cos(c + (1.5 * pi));
-  const double FdX = F *  std::sin(c + (1.0 * pi));
-  const double FdY = F * -std::cos(c + (1.0 * pi));
-  const double GdX = G *  std::sin(c + (0.5 * pi));
-  const double GdY = G * -std::cos(c + (0.5 * pi));
+  const double BdX{B *  std::sin(c + (0.0 * pi))};
+  const double BdY{B * -std::cos(c + (0.0 * pi))};
+  const double CdX{C *  std::sin(c + (1.5 * pi))};
+  const double CdY{C * -std::cos(c + (1.5 * pi))};
+  const double FdX{F *  std::sin(c + (1.0 * pi))};
+  const double FdY{F * -std::cos(c + (1.0 * pi))};
+  const double GdX{G *  std::sin(c + (0.5 * pi))};
+  const double GdY{G * -std::cos(c + (0.5 * pi))};
 
   //The resulting impulses
   //The resulting impulse of player 1 in the X direction
-  const double DdX = CdX + FdX;
+  const double DdX{CdX + FdX};
   //The resulting impulse of player 1 in the Y direction
-  const double DdY = CdY + FdY;
+  const double DdY{CdY + FdY};
   //The resulting impulse of player 2 in the X direction
-  const double HdX = BdX + GdX;
+  const double HdX{BdX + GdX};
   //The resulting impulse of player 2 in the Y direction
-  const double HdY = BdY + GdY;
+  const double HdY{BdY + GdY};
 
   //Write the final results
   angle1 = GetAngle(DdX, DdY);

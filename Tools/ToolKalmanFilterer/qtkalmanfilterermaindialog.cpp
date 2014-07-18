@@ -718,7 +718,7 @@ void ribi::kalman::QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr
 void ribi::kalman::QtKalmanFiltererMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

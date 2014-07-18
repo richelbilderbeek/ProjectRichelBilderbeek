@@ -259,7 +259,7 @@ void ribi::reversi::Board::Set(const int x, const int y, const Square state) noe
 void ribi::reversi::Board::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

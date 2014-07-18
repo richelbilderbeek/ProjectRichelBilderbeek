@@ -17563,7 +17563,7 @@ std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
 void ribi::c2h::Info::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

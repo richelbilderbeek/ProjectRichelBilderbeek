@@ -83,7 +83,7 @@ void ribi::QtToolGaborFilterMainDialog::on_slider_sigma_sliderMoved(int position
 void ribi::QtToolGaborFilterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

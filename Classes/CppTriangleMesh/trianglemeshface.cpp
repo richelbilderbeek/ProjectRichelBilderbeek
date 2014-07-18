@@ -275,7 +275,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert(Helper().IsPlane(m_points));
 
   //Must be ordered counter-clockwise (although the documentation says otherwise?)
-  Helper().MakeCounterClockwise(m_points,observer->CalculateCenter());
+  Helper().MakeCounterClockwise(this->m_points,observer->CalculateCenter());
 
   assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
   assert(Helper().IsPlane(m_points));
@@ -286,7 +286,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
 void ribi::trim::Face::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

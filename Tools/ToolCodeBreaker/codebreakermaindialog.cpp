@@ -52,7 +52,7 @@ void ribi::CodeBreakerMainDialog::SetEncryptedText(const std::string& s) noexcep
 void ribi::CodeBreakerMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

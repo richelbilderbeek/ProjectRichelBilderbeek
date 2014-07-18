@@ -26,25 +26,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 ///The logic behind the menu dialog
-struct TestShapeMenuDialog : public MenuDialog
+struct TestShapeMenuDialog final : public MenuDialog
 {
   ///Creates the resources needed
   TestShapeMenuDialog();
 
-  About GetAbout() const noexcept;
-  Help GetHelp() const noexcept;
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
   ///\brief
   ///Get the filename of the image shown at the welcome screen
   ///
   ///This is a non-static method to force this class its constructor being
   ///called, creating the file from the application its resource file
   std::string GetFilenameImageWelcome() const { return "ToolTestShapeWelcome.png"; }
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
-  std::string GetVersion() const noexcept;
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
 
   private:
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   #ifndef NDEBUG
   static void Test() noexcept;

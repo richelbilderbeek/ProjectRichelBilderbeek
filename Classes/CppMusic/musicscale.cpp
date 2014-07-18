@@ -102,7 +102,7 @@ std::vector<std::string> ribi::Music::Scale::GetVersionHistory() noexcept
 void ribi::Music::Scale::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

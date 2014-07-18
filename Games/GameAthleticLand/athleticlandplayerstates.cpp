@@ -35,7 +35,7 @@ std::vector<ribi::athl::PlayerState> ribi::athl::PlayerStates::GetAll() noexcept
 void ribi::athl::PlayerStates::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

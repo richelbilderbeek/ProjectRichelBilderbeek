@@ -438,9 +438,9 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
   // - define point 'center' as the middle between from and to
   // - define point 'beyond' as the mirror point of 'center', using mid_pos as a mirror
 
-  const QPointF beyond = GetBeyond();
-  const QPointF p_tail_end = GetTail();
-  const QPointF p_head_end = GetHead();
+  const QPointF beyond{GetBeyond()};
+  const QPointF p_tail_end{GetTail()};
+  const QPointF p_head_end{GetHead()};
 
   QPainterPath curve;
   curve.moveTo(p_tail_end);
@@ -453,14 +453,14 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
     {
       //The angle from midpoint to tail
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
-      const double pi = boost::math::constants::pi<double>();
-      const double dx = beyond.x() - m_from->pos().x();
-      const double dy = beyond.y() - m_from->pos().y();
-      const double arrowangle = 0.1*pi;
-      double angle1 = 0.5*pi + arrowangle - Geometry().GetAngle(-dx,-dy);
-      double angle2 = 0.5*pi + arrowangle - Geometry().GetAngle(-dx,-dy);
+      const double pi{boost::math::constants::pi<double>()};
+      const double dx{beyond.x() - m_from->pos().x()};
+      const double dy{beyond.y() - m_from->pos().y()};
+      const double arrowangle{0.1*pi};
+      double angle1{0.5*pi + arrowangle - Geometry().GetAngleClockScreen(-dx,-dy)};
+      double angle2{0.5*pi + arrowangle - Geometry().GetAngleClockScreen(-dx,-dy)};
 
-      const QPointF p0(p_tail_end.x(),p_tail_end.y());
+      const QPointF p0{p_tail_end.x(),p_tail_end.y()};
       const QPointF p1
         = p0 + QPointF(
            std::cos(angle1) * sz,
@@ -475,11 +475,11 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
     {
       //The angle from midpoint to head
       //Thanks goes out to Toine van den Bogaart and Theo van den Bogaart for being happy to help with the math
-      const double pi = boost::math::constants::pi<double>();
-      const double dx = m_to->pos().x() - beyond.x();
-      const double dy = (m_to->pos().y() - beyond.y());
-      double angle1 = 0.6*pi - Geometry().GetAngle(-dx,-dy);
-      double angle2 = 0.4*pi - Geometry().GetAngle(-dx,-dy);
+      const double pi{boost::math::constants::pi<double>()};
+      const double dx{m_to->pos().x() - beyond.x()};
+      const double dy{(m_to->pos().y() - beyond.y())};
+      double angle1{0.6*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
+      double angle2{0.4*pi - Geometry().GetAngleClockScreen(-dx,-dy)};
 
       const QPointF p0(p_head_end.x(),p_head_end.y());
       const QPointF p1

@@ -37,7 +37,7 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::keyPressEvent(QKeyEvent * event
 
 void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_about_clicked()
 {
-  About a = TestTicTacToeMenuDialog::GetAbout();
+  About a = TestTicTacToeMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
@@ -61,7 +61,7 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_start_clicked()
 void ribi::tictactoe::QtTestTicTacToeMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

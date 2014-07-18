@@ -721,7 +721,7 @@ void ribi::foam::Files::Swap(const ribi::foam::FaceIndex& lhs, const ribi::foam:
 void ribi::foam::Files::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

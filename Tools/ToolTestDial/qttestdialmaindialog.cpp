@@ -126,7 +126,7 @@ void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */) noe
 void ribi::QtTestDialMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

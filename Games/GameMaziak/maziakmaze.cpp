@@ -299,7 +299,7 @@ void ribi::maziak::Maze::Set(const int x, const int y, const MazeSquare s) noexc
 void ribi::maziak::Maze::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

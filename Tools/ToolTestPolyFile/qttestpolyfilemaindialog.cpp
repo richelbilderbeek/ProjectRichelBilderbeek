@@ -82,7 +82,7 @@ void ribi::QtTestPolyFileMainDialog::on_edit_textChanged(const QString &arg1)
 void ribi::QtTestPolyFileMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

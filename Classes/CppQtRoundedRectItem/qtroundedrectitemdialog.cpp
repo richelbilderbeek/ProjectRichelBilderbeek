@@ -413,7 +413,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
 void ribi::QtRoundedRectItemDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

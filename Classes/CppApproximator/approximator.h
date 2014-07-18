@@ -94,7 +94,7 @@ struct Approximator
 
 template <class Key, class Value, class Container>
 Approximator<Key,Value,Container>::Approximator(const Container& m) noexcept
-  : m_m { m }
+  : m_m{m}
 {
   static_assert(!std::is_integral<Key>(),
     "Approximator will not work on integer keys");
@@ -106,7 +106,7 @@ Approximator<Key,Value,Container>::Approximator(const Container& m) noexcept
 template <class Key, class Value, class Container>
 void Approximator<Key,Value,Container>::Add(const Key& key, const Value& value)
 {
-  assert( CanAdd(key,value)
+  assert(CanAdd(key,value)
     && "Every key must be unique,"
        "use MultiApproximator if you need non-unique keys");
   m_m.insert(std::make_pair(key,value));
@@ -121,11 +121,11 @@ Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
   assert(!m_m.empty() && "Cannot approximate without data");
 
   {
-    const Iterator i { m_m.find(key) };
+    const Iterator i{m_m.find(key)};
     if (i!=m_m.end()) return (*i).second;
   }
 
-  const Iterator high { m_m.lower_bound(key) };
+  const Iterator high{m_m.lower_bound(key)};
   if (high == m_m.begin() || high == m_m.end())
   {
     assert(!m_m.empty());

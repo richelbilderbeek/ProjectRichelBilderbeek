@@ -277,7 +277,7 @@ void ribi::cmap::QtExampleDialog::OnTextChanged(const Example * const example)
 void ribi::cmap::QtExampleDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

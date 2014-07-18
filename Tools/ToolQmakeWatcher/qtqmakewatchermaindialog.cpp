@@ -130,7 +130,7 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
 void ribi::QtQmakeWatcherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

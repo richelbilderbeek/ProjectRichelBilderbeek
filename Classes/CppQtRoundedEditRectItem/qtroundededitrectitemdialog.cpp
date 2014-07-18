@@ -298,7 +298,7 @@ void ribi::QtRoundedEditRectItemDialog::SetItem(const boost::shared_ptr<QtRounde
 void ribi::QtRoundedEditRectItemDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

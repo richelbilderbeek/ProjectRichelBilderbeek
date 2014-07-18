@@ -102,7 +102,7 @@ std::vector<std::string> ribi::TestPylosMenuDialog::GetVersionHistory() const no
 void ribi::TestPylosMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

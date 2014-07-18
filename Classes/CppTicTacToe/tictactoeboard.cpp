@@ -228,7 +228,7 @@ void ribi::tictactoe::Board::SetSummarizedState(const int original_state) noexce
 void ribi::tictactoe::Board::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

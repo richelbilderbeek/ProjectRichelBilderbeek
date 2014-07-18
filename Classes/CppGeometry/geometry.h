@@ -169,7 +169,7 @@ struct Geometry
   double Fmod(const double x, const double mod) const noexcept;
   Apfloat Fmod(const Apfloat& x, const Apfloat& mod) const noexcept;
 
-  ///Obtain the angle in radians between two deltas
+  ///Obtain the angle in radians between two deltas, using a screen geometry and following a clock
   ///12 o'clock is 0.0 * pi
   /// 3 o'clock is 0.5 * pi
   /// 6 o'clock is 1.0 * pi
@@ -208,10 +208,55 @@ struct Geometry
 
   */
   //From www.richelbilderbeek.nl/CppGetAngle.htm
-  double GetAngle(const double dx, const double dy) const noexcept;
-  Apfloat GetAngle(const Apfloat& dx, const Apfloat& dy) const noexcept;
-  double GetAngle(const Coordinat2D& p) const noexcept;
-  Apfloat GetAngle(const ApCoordinat2D& p) const noexcept;
+  double GetAngleClockScreen(const double dx, const double dy) const noexcept; //The original GetAngle
+  Apfloat GetAngleClockScreen(const Apfloat& dx, const Apfloat& dy) const noexcept;
+  double GetAngleClockScreen(const Coordinat2D& p) const noexcept;
+  Apfloat GetAngleClockScreen(const ApCoordinat2D& p) const noexcept;
+
+  ///Obtain the angle in radians between two deltas, using a Cartesian plane and following a clock
+  ///12 o'clock is 0.0 * pi
+  /// 3 o'clock is 0.5 * pi
+  /// 6 o'clock is 1.0 * pi
+  /// 9 o'clock is 1.5 * pi
+
+  /*
+   Y          Y
+   |    (11)  |  (1)
+ +2|          |
+   |          |
+ +1| (10)     |      (2)
+   |          |
+  0+----------0--------X
+   |          |
+ -1| (8)      |      (4)
+   |          |
+ -2|          |
+   |     (7)  |  (5)
+   +----------+--------X
+        - - -   + + +
+        3 2 1 0 1 2 3
+
+  Approximate coordinat for a point for every hour, with the approximate angle
+   1: ( 1, 2) :  1/6 * pi
+   2: ( 2, 1) :  2/6 * pi
+   3: ( 3, 0) :  3/6 * pi
+   4: ( 2,-1) :  4/6 * pi
+   5: ( 1,-2) :  5/6 * pi
+   6: ( 0,-3) :  6/6 * pi
+   7: (-1,-2) :  7/6 * pi
+   8: (-2,-1) :  8/6 * pi
+   9: (-3, 0) :  9/6 * pi
+  10: (-2, 1) : 10/6 * pi
+  11: (-1, 2) : 11/6 * pi
+  12: ( 0, 3) : 12/6 * pi
+
+  */
+  //From www.richelbilderbeek.nl/CppGetAngle.htm
+  double GetAngleClockCartesian(const double dx, const double dy) const noexcept;
+  Apfloat GetAngleClockCartesian(const Apfloat& dx, const Apfloat& dy) const noexcept;
+  double GetAngleClockCartesian(const Coordinat2D& p) const noexcept;
+  Apfloat GetAngleClockCartesian(const ApCoordinat2D& p) const noexcept;
+
 
   template <class T>
   T GetBottom(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
@@ -308,24 +353,35 @@ struct Geometry
   ///
   ///Yes: 0.0 * pi and 0.5 * pi
   ///No : 0.5 * pi and 0.0 * pi
-  bool IsClockwise(const double a, const double b) const noexcept;
-  bool IsClockwise(const Apfloat& a, const Apfloat& b) const noexcept;
-
-  ///Are the angles ordered clockwise?
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  ///
-  ///Yes: 0.0 * pi and 0.5 * pi
-  ///No : 0.5 * pi and 0.0 * pi
-  bool IsClockwise(const std::vector<double>& angles) const noexcept;
-  bool IsClockwise(const Apfloats& angles) const noexcept;
+  bool IsClockwise(const double angle_a_radians, const double angle_b_radians) const noexcept;
+  bool IsClockwise(const Apfloat& angle_a_radians, const Apfloat& angle_b_radians) const noexcept;
+  bool IsClockwise(const std::vector<double>& angles_radians) const noexcept;
+  bool IsClockwise(const Apfloats& angles_radians) const noexcept;
 
   ///Are the points ordered clockwise in the XYZ plane, seen from the observer?
-  //bool IsClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept;
-  bool IsClockwise(const   Coordinats3D& points, const   Coordinat3D& observer) const noexcept;
-  bool IsClockwise(const ApCoordinats3D& points, const ApCoordinat3D& observer) const noexcept;
+  /*
+
+  Uses the following geometry
+
+                |
+  (-2, 1) = D   +   A = (2,1)
+                |
+           -+-+-O-+-+-
+                |
+  (-2,-1) = C   +   B = (2,-1)
+                |
+
+  */
+  bool IsClockwiseCartesian(const   Coordinats3D& points, const   Coordinat3D& observer) const noexcept;
+  bool IsClockwiseCartesian(const ApCoordinats3D& points, const ApCoordinat3D& observer) const noexcept;
+  ///Are the points ordered clockwise in the XY plane seen from above
+  /// (e.g. from coordinat {0,0,1} )
+  //bool IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
+  //bool IsClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept;
+  bool IsClockwiseCartesianHorizontal(const std::vector<  Coordinat2D>& v) const noexcept;
+  bool IsClockwiseCartesianHorizontal(const std::vector<ApCoordinat2D>& v) const noexcept;
+  bool IsClockwiseCartesianHorizontal(const std::vector<  Coordinat3D>& v) const noexcept;
+  bool IsClockwiseCartesianHorizontal(const std::vector<ApCoordinat3D>& v) const noexcept;
 
   ///Are two angles ordered counter-clockwise
   ///12 o'clock is 0.0 * pi
@@ -335,32 +391,36 @@ struct Geometry
   ///
   ///Yes: 0.5 * pi and 0.0 * pi
   ///No : 0.0 * pi and 0.5 * pi
-  bool IsCounterClockwise(const double a, const double b) const noexcept;
-  bool IsCounterClockwise(const Apfloat& a, const Apfloat& b) const noexcept;
-
-  ///Are the angles ordered counter-clockwise?
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  ///
-  ///Yes: 0.5 * pi and 0.0 * pi
-  ///No : 0.0 * pi and 0.5 * pi
-  bool IsCounterClockwise(const Doubles& angles) const noexcept;
-  bool IsCounterClockwise(const Apfloats& angles) const noexcept;
+  bool IsCounterClockwise(const double angle_a_radians, const double angle_b_radians) const noexcept;
+  bool IsCounterClockwise(const Apfloat& angle_a_radians, const Apfloat& angle_b_radians) const noexcept;
+  bool IsCounterClockwise(const Doubles& angles_radians) const noexcept;
+  bool IsCounterClockwise(const Apfloats& angles_radians) const noexcept;
 
   ///Are the points ordered counterclockwise in the XYZ plane, seen from the observer?
-  bool IsCounterClockwise(const   Coordinats3D& points, const   Coordinat3D& observer) const noexcept;
-  bool IsCounterClockwise(const ApCoordinats3D& points, const ApCoordinat3D& observer) const noexcept;
+  /*
 
-  ///Are the points ordered clockwise in the XY plane seen from above
+  Uses the following geometry
+
+                |
+  (-2, 1) = D   +   A = (2,1)
+                |
+           -+-+-O-+-+-
+                |
+  (-2,-1) = C   +   B = (2,-1)
+                |
+
+  */
+  bool IsCounterClockwiseCartesian(const   Coordinats3D& points, const   Coordinat3D& observer) const noexcept;
+  bool IsCounterClockwiseCartesian(const ApCoordinats3D& points, const ApCoordinat3D& observer) const noexcept;
+
+  ///Are the points ordered counter-clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
-  //bool IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
-  //bool IsClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept;
-  bool IsClockwiseHorizontal(const std::vector<  Coordinat2D>& v) const noexcept;
-  bool IsClockwiseHorizontal(const std::vector<ApCoordinat2D>& v) const noexcept;
-  bool IsClockwiseHorizontal(const std::vector<  Coordinat3D>& v) const noexcept;
-  bool IsClockwiseHorizontal(const std::vector<ApCoordinat3D>& v) const noexcept;
+  //bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
+  bool IsCounterClockwiseCartesianHorizontal(const std::vector<  Coordinat2D>& v) const noexcept;
+  bool IsCounterClockwiseCartesianHorizontal(const std::vector<ApCoordinat2D>& v) const noexcept;
+  bool IsCounterClockwiseCartesianHorizontal(const std::vector<  Coordinat3D>& v) const noexcept;
+  bool IsCounterClockwiseCartesianHorizontal(const std::vector<ApCoordinat3D>& v) const noexcept;
+
 
 
   ///Creates a polygon from the points and checks if the polygon is convex
@@ -378,14 +438,6 @@ struct Geometry
   bool IsConvex(const   Coordinats2D& points) const noexcept;
   bool IsConvex(const   Coordinats3D& points) const noexcept;
   bool IsConvex(const ApCoordinats3D& points) const noexcept;
-
-  ///Are the points ordered counter-clockwise in the XY plane seen from above
-  /// (e.g. from coordinat {0,0,1} )
-  //bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
-  bool IsCounterClockwiseHorizontal(const std::vector<  Coordinat2D>& v) const noexcept;
-  bool IsCounterClockwiseHorizontal(const std::vector<ApCoordinat2D>& v) const noexcept;
-  bool IsCounterClockwiseHorizontal(const std::vector<  Coordinat3D>& v) const noexcept;
-  bool IsCounterClockwiseHorizontal(const std::vector<ApCoordinat3D>& v) const noexcept;
 
   bool IsEqual2d(const Coordinat2D& lhs, const Coordinat2D& rhs) const noexcept { return Equals2d()(lhs,rhs); }
   bool IsEqual(const Coordinat3D& lhs, const Coordinat3D& rhs) const noexcept { return Equals()(lhs,rhs); }

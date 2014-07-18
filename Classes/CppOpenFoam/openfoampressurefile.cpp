@@ -44,7 +44,7 @@ ribi::foam::Header ribi::foam::PressureFile::GetDefaultHeader() noexcept
 void ribi::foam::PressureFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

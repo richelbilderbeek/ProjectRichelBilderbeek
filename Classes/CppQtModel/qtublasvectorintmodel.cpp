@@ -425,7 +425,7 @@ void ribi::QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector
 void ribi::QtUblasVectorIntModel::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

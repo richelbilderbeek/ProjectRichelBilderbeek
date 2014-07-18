@@ -124,12 +124,6 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::PointFactory::Crea
   d->SetZ(1.0 * boost::units::si::meter);
   e->SetZ(1.0 * boost::units::si::meter);
   f->SetZ(1.0 * boost::units::si::meter);
-  //a->SetIndex(1);
-  //b->SetIndex(2);
-  //c->SetIndex(3);
-  //d->SetIndex(4);
-  //e->SetIndex(5);
-  //f->SetIndex(6);
   const std::vector<boost::shared_ptr<Point>> prism {
     a,b,c,d,e,f
   };
@@ -145,51 +139,51 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
 
     Clockwise:
 
-    0 1 2
-  0 +-+-+-X
-    |
-  1 + 0-1  where Z = 1.0 for all points
-    | | |
-  2 + 3-2
-    |
-    Y
+      Y
+  2.5 |
+    2 + 1-2
+  1.5 | | |
+    1 + 0-3 where Z = 1.0 for all points
+  0.5 |
+    0 +-+-+-X
+      0 1 2
 
     Counter-clockwise:
 
-    0 1 2
-  0 +-+-+-X
-    |
-  1 + 0-3 where Z = 1.0 for all points
-    | | |
-  2 + 1-2
-    |
-    Y
+     Y
+ 2.5 |
+   2 + 3-2
+ 1.5 | | |
+   1 + 0-1  where Z = 1.0 for all points
+ 0.5 |
+   0 +-+-+-X
+     0 1 2
 
     Indeterminate:
 
-    0  1  2
-  0 +--+--+-X
-    |
-    |
-  1 +  0--3 where Z = 1.0 for all points
-    |   \/
-    |   /\
-  2 +  2--1
-    |
-    Y
+      Y
+  2.3 |
+    2 +  2--1
+  1.7 |   \/
+  1.3 |   /\
+    1 +  0--3 where Z = 1.0 for all points
+  0.7 |
+  0.3 |
+    0 +--+--+-X
+      0  1  2
 
   */
   const boost::shared_ptr<Coordinat2D> co_a {
     new Coordinat2D(1.0,1.0)
   };
   boost::shared_ptr<Coordinat2D> co_b {
-    new Coordinat2D(2.0,1.0)
+    new Coordinat2D(1.0,2.0)
   };
   boost::shared_ptr<Coordinat2D> co_c {
     new Coordinat2D(2.0,2.0)
   };
   boost::shared_ptr<Coordinat2D> co_d {
-    new Coordinat2D(1.0,2.0)
+    new Coordinat2D(2.0,1.0)
   };
 
   if (winding == Winding::counter_clockwise)
@@ -207,10 +201,6 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
   const boost::shared_ptr<Point> c { PointFactory().Create(co_c) };
   const boost::shared_ptr<Point> d { PointFactory().Create(co_d) };
 
-  //a->SetIndex(1);
-  //b->SetIndex(2);
-  //c->SetIndex(3);
-  //d->SetIndex(3); //ERROR ISSUE_168 HERE?
   a->SetZ(1.0 * boost::units::si::meter);
   b->SetZ(1.0 * boost::units::si::meter);
   c->SetZ(1.0 * boost::units::si::meter);
@@ -245,25 +235,25 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
 
     Clockwise:
 
-    0 1 2
-  0 +-+-+-X
-    |
-  1 + 0   where Z = 1.0 for all points
-    | |\
-  2 + 2-1
-    |
-    Y
+      Y
+  2.5 |
+    2 + 1-2
+  1.5 | |/
+    1 + 0   where Z = 1.0 for all points
+  0.5 |
+    0 +-+-+-X
+      0 1 2
 
     Counter-clockwise:
 
-    0 1 2
-  0 +-+-+-X
-    |
-  1 + 0   where Z = 1.0 for all points
-    | |\
-  2 + 1-2
-    |
-    Y
+      Y
+  2.5 |
+    2 + 2-1
+  1.5 | |/
+    1 + 0   where Z = 1.0 for all points
+  0.5 |
+    0 +-+-+-X
+      0 1 2
 
   */
 
@@ -271,10 +261,10 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
     new Coordinat2D(1.0,1.0)
   };
   boost::shared_ptr<Coordinat2D> co_b {
-    new Coordinat2D(2.0,2.0)
+    new Coordinat2D(1.0,2.0)
   };
   boost::shared_ptr<Coordinat2D> co_c {
-    new Coordinat2D(1.0,2.0)
+    new Coordinat2D(2.0,2.0)
   };
 
   if (winding == Winding::counter_clockwise) { std::swap(co_b,co_c); }
@@ -289,9 +279,6 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
     PointFactory().Create(co_c)
   };
 
-  //a->SetIndex(1);
-  //b->SetIndex(2);
-  //c->SetIndex(3);
   a->SetZ(1.0 * boost::units::si::meter);
   b->SetZ(1.0 * boost::units::si::meter);
   c->SetZ(1.0 * boost::units::si::meter);
@@ -317,7 +304,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
 void ribi::trim::PointFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

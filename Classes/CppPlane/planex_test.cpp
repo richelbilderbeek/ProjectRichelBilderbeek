@@ -280,7 +280,7 @@ void ribi::PlaneX::Test() noexcept
     const Coordinat3D p3(-5,-5,10);
     const Coordinat3D p4(-5,-0.999999999999999880,10);
     const PlaneX p(p1,p2,p3);
-    //if (verbose)
+    if (verbose)
     {
       TRACE("----------------------------");
       TRACE(p.CalcMaxError(p1));

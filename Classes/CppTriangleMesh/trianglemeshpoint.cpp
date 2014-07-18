@@ -131,7 +131,7 @@ void ribi::trim::Point::SetZ(const boost::units::quantity<boost::units::si::leng
 void ribi::trim::Point::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

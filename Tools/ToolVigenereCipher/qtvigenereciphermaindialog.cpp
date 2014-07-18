@@ -108,7 +108,7 @@ void ribi::QtVigenereCipherMainDialog::on_edit_encrypted_text_textChanged(const 
 void ribi::QtVigenereCipherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -62,7 +62,7 @@ std::vector<boost::shared_ptr<ribi::QuestionDialog>> ribi::TestOpenQuestionMainD
 void ribi::TestOpenQuestionMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

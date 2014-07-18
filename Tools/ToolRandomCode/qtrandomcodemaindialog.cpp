@@ -87,7 +87,7 @@ void ribi::QtRandomCodeMainDialog::on_button_about_clicked()
 void ribi::QtRandomCodeMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

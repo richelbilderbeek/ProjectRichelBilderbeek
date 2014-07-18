@@ -26,7 +26,8 @@ SOURCES += \
     ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl_pin.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl_mut.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilderimpl_k.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshfaceimpl.cpp
+    ../../Classes/CppTriangleMesh/trianglemeshfaceimpl.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshhelper_test.cpp
 
 HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshtemplate.h \

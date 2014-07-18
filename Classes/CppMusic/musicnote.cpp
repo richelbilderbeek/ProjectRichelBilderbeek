@@ -120,7 +120,7 @@ void ribi::Music::Note::Test() noexcept
 {
   //Test exactly once
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

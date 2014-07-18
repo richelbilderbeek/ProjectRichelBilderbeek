@@ -114,7 +114,7 @@ std::vector<std::string> ribi::TestExerciseMenuDialog::GetVersionHistory() const
 void ribi::TestExerciseMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -278,7 +278,7 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::on_edit_example_text_textChanged(
 void ribi::cmap::QtConceptMapTestQtNodeDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

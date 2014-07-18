@@ -3,6 +3,8 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "trianglemeshbuilder.h"
 
+#include <cassert>
+
 #include <boost/make_shared.hpp>
 
 #include "trace.h"
@@ -16,7 +18,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function,
   const CreateVerticalFacesStrategy strategy,
   const bool verbose
-) : m_impl(
+) : m_impl{
       //boost::make_shared<TriangleMeshBuilderImpl>(
       new TriangleMeshBuilderImpl(
         cells,
@@ -25,21 +27,29 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
         strategy,
         verbose
       )
-    )
+    }
 {
   #ifndef NDEBUG
   Test();
   #endif
+  assert(m_impl);
 
+}
+
+ribi::trim::TriangleMeshBuilder::~TriangleMeshBuilder() noexcept
+{
+  //OK
 }
 
 int ribi::trim::TriangleMeshBuilder::CountCells() const noexcept
 {
+  assert(m_impl);
   return m_impl->CountCells();
 }
 
 int ribi::trim::TriangleMeshBuilder::CountFaces() const noexcept
 {
+  assert(m_impl);
   return m_impl->CountFaces();
 }
 
@@ -47,7 +57,7 @@ int ribi::trim::TriangleMeshBuilder::CountFaces() const noexcept
 void ribi::trim::TriangleMeshBuilder::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

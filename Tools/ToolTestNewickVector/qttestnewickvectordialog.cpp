@@ -178,7 +178,7 @@ void ribi::QtTestNewickVectorDialog::on_box_compare_clicked() noexcept
 void ribi::QtTestNewickVectorDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -78,7 +78,7 @@ void ribi::QtTestQtArrowItemsMenuDialog::on_button_start_clicked()
 void ribi::QtTestQtArrowItemsMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

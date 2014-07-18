@@ -35,7 +35,7 @@ std::vector<ribi::kalman::KalmanFilterType> ribi::kalman::KalmanFilterTypes::Get
 void ribi::kalman::KalmanFilterTypes::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

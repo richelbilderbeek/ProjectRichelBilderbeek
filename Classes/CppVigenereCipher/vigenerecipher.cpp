@@ -182,7 +182,7 @@ std::vector<int> ribi::VigenereCipher::StrToKey(const std::string& s) noexcept
 void ribi::VigenereCipher::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

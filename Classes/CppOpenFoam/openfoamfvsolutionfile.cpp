@@ -40,7 +40,7 @@ ribi::foam::Header ribi::foam::FvSolutionFile::GetDefaultHeader() noexcept
 void ribi::foam::FvSolutionFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

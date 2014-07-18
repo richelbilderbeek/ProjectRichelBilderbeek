@@ -34,7 +34,7 @@ ribi::foam::FaceIndex ribi::foam::BoundaryFileItem::GetEndFace() const noexcept
 void ribi::foam::BoundaryFileItem::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

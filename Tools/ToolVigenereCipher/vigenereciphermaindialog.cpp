@@ -62,7 +62,7 @@ void ribi::VigenereCipherMainDialog::SetPlainText(const std::string& s) noexcept
 void ribi::VigenereCipherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

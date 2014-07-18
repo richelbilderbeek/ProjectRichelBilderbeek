@@ -87,7 +87,7 @@ std::vector<std::string> ribi::TestManyDigitNewickMenuDialog::GetVersionHistory(
 void ribi::TestManyDigitNewickMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

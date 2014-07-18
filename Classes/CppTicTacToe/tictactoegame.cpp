@@ -112,7 +112,7 @@ void ribi::tictactoe::Game::SetSummarizedState(const int original_state) noexcep
 void ribi::tictactoe::Game::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

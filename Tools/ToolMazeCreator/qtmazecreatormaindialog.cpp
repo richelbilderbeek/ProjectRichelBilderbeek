@@ -233,7 +233,7 @@ const std::vector<std::vector<int> > ribi::QtMazeCreatorMainDialog::CreateMaze(c
 void ribi::QtMazeCreatorMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -106,7 +106,7 @@ std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory() co
 void ribi::TestShinyButtonMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -185,7 +185,7 @@ std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHis
 void ribi::CreateQtProjectZipFile::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

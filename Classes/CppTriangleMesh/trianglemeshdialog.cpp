@@ -682,7 +682,7 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
   {
     std::string filename_result_mesh = fileio::FileIo().GetTempFileName(".ply");
 
-    const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder(
+    const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder{
       new ribi::trim::TriangleMeshBuilder(
         cells,
         filename_result_mesh,
@@ -690,7 +690,7 @@ void ribi::trim::Dialog::Create3dMesh() noexcept
         m_3dmesh_strategy,
         m_3dmesh_verbose
       )
-    );
+    };
     assert(builder);
 
     m_3dmesh_output_ply = fileio::FileIo().FileToStr(filename_result_mesh);
@@ -822,7 +822,7 @@ void ribi::trim::Dialog::Show3dMesh() const noexcept
 void ribi::trim::Dialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

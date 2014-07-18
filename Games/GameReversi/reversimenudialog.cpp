@@ -121,7 +121,7 @@ std::vector<std::string> ribi::reversi::MenuDialog::GetVersionHistory() const no
 void ribi::reversi::MenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -264,7 +264,7 @@ void ribi::QtTestTriangleMainDialog::SetWkt(const std::string& wkt) noexcept
 void ribi::QtTestTriangleMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

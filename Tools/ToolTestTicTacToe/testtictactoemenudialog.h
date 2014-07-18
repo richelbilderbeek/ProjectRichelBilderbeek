@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TestTicTacToe, solver of quadratic equations
-Copyright (C) 2008-2013 Richel Bilderbeek
+Copyright (C) 2008-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,19 +21,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTTICTACTOEMENUDIALOG_H
 #define TESTTICTACTOEMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-///GUI independent TestTicTacToe menu dialog
-struct TestTicTacToeMenuDialog
+struct TestTicTacToeMenuDialog final : public MenuDialog
 {
-  static About GetAbout();
-  static std::string GetVersion();
-  static std::vector<std::string> GetVersionHistory();
+  TestTicTacToeMenuDialog();
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

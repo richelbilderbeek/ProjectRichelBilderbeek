@@ -80,7 +80,7 @@ void ribi::reversi::QtWidget::paintEvent(QPaintEvent *)
 void ribi::reversi::QtWidget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

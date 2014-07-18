@@ -45,7 +45,7 @@ void ribi::tron::QtTronMenuDialog::on_button_quit_clicked()
 void ribi::tron::QtTronMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

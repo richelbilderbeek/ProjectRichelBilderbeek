@@ -219,7 +219,7 @@ std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTes
 void ribi::cmap::NodeFactory::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

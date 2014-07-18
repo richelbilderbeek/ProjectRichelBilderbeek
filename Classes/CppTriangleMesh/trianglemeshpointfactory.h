@@ -89,38 +89,38 @@ class PointFactory
 
     Clockwise:
 
-    0 1 2
-  0 +-+-+-X
-    |
-  1 + 0-1  where Z = 1.0 for all points
-    | | |
-  2 + 3-2
-    |
-    Y
+      Y
+  2.5 |
+    2 + 1-2
+  1.5 | | |
+    1 + 0-3 where Z = 1.0 for all points
+  0.5 |
+    0 +-+-+-X
+      0 1 2
 
     Counter-clockwise:
 
-    0 1 2
-  0 +-+-+-X
-    |
-  1 + 0-3 where Z = 1.0 for all points
-    | | |
-  2 + 1-2
-    |
-    Y
+     Y
+ 2.5 |
+   2 + 3-2
+ 1.5 | | |
+   1 + 0-1  where Z = 1.0 for all points
+ 0.5 |
+   0 +-+-+-X
+     0 1 2
 
     Indeterminate:
 
-    0  1  2
-  0 +--+--+-X
-    |
-    |
-  1 +  0--3 where Z = 1.0 for all points
-    |   \/
-    |   /\
-  2 +  2--1
-    |
-    Y
+      Y
+  2.3 |
+    2 +  2--1
+  1.7 |   \/
+  1.3 |   /\
+    1 +  0--3 where Z = 1.0 for all points
+  0.7 |
+  0.3 |
+    0 +--+--+-X
+      0  1  2
 
   */
   std::vector<boost::shared_ptr<Point>> CreateTestSquare(const Winding winding) const noexcept;
@@ -130,25 +130,25 @@ class PointFactory
 
     Clockwise:
 
-    0 1 2
-  0 +-+-+-X
-    |
-  1 + 0   where Z = 1.0 for all points
-    | |\
-  2 + 2-1
-    |
-    Y
+      Y
+  2.5 |
+    2 + 1-2
+  1.5 | |/
+    1 + 0   where Z = 1.0 for all points
+  0.5 |
+    0 +-+-+-X
+      0 1 2
 
     Counter-clockwise:
 
-    0 1 2
-  0 +-+-+-X
-    |
-  1 + 0   where Z = 1.0 for all points
-    | |\
-  2 + 1-2
-    |
-    Y
+      Y
+  2.5 |
+    2 + 2-1
+  1.5 | |/
+    1 + 0   where Z = 1.0 for all points
+  0.5 |
+    0 +-+-+-X
+      0 1 2
 
   */
   std::vector<boost::shared_ptr<Point>> CreateTestTriangle(const Winding winding) const noexcept;

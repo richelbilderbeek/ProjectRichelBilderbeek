@@ -427,7 +427,7 @@ void ribi::cmap::Widget::SetSelected(const std::vector<boost::shared_ptr<Node>>&
 void ribi::cmap::Widget::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -77,7 +77,7 @@ void ribi::QtTestTextCanvasMainDialog::on_button_clear_clicked()
 void ribi::QtTestTextCanvasMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

@@ -100,7 +100,7 @@ void ribi::QtTestLedCompareDialog::on_slider_valueChanged(int /* value */) noexc
 void ribi::QtTestLedCompareDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

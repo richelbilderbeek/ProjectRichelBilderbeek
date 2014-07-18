@@ -25,16 +25,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-struct TestQtRoundedTextRectItemMenuDialog : public MenuDialog
+struct TestQtRoundedTextRectItemMenuDialog final : public MenuDialog
 {
-  About GetAbout() const noexcept;
-  Help GetHelp() const noexcept;
-  boost::shared_ptr<const Program> GetProgram() const noexcept;
-  std::string GetVersion() const noexcept;
-  std::vector<std::string> GetVersionHistory() const noexcept;
+  About GetAbout() const noexcept override;
+  Help GetHelp() const noexcept override;
+  boost::shared_ptr<const Program> GetProgram() const noexcept override;
+  std::string GetVersion() const noexcept override;
+  std::vector<std::string> GetVersionHistory() const noexcept override;
 
   private:
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   #ifndef NDEBUG
   static void Test() noexcept;

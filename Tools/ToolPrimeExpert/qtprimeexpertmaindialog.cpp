@@ -88,7 +88,7 @@ void ribi::QtToolPrimeExpertMainDialog::on_edit_value_textChanged(QString s)
 void ribi::QtToolPrimeExpertMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

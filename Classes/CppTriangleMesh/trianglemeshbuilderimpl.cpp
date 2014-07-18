@@ -35,10 +35,8 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
   #ifndef NDEBUG
   Test();
   #endif
-  const bool verbose_show_faces = false;
-  const bool verbose_show_cell_indices = false;
-  //const bool verbose{true};
-
+  const bool verbose_show_faces{false};
+  const bool verbose_show_cell_indices{false};
   for (const std::string& folder: GetAllFolders())
   {
     if (!ribi::fileio::FileIo().IsFolder(folder))
@@ -611,17 +609,16 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     ;
   }
   {
-    int index=0;
     const int n = static_cast<int>(m_faces.size());
     const int p = n / 100;
-    const auto j = std::end(m_faces);
+    for (int i=0; i!=n; ++i)
+    //const auto j = std::end(m_faces);
     //for (const boost::shared_ptr<Face>& face: m_faces)
-    for (auto i = std::begin(m_faces); i!=j; ++i)
+    //for (auto i = std::begin(m_faces); i!=j; ++i)
     {
-      assert(*i);
-      (*i)->SetCorrectWinding();
-      ++index;
-      if (index % p == 0) { std::clog << "%"; }
+      assert(m_faces[i]);
+      m_faces[i]->SetCorrectWinding();
+      if (i % p == 0) { std::clog << "%"; }
     }
   }
 
@@ -822,6 +819,11 @@ ribi::trim::TriangleMeshBuilderImpl::TriangleMeshBuilderImpl(
     std::ofstream f(ribi::foam::Filenames().GetCase().c_str());
     //Need nothing to stream
   }
+}
+
+ribi::trim::TriangleMeshBuilderImpl::~TriangleMeshBuilderImpl() noexcept
+{
+  //OK
 }
 
 int ribi::trim::TriangleMeshBuilderImpl::CountCells() const noexcept
@@ -1221,7 +1223,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
 void ribi::trim::TriangleMeshBuilderImpl::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

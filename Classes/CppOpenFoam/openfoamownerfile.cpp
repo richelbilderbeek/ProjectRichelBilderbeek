@@ -99,7 +99,7 @@ void ribi::foam::OwnerFile::SetItem(const FaceIndex& face_index, const OwnerFile
 void ribi::foam::OwnerFile::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

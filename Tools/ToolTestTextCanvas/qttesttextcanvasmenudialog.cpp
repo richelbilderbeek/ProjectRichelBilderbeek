@@ -62,7 +62,7 @@ void ribi::QtTestTextCanvasMenuDialog::on_button_start_canvas_clicked()
 void ribi::QtTestTextCanvasMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

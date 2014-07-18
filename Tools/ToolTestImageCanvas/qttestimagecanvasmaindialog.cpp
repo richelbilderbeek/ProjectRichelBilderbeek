@@ -91,7 +91,7 @@ void ribi::QtTestImageCanvasMainDialog::on_box_coordinat_system_currentIndexChan
 void ribi::QtTestImageCanvasMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

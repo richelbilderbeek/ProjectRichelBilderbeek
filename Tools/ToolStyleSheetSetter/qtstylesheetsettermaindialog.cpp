@@ -41,7 +41,7 @@ void ribi::QtStyleSheetSetterMainDialog::on_stylesheet_textChanged()
 void ribi::QtStyleSheetSetterMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

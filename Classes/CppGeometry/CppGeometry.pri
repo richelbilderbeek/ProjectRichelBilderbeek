@@ -6,7 +6,9 @@ SOURCES += \
     ../../Classes/CppGeometry/geometry_test.cpp \
     ../../Classes/CppGeometry/geometry_calccrossproduct.cpp \
     ../../Classes/CppGeometry/geometry_calccenter.cpp \
-    ../../Classes/CppGeometry/geometry_getangle.cpp
+    ../../Classes/CppGeometry/geometry_getangle.cpp \
+    ../../Classes/CppGeometry/geometry_is_clockwise.cpp \
+    ../../Classes/CppGeometry/geometry_is_counter_clockwise.cpp
 
 HEADERS  += \
     ../../Classes/CppGeometry/geometry.h

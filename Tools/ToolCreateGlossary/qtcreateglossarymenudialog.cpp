@@ -69,7 +69,7 @@ void ribi::QtCreateGlossaryMenuDialog::on_button_start_clicked()
 void ribi::QtCreateGlossaryMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

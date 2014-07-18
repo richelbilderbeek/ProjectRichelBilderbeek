@@ -155,7 +155,7 @@ void ribi::QtTestMultiCanvasMainDialog::on_button_line_clicked()
 void ribi::QtTestMultiCanvasMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

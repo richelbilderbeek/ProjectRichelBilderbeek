@@ -224,6 +224,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testshinybuttonmenudialog.h"
 #include "testsimplelinearregressionmenudialog.h"
 #include "testtextcanvasmenudialog.h"
+#include "testtictactoemenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "testtrianglemenudialog.h"
@@ -2862,32 +2863,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::testTicTacToe:
-      {
-        const std::string version = "x.x";
-        const std::vector<std::string> version_history {
-          "20xx-xx-xx: version x.x: something",
-        };
-        const About about(
-          About::GetDefaultAuthor(),
-          "somename",
-          "description",
-          "someday",
-          "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
-          version,
-          version_history
-        );
-        p.reset(
-          new PlaceholderMenuDialog(
-            about,
-            boost::shared_ptr<Program>(new ProgramTestTicTacToe),
-            version,
-            version_history
-          )
-        );
-      }
-      break;
+      case ProgramType::testTicTacToe: p.reset(new TestTicTacToeMenuDialog); break;
       case ProgramType::testTimedServerPusher:
       {
         const std::string version = "x.x";
@@ -3357,7 +3333,7 @@ void ribi::ProjectRichelBilderbeekMenuDialog::ShowStatus() const noexcept
 void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

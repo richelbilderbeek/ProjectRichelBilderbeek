@@ -101,7 +101,7 @@ class Helper
   12: ( 0,-3) : 12/6 * pi
 
   */
-  double GetAngle(const boost::shared_ptr<const Point> point) const noexcept;
+  //double GetAngle(const boost::shared_ptr<const Point> point) const noexcept;
 
   ///Obtain all permutations of a std::vector
   ///Examples:
@@ -113,6 +113,11 @@ class Helper
 
   bool IsClockwise(
     const std::vector<boost::shared_ptr<const Point>>& points,
+    const Coordinat3D& observer
+  ) const noexcept;
+
+  bool IsClockwise(
+    const std::vector<boost::shared_ptr<Point>>& points,
     const Coordinat3D& observer
   ) const noexcept;
 

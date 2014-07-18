@@ -29,7 +29,7 @@ class TriangleMeshBuilderImpl
     const CreateVerticalFacesStrategy strategy,
     const bool verbose
   );
-
+  ~TriangleMeshBuilderImpl() noexcept;
   int CountCells() const noexcept;
   int CountFaces() const noexcept;
 

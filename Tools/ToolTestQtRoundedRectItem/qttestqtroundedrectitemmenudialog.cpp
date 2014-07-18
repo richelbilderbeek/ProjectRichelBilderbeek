@@ -85,7 +85,7 @@ void ribi::QtTestQtRoundedRectItemMenuDialog::on_button_compare_clicked()
 void ribi::QtTestQtRoundedRectItemMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

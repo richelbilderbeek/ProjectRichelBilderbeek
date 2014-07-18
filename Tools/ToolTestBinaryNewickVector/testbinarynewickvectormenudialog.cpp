@@ -97,7 +97,7 @@ std::vector<std::string> ribi::TestBinaryNewickVectorMenuDialog::GetVersionHisto
 void ribi::TestBinaryNewickVectorMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

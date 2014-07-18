@@ -156,7 +156,7 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
 void ribi::c2h::File::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

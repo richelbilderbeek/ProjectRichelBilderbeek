@@ -210,7 +210,7 @@ std::vector<ribi::foam::PatchFieldType> ribi::foam::PatchFieldTypes::GetAllTypes
 void ribi::foam::PatchFieldTypes::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

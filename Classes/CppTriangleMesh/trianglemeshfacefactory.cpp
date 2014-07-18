@@ -113,14 +113,14 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   const std::vector<boost::shared_ptr<Point>> points_b      { points[1], points[2], points[5], points[4] };
   const std::vector<boost::shared_ptr<Point>> points_c      { points[2], points[0], points[3], points[5] };
   const bool verbose{false};
-  
-  assert(!Helper().IsClockwiseHorizontal(points_bottom) && "Clockwise from the inside");
-  assert(Helper().IsClockwiseHorizontal(points_top));
-  assert(Helper().IsConvex(points_bottom));
-  assert(Helper().IsConvex(points_top));
-  assert(Helper().IsConvex(points_a));
-  assert(Helper().IsConvex(points_b));
-  assert(Helper().IsConvex(points_c));
+
+  //assert(Helper().IsClockwiseHorizontal(points_bottom));
+  //assert(Helper().IsClockwiseHorizontal(points_top));
+  //assert(Helper().IsConvex(points_bottom));
+  //assert(Helper().IsConvex(points_top));
+  //assert(Helper().IsConvex(points_a));
+  //assert(Helper().IsConvex(points_b));
+  //assert(Helper().IsConvex(points_c));
   const auto bottom = FaceFactory().Create(points_bottom,FaceOrientation::horizontal,verbose);
   const auto top = FaceFactory().Create(points_top,FaceOrientation::horizontal,verbose);
   const auto a = FaceFactory().Create(points_a,FaceOrientation::vertical,verbose);

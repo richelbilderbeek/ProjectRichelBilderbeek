@@ -209,7 +209,7 @@ void ribi::kalman::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(c
 void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

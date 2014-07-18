@@ -99,7 +99,7 @@ void ribi::QtCaesarCipherMainDialog::on_button_deencrypt_clicked() noexcept
 void ribi::QtCaesarCipherMainDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }

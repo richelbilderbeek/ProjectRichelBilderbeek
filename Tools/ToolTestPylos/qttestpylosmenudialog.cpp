@@ -88,7 +88,7 @@ void ribi::pylos::QtTestPylosMenuDialog::on_button_random_play_clicked()
 void ribi::pylos::QtTestPylosMenuDialog::Test() noexcept
 {
   {
-    static bool is_tested = false;
+    static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
