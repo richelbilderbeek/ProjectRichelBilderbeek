@@ -71,7 +71,7 @@ int ribi::con3::ConnectThree::CanGetSquare(const int x, const int y) const noexc
        x >= 0
     && x <  GetCols()
     && y >= 0
-    && y <  GetCols()
+    && y <  GetRows()
   ;
 }
 
@@ -96,22 +96,22 @@ ribi::con3::Square ribi::con3::ConnectThree::GetSquare(const int x, const int y)
   assert(x < static_cast<int>(m_area.size()));
   assert(y >= 0);
   #ifndef NDEBUG
-  if (y >= static_cast<int>(m_area[0].size()))
+  if (y >= static_cast<int>(m_area[x].size()))
   {
     TRACE("ERROR");
     TRACE(y);
     TRACE(m_area.size());
-    TRACE(m_area[0].size());
+    TRACE(m_area[x].size());
     TRACE("BREAK");
   }
   #endif
-  assert(y < static_cast<int>(m_area[0].size()));
+  assert(y < static_cast<int>(m_area[x].size()));
   return m_area[x][y];
 }
 
 std::string ribi::con3::ConnectThree::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::con3::ConnectThree::GetVersionHistory() noexcept
@@ -123,6 +123,7 @@ std::vector<std::string> ribi::con3::ConnectThree::GetVersionHistory() noexcept
     "2011-04-19: version 1.1: added Restart method, removed m_is_player_human",
     "2014-02-13: version 1.2: improved interface",
     "2014-06-30: version 1.3: fixed bug in ribi::con3::ConnectThree::DoMove",
+    "2014-07-21: version 1.4: fixed another bug"
   };
 }
 

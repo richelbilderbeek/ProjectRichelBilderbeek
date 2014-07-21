@@ -128,7 +128,7 @@ void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key) noexcept
   assert(m_x >= 0);
   assert(m_y >= 0);
   assert(m_x < m_game->GetCols());
-  assert(m_x < m_game->GetRows());
+  assert(m_y < m_game->GetRows());
 
   switch (key)
   {
@@ -144,7 +144,7 @@ void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key) noexcept
   assert(m_x >= 0);
   assert(m_y >= 0);
   assert(m_x < m_game->GetCols());
-  assert(m_x < m_game->GetRows());
+  assert(m_y < m_game->GetRows());
 }
 
 int ribi::con3::ConnectThreeWidget::PlayerToIndex(const Player player) const noexcept
@@ -237,7 +237,7 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::con3::ConnectThreeWidget::ToText
 {
   assert(m_game);
   const int n_cols { m_game->GetCols() };
-  const int n_rows { m_game->GetCols() };
+  const int n_rows { m_game->GetRows() };
 
   const boost::shared_ptr<TextCanvas> canvas {
     new TextCanvas(n_cols,n_rows)
@@ -247,9 +247,10 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::con3::ConnectThreeWidget::ToText
     for (int x=0; x!=n_cols; ++x)
     {
       char c = ' ';
+      assert(m_game->CanGetSquare(x,y));
       switch (m_game->GetSquare(x,y))
       {
-        case Square::empty  : c = (x + y % 2 ? '.' : ' '); break;
+        case Square::empty  : c = '.'; break;
         case Square::player1: c = 'O'; break;
         case Square::player2: c = 'X'; break;
         case Square::player3: c = 'A'; break;

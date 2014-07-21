@@ -81,13 +81,14 @@ void ribi::QtRoundedEditRectItemDialog::CheckMe() const noexcept
 
 std::string ribi::QtRoundedEditRectItemDialog::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::QtRoundedEditRectItemDialog::GetVersionHistory() noexcept
 {
   return {
-    "2014-06-22: version 1.0: initial version"
+    "2014-06-22: version 1.0: initial version",
+    "2014-07-21: version 1.1: added CheckMe member functiom"
   };
 }
 
@@ -141,7 +142,6 @@ void ribi::QtRoundedEditRectItemDialog::OnPaddingChanged(QtRoundedEditRectItem *
   ui->box_padding_left->setValue(qtitem->GetPadding().left);
   ui->box_padding_right->setValue(qtitem->GetPadding().right);
   ui->box_padding_top->setValue(qtitem->GetPadding().top);
-  CheckMe();
 }
 
 void ribi::QtRoundedEditRectItemDialog::OnTextChanged(QtRoundedEditRectItem * const qtitem) noexcept
@@ -152,7 +152,6 @@ void ribi::QtRoundedEditRectItemDialog::OnTextChanged(QtRoundedEditRectItem * co
     s += t + '\n';
   }
   ui->text->setPlainText(s.c_str());
-  CheckMe();
 }
 
 void ribi::QtRoundedEditRectItemDialog::OnTextPenChanged(QtRoundedEditRectItem * const qtitem) noexcept

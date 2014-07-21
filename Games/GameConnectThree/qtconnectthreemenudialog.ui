@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>197</width>
-    <height>241</height>
+    <width>237</width>
+    <height>289</height>
    </rect>
   </property>
   <property name="font">
@@ -27,24 +27,18 @@ QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 32px, &quot;monospace&quot; }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QPushButton" name="button_start">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
+  <layout class="QFormLayout" name="formLayout">
+   <item row="2" column="0">
+    <widget class="QLabel" name="label">
      <property name="text">
-      <string>&amp;Start</string>
+      <string/>
      </property>
-     <property name="flat">
-      <bool>true</bool>
+     <property name="pixmap">
+      <pixmap resource="GameConnectThree.qrc">:/images/GameConnectThreeRetro.png</pixmap>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="2" column="1">
     <widget class="QPushButton" name="button_start_retro">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -60,7 +54,23 @@ QPushButton { font: 32px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="button_start">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>&amp;Start</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
     <widget class="QPushButton" name="button_about">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -76,7 +86,7 @@ QPushButton { font: 32px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="6" column="1">
     <widget class="QPushButton" name="button_quit">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -94,6 +104,14 @@ QPushButton { font: 32px, &quot;monospace&quot; }</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <tabstops>
+  <tabstop>button_start</tabstop>
+  <tabstop>button_start_retro</tabstop>
+  <tabstop>button_about</tabstop>
+  <tabstop>button_quit</tabstop>
+ </tabstops>
+ <resources>
+  <include location="GameConnectThree.qrc"/>
+ </resources>
  <connections/>
 </ui>

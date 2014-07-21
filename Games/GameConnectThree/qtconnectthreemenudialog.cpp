@@ -56,9 +56,6 @@ ribi::con3::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
   assert(layout());
 
   layout()->addWidget(m_select.get());
-
-  on_button_start_retro_clicked(); //TEMP
-  close(); //TEMP
 }
 
 ribi::con3::QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog() noexcept

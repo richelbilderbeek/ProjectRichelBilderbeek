@@ -57,23 +57,31 @@ void ribi::QtRoundedRectItemDialog::CheckMe() const noexcept
 {
   #ifndef NDEBUG
   if (!GetItem()) return;
-  if (ui->box_focus_pen_width->value() != GetItem()->GetFocusPen().widthF())
+
+  if(std::abs(ui->box_contour_pen_width->value() - GetItem()->GetContourPen().widthF()) >= 0.001)
   {
     TRACE("ERROR");
     TRACE(ui->box_focus_pen_width->value());
     TRACE(GetItem()->GetFocusPen().widthF());
     TRACE("BREAK");
   }
-  assert(ui->box_contour_pen_width->value() == GetItem()->GetContourPen().widthF());
-  assert(ui->box_focus_pen_width->value() == GetItem()->GetFocusPen().widthF());
-  assert(ui->box_height->value() == GetItem()->GetHeight());
-  assert(ui->box_height_including_pen->value() == GetItem()->GetHeightIncludingPen());
-  assert(ui->box_radius_x->value() == GetItem()->GetRadiusX());
-  assert(ui->box_radius_y->value() == GetItem()->GetRadiusY());
-  assert(ui->box_width->value() == GetItem()->GetWidth());
-  assert(ui->box_width_including_pen->value() == GetItem()->GetWidthIncludingPen());
-  assert(ui->box_x->value() == GetItem()->GetPos().x());
-  assert(ui->box_y->value() == GetItem()->GetPos().y());
+  assert(std::abs(ui->box_contour_pen_width->value() - GetItem()->GetContourPen().widthF()) < 0.001);
+  if(std::abs(ui->box_focus_pen_width->value() - GetItem()->GetFocusPen().widthF()) >= 0.001)
+  {
+    TRACE("ERROR");
+    TRACE(ui->box_focus_pen_width->value());
+    TRACE(GetItem()->GetFocusPen().widthF());
+    TRACE("BREAK");
+  }
+  assert(std::abs(ui->box_focus_pen_width->value() - GetItem()->GetFocusPen().widthF()) < 0.001);
+  assert(std::abs(ui->box_height->value() - GetItem()->GetHeight()) < 0.001);
+  assert(std::abs(ui->box_height_including_pen->value() - GetItem()->GetHeightIncludingPen()) < 0.001);
+  assert(std::abs(ui->box_radius_x->value() - GetItem()->GetRadiusX()) < 0.001);
+  assert(std::abs(ui->box_radius_y->value() - GetItem()->GetRadiusY()) < 0.001);
+  assert(std::abs(ui->box_width->value() - GetItem()->GetWidth()) < 0.001);
+  assert(std::abs(ui->box_width_including_pen->value() - GetItem()->GetWidthIncludingPen()) < 0.001);
+  assert(std::abs(ui->box_x->value() - GetItem()->GetPos().x()) < 0.001);
+  assert(std::abs(ui->box_y->value() - GetItem()->GetPos().y()) < 0.001);
   #endif
 }
 
@@ -166,14 +174,11 @@ void ribi::QtRoundedRectItemDialog::keyPressEvent(QKeyEvent * event)
 void ribi::QtRoundedRectItemDialog::OnContourPenChanged(QtRoundedRectItem * const qtitem) noexcept
 {
   ui->box_contour_pen_width->setValue(qtitem->GetContourPen().widthF());
-  CheckMe();
-
 }
 
 void ribi::QtRoundedRectItemDialog::OnFocusPenChanged(QtRoundedRectItem * const qtitem) noexcept
 {
   ui->box_focus_pen_width->setValue(qtitem->GetFocusPen().widthF());
-  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::OnPosChanged(QtRoundedRectItem * const qtitem) noexcept
@@ -182,19 +187,16 @@ void ribi::QtRoundedRectItemDialog::OnPosChanged(QtRoundedRectItem * const qtite
   const double new_y = qtitem->GetPos().y();
   ui->box_x->setValue(new_x);
   ui->box_y->setValue(new_y);
-  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::OnRadiusXchanged(QtRoundedRectItem * const qtitem) noexcept
 {
   ui->box_radius_x->setValue(qtitem->GetRadiusX());
-  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::OnRadiusYchanged(QtRoundedRectItem * const qtitem) noexcept
 {
   ui->box_radius_y->setValue(qtitem->GetRadiusY());
-  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::OnRectChanged(QtRoundedRectItem * const qtitem) noexcept
@@ -208,7 +210,6 @@ void ribi::QtRoundedRectItemDialog::OnRectChanged(QtRoundedRectItem * const qtit
   const double new_height_including_pen = qtitem->GetRectIncludingPen().height();
   ui->box_width_including_pen->setValue(new_width_including_pen);
   ui->box_height_including_pen->setValue(new_height_including_pen);
-  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_contour_pen_width_valueChanged(double arg1)
@@ -470,6 +471,18 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtRoundedRectItemDialog::Test");
+  QtRoundedRectItemDialog dialog;
+  boost::shared_ptr<QtRoundedRectItem> item{new QtRoundedRectItem};
+  dialog.SetItem(item);
+  {
+    dialog.ui->box_contour_pen_width->setValue( item->GetContourPen().widthF() + 1.0 );
+    dialog.CheckMe();
+    QPen new_pen = item->GetContourPen();
+    new_pen.setWidthF(dialog.ui->box_contour_pen_width->value() + 1.0);
+    item->SetContourPen(new_pen);
+    dialog.CheckMe();
+  }
+
   TRACE("Finished ribi::QtRoundedRectItemDialog::Test successfully");
 }
 #endif
