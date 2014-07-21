@@ -1,8 +1,9 @@
 include(../../DesktopApplication.pri)
 
+include(../../Libraries/Apfloat.pri)
+include(../../Libraries/Boost.pri)
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
-include(../../Libraries/Boost.pri)
 
 include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
@@ -15,5 +16,4 @@ include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 
 include(ToolTestQtRoundedEditRectItemDesktop.pri)
 
-SOURCES += \
-    qtmain.cpp
+SOURCES += qtmain.cpp

@@ -171,6 +171,7 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestPlane.htm",
     GetVersion(),
     GetVersionHistory());
+  a.AddLibrary("apfloat version: 2.4.1");
   a.AddLibrary("Container version: " + Container().GetVersion());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());

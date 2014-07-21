@@ -29,6 +29,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lambda/lambda.hpp>
 
+#include <QVBoxLayout>
+
 #include "conceptmapnode.h"
 #include "qtconceptmapnodedialog.h"
 #include "qtconceptmapnode.h"
@@ -46,6 +48,25 @@ ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
   m_qtroundededitrectitem_dialog{}
 {
   ui->setupUi(this);
+
+  {
+    assert(!this->layout());
+    QVBoxLayout * const my_layout{new QVBoxLayout};
+    this->setLayout(my_layout);
+  }
+  {
+    assert(this->layout());
+    const boost::shared_ptr<QtNodeDialog> d{new QtNodeDialog};
+    assert(d);
+    m_qtnodedialog = d;
+    this->layout()->addWidget(m_qtnodedialog.get());
+  }
+  {
+    assert(this->layout());
+    const boost::shared_ptr<QtRoundedEditRectItemDialog> d{new QtRoundedEditRectItemDialog};
+    m_qtroundededitrectitem_dialog = d;
+    this->layout()->addWidget(m_qtroundededitrectitem_dialog.get());
+  }
 }
 
 ribi::cmap::QtQtNodeDialog::~QtQtNodeDialog()
@@ -67,8 +88,7 @@ void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
 {
   assert( qtnode ==  m_qtnode.get());
   assert(*qtnode == *m_qtnode);
-  boost::shared_ptr<QtRoundedEditRectItem> base(qtnode);
-  this->m_qtroundededitrectitem_dialog->SetItem(base);
+  this->m_qtroundededitrectitem_dialog->SetItem(m_qtnode);
 }
 
 void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnode) noexcept

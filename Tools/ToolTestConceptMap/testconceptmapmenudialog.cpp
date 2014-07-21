@@ -4,6 +4,9 @@
 #include <iostream>
 
 //#include "qtrateconceptmap.h"
+#include "container.h"
+#include "fileio.h"
+#include "ribi_regex.h"
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
 #include "richelbilderbeekprogram.h"
@@ -42,9 +45,14 @@ ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestConceptMap.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("ConceptMap version: " + cmap::ConceptMap::GetVersion());
+
+  a.AddLibrary("apfloat version: 2.4.1");
+  a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
   a.AddLibrary("ConceptMapWidget version: " + cmap::Widget().GetVersion());
-  //a.AddLibrary("Test image from http://sipi.usc.edu");
+  a.AddLibrary("Container version: " + ribi::Container().GetVersion());
+  a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
+  a.AddLibrary("ribi::Regex version: " + ribi::Regex::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
 
   return a;
 }

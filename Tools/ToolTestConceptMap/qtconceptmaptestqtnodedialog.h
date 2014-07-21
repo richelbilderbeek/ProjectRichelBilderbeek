@@ -13,9 +13,11 @@
 
 namespace Ui { class QtConceptMapTestQtNodeDialog; }
 
-struct QGraphicsView;
 
 namespace ribi {
+
+struct QtKeyboardFriendlyGraphicsView;
+
 namespace cmap {
 
 ///Tests all QtConceptMapConceptItem items when being a member of a QtNode,
@@ -55,8 +57,8 @@ private:
 
   boost::shared_ptr<QtQtNodeDialog> m_dialog_left;
   boost::shared_ptr<QtQtNodeDialog> m_dialog_right;
-  boost::shared_ptr<QGraphicsView> m_view_left;
-  boost::shared_ptr<QGraphicsView> m_view_right;
+  boost::shared_ptr< ::ribi::QtKeyboardFriendlyGraphicsView> m_view_left;
+  boost::shared_ptr< ::ribi::QtKeyboardFriendlyGraphicsView> m_view_right;
 
   #ifndef NDEBUG
   static void Test() noexcept;

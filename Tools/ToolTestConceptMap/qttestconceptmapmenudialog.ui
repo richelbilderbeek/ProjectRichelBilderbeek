@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>252</width>
-    <height>699</height>
+    <width>214</width>
+    <height>589</height>
    </rect>
   </property>
   <property name="font">
@@ -24,7 +24,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, 
 }
 QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
-QPushButton { font: 24px &quot;Courier New&quot;, courier, monospace }</string>
+QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -188,6 +188,7 @@ QPushButton { font: 24px &quot;Courier New&quot;, courier, monospace }</string>
   <tabstop>button_node</tabstop>
   <tabstop>button_edge</tabstop>
   <tabstop>button_qtnode</tabstop>
+  <tabstop>button_qtedge</tabstop>
   <tabstop>button_readonly_conceptmap</tabstop>
   <tabstop>button_edit_conceptmap</tabstop>
   <tabstop>button_rate_conceptmap</tabstop>

@@ -21,9 +21,10 @@
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapnodedialog.h"
-#include "qtconceptmapqtnodedialog.h"
 #include "qtconceptmapnode.h"
+#include "qtconceptmapqtnodedialog.h"
 #include "qtconceptmapratestrategy.h"
+#include "qtkeyboardfriendlygraphicsview.h"
 #include "trace.h"
 #include "ui_qtconceptmaptestqtnodedialog.h"
 #pragma GCC diagnostic pop
@@ -32,19 +33,24 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtConceptMapTestQtNodeDialog),
-    m_dialog_left(new QtQtNodeDialog),
-    m_dialog_right(new QtQtNodeDialog),
-    m_view_left(new QGraphicsView),
-    m_view_right(new QGraphicsView)
+    m_dialog_left{new QtQtNodeDialog},
+    m_dialog_right{new QtQtNodeDialog},
+    m_view_left{new QtKeyboardFriendlyGraphicsView},
+    m_view_right{new QtKeyboardFriendlyGraphicsView}
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  {
+    QGraphicsScene * const my_scene = new QGraphicsScene(this);
+    m_view_left->setScene(my_scene);
+    m_view_right->setScene(my_scene);
+  }
 
-  assert(!this->layout());
+  assert(!this->ui->here->layout());
   QGridLayout * const my_layout = new QGridLayout;
-  this->setLayout(my_layout);
+  ui->here->setLayout(my_layout);
 
   my_layout->addWidget(ui->widget_top,0,0,1,4);
 
@@ -160,15 +166,27 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::~QtConceptMapTestQtNodeDialog() noexce
 
 boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtConceptMapTestQtNodeDialog::GetQtNode() const noexcept
 {
-  assert(!"Not implemented");
-  boost::shared_ptr<QtNode> qtnode;
-  return qtnode;
+  assert(m_dialog_left->GetQtNode() == m_dialog_right->GetQtNode());
+  return m_dialog_left->GetQtNode();
 }
 
 void ribi::cmap::QtConceptMapTestQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
 {
   assert(qtnode);
-  assert(!"Not implemented");
+  assert(m_view_left);
+  assert(m_view_left->scene());
+  assert(m_view_right);
+  assert(m_view_right->scene());
+  assert(m_view_left->scene() == m_view_right->scene());
+  m_view_left->scene()->clear();
+  m_dialog_left->SetQtNode(qtnode);
+  m_dialog_right->SetQtNode(qtnode);
+  this->m_view_left->scene()->addItem(qtnode.get());
+
+  TRACE(QtQtNodeDialog::GetMinimumHeight(*qtnode));
+  m_dialog_left->setMinimumHeight(QtQtNodeDialog::GetMinimumHeight(*qtnode));
+  m_dialog_right->setMinimumHeight(QtQtNodeDialog::GetMinimumHeight(*qtnode));
+
 }
 
 /*
@@ -365,4 +383,6 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::on_button_load_clicked()
     //s
   );
   SetQtNode(qtnode);
+
+
 }

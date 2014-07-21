@@ -52,6 +52,7 @@ ribi::cmap::QtNode::QtNode(
 )
   : QtConceptMapElement(),
     //m_signal_display_changed{},
+    m_signal_base_changed{},
     m_signal_node_changed{},
     //m_signal_node_requests_rate_concept{},
     //m_signal_node_requests_rate_examples{},

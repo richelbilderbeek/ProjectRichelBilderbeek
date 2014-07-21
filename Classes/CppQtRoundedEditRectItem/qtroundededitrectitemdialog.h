@@ -52,7 +52,7 @@ public:
 
   boost::shared_ptr<QtRoundedEditRectItem> GetItem() const noexcept { return m_item; }
 
-  static int GetMinimumHeight(const QtRoundedEditRectItem& /* item */) noexcept { return 276; }
+  static int GetMinimumHeight(const QtRoundedEditRectItem& /* item */) noexcept { return 276 + 300; }
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;

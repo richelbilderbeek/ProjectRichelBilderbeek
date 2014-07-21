@@ -29,11 +29,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/make_shared.hpp>
 
+#include "container.h"
 #include "conceptmap.h"
 #include "fileio.h"
 #include "fuzzy_equal_to.h"
 #include "geometry.h"
 #include "plane.h"
+#include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "xml.h"
@@ -63,12 +65,14 @@ ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
 
+  a.AddLibrary("apfloat version: 2.4.1");
   a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
+  a.AddLibrary("Container version: " + ribi::Container().GetVersion());
   a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
   a.AddLibrary("fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
-  //a.AddLibrary("Plane version: " + boost::make_shared<Plane>(
-  //  {0.0,1.0,1.0},{1.0,0.0,1.0},{1.0,1.0,0.0})->GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
+  a.AddLibrary("ribi::Regex version: " + ribi::Regex::GetVersion());
 
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;

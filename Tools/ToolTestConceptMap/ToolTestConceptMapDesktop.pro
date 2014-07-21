@@ -1,6 +1,7 @@
 include(../../DesktopApplication.pri)
 
 #Libs
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
 include(../../Libraries/GeneralConsole.pri)

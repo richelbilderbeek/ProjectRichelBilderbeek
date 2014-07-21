@@ -74,7 +74,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
           const boost::shared_ptr<ConceptMap> c(ConceptMapFactory::DeepCopy(m));
           assert(*c == *m);
           //Test XML conversions
-          const std::string s = ToXml(c);
+          const std::string s{ToXml(c)};
           const boost::shared_ptr<ConceptMap> d = ConceptMapFactory::FromXml(s);
           assert(*c == *d);
         }

@@ -22,7 +22,7 @@
 #include "testqtroundededitrectitemmenudialog.h"
 #include "trace.h"
 #ifndef NDEBUG
-#include "qtroundedtextrectitem.h"
+//#include "qtroundedtextrectitem.h"
 #endif
 
 #pragma GCC diagnostic pop
