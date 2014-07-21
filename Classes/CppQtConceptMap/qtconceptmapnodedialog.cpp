@@ -96,6 +96,7 @@ void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node) noex
   assert(node);
   if (m_node == node)
   {
+    CheckMe();
     return;
   }
 
@@ -230,6 +231,7 @@ void ribi::cmap::QtNodeDialog::OnConceptChanged(Node * const node)
 
 void ribi::cmap::QtNodeDialog::OnXchanged(Node * const node)
 {
+  TRACE_FUNC();
   assert(node);
   ui->box_x->setValue(node->GetX());
 }
@@ -244,11 +246,16 @@ void ribi::cmap::QtNodeDialog::OnYchanged(Node * const node)
 void ribi::cmap::QtNodeDialog::SetUiX(const double x) noexcept
 {
   ui->box_x->setValue(x);
+  //Calls 'on_box_x_valueChanged' automatically
 }
 
 void ribi::cmap::QtNodeDialog::SetUiY(const double y) noexcept
 {
   ui->box_y->setValue(y);
+  //Calls 'on_box_y_valueChanged' automatically
+  //ui->box_y does not immediatly update
+  //m_node->SetY(y);
+  //on_box_y_valueChanged(y);
 }
 
 
@@ -282,10 +289,12 @@ void ribi::cmap::QtNodeDialog::Test() noexcept
 
 void ribi::cmap::QtNodeDialog::on_box_x_valueChanged(double arg1)
 {
+  TRACE_FUNC();
   m_node->SetX(arg1);
 }
 
 void ribi::cmap::QtNodeDialog::on_box_y_valueChanged(double arg1)
 {
+  TRACE_FUNC();
   m_node->SetY(arg1);
 }

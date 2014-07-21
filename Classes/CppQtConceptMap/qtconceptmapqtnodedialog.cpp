@@ -85,8 +85,17 @@ void ribi::cmap::QtQtNodeDialog::CheckMe() const noexcept
 {
   #ifndef NDEBUG
   //Check if its subdialogs match
-  const auto lhs = m_qtnodedialog;
-  const auto rhs = m_qtroundededitrectitem_dialog;
+  const boost::shared_ptr<QtNodeDialog> lhs = m_qtnodedialog;
+  const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = m_qtroundededitrectitem_dialog;
+  lhs->CheckMe();
+  rhs->CheckMe();
+  if (std::abs(lhs->GetUiX() - rhs->GetUiX()) >= 1.0)
+  {
+    TRACE("ERROR");
+    TRACE(lhs->GetUiX());
+    TRACE(rhs->GetUiX());
+    TRACE("BREAK");
+  }
 
   assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
   assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
@@ -108,13 +117,21 @@ void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
 {
   assert( qtnode ==  m_qtnode.get());
   assert(*qtnode == *m_qtnode);
-  this->m_qtroundededitrectitem_dialog->SetItem(m_qtnode);
+  TRACE_FUNC();
+  m_qtroundededitrectitem_dialog->SetItem(m_qtnode);
+
+  m_qtroundededitrectitem_dialog->CheckMe();
+  m_qtnodedialog->CheckMe();
 }
 
 void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnode) noexcept
 {
   //Emit
-  this->m_qtnodedialog->SetNode(qtnode->GetNode());
+  m_qtnodedialog->SetNode(qtnode->GetNode());
+  TRACE_FUNC();
+
+  m_qtnodedialog->CheckMe();
+  m_qtroundededitrectitem_dialog->CheckMe();
 
   /*
   if (node == m_node) return;
@@ -254,17 +271,31 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
   const auto node = NodeFactory().GetTest(1);
   const boost::shared_ptr<QtNode> qtnode{new QtNode(node)};
   dialog.SetQtNode(qtnode);
-  const auto lhs = dialog.m_qtnodedialog;
-  const auto rhs = dialog.m_qtroundededitrectitem_dialog;
+  const boost::shared_ptr<QtNodeDialog> lhs = dialog.m_qtnodedialog;
+  const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = dialog.m_qtroundededitrectitem_dialog;
   lhs->CheckMe();
   rhs->CheckMe();
   dialog.CheckMe();
   assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
   assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
-  lhs->SetUiX(lhs->GetUiX() + 5.0);
-  dialog.CheckMe();
-  rhs->SetUiX(rhs->GetUiX() + 5.0);
-  dialog.CheckMe();
+  ///LHS, setX
+  {
+    const double new_x = lhs->GetUiX() + 5.0;
+    TRACE("---------------------------------------------");
+    lhs->SetUiX(new_x);
+    lhs->CheckMe();
+    assert(std::abs(lhs->GetUiX() - new_x) < 1.0);
+    dialog.CheckMe();
+    assert(!"Yay");
+  }
+  //RHS, setX
+  {
+    const double new_x = rhs->GetUiX() + 5.0;
+    rhs->SetUiX(new_x);
+    lhs->CheckMe();
+    assert(std::abs(rhs->GetUiX() - new_x) < 1.0);
+    dialog.CheckMe();
+  }
   lhs->SetUiY(lhs->GetUiX() + 5.0);
   dialog.CheckMe();
   rhs->SetUiY(rhs->GetUiX() + 5.0);

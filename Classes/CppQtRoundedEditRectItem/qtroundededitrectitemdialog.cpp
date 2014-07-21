@@ -180,7 +180,7 @@ void ribi::QtRoundedEditRectItemDialog::SetItem(const boost::shared_ptr<QtRounde
   assert(item);
   if (m_item == item)
   {
-
+    CheckMe();
     return;
   }
   if (verbose)
