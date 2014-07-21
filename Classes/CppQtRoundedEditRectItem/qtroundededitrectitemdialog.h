@@ -50,9 +50,17 @@ public:
   QtRoundedEditRectItemDialog& operator=(const QtRoundedEditRectItemDialog&) = delete;
   ~QtRoundedEditRectItemDialog() noexcept;
 
+  ///Checks all invariants, empty in release version
+  void CheckMe() const noexcept;
+
   boost::shared_ptr<QtRoundedEditRectItem> GetItem() const noexcept { return m_item; }
 
   static int GetMinimumHeight(const QtRoundedEditRectItem& /* item */) noexcept { return 276 + 300; }
+
+  ///Read the X value directly from GUI
+  double GetUiX() const noexcept;
+  ///Read the Y value directly from GUI
+  double GetUiY() const noexcept;
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -62,6 +70,11 @@ public:
 
   void SetItem(const boost::shared_ptr<QtRoundedEditRectItem>& item) noexcept;
 
+  ///Set the X value directly to GUI
+  void SetUiX(const double x) noexcept;
+  ///Set the Y value directly to GUI
+  void SetUiY(const double y) noexcept;
+
 
 protected:
   void keyPressEvent(QKeyEvent * event);
@@ -70,13 +83,9 @@ private slots:
   void on_button_font_clicked();
   void on_text_textChanged();
   void on_button_text_pen_clicked();
-
   void on_box_padding_left_valueChanged(double arg1);
-
   void on_box_padding_top_valueChanged(double arg1);
-
   void on_box_padding_right_valueChanged(double arg1);
-
   void on_box_padding_bottom_valueChanged(double arg1);
 
 private:
@@ -88,8 +97,6 @@ private:
   ///The QtRoundedRectItem to work on
   boost::shared_ptr<QtRoundedEditRectItem> m_item;
 
-  ///Checks all invariants, empty in release version
-  void CheckMe() const noexcept;
 
 
   void OnBaseChanged(QtRoundedEditRectItem * const qtitem) noexcept;

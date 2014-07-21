@@ -92,6 +92,9 @@ class QtRoundedRectItem : public QGraphicsRectItem
   ///Get the width of the area including the rounded rectangle itself
   double GetWidthIncludingPen() const noexcept;
 
+  double GetX() const noexcept { return GetPos().x(); }
+  double GetY() const noexcept { return GetPos().y(); }
+
   ///Set the pen by which the contours are normally drawn
   ///Default value: QPen(Qt::DashLine)
   void SetContourPen(const QPen& pen) noexcept;
@@ -118,6 +121,9 @@ class QtRoundedRectItem : public QGraphicsRectItem
   void SetWidth(const double width) noexcept;
   void SetWidthIncludingPen(const double width) noexcept;
 
+  void SetX(const double x) noexcept { SetPos(x,GetY()); }
+  void SetY(const double y) noexcept { SetPos(GetX(),y); }
+
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;
@@ -133,8 +139,8 @@ class QtRoundedRectItem : public QGraphicsRectItem
 
 protected:
 
-  virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) noexcept;
-  virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept;
+  virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) noexcept override;
+  virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept override;
 
   private:
   ///The pen by which the contour is drawn

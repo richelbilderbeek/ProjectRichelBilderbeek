@@ -32,12 +32,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QVBoxLayout>
 
 #include "conceptmapnode.h"
+#include "conceptmapnodefactory.h"
 #include "qtconceptmapnodedialog.h"
 #include "qtconceptmapnode.h"
 #include "qtitemdisplaystrategy.h"
 #include "qtroundededitrectitemdialog.h"
+
 #include "trace.h"
+
 #include "ui_qtconceptmapqtnodedialog.h"
+//#include "ui_qtconceptmapnodedialog.h"
+//#include "ui_qtroundededitrectitemdialog.h"
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
@@ -47,8 +52,10 @@ ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
   m_qtnodedialog{},
   m_qtroundededitrectitem_dialog{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
-
   {
     assert(!this->layout());
     QVBoxLayout * const my_layout{new QVBoxLayout};
@@ -72,6 +79,19 @@ ribi::cmap::QtQtNodeDialog::QtQtNodeDialog(QWidget *parent)
 ribi::cmap::QtQtNodeDialog::~QtQtNodeDialog()
 {
   delete ui;
+}
+
+void ribi::cmap::QtQtNodeDialog::CheckMe() const noexcept
+{
+  #ifndef NDEBUG
+  //Check if its subdialogs match
+  const auto lhs = m_qtnodedialog;
+  const auto rhs = m_qtroundededitrectitem_dialog;
+
+  assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
+  assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
+
+  #endif
 }
 
 int ribi::cmap::QtQtNodeDialog::GetMinimumHeight(const QtNode& qtnode) noexcept
@@ -130,6 +150,7 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
 
   if (m_qtnode == qtnode)
   {
+    CheckMe();
     return;
   }
 
@@ -217,4 +238,38 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
 
   assert( qtnode ==  m_qtnode);
   assert(*qtnode == *m_qtnode);
+  CheckMe();
 }
+
+#ifndef NDEBUG
+void ribi::cmap::QtQtNodeDialog::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::cmap::QtQtNodeDialog::Test");
+  QtQtNodeDialog dialog;
+  const auto node = NodeFactory().GetTest(1);
+  const boost::shared_ptr<QtNode> qtnode{new QtNode(node)};
+  dialog.SetQtNode(qtnode);
+  const auto lhs = dialog.m_qtnodedialog;
+  const auto rhs = dialog.m_qtroundededitrectitem_dialog;
+  lhs->CheckMe();
+  rhs->CheckMe();
+  dialog.CheckMe();
+  assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
+  assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
+  lhs->SetUiX(lhs->GetUiX() + 5.0);
+  dialog.CheckMe();
+  rhs->SetUiX(rhs->GetUiX() + 5.0);
+  dialog.CheckMe();
+  lhs->SetUiY(lhs->GetUiX() + 5.0);
+  dialog.CheckMe();
+  rhs->SetUiY(rhs->GetUiX() + 5.0);
+  dialog.CheckMe();
+
+  TRACE("Finished ribi::cmap::QtQtNodeDialog::Test successfully");
+}
+#endif

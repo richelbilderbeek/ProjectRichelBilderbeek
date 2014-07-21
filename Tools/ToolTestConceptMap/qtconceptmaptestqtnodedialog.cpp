@@ -164,6 +164,14 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::~QtConceptMapTestQtNodeDialog() noexce
   delete ui;
 }
 
+void ribi::cmap::QtConceptMapTestQtNodeDialog::CheckMe() const noexcept
+{
+  #ifndef NDEBUG
+  assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtNode()->GetX()) < 1.0);
+  assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtNode()->GetY()) < 1.0);
+  #endif
+}
+
 boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtConceptMapTestQtNodeDialog::GetQtNode() const noexcept
 {
   assert(m_dialog_left->GetQtNode() == m_dialog_right->GetQtNode());
@@ -178,7 +186,13 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::SetQtNode(const boost::shared_ptr
   assert(m_view_right);
   assert(m_view_right->scene());
   assert(m_view_left->scene() == m_view_right->scene());
-  m_view_left->scene()->clear();
+  if (!m_view_left->scene()->items().isEmpty())
+  {
+    const auto v = m_view_left->scene()->items();
+    assert(v.count() == 1);
+    m_view_left->scene()->removeItem(v[0]);
+  }
+  assert(m_view_left->scene()->items().isEmpty());
   m_dialog_left->SetQtNode(qtnode);
   m_dialog_right->SetQtNode(qtnode);
   this->m_view_left->scene()->addItem(qtnode.get());

@@ -40,12 +40,14 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPylosMainDialog),
-    m_pylos_widget(pylos_widget)
+    m_pylos_widget{pylos_widget}
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
+
+  assert(m_pylos_widget);
 
   //Connect
   QObject::connect(
@@ -56,7 +58,7 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
   );
 
   //Place widget
-  this->layout()->addWidget(m_pylos_widget.get());
+  this->layout()->addWidget(m_pylos_widget.get()); //Takes ownership if not removed
 
   //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();
@@ -67,6 +69,18 @@ ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
 
 ribi::pylos::QtPylosMainDialog::~QtPylosMainDialog() noexcept
 {
+  QObject::disconnect(
+    m_pylos_widget.get(),
+    &QtPylosGameWidget::HasWinner,
+    this,
+    &ribi::pylos::QtPylosMainDialog::OnWinner
+  );
+
+  this->layout()->removeWidget(m_pylos_widget.get()); //Remove QLayout its ownership
+
+  assert(this->layout()->children().isEmpty());
+  assert(m_pylos_widget);
+
   delete ui;
 }
 
@@ -101,14 +115,15 @@ void ribi::pylos::QtPylosMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::pylos::QtPylosMainDialog::Test");
-  const boost::shared_ptr<QtPylosGameWidget> p(new QtPylosGameWidget);
+  const boost::shared_ptr<QtPylosGameWidget> p{new QtPylosGameWidget};
   assert(p);
   //Set the game type
   p->StartBasic();
   p->SetColorSchemeBlackWhite();
-  const boost::shared_ptr<QtPylosMainDialog> d(new QtPylosMainDialog(p));
+  const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(p)};
   assert(!d->GetVersion().empty());
-  //delete p;
+  assert(p);
+  assert(!p->GetVersion().empty());
   TRACE("Finished ribi::pylos::QtPylosMainDialog::Test successfully");
 }
 #endif

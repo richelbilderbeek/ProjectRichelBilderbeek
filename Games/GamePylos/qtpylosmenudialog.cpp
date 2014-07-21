@@ -199,7 +199,7 @@ void ribi::pylos::QtPylosMenuDialog::Test() noexcept
   //Set the game type
   p->StartBasic();
   p->SetColorSchemeBlackWhite();
-  const boost::shared_ptr<QtPylosMainDialog> d(new QtPylosMainDialog(p));
+  const boost::shared_ptr<QtPylosMainDialog> d{new QtPylosMainDialog(p)};
   //const QtPylosMainDialog d(p);
   assert(!d->GetVersion().empty());
   TRACE("Finished ribi::pylos::QtPylosMenuDialog::Test successfully");

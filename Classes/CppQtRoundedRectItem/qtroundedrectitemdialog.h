@@ -55,6 +55,11 @@ public:
 
   static int GetMinimumHeight() noexcept { return 276; }
 
+  ///Read the X value directly from GUI
+  double GetUiX() const noexcept;
+  ///Read the Y value directly from GUI
+  double GetUiY() const noexcept;
+
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
 
@@ -62,6 +67,12 @@ public:
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   void SetItem(const boost::shared_ptr<QtRoundedRectItem>& item) noexcept;
+
+  ///Set the X value directly to GUI
+  void SetUiX(const double x) noexcept;
+  ///Set the Y value directly to GUI
+  void SetUiY(const double y) noexcept;
+
 
 protected:
   void keyPressEvent(QKeyEvent * event);

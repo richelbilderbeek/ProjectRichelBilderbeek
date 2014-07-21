@@ -47,10 +47,26 @@ public:
   QtNodeDialog& operator=(const QtNodeDialog&) = delete;
   ~QtNodeDialog();
 
-  void SetNode(const boost::shared_ptr<Node>& node) noexcept;
+  ///Tests all invariants, empty in release mode
+  void CheckMe() const noexcept;
+
+  ///Read the X value directly from GUI
+  double GetUiX() const noexcept;
+  ///Read the Y value directly from GUI
+  double GetUiY() const noexcept;
+
   boost::shared_ptr<Node> GetNode() const noexcept { return m_node; }
 
   static int GetMinimumHeight(const Node& node) noexcept;
+
+  void SetNode(const boost::shared_ptr<Node>& node) noexcept;
+
+  ///Set the X value directly to GUI
+  void SetUiX(const double x) noexcept;
+  ///Set the Y value directly to GUI
+  void SetUiY(const double y) noexcept;
+
+
 private slots:
   void on_box_x_valueChanged(double arg1);
   void on_box_y_valueChanged(double arg1);
@@ -62,6 +78,7 @@ private:
   boost::shared_ptr<Node> m_node;
 
   boost::shared_ptr<QtConceptDialog> m_qtconceptdialog;
+
 
   //concept is non-const, as its displayal by this dialog renders it editable
   void OnConceptChanged(Node * const node);

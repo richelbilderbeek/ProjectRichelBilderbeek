@@ -79,6 +79,18 @@ void ribi::QtRoundedEditRectItemDialog::CheckMe() const noexcept
   #endif
 }
 
+double ribi::QtRoundedEditRectItemDialog::GetUiX() const noexcept
+{
+  assert(m_dialog);
+  return m_dialog->GetUiX();
+}
+
+double ribi::QtRoundedEditRectItemDialog::GetUiY() const noexcept
+{
+  assert(m_dialog);
+  return m_dialog->GetUiY();
+}
+
 std::string ribi::QtRoundedEditRectItemDialog::GetVersion() noexcept
 {
   return "1.1";
@@ -316,6 +328,17 @@ void ribi::QtRoundedEditRectItemDialog::SetItem(const boost::shared_ptr<QtRounde
   assert(*item == *m_item);
   CheckMe();
 }
+
+void ribi::QtRoundedEditRectItemDialog::SetUiX(const double x) noexcept
+{
+  this->m_dialog->SetUiX(x);
+}
+
+void ribi::QtRoundedEditRectItemDialog::SetUiY(const double y) noexcept
+{
+  this->m_dialog->SetUiY(y);
+}
+
 
 #ifndef NDEBUG
 void ribi::QtRoundedEditRectItemDialog::Test() noexcept

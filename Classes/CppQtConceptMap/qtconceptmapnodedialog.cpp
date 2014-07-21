@@ -64,9 +64,29 @@ ribi::cmap::QtNodeDialog::~QtNodeDialog()
   delete ui;
 }
 
+void ribi::cmap::QtNodeDialog::CheckMe() const noexcept
+{
+  #ifndef NDEBUG
+  if (!m_node) return;
+  assert(std::abs(GetUiX() - this->m_node->GetX()) < 0.001);
+  assert(std::abs(GetUiY() - this->m_node->GetY()) < 0.001);
+  #endif
+}
+
 int ribi::cmap::QtNodeDialog::GetMinimumHeight(const Node& node) noexcept
 {
   return QtConceptDialog::GetMinimumHeight(*node.GetConcept()) + 82;
+}
+
+
+double ribi::cmap::QtNodeDialog::GetUiX() const noexcept
+{
+  return ui->box_x->value();
+}
+
+double ribi::cmap::QtNodeDialog::GetUiY() const noexcept
+{
+  return ui->box_y->value();
 }
 
 void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node) noexcept
@@ -220,6 +240,18 @@ void ribi::cmap::QtNodeDialog::OnYchanged(Node * const node)
   ui->box_y->setValue(node->GetY());
 }
 
+
+void ribi::cmap::QtNodeDialog::SetUiX(const double x) noexcept
+{
+  ui->box_x->setValue(x);
+}
+
+void ribi::cmap::QtNodeDialog::SetUiY(const double y) noexcept
+{
+  ui->box_y->setValue(y);
+}
+
+
 #ifndef NDEBUG
 void ribi::cmap::QtNodeDialog::Test() noexcept
 {
@@ -229,7 +261,21 @@ void ribi::cmap::QtNodeDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Started ribi::cmap::QtNodeDialog::Test");
-  //QtNodeDialog d;
+  QtNodeDialog dialog;
+  const auto node = NodeFactory().GetTest(1);
+  dialog.SetNode(node);
+  {
+    dialog.ui->box_x->setValue(node->GetX() + 1.0);
+    dialog.CheckMe();
+    node->SetX(dialog.ui->box_x->value() + 1.0);
+    dialog.CheckMe();
+  }
+  {
+    dialog.ui->box_y->setValue(node->GetY() + 1.0);
+    dialog.CheckMe();
+    node->SetY(dialog.ui->box_y->value() + 1.0);
+    dialog.CheckMe();
+  }
   TRACE("ribi::cmap::QtNodeDialog::Test finished successfully");
 }
 #endif
