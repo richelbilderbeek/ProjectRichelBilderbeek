@@ -88,6 +88,9 @@ private:
   ///The QtRoundedRectItem to work on
   boost::shared_ptr<QtRoundedEditRectItem> m_item;
 
+  ///Checks all invariants, empty in release version
+  void CheckMe() const noexcept;
+
 
   void OnBaseChanged(QtRoundedEditRectItem * const qtitem) noexcept;
   void OnFontChanged(QtRoundedEditRectItem * const qtitem) noexcept;

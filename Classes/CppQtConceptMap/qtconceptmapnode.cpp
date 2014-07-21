@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 #include <QPen>
 
+#include "container.h"
 #include "conceptmapexamples.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
@@ -92,6 +93,9 @@ ribi::cmap::QtNode::QtNode(
   assert(GetPos().y() == m_node->GetY());
   //m_display_strategy->SetPos(m_node->GetX(),m_node->GetY());
   this->SetPos(m_node->GetX(),m_node->GetY());
+
+  //m_node->m_signal_x_changed
+
 
   /*
 

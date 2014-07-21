@@ -60,6 +60,25 @@ ribi::QtRoundedEditRectItemDialog::~QtRoundedEditRectItemDialog() noexcept
   delete ui;
 }
 
+void ribi::QtRoundedEditRectItemDialog::CheckMe() const noexcept
+{
+  #ifndef NDEBUG
+  if (!m_item) return;
+  if (m_item->GetText() != Container().SeperateString(ui->text->toPlainText().toStdString(),'\n'))
+  {
+    TRACE("ERROR");
+    TRACE(Container().ToStr(m_item->GetText()));
+    TRACE(ui->text->toPlainText().toStdString());
+    TRACE("BREAK");
+  }
+  assert(ui->box_padding_top->value() == m_item->GetPadding().top);
+  assert(ui->box_padding_right->value() == m_item->GetPadding().right);
+  assert(ui->box_padding_bottom->value() == m_item->GetPadding().bottom);
+  assert(ui->box_padding_left->value() == m_item->GetPadding().left);
+  assert(m_item->GetText() == Container().SeperateString(ui->text->toPlainText().toStdString(),'\n'));
+  #endif
+}
+
 std::string ribi::QtRoundedEditRectItemDialog::GetVersion() noexcept
 {
   return "1.0";
@@ -90,6 +109,7 @@ void ribi::QtRoundedEditRectItemDialog::on_text_textChanged()
   const auto s = ui->text->toPlainText().toStdString();
   const auto text = Container().SeperateString(s,'\n');
   m_item->SetText(text);
+  CheckMe();
 }
 
 void ribi::QtRoundedEditRectItemDialog::on_button_text_pen_clicked()
@@ -104,8 +124,8 @@ void ribi::QtRoundedEditRectItemDialog::on_button_text_pen_clicked()
 void ribi::QtRoundedEditRectItemDialog::OnBaseChanged(QtRoundedEditRectItem * const qtitem) noexcept
 {
   assert(m_item.get() == qtitem);
-  boost::shared_ptr<QtRoundedRectItem> base(m_item);
-  m_dialog->SetItem(base);
+  //boost::shared_ptr<QtRoundedRectItem> base(m_item);
+  m_dialog->SetItem(m_item);
 }
 
 void ribi::QtRoundedEditRectItemDialog::OnFontChanged(QtRoundedEditRectItem * const qtitem) noexcept
@@ -121,6 +141,7 @@ void ribi::QtRoundedEditRectItemDialog::OnPaddingChanged(QtRoundedEditRectItem *
   ui->box_padding_left->setValue(qtitem->GetPadding().left);
   ui->box_padding_right->setValue(qtitem->GetPadding().right);
   ui->box_padding_top->setValue(qtitem->GetPadding().top);
+  CheckMe();
 }
 
 void ribi::QtRoundedEditRectItemDialog::OnTextChanged(QtRoundedEditRectItem * const qtitem) noexcept
@@ -131,6 +152,7 @@ void ribi::QtRoundedEditRectItemDialog::OnTextChanged(QtRoundedEditRectItem * co
     s += t + '\n';
   }
   ui->text->setPlainText(s.c_str());
+  CheckMe();
 }
 
 void ribi::QtRoundedEditRectItemDialog::OnTextPenChanged(QtRoundedEditRectItem * const qtitem) noexcept
@@ -147,6 +169,7 @@ void ribi::QtRoundedEditRectItemDialog::SetItem(const boost::shared_ptr<QtRounde
   assert(item);
   if (m_item == item)
   {
+
     return;
   }
   if (verbose)
@@ -292,6 +315,7 @@ void ribi::QtRoundedEditRectItemDialog::SetItem(const boost::shared_ptr<QtRounde
   }
   assert( item ==  m_item);
   assert(*item == *m_item);
+  CheckMe();
 }
 
 #ifndef NDEBUG

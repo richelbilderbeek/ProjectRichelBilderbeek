@@ -44,11 +44,37 @@ ribi::QtRoundedRectItemDialog::QtRoundedRectItemDialog(QWidget *parent) :
   Test();
   #endif
   ui->setupUi(this);
+
+  CheckMe();
 }
 
 ribi::QtRoundedRectItemDialog::~QtRoundedRectItemDialog() noexcept
 {
   delete ui;
+}
+
+void ribi::QtRoundedRectItemDialog::CheckMe() const noexcept
+{
+  #ifndef NDEBUG
+  if (!GetItem()) return;
+  if (ui->box_focus_pen_width->value() != GetItem()->GetFocusPen().widthF())
+  {
+    TRACE("ERROR");
+    TRACE(ui->box_focus_pen_width->value());
+    TRACE(GetItem()->GetFocusPen().widthF());
+    TRACE("BREAK");
+  }
+  assert(ui->box_contour_pen_width->value() == GetItem()->GetContourPen().widthF());
+  assert(ui->box_focus_pen_width->value() == GetItem()->GetFocusPen().widthF());
+  assert(ui->box_height->value() == GetItem()->GetHeight());
+  assert(ui->box_height_including_pen->value() == GetItem()->GetHeightIncludingPen());
+  assert(ui->box_radius_x->value() == GetItem()->GetRadiusX());
+  assert(ui->box_radius_y->value() == GetItem()->GetRadiusY());
+  assert(ui->box_width->value() == GetItem()->GetWidth());
+  assert(ui->box_width_including_pen->value() == GetItem()->GetWidthIncludingPen());
+  assert(ui->box_x->value() == GetItem()->GetPos().x());
+  assert(ui->box_y->value() == GetItem()->GetPos().y());
+  #endif
 }
 
 void ribi::QtRoundedRectItemDialog::DisableSetSize() noexcept
@@ -110,19 +136,25 @@ void ribi::QtRoundedRectItemDialog::DoSomethingRandom() noexcept
     ui->box_y->value()
     + static_cast<double>(std::rand() % 3) - 1.0
   );
+  CheckMe();
+}
 
+boost::shared_ptr<const ribi::QtRoundedRectItem> ribi::QtRoundedRectItemDialog::GetItem() const noexcept
+{
+  return m_item;
 }
 
 std::string ribi::QtRoundedRectItemDialog::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::QtRoundedRectItemDialog::GetVersionHistory() noexcept
 {
   return {
     "2014-06-15: version 1.0: initial version",
-    "2014-06-23: version 1.1: allow cooperation with QtRoundedEditRectItemDialog"
+    "2014-06-23: version 1.1: allow cooperation with QtRoundedEditRectItemDialog",
+    "2014-07-21: version 1.2: added CheckMe member function, for checking its invariants"
   };
 }
 
@@ -134,11 +166,14 @@ void ribi::QtRoundedRectItemDialog::keyPressEvent(QKeyEvent * event)
 void ribi::QtRoundedRectItemDialog::OnContourPenChanged(QtRoundedRectItem * const qtitem) noexcept
 {
   ui->box_contour_pen_width->setValue(qtitem->GetContourPen().widthF());
+  CheckMe();
+
 }
 
 void ribi::QtRoundedRectItemDialog::OnFocusPenChanged(QtRoundedRectItem * const qtitem) noexcept
 {
   ui->box_focus_pen_width->setValue(qtitem->GetFocusPen().widthF());
+  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::OnPosChanged(QtRoundedRectItem * const qtitem) noexcept
@@ -147,16 +182,19 @@ void ribi::QtRoundedRectItemDialog::OnPosChanged(QtRoundedRectItem * const qtite
   const double new_y = qtitem->GetPos().y();
   ui->box_x->setValue(new_x);
   ui->box_y->setValue(new_y);
+  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::OnRadiusXchanged(QtRoundedRectItem * const qtitem) noexcept
 {
   ui->box_radius_x->setValue(qtitem->GetRadiusX());
+  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::OnRadiusYchanged(QtRoundedRectItem * const qtitem) noexcept
 {
   ui->box_radius_y->setValue(qtitem->GetRadiusY());
+  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::OnRectChanged(QtRoundedRectItem * const qtitem) noexcept
@@ -170,6 +208,7 @@ void ribi::QtRoundedRectItemDialog::OnRectChanged(QtRoundedRectItem * const qtit
   const double new_height_including_pen = qtitem->GetRectIncludingPen().height();
   ui->box_width_including_pen->setValue(new_width_including_pen);
   ui->box_height_including_pen->setValue(new_height_including_pen);
+  CheckMe();
 }
 
 void ribi::QtRoundedRectItemDialog::on_box_contour_pen_width_valueChanged(double arg1)
@@ -238,6 +277,18 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   assert(item);
   if (m_item == item)
   {
+    //Let the GUI follow
+    ui->box_contour_pen_width->setValue(GetItem()->GetContourPen().widthF());
+    ui->box_focus_pen_width->setValue(GetItem()->GetFocusPen().widthF());
+    ui->box_height->setValue(GetItem()->GetHeight());
+    ui->box_height_including_pen->setValue(GetItem()->GetHeightIncludingPen());
+    ui->box_radius_x->setValue(GetItem()->GetRadiusX());
+    ui->box_radius_y->setValue(GetItem()->GetRadiusY());
+    ui->box_width->setValue(GetItem()->GetWidth());
+    ui->box_width_including_pen->setValue(GetItem()->GetWidthIncludingPen());
+    ui->box_x->setValue(GetItem()->GetPos().x());
+    ui->box_y->setValue(GetItem()->GetPos().y());
+    CheckMe();
     return;
   }
   if (verbose)
@@ -407,6 +458,7 @@ void ribi::QtRoundedRectItemDialog::SetItem(const boost::shared_ptr<QtRoundedRec
   }
   assert( item ==  m_item);
   assert(*item == *m_item);
+  CheckMe();
 }
 
 #ifndef NDEBUG

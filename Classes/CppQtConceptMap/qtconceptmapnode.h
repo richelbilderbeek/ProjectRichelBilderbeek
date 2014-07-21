@@ -52,11 +52,11 @@ struct QtNode : public QtConceptMapElement
 
   //QBrush brush() const;
 
-  void DisableAll();
-  void EnableAll();
+  void DisableAll() override;
+  void EnableAll() override;
 
-  boost::shared_ptr<const Node>  GetNode() const noexcept;
-  boost::shared_ptr<      Node>  GetNode()       noexcept;
+  boost::shared_ptr<const Node>  GetNode() const noexcept override;
+  boost::shared_ptr<      Node>  GetNode()       noexcept override;
 
   //boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
   //boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
@@ -64,7 +64,7 @@ struct QtNode : public QtConceptMapElement
   //      boost::shared_ptr<const cmap::Node>  GetNode() const noexcept { return m_node; }
   //const boost::shared_ptr<      cmap::Node>& GetNode()       noexcept { return m_node; }
 
-  void SetNode(const boost::shared_ptr<Node>& node);
+  void SetNode(const boost::shared_ptr<Node>& node) override;
   //void SetDisplay(const boost::shared_ptr<QtItemDisplayStrategy>& display_strategy);
 
   //void SetName(const std::string& name) noexcept;
@@ -84,13 +84,25 @@ struct QtNode : public QtConceptMapElement
   boost::signals2::signal<void (QtNode *)> m_signal_node_changed;
   //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
   //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_examples;
-
+  /*
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_base_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_font_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_padding_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_changed;
+  boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_pen_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_x_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_radius_y_changed;
+  mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_rect_changed;
+  */
   ///No other signals, these are present in the ConceptItems
 
 protected:
 
-  void focusInEvent(QFocusEvent *event) final;
-  void focusOutEvent(QFocusEvent *event) final;
+  void focusInEvent(QFocusEvent *event) final override;
+  void focusOutEvent(QFocusEvent *event) final override;
   void keyPressEvent(QKeyEvent *event) noexcept final;
 
   //const boost::shared_ptr<QtConceptMapItem>& GetConceptItem() { return m_concept_item; }

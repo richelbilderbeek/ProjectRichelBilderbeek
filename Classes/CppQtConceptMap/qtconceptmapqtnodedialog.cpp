@@ -93,7 +93,33 @@ void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
 
 void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnode) noexcept
 {
+  //Emit
   this->m_qtnodedialog->SetNode(qtnode->GetNode());
+
+  /*
+  if (node == m_node) return;
+  if (*node == *m_node) return;
+  assert(std::abs(m_node->GetX() - this->GetPos().x()) < 2.0); //Allow two maximal rounding off errors
+  assert(std::abs(m_node->GetY() - this->GetPos().y()) < 2.0); //Allow two maximal rounding off errors
+  //if (node->GetX() != m_node->GetX())
+  {
+    //const double new_x = node->GetX();
+    //m_node->SetX(new_x);
+    this->SetPos(node->GetX(),this->GetPos().y());
+  }
+  //if (node->GetY() != m_node->GetY())
+  {
+    //const double new_y = node->GetY();
+    //m_node->SetY(new_y);
+    this->SetPos(this->GetPos().x(),node->GetY());
+  }
+  //if (node->GetConcept()->GetName() != m_node->GetConcept()->GetName())
+  {
+    //const auto new_text = node->GetConcept()->GetName();
+    //m_node->GetConcept()->SetName(new_text);
+    this->SetText(Container().SeperateString(node->GetConcept()->GetName(),'\n'));
+  }
+  */
 }
 
 void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
@@ -101,6 +127,7 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
   const bool verbose{false};
 
   assert(qtnode);
+
   if (m_qtnode == qtnode)
   {
     return;
@@ -179,6 +206,8 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
   {
     m_qtnode->m_signal_node_changed(m_qtnode.get());
   }
+
+
 
   this->setMinimumHeight(
     this->GetMinimumHeight(
