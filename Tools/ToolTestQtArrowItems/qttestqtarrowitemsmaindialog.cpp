@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtquadbezierarrowitem.h"
 #include "qtlabeledquadbezierarrowitem.h"
 #include "qtroundedrectitem.h"
-#include "qtroundedtextrectitem.h"
+#include "qtroundededitrectitem.h"
 #include "trace.h"
 #include "ui_qttestqtarrowitemsmaindialog.h"
 #pragma GCC diagnostic pop
@@ -126,7 +126,7 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
       }
       else
       {
-        rect = new QtRoundedTextRectItem(boost::lexical_cast<std::string>(i));
+        rect = new QtRoundedEditRectItem( {boost::lexical_cast<std::string>(i)} );
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
       rect->SetPos(x1,y1);
@@ -170,7 +170,7 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
       }
       //else
       {
-        rect = new QtRoundedTextRectItem(boost::lexical_cast<std::string>(i));
+        rect = new QtRoundedEditRectItem( { boost::lexical_cast<std::string>(i) } );
       }
       rect->SetFocusPen(QPen(QColor(255,0,0),2));
       rect->SetPos(x1,y1);

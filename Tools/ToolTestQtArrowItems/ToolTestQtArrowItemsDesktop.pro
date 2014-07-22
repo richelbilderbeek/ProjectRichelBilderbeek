@@ -14,7 +14,7 @@ include(../../Classes/CppQtQuadBezierArrowItem/CppQtQuadBezierArrowItem.pri)
 include(../../Classes/CppQtLabeledQuadBezierArrowItem/CppQtLabeledQuadBezierArrowItem.pri)
 include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)
 include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
-include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
+include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
 include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 
 include(../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItemsDesktop.pri)

@@ -192,7 +192,7 @@ enum class ProgramType
   testQtOcrWidget,
   testQtRoundedEditRectItem,
   testQtRoundedRectItem,
-  testQtRoundedTextRectItem,
+  //testQtRoundedTextRectItem, //Removed
   testQuestion,
   testReversi,
   testSelectFileDialog,

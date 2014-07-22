@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 ///A QtRoundedRectTextItem displaying multiple lines of text
-///For a single line of text, use QtRoundedTextRectItem
+///For a single line of text, use QtRoundedEditRectItem
 class QtRoundedEditRectItem : public QtRoundedRectItem
 {
   //Q_OBJECT //Cannot make this a QObject???

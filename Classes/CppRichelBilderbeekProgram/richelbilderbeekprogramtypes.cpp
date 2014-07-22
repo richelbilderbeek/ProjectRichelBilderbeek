@@ -205,7 +205,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testQtOcrWidget,"testQtOcrWidget"));
   m.insert(Pair(ProgramType::testQtRoundedEditRectItem,"testQtRoundedEditRectItem"));
   m.insert(Pair(ProgramType::testQtRoundedRectItem,"testQtRoundedRectItem"));
-  m.insert(Pair(ProgramType::testQtRoundedTextRectItem,"testQtRoundedTextRectItem"));
+  m.insert(Pair(ProgramType::testQtRoundedEditRectItem,"testQtRoundedEditRectItem"));
   m.insert(Pair(ProgramType::testQuestion,"testQuestion"));
   m.insert(Pair(ProgramType::testReversi,"testReversi"));
   m.insert(Pair(ProgramType::testSelectFileDialog,"testSelectFileDialog"));
@@ -428,7 +428,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testQtOcrWidget,"Test QtOcrWidget"));
   m.insert(Pair(ProgramType::testQtRoundedEditRectItem,"Test QtRoundedEditRectItem"));
   m.insert(Pair(ProgramType::testQtRoundedRectItem,"Test QtRoundedRectItem"));
-  m.insert(Pair(ProgramType::testQtRoundedTextRectItem,"Test QtRoundedTextRectItem"));
+  m.insert(Pair(ProgramType::testQtRoundedEditRectItem,"Test QtRoundedEditRectItem"));
   m.insert(Pair(ProgramType::testQuestion,"Test Question"));
   m.insert(Pair(ProgramType::testReversi,"Test Reversi"));
   m.insert(Pair(ProgramType::testSelectFileDialog,"Test SelectFileDialog"));

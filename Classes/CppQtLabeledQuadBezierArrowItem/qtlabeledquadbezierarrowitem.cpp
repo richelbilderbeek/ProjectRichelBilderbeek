@@ -25,7 +25,7 @@ ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
     const bool head,
     const QGraphicsItem *const to,
     QGraphicsItem *parent)
-  : QtRoundedTextRectItem(text,QtRoundedTextRectItem::Padding(),QFont("monospace",9),parent),
+  : QtRoundedEditRectItem( {text} ,QtRoundedEditRectItem::Padding(),QFont("monospace",9),parent),
     m_arrow(new QtQuadBezierArrowItem(from,tail,this,head,to))
 {
   assert(from);
@@ -45,9 +45,9 @@ ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
   assert(m_arrow->GetToItem()->pos() == to->pos());
 }
 
-QRectF ribi::QtLabeledQuadBezierArrowItem::boundingRect() const
+QRectF ribi::QtLabeledQuadBezierArrowItem::boundingRect() const noexcept
 {
-  return QtRoundedTextRectItem::boundingRect()
+  return QtRoundedEditRectItem::boundingRect()
     .united(m_arrow->boundingRect().translated(-this->GetPos()));
 }
 
@@ -63,9 +63,9 @@ std::vector<std::string> ribi::QtLabeledQuadBezierArrowItem::GetVersionHistory()
   };
 }
 
-void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
+void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event) noexcept
 {
-  QtRoundedTextRectItem::keyPressEvent(event);
+  QtRoundedEditRectItem::keyPressEvent(event);
   m_arrow->keyPressEvent(event);
 }
 
@@ -76,5 +76,5 @@ void ribi::QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOp
   painter->translate(-this->GetPos());
   m_arrow->paint(painter,option,widget);
   painter->translate(this->GetPos());
-  QtRoundedTextRectItem::paint(painter,option,widget);
+  QtRoundedEditRectItem::paint(painter,option,widget);
 }

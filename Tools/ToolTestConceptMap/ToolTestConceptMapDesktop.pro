@@ -24,7 +24,7 @@ include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGra
 include(../../Classes/CppQtQuadBezierArrowItem/CppQtQuadBezierArrowItem.pri)
 include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
 include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
-include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
+#include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
 include(../../Classes/CppQtScopedDisable/CppQtScopedDisable.pri)
 include(ToolTestConceptMapDesktop.pri)
 

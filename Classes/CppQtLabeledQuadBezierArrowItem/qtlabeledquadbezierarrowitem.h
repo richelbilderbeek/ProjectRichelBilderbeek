@@ -7,16 +7,16 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-#include "qtroundedtextrectitem.h"
+#include "qtroundededitrectitem.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct QtQuadBezierArrowItem;
 
-///The QtLabeledQuadBezierArrowItem is a QtRoundedTextRectItem that
+///The QtLabeledQuadBezierArrowItem is a QtRoundedEditRectItem that
 ///draws a bezier curve underneath itself, between head and tail arrowhead
-struct QtLabeledQuadBezierArrowItem : public QtRoundedTextRectItem
+struct QtLabeledQuadBezierArrowItem : public QtRoundedEditRectItem
 {
 
   QtLabeledQuadBezierArrowItem(
@@ -40,8 +40,8 @@ struct QtLabeledQuadBezierArrowItem : public QtRoundedTextRectItem
   static std::vector<std::string> GetVersionHistory() noexcept;
 
 protected:
-  virtual QRectF boundingRect() const;
-  virtual void keyPressEvent(QKeyEvent *event);
+  virtual QRectF boundingRect() const noexcept;
+  virtual void keyPressEvent(QKeyEvent *event) noexcept;
   virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
 
 private:

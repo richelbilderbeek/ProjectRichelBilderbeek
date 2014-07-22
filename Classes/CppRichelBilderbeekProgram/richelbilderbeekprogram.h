@@ -2598,6 +2598,7 @@ struct ProgramTestQtRoundedRectItem : public ProgramClass
   std::string GetUrl() const noexcept { return "ToolTestQtRoundedRectItem.htm"; }
 };
 
+/*
 struct ProgramTestQtRoundedTextRectItem : public ProgramClass
 {
   std::string GetFilenameConsole() const noexcept { return ""; }
@@ -2612,6 +2613,7 @@ struct ProgramTestQtRoundedTextRectItem : public ProgramClass
   ProgramType GetType() const noexcept { return ProgramType::testQtRoundedTextRectItem; }
   std::string GetUrl() const noexcept { return "ToolTestQtRoundedTextRectItem.htm"; }
 };
+*/
 
 struct ProgramTestQuestion : public ProgramClass
 {
