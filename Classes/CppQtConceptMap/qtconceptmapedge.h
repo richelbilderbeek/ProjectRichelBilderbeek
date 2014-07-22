@@ -21,14 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPEDGEITEM_H
 #define QTCONCEPTMAPEDGEITEM_H
 
-#define NO_QTEDGE_20140609
-#ifndef NO_QTEDGE_20140609
-
-
 #include <boost/shared_ptr.hpp>
-#include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapelement.h"
-
 #include "qtconceptmapfwd.h"
 
 namespace ribi {
@@ -39,33 +33,38 @@ namespace cmap {
 ///concept_item is the Strategy for displaying the ConceptItem
 struct QtEdge : public QtConceptMapElement
 {
+  typedef boost::shared_ptr<QtQuadBezierArrowItem> Arrow;
+  typedef boost::shared_ptr<const QtQuadBezierArrowItem> ReadOnlyArrow;
+  typedef boost::shared_ptr<Node> NodePtr;
+  typedef boost::shared_ptr<const Node> ReadOnlyNodePtr;
+  typedef boost::shared_ptr<QtNode> QtNodePtr;
+  typedef boost::shared_ptr<const QtNode> ReadOnlyQtNodePtr;
+  typedef boost::shared_ptr<Edge> EdgePtr;
+  typedef boost::shared_ptr<const Edge> ReadOnlyEdgePtr;
 
   QtEdge(
-    const boost::shared_ptr<Edge> edge,
-    const boost::shared_ptr<QtItemDisplayStrategy> display_strategy,
+    const EdgePtr& edge,
     QtNode* const from,
-    QtNode* const to);
+    QtNode* const to
+  );
   QtEdge(const QtEdge&) = delete;
   QtEdge& operator=(const QtEdge&) = delete;
   ~QtEdge() noexcept;
 
-  QRectF boundingRect() const final;
+  QRectF boundingRect() const override final;
 
   void DisableAll();
   void EnableAll();
 
-  boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const noexcept { return m_arrow; }
-  boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       noexcept { return m_arrow; }
+  ReadOnlyArrow GetArrow() const noexcept { return m_arrow; }
+  const Arrow& GetArrow() noexcept { return m_arrow; }
 
   ///Get the Node at the center of the Edge
-  boost::shared_ptr<const Node>  GetNode() const noexcept;
-  boost::shared_ptr<      Node>  GetNode()       noexcept;
+  ReadOnlyNodePtr GetNode() const noexcept;
+  NodePtr GetNode()       noexcept;
 
-  boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
-  boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
-
-        boost::shared_ptr<const Edge>  GetEdge() const noexcept { return m_edge; }
-  const boost::shared_ptr<      Edge>& GetEdge()       noexcept { return m_edge; }
+  ReadOnlyEdgePtr GetEdge() const noexcept { return m_edge; }
+  EdgePtr GetEdge() noexcept { return m_edge; }
 
   ///The node item the arrow originates from
   const QtNode * GetFrom() const noexcept { return m_from; }
@@ -99,25 +98,16 @@ struct QtEdge : public QtConceptMapElement
   ///No 'own/autonomous' signals, these are present in the ConceptItems
 
 protected:
-  void focusInEvent(QFocusEvent *event) final;
-  void focusOutEvent(QFocusEvent *event) final;
-  void keyPressEvent(QKeyEvent *event) final;
+  void focusInEvent(QFocusEvent *event) noexcept override final;
+  void focusOutEvent(QFocusEvent *event) noexcept override final;
+  void keyPressEvent(QKeyEvent *event) noexcept override final;
   void mousePressEvent(QGraphicsSceneMouseEvent *event) final;
-  void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) final;
-  QPainterPath shape() const final;
+  void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept override final;
+  QPainterPath shape() const override final;
 
 private:
   ///The arrow used for drawing
-  ///Not 'const boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;',
-  ///because in the initialization
-  ///m_edge must be initialized before m_arrow
-  boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;
-
-  ///The Strategy for displaying the Concept
-  const boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
-
-  //const QPen m_contour_pen;
-  //const QPen m_focus_pen;
+  const Arrow m_arrow;
 
   ///The edge
   const boost::shared_ptr<Edge> m_edge;
@@ -148,9 +138,6 @@ private:
 };
 
 } //~namespace cmap
-
 } //~namespace ribi
-
-#endif //~ NO_QTEDGE_20140609
 
 #endif // QTCONCEPTMAPEDGEITEM_H

@@ -231,7 +231,6 @@ void ribi::cmap::QtNodeDialog::OnConceptChanged(Node * const node)
 
 void ribi::cmap::QtNodeDialog::OnXchanged(Node * const node)
 {
-  TRACE_FUNC();
   assert(node);
   ui->box_x->setValue(node->GetX());
 }
@@ -289,12 +288,10 @@ void ribi::cmap::QtNodeDialog::Test() noexcept
 
 void ribi::cmap::QtNodeDialog::on_box_x_valueChanged(double arg1)
 {
-  TRACE_FUNC();
   m_node->SetX(arg1);
 }
 
 void ribi::cmap::QtNodeDialog::on_box_y_valueChanged(double arg1)
 {
-  TRACE_FUNC();
   m_node->SetY(arg1);
 }

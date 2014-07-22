@@ -87,10 +87,8 @@ void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept) noex
 
 void ribi::cmap::Node::SetX(const double x) noexcept
 {
-  TRACE_FUNC();
   if (m_x != x)
   {
-    TRACE_FUNC();
     m_x = x;
     m_signal_x_changed(this);
   }

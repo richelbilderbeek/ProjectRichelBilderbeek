@@ -75,7 +75,6 @@ void ribi::QtHideAndShowDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape)
   {
-    TRACE_FUNC();
     close();
     return;
   }

@@ -117,7 +117,6 @@ void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
 {
   assert( qtnode ==  m_qtnode.get());
   assert(*qtnode == *m_qtnode);
-  TRACE_FUNC();
   m_qtroundededitrectitem_dialog->SetItem(m_qtnode);
 
   m_qtroundededitrectitem_dialog->CheckMe();
@@ -128,8 +127,6 @@ void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnod
 {
   //Emit
   m_qtnodedialog->SetNode(qtnode->GetNode());
-  TRACE_FUNC();
-
   m_qtnodedialog->CheckMe();
   m_qtroundededitrectitem_dialog->CheckMe();
 
