@@ -122,15 +122,26 @@ private:
   ///The node being edited, or displayed and not changed, or rated
   boost::shared_ptr<Node> m_node;
 
+  ///Checks the class its invariants, empty in release
+  void CheckMe() const noexcept;
+
   void OnItemHasUpdated();
 
-  ///The m_node has changed
-  //void OnXchanged(Node * const node);
-  //void OnYchanged(Node * const node);
+
+  void OnPosChanged(const QtRoundedRectItem * const item) noexcept;
+
+  void OnTextChanged(const QtRoundedRectItem * const item) noexcept;
+
+  void OnXchanged(Node * const node) noexcept;
+
+
+  void OnYchanged(Node * const node) noexcept;
+
+
+  void OnConceptChanged(Node * const node) noexcept;
 
   ///This QtNode its Node changed
-  void OnNodeChanged(Node * const node);
-  void OnRequestsSceneUpdate();
+  //void OnRequestsSceneUpdate();
 
   ///The item
   //void OnItemRequestsRateConcept();

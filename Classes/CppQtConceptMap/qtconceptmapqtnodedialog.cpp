@@ -280,17 +280,15 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
   assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
   ///LHS, setX
   {
-    const double new_x = lhs->GetUiX() + 5.0;
-    TRACE("---------------------------------------------");
+    const double new_x{lhs->GetUiX() + 5.0};
     lhs->SetUiX(new_x);
     lhs->CheckMe();
     assert(std::abs(lhs->GetUiX() - new_x) < 1.0);
     dialog.CheckMe();
-    assert(!"Yay");
   }
   //RHS, setX
   {
-    const double new_x = rhs->GetUiX() + 5.0;
+    const double new_x{rhs->GetUiX() + 5.0};
     rhs->SetUiX(new_x);
     lhs->CheckMe();
     assert(std::abs(rhs->GetUiX() - new_x) < 1.0);

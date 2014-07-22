@@ -60,15 +60,12 @@ ribi::cmap::QtNode::QtNode(
     //m_display_strategy(concept_item),
     //m_contour_pen(concept_item->GetContourPen()),
     //m_focus_pen(concept_item->GetFocusPen()),
-    m_node(node)
+    m_node{}
 {
   #ifndef NDEBUG
   Test();
   #endif
   assert(node);
-  //assert(m_display_strategy);
-  assert(m_node);
-  //assert(m_display_strategy->GetConcept().get() == m_node->GetConcept().get());
 
   //Allow mouse tracking
   this->setAcceptHoverEvents(true);
@@ -81,38 +78,18 @@ ribi::cmap::QtNode::QtNode(
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
 
-  //this->setRect(m_display_strategy->boundingRect());
-  //assert(m_display_strategy->boundingRect() == this->boundingRect()
-  //  && "Bounding rects must by synced");
-  //assert(m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
-  //  && "Bounding rects must by synced");
 
+  SetNode(node);
 
-  SetPos(m_node->GetX(),m_node->GetY());
-  assert(GetPos().x() == m_node->GetX());
-  assert(GetPos().y() == m_node->GetY());
-  //m_display_strategy->SetPos(m_node->GetX(),m_node->GetY());
-  this->SetPos(m_node->GetX(),m_node->GetY());
+  m_signal_pos_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnPosChanged,this,boost::lambda::_1)
+  );
 
-  //m_node->m_signal_x_changed
-
+  this->m_signal_text_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnTextChanged,this,boost::lambda::_1)
+  );
 
   /*
-
-  m_display_strategy->m_signal_position_changed.connect(
-    boost::bind(&ribi::cmap::QtNode::SetPos,this,boost::lambda::_1,boost::lambda::_2)
-  );
-
-  m_node->m_signal_node_changed.connect(
-    boost::bind(&ribi::cmap::QtNode::OnNodeChanged,this,boost::lambda::_1)
-  );
-
-  m_node->m_signal_x_changed.connect(
-    boost::bind(&ribi::cmap::QtNode::OnXchanged,this,boost::lambda::_1)
-  );
-  m_node->m_signal_y_changed.connect(
-    boost::bind(&ribi::cmap::QtNode::OnYchanged,this,boost::lambda::_1)
-  );
 
   m_display_strategy->m_signal_item_has_updated.connect(
     boost::bind(
@@ -239,6 +216,23 @@ QBrush ribi::cmap::QtNode::brush() const
 }
 */
 
+void ribi::cmap::QtNode::CheckMe() const noexcept
+{
+  #ifndef NDEBUG
+  const double epsilon = 1.0;
+
+  assert(std::abs(GetPos().x() - GetNode()->GetX()) < epsilon);
+  assert(std::abs(GetPos().y() - GetNode()->GetY()) < epsilon);
+  {
+    const auto s = this->GetNode()->GetConcept()->GetName();
+    const auto v = Container().SeperateString(s,'\n');
+    const auto w = this->GetText();
+    assert(v == w);
+  }
+  #endif
+}
+
+
 void ribi::cmap::QtNode::DisableAll()
 {
   this->setEnabled(false);
@@ -333,32 +327,57 @@ void ribi::cmap::QtNode::OnItemRequestsRateExamples()
 }
 */
 
-void ribi::cmap::QtNode::OnNodeChanged(Node * const node)
+void ribi::cmap::QtNode::OnConceptChanged(Node * const node) noexcept
 {
+  //Node changed, sync QtRoundedRectItem
   assert(node);
   assert(node == m_node.get());
-  //SetNode(node);
+  const std::string new_str = node->GetConcept()->GetName();
+  const auto new_text = Container().SeperateString(new_str,'\n');
+  this->SetText(new_text);
 }
 
-/*
-void ribi::cmap::QtNode::OnXchanged(Node * const node)
+void ribi::cmap::QtNode::OnPosChanged(const QtRoundedRectItem * const item) noexcept
 {
+  //QtRoundedRectItem changed, sync Node
+  assert(item);
+  const auto new_pos = item->GetPos();
+  m_node->SetPos(new_pos.x(),new_pos.y());
+}
+
+void ribi::cmap::QtNode::OnTextChanged(const QtRoundedRectItem * const item) noexcept
+{
+  //QtRoundedRectItem changed, sync Node
+  assert(item);
+  assert(item == this);
+  const auto new_text = this->GetText();
+  std::string s{};
+  for (const auto& t: new_text) { s += t + '\n'; }
+  //Remove trailing newline
+  if (!s.empty()) { s.pop_back(); }
+  m_node->GetConcept()->SetName(s);
+}
+
+
+void ribi::cmap::QtNode::OnXchanged(Node * const node) noexcept
+{
+  //Node changed, sync QtRoundedRectItem
   assert(node);
   SetX(node->GetX());
 }
 
-void ribi::cmap::QtNode::OnYchanged(Node * const node)
+void ribi::cmap::QtNode::OnYchanged(Node * const node) noexcept
 {
+  //Node changed, sync QtRoundedRectItem
   assert(node);
-  //Keep the coordinats synced
   SetY(node->GetY());
 }
-*/
 
-void ribi::cmap::QtNode::OnRequestsSceneUpdate()
-{
+
+//void ribi::cmap::QtNode::OnRequestsSceneUpdate()
+//{
   //this->m_signal_request_scene_update();
-}
+//}
 
 void ribi::cmap::QtNode::paint(
   QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget
@@ -426,7 +445,119 @@ void ribi::cmap::QtNode::paint(
 
 void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node)
 {
+  const bool verbose{false};
+
+  assert(node);
+  if (m_node == node)
+  {
+    CheckMe();
+    return;
+  }
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Setting node '" << node->ToStr() << "'\n";
+  }
+  const auto concept_after = node->GetConcept();
+  const auto x_after = node->GetX();
+  const auto y_after = node->GetY();
+
+  bool concept_changed  = true;
+  bool x_changed  = true;
+  bool y_changed = true;
+
+  if (m_node)
+  {
+    const auto concept_before = m_node->GetConcept();
+    const auto x_before = m_node->GetX();
+    const auto y_before = m_node->GetY();
+
+    concept_changed = concept_before != concept_after;
+    x_changed = x_before != x_after;
+    y_changed = y_before != y_after;
+
+
+    if (verbose)
+    {
+      if (concept_changed)
+      {
+        std::stringstream s;
+        s
+          << "Concept will change from "
+          << concept_before->ToStr()
+          << " to "
+          << concept_after->ToStr()
+          << '\n'
+        ;
+        TRACE(s.str());
+      }
+      if (x_changed)
+      {
+        std::stringstream s;
+        s << "X will change from " << x_before
+          << " to " << x_after << '\n';
+        TRACE(s.str());
+      }
+      if (y_changed)
+      {
+        std::stringstream s;
+        s << "Y will change from " << y_before
+          << " to " << y_after << '\n';
+        TRACE(s.str());
+      }
+    }
+    //Disconnect m_concept
+    m_node->m_signal_concept_changed.disconnect(
+      boost::bind(&ribi::cmap::QtNode::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_node->m_signal_x_changed.disconnect(
+      boost::bind(&ribi::cmap::QtNode::OnXchanged,this,boost::lambda::_1)
+    );
+    m_node->m_signal_y_changed.disconnect(
+      boost::bind(&ribi::cmap::QtNode::OnYchanged,this,boost::lambda::_1)
+    );
+  }
+
+  //Replace m_example by the new one
   m_node = node;
+
+
+  assert(m_node->GetConcept() == concept_after );
+  assert(m_node->GetX() == x_after );
+  assert(m_node->GetY() == y_after);
+
+  //SetPos(m_node->GetX(),m_node->GetY());
+  //assert(GetPos().x() == m_node->GetX());
+  //assert(GetPos().y() == m_node->GetY());
+
+  m_node->m_signal_concept_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_node->m_signal_x_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnXchanged,this,boost::lambda::_1)
+  );
+  m_node->m_signal_y_changed.connect(
+    boost::bind(&ribi::cmap::QtNode::OnYchanged,this,boost::lambda::_1)
+  );
+
+  //Emit everything that has changed
+  if (concept_changed)
+  {
+    m_node->m_signal_concept_changed(m_node.get());
+  }
+  if (x_changed)
+  {
+    m_node->m_signal_x_changed(m_node.get());
+  }
+  if (y_changed)
+  {
+    m_node->m_signal_y_changed(m_node.get());
+  }
+
+  assert( node ==  m_node);
+  assert(*node == *m_node);
+  CheckMe();
 }
 
 /*
@@ -436,51 +567,8 @@ void ribi::cmap::QtNode::SetName(const std::string& name) noexcept
 }
 */
 
-/*
-void ribi::cmap::QtNode::SetX(const double x) noexcept
-{
-  #ifndef NDEBUG
-  const double epsilon = 0.000001;
-  #endif
-  if ( x != this->pos().x()
-    || x != GetNode()->GetX()
-    || x != m_display_strategy->pos().x())
-  {
-    //Use Qt setX, otherwise an infinite recursion occurs
-    this->setX(x);
-    this->GetNode()->SetX(x);
-    m_display_strategy->setX(x);
-    assert(std::abs(x - this->pos().x()) < epsilon);
-    assert(std::abs(x - GetNode()->GetX()) < epsilon);
-    assert(std::abs(x - m_display_strategy->pos().x()) < epsilon);
-  }
-  assert(std::abs(x - this->pos().x()) < epsilon);
-  assert(std::abs(x - GetNode()->GetX()) < epsilon);
-  assert(std::abs(x - m_display_strategy->pos().x()) < epsilon);
-}
 
-void ribi::cmap::QtNode::SetY(const double y) noexcept
-{
-  #ifndef NDEBUG
-  const double epsilon = 0.000001;
-  #endif
-  if ( y != this->pos().y()
-    || y != GetNode()->GetY()
-    || y != m_display_strategy->pos().y())
-  {
-    //Use Qt setY, otherwise an infinite recursion occurs
-    this->setY(y);
-    this->GetNode()->SetY(y);
-    m_display_strategy->setY(y);
-    assert(std::abs(y - this->pos().y()) < epsilon);
-    assert(std::abs(y - GetNode()->GetY()) < epsilon);
-    assert(std::abs(y - m_display_strategy->pos().y()) < epsilon);
-  }
-  assert(std::abs(y - this->pos().y()) < epsilon);
-  assert(std::abs(y - GetNode()->GetY()) < epsilon);
-  assert(std::abs(y - m_display_strategy->pos().y()) < epsilon);
-}
-*/
+
 
 #ifndef NDEBUG
 void ribi::cmap::QtNode::Test() noexcept
@@ -491,112 +579,75 @@ void ribi::cmap::QtNode::Test() noexcept
     is_tested = true;
   }
   TRACE("Started ribi::cmap::QtNode::Test");
+  const double epsilon = 1.0;
 
   //Test SetX and SetY being in sync
   {
-    const std::size_t n_nodes = cmap::NodeFactory().GetTests().size();
-    for (std::size_t node_index=0; node_index!=n_nodes; ++node_index)
+    const auto node = NodeFactory().GetTest(1);
+    assert(node);
+    const boost::shared_ptr<QtNode> qtnode{new QtNode(node)};
+    assert(qtnode);
+    assert(qtnode->GetNode()->GetConcept() == node->GetConcept());
+    assert(node == qtnode->GetNode());
     {
-      const auto nodes = NodeFactory().GetTests();
-      boost::shared_ptr<Node> node = nodes[node_index];
-      assert(node);
-      //boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(node->GetConcept()));
-      //boost::shared_ptr<QtNode> qtnode(new QtNode(node,qtconcept_item));
-      boost::shared_ptr<QtNode> qtnode(new QtNode(node));
-      assert(qtnode->GetNode()->GetConcept() == node->GetConcept());
-      assert(node == qtnode->GetNode());
+      const double node_x = node->GetX();
+      const double qtnode_x = qtnode->GetPos().x();
+
+      if (std::abs(node_x - qtnode_x) >= epsilon)
       {
-        const double node_x = node->GetX();
-        const double qtnode_x = qtnode->GetPos().x();
-        //const double qtconcept_item_x = qtnode->GetDisplayStrategy()->pos().x();
-        if (node_x != qtnode_x) //&& qtnode_x == qtconcept_item_x))
-        {
-          TRACE(node_x);
-          TRACE(qtnode_x);
-          //TRACE(qtconcept_item_x);
-        }
+        TRACE(node_x);
+        TRACE(qtnode_x);
 
-        assert(node_x == qtnode_x //&& qtnode_x == qtconcept_item_x
-         && "X coordinat must be in sync");
-        const double node_y = node->GetY();
-        const double qtnode_y = qtnode->GetPos().y();
-        //const double qtconcept_item_y = qtnode->GetDisplayStrategy()->pos().y();
-        assert(node_y == qtnode_y //&& qtnode_y == qtconcept_item_y
-         && "Y coordinat must be in sync");
       }
-      #ifdef TODO_20140609
-      const double epsilon = 0.00001;
-      {
-        const double new_x = 12.34;
-        const double new_y = 43.21;
-
-        //Change via node
-        assert(node);
-        node->SetX(new_x);
-        node->SetY(new_y);
-
-        const double node_x = node->GetX();
-        const double qtnode_x = qtnode->pos().x();
-        const double qtconcept_item_x = qtnode->GetDisplayStrategy()->pos().x();
-        if (!(node_x == qtnode_x && qtnode_x == qtconcept_item_x))
-        {
-          TRACE(node_x);
-          TRACE(qtnode_x);
-          TRACE(qtconcept_item_x);
-        }
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
-         && "X coordinat must be in sync");
-        const double node_y = node->GetY();
-        const double qtnode_y = qtnode->pos().y();
-        const double qtconcept_item_y = qtnode->GetDisplayStrategy()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
-         && "Y coordinat must be in sync");
-      }
-      /*
-      //Change via Qt node
-      {
-        const double new_x = 123.456;
-        const double new_y = 654.321;
-
-        qtnode->SetPos(new_x,new_y);
-
-        const double node_x = node->GetX();
-        const double qtnode_x = qtnode->pos().x();
-        const double qtconcept_item_x = qtnode->GetDisplayStrategy()->pos().x();
-        assert(node_x == qtnode_x && qtnode_x == qtconcept_item_x
-         && "X coordinat must be in sync");
-        const double node_y = node->GetY();
-        const double qtnode_y = qtnode->pos().y();
-        const double qtconcept_item_y = qtnode->GetDisplayStrategy()->pos().y();
-        assert(node_y == qtnode_y && qtnode_y == qtconcept_item_y
-         && "Y coordinat must be in sync");
-      }
-      */
-      {
-        const double new_x = -1234.5678;
-        const double new_y = -8765.4321;
-        //Change via Qt concept item
-        qtnode->GetDisplayStrategy()->SetPos(new_x,new_y);
-
-        const double node_x = node->GetX();
-        const double qtnode_x = qtnode->pos().x();
-        const double qtconcept_item_x = qtnode->GetDisplayStrategy()->pos().x();
-        assert(
-             std::abs(new_x - node_x) < epsilon
-          && std::abs(new_x - qtnode_x) < epsilon
-          && std::abs(new_x - qtconcept_item_x) < epsilon
-          && "X coordinat must be in sync");
-        const double node_y = node->GetY();
-        const double qtnode_y = qtnode->pos().y();
-        const double qtconcept_item_y = qtnode->GetDisplayStrategy()->pos().y();
-        assert(
-             std::abs(new_y - node_y) < epsilon
-          && std::abs(new_y - qtnode_y) < epsilon
-          && std::abs(new_y - qtconcept_item_y) < epsilon
-          && "Y coordinat must be in sync");
-      }
-      #endif
+      assert(std::abs(node_x - qtnode_x) < epsilon && "X coordinat must be in sync");
+      const double node_y = node->GetY();
+      const double qtnode_y = qtnode->GetPos().y();
+      assert(std::abs(node_y - qtnode_y) < epsilon && "Y coordinat must be in sync");
     }
+    {
+      const double new_x = 12.34;
+      const double new_y = 43.21;
+
+      //Change via node
+      assert(node);
+      node->SetX(new_x);
+      node->SetY(new_y);
+
+      const double node_x = node->GetX();
+      const double qtnode_x = qtnode->GetPos().x();
+
+      if (std::abs(node_x - qtnode_x) >= epsilon)
+      {
+        TRACE(node_x);
+        TRACE(qtnode_x);
+      }
+      assert(std::abs(node_x - qtnode_x) < epsilon
+       && "X coordinat must be in sync");
+      const double node_y = node->GetY();
+      const double qtnode_y = qtnode->GetPos().y();
+
+      assert(node_y == qtnode_y
+       && "Y coordinat must be in sync");
+    }
+    //Change via Qt node
+    {
+      const double new_x = 123.456;
+      const double new_y = 654.321;
+
+      qtnode->SetPos(new_x,new_y);
+
+      const double node_x = node->GetX();
+      const double qtnode_x = qtnode->GetPos().x();
+
+      assert(std::abs(node_x - qtnode_x) < epsilon
+       && "X coordinat must be in sync");
+      const double node_y = node->GetY();
+      const double qtnode_y = qtnode->GetPos().y();
+
+      assert(std::abs(node_y - qtnode_y) < epsilon
+       && "Y coordinat must be in sync");
+    }
+
   }
   TRACE("Finished ribi::cmap::QtNode::Test successfully");
 }
