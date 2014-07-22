@@ -2,5 +2,6 @@
     <qresource prefix="/images">
         <file>R.png</file>
         <file>ToolTestQtArrowItems.png</file>
+        <file>ToolTestQtArrowItemsCompare.png</file>
     </qresource>
 </RCC>

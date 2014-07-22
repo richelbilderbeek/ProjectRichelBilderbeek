@@ -2,6 +2,7 @@ include(../../DesktopApplication.pri)
 
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
+include(../../Libraries/Apfloat.pri)
 include(../../Libraries/Boost.pri)
 
 include(../../Classes/CppContainer/CppContainer.pri)

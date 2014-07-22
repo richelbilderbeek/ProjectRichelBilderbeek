@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestQtRoundedEditRectItem, tool to test QtRoundedRectItem
+TestQtRoundedTextRectItem, tool to test QtRoundedRectItem
 Copyright (C) 2012-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,13 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestQtRoundedEditRectItem.htm
+//From http://www.richelbilderbeek.nl/ToolTestQtRoundedTextRectItem.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qttestqtroundededitrectitemmodifydialog.h"
+#include "qttestqtroundedtextrectitemmodifydialog.h"
 
 #include <boost/make_shared.hpp>
 #include <boost/lambda/lambda.hpp>
@@ -32,17 +32,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsView>
 
 #include "container.h"
-#include "qtroundededitrectitem.h"
-#include "qtroundededitrectitemdialog.h"
+#include "qtroundedtextrectitem.h"
+#include "qtroundedtextrectitemdialog.h"
 #include "trace.h"
-#include "ui_qttestqtroundededitrectitemmodifydialog.h"
+#include "ui_qttestqtroundedtextrectitemmodifydialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestQtRoundedEditRectItemModifyDialog::QtTestQtRoundedEditRectItemModifyDialog(QWidget *parent) :
+ribi::QtTestQtRoundedTextRectItemModifyDialog::QtTestQtRoundedTextRectItemModifyDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestQtRoundedEditRectItemModifyDialog),
-    m_dialog_left(boost::make_shared<QtRoundedEditRectItemDialog>()),
-    m_dialog_right(boost::make_shared<QtRoundedEditRectItemDialog>()),
+    ui(new Ui::QtTestQtRoundedTextRectItemModifyDialog),
+    m_dialog_left(boost::make_shared<QtRoundedTextRectItemDialog>()),
+    m_dialog_right(boost::make_shared<QtRoundedTextRectItemDialog>()),
     m_view_left(boost::make_shared<QGraphicsView>()),
     m_view_right(boost::make_shared<QGraphicsView>())
 
@@ -52,7 +52,7 @@ ribi::QtTestQtRoundedEditRectItemModifyDialog::QtTestQtRoundedEditRectItemModify
   #endif
   ui->setupUi(this);
 
-  const auto item = boost::make_shared<QtRoundedEditRectItem>();
+  const auto item = boost::make_shared<QtRoundedTextRectItem>();
 
   //Add item to both dialogs
   m_dialog_left->SetItem(item);
@@ -84,25 +84,25 @@ ribi::QtTestQtRoundedEditRectItemModifyDialog::QtTestQtRoundedEditRectItemModify
   }
 }
 
-ribi::QtTestQtRoundedEditRectItemModifyDialog::~QtTestQtRoundedEditRectItemModifyDialog() noexcept
+ribi::QtTestQtRoundedTextRectItemModifyDialog::~QtTestQtRoundedTextRectItemModifyDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestQtRoundedEditRectItemModifyDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtRoundedTextRectItemModifyDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 #ifndef NDEBUG
-void ribi::QtTestQtRoundedEditRectItemModifyDialog::Test() noexcept
+void ribi::QtTestQtRoundedTextRectItemModifyDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtRoundedEditRectItemModifyDialog::Test");
-  TRACE("Finished ribi::QtTestQtRoundedEditRectItemModifyDialog::Test successfully");
+  TRACE("Starting ribi::QtTestQtRoundedTextRectItemModifyDialog::Test");
+  TRACE("Finished ribi::QtTestQtRoundedTextRectItemModifyDialog::Test successfully");
 }
 #endif

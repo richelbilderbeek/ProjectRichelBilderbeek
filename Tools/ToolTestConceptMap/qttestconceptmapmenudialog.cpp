@@ -167,3 +167,11 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtedge_clicked()
   this->ShowChild(&d);
 }
 */
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtedge_clicked()
+{
+  QtConceptMapTestQtEdgeDialog d;
+  d.setStyleSheet(this->styleSheet());
+  this->ShowChild(&d);
+
+}

@@ -4,12 +4,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtconceptmaptestqtedgedialog.h"
 
-
 #include <cassert>
-
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
 
 #include <boost/lexical_cast.hpp>
 #include <QKeyEvent>
