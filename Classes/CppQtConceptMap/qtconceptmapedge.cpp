@@ -54,8 +54,10 @@ ribi::cmap::QtEdge::QtEdge(
     const boost::shared_ptr<Edge>& edge,
     QtNode* const from,
     QtNode* const to)
-  : m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
-    m_edge{edge},
+  : m_signal_base_changed{},
+    m_signal_edge_changed{},
+    m_arrow{new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to)},
+    m_edge{}, //Will be initialized by setEdge
     m_from{from},
     m_to{to}
 {
@@ -90,12 +92,11 @@ ribi::cmap::QtEdge::QtEdge(
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
 
-  //m_display_strategy->SetMainBrush(QtBrushFactory::CreateBlueGradientBrush());
-  //m_display_strategy->SetContourPen(QPen(QColor(255,255,255)));
-  //m_display_strategy->SetTextPen(QPen(QColor(0,0,0)));
+
+  this->SetEdge(edge);
 
   //Name
-  GetEdge()->GetNode()->GetConcept()->SetName(edge->GetNode()->GetConcept()->GetName());
+  //GetEdge()->GetNode()->GetConcept()->SetName(edge->GetNode()->GetConcept()->GetName());
   //this->GetDisplayStrategy()->SetName(edge->GetNode()->GetConcept()->GetName());
   //assert(m_edge->GetConcept()->GetName() == GetName()
   //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
@@ -103,14 +104,8 @@ ribi::cmap::QtEdge::QtEdge(
 
 
   //Position
-  this->GetNode()->SetPos(edge->GetNode()->GetX(),edge->GetNode()->GetY());
+  //this->GetNode()->SetPos(edge->GetNode()->GetX(),edge->GetNode()->GetY());
   //this->GetDisplayStrategy()->SetPos(edge->GetNode()->GetX(),edge->GetNode()->GetY());
-
-  #ifndef NDEBUG
-  const double epsilon = 0.000001;
-  assert(std::abs(this->GetPos().x() - GetEdge()->GetNode()->GetX()) < epsilon);
-  assert(std::abs(this->GetPos().y() - GetEdge()->GetNode()->GetY()) < epsilon);
-  #endif
 
   //Bounding rectangle
   //this->setRect(m_display_strategy->boundingRect()); //NEW
@@ -301,7 +296,16 @@ QRectF ribi::cmap::QtEdge::boundingRect() const
   //  .united(m_arrow->boundingRect().translated(-this->pos()));
 }
 
-void ribi::cmap::QtEdge::DisableAll()
+void ribi::cmap::QtEdge::CheckMe() const noexcept
+{
+  #ifndef NDEBUG
+  const double epsilon = 0.000001;
+  assert(std::abs(this->GetPos().x() - GetEdge()->GetNode()->GetX()) < epsilon);
+  assert(std::abs(this->GetPos().y() - GetEdge()->GetNode()->GetY()) < epsilon);
+  #endif
+}
+
+void ribi::cmap::QtEdge::DisableAll() noexcept
 {
   this->setEnabled(false);
   this->setVisible(false);
@@ -311,7 +315,7 @@ void ribi::cmap::QtEdge::DisableAll()
   this->m_arrow->setVisible(false);
 }
 
-void ribi::cmap::QtEdge::EnableAll()
+void ribi::cmap::QtEdge::EnableAll() noexcept
 {
   this->setEnabled(true);
   this->setVisible(true);
@@ -577,7 +581,7 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   //}
 }
 
-void ribi::cmap::QtEdge::SetNode(const boost::shared_ptr<Node>& node) //NEW 2013-01-07
+void ribi::cmap::QtEdge::SetNode(const boost::shared_ptr<Node>& node) noexcept //NEW 2013-01-07
 {
   this->m_edge->SetNode(node);
 }
@@ -934,3 +938,18 @@ void ribi::cmap::QtEdge::Test() noexcept
 
 }
 #endif
+
+std::string ribi::cmap::QtEdge::ToStr() const noexcept
+{
+  std::stringstream s;
+  s << (*this);
+  return s.str();
+}
+
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const QtEdge& qtedge) noexcept
+{
+  os
+    << (*qtedge.GetEdge())
+  ;
+  return os;
+}

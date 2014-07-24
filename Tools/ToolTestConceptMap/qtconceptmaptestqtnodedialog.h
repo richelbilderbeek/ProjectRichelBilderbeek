@@ -38,18 +38,11 @@ public:
 
 protected:
 
-  void keyPressEvent(QKeyEvent *);
+  void keyPressEvent(QKeyEvent *) noexcept override final;
 
 private slots:
 
-  //void on_box_competency_currentIndexChanged(int index);
-  //void on_edit_name_textChanged(const QString &arg1);
-  //void on_box_complexity_currentIndexChanged(const QString &arg1);
-  //void on_box_concreteness_currentIndexChanged(const QString &arg1);
-  //void on_box_specificity_currentIndexChanged(const QString &arg1);
-  //void on_edit_example_text_textChanged(const QString &arg1);
-
-  void on_button_load_clicked();
+  void on_button_load_clicked() noexcept;
 
 private:
 

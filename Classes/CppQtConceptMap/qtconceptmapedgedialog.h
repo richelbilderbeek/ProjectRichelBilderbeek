@@ -47,16 +47,27 @@ public:
   QtEdgeDialog& operator=(const QtEdgeDialog&) = delete;
   ~QtEdgeDialog();
 
+  ///Tests all invariants, empty at release
+  void CheckMe() const noexcept;
 
   boost::shared_ptr<Edge> GetEdge() const noexcept { return m_edge; }
   static int GetMinimumHeight(const Edge& edge) noexcept;
 
+  ///Get the X coordinat directly from the GUI
+  double GetUiX() const noexcept;
+  ///Get the Y coordinat directly from the GUI
+  double GetUiY() const noexcept;
+
   void SetEdge(const boost::shared_ptr<Edge>& edge);
+
+  ///Set the X coordinat directly to the GUI
+  void SetUiX(const double x ) noexcept;
+  ///Set the Y coordinat directly to the GUI
+  void SetUiY(const double y) noexcept;
 
 private slots:
 
   void on_box_head_arrow_stateChanged(int arg1);
-
   void on_box_tail_arrow_stateChanged(int arg1);
 
 private:

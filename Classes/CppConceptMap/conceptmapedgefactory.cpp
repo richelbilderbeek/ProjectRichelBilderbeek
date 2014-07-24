@@ -203,8 +203,8 @@ int ribi::cmap::EdgeFactory::GetNumberOfTests() const noexcept
 
 boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::GetTest(
   const int index,
-  const boost::shared_ptr<ribi::cmap::Node> from,
-  const boost::shared_ptr<ribi::cmap::Node> to
+  const boost::shared_ptr<Node> from,
+  const boost::shared_ptr<Node> to
 ) const noexcept
 {
   assert(from);

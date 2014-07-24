@@ -80,6 +80,13 @@ ribi::cmap::QtEdgeDialog::~QtEdgeDialog()
   delete ui;
 }
 
+void ribi::cmap::QtEdgeDialog::CheckMe() const noexcept
+{
+  #ifndef NDEBUG
+
+  #endif
+}
+
 int ribi::cmap::QtEdgeDialog::GetMinimumHeight(const Edge& edge) noexcept
 {
   return
@@ -88,6 +95,17 @@ int ribi::cmap::QtEdgeDialog::GetMinimumHeight(const Edge& edge) noexcept
     + QtNodeDialog::GetMinimumHeight(*edge.GetTo())
     + 68
   ;
+}
+
+
+double ribi::cmap::QtEdgeDialog::GetUiX() const noexcept
+{
+  return m_qtnodedialog->GetUiX();
+}
+
+double ribi::cmap::QtEdgeDialog::GetUiY() const noexcept
+{
+  return m_qtnodedialog->GetUiY();
 }
 
 void ribi::cmap::QtEdgeDialog::SetEdge(const boost::shared_ptr<Edge>& edge)
@@ -380,6 +398,17 @@ void ribi::cmap::QtEdgeDialog::OnToChanged(Edge * const edge)
   m_qtnodedialog_to->SetNode(to_after);
 
   assert(m_qtnodedialog_to->GetNode() == to_after);
+}
+
+void ribi::cmap::QtEdgeDialog::SetUiX(const double x) noexcept
+{
+  m_qtnodedialog->SetUiX(x);
+}
+
+
+void ribi::cmap::QtEdgeDialog::SetUiY(const double y) noexcept
+{
+  m_qtnodedialog->SetUiY(y);
 }
 
 

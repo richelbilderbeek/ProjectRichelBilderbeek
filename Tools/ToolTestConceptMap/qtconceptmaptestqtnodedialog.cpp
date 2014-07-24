@@ -110,7 +110,7 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::SetQtNode(const boost::shared_ptr
 
 }
 
-void ribi::cmap::QtConceptMapTestQtNodeDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtConceptMapTestQtNodeDialog::keyPressEvent(QKeyEvent *event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
@@ -140,7 +140,7 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::Test() noexcept
 }
 #endif
 
-void ribi::cmap::QtConceptMapTestQtNodeDialog::on_button_load_clicked()
+void ribi::cmap::QtConceptMapTestQtNodeDialog::on_button_load_clicked() noexcept
 {
   const int index = ui->box_test_index->value();
   const auto qtnode = boost::make_shared<QtNode>(

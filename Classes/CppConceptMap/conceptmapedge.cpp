@@ -238,16 +238,9 @@ void ribi::cmap::Edge::Test() noexcept
 
 std::string ribi::cmap::Edge::ToStr() const noexcept
 {
+
   std::stringstream s;
-  s
-    //<< GetX() << " "
-    //<< GetY() << " "
-    << HasHeadArrow() << " "
-    << GetNode()->ToStr() << " "
-    << HasTailArrow() << " "
-    << GetFrom()->ToStr() << " "
-    << GetTo()->ToStr()
-  ;
+  s << (*this);
   return s.str();
 }
 
@@ -322,4 +315,17 @@ bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge&
 bool ribi::cmap::operator!=(const cmap::Edge& lhs, const cmap::Edge& rhs)
 {
   return !(lhs == rhs);
+}
+
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const Edge& edge) noexcept
+{
+  os << (*edge.GetNode())
+    << ", from: " << edge.GetFrom()
+    << "(arrowhead: " << edge.HasHeadArrow()
+    << "), to: " << edge.GetTo()
+    << "(arrowhead: " << edge.HasTailArrow()
+    << ")"
+  ;
+
+  return os;
 }

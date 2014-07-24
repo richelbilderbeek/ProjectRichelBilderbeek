@@ -53,15 +53,17 @@ struct QtEdge : public QtConceptMapElement
 
   QRectF boundingRect() const override final;
 
-  void DisableAll();
-  void EnableAll();
+  void CheckMe() const noexcept;
+
+  void DisableAll() noexcept override final;
+  void EnableAll() noexcept override final;
 
   ReadOnlyArrow GetArrow() const noexcept { return m_arrow; }
   const Arrow& GetArrow() noexcept { return m_arrow; }
 
   ///Get the Node at the center of the Edge
-  ReadOnlyNodePtr GetNode() const noexcept;
-  NodePtr GetNode()       noexcept;
+  ReadOnlyNodePtr GetNode() const noexcept override final;
+  NodePtr GetNode()       noexcept override final;
 
   ReadOnlyEdgePtr GetEdge() const noexcept { return m_edge; }
   EdgePtr GetEdge() noexcept { return m_edge; }
@@ -70,22 +72,17 @@ struct QtEdge : public QtConceptMapElement
   const QtNode * GetFrom() const noexcept { return m_from; }
         QtNode * GetFrom()       noexcept { return m_from; }
 
-  ///Get the name of the relation
-  //std::string GetName() const noexcept;
-
   ///The node item the arrow targets
   const QtNode * GetTo() const noexcept { return m_to; }
         QtNode * GetTo()       noexcept { return m_to; }
 
-  void SetNode(const boost::shared_ptr<Node>& node);
+  void SetEdge(const EdgePtr& edge) noexcept;
+  void SetNode(const boost::shared_ptr<Node>& node) noexcept override final;
 
   void SetFrom(QtNode * const from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
 
   void SetHasHeadArrow(const bool has_head_arrow) noexcept;
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;
-
-  ///Set the name of the relation on the edge
-  //void SetName(const std::string& name) noexcept;
 
   void SetTo(QtNode * const to) noexcept;
 
@@ -95,7 +92,10 @@ struct QtEdge : public QtConceptMapElement
   ///Set the Y coordinat of the central concept
   void SetY(const double y) noexcept;
 
-  ///No 'own/autonomous' signals, these are present in the ConceptItems
+  std::string ToStr() const noexcept;
+
+  boost::signals2::signal<void (QtEdge *)> m_signal_base_changed;
+  boost::signals2::signal<void (QtEdge *)> m_signal_edge_changed;
 
 protected:
   void focusInEvent(QFocusEvent *event) noexcept override final;
@@ -136,6 +136,8 @@ private:
   static void Test() noexcept;
   #endif
 };
+
+std::ostream& operator<<(std::ostream& os, const QtEdge& qtedge) noexcept;
 
 } //~namespace cmap
 } //~namespace ribi

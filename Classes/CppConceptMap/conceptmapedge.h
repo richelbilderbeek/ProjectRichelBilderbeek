@@ -175,6 +175,8 @@ struct Edge : public Element
 
 bool IsConnectedToCenterNode(const boost::shared_ptr<const Edge> edge) noexcept;
 
+std::ostream& operator<<(std::ostream& os, const Edge& edge) noexcept;
+
 bool operator==(const Edge& lhs, const Edge& rhs);
 bool operator!=(const Edge& lhs, const Edge& rhs);
 

@@ -29,6 +29,7 @@ struct QtQuadBezierArrowItem;
 struct QtRoundedRectItemDialog;
 struct QtRoundedEditRectItem;
 struct QtRoundedEditRectItemDialog;
+struct QtKeyboardFriendlyGraphicsView;
 
 namespace cmap {
 
@@ -49,7 +50,8 @@ struct QtItemDisplayStrategy;
 struct QtItemHighlighter;
 struct QtNewArrow;
 struct QtNode;
-struct QtNodeDialog; //QtDialog showing a Node
+struct QtNodeDialog;   //QtDialog showing a Node
+struct QtQtEdgeDialog; //QtDialog showing a QtEdge
 struct QtQtNodeDialog; //QtDialog showing a QtNode
 struct QtRateConceptMap;
 struct QtRateStrategy;

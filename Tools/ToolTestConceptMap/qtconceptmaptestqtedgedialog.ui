@@ -15,224 +15,19 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="ribi::QtKeyboardFriendlyGraphicsView" name="view"/>
-   </item>
-   <item row="0" column="1" rowspan="3">
-    <widget class="QGroupBox" name="group_edge">
-     <property name="title">
-      <string>Edge</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
+    <widget class="QWidget" name="widget_top" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="label_8">
-        <property name="text">
-         <string>Edit via:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="box_edit">
-        <item>
-         <property name="text">
-          <string>m_edge</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>m_edge_item-&gt;GetEdge()</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>Name</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="edit_name">
-        <property name="text">
-         <string>sg</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Rating complexity</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="box_complexity">
-        <item>
-         <property name="text">
-          <string>-1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>0</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>2</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Rating concreteness</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="box_concreteness">
-        <item>
-         <property name="text">
-          <string>-1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>0</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>2</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Rating specificity</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="box_specificity">
-        <item>
-         <property name="text">
-          <string>-1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>0</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>2</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Example[0] text</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="edit_example_text"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Example[0] competency</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="box_competency"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_9">
-        <property name="text">
-         <string>Arrow at head</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="box_arrow_head">
-        <item>
-         <property name="text">
-          <string>No</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Yes</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>Arrow at tail</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="box_arrow_tail">
-        <item>
-         <property name="text">
-          <string>No</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Yes</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QGroupBox" name="group_test">
-     <property name="title">
-      <string>Test</string>
-     </property>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
        <widget class="QLabel" name="label_index">
         <property name="text">
          <string>Test index</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QSpinBox" name="box_index"/>
+      <item>
+       <widget class="QSpinBox" name="box_test_index"/>
       </item>
-      <item row="1" column="0" colspan="2">
+      <item>
        <widget class="QPushButton" name="button_load_test">
         <property name="text">
          <string>&amp;Load</string>
@@ -242,60 +37,25 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>Node</string>
+   <item row="1" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_node_1">
-        <property name="text">
-         <string>Node #1 text</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="edit_node_1"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_node_2">
-        <property name="text">
-         <string>Node #2 text</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="edit_node_2"/>
-      </item>
-     </layout>
-     <zorder>label_node_1</zorder>
-     <zorder>label_node_2</zorder>
-     <zorder>edit_node_1</zorder>
-     <zorder>edit_node_2</zorder>
+     <widget class="QWidget" name="here">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>863</width>
+        <height>517</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>ribi::QtKeyboardFriendlyGraphicsView</class>
-   <extends>QGraphicsView</extends>
-   <header>qtkeyboardfriendlygraphicsview.h</header>
-  </customwidget>
- </customwidgets>
- <tabstops>
-  <tabstop>box_edit</tabstop>
-  <tabstop>edit_name</tabstop>
-  <tabstop>box_complexity</tabstop>
-  <tabstop>box_concreteness</tabstop>
-  <tabstop>box_specificity</tabstop>
-  <tabstop>edit_example_text</tabstop>
-  <tabstop>box_competency</tabstop>
-  <tabstop>box_arrow_head</tabstop>
-  <tabstop>box_arrow_tail</tabstop>
-  <tabstop>view</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>
