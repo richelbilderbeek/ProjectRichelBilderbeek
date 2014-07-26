@@ -19,7 +19,9 @@ struct QtEdgeFactory
   QtEdgeFactory();
 
   boost::shared_ptr<QtEdge> Create(
-    const boost::shared_ptr<Edge>& node
+    const boost::shared_ptr<Edge>& node,
+    QtNode* const from,
+    QtNode* const to
   ) const noexcept;
 
 
@@ -28,8 +30,17 @@ struct QtEdgeFactory
 
   ///Obtain testing nodes
   int GetNumberOfTests() const noexcept;
-  std::vector<boost::shared_ptr<QtEdge>> GetTests() const noexcept;
-  boost::shared_ptr<QtEdge> GetTest(const int test) const noexcept;
+
+  std::vector<boost::shared_ptr<QtEdge>> GetTests(
+    const boost::shared_ptr<QtNode>& from,
+    const boost::shared_ptr<QtNode>& to
+  ) const noexcept;
+
+  boost::shared_ptr<QtEdge> GetTest(
+    const int test,
+    const boost::shared_ptr<QtNode>& from,
+    const boost::shared_ptr<QtNode>& to
+  ) const noexcept;
 
   private:
   #ifndef NDEBUG

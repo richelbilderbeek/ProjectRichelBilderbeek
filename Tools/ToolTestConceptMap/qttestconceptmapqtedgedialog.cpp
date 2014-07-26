@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaptestqtedgedialog.h"
+#include "qttestconceptmapqtedgedialog.h"
 
 #include <cassert>
 
@@ -17,6 +17,7 @@
 #include "conceptmapexamples.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
+#include "qtconceptmapedgefactory.h"
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
@@ -25,16 +26,17 @@
 #include "qtconceptmapqtnodefactory.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapqtedgedialog.h"
+#include "qtconceptmapqtedgefactory.h"
 #include "qtconceptmapratestrategy.h"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "trace.h"
-#include "ui_qtconceptmaptestqtedgedialog.h"
+#include "ui_qttestconceptmapqtedgedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestQtEdgeDialog::QtConceptMapTestQtEdgeDialog(
+ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtConceptMapTestQtEdgeDialog),
+    ui(new Ui::QtTestQtEdgeDialog),
     m_dialog_left{new QtQtEdgeDialog},
     m_dialog_right{new QtQtEdgeDialog},
     m_view_left{new QtKeyboardFriendlyGraphicsView},
@@ -69,12 +71,12 @@ ribi::cmap::QtConceptMapTestQtEdgeDialog::QtConceptMapTestQtEdgeDialog(
 
 }
 
-ribi::cmap::QtConceptMapTestQtEdgeDialog::~QtConceptMapTestQtEdgeDialog() noexcept
+ribi::cmap::QtTestQtEdgeDialog::~QtTestQtEdgeDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::cmap::QtConceptMapTestQtEdgeDialog::CheckMe() const noexcept
+void ribi::cmap::QtTestQtEdgeDialog::CheckMe() const noexcept
 {
   #ifndef NDEBUG
   assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtEdge()->GetX()) < 1.0);
@@ -82,13 +84,13 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::CheckMe() const noexcept
   #endif
 }
 
-boost::shared_ptr<ribi::cmap::QtEdge> ribi::cmap::QtConceptMapTestQtEdgeDialog::GetQtEdge() const noexcept
+boost::shared_ptr<ribi::cmap::QtEdge> ribi::cmap::QtTestQtEdgeDialog::GetQtEdge() const noexcept
 {
   assert(m_dialog_left->GetQtEdge() == m_dialog_right->GetQtEdge());
   return m_dialog_left->GetQtEdge();
 }
 
-void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qtedge) noexcept
+void ribi::cmap::QtTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qtedge) noexcept
 {
   assert(qtedge);
   assert(m_view_left);
@@ -112,21 +114,21 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr
 
 }
 
-void ribi::cmap::QtConceptMapTestQtEdgeDialog::keyPressEvent(QKeyEvent *event) noexcept
+void ribi::cmap::QtTestQtEdgeDialog::keyPressEvent(QKeyEvent *event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestQtEdgeDialog::Test() noexcept
+void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapTestQtEdgeDialog::Test started");
-  QtConceptMapTestQtEdgeDialog d;
+  TRACE("ribi::cmap::QtTestQtEdgeDialog::Test started");
+  QtTestQtEdgeDialog d;
   const int n = d.ui->box_test_index->maximum();
   for (int i=0; i!=n; ++i)
   {
@@ -138,17 +140,19 @@ void ribi::cmap::QtConceptMapTestQtEdgeDialog::Test() noexcept
     d.on_button_load_clicked();
   }
 
-  TRACE("ribi::cmap::QtConceptMapTestQtEdgeDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtTestQtEdgeDialog::Test finished successfully");
 }
 #endif
 
-void ribi::cmap::QtConceptMapTestQtEdgeDialog::on_button_load_clicked() noexcept
+void ribi::cmap::QtTestQtEdgeDialog::on_button_load_clicked() noexcept
 {
+  /*
   const int index = ui->box_test_index->value();
   const auto qtedge = boost::make_shared<QtEdge>(
     QtEdgeFactory().GetTest(index)
   );
   SetQtEdge(qtedge);
-
+  */
+  assert(!"TODO");
 
 }

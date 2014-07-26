@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPTESTEDGEDIALOG_H
-#define QTCONCEPTMAPTESTEDGEDIALOG_H
+#ifndef QTCONCEPTMAPTESTCONCEPTDIALOG_H
+#define QTCONCEPTMAPTESTCONCEPTDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -10,22 +10,22 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapTestEdgeDialog; }
+namespace Ui { class QtTestConceptDialog; }
 
 namespace ribi {
 namespace cmap {
 
 ///Tests all QtConceptMapConceptItem items, especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtConceptMapTestEdgeDialog : public ribi::QtHideAndShowDialog
+class QtTestConceptDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtConceptMapTestEdgeDialog(QWidget *parent = 0);
-  QtConceptMapTestEdgeDialog(const QtConceptMapTestEdgeDialog&) = delete;
-  QtConceptMapTestEdgeDialog& operator=(const QtConceptMapTestEdgeDialog&) = delete;
-  ~QtConceptMapTestEdgeDialog() noexcept;
+  explicit QtTestConceptDialog(QWidget *parent = 0);
+  QtTestConceptDialog(const QtTestConceptDialog&) = delete;
+  QtTestConceptDialog& operator=(const QtTestConceptDialog&) = delete;
+  ~QtTestConceptDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *event);
@@ -42,20 +42,18 @@ private slots:
   void on_button_load_clicked();
 
 private:
-  Ui::QtConceptMapTestEdgeDialog *ui;
+  Ui::QtTestConceptDialog *ui;
 
-  boost::shared_ptr<Node> m_from_node;
-  boost::shared_ptr<QtEdgeDialog> m_qtedgedialog_1;
-  boost::shared_ptr<QtEdgeDialog> m_qtedgedialog_2;
-  boost::shared_ptr<Node> m_to_node;
+  boost::shared_ptr<QtConceptDialog> m_qtconceptdialog_1;
+  boost::shared_ptr<QtConceptDialog> m_qtconceptdialog_2;
 
-  //const boost::shared_ptr<Node> m_concept;
+  //const boost::shared_ptr<Concept> m_concept;
   //cmap::QtDisplayStrategy* m_display_concept;
   //cmap::QtEditStrategy* m_edit_concept;
   //cmap::QtRateStrategy* m_rate_concept;
 
-  ///Get the Node via the route chosen by box_edit
-  //const boost::shared_ptr<Node> GetChosenNode();
+  ///Get the Concept via the route chosen by box_edit
+  //const boost::shared_ptr<Concept> GetChosenConcept();
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -66,4 +64,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPTESTEDGEDIALOG_H
+#endif // QTCONCEPTMAPTESTCONCEPTDIALOG_H

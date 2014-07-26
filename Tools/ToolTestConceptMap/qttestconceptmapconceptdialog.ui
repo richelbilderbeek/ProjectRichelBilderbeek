@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtConceptMapTestConceptDialog</class>
- <widget class="QDialog" name="QtConceptMapTestConceptDialog">
+ <class>QtTestConceptDialog</class>
+ <widget class="QDialog" name="QtTestConceptDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -38,7 +38,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>657</width>
+        <width>651</width>
         <height>518</height>
        </rect>
       </property>

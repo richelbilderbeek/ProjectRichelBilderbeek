@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::cmap::QtTestConceptMapMenuDialog w;
+  ribi::cmap::QtTestMenuDialog w;
   w.show();
   return a.exec();
 }

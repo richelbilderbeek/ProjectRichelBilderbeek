@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPTESTQTEDGEDIALOG_H
-#define QTCONCEPTMAPTESTQTEDGEDIALOG_H
+#ifndef QTCONCEPTMAPTESTQTNODEDIALOG_H
+#define QTCONCEPTMAPTESTQTNODEDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -11,28 +11,26 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapTestQtEdgeDialog; }
+namespace Ui { class QtTestQtNodeDialog; }
 
 namespace ribi {
 namespace cmap {
 
-///Tests all QtConceptMapConceptItem items when being a member of a cmap::QtEdge,
+///Tests all QtConceptMapConceptItem items when being a member of a QtNode,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtConceptMapTestQtEdgeDialog : public ribi::QtHideAndShowDialog
+class QtTestQtNodeDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
+  explicit QtTestQtNodeDialog(QWidget *parent = 0);
+  QtTestQtNodeDialog(const QtTestQtNodeDialog&) = delete;
+  QtTestQtNodeDialog& operator=(const QtTestQtNodeDialog&) = delete;
+  ~QtTestQtNodeDialog() noexcept;
 
-public:
-  explicit QtConceptMapTestQtEdgeDialog(QWidget *parent = 0);
-  QtConceptMapTestQtEdgeDialog(const QtConceptMapTestQtEdgeDialog&) = delete;
-  QtConceptMapTestQtEdgeDialog& operator=(const QtConceptMapTestQtEdgeDialog&) = delete;
-  ~QtConceptMapTestQtEdgeDialog() noexcept;
-
-  boost::shared_ptr<QtEdge> GetQtEdge() const noexcept;
-  void SetQtEdge(const boost::shared_ptr<QtEdge>& qtnode) noexcept;
+  boost::shared_ptr<QtNode> GetQtNode() const noexcept;
+  void SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
 
 protected:
 
@@ -44,10 +42,10 @@ private slots:
 
 private:
 
-  Ui::QtConceptMapTestQtEdgeDialog *ui;
+  Ui::QtTestQtNodeDialog *ui;
 
-  boost::shared_ptr<QtQtEdgeDialog> m_dialog_left;
-  boost::shared_ptr<QtQtEdgeDialog> m_dialog_right;
+  boost::shared_ptr<QtQtNodeDialog> m_dialog_left;
+  boost::shared_ptr<QtQtNodeDialog> m_dialog_right;
   boost::shared_ptr< ::ribi::QtKeyboardFriendlyGraphicsView> m_view_left;
   boost::shared_ptr< ::ribi::QtKeyboardFriendlyGraphicsView> m_view_right;
 
@@ -60,8 +58,6 @@ private:
 };
 
 } //~namespace cmap
-
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPTESTQTEDGEDIALOG_H
-
+#endif // QTCONCEPTMAPTESTQTNODEDIALOG_H

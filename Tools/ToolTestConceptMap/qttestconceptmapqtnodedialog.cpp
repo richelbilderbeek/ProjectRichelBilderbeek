@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaptestqtnodedialog.h"
+#include "qttestconceptmapqtnodedialog.h"
 
 #include <cassert>
 
@@ -26,13 +26,13 @@
 #include "qtconceptmapratestrategy.h"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "trace.h"
-#include "ui_qtconceptmaptestqtnodedialog.h"
+#include "ui_qttestconceptmapqtnodedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(
+ribi::cmap::QtTestQtNodeDialog::QtTestQtNodeDialog(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtConceptMapTestQtNodeDialog),
+    ui(new Ui::QtTestQtNodeDialog),
     m_dialog_left{new QtQtNodeDialog},
     m_dialog_right{new QtQtNodeDialog},
     m_view_left{new QtKeyboardFriendlyGraphicsView},
@@ -67,12 +67,12 @@ ribi::cmap::QtConceptMapTestQtNodeDialog::QtConceptMapTestQtNodeDialog(
 
 }
 
-ribi::cmap::QtConceptMapTestQtNodeDialog::~QtConceptMapTestQtNodeDialog() noexcept
+ribi::cmap::QtTestQtNodeDialog::~QtTestQtNodeDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::cmap::QtConceptMapTestQtNodeDialog::CheckMe() const noexcept
+void ribi::cmap::QtTestQtNodeDialog::CheckMe() const noexcept
 {
   #ifndef NDEBUG
   assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtNode()->GetX()) < 1.0);
@@ -80,13 +80,13 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::CheckMe() const noexcept
   #endif
 }
 
-boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtConceptMapTestQtNodeDialog::GetQtNode() const noexcept
+boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtTestQtNodeDialog::GetQtNode() const noexcept
 {
   assert(m_dialog_left->GetQtNode() == m_dialog_right->GetQtNode());
   return m_dialog_left->GetQtNode();
 }
 
-void ribi::cmap::QtConceptMapTestQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
+void ribi::cmap::QtTestQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
 {
   assert(qtnode);
   assert(m_view_left);
@@ -110,21 +110,21 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::SetQtNode(const boost::shared_ptr
 
 }
 
-void ribi::cmap::QtConceptMapTestQtNodeDialog::keyPressEvent(QKeyEvent *event) noexcept
+void ribi::cmap::QtTestQtNodeDialog::keyPressEvent(QKeyEvent *event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestQtNodeDialog::Test() noexcept
+void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapTestQtNodeDialog::Test started");
-  QtConceptMapTestQtNodeDialog d;
+  TRACE("ribi::cmap::QtTestQtNodeDialog::Test started");
+  QtTestQtNodeDialog d;
   const int n = d.ui->box_test_index->maximum();
   for (int i=0; i!=n; ++i)
   {
@@ -136,11 +136,11 @@ void ribi::cmap::QtConceptMapTestQtNodeDialog::Test() noexcept
     d.on_button_load_clicked();
   }
 
-  TRACE("ribi::cmap::QtConceptMapTestQtNodeDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtTestQtNodeDialog::Test finished successfully");
 }
 #endif
 
-void ribi::cmap::QtConceptMapTestQtNodeDialog::on_button_load_clicked() noexcept
+void ribi::cmap::QtTestQtNodeDialog::on_button_load_clicked() noexcept
 {
   const int index = ui->box_test_index->value();
   const auto qtnode = boost::make_shared<QtNode>(

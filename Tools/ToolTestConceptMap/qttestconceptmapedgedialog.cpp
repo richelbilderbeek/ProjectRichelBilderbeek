@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaptestedgedialog.h"
+#include "qttestconceptmapedgedialog.h"
 
 #include <cassert>
 #include <stdexcept>
@@ -26,12 +26,12 @@
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
-#include "ui_qtconceptmaptestedgedialog.h"
+#include "ui_qttestconceptmapedgedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestEdgeDialog::QtConceptMapTestEdgeDialog(QWidget *parent)
+ribi::cmap::QtTestEdgeDialog::QtTestEdgeDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtConceptMapTestEdgeDialog),
+    ui(new Ui::QtTestEdgeDialog),
     m_from_node(NodeFactory().GetTest(0)),
     m_qtedgedialog_1(new QtEdgeDialog),
     m_qtedgedialog_2(new QtEdgeDialog),
@@ -91,31 +91,31 @@ ribi::cmap::QtConceptMapTestEdgeDialog::QtConceptMapTestEdgeDialog(QWidget *pare
 
 }
 
-ribi::cmap::QtConceptMapTestEdgeDialog::~QtConceptMapTestEdgeDialog() noexcept
+ribi::cmap::QtTestEdgeDialog::~QtTestEdgeDialog() noexcept
 {
   delete ui;
 }
 
 
-void ribi::cmap::QtConceptMapTestEdgeDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtTestEdgeDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestEdgeDialog::Test() noexcept
+void ribi::cmap::QtTestEdgeDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapTestEdgeDialog::Test started");
-  TRACE("ribi::cmap::QtConceptMapTestEdgeDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtTestEdgeDialog::Test started");
+  TRACE("ribi::cmap::QtTestEdgeDialog::Test finished successfully");
 }
 #endif
 
-void ribi::cmap::QtConceptMapTestEdgeDialog::on_button_load_clicked()
+void ribi::cmap::QtTestEdgeDialog::on_button_load_clicked()
 {
   const int i = ui->box_test->value();
   assert(i >= 0);

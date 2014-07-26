@@ -215,8 +215,8 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::GetTest(
 }
 
 std::vector<boost::shared_ptr<ribi::cmap::Edge>> ribi::cmap::EdgeFactory::GetTests(
-  const boost::shared_ptr<ribi::cmap::Node> from,
-  const boost::shared_ptr<ribi::cmap::Node> to
+  const boost::shared_ptr<Node>& from,
+  const boost::shared_ptr<Node>& to
 ) const noexcept
 {
   assert(from);

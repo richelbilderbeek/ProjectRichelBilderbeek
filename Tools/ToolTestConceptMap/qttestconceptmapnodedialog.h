@@ -10,22 +10,22 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapTestNodeDialog; }
+namespace Ui { class QtTestNodeDialog; }
 
 namespace ribi {
 namespace cmap {
 
 ///Tests all QtConceptMapConceptItem items, especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtConceptMapTestNodeDialog : public ribi::QtHideAndShowDialog
+class QtTestNodeDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtConceptMapTestNodeDialog(QWidget *parent = 0);
-  QtConceptMapTestNodeDialog(const QtConceptMapTestNodeDialog&) = delete;
-  QtConceptMapTestNodeDialog& operator=(const QtConceptMapTestNodeDialog&) = delete;
-  ~QtConceptMapTestNodeDialog() noexcept;
+  explicit QtTestNodeDialog(QWidget *parent = 0);
+  QtTestNodeDialog(const QtTestNodeDialog&) = delete;
+  QtTestNodeDialog& operator=(const QtTestNodeDialog&) = delete;
+  ~QtTestNodeDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *event);
@@ -35,7 +35,7 @@ private slots:
   void on_button_load_clicked();
 
 private:
-  Ui::QtConceptMapTestNodeDialog *ui;
+  Ui::QtTestNodeDialog *ui;
 
   boost::shared_ptr<QtNodeDialog> m_qtnodedialog_1;
   boost::shared_ptr<QtNodeDialog> m_qtnodedialog_2;

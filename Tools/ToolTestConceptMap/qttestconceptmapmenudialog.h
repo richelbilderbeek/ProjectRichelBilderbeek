@@ -13,21 +13,21 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestConceptMapMenuDialog;
+  class QtTestMenuDialog;
 }
 
 namespace ribi {
 namespace cmap {
 
-class QtTestConceptMapMenuDialog : public QtHideAndShowDialog
+class QtTestMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestConceptMapMenuDialog(QWidget *parent = 0);
-  QtTestConceptMapMenuDialog(const QtTestConceptMapMenuDialog&) = delete;
-  QtTestConceptMapMenuDialog& operator=(const QtTestConceptMapMenuDialog&) = delete;
-  ~QtTestConceptMapMenuDialog() noexcept;
+  explicit QtTestMenuDialog(QWidget *parent = 0);
+  QtTestMenuDialog(const QtTestMenuDialog&) = delete;
+  QtTestMenuDialog& operator=(const QtTestMenuDialog&) = delete;
+  ~QtTestMenuDialog() noexcept;
 
 private slots:
   void on_button_about_clicked();
@@ -48,7 +48,7 @@ private slots:
   void on_button_qtedge_clicked();
 
 private:
-  Ui::QtTestConceptMapMenuDialog *ui;
+  Ui::QtTestMenuDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;

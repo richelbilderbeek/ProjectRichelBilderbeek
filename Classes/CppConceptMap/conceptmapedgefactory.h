@@ -79,8 +79,8 @@ struct EdgeFactory
 
   ///Get testing edges connecting the two supplied nodes
   std::vector<boost::shared_ptr<Edge>> GetTests(
-    const boost::shared_ptr<Node> from,
-    const boost::shared_ptr<Node> to
+    const boost::shared_ptr<Node>& from,
+    const boost::shared_ptr<Node>& to
   ) const noexcept;
 };
 

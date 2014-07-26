@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtConceptMapTestEdgeDialog</class>
- <widget class="QDialog" name="QtConceptMapTestEdgeDialog">
+ <class>QtTestNodeDialog</class>
+ <widget class="QDialog" name="QtTestNodeDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,15 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Test Edge</string>
+   <string>Test Node</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="button_load">
        <property name="text">
-        <string>&amp;Load test edge</string>
+        <string>&amp;Load test node</string>
        </property>
       </widget>
      </item>
@@ -28,7 +28,7 @@
      </item>
     </layout>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
       <bool>true</bool>
@@ -38,10 +38,32 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>670</width>
-        <height>239</height>
+        <width>651</width>
+        <height>518</height>
        </rect>
       </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QWidget" name="widget_left" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>500</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_right" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>500</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

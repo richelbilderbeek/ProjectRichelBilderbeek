@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaptestconceptdialog.h"
+#include "qttestconceptmapconceptdialog.h"
 
 #include <cassert>
 #include <stdexcept>
@@ -23,12 +23,12 @@
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
-#include "ui_qtconceptmaptestconceptdialog.h"
+#include "ui_qttestconceptmapconceptdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestConceptDialog::QtConceptMapTestConceptDialog(QWidget *parent)
+ribi::cmap::QtTestConceptDialog::QtTestConceptDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtConceptMapTestConceptDialog),
+    ui(new Ui::QtTestConceptDialog),
     m_qtconceptdialog_1{new QtConceptDialog},
     m_qtconceptdialog_2{new QtConceptDialog}
     //m_concept(cmap::ConceptFactory().GetTests().at(1)),
@@ -102,31 +102,31 @@ ribi::cmap::QtConceptMapTestConceptDialog::QtConceptMapTestConceptDialog(QWidget
 
 }
 
-ribi::cmap::QtConceptMapTestConceptDialog::~QtConceptMapTestConceptDialog() noexcept
+ribi::cmap::QtTestConceptDialog::~QtTestConceptDialog() noexcept
 {
   delete ui;
 }
 
 
-void ribi::cmap::QtConceptMapTestConceptDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtTestConceptDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestConceptDialog::Test() noexcept
+void ribi::cmap::QtTestConceptDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapTestConceptDialog::Test started");
-  TRACE("ribi::cmap::QtConceptMapTestConceptDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtTestConceptDialog::Test started");
+  TRACE("ribi::cmap::QtTestConceptDialog::Test finished successfully");
 }
 #endif
 
-void ribi::cmap::QtConceptMapTestConceptDialog::on_button_load_clicked()
+void ribi::cmap::QtTestConceptDialog::on_button_load_clicked()
 {
   const int i = ui->box_test->value();
   assert(i >= 0);

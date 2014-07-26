@@ -11,21 +11,21 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapTestExampleDialog; }
+namespace Ui { class QtTestExampleDialog; }
 
 namespace ribi {
 namespace cmap {
 
 ///Tests QtExampleDialog
-class QtConceptMapTestExampleDialog : public ribi::QtHideAndShowDialog
+class QtTestExampleDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtConceptMapTestExampleDialog(QWidget *parent = 0);
-  QtConceptMapTestExampleDialog(const QtConceptMapTestExampleDialog&) = delete;
-  QtConceptMapTestExampleDialog& operator=(const QtConceptMapTestExampleDialog&) = delete;
-  ~QtConceptMapTestExampleDialog();
+  explicit QtTestExampleDialog(QWidget *parent = 0);
+  QtTestExampleDialog(const QtTestExampleDialog&) = delete;
+  QtTestExampleDialog& operator=(const QtTestExampleDialog&) = delete;
+  ~QtTestExampleDialog();
 
 protected:
   void keyPressEvent(QKeyEvent *event);
@@ -35,7 +35,7 @@ private slots:
   void on_button_load_example_clicked();
 
 private:
-  Ui::QtConceptMapTestExampleDialog *ui;
+  Ui::QtTestExampleDialog *ui;
   boost::shared_ptr<QtExampleDialog> m_example_1;
   boost::shared_ptr<QtExampleDialog> m_example_2;
 };

@@ -4,13 +4,13 @@
 
 #include "qtaboutdialog.h"
 #include "testconceptmapmenudialog.h"
-#include "qtconceptmaptestconceptdialog.h"
-#include "qtconceptmaptestedgedialog.h"
-#include "qtconceptmaptestexampledialog.h"
-#include "qtconceptmaptestexamplesdialog.h"
-#include "qtconceptmaptestnodedialog.h"
-#include "qtconceptmaptestqtedgedialog.h"
-#include "qtconceptmaptestqtnodedialog.h"
+#include "qttestconceptmapconceptdialog.h"
+#include "qttestconceptmapedgedialog.h"
+#include "qttestconceptmapexampledialog.h"
+#include "qttestconceptmapexamplesdialog.h"
+#include "qttestconceptmapnodedialog.h"
+#include "qttestconceptmapqtedgedialog.h"
+#include "qttestconceptmapqtnodedialog.h"
 #include "qtconceptmapviewtestsdialog.h"
 #include "qttestconceptmapwidgetdialog.h"
 #include "qttestdisplayconceptmapdialog.h"
@@ -20,9 +20,9 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *parent) :
+ribi::cmap::QtTestMenuDialog::QtTestMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestConceptMapMenuDialog)
+    ui(new Ui::QtTestMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -35,63 +35,63 @@ ribi::cmap::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *pare
   ui->button_edge->setEnabled(sm_test_edge);
 }
 
-ribi::cmap::QtTestConceptMapMenuDialog::~QtTestConceptMapMenuDialog() noexcept
+ribi::cmap::QtTestMenuDialog::~QtTestMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_about_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(TestConceptMapMenuDialog().GetAbout());
   this->ShowChild(&d);
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_quit_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
+void ribi::cmap::QtTestMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::QtTestConceptMapMenuDialog::Test");
+  TRACE("Starting ribi::cmap::QtTestMenuDialog::Test");
   TestConceptMapMenuDialog().GetAbout();
-  if (sm_test_example) { QtConceptMapTestExampleDialog(); }
-  if (sm_test_examples) { QtConceptMapTestExamplesDialog(); };
-  if (sm_test_concept) { QtConceptMapTestConceptDialog(); }
-  if (sm_test_node) { QtConceptMapTestNodeDialog(); }
-  if (sm_test_edge) { QtConceptMapTestEdgeDialog(); }
-  if (sm_test_qtnode) { QtConceptMapTestQtNodeDialog(); }
+  if (sm_test_example) { QtTestExampleDialog(); }
+  if (sm_test_examples) { QtTestExamplesDialog(); };
+  if (sm_test_concept) { QtTestConceptDialog(); }
+  if (sm_test_node) { QtTestNodeDialog(); }
+  if (sm_test_edge) { QtTestEdgeDialog(); }
+  if (sm_test_qtnode) { QtTestQtNodeDialog(); }
   //QtTestDisplayConceptMapDialog();
   //QtTestEditConceptMapDialog();
   //QtTestRateConceptMapDialog();
   //QtConceptMapViewTestsDialog();
-  //QtTestConceptMapWidgetDialog();
-  TRACE("Finished ribi::cmap::QtTestConceptMapMenuDialog::Test successfully");
+  //QtTestWidgetDialog();
+  TRACE("Finished ribi::cmap::QtTestMenuDialog::Test successfully");
 }
 #endif
 
 /*
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_readonly_conceptmap_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_readonly_conceptmap_clicked()
 {
   QtTestDisplayConceptMapDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edit_conceptmap_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_edit_conceptmap_clicked()
 {
   QtTestEditConceptMapDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_rate_conceptmap_clicked()
 {
   QtTestRateConceptMapDialog d;
   d.setStyleSheet(this->styleSheet());
@@ -99,78 +99,78 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
 }
 */
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_concept_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_concept_clicked()
 {
-  QtConceptMapTestConceptDialog d;
+  QtTestConceptDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_node_clicked()
 {
-  QtConceptMapTestNodeDialog d;
+  QtTestNodeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_edge_clicked()
 {
-  QtConceptMapTestEdgeDialog d;
+  QtTestEdgeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 /*
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_view_concept_maps_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_view_concept_maps_clicked()
 {
   QtConceptMapViewTestsDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_conceptmapwidget_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_conceptmapwidget_clicked()
 {
-  QtTestConceptMapWidgetDialog d;
+  QtTestWidgetDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 */
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_example_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_example_clicked()
 {
-  QtConceptMapTestExampleDialog d;
+  QtTestExampleDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_examples_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_examples_clicked()
 {
-  QtConceptMapTestExamplesDialog d;
+  QtTestExamplesDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtnode_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_qtnode_clicked()
 {
-  QtConceptMapTestQtNodeDialog d;
+  QtTestQtNodeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 
 /*
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtedge_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_qtedge_clicked()
 {
-  QtConceptMapTestQtEdgeDialog d;
+  QtTestQtEdgeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 */
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_qtedge_clicked()
+void ribi::cmap::QtTestMenuDialog::on_button_qtedge_clicked()
 {
-  //QtConceptMapTestQtEdgeDialog d;
+  //QtTestQtEdgeDialog d;
   //d.setStyleSheet(this->styleSheet());
   //this->ShowChild(&d);
 

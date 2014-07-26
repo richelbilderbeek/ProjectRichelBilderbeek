@@ -1,4 +1,4 @@
-#include "qtconceptmaptestexampledialog.h"
+#include "qttestconceptmapexampledialog.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -14,12 +14,12 @@
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "qtconceptmapexampledialog.h"
-#include "ui_qtconceptmaptestexampledialog.h"
+#include "ui_qttestconceptmapexampledialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestExampleDialog::QtConceptMapTestExampleDialog(QWidget *parent) :
+ribi::cmap::QtTestExampleDialog::QtTestExampleDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtConceptMapTestExampleDialog),
+  ui(new Ui::QtTestExampleDialog),
   m_example_1{new QtExampleDialog},
   m_example_2{new QtExampleDialog}
 {
@@ -51,17 +51,17 @@ ribi::cmap::QtConceptMapTestExampleDialog::QtConceptMapTestExampleDialog(QWidget
   on_button_load_example_clicked();
 }
 
-ribi::cmap::QtConceptMapTestExampleDialog::~QtConceptMapTestExampleDialog()
+ribi::cmap::QtTestExampleDialog::~QtTestExampleDialog()
 {
   delete ui;
 }
 
-void ribi::cmap::QtConceptMapTestExampleDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtTestExampleDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::cmap::QtConceptMapTestExampleDialog::on_button_load_example_clicked()
+void ribi::cmap::QtTestExampleDialog::on_button_load_example_clicked()
 {
   const int i = ui->box_load_example->currentIndex();
   assert(i >= 0);

@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaptestnodedialog.h"
+#include "qttestconceptmapnodedialog.h"
 
 #include <cassert>
 #include <stdexcept>
@@ -23,12 +23,12 @@
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
-#include "ui_qtconceptmaptestnodedialog.h"
+#include "ui_qttestconceptmapnodedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapTestNodeDialog::QtConceptMapTestNodeDialog(QWidget *parent)
+ribi::cmap::QtTestNodeDialog::QtTestNodeDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtConceptMapTestNodeDialog),
+    ui(new Ui::QtTestNodeDialog),
     m_qtnodedialog_1{new QtNodeDialog},
     m_qtnodedialog_2{new QtNodeDialog}
     //m_concept(cmap::ConceptFactory().GetTests().at(1)),
@@ -102,31 +102,31 @@ ribi::cmap::QtConceptMapTestNodeDialog::QtConceptMapTestNodeDialog(QWidget *pare
 
 }
 
-ribi::cmap::QtConceptMapTestNodeDialog::~QtConceptMapTestNodeDialog() noexcept
+ribi::cmap::QtTestNodeDialog::~QtTestNodeDialog() noexcept
 {
   delete ui;
 }
 
 
-void ribi::cmap::QtConceptMapTestNodeDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtTestNodeDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestNodeDialog::Test() noexcept
+void ribi::cmap::QtTestNodeDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapTestNodeDialog::Test started");
-  TRACE("ribi::cmap::QtConceptMapTestNodeDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtTestNodeDialog::Test started");
+  TRACE("ribi::cmap::QtTestNodeDialog::Test finished successfully");
 }
 #endif
 
-void ribi::cmap::QtConceptMapTestNodeDialog::on_button_load_clicked()
+void ribi::cmap::QtTestNodeDialog::on_button_load_clicked()
 {
   const int i = ui->box_test->value();
   assert(i >= 0);
