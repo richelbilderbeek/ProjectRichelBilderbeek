@@ -82,7 +82,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestQtArrowItemsMenuDialog::GetProg
 
 std::string ribi::TestQtArrowItemsMenuDialog::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory() const noexcept
@@ -90,7 +90,8 @@ std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory() c
   return {
     "2012-12-07: version 0.1: initial version",
     "2013-01-01: version 1.0: added menu",
-    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole",
+    "2014-07-29: version 1.2: added Modify dialog"
   };
 }
 

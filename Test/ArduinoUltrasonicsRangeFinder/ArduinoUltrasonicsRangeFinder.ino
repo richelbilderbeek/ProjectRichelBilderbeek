@@ -38,5 +38,6 @@ void loop()
   const int current_distance_mm = static_cast<int>(10.0 * current_distance_cm);
   //Serial.println(current_distance_mm);
   //delay(100);
-  analogWrite(led_pin,current_distance_mm);
+  //analogWrite(led_pin,current_distance_mm);
+  tone(led_pin,440.0 * (0.1 *current_distance_cm));
 }

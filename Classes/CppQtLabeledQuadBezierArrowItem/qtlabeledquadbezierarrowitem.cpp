@@ -19,11 +19,11 @@
 #pragma GCC diagnostic pop
 
 ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
-    const QGraphicsItem *const from,
+    QGraphicsItem *const from,
     const bool tail,
     const std::string& text,
     const bool head,
-    const QGraphicsItem *const to,
+    QGraphicsItem *const to,
     QGraphicsItem *parent)
   : QtRoundedEditRectItem( {text} ,QtRoundedEditRectItem::Padding(),QFont("monospace",9),parent),
     m_arrow(new QtQuadBezierArrowItem(from,tail,this,head,to))

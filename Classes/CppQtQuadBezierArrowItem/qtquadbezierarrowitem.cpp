@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtquadbezierarrowitem.h"
 
 #include <cassert>
@@ -47,7 +48,7 @@ bool operator==(
   const boost::geometry::model::d2::point_xy<T>& b)
 {
   return boost::geometry::equals(a,b);
-  return a.x() == b.x() && a.y() == b.y();
+  //return a.x() == b.x() && a.y() == b.y();
 }
 
 template <class T>
@@ -63,8 +64,9 @@ bool operator==(
   const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T> > a,
   const boost::geometry::model::linestring<boost::geometry::model::d2::point_xy<T> > b)
 {
-  return (a[0] == b[0] && a[1] == b[1])
-    ||   (a[0] == b[1] && a[1] == b[0]);
+  return boost::geometry::equals(a,b);
+  //return (a[0] == b[0] && a[1] == b[1])
+  //  ||   (a[0] == b[1] && a[1] == b[0]);
 }
 
 template <class T>
@@ -90,7 +92,6 @@ GetLineLineIntersections(
   > line2)
 {
   typedef boost::geometry::model::d2::point_xy<T> Point;
-  //typedef boost::geometry::model::linestring<Point> Line;
   std::vector<Point> points;
   boost::geometry::intersection(line1,line2,points);
   assert(points.empty() || points.size() == 1);
@@ -106,20 +107,6 @@ CreateLine(const std::vector<boost::geometry::model::d2::point_xy<T> >& v)
   return boost::geometry::model::linestring<
     boost::geometry::model::d2::point_xy<T>
   >(v.begin(),v.end());
-}
-
-///Obtain the Pythagorian distance from two delta's
-//From www.richelbilderbeek.nl/CppGetDistance.htm
-double GetDistance(const double delta_x, const double delta_y)
-{
-  return ribi::Geometry().GetDistance(delta_x,delta_y);
-}
-
-///Obtain the Pythagorian distance from two coordinats
-//From www.richelbilderbeek.nl/CppGetDistance.htm
-double GetDistance(const double x1, const double y1, const double x2, const double y2)
-{
-  return GetDistance(x1-x2,y1-y2);
 }
 
 ///Obtain the zero, one or two intersections between a line and a rectanle
@@ -185,33 +172,41 @@ GetLineRectIntersections(
 const double ribi::QtQuadBezierArrowItem::m_click_easy_width = 10.0;
 
 ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
-  const QGraphicsItem* const from,
+  QGraphicsItem* const from,
   const bool tail,
-  const QGraphicsItem* const mid,
+  QGraphicsItem* const mid,
   const bool head,
-  const QGraphicsItem* const to,
-  QGraphicsItem* parent)
-  : QGraphicsItem(parent),       //New since Qt5
+  QGraphicsItem* const to,
+  QGraphicsItem* parent
+) noexcept
+  : QGraphicsItem(parent),
     m_signal_item_updated{},
-    m_focus_pen(QPen(Qt::DashLine)),
-    m_from(from),
-    m_head(head),
-    m_mid(mid),
-    m_pen(QPen(QColor(0,0,0))),
-    m_tail(tail),
-    m_to(to)
+    m_focus_pen{QPen(Qt::DashLine)},
+    m_from{from},
+    m_head{head},
+    m_mid{mid},
+    m_pen{QPen(QColor(0,0,0))},
+    m_tail{tail},
+    m_to{to}
 {
-  assert(from); assert(to);
+  #ifndef NDEBUG
+  Test();
+  #endif
+
+  assert(from);
+  assert(to);
   assert((mid || !mid) && "No mid results in a straight arrow");
-  assert(from != to); assert(from != mid); assert(mid != to);
+  assert(from != to);
+  assert(from != mid);
+  assert(mid != to);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
-    | QGraphicsItem::ItemIsSelectable);
+    | QGraphicsItem::ItemIsSelectable
+  );
 
   assert(!(flags() & QGraphicsItem::ItemIsMovable) );
   assert( (flags() & QGraphicsItem::ItemIsSelectable) );
 
-  //Accept enterHoverEvents
   this->setAcceptHoverEvents(true);
 
   //Put this arrow item under the rect
@@ -281,8 +276,8 @@ QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
   {
     assert(p_head_end.size() == 2);
     //Choose point closest to beyond
-    const double d1 = GetDistance(beyond.x(),beyond.y(),p_head_end[0].x(),p_head_end[0].x());
-    const double d2 = GetDistance(beyond.x(),beyond.y(),p_head_end[1].x(),p_head_end[1].x());
+    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[0].x(),p_head_end[0].x());
+    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_head_end[1].x(),p_head_end[1].x());
     if (d1 <= d2)
     {
       return QPointF(p_head_end[0].x(),p_head_end[0].y());
@@ -337,8 +332,8 @@ QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
   {
     assert(p_tail_end.size() == 2);
     //Choose point closest to beyond
-    const double d1 = GetDistance(beyond.x(),beyond.y(),p_tail_end[0].x(),p_tail_end[0].x());
-    const double d2 = GetDistance(beyond.x(),beyond.y(),p_tail_end[1].x(),p_tail_end[1].x());
+    const double d1 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[0].x(),p_tail_end[0].x());
+    const double d2 = Geometry().GetDistance(beyond.x(),beyond.y(),p_tail_end[1].x(),p_tail_end[1].x());
     if (d1 <= d2)
     {
       return QPointF(p_tail_end[0].x(),p_tail_end[0].y());
@@ -367,12 +362,12 @@ std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory() noexce
   };
 }
 
-void ribi::QtQuadBezierArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
+void ribi::QtQuadBezierArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *) noexcept
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void ribi::QtQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
+void ribi::QtQuadBezierArrowItem::keyPressEvent(QKeyEvent *event) noexcept
 {
   switch (event->key())
   {
@@ -380,17 +375,13 @@ void ribi::QtQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
     case Qt::Key_1:
     case Qt::Key_T:
     case Qt::Key_Minus:
-      m_tail = !m_tail;
-      this->update();
-      m_signal_item_updated(this);
+      SetHasTail(!HasTail());
       return;
     case Qt::Key_F2:
     case Qt::Key_2:
     case Qt::Key_H:
     case Qt::Key_Plus:
-      m_head = !m_head;
-      this->update();
-      m_signal_item_updated(this);
+      SetHasHead(!HasHead());
       return;
     default:
       break;
@@ -398,28 +389,24 @@ void ribi::QtQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
   QGraphicsItem::keyPressEvent(event);
 }
 
-void ribi::QtQuadBezierArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void ribi::QtQuadBezierArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept
 {
   if (event->modifiers() & Qt::ShiftModifier)
   {
     if ((event->pos() - this->m_from->pos()).manhattanLength() < 10.0)
     {
-      m_tail = !m_tail;
-      this->update();
-      m_signal_item_updated(this);
+      SetHasTail(!HasTail());
     }
     else if ((event->pos() - this->m_to->pos()).manhattanLength() < 10.0)
     {
-      m_head = !m_head;
-      this->update();
-      m_signal_item_updated(this);
+      SetHasHead(!HasHead());
     }
   }
   QGraphicsItem::mousePressEvent(event);
 }
 
 
-void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *)
+void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept
 {
   painter->setRenderHint(QPainter::Antialiasing);
 
@@ -496,6 +483,27 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
   }
 }
 
+void ribi::QtQuadBezierArrowItem::SetFocusPen(const QPen& pen) noexcept
+{
+  if (m_focus_pen != pen)
+  {
+    m_focus_pen = pen;
+    this->update();
+    m_signal_item_updated(this);
+  }
+}
+
+void ribi::QtQuadBezierArrowItem::SetFromPos(const QPointF& pos) noexcept
+{
+  assert(m_from);
+  if (m_from->pos() != pos)
+  {
+    m_from->setPos(pos);
+    this->update();
+    m_signal_item_updated(this);
+  }
+}
+
 void ribi::QtQuadBezierArrowItem::SetHasHead(const bool has_head) noexcept
 {
 
@@ -518,7 +526,42 @@ void ribi::QtQuadBezierArrowItem::SetHasTail(const bool has_tail) noexcept
 }
 
 
-QPainterPath ribi::QtQuadBezierArrowItem::shape() const
+void ribi::QtQuadBezierArrowItem::SetMidPos(const QPointF& pos) noexcept
+{
+  assert(m_mid);
+  if (m_mid->pos() != pos)
+  {
+    m_mid->setPos(pos);
+    this->update();
+    m_signal_item_updated(this);
+  }
+}
+
+
+void ribi::QtQuadBezierArrowItem::SetPen(const QPen& pen) noexcept
+{
+  if (m_pen != pen)
+  {
+    m_pen = pen;
+    this->update();
+    m_signal_item_updated(this);
+  }
+}
+
+
+void ribi::QtQuadBezierArrowItem::SetToPos(const QPointF& pos) noexcept
+{
+  assert(m_to);
+  if (m_to->pos() != pos)
+  {
+    m_to->setPos(pos);
+    this->update();
+    m_signal_item_updated(this);
+  }
+}
+
+
+QPainterPath ribi::QtQuadBezierArrowItem::shape() const noexcept
 {
   const QPointF beyond = GetBeyond();
   const QPointF p_tail_end = GetTail();
@@ -531,4 +574,43 @@ QPainterPath ribi::QtQuadBezierArrowItem::shape() const
   QPainterPathStroker stroker;
   stroker.setWidth(m_click_easy_width);
   return stroker.createStroke(curve);
+}
+
+#ifndef NDEBUG
+void ribi::QtQuadBezierArrowItem::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtQuadBezierArrowItem::Test");
+  Geometry();
+  TRACE("Finished ribi::QtQuadBezierArrowItem::Test successfully");
+}
+#endif
+
+std::ostream& ribi::operator<<(std::ostream& os, const QtQuadBezierArrowItem& arrow) noexcept
+{
+  os
+    << '(' << arrow.m_from->x() << ',' << arrow.m_from->y() << ')'
+    << (arrow.m_tail ? '<' : '-') << "-- "
+    << '(' << arrow.m_mid->x() << ',' << arrow.m_mid->y() << ')'
+    << " --" << (arrow.m_head ? '>' : '-') << ' '
+    << '(' << arrow.m_to->x() << ',' << arrow.m_to->y() << ')'
+  ;
+  return os;
+}
+
+bool ribi::operator==(const QtQuadBezierArrowItem& lhs, const QtQuadBezierArrowItem& rhs) noexcept
+{
+  return
+       lhs.GetFocusPen() == rhs.GetFocusPen()
+    && lhs.GetFromItem() == rhs.GetFromItem()
+    && lhs.HasHead() == rhs.HasHead()
+    && lhs.GetMidItem() == rhs.GetMidItem()
+    && lhs.GetPen() == rhs.GetPen()
+    && lhs.HasTail() == rhs.HasTail()
+    && lhs.GetToItem() == rhs.GetToItem()
+  ;
 }

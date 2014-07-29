@@ -41,12 +41,13 @@ namespace ribi {
 struct QtQuadBezierArrowItem : public QGraphicsItem
 {
   QtQuadBezierArrowItem(
-    const QGraphicsItem* const from,
+    QGraphicsItem* const from,
     const bool tail,
-    const QGraphicsItem* const mid,
+    QGraphicsItem* const mid,
     const bool head,
-    const QGraphicsItem* const to,
-    QGraphicsItem* parent = 0);
+    QGraphicsItem* const to,
+    QGraphicsItem* parent = 0
+  ) noexcept;
 
   virtual ~QtQuadBezierArrowItem() noexcept {}
 
@@ -55,13 +56,19 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   ///Get the item where the arrow originates from
   ///(would the arrow and tail heads not be reversible)
+  ///Use the specific GetFrom* member functions to modify this item
   const QGraphicsItem* GetFromItem() const noexcept { return m_from; }
+  double GetFromX() const noexcept { return m_from->x(); }
+  double GetFromY() const noexcept { return m_from->y(); }
 
   ///Obtain the head point of the arrow, on the edge of the rectangle m_from
   QPointF GetHead() const noexcept;
 
   ///Get the item where the arrow pass through in the middle
+  ///Use the specific GetMid* member functions to modify this item
   const QGraphicsItem* GetMidItem() const noexcept { return m_mid; }
+  double GetMidX() const noexcept { return m_mid->x(); }
+  double GetMidY() const noexcept { return m_mid->y(); }
 
   ///Get the QPen used to draw a regular, non-focused, arrow
   const QPen& GetPen() const noexcept { return m_pen; }
@@ -71,7 +78,10 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   ///Get the item where the arrow points to
   ///(would the arrow and tail heads not be reversible)
+  ///Use the specific GetTo* member functions to modify this item
   const QGraphicsItem* GetToItem() const noexcept { return m_to; }
+  double GetToX() const noexcept { return m_to->x(); }
+  double GetToY() const noexcept { return m_to->y(); }
 
   ///Obtain the version of this class
   static std::string GetVersion() noexcept;
@@ -86,17 +96,17 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   bool HasTail() const noexcept { return m_tail; }
 
   ///Respond to key press
-  void keyPressEvent(QKeyEvent *event);
+  void keyPressEvent(QKeyEvent *event) noexcept override final;
 
   ///Respond to mouse press
-  void mousePressEvent(QGraphicsSceneMouseEvent *event);
+  void mousePressEvent(QGraphicsSceneMouseEvent *event) noexcept override final;
 
   ///The rectangle that containg the item, used for rough calculations like
   ///collision detection
-  virtual QRectF boundingRect() const;
+  QRectF boundingRect() const override final;
 
   ///Paint a QtQuadBezierArrowItem
-  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *);
+  void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) noexcept override final;
 
   ///Set if the arrow has a point at the head
   void SetHasHead(const bool has_head) noexcept;
@@ -105,21 +115,39 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   void SetHasTail(const bool has_tail) noexcept;
 
   ///Set the pen used to show focus
-  void SetFocusPen(const QPen& pen) noexcept { m_focus_pen = pen; }
+  void SetFocusPen(const QPen& pen) noexcept;
+
+  ///Set the position of the from item
+  void SetFromPos(const QPointF& pos) noexcept;
+  void SetFromPos(const double x, const double y) noexcept { SetFromPos(QPointF(x,y)); }
+  void SetFromX(const double& x) noexcept { SetFromPos(x,GetFromY()); }
+  void SetFromY(const double& y) noexcept { SetFromPos(GetFromX(),y); }
+
+  ///Set the position of the middle item
+  void SetMidPos(const QPointF& pos) noexcept;
+  void SetMidPos(const double x, const double y) noexcept { SetMidPos(QPointF(x,y)); }
+  void SetMidX(const double& x) noexcept { SetMidPos(x,GetMidY()); }
+  void SetMidY(const double& y) noexcept { SetMidPos(GetMidX(),y); }
 
   ///Set the regular pen used to draw the arrow
-  void SetPen(const QPen& pen) noexcept { m_pen = pen; }
+  void SetPen(const QPen& pen) noexcept;
+
+  ///Set the position of the from item
+  void SetToPos(const QPointF& pos) noexcept;
+  void SetToPos(const double x, const double y) noexcept { SetToPos(QPointF(x,y)); }
+  void SetToX(const double& x) noexcept { SetToPos(x,GetToY()); }
+  void SetToY(const double& y) noexcept { SetToPos(GetToX(),y); }
 
   ///More precise shape compared to boundingRect
   ///In this example, it is redefined to ease selecting those thin lines
-  QPainterPath shape() const;
+  QPainterPath shape() const noexcept override final;
 
   ///Emitted when the item has called
   boost::signals2::signal<void(const QtQuadBezierArrowItem*)> m_signal_item_updated;
 
   protected:
   ///Change the cursor when the user moves the mouse cursor in the bounding rectangle
-  void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+  void hoverEnterEvent(QGraphicsSceneHoverEvent *event) noexcept override final;
 
   private:
   ///The extra width given to the line for easier clicking
@@ -129,13 +157,13 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   QPen m_focus_pen;
 
   ///The item where the arrow originates from
-  const QGraphicsItem* const m_from;
+  QGraphicsItem* const m_from;
 
   ///Show arrow at head
   bool m_head;
 
   ///The item where the arrow pass through in the middle
-  const QGraphicsItem* const m_mid;
+  QGraphicsItem* const m_mid;
 
   ///The regular pen
   QPen m_pen;
@@ -145,20 +173,45 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
 
   ///The item where the arrow points to
   ///(would the arrow and tail heads not be reversible)
-  const QGraphicsItem* const m_to;
+  QGraphicsItem* const m_to;
 
   ///Obtain point 'beyond'
   QPointF GetBeyond() const noexcept;
 
   ///Obtain point 'center'
+  /*
+
+  F
+   \
+    \
+  C  M  B
+    /
+   /
+  T
+
+  F = From
+  T = To
+  M = Mid
+  C = Center
+  B = Beyond
+
+  */
   QPointF GetCenter() const noexcept;
 
   QPointF pos() const = delete;
+  void setPos(const QPointF&) = delete;
+  void setX(const double&) = delete;
+  void setY(const double&) = delete;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const QtQuadBezierArrowItem& arrow) noexcept;
 };
+
+std::ostream& operator<<(std::ostream& os, const QtQuadBezierArrowItem& arrow) noexcept;
+bool operator==(const QtQuadBezierArrowItem& lhs, const QtQuadBezierArrowItem& rhs) noexcept;
 
 } //~namespace ribi
 

@@ -123,7 +123,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtmodelsmenudialog.h"
 #include "qttestqtroundededitrectitemmenudialog.h"
 #include "qttestqtroundedrectitemmenudialog.h"
-#include "qttestqtroundedtextrectitemmenudialog.h"
+//#include "qttestqtroundedtextrectitemmenudialog.h" //OBSOLETE
 //#include "qttestquestionmenudialog.h"
 #include "qttestreversimaindialog.h"
 #include "qttestshapemenudialog.h"
@@ -291,7 +291,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
       p = new QtTestChessMenuDialog;
 #endif
       break;
-    case ProgramType::testConceptMap: p = new cmap::QtTestConceptMapMenuDialog; break;
+    case ProgramType::testConceptMap:
+#ifdef INCLUDE_TESTCONCEPTMAP_20140617
+      p = new cmap::QtTestConceptMapMenuDialog;
+#endif // INCLUDE_TESTCONCEPTMAP_20140617
+    break;
     case ProgramType::testDial: p = new QtTestDialMenuDialog; break;
     case ProgramType::testDrawCanvas: p = new QtTestDrawCanvasMenuDialog; break;
     case ProgramType::testEntrance: break;
@@ -325,7 +329,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testQtOcrWidget: break;
     case ProgramType::testQtRoundedEditRectItem: p = new QtTestQtRoundedEditRectItemMenuDialog; break;
     case ProgramType::testQtRoundedRectItem: p = new QtTestQtRoundedRectItemMenuDialog; break;
-    case ProgramType::testQtRoundedTextRectItem: p = new QtTestQtRoundedTextRectItemMenuDialog; break;
+    //case ProgramType::testQtRoundedTextRectItem: p = new QtTestQtRoundedTextRectItemMenuDialog; break; //OBSOLETE
     case ProgramType::testQuestion: break; //p = new QtTestQuestionMenuDialog; break;
     case ProgramType::testReversi: p = new QtTestReversiMainDialog; break;
     case ProgramType::testSelectFileDialog: break;

@@ -8,6 +8,7 @@
 //Warp's function parser
 #include "fparser.hh"
 
+#include "ribi_random.h"
 #pragma GCC diagnostic pop
 
 ribi::NoiseFunctionParser::NoiseFunctionParser(
@@ -41,5 +42,5 @@ double ribi::NoiseFunctionParser::Evaluate(const double x) const
 double ribi::NoiseFunctionParser::MyRand(const double * const max)
 {
   assert(max);
-  return (*max) * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX);
+  return (*max) * Random().GetFraction();
 }

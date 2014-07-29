@@ -18,14 +18,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // ---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtArrowItems.htm
 // ---------------------------------------------------------------------------
-#ifndef QTTESTQTARROWITEMSMAINDIALOG_H
-#define QTTESTQTARROWITEMSMAINDIALOG_H
+#ifndef QTTESTQTARROWITEMSCOMPAREDIALOG_H
+#define QTTESTQTARROWITEMSCOMPAREDIALOG_H
 
 #include <string>
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qthideandshowdialog.h"
 #include "about.h"
 #include "qthideandshowdialog.h"
@@ -34,29 +36,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 struct QPlainTextEdit;
 
 namespace Ui {
-  class QtTestQtArrowItemsMainDialog;
+  class QtTestQtArrowItemsCompareDialog;
 }
 
 namespace ribi {
 
-class QtTestQtArrowItemsMainDialog : public ribi::QtHideAndShowDialog
+class QtTestQtArrowItemsCompareDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestQtArrowItemsMainDialog(QWidget *parent = 0);
-  QtTestQtArrowItemsMainDialog(const QtTestQtArrowItemsMainDialog&) = delete;
-  QtTestQtArrowItemsMainDialog& operator=(const QtTestQtArrowItemsMainDialog&) = delete;
-  ~QtTestQtArrowItemsMainDialog() noexcept;
+  explicit QtTestQtArrowItemsCompareDialog(QWidget *parent = 0);
+  QtTestQtArrowItemsCompareDialog(const QtTestQtArrowItemsCompareDialog&) = delete;
+  QtTestQtArrowItemsCompareDialog& operator=(const QtTestQtArrowItemsCompareDialog&) = delete;
+  ~QtTestQtArrowItemsCompareDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);
 
 private:
-  Ui::QtTestQtArrowItemsMainDialog *ui;
-
-  //Obtain a random value from zero to 1.0
-  static double GetRandomUniform();
+  Ui::QtTestQtArrowItemsCompareDialog *ui;
 
   void OnRequestSceneUpdate();
 
@@ -67,4 +66,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTTESTQTARROWITEMSMAINDIALOG_H
+#endif // QTTESTQTARROWITEMSCOMPAREDIALOG_H

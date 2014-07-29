@@ -21,7 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttestqtarrowitemsmaindialog.h"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qttestqtarrowitemscomparedialog.h"
 
 #include <cassert>
 #include <cmath>
@@ -38,13 +39,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtlabeledquadbezierarrowitem.h"
 #include "qtroundedrectitem.h"
 #include "qtroundededitrectitem.h"
+#include "ribi_random.h"
 #include "trace.h"
-#include "ui_qttestqtarrowitemsmaindialog.h"
+#include "ui_qttestqtarrowitemscomparedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent)
+ribi::QtTestQtArrowItemsCompareDialog::QtTestQtArrowItemsCompareDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestQtArrowItemsMainDialog)
+    ui(new Ui::QtTestQtArrowItemsCompareDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -94,8 +96,8 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
       for (int i=0; i!=n_mid; ++i)
       {
         const double f = static_cast<double>(i + 1) / static_cast<double>(n_mid + 1);
-        const double dx = (f * (head_pos.x() - tail_pos.x())) - 10.0 + (20.0 * GetRandomUniform());
-        const double dy = (f * (head_pos.y() - tail_pos.y())) - 10.0 + (20.0 * GetRandomUniform());
+        const double dx = (f * (head_pos.x() - tail_pos.x())) - 10.0 + (20.0 * Random().GetFraction());
+        const double dy = (f * (head_pos.y() - tail_pos.y())) - 10.0 + (20.0 * Random().GetFraction());
         QPointF p(tail_pos.x() + dx, tail_pos.y() + dy);
         mid.push_back(p);
       }
@@ -136,7 +138,7 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
 
 
       //rect->m_signal_request_scene_update.connect(
-      //  boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+      //  boost::bind(&ribi::QtTestQtArrowItemsCompareDialog::OnRequestSceneUpdate,this));
     }
     for (int i=0; i<n_items-2; i+=3)
     {
@@ -179,7 +181,7 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
       rects.push_back(rect);
 
       //rect->m_signal_request_scene_update.connect(
-      //  boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+      //  boost::bind(&ribi::QtTestQtArrowItemsCompareDialog::OnRequestSceneUpdate,this));
     }
     for (int i=0; i<n_items-1; i+=2)
     {
@@ -213,7 +215,7 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
       this->ui->view->scene()->addItem(rect);
       rects.push_back(rect);
       //rect->m_signal_request_scene_update.connect(
-      //  boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+      //  boost::bind(&ribi::QtTestQtArrowItemsCompareDialog::OnRequestSceneUpdate,this));
     }
     for (int i=0; i<n_items-1; i+=2)
     {
@@ -231,37 +233,32 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
   }
 }
 
-ribi::QtTestQtArrowItemsMainDialog::~QtTestQtArrowItemsMainDialog() noexcept
+ribi::QtTestQtArrowItemsCompareDialog::~QtTestQtArrowItemsCompareDialog() noexcept
 {
   delete ui;
 }
 
-//From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double ribi::QtTestQtArrowItemsMainDialog::GetRandomUniform()
-{
-  return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
-}
-
-void ribi::QtTestQtArrowItemsMainDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtTestQtArrowItemsCompareDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
 
-void ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate()
+void ribi::QtTestQtArrowItemsCompareDialog::OnRequestSceneUpdate()
 {
   this->ui->view->scene()->update();
 }
 
 #ifndef NDEBUG
-void ribi::QtTestQtArrowItemsMainDialog::Test() noexcept
+void ribi::QtTestQtArrowItemsCompareDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtArrowItemsMainDialog::Test");
-  TRACE("Finished ribi::QtTestQtArrowItemsMainDialog::Test successfully");
+  TRACE("Starting ribi::QtTestQtArrowItemsCompareDialog::Test");
+  QtTestQtArrowItemsCompareDialog();
+  TRACE("Finished ribi::QtTestQtArrowItemsCompareDialog::Test successfully");
 }
 #endif

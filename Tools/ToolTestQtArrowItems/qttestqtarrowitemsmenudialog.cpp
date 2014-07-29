@@ -20,15 +20,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // ---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttestqtarrowitemsmenudialog.h"
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
-#include "testqtarrowitemsmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttestqtarrowitemsmaindialog.h"
 #include "qthideandshowdialog.h"
+#include "qttestqtarrowitemscomparedialog.h"
+#include "qttestqtarrowitemsmodifydialog.h"
+#include "testqtarrowitemsmenudialog.h"
 #include "trace.h"
 #include "ui_qttestqtarrowitemsmenudialog.h"
 #pragma GCC diagnostic pop
@@ -48,7 +51,7 @@ ribi::QtTestQtArrowItemsMenuDialog::~QtTestQtArrowItemsMenuDialog() noexcept
   delete ui;
 }
 
-void ribi::QtTestQtArrowItemsMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtArrowItemsMenuDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
@@ -63,15 +66,22 @@ void ribi::QtTestQtArrowItemsMenuDialog::on_button_about_clicked()
   this->ShowChild(&d);
 }
 
+void ribi::QtTestQtArrowItemsMenuDialog::on_button_compare_clicked()
+{
+  QtTestQtArrowItemsCompareDialog d;
+  ShowChild(&d);
+}
+
+void ribi::QtTestQtArrowItemsMenuDialog::on_button_modify_clicked()
+{
+  QtTestQtArrowItemsModifyDialog d;
+  ShowChild(&d);
+}
+
+
 void ribi::QtTestQtArrowItemsMenuDialog::on_button_quit_clicked()
 {
   close();
-}
-
-void ribi::QtTestQtArrowItemsMenuDialog::on_button_start_clicked()
-{
-  QtTestQtArrowItemsMainDialog d;
-  ShowChild(&d);
 }
 
 #ifndef NDEBUG
@@ -83,8 +93,10 @@ void ribi::QtTestQtArrowItemsMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestQtArrowItemsMenuDialog::Test");
-  QtTestQtArrowItemsMainDialog d;
-  d.show();
+  QtTestQtArrowItemsModifyDialog();
+  QtTestQtArrowItemsCompareDialog();
   TRACE("Finished ribi::QtTestQtArrowItemsMenuDialog::Test successfully");
 }
 #endif
+
+

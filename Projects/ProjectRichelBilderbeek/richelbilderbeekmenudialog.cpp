@@ -218,7 +218,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testqtmodelsmenudialog.h"
 #include "testqtroundededitrectitemmenudialog.h"
 #include "testqtroundedrectitemmenudialog.h"
-#include "testqtroundedtextrectitemmenudialog.h"
+//#include "testqtroundedtextrectitemmenudialog.h" //OBSOLETE
 //#include "testquestionmenudialog.h"
 #include "testshapemenudialog.h"
 #include "testshinybuttonmenudialog.h"
@@ -2723,7 +2723,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       break;
       case ProgramType::testQtRoundedEditRectItem: p.reset(new TestQtRoundedEditRectItemMenuDialog); break;
       case ProgramType::testQtRoundedRectItem: p.reset(new TestQtRoundedRectItemMenuDialog); break;
-      case ProgramType::testQtRoundedTextRectItem: p.reset(new TestQtRoundedTextRectItemMenuDialog); break;
+      //case ProgramType::testQtRoundedTextRectItem: p.reset(new TestQtRoundedTextRectItemMenuDialog); break; //OBSOLETE
       case ProgramType::testQuestion:
         assert(!"TODO");
         //p.reset(new TestQuestionMenuDialog);

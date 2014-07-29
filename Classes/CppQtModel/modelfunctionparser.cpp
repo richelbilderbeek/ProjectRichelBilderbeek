@@ -10,6 +10,9 @@
 
 //Warp's function parser
 #include "fparser.hh"
+
+#include "ribi_random.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::ModelFunctionParser::ModelFunctionParser(
@@ -47,5 +50,5 @@ double ribi::ModelFunctionParser::Evaluate(const double x) const
 double ribi::ModelFunctionParser::MyRand(const double * const max) noexcept
 {
   assert(max);
-  return (*max) * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX);
+  return (*max) * Random().GetFraction();
 }

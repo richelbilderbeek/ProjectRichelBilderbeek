@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtroundedrectitem.h"
 #include "qtroundedrectitemdialog.h"
+#include "ribi_random.h"
 #include "trace.h"
 #include "ui_qttestqtroundedrectitemmodifydialog.h"
 #pragma GCC diagnostic pop
@@ -129,14 +130,14 @@ boost::shared_ptr<ribi::QtRoundedRectItem> ribi::QtTestQtRoundedRectItemModifyDi
     );
     item->SetFocusPen(pen);
   }
-  item->SetHeight(200.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+  item->SetHeight(200.0 * Random().GetFraction());
   item->SetPos(
-    -50.0 + (100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX)),
-    -50.0 + (100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX))
+    -50.0 + (100.0 * Random().GetFraction()),
+    -50.0 + (100.0 * Random().GetFraction())
   );
-  item->SetRadiusX(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
-  item->SetRadiusY(100.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
-  item->SetWidth(200.0 * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+  item->SetRadiusX(100.0 * Random().GetFraction());
+  item->SetRadiusY(100.0 * Random().GetFraction());
+  item->SetWidth(200.0 * Random().GetFraction());
   return item;
 }
 

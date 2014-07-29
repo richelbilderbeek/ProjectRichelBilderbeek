@@ -41,13 +41,16 @@ private:
   ///The QtEdge to work on
   ///A QtEdge is
   /// (1) a Edge
-  /// (2) inherited properties from QtRoundedEditRectItem
+  /// (2) an Arrow
+  /// (3) inherited properties from QtRoundedEditRectItem
   boost::shared_ptr<QtEdge> m_qtedge;
 
   ///QtDialog that displays (1) a Edge
   boost::shared_ptr<QtEdgeDialog> m_qtedgedialog;
 
-  ///QtDialog that displays (2) inherited properties from QtRoundedEditRectItem
+  ///QtDialog that displays (2) an Arrow
+
+  ///QtDialog that displays (3) inherited properties from QtRoundedEditRectItem
   boost::shared_ptr<QtRoundedEditRectItemDialog> m_qtroundededitrectitem_dialog;
 
   ///Checks invariants, empty at release version

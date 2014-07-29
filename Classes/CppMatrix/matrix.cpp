@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/ublas/blas.hpp> //boost::numeric::ublas::equals
 #pragma GCC diagnostic pop
 
+#include "ribi_random.h"
 #include "trace.h"
 
 double ribi::Matrix::CalcDeterminant(boost::numeric::ublas::matrix<double> m)
@@ -103,7 +104,7 @@ boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(
   {
     for (std::size_t col=0; col!=n_cols; ++col)
     {
-      m(row,col) = boost::numeric_cast<double>(std::rand()) / boost::numeric_cast<double>(RAND_MAX);
+      m(row,col) = Random().GetFraction();
     }
   }
   return m;

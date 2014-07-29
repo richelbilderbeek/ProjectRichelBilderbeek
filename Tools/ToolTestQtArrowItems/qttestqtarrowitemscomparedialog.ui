@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTestQtArrowItemsMainDialog</class>
- <widget class="QDialog" name="QtTestQtArrowItemsMainDialog">
+ <class>QtTestQtArrowItemsCompareDialog</class>
+ <widget class="QDialog" name="QtTestQtArrowItemsCompareDialog">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
@@ -20,10 +20,10 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>TestQtArrowItems</string>
+   <string>Compare</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Projects/ProjectBrainweaver/Brainweaver.qrc">
+   <iconset resource="ToolTestQtArrowItems.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
@@ -53,7 +53,7 @@ QPlainTextEdit { font: 10px, &quot;monospace&quot; }
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../Projects/ProjectBrainweaver/Brainweaver.qrc"/>
+  <include location="ToolTestQtArrowItems.qrc"/>
  </resources>
  <connections/>
 </ui>

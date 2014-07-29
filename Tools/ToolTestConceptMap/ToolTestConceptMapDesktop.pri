@@ -32,7 +32,7 @@ SOURCES += \
 #    ../../Tools/ToolTestConceptMap/qttestconceptmapqtconceptdialog.cpp \
     ../../Tools/ToolTestConceptMap/qttestconceptmapnodedialog.cpp \
     ../../Tools/ToolTestConceptMap/qttestconceptmapedgedialog.cpp \
-    qttestconceptmapqtedgedialog.cpp
+    ../../Tools/ToolTestConceptMap/qttestconceptmapqtedgedialog.cpp
 
 
 FORMS += \
@@ -50,6 +50,6 @@ FORMS += \
 #    ../../Tools/ToolTestConceptMap/qttestconceptmapqtconceptdialog.ui \
     ../../Tools/ToolTestConceptMap/qttestconceptmapnodedialog.ui \
     ../../Tools/ToolTestConceptMap/qttestconceptmapedgedialog.ui \
-    qttestconceptmapqtedgedialog.ui
+    ../../Tools/ToolTestConceptMap/qttestconceptmapqtedgedialog.ui
 
 

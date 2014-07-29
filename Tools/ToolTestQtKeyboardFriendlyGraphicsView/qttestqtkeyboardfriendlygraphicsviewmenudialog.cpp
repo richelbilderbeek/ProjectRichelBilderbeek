@@ -34,7 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpatharrowitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtroundedrectitem.h"
-#include "qtroundedtextrectitem.h"
+#include "qtroundededitrectitem.h"
 #include "qttestqtkeyboardfriendlygraphicsviewwidget.h"
 #include "testqtkeyboardfriendlygraphicsviewmenudialog.h"
 #include "trace.h"
@@ -86,7 +86,7 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout()
   about.AddLibrary("QtPathArrowItem version: " + QtPathArrowItem::GetVersion());
   about.AddLibrary("QtQuadBezierArrowItem version: " + QtQuadBezierArrowItem::GetVersion());
   about.AddLibrary("QtRoundedRectItem version: " + QtRoundedRectItem::GetVersion());
-  about.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion());
+  about.AddLibrary("QtRoundedEditRectItem version: " + QtRoundedEditRectItem::GetVersion());
   QtAboutDialog d(about);
   d.setWindowIcon(this->windowIcon());
   this->ShowChild(&d);

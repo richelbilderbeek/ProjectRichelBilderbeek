@@ -38,8 +38,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtroundededitrectitemdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtRoundedEditRectItemDialog::QtRoundedEditRectItemDialog(QWidget *parent) :
-    QtHideAndShowDialog(parent),
+ribi::QtRoundedEditRectItemDialog::QtRoundedEditRectItemDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtRoundedEditRectItemDialog),
     m_dialog{boost::make_shared<QtRoundedRectItemDialog>()},
     m_item{}

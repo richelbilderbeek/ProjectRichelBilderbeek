@@ -41,6 +41,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "manydigitnewickindexer.h"
 #include "newick.h"
 #include "qtaboutdialog.h"
+#include "ribi_random.h"
 #include "twodigitnewick.h"
 #include "ui_qttestmanydigitnewickmaindialog.h"
 #pragma GCC diagnostic pop
@@ -89,7 +90,7 @@ ribi::QtTestManyDigitNewickMainDialog::QtTestManyDigitNewickMainDialog(QWidget *
       continue;
     }
     //Start the tests
-    const double theta = 1.0 + GetRandomUniform() * 10.0;
+    const double theta = 1.0 + Random().GetFraction() * 10.0;
     #ifndef NTRACE_BILDERBIKKEL
     if (Newick::IsBinaryNewick(Newick::StringToNewick(s)))
     {
@@ -149,12 +150,6 @@ ribi::QtTestManyDigitNewickMainDialog::QtTestManyDigitNewickMainDialog(QWidget *
 ribi::QtTestManyDigitNewickMainDialog::~QtTestManyDigitNewickMainDialog()
 {
   delete ui;
-}
-
-//From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double ribi::QtTestManyDigitNewickMainDialog::GetRandomUniform()
-{
-  return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
 
 void ribi::QtTestManyDigitNewickMainDialog::OnAnyChange()

@@ -617,14 +617,6 @@ ribi::con3::Player ribi::con3::ConnectThree::GetNextPlayer() const noexcept
   return ribi::con3::GetNextPlayer(m_player);
 }
 
-/*
-//From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double ribi::con3::ConnectThree::GetRandomUniform() noexcept
-{
-  return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
-}
-*/
-
 int ribi::con3::ConnectThree::GetRows() const noexcept
 {
   assert(!m_area.empty());

@@ -264,9 +264,9 @@ struct Geometry
     using boost::geometry::get;
     using boost::geometry::min_corner;
     using boost::geometry::max_corner;
-    const auto bottom(get<max_corner,1>(r));
+    const auto bottom = get<max_corner,1>(r);
     #ifndef NDEBUG
-    const auto top   (get<min_corner,1>(r));
+    const auto top = get<min_corner,1>(r);
     assert(top <= bottom);
     #endif
     return bottom;
@@ -275,6 +275,7 @@ struct Geometry
   //From www.richelbilderbeek.nl/CppGetDistance.htm
   double GetDistance(const double dx, const double dy) const noexcept;
   double GetDistance(const Coordinat2D& a, const Coordinat2D& b) const noexcept;
+  double GetDistance(const double x1, const double y1, const double x2, const double y2) const noexcept { return GetDistance(x2-x1,y2-y1); }
 
   template <class T>
   T GetHeight(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept

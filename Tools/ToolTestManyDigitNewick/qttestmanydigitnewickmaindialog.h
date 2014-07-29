@@ -51,8 +51,6 @@ private:
 private slots:
   void on_button_calculate_clicked();
   void OnAnyChange();
-
-  static double GetRandomUniform();
 };
 
 } //~namespace ribi

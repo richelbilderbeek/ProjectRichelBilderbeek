@@ -37,7 +37,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedrectitem.h"
 #include "qtpatharrowitem.h"
 #include "qtroundededitrectitem.h"
-#include "qtroundedtextrectitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -119,12 +118,12 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
   }
   {
     //QtRoundedTextRectItem
-    typedef QtRoundedTextRectItem Item;
+    typedef QtRoundedEditRectItem Item;
     const double midx = 174.0;
     const double midy = 300.0;
     const int n = 3;
     const double ray = 100.0;
-    QGraphicsTextItem * const text = new QGraphicsTextItem("QtRoundedTextRectItem");
+    QGraphicsTextItem * const text = new QGraphicsTextItem("QtRoundedEditRectItem");
     text->setPos(midx - text->boundingRect().center().x(),midy - text->boundingRect().center().y());
     scene()->addItem(text);
     QGraphicsEllipseItem * const circle = new QGraphicsEllipseItem(midx - ray, midy - ray,2.0 * ray,2.0 * ray);

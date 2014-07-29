@@ -63,7 +63,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtrichelbilderbeekmenuitemwidget.h"
 #include "qtrichelbilderbeekprogram.h"
 #include "qtroundededitrectitem.h"
-#include "qtroundedtextrectitem.h"
+//#include "qtroundedtextrectitem.h" //OBSOLETE
 #include "qtshapewidget.h"
 #include "qtshinybuttonwidget.h"
 #include "qtsimplifynewickmaindialog.h"
@@ -166,7 +166,7 @@ ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
   a.AddLibrary("QtRoundedEditRectItem version: " + QtRoundedEditRectItem::GetVersion());
   a.AddLibrary("QtRoundedRectItem version: " + QtRoundedRectItem::GetVersion());
-  a.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion());
+  //a.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion()); //OBSOLETE
   a.AddLibrary("QtShapeWidget version: " + QtShapeWidget::GetVersion());
   a.AddLibrary("QtShinyButtonWidget version: " + QtShinyButtonWidget::GetVersion());
   //a.AddLibrary("QtSprites version: " + QtSprites::GetVersion());

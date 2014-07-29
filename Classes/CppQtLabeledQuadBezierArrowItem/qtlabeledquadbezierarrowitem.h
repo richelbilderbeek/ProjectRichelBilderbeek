@@ -20,12 +20,13 @@ struct QtLabeledQuadBezierArrowItem : public QtRoundedEditRectItem
 {
 
   QtLabeledQuadBezierArrowItem(
-    const QGraphicsItem *const from,
+    QGraphicsItem *const from,
     const bool tail,
     const std::string& text,
     const bool head,
-    const QGraphicsItem *const to,
-    QGraphicsItem *parent = 0);
+    QGraphicsItem *const to,
+    QGraphicsItem *parent = 0
+  );
   QtLabeledQuadBezierArrowItem(const QtLabeledQuadBezierArrowItem&) = delete;
   QtLabeledQuadBezierArrowItem& operator=(const QtLabeledQuadBezierArrowItem&) = delete;
   ~QtLabeledQuadBezierArrowItem() noexcept {}
@@ -40,9 +41,9 @@ struct QtLabeledQuadBezierArrowItem : public QtRoundedEditRectItem
   static std::vector<std::string> GetVersionHistory() noexcept;
 
 protected:
-  virtual QRectF boundingRect() const noexcept;
-  virtual void keyPressEvent(QKeyEvent *event) noexcept;
-  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
+  virtual QRectF boundingRect() const noexcept override final;
+  virtual void keyPressEvent(QKeyEvent *event) noexcept override final;
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept override final;
 
 private:
   const boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;
