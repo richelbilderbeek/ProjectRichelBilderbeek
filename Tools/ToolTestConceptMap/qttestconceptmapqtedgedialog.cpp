@@ -25,6 +25,7 @@
 #include "qtconceptmapnode.h"
 #include "qtconceptmapqtnodefactory.h"
 #include "qtconceptmapedge.h"
+#include "qtconceptmapedge.h"
 #include "qtconceptmapqtedgedialog.h"
 #include "qtconceptmapqtedgefactory.h"
 #include "qtconceptmapratestrategy.h"
@@ -39,6 +40,8 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
     ui(new Ui::QtTestQtEdgeDialog),
     m_dialog_left{new QtQtEdgeDialog},
     m_dialog_right{new QtQtEdgeDialog},
+    m_from{QtNodeFactory().GetTest(0)},
+    m_to{QtNodeFactory().GetTest(1)},
     m_view_left{new QtKeyboardFriendlyGraphicsView},
     m_view_right{new QtKeyboardFriendlyGraphicsView}
 {
@@ -50,6 +53,9 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
     QGraphicsScene * const my_scene = new QGraphicsScene(this);
     m_view_left->setScene(my_scene);
     m_view_right->setScene(my_scene);
+
+    my_scene->addItem(m_from.get());
+    my_scene->addItem(m_to.get());
   }
 
   assert(!this->ui->here->layout());
@@ -101,10 +107,8 @@ void ribi::cmap::QtTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& 
   if (!m_view_left->scene()->items().isEmpty())
   {
     const auto v = m_view_left->scene()->items();
-    assert(v.count() == 1);
     m_view_left->scene()->removeItem(v[0]);
   }
-  assert(m_view_left->scene()->items().isEmpty());
   m_dialog_left->SetQtEdge(qtedge);
   m_dialog_right->SetQtEdge(qtedge);
   this->m_view_left->scene()->addItem(qtedge.get());
@@ -146,13 +150,8 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
 
 void ribi::cmap::QtTestQtEdgeDialog::on_button_load_clicked() noexcept
 {
-  /*
   const int index = ui->box_test_index->value();
-  const auto qtedge = boost::make_shared<QtEdge>(
-    QtEdgeFactory().GetTest(index)
-  );
-  SetQtEdge(qtedge);
-  */
-  assert(!"TODO");
+  const auto qtedge = QtEdgeFactory().GetTest(index,m_from,m_to);
 
+  SetQtEdge(qtedge);
 }

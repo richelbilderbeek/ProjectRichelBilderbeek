@@ -28,7 +28,7 @@
        <widget class="QSpinBox" name="box_test_index"/>
       </item>
       <item>
-       <widget class="QPushButton" name="button_load_test">
+       <widget class="QPushButton" name="button_load">
         <property name="text">
          <string>&amp;Load</string>
         </property>

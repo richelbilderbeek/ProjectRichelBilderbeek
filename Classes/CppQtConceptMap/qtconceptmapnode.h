@@ -129,15 +129,9 @@ private:
 
 
   void OnPosChanged(const QtRoundedRectItem * const item) noexcept;
-
   void OnTextChanged(const QtRoundedRectItem * const item) noexcept;
-
   void OnXchanged(Node * const node) noexcept;
-
-
   void OnYchanged(Node * const node) noexcept;
-
-
   void OnConceptChanged(Node * const node) noexcept;
 
   ///This QtNode its Node changed

@@ -46,8 +46,11 @@ private:
 
   Ui::QtTestQtEdgeDialog *ui;
 
+
   boost::shared_ptr<QtQtEdgeDialog> m_dialog_left;
   boost::shared_ptr<QtQtEdgeDialog> m_dialog_right;
+  const boost::shared_ptr<QtNode> m_from;
+  const boost::shared_ptr<QtNode> m_to;
   boost::shared_ptr< ::ribi::QtKeyboardFriendlyGraphicsView> m_view_left;
   boost::shared_ptr< ::ribi::QtKeyboardFriendlyGraphicsView> m_view_right;
 

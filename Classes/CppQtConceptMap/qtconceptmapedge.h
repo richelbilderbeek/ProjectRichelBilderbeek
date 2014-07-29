@@ -110,7 +110,7 @@ private:
   const Arrow m_arrow;
 
   ///The edge
-  const boost::shared_ptr<Edge> m_edge;
+  boost::shared_ptr<Edge> m_edge;
 
   ///The node item the arrow originates from
   QtNode * m_from;
@@ -124,6 +124,7 @@ private:
   void OnNodeChanged(Edge * const edge) noexcept;
   void OnTailArrowChanged(Edge * const edge) noexcept;
   void OnToChanged(Edge * const edge) noexcept;
+
   //void OnXchanged(Edge * const edge) noexcept;
   //void OnYchanged(Edge * const edge) noexcept;
 

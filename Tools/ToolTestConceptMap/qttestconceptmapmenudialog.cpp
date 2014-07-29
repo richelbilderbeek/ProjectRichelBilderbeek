@@ -67,6 +67,7 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
   if (sm_test_node) { QtTestNodeDialog(); }
   if (sm_test_edge) { QtTestEdgeDialog(); }
   if (sm_test_qtnode) { QtTestQtNodeDialog(); }
+  if (sm_test_qtedge) { QtTestQtEdgeDialog(); }
   //QtTestDisplayConceptMapDialog();
   //QtTestEditConceptMapDialog();
   //QtTestRateConceptMapDialog();
@@ -159,19 +160,9 @@ void ribi::cmap::QtTestMenuDialog::on_button_qtnode_clicked()
   this->ShowChild(&d);
 }
 
-/*
 void ribi::cmap::QtTestMenuDialog::on_button_qtedge_clicked()
 {
   QtTestQtEdgeDialog d;
   d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
-}
-*/
-
-void ribi::cmap::QtTestMenuDialog::on_button_qtedge_clicked()
-{
-  //QtTestQtEdgeDialog d;
-  //d.setStyleSheet(this->styleSheet());
-  //this->ShowChild(&d);
-
 }
