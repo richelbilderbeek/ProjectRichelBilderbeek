@@ -45,10 +45,13 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
     m_view_left{new QtKeyboardFriendlyGraphicsView},
     m_view_right{new QtKeyboardFriendlyGraphicsView}
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+
+  ui->setupUi(this);
+  m_from->SetPos(0.0,0.0);
+  m_to->SetPos(10.0,100.0);
   {
     QGraphicsScene * const my_scene = new QGraphicsScene(this);
     m_view_left->setScene(my_scene);
@@ -75,6 +78,8 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
   ui->box_test_index->setValue(0);
   this->on_button_load_clicked();
 
+  this->m_dialog_left->GetQtEdge()->GetFrom()->GetNode()->GetConcept()->SetName("From");
+  this->m_dialog_left->GetQtEdge()->GetTo()->GetNode()->GetConcept()->SetName("To");
 }
 
 ribi::cmap::QtTestQtEdgeDialog::~QtTestQtEdgeDialog() noexcept

@@ -61,6 +61,8 @@ std::vector<boost::shared_ptr<ribi::cmap::QtEdge>> ribi::cmap::QtEdgeFactory::Ge
     {
       const boost::shared_ptr<QtEdge> q{QtEdgeFactory().Create(c,from.get(),to.get())};
       assert(q);
+      q->SetX((from->GetX() + to->GetX()) / 2.0);
+      q->SetY((from->GetY() + to->GetY()) / 2.0);
       return q;
     }
   );
