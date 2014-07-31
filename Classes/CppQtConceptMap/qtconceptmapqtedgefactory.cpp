@@ -26,6 +26,11 @@ boost::shared_ptr<ribi::cmap::QtEdge> ribi::cmap::QtEdgeFactory::Create(
   return qtedge;
 }
 
+int ribi::cmap::QtEdgeFactory::GetNumberOfTests() const noexcept
+{
+  return EdgeFactory().GetNumberOfTests();
+}
+
 boost::shared_ptr<ribi::cmap::QtEdge> ribi::cmap::QtEdgeFactory::GetTest(
   const int i,
   const boost::shared_ptr<QtNode>& from,
@@ -34,6 +39,12 @@ boost::shared_ptr<ribi::cmap::QtEdge> ribi::cmap::QtEdgeFactory::GetTest(
 {
   const auto tests = GetTests(from,to);
   assert(i >= 0);
+  #ifndef NDEBUG
+  if(i >= static_cast<int>(tests.size()))
+  {
+    TRACE("BREAK");
+  }
+  #endif
   assert(i < static_cast<int>(tests.size()));
   return tests[i];
 }
@@ -53,6 +64,7 @@ std::vector<boost::shared_ptr<ribi::cmap::QtEdge>> ribi::cmap::QtEdgeFactory::Ge
       return q;
     }
   );
+  assert(GetNumberOfTests() == static_cast<int>(qtedges.size()));
   return qtedges;
 }
 

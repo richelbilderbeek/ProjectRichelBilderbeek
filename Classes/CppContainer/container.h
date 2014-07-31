@@ -40,6 +40,9 @@ struct Container
 {
   Container();
 
+  ///Concatenate concatenates the strings, with a certain seperator
+  std::string Concatenate(const std::vector<std::string>& v, const std::string& seperator = "") const noexcept;
+
   ///std::count(t.begin(),t.end(),u
   template <class T, class U>
   static int Count(const T& t, const U& u) noexcept
@@ -60,11 +63,10 @@ struct Container
   template <class T>
   static std::string ToStr(const std::set<T>& set) noexcept
   {
-    std::string str;
     std::stringstream s;
     for (const auto& t: set) { s << t << ","; }
-    str = s.str();
-    str.pop_back();
+    std::string str{s.str()};
+    if (!str.empty()) { str.pop_back(); }
     str = "{" + str + "}";
     return str;
   }
@@ -72,11 +74,10 @@ struct Container
   template <class T>
   static std::string ToStr(const std::vector<T>& v) noexcept
   {
-    std::string str;
     std::stringstream s;
     for (const auto& t: v) { s << t << ","; }
-    str = s.str();
-    str.pop_back();
+    std::string str{s.str()};
+    if (!str.empty()) { str.pop_back(); }
     str = "{" + str + "}";
     return str;
   }

@@ -28,7 +28,6 @@ struct QtEdgeFactory
   ///Obtain a Edge or CenterEdge from an XML std::string
   boost::shared_ptr<Edge> FromXml(const std::string& s) const noexcept;
 
-  ///Obtain testing nodes
   int GetNumberOfTests() const noexcept;
 
   std::vector<boost::shared_ptr<QtEdge>> GetTests(

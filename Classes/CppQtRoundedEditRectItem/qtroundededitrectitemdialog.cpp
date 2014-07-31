@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtroundededitrectitemdialog.h"
 
+#include <boost/algorithm/string/trim_all.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/lambda/lambda.hpp>
 
@@ -93,14 +94,15 @@ double ribi::QtRoundedEditRectItemDialog::GetUiY() const noexcept
 
 std::string ribi::QtRoundedEditRectItemDialog::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::QtRoundedEditRectItemDialog::GetVersionHistory() noexcept
 {
   return {
     "2014-06-22: version 1.0: initial version",
-    "2014-07-21: version 1.1: added CheckMe member functiom"
+    "2014-07-21: version 1.1: added CheckMe member function",
+    "2014-07-31: version 1.2: fixed bug in SetText"
   };
 }
 
@@ -158,11 +160,7 @@ void ribi::QtRoundedEditRectItemDialog::OnPaddingChanged(QtRoundedEditRectItem *
 
 void ribi::QtRoundedEditRectItemDialog::OnTextChanged(QtRoundedEditRectItem * const qtitem) noexcept
 {
-  std::string s;
-  for (const auto t: qtitem->GetText())
-  {
-    s += t + '\n';
-  }
+  const std::string s{Container().Concatenate(qtitem->GetText(),"\n")};
   ui->text->setPlainText(s.c_str());
 }
 

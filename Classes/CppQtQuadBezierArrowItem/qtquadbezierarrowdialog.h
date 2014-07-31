@@ -33,6 +33,11 @@ public:
   ///Checks the invariants, empty at release
   void CheckMe() const noexcept;
 
+  Arrow GetArrow() const noexcept { return m_arrow; }
+
+  double GetUiMidX() const noexcept;
+  double GetUiMidY() const noexcept;
+
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 

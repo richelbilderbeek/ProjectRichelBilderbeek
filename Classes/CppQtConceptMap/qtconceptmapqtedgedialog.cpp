@@ -42,8 +42,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 
 #include "ui_qtconceptmapqtedgedialog.h"
-//#include "ui_qtconceptmapedgedialog.h"
-//#include "ui_qtroundededitrectitemdialog.h"
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtQtEdgeDialog::QtQtEdgeDialog(QWidget *parent)

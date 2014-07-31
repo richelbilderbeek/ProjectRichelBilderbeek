@@ -38,6 +38,7 @@ namespace ribi {
 ///The QtQuadBezierArrowItem is a QGraphicsItem that
 ///follows the three QGraphicsItem positions
 ///If mid is nullptr, the line will be straight
+///The QGraphicsItems supplied will not be deleted by QtQuadBezierArrowItem
 struct QtQuadBezierArrowItem : public QGraphicsItem
 {
   QtQuadBezierArrowItem(

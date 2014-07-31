@@ -32,7 +32,14 @@ public:
   ~QtTestQtEdgeDialog() noexcept;
 
   boost::shared_ptr<QtEdge> GetQtEdge() const noexcept;
+
+  ///Obtain the GUI's value of test index. This might differ from
+  ///the currently active test, as the user needs to press 'Load Test'
+  ///to make it active
+  int GetUiTestIndex() const noexcept;
+
   void SetQtEdge(const boost::shared_ptr<QtEdge>& qtnode) noexcept;
+
 
 protected:
 

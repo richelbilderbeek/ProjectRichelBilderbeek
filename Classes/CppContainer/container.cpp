@@ -36,10 +36,23 @@ ribi::Container::Container()
   #endif
 }
 
+std::string ribi::Container::Concatenate(const std::vector<std::string>& v, const std::string& seperator) const noexcept
+{
+  std::stringstream s;
+  for (const auto& t: v) { s << t << seperator; }
+  std::string str = s.str();
+  //Remove seperator
+  if (!str.empty())
+  {
+    str.resize(str.size() - seperator.size());
+  }
+  return str;
+}
+
 
 std::string ribi::Container::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::Container::GetVersionHistory() const noexcept
@@ -47,6 +60,7 @@ std::vector<std::string> ribi::Container::GetVersionHistory() const noexcept
   return {
     "2014-xx-xx: Version 1.0: initial version",
     "2014-06-14: Version 1.1: added SeperateString"
+    "2014-07-30: Version 1.2: added Concatenate"
   };
 }
 
@@ -70,7 +84,53 @@ void ribi::Container::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Container::Test");
+  const bool verbose{false};
   const Container c;
+  if (verbose) { TRACE("Concatenate: empty vector with empty seperator must result in an empty string"); }
+  {
+    const std::vector<std::string> v{};
+    const std::string s{c.Concatenate(v,"")};
+    assert(s.empty());
+  }
+  if (verbose) { TRACE("Concatenate: empty vector with longer seperator must result in an empty string"); }
+  {
+    const std::vector<std::string> v{};
+    const std::string s{c.Concatenate(v,"[wont be used]")};
+    assert(s.empty());
+  }
+  if (verbose) { TRACE("Concatenate: vector with one string and empty seperator must result in that string"); }
+  {
+    const std::string s{"any string"};
+    const std::vector<std::string> v{s};
+    const std::string t{c.Concatenate(v,"")};
+    assert(s == t);
+  }
+  if (verbose) { TRACE("Concatenate: vector with one string and longer seperator must result in that string"); }
+  {
+    const std::string s{"any string again"};
+    const std::vector<std::string> v{s};
+    const std::string t{c.Concatenate(v,"[wont be used]")};
+    assert(s == t);
+  }
+  if (verbose) { TRACE("Concatenate: vector with two string and empty seperator must result in the summed string"); }
+  {
+    const std::string s{"any string"};
+    const std::string t{"goes on"};
+    const std::string expected{s+t};
+    const std::vector<std::string> v{s,t};
+    const std::string u{c.Concatenate(v,"")};
+    assert(u == expected);
+  }
+  if (verbose) { TRACE("Concatenate: vector with two string and longer seperator must result in the summed string"); }
+  {
+    const std::string s{"any string"};
+    const std::string t{"goes on"};
+    const std::string seperator{" "};
+    const std::string expected{s+seperator+t};
+    const std::vector<std::string> v{s,t};
+    const std::string u{c.Concatenate(v,seperator)};
+    assert(u == expected);
+  }
   //SeperateString
   {
     { //Single input, seperator of type char

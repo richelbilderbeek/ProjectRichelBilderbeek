@@ -40,7 +40,7 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
     ui(new Ui::QtTestQtEdgeDialog),
     m_dialog_left{new QtQtEdgeDialog},
     m_dialog_right{new QtQtEdgeDialog},
-    m_from{QtNodeFactory().GetTest(0)},
+    m_from{QtNodeFactory().GetTest(1)},
     m_to{QtNodeFactory().GetTest(1)},
     m_view_left{new QtKeyboardFriendlyGraphicsView},
     m_view_right{new QtKeyboardFriendlyGraphicsView}
@@ -71,7 +71,7 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
 
 
   ui->box_test_index->setMinimum(0);
-  ui->box_test_index->setMaximum(NodeFactory().GetNumberOfTests());
+  ui->box_test_index->setMaximum(QtEdgeFactory().GetNumberOfTests() - 1); //-1 because first index has [0]
   ui->box_test_index->setValue(0);
   this->on_button_load_clicked();
 
@@ -96,6 +96,11 @@ boost::shared_ptr<ribi::cmap::QtEdge> ribi::cmap::QtTestQtEdgeDialog::GetQtEdge(
   return m_dialog_left->GetQtEdge();
 }
 
+int ribi::cmap::QtTestQtEdgeDialog::GetUiTestIndex() const noexcept
+{
+  return ui->box_test_index->value();
+}
+
 void ribi::cmap::QtTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qtedge) noexcept
 {
   assert(qtedge);
@@ -104,10 +109,17 @@ void ribi::cmap::QtTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& 
   assert(m_view_right);
   assert(m_view_right->scene());
   assert(m_view_left->scene() == m_view_right->scene());
-  if (!m_view_left->scene()->items().isEmpty())
+  assert(m_dialog_left->GetQtEdge() == m_dialog_right->GetQtEdge());
+  const auto old_qtedge = m_dialog_left->GetQtEdge();
+
+  //if (!m_view_left->scene()->items().isEmpty())
+  if (old_qtedge)
   {
-    const auto v = m_view_left->scene()->items();
-    m_view_left->scene()->removeItem(v[0]);
+    //const QList<QGraphicsItem *> qlist = m_view_left->scene()->items();
+    //const int old_index = qlist.indexOf(m_edge.get());
+    //qlist.removeAt(old_index);
+    //m_view_left->scene()->removeItem(v[0]);
+    m_view_left->scene()->removeItem(old_qtedge.get());
   }
   m_dialog_left->SetQtEdge(qtedge);
   m_dialog_right->SetQtEdge(qtedge);
@@ -132,16 +144,33 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("ribi::cmap::QtTestQtEdgeDialog::Test started");
+  const bool verbose{false};
   QtTestQtEdgeDialog d;
   const int n = d.ui->box_test_index->maximum();
-  for (int i=0; i!=n; ++i)
+  if (verbose) { TRACE("Number of tests in GUI must be equal to the number of actual tests"); }
   {
-    d.ui->box_test_index->setValue(i);
-    d.on_button_load_clicked();
-    d.ui->box_test_index->setValue(i);
-    d.on_button_load_clicked();
-    d.ui->box_test_index->setValue(i);
-    d.on_button_load_clicked();
+    assert(n == QtEdgeFactory().GetNumberOfTests() - 1
+      && "If there are x tests, the maximum test index is x-1");
+  }
+  if (verbose) { TRACE("Test index in GUI must be lower than the number of actual tests"); }
+  {    
+    for (int i=0; i!=10; ++i)
+    {
+      d.ui->box_test_index->setValue(i);
+      assert(d.GetUiTestIndex() < QtEdgeFactory().GetNumberOfTests());
+    }
+  }
+  if (verbose) { TRACE("Setting all test edges, multiple times"); }
+  {
+    for (int i=0; i!=10; ++i)
+    {
+      d.ui->box_test_index->setValue(i);
+      d.on_button_load_clicked();
+      d.ui->box_test_index->setValue(i);
+      d.on_button_load_clicked();
+      d.ui->box_test_index->setValue(i);
+      d.on_button_load_clicked();
+    }
   }
 
   TRACE("ribi::cmap::QtTestQtEdgeDialog::Test finished successfully");
@@ -151,6 +180,10 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
 void ribi::cmap::QtTestQtEdgeDialog::on_button_load_clicked() noexcept
 {
   const int index = ui->box_test_index->value();
+  assert(m_from);
+  assert(m_to);
+  assert(index >= 0);
+  assert(index < QtEdgeFactory().GetNumberOfTests());
   const auto qtedge = QtEdgeFactory().GetTest(index,m_from,m_to);
 
   SetQtEdge(qtedge);

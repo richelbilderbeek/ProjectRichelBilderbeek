@@ -29,6 +29,9 @@ public:
   QtTestQtArrowItemsModifyDialog& operator=(const QtTestQtArrowItemsModifyDialog&) = delete;
   ~QtTestQtArrowItemsModifyDialog() noexcept;
 
+  void SetArrow(const boost::shared_ptr<QtQuadBezierArrowItem>& arrow) noexcept;
+  boost::shared_ptr<QtQuadBezierArrowItem> GetArrow() const noexcept;
+
 protected:
   void keyPressEvent(QKeyEvent * event);
 
@@ -43,10 +46,9 @@ private:
   boost::shared_ptr<QtQuadBezierArrowDialog> m_dialog_left;
   boost::shared_ptr<QtQuadBezierArrowDialog> m_dialog_right;
 
-  static boost::shared_ptr<QtQuadBezierArrowItem> CreateRandomItem() noexcept;
+  static boost::shared_ptr<QtQuadBezierArrowItem> CreateRandomArrow() noexcept;
   void DoSomethingRandom() noexcept;
 
-  void SetItem(const boost::shared_ptr<QtQuadBezierArrowItem>& item) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

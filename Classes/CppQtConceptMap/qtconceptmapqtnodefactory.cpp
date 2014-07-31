@@ -24,6 +24,12 @@ boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtNodeFactory::Create(
   return qtnode;
 }
 
+int ribi::cmap::QtNodeFactory::GetNumberOfTests() const noexcept
+{
+  const int n{static_cast<int>(GetTests().size())};
+  return n;
+}
+
 boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtNodeFactory::GetTest(const int i) const noexcept
 {
   const auto tests = GetTests();
@@ -56,6 +62,17 @@ void ribi::cmap::QtNodeFactory::Test() noexcept
     is_tested = true;
   }
   TRACE("Started ribi::cmap::QtNodeFactory::Test");
+  const bool verbose{false};
+  const QtNodeFactory f;
+  if (verbose) { TRACE("Create all QtNodes") }
+  {
+    const int n = f.GetNumberOfTests();
+    for (int i=0; i!=n; ++i)
+    {
+      const auto qtnode = f.GetTest(i);
+      assert(qtnode);
+    }
+  }
   TRACE("Finished ribi::cmap::QtNodeFactory successfully");
 }
 #endif

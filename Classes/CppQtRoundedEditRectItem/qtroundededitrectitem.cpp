@@ -342,32 +342,15 @@ void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text) 
     if (verbose)
     {
       std::stringstream s;
-      s << "Text will change from '" << Container().ToStr(m_text)
-        << "' to '" << Container().ToStr(text)
+      s << "Text will change from '" << Container().Concatenate(m_text)
+        << "' to '" << Container().Concatenate(text)
         << "'"
       ;
       TRACE(s.str());
     }
     m_text = text;
-    /*
-    const QRectF text_rect = GetTextRect(m_text,m_font);
-    const double border_width
-      = std::max(GetContourPen().width(),GetFocusPen().width());
-    this->SetRoundedRect(
-      text_rect.adjusted(
-        -m_padding.left   - border_width,
-        -m_padding.top    - border_width,
-         m_padding.right  + border_width,
-         m_padding.bottom + border_width
-      ),
-      this->GetRadiusX(),
-      this->GetRadiusY()
-    );
-    */
-    this->update();
-    //this->m_signal_item_has_updated(this);
-    //m_signal_request_scene_update();
     m_signal_text_changed(this);
+    this->update();
   }
   else
   {

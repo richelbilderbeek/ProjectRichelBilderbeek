@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Test Edge</string>
+   <string>Test QtEdge</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -25,7 +25,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="box_test_index"/>
+       <widget class="QSpinBox" name="box_test_index">
+        <property name="maximum">
+         <number>0</number>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="button_load">
@@ -47,8 +51,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>863</width>
-        <height>517</height>
+        <width>865</width>
+        <height>522</height>
        </rect>
       </property>
      </widget>

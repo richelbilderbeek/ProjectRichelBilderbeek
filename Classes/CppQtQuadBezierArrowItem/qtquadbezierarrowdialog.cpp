@@ -49,6 +49,16 @@ void ribi::QtQuadBezierArrowDialog::CheckMe() const noexcept
   #endif
 }
 
+double ribi::QtQuadBezierArrowDialog::GetUiMidX() const noexcept
+{
+  return ui->box_mid_x->value();
+}
+
+double ribi::QtQuadBezierArrowDialog::GetUiMidY() const noexcept
+{
+  return ui->box_mid_y->value();
+}
+
 std::string ribi::QtQuadBezierArrowDialog::GetVersion() noexcept
 {
   return "1.0";
@@ -338,7 +348,7 @@ void ribi::QtQuadBezierArrowDialog::SetUiMidX(const double x) noexcept
 
 void ribi::QtQuadBezierArrowDialog::SetUiMidY(const double y) noexcept
 {
-  ui->box_mid_x->setValue(y);
+  ui->box_mid_y->setValue(y);
 }
 
 
@@ -351,17 +361,31 @@ void ribi::QtQuadBezierArrowDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtQuadBezierArrowDialog::Test");
-  QGraphicsItem* const from{new QGraphicsSimpleTextItem};
+  const bool verbose{false};
+  const boost::shared_ptr<QGraphicsItem> from{new QGraphicsSimpleTextItem};
   const bool tail{false};
-  QGraphicsItem* const mid{new QGraphicsSimpleTextItem};
+  const boost::shared_ptr<QGraphicsItem> mid{new QGraphicsSimpleTextItem};
   const bool head{true};
-  QGraphicsItem* const to{new QGraphicsSimpleTextItem};
-
+  const boost::shared_ptr<QGraphicsItem> to{new QGraphicsSimpleTextItem};
   QtQuadBezierArrowDialog d;
   const boost::shared_ptr<QtQuadBezierArrowItem> arrow{
-    new QtQuadBezierArrowItem(from,tail,mid,head,to)
+    new QtQuadBezierArrowItem(from.get(),tail,mid.get(),head,to.get())
   };
   d.SetArrow(arrow);
+  if (verbose) { TRACE("Get/SetUiMidX must be symmetric"); }
+  {
+    const double old_x{d.GetUiMidX()};
+    const double new_x{old_x + 10.0};
+    d.SetUiMidX(new_x);
+    assert(std::abs(d.GetUiMidX() - new_x) < 2.0);
+  }
+  if (verbose) { TRACE("Get/SetUiMidY must be symmetric"); }
+  {
+    const double old_y{d.GetUiMidY()};
+    const double new_y{old_y + 10.0};
+    d.SetUiMidY(new_y);
+    assert(std::abs(d.GetUiMidY() - new_y) < 2.0);
+  }
   TRACE("Finished ribi::QtQuadBezierArrowDialog::Test successfully");
 }
 #endif

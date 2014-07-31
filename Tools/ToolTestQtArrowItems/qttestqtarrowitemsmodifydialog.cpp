@@ -57,7 +57,7 @@ ribi::QtTestQtArrowItemsModifyDialog::QtTestQtArrowItemsModifyDialog(QWidget *pa
     item->SetFromPos(0.0,0.0);
     item->SetMidPos(75.0,50.0);
     item->SetToPos(100.0,100.0);
-    SetItem(item);
+    SetArrow(item);
   }
 
 }
@@ -67,12 +67,18 @@ ribi::QtTestQtArrowItemsModifyDialog::~QtTestQtArrowItemsModifyDialog() noexcept
   delete ui;
 }
 
+boost::shared_ptr<ribi::QtQuadBezierArrowItem> ribi::QtTestQtArrowItemsModifyDialog::GetArrow() const noexcept
+{
+  assert(m_dialog_left->GetArrow() == m_dialog_right->GetArrow());
+  return m_dialog_left->GetArrow();
+}
+
 void ribi::QtTestQtArrowItemsModifyDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-boost::shared_ptr<ribi::QtQuadBezierArrowItem> ribi::QtTestQtArrowItemsModifyDialog::CreateRandomItem() noexcept
+boost::shared_ptr<ribi::QtQuadBezierArrowItem> ribi::QtTestQtArrowItemsModifyDialog::CreateRandomArrow() noexcept
 {
 
   auto from = new QGraphicsSimpleTextItem("From");
@@ -94,15 +100,15 @@ void ribi::QtTestQtArrowItemsModifyDialog::DoSomethingRandom() noexcept
 
 void ribi::QtTestQtArrowItemsModifyDialog::on_button_set_item_clicked()
 {
-  const auto item = CreateRandomItem();
+  const auto item = CreateRandomArrow();
   assert(item);
-  SetItem(item);
+  SetArrow(item);
 }
 
-void ribi::QtTestQtArrowItemsModifyDialog::SetItem(const boost::shared_ptr<QtQuadBezierArrowItem>& item) noexcept
+void ribi::QtTestQtArrowItemsModifyDialog::SetArrow(const boost::shared_ptr<QtQuadBezierArrowItem>& arrow) noexcept
 {
-  m_dialog_left->SetArrow(item);
-  m_dialog_right->SetArrow(item);
+  m_dialog_left->SetArrow(arrow);
+  m_dialog_right->SetArrow(arrow);
 
   if (!ui->view_left->scene())
   {
@@ -116,7 +122,7 @@ void ribi::QtTestQtArrowItemsModifyDialog::SetItem(const boost::shared_ptr<QtQua
   assert(ui->view_right->scene());
   assert(ui->view_left->scene() == ui->view_right->scene());
   ui->view_left->scene()->clear();
-  ui->view_left->scene()->addItem(item.get());
+  ui->view_left->scene()->addItem(arrow.get());
 
 }
 
@@ -129,6 +135,35 @@ void ribi::QtTestQtArrowItemsModifyDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestQtArrowItemsModifyDialog::Test");
+  const bool verbose{false};
+  QtTestQtArrowItemsModifyDialog d;
+  if (verbose) { TRACE("Must get after set"); }
+  {
+    const auto arrow = CreateRandomArrow();
+    d.SetArrow(arrow);
+    assert(d.GetArrow() == arrow);
+  }
+  if (verbose) { TRACE("Changing the mid X via UI, must change the arrow"); }
+  {
+    const auto arrow = CreateRandomArrow();
+    d.SetArrow(arrow);
+    const double old_x{arrow->GetMidX()};
+    const double new_x{old_x + 10.0};
+    assert(new_x != old_x);
+    d.m_dialog_left->SetUiMidX(new_x);
+    assert(std::abs(arrow->GetMidX() - new_x) < 2.0);
+  }
+  if (verbose) { TRACE("Changing the mid X via arrow, must change the UI"); }
+  {
+    const auto arrow = CreateRandomArrow();
+    d.SetArrow(arrow);
+    const double old_x{arrow->GetMidX()};
+    const double new_x{old_x + 10.0};
+    assert(new_x != old_x);
+    arrow->SetMidX(new_x);
+    assert(std::abs(d.m_dialog_left->GetUiMidX() - new_x) < 2.0);
+  }
+  assert(!"Refactor");
   TRACE("Finished ribi::QtTestQtArrowItemsModifyDialog::Test successfully");
 }
 #endif
