@@ -182,25 +182,23 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const auto t = v[0];
     assert(s == t);
   }
-  if (verbose) {TRACE("When changing the concept's name via Node, the QtNode must be changed as well");}
+  if (verbose) {TRACE("When changing the concept's name via QtNode, the QtNodeDialog must be changed as well");}
   {
-    const std::string old_name{d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->GetName()};
+    const auto qtnode = d.m_dialog_left->GetQtNode();
+    const std::string old_name{qtnode->GetNode()->GetConcept()->GetName()};
     const std::string new_name{old_name + " (modified)"};
-    d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->SetName(new_name);
-    const QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
-    const QtRoundedEditRectItem * const qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
-    const auto v = qtrectitem->GetText();
-    const auto t = v[0];
+    qtnode->GetNode()->GetConcept()->SetName(new_name);
+    const auto t = d.m_dialog_left->GetUiName();
     assert(t == new_name);
   }
-  if (verbose) {TRACE("When changing the concept's name via QtNode, the Node must be changed as well");}
+  if (verbose) {TRACE("When changing the concept's name via QtNodeDialog, the QtNode must be changed as well");}
   {
+    const auto old_name = d.m_dialog_left->GetUiName();
+    const std::string new_name{old_name + " (modified)"};
+    d.m_dialog_left->SetUiName(new_name);
     QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
     QtRoundedEditRectItem * const qtrectitem = dynamic_cast<QtRoundedEditRectItem*>(item);
-    const std::string old_name = qtrectitem->GetText()[0];
-    const std::string new_name{old_name + " (modified)"};
-    qtrectitem->SetText( { new_name } );
-    const std::string new_name_again{d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->GetName()};
+    const std::string new_name_again = qtrectitem->GetText()[0];
     assert(new_name_again == new_name);
   }
   TRACE("ribi::cmap::QtTestQtNodeDialog::Test finished successfully");

@@ -89,6 +89,11 @@ double ribi::cmap::QtNodeDialog::GetUiY() const noexcept
   return ui->box_y->value();
 }
 
+std::string ribi::cmap::QtNodeDialog::GetUiName() const noexcept
+{
+  return m_qtconceptdialog->GetUiName();
+}
+
 void ribi::cmap::QtNodeDialog::SetNode(const boost::shared_ptr<Node>& node) noexcept
 {
   const bool verbose{false};
@@ -239,6 +244,12 @@ void ribi::cmap::QtNodeDialog::OnYchanged(Node * const node)
 {
   assert(node);
   ui->box_y->setValue(node->GetY());
+}
+
+void ribi::cmap::QtNodeDialog::SetUiName(const std::string& name) noexcept
+{
+  this->m_qtconceptdialog->SetUiName(name);
+  assert(GetUiName() == name);
 }
 
 

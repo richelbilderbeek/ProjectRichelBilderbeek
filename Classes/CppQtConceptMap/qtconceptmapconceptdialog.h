@@ -47,10 +47,13 @@ public:
   QtConceptDialog& operator=(const QtConceptDialog&) = delete;
   ~QtConceptDialog() noexcept;
 
-  void SetConcept(const boost::shared_ptr<Concept>& concept) noexcept;
   boost::shared_ptr<Concept> GetConcept() const noexcept { return m_concept; }
-
   static int GetMinimumHeight(const Concept& concept) noexcept;
+  std::string GetUiName() const noexcept;
+
+  void SetConcept(const boost::shared_ptr<Concept>& concept) noexcept;
+  void SetUiName(const std::string& name) noexcept;
+
 
 private slots:
   void on_box_is_complex_stateChanged(int arg1) noexcept;

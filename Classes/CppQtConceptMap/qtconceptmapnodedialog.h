@@ -50,17 +50,18 @@ public:
   ///Tests all invariants, empty in release mode
   void CheckMe() const noexcept;
 
+  static int GetMinimumHeight(const Node& node) noexcept;
+  boost::shared_ptr<Node> GetNode() const noexcept { return m_node; }
+  std::string GetUiName() const noexcept;
   ///Read the X value directly from GUI
   double GetUiX() const noexcept;
   ///Read the Y value directly from GUI
   double GetUiY() const noexcept;
 
-  boost::shared_ptr<Node> GetNode() const noexcept { return m_node; }
-
-  static int GetMinimumHeight(const Node& node) noexcept;
-
   void SetNode(const boost::shared_ptr<Node>& node) noexcept;
 
+  ///Set the name directly to GUI
+  void SetUiName(const std::string& name) noexcept;
   ///Set the X value directly to GUI
   void SetUiX(const double x) noexcept;
   ///Set the Y value directly to GUI

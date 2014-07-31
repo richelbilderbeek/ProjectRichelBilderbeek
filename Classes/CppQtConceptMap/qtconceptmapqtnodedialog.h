@@ -31,9 +31,15 @@ public:
 
 
   static int GetMinimumHeight(const QtNode& qtnode) noexcept;
+  boost::shared_ptr<QtNode> GetQtNode() const noexcept { return m_qtnode; }
+
+  ///Read the name from the GUI
+  std::string GetUiName() const noexcept;
 
   void SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
-  boost::shared_ptr<QtNode> GetQtNode() const noexcept { return m_qtnode; }
+
+  ///Set the name via the GUI
+  void SetUiName(const std::string& name) const noexcept;
 
 private:
   Ui::QtQtNodeDialog *ui;

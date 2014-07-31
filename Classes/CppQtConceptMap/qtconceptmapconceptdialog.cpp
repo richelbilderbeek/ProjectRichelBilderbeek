@@ -75,6 +75,11 @@ int ribi::cmap::QtConceptDialog::GetMinimumHeight(const Concept& concept) noexce
   ;
 }
 
+std::string ribi::cmap::QtConceptDialog::GetUiName() const noexcept
+{
+  return ui->edit_name->text().toStdString();
+}
+
 void ribi::cmap::QtConceptDialog::SetConcept(const boost::shared_ptr<Concept>& concept) noexcept
 {
   const bool verbose{false};
@@ -310,6 +315,12 @@ void ribi::cmap::QtConceptDialog::OnRatingSpecificityChanged(Concept * const con
   ui->box_rating_specificity->setValue(
     concept->GetRatingSpecificity()
   );
+}
+
+void ribi::cmap::QtConceptDialog::SetUiName(const std::string& name) noexcept
+{
+  ui->edit_name->setText(name.c_str());
+  assert(GetUiName() == name);
 }
 
 

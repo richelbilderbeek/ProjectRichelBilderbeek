@@ -113,6 +113,11 @@ int ribi::cmap::QtQtNodeDialog::GetMinimumHeight(const QtNode& qtnode) noexcept
   ;
 }
 
+std::string ribi::cmap::QtQtNodeDialog::GetUiName() const noexcept
+{
+  return m_qtnodedialog->GetUiName();
+}
+
 void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
 {
   assert( qtnode ==  m_qtnode.get());
@@ -254,6 +259,11 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
   assert( qtnode ==  m_qtnode);
   assert(*qtnode == *m_qtnode);
   CheckMe();
+}
+
+void ribi::cmap::QtQtNodeDialog::SetUiName(const std::string& name) const noexcept
+{
+  m_qtnodedialog->SetUiName(name);
 }
 
 #ifndef NDEBUG
