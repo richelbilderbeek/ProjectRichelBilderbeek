@@ -21,10 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "conceptmapnode.h"
 
 #include <boost/lexical_cast.hpp>
-#include <QRegExp>
+#include <boost/lambda/lambda.hpp>
+//#include <QRegExp>
+
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmapnodefactory.h"
@@ -42,14 +45,15 @@ ribi::cmap::Node::Node(
 ) : m_signal_concept_changed{},
     m_signal_x_changed{},
     m_signal_y_changed{},
-    m_concept(concept),
+    m_concept{},
     m_x(x),
     m_y(y)
 {
   #ifndef NDEBUG
   Test();
-  assert(m_concept);
   #endif
+  SetConcept(concept);
+  assert(m_concept == concept);
 }
 
 
@@ -76,13 +80,200 @@ bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const Node>& lhs, 
   return *lhs->GetConcept() == *rhs->GetConcept();
 }
 
-void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept) noexcept
+void ribi::cmap::Node::OnConceptChanged(Concept * const) noexcept
 {
+  m_signal_concept_changed(this);
+}
+
+void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept>& concept) noexcept
+{
+  const bool verbose{false};
+
+  assert(concept);
+  if (m_concept == concept)
+  {
+    //CheckMe(); //No doublures in invariants
+    return;
+  }
+
+  if (verbose)
+  {
+    std::stringstream s;
+    s << "Setting concept '" << concept->ToStr() << "'\n";
+  }
+
+  const auto examples_after = concept->GetExamples();
+  const auto is_complex_after = concept->GetIsComplex();
+  const auto name_after = concept->GetName();
+  const auto rating_complexity_after = concept->GetRatingComplexity();
+  const auto rating_concreteness_after = concept->GetRatingConcreteness();
+  const auto rating_specificity_after = concept->GetRatingSpecificity();
+
+  bool examples_changed{true};
+  bool is_complex_changed{true};
+  bool name_changed{true};
+  bool rating_complexity_changed{true};
+  bool rating_concreteness_changed{true};
+  bool rating_specificity_changed{true};
+
+  if (m_concept)
+  {
+    const auto examples_before = m_concept->GetExamples();
+    const auto is_complex_before = m_concept->GetIsComplex();
+    const auto name_before = m_concept->GetName();
+    const auto rating_complexity_before = m_concept->GetRatingComplexity();
+    const auto rating_concreteness_before = m_concept->GetRatingConcreteness();
+    const auto rating_specificity_before = m_concept->GetRatingSpecificity();
+
+    examples_changed = examples_before != examples_after;
+    is_complex_changed = is_complex_before != is_complex_after;
+    name_changed = name_before != name_after;
+    rating_complexity_changed = rating_complexity_before != rating_complexity_after;
+    rating_concreteness_changed = rating_concreteness_before != rating_concreteness_after;
+    rating_specificity_changed = rating_specificity_before != rating_specificity_after;
+
+    if (verbose)
+    {
+      if (examples_changed)
+      {
+        std::stringstream s;
+        s
+          << "Examples will change from "
+          << examples_before->ToStr()
+          << " to "
+          << examples_after->ToStr()
+          << '\n'
+        ;
+        TRACE(s.str());
+      }
+      if (is_complex_changed)
+      {
+        std::stringstream s;
+        s << "Is complex will change from " << is_complex_before
+          << " to " << is_complex_after << '\n';
+        TRACE(s.str());
+      }
+      if (name_changed)
+      {
+        std::stringstream s;
+        s << "Name will change from " << name_before
+          << " to " << name_after << '\n';
+        TRACE(s.str());
+      }
+      if (rating_complexity_changed)
+      {
+        std::stringstream s;
+        s << "Rating_complexicity will change from " << rating_complexity_before
+          << " to " << rating_complexity_after << '\n';
+        TRACE(s.str());
+      }
+      if (rating_concreteness_changed)
+      {
+        std::stringstream s;
+        s << "Rating_concreteness will change from " << rating_concreteness_before
+          << " to " << rating_concreteness_after << '\n';
+        TRACE(s.str());
+      }
+      if (rating_specificity_changed)
+      {
+        std::stringstream s;
+        s << "Rating_specificity will change from " << rating_specificity_before
+          << " to " << rating_specificity_after << '\n';
+        TRACE(s.str());
+      }
+
+    }
+    //Disconnect
+    m_concept->m_signal_examples_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_is_complex_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_name_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_rating_complexity_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_rating_concreteness_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+    m_concept->m_signal_rating_specificity_changed.disconnect(
+      boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+    );
+  }
+
+  //Replace m_example by the new one
+  m_concept = concept;
+
+
+  assert(m_concept->GetExamples() == examples_after );
+  assert(m_concept->GetIsComplex() == is_complex_after );
+  assert(m_concept->GetName() == name_after);
+  assert(m_concept->GetRatingComplexity() == rating_complexity_after);
+  assert(m_concept->GetRatingConcreteness() == rating_concreteness_after);
+  assert(m_concept->GetRatingSpecificity() == rating_specificity_after);
+
+
+  m_concept->m_signal_examples_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_is_complex_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_name_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_rating_complexity_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_rating_concreteness_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+  m_concept->m_signal_rating_specificity_changed.connect(
+    boost::bind(&ribi::cmap::Node::OnConceptChanged,this,boost::lambda::_1)
+  );
+
+  //Emit everything that has changed
+  if (examples_changed)
+  {
+    m_concept->m_signal_examples_changed(m_concept.get());
+  }
+  if (is_complex_changed)
+  {
+    m_concept->m_signal_is_complex_changed(m_concept.get());
+  }
+  if (name_changed)
+  {
+    m_concept->m_signal_name_changed(m_concept.get());
+  }
+  if (rating_complexity_changed)
+  {
+    m_concept->m_signal_rating_complexity_changed(m_concept.get());
+  }
+  if (rating_concreteness_changed)
+  {
+    m_concept->m_signal_rating_concreteness_changed(m_concept.get());
+  }
+  if (rating_specificity_changed)
+  {
+    m_concept->m_signal_rating_specificity_changed(m_concept.get());
+  }
+
+  assert( concept ==  m_concept);
+  assert(*concept == *m_concept);
+  //CheckMe();
+
+
+  //PREV
+  /*
   if (m_concept != concept)
   {
     m_concept = concept;
     m_signal_concept_changed(this);
   }
+  */
 }
 
 void ribi::cmap::Node::SetX(const double x) noexcept

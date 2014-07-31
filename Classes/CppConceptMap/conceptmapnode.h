@@ -64,7 +64,7 @@ struct Node : public Element
   static bool HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs) noexcept;
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<Concept> concept) noexcept;
+  void SetConcept(const boost::shared_ptr<Concept>& concept) noexcept;
 
   ///Set the position
   void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
@@ -110,8 +110,13 @@ struct Node : public Element
   ///The y-coordinat
   double m_y;
 
-  ///Test this class
+  ///Called whenever something on Concept changes
+  ///Re-emits m_concept_changed with 'this'
+  void OnConceptChanged(Concept * const this_concept) noexcept;
+
+  #ifndef NDEBUG
   static void Test() noexcept;
+  #endif
 
 };
 

@@ -26,7 +26,17 @@ then
   exit
 fi
 
-echo "Successfully extracted Boost"
+echo "Successfully extracted Google Mock"
 
+echo "Testing Google Mock"
 
+cd gmock-1.7.0
+cd make
+make
+./gmock_test
+
+echo "Building Google Mock"
+
+cd ..
+make
 

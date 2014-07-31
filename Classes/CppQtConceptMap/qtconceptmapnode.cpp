@@ -340,7 +340,7 @@ void ribi::cmap::QtNode::OnConceptChanged(Node * const node) noexcept
   const std::vector<std::string> new_text{new_str};
   assert(new_text.size() == 1);
   this->SetText(new_text);
-  assert(GetText().size() == 1);
+  assert(GetText() == new_text);
 }
 
 void ribi::cmap::QtNode::OnPosChanged(const QtRoundedRectItem * const item) noexcept
@@ -470,9 +470,9 @@ void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node)
   const auto x_after = node->GetX();
   const auto y_after = node->GetY();
 
-  bool concept_changed  = true;
-  bool x_changed  = true;
-  bool y_changed = true;
+  bool concept_changed{true};
+  bool x_changed{true};
+  bool y_changed{true};
 
   if (m_node)
   {

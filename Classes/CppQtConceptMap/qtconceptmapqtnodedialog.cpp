@@ -121,6 +121,7 @@ void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
 
   m_qtroundededitrectitem_dialog->CheckMe();
   m_qtnodedialog->CheckMe();
+  CheckMe();
 }
 
 void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnode) noexcept

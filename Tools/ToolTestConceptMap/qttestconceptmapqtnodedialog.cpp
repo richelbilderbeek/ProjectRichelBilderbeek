@@ -191,15 +191,9 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
     const auto v = qtrectitem->GetText();
     const auto t = v[0];
-    if (t != new_name)
-    {
-      TRACE(old_name);
-      TRACE(t);
-      TRACE(new_name);
-    }
     assert(t == new_name);
   }
-  assert(!"Yay");
+  assert(!"Add tests here");
   TRACE("ribi::cmap::QtTestQtNodeDialog::Test finished successfully");
 }
 #endif
