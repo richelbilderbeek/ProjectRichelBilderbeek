@@ -182,14 +182,24 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const auto t = v[0];
     assert(s == t);
   }
-  assert(!"Refactor");
-  //if (verbose) {TRACE("When changing the concept's name via Node, the QtNode must be changed as well");}
-  //{
-  //  const std::string old_name = d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->GetName();
-  //  assert(d.m_view_left->items.size() == 1);
-  //
-  //}
-
+  if (verbose) {TRACE("When changing the concept's name via Node, the QtNode must be changed as well");}
+  {
+    const std::string old_name{d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->GetName()};
+    const std::string new_name{old_name + " (modified)"};
+    d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->SetName(new_name);
+    const QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
+    const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
+    const auto v = qtrectitem->GetText();
+    const auto t = v[0];
+    if (t != new_name)
+    {
+      TRACE(old_name);
+      TRACE(t);
+      TRACE(new_name);
+    }
+    assert(t == new_name);
+  }
+  assert(!"Yay");
   TRACE("ribi::cmap::QtTestQtNodeDialog::Test finished successfully");
 }
 #endif

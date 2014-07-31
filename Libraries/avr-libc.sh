@@ -1,4 +1,6 @@
 #!/bin/bash
+set -u
+
 if [ ! -d avr-libc-1.8.0 ]
 then
   echo "Extracting avr-libc-1.8.0"
