@@ -188,12 +188,21 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const std::string new_name{old_name + " (modified)"};
     d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->SetName(new_name);
     const QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
-    const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
+    const QtRoundedEditRectItem * const qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
     const auto v = qtrectitem->GetText();
     const auto t = v[0];
     assert(t == new_name);
   }
-  assert(!"Add tests here");
+  if (verbose) {TRACE("When changing the concept's name via QtNode, the Node must be changed as well");}
+  {
+    QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
+    QtRoundedEditRectItem * const qtrectitem = dynamic_cast<QtRoundedEditRectItem*>(item);
+    const std::string old_name = qtrectitem->GetText()[0];
+    const std::string new_name{old_name + " (modified)"};
+    qtrectitem->SetText( { new_name } );
+    const std::string new_name_again{d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->GetName()};
+    assert(new_name_again == new_name);
+  }
   TRACE("ribi::cmap::QtTestQtNodeDialog::Test finished successfully");
 }
 #endif
