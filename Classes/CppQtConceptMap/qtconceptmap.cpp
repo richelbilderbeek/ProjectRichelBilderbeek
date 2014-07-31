@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
+#include <QGraphicsScene>
 #include <QKeyEvent>
 
 #include "fuzzy_equal_to.h"
@@ -111,7 +112,8 @@ const std::vector<ribi::cmap::QtNode*>
 
 ribi::cmap::QtConceptMap::QtConceptMap(
   const boost::shared_ptr<ConceptMap> concept_map,
-  QWidget* parent)
+  QWidget* parent
+)
   : QtKeyboardFriendlyGraphicsView(parent),
     m_concept_map(concept_map),
     m_examples_item(new QtExamplesItem)
@@ -149,19 +151,19 @@ ribi::cmap::QtConceptMap::QtConceptMap(
 
 ribi::cmap::QtConceptMap::~QtConceptMap() noexcept
 {
-  for (auto qtnode: Collect<QtNode>(scene()))
+  //for (auto qtnode: Collect<QtNode>(scene()))
   {
     //signal #1
-    qtnode->m_signal_request_scene_update.disconnect(
-      boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this)
-    );
+    //qtnode->m_signal_request_scene_update.disconnect(
+    //  boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this)
+    //);
     //signal #2
-    qtnode->m_signal_item_has_updated.disconnect(
-      boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
-    );
+    //qtnode->m_signal_item_has_updated.disconnect(
+    //  boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
+    //);
   }
 
-  delete m_examples_item; //Why did I forget this?
+  delete m_examples_item;
   m_examples_item = nullptr;
 }
 
@@ -192,18 +194,18 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
     }
     else
     {
-      qtnode = new QtNode(node,this->GetDisplayStrategy(node->GetConcept())); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
+      qtnode = new QtNode(node); //NEVER CALL VIRTUAL FUNCTIONS IN BASE CLASS CONSTRUCTORS!
     }
     assert(qtnode);
     //Let the center node respond to mouse clicks
     //signal #1
-    qtnode->m_signal_request_scene_update.connect(
-      boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this)
-    );
+    //qtnode->m_signal_request_scene_update.connect(
+    //  boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this)
+    //);
     //signal #2
-    qtnode->m_signal_item_has_updated.connect(
-      boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
-    );
+    //qtnode->m_signal_item_has_updated.connect(
+    //  boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1)
+    //);
     //Add the center node to scene
     assert(!qtnode->scene());
     this->scene()->addItem(qtnode);
@@ -640,10 +642,10 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     const QtNode * const qtcenter_node
       = dynamic_cast<const QtNode *>(qtnode_concepts[0]);
     assert(qtcenter_node);
-    assert(qtcenter_node->pos().x() > -0.5);
-    assert(qtcenter_node->pos().x() <  0.5);
-    assert(qtcenter_node->pos().y() > -0.5);
-    assert(qtcenter_node->pos().y() <  0.5);
+    assert(qtcenter_node->GetX() > -0.5);
+    assert(qtcenter_node->GetX() <  0.5);
+    assert(qtcenter_node->GetY() > -0.5);
+    assert(qtcenter_node->GetY() <  0.5);
 
     const double r1
       = 0.5 * ribi::cmap::GetDistance(
@@ -669,12 +671,12 @@ void ribi::cmap::QtConceptMap::RepositionItems()
       #ifndef NDEBUG
       const double epsilon = 0.000001;
       #endif
-      assert(std::abs(x - qtnode->pos().x()) < epsilon);
+      assert(std::abs(x - qtnode->GetX()) < epsilon);
       assert(std::abs(x - qtnode->GetNode()->GetX()) < epsilon);
-      assert(std::abs(x - qtnode->GetDisplayStrategy()->pos().x()) < epsilon);
-      assert(std::abs(y - qtnode->pos().y()) < epsilon);
+      //assert(std::abs(x - qtnode->GetDisplayStrategy()->pos().x()) < epsilon);
+      assert(std::abs(y - qtnode->GetY()) < epsilon);
       assert(std::abs(y - qtnode->GetNode()->GetY()) < epsilon);
-      assert(std::abs(y - qtnode->GetDisplayStrategy()->pos().y()) < epsilon);
+      //assert(std::abs(y - qtnode->GetDisplayStrategy()->pos().y()) < epsilon);
 
     }
   }
@@ -685,7 +687,7 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     std::for_each(qtedge_concepts.begin(), qtedge_concepts.end(),
       [](QtEdge * const qtedge)
       {
-        const QPointF p((qtedge->GetFrom()->pos() + qtedge->GetTo()->pos()) / 2.0);
+        const QPointF p((qtedge->GetFrom()->GetPos() + qtedge->GetTo()->GetPos()) / 2.0);
         const double new_x = p.x();
         const double new_y = p.y();
         //qtedge->GetEdge()->SetX(new_x);
@@ -695,8 +697,8 @@ void ribi::cmap::QtConceptMap::RepositionItems()
         #ifndef NDEBUG
         const double epsilon = 0.000001;
         #endif
-        assert(std::abs(qtedge->pos().x() - qtedge->GetEdge()->GetNode()->GetX()) < epsilon);
-        assert(std::abs(qtedge->pos().y() - qtedge->GetEdge()->GetNode()->GetY()) < epsilon);
+        assert(std::abs(qtedge->GetX() - qtedge->GetEdge()->GetNode()->GetX()) < epsilon);
+        assert(std::abs(qtedge->GetY() - qtedge->GetEdge()->GetNode()->GetY()) < epsilon);
       }
     );
   }
@@ -730,12 +732,12 @@ void ribi::cmap::QtConceptMap::RepositionItems()
       [first_node,&done](QtRoundedEditRectItem* const node_or_edge)
       {
         if (first_node->boundingRect().intersects(
-          node_or_edge->boundingRect().translated(-node_or_edge->pos())))
+          node_or_edge->boundingRect().translated(-node_or_edge->GetPos())))
         {
-          const double cur_x = node_or_edge->pos().x();
-          const double cur_y = node_or_edge->pos().y();
-          const double new_x = cur_x + (node_or_edge->pos().x() < first_node->pos().x() ? -1.0 : 1.0);
-          const double new_y = cur_y + (node_or_edge->pos().y() < first_node->pos().y() ? -1.0 : 1.0);
+          const double cur_x = node_or_edge->GetX();
+          const double cur_y = node_or_edge->GetY();
+          const double new_x = cur_x + (node_or_edge->GetPos().x() < first_node->GetX() ? -1.0 : 1.0);
+          const double new_y = cur_y + (node_or_edge->GetPos().y() < first_node->GetY() ? -1.0 : 1.0);
           if (QtNode * const qtnode = dynamic_cast<QtNode *>(node_or_edge))
           {
             qtnode->GetNode()->SetX(new_x);
@@ -773,8 +775,8 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
     {
       if (!IsQtCenterNode(qtnode))
       {
-        double x = qtnode->pos().x();
-        double y = qtnode->pos().y();
+        double x = qtnode->GetX();
+        double y = qtnode->GetY();
         const int i = (std::rand() >> 4) % 4;
         switch(i)
         {
@@ -784,7 +786,7 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
           case 3: y+=-1.0; break;
           default: assert(!"Should not get here");
         }
-        assert(QPointF(x,y) != qtnode->pos());
+        assert(QPointF(x,y) != qtnode->GetPos());
         qtnode->GetNode()->SetPos(x,y);
       }
     }

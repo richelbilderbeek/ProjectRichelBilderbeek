@@ -44,7 +44,7 @@ struct QtCenterNode : public QtNode
   explicit QtCenterNode(const boost::shared_ptr<CenterNode> node);
 
   private:
-  static const boost::shared_ptr<QtItemDisplayStrategy> CreateConceptItem(const boost::shared_ptr<Node> node);
+  //static const boost::shared_ptr<QtItemDisplayStrategy> CreateConceptItem(const boost::shared_ptr<Node> node);
 };
 
 } //~namespace cmap

@@ -33,15 +33,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtCenterNode::QtCenterNode(
-  const boost::shared_ptr<ribi::cmap::CenterNode> node)
-  : QtNode(node,CreateConceptItem(node))
+  const boost::shared_ptr<CenterNode> node
+)
+  : QtNode(node)
 {
   assert(node);
-  assert(this->GetDisplayStrategy());
+  //assert(this->GetDisplayStrategy());
   this->setFlags(QGraphicsItem::ItemIsFocusable);
-  this->GetDisplayStrategy()->SetMainBrush(QtBrushFactory::CreateGoldGradientBrush());
+  //this->GetDisplayStrategy()->SetMainBrush(QtBrushFactory::CreateGoldGradientBrush());
 }
 
+/*
 const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtCenterNode::CreateConceptItem(
   const boost::shared_ptr<Node> node)
 {
@@ -50,3 +52,4 @@ const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtCenterN
   assert(item);
   return item;
 }
+*/

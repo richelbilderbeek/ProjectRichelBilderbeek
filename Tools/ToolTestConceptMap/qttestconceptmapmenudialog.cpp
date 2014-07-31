@@ -68,8 +68,8 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
   if (sm_test_edge) { QtTestEdgeDialog(); }
   if (sm_test_qtnode) { QtTestQtNodeDialog(); }
   if (sm_test_qtedge) { QtTestQtEdgeDialog(); }
-  //QtTestDisplayConceptMapDialog();
-  //QtTestEditConceptMapDialog();
+  if (sm_test_qtdisplayconceptmap) { QtTestDisplayConceptMapDialog(); }
+  //if (sm_test_qteditconceptmap) { QtTestEditConceptMapDialog(); }
   //QtTestRateConceptMapDialog();
   //QtConceptMapViewTestsDialog();
   //QtTestWidgetDialog();

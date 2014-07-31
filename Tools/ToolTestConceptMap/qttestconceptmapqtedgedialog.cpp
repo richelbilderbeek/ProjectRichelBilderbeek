@@ -67,6 +67,10 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
 
   my_layout->addWidget(ui->widget_top,0,0,1,4);
 
+  m_view_left->setMinimumWidth(300);
+  m_view_right->setMinimumWidth(300);
+  m_view_left->setMaximumHeight(300);
+  m_view_right->setMaximumHeight(300);
   my_layout->addWidget(m_view_left.get(),1,0);
   my_layout->addWidget(m_view_right.get(),1,1);
   my_layout->addWidget(m_dialog_left.get(),1,2);
@@ -117,13 +121,8 @@ void ribi::cmap::QtTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& 
   assert(m_dialog_left->GetQtEdge() == m_dialog_right->GetQtEdge());
   const auto old_qtedge = m_dialog_left->GetQtEdge();
 
-  //if (!m_view_left->scene()->items().isEmpty())
   if (old_qtedge)
   {
-    //const QList<QGraphicsItem *> qlist = m_view_left->scene()->items();
-    //const int old_index = qlist.indexOf(m_edge.get());
-    //qlist.removeAt(old_index);
-    //m_view_left->scene()->removeItem(v[0]);
     m_view_left->scene()->removeItem(old_qtedge.get());
   }
   m_dialog_left->SetQtEdge(qtedge);
