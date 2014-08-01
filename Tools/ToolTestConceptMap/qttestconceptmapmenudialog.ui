@@ -40,28 +40,28 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
    <item>
     <widget class="QPushButton" name="button_example">
      <property name="text">
-      <string>E&amp;xample</string>
+      <string>&amp;1. Example</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_examples">
      <property name="text">
-      <string>Example&amp;s</string>
+      <string>&amp;2. Examples</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_concept">
      <property name="text">
-      <string>&amp;Concept</string>
+      <string>&amp;3. Concept</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_node">
      <property name="text">
-      <string>&amp;Node</string>
+      <string>&amp;4. Node</string>
      </property>
     </widget>
    </item>
@@ -71,7 +71,7 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
       <bool>true</bool>
      </property>
      <property name="text">
-      <string>&amp;Edge</string>
+      <string>&amp;5. Edge</string>
      </property>
     </widget>
    </item>
@@ -88,14 +88,14 @@ QPushButton { font: 20px &quot;Courier New&quot;, courier, monospace }</string>
    <item>
     <widget class="QPushButton" name="button_qtnode">
      <property name="text">
-      <string>QtNode</string>
+      <string>&amp;6. QtNode</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_qtedge">
      <property name="text">
-      <string>QtEdge</string>
+      <string>&amp;7. QtEdge</string>
      </property>
     </widget>
    </item>

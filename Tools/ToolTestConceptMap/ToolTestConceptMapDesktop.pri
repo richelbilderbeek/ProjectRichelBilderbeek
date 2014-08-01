@@ -26,7 +26,7 @@ SOURCES += \
 #    ../../Tools/ToolTestConceptMap/qtconceptmapviewtestsdialog.cpp \
     ../../Tools/ToolTestConceptMap/qttestconceptmapmenudialog.cpp \
 #    ../../Tools/ToolTestConceptMap/qttestconceptmapwidgetdialog.cpp \
-    ../../Tools/ToolTestConceptMap/qttestdisplayconceptmapdialog.cpp \
+#    ../../Tools/ToolTestConceptMap/qttestdisplayconceptmapdialog.cpp \
 #    ../../Tools/ToolTestConceptMap/qttesteditconceptmapdialog.cpp \
 #    ../../Tools/ToolTestConceptMap/qttestrateconceptmapdialog.cpp \
 #    ../../Tools/ToolTestConceptMap/qttestconceptmapqtconceptdialog.cpp \

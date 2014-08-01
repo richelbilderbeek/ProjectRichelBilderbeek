@@ -52,11 +52,11 @@ struct QtNode : public QtConceptMapElement
 
   //QBrush brush() const;
 
-  void DisableAll() override;
-  void EnableAll() override;
+  void DisableAll();
+  void EnableAll();
 
-  boost::shared_ptr<const Node>  GetNode() const noexcept override;
-  boost::shared_ptr<      Node>  GetNode()       noexcept override;
+  boost::shared_ptr<const Node>  GetNode() const noexcept;
+  boost::shared_ptr<      Node>  GetNode()       noexcept;
 
   //boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
   //boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
@@ -64,7 +64,7 @@ struct QtNode : public QtConceptMapElement
   //      boost::shared_ptr<const cmap::Node>  GetNode() const noexcept { return m_node; }
   //const boost::shared_ptr<      cmap::Node>& GetNode()       noexcept { return m_node; }
 
-  void SetNode(const boost::shared_ptr<Node>& node) override;
+  void SetNode(const boost::shared_ptr<Node>& node) noexcept;
   //void SetDisplay(const boost::shared_ptr<QtItemDisplayStrategy>& display_strategy);
 
   //void SetName(const std::string& name) noexcept;

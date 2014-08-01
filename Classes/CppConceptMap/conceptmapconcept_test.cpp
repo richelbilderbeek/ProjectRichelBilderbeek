@@ -26,10 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#ifdef MXE_SUPPORTS_THREADS
-#include <thread>
-#endif
-
+#include "counter.h"
 #include "trace.h"
 #include "conceptmaphelper.h"
 #include "conceptmapconceptfactory.h"
@@ -43,15 +40,10 @@ void ribi::cmap::Concept::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef MXE_SUPPORTS_THREADS
-  std::thread t(
-    []
-    {
-  #endif
-
-  cmap::TestHelperFunctions();
+  TestHelperFunctions();
+  const bool verbose{false};
   TRACE("Started ribi::cmap::Concept::Test");
-  //Test operator== and operator!=
+  if (verbose) { TRACE("Test operator== and operator!="); }
   {
     const int sz = static_cast<int>(ConceptFactory().GetTests().size());
     assert(sz > 0);
@@ -95,9 +87,9 @@ void ribi::cmap::Concept::Test() noexcept
       }
     }
   }
-  //Test operator<
+  if (verbose) { TRACE("Test operator<"); }
   {
-    //Check correct ordering by name
+    if (verbose) { TRACE("operator< must order by name"); }
     {
       const boost::shared_ptr<const ribi::cmap::Concept> a = ConceptFactory().Create("1");
       const boost::shared_ptr<      ribi::cmap::Concept> b = ConceptFactory().Create("1");
@@ -107,7 +99,7 @@ void ribi::cmap::Concept::Test() noexcept
       assert(*a < *c); assert(*a < *d);
       assert(*b < *c); assert(*b < *d);
     }
-    //Check correct ordering by examples' size, sizes 0 versus 1
+    if (verbose) { TRACE("operator< must order by examples' size, sizes 0 versus 1"); }
     {
       const boost::shared_ptr<const ribi::cmap::Concept> a = ConceptFactory().Create("1");
       const boost::shared_ptr<      ribi::cmap::Concept> b = ConceptFactory().Create("1");
@@ -117,7 +109,7 @@ void ribi::cmap::Concept::Test() noexcept
       assert(*a < *c); assert(*a < *d);
       assert(*b < *c); assert(*b < *d);
     }
-    //Check correct ordering by examples' size, sizes 1 versus 2
+    if (verbose) { TRACE("operator< must order by examples' size, sizes 1 versus 2"); }
     {
       const boost::shared_ptr<const ribi::cmap::Concept> a = ConceptFactory().Create("1", { {"2",Competency::misc} } );
       const boost::shared_ptr<      ribi::cmap::Concept> b = ConceptFactory().Create("1", { {"2",Competency::misc} } );
@@ -127,7 +119,7 @@ void ribi::cmap::Concept::Test() noexcept
       assert(*a < *c); assert(*a < *d);
       assert(*b < *c); assert(*b < *d);
     }
-    //Check correct ordering for equal examples' size, lexicographically in the 2nd text
+    if (verbose) { TRACE("Check correct ordering for equal examples' size, lexicographically in the 2nd text"); }
     {
       const boost::shared_ptr<const ribi::cmap::Concept> a = ConceptFactory().Create("1", { {"2",Competency::misc},{"3",Competency::misc} } );
       const boost::shared_ptr<      ribi::cmap::Concept> b = ConceptFactory().Create("1", { {"2",Competency::misc},{"3",Competency::misc} } );
@@ -138,7 +130,7 @@ void ribi::cmap::Concept::Test() noexcept
       assert(*b < *c); assert(*b < *d);
     }
   }
-  //Test XML conversion
+  if (verbose) { TRACE("Test XML conversion"); }
   {
     const auto v = AddConst(ConceptFactory().GetTests());
     std::for_each(v.begin(),v.end(),
@@ -159,12 +151,17 @@ void ribi::cmap::Concept::Test() noexcept
       }
     );
   }
+  if (verbose) { TRACE("When setting the name, a signal must be emitted"); }
+  {
+    const auto concept = ConceptFactory().GetTest(0);
+    concept->SetName("A");
+    Counter c{0}; //For receiving the signal
+    concept->m_signal_name_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    concept->SetName("B");
+    assert(c.Get() == 1);
+  }
   TRACE("Concept::Test finished successfully");
-
-  #ifdef MXE_SUPPORTS_THREADS
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif

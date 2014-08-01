@@ -53,17 +53,15 @@ struct QtEdge : public QtConceptMapElement
 
   QRectF boundingRect() const override final;
 
-  void CheckMe() const noexcept;
-
-  void DisableAll() noexcept override final;
-  void EnableAll() noexcept override final;
+  void DisableAll() noexcept;
+  void EnableAll() noexcept;
 
   ReadOnlyArrow GetArrow() const noexcept { return m_arrow; }
   const Arrow& GetArrow() noexcept { return m_arrow; }
 
   ///Get the Node at the center of the Edge
-  ReadOnlyNodePtr GetNode() const noexcept override final;
-  NodePtr GetNode()       noexcept override final;
+  ReadOnlyNodePtr GetNode() const noexcept;
+  NodePtr GetNode() noexcept;
 
   ReadOnlyEdgePtr GetEdge() const noexcept { return m_edge; }
   EdgePtr GetEdge() noexcept { return m_edge; }
@@ -76,8 +74,11 @@ struct QtEdge : public QtConceptMapElement
   const QtNode * GetTo() const noexcept { return m_to; }
         QtNode * GetTo()       noexcept { return m_to; }
 
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+
   void SetEdge(const EdgePtr& edge) noexcept;
-  void SetNode(const boost::shared_ptr<Node>& node) noexcept override final;
+  void SetNode(const boost::shared_ptr<Node>& node) noexcept;
 
   void SetFrom(QtNode * const from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
 
@@ -85,12 +86,6 @@ struct QtEdge : public QtConceptMapElement
   void SetHasTailArrow(const bool has_tail_arrow) noexcept;
 
   void SetTo(QtNode * const to) noexcept;
-
-  ///Set the X coordinat of the central concept
-  void SetX(const double x) noexcept;
-
-  ///Set the Y coordinat of the central concept
-  void SetY(const double y) noexcept;
 
   std::string ToStr() const noexcept;
 
@@ -119,6 +114,7 @@ private:
   QtNode * m_to;
 
   ///Called whenever the edge changes
+  void OnConceptChanged(Node * const node) noexcept;
   void OnFromChanged(Edge * const edge) noexcept;
   void OnHeadArrowChanged(Edge * const edge) noexcept;
   void OnNodeChanged(Edge * const edge) noexcept;

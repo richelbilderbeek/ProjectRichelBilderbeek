@@ -41,12 +41,12 @@ struct QtConceptMapElement : public QtRoundedEditRectItem
   QtConceptMapElement();
   virtual ~QtConceptMapElement() noexcept {}
 
-  virtual void DisableAll() = 0;
-  virtual void EnableAll() = 0;
+  //virtual void DisableAll() = 0;
+  //virtual void EnableAll() = 0;
 
   ///Obtain the Concept from either a Node or an Edge
-  virtual boost::shared_ptr<const Node>  GetNode() const noexcept = 0;
-  virtual boost::shared_ptr<      Node>  GetNode()       noexcept = 0;
+  //virtual boost::shared_ptr<const Node>  GetNode() const noexcept = 0;
+  //virtual boost::shared_ptr<      Node>  GetNode()       noexcept = 0;
 
   //virtual boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept = 0;
   //virtual boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept = 0;
@@ -69,7 +69,7 @@ struct QtConceptMapElement : public QtRoundedEditRectItem
 
   ///Slot for a Concept its signal to be edited, all it does is add the ConceptMapItem
   ///the Concept is a member of
-  void OnConceptRequestsEdit();
+  //void OnConceptRequestsEdit();
 
   protected:
   ///Remove this member function, let the client call the virual SetX and SetY member functions
@@ -77,12 +77,12 @@ struct QtConceptMapElement : public QtRoundedEditRectItem
   ///Remove this member function, let the client call the virual SetX and SetY member functions
   //void setPos(qreal x, qreal y) { QtRoundedEditRectItem::setPos(x,y); }
 
-  void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
-  void hoverStartEvent(QGraphicsSceneHoverEvent *);
+  void hoverMoveEvent(QGraphicsSceneHoverEvent *) noexcept override final;
+  void hoverEnterEvent(QGraphicsSceneHoverEvent *) noexcept override final;
 
 
   private:
-  virtual void SetNode(const boost::shared_ptr<Node>& node) = 0;
+  //virtual void SetNode(const boost::shared_ptr<Node>& node) = 0;
 
 };
 

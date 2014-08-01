@@ -24,10 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "conceptmapnode.h"
 
-#include <boost/lexical_cast.hpp>
+//#include <boost/lexical_cast.hpp>
 #include <boost/lambda/lambda.hpp>
 //#include <QRegExp>
 
+#include "counter.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmapnodefactory.h"
@@ -303,6 +304,7 @@ void ribi::cmap::Node::Test() noexcept
     is_tested = true;
   }
   TRACE("Started ribi::cmap::Node::Test");
+  const bool verbose{false};
   {
     const std::vector<boost::shared_ptr<Node> > v = Node::GetTests();
     std::for_each(v.begin(),v.end(),
@@ -431,7 +433,17 @@ void ribi::cmap::Node::Test() noexcept
       }
     }
   }
-
+  if (verbose) { TRACE("When setting the name, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Node> node{NodeFactory().GetTest(0)};
+    node->GetConcept()->SetName("A");
+    Counter c{0}; //For receiving the signal
+    node->m_signal_concept_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    node->GetConcept()->SetName("B");
+    assert(c.Get() == 1);
+  }
   TRACE("Node::Test finished successfully");
 }
 #endif

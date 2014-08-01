@@ -23,11 +23,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "conceptmapedge.h"
 
-#include <boost/lexical_cast.hpp>
-#include <QRegExp>
+//#include <boost/lexical_cast.hpp>
+//#include <QRegExp>
+#include "counter.h"
 #include "conceptmapconcept.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapnode.h"
+#include "conceptmapnodefactory.h"
 #include "conceptmapcenternode.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmaphelper.h"
@@ -36,8 +38,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::cmap::Edge::Edge(
   const boost::shared_ptr<Node>& node,
-  //const double concept_x,
-  //const double concept_y,
   const boost::shared_ptr<Node> from,
   const bool tail_arrow,
   const boost::shared_ptr<Node> to,
@@ -47,15 +47,11 @@ ribi::cmap::Edge::Edge(
     m_signal_node_changed{},
     m_signal_tail_arrow_changed{},
     m_signal_to_changed{},
-//    m_signal_x_changed{},
-//    m_signal_y_changed{},
     m_from(from),
     m_head_arrow(head_arrow),
     m_node(node),
     m_tail_arrow(tail_arrow),
     m_to(to)
-//    m_x(concept_x),
-//    m_y(concept_y)
 {
   #ifndef NDEBUG
   Test();
@@ -65,52 +61,18 @@ ribi::cmap::Edge::Edge(
   assert(from != to);
   assert(m_node);
 
-
   //Subscribe to all Concept signals to re-emit m_signal_edge_changed
-  /*
-  this->m_concept->m_signal_name_changed.connect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-
-  this->m_concept->m_signal_examples_changed.connect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-
-  this->m_concept->m_signal_rating_complexity_changed.connect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-
-  this->m_concept->m_signal_rating_concreteness_changed.connect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-
-  this->m_concept->m_signal_rating_specificity_changed.connect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-  */
+  this->m_node->m_signal_concept_changed.connect(
+    boost::bind(&ribi::cmap::Edge::OnConceptChanged,this,_1)
+  );
 }
 
 ribi::cmap::Edge::~Edge() noexcept
 {
-  /*
-  this->m_concept->m_signal_name_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-
-  this->m_concept->m_signal_examples_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-
-  this->m_concept->m_signal_rating_complexity_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-
-  this->m_concept->m_signal_rating_concreteness_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-
-  this->m_concept->m_signal_rating_specificity_changed.disconnect(
-    boost::bind(&ribi::cmap::Edge::EmitSignalEdgeChanged,this));
-  */
+  this->m_node->m_signal_concept_changed.disconnect(
+    boost::bind(&ribi::cmap::Edge::OnConceptChanged,this)
+  );
 }
-
-/*
-void ribi::cmap::Edge::EmitSignalEdgeChanged()
-{
-  m_signal_edge_changed(this);
-}
-*/
 
 std::string ribi::cmap::Edge::GetVersion() noexcept
 {
@@ -123,6 +85,13 @@ std::vector<std::string> ribi::cmap::Edge::GetVersionHistory() noexcept
     "2013-xx-xx: Version 1.0: initial version",
     "2014-06-01: Version 1.1: replaced Concept, X and Y by a Node"
   };
+}
+
+
+void ribi::cmap::Edge::OnConceptChanged(Node * const node) noexcept
+{
+  assert(node == this->GetNode().get());
+  this->m_signal_node_changed(this);
 }
 
 void ribi::cmap::Edge::SetNode(const boost::shared_ptr<Node>& node) noexcept
@@ -173,26 +142,6 @@ void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to) noexc
   }
 }
 
-/*
-void ribi::cmap::Edge::SetX(const double x) noexcept
-{
-  if (m_x != x)
-  {
-    m_x = x;
-    m_signal_x_changed(this);
-  }
-}
-
-void ribi::cmap::Edge::SetY(const double y) noexcept
-{
-  if (m_y != y)
-  {
-    m_y = y;
-    m_signal_y_changed(this);
-  }
-}
-*/
-
 #ifndef NDEBUG
 void ribi::cmap::Edge::Test() noexcept
 {
@@ -203,34 +152,53 @@ void ribi::cmap::Edge::Test() noexcept
   }
   //Test member variables
   TRACE("Started ribi::cmap::Edge::Test");
+  const bool verbose{false};
+  const auto from = NodeFactory().GetTest(0);
+  const auto to = NodeFactory().GetTest(1);
+  const std::vector<boost::shared_ptr<Node>> nodes = {from,to};
+  if (verbose) { TRACE("Operator=="); }
+  {
+    const auto edge1 = EdgeFactory().GetTest(0,from,to);
+    const auto edge2 = EdgeFactory().GetTest(0,from,to);
+    assert( edge1 !=  edge2);
+    assert(*edge1 == *edge2);
+  }
+  if (verbose) { TRACE("Operator!="); }
+  {
+    const auto edge1 = EdgeFactory().GetTest(0,from,to);
+    const auto edge2 = EdgeFactory().GetTest(1,from,to);
+    assert( edge1 !=  edge2);
+    assert(*edge1 != *edge2);
+  }
+  if (verbose) { TRACE("Deep copy"); }
   {
     const auto nodes = Node::GetTests();
     assert(nodes.size() >= 2);
     const auto node_from = nodes[0];
     const auto node_to   = nodes[1];
-    for (const boost::shared_ptr<const cmap::Edge>& edge: EdgeFactory().GetTests(node_from,node_to))
-    {
-      //Test copy constructor
-      assert(edge);
-      const boost::shared_ptr<const cmap::Edge> c = EdgeFactory().DeepCopy(edge,node_from,node_to);
-      assert(c);
-      assert(*edge == *c);
-      assert(*c == *edge);
-      assert(*c->GetFrom() == *node_from);
-      assert(*c->GetFrom() == *nodes[0]);
-      assert(*c->GetTo() == *node_to);
-      assert(*c->GetTo() == *nodes[1]);
-      const std::string s = ToXml(c,AddConst(nodes));
-      const boost::shared_ptr<ribi::cmap::Edge> d = EdgeFactory().FromXml(s,nodes);
-      assert(d);
-      if (*c != *d)
-      {
-        TRACE("ERROR");
-        TRACE(ToXml(c,AddConst(nodes)));
-        TRACE(ToXml(d,AddConst(nodes)));
-      }
-      assert(*c == *d);
-    }
+    const boost::shared_ptr<const Edge> edge{EdgeFactory().GetTest(0,node_from,node_to)};
+    const boost::shared_ptr<const Edge> copy = EdgeFactory().DeepCopy(edge,node_from,node_to);
+    assert( edge !=  copy);
+    assert(*edge == *copy);
+  }
+  if (verbose) { TRACE("Edge->XML->Edge must result in the same edge"); }
+  {
+    const auto edge_before = EdgeFactory().GetTest(0,from,to);
+    const std::string s{ToXml(edge_before,AddConst(nodes))};
+    const auto edge_after = EdgeFactory().FromXml(s,nodes);
+    assert( edge_before !=  edge_after);
+    assert(*edge_before == *edge_after);
+  }
+  if (verbose) { TRACE("When setting the name, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Edge> edge{EdgeFactory().GetTest(0,from,to)};
+    edge->GetNode()->GetConcept()->SetName("A");
+    Counter c{0}; //For receiving the signal
+    edge->m_signal_node_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    edge->GetNode()->GetConcept()->SetName("B");
+    assert(c.Get() == 1);
   }
   TRACE("Edge::Test finished successfully");
 }
@@ -289,6 +257,7 @@ bool ribi::cmap::IsConnectedToCenterNode(const boost::shared_ptr<const Edge> edg
 
 }
 
+
 bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge& rhs)
 {
   assert(lhs.GetNode()); assert(rhs.GetNode());
@@ -296,8 +265,6 @@ bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge&
   if (*lhs.GetNode()   != *rhs.GetNode()) TRACE("Node differs");
   if (*lhs.GetFrom()      != *rhs.GetFrom()) TRACE("From node differs");
   if (*lhs.GetTo()        != *rhs.GetTo()) TRACE("To node differs");
-  //if ( lhs.GetX()         != rhs.GetX()) TRACE("X differs");
-  //if ( lhs.GetY()         != rhs.GetY()) TRACE("Y differs");
   if ( lhs.HasHeadArrow() != rhs.HasHeadArrow()) TRACE("Has head arrow differs");
   if ( lhs.HasTailArrow() != rhs.HasTailArrow()) TRACE("Has tail arrow differs");
   #endif
@@ -305,8 +272,6 @@ bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge&
        *lhs.GetNode()   == *rhs.GetNode()
     && *lhs.GetFrom()      == *rhs.GetFrom()
     && *lhs.GetTo()        == *rhs.GetTo()
-    //&&  lhs.GetX()         == rhs.GetX()
-    //&&  lhs.GetY()         == rhs.GetY()
     &&  lhs.HasHeadArrow() == rhs.HasHeadArrow()
     &&  lhs.HasTailArrow() == rhs.HasTailArrow()
   ;

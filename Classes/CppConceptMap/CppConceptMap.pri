@@ -60,8 +60,6 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmapnode.cpp \
     ../../Classes/CppConceptMap/conceptmapnodefactory.cpp \
     ../../Classes/CppConceptMap/conceptmaphelper.cpp \
-    ../../Classes/CppConceptMap/conceptmaptestconceptmap.cpp \
-    ../../Classes/CppConceptMap/conceptmaptestconcept.cpp \
     ../../Classes/CppConceptMap/conceptmapwidget.cpp \
     ../../Classes/CppConceptMap/conceptmapcommand.cpp \
     ../../Classes/CppConceptMap/conceptmapelement.cpp \
@@ -80,4 +78,6 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcommandaddselectedrandom.cpp \
     ../../Classes/CppConceptMap/conceptmapcommandunselectrandom.cpp \
     ../../Classes/CppConceptMap/conceptmapcompetencies.cpp \
-    ../../Classes/CppConceptMap/conceptmapregex.cpp
+    ../../Classes/CppConceptMap/conceptmapregex.cpp \
+    ../../Classes/CppConceptMap/conceptmapconcept_test.cpp \
+    ../../Classes/CppConceptMap/conceptmap_test.cpp

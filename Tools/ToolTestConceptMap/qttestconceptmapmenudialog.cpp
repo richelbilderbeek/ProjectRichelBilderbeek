@@ -61,6 +61,10 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::cmap::QtTestMenuDialog::Test");
   TestConceptMapMenuDialog().GetAbout();
+  //Tests I am most interested in
+  if (sm_test_qtedge) { QtTestQtEdgeDialog(); }
+
+  //Tests in order from small elements to bigger
   if (sm_test_example) { QtTestExampleDialog(); }
   if (sm_test_examples) { QtTestExamplesDialog(); };
   if (sm_test_concept) { QtTestConceptDialog(); }
@@ -68,7 +72,7 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
   if (sm_test_edge) { QtTestEdgeDialog(); }
   if (sm_test_qtnode) { QtTestQtNodeDialog(); }
   if (sm_test_qtedge) { QtTestQtEdgeDialog(); }
-  if (sm_test_qtdisplayconceptmap) { QtTestDisplayConceptMapDialog(); }
+  //if (sm_test_qtdisplayconceptmap) { QtTestDisplayConceptMapDialog(); }
   //if (sm_test_qteditconceptmap) { QtTestEditConceptMapDialog(); }
   //QtTestRateConceptMapDialog();
   //QtConceptMapViewTestsDialog();

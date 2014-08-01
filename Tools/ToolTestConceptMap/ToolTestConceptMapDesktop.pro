@@ -1,3 +1,6 @@
+QMAKE_CXXFLAGS_DEBUG += -pg
+QMAKE_LFLAGS_DEBUG += -pg
+
 include(../../DesktopApplication.pri)
 
 #Libs
@@ -10,6 +13,7 @@ include(../../Libraries/GeneralDesktop.pri)
 #Specific, console
 include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppCoordinat/CppCoordinat.pri)
+include(../../Classes/CppCounter/CppCounter.pri)
 include(../../Classes/CppConceptMap/CppConceptMap.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)

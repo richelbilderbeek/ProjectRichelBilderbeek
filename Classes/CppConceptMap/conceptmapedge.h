@@ -58,19 +58,8 @@ struct Edge : public Element
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Get the x coordinat
-  //A Node has an X coordinat
-  //double GetX() const noexcept { return m_x; }
-
-  ///Get the y coordinat
-  //A Node has a Y coordinat
-  //double GetY() const noexcept { return m_y; }
-
   ///Does the edge have an arrow at the head?
   bool HasHeadArrow() const noexcept { return m_head_arrow; }
-
-  //Similar to operator==, except that the coordinats are not checked
-  //static bool HasSameContent(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) noexcept;
 
   ///Does the edge have an arrow at the tail?
   bool HasTailArrow() const noexcept { return m_tail_arrow; }
@@ -84,22 +73,11 @@ struct Edge : public Element
   ///Set the center Node
   void SetNode(const boost::shared_ptr<Node>& node) noexcept;
 
-  ///Set the coordinat of the concept at the center of the node
-  //void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
-
   ///Set if the tail has an arrow
   void SetTailArrow(const bool has_tail_arrow) noexcept;
 
   ///Set the Node index this edge goes to
   void SetTo(const boost::shared_ptr<Node> to) noexcept;
-
-  ///Set the x coordinat of the concept at the center of the node
-  //A Node has an X coordinat
-  //void SetX(const double x) noexcept;
-
-  ///Set the y coordinat of the concept at the center of the node
-  //A Node has a Y coordinat
-  //void SetY(const double y) noexcept;
 
   std::string ToStr() const noexcept;
 
@@ -114,15 +92,11 @@ struct Edge : public Element
   ///Emitted when an Edge attribute has changed
   boost::signals2::signal<void (Edge*)> m_signal_from_changed;
   boost::signals2::signal<void (Edge*)> m_signal_head_arrow_changed;
-  boost::signals2::signal<void (Edge*)> m_signal_node_changed;
+  mutable boost::signals2::signal<void (Edge*)> m_signal_node_changed;
   boost::signals2::signal<void (Edge*)> m_signal_tail_arrow_changed;
   boost::signals2::signal<void (Edge*)> m_signal_to_changed;
-  //boost::signals2::signal<void (Edge*)> m_signal_x_changed;
-  //boost::signals2::signal<void (Edge*)> m_signal_y_changed;
 
   private:
-
-
   ///The Node this edge originates from
   boost::shared_ptr<Node> m_from;
 
@@ -137,14 +111,6 @@ struct Edge : public Element
 
   ///The Node this edge goes to
   boost::shared_ptr<Node> m_to;
-
-  ///The x-coordinat
-  //double m_x;
-
-  ///The y-coordinat
-  //double m_y;
-
-  //void EmitSignalEdgeChanged();
 
   #ifndef NDEBUG
   ///Test this class
@@ -162,15 +128,14 @@ struct Edge : public Element
   friend EdgeFactory;
   Edge(
     const boost::shared_ptr<Node>& node,
-    //const boost::shared_ptr<Concept> & concept,
-    //const double concept_x,
-    //const double concept_y,
     const boost::shared_ptr<Node> from,
     const bool tail_arrow,
     const boost::shared_ptr<Node> to,
     const bool head_arrow
   );
 
+  ///Bundles Node its signals into emitting a signal that the node has changed
+  void OnConceptChanged(Node * const node) noexcept;
 };
 
 bool IsConnectedToCenterNode(const boost::shared_ptr<const Edge> edge) noexcept;
@@ -180,18 +145,10 @@ std::ostream& operator<<(std::ostream& os, const Edge& edge) noexcept;
 bool operator==(const Edge& lhs, const Edge& rhs);
 bool operator!=(const Edge& lhs, const Edge& rhs);
 
-bool operator<(
-  const boost::shared_ptr<Edge>& lhs,
-  const boost::shared_ptr<Edge>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<const Edge>& lhs,
-  const boost::shared_ptr<      Edge>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<      Edge>& lhs,
-  const boost::shared_ptr<const Edge>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<const Edge>& lhs,
-  const boost::shared_ptr<const Edge>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Edge>& lhs, const boost::shared_ptr<      Edge>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<      Edge>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) = delete;
 
 } //~namespace cmap
 } //~namespace ribi

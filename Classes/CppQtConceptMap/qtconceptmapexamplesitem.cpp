@@ -67,7 +67,9 @@ void ribi::cmap::QtExamplesItem::OnItemUpdated()
 
 void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept
 {
+  #ifdef NOT_NOW_20140801
   this->SetExamples(this->m_item->GetNode()->GetConcept()->GetExamples());
+  #endif // NOT_NOW_20140801
 
   const QPointF p = m_item->GetPos();
   const QRectF r = m_item->GetRect();
@@ -84,6 +86,7 @@ void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapElement* const i
   if (m_item != item)
   {
     m_item = item;
+    #ifdef NOT_NOW_20140801
     if (m_item && !m_item->GetNode()->GetConcept()->GetExamples()->Get().empty())
     {
       m_item->m_signal_pos_changed.connect(
@@ -94,6 +97,7 @@ void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapElement* const i
       this->SetExamples(item->GetNode()->GetConcept()->GetExamples());
       this->setVisible(true);
     }
+    #endif // NOT_NOW_20140801
     m_signal_request_scene_update();
   }
   else
@@ -109,11 +113,11 @@ void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapElement* const i
 void ribi::cmap::QtExamplesItem::SetExamples(const boost::shared_ptr<const ribi::cmap::Examples>& examples)
 {
   std::vector<std::string> v;
-  for (const boost::shared_ptr<const cmap::Example> example: examples->Get())
+  for (const boost::shared_ptr<const Example>& example: examples->Get())
   {
-    const std::string s { example->GetText() };
-    const std::size_t wordwrap_length = 40;
-    const std::vector<std::string> w { Wordwrap(s,wordwrap_length) };
+    const std::string s {example->GetText()};
+    const std::size_t wordwrap_length{40};
+    const std::vector<std::string> w {Wordwrap(s,wordwrap_length)};
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   this->SetText(v);

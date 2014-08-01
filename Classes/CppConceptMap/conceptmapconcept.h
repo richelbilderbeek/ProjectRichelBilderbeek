@@ -151,8 +151,10 @@ struct Concept
   ///-1: not rated, 0: lowest, 2: highest
   int m_rating_specificity;
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test() noexcept;
+  #endif
 
   ///Use checked_delete for destructor
   ~Concept() {}

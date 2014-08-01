@@ -27,7 +27,7 @@ SOURCES += \
 #    ../../Classes/CppQtConceptMap/qtconceptmapratedconceptdialog.cpp \
 #    ../../Classes/CppQtConceptMap/qtconceptmapwidget.cpp \
 #    ../../Classes/CppQtConceptMap/qteditconceptmap.cpp \
-    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \
+#    ../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \
 #    ../../Classes/CppQtConceptMap/qtrateconceptmap.cpp \
 #   ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp \

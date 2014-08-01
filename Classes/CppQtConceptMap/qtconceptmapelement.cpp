@@ -39,6 +39,7 @@ ribi::cmap::QtConceptMapElement::QtConceptMapElement()
 
 }
 
+/*
 void ribi::cmap::QtConceptMapElement::OnConceptRequestsEdit()
 {
   assert(this);
@@ -48,13 +49,14 @@ void ribi::cmap::QtConceptMapElement::OnConceptRequestsEdit()
   assert(!"TODO");
   //m_signal_conceptmapitem_requests_edit(this);
 }
+*/
 
-void ribi::cmap::QtConceptMapElement::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::cmap::QtConceptMapElement::hoverMoveEvent(QGraphicsSceneHoverEvent *) noexcept
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void ribi::cmap::QtConceptMapElement::hoverStartEvent(QGraphicsSceneHoverEvent *)
+void ribi::cmap::QtConceptMapElement::hoverEnterEvent(QGraphicsSceneHoverEvent *) noexcept
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }

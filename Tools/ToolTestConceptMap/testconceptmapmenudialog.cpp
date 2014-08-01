@@ -3,12 +3,14 @@
 #include <cassert>
 #include <iostream>
 
-//#include "qtrateconceptmap.h"
-#include "container.h"
-#include "fileio.h"
-#include "ribi_regex.h"
+
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
+#include "container.h"
+#include "fileio.h"
+#include "geometry.h"
+#include "plane.h"
+#include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 
@@ -50,8 +52,10 @@ ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
   a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
   a.AddLibrary("ConceptMapWidget version: " + cmap::Widget().GetVersion());
   a.AddLibrary("Container version: " + ribi::Container().GetVersion());
-  a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
-  a.AddLibrary("ribi::Regex version: " + ribi::Regex::GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
+  a.AddLibrary("Geometry version: " + Geometry().GetVersion());
+  a.AddLibrary("ribi::Regex version: " + Regex().GetVersion());
+  a.AddLibrary("Plane version: " + Plane::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
 
   return a;

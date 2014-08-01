@@ -450,7 +450,7 @@ void ribi::cmap::QtNode::paint(
   #endif
 }
 
-void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node)
+void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node) noexcept
 {
   const bool verbose{false};
 
