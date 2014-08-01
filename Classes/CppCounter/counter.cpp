@@ -72,7 +72,6 @@ void ribi::Counter::Test() noexcept
     c.Inc();
     assert(c.Get() == old_value + 1);
   }
-  assert(!"Commit");
   TRACE("ribi::Counter::Test finished successfully");
 }
 #endif
