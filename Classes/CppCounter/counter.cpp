@@ -20,14 +20,59 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "counter.h"
 
+#include <cassert>
+
+#include "trace.h"
+
+ribi::Counter::Counter(const int initial_count) noexcept
+  : m_count(initial_count)
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 std::string ribi::Counter::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::Counter::GetVersionHistory() noexcept
 {
   return {
-    "2011-08-20: Version 1.0: initial version"
+    "2011-08-20: Version 1.0: initial version",
+    "2014-08-01: Version 1.1: added tests"
   };
 }
+
+#ifndef NDEBUG
+void ribi::Counter::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Counter::Test");
+  const bool verbose{false};
+  if (verbose) { TRACE("Default-construction must have value zero"); }
+  {
+    const Counter c;
+    assert(c.Get() == 0);
+  }
+  if (verbose) { TRACE("Construction with value must return it"); }
+  {
+    const Counter c(42);
+    assert(c.Get() == 42);
+  }
+  if (verbose) { TRACE("Increment must increment"); }
+  {
+    Counter c;
+    const int old_value = c.Get();
+    c.Inc();
+    assert(c.Get() == old_value + 1);
+  }
+  assert(!"Commit");
+  TRACE("ribi::Counter::Test finished successfully");
+}
+#endif

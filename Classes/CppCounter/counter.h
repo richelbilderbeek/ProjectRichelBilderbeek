@@ -31,10 +31,12 @@ struct Counter
 {
   ///Counter is constructed with an initial count, which is initialized to
   ///zero by default
-  explicit Counter(const int initial_count = 0) : m_count(initial_count) {}
+  explicit Counter(const int initial_count = 0) noexcept;
 
-  ///Count returns the current count and increments it afterwards
-  int Count() { return m_count++; }
+  ///Increments count
+  void Inc() noexcept { ++m_count; }
+
+  int Get() const noexcept { return m_count; }
 
   ///Obtain this class its version
   static std::string GetVersion() noexcept;
@@ -45,6 +47,10 @@ struct Counter
   private:
   ///The count
   int m_count;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi
