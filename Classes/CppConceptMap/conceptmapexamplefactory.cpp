@@ -26,16 +26,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/lexical_cast.hpp>
-#include <boost/make_shared.hpp>
-//#include <QRegExp>
+//#include <boost/lexical_cast.hpp>
+//#include <boost/make_shared.hpp>
 
 #include "conceptmaphelper.h"
 #include "conceptmapexample.h"
 #include "conceptmapregex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
+
+ribi::cmap::ExampleFactory::ExampleFactory() noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::Create(
   const std::string& text,
@@ -135,3 +142,16 @@ std::vector<boost::shared_ptr<ribi::cmap::Example>> ribi::cmap::ExampleFactory::
     Create("",Competency::uninitialized,true,false,true),
   };
 }
+
+#ifndef NDEBUG
+void ribi::cmap::ExampleFactory::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  ExampleFactory();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif // NDEBUG

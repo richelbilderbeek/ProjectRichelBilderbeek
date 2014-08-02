@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapconceptfactory.h"
 #include "conceptmaphelper.h"
 #include "conceptmapregex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -161,7 +162,6 @@ void ribi::cmap::CenterNodeFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::CenterNodeFactory::Test");
-  TRACE("CenterNodeFactory::Test finished successfully");
+  const TestTimer test_timer{__func__,__FILE__,0.1};
 }
 #endif

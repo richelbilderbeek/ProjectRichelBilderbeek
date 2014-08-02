@@ -387,6 +387,7 @@ void ribi::TriangleFile::Test() noexcept
         << "Triangle.exe failed: " << e.what()
       ;
       TRACE(s.str());
+      std::exit(0); //TEMP for profiling
       assert(!"Should not get here");
     }
     TRACE("Finished ribi::TriangleFile::Test successfully");

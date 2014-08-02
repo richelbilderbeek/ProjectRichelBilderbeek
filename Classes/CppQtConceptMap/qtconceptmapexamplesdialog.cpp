@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamples.h"
 #include "conceptmapexamplesfactory.h"
 #include "qtconceptmapexampledialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtconceptmapexamplesdialog.h"
 #pragma GCC diagnostic pop
@@ -196,13 +197,12 @@ void ribi::cmap::QtExamplesDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtExamplesDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtExamplesDialog d;
   for(const auto examples: ExamplesFactory().GetTests())
   {
     d.SetExamples(examples);
     assert(d.GetExamples() == examples);
   }
-  TRACE("ribi::cmap::QtExamplesDialog::Test finished successfully");
 }
 #endif

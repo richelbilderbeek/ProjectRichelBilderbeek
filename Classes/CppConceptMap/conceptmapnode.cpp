@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnodefactory.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmaphelper.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -303,7 +304,7 @@ void ribi::cmap::Node::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::Node::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   {
     const std::vector<boost::shared_ptr<Node> > v = Node::GetTests();
@@ -444,7 +445,6 @@ void ribi::cmap::Node::Test() noexcept
     node->GetConcept()->SetName("B");
     assert(c.Get() == 1);
   }
-  TRACE("Node::Test finished successfully");
 }
 #endif
 

@@ -5,6 +5,7 @@
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapnode.h"
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::cmap::QtNodeFactory::QtNodeFactory()
@@ -61,7 +62,7 @@ void ribi::cmap::QtNodeFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtNodeFactory::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const QtNodeFactory f;
   if (verbose) { TRACE("Create all QtNodes") }
@@ -73,6 +74,5 @@ void ribi::cmap::QtNodeFactory::Test() noexcept
       assert(qtnode);
     }
   }
-  TRACE("Finished ribi::cmap::QtNodeFactory successfully");
 }
 #endif

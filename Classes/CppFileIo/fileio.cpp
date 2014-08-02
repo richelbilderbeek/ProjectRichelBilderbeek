@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 
 #include "filecopymode.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -745,7 +746,7 @@ void ribi::fileio::FileIo::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::fileio::FileIo::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //CopyFile
   for (int i=0; i!=2; ++i)
   {
@@ -1219,7 +1220,6 @@ void ribi::fileio::FileIo::Test() noexcept
     assert(IsUnixPath(ConvertPathToUnix("\\A\\B/text.txt")));
     assert(IsUnixPath(ConvertPathToUnix("\\A/B\\text.txt")));
   }
-  TRACE("Finished ribi::fileio::FileIo::Test successfully");
 }
 #endif
 

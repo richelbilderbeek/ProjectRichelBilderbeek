@@ -2,8 +2,10 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestconceptmapmenudialog.h"
 
+#include <cassert>
+
 #include "qtaboutdialog.h"
-#include "testconceptmapmenudialog.h"
+#include "qtconceptmapviewtestsdialog.h"
 #include "qttestconceptmapconceptdialog.h"
 #include "qttestconceptmapedgedialog.h"
 #include "qttestconceptmapexampledialog.h"
@@ -11,13 +13,14 @@
 #include "qttestconceptmapnodedialog.h"
 #include "qttestconceptmapqtedgedialog.h"
 #include "qttestconceptmapqtnodedialog.h"
-#include "qtconceptmapviewtestsdialog.h"
 #include "qttestconceptmapwidgetdialog.h"
 #include "qttestdisplayconceptmapdialog.h"
 #include "qttesteditconceptmapdialog.h"
 #include "qttestrateconceptmapdialog.h"
-#include "ui_qttestconceptmapmenudialog.h"
+#include "testconceptmapmenudialog.h"
+#include "testtimer.h"
 #include "trace.h"
+#include "ui_qttestconceptmapmenudialog.h"
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtTestMenuDialog::QtTestMenuDialog(QWidget *parent) :
@@ -59,7 +62,6 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::QtTestMenuDialog::Test");
   TestConceptMapMenuDialog().GetAbout();
   //Tests I am most interested in
   if (sm_test_qtedge) { QtTestQtEdgeDialog(); }
@@ -77,7 +79,8 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
   //QtTestRateConceptMapDialog();
   //QtConceptMapViewTestsDialog();
   //QtTestWidgetDialog();
-  TRACE("Finished ribi::cmap::QtTestMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  //No tests...
 }
 #endif
 

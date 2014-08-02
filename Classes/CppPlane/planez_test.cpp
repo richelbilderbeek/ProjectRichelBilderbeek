@@ -4,6 +4,7 @@
 
 #include "container.h"
 #include "geometry.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #ifndef NDEBUG
@@ -14,7 +15,7 @@ void ribi::PlaneZ::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PlaneZ::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   using boost::geometry::get;
   const bool verbose{false};
   const bool show_warning{false};
@@ -108,7 +109,10 @@ void ribi::PlaneZ::Test() noexcept
   }
   if (verbose) TRACE("IsInPlane, Z = 1, zooming to smallest three points to determine a plane, point above origin");
   {
-    for (double i = 1.0; i > 0.0; i/=10.0)
+    for (double i = 1.0;
+      i > 1.0e-8; //i > 0.0;
+      i/=10.0
+    )
     {
       const Coordinat3D p1(0.0,0.0,1.0);
       const Coordinat3D p2(0.0,  i,1.0);
@@ -549,8 +553,6 @@ void ribi::PlaneZ::Test() noexcept
     assert(abs(get<0>(v[2]) - 1.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
     assert(abs(get<1>(v[2]) - 1.0 ) < 0.001); //no std:: , as apfloat puts abs in the global namespace
   }
-
-  TRACE("Finished ribi::PlaneZ::Test successfully");
 }
 #endif
 

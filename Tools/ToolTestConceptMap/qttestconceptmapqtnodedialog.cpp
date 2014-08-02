@@ -201,17 +201,14 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const std::string new_name_again = qtrectitem->GetText()[0];
     assert(new_name_again == new_name);
   }
-  TRACE("ribi::cmap::QtTestQtNodeDialog::Test finished successfully");
 }
 #endif
 
 void ribi::cmap::QtTestQtNodeDialog::on_button_load_clicked() noexcept
 {
-  const int index = ui->box_test_index->value();
+  const int index{ui->box_test_index->value()};
   const auto qtnode = boost::make_shared<QtNode>(
     NodeFactory().GetTest(index)
   );
   SetQtNode(qtnode);
-
-
 }

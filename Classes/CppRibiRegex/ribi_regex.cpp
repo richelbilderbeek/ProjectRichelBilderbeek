@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QRegExp>
 
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -134,9 +135,9 @@ void ribi::Regex::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Regex::Test");
-  const bool verbose{false};
   Regex r;
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
 
   if (verbose) { TRACE("GetRegexMatches, plain, on Dutch postal codes"); }
   {
@@ -184,6 +185,5 @@ void ribi::Regex::Test() noexcept
     //assert(v == w);
     assert(v == x);
   }
-  TRACE("Finished ribi::Regex::Test successfully");
 }
 #endif

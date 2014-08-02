@@ -26,10 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include "counter.h"
-#include "trace.h"
 #include "conceptmaphelper.h"
 #include "conceptmapconceptfactory.h"
+#include "counter.h"
+#include "testtimer.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
@@ -42,7 +43,7 @@ void ribi::cmap::Concept::Test() noexcept
   }
   TestHelperFunctions();
   const bool verbose{false};
-  TRACE("Started ribi::cmap::Concept::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   if (verbose) { TRACE("Test operator== and operator!="); }
   {
     const int sz = static_cast<int>(ConceptFactory().GetTests().size());
@@ -162,6 +163,5 @@ void ribi::cmap::Concept::Test() noexcept
     concept->SetName("B");
     assert(c.Get() == 1);
   }
-  TRACE("Concept::Test finished successfully");
 }
 #endif

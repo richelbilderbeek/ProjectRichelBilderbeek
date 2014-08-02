@@ -5,6 +5,7 @@
 #include "conceptmapedgefactory.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapnode.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::cmap::QtEdgeFactory::QtEdgeFactory()
@@ -78,7 +79,6 @@ void ribi::cmap::QtEdgeFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtEdgeFactory::Test");
-  TRACE("Finished ribi::cmap::QtEdgeFactory successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "container.h"
 #include "geometry.h"
 #include "planez.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -40,7 +41,7 @@ void ribi::PlaneX::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PlaneX::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   using boost::geometry::get;
 
   const bool verbose{false};
@@ -239,7 +240,7 @@ void ribi::PlaneX::Test() noexcept
 
   if (verbose) TRACE("IsInPlane, X = 1, zooming to smallest three points to determine a plane, point above origin");
   {
-    for (double i = 1.0; i > 0.0; i/=10.0)
+    for (double i = 1.0; i > 1.0e-8; i/=10.0)
     {
       const Coordinat3D p1(1.0,0.0,0.0);
       const Coordinat3D p2(1.0,  i,0.0);
@@ -382,6 +383,5 @@ void ribi::PlaneX::Test() noexcept
     assert(abs(get<0>(v[2]) - 0.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
     assert(abs(get<1>(v[2]) - 1.0) < 0.001); //no std:: , as apfloat puts abs in the global namespace
   }
-  TRACE("Finished ribi::PlaneX::Test successfully");
 }
 #endif

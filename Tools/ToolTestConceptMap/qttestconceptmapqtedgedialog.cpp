@@ -176,8 +176,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
       d.on_button_load_clicked();
     }
   }
-
-  TRACE("ribi::cmap::QtTestQtEdgeDialog::Test finished successfully");
 }
 #endif
 

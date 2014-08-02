@@ -45,6 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapqtnodefactory.h"
 #include "qtconceptmapratestrategy.h"
 #include "qtitemdisplaystrategy.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -585,7 +586,7 @@ void ribi::cmap::QtNode::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtNode::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const double max_error = 2.0;
 
@@ -700,8 +701,6 @@ void ribi::cmap::QtNode::Test() noexcept
 
   }
   #endif
-
-  TRACE("Finished ribi::cmap::QtNode::Test successfully");
 }
 #endif
 

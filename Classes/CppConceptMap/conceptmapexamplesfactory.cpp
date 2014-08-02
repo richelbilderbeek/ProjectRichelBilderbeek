@@ -29,8 +29,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamples.h"
 #include "conceptmaphelper.h"
 #include "conceptmapregex.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
+
+ribi::cmap::ExamplesFactory::ExamplesFactory() noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create()
 {
@@ -175,3 +183,16 @@ const std::vector<boost::shared_ptr<ribi::cmap::Examples> > ribi::cmap::Examples
   return v;
 
 }
+
+#ifndef NDEBUG
+void ribi::cmap::ExamplesFactory::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  ExamplesFactory().Create();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif // NDEBUG

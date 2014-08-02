@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "geometry.h"
 #include "qtroundedrectitem.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtroundedrectitemdialog.h"
 #pragma GCC diagnostic pop
@@ -498,7 +499,7 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtRoundedRectItemDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtRoundedRectItemDialog dialog;
   boost::shared_ptr<QtRoundedRectItem> item{new QtRoundedRectItem};
   dialog.SetItem(item);
@@ -585,9 +586,6 @@ void ribi::QtRoundedRectItemDialog::Test() noexcept
     item->SetY(new_y);
     dialog.CheckMe();
   }
-
-
-  TRACE("Finished ribi::QtRoundedRectItemDialog::Test successfully");
 }
 #endif
 

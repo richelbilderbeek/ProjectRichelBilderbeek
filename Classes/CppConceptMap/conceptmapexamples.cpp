@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamplesfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -134,7 +135,8 @@ void ribi::cmap::Examples::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::Examples::Test");
+  ExampleFactory().GetTest(0);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test of operator== and operator!=
   {
     const int sz = ExamplesFactory().GetNumberOfTests();
@@ -226,7 +228,6 @@ void ribi::cmap::Examples::Test() noexcept
     assert(*e == *d); assert(*e == *e); assert(*e != *f);
     assert(*f != *d); assert(*f != *e); assert(*f == *f);
   }
-  TRACE("Examples::Test finished successfully");
 }
 
 std::string ribi::cmap::Examples::ToStr() const noexcept

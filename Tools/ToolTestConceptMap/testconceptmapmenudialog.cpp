@@ -12,6 +12,7 @@
 #include "plane.h"
 #include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::TestConceptMapMenuDialog::TestConceptMapMenuDialog()
@@ -105,8 +106,8 @@ void ribi::TestConceptMapMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::TestConceptMapMenuDialog::Test");
   ribi::cmap::Widget();
-  TRACE("ribi::TestConceptMapMenuDialog finished successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  //No test
 }
 #endif

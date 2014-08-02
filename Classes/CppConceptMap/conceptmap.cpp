@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmaphelper.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
+#include "testtimer.h"
 #include "trace.h"
 //#include "conceptmapcluster.h"
 #pragma GCC diagnostic pop

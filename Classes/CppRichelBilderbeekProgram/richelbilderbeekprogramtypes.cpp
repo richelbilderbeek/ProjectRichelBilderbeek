@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogramtype.h"
 
 #include <cassert>
+
+#include "testtimer.h"
 #include "trace.h"
 
 //Lazy initializion
@@ -537,9 +539,8 @@ void ribi::ProgramTypes::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::ProgramTypes::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   assert(GetAll().size() == GetAllEnumNames().size());
   assert(GetAll().size() == GetAllScreenNames().size());
-  TRACE("Finished ribi::ProgramTypes::Test successfully");
 }
 #endif

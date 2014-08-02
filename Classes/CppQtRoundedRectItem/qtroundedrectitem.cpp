@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -472,14 +473,13 @@ void ribi::QtRoundedRectItem::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtRoundedRectItem::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtRoundedRectItem i;
   i.SetPos(345.67,456.78);
   i.SetHeightIncludingPen(123.45);
   i.SetWidthIncludingPen(234.56);
   i.SetHeight(123.45);
   i.SetWidth(234.56);
-  TRACE("Finished ribi::QtRoundedRectItem::Test successfully");
 }
 #endif
 

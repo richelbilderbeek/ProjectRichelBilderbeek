@@ -39,6 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapconceptdialog.h"
 #include "qtconceptmapnodedialog.h"
 #include "ui_qtconceptmapedgedialog.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -420,9 +421,8 @@ void ribi::cmap::QtEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtEdgeDialog::Test");
-  //QtEdgeDialog d;
-  TRACE("ribi::cmap::QtEdgeDialog::Test finished successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  QtEdgeDialog d;
 }
 #endif
 

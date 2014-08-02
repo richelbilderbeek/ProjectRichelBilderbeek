@@ -46,6 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmaphelper.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -58,8 +59,12 @@ void ribi::cmap::ConceptMap::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::ConceptMap::Test");
-  const bool trace_verbose = false;
+  CenterNodeFactory();
+  ConceptFactory();
+  ExamplesFactory();
+  TestHelperFunctions();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool trace_verbose{false};
   typedef std::vector<boost::shared_ptr<Node> > Nodes;
 
   if (trace_verbose) { TRACE("operator==, DeepCopy"); }
@@ -612,6 +617,5 @@ void ribi::cmap::ConceptMap::Test() noexcept
       assert(concept_map->FindCenterNode() && "Assume a CenterNode at the center of ConceptMap");
     }
   }
-  TRACE("ConceptMap::Test finished successfully");
 }
 #endif

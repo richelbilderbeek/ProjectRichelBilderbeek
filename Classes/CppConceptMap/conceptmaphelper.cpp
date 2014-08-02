@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "conceptmapregex.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -93,7 +94,7 @@ void ribi::cmap::TestHelperFunctions() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started TestHelperFunctions");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //GetRegexMatches
   {
     const std::string s = "In the Netherlands, 1234 AB and 2345 BC are valid zip codes";
@@ -296,7 +297,6 @@ void ribi::cmap::TestHelperFunctions() noexcept
       }
     }
   }
-  TRACE("TestHelperFunctions finished successfully");
 }
 #endif
 

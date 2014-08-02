@@ -39,6 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtitemdisplaystrategy.h"
 #include "qtroundededitrectitemdialog.h"
 #include "qtconceptmapqtnodefactory.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #include "ui_qtconceptmapqtedgedialog.h"
@@ -263,7 +264,7 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::QtQtEdgeDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtQtEdgeDialog dialog;
 
   const auto from = NodeFactory().GetTest(1);
@@ -300,7 +301,5 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
   dialog.CheckMe();
   rhs->SetUiY(rhs->GetUiX() + 5.0);
   dialog.CheckMe();
-
-  TRACE("Finished ribi::cmap::QtQtEdgeDialog::Test successfully");
 }
 #endif

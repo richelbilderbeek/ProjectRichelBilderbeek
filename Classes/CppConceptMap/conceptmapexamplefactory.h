@@ -37,7 +37,7 @@ namespace cmap {
 
 struct ExampleFactory
 {
-  ExampleFactory() {}
+  ExampleFactory() noexcept;
 
   ///Create an example from string and enum
   boost::shared_ptr<cmap::Example> Create(
@@ -59,6 +59,11 @@ struct ExampleFactory
   boost::shared_ptr<Example> GetTest(const int i) const noexcept;
   std::vector<boost::shared_ptr<Example>> GetTests() const noexcept;
 
+  private:
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif // NDEBUG
 };
 
 } //~namespace cmap

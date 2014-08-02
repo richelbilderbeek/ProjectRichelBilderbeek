@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapconceptdialog.h"
 #include "qtconceptmapexamplesdialog.h"
 #include "ui_qtconceptmapnodedialog.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -277,7 +278,7 @@ void ribi::cmap::QtNodeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtNodeDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtNodeDialog dialog;
   const auto node = NodeFactory().GetTest(1);
   dialog.SetNode(node);
@@ -293,7 +294,6 @@ void ribi::cmap::QtNodeDialog::Test() noexcept
     node->SetY(dialog.ui->box_y->value() + 1.0);
     dialog.CheckMe();
   }
-  TRACE("ribi::cmap::QtNodeDialog::Test finished successfully");
 }
 #endif
 

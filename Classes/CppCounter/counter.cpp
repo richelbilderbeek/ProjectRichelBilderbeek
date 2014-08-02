@@ -22,6 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::Counter::Counter(const int initial_count) noexcept
@@ -53,7 +54,7 @@ void ribi::Counter::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Counter::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   if (verbose) { TRACE("Default-construction must have value zero"); }
   {
@@ -72,6 +73,6 @@ void ribi::Counter::Test() noexcept
     c.Inc();
     assert(c.Get() == old_value + 1);
   }
-  TRACE("ribi::Counter::Test finished successfully");
+
 }
 #endif

@@ -112,6 +112,13 @@ apfloat ribi::PlaneZ::CalcError(const Coordinat3D& coordinat) const noexcept
 
 ribi::PlaneZ::Double ribi::PlaneZ::CalcMinErrorPerC() noexcept
 {
+  //min_error_per_c will be about 0.000000001
+  //stub_value increases this jut a little, by a 0.000001%
+  const double stub_value = 0.000000001 * 1.00000001;
+  #define USE_STUB
+  #ifdef USE_STUB
+  return stub_value;
+  #else //USE_STUB
   //PlaneZ calculates its own tolerance for errors, by measuring it
   static Double min_error_per_c = 0.0;
   if (min_error_per_c > 0.0) return min_error_per_c;
@@ -162,10 +169,11 @@ ribi::PlaneZ::Double ribi::PlaneZ::CalcMinErrorPerC() noexcept
     //TRACE(min_error_per_c);
   }
   //TRACE(min_error_per_c);
-  #ifndef NDEBUG
   assert(min_error_per_c > zero);
-  #endif
+  assert(min_error_per_c < stub_value);
+  assert(min_error_per_c > 0.99 * stub_value);
   return min_error_per_c;
+  #endif // USE_STUB
 }
 
 apfloat ribi::PlaneZ::CalcMaxError(const Coordinat3D& /*coordinat*/) const noexcept

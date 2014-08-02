@@ -32,11 +32,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QRegExp>
 
 #include "counter.h"
+#include "conceptmapregex.h"
 #include "conceptmapcompetencies.h"
 #include "conceptmapcompetency.h"
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmaphelper.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -86,7 +88,7 @@ std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competen
 
 void ribi::cmap::Example::SetCompetency(const Competency competency) noexcept
 {
-  const bool verbose{true};
+  const bool verbose{false};
   const Competency competency_before = m_competency;
   const Competency competency_after  =   competency;
   if (competency_before != competency_after)
@@ -175,7 +177,9 @@ void ribi::cmap::Example::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::Example::Test");
+  ribi::cmap::Regex();
+  Counter();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
 
 
@@ -335,7 +339,6 @@ void ribi::cmap::Example::Test() noexcept
     example->SetText("B");
     assert(c.Get() == 1);
   }
-  TRACE("Example::Test finished successfully");
 }
 #endif
 

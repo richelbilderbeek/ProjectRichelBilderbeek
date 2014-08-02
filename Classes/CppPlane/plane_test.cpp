@@ -10,6 +10,7 @@
 #include "planex.h"
 #include "planey.h"
 #include "planez.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #ifndef NDEBUG
@@ -20,7 +21,7 @@ void ribi::Plane::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Plane::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const bool show_warning{false};
   using boost::geometry::get;
@@ -304,10 +305,10 @@ void ribi::Plane::Test() noexcept
     const double min = 10e+8;
     const double max = 10e-8;
     //for (const double z:series)
-    for (double z=min; z<max; z=10.0)
+    for (double z=min; z<max; z*=10.0)
     {
       //for (const double i:series)
-      for (double i=min; i<max; i=10.0)
+      for (double i=min; i<max; i*=10.0)
       {
         if (i == 0.0) continue;
         assert(i != 0.0 && "Cannot express plane when all its coordinats are at origin");
@@ -398,7 +399,9 @@ void ribi::Plane::Test() noexcept
     assert(!p.CanCalcY());
     assert(!p.CanCalcZ());
 
-    for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
+    for (double i = std::numeric_limits<double>::denorm_min();
+      i < 1.0e-8; //std::numeric_limits<double>::max();
+      i *= 10.0)
     {
       assert(p.IsInPlane(Coordinat3D(0.0, i, i)));
       assert(p.IsInPlane(Coordinat3D(0.0, i,-i)));
@@ -476,7 +479,10 @@ void ribi::Plane::Test() noexcept
     assert( p.CanCalcY());
     assert(!p.CanCalcZ());
 
-    for (double i = std::numeric_limits<double>::denorm_min(); i < std::numeric_limits<double>::max(); i *= 10.0)
+    for (double i = std::numeric_limits<double>::denorm_min();
+      i < 1.0e8 /*std::numeric_limits<double>::max()*/;
+      i *= 10.0
+    )
     {
       assert(p.IsInPlane(Coordinat3D( i,0.0, i)));
       assert(p.IsInPlane(Coordinat3D( i,0.0,-i)));
@@ -548,7 +554,7 @@ void ribi::Plane::Test() noexcept
   */
   if (verbose) TRACE("IsInPlane, Slope, Slope in Z direction");
   {
-    for (double slope = 1.0; slope > 0.0; slope /= 10.0)
+    for (double slope = 1.0; slope > 1.0e-8; slope /= 10.0)
     {
       //if (verbose) { TRACE(slope); }
       const double slope_less = slope * 0.999999;
@@ -772,6 +778,5 @@ void ribi::Plane::Test() noexcept
     assert(p.IsInPlane(p4));
   }
   #endif
-  TRACE("Finished ribi::Plane::Test successfully");
 }
 #endif

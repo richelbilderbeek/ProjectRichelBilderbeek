@@ -98,14 +98,13 @@ void Coordinat::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Coordinat::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const Coordinat<double> a(0.0,0.0);
     const Coordinat<double> b(0.0,0.0);
     assert(a == b);
     const Coordinat<double> c(a);
   }
-  TRACE("Finished ribi::Coordinat::Test successfully");
 }
 #endif
 

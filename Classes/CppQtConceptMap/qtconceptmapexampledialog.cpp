@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcompetencies.h"
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -281,9 +282,8 @@ void ribi::cmap::QtExampleDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtExampleDialog::Test");
-  //QtExampleDialog d;
-  TRACE("ribi::cmap::QtExampleDialog::Test finished successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  QtExampleDialog d;
 }
 #endif
 

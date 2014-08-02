@@ -44,8 +44,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconceptmapelement.h"
 #include "qtconceptmapnode.h"
 #include "qtquadbezierarrowitem.h"
+#include "testtimer.h"
 #include "trace.h"
-
 #include "qtconceptmapcenternode.h"
 
 #pragma GCC diagnostic pop
@@ -849,7 +849,7 @@ void ribi::cmap::QtEdge::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtEdge::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{true};
   const int node_test_index{0};
   const int edge_test_index{0};
@@ -915,6 +915,9 @@ void ribi::cmap::QtEdge::Test() noexcept
     qtitem->SetY(new_y);
     assert(std::abs(qtedge->GetY() - new_y) < 2.0);
   }
+
+
+
   //Test text on edge being in sync
   if (verbose) { TRACE("If text is set via QtEdge, QtRoundedEditRectItem must sync"); }
   {
@@ -922,6 +925,7 @@ void ribi::cmap::QtEdge::Test() noexcept
     const std::string qtedge_name_new{qtedge_name_old + "(modified)"};
     const auto concept = qtedge->GetNode()->GetConcept();
     concept->SetName(qtedge_name_new);
+    std::exit(0); //TEMP: For profiling
     assert(qtitem->GetText()[0] == qtedge_name_new);
   }
   assert(!"Refactor");
@@ -1030,9 +1034,7 @@ void ribi::cmap::QtEdge::Test() noexcept
   {
     assert(qtedge->GetArrow()->acceptHoverEvents()); //Must remove the 's' in Qt5?
   }
-
   assert(!"Check in");
-  TRACE("Finished ribi::cmap::QtEdge::Test successfully");
 }
 #endif
 

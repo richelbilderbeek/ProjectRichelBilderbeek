@@ -23,8 +23,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "conceptmapedge.h"
 
-//#include <boost/lexical_cast.hpp>
-//#include <QRegExp>
 #include "counter.h"
 #include "conceptmapconcept.h"
 #include "conceptmapedgefactory.h"
@@ -33,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcenternode.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmaphelper.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -150,8 +149,7 @@ void ribi::cmap::Edge::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  //Test member variables
-  TRACE("Started ribi::cmap::Edge::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const auto from = NodeFactory().GetTest(0);
   const auto to = NodeFactory().GetTest(1);
@@ -200,7 +198,6 @@ void ribi::cmap::Edge::Test() noexcept
     edge->GetNode()->GetConcept()->SetName("B");
     assert(c.Get() == 1);
   }
-  TRACE("Edge::Test finished successfully");
 }
 #endif
 
@@ -260,14 +257,16 @@ bool ribi::cmap::IsConnectedToCenterNode(const boost::shared_ptr<const Edge> edg
 
 bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge& rhs)
 {
+  const bool verbose{false};
   assert(lhs.GetNode()); assert(rhs.GetNode());
-  #ifndef NDEBUG
-  if (*lhs.GetNode()   != *rhs.GetNode()) TRACE("Node differs");
-  if (*lhs.GetFrom()      != *rhs.GetFrom()) TRACE("From node differs");
-  if (*lhs.GetTo()        != *rhs.GetTo()) TRACE("To node differs");
-  if ( lhs.HasHeadArrow() != rhs.HasHeadArrow()) TRACE("Has head arrow differs");
-  if ( lhs.HasTailArrow() != rhs.HasTailArrow()) TRACE("Has tail arrow differs");
-  #endif
+  if (verbose)
+  {
+    if (*lhs.GetNode()      != *rhs.GetNode()) TRACE("Node differs");
+    if (*lhs.GetFrom()      != *rhs.GetFrom()) TRACE("From node differs");
+    if (*lhs.GetTo()        != *rhs.GetTo()) TRACE("To node differs");
+    if ( lhs.HasHeadArrow() != rhs.HasHeadArrow()) TRACE("Has head arrow differs");
+    if ( lhs.HasTailArrow() != rhs.HasTailArrow()) TRACE("Has tail arrow differs");
+  }
   return
        *lhs.GetNode()   == *rhs.GetNode()
     && *lhs.GetFrom()      == *rhs.GetFrom()

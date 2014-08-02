@@ -38,7 +38,7 @@ namespace cmap {
 
 struct ExamplesFactory
 {
-  ExamplesFactory() {}
+  ExamplesFactory() noexcept;
 
   ///Constructor like
   static const boost::shared_ptr<Examples> Create();
@@ -62,6 +62,12 @@ struct ExamplesFactory
   int GetNumberOfTests() const noexcept { return static_cast<int>(GetTests().size()); }
   const boost::shared_ptr<Examples> GetTest(const int i) const noexcept;
   const std::vector<boost::shared_ptr<Examples>> GetTests() const noexcept;
+
+  private:
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif // NDEBUG
 };
 
 } //~namespace cmap

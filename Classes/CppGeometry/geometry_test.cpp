@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "apcplx.h" //apfloat's atan2
+#include "testtimer.h"
 #include "trace.h"
 
 #ifndef NDEBUG
@@ -13,7 +14,7 @@ void ribi::Geometry::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Geometry::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const double pi = boost::math::constants::pi<double>();
   const Geometry g;
@@ -1421,7 +1422,6 @@ void ribi::Geometry::Test() noexcept
     const auto p = g.ToPolygon(l);
     assert(p.outer().size() == 4);
   }
-  TRACE("Finished ribi::Geometry::Test successfully");
 }
 #endif
 

@@ -25,6 +25,7 @@
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapratestrategy.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestconceptmapedgedialog.h"
 #pragma GCC diagnostic pop
@@ -110,8 +111,7 @@ void ribi::cmap::QtTestEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtTestEdgeDialog::Test started");
-  TRACE("ribi::cmap::QtTestEdgeDialog::Test finished successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

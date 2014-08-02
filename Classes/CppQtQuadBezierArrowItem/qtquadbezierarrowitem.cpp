@@ -39,6 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 
 #include "geometry.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -584,9 +585,8 @@ void ribi::QtQuadBezierArrowItem::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtQuadBezierArrowItem::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   Geometry();
-  TRACE("Finished ribi::QtQuadBezierArrowItem::Test successfully");
 }
 #endif
 

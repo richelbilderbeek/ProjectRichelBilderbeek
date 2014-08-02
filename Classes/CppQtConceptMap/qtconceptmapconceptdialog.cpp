@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapexamples.h"
 #include "conceptmapexamplesfactory.h"
 #include "qtconceptmapexamplesdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qtconceptmapconceptdialog.h"
 
@@ -332,9 +333,8 @@ void ribi::cmap::QtConceptDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtConceptDialog::Test");
-  //QtConceptDialog d;
-  TRACE("ribi::cmap::QtConceptDialog::Test finished successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  QtConceptDialog d;
 }
 #endif
 

@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/algorithm/string/split.hpp>
 
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -83,7 +84,7 @@ void ribi::Container::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Container::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const Container c;
   if (verbose) { TRACE("Concatenate: empty vector with empty seperator must result in an empty string"); }
@@ -162,6 +163,5 @@ void ribi::Container::Test() noexcept
       assert(v[2]=="ccc");
     }
   }
-  TRACE("Finished ribi::Container::Test successfully");
 }
 #endif

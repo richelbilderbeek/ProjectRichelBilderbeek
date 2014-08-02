@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 
 #include "container.h"
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -50,7 +51,6 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
   const QFont& font,
   QGraphicsItem* parent)
   : QtRoundedRectItem(parent),
-    //m_signal_item_requests_edit{},
     m_signal_base_changed{},
     m_signal_font_changed{},
     m_signal_padding_changed{},
@@ -384,14 +384,13 @@ void ribi::QtRoundedEditRectItem::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtRoundedEditRectItem::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   for (const std::string& s: { "X" })
   {
     const QFont font;
     assert(GetTextRect(s,font).width() > 0.0);
     assert(GetPaddedTextRect(s,font).width() >= GetTextRect(s,font).width());
   }
-  TRACE("Finished ribi::QtRoundedEditRectItem::Test successfully");
 }
 #endif
 

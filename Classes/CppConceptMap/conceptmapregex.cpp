@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "ribi_regex.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::cmap::Regex::Regex()
@@ -154,10 +155,13 @@ void ribi::cmap::Regex::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::Regex::Test");
-  const bool verbose{false};
-  const Regex r;
+  {
+    ribi::Regex();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 
+  const ::ribi::cmap::Regex r;
+  const bool verbose{false};
   if (verbose) { TRACE("GetRegexExample"); }
   {
     const std::string s = "<concept><name>Concept with examples</name><example>Example 1</example><example>Example 2</example><example>Example 3</example></concept>";
@@ -169,7 +173,5 @@ void ribi::cmap::Regex::Test() noexcept
     const std::string regex_str = r.GetRegexExample();
     assert(r.GetRegexMatches(s,regex_str) == expected);
   }
-
-  TRACE("Finished ribi::cmap::Regex successfully");
 }
 #endif

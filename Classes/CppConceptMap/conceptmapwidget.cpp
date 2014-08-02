@@ -42,6 +42,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapwidgetfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -431,7 +432,7 @@ void ribi::cmap::Widget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::Widget::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const int n_depth = 1;
   //operator<<
   /*
@@ -643,7 +644,6 @@ void ribi::cmap::Widget::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::cmap::Widget::Test()");
 }
 #endif
 

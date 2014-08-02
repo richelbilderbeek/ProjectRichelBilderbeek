@@ -14,6 +14,7 @@
 
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtquadbezierarrowdialog.h"
 #pragma GCC diagnostic pop
 
@@ -360,7 +361,7 @@ void ribi::QtQuadBezierArrowDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtQuadBezierArrowDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const boost::shared_ptr<QGraphicsItem> from{new QGraphicsSimpleTextItem};
   const bool tail{false};
@@ -386,7 +387,6 @@ void ribi::QtQuadBezierArrowDialog::Test() noexcept
     d.SetUiMidY(new_y);
     assert(std::abs(d.GetUiMidY() - new_y) < 2.0);
   }
-  TRACE("Finished ribi::QtQuadBezierArrowDialog::Test successfully");
 }
 #endif
 
