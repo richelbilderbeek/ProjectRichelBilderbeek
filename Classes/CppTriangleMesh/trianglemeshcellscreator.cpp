@@ -11,6 +11,7 @@
 
 
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcellfactory.h"
 #include "trianglemeshcellscreator.h"
@@ -692,7 +693,8 @@ void ribi::trim::CellsCreator::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::CellsCreator::Test");
+  CellFactory();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
 
   if (verbose) { TRACE("Trying out to build cells from the testing templates"); }
@@ -831,13 +833,13 @@ void ribi::trim::CellsCreator::Test() noexcept
     face_points[1]->SetZ(5.0 * boost::units::si::meter);
     face_points[2]->SetZ(6.0 * boost::units::si::meter);
     face_points[3]->SetZ(6.0 * boost::units::si::meter);
-    #ifndef NDEBUG
-    if (!Helper().IsConvex(face_points))
-    {
-      TRACE("NOT CONVEX");
-      for (const auto& p: face_points) { assert(p); TRACE(*p); }
-    }
-    #endif
+    //#ifndef NDEBUG
+    //if (!Helper().IsConvex(face_points))
+    //{
+    //  TRACE("NOT CONVEX");
+    //  for (const auto& p: face_points) { assert(p); TRACE(*p); }
+    //}
+    //#endif
 
     //Order face_points
     if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
@@ -900,6 +902,5 @@ void ribi::trim::CellsCreator::Test() noexcept
     face_points.push_back(p4);
     assert(IsPlane(face_points));
   }
-  TRACE("Finished ribi::trim::CellsCreator::Test successfully");
 }
 #endif

@@ -35,6 +35,8 @@ namespace cmap {
 
 struct EdgeFactory
 {
+  EdgeFactory() noexcept;
+
   boost::shared_ptr<Edge> Create(
     const boost::shared_ptr<Node> from,
     const boost::shared_ptr<Node> to
@@ -82,6 +84,12 @@ struct EdgeFactory
     const boost::shared_ptr<Node>& from,
     const boost::shared_ptr<Node>& to
   ) const noexcept;
+
+  private:
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap

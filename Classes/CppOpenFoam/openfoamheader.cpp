@@ -11,6 +11,7 @@
 #include <boost/algorithm/string/trim.hpp>
 
 #include "fileio.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -76,7 +77,7 @@ void ribi::foam::Header::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::Header::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const Header h("some_name","some_location","some_note","some_object");
   std::stringstream s;
   s << h;
@@ -88,7 +89,6 @@ void ribi::foam::Header::Test() noexcept
     TRACE(i);
   }
   assert(h == i);
-  TRACE("Finished ribi::foam::Header::Test successfully");
 }
 #endif
 

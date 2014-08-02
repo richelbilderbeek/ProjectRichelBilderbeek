@@ -19,6 +19,7 @@
 #include "openfoampatchfieldtypes.h"
 #include "openfoampoint.h"
 #include "openfoampointsfile.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::foam::Mesh::Mesh(
@@ -790,7 +791,7 @@ void ribi::foam::Mesh::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::Mesh::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check if the number of boundary faces is correct
   {
     const std::vector<boost::shared_ptr<ribi::foam::Files>> v { Files::CreateTestFiles() };
@@ -983,7 +984,6 @@ void ribi::foam::Mesh::Test() noexcept
       assert(result == face);
     }
   }
-  TRACE("Finished ribi::foam::Mesh::Test successfully");
 }
 #endif
 

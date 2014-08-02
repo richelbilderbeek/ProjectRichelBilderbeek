@@ -22,6 +22,7 @@
 #include "openfoamownerfile.h"
 #include "openfoamfilenames.h"
 #include "openfoampointsfile.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -725,7 +726,7 @@ void ribi::foam::Files::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::Files::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //operator==
   {
     const Files f;
@@ -795,7 +796,6 @@ void ribi::foam::Files::Test() noexcept
     assert(!ribi::fileio::FileIo().IsFolder(temp_folder));
 
   }
-  TRACE("Finished ribi::foam::Files::Test successfully");
 }
 #endif
 

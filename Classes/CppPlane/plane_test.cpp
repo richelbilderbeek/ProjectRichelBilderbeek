@@ -21,15 +21,15 @@ void ribi::Plane::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{false};
-  const bool show_warning{false};
-  using boost::geometry::get;
   Container();
   Geometry();
   { const auto planex = boost::make_shared<PlaneX>(); assert(planex); }
   { const auto planey = boost::make_shared<PlaneY>(); assert(planey); }
   { const auto planez = boost::make_shared<PlaneZ>(); assert(planez); }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+  const bool show_warning{false};
+  using boost::geometry::get;
 
   //Sorted by difficulty
   const auto series = PlaneZ::GetTestSeries();

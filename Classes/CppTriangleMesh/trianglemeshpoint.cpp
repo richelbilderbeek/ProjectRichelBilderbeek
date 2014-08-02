@@ -11,6 +11,7 @@
 #include <boost/lambda/lambda.hpp>
 
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
 #include "trace.h"
@@ -135,8 +136,7 @@ void ribi::trim::Point::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::Point::Test");
-  TRACE("Finished ribi::trim::Point::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

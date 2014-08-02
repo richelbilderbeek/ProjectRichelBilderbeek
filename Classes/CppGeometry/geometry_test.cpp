@@ -3,6 +3,9 @@
 #include <cassert>
 
 #include "apcplx.h" //apfloat's atan2
+
+#include "plane.h"
+#include "ribi_regex.h"
 #include "testtimer.h"
 #include "trace.h"
 
@@ -14,13 +17,23 @@ void ribi::Geometry::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  {
+    boost::shared_ptr<Plane> plane{
+      new Plane(
+        Plane::Coordinat3D(0.0,0.0,0.0),
+        Plane::Coordinat3D(0.0,1.0,0.0),
+        Plane::Coordinat3D(1.0,0.0,0.0)
+      )
+    };
+  }
+  ::ribi::Regex();
+  const TestTimer test_timer(__func__,__FILE__,1.1);
   const bool verbose{false};
   const double pi = boost::math::constants::pi<double>();
   const Geometry g;
-  if (verbose) { TRACE("CalcPlane"); }
+  if (verbose) { TRACE("CalcPlane #2"); }
   {
-    //using boost::geometry::model::point;
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
     using boost::geometry::cs::cartesian;
     const double p1_x =  1.0;
     const double p1_y =  2.0;
@@ -72,7 +85,7 @@ void ribi::Geometry::Test() noexcept
     assert(std::abs(d - d_p2_expected) < 0.001);
     assert(std::abs(d - d_p3_expected) < 0.001);
   }
-  if (verbose) { TRACE("CalcPlane"); }
+  if (verbose) { TRACE("CalcPlane #2"); }
   {
     //CalcPlane return the coefficients in the following form:
     // A.x + B.y + C.z = D
@@ -126,7 +139,7 @@ void ribi::Geometry::Test() noexcept
     assert(g.Fmod(-3.0,2.0) > expected_min && g.Fmod(-3.0,2.0) < expected_max);
     assert(g.Fmod(-13.0,2.0) > expected_min && g.Fmod(-13.0,2.0) < expected_max);
   }
-  //std::atan2 versus apfloat's atan2
+  if (verbose) { TRACE("std::atan2 versus apfloat's atan2"); }
   {
     for (double dx = -1.0; dx < 1.01; dx += 1.0)
     {
@@ -136,231 +149,210 @@ void ribi::Geometry::Test() noexcept
         const auto a = std::atan2(dx,dy);
         const auto b = atan2(Apfloat(dx),Apfloat(dy));
         const auto c = g.Atan2(Apfloat(dx),Apfloat(dy));
-        //std::stringstream s;
-        //s << dx << '\t' << dy << '\t' << (a/pi) << " pi\t" << (b/pi) << " pi\t" << g.ToStrSafe(c/Apfloat(pi)) << " pi\n";
-        //TRACE(s.str());
         const auto error = abs(a - c);
-        if (error >= 0.01)
-        {
-          TRACE("ERROR");
-          TRACE(dx);
-          TRACE(dy);
-          TRACE(Geometry().ToStrSafe(a));
-          TRACE(b);
-          TRACE(Geometry().ToStrSafe(error));
-          TRACE("BREAK");
-        }
-        assert(error < 0.01); //abfloat does not use namespace std::
+        assert(error < 0.01); //apfloat does not use namespace std::
       }
     }
   }
 
   if (verbose) { TRACE("GetAngleClockCartesian, double"); }
   {
-    const double angle =  g.GetAngleClockCartesian(0.0, 1.0); //North
-    const double expected = 0.0 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockCartesian(1.0, 1.0); //North-East
-    const double expected = 0.25 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockCartesian(1.0,0.0); //East
-    const double expected = 0.5 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockCartesian(1.0,-1.0); //South-East
-    const double expected = 0.75 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockCartesian(0.0,-1.0); //South
-    const double expected = 1.0 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockCartesian(-1.0,-1.0); //South-West
-    const double expected = 1.25 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockCartesian(-1.0,0.0); //West
-    const double expected = 1.5 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockCartesian(-1.0,1.0); //North-West
-    const double expected = 1.75 * pi;
-    assert(std::abs(angle-expected) < 0.01);
+    {
+      const double angle =  g.GetAngleClockCartesian(0.0, 1.0); //North
+      const double expected = 0.0 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockCartesian(1.0, 1.0); //North-East
+      const double expected = 0.25 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockCartesian(1.0,0.0); //East
+      const double expected = 0.5 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockCartesian(1.0,-1.0); //South-East
+      const double expected = 0.75 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockCartesian(0.0,-1.0); //South
+      const double expected = 1.0 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockCartesian(-1.0,-1.0); //South-West
+      const double expected = 1.25 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockCartesian(-1.0,0.0); //West
+      const double expected = 1.5 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockCartesian(-1.0,1.0); //North-West
+      const double expected = 1.75 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
   }
   if (verbose) { TRACE("GetAngleClockCartesian, Apfloat"); }
   {
     const auto angle =  g.GetAngleClockCartesian(Apfloat(0.0),Apfloat(1.0)); //North
     const auto expected = 0.0 * pi;
-    const auto error = abs(angle-expected); //abfloat does not use namespace std::
-    if (error >= 0.01)
-    {
-      TRACE("ERROR");
-      TRACE(Geometry().ToStrSafe(angle));
-      TRACE(Geometry().ToStrSafe(expected));
-      TRACE(Geometry().ToStrSafe(error));
-      TRACE("BREAK");
-    }
+    const auto error = abs(angle-expected); //apfloat does not use namespace std::
     assert(error < 0.01);
   }
+  if (verbose) { TRACE("GetAngleClockCartesian, Apfloat, test eight directions"); }
   {
-    const auto angle =  g.GetAngleClockCartesian(Apfloat(1.0),Apfloat(1.0)); //North-East
-    const auto expected = 0.25 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
+    {
+      const auto angle =  g.GetAngleClockCartesian(Apfloat(1.0),Apfloat(1.0)); //North-East
+      const auto expected = 0.25 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockCartesian(Apfloat(1.0),Apfloat(0.0)); //East
+      const auto expected = 0.5 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockCartesian(Apfloat(1.0),Apfloat(-1.0)); //South-East
+      const auto expected = 0.75 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockCartesian(Apfloat(0.0),Apfloat(-1.0)); //South
+      const auto expected = 1.0 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockCartesian(Apfloat(-1.0),Apfloat(-1.0)); //South-West
+      const auto expected = 1.25 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockCartesian(Apfloat(-1.0),Apfloat(0.0)); //West
+      const auto expected = 1.5 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockCartesian(Apfloat(-1.0),Apfloat(1.0)); //North-West
+      const auto expected = 1.75 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
   }
+  if (verbose) { TRACE("GetAngleClockScreen, double, test eight directions"); }
   {
-    const auto angle =  g.GetAngleClockCartesian(Apfloat(1.0),Apfloat(0.0)); //East
-    const auto expected = 0.5 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockCartesian(Apfloat(1.0),Apfloat(-1.0)); //South-East
-    const auto expected = 0.75 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockCartesian(Apfloat(0.0),Apfloat(-1.0)); //South
-    const auto expected = 1.0 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockCartesian(Apfloat(-1.0),Apfloat(-1.0)); //South-West
-    const auto expected = 1.25 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockCartesian(Apfloat(-1.0),Apfloat(0.0)); //West
-    const auto expected = 1.5 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockCartesian(Apfloat(-1.0),Apfloat(1.0)); //North-West
-    const auto expected = 1.75 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-
-  if (verbose) { TRACE("GetAngleClockScreen, double"); }
-  {
-    const double angle =  g.GetAngleClockScreen(0.0,-1.0); //North
-    const double expected = 0.0 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockScreen(1.0,-1.0); //North-East
-    const double expected = 0.25 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockScreen(1.0,0.0); //East
-    const double expected = 0.5 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockScreen(1.0,1.0); //South-East
-    const double expected = 0.75 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockScreen(0.0,1.0); //South
-    const double expected = 1.0 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockScreen(-1.0,1.0); //South-West
-    const double expected = 1.25 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockScreen(-1.0,0.0); //West
-    const double expected = 1.5 * pi;
-    assert(std::abs(angle-expected) < 0.01);
-  }
-  {
-    const double angle =  g.GetAngleClockScreen(-1.0,-1.0); //North-West
-    const double expected = 1.75 * pi;
-    assert(std::abs(angle-expected) < 0.01);
+    {
+      const double angle =  g.GetAngleClockScreen(0.0,-1.0); //North
+      const double expected = 0.0 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockScreen(1.0,-1.0); //North-East
+      const double expected = 0.25 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockScreen(1.0,0.0); //East
+      const double expected = 0.5 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockScreen(1.0,1.0); //South-East
+      const double expected = 0.75 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockScreen(0.0,1.0); //South
+      const double expected = 1.0 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockScreen(-1.0,1.0); //South-West
+      const double expected = 1.25 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockScreen(-1.0,0.0); //West
+      const double expected = 1.5 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
+    {
+      const double angle =  g.GetAngleClockScreen(-1.0,-1.0); //North-West
+      const double expected = 1.75 * pi;
+      assert(std::abs(angle-expected) < 0.01);
+    }
   }
   if (verbose) { TRACE("GetAngleClockScreen, Apfloat"); }
   {
     const auto angle =  g.GetAngleClockScreen(Apfloat(0.0),Apfloat(-1.0)); //North
     const auto expected = 0.0 * pi;
-    const auto error = abs(angle-expected); //abfloat does not use namespace std::
-    if (error >= 0.01)
-    {
-      TRACE("ERROR");
-      TRACE(Geometry().ToStrSafe(angle));
-      TRACE(Geometry().ToStrSafe(expected));
-      TRACE(Geometry().ToStrSafe(error));
-      TRACE("BREAK");
-    }
+    const auto error = abs(angle-expected); //apfloat does not use namespace std::
     assert(error < 0.01);
   }
+  if (verbose) { TRACE("GetAngleClockScreen, Apfloat, eight directions"); }
   {
-    const auto angle =  g.GetAngleClockScreen(Apfloat(1.0),Apfloat(-1.0)); //North-East
-    const auto expected = 0.25 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
+    {
+      const auto angle =  g.GetAngleClockScreen(Apfloat(1.0),Apfloat(-1.0)); //North-East
+      const auto expected = 0.25 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockScreen(Apfloat(1.0),Apfloat(0.0)); //East
+      const auto expected = 0.5 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockScreen(Apfloat(1.0),Apfloat(1.0)); //South-East
+      const auto expected = 0.75 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockScreen(Apfloat(0.0),Apfloat(1.0)); //South
+      const auto expected = 1.0 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockScreen(Apfloat(-1.0),Apfloat(1.0)); //South-West
+      const auto expected = 1.25 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockScreen(Apfloat(-1.0),Apfloat(0.0)); //West
+      const auto expected = 1.5 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
+    {
+      const auto angle =  g.GetAngleClockScreen(Apfloat(-1.0),Apfloat(-1.0)); //North-West
+      const auto expected = 1.75 * pi;
+      assert(abs(angle-expected) < 0.01); //apfloat does not use namespace std::
+    }
   }
-  {
-    const auto angle =  g.GetAngleClockScreen(Apfloat(1.0),Apfloat(0.0)); //East
-    const auto expected = 0.5 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockScreen(Apfloat(1.0),Apfloat(1.0)); //South-East
-    const auto expected = 0.75 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockScreen(Apfloat(0.0),Apfloat(1.0)); //South
-    const auto expected = 1.0 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockScreen(Apfloat(-1.0),Apfloat(1.0)); //South-West
-    const auto expected = 1.25 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockScreen(Apfloat(-1.0),Apfloat(0.0)); //West
-    const auto expected = 1.5 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-  {
-    const auto angle =  g.GetAngleClockScreen(Apfloat(-1.0),Apfloat(-1.0)); //North-West
-    const auto expected = 1.75 * pi;
-    assert(abs(angle-expected) < 0.01); //abfloat does not use namespace std::
-  }
-
-
-
   if (verbose) { TRACE("GetDistance"); }
   {
-    const double distance = g.GetDistance(3.0,4.0);
-    const double expected = 5.0;
-    assert(std::abs(distance-expected) < 0.01);
-  }
-  {
-    const double distance = g.GetDistance(-3.0,4.0);
-    const double expected = 5.0;
-    assert(std::abs(distance-expected) < 0.01);
-  }
-  {
-    const double distance = g.GetDistance(3.0,-4.0);
-    const double expected = 5.0;
-    assert(std::abs(distance-expected) < 0.01);
-  }
-  {
-    const double distance = g.GetDistance(-3.0,-4.0);
-    const double expected = 5.0;
-    assert(std::abs(distance-expected) < 0.01);
+    {
+      const double distance = g.GetDistance(3.0,4.0);
+      const double expected = 5.0;
+      assert(std::abs(distance-expected) < 0.01);
+    }
+    {
+      const double distance = g.GetDistance(-3.0,4.0);
+      const double expected = 5.0;
+      assert(std::abs(distance-expected) < 0.01);
+    }
+    {
+      const double distance = g.GetDistance(3.0,-4.0);
+      const double expected = 5.0;
+      assert(std::abs(distance-expected) < 0.01);
+    }
+    {
+      const double distance = g.GetDistance(-3.0,-4.0);
+      const double expected = 5.0;
+      assert(std::abs(distance-expected) < 0.01);
+    }
   }
   if (verbose) TRACE("double -> apfloat -> double conversion");
   {
@@ -450,6 +442,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("IsClockWise of three, vector");
   {
+
     assert( g.IsClockwise(Doubles( {-2.5 * pi,-2.0 * pi,-1.8 * pi} ))); //CW
     assert(!g.IsClockwise(Doubles( {-1.8 * pi,-2.0 * pi,-2.5 * pi} ))); //CCW
     assert(!g.IsClockwise(Doubles( {-2.0 * pi,-2.5 * pi,-1.8 * pi} ))); //Mess
@@ -480,6 +473,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("IsCounterClockWise of three, vector");
   {
+
     assert(!g.IsCounterClockwise(Doubles( {-2.5 * pi,-2.0 * pi,-1.8 * pi} ))); //CW
     assert( g.IsCounterClockwise(Doubles( {-1.8 * pi,-2.0 * pi,-2.5 * pi} ))); //CCW
     assert(!g.IsCounterClockwise(Doubles( {-2.0 * pi,-2.5 * pi,-1.8 * pi} ))); //Mess
@@ -510,6 +504,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("IsClockWise of four, vector");
   {
+
     //Correct order
     assert( g.IsClockwise(Doubles( {-2.5 * pi,-2.0 * pi,-1.5 * pi,-1.0 * pi} )));
     assert( g.IsClockwise(Doubles( {-2.0 * pi,-1.5 * pi,-1.0 * pi,-0.5 * pi} )));
@@ -551,6 +546,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("IsCounterClockWise of four, vector");
   {
+
     //Clockwise order
     assert(!g.IsCounterClockwise(Doubles( {-2.5 * pi,-2.0 * pi,-1.5 * pi,-1.0 * pi} )));
     assert(!g.IsCounterClockwise(Doubles( {-2.0 * pi,-1.5 * pi,-1.0 * pi,-0.5 * pi} )));
@@ -578,6 +574,7 @@ void ribi::Geometry::Test() noexcept
 
   */
   {
+
     assert(!g.IsClockwise(Doubles( {0.0 * pi,0.9 * pi,1.8 * pi,2.7 * pi} )));
     assert(!g.IsCounterClockwise(Doubles( {0.0 * pi,0.9 * pi,1.8 * pi,2.7 * pi} )));
   }
@@ -594,6 +591,7 @@ void ribi::Geometry::Test() noexcept
 
   */
   {
+
     assert(!g.IsCounterClockwise(Doubles( {2.0 * pi,1.1 * pi,0.2 * pi,-0.7 * pi} )));
     assert(!g.IsCounterClockwise(Doubles( {2.7 * pi,1.8 * pi,0.9 * pi,0.0 * pi} )));
   }
@@ -606,6 +604,7 @@ void ribi::Geometry::Test() noexcept
     Removed: (-0.55,2,10)
     Observer: (-2.1871,3.74169,5)
     */
+
     const Coordinats3D points {
       Coordinat3D(-3.78624,2,10),
       Coordinat3D(-3.78624,2,0),
@@ -624,6 +623,7 @@ void ribi::Geometry::Test() noexcept
     Removed: (-0.55,2,10)
     Observer: (-2.1871,3.74169,5)
     */
+
     const Coordinats3D points {
       Coordinat3D(-0.55,2,0),
       Coordinat3D(-3.78624,2,0),
@@ -641,6 +641,7 @@ void ribi::Geometry::Test() noexcept
     (-0.55,2,10)
     Observer: (-2.1871,3.74169,5)
     */
+
     const Coordinats3D points {
       Coordinat3D(-0.55,2,0),
       Coordinat3D(-3.78624,2,0),
@@ -666,6 +667,7 @@ void ribi::Geometry::Test() noexcept
        Convex           Concave
 
     */
+
 
     //Convex shape
     {
@@ -711,15 +713,15 @@ void ribi::Geometry::Test() noexcept
 
 
     */
-    {
-      const std::vector<Coordinat2D> points {
-        {17.4971,33.0765},
-        {9.28854,29.5636},
-        {9.28854,40.6764},
-        {17.4971,44.4009}
-      };
-      assert(g.IsConvex(points));
-    }
+
+
+    const std::vector<Coordinat2D> points {
+      {17.4971,33.0765},
+      {9.28854,29.5636},
+      {9.28854,40.6764},
+      {17.4971,44.4009}
+    };
+    assert(g.IsConvex(points));
   }
   if (verbose) TRACE("Convex shape, 2D, from error #2");
   {
@@ -741,15 +743,15 @@ void ribi::Geometry::Test() noexcept
      1--
 
     */
-    {
-      const std::vector<Coordinat2D> points {
-        {17.497 ,33.0765},
-        { 9.2885,29.5636},
-        {17.497 ,44.4009},
-        { 9.2885,40.6764}
-      };
-      assert(!g.IsConvex(points));
-    }
+
+
+    const std::vector<Coordinat2D> points {
+      {17.497 ,33.0765},
+      { 9.2885,29.5636},
+      {17.497 ,44.4009},
+      { 9.2885,40.6764}
+    };
+    assert(!g.IsConvex(points));
   }
 
 
@@ -766,16 +768,15 @@ void ribi::Geometry::Test() noexcept
      0
 
     */
-    {
-      const std::vector<Coordinat2D> points {
-        { 9.2885,29.5636},
-        { 9.2885,40.6764},
-        {17.497 ,44.4009},
-        {17.497 ,33.0765}
-      };
 
-      assert(g.IsConvex(points));
-    }
+
+    const std::vector<Coordinat2D> points {
+      { 9.2885,29.5636},
+      { 9.2885,40.6764},
+      {17.497 ,44.4009},
+      {17.497 ,33.0765}
+    };
+    assert(g.IsConvex(points));
   }
 
   if (verbose) TRACE("Convex shape, 2D, from error #3, point 5");
@@ -791,16 +792,15 @@ void ribi::Geometry::Test() noexcept
      1--
 
     */
-    {
-      const std::vector<Coordinat2D> points {
-        { 9.2885,40.6764},
-        { 9.2885,29.5636},
-        {17.497 ,33.0765},
-        {17.497 ,44.4009}
-      };
 
-      assert(g.IsConvex(points));
-    }
+
+    const std::vector<Coordinat2D> points {
+      { 9.2885,40.6764},
+      { 9.2885,29.5636},
+      {17.497 ,33.0765},
+      {17.497 ,44.4009}
+    };
+    assert(g.IsConvex(points));
   }
 
   if (verbose) TRACE("Convex shape, 2D, from error #3, point 5");
@@ -812,21 +812,21 @@ void ribi::Geometry::Test() noexcept
     1-0
 
     */
-    {
-      const std::vector<Coordinat2D> points {
-        {15.9835,631.923},
-        {8.24075,628.579},
-        {8.24075,679.58 },
-        {15.9835,682.926}
-      };
 
-      assert(g.IsConvex(points));
-    }
+
+    const std::vector<Coordinat2D> points {
+      {15.9835,631.923},
+      {8.24075,628.579},
+      {8.24075,679.58 },
+      {15.9835,682.926}
+    };
+    assert(g.IsConvex(points));
   }
 
 
   if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane");
   {
+
     if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane, Z shape");
     {
       /*
@@ -869,6 +869,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("Convex shape, 3D, points in X=Y plane");
   {
+
     {
       /*
                   |    |/     _-
@@ -913,6 +914,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("Convex shape, 3D, points in 2X=Y plane, not at origin");
   {
+
     {
       const ApCoordinats3D points {
         ApCoordinat3D(2.0,4.0,0.0),
@@ -955,6 +957,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("Convex shape, 3D, from error");
   {
+
     {
       /*
 
@@ -1009,13 +1012,14 @@ void ribi::Geometry::Test() noexcept
 
     */
 
+
     const ApCoordinat3D a(1.0, 1.0, 1.0);
     const ApCoordinat3D b(2.0, 2.0, 1.0);
     const ApCoordinat3D c(1.0, 2.0, 1.0);
     const ApCoordinats3D coordinats { a,b,c };
     for (int i = 0; i!=3; ++i)
     {
-      for (int j=0; j!=3; ++j)
+      for (int j=i; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
@@ -1043,13 +1047,14 @@ void ribi::Geometry::Test() noexcept
        0 1 2 3
 
     */
+
     const ApCoordinat3D a(1.0, 1.0, 1.0);
     const ApCoordinat3D b(1.0, 2.0, 1.0);
     const ApCoordinat3D c(2.0, 2.0, 1.0);
     const ApCoordinats3D coordinats { a,b,c };
     for (int i = 0; i!=3; ++i)
     {
-      for (int j=0; j!=3; ++j)
+      for (int j=i; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
@@ -1062,6 +1067,38 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
+
+
+  if (verbose) TRACE("CalcCenter");
+  {
+    /*
+
+   3.5 Y
+     3 |
+   2.5 |
+     2 | D-C
+   1.5 | | |
+     1 | A-B     (seen from above, Z = 1)
+   0.5 |
+     0 +------X
+       0 1 2 3
+
+    */
+
+    const ApCoordinat3D a(1.0, 1.0, 1.0);
+    const ApCoordinat3D b(2.0, 1.0, 1.0);
+    const ApCoordinat3D c(2.0, 2.0, 1.0);
+    const ApCoordinat3D d(1.0, 2.0, 1.0);
+    const ApCoordinats3D coordinats { a,b,c,d };
+    const auto center = g.CalcCenter(coordinats);
+    const auto center_x = boost::geometry::get<0>(center);
+    const auto center_y = boost::geometry::get<1>(center);
+    const auto center_z = boost::geometry::get<2>(center);
+    assert(center_x > 1.49 && center_x < 1.51);
+    assert(center_y > 1.49 && center_y < 1.51);
+    assert(center_z > 0.99 && center_z < 1.01);
+  }
+
   if (verbose) TRACE("IsClockwise, clockwise, in three dimensions, four points in XY plane");
   {
     /*
@@ -1077,29 +1114,20 @@ void ribi::Geometry::Test() noexcept
        0 1 2 3
 
     */
+
     const ApCoordinat3D a(1.0, 1.0, 1.0);
     const ApCoordinat3D b(2.0, 1.0, 1.0);
     const ApCoordinat3D c(2.0, 2.0, 1.0);
     const ApCoordinat3D d(1.0, 2.0, 1.0);
     const ApCoordinats3D coordinats { a,b,c,d };
-    for (int i = 0; i!=3; ++i)
+    for (int i = 1; i!=3; ++i)
     {
-      for (int j=0; j!=3; ++j)
+      for (int j=i; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
         const ApCoordinat3D above(x, y, 2.0);
         const ApCoordinat3D below(x, y,-1.0);
-        //Check CalcCenter
-        {
-          const auto center = g.CalcCenter(coordinats);
-          const auto center_x = boost::geometry::get<0>(center);
-          const auto center_y = boost::geometry::get<1>(center);
-          const auto center_z = boost::geometry::get<2>(center);
-          assert(center_x > 1.49 && center_x < 1.51);
-          assert(center_y > 1.49 && center_y < 1.51);
-          assert(center_z > 0.99 && center_z < 1.01);
-        }
         assert(!g.IsClockwiseCartesianHorizontal(coordinats));
         assert( g.IsCounterClockwiseCartesianHorizontal(coordinats));
         assert(!g.IsClockwiseCartesian(coordinats,above));
@@ -1123,14 +1151,15 @@ void ribi::Geometry::Test() noexcept
        0 1 2 3
 
     */
+
     const ApCoordinat3D a(1.0, 1.0, 1.0);
     const ApCoordinat3D b(1.0, 2.0, 1.0);
     const ApCoordinat3D c(2.0, 2.0, 1.0);
     const ApCoordinat3D d(2.0, 1.0, 1.0);
     const ApCoordinats3D coordinats { a,b,c,d };
-    for (int i = 0; i!=3; ++i)
+    for (int i = 1; i!=3; ++i)
     {
-      for (int j=0; j!=3; ++j)
+      for (int j=i; j!=3; ++j)
       {
         const double x = static_cast<double>(i-1) * 5.0;
         const double y = static_cast<double>(j-1) * 5.0;
@@ -1157,14 +1186,15 @@ void ribi::Geometry::Test() noexcept
        0 1 2 3
 
     */
+
     const ApCoordinat3D a(1.0, 1.0, 1.0);
     const ApCoordinat3D b(2.0, 2.0, 1.0);
     const ApCoordinat3D c(1.0, 2.0, 1.0);
     const ApCoordinat3D d(2.0, 1.0, 1.0);
     const ApCoordinats3D coordinats { a,b,c,d };
-    for (int i = 0; i!=3; ++i)
+    for (int i = 1; i!=3; ++i)
     {
-      for (int j=0; j!=3; ++j)
+      for (int j=i; j!=3; ++j)
       {
         const Apfloat x = static_cast<double>(i-1) * 5.0;
         const Apfloat y = static_cast<double>(j-1) * 5.0;
@@ -1179,6 +1209,7 @@ void ribi::Geometry::Test() noexcept
   }
   //IsPlane
   {
+
     const ApCoordinat3D a(-3.64472,-0.25,0.0);
     const ApCoordinat3D b(-4.52988,-0.25,0.0);
     const ApCoordinat3D c(-3.64472,-0.25,10.0);
@@ -1188,6 +1219,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) TRACE("Translate");
   {
+
     //Translate (0.5,1.0) to origin
     const auto house = g.CreateHouseShape();
     const auto translated_house = g.Translate(house,-0.5,-1.0);
@@ -1257,6 +1289,7 @@ void ribi::Geometry::Test() noexcept
           0   1   2
 
     */
+
     const auto house = g.CreateHouseShape();
     const auto rescaled_house = g.Rescale(house,2.0,0.5,1.0);
     boost::geometry::model::ring<Coordinat2D> rescaled_points;
@@ -1284,6 +1317,7 @@ void ribi::Geometry::Test() noexcept
   }
   if (verbose) { TRACE("WktToSvg"); }
   {
+
     const std::string s
       = g.WktToSvg("POLYGON((0 0,0 1,1 0)),LINESTRING(0 0,0 1,1 0)",1.0)
     ;
@@ -1382,11 +1416,13 @@ void ribi::Geometry::Test() noexcept
   #endif //#ifdef TODO_RICHEL
   //WktToLinestring: open linestring to polygon
   {
+
     const auto p = g.WktToLinestring("LINESTRING(0 0 0 1 1 1 1 0)");
     assert(p.size() == 4);
   }
   //WktToPolygon: open linestring to polygon
   {
+
     const auto p = g.WktToPolygon("POLYGON((0 0 0 1 1 1 1 0))");
     assert(p.outer().size() == 4);
   }
@@ -1402,6 +1438,7 @@ void ribi::Geometry::Test() noexcept
     +-+-+-   +-+-+-
 
     */
+
     const auto l = g.WktToLinestring("LINESTRING(2 1 1 1 1 2 2 2)");
     const auto p = g.ToPolygon(l);
     assert(p.outer().size() == 4);
@@ -1418,6 +1455,7 @@ void ribi::Geometry::Test() noexcept
     +-+-+-   +-+-+-
 
     */
+
     const auto l = g.WktToLinestring("LINESTRING(2 1 1 1 1 2 2 2 2 1)");
     const auto p = g.ToPolygon(l);
     assert(p.outer().size() == 4);

@@ -8,6 +8,7 @@
 #include <boost/make_shared.hpp>
 
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
@@ -212,8 +213,10 @@ void ribi::trim::FaceFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::FaceFactory::Test");
-  
+  PointFactory();
+  FaceFactory().CreateTestSquare(Winding::clockwise); //Face
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   if (verbose) TRACE("Create a testing prism");
   for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
@@ -252,6 +255,7 @@ void ribi::trim::FaceFactory::Test() noexcept
     assert(points.size() == 4);
     assert(!Helper().IsConvex(points));
   }
+  #ifdef BRUTE_FORCE_ISSUE_168
   if (verbose) TRACE("IsConvex, issue 168");
   {
     typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
@@ -278,7 +282,7 @@ void ribi::trim::FaceFactory::Test() noexcept
     assert(face && "But when creating a Face, the points are ordered");
     assert(face->GetIndex() > 0);
     //Shuffle these more often:
-    //For every order, it must be possibleto be made convex
+    //For every order, it must be possible to be made convex
     for (int i=0; i!=256; ++i)
     {
       std::random_shuffle(points.begin(),points.end());
@@ -321,8 +325,7 @@ void ribi::trim::FaceFactory::Test() noexcept
       assert(Helper().IsConvex(points));
     }
   }
-  assert("issue 168");
-  TRACE("Finished ribi::trim::FaceFactory::Test successfully");
+  #endif // BRUTE_FORCE_ISSUE_168
 }
 #endif
 

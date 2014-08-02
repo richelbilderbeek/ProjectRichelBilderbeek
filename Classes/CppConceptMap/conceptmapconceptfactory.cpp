@@ -36,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "xml.h"
 #pragma GCC diagnostic push
 
-ribi::cmap::ConceptFactory::ConceptFactory()
+ribi::cmap::ConceptFactory::ConceptFactory() noexcept
 {
   #ifndef NDEBUG
   Test();

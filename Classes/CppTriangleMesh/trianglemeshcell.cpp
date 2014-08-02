@@ -5,6 +5,7 @@
 
 
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshcellfactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
@@ -106,7 +107,7 @@ void ribi::trim::Cell::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::Cell::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
   for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
@@ -209,8 +210,6 @@ void ribi::trim::Cell::Test() noexcept
     assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
     assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
   }
-
-  TRACE("Finished ribi::trim::Cell::Test successfully");
 }
 #endif
 

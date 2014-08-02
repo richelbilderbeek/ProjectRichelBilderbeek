@@ -1,6 +1,7 @@
 #include "trianglemeshcellscreatorfactory.h"
 #include <cassert>
 
+#include "testtimer.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcellfactory.h"
 #include "trianglemeshcellscreator.h"
@@ -114,7 +115,9 @@ void ribi::trim::CellsCreatorFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::CellsCreatorFactory::Test");
+  Template::CreateTest(0);
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const CellsCreatorFactory cells_creator;
   const CreateVerticalFacesStrategies create_vertical_faces_strategies;
   //Create prism
@@ -134,12 +137,11 @@ void ribi::trim::CellsCreatorFactory::Test() noexcept
     boost::shared_ptr<CellsCreator> cube
       = cells_creator.CreateTestCube(strategy);
     assert(cube);
-    const std::vector<boost::shared_ptr<ribi::trim::Cell>> cells
+    const std::vector<boost::shared_ptr<Cell>> cells
       = cube->GetCells();
     assert(cells.size() == 2 && "A cube consists of 2 prisms");
     assert(cells[0]);
     assert(cells[1]);
   }
-  TRACE("Finished ribi::trim::CellsCreatorFactory::Test successfully");
 }
 #endif

@@ -5,6 +5,7 @@
 
 
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshface.h"
@@ -308,7 +309,8 @@ void ribi::trim::PointFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::PointFactory::Test");
+  PointFactory().CreateTestTriangle(Winding::clockwise);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const std::vector<boost::shared_ptr<Point>> prism {
       PointFactory().CreateTestPrism()
@@ -324,6 +326,5 @@ void ribi::trim::PointFactory::Test() noexcept
       ) == winding
     );
   }
-  TRACE("Finished ribi::trim::PointFactory::Test successfully");
 }
 #endif

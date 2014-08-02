@@ -20,6 +20,7 @@
 #include "openfoamheader.h"
 #include "openfoamboundaryindex.h"
 #include "openfoamboundaryfileitem.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -112,7 +113,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::BoundaryFile::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Some initial data
   const Header header("some_name","some_location","some_object");
   std::vector<BoundaryFileItem> items;
@@ -209,7 +210,6 @@ void ribi::foam::BoundaryFile::Test() noexcept
         && "If a mesh has no non-boundary cells, neighbour can be empty");
     }
   }
-  TRACE("Finished ribi::foam::Header::BoundaryFile successfully");
 }
 #endif
 

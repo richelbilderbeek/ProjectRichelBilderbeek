@@ -31,8 +31,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapcenternode.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
+#include "conceptmapexamplefactory.h"
+#include "conceptmapexamplesfactory.h"
 #include "conceptmaphelper.h"
+#include "conceptmapnodefactory.h"
 #include "conceptmapregex.h"
+#include "counter.h"
+#include "ribi_regex.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
@@ -162,6 +167,24 @@ void ribi::cmap::CenterNodeFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  NodeFactory();
+  ConceptFactory();
+  Counter();
+  ExampleFactory();
+  ExamplesFactory();
+  ::ribi::Regex();
+  ::ribi::cmap::TestHelperFunctions();
+  ::ribi::cmap::Regex();
+
   const TestTimer test_timer{__func__,__FILE__,0.1};
+
+  const auto concept = ConceptFactory().GetTest(0);
+  const double x{0.1};
+  const double y{2.3};
+  const auto node = CenterNodeFactory().Create(concept,x,y);
+  assert(node);
+  assert(concept == node->GetConcept());
+  assert(node->GetX() == x);
+  assert(node->GetY() == y);
 }
 #endif

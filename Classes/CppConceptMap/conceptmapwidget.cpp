@@ -86,7 +86,7 @@ ribi::cmap::Widget::Widget(const Widget& other)
     m_signal_lose_selected{},
     m_signal_set_focus{},
     m_signal_set_selected{},
-    m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
+    m_conceptmap(ConceptMapFactory().DeepCopy(other.m_conceptmap)),
     m_focus{other.m_focus},
     m_font_height(other.m_font_height),
     m_font_width(other.m_font_width),

@@ -38,6 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtnavigationablegraphicsview.h"
 #include "trace.h"
 #include "trianglemeshface.h"
+#include "testtimer.h"
 #include "trianglemeshpoint.h"
 #include "trianglefile.h"
 #include "trianglemeshdialog.h"
@@ -270,7 +271,7 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTriangleMeshCreatorMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   QtTriangleMeshCreatorMainDialog d;
   d.SetShowMesh(false);
   d.DisplayPolygons();
@@ -280,7 +281,6 @@ void ribi::QtTriangleMeshCreatorMainDialog::Test() noexcept
   //Set a WKT that does not have any closed surfaces
   d.SetWkt("LINESTRING(0 0 0 1 1 1 1 0)");
   d.on_button_create_clicked();
-  TRACE("Finished QtTriangleMeshCreatorMainDialog::Test successfully");
 }
 #endif
 

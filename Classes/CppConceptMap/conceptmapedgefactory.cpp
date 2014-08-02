@@ -34,9 +34,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapregex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
+
+ribi::cmap::EdgeFactory::EdgeFactory() noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 
 boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   const boost::shared_ptr<ribi::cmap::Node> from,
@@ -46,10 +55,10 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   assert(from);
   assert(to);
   assert(from != to);
-  const double x = (from->GetX() + to->GetX()) / 2;
-  const double y = (from->GetY() + to->GetY()) / 2;
-  const bool tail_arrow = false;
-  const bool head_arrow = true;
+  const double x{(from->GetX() + to->GetX()) / 2.0};
+  const double y{(from->GetY() + to->GetY()) / 2.0};
+  const bool tail_arrow{false};
+  const bool head_arrow{true};
   const auto concept = ConceptFactory().Create();
   assert(concept->GetExamples());
 
@@ -70,9 +79,6 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
 
 boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   const boost::shared_ptr<Node>& node,
-  //const boost::shared_ptr<ribi::cmap::Concept>& concept,
-  //const double concept_x,
-  //const double concept_y,
   const boost::shared_ptr<ribi::cmap::Node> from,
   const bool tail_arrow,
   const boost::shared_ptr<ribi::cmap::Node> to,
@@ -86,7 +92,6 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   assert(to);
   assert(from != to);
   boost::shared_ptr<Edge> p(new Edge(node,from,tail_arrow,to,head_arrow));
-  //boost::shared_ptr<Edge> p(new Edge(concept,concept_x,concept_y,from,tail_arrow,to,head_arrow));
   assert(p);
   return p;
 }
@@ -265,3 +270,21 @@ std::vector<boost::shared_ptr<ribi::cmap::Edge>> ribi::cmap::EdgeFactory::GetTes
   assert(GetNumberOfTests() == static_cast<int>(result.size()));
   return result;
 }
+
+
+#ifndef NDEBUG
+void ribi::cmap::EdgeFactory::Test() noexcept
+{
+  {
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
+  }
+  EdgeFactory().GetTest(
+     0,
+     NodeFactory().GetTest(0),
+     NodeFactory().GetTest(0)
+  );
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+}
+#endif // NDEBUG

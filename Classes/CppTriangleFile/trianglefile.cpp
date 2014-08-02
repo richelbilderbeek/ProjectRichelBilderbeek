@@ -16,6 +16,7 @@
 #include "geometry.h"
 #include "polyfile.h"
 #include "polyfilefrompolygons.h"
+#include "testtimer.h"
 #include "trace.h"
 
 //#define TODO_ISSUE_207
@@ -340,7 +341,7 @@ void ribi::TriangleFile::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TriangleFile::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   //Call Triangle with simple shapes
   {
@@ -390,7 +391,6 @@ void ribi::TriangleFile::Test() noexcept
       std::exit(0); //TEMP for profiling
       assert(!"Should not get here");
     }
-    TRACE("Finished ribi::TriangleFile::Test successfully");
   }
 }
 #endif

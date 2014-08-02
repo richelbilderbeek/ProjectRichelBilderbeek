@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qttrianglemeshcreatormaindialog.h"
 #include "qthideandshowdialog.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttrianglemeshcreatormenudialog.h"
 #pragma GCC diagnostic pop
@@ -84,9 +85,8 @@ void ribi::QtTriangleMeshCreatorMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTriangleMeshCreatorMenuDialog::Test");
   TriangleMeshCreatorMenuDialog();
   QtTriangleMeshCreatorMainDialog();
-  TRACE("Finished QtTriangleMeshCreatorMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

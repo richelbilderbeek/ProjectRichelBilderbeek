@@ -18,6 +18,7 @@
 #include "fileio.h"
 
 #include "openfoamheader.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -47,8 +48,7 @@ void ribi::foam::ThermophysicalPropertiesFile::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::ThermophysicalPropertiesFile::Test");
-  TRACE("Finished ribi::foam::ThermophysicalPropertiesFile successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

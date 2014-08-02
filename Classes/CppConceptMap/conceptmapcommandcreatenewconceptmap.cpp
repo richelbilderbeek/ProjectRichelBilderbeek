@@ -42,7 +42,7 @@ void ribi::cmap::CommandCreateNewConceptMap::DoCommandSpecific(Widget * const wi
   m_widget = widget;
 
   const boost::shared_ptr<ConceptMap> new_map {
-    ConceptMapFactory::Create("...")
+    ConceptMapFactory().Create("...")
   };
   assert(new_map);
   m_widget->SetConceptMap(new_map);

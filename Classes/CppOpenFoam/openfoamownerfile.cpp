@@ -20,6 +20,7 @@
 #include "openfoamheader.h"
 #include "openfoamfaceindex.h"
 #include "openfoamownerfileitem.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -103,7 +104,7 @@ void ribi::foam::OwnerFile::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::OwnerFile::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Some initial data
   const Header header("some_name","some_location","some_object");
   std::vector<OwnerFileItem> items;
@@ -204,7 +205,6 @@ void ribi::foam::OwnerFile::Test() noexcept
       assert(!b.GetItems().empty());
     }
   }
-  TRACE("Finished ribi::foam::Header::OwnerFile successfully");
 }
 #endif
 

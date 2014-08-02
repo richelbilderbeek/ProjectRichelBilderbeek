@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshcellscreatorfactory.h"
@@ -109,7 +110,9 @@ void ribi::trim::CellFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::CellFactory::Test");
+  FaceFactory();
+  CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Create prism
   for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
@@ -130,8 +133,6 @@ void ribi::trim::CellFactory::Test() noexcept
       CellFactory().CreateTestCube(strategy)
     };
     assert(cube.size() == 2 && "A cube consists of two prisms");
-
   }
-  TRACE("Finished ribi::trim::CellFactory::Test successfully");
 }
 #endif

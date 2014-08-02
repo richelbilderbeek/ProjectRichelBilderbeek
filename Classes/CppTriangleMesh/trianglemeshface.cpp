@@ -13,6 +13,7 @@
 #include <boost/units/systems/si/prefixes.hpp>
 
 #include "geometry.h"
+#include "testtimer.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trianglemeshpoint.h"
@@ -290,7 +291,7 @@ void ribi::trim::Face::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::Face::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check that a Face has no owner nor neighbour when not added to a Cell
   for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
@@ -316,7 +317,6 @@ void ribi::trim::Face::Test() noexcept
       == (winding == Winding::clockwise || winding == Winding::counter_clockwise)
     );
   }
-  TRACE("Finished ribi::trim::Face::Test successfully");
 }
 #endif
 

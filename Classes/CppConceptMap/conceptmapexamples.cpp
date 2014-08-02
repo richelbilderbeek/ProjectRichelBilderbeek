@@ -136,6 +136,7 @@ void ribi::cmap::Examples::Test() noexcept
     is_tested = true;
   }
   ExampleFactory().GetTest(0);
+  ExamplesFactory().GetTest(0);
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test of operator== and operator!=
   {

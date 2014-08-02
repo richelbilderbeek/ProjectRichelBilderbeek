@@ -43,6 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "openfoamthermophysicalpropertiesfile.h"
 #include "openfoamvelocityfieldfile.h"
 #include "polyfile.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "trianglefile.h"
 #include "trianglemeshbuilder.h"
@@ -827,9 +828,9 @@ void ribi::trim::Dialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::Dialog::Test");
+  CellsCreatorFactory();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
-  ribi::trim::CellsCreatorFactory();
   //Flow of Dialog
   {
     Dialog d;
@@ -891,6 +892,5 @@ void ribi::trim::Dialog::Test() noexcept
     }
   }
   */
-  TRACE("Finished ribi::trim::Dialog::Test successfully");
 }
 #endif

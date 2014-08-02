@@ -42,6 +42,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "plane.h"
 #include "polyfile.h"
 #include "polyfilefrompolygons.h"
+#include "testtimer.h"
 #include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
@@ -529,7 +530,7 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TriangleMeshCreatorMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const int testing_depth = 1;
   {
@@ -617,6 +618,5 @@ void ribi::TriangleMeshCreatorMenuDialog::Test() noexcept
       }
     );
   }
-  TRACE("Finished ribi::TriangleMeshCreatorMenuDialog::Test successfully");
 }
 #endif

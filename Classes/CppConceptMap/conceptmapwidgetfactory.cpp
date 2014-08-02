@@ -30,7 +30,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Widget>>
   ribi::cmap::WidgetFactory::GetAllTests() noexcept
 {
   std::vector<boost::shared_ptr<Widget>> v;
-  for (const boost::shared_ptr<ConceptMap> m: ConceptMapFactory::GetAllTests())
+  for (const boost::shared_ptr<ConceptMap> m: ConceptMapFactory().GetAllTests())
   {
     assert( (m || !m)
       && "Allow a widget with and without an actual concept map");

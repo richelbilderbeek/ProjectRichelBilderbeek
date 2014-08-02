@@ -10,6 +10,7 @@
 
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
+#include "testtimer.h"
 #include "fileio.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
@@ -786,7 +787,8 @@ void ribi::trim::Template::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::Template::Test");
+  PointFactory();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   if (verbose) { TRACE("IsClockWise, confirmation"); }
   {
@@ -889,6 +891,5 @@ void ribi::trim::Template::Test() noexcept
       assert(Helper().IsClockwiseHorizontal(face->GetPoints()));
     }
   }
-  TRACE("Finished ribi::trim::Template::Test successfully");
 }
 #endif

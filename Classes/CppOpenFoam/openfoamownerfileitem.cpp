@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::foam::OwnerFileItem::OwnerFileItem(
@@ -24,7 +25,7 @@ void ribi::foam::OwnerFileItem::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::OwnerFileItem::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //operator==
   {
     const OwnerFileItem i(CellIndex(123));
@@ -55,7 +56,6 @@ void ribi::foam::OwnerFileItem::Test() noexcept
     }
     assert(i == j);
   }
-  TRACE("Finished ribi::foam::OwnerFileItem::Test successfully");
 }
 #endif
 

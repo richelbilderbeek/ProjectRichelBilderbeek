@@ -18,6 +18,7 @@
 #include "fileio.h"
 
 #include "openfoamheader.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -44,8 +45,7 @@ void ribi::foam::KFile::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::KFile::Test");
-  TRACE("Finished ribi::foam::KFile successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

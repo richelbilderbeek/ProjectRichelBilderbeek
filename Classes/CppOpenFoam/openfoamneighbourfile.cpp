@@ -20,6 +20,7 @@
 #include "openfoamheader.h"
 #include "openfoamneighbourfileitem.h"
 #include "openfoamfaceindex.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -96,7 +97,7 @@ void ribi::foam::NeighbourFile::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::NeighbourFile::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Some initial data
   const Header header("some_name","some_location","some_object");
   std::vector<NeighbourFileItem> items;
@@ -181,7 +182,6 @@ void ribi::foam::NeighbourFile::Test() noexcept
         && "If a mesh has no non-bhoundary cells, neighbour can be empty");
     }
   }
-  TRACE("Finished ribi::foam::Header::NeighbourFile successfully");
 }
 #endif
 

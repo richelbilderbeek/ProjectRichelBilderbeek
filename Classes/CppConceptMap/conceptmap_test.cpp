@@ -62,40 +62,47 @@ void ribi::cmap::ConceptMap::Test() noexcept
   CenterNodeFactory();
   ConceptFactory();
   ExamplesFactory();
+  NodeFactory();
+  EdgeFactory();
   TestHelperFunctions();
-  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const TestTimer test_timer(__func__,__FILE__,1.5);
   const bool trace_verbose{false};
-  typedef std::vector<boost::shared_ptr<Node> > Nodes;
+  typedef std::vector<boost::shared_ptr<Node>> Nodes;
 
-  if (trace_verbose) { TRACE("operator==, DeepCopy"); }
+  if (trace_verbose) { TRACE("Create tests"); }
   {
-    const std::vector<boost::shared_ptr<const ConceptMap>> v = AddConst(ConceptMapFactory::GetAllTests());
-    std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<const ConceptMap> m)
-      {
-        if (m)
-        {
-          //Test copy constructor
-          const boost::shared_ptr<ConceptMap> c(ConceptMapFactory::DeepCopy(m));
-          assert(*c == *m);
-          //Test XML conversions
-          const std::string s{ToXml(c)};
-          const boost::shared_ptr<ConceptMap> d = ConceptMapFactory::FromXml(s);
-          assert(*c == *d);
-        }
-      }
-    );
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+    const std::vector<boost::shared_ptr<const ConceptMap>> v{AddConst(ConceptMapFactory().GetAllTests())};
+    assert(!v.empty());
+  }
+  if (trace_verbose) { TRACE("DeepCopy must result in two identical concept maps"); }
+  {
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+    const boost::shared_ptr<const ConceptMap> m{ConceptMapFactory().GetHeteromorphousTestConceptMap(19)};
+    const boost::shared_ptr<ConceptMap> c{ConceptMapFactory().DeepCopy(m)};
+    assert(*c == *m);
+  }
+  if (trace_verbose) { TRACE("ConceptMap->XML->ConceptMap must result in two identical concept maps"); }
+  {
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+    const boost::shared_ptr<const ConceptMap> m{ConceptMapFactory().GetHeteromorphousTestConceptMap(19)};
+    const std::string s{ToXml(m)};
+    const boost::shared_ptr<ConceptMap> d = ConceptMapFactory().FromXml(s);
+    assert(*m == *d);
   }
   if (trace_verbose) { TRACE("CanConstruct"); }
   {
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
     assert(CanConstruct( {}, {} ) && "Assume empty concept map can be constructed");
   }
   {
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
     const boost::shared_ptr<Concept> concept(ConceptFactory().Create("FOCAL QUESTION"));
     const boost::shared_ptr<Node> node = NodeFactory().Create(concept,123,234);
     assert(CanConstruct( { node }, {} ) && "Assume focal question without examples can be constructed");
   }
   {
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
     const boost::shared_ptr<Concept> concept(ConceptFactory().Create("FOCAL QUESTION", { {"No",Competency::misc},{"examples",Competency::misc},{"allowed",Competency::misc} } ));
     const boost::shared_ptr<Node> node = NodeFactory().Create(concept,123,234);
     assert(CanConstruct( { node }, {} )
@@ -106,6 +113,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
   {
     if (trace_verbose) { TRACE("HasSameContent 1"); }
     {
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
       assert(NodeFactory().GetTests().size() >= 3);
       const boost::shared_ptr<CenterNode> node_a(CenterNodeFactory().CreateFromStrings("FOCAL QUESTION"));
       assert(node_a);
@@ -114,7 +122,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const boost::shared_ptr<Node> node_c(NodeFactory().GetTests().at(2));
       assert(node_c);
       const boost::shared_ptr<ConceptMap> map_a(
-        ConceptMapFactory::Create(
+        ConceptMapFactory().Create(
           {
             CenterNodeFactory().CreateFromStrings("FOCAL QUESTION"),
             NodeFactory().GetTests().at(1),
@@ -125,7 +133,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       assert(map_a);
       assert(map_a->GetNodes().size() == 3);
       const boost::shared_ptr<ConceptMap> map_b(
-        ConceptMapFactory::Create(
+        ConceptMapFactory().Create(
           {
             CenterNodeFactory().CreateFromStrings("FOCAL QUESTION"),
             NodeFactory().GetTests().at(1),
@@ -139,7 +147,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       assert(map_a != map_b);
 
       const boost::shared_ptr<ConceptMap> map_c(
-        ConceptMapFactory::Create(
+        ConceptMapFactory().Create(
           {
             CenterNodeFactory().CreateFromStrings("FOCAL QUESTION"),
             NodeFactory().GetTests().at(1),
@@ -154,11 +162,12 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     if (trace_verbose) { TRACE("HasSameContent 2"); }
     {
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
       const boost::shared_ptr<Concept> concept_b(ConceptFactory().Create("1", { {"2",Competency::misc},{"3",Competency::misc} } ));
       const boost::shared_ptr<Concept> concept_f(ConceptFactory().Create("1", { {"2",Competency::misc},{"3",Competency::misc} } ));
       const boost::shared_ptr<Node> node_b(NodeFactory().Create(concept_b,321,432));
       const boost::shared_ptr<ConceptMap> map_a(
-        ConceptMapFactory::Create(
+        ConceptMapFactory().Create(
           {
             CenterNodeFactory().CreateFromStrings("FOCAL QUESTION"),
             NodeFactory().GetTests().at(1),
@@ -167,7 +176,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
         )
       );
       const boost::shared_ptr<ConceptMap> map_b(
-        ConceptMapFactory::Create(
+        ConceptMapFactory().Create(
           {
             CenterNodeFactory().CreateFromStrings("FOCAL QUESTION"),
             NodeFactory().GetTests().at(1),
@@ -180,7 +189,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
 
       const boost::shared_ptr<Node> node_g = NodeFactory().Create(concept_f,901,012);
       const boost::shared_ptr<ConceptMap> map_c(
-        ConceptMapFactory::Create(
+        ConceptMapFactory().Create(
           {
             CenterNodeFactory().CreateFromStrings("FOCAL QUESTION"), node_b, node_g
           }
@@ -193,6 +202,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     if (trace_verbose) { TRACE("HasSameContent 3"); }
     {
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
       const boost::shared_ptr<Concept> concept_a(ConceptFactory().Create("FOCAL QUESTION"));
       const boost::shared_ptr<Concept> concept_b(ConceptFactory().Create("1",{{"2",Competency::misc},{"3",Competency::misc}}));
       const boost::shared_ptr<Concept> concept_c(ConceptFactory().Create("4",{{"5",Competency::misc},{"6",Competency::misc}}));
@@ -205,11 +215,11 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const boost::shared_ptr<Node> node_d(CenterNodeFactory().Create(concept_d,567,678));
       const boost::shared_ptr<Node> node_e(NodeFactory().Create(concept_e,789,890));
       const boost::shared_ptr<Node> node_f(NodeFactory().Create(concept_f,901,012));
-      const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory::Create( { node_a, node_b, node_c } ));
-      const boost::shared_ptr<ConceptMap> map_b(ConceptMapFactory::Create( { node_d, node_f, node_e } )); //Swap e and f
+      const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory().Create( { node_a, node_b, node_c } ));
+      const boost::shared_ptr<ConceptMap> map_b(ConceptMapFactory().Create( { node_d, node_f, node_e } )); //Swap e and f
       assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
-      const boost::shared_ptr<ConceptMap> map_c(ConceptMapFactory::Create( { node_d, node_c, node_e } ));
+      const boost::shared_ptr<ConceptMap> map_c(ConceptMapFactory().Create( { node_d, node_c, node_e } ));
       assert(!HasSameContent(*map_a,*map_c));
       assert(!HasSameContent(*map_b,*map_c));
       assert(map_a != map_c);
@@ -217,6 +227,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     if (trace_verbose) { TRACE("HasSameContent 4"); }
     {
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
       const boost::shared_ptr<Concept> concept_n11(ConceptFactory().Create("1"));
       const boost::shared_ptr<Concept> concept_n12(ConceptFactory().Create("2"));
       const boost::shared_ptr<Concept> concept_n13(ConceptFactory().Create("3"));
@@ -249,12 +260,12 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const boost::shared_ptr<Edge> edge_22(EdgeFactory().Create(NodeFactory().Create(concept_e22,5.6,7.8),nodes_2.at(0),false,nodes_2.at(2),true));
       const boost::shared_ptr<Edge> edge_23(EdgeFactory().Create(NodeFactory().Create(concept_e23,6.7,8.9),nodes_2.at(1),false,nodes_2.at(2),true));
 
-      const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory::Create(
+      const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory().Create(
         { node_11, node_12, node_13 },
         { edge_11, edge_12, edge_13 }
         )
       );
-      const boost::shared_ptr<ConceptMap> map_b(ConceptMapFactory::Create(
+      const boost::shared_ptr<ConceptMap> map_b(ConceptMapFactory().Create(
         { node_21, node_22, node_23 },
         { edge_21, edge_22, edge_23 }
         )
@@ -262,7 +273,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
 
-      const boost::shared_ptr<ConceptMap> map_c(ConceptMapFactory::Create(
+      const boost::shared_ptr<ConceptMap> map_c(ConceptMapFactory().Create(
         { node_21, node_22, node_23 },
         { edge_21, edge_22 }
         )
@@ -274,6 +285,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     if (trace_verbose) { TRACE("HasSameContent 5"); }
     {
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
       const boost::shared_ptr<Concept> concept_n11(ConceptFactory().Create("1"));
       const boost::shared_ptr<Concept> concept_n12(ConceptFactory().Create("2"));
       const boost::shared_ptr<Concept> concept_n13(ConceptFactory().Create("3"));
@@ -309,12 +321,12 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const boost::shared_ptr<Edge> edge_12(EdgeFactory().Create(NodeFactory().Create(concept_e12,2.3,4.5),nodes_1.at(0),false,nodes_1.at(2),true));
       const boost::shared_ptr<Edge> edge_13(EdgeFactory().Create(NodeFactory().Create(concept_e13,3.4,5.6),nodes_1.at(1),false,nodes_1.at(2),true));
 
-      const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory::Create(
+      const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory().Create(
         { node_11, node_12, node_13 },
         { edge_11, edge_12, edge_13 }
         )
       );
-      const boost::shared_ptr<ConceptMap> map_b(ConceptMapFactory::Create(
+      const boost::shared_ptr<ConceptMap> map_b(ConceptMapFactory().Create(
         { node_21, node_22, node_23 },
         { edge_21, edge_22, edge_23 }
         )
@@ -324,50 +336,32 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     if (trace_verbose) { TRACE("HasSameContent 6"); }
     {
-      const auto v = AddConst(ConceptMapFactory::GetHeteromorphousTestConceptMaps());
-      const int sz = v.size();
-      for (int i = 0; i!=sz; ++i)
-      {
-        for (int j = 0; j!=sz; ++j)
-        {
-          const boost::shared_ptr<const ConceptMap> a(ConceptMapFactory::DeepCopy(v[i]));
-          assert(a);
-          assert(*a == *v[i]); assert(*v[i] == *a);
-          const boost::shared_ptr<const ConceptMap> b(ConceptMapFactory::DeepCopy(v[j]));
-          assert(*b == *v[j]);
-          if (i == j)
-          {
-            assert(ConceptMap::HasSameContent(*a,*b));
-            assert(*a == *b);
-          }
-          else
-          {
-            if (ConceptMap::HasSameContent(*a,*b))
-            {
-              std::stringstream s;
-              s << "Testing concept maps #" << i << " and #" << j << " must not be the same";
-              TRACE(s.str());
-            }
-            assert(!ConceptMap::HasSameContent(*a,*b));
-            assert(a != b);
-          }
-        }
-      }
-      //TRACE("ConceptMap::Test: heteromorphous testing concept maps are successfully identified as being different");
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+      const boost::shared_ptr<const ConceptMap> a{ConceptMapFactory().GetHeteromorphousTestConceptMap(19)};
+      const boost::shared_ptr<const ConceptMap> b{ConceptMapFactory().GetHeteromorphousTestConceptMap(19)};
+      assert(ConceptMap::HasSameContent(*a,*b));
+    }
+    if (trace_verbose) { TRACE("HasSameContent 7"); }
+    {
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+      const boost::shared_ptr<const ConceptMap> a{ConceptMapFactory().GetHeteromorphousTestConceptMap(18)};
+      const boost::shared_ptr<const ConceptMap> b{ConceptMapFactory().GetHeteromorphousTestConceptMap(19)};
+      assert(!ConceptMap::HasSameContent(*a,*b));
     }
     if (trace_verbose) { TRACE("Test simple homomorphous maps"); }
     {
-      const auto v = AddConst(ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps());
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+      const auto v = AddConst(ConceptMapFactory().GetSimpleHomomorphousTestConceptMaps());
       const int sz = v.size();
       for (int i = 0; i!=sz; ++i)
       {
         for (int j = 0; j!=sz; ++j)
         {
-          const boost::shared_ptr<const ConceptMap> a(ConceptMapFactory::DeepCopy(v[i]));
+          const boost::shared_ptr<const ConceptMap> a(ConceptMapFactory().DeepCopy(v[i]));
           assert(a);
           assert( a !=  v[i]);
           assert(*a == *v[i]);
-          const boost::shared_ptr<const ConceptMap> b(ConceptMapFactory::DeepCopy(v[j]));
+          const boost::shared_ptr<const ConceptMap> b(ConceptMapFactory().DeepCopy(v[j]));
           assert(b);
           assert( b !=  v[j]);
           assert(*b == *v[j]);
@@ -392,31 +386,15 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     if (trace_verbose) { TRACE("Test complex homomorphous maps"); }
     {
-      const std::vector<boost::shared_ptr<const ConceptMap> > v = AddConst(ConceptMapFactory::GetComplexHomomorphousTestConceptMaps());
-      const int sz = v.size();
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+      const int sz = ConceptMapFactory().GetNumberOfComplexHomomorphousTestConceptMaps();
       for (int i = 0; i!=sz; ++i)
       {
-        for (int j = 0; j!=sz; ++j)
+        for (int j = i; j!=sz; ++j)
         {
-          const boost::shared_ptr<const ConceptMap> a(ConceptMapFactory::DeepCopy(v[i]));
-          assert(*a == *v[i]);
-          const boost::shared_ptr<const ConceptMap> b(ConceptMapFactory::DeepCopy(v[j]));
-          assert(a != b);
-          assert(*b == *v[j]);
-          if (i != j)
-          {
-            assert(ConceptMap::HasSameContent(*a,*b));
-          }
-          else
-          {
-            if (!ConceptMap::HasSameContent(*a,*b))
-            {
-              std::stringstream s;
-              s << "Testing complex concept maps #" << i << " and #" << j << " must be homomorphous";
-              TRACE(s.str());
-            }
-            assert(ConceptMap::HasSameContent(*a,*b));
-          }
+          const boost::shared_ptr<const ConceptMap> a{ConceptMapFactory().GetComplexHomomorphousTestConceptMap(i)};
+          const boost::shared_ptr<const ConceptMap> b{ConceptMapFactory().GetComplexHomomorphousTestConceptMap(j)};
+          assert(ConceptMap::HasSameContent(*a,*b));
         }
       }
       //TRACE("ConceptMap::Test: complex homomorphous testing concept maps are successfully identified as being different, yet homomorphous");
@@ -437,10 +415,10 @@ void ribi::cmap::ConceptMap::Test() noexcept
       {
         if (cluster)
         {
-          const boost::shared_ptr<ConceptMap> m(ConceptMapFactory::CreateFromCluster("Focal question",cluster));
+          const boost::shared_ptr<ConceptMap> m(ConceptMapFactory().CreateFromCluster("Focal question",cluster));
           assert(m);
           const std::string s = ConceptMap::ToXml(m);
-          const boost::shared_ptr<ConceptMap> n = ConceptMapFactory::FromXml(s);
+          const boost::shared_ptr<ConceptMap> n = ConceptMapFactory().FromXml(s);
           assert(n);
           assert(IsEqual(*m,*n));
         }
@@ -450,10 +428,11 @@ void ribi::cmap::ConceptMap::Test() noexcept
   #endif
   if (trace_verbose) { TRACE("CreateSubs"); }
   {
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
     //Count the number of expected sub concept maps
     {
       const std::vector<boost::shared_ptr<ConceptMap> > maps
-        = ConceptMapFactory::GetHeteromorphousTestConceptMaps();
+        = ConceptMapFactory().GetHeteromorphousTestConceptMaps();
       const int n_heteromorphous_concept_maps = 20;
       assert(n_heteromorphous_concept_maps == static_cast<int>(maps.size())
         && "To warn you if you change the number of testing concept maps");
@@ -490,7 +469,8 @@ void ribi::cmap::ConceptMap::Test() noexcept
     if (trace_verbose) { TRACE("CountCenterNodes"); }
     //Count the number of CenterNode objects
     {
-      for (const boost::shared_ptr<const ConceptMap> map: ConceptMapFactory::GetHeteromorphousTestConceptMaps())
+      //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+      for (const boost::shared_ptr<const ConceptMap> map: ConceptMapFactory().GetHeteromorphousTestConceptMaps())
       {
         if (CountCenterNodes(map) == 0) continue;
 
@@ -528,9 +508,11 @@ void ribi::cmap::ConceptMap::Test() noexcept
   }
   if (trace_verbose) { TRACE("IsValid"); }
   {
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+
     boost::shared_ptr<Node> node_a = CenterNodeFactory().CreateFromStrings("...");
 
-    boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory::Create(
+    boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().Create(
       { node_a } );
     assert(concept_map);
     assert(concept_map->IsValid());
@@ -540,7 +522,8 @@ void ribi::cmap::ConceptMap::Test() noexcept
   }
   if (trace_verbose) { TRACE("Add nodes and edges"); }
   {
-    const auto concept_maps = ConceptMapFactory::GetHeteromorphousTestConceptMaps();
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+    const auto concept_maps = ConceptMapFactory().GetHeteromorphousTestConceptMaps();
     for (const auto& concept_map: concept_maps)
     {
       assert(concept_map);
@@ -564,55 +547,44 @@ void ribi::cmap::ConceptMap::Test() noexcept
   }
   if (trace_verbose) { TRACE("Deletion of nodes"); }
   {
-    const std::size_t n_concept_maps = ConceptMapFactory::GetHeteromorphousTestConceptMaps().size();
-    for (std::size_t i = 0; i!=n_concept_maps; ++i)
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+    const int test_index{19};
+    const std::size_t n_nodes = ConceptMapFactory().GetHeteromorphousTestConceptMap(test_index)->GetNodes().size();
+    for (std::size_t j=0; j!=n_nodes; ++j)
     {
-      assert(ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i]);
-      const std::size_t n_nodes = ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i]->GetNodes().size();
-      for (std::size_t j=0; j!=n_nodes; ++j)
-      {
-        const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i];
-        assert(concept_map);
-        assert(concept_map->GetNodes().size() == n_nodes);
-        assert(j < concept_map->GetNodes().size());
-        const boost::shared_ptr<Node> node = concept_map->GetNodes()[j];
-        concept_map->DeleteNode(node);
-        assert(concept_map->GetNodes().size() == n_nodes - 1
-          && "Node must really be gone");
-      }
+      const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(test_index);
+      assert(concept_map);
+      assert(concept_map->GetNodes().size() == n_nodes);
+      assert(j < concept_map->GetNodes().size());
+      const boost::shared_ptr<Node> node = concept_map->GetNodes()[j];
+      concept_map->DeleteNode(node);
+      assert(concept_map->GetNodes().size() == n_nodes - 1
+        && "Node must really be gone");
     }
   }
   if (trace_verbose) { TRACE("Deletion of edges"); }
   {
-    const std::size_t n_concept_maps = ConceptMapFactory::GetHeteromorphousTestConceptMaps().size();
-
-    for (std::size_t i = 0; i!=n_concept_maps; ++i)
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+    const int test_index{19};
+    const std::size_t n_edges = ConceptMapFactory().GetHeteromorphousTestConceptMap(test_index)->GetEdges().size();
+    for (std::size_t j=0; j!=n_edges; ++j)
     {
-      assert(ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i]);
-      const std::size_t n_edges = ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i]->GetEdges().size();
-      for (std::size_t j=0; j!=n_edges; ++j)
-      {
-        const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i];
-        assert(concept_map);
-        assert(concept_map->GetEdges().size() == n_edges);
-        assert(j < concept_map->GetEdges().size());
-        const boost::shared_ptr<Edge> edge = concept_map->GetEdges()[j];
-        concept_map->DeleteEdge(edge);
-        assert(concept_map->GetEdges().size() == n_edges - 1
-          && "Edge must really be gone");
-      }
+      const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory().GetHeteromorphousTestConceptMap(test_index);
+      assert(concept_map);
+      assert(concept_map->GetEdges().size() == n_edges);
+      assert(j < concept_map->GetEdges().size());
+      const boost::shared_ptr<Edge> edge = concept_map->GetEdges()[j];
+      concept_map->DeleteEdge(edge);
+      assert(concept_map->GetEdges().size() == n_edges - 1
+        && "Edge must really be gone");
     }
   }
   if (trace_verbose) { TRACE("Is GetNode()[0] a CenterNode?"); }
   {
-    //const std::size_t n_concept_maps = ConceptMapFactory::GetAllTests().size();
-    const std::size_t n_concept_maps = ConceptMapFactory::GetHeteromorphousTestConceptMaps().size();
-    for (std::size_t i = 0; i!=n_concept_maps; ++i)
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,0.1);
+    const auto concept_maps = ConceptMapFactory().GetHeteromorphousTestConceptMaps();
+    for (const auto& concept_map: concept_maps)
     {
-
-      assert(ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i]);
-      const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i];
-      assert(concept_map);
       if (concept_map->GetNodes().empty()) continue;
       assert(concept_map->FindCenterNode() && "Assume a CenterNode at the center of ConceptMap");
     }

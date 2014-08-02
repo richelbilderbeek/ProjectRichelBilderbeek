@@ -12,6 +12,7 @@
 #include "openfoamfaceindex.h"
 #include "openfoampointindex.h"
 #include "php.h"
+#include "testtimer.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
@@ -1227,7 +1228,6 @@ void ribi::trim::TriangleMeshBuilderImpl::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::trim::TriangleMeshBuilderImpl::Test");
-  TRACE("Finished ribi::trim::TriangleMeshBuilderImpl::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
