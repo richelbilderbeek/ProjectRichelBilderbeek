@@ -41,7 +41,7 @@ struct Program;
 ///Class for all ProjectRichelBilderbeek menu dialogs
 struct MenuDialog
 {
-  MenuDialog() {}
+  MenuDialog() noexcept {}
 
   virtual ~MenuDialog() noexcept {}
 

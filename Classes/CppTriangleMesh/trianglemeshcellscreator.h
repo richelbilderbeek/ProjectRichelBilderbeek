@@ -43,7 +43,7 @@ class CellsCreator
   friend class CellsCreatorFactory;
 
   //n_face_layers - 1 == n_cell_layers
-  CellsCreator(
+  explicit CellsCreator(
     const boost::shared_ptr<const Template> t,
     const int n_cell_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,

@@ -126,7 +126,7 @@ struct Edge : public Element
 
   ///Block constructor, except for EdgeFactory
   friend EdgeFactory;
-  Edge(
+  explicit Edge(
     const boost::shared_ptr<Node>& node,
     const boost::shared_ptr<Node> from,
     const bool tail_arrow,

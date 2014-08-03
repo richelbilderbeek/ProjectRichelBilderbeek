@@ -8,10 +8,10 @@
 #include "trace.h"
 
 ribi::foam::Face::Face(
-  const boost::shared_ptr<Cell> neighbour,
-  const boost::shared_ptr<Cell> owner,
+  const boost::shared_ptr<Cell>& neighbour,
+  const boost::shared_ptr<Cell>& owner,
   const std::vector<boost::shared_ptr<Coordinat3D>>& points
-)
+) noexcept
   : m_neighbour(neighbour),
     m_owner(owner),
     m_points(points)

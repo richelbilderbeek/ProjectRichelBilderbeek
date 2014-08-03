@@ -30,7 +30,7 @@ struct TestTimerImpl;
 
 struct TestTimer
 {
-  TestTimer(
+  explicit TestTimer(
     const std::string& function_name,
     const std::string& file_name,
     const double max_time_sec = 1.0

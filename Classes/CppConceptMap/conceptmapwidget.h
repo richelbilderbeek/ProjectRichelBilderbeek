@@ -46,7 +46,7 @@ namespace cmap {
 ///Note that a Widget does not know the type of ConceptMap (Display/Edit/Rate)
 struct Widget
 {
-  Widget(const boost::shared_ptr<ConceptMap> conceptmap = CreateEmptyConceptMap());
+  explicit Widget(const boost::shared_ptr<ConceptMap> conceptmap = CreateEmptyConceptMap());
 
   #ifndef NDEBUG
   Widget(const Widget& other); //Only to be used in debugging

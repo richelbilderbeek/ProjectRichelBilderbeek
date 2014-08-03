@@ -197,6 +197,7 @@ void ribi::cmap::QtExamplesDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  QtExampleDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtExamplesDialog d;
   for(const auto examples: ExamplesFactory().GetTests())

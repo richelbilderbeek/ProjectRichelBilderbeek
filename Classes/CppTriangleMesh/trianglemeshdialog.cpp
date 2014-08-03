@@ -828,7 +828,12 @@ void ribi::trim::Dialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  CellsCreatorFactory();
+  {
+    TriangleFile( {} );
+    CellsCreatorFactory();
+    Template::CreateTest(0);
+    { Dialog d; d.CreateTriangleMesh(); d.Create3dMesh(); } //TriangleMeshBuilder
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   //Flow of Dialog

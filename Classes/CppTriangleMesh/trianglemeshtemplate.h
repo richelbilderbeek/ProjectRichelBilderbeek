@@ -29,7 +29,7 @@ struct Template
 
   typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
 
-  Template(
+  explicit Template(
     const std::string& filename_node,
     const std::string& filename_ele,
     const bool verbose

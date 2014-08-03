@@ -23,7 +23,7 @@ class TriangleMeshBuilderImpl
 {
   friend class TriangleMeshBuilder;
 
-  TriangleMeshBuilderImpl(
+  explicit TriangleMeshBuilderImpl(
     const std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells,
     const std::string& mesh_filename,
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function,

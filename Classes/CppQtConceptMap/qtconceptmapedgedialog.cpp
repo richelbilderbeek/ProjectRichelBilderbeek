@@ -36,6 +36,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnodefactory.h"
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
+#include "qtconceptmapexampledialog.h"
+#include "qtconceptmapexamplesdialog.h"
 #include "qtconceptmapconceptdialog.h"
 #include "qtconceptmapnodedialog.h"
 #include "ui_qtconceptmapedgedialog.h"
@@ -421,6 +423,10 @@ void ribi::cmap::QtEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  QtExampleDialog();
+  QtExamplesDialog();
+  QtNodeDialog();
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtEdgeDialog d;
 }

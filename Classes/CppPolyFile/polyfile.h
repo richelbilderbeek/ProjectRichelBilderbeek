@@ -23,10 +23,10 @@ struct PolyFile
   typedef std::vector<Vertex> Vertices;
 
   ///Start from data members
-  PolyFile(const Vertices& vertices,const Edges& edges) noexcept;
+  explicit PolyFile(const Vertices& vertices,const Edges& edges) noexcept;
 
   ///Start from filename
-  PolyFile(
+  explicit PolyFile(
     const std::string& poly_filename
   ) : PolyFile(Parse(poly_filename)) {}
 

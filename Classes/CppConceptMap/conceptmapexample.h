@@ -137,7 +137,7 @@ private:
   friend class boost::detail::sp_ms_deleter<const Example>;
 
   ///Only let ExampleFactory create Example instances
-  Example(
+  explicit Example(
     const ExampleFactory& example_factory, //To enforce its use
     const std::string& text,
     const cmap::Competency competency = cmap::Competency::uninitialized,

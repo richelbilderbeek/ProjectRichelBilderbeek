@@ -43,7 +43,7 @@ struct Help
     std::string m_long;        // about
     std::string m_description; // displays the about information
   };
-  Help(
+  explicit Help(
     const std::string& program_name,
     const std::string& program_description,
     const std::vector<Option>& options,

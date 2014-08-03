@@ -191,7 +191,9 @@ ribi::trim::Template::Template(
   const std::vector<boost::shared_ptr<Point>>& points
 ) : m_edges{edges}, m_faces{faces}, m_face_point_indices{face_point_indices}, m_points{points}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 std::string ribi::trim::Template::ConvertNumbersToEnglish(const std::string& s) noexcept
@@ -788,6 +790,8 @@ void ribi::trim::Template::Test() noexcept
     is_tested = true;
   }
   PointFactory();
+  FaceFactory();
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   if (verbose) { TRACE("IsClockWise, confirmation"); }

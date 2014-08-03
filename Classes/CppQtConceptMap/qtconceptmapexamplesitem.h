@@ -38,7 +38,7 @@ namespace cmap {
 ///QtExamplesItem displays an Examples
 struct QtExamplesItem : public QtRoundedEditRectItem
 {
-  QtExamplesItem(QGraphicsItem* parent = 0);
+  explicit QtExamplesItem(QGraphicsItem* parent = 0);
   QtExamplesItem(const QtExamplesItem&) = delete;
   QtExamplesItem& operator=(const QtExamplesItem&) = delete;
   ~QtExamplesItem() noexcept {}
@@ -67,6 +67,10 @@ private:
   void OnItemUpdated();
 
   void SetExamples(const boost::shared_ptr<const Examples>& examples);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap

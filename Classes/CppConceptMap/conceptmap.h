@@ -144,7 +144,7 @@ private:
   ///Block constructor, except for the friend ConceptMapFactory
   ConceptMap(const std::string& question) noexcept;
   //Nodes[0] must be the focal question
-  ConceptMap(
+  explicit ConceptMap(
     const Nodes& nodes = {},
     const Edges& edges = {}
   ) noexcept;

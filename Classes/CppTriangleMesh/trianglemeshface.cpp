@@ -291,6 +291,8 @@ void ribi::trim::Face::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  FaceFactory();
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check that a Face has no owner nor neighbour when not added to a Cell
   for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())

@@ -39,7 +39,7 @@ namespace cmap {
 /// - QtExamplesDialog: a QDialog
 struct Examples
 {
-  Examples(const std::vector<boost::shared_ptr<cmap::Example> >& v);
+  explicit Examples(const std::vector<boost::shared_ptr<cmap::Example> >& v);
   Examples(const Example& rhs) = delete;
   Examples& operator=(const Example& rhs) = delete;
 

@@ -161,7 +161,7 @@ struct Concept
   friend void boost::checked_delete<>(Concept* x);
 
   ///Let only ConceptFactory construct Concepts
-  Concept(
+  explicit Concept(
     const std::string& name,
     const boost::shared_ptr<Examples>& examples,
     const bool is_complex,

@@ -65,6 +65,14 @@ void ribi::PolyFileFromPolygons::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    fileio::FileIo();
+    Geometry();
+    const PolyFile::Vertices vertices{ PolyFile::Vertex(0.0,0.0), PolyFile::Vertex(0.0,1.0), PolyFile::Vertex(1.0,0.0) };
+    const PolyFile::Edges edges{ {0,1}, {1,2}, {0,2} };
+    PolyFile(vertices,edges);
+  }
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Create PolyFileFromPolygon, save to file, load PolyFile from file,
   //shapes before should match those loaded from file
@@ -102,9 +110,9 @@ void ribi::PolyFileFromPolygons::Test() noexcept
       }
     }
   }
-  TRACE("Successfully finished ribi::PolyFileFromPolygons::Test");
 }
 #endif
+
 ribi::PolyFile::Edges ribi::PolyFileFromPolygons::ToEdges(
   const Polygons& polygons,
   const Linestrings& linestrings

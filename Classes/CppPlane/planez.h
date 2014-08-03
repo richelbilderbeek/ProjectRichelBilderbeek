@@ -66,7 +66,7 @@ struct PlaneZ
 
 
   ///Construct from three points
-  PlaneZ(
+  explicit PlaneZ(
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3

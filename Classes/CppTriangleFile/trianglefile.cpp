@@ -342,6 +342,8 @@ void ribi::TriangleFile::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  #ifdef FIX_ISSUE_231
   const bool verbose{false};
   //Call Triangle with simple shapes
   {
@@ -392,6 +394,8 @@ void ribi::TriangleFile::Test() noexcept
       assert(!"Should not get here");
     }
   }
+  #endif // FIX_ISSUE_231
+
 }
 #endif
 

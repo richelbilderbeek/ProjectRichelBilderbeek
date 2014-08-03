@@ -32,9 +32,9 @@ struct Mesh
   ///Step #0
   ///Create Points so these can be shared over the Faces
   ///Create Cells so these can be shared over the Faces
-  Mesh(const Files& files) : Mesh(files,CreatePoints(files)) {}
+  explicit Mesh(const Files& files) : Mesh(files,CreatePoints(files)) {}
 
-  Mesh(
+  explicit Mesh(
     const std::vector<boost::shared_ptr<Boundary>>& boundaries,
     const std::vector<boost::shared_ptr<Cell>>& cells,
     const std::vector<boost::shared_ptr<Face>>& faces,

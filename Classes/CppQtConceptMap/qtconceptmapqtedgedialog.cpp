@@ -264,6 +264,20 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    NodeFactory();
+    QtEdgeDialog();
+    QtNodeFactory();
+    QtRoundedEditRectItemDialog();
+    QtRoundedEditRectItem();
+    const auto from = NodeFactory().GetTest(1);
+    const auto to = NodeFactory().GetTest(1);
+    const auto qtfrom = QtNodeFactory().Create(from);
+    const auto qtto = QtNodeFactory().Create(to);
+    const auto edge = EdgeFactory().GetTest(1,from,to);
+    QtEdge(edge,qtfrom.get(),qtto.get());
+  }
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtQtEdgeDialog dialog;
 

@@ -110,8 +110,13 @@ void ribi::trim::CellFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  using boost::units::si::meter;
   FaceFactory();
   CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
+  CellsCreatorFactory();
+  CellsCreator(Template::CreateTest(0),1,1.0 * meter,CreateVerticalFacesStrategy::one_face_per_square,false,CellsCreatorFactory());
+
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Create prism
   for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())

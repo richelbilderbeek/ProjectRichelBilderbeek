@@ -26,7 +26,7 @@ namespace foam {
 struct Cell
 {
   ///owned_faces is a subset of all_faces
-  Cell(
+  explicit Cell(
     const std::vector<boost::shared_ptr<Face>> owned_faces = {},
     const std::vector<boost::shared_ptr<Face>> all_faces = {}
   );

@@ -88,8 +88,6 @@ void ribi::cmap::QtQtNodeDialog::CheckMe() const noexcept
   //Check if its subdialogs match
   const boost::shared_ptr<QtNodeDialog> lhs = m_qtnodedialog;
   const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = m_qtroundededitrectitem_dialog;
-  lhs->CheckMe();
-  rhs->CheckMe();
   if (std::abs(lhs->GetUiX() - rhs->GetUiX()) >= 1.0)
   {
     TRACE("ERROR");
@@ -126,7 +124,6 @@ void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
   m_qtroundededitrectitem_dialog->SetItem(m_qtnode);
 
   m_qtroundededitrectitem_dialog->CheckMe();
-  m_qtnodedialog->CheckMe();
   CheckMe();
 }
 
@@ -134,7 +131,6 @@ void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnod
 {
   //Emit
   m_qtnodedialog->SetNode(qtnode->GetNode());
-  m_qtnodedialog->CheckMe();
   m_qtroundededitrectitem_dialog->CheckMe();
 
   /*
@@ -282,8 +278,6 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
   dialog.SetQtNode(qtnode);
   const boost::shared_ptr<QtNodeDialog> lhs = dialog.m_qtnodedialog;
   const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = dialog.m_qtroundededitrectitem_dialog;
-  lhs->CheckMe();
-  rhs->CheckMe();
   dialog.CheckMe();
   assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
   assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
@@ -291,7 +285,6 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
   {
     const double new_x{lhs->GetUiX() + 5.0};
     lhs->SetUiX(new_x);
-    lhs->CheckMe();
     assert(std::abs(lhs->GetUiX() - new_x) < 1.0);
     dialog.CheckMe();
   }
@@ -299,7 +292,6 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
   {
     const double new_x{rhs->GetUiX() + 5.0};
     rhs->SetUiX(new_x);
-    lhs->CheckMe();
     assert(std::abs(rhs->GetUiX() - new_x) < 1.0);
     dialog.CheckMe();
   }

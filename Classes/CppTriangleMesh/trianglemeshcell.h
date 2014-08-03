@@ -58,7 +58,7 @@ struct Cell
 
   friend class CellFactory;
   //Enforce that only CellFactory can create a Cell
-  Cell(
+  explicit Cell(
     const std::vector<boost::shared_ptr<Face>>& faces,
     const int index,
     const CellFactory& lock

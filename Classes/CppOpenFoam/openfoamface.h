@@ -27,11 +27,11 @@ struct Face
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
-  Face(
-    const boost::shared_ptr<Cell> neighbour,
-    const boost::shared_ptr<Cell> owner,
+  explicit Face(
+    const boost::shared_ptr<Cell>& neighbour,
+    const boost::shared_ptr<Cell>& owner,
     const std::vector<boost::shared_ptr<Coordinat3D>>& points
-  );
+  ) noexcept;
 
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;

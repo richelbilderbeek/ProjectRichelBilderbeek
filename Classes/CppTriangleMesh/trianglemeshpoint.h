@@ -68,7 +68,7 @@ struct Point
   friend class boost::detail::sp_ms_deleter<const Point>;
 
   friend class PointFactory;
-  Point(
+  explicit Point(
     const boost::shared_ptr<const Coordinat2D> coordinat,
     const int index,
     const PointFactory& lock

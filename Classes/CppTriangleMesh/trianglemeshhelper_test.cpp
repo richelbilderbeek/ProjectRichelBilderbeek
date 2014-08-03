@@ -31,6 +31,7 @@ void ribi::trim::Helper::Test() noexcept
     is_tested = true;
   }
   Geometry();
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   using boost::geometry::get;

@@ -107,6 +107,9 @@ void ribi::trim::Cell::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  CellFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
+  CellFactory().CreateTestCube(CreateVerticalFacesStrategy::one_face_per_square);
+
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
   for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
@@ -146,7 +149,6 @@ void ribi::trim::Cell::Test() noexcept
     );
     
     std::sort(faces.begin(),faces.end(),Helper().OrderByIndex());
-    TRACE(faces.size());
     assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
     assert(
       (
@@ -203,10 +205,6 @@ void ribi::trim::Cell::Test() noexcept
   for (const auto& strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const auto center(CellFactory().CreateTestPrism(strategy)->CalculateCenter());
-    
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
     assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
     assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
   }

@@ -1704,6 +1704,8 @@ void ribi::cmap::ConceptMapFactory::Test() noexcept
   }
   const bool verbose{false};
   CenterNodeFactory();
+  EdgeFactory();
+  ConceptMapFactory().GetHeteromorphousTestConceptMap(0);
   const TestTimer test_timer(__func__,__FILE__,1.0);
   if (verbose) { TRACE("All testing concept maps must be valid"); }
   {

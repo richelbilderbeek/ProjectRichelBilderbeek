@@ -117,7 +117,7 @@ struct Face
 
   friend class FaceFactory;
   ///Enforce a Face is only created by a FaceFactory
-  Face(
+  explicit Face(
     const std::vector<boost::shared_ptr<Point>>& points,
     const FaceOrientation any_orientation,
     const int index,

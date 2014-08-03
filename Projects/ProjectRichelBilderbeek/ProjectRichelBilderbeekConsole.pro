@@ -1,10 +1,9 @@
 include(../../ConsoleApplication.pri)
 
 include(../../Libraries/Apfloat.pri)
-include(../../Libraries/Boost.pri)
 include(../../Libraries/BigInteger.pri)
+include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
-
 include(../../Libraries/GeneralConsole.pri)
 
 include(../../Classes/CppApproximator/CppApproximator.pri)
@@ -184,7 +183,7 @@ include(../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/ToolTestQtKeyboardFri
 include(../../Tools/ToolTestQtModels/ToolTestQtModelsConsole.pri)
 include(../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItemConsole.pri)
 include(../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItemConsole.pri)
-include(../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItemConsole.pri)
+#include(../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItemConsole.pri)
 include(../../Tools/ToolTestQuestion/ToolTestQuestionConsole.pri)
 include(../../Tools/ToolTestSelectFileDialog/ToolTestSelectFileDialogConsole.pri)
 include(../../Tools/ToolTestShape/ToolTestShapeConsole.pri)

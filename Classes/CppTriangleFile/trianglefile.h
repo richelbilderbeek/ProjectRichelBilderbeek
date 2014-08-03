@@ -43,8 +43,8 @@ struct TriangleFile
   typedef std::pair<Polygons,Linestrings> Shapes;
 
   ///Start from polygons
-  TriangleFile(const Polygons& polygons, const Linestrings& linestrings);
-  TriangleFile(const Shapes& shapes) : TriangleFile(shapes.first,shapes.second) {}
+  explicit TriangleFile(const Polygons& polygons, const Linestrings& linestrings);
+  explicit TriangleFile(const Shapes& shapes) : TriangleFile(shapes.first,shapes.second) {}
 
   ///Call Triangle
   //#define TODO_ISSUE_207

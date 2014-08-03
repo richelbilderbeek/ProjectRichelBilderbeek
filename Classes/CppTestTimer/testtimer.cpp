@@ -18,7 +18,7 @@ std::string ExtractFilename(const std::string& s) noexcept
 
 struct TestTimerImpl
 {
-  TestTimerImpl(
+  explicit TestTimerImpl(
     const std::string& function_name,
     const std::string& file_name,
     const double max_time_sec
@@ -28,6 +28,8 @@ struct TestTimerImpl
       m_max_time_sec{max_time_sec},
       m_timer{}
   {
+    assert(m_function_name.find('\n') == std::string::npos);
+    assert(m_file_name.find('\n') == std::string::npos);
     ++cnt;
   }
   ~TestTimerImpl() noexcept

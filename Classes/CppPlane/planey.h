@@ -62,7 +62,7 @@ struct PlaneY
   PlaneY() noexcept;
 
   ///Construct from three points
-  PlaneY(
+  explicit PlaneY(
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3

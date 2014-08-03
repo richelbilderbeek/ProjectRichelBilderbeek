@@ -47,9 +47,6 @@ public:
   QtNodeDialog& operator=(const QtNodeDialog&) = delete;
   ~QtNodeDialog();
 
-  ///Tests all invariants, empty in release mode
-  void CheckMe() const noexcept;
-
   static int GetMinimumHeight(const Node& node) noexcept;
   boost::shared_ptr<Node> GetNode() const noexcept { return m_node; }
   std::string GetUiName() const noexcept;

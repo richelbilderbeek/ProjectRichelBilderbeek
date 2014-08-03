@@ -116,6 +116,8 @@ void ribi::trim::CellsCreatorFactory::Test() noexcept
     is_tested = true;
   }
   Template::CreateTest(0);
+  CellsCreatorFactory();
+  CellsCreatorFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const CellsCreatorFactory cells_creator;
@@ -127,7 +129,6 @@ void ribi::trim::CellsCreatorFactory::Test() noexcept
       = cells_creator.CreateTestPrism(strategy);
     assert(prism);
     const auto cells = prism->GetCells();
-    TRACE(cells.size());
     assert(cells.size() == 1 && "A prism consists of 1 prisms");
     assert(cells[0]);
   }

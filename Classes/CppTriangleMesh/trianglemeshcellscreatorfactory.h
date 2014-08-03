@@ -2,7 +2,6 @@
 #define RIBI_TRIANGLEMESHCELLSCREATORFACTORY_H
 
 #include <iosfwd>
-//#include <set>
 #include <vector>
 
 #pragma GCC diagnostic push
