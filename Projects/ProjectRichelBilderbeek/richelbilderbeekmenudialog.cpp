@@ -224,7 +224,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testshinybuttonmenudialog.h"
 #include "testsimplelinearregressionmenudialog.h"
 #include "testtextcanvasmenudialog.h"
-#include "testtictactoemenudialog.h"
+//#include "testtictactoemenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "testtrianglemenudialog.h"
@@ -2863,7 +2863,36 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         );
       }
       break;
-      case ProgramType::testTicTacToe: p.reset(new TestTicTacToeMenuDialog); break;
+      case ProgramType::testTicTacToe:
+      {
+        #ifdef ADD_TESTTICTACTOE
+        p.reset(new TestTicTacToeMenuDialog);
+        #else
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestTimedServerPusher),
+            version,
+            version_history
+          )
+        );
+        #endif
+      }
+      break;
       case ProgramType::testTimedServerPusher:
       {
         const std::string version = "x.x";
@@ -2872,7 +2901,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
+          "TestTimedServerPusher",
           "description",
           "someday",
           "20xx-20xx",

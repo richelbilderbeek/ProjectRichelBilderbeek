@@ -212,7 +212,7 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string 
     if (!v.empty())
     {
       assert(v.size() == 1);
-      f->m_concept_map = cmap::ConceptMapFactory::FromXml(v[0]);
+      f->m_concept_map = cmap::ConceptMapFactory().FromXml(v[0]);
     }
     else
     {
@@ -271,7 +271,7 @@ std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTests()
 {
   std::vector<boost::shared_ptr<pvdb::File> > v;
   const int n_clusters = static_cast<int>(pvdb::ClusterFactory::GetTests().size());
-  const int n_concept_maps = static_cast<int>(cmap::ConceptMapFactory::GetAllTests().size());
+  const int n_concept_maps = static_cast<int>(cmap::ConceptMapFactory().GetAllTests().size());
   for (int cluster_index=0; cluster_index!=n_clusters; ++cluster_index)
   {
     for (int concept_map_index=0; concept_map_index!=n_concept_maps; ++concept_map_index)
@@ -282,7 +282,7 @@ std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTests()
       const std::string student_name = "student_name";
       const std::string version = "version";
       const auto cluster = pvdb::ClusterFactory::GetTests()[cluster_index];
-      const auto concept_map = ribi::cmap::ConceptMapFactory::GetAllTests()[concept_map_index];
+      const auto concept_map = ribi::cmap::ConceptMapFactory().GetAllTests()[concept_map_index];
       if (concept_map)
       {
         //assert(!concept_map->GetNodes().empty()); //TODO RJCB: put back in
@@ -602,7 +602,7 @@ boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::File::CreateConceptMap(
   assert(focal_node);
   const std::vector<boost::shared_ptr<Node> > nodes = { focal_node };
   assert(nodes.at(0));
-  const boost::shared_ptr<ConceptMap> p = ConceptMapFactory::Create(nodes);
+  const boost::shared_ptr<ConceptMap> p = ConceptMapFactory().Create(nodes);
   assert(p);
   assert(p->IsValid());
   assert(!p->GetNodes().empty());
