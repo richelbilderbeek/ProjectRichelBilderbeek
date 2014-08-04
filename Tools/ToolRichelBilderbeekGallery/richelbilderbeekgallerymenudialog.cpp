@@ -74,9 +74,9 @@ std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery() const
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
 
-  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
+  const std::vector<boost::shared_ptr<Program>> ps = Program::GetAllPrograms();
 
-  for (const boost::shared_ptr<Program> p: ps)
+  for (const boost::shared_ptr<Program>& p: ps)
   {
     if (dynamic_cast<ProgramClass*>(p.get()))
     {

@@ -33,14 +33,14 @@ namespace c2h {
 struct FileTypes
 {
   FileTypes();
-  bool CanStrToFileType(const std::string& s) noexcept;
+  bool CanStrToFileType(const std::string& s) const noexcept;
 
   ///Deduce the content type from a filename
-  FileType DeduceFileType(const std::string& filename);
+  FileType DeduceFileType(const std::string& filename) const noexcept;
 
-  std::string FileTypeToStr(const FileType t) noexcept;
-  std::vector<FileType> GetAllFileTypes() noexcept;
-  FileType StrToFileType(const std::string& s);
+  std::string FileTypeToStr(const FileType t) const noexcept;
+  std::vector<FileType> GetAllFileTypes() const noexcept;
+  FileType StrToFileType(const std::string& s) const noexcept;
 
   private:
   #ifndef NDEBUG

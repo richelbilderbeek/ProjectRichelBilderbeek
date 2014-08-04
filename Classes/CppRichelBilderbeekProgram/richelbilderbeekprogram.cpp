@@ -278,6 +278,7 @@ std::vector<boost::shared_ptr<ribi::Program>> ribi::Program::GetAllPrograms() no
   {
     const boost::shared_ptr<Program> p = CreateProgram(type);
     assert(p);
+    assert(p->GetType() == type);
     v.push_back(p);
   }
   assert(v.size() == types.size());

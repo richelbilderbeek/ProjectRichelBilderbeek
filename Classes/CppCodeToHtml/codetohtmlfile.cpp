@@ -60,33 +60,33 @@ ribi::c2h::File::File(
 }
 
 std::vector<std::string> ribi::c2h::File::CreateHtml(
-  const std::string& m_filename,
+  const std::string& filename,
   const FileType file_type
   ) noexcept
 {
-  assert(fileio::FileIo().IsRegularFile(m_filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
 
   std::vector<std::string> v;
-  if (m_filename == "Licence.txt" || m_filename == "License.txt") return v;
+  if (filename == "Licence.txt" || filename == "License.txt") return v;
 
   //Add heading
   switch(file_type)
   {
     case FileType::cpp:
     case FileType::png:
-      v.push_back("<h2>" + m_filename + "</h2>");
+      v.push_back("<h2>" + filename + "</h2>");
     break;
     case FileType::pro:
       v.push_back(
         "<h2><a href=\"CppQtProjectFile.htm\">Qt project file</a>: "
-        + m_filename + "</h2>");
+        + filename + "</h2>");
     break;
     case FileType::foam:
     case FileType::pri:
     case FileType::py:
     case FileType::sh:
     case FileType::txt:
-      v.push_back("<h2>" + m_filename + "</h2>");
+      v.push_back("<h2>" + filename + "</h2>");
     break;
     case FileType::license_txt:
       assert(!"Should not HTML-ify FileType::license_txt");
@@ -102,17 +102,17 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
   //Start of code
   if (file_type == FileType::png)
   {
-    v.push_back("<p><img src=\"" + m_filename + "\" alt=\"" + m_filename + "\"/></p>");
+    v.push_back("<p><img src=\"" + filename + "\" alt=\"" + filename + "\"/></p>");
   }
   else
   {
     v.push_back("<!-- start of code -->");
-    v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
+    v.push_back("<table summary=\"" + filename + "\" border = \"1\"><tr><td><code>");
 
     //Add the HTMLified content
     {
-      assert(fileio::FileIo().IsRegularFile(m_filename));
-      auto lines_text = fileio::FileIo().FileToVector(m_filename);
+      assert(fileio::FileIo().IsRegularFile(filename));
+      auto lines_text = fileio::FileIo().FileToVector(filename);
       if (file_type == FileType::foam)
       {
         //Keep lines 0-100 and last-50,last

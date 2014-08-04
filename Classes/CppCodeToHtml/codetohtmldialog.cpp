@@ -33,10 +33,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/make_shared.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/xpressive/xpressive.hpp>
 #include <boost/algorithm/string.hpp>
 
+#include "container.h"
 #include "codetohtmlfile.h"
 #include "codetohtmlfiletypes.h"
 #include "codetohtmldialog.h"
@@ -479,8 +481,16 @@ void ribi::c2h::Dialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  Container();
   Replacer();
   FileTypes();
+  fileio::FileIo();
+  {
+    const std::string tmp{fileio::FileIo().GetTempFileName(".png")};
+    {std::ofstream f(tmp.c_str());}
+    const auto file = boost::make_shared<File>(tmp);
+    fileio::FileIo().DeleteFile(tmp);
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const Dialog d;
 
@@ -547,19 +557,18 @@ void ribi::c2h::Dialog::Test() noexcept
   }
   //Check that .PNG files are
   {
-    const std::string filename{fileio::FileIo().GetTempFileName(".png")};
-    { std::ofstream f(filename); }
-    assert(fileio::FileIo().IsRegularFile(filename));
-    const boost::shared_ptr<File> content { new File(filename) };
+    const std::string tmp_filename{fileio::FileIo().GetTempFileName(".png")};
+    { std::ofstream f(tmp_filename); }
+    assert(fileio::FileIo().IsRegularFile(tmp_filename));
+    const boost::shared_ptr<File> content { new File(tmp_filename) };
     const std::vector<std::string> w = content->GetHtml();
     assert(w.size() == 8);
     assert(w[0].substr(0,4) == "<h2>");
     assert(w[1] == "<p>&nbsp;</p>");
     assert(w[2].substr(0,11) == "<p><img src");
     assert(w[3] == "<p>&nbsp;</p>");
-    fileio::FileIo().DeleteFile(filename);
+    fileio::FileIo().DeleteFile(tmp_filename);
   }
-  assert(!"Refactor");
   //DeduceFolderType
 
   //Check if Info is added
@@ -573,7 +582,12 @@ void ribi::c2h::Dialog::Test() noexcept
     if (ribi::fileio::FileIo().IsRegularFile(filename))
     {
       const std::vector<std::string> v { d.FileToHtml(filename) };
-      assert(IsCleanHtml(v) && "Assume tidy HTML");
+      if (!IsCleanHtml(v))
+      {
+        std::ofstream f("tmp_to_check.htm");
+        f << Container().Concatenate(v);
+      }
+      assert(IsCleanHtml(v) && "Assume tidy HTML, inspect tmp_to_check.htm");
     }
     else
     {

@@ -503,7 +503,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
     boost::shared_ptr<ribi::MenuDialog> p;
     switch (t)
     {
-      case ProgramType::aminoAcidFighter: p.reset(new aaf::MenuDialog); break;
+      case ProgramType::aminoAcidFighter: p.reset(new aaf::MenuDialog); assert(p); break;
       case ProgramType::asciiArter: p.reset(new AsciiArterMenuDialog); break;
       case ProgramType::asciiArterVcl:
       {
@@ -2526,8 +2526,34 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       case ProgramType::testMultiApproximator: p.reset(new ToolTestMultiApproximatorMenuDialog); break;
       case ProgramType::testMultiCanvas: p.reset(new TestMultiCanvasMenuDialog); break;
       case ProgramType::testMultipleChoiceQuestion:
-        assert(!"TODO");
-        //p.reset(new TestMultipleChoiceQuestionMenuDialog);
+      {
+        #ifdef ADD_TESTMULTIPLECHOOCEQUESTIONDIALOG
+        p.reset(new TestMultipleChoiceQuestionMenuDialog);
+        #else
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestTimedServerPusher),
+            version,
+            version_history
+          )
+        );
+        #endif
+      }
       break;
       case ProgramType::testMultiVector:
       {
@@ -2725,8 +2751,34 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
       case ProgramType::testQtRoundedRectItem: p.reset(new TestQtRoundedRectItemMenuDialog); break;
       //case ProgramType::testQtRoundedTextRectItem: p.reset(new TestQtRoundedTextRectItemMenuDialog); break; //OBSOLETE
       case ProgramType::testQuestion:
-        assert(!"TODO");
-        //p.reset(new TestQuestionMenuDialog);
+      {
+        #ifdef ADD_TESTQUESTIONDIALOG
+        p.reset(new TestQuestionMenuDialog);
+        #else
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestTimedServerPusher),
+            version,
+            version_history
+          )
+        );
+        #endif
+      }
       break;
       case ProgramType::testReversi:
       {
@@ -3195,25 +3247,8 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
         assert(!"Must not use n_types");
         throw std::logic_error("ribi::ProjectRichelBilderbeekMenuDialog::CreateMenus");
     }
-    #ifndef NDEBUG
-    if (!p)
-    {
-      TRACE("ERROR");
-      TRACE(ProgramTypes::ProgramTypeToEnumName(t));
-    }
-    #endif
-    assert(p);
-    assert(p->GetProgram());
-    if (p->GetProgram()->GetType() != t)
-    {
-      TRACE("ERROR");
-      TRACE(ProgramTypes::ProgramTypeToEnumName(t));
-      TRACE(ProgramTypes::ProgramTypeToEnumName(p->GetProgram()->GetType()));
-    }
-    assert(p->GetProgram()->GetType() == t);
     v.push_back(p);
   }
-  assert(!v.empty());
   assert(static_cast<int>(v.size()) == static_cast<int>(ProgramType::n_types)
     && "All types must be present");
   return v;
@@ -3380,6 +3415,16 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
     assert(!m->GetVersionHistory().empty());
     assert(m->GetProgram());
   }
+  //Test all menus
+  {
+    std::vector<boost::shared_ptr<ribi::MenuDialog>> menus{d.CreateMenus()};
+    for (const auto& p: menus)
+    {
+      assert(p);
+      assert(p->GetProgram());
+    }
+  }
+  assert(!"Refactor");
   TRACE("Finished ribi::ProjectRichelBilderbeekMenuDialog::Test()");
 }
 #endif

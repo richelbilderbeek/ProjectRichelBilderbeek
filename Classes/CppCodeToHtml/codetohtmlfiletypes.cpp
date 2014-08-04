@@ -40,7 +40,7 @@ ribi::c2h::FileTypes::FileTypes()
   #endif
 }
 
-bool ribi::c2h::FileTypes::CanStrToFileType(const std::string& s) noexcept
+bool ribi::c2h::FileTypes::CanStrToFileType(const std::string& s) const noexcept
 {
   try
   {
@@ -53,12 +53,8 @@ bool ribi::c2h::FileTypes::CanStrToFileType(const std::string& s) noexcept
   }
 }
 
-ribi::c2h::FileType ribi::c2h::FileTypes::DeduceFileType(const std::string& filename)
+ribi::c2h::FileType ribi::c2h::FileTypes::DeduceFileType(const std::string& filename) const noexcept
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
-
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what,
@@ -104,7 +100,7 @@ ribi::c2h::FileType ribi::c2h::FileTypes::DeduceFileType(const std::string& file
   return FileType::txt;
 }
 
-std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t) noexcept
+std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t) const noexcept
 {
   switch (t)
   {
@@ -125,7 +121,7 @@ std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t) noexcept
   throw std::logic_error("c2h::FileTypeToStr");
 }
 
-std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() noexcept
+std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() const noexcept
 {
   const std::vector<FileType> v {
     FileType::cpp,
@@ -142,7 +138,7 @@ std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() noexcep
   return v;
 }
 
-ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s)
+ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s) const noexcept
 {
   if (s == "cpp") return FileType::cpp;
   if (s == "foam") return FileType::foam;

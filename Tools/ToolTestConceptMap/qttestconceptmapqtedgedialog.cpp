@@ -30,6 +30,7 @@
 #include "qtconceptmapqtedgefactory.h"
 #include "qtconceptmapratestrategy.h"
 #include "qtkeyboardfriendlygraphicsview.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestconceptmapqtedgedialog.h"
 #pragma GCC diagnostic pop
@@ -140,7 +141,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtTestQtEdgeDialog::Test started");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   QtTestQtEdgeDialog d;
   const int n = d.ui->box_test_index->maximum();
