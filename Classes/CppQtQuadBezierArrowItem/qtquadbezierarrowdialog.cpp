@@ -34,22 +34,6 @@ ribi::QtQuadBezierArrowDialog::~QtQuadBezierArrowDialog() noexcept
   delete ui;
 }
 
-void ribi::QtQuadBezierArrowDialog::CheckMe() const noexcept
-{
-  #ifndef NDEBUG
-  assert(std::abs(ui->box_focus_pen_width->value() - m_arrow->GetFocusPen().widthF()) < 2.0);
-  assert(std::abs(ui->box_from_x->value() - m_arrow->GetFromItem()->x()) < 2.0);
-  assert(std::abs(ui->box_from_y->value() - m_arrow->GetFromItem()->y()) < 2.0);
-  assert(ui->box_has_head->isChecked() == m_arrow->HasHead());
-  assert(ui->box_has_tail->isChecked() == m_arrow->HasTail());
-  assert(std::abs(ui->box_mid_x->value() - m_arrow->GetMidItem()->x()) < 2.0);
-  assert(std::abs(ui->box_mid_y->value() - m_arrow->GetMidItem()->y()) < 2.0);
-  assert(std::abs(ui->box_normal_pen_width->value() - m_arrow->GetPen().widthF()) < 2.0);
-  assert(std::abs(ui->box_to_x->value() - m_arrow->GetToItem()->x()) < 2.0);
-  assert(std::abs(ui->box_to_y->value() - m_arrow->GetToItem()->y()) < 2.0);
-  #endif
-}
-
 double ribi::QtQuadBezierArrowDialog::GetUiMidX() const noexcept
 {
   return ui->box_mid_x->value();
@@ -154,7 +138,6 @@ void ribi::QtQuadBezierArrowDialog::SetArrow(const Arrow& arrow) noexcept
   assert(arrow);
   if (m_arrow == arrow)
   {
-    CheckMe();
     return;
   }
   if (verbose)
@@ -339,7 +322,6 @@ void ribi::QtQuadBezierArrowDialog::SetArrow(const Arrow& arrow) noexcept
   */
   assert( arrow ==  m_arrow);
   assert(*arrow == *m_arrow);
-  CheckMe();
 }
 
 void ribi::QtQuadBezierArrowDialog::SetUiMidX(const double x) noexcept
@@ -387,6 +369,20 @@ void ribi::QtQuadBezierArrowDialog::Test() noexcept
     d.SetUiMidY(new_y);
     assert(std::abs(d.GetUiMidY() - new_y) < 2.0);
   }
+
+  /*
+  assert(std::abs(ui->box_focus_pen_width->value() - m_arrow->GetFocusPen().widthF()) < 2.0);
+  assert(std::abs(ui->box_from_x->value() - m_arrow->GetFromItem()->x()) < 2.0);
+  assert(std::abs(ui->box_from_y->value() - m_arrow->GetFromItem()->y()) < 2.0);
+  assert(ui->box_has_head->isChecked() == m_arrow->HasHead());
+  assert(ui->box_has_tail->isChecked() == m_arrow->HasTail());
+  assert(std::abs(ui->box_mid_x->value() - m_arrow->GetMidItem()->x()) < 2.0);
+  assert(std::abs(ui->box_mid_y->value() - m_arrow->GetMidItem()->y()) < 2.0);
+  assert(std::abs(ui->box_normal_pen_width->value() - m_arrow->GetPen().widthF()) < 2.0);
+  assert(std::abs(ui->box_to_x->value() - m_arrow->GetToItem()->x()) < 2.0);
+  assert(std::abs(ui->box_to_y->value() - m_arrow->GetToItem()->y()) < 2.0);
+  */
+
 }
 #endif
 

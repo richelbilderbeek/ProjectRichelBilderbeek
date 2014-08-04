@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -406,7 +407,9 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtCreatorProFileZipScript::Test");
+  ribi::fileio::FileIo();
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test basic functions on this project with going two folders down
   const std::vector<std::string> pro_file_names
     =
@@ -469,7 +472,6 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
     const std::size_t q = GetProAndPriFilesInFolder("").size();
     assert(n == q);
   }
-  TRACE("Finished ribi::QtCreatorProFileZipScript::Test successfully");
 }
 #endif
 

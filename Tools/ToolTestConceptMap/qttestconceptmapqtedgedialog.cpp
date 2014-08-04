@@ -91,13 +91,6 @@ ribi::cmap::QtTestQtEdgeDialog::~QtTestQtEdgeDialog() noexcept
   delete ui;
 }
 
-void ribi::cmap::QtTestQtEdgeDialog::CheckMe() const noexcept
-{
-  #ifndef NDEBUG
-  assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtEdge()->GetX()) < 1.0);
-  assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtEdge()->GetY()) < 1.0);
-  #endif
-}
 
 boost::shared_ptr<ribi::cmap::QtEdge> ribi::cmap::QtTestQtEdgeDialog::GetQtEdge() const noexcept
 {
@@ -176,6 +169,10 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
       d.on_button_load_clicked();
     }
   }
+  /*
+  assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtEdge()->GetX()) < 1.0);
+  assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtEdge()->GetY()) < 1.0);
+  */
 }
 #endif
 

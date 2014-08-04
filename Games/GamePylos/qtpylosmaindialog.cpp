@@ -115,6 +115,7 @@ void ribi::pylos::QtPylosMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::pylos::QtPylosMainDialog::Test");
+  #ifdef FIX_ISSUE_234
   const boost::shared_ptr<QtPylosGameWidget> p{new QtPylosGameWidget};
   assert(p);
   //Set the game type
@@ -124,6 +125,7 @@ void ribi::pylos::QtPylosMainDialog::Test() noexcept
   assert(!d->GetVersion().empty());
   assert(p);
   assert(!p->GetVersion().empty());
+  #endif // FIX_ISSUE_234
   TRACE("Finished ribi::pylos::QtPylosMainDialog::Test successfully");
 }
 #endif

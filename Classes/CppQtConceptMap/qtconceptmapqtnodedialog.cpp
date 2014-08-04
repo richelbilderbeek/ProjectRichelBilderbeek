@@ -82,26 +82,6 @@ ribi::cmap::QtQtNodeDialog::~QtQtNodeDialog()
   delete ui;
 }
 
-void ribi::cmap::QtQtNodeDialog::CheckMe() const noexcept
-{
-  #ifndef NDEBUG
-  //Check if its subdialogs match
-  const boost::shared_ptr<QtNodeDialog> lhs = m_qtnodedialog;
-  const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = m_qtroundededitrectitem_dialog;
-  if (std::abs(lhs->GetUiX() - rhs->GetUiX()) >= 1.0)
-  {
-    TRACE("ERROR");
-    TRACE(lhs->GetUiX());
-    TRACE(rhs->GetUiX());
-    TRACE("BREAK");
-  }
-
-  assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
-  assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
-
-  #endif
-}
-
 int ribi::cmap::QtQtNodeDialog::GetMinimumHeight(const QtNode& qtnode) noexcept
 {
   const int margin = 16;
@@ -122,16 +102,12 @@ void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
   assert( qtnode ==  m_qtnode.get());
   assert(*qtnode == *m_qtnode);
   m_qtroundededitrectitem_dialog->SetItem(m_qtnode);
-
-  m_qtroundededitrectitem_dialog->CheckMe();
-  CheckMe();
 }
 
 void ribi::cmap::QtQtNodeDialog::OnQtRoundedRectItemChanged(QtNode * const qtnode) noexcept
 {
   //Emit
   m_qtnodedialog->SetNode(qtnode->GetNode());
-  m_qtroundededitrectitem_dialog->CheckMe();
 
   /*
   if (node == m_node) return;
@@ -167,7 +143,6 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
 
   if (m_qtnode == qtnode)
   {
-    CheckMe();
     return;
   }
 
@@ -255,7 +230,6 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
 
   assert( qtnode ==  m_qtnode);
   assert(*qtnode == *m_qtnode);
-  CheckMe();
 }
 
 void ribi::cmap::QtQtNodeDialog::SetUiName(const std::string& name) const noexcept
@@ -278,7 +252,6 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
   dialog.SetQtNode(qtnode);
   const boost::shared_ptr<QtNodeDialog> lhs = dialog.m_qtnodedialog;
   const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = dialog.m_qtroundededitrectitem_dialog;
-  dialog.CheckMe();
   assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
   assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
   ///LHS, setX
@@ -286,18 +259,14 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
     const double new_x{lhs->GetUiX() + 5.0};
     lhs->SetUiX(new_x);
     assert(std::abs(lhs->GetUiX() - new_x) < 1.0);
-    dialog.CheckMe();
   }
   //RHS, setX
   {
     const double new_x{rhs->GetUiX() + 5.0};
     rhs->SetUiX(new_x);
     assert(std::abs(rhs->GetUiX() - new_x) < 1.0);
-    dialog.CheckMe();
   }
   lhs->SetUiY(lhs->GetUiX() + 5.0);
-  dialog.CheckMe();
   rhs->SetUiY(rhs->GetUiX() + 5.0);
-  dialog.CheckMe();
 }
 #endif

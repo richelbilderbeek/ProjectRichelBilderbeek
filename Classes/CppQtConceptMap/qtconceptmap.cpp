@@ -694,11 +694,6 @@ void ribi::cmap::QtConceptMap::RepositionItems()
         //qtedge->GetEdge()->SetY(new_y);
         qtedge->GetEdge()->GetNode()->SetX(new_x);
         qtedge->GetEdge()->GetNode()->SetY(new_y);
-        #ifndef NDEBUG
-        const double epsilon = 0.000001;
-        #endif
-        assert(std::abs(qtedge->GetX() - qtedge->GetEdge()->GetNode()->GetX()) < epsilon);
-        assert(std::abs(qtedge->GetY() - qtedge->GetEdge()->GetNode()->GetY()) < epsilon);
       }
     );
   }

@@ -124,6 +124,7 @@ class QtRoundedRectItem : public QGraphicsRectItem
   void SetX(const double x) noexcept { SetPos(x,GetY()); }
   void SetY(const double y) noexcept { SetPos(GetX(),y); }
 
+
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_contour_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_focus_pen_changed;
   mutable boost::signals2::signal<void (QtRoundedRectItem*)> m_signal_pos_changed;

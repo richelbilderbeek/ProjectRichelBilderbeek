@@ -132,8 +132,6 @@ ribi::cmap::QtNode::QtNode(
     );
   }
   */
-
-  CheckMe();
 }
 
 ribi::cmap::QtNode::~QtNode() noexcept
@@ -206,52 +204,17 @@ QRectF ribi::cmap::QtNode::boundingRect() const
   //return QtConceptMapItem::boundingRect(); //Bypassed going via m_concept_item
 }
 */
-/*
-QBrush ribi::cmap::QtNode::brush() const
-{
-  return m_display_strategy->brush();
-}
-*/
-
-void ribi::cmap::QtNode::CheckMe() const noexcept
-{
-  #ifndef NDEBUG
-  const double epsilon = 2.0;
-
-  assert(std::abs(GetPos().x() - GetNode()->GetX()) < epsilon);
-  assert(std::abs(GetPos().y() - GetNode()->GetY()) < epsilon);
-
-  assert(GetText().size() == 1);
-
-  if (GetNode())
-  {
-    const auto s = this->GetNode()->GetConcept()->GetName();
-    const std::vector<std::string> w{GetText()};
-    assert(w[0] == s);
-  }
-
-  assert(flags() & QGraphicsItem::ItemIsFocusable);
-  assert(flags() & QGraphicsItem::ItemIsSelectable);
-  assert(flags() & QGraphicsItem::ItemIsMovable);
-  assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
-  #endif
-}
-
 
 void ribi::cmap::QtNode::DisableAll()
 {
   this->setEnabled(false);
   this->setVisible(false);
-  //this->m_display_strategy->setEnabled(false);
-  //this->m_display_strategy->setVisible(false);
 }
 
 void ribi::cmap::QtNode::EnableAll()
 {
   this->setEnabled(true);
   this->setVisible(true);
-  //this->m_display_strategy->setEnabled(true);
-  //this->m_display_strategy->setVisible(true);
 }
 
 void ribi::cmap::QtNode::focusInEvent(QFocusEvent*)
@@ -458,7 +421,6 @@ void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node) noexcept
   assert(node);
   if (m_node == node)
   {
-    CheckMe();
     return;
   }
 
@@ -565,7 +527,6 @@ void ribi::cmap::QtNode::SetNode(const boost::shared_ptr<Node>& node) noexcept
 
   assert( node ==  m_node);
   assert(*node == *m_node);
-  CheckMe();
 }
 
 /*
@@ -656,6 +617,11 @@ void ribi::cmap::QtNode::Test() noexcept
 
 
   #ifdef DISABLED_FOR_NOW_20140730
+  assert(flags() & QGraphicsItem::ItemIsFocusable);
+  assert(flags() & QGraphicsItem::ItemIsSelectable);
+  assert(flags() & QGraphicsItem::ItemIsMovable);
+  assert(this->acceptHoverEvents()); //Must remove the 's' in Qt5?
+
   {
     {
       const double new_x = 12.34;

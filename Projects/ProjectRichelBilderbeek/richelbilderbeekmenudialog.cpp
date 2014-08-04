@@ -3203,6 +3203,7 @@ std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMe
     }
     #endif
     assert(p);
+    assert(p->GetProgram());
     if (p->GetProgram()->GetType() != t)
     {
       TRACE("ERROR");

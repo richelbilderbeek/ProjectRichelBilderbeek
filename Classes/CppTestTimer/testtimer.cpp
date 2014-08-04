@@ -28,8 +28,12 @@ struct TestTimerImpl
       m_max_time_sec{max_time_sec},
       m_timer{}
   {
-    assert(m_function_name.find('\n') == std::string::npos);
     assert(m_file_name.find('\n') == std::string::npos);
+    assert(m_file_name.find('\r') == std::string::npos);
+    assert(m_file_name.find('\t') == std::string::npos);
+    assert(m_function_name.find('\n') == std::string::npos);
+    assert(m_function_name.find('\r') == std::string::npos);
+    assert(m_function_name.find('\t') == std::string::npos);
     ++cnt;
   }
   ~TestTimerImpl() noexcept
@@ -63,7 +67,7 @@ ribi::TestTimer::TestTimer(
     << std::endl
   ;
 
-  /*
+
   if (m_impl->cnt > 1)
   {
     std::clog
@@ -76,7 +80,7 @@ ribi::TestTimer::TestTimer(
     ;
   }
   assert(m_impl->cnt == 1 && "TestTimer can only have one TestTimer instance active");
-  */
+
 }
 
 ribi::TestTimer::~TestTimer() noexcept
@@ -108,7 +112,7 @@ ribi::TestTimer::~TestTimer() noexcept
   delete m_impl;
   if (elapsed_secs > m_impl->m_max_time_sec)
   {
-    //std::exit(0);
+    std::exit(0);
   }
 }
 

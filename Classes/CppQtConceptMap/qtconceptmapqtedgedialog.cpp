@@ -81,29 +81,6 @@ ribi::cmap::QtQtEdgeDialog::~QtQtEdgeDialog()
   delete ui;
 }
 
-void ribi::cmap::QtQtEdgeDialog::CheckMe() const noexcept
-{
-  #ifndef NDEBUG
-  //Check if its subdialogs match
-  const boost::shared_ptr<QtEdgeDialog> lhs = m_qtedgedialog;
-  const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = m_qtroundededitrectitem_dialog;
-  lhs->CheckMe();
-  rhs->CheckMe();
-  #ifdef DISABLE_TEST_TEMP_20140729
-  if (std::abs(lhs->GetUiX() - rhs->GetUiX()) >= 1.0)
-  {
-    TRACE("ERROR");
-    TRACE(lhs->GetUiX());
-    TRACE(rhs->GetUiX());
-    TRACE("BREAK");
-  }
-
-  assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
-  assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
-  #endif // DISABLE_TEST_TEMP_20140729
-  #endif
-}
-
 int ribi::cmap::QtQtEdgeDialog::GetMinimumHeight(const QtEdge& qtedge) noexcept
 {
   const int margin = 16;
@@ -120,16 +97,12 @@ void ribi::cmap::QtQtEdgeDialog::OnEdgeChanged(QtEdge * const qtedge) noexcept
   assert(*qtedge == *m_qtedge);
   m_qtroundededitrectitem_dialog->SetItem(m_qtedge);
 
-  m_qtroundededitrectitem_dialog->CheckMe();
-  m_qtedgedialog->CheckMe();
 }
 
 void ribi::cmap::QtQtEdgeDialog::OnQtRoundedRectItemChanged(QtEdge * const qtedge) noexcept
 {
   //Emit
   m_qtedgedialog->SetEdge(qtedge->GetEdge());
-  m_qtedgedialog->CheckMe();
-  m_qtroundededitrectitem_dialog->CheckMe();
 
   /*
   if (edge == m_edge) return;
@@ -165,7 +138,6 @@ void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qted
 
   if (m_qtedge == qtedge)
   {
-    CheckMe();
     return;
   }
 
@@ -253,7 +225,6 @@ void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qted
 
   assert( qtedge ==  m_qtedge);
   assert(*qtedge == *m_qtedge);
-  CheckMe();
 }
 
 #ifndef NDEBUG
@@ -290,30 +261,21 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
   dialog.SetQtEdge(qtedge);
   const boost::shared_ptr<QtEdgeDialog> lhs = dialog.m_qtedgedialog;
   const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = dialog.m_qtroundededitrectitem_dialog;
-  lhs->CheckMe();
-  rhs->CheckMe();
-  dialog.CheckMe();
   assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
   assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
   ///LHS, setX
   {
     const double new_x{lhs->GetUiX() + 5.0};
     lhs->SetUiX(new_x);
-    lhs->CheckMe();
     assert(std::abs(lhs->GetUiX() - new_x) < 1.0);
-    dialog.CheckMe();
   }
   //RHS, setX
   {
     const double new_x{rhs->GetUiX() + 5.0};
     rhs->SetUiX(new_x);
-    lhs->CheckMe();
     assert(std::abs(rhs->GetUiX() - new_x) < 1.0);
-    dialog.CheckMe();
   }
   lhs->SetUiY(lhs->GetUiX() + 5.0);
-  dialog.CheckMe();
   rhs->SetUiY(rhs->GetUiX() + 5.0);
-  dialog.CheckMe();
 }
 #endif

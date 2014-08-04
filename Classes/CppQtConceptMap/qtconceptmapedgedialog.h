@@ -47,9 +47,6 @@ public:
   QtEdgeDialog& operator=(const QtEdgeDialog&) = delete;
   ~QtEdgeDialog();
 
-  ///Tests all invariants, empty at release
-  void CheckMe() const noexcept;
-
   boost::shared_ptr<Edge> GetEdge() const noexcept { return m_edge; }
   static int GetMinimumHeight(const Edge& edge) noexcept;
 

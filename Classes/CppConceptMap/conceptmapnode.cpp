@@ -94,7 +94,6 @@ void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept>& concept) noe
   assert(concept);
   if (m_concept == concept)
   {
-    //CheckMe(); //No doublures in invariants
     return;
   }
 
@@ -265,17 +264,6 @@ void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept>& concept) noe
 
   assert( concept ==  m_concept);
   assert(*concept == *m_concept);
-  //CheckMe();
-
-
-  //PREV
-  /*
-  if (m_concept != concept)
-  {
-    m_concept = concept;
-    m_signal_concept_changed(this);
-  }
-  */
 }
 
 void ribi::cmap::Node::SetX(const double x) noexcept

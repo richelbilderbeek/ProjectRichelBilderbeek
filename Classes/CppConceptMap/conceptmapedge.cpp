@@ -198,6 +198,16 @@ void ribi::cmap::Edge::Test() noexcept
     edge->GetNode()->GetConcept()->SetName("B");
     assert(c.Get() == 1);
   }
+  if (verbose) { TRACE("If a Edge's head arrow is changed, a signal must be emitted"); }
+  {
+    const boost::shared_ptr<Edge> edge{EdgeFactory().GetTest(0,from,to)};
+    Counter c{0}; //For receiving the signal
+    edge->m_signal_head_arrow_changed.connect(
+      boost::bind(&ribi::Counter::Inc,&c) //Do not forget the &
+    );
+    edge->SetHeadArrow(!edge->HasHeadArrow());
+    assert(c.Get()==1);
+  }
 }
 #endif
 

@@ -98,7 +98,6 @@ void ribi::cmap::Concept::SetIsComplex(const bool is_complex) noexcept
 
 void ribi::cmap::Concept::SetName(const std::string& name) noexcept
 {
-  assert(GetExamples());
   if (name != m_name)
   {
     m_name = name;

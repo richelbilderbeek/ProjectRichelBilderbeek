@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include "codetohtmlreplacements.h"
+#include "testtimer.h"
 #include "trace.h"
 
 boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::Replacer::m_replacements_cpp {};
@@ -112,11 +113,10 @@ void ribi::c2h::Replacer::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::c2h::Replacer::Test");
-
-  assert(!Replacer().GetReplacementsCpp().Get().empty());
-  assert(!Replacer().GetReplacementsPro().Get().empty());
-  assert(!Replacer().GetReplacementsTxt().Get().empty());
+  Replacer().GetReplacementsCpp();
+  Replacer().GetReplacementsPro();
+  Replacer().GetReplacementsTxt();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 
   //Test for correct replacements
   {
@@ -158,7 +158,6 @@ void ribi::c2h::Replacer::Test() noexcept
     s << "Number of .pro file replacements: " << Replacer().GetReplacementsPro().Get().size();
     TRACE(s.str());
   }
-  TRACE("Finished ribi::c2h::Replacer::Test successfully");
 }
 #endif
 

@@ -72,13 +72,6 @@ ribi::cmap::QtTestQtNodeDialog::~QtTestQtNodeDialog() noexcept
   delete ui;
 }
 
-void ribi::cmap::QtTestQtNodeDialog::CheckMe() const noexcept
-{
-  #ifndef NDEBUG
-  assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtNode()->GetX()) < 1.0);
-  assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtNode()->GetY()) < 1.0);
-  #endif
-}
 
 boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtTestQtNodeDialog::GetQtNode() const noexcept
 {
@@ -201,6 +194,10 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const std::string new_name_again = qtrectitem->GetText()[0];
     assert(new_name_again == new_name);
   }
+  /*
+  assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtNode()->GetX()) < 1.0);
+  assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtNode()->GetY()) < 1.0);
+  */
 }
 #endif
 

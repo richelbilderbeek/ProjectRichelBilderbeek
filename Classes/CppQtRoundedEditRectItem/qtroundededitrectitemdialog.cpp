@@ -62,24 +62,6 @@ ribi::QtRoundedEditRectItemDialog::~QtRoundedEditRectItemDialog() noexcept
   delete ui;
 }
 
-void ribi::QtRoundedEditRectItemDialog::CheckMe() const noexcept
-{
-  #ifndef NDEBUG
-  if (!m_item) return;
-  if (m_item->GetText() != Container().SeperateString(ui->text->toPlainText().toStdString(),'\n'))
-  {
-    TRACE("ERROR");
-    TRACE(Container().ToStr(m_item->GetText()));
-    TRACE(ui->text->toPlainText().toStdString());
-    TRACE("BREAK");
-  }
-  assert(ui->box_padding_top->value() == m_item->GetPadding().top);
-  assert(ui->box_padding_right->value() == m_item->GetPadding().right);
-  assert(ui->box_padding_bottom->value() == m_item->GetPadding().bottom);
-  assert(ui->box_padding_left->value() == m_item->GetPadding().left);
-  assert(m_item->GetText() == Container().SeperateString(ui->text->toPlainText().toStdString(),'\n'));
-  #endif
-}
 
 double ribi::QtRoundedEditRectItemDialog::GetUiX() const noexcept
 {
@@ -95,7 +77,7 @@ double ribi::QtRoundedEditRectItemDialog::GetUiY() const noexcept
 
 std::string ribi::QtRoundedEditRectItemDialog::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::QtRoundedEditRectItemDialog::GetVersionHistory() noexcept
@@ -104,6 +86,7 @@ std::vector<std::string> ribi::QtRoundedEditRectItemDialog::GetVersionHistory() 
     "2014-06-22: version 1.0: initial version",
     "2014-07-21: version 1.1: added CheckMe member function",
     "2014-07-31: version 1.2: fixed bug in SetText"
+    "2014-08-04: version 1.3: removed CheckMe member function in favor of TDD"
   };
 }
 
@@ -125,7 +108,6 @@ void ribi::QtRoundedEditRectItemDialog::on_text_textChanged()
   const auto s = ui->text->toPlainText().toStdString();
   const auto text = Container().SeperateString(s,'\n');
   m_item->SetText(text);
-  CheckMe();
 }
 
 void ribi::QtRoundedEditRectItemDialog::on_button_text_pen_clicked()
@@ -179,7 +161,6 @@ void ribi::QtRoundedEditRectItemDialog::SetItem(const boost::shared_ptr<QtRounde
   assert(item);
   if (m_item == item)
   {
-    CheckMe();
     return;
   }
   if (verbose)
@@ -325,7 +306,6 @@ void ribi::QtRoundedEditRectItemDialog::SetItem(const boost::shared_ptr<QtRounde
   }
   assert( item ==  m_item);
   assert(*item == *m_item);
-  CheckMe();
 }
 
 void ribi::QtRoundedEditRectItemDialog::SetUiX(const double x) noexcept
@@ -349,6 +329,14 @@ void ribi::QtRoundedEditRectItemDialog::Test() noexcept
   }
   QtRoundedEditRectItem();
   const TestTimer test_timer(__func__,__FILE__,1.0);
+
+  /*
+  assert(ui->box_padding_top->value() == m_item->GetPadding().top);
+  assert(ui->box_padding_right->value() == m_item->GetPadding().right);
+  assert(ui->box_padding_bottom->value() == m_item->GetPadding().bottom);
+  assert(ui->box_padding_left->value() == m_item->GetPadding().left);
+  assert(m_item->GetText() == Container().SeperateString(ui->text->toPlainText().toStdString(),'\n'));
+  */
 }
 #endif
 

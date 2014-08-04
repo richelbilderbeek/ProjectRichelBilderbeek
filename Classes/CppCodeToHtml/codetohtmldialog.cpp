@@ -48,12 +48,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlreplacer.h"
 #include "codetohtmlversion.h"
 #include "fileio.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::c2h::Dialog::Dialog() noexcept
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+ribi::c2h::Dialog::~Dialog() noexcept
+{
+  //OK
+}
+
 std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   const std::vector<std::string>& code,
-  const SnippetType snippet_type) noexcept
+  const SnippetType snippet_type) const noexcept
 {
   FileType file_type = FileType::txt;
   switch (snippet_type)
@@ -88,7 +101,7 @@ std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   return w;
 }
 
-std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
+std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) const noexcept
 {
   // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
   // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml/
@@ -166,7 +179,7 @@ std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
 }
 
 std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
-  const std::string& filename) noexcept
+  const std::string& filename) const noexcept
 {
   const auto v = ribi::fileio::FileIo().FileToVector(filename);
   const FileType file_type = FileTypes().DeduceFileType(filename);
@@ -174,7 +187,7 @@ std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
 }
 
 std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
-  const std::string& foldername) noexcept
+  const std::string& foldername) const noexcept
 {
   assert(fileio::FileIo().IsFolder(foldername));
   const FolderType folder_type = FolderTypes::DeduceFolderType(foldername);
@@ -192,7 +205,7 @@ std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
 }
 
 std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
-  const std::string& foldername) noexcept
+  const std::string& foldername) const noexcept
 {
   assert(fileio::FileIo().IsFolder(foldername));
   assert(foldername.back() != '\\');
@@ -280,14 +293,14 @@ std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
 }
 
 std::vector<std::string> ribi::c2h::Dialog::GetProFilesInFolder(
-  const std::string& folder)
+  const std::string& folder) const noexcept
 {
   return ribi::fileio::FileIo().GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
 }
 
 
 std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
-  const std::string& foldername) noexcept
+  const std::string& foldername) const noexcept
 {
   std::vector<std::string> v;
   //Header
@@ -380,7 +393,7 @@ std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
 }
 
 std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
-  const std::string& foldername ) noexcept
+  const std::string& foldername ) const noexcept
 {
   assert(fileio::FileIo().IsFolder(foldername));
   assert(foldername.back() != '\\');
@@ -466,45 +479,50 @@ void ribi::c2h::Dialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  assert(ExtractPageName("X") == "X");
-  assert(ExtractPageName("/X") == "X");
-  assert(ExtractPageName("/A/X") == "X");
-  assert(ExtractPageName("/A/B/X") == "X");
-  assert(ExtractPageName("/A/B/C/X") == "X");
-  assert(ExtractPageName("/X/") == "X");
-  assert(ExtractPageName("/A/X/") == "X");
-  assert(ExtractPageName("/A/B/X/") == "X");
-  assert(ExtractPageName("/A/B/C/X/") == "X");
+  Replacer();
+  FileTypes();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const Dialog d;
 
-  assert(ExtractPageName("\\X") == "X");
-  assert(ExtractPageName("\\A\\X") == "X");
-  assert(ExtractPageName("\\A\\B\\X") == "X");
-  assert(ExtractPageName("\\A\\B\\C\\X") == "X");
-  assert(ExtractPageName("\\X\\") == "X");
-  assert(ExtractPageName("\\A\\X\\") == "X");
-  assert(ExtractPageName("\\A\\B\\X\\") == "X");
-  assert(ExtractPageName("\\A\\B\\C\\X\\") == "X");
+  assert(d.ExtractPageName("X") == "X");
+  assert(d.ExtractPageName("/X") == "X");
+  assert(d.ExtractPageName("/A/X") == "X");
+  assert(d.ExtractPageName("/A/B/X") == "X");
+  assert(d.ExtractPageName("/A/B/C/X") == "X");
+  assert(d.ExtractPageName("/X/") == "X");
+  assert(d.ExtractPageName("/A/X/") == "X");
+  assert(d.ExtractPageName("/A/B/X/") == "X");
+  assert(d.ExtractPageName("/A/B/C/X/") == "X");
 
-  assert(ExtractPageName("/X") == "X");
-  assert(ExtractPageName("/A\\X") == "X");
-  assert(ExtractPageName("/A\\B/X") == "X");
-  assert(ExtractPageName("\\A\\B/C/X") == "X");
-  assert(ExtractPageName("\\X/") == "X");
-  assert(ExtractPageName("/A\\X/") == "X");
-  assert(ExtractPageName("/A/B\\X/") == "X");
-  assert(ExtractPageName("/A/B\\C/X/") == "X");
+  assert(d.ExtractPageName("\\X") == "X");
+  assert(d.ExtractPageName("\\A\\X") == "X");
+  assert(d.ExtractPageName("\\A\\B\\X") == "X");
+  assert(d.ExtractPageName("\\A\\B\\C\\X") == "X");
+  assert(d.ExtractPageName("\\X\\") == "X");
+  assert(d.ExtractPageName("\\A\\X\\") == "X");
+  assert(d.ExtractPageName("\\A\\B\\X\\") == "X");
+  assert(d.ExtractPageName("\\A\\B\\C\\X\\") == "X");
 
-  assert(ExtractPageName("main.cpp") == "");
-  assert(ExtractPageName("/X/main.cpp") == "X");
-  assert(ExtractPageName("/A/X/main.cpp") == "X");
-  assert(ExtractPageName("/A/B/X/main.cpp") == "X");
-  assert(ExtractPageName("/A/B/C/X/main.cpp") == "X");
-  assert(ExtractPageName("/X/main.cpp/") == "X");
-  assert(ExtractPageName("/A/X/main.cpp/") == "X");
-  assert(ExtractPageName("/A/B/X/main.cpp/") == "X");
-  assert(ExtractPageName("/A/B/C/X/main.cpp/") == "X");
+  assert(d.ExtractPageName("/X") == "X");
+  assert(d.ExtractPageName("/A\\X") == "X");
+  assert(d.ExtractPageName("/A\\B/X") == "X");
+  assert(d.ExtractPageName("\\A\\B/C/X") == "X");
+  assert(d.ExtractPageName("\\X/") == "X");
+  assert(d.ExtractPageName("/A\\X/") == "X");
+  assert(d.ExtractPageName("/A/B\\X/") == "X");
+  assert(d.ExtractPageName("/A/B\\C/X/") == "X");
 
-  assert(ExtractPageName("/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml")
+  assert(d.ExtractPageName("main.cpp") == "");
+  assert(d.ExtractPageName("/X/main.cpp") == "X");
+  assert(d.ExtractPageName("/A/X/main.cpp") == "X");
+  assert(d.ExtractPageName("/A/B/X/main.cpp") == "X");
+  assert(d.ExtractPageName("/A/B/C/X/main.cpp") == "X");
+  assert(d.ExtractPageName("/X/main.cpp/") == "X");
+  assert(d.ExtractPageName("/A/X/main.cpp/") == "X");
+  assert(d.ExtractPageName("/A/B/X/main.cpp/") == "X");
+  assert(d.ExtractPageName("/A/B/C/X/main.cpp/") == "X");
+
+  assert(d.ExtractPageName("/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml")
     == "ToolCodeToHtml");
 
   //GetProFiles
@@ -514,36 +532,34 @@ void ribi::c2h::Dialog::Test() noexcept
     if (ribi::fileio::FileIo().IsRegularFile(filename)) { ribi::fileio::FileIo().DeleteFile(filename); }
     assert(!ribi::fileio::FileIo().IsRegularFile(filename));
 
-    const std::size_t n = GetProFilesInFolder("").size();
+    const std::size_t n = d.GetProFilesInFolder("").size();
     {
       std::ofstream f(filename.c_str());
       f << "tmp";
       f.close();
     }
-    const std::size_t p = GetProFilesInFolder("").size();
-    if (n != p - 1)
-    {
-      TRACE(n);
-      TRACE(p);
-      for (std::string s: GetProFilesInFolder("")) TRACE(s);
-    }
+    const std::size_t p = d.GetProFilesInFolder("").size();
     assert(n == p - 1);
     ribi::fileio::FileIo().DeleteFile(filename);
     assert(!ribi::fileio::FileIo().IsRegularFile(filename));
-    const std::size_t q = GetProFilesInFolder("").size();
+    const std::size_t q = d.GetProFilesInFolder("").size();
     assert(n == q);
   }
   //Check that .PNG files are
   {
-    const boost::shared_ptr<File> content { new File("tmp.png") };
+    const std::string filename{fileio::FileIo().GetTempFileName(".png")};
+    { std::ofstream f(filename); }
+    assert(fileio::FileIo().IsRegularFile(filename));
+    const boost::shared_ptr<File> content { new File(filename) };
     const std::vector<std::string> w = content->GetHtml();
     assert(w.size() == 8);
     assert(w[0].substr(0,4) == "<h2>");
     assert(w[1] == "<p>&nbsp;</p>");
     assert(w[2].substr(0,11) == "<p><img src");
     assert(w[3] == "<p>&nbsp;</p>");
-    assert(1==2);
+    fileio::FileIo().DeleteFile(filename);
   }
+  assert(!"Refactor");
   //DeduceFolderType
 
   //Check if Info is added
@@ -556,7 +572,7 @@ void ribi::c2h::Dialog::Test() noexcept
     const std::string filename = "../ToolCodeToHtml/qtmain.cpp";
     if (ribi::fileio::FileIo().IsRegularFile(filename))
     {
-      const std::vector<std::string> v { Dialog::FileToHtml(filename) };
+      const std::vector<std::string> v { d.FileToHtml(filename) };
       assert(IsCleanHtml(v) && "Assume tidy HTML");
     }
     else
@@ -573,7 +589,7 @@ void ribi::c2h::Dialog::Test() noexcept
     const std::string path = "../ToolCodeToHtml";
     if (ribi::fileio::FileIo().IsFolder(path))
     {
-      const std::vector<std::string> v { Dialog::FolderToHtml(path) };
+      const std::vector<std::string> v { d.FolderToHtml(path) };
       assert(IsCleanHtml(v) && "Assume tidy HTML");
     }
     else

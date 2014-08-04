@@ -50,9 +50,6 @@ public:
   QtRoundedEditRectItemDialog& operator=(const QtRoundedEditRectItemDialog&) = delete;
   ~QtRoundedEditRectItemDialog() noexcept;
 
-  ///Checks all invariants, empty in release version
-  void CheckMe() const noexcept;
-
   boost::shared_ptr<QtRoundedEditRectItem> GetItem() const noexcept { return m_item; }
 
   static int GetMinimumHeight(const QtRoundedEditRectItem& /* item */) noexcept { return 276 + 300; }

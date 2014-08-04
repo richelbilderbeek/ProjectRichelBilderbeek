@@ -96,9 +96,6 @@ private:
   ///The QtRoundedRectItem to work on
   boost::shared_ptr<QtRoundedRectItem> m_item;
 
-  ///Checks if all invariants are met, empty in release
-  void CheckMe() const noexcept;
-
   void OnContourPenChanged(QtRoundedRectItem * const qtitem) noexcept;
   void OnFocusPenChanged(QtRoundedRectItem * const qtitem) noexcept;
   void OnPosChanged(QtRoundedRectItem * const qtitem) noexcept;

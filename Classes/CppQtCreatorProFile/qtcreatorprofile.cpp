@@ -41,6 +41,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "trace.h"
+#include "testtimer.h"
 
 #pragma GCC diagnostic pop
 
@@ -268,7 +269,9 @@ void ribi::QtCreatorProFile::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCreatorProFile::Test");
+  fileio::FileIo();
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
@@ -463,7 +466,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     }
     fileio::FileIo().DeleteFile(mypath.c_str());
   }
-  TRACE("Finished QtCreatorProFile::Test successfully");
 }
 #endif
 

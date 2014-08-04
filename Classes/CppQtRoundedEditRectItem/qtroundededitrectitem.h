@@ -79,7 +79,7 @@ class QtRoundedEditRectItem : public QtRoundedRectItem
   void SetPadding(const Padding& padding) noexcept;
 
   ///Set the text displayed
-  virtual void SetText(const std::vector<std::string>& text) noexcept;
+  void SetText(const std::vector<std::string>& text) noexcept;
 
   ///Set the pen by which the text is drawn
   void SetTextPen(const QPen& pen) noexcept;

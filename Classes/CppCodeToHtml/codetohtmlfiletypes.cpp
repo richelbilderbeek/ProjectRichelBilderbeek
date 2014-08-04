@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/xpressive/xpressive.hpp>
 
 #include "codetohtmlfiletype.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -169,7 +170,7 @@ void ribi::c2h::FileTypes::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::c2h::FileTypes::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   FileTypes f;
   //Test conversion between
   {
@@ -200,6 +201,5 @@ void ribi::c2h::FileTypes::Test() noexcept
   assert(f.DeduceFileType("xyz.txt") == FileType::txt);
   assert(f.DeduceFileType("pro.py" ) == FileType::py);
   assert(f.DeduceFileType("c.xyz"  ) == FileType::txt);
-  TRACE("Finished ribi::c2h::FileTypes::Test successfully");
 }
 #endif

@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtmlheader.h"
 #include "codetohtmlfooter.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -17567,49 +17568,50 @@ void ribi::c2h::Info::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::c2h::Info::Test");
-  {
-    const c2h::Info t;
-    #ifndef _WIN32
-    const std::map<std::string,std::vector<std::string> >& m = t.m_page_info;
-    for (const std::pair<std::string,std::vector<std::string> >& p: m)
-    {
-      std::vector<std::string> v;
-
-      //Add header
-      {
-        const std::vector<std::string> w { Header::ToHtml(HeaderType::cpp,"TestTitle") };
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-      //Text about this page (if known)
-      {
-        const std::vector<std::string> w = p.second;
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-      //Add footer
-      {
-        const std::vector<std::string> w = Footer::ToHtml(FooterType::cpp);
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-
-      assert(IsTidyInstalled());
-      if(!IsCleanHtml(v))
-      {
-        TRACE("ERROR: invalid HTML in the following c2h::info page");
-        TRACE(p.first);
-        TRACE("SOLUTION: Clean HTML in ribi::c2h::Info::CreatePageInfo");
-
-        if (p.first == "ZZZ_I_MUST_FAIL") continue;
-      }
-      assert(IsCleanHtml(v) && p.first != "ZZZ_I_MUST_FAIL");
-    }
-    #endif
-    assert(!t.ToHtml("").empty());
-  }
-  TRACE("Finished ribi::c2h::Info::Test successfully");
-
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
+
+void ribi::c2h::Info::TestIfAllCreatedPagesAreValid() noexcept
+{
+  const c2h::Info t;
+  #ifndef _WIN32
+  const std::map<std::string,std::vector<std::string> >& m = t.m_page_info;
+  for (const std::pair<std::string,std::vector<std::string> >& p: m)
+  {
+    std::vector<std::string> v;
+
+    //Add header
+    {
+      const std::vector<std::string> w { Header::ToHtml(HeaderType::cpp,"TestTitle") };
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+    //Text about this page (if known)
+    {
+      const std::vector<std::string> w = p.second;
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+    //Add footer
+    {
+      const std::vector<std::string> w = Footer::ToHtml(FooterType::cpp);
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
+
+    assert(IsTidyInstalled());
+    if(!IsCleanHtml(v))
+    {
+      if (p.first == "ZZZ_I_MUST_FAIL") continue;
+
+      TRACE("ERROR: invalid HTML in the following c2h::info page");
+      TRACE(p.first);
+      TRACE("SOLUTION: Clean HTML in ribi::c2h::Info::CreatePageInfo");
+
+    }
+    assert(IsCleanHtml(v) && p.first != "ZZZ_I_MUST_FAIL");
+  }
+  #endif
+  assert(!t.ToHtml("").empty());
+}
 
 std::vector<std::string> ribi::c2h::Info::ToHtml(const std::string page_name) const
 {

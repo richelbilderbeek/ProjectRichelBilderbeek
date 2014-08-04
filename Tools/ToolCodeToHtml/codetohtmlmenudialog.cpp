@@ -38,6 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -121,13 +122,16 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
     std::cout << "Source is directory: no" << std::endl;
   }
 
-  const std::function<const std::vector<std::string>(const std::string&)> f {
-    ribi::fileio::FileIo().IsRegularFile(source) ? &Dialog::FileToHtml : &Dialog::FolderToHtml
+  const std::function<const std::vector<std::string>(const Dialog*, const std::string&)> f {
+      ribi::fileio::FileIo().IsRegularFile(source)
+    ? &Dialog::FileToHtml
+    : &Dialog::FolderToHtml
   };
+  Dialog d;
 
   try
   {
-    const std::vector<std::string> v = f(source);
+    const std::vector<std::string> v = f(&d,source);
     const std::string output_filename = ribi::fileio::FileIo().GetFileBasename(source) + ".htm";
     assert(output_filename != ".htm");
     std::cout << "Output written to '" << output_filename << "'" << std::endl;
@@ -248,7 +252,12 @@ void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::c2h::CodeToHtmlMenuDialog::Test()");
+  {
+    fileio::FileIo();
+    { boost::shared_ptr<c2h::Info> info(new c2h::Info); }
+    try { QrcFile(""); } catch(std::logic_error&) { /* OK */ };
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
     const std::vector<std::string> html {
@@ -259,39 +268,40 @@ void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
     const std::string html_str = html[0];
     assert(html_str.substr(0,no_info_str.size()) == no_info_str);
   }
-  //Every Program must have some CodeToHtml info
-  {
-    const std::vector<boost::shared_ptr<Program> > programs { Program::GetAllPrograms() };
-    std::vector<std::string> pagenames;
-    std::transform(programs.begin(),programs.end(),std::back_inserter(pagenames),
-      [](const boost::shared_ptr<Program> program)
-      {
-        const std::string s = program->GetUrl();
-        assert(s.substr(s.size() - 4, 4) == ".htm");
-        const std::string t = s.substr(0,s.size() - 4);
-        return t;
-      }
-    );
-
-    for (const std::string pagename: pagenames)
-    {
-      const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
-      const std::vector<std::string> html {
-        info->ToHtml(pagename)
-      };
-      assert(!html.empty());
-      const std::string no_info_str = "<!-- No CodeToHtmlInfo about this class";
-      const std::string html_str = html[0];
-      if(html_str.substr(0,no_info_str.size()) == no_info_str)
-      {
-        TRACE("ERROR");
-        TRACE("No info for page:");
-        TRACE(pagename);
-      }
-      assert(html_str.substr(0,no_info_str.size()) != no_info_str
-        && "For every programType there must be HTML info");
-    }
-  }
-  TRACE("Finished ribi::c2h::CodeToHtmlMenuDialog::Test()");
 }
 #endif
+
+void ribi::c2h::CodeToHtmlMenuDialog::TestAllProgramsHaveInfo() noexcept
+{
+  //Every Program must have some CodeToHtml info
+  const std::vector<boost::shared_ptr<Program> > programs { Program::GetAllPrograms() };
+  std::vector<std::string> pagenames;
+  std::transform(programs.begin(),programs.end(),std::back_inserter(pagenames),
+    [](const boost::shared_ptr<Program> program)
+    {
+      const std::string s = program->GetUrl();
+      assert(s.substr(s.size() - 4, 4) == ".htm");
+      const std::string t = s.substr(0,s.size() - 4);
+      return t;
+    }
+  );
+
+  for (const std::string pagename: pagenames)
+  {
+    const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
+    const std::vector<std::string> html {
+      info->ToHtml(pagename)
+    };
+    assert(!html.empty());
+    const std::string no_info_str = "<!-- No CodeToHtmlInfo about this class";
+    const std::string html_str = html[0];
+    if(html_str.substr(0,no_info_str.size()) == no_info_str)
+    {
+      TRACE("ERROR");
+      TRACE("No info for page:");
+      TRACE(pagename);
+    }
+    assert(html_str.substr(0,no_info_str.size()) != no_info_str
+      && "For every programType there must be HTML info");
+  }
+}

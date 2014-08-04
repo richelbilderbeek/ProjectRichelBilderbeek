@@ -51,6 +51,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qtcodetohtmlmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -118,7 +119,7 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
   {
     //Convert code snippet
     const std::vector<std::string> v = EditToVector(ui->edit_source_snippet);
-    const std::vector<std::string> w = Dialog::SnippetToHtml(v,SnippetType::cpp);
+    const std::vector<std::string> w = Dialog().SnippetToHtml(v,SnippetType::cpp);
     Display(w);
   }
   else
@@ -134,14 +135,14 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
     }
     if (ribi::fileio::FileIo().IsRegularFile(source))
     {
-      const std::vector<std::string> v { Dialog::FileToHtml(source) };
+      const std::vector<std::string> v { Dialog().FileToHtml(source) };
       Display(v);
     }
     else
     {
       assert(ribi::fileio::FileIo().IsFolder(source));
       const std::vector<std::string> v {
-        Dialog::FolderToHtml(source)
+        Dialog().FolderToHtml(source)
       };
       Display(v);
     }
@@ -230,7 +231,9 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtCodeToHtmlMainDialog::Test");
+  ribi::fileio::FileIo();
+  Dialog();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //IsRegularFile
   {
     assert(!ribi::fileio::FileIo().IsRegularFile("../ToolCodeToHtml"));
@@ -263,6 +266,5 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
       }
     }
   }
-  TRACE("Finished QtCodeToHtmlMainDialog::Test successfully");
 }
 #endif

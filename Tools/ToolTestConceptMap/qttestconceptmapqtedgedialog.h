@@ -61,9 +61,6 @@ private:
   boost::shared_ptr< ::ribi::QtKeyboardFriendlyGraphicsView> m_view_left;
   boost::shared_ptr< ::ribi::QtKeyboardFriendlyGraphicsView> m_view_right;
 
-  ///Tests invariants, will be empty in release version
-  void CheckMe() const noexcept;
-
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

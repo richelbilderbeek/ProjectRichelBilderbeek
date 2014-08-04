@@ -33,6 +33,8 @@ namespace cmap {
 ///concept_item is the Strategy for displaying the ConceptItem
 struct QtEdge : public QtConceptMapElement
 {
+  typedef QtConceptMapElement Base;
+
   typedef boost::shared_ptr<QtQuadBezierArrowItem> Arrow;
   typedef boost::shared_ptr<const QtQuadBezierArrowItem> ReadOnlyArrow;
   typedef boost::shared_ptr<Node> NodePtr;
@@ -78,7 +80,7 @@ struct QtEdge : public QtConceptMapElement
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   void SetEdge(const EdgePtr& edge) noexcept;
-  void SetNode(const boost::shared_ptr<Node>& node) noexcept;
+  //void SetNode(const boost::shared_ptr<Node>& node) noexcept;
 
   void SetFrom(QtNode * const from) noexcept; //TODO #215: Replace 'QtNode * const from' to 'boost::shared_ptr<QtNode> from'
 
@@ -113,19 +115,29 @@ private:
   ///The node item the arrow targets
   QtNode * m_to;
 
+  double GetX() const noexcept { return Base::GetX(); }
+  double GetY() const noexcept { return Base::GetY(); }
+  QPointF GetPos() const noexcept { return Base::GetPos(); }
+  void SetPos(const double x,const double y) noexcept { Base::SetPos(x,y); }
+  void SetX(const double x) noexcept { Base::SetX(x); }
+  void SetY(const double y) noexcept { Base::SetY(y); }
+  void SetText(const std::vector<std::string>& text) noexcept { Base::SetText(text); }
+
   ///Called whenever the edge changes
+  void OnEdgeChanged(Edge * const edge) noexcept;
   void OnConceptChanged(Node * const node) noexcept;
   void OnFromChanged(Edge * const edge) noexcept;
   void OnHeadArrowChanged(Edge * const edge) noexcept;
   void OnNodeChanged(Edge * const edge) noexcept;
   void OnTailArrowChanged(Edge * const edge) noexcept;
+  void OnTextChanged(QtRoundedEditRectItem* item) noexcept;
   void OnToChanged(Edge * const edge) noexcept;
 
   //void OnXchanged(Edge * const edge) noexcept;
   //void OnYchanged(Edge * const edge) noexcept;
 
   ///Called whenever the arrow updates
-  void OnItemHasUpdated();
+  void OnArrowChanged();
 
   void OnRequestSceneUpdate();
 

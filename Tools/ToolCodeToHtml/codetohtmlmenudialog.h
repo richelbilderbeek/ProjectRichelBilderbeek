@@ -42,6 +42,8 @@ struct CodeToHtmlMenuDialog final : public MenuDialog
 
   std::vector<std::string> GetVersionHistory() const noexcept override;
 
+  static void TestAllProgramsHaveInfo() noexcept;
+
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 

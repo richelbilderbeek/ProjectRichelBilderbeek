@@ -83,13 +83,6 @@ ribi::cmap::QtEdgeDialog::~QtEdgeDialog()
   delete ui;
 }
 
-void ribi::cmap::QtEdgeDialog::CheckMe() const noexcept
-{
-  #ifndef NDEBUG
-
-  #endif
-}
-
 int ribi::cmap::QtEdgeDialog::GetMinimumHeight(const Edge& edge) noexcept
 {
   return

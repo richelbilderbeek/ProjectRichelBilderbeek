@@ -30,9 +30,6 @@ public:
   QtQuadBezierArrowDialog& operator=(const QtQuadBezierArrowDialog&) = delete;
   ~QtQuadBezierArrowDialog() noexcept;
 
-  ///Checks the invariants, empty at release
-  void CheckMe() const noexcept;
-
   Arrow GetArrow() const noexcept { return m_arrow; }
 
   double GetUiMidX() const noexcept;

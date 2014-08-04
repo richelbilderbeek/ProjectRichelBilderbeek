@@ -3,8 +3,11 @@
 #include <cassert>
 
 #include "conceptmapedgefactory.h"
+#include "conceptmapedge.h"
+#include "conceptmapnode.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapnode.h"
+#include "qtconceptmapqtnodefactory.h"
 #include "testtimer.h"
 #include "trace.h"
 
@@ -62,8 +65,8 @@ std::vector<boost::shared_ptr<ribi::cmap::QtEdge>> ribi::cmap::QtEdgeFactory::Ge
     {
       const boost::shared_ptr<QtEdge> q{QtEdgeFactory().Create(c,from.get(),to.get())};
       assert(q);
-      q->SetX((from->GetX() + to->GetX()) / 2.0);
-      q->SetY((from->GetY() + to->GetY()) / 2.0);
+      q->GetEdge()->GetNode()->SetX((from->GetX() + to->GetX()) / 2.0);
+      q->GetEdge()->GetNode()->SetY((from->GetY() + to->GetY()) / 2.0);
       return q;
     }
   );
@@ -79,6 +82,9 @@ void ribi::cmap::QtEdgeFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  QtNodeFactory();
+  QtNodeFactory().GetTest(0);
+  QtEdgeFactory().GetTest(0,QtNodeFactory().GetTest(0),QtNodeFactory().GetTest(0));
   const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
