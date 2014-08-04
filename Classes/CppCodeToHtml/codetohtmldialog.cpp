@@ -585,7 +585,7 @@ void ribi::c2h::Dialog::Test() noexcept
       if (!IsCleanHtml(v))
       {
         std::ofstream f("tmp_to_check.htm");
-        f << Container().Concatenate(v);
+        f << Container().Concatenate(v,"\n");
       }
       assert(IsCleanHtml(v) && "Assume tidy HTML, inspect tmp_to_check.htm");
     }

@@ -115,9 +115,12 @@ void ribi::trim::CellsCreatorFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  Template::CreateTest(0);
-  CellsCreatorFactory();
-  CellsCreatorFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
+  {
+    Template::CreateTest(0);
+    CellsCreatorFactory();
+    CellsCreatorFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square);
+    CellsCreator(Template::CreateTest(0),1,1.0 * boost::units::si::meter,CreateVerticalFacesStrategy::one_face_per_square,false,CellsCreatorFactory());
+  }
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const CellsCreatorFactory cells_creator;

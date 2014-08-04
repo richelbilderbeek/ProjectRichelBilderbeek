@@ -99,7 +99,6 @@ ribi::cmap::QtEdge::QtEdge(
 
   //Signals
 
-  /*
   #ifdef TODO_ISSUE_212
   if (!is_connected_to_center_node)
   {
@@ -117,17 +116,16 @@ ribi::cmap::QtEdge::QtEdge(
     }
   }
   #else
-  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(display_strategy.get()))
-  {
-    edit_concept->m_signal_request_edit.connect(
-      boost::bind(
-        &QtConceptMapElement::OnConceptRequestsEdit,
-        this
-      )
-    );
-  }
+  //if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(display_strategy.get()))
+  //{
+  //  edit_concept->m_signal_request_edit.connect(
+  //    boost::bind(
+  //      &QtConceptMapElement::OnConceptRequestsEdit,
+  //      this
+  //    )
+  //  );
+  //}
   #endif
-  */
 }
 
 ribi::cmap::QtEdge::~QtEdge()
@@ -416,52 +414,12 @@ void ribi::cmap::QtEdge::OnToChanged(Edge * const edge) noexcept
   m_signal_edge_changed(this);
 }
 
-/*
-void ribi::cmap::QtEdge::OnEdgeChanged(Edge * const edge) noexcept
-{
-  assert(m_arrow);
-  assert(m_edge);
-  assert(edge == m_edge.get());
-  this->SetPos(edge->GetX(),edge->GetY());
-  //m_edge is changed, so change m_arrow
-  m_arrow->SetHasHead(edge->HasHeadArrow());
-  m_arrow->SetHasTail(edge->HasTailArrow());
-  assert( m_arrow->HasTail() == GetEdge()->HasTailArrow() );
-  assert( m_arrow->HasHead() == GetEdge()->HasHeadArrow() );
-  m_display_strategy->SetName(edge->GetConcept()->GetName());
-  this->GetEdge()->SetX(edge->GetX());
-  this->GetEdge()->SetY(edge->GetY());
-
-  //assert(m_edge->GetConcept()->GetName() == GetName()
-  //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
-  //    && "Names/texts must be in sync before");
-
-  //this->SetName(m_concept_item->GetText());
-  this->SetName(edge->GetConcept()->GetName());
-
-
-  //assert(m_edge->GetConcept()->GetName() == GetName()
-  //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
-  //    && "Names/texts must be in sync after");
-
-  this->setRect(m_display_strategy->boundingRect());
-
-  assert( ( m_display_strategy->boundingRect() == QtConceptMapElement::boundingRect()
-    || m_display_strategy->boundingRect() != QtConceptMapElement::boundingRect() )
-    && "Bounding rects of edge and concept item might differ");
-
-}
-*/
-
 
 void ribi::cmap::QtEdge::OnArrowChanged()
 {
   this->GetNode()->GetConcept()->SetName(
     Container().ToStr(this->GetText())
   );
-  //this->setRect(QtConceptMapItem::boundingRect());
-  //this->setRect(m_display_strategy->boundingRect());
-
   this->update();
   //this->m_signal_item_has_updated(this);
 }
@@ -694,71 +652,6 @@ void ribi::cmap::QtEdge::SetEdge(const boost::shared_ptr<Edge>& edge) noexcept
   assert(*edge == *m_edge);
 }
 
-/*
-void ribi::cmap::QtEdge::SetNode(const boost::shared_ptr<Node>& node) noexcept
-{
-  const bool verbose{false};
-
-  assert(node);
-  if (m_edge->GetNode() == node)
-  {
-    return;
-  }
-
-  if (verbose)
-  {
-    std::stringstream s;
-    s << "Setting node '" << node->ToStr() << "'\n";
-  }
-
-  const auto node_after = node;
-
-  if (m_edge->GetNode())
-  {
-    const auto node_before = m_edge->GetNode();
-
-    if (verbose)
-    {
-      std::stringstream s;
-      s << "Node will change from " << node_before->ToStr()
-        << " to " << node_after->ToStr() << '\n';
-      TRACE(s.str());
-    }
-    //?Need to worry about Node its signals?
-    //m_edge->GetNode().m_signal_something.disconnect(
-    //m_edge->m_signal_node_changed.disconnect(
-    //  boost::bind(&ribi::cmap::QtEdge::OnNodeChanged,this,boost::lambda::_1)
-    //);
-    m_edge->GetNode()->m_signal_concept_changed.disconnect(
-      boost::bind(&ribi::cmap::QtEdge::OnConceptChanged,this,boost::lambda::_1)
-    );
-
-  }
-
-  //Replace m_edge its node by the new one
-  //m_edge->SetNode(node);
-
-  //Sync
-  this->SetText( {node->GetConcept()->GetName()} );
-
-  assert(m_edge->GetNode() == node_after );
-
-
-  //?Need to worry about Node its signals?
-  //m_edge->GetNode().m_signal_something.connect(
-  //m_edge->m_signal_node_changed.connect(
-  //  boost::bind(&ribi::cmap::QtEdge::OnNodeChanged,this,boost::lambda::_1)
-  //);
-
-  //m_edge->GetNode()->m_signal_concept_changed(m_edge->GetNode().get());
-  m_edge->m_signal_node_changed(m_edge.get());
-
-
-  assert( node ==  m_edge->GetNode());
-  assert(*node == *m_edge->GetNode());
-}
-*/
-
 void ribi::cmap::QtEdge::SetFrom(QtNode * const from) noexcept
 {
   m_from = from;
@@ -946,96 +839,6 @@ void ribi::cmap::QtEdge::Test() noexcept
     qtitem->SetY(new_y);
     assert(std::abs(qtedge->GetY() - new_y) < 2.0);
   }
-
-  //Test boundingRects being in sync
-  /*
-  {
-    const boost::shared_ptr<Node> node_from = cmap::NodeFactory().GetTests()[0];
-    const boost::shared_ptr<Node> node_to = cmap::NodeFactory().GetTests()[0];
-
-    const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from));
-    const boost::shared_ptr<QtNode> qtnode_to(new QtNode(node_to));
-    const std::size_t n_edges = EdgeFactory().GetTests(node_from,node_to).size();
-    for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
-    {
-      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = EdgeFactory().GetTests(node_from,node_to);
-      boost::shared_ptr<Edge> edge = edges[edge_index];
-      assert(edge);
-      //boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetNode()->GetConcept()));
-      boost::shared_ptr<QtEdge> qtedge(
-        new QtEdge(edge,qtnode_from.get(),qtnode_to.get()));
-      //const double epsilon = 0.000001;
-      assert(edge == qtedge->GetEdge());
-      {
-        const QRectF qtedge_rect = qtedge->boundingRect();
-        const QRectF qtconcept_rect = qtconcept_item->boundingRect();
-
-        assert(qtedge->GetNode()->GetConcept()->GetName() == qtconcept_item->GetName());
-
-        assert(qtedge_rect.width() >= qtconcept_rect.width()
-          && "The complete edge (including nodes will be at least as wide as the concept only");
-        assert(qtedge_rect.height() >= qtconcept_rect.height()
-          && "The complete edge (including nodes will be at least as high as the concept only");
-      }
-      {
-        const QRectF qtedge_rect_before = qtedge->boundingRect();
-        const QRectF qtconcept_rect_before = qtconcept_item->boundingRect();
-
-        assert(qtedge_rect_before.width() >= qtconcept_rect_before.width()
-          && "The complete edge (including nodes will be at least as wide as the concept only");
-        assert(qtedge_rect_before.height() >= qtconcept_rect_before.height()
-          && "The complete edge (including nodes will be at least as high as the concept only");
-
-        //Change via edge's concept
-        edge->GetNode()->GetConcept()->SetName( edge->GetNode()->GetConcept()->GetName() + " made longer");
-
-        const QRectF qtedge_rect_after = qtedge->boundingRect();
-        const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();
-
-        assert(qtedge_rect_after.width() * qtedge_rect_after.height()
-          >=
-            qtconcept_rect_after.width() * qtconcept_rect_after.height()
-          && "The complete edge (including nodes will have an area at least the size of the concept its area");
-        assert(
-          (qtedge_rect_after.width() * qtedge_rect_after.height()) + 1.0
-          >=
-          qtedge_rect_before.width() * qtedge_rect_before.height()
-         && "bounding rect area must be bigger");
-      }
-      {
-        const QRectF qtedge_rect_before = qtedge->boundingRect();
-        const QRectF qtconcept_rect_before = qtconcept_item->boundingRect();
-        assert(qtedge_rect_before.width() >= qtconcept_rect_before.width()
-          && "The complete edge (including nodes) will be at least as wide as the concept only");
-        assert(qtedge_rect_before.height() >= qtconcept_rect_before.height()
-          && "The complete edge (including nodes) will be at least as high as the concept only");
-
-        //Change via Qt edge
-        qtedge->GetNode()->GetConcept()->SetName(qtedge->GetNode()->GetConcept()->GetName() + " and made longer again");
-
-        const QRectF qtedge_rect_after = qtedge->boundingRect();
-        const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();
-
-
-        assert(
-          qtedge_rect_after.width() * qtedge_rect_after.height()
-          >=
-          qtconcept_rect_after.width() * qtconcept_rect_after.height()
-          && "The complete edge its area (including nodes) will be at least the concept its area");
-        const double edge_area_after  = qtedge_rect_after.width()  * qtedge_rect_after.height();
-        const double edge_area_before = qtedge_rect_before.width() * qtedge_rect_before.height();
-        assert(edge_area_after + 1.0 >= edge_area_before //Add 1 pixel to be sure
-         && "bounding rects must get bigger");
-        const double concept_area_after  = qtconcept_rect_after.width()  * qtconcept_rect_after.height();
-        const double concept_area_before = qtconcept_rect_before.width() * qtconcept_rect_before.height();
-        assert(concept_area_after + 1.0 >= concept_area_before
-         && "bounding rects must get bigger");
-      }
-
-    }
-  }
-  */
-
   if (verbose) { TRACE("QtEdge must accept hover events"); }
   {
     assert(qtedge->acceptHoverEvents()); //Must remove the 's' in Qt5?
