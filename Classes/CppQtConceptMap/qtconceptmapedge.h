@@ -21,10 +21,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPEDGEITEM_H
 #define QTCONCEPTMAPEDGEITEM_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include <QGraphicsItem>
 #include "qtconceptmapfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace cmap {
@@ -66,6 +71,7 @@ struct QtEdge : public QGraphicsItem
   const Arrow& GetArrow() noexcept { return m_arrow; }
 
   ///Get the Node at the center of the Edge
+  //TODO: Remove, use GetQtNode stead
   ReadOnlyNodePtr GetNode() const noexcept;
   NodePtr GetNode() noexcept;
 
@@ -79,6 +85,9 @@ struct QtEdge : public QGraphicsItem
   ///The node item the arrow targets
   const QtNode * GetTo() const noexcept { return m_to; }
         QtNode * GetTo()       noexcept { return m_to; }
+
+  boost::shared_ptr<      QtNode> GetQtNode()       noexcept { return m_qtnode; }
+  boost::shared_ptr<const QtNode> GetQtNode() const noexcept { return m_qtnode; }
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;

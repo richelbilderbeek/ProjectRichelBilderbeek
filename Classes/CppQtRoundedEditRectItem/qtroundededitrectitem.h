@@ -94,8 +94,8 @@ class QtRoundedEditRectItem : public QtRoundedRectItem
   boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_text_pen_changed;
 
 protected:
-  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
   virtual void keyPressEvent(QKeyEvent* event) noexcept;
+  virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) noexcept;
 
 private:
 

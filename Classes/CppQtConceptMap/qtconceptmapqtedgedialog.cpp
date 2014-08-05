@@ -31,17 +31,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QVBoxLayout>
 
-#include "conceptmapedge.h"
 #include "conceptmapedgefactory.h"
+#include "conceptmapedge.h"
+#include "conceptmapnodefactory.h"
 #include "qtconceptmapedgedialog.h"
 #include "qtconceptmapedge.h"
-#include "conceptmapnodefactory.h"
+#include "qtconceptmapnode.h"
+#include "qtconceptmapqtnodefactory.h"
 #include "qtitemdisplaystrategy.h"
 #include "qtroundededitrectitemdialog.h"
-#include "qtconceptmapqtnodefactory.h"
+#include "qtroundededitrectitem.h"
 #include "testtimer.h"
 #include "trace.h"
-
 #include "ui_qtconceptmapqtedgedialog.h"
 #pragma GCC diagnostic pop
 
@@ -95,7 +96,11 @@ void ribi::cmap::QtQtEdgeDialog::OnEdgeChanged(QtEdge * const qtedge) noexcept
 {
   assert( qtedge ==  m_qtedge.get());
   assert(*qtedge == *m_qtedge);
-  m_qtroundededitrectitem_dialog->SetItem(m_qtedge);
+  const boost::shared_ptr<QtRoundedEditRectItem> item{
+    boost::dynamic_pointer_cast<QtRoundedEditRectItem>(m_qtedge->GetQtNode())
+  };
+  assert(item);
+  m_qtroundededitrectitem_dialog->SetItem(item);
 
 }
 
