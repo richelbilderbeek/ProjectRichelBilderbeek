@@ -41,27 +41,27 @@ struct ExamplesFactory
   ExamplesFactory() noexcept;
 
   ///Constructor like
-  static const boost::shared_ptr<Examples> Create();
+  boost::shared_ptr<Examples> Create() const noexcept;
 
   ///Copy-constructor like
-  static const boost::shared_ptr<Examples> Create(
-    const boost::shared_ptr<const cmap::Examples>& examples);
+  boost::shared_ptr<Examples> Create(
+    const boost::shared_ptr<const cmap::Examples>& examples) const noexcept;
 
-  static const boost::shared_ptr<Examples> Create(
-    const std::vector<boost::shared_ptr<cmap::Example> >& v);
+  boost::shared_ptr<Examples> Create(
+    const std::vector<boost::shared_ptr<cmap::Example> >& v) const noexcept;
 
-  static const boost::shared_ptr<Examples> Create(
-    const std::vector<boost::shared_ptr<const cmap::Example> >& v);
+  boost::shared_ptr<Examples> Create(
+    const std::vector<boost::shared_ptr<const cmap::Example> >& v) const noexcept;
 
-  static const boost::shared_ptr<Examples> Create(
-    const std::vector<std::pair<std::string,Competency> >& v);
+  boost::shared_ptr<Examples> Create(
+    const std::vector<std::pair<std::string,Competency> >& v) const noexcept;
 
   ///Create an Examples from XML
-  const boost::shared_ptr<Examples> FromXml(const std::string& s) const;
+  boost::shared_ptr<Examples> FromXml(const std::string& s) const;
 
   int GetNumberOfTests() const noexcept { return static_cast<int>(GetTests().size()); }
-  const boost::shared_ptr<Examples> GetTest(const int i) const noexcept;
-  const std::vector<boost::shared_ptr<Examples>> GetTests() const noexcept;
+  boost::shared_ptr<Examples> GetTest(const int i) const noexcept;
+  std::vector<boost::shared_ptr<Examples>> GetTests() const noexcept;
 
   private:
 

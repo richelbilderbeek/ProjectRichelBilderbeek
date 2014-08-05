@@ -1,44 +1,66 @@
 #include "qtimage.h"
 
-#include <iostream>
-#include <QMouseEvent>
+#include <cassert>
 
-QtImage::QtImage(QWidget *parent)
-  : QLabel(parent),
-    m_v{}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <QPainter>
+
+#include "testtimer.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
+
+ribi::QtImage::QtImage() noexcept
 {
-  this->setMouseTracking(true);
+  #ifndef NDEBUG
+  Test();
+  #endif // NDEBUG
 }
 
-void QtImage::AddClickableRegion(const QRect& region,const std::function<void()>& function_to_do)
+std::string ribi::QtImage::GetVersion() noexcept
 {
-  m_v.push_back(std::make_pair(region,function_to_do));
+  return "1.0";
 }
 
-void QtImage::mouseMoveEvent(QMouseEvent *e)
+std::vector<std::string> ribi::QtImage::GetVersionHistory() noexcept
 {
-  bool is_arrow = true;
-  //std::clog << e->pos().x() << ',' << e->pos().y() << '\n';
-  for (const auto p: m_v)
+  return {
+    "2014-08-05: Version 1.0: initial version",
+  };
+}
+
+#ifndef NDEBUG
+void ribi::QtImage::Test() noexcept
+{
   {
-    if (p.first.contains(e->pos()))
-    {
-      is_arrow = false;
-      //std::clog << e->pos().x() << ',' << e->pos().y() << '\n';
-    }
+    static bool is_tested{false};
+    if (is_tested) return;
+    is_tested = true;
   }
-  this->setCursor(QCursor(is_arrow ? Qt::ArrowCursor : Qt::PointingHandCursor));
-}
-
-void QtImage::mousePressEvent(QMouseEvent *e)
-{
-  //std::clog << e->pos().x() << ',' << e->pos().y() << '\n';
-  for (const auto p: m_v)
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+  if (verbose) { TRACE("Default-construction of QtImage"); }
   {
-    if (p.first.contains(e->pos()))
-    {
-      const auto f = p.second;
-      f();
-    }
+    const QtImage q;
   }
+  if (verbose) { TRACE("QImage pixel manipultion"); }
+  {
+    QImage q(1,1,QImage::Format_RGB32);
+    q.setPixel(0,0,qRgb(1,2,3));
+    assert(q.pixel(0,0) == qRgb(1,2,3));
+  }
+}
+#endif
+
+QImage ribi::QtImage::Xor(const QImage& base, const QImage& to_xor) noexcept
+{
+  QImage result{base};
+  {
+    QPainter painter(&result);
+    painter.setCompositionMode(QPainter::CompositionMode_Xor);
+    painter.drawImage(0,0,to_xor);
+  }
+  return result;
 }

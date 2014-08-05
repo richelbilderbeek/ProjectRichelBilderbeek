@@ -36,12 +36,10 @@ struct Counter
   ///Increments count
   void Inc() noexcept { ++m_count; }
 
+  ///Get the count
   int Get() const noexcept { return m_count; }
 
-  ///Obtain this class its version
   static std::string GetVersion() noexcept;
-
-  ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:

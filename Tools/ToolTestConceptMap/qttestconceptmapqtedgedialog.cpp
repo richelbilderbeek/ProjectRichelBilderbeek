@@ -10,13 +10,17 @@
 
 #include <QGraphicsView>
 #include <QKeyEvent>
+#include <QTimer>
 
 #include "conceptmapcompetencies.h"
 #include "conceptmapconcept.h"
 #include "conceptmapexample.h"
 #include "conceptmapexamples.h"
 #include "conceptmapnodefactory.h"
+#include "conceptmapedge.h"
 #include "conceptmapnode.h"
+#include "grabber.h"
+#include "qtimage.h"
 #include "qtconceptmapedgefactory.h"
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
@@ -24,7 +28,6 @@
 #include "qtconceptmapnodedialog.h"
 #include "qtconceptmapnode.h"
 #include "qtconceptmapqtnodefactory.h"
-#include "qtconceptmapedge.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapqtedgedialog.h"
 #include "qtconceptmapqtedgefactory.h"
@@ -72,10 +75,14 @@ ribi::cmap::QtTestQtEdgeDialog::QtTestQtEdgeDialog(
   m_view_right->setMinimumWidth(300);
   m_view_left->setMaximumHeight(300);
   m_view_right->setMaximumHeight(300);
-  my_layout->addWidget(m_view_left.get(),1,0);
-  my_layout->addWidget(m_view_right.get(),1,1);
+  my_layout->addWidget(m_view_left.get(),1,0,1,1,Qt::AlignTop);
+  my_layout->addWidget(m_view_right.get(),1,1,1,1,Qt::AlignTop);
   my_layout->addWidget(m_dialog_left.get(),1,2);
   my_layout->addWidget(m_dialog_right.get(),1,3);
+
+  //my_layout->addItem(new QSpacerItem(1,1),2,0);
+  //my_layout->addItem(new QSpacerItem(1,1),2,1);
+
 
 
   ui->box_test_index->setMinimum(0);
@@ -141,6 +148,7 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  QtImage();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   QtTestQtEdgeDialog d;
@@ -170,6 +178,62 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
       d.on_button_load_clicked();
     }
   }
+  if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
+  {
+    d.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
+    assert( d.GetQtEdge()->GetQtNode()->GetText()[0] == "A");
+    d.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
+    assert( d.GetQtEdge()->GetQtNode()->GetText()[0] == "B");
+  }
+  if (verbose) { TRACE("Grabbing QtEdge twice, results in an identical picture"); }
+  {
+    d.setEnabled(false);
+    const std::string a{"QtTestQtEdgeDialogTest1_before.png"};
+    const std::string b{"QtTestQtEdgeDialogTest1_after.png"};
+    {
+      Grabber grabber(d.winId(),a);
+      QTimer::singleShot(200,&d,SLOT(close()));
+      QTimer::singleShot(100,&grabber,SLOT(Grab()));
+      d.exec();
+    }
+    {
+      Grabber grabber(d.winId(),b);
+      QTimer::singleShot(200,&d,SLOT(close()));
+      QTimer::singleShot(100,&grabber,SLOT(Grab()));
+      d.exec();
+    }
+    QPixmap c(a.c_str());
+    QPixmap d(b.c_str());
+    assert(c.toImage() == c.toImage());
+    assert(d.toImage() == d.toImage());
+    if (c.toImage() != d.toImage())
+    {
+      QImage result{QtImage().Xor(c.toImage(),d.toImage())};
+      /*
+      QImage result{c.toImage()};
+      {
+        QPainter painter(&result);
+        painter.setCompositionMode(QPainter::CompositionMode_Xor);
+        painter.drawImage(0,0,d.toImage());
+      }
+      */
+      result.save("QtTestQtEdgeDialogTest1_xor.png");
+
+    }
+    assert(c.toImage() == d.toImage());
+  }
+  assert(!"Refactor");
+  if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
+  {
+    d.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
+    d.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
+    Grabber grabber(d.winId(),"QtTestQtEdgeDialogTest1_before.png");
+    QTimer::singleShot(200,&d,SLOT(close()));
+    QTimer::singleShot(100,&grabber,SLOT(Grab()));
+    d.exec();
+  }
+  assert(!"Refactor");
+
   /*
   assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtEdge()->GetX()) < 1.0);
   assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtEdge()->GetY()) < 1.0);

@@ -1,33 +1,32 @@
 #ifndef QTIMAGE_H
 #define QTIMAGE_H
 
+#include <string>
 #include <vector>
-#include <utility>
-#include <QRect>
-#include <QLabel>
 
-struct QMouseEvent;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <QImage>
+#pragma GCC diagnostic pop
 
-class QtImage : public QLabel
+namespace ribi {
+
+///Some handy functions on QImage
+struct QtImage
 {
-    Q_OBJECT
-public:
-    explicit QtImage(QWidget *parent = 0);
-    void AddClickableRegion(const QRect& region,const std::function<void()>& function_to_do);
-    void mouseMoveEvent(QMouseEvent * e);
-    void mousePressEvent(QMouseEvent * e);
+  QtImage() noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
-protected:
-
-private:
-  std::vector<std::pair<QRect,std::function<void()>>> m_v;
-
-signals:
-
-public slots:
-
-
-
+  QImage Xor(const QImage& base, const QImage& to_xor) noexcept;
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+} //namespace ribi
 
 #endif // QTIMAGE_H

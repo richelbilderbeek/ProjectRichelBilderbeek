@@ -40,38 +40,38 @@ ribi::cmap::ExamplesFactory::ExamplesFactory() noexcept
   #endif
 }
 
-const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create()
+boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create() const noexcept
 {
-  boost::shared_ptr<ribi::cmap::Examples> examples(new Examples( {} ));
+  boost::shared_ptr<Examples> examples(new Examples( {} ));
   assert(examples);
   return examples;
 }
 
-const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create(
-  const boost::shared_ptr<const cmap::Examples>& examples)
+boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create(
+  const boost::shared_ptr<const cmap::Examples>& examples) const noexcept
 {
   assert(examples);
-  const boost::shared_ptr<ribi::cmap::Examples> p = Create(examples->Get());
+  const boost::shared_ptr<Examples> p = Create(examples->Get());
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create(
-  const std::vector<boost::shared_ptr<cmap::Example> >& v)
+boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create(
+  const std::vector<boost::shared_ptr<cmap::Example> >& v) const noexcept
 {
-  boost::shared_ptr<ribi::cmap::Examples> p(new Examples(v));
+  boost::shared_ptr<Examples> p(new Examples(v));
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create(
-  const std::vector<boost::shared_ptr<const cmap::Example> >& v)
+boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create(
+  const std::vector<boost::shared_ptr<const cmap::Example> >& v) const noexcept
 {
   std::vector<boost::shared_ptr<cmap::Example> > w;
   std::transform(v.begin(),v.end(),std::back_inserter(w),
     [](const boost::shared_ptr<const cmap::Example>& p)
     {
-      boost::shared_ptr<cmap::Example> q
+      boost::shared_ptr<Example> q
         = ExampleFactory().Create(p->GetText(),p->GetCompetency());
       assert(q);
       return q;
@@ -83,14 +83,14 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Creat
   return examples;
 }
 
-const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create(
-  const std::vector<std::pair<std::string,Competency> >& v)
+boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create(
+  const std::vector<std::pair<std::string,Competency> >& v) const noexcept
 {
-  std::vector<boost::shared_ptr<cmap::Example> > w;
+  std::vector<boost::shared_ptr<Example> > w;
   std::transform(v.begin(),v.end(),std::back_inserter(w),
     [](const std::pair<std::string,Competency>& p)
     {
-      const boost::shared_ptr<cmap::Example> q
+      const boost::shared_ptr<Example> q
         = ExampleFactory().Create(p.first,p.second);
       assert(q);
       return q;
@@ -101,7 +101,7 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Creat
   return q;
 }
 
-const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromXml(const std::string& s) const
+boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromXml(const std::string& s) const
 {
   if (s.size() < 20)
   {
@@ -135,46 +135,36 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
     Create(examples)
   };
   assert(result);
-  #ifndef NDEBUG
-  if(result->ToXml() != s)
-  {
-    TRACE("ERROR");
-    TRACE(result->ToXml());
-    TRACE(s);
-    TRACE("BREAK");
-  }
-
-  #endif
-  //assert(result->ToXml() == s); //TODO RJCB: put back in
+  assert(result->ToXml() == s);
   return result;
 }
 
-const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::GetTest(const int i) const noexcept
+boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::GetTest(const int i) const noexcept
 {
   assert(i >= 0);
   assert(i < GetNumberOfTests());
   return GetTests()[i];
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Examples> > ribi::cmap::ExamplesFactory::GetTests() const noexcept
+std::vector<boost::shared_ptr<ribi::cmap::Examples> > ribi::cmap::ExamplesFactory::GetTests() const noexcept
 {
   const std::vector<std::vector<int> > is = { {0}, {1}, {0,1,2,3}, {} };
-  std::vector<boost::shared_ptr<ribi::cmap::Examples> > v;
+  std::vector<boost::shared_ptr<Examples> > v;
   std::transform(is.begin(),is.end(),std::back_inserter(v),
     [this](const std::vector<int>& js)
     {
-      std::vector<boost::shared_ptr<cmap::Example> > w;
+      std::vector<boost::shared_ptr<Example> > w;
       std::transform(js.begin(),js.end(),std::back_inserter(w),
         [](const int& j)
         {
-          const boost::shared_ptr<cmap::Example> p
+          const boost::shared_ptr<Example> p
             = ExampleFactory().GetTest(j);
           assert(p);
           return p;
         }
       );
-      const boost::shared_ptr<ribi::cmap::Examples> q
-        = ribi::cmap::ExamplesFactory::Create(w);
+      const boost::shared_ptr<Examples> q
+        = Create(w);
       assert(q);
       return q;
     }
@@ -193,6 +183,20 @@ void ribi::cmap::ExamplesFactory::Test() noexcept
     is_tested = true;
   }
   ExamplesFactory().Create();
+  const bool verbose{false};
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  ExamplesFactory f;
+  if (verbose) { TRACE("Create must return a valid Examples"); }
+  {
+    assert(f.Create());
+  }
+  if (verbose) { TRACE("Examples -> XML -> Examples "); }
+  {
+    const auto examples = ExamplesFactory().GetTest(2);
+    const auto xml = examples->ToXml();
+    const auto new_examples = ExamplesFactory().FromXml(xml);
+    const auto new_xml = new_examples->ToXml();
+    assert(xml == new_xml);
+  }
 }
 #endif // NDEBUG

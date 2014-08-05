@@ -136,6 +136,7 @@ void ribi::cmap::Examples::Test() noexcept
     is_tested = true;
   }
   ExampleFactory().GetTest(0);
+  ExamplesFactory();
   ExamplesFactory().GetTest(0);
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test of operator== and operator!=
@@ -222,9 +223,9 @@ void ribi::cmap::Examples::Test() noexcept
     std::vector<boost::shared_ptr<const Example> > v; v.push_back(a);
     std::vector<boost::shared_ptr<const Example> > w; w.push_back(b);
     std::vector<boost::shared_ptr<const Example> > x; x.push_back(c);
-    const boost::shared_ptr<Examples> d = ExamplesFactory::Create(v);
-    const boost::shared_ptr<Examples> e = ExamplesFactory::Create(w);
-    const boost::shared_ptr<Examples> f = ExamplesFactory::Create(x);
+    const boost::shared_ptr<Examples> d = ExamplesFactory().Create(v);
+    const boost::shared_ptr<Examples> e = ExamplesFactory().Create(w);
+    const boost::shared_ptr<Examples> f = ExamplesFactory().Create(x);
     assert(*d == *d); assert(*d == *e); assert(*d != *f);
     assert(*e == *d); assert(*e == *e); assert(*e != *f);
     assert(*f != *d); assert(*f != *e); assert(*f == *f);

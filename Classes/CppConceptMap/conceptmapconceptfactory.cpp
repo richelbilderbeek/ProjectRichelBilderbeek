@@ -76,7 +76,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCop
 ) const noexcept
 {
   const boost::shared_ptr<Examples> examples
-    = ExamplesFactory::Create(concept->GetExamples());
+    = ExamplesFactory().Create(concept->GetExamples());
   assert(examples);
   assert(*examples == *concept->GetExamples());
 
@@ -132,7 +132,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   );
 
   const boost::shared_ptr<Examples> examples
-    = ExamplesFactory::Create(w);
+    = ExamplesFactory().Create(w);
   assert(examples);
 
   const boost::shared_ptr<Concept> concept
@@ -222,7 +222,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
     ConceptFactory().Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity)
   };
   assert(concept);
-  //assert(concept->ToXml() == s); //TODO RJCB: Put back in
+  assert(concept->ToXml() == s);
   return concept;
 }
 
@@ -241,7 +241,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFa
 {
   std::vector<boost::shared_ptr<Concept> > v;
   {
-    const boost::shared_ptr<Examples> examples = ExamplesFactory::Create();
+    const boost::shared_ptr<Examples> examples = ExamplesFactory().Create();
     assert(examples);
     const boost::shared_ptr<Concept> p = Create("Concept without examples", examples, false, 0, 1, 2);
     assert(p);
@@ -295,7 +295,6 @@ const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFa
     v.push_back(p);
   }
   assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<Concept>& p) { return p; } ));
   assert(v[0]->GetExamples());
 
   return v;
@@ -310,6 +309,25 @@ void ribi::cmap::ConceptFactory::Test() noexcept
     is_tested = true;
   }
   ConceptFactory().GetTest(0);
+  ExamplesFactory();
+  const bool verbose{false};
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  if (verbose) { TRACE("GetTests all valid"); }
+  {
+    const auto tests = ConceptFactory().GetTests();
+    for (const auto test: tests)
+    {
+      assert(test);
+      assert(test->GetExamples());
+    }
+  }
+  if (verbose) { TRACE("Concept -> XML -> Concept "); }
+  {
+    const auto concept = ConceptFactory().GetTest(2);
+    const auto xml = concept->ToXml();
+    const auto new_concept = ConceptFactory().FromXml(xml);
+    const auto new_xml = new_concept->ToXml();
+    assert(xml == new_xml);
+  }
 }
 #endif

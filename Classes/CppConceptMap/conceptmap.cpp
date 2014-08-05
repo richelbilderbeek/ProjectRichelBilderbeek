@@ -208,7 +208,7 @@ ribi::cmap::ConceptMap::Nodes ribi::cmap::ConceptMap::CreateNodes(
   const boost::shared_ptr<Concept> concept(
     ConceptFactory().Create(
       question,
-      ExamplesFactory::Create(), //No examples
+      ExamplesFactory().Create(), //No examples
       false, //Is not complex
       -1, //No rated complexity
       -1, //No rated concreteness

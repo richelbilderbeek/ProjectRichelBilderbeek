@@ -72,8 +72,8 @@ struct QtEdge : public QGraphicsItem
 
   ///Get the Node at the center of the Edge
   //TODO: Remove, use GetQtNode stead
-  ReadOnlyNodePtr GetNode() const noexcept;
-  NodePtr GetNode() noexcept;
+  //ReadOnlyNodePtr GetNode() const noexcept;
+  //NodePtr GetNode() noexcept;
 
   ReadOnlyEdgePtr GetEdge() const noexcept { return m_edge; }
   EdgePtr GetEdge() noexcept { return m_edge; }

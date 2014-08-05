@@ -241,6 +241,7 @@ void ribi::cmap::QtEdge::EnableAll() noexcept
   this->m_arrow->setVisible(true);
 }
 
+/*
 boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::QtEdge::GetNode() const noexcept
 {
   const auto p = m_edge->GetNode();
@@ -254,7 +255,7 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtEdge::GetNode() noexcept
   assert(p);
   return p;
 }
-
+*/
 std::string ribi::cmap::QtEdge::GetVersion() noexcept
 {
   return "1.1";
@@ -417,7 +418,7 @@ void ribi::cmap::QtEdge::OnToChanged(Edge * const edge) noexcept
 
 void ribi::cmap::QtEdge::OnArrowChanged()
 {
-  this->GetNode()->GetConcept()->SetName(
+  GetEdge()->GetNode()->GetConcept()->SetName(
     Container().ToStr(m_qtnode->GetText())
   );
   this->update();
@@ -778,7 +779,7 @@ void ribi::cmap::QtEdge::Test() noexcept
   if (verbose) { TRACE("Text of QtEdge and QtRoundedEditRectItem must match at creation"); }
   {
     const std::string qtitem_name{qtitem->GetText()[0]};
-    const std::string qtedge_name{qtedge->GetNode()->GetConcept()->GetName()};
+    const std::string qtedge_name{qtedge->GetEdge()->GetNode()->GetConcept()->GetName()};
     assert(qtitem_name == qtedge_name);
   }
   if (verbose) { TRACE("If a QtEdge its text is changed, a signal must be emitted"); }
@@ -793,15 +794,17 @@ void ribi::cmap::QtEdge::Test() noexcept
   }
   if (verbose) { TRACE("If text is set via QtEdge, QtRoundedEditRectItem must sync"); }
   {
-    qtedge->GetNode()->GetConcept()->SetName("A");
-    qtedge->GetNode()->GetConcept()->SetName("B");
+    qtedge->GetEdge()->GetNode()->GetConcept()->SetName("A");
+    assert(qtitem->GetText()[0] == "A");
+    qtedge->GetEdge()->GetNode()->GetConcept()->SetName("B");
     assert(qtitem->GetText()[0] == "B");
   }
   if (verbose) { TRACE("If text is set via QtRoundedEditRectItem, QtEdge must sync"); }
   {
     qtitem->SetText( { "A" } );
+    assert(qtedge->GetEdge()->GetNode()->GetConcept()->GetName() == "A");
     qtitem->SetText( { "B" } );
-    assert(qtedge->GetNode()->GetConcept()->GetName() == "B");
+    assert(qtedge->GetEdge()->GetNode()->GetConcept()->GetName() == "B");
   }
 
   //X
