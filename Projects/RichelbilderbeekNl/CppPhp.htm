@@ -206,7 +206,7 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;KeyType,ValueType&gt;&amp; m) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;ValueType&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> p: m)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: m)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(p.second);<br/>
 &nbsp;&nbsp;}<br/>
@@ -219,7 +219,7 @@
 {<br/>
 &nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;KeyType,ValueType&gt; v;<br/>
 &nbsp;&nbsp;KeyType key <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> p: m)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: m)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v[key] <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>key;<br/>

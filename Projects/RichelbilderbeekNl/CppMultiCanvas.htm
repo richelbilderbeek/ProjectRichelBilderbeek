@@ -158,7 +158,7 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_canvases.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> m_canvases[0]-&gt;GetHeight();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> c: m_canvases) { h <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMin.htm">std::min</a>(h,c-&gt;GetHeight()); }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; c: m_canvases) { h <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMin.htm">std::min</a>(h,c-&gt;GetHeight()); }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> h;<br/>
 }<br/>
 <br/>
@@ -178,7 +178,7 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_canvases.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> m_canvases[0]-&gt;GetWidth();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> c: m_canvases) { w <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMin.htm">std::min</a>(w,c-&gt;GetWidth()); }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; c: m_canvases) { w <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMin.htm">std::min</a>(w,c-&gt;GetWidth()); }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
@@ -189,7 +189,7 @@
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (maxx <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> maxy <a href="CppOperatorEqual.htm">==</a> 0) { <b><a href="CppReturn.htm">return</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(); }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_canvases.size());<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> c: m_canvases) { v.push_back(c-&gt;ToStrings()); }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; c: m_canvases) { v.push_back(c-&gt;ToStrings()); }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the first canvas be drawn last, to give it the heighest Z order<br/>
 &nbsp;&nbsp;<a href="CppStdReverse.htm">std::reverse</a>(v.begin(),v.end());<br/>
 <br/>

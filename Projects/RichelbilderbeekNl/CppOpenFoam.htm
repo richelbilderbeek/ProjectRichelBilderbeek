@@ -213,6 +213,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -239,12 +240,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::AlphatFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::AlphatFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::AlphatFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -527,6 +527,7 @@
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamboundaryindex.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamboundaryfileitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -615,11 +616,17 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::BoundaryFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::BoundaryFile::Test");<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;BoundaryFileItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceIndex(0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;BoundaryIndex(0);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Some initial data<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Header header("some_name","some_location","some_object");<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;BoundaryFileItem&gt; items;<br/>
@@ -716,13 +723,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "If a mesh has no non-boundary cells, neighbour can be empty");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::Header::BoundaryFile successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::foam::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> BoundaryFile&amp; lhs,<b><a href="CppConst.htm">const</a></b> BoundaryFile&amp; rhs) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (lhs.GetHeader() <a href="CppOperatorNotEqual.htm">!=</a> rhs.GetHeader())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
@@ -952,6 +958,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::BoundaryFileItem::BoundaryFileItem(<br/>
@@ -982,11 +989,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::BoundaryFileItem::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::BoundaryFileItem::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> BoundaryFileItem i("some_name",PatchFieldType::empty,123,FaceIndex(456));<br/>
 &nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i;<br/>
@@ -998,7 +1005,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(j);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> j);<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::BoundaryFileItem::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -1313,7 +1319,7 @@
 <b><a href="CppStruct.htm">struct</a></b> Cell<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/owned_faces is a subset of all_faces<br/>
-&nbsp;&nbsp;Cell(<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Cell(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> owned_faces <a href="CppOperatorAssign.htm">=</a> {},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> all_faces <a href="CppOperatorAssign.htm">=</a> {}<br/>
 &nbsp;&nbsp;);<br/>
@@ -1516,6 +1522,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::CellIndex::CellIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
@@ -1547,11 +1554,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::CellIndex::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::CellIndex::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;CellIndex a(2);<br/>
 &nbsp;&nbsp;CellIndex b(2);<br/>
 &nbsp;&nbsp;CellIndex c(3);<br/>
@@ -1562,9 +1569,6 @@
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b <a href="CppOperatorNotEqual.htm">!=</a> c);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorNotEqual.htm">!=</a> b);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorEqual.htm">==</a> c);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::CellIndex::Test successfully");<br/>
-<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -1731,6 +1735,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -1770,12 +1775,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::ControlDictFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::ControlDictFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::ControlDictFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -1884,6 +1888,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -1907,12 +1912,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::DecomposeParDictFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::OpenFoamDecomposeParDictFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::OpenFoamDecomposeParDictFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -2037,6 +2041,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -2060,12 +2065,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::EpsilonFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::OpenFoamEpsilonFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::OpenFoamEpsilonFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -2150,11 +2154,11 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::<a href="CppPointer.htm">point</a>&lt;<b><a href="CppDouble.htm">double</a></b>,3,<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::cs::cartesian&gt; Coordinat3D;<br/>
 <br/>
-&nbsp;&nbsp;Face(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; neighbour,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; owner,<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Face(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt;&amp; neighbour,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt;&amp; owner,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s<br/>
-&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;Face(<b><a href="CppConst.htm">const</a></b> Face&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;Face&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> Face&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
@@ -2220,10 +2224,10 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::Face::Face(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; neighbour,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; owner,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt;&amp; neighbour,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt;&amp; owner,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Coordinat3D<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s<br/>
-)<br/>
+) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 &nbsp;&nbsp;: m_neighbour(neighbour),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_owner(owner),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s(<a href="CppPointer.htm">point</a>s)<br/>
@@ -2231,7 +2235,7 @@
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_neighbour);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_owner);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> p: m_<a href="CppPointer.htm">point</a>s) { <a href="CppAssert.htm">assert</a>(p); }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: m_<a href="CppPointer.htm">point</a>s) { <a href="CppAssert.htm">assert</a>(p); }<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
@@ -2635,6 +2639,7 @@
 <a href="CppInclude.htm">#include</a> "openfoamfacesfileitem.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfaceindex.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamparseerror.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -2697,11 +2702,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::FacesFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::FacesFile::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Some initial data<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Header header("some_name","some_location","some_object");<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;FacesFileItem&gt; items;<br/>
@@ -2790,7 +2795,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "If a mesh has no non-bhoundary cells, neighbour can be empty");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::Header::FacesFile successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -2982,6 +2986,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamparseerror.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::FacesFileItem::FacesFileItem(<br/>
@@ -3002,11 +3007,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::FacesFileItem::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::FacesFileItem::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FacesFileItem i( { <a href="CppPoint.htm">Point</a>Index(1),<a href="CppPoint.htm">Point</a>Index(2),<a href="CppPoint.htm">Point</a>Index(3),<a href="CppPoint.htm">Point</a>Index(4) } );<br/>
 &nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i;<br/>
@@ -3018,7 +3023,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(j);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> j);<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::FacesFileItem::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -3458,7 +3462,7 @@
 &nbsp;&nbsp;Files(<b><a href="CppConst.htm">const</a></b> Files&amp; other);<br/>
 &nbsp;&nbsp;Files&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> Files&amp; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a copy of the complete file structure of Files in the copy folder name<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a copy of the <b><a href="CppCompl.htm">compl</a></b>ete file structure of Files in the copy folder name<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> CreateCopy(<b><a href="CppConst.htm">const</a></b> Files&amp; files, <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> copy_folder_name) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create test files in the correct OpenFOAM folder structure<br/>
@@ -3559,6 +3563,7 @@
 <a href="CppInclude.htm">#include</a> "openfoamownerfile.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfilenames.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoam<a href="CppPointer.htm">point</a>sfile.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -4258,11 +4263,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::Files::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::Files::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppOperatorEqual.htm">operator==</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Files f;<br/>
@@ -4332,7 +4337,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppFileIo.htm">FileIo</a>().<a href="CppIsFolder.htm">IsFolder</a>(temp_folder));<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::Files::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -4474,6 +4478,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -4496,12 +4501,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::FvSchemesFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::FvSchemesFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::FvSchemesFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -4636,6 +4640,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -4658,12 +4663,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::FvSolutionFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::FvSolutionFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::FvSolutionFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -4886,6 +4890,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/trim.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -4947,11 +4952,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::Header::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::Header::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Header h("some_name","some_location","some_note","some_object");<br/>
 &nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> h;<br/>
@@ -4963,7 +4968,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(i);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(h <a href="CppOperatorEqual.htm">==</a> i);<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::Header::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -5418,6 +5422,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -5440,12 +5445,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::KFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::KFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::KFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -5503,9 +5507,9 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Step #0<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create <a href="CppPoint.htm">Point</a>s so these can be shared over the Faces<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create Cells so these can be shared over the Faces<br/>
-&nbsp;&nbsp;Mesh(<b><a href="CppConst.htm">const</a></b> Files&amp; files) : Mesh(files,Create<a href="CppPoint.htm">Point</a>s(files)) {}<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Mesh(<b><a href="CppConst.htm">const</a></b> Files&amp; files) : Mesh(files,Create<a href="CppPoint.htm">Point</a>s(files)) {}<br/>
 <br/>
-&nbsp;&nbsp;Mesh(<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Mesh(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Boundary<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; boundaries,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; cells,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; faces,<br/>
@@ -5665,6 +5669,7 @@
 <a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoam<a href="CppPointer.htm">point</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoam<a href="CppPointer.htm">point</a>sfile.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::Mesh::Mesh(<br/>
@@ -5763,7 +5768,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.find(owner) <a href="CppOperatorNotEqual.htm">!=</a> m.end());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*m.find(owner)).second.push_back(face);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> p: m)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: m)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.first-&gt;AssignOwnedFaces(p.second);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6432,11 +6437,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::Mesh::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::Mesh::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> the number of boundary faces is correct<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::Files<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v { Files::CreateTestFiles() };<br/>
@@ -6629,7 +6634,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(result <a href="CppOperatorEqual.htm">==</a> face);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::Mesh::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -6804,6 +6808,7 @@
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamneighbourfileitem.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfaceindex.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -6876,11 +6881,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::NeighbourFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::NeighbourFile::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Some initial data<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Header header("some_name","some_location","some_object");<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;NeighbourFileItem&gt; items;<br/>
@@ -6965,7 +6970,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "If a mesh has no non-bhoundary cells, neighbour can be empty");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::Header::NeighbourFile successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -7172,6 +7176,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::NeighbourFileItem::NeighbourFileItem(<br/>
@@ -7189,11 +7194,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::NeighbourFileItem::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::NeighbourFileItem::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> NeighbourFileItem i(CellIndex(123));<br/>
 &nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i;<br/>
@@ -7205,7 +7210,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(j);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> j);<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::NeighbourFileItem::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -7340,6 +7344,7 @@
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamfaceindex.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoamownerfileitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -7419,11 +7424,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::OwnerFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::OwnerFile::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Some initial data<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Header header("some_name","some_location","some_object");<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;OwnerFileItem&gt; items;<br/>
@@ -7524,7 +7529,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!b.GetItems().empty());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::Header::OwnerFile successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -7711,6 +7715,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::OwnerFileItem::OwnerFileItem(<br/>
@@ -7728,11 +7733,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::OwnerFileItem::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::OwnerFileItem::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppOperatorEqual.htm">operator==</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> OwnerFileItem i(CellIndex(123));<br/>
@@ -7763,7 +7768,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> j);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::OwnerFileItem::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -8284,7 +8288,7 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::PatchFieldTypes::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
@@ -8656,6 +8660,7 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoam<a href="CppPointer.htm">point</a>sfileitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -8700,11 +8705,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::<a href="CppPoint.htm">Point</a>sFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::<a href="CppPoint.htm">Point</a>sFile::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::<a href="CppPointer.htm">point</a>&lt;<b><a href="CppDouble.htm">double</a></b>,3,<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::cs::cartesian&gt; Coordinat3D;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Some initial data<br/>
@@ -8806,7 +8811,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!b.GetItems().empty());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::Header::<a href="CppPoint.htm">Point</a>sFile successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -9008,6 +9012,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::foam::<a href="CppPoint.htm">Point</a>sFileItem::<a href="CppPoint.htm">Point</a>sFileItem(<br/>
@@ -9024,11 +9029,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::<a href="CppPoint.htm">Point</a>sFileItem::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::<a href="CppPoint.htm">Point</a>sFileItem::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppOperatorEqual.htm">operator==</a></b> and <b><a href="CppOperatorNotEqual.htm">operator!=</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPoint.htm">Point</a>sFileItem i( Coordinat3D(1.1,2.2,3.3) );<br/>
@@ -9052,7 +9057,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> j);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::<a href="CppPoint.htm">Point</a>sFileItem::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -9235,6 +9239,7 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9260,12 +9265,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::PressureFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::PressureFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::PressureFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -9291,7 +9295,7 @@
 &nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: f.m_boundary_field)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: f.m_boundary_field)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
@@ -9387,6 +9391,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9410,12 +9415,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::RasPropertiesFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::RasPropertiesFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::RasPropertiesFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -9530,6 +9534,7 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9555,12 +9560,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::TemperatureFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::TemperatureFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::TemperatureFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -9586,7 +9590,7 @@
 &nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: f.m_boundary_field)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: f.m_boundary_field)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
@@ -9691,6 +9695,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9716,12 +9721,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::ThermophysicalPropertiesFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::ThermophysicalPropertiesFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::ThermophysicalPropertiesFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -9821,6 +9825,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9845,12 +9850,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::TurbulencePropertiesFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::TurbulencePropertiesFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::TurbulencePropertiesFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -9962,6 +9966,7 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "openfoamheader.h"<br/>
 <a href="CppInclude.htm">#include</a> "openfoampatchfieldtypes.h"<br/>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -9988,12 +9993,11 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::foam::VelocityFieldFile::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::foam::VelocityFieldFile::Test");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::foam::VelocityFieldFile successfully");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r test_<a href="CppTime.htm">time</a>r(<a href="Cpp__func__.htm">__func__</a>,__<a href="CppCfile.htm">FILE</a>__,1.0);<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
@@ -10019,7 +10023,7 @@
 &nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_boundary_field <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: f.m_boundary_field)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: f.m_boundary_field)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>

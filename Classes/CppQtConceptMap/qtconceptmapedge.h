@@ -22,7 +22,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTCONCEPTMAPEDGEITEM_H
 
 #include <boost/shared_ptr.hpp>
-#include "qtconceptmapelement.h"
+#include <boost/signals2.hpp>
+#include <QGraphicsItem>
 #include "qtconceptmapfwd.h"
 
 namespace ribi {
@@ -31,9 +32,12 @@ namespace cmap {
 ///The QtEdge is a QtConceptMapElement that
 ///draws a curve underneath itself, between head and tail arrowhead
 ///concept_item is the Strategy for displaying the ConceptItem
-struct QtEdge : public QtConceptMapElement
+//struct QtEdge : public QtConceptMapElement
+struct QtEdge : public QGraphicsItem
 {
-  typedef QtConceptMapElement Base;
+  //typedef QtConceptMapElement Base;
+  typedef QGraphicsItem Base;
+
 
   typedef boost::shared_ptr<QtQuadBezierArrowItem> Arrow;
   typedef boost::shared_ptr<const QtQuadBezierArrowItem> ReadOnlyArrow;
@@ -112,9 +116,13 @@ private:
   ///The node item the arrow originates from
   QtNode * m_from;
 
+  ///The QtNode around Edge its Node
+  const boost::shared_ptr<QtNode> m_qtnode;
+
   ///The node item the arrow targets
   QtNode * m_to;
 
+  /*
   double GetX() const noexcept { return Base::GetX(); }
   double GetY() const noexcept { return Base::GetY(); }
   QPointF GetPos() const noexcept { return Base::GetPos(); }
@@ -122,7 +130,7 @@ private:
   void SetX(const double x) noexcept { Base::SetX(x); }
   void SetY(const double y) noexcept { Base::SetY(y); }
   void SetText(const std::vector<std::string>& text) noexcept { Base::SetText(text); }
-
+  */
   ///Called whenever the edge changes
   void OnEdgeChanged(Edge * const edge) noexcept;
   void OnConceptChanged(Node * const node) noexcept;
@@ -147,6 +155,8 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& os, const QtEdge& qtedge) noexcept;
+
+bool operator==(const QtEdge& lhs, const QtEdge& rhs) noexcept;
 
 } //~namespace cmap
 } //~namespace ribi

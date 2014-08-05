@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>TestTimer</title>
+  <meta name="description" content="C++ TestTimer"/>
+  <meta name="keywords" content="C++ TestTimer "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppTestTimer.htm">TestTimer</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppTestTimer-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppTestTimer/CppTestTimer.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppTestTimer/CppTestTimer.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTestTimer<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTestTimer/testtimer.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTestTimer/testtimer.h<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTestTimer/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppTestTimer/testtimer.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppTestTimer/testtimer.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+Test<a href="CppTime.htm">Time</a>r, <a href="CppTime.htm">time</a>s tests<br/>
+Copyright (C) 2014-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppTest<a href="CppTime.htm">Time</a>r.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> RIBI_TESTTIMER_H<br/>
+<a href="CppDefine.htm">#define</a> RIBI_TESTTIMER_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppTime.htm">Time</a>rImpl;<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppTime.htm">Time</a>r<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Test<a href="CppTime.htm">Time</a>r(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; <a href="CppFunction.htm">function</a>_name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; file_name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max_<a href="CppTime.htm">time</a>_sec <a href="CppOperatorAssign.htm">=</a> 1.0<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;Test<a href="CppTime.htm">Time</a>r(<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;Test<a href="CppTime.htm">Time</a>r&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> Test<a href="CppTime.htm">Time</a>r&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~Test<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b>; <a href="CppComment.htm">//</a>But might terminate the program instead<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;Test<a href="CppTime.htm">Time</a>rImpl * <b><a href="CppConst.htm">const</a></b> m_impl;<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> STOPWATCH_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppTestTimer/testtimer.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppTestTimer/testtimer.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "test<a href="CppTime.htm">time</a>r.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> ExtractFilename(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> pos_1 <a href="CppOperatorAssign.htm">=</a> s.find_last_of('/');<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> pos_2 <a href="CppOperatorAssign.htm">=</a> s.find_last_of('\\');<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> pos <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMin.htm">std::min</a>(pos_1,pos_2);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (pos <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos) <b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.substr(pos <a href="CppOperatorPlus.htm">+</a> 1,s.size() <a href="CppOperatorMinus.htm">-</a> pos <a href="CppOperatorMinus.htm">-</a> 1);<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppTime.htm">Time</a>rImpl<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Test<a href="CppTime.htm">Time</a>rImpl(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; <a href="CppFunction.htm">function</a>_name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; file_name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max_<a href="CppTime.htm">time</a>_sec<br/>
+&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_file_name{file_name},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_function_name{<a href="CppFunction.htm">function</a>_name},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_max_<a href="CppTime.htm">time</a>_sec{max_<a href="CppTime.htm">time</a>_sec},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r{}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_file_name.find('\n') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_file_name.find('\r') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_file_name.find('\t') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_function_name.find('\n') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_function_name.find('\r') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_function_name.find('\t') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;~Test<a href="CppTime.htm">Time</a>rImpl() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>cnt;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> cnt;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_file_name;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_function_name;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_max_<a href="CppTime.htm">time</a>_sec;<br/>
+&nbsp;&nbsp;<a href="CppBoostTimer.htm">boost::timer</a> m_<a href="CppTime.htm">time</a>r;<br/>
+};<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> Test<a href="CppTime.htm">Time</a>rImpl::cnt <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::Test<a href="CppTime.htm">Time</a>r(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; <a href="CppFunction.htm">function</a>_name,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; file_name,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max_<a href="CppTime.htm">time</a>_sec<br/>
+) : m_impl(<b><a href="CppNew.htm">new</a></b> Test<a href="CppTime.htm">Time</a>rImpl(<a href="CppFunction.htm">function</a>_name,file_name,max_<a href="CppTime.htm">time</a>_sec))<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\\ START: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ExtractFilename(m_impl-&gt;m_file_name)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ','<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_function_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_impl-&gt;cnt &gt; 1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "WARNING: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_file_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ','<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_function_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": count equals " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;cnt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_impl-&gt;cnt <a href="CppOperatorEqual.htm">==</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Test<a href="CppTime.htm">Time</a>r can only have one Test<a href="CppTime.htm">Time</a>r <a href="CppInstance.htm">instance</a> active");<br/>
+<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::~Test<a href="CppTime.htm">Time</a>r() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> elapsed_secs <a href="CppOperatorAssign.htm">=</a> m_impl-&gt;m_<a href="CppTime.htm">time</a>r.elapsed();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (elapsed_secs &gt; m_impl-&gt;m_max_<a href="CppTime.htm">time</a>_sec)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " | FUNCTION '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_function_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' IN <a href="CppCfile.htm">FILE</a> '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_file_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' TOOK TOO LONG"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdString.htm">std::string</a>(m_impl-&gt;cnt <a href="CppOperatorMinus.htm">-</a> 1,' ')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppOperatorDivide.htm">/</a> DONE : "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ExtractFilename(m_impl-&gt;m_file_name)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ','<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_impl-&gt;m_function_name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " ("<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> elapsed_secs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> m_impl;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (elapsed_secs &gt; m_impl-&gt;m_max_<a href="CppTime.htm">time</a>_sec)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdExit.htm">std::exit</a>(0);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<br/>
+<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::Test<a href="CppTime.htm">Time</a>r::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2014-08-02: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

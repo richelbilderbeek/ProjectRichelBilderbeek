@@ -321,9 +321,14 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
       filenames.push_back(t);
     }
   }
+
+  #ifndef NDEBUG
   for (const auto& s: filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
+  #endif // NDEBUG
   for (std::string& s: filenames) { s = fileio::FileIo().SimplifyPath(s); }
+  #ifndef NDEBUG
   for (const auto& s: filenames) { assert(ribi::fileio::FileIo().IsRegularFile(s)); }
+  #endif // NDEBUG
   std::sort(filenames.begin(),filenames.end());
   filenames.erase( std::unique(filenames.begin(),filenames.end()), filenames.end() );
 

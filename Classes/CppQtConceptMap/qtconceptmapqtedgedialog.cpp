@@ -87,7 +87,7 @@ int ribi::cmap::QtQtEdgeDialog::GetMinimumHeight(const QtEdge& qtedge) noexcept
   return
     QtEdgeDialog::GetMinimumHeight(*qtedge.GetEdge())
   + margin
-  + QtRoundedEditRectItemDialog::GetMinimumHeight(qtedge)
+  + QtRoundedEditRectItemDialog::GetMinimumHeight()
   ;
 }
 

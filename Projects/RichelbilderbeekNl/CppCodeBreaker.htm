@@ -257,7 +257,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; frequency_expected<br/>
 ) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; tally_expected;<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; tally_measured;<br/>
 <br/>
@@ -302,7 +302,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <br/>
 &nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::math::chi_squared_distribution&lt;<b><a href="CppDouble.htm">double</a></b>&gt; distribution(degrees_of_freedom);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> critical_value<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::quantile(<a href="CppBoost.htm">boost</a>::math::complement(distribution, significance_level));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::quantile(<a href="CppBoost.htm">boost</a>::math::<b><a href="CppCompl.htm">compl</a></b>ement(distribution, significance_level));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (verbose)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
@@ -388,7 +388,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sum &gt; 0);<br/>
 &nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: m)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: m)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;n.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(p.first, <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(p.second) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sum)));<br/>
 &nbsp;&nbsp;}<br/>
@@ -398,7 +398,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm">ribi</a>::CodeBreaker::GetCharTally(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; text) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> c:text)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; c:text)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count(c) <a href="CppOperatorEqual.htm">==</a> 0) m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(c,0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>m[c];<br/>
@@ -422,7 +422,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sum &gt; 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p: m)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; p: m)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>(p.first, <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(p.second) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sum)));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -530,7 +530,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppChar.htm">char</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;&amp; expected_char_frequency<br/>
 &nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> key=0; key<a href="CppOperatorNotEqual.htm">!=</a>26; <a href="CppOperatorIncrement.htm">++</a>key)<br/>
@@ -618,12 +618,12 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::CodeBreaker::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CodeBreaker b;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::CodeBreaker::Test");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> p(<br/>

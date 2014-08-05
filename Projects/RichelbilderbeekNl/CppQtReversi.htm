@@ -33,16 +33,16 @@
 <!-- start of code -->
 <table summary="./CppQtReversi/CppQtReversi.pri" border = "1"><tr><td><code>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppQtReversi<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtReversi.htm">CppQtReversi</a><br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppQtReversi/qtreversi<a href="CppWidget.htm">widget</a>.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtReversi.htm">CppQtReversi</a>/qtreversi<a href="CppWidget.htm">widget</a>.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppQtReversi/qtreversi<a href="CppWidget.htm">widget</a>.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtReversi.htm">CppQtReversi</a>/qtreversi<a href="CppWidget.htm">widget</a>.h<br/>
 <br/>
 <a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppQtReversi/Licence.txt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtReversi.htm">CppQtReversi</a>/Licence.txt<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -189,7 +189,7 @@
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::<a href="CppQt.htm">Qt</a><a href="CppWidget.htm">Widget</a>::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>

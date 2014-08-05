@@ -274,7 +274,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::CaesarCipher::IsClean(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> c:s) { <b><a href="CppIf.htm">if</a></b> (c &lt; 'a' <a href="CppOperatorLogicalOr.htm">||</a> c &gt; 'z') <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; c:s) { <b><a href="CppIf.htm">if</a></b> (c &lt; 'a' <a href="CppOperatorLogicalOr.htm">||</a> c &gt; 'z') <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
@@ -282,7 +282,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::CaesarCipher::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested{<b><a href="CppFalse.htm">false</a></b>};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
