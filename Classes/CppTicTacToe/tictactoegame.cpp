@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "tictactoeai.h"
 #include "tictactoeboard.h"
@@ -116,7 +117,8 @@ void ribi::tictactoe::Game::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::Game::Test");
+  Board();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     //Check draw detection
     {
@@ -258,7 +260,6 @@ void ribi::tictactoe::Game::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::tictactoe::Board::Test successfully");
 }
 #endif
 

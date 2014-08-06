@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
+#ifdef NOT_NOW_20140805_1204
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -687,3 +689,5 @@ void ribi::cmap::QtEditConceptMap::OnToolsClicked()
     this->scene()->update();
   }
 }
+
+#endif // NOT_NOW_20140805_1204

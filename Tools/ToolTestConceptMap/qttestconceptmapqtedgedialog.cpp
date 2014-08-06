@@ -123,7 +123,6 @@ QImage ribi::cmap::QtTestQtEdgeDialog::GetUiView() const noexcept
   return image;
 }
 
-
 double ribi::cmap::QtTestQtEdgeDialog::GetUiX() const noexcept
 {
   return m_dialog_left->GetUiX();
@@ -234,111 +233,34 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     qtedge->GetQtNode()->SetX(new_x);
     assert(std::abs(new_x - dialog.m_dialog_left->GetUiX()) < 2.0);
   }
-  #ifdef OLD_SKOOL
-  if (verbose) { TRACE("Grabbing QtEdge twice, results in an identical picture"); }
-  {
-    dialog.setEnabled(false);
-    const std::string a{"QtTestQtEdgeDialogTest1_before.png"};
-    const std::string b{"QtTestQtEdgeDialogTest1_after.png"};
-    //Draw first time
-    {
-      QTimer::singleShot(200,&dialog,SLOT(close()));
-      dialog.exec();
-    }
-    //Draw second time, might be different than the first time
-    {
-      Grabber grabber(dialog.winId(),a);
-      QTimer::singleShot(200,&dialog,SLOT(close()));
-      QTimer::singleShot(100,&grabber,SLOT(Grab()));
-      dialog.exec();
-    }
-    //Draw third time, hopefully identical to the first time
-    {
-      Grabber grabber(dialog.winId(),b);
-      QTimer::singleShot(200,&dialog,SLOT(close()));
-      QTimer::singleShot(100,&grabber,SLOT(Grab()));
-      dialog.exec();
-    }
-    const QImage image_before{QPixmap(a.c_str()).toImage()};
-    const QImage image_after{QPixmap(b.c_str()).toImage()};
-    if (image_before != image_after)
-    {
-      const QImage result{QtImage().Difference(image_before,image_after)};
-      result.save("QtTestQtEdgeDialogTest1_difference.png");
-    }
-    assert(image_before == image_after);
-  }
-  if (verbose) { TRACE("Grabbing QtEdge twice, results in an identical picture"); }
-  {
-    const std::string a{"QtTestQtEdgeDialogTest1_before.png"};
-    const std::string b{"QtTestQtEdgeDialogTest1_after.png"};
-    const QImage image_tmp{dialog.grab().toImage()}; //Needed to force something more thorough than update and repaint
-    const QImage image_before{dialog.grab().toImage()};
-    image_before.save(a.c_str());
-    const QImage image_after{dialog.grab().toImage()};
-    image_after.save(b.c_str());
-    if (image_before != image_after)
-    {
-      const QImage result{QtImage().Difference(image_before,image_after)};
-      result.save("QtTestQtEdgeDialogTest1_difference.png");
-    }
-    assert(image_before == image_after);
-  }
-  if (verbose) { TRACE("Grabbing QtEdge twice, results in an identical picture"); }
-  {
-    const std::string a{"QtTestQtEdgeDialogTest2_before.png"};
-    const std::string b{"QtTestQtEdgeDialogTest2_after.png"};
-    const auto scene = dialog.m_view_left->scene();
-    QImage image_before(scene->sceneRect().size().toSize(), QImage::Format_ARGB32); // Create the image with the exact size of the shrunk scene
-    {
-      image_before.fill(Qt::transparent);                                               // Start all pixels transparent
-      QPainter painter(&image_before);
-      scene->render(&painter);
-      image_before.save(a.c_str());
-    }
-    QImage image_after(scene->sceneRect().size().toSize(), QImage::Format_ARGB32); // Create the image with the exact size of the shrunk scene
-    {
-      image_after.fill(Qt::transparent);                                               // Start all pixels transparent
-      QPainter painter(&image_after);
-      scene->render(&painter);
-      image_after.save(b.c_str());
-    }
-    if (image_before != image_after)
-    {
-      const QImage result{QtImage().Difference(image_before,image_after)};
-      result.save("QtTestQtEdgeDialogTest2_difference.png");
-    }
-    assert(image_before == image_after);
-  }
-  #endif
   if (verbose) { TRACE("Grabbing QtEdge of QGraphicsView twice, results in an identical picture"); }
   {
-    const std::string a{"QtTestQtEdgeDialogTest3_before.png"};
-    const std::string b{"QtTestQtEdgeDialogTest3_after.png"};
     const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
-    image_before.save(a.c_str());
     const QImage image_after{dialog.GetUiView()};
-    image_after.save(b.c_str());
-    if (image_before != image_after)
-    {
-      const QImage result{QtImage().Difference(image_before,image_after)};
-      result.save("QtTestQtEdgeDialogTest3_difference.png");
-    }
     assert(image_before == image_after);
   }
-
-  /*
   if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
   {
+    TRACE_FUNC();
+    const std::string a{"QtTestQtEdgeDialogTest1_before.png"};
+    const std::string b{"QtTestQtEdgeDialogTest1_after.png"};
+    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_before{dialog.GetUiView()};
+
     dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
     dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
-    Grabber grabber(dialog.winId(),"QtTestQtEdgeDialogTest1_before.png");
-    QTimer::singleShot(200,&dialog,SLOT(close()));
-    QTimer::singleShot(100,&grabber,SLOT(Grab()));
-    dialog.exec();
+
+    const QImage image_after{dialog.GetUiView()};
+    if (image_before == image_after)
+    {
+      image_before.save(a.c_str());
+      image_after.save(b.c_str());
+      const QImage result{QtImage().Difference(image_before,image_after)};
+      result.save("QtTestQtEdgeDialogTest1_difference.png");
+    }
+    assert(image_before != image_after);
   }
-  */
   assert(!"Refactor");
 
   /*

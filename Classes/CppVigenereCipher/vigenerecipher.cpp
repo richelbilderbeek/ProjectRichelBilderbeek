@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <vector>
 
+#include "testtimer.h"
 #include "trace.h"
 #include "loopreader.h"
 
@@ -186,7 +187,7 @@ void ribi::VigenereCipher::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::VigenereCipher::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const VigenereCipher e("a");
     const std::string s = "abcdefghij";
@@ -221,6 +222,5 @@ void ribi::VigenereCipher::Test() noexcept
     const std::string clean_text = VigenereCipher::Clean(secret);
     TRACE(e.Deencrypt(e.Encrypt(clean_text)));
   }
-  TRACE("Finished ribi::VigenereCipher::Test successfully");
 }
 #endif

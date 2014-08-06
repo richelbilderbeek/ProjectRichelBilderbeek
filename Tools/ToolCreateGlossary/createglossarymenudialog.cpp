@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "createglossarymaindialog.h"
 #include "htmlpage.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 
@@ -101,8 +102,7 @@ void ribi::CreateGlossaryMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CreateGlossaryMenuDialog::Test()");
   CreateGlossaryMainDialog();
-  TRACE("Finished ribi::CreateGlossaryMenuDialog::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

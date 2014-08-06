@@ -12,6 +12,7 @@
 
 #include "container.h"
 #include "openquestion.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -166,7 +167,9 @@ void ribi::OpenQuestionFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::OpenQuestionFactory::Test");
+  Container();
+  OpenQuestionFactory().GetTestOpenQuestions();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   OpenQuestionFactory f;
   try
   {
@@ -214,6 +217,5 @@ void ribi::OpenQuestionFactory::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::OpenQuestionFactory::Test successfully");
 }
 #endif

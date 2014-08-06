@@ -29,7 +29,10 @@ public:
   QtTestQtNodeDialog& operator=(const QtTestQtNodeDialog&) = delete;
   ~QtTestQtNodeDialog() noexcept;
 
+
   boost::shared_ptr<QtNode> GetQtNode() const noexcept;
+  QImage GetUiView() const noexcept;
+
   void SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
 
 protected:

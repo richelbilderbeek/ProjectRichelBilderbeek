@@ -33,6 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "trace.h"
+#include "testtimer.h"
 #include "loopreader.h"
 #pragma GCC diagnostic pop
 
@@ -155,7 +156,7 @@ void ribi::CaesarCipher::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CaesarCipher::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const CaesarCipher e(0);
     const std::string s = "ABCDEFGH";
@@ -187,6 +188,5 @@ void ribi::CaesarCipher::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::CaesarCipher::Test successfully");
 }
 #endif

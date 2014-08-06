@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
 #include "qtcreatorprofilezipscript.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -189,13 +190,20 @@ void ribi::CreateQtProjectZipFile::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CreateQtProjectZipFile::MenuDialog::Test()");
+  {
+    {
+      const std::string mypath{fileio::FileIo().GetTempFileName()};
+      { std::ofstream f(mypath); f << "SOURCES += qtmain.cpp"; }
+      boost::shared_ptr<QtCreatorProFile> p{new QtCreatorProFile(mypath)};
+    }
+    const std::string script = CreateQtProjectZipFileMainDialog("../../Tools/ToolCreateQtProjectZipFile").GetScript();
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   MenuDialog d;
   #ifdef _WIN32
   d.Execute( { "CreateQtProjectZipFile", "-f", "..\\..\\Tools\\ToolCreateQtProjectZipFile", "-s" } );
   #else
   d.Execute( { "CreateQtProjectZipFile", "-f", "../../Tools/ToolCreateQtProjectZipFile", "-s" } );
   #endif
-  TRACE("Finished ribi::CreateQtProjectZipFile::MenuDialog::Test() successfully");
 }
 #endif

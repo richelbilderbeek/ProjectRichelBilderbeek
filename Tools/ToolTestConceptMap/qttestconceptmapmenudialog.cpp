@@ -31,11 +31,6 @@ ribi::cmap::QtTestMenuDialog::QtTestMenuDialog(QWidget *parent) :
   Test();
   #endif
   ui->setupUi(this);
-  ui->button_example->setEnabled(sm_test_example);
-  ui->button_examples->setEnabled(sm_test_examples);
-  ui->button_concept->setEnabled(sm_test_concept);
-  ui->button_node->setEnabled(sm_test_node);
-  ui->button_edge->setEnabled(sm_test_edge);
 }
 
 ribi::cmap::QtTestMenuDialog::~QtTestMenuDialog() noexcept
@@ -64,16 +59,16 @@ void ribi::cmap::QtTestMenuDialog::Test() noexcept
   }
   TestConceptMapMenuDialog().GetAbout();
   //Tests I am most interested in
-  if (sm_test_qtedge) { QtTestQtEdgeDialog(); }
+  //if (sm_test_qtnode) { QtTestQtNodeDialog(); }
 
   //Tests in order from small elements to bigger
-  if (sm_test_example) { QtTestExampleDialog(); }
-  if (sm_test_examples) { QtTestExamplesDialog(); };
-  if (sm_test_concept) { QtTestConceptDialog(); }
-  if (sm_test_node) { QtTestNodeDialog(); }
-  if (sm_test_edge) { QtTestEdgeDialog(); }
-  if (sm_test_qtnode) { QtTestQtNodeDialog(); }
-  if (sm_test_qtedge) { QtTestQtEdgeDialog(); }
+  QtTestExampleDialog();
+  QtTestExamplesDialog();
+  QtTestConceptDialog();
+  QtTestNodeDialog();
+  QtTestEdgeDialog();
+  QtTestQtNodeDialog();
+  QtTestQtEdgeDialog();
   //if (sm_test_qtdisplayconceptmap) { QtTestDisplayConceptMapDialog(); }
   //if (sm_test_qteditconceptmap) { QtTestEditConceptMapDialog(); }
   //QtTestRateConceptMapDialog();

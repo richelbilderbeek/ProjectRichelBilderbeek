@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
 //---------------------------------------------------------------------------
+#ifdef NOT_NOW_20140805_1204
+
 #ifndef QTPVDBCONCEPTMAPDIALOG_H
 #define QTPVDBCONCEPTMAPDIALOG_H
 
@@ -110,3 +112,5 @@ private:
 } //~namespace ribi
 
 #endif // QTPVDBCONCEPTMAPDIALOG_H
+
+#endif // NOT_NOW_20140805_1204

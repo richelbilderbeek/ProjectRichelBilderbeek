@@ -389,7 +389,6 @@ void ribi::QtRoundedRectItem::SetRoundedRectIncludingPen(
   this->SetRadiusX(radius_x);
   this->SetRadiusY(radius_y);
 
-
   #ifndef NDEBUG
   const auto current = GetRectIncludingPen();
   const double e = 2.0;

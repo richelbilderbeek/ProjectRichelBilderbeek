@@ -1,4 +1,3 @@
-
 //---------------------------------------------------------------------------
 /*
 Das Wahre Schlagerfest, a truely fun game
@@ -26,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "daswahreschlagerfestwidget.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -156,8 +156,7 @@ void ribi::DasWahreSchlagerfestMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DasWahreSchlagerfestMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   DasWahreSchlagerfestWidget();
-  TRACE("Finished ribi::DasWahreSchlagerfestMenuDialog::Test successfully");
 }
 #endif

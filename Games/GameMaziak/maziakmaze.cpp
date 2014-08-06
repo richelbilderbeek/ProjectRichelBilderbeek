@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "maziakintmaze.h"
 #include "trace.h"
 
@@ -303,7 +304,6 @@ void ribi::maziak::Maze::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::Maze::Test");
-  TRACE("Finished ribi::maziak::Maze::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

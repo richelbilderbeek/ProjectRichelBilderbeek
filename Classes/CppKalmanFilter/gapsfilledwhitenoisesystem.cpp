@@ -10,6 +10,7 @@
 
 #include "matrix.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "gapsfilledwhitenoisesystem.h"
 #include "gapsfilledwhitenoisesystemfactory.h"
 #include "gapsfilledwhitenoisesystemparameters.h"
@@ -120,7 +121,7 @@ void ribi::kalman::GapsFilledWhiteNoiseSystem::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::GapsFilledWhiteNoiseSystem::Test()")
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check if measurements are indeed lagged:
   //The system's real value should update immediatly, but this fresh measurement
   //must only be accessible after lag timesteps
@@ -161,6 +162,5 @@ void ribi::kalman::GapsFilledWhiteNoiseSystem::Test() noexcept
       my_system->GoToNextState(input);
     }
   }
-  TRACE("Finished ribi::kalman::GapsFilledWhiteNoiseSystem::Test()")
 }
 #endif

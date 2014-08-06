@@ -36,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "rubiksclockwidget.h"
 #include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
+#include "testtimer.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -158,9 +159,8 @@ void ribi::ruco::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ruco::MenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ruco::MenuDialog d;
   d.Execute( { "rubiksclockconsole" } );
-  TRACE("Finished ribi::ruco::MenuDialog::Test successfully");
 }
 #endif

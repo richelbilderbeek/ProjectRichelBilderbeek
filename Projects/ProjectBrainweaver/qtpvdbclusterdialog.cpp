@@ -473,7 +473,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
     const Edges edges = { edge_a, edge_b, edge_c };
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(nodes,edges));
+      ribi::cmap::ConceptMapFactory().Create(nodes,edges));
     assert(concept_map);
     file->SetConceptMap(concept_map);
 

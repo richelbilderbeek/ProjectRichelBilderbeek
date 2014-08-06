@@ -41,6 +41,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pvdbclusterfactory.h"
 #include "pvdbcluster.h"
 #include "conceptmapconcept.h"
+#include "testtimer.h"
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
@@ -450,7 +451,7 @@ void ribi::pvdb::File::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::pvdb::File::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string tmp_filename = ribi::pvdb::File::GetTempFileName();
   //Test copy constructor
   {

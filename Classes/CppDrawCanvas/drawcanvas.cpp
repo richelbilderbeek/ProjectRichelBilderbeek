@@ -45,6 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "geometry.h"
 #include "ribi_regex.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "xml.h"
 
@@ -564,7 +565,7 @@ void ribi::DrawCanvas::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DrawCanvas::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Drawing text
   {
     const int maxx = 90;
@@ -728,7 +729,6 @@ void ribi::DrawCanvas::Test() noexcept
     assert(*old_canvas == *new_canvas);
 
   }
-  TRACE("Finished ribi::DrawCanvas::Test successfully");
 }
 #endif
 

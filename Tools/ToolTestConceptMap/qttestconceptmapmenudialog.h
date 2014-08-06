@@ -51,15 +51,6 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-
-  static const bool sm_test_concept{true};
-  static const bool sm_test_edge{true};
-  static const bool sm_test_examples{true};
-  static const bool sm_test_example{true};
-  static const bool sm_test_node{true};
-  static const bool sm_test_qtnode{true};
-  static const bool sm_test_qtedge{true};
-  static const bool sm_test_qtdisplayconceptmap{true};
 };
 
 } //~namespace cmap

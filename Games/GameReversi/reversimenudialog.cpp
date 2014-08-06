@@ -16,7 +16,9 @@
 #include "reversiboard.h"
 #include "reversiwidget.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "reversimaindialog.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::reversi::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -125,10 +127,9 @@ void ribi::reversi::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::reversi::MenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   MainDialog();
   Widget();
   Board();
-  TRACE("Finished ribi::reversi::MenuDialog::Test successfully");
 }
 #endif

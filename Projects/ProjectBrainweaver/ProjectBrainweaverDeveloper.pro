@@ -17,6 +17,8 @@ include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppGrabber/CppGrabber.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
+include(../../Classes/CppQtImage/CppQtImage.pri)
+include(../../Classes/CppRibiRandom/CppRibiRandom.pri)
 include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 
 include(../../Classes/CppQtArrowItem/CppQtArrowItem.pri)

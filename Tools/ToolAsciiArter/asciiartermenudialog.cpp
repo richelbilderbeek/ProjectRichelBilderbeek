@@ -37,6 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "imagecanvas.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -174,7 +175,11 @@ void ribi::AsciiArterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::AsciiArterMenuDialog::Test()");
+  {
+    fileio::FileIo();
+    AsciiArterMainDialog("",20);
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string temp_filename = fileio::FileIo().GetTempFileName();
   assert(!fileio::FileIo().IsRegularFile(temp_filename));
   {
@@ -189,6 +194,5 @@ void ribi::AsciiArterMenuDialog::Test() noexcept
 
   fileio::FileIo().DeleteFile(temp_filename);
   assert(!fileio::FileIo().IsRegularFile(temp_filename));
-  TRACE("Finished ribi::AsciiArterMenuDialog::Test()");
 }
 #endif

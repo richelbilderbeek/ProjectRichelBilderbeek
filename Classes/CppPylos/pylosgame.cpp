@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "pylosboard.h"
 #include "pyloscurrentmovestate.h"
+#include "testtimer.h"
 #include "pylosmove.h"
 #include "trace.h"
 
@@ -324,9 +325,7 @@ void ribi::pylos::Game::Test() noexcept
     if (tested) return;
     tested = true;
   }
-
-  TRACE("Starting ribi::pylos::Game::Test");
-
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   const int testing_depth = 1;
 
@@ -727,7 +726,6 @@ void ribi::pylos::Game::Test() noexcept
   {
     ribi::pylos::Game::PlayRandomGame();
   }
-  TRACE("Finished ribi::pylos::Coordinat::Test successfully");
 }
 #endif
 

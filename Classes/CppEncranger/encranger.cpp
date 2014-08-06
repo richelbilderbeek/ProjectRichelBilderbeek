@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <vector>
 
+#include "testtimer.h"
 #include "trace.h"
 #include "loopreader.h"
 
@@ -253,7 +254,7 @@ void ribi::Encranger::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Encranger::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test Increase
   {
     const std::size_t sz { 5 };
@@ -291,6 +292,5 @@ void ribi::Encranger::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::Encranger::Test successfully");
 }
 #endif

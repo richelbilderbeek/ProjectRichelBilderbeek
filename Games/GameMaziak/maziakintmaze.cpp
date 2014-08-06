@@ -6,6 +6,7 @@
 
 #include "maziakdistancesmaze.h"
 #include "maziakhelper.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::maziak::IntMaze::IntMaze(const std::vector<std::vector<int>>& maze)
@@ -159,7 +160,6 @@ void ribi::maziak::IntMaze::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::IntMaze::Test");
-  TRACE("Finished ribi::maziak::IntMaze::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

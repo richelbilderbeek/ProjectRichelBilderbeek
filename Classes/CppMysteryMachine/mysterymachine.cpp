@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"
 #include "ledwidget.h"
 #include "textcanvas.h"
+#include "testtimer.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -84,10 +85,9 @@ void ribi::MysteryMachine::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::MysteryMachine::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   MysteryMachine m;
   assert(!m.GetVersion().empty());
-  TRACE("Finished ribi::MysteryMachine::Test successfully");
 }
 #endif
 

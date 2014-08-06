@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -143,7 +144,7 @@ void ribi::BeerWanterMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::BeerWanterMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const int screen_width = 640;
   const int screen_height = 400;
   const int sprite_width = 32;
@@ -159,6 +160,5 @@ void ribi::BeerWanterMainDialog::Test() noexcept
     window_width,
     window_height
   );
-  TRACE("Finished ribi::BeerWanterMainDialog::Test successfully");
 }
 #endif

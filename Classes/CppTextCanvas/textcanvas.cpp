@@ -13,6 +13,7 @@
 #include <boost/math/constants/constants.hpp>
 
 #include "dotmatrixstring.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -147,7 +148,7 @@ void ribi::TextCanvas::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TextCanvas::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Drawing text
   {
     const int maxx = 90;
@@ -184,7 +185,6 @@ void ribi::TextCanvas::Test() noexcept
     const std::string str_after {s_after.str() };
     assert(std::count(str_after.begin(),str_after.end(),' ') != maxx * maxy); //Line truely drawn
   }
-  TRACE("Finished ribi::TextCanvas::Test successfully");
 }
 #endif
 

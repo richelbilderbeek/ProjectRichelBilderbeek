@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "maziakmaindialog.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
@@ -124,7 +125,6 @@ void ribi::maziak::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::MenuDialog::Test");
-  TRACE("Finished ribi::maziak::MenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

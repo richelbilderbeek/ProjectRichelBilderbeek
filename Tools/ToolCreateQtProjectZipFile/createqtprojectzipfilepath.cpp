@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDir>
 #include <QFile>
 
+#include "testtimer.h"
 #include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -131,7 +132,7 @@ void ribi::CreateQtProjectZipFile::Path::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CreateQtProjectZipFile::Path::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const Path p("home/richel/x/y/z.txt");
     assert(p.GetMainFolder() == "x");

@@ -21,9 +21,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPEDITCONCEPTMAP_H
 #define QTCONCEPTMAPEDITCONCEPTMAP_H
 
+#ifdef NOT_NOW_20140805_1204
 
 #include "qtconceptmapfwd.h"
-
 #include "qtconceptmap.h"
 
 namespace ribi {
@@ -126,4 +126,6 @@ private:
 
 } //~namespace ribi
 
+
 #endif // QTCONCEPTMAPEDITCONCEPTMAP_H
+#endif // NOT_NOW_20140805_1204

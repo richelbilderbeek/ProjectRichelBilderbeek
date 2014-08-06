@@ -29,7 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lexical_cast.hpp>
 
+#include "testtimer.h"
 #include "trace.h"
+#include "testtimer.h"
 
 #pragma GCC diagnostic pop
 
@@ -143,8 +145,7 @@ void ribi::Led::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Led::Test");
-  TRACE("Finished ribi::Led::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

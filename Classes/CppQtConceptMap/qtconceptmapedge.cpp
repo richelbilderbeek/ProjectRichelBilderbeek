@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lambda/lambda.hpp>
 
 #include <QGraphicsSceneMouseEvent>
+#include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QPainter>
 
@@ -373,9 +374,12 @@ void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
 
 void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
 {
+  //TRACE_FUNC();
   m_qtnode->SetX(edge->GetNode()->GetX());
   m_qtnode->SetY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );
+  //this->update();
+  //if (this->scene()) { this->scene()->update(); }
   m_signal_edge_changed(this);
 }
 

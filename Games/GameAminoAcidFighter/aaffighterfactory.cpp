@@ -5,6 +5,7 @@
 #include "trace.h"
 #include "aaffighter.h"
 #include "aafmoleculefactory.h"
+#include "testtimer.h"
 
 ribi::aaf::FighterFactory::FighterFactory() noexcept
 {
@@ -34,7 +35,6 @@ void ribi::aaf::FighterFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::ProgramTypes::Test");
-  TRACE("Finished ribi::ProgramTypes::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

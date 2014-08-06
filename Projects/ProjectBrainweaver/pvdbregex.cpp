@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include "ribi_regex.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::pvdb::Regex::Regex()
@@ -44,7 +45,6 @@ void ribi::pvdb::Regex::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::pvdb::Regex::Test");
-  TRACE("ribi::pvdb::Regex::Test finished successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

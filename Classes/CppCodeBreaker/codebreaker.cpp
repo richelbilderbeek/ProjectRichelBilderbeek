@@ -36,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "caesarcipher.h"
 #include "trace.h"
 #include "loopreader.h"
+#include "testtimer.h"
 #include "vigenerecipher.h"
 #pragma GCC diagnostic pop
 
@@ -418,7 +419,7 @@ void ribi::CodeBreaker::Test() noexcept
   }
   const CodeBreaker b;
   //const bool verbose{false};
-  TRACE("Starting ribi::CodeBreaker::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const auto p(
       b.CalculateChiSquared(
@@ -521,7 +522,6 @@ void ribi::CodeBreaker::Test() noexcept
     assert(guess_length == length);
   }
   #endif //#ifdef FIXING_ISSUE_175
-  TRACE("Finished ribi::CodeBreaker::Test successfully");
 }
 #endif
 

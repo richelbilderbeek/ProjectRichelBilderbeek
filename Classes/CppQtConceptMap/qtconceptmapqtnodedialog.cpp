@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapnodedialog.h"
+#include "qtconceptmapqtnodefactory.h"
 #include "qtconceptmapnode.h"
 #include "qtitemdisplaystrategy.h"
 #include "qtroundededitrectitemdialog.h"
@@ -245,6 +246,10 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  QtNodeFactory();
+  QtNodeFactory().GetTest(1);
+  QtNodeDialog();
+  QtRoundedEditRectItemDialog();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtQtNodeDialog dialog;
   const auto node = NodeFactory().GetTest(1);

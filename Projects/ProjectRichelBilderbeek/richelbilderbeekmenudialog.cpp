@@ -189,6 +189,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testaboutmenudialog.h"
 #include "testapproximatormenudialog.h"
 #include "testapproximatormenudialog.h"
+#include "testtimer.h"
 #include "testbinarynewickvectormenudialog.h"
 #ifdef INCLUDE_TESTCHESS_20140617
 #include "testchessmenudialog.h"
@@ -3402,7 +3403,7 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ProjectRichelBilderbeekMenuDialog::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ProjectRichelBilderbeekMenuDialog d;
   d.Execute( { "ProjectRichelBilderbeek" } );
   d.Execute( { "ProjectRichelBilderbeek", "--program" } );
@@ -3425,6 +3426,5 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
     }
   }
   assert(!"Refactor");
-  TRACE("Finished ribi::ProjectRichelBilderbeekMenuDialog::Test()");
 }
 #endif

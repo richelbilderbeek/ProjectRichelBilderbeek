@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/container/flat_map.hpp>
 
 #include "exceptionnoextrapolation.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -182,8 +183,8 @@ void Approximator<Key,Value,Container>::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
-    TRACE("Starting Approximator::Test");
     Approximator<double,int> m;
     m.Add(1.0,10);
     m.Add(2.0,20);

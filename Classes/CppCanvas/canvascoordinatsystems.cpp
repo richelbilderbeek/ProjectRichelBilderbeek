@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "trace.h"
 
 boost::bimap<ribi::CanvasCoordinatSystem,std::string> ribi::CanvasCoordinatSystems::m_map;
@@ -37,7 +38,7 @@ void ribi::CanvasCoordinatSystems::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CanvasCoordinatSystems::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::vector<CanvasCoordinatSystem> v = GetAll();
   const std::size_t sz = v.size();
   for (std::size_t i=0; i!=sz; ++i)
@@ -49,7 +50,6 @@ void ribi::CanvasCoordinatSystems::Test() noexcept
     const CanvasCoordinatSystem u = ToType(s);
     assert(u == t);
   }
-  TRACE("Finished ribi::CanvasCoordinatSystems::Test successfully");
 }
 #endif
 

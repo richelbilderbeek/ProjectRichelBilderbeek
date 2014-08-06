@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include <QDir>
 
 #include "fileio.h"
+#include "testtimer.h"
 #include "htmlpage.h"
 #include "trace.h"
 
@@ -46,8 +47,10 @@ ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
   #ifndef NDEBUG
   Test();
   #endif
-  TRACE("Start of CreateGlossaryMainDialog");
+}
 
+void ribi::CreateGlossaryMainDialog::CreateAllGlossaries() const noexcept
+{
   CreatePage("Command-line glossary","ClGlossary.htm","Cl.*\\.htm\\>");
   CreatePage("C++ glossary","CppGlossary.htm","Cpp.*\\.htm\\>");
   CreatePage("Game glossary","GameGlossary.htm","Game.*\\.htm\\>");
@@ -55,8 +58,6 @@ ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
   CreatePage("Tool glossary","ToolGlossary.htm","Tool.*\\.htm\\>");
   CreatePage("Music glossary","MusicGlossary.htm","(Music|Song|Cd).*\\.htm\\>");
   CreatePage("Sitemap","Sitemap.htm",".*\\.htm\\>");
-
-  TRACE("Finished CreateGlossaryMainDialog successfully");
 }
 
 void ribi::CreateGlossaryMainDialog::CreatePage(
@@ -194,7 +195,6 @@ void ribi::CreateGlossaryMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::CreateGlossaryMainDialog::Test");
-  TRACE("Finished ribi::CreateGlossaryMainDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

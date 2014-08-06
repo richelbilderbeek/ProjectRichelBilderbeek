@@ -11,6 +11,7 @@
 #include "reversimove.h"
 #include "reversiboard.h"
 #include "reversiplayer.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -252,7 +253,7 @@ void ribi::reversi::Widget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::reversi::Widget::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     ribi::reversi::Widget r(4);
     assert(r.GetCurrentPlayer() == Player::player1);
@@ -332,7 +333,6 @@ void ribi::reversi::Widget::Test() noexcept
       r.DoMove(move);
     }
   }
-  TRACE("Finished ribi::reversi::Widget::Test()");
 }
 #endif
 

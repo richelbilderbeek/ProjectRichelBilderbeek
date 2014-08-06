@@ -4,6 +4,7 @@
 
 #include "openquestiondialog.h"
 #include "openquestionfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 
 ribi::OpenQuestionDialogFactory::OpenQuestionDialogFactory()
@@ -77,13 +78,14 @@ void ribi::OpenQuestionDialogFactory::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::OpenQuestionDialogFactory::Test");
+  OpenQuestionFactory();
+  OpenQuestionDialogFactory().GetTestOpenQuestionDialogs();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test setting the open questions
   for(const std::string& s: OpenQuestionFactory().GetValidOpenQuestionStrings())
   {
     const auto q = OpenQuestionDialogFactory().Create(s);
     assert(q);
   }
-  TRACE("Finished ribi::OpenQuestionDialogFactory::Test successfully");
 }
 #endif

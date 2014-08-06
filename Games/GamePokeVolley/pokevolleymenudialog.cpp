@@ -7,6 +7,7 @@
 #include <stdexcept>
 
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::PokeVolleyMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -84,7 +85,6 @@ void ribi::PokeVolleyMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PokeVolleyMenuDialog::Test");
-  TRACE("Finished ribi::PokeVolleyMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

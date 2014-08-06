@@ -33,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 #include "pylosplayer.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 
@@ -124,7 +125,7 @@ void ribi::pylos::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::pylos::MenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const boost::shared_ptr<Board> a(
     new BoardAdvanced
   );
@@ -146,6 +147,5 @@ void ribi::pylos::MenuDialog::Test() noexcept
   );
   assert(g_b);
   Move();
-  TRACE("Finished ribi::pylos::MenuDialog::Test successfully");
 }
 #endif

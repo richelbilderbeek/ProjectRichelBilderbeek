@@ -8,6 +8,7 @@
 #include <QImage>
 
 #include "dotmatrixchar.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -130,7 +131,7 @@ void ribi::DotMatrixString::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DotMatrixString::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string text = "Hello world";
   const int spacing = 1;
   const boost::shared_ptr<const ribi::DotMatrixString> m {
@@ -139,7 +140,6 @@ void ribi::DotMatrixString::Test() noexcept
   std::stringstream s;
   s << *m;
   assert(!s.str().empty());
-  TRACE("Finished ribi::DotMatrixString::Test successfully");
 }
 #endif
 

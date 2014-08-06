@@ -12,6 +12,7 @@
 
 #include "kalmanfilterparameter.h"
 #include "whitenoisesystemparameter.h"
+#include "testtimer.h"
 #include "trace.h"
 
 const std::vector<std::pair<ribi::kalman::KalmanFilterParameterType,ribi::kalman::KalmanFilterExperimentParameterType> >
@@ -376,7 +377,7 @@ void ribi::kalman::KalmanFilterExperimentParameter::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::kalman::KalmanFilterExperimentParameter::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   assert( IsMatrix(KalmanFilterExperimentParameterType::control));
   assert( IsMatrix(KalmanFilterExperimentParameterType::estimated_measurement_noise));
   assert( IsMatrix(KalmanFilterExperimentParameterType::estimated_optimal_kalman_gain));
@@ -467,7 +468,6 @@ void ribi::kalman::KalmanFilterExperimentParameter::Test() noexcept
   assert(!IsInt(KalmanFilterExperimentParameterType::state_names));
   assert(!IsInt(KalmanFilterExperimentParameterType::state_transition));
 
-  TRACE("Finished ribi::kalman::KalmanFilterExperimentParameter::Test");
 }
 #endif
 

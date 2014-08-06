@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "trace.h"
 
 #ifndef NDEBUG
@@ -12,7 +13,6 @@ void ribi::con3::Move::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::con3::Move::Test");
-  TRACE("Finished ribi::con3::Move::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

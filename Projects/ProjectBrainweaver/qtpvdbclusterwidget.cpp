@@ -396,7 +396,7 @@ void ribi::pvdb::QtPvdbClusterWidget::WriteToCluster()
     concepts.push_back(
       ConceptFactory().Create(
         name,
-        cmap::ExamplesFactory::Create(examples),
+        cmap::ExamplesFactory().Create(examples),
         pvdb_top ? pvdb_top->m_is_complex : true,
         pvdb_top ? pvdb_top->m_rating_complexity : -1,
         pvdb_top ? pvdb_top->m_rating_concreteness : -1,

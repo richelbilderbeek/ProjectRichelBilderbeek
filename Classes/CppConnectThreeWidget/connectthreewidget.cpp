@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthree.h"
 #include "connectthreemove.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 
@@ -196,7 +197,7 @@ void ribi::con3::ConnectThreeWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::con3::ConnectThreeWidget::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const boost::shared_ptr<ConnectThreeWidget> widget {
     new ConnectThreeWidget
   };
@@ -216,7 +217,6 @@ void ribi::con3::ConnectThreeWidget::Test() noexcept
       case 4: widget->OnKeyPress(Key::select); break;
     }
   }
-  TRACE("Finished ribi::con3::ConnectThreeWidget::Test successfully");
 }
 #endif
 

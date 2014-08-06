@@ -25,6 +25,7 @@
 #include "qtconceptmapqtnodedialog.h"
 #include "qtconceptmapratestrategy.h"
 #include "qtkeyboardfriendlygraphicsview.h"
+#include "qtimage.h"
 #include "testtimer.h"
 #include "trace.h"
 #include "ui_qttestconceptmapqtnodedialog.h"
@@ -80,6 +81,18 @@ boost::shared_ptr<ribi::cmap::QtNode> ribi::cmap::QtTestQtNodeDialog::GetQtNode(
   return m_dialog_left->GetQtNode();
 }
 
+QImage ribi::cmap::QtTestQtNodeDialog::GetUiView() const noexcept
+{
+  const auto scene = this->m_view_left->scene();
+  // Create the image with the exact size of the shrunk scene
+  QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);
+  // Start all pixels transparent
+  image.fill(Qt::transparent);
+  QPainter painter(&image);
+  scene->render(&painter);
+  return image;
+}
+
 void ribi::cmap::QtTestQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept
 {
   assert(qtnode);
@@ -117,47 +130,48 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  QtRoundedEditRectItem();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
-  QtTestQtNodeDialog d;
+  QtTestQtNodeDialog dialog;
 
   if (verbose) {TRACE("Loading all tests, three times");}
   {
-    const int n{d.ui->box_test_index->maximum()};
+    const int n{dialog.ui->box_test_index->maximum()};
     for (int i=0; i!=n; ++i)
     {
-      d.ui->box_test_index->setValue(i);
-      d.on_button_load_clicked();
-      d.ui->box_test_index->setValue(i);
-      d.on_button_load_clicked();
-      d.ui->box_test_index->setValue(i);
-      d.on_button_load_clicked();
+      dialog.ui->box_test_index->setValue(i);
+      dialog.on_button_load_clicked();
+      dialog.ui->box_test_index->setValue(i);
+      dialog.on_button_load_clicked();
+      dialog.ui->box_test_index->setValue(i);
+      dialog.on_button_load_clicked();
     }
   }
   if (verbose) {TRACE("QtNode must be the same in both dialogs");}
   {
-    assert(d.m_dialog_left->GetQtNode());
-    assert(d.m_dialog_left->GetQtNode() == d.m_dialog_right->GetQtNode());
+    assert(dialog.m_dialog_left->GetQtNode());
+    assert(dialog.m_dialog_left->GetQtNode() == dialog.m_dialog_right->GetQtNode());
   }
   if (verbose) {TRACE("QGraphicsView must contain exactly one item");}
   {
-    assert(d.m_view_left->scene()->items().size() == 1);
+    assert(dialog.m_view_left->scene()->items().size() == 1);
   }
   if (verbose) {TRACE("QGraphicsItem in QGraphicsView must be convertible to a QtRoundedEditRectItem");}
   {
-    const QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
+    const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
     const QtRoundedEditRectItem * qtitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
     assert(qtitem);
   }
   if (verbose) {TRACE("QGraphicsItem in QGraphicsView must be convertible to a QtNode");}
   {
-    const QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
+    const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
     const QtNode * qtnode = dynamic_cast<const QtNode*>(item);
     assert(qtnode);
   }
   if (verbose) {TRACE("QtNode its base class in the QGraphicsView must contain one line of text");}
   {
-    const QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
+    const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
     const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
     const auto v = qtrectitem->GetText();
     if (v.size() != 1)
@@ -169,8 +183,8 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
   }
   if (verbose) {TRACE("Text of Node must be equal to that of the QtNode in the QGraphicsView");}
   {
-    const std::string s = d.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->GetName();
-    const QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
+    const std::string s = dialog.m_dialog_left->GetQtNode()->GetNode()->GetConcept()->GetName();
+    const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
     const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
     const auto v = qtrectitem->GetText();
     const auto t = v[0];
@@ -178,23 +192,53 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
   }
   if (verbose) {TRACE("When changing the concept's name via QtNode, the QtNodeDialog must be changed as well");}
   {
-    const auto qtnode = d.m_dialog_left->GetQtNode();
+    const auto qtnode = dialog.m_dialog_left->GetQtNode();
     const std::string old_name{qtnode->GetNode()->GetConcept()->GetName()};
     const std::string new_name{old_name + " (modified)"};
     qtnode->GetNode()->GetConcept()->SetName(new_name);
-    const auto t = d.m_dialog_left->GetUiName();
+    const auto t = dialog.m_dialog_left->GetUiName();
     assert(t == new_name);
   }
   if (verbose) {TRACE("When changing the concept's name via QtNodeDialog, the QtNode must be changed as well");}
   {
-    const auto old_name = d.m_dialog_left->GetUiName();
+    const auto old_name = dialog.m_dialog_left->GetUiName();
     const std::string new_name{old_name + " (modified)"};
-    d.m_dialog_left->SetUiName(new_name);
-    QGraphicsItem * const item = d.m_view_left->scene()->items()[0];
+    dialog.m_dialog_left->SetUiName(new_name);
+    QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
     QtRoundedEditRectItem * const qtrectitem = dynamic_cast<QtRoundedEditRectItem*>(item);
     const std::string new_name_again = qtrectitem->GetText()[0];
     assert(new_name_again == new_name);
   }
+  if (verbose) { TRACE("Grabbing QtEdge of QGraphicsView twice, results in an identical picture"); }
+  {
+    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_before{dialog.GetUiView()};
+    const QImage image_after{dialog.GetUiView()};
+    assert(image_before == image_after);
+  }
+  if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
+  {
+    TRACE_FUNC();
+    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_before{dialog.GetUiView()};
+
+    dialog.GetQtNode()->GetNode()->GetConcept()->SetName("A");
+    dialog.GetQtNode()->GetNode()->GetConcept()->SetName("B");
+
+    const QImage image_after{dialog.GetUiView()};
+
+    if (image_before == image_after)
+    {
+      const std::string a{"QtTestQtNodeDialogTest1_before.png"};
+      const std::string b{"QtTestQtNodeDialogTest1_after.png"};
+      image_before.save(a.c_str());
+      image_after.save(b.c_str());
+      const QImage result{QtImage().Difference(image_before,image_after)};
+      result.save("QtTestQtNodeDialogTest1_difference.png");
+    }
+    assert(image_before != image_after);
+  }
+  assert(!"Refactor");
   /*
   assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtNode()->GetX()) < 1.0);
   assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtNode()->GetY()) < 1.0);

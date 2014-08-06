@@ -8,6 +8,7 @@
 #include <boost/numeric/ublas/vector_proxy.hpp>
 
 #include "matrix.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "standardkalmanfilterfactory.h"
 #pragma GCC diagnostic pop
@@ -309,8 +310,7 @@ void ribi::kalman::FixedLagSmootherKalmanFilter::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  //
-  TRACE("Starting ribi::kalman::FixedLagSmootherKalmanFilter::Test()")
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   try
   {
     boost::numeric_cast<std::size_t>(-1);
@@ -361,6 +361,5 @@ void ribi::kalman::FixedLagSmootherKalmanFilter::Test() noexcept
       }
     }
   }
-  TRACE("Finished ribi::kalman::FixedLagSmootherKalmanFilter::Test()")
 }
 #endif

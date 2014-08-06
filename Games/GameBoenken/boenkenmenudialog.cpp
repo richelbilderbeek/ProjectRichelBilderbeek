@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 
 int ribi::Boenken::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -107,7 +108,6 @@ void ribi::Boenken::MenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Boenken::MenuDialog::Test");
-  TRACE("Finished ribi::Boenken::MenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

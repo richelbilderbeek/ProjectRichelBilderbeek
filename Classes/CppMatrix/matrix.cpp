@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 #include "ribi_random.h"
+#include "testtimer.h"
 #include "trace.h"
 
 double ribi::Matrix::CalcDeterminant(boost::numeric::ublas::matrix<double> m)
@@ -487,7 +488,7 @@ void ribi::Matrix::Test() noexcept
     is_tested = true;
   }
   //
-  TRACE("Starting ribi::Matrix::Test()");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   using boost::numeric::ublas::detail::equals;
   using boost::numeric::ublas::matrix;
   using boost::numeric::ublas::vector;
@@ -878,7 +879,6 @@ void ribi::Matrix::Test() noexcept
       assert(VectorsAreAboutEqual(a,b));
     }
   }
-  TRACE("Finished ribi::Matrix::Test()");
 }
 #endif
 

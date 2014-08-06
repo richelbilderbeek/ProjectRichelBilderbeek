@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "container.h"
 #include "imagecanvas.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -207,7 +208,7 @@ void ribi::MultipleChoiceQuestion::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::MultipleChoiceQuestion::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   try
   {
     const boost::scoped_ptr<MultipleChoiceQuestion> q {
@@ -295,7 +296,6 @@ void ribi::MultipleChoiceQuestion::Test() noexcept
       assert(v == w);
     }
   }
-  TRACE("Finished ribi::MultipleChoiceQuestion::Test successfully");
 }
 #endif
 

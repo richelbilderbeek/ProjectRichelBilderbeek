@@ -39,6 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "canvascoordinatsystems.h"
 #include "fileio.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::ImageCanvas::ImageCanvas(
@@ -334,7 +335,7 @@ void ribi::ImageCanvas::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ImageCanvas::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::string temp_filename { fileio::FileIo().GetTempFileName() };
   {
     const std::string resource_filename { ":/CppImageCanvas/images/R.png" };
@@ -366,7 +367,6 @@ void ribi::ImageCanvas::Test() noexcept
     //TRACE(c);
   }
   fileio::FileIo().DeleteFile(temp_filename);
-  TRACE("Finished ribi::ImageCanvas::Test successfully");
 }
 #endif
 

@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
+#include "testtimer.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -241,7 +242,7 @@ void ribi::pylos::Coordinat::Test() noexcept
     if (tested) return;
     tested = true;
   }
-  TRACE("Starting ribi::pylos::Coordinat::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
 
   if (verbose) { TRACE("Test PylosCoordinat operators"); }
@@ -323,7 +324,6 @@ void ribi::pylos::Coordinat::Test() noexcept
     assert(std::find(v.begin(),v.end(),Coordinat(3,0,0))
       != v.end());
   }
-  TRACE("Finished ribi::pylos::Coordinat::Test successfully");
 }
 #endif
 

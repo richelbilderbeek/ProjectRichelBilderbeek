@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "testtimer.h"
 #include "trace.h"
 
 boost::bimap<ribi::aaf::AminoAcid,std::string> ribi::aaf::AminoAcids::m_map;
@@ -79,7 +80,7 @@ void ribi::aaf::AminoAcids::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::aaf::AminoAcids::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const std::vector<AminoAcid> v = AminoAcids().GetAll();
   const std::size_t sz = v.size();
   for (std::size_t i=0; i!=sz; ++i)
@@ -91,7 +92,6 @@ void ribi::aaf::AminoAcids::Test() noexcept
     const AminoAcid u = AminoAcids().ToType(s);
     assert(u == t);
   }
-  TRACE("Finished ribi::aaf::AminoAcids::Test successfully");
 }
 #endif
 

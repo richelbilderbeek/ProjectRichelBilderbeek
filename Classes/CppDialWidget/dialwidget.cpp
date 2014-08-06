@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h"
 #include "drawcanvas.h"
 #include "geometry.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "textcanvas.h"
 
@@ -114,7 +115,7 @@ void ribi::DialWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::DialWidget::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     const boost::shared_ptr<DialWidget> w(new DialWidget);
     assert(w->GetDial());
@@ -130,7 +131,6 @@ void ribi::DialWidget::Test() noexcept
       //TRACE(s.str());
     }
   }
-  TRACE("Finished ribi::DialWidget::Test successfully");
 }
 
 const boost::shared_ptr<ribi::DrawCanvas> ribi::DialWidget::ToDrawCanvas(const int radius) const noexcept

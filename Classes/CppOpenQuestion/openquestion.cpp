@@ -35,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "imagecanvas.h"
 #include "openquestionfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -124,7 +125,7 @@ void ribi::OpenQuestion::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::OpenQuestion::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test simple get/set with single answer
   {
     const std::string filename = "-";
@@ -177,7 +178,6 @@ void ribi::OpenQuestion::Test() noexcept
       assert(v == w);
     }
   }
-  TRACE("Finished ribi::OpenQuestion::Test successfully");
 }
 #endif
 

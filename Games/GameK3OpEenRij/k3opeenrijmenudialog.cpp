@@ -16,6 +16,7 @@
 #include "imagecanvas.h"
 #include "qtk3opeenrijresources.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -178,7 +179,7 @@ void ribi::K3OpEenRijMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::K3OpEenRijMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   boost::shared_ptr<con3::ConnectThree> c {
     new con3::ConnectThree(15,5)
   };
@@ -187,7 +188,5 @@ void ribi::K3OpEenRijMenuDialog::Test() noexcept
   {
     c->DoMove(c->SuggestMove(is_player_human));
   }
-
-  TRACE("Finished ribi::K3OpEenRijMenuDialog::Test successfully");
 }
 #endif

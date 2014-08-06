@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tictactoeai.h"
 #include "tictactoeais.h"
 #include "tictactoeboard.h"
+#include "testtimer.h"
 #include "tictactoegame.h"
 #include "tictactoewidget.h"
 #include "trace.h"
@@ -164,10 +165,12 @@ void ribi::tictactoe::TicTacToeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::tictactoe::TicTacToeMenuDialog::Test");
+  tictactoe::Game();
+  tictactoe::Board();
+  tictactoe::Widget();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog","--1h","--2h" } );
   }
-  TRACE("Finished ribi::tictactoe::TicTacToeMenuDialog::Test successfully");
 }
 #endif

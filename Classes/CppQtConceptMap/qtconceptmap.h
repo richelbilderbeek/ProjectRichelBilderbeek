@@ -205,6 +205,6 @@ public slots:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif NOT_NOW_20140805_1204
+#endif // NOT_NOW_20140805_1204
 
 #endif // QTCONCEPTMAPCONCEPTMAP_H

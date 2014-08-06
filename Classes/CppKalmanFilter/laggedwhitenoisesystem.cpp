@@ -16,6 +16,7 @@
 #include "laggedwhitenoisesystemparameters.h"
 #include "standardwhitenoisesystemparameters.h"
 #include "standardwhitenoisesystemfactory.h"
+#include "testtimer.h"
 
 ribi::kalman::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
@@ -89,7 +90,7 @@ void ribi::kalman::LaggedWhiteNoiseSystem::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::kalman::LaggedWhiteNoiseSystem::Test()")
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //Check if measurements are indeed lagged:
   //The system's real value should update immediatly, but this fresh measurement
   //must only be accessible after lag timesteps
@@ -121,6 +122,5 @@ void ribi::kalman::LaggedWhiteNoiseSystem::Test() noexcept
       my_system->GoToNextState(input);
     }
   }
-  TRACE("Finished ribi::kalman::LaggedWhiteNoiseSystem::Test()")
 }
 #endif

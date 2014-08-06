@@ -10,12 +10,12 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-//#include <boost/container/flat_map.hpp>
 
 #pragma GCC diagnostic pop
 
 #include "approximator.h"
 #include "exceptionnoextrapolation.h"
+#include "testtimer.h"
 #include "trace.h"
 
 namespace ribi {
@@ -273,7 +273,7 @@ void MultiApproximator<Key,Value,Container>::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting MultiApproximator::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   //GetMin and GetMax
   {
     MultiApproximator<double,double,std::multimap<double,double> > m;
