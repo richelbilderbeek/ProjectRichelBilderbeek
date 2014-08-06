@@ -92,6 +92,16 @@ int ribi::cmap::QtQtEdgeDialog::GetMinimumHeight(const QtEdge& qtedge) noexcept
   ;
 }
 
+double ribi::cmap::QtQtEdgeDialog::GetUiX() const noexcept
+{
+  return this->m_qtedgedialog->GetUiX();
+}
+
+double ribi::cmap::QtQtEdgeDialog::GetUiY() const noexcept
+{
+  return this->m_qtedgedialog->GetUiY();
+}
+
 void ribi::cmap::QtQtEdgeDialog::OnEdgeChanged(QtEdge * const qtedge) noexcept
 {
   assert( qtedge ==  m_qtedge.get());
@@ -232,6 +242,16 @@ void ribi::cmap::QtQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qted
   assert(*qtedge == *m_qtedge);
 }
 
+void ribi::cmap::QtQtEdgeDialog::SetUiX(const double x) const noexcept
+{
+  this->m_qtedgedialog->SetUiX(x);
+}
+
+void ribi::cmap::QtQtEdgeDialog::SetUiY(const double y) const noexcept
+{
+  this->m_qtedgedialog->SetUiY(y);
+}
+
 #ifndef NDEBUG
 void ribi::cmap::QtQtEdgeDialog::Test() noexcept
 {
@@ -256,7 +276,7 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
   QtQtEdgeDialog dialog;
-
+  const bool verbose{false};
   const auto from = NodeFactory().GetTest(1);
   const auto to = NodeFactory().GetTest(1);
   const auto edge = EdgeFactory().GetTest(1,from,to);
@@ -264,23 +284,38 @@ void ribi::cmap::QtQtEdgeDialog::Test() noexcept
   const auto qtto = QtNodeFactory().Create(to);
   const boost::shared_ptr<QtEdge> qtedge(new QtEdge(edge,qtfrom.get(),qtto.get()));
   dialog.SetQtEdge(qtedge);
-  const boost::shared_ptr<QtEdgeDialog> lhs = dialog.m_qtedgedialog;
-  const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = dialog.m_qtroundededitrectitem_dialog;
-  assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
-  assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
-  ///LHS, setX
+  if (verbose) { TRACE("SetX and GetX must be symmetric"); }
   {
-    const double new_x{lhs->GetUiX() + 5.0};
-    lhs->SetUiX(new_x);
-    assert(std::abs(lhs->GetUiX() - new_x) < 1.0);
+    const double new_x{dialog.GetUiX() + 10.0};
+    dialog.SetUiX(new_x);
+    assert(std::abs(dialog.GetUiX() - new_x) < 2.0);
   }
-  //RHS, setX
+  if (verbose) { TRACE("SetY and GetY must be symmetric"); }
   {
-    const double new_x{rhs->GetUiX() + 5.0};
-    rhs->SetUiX(new_x);
-    assert(std::abs(rhs->GetUiX() - new_x) < 1.0);
+    const double new_y{dialog.GetUiY() + 10.0};
+    dialog.SetUiY(new_y);
+    assert(std::abs(dialog.GetUiY() - new_y) < 2.0);
   }
-  lhs->SetUiY(lhs->GetUiX() + 5.0);
-  rhs->SetUiY(rhs->GetUiX() + 5.0);
+  //X
+  if (verbose) { TRACE("X of QtQtEdgeDialog and QtEdge must match at creation"); }
+  {
+    const double ui_x{dialog.GetUiX()};
+    const double qtedge_x{qtedge->GetQtNode()->GetX()};
+    assert(std::abs(ui_x - qtedge_x) < 2.0);
+  }
+  if (verbose) { TRACE("If X is set via QtQtEdgeDialog, QtEdge must sync"); }
+  {
+    const double old_x{dialog.GetUiX()};
+    const double new_x{old_x + 10.0};
+    dialog.SetUiX(new_x);
+    assert(std::abs(new_x - qtedge->GetQtNode()->GetX()) < 2.0);
+  }
+  if (verbose) { TRACE("If X is set via QtEdge, QtQtEdgeDialog must sync"); }
+  {
+    const double old_x{dialog.GetUiX()};
+    const double new_x{old_x + 10.0};
+    qtedge->GetQtNode()->SetX(new_x);
+    assert(std::abs(new_x - dialog.GetUiX()) < 2.0);
+  }
 }
 #endif

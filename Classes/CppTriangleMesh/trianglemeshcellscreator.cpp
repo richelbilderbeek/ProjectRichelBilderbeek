@@ -701,7 +701,7 @@ void ribi::trim::CellsCreator::Test() noexcept
 
   if (verbose) { TRACE("Trying out to build cells from the hardest testing templates"); }
   {
-    const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
     for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
     {
       const boost::shared_ptr<Template> my_template {
@@ -724,7 +724,7 @@ void ribi::trim::CellsCreator::Test() noexcept
   }
   if (verbose) { TRACE("Specific: check if a Face really loses its neighbour: remove a prism from a cube"); }
   {
-    const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
     for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
     {
       //Create a 2x1 cell block
@@ -814,7 +814,7 @@ void ribi::trim::CellsCreator::Test() noexcept
   }
   if (verbose) { TRACE("Create Face, from bug"); }
   {
-    const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
     /*
     (1.17557,2.35781,5.0)
     (2.35114,3.23607,5.0)
@@ -860,7 +860,7 @@ void ribi::trim::CellsCreator::Test() noexcept
 
   //From bug
   {
-    const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
+    //const TestTimer test_timer(boost::lexical_cast<std::string>(__LINE__),__FILE__,1.0);
     typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
     const double x1 = 0.0004035051226622692510832834944523028752882964909076690673828125;
     const double y1 = 0.00023296416881187433805568132161312178141088224947452545166015625;

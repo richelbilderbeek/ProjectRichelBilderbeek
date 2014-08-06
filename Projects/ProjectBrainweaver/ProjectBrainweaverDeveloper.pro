@@ -12,8 +12,10 @@ include(../../Libraries/GeneralDesktop.pri)
 
 #Specific, console
 include(../../Classes/CppContainer/CppContainer.pri)
+include(../../Classes/CppCounter/CppCounter.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
+include(../../Classes/CppGrabber/CppGrabber.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppRibiRegex/CppRibiRegex.pri)
 
@@ -24,7 +26,7 @@ include(../../Classes/CppQtPathArrowItem/CppQtPathArrowItem.pri)
 include(../../Classes/CppQtQuadBezierArrowItem/CppQtQuadBezierArrowItem.pri)
 include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
 include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
-include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
+#include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
 include(../../Classes/CppQtScopedDisable/CppQtScopedDisable.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppXml/CppXml.pri)
@@ -35,7 +37,7 @@ include(../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetterDesktop.pri)
 include(../../Tools/ToolTestConceptMap/ToolTestConceptMapDesktop.pri)
 include(../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItemsDesktop.pri)
 include(../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItemDesktop.pri)
-include(../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItemDesktop.pri)
+#include(../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItemDesktop.pri)
 
 #Desktop
 include(../../Classes/CppQtConceptMap/CppQtConceptMap.pri)

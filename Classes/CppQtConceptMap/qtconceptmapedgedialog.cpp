@@ -416,12 +416,51 @@ void ribi::cmap::QtEdgeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  NodeFactory();
+  EdgeFactory();
   QtExampleDialog();
   QtExamplesDialog();
   QtNodeDialog();
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  QtEdgeDialog d;
+  const bool verbose{false};
+  const auto from = NodeFactory().GetTest(0);
+  const auto to = NodeFactory().GetTest(0);
+  const boost::shared_ptr<Edge> edge = EdgeFactory().GetTest(0,from,to);
+  QtEdgeDialog dialog;
+  dialog.SetEdge(edge);
+  if (verbose) { TRACE("X of QtNode and QtNodeDialog must match at start"); }
+  {
+    assert(std::abs(dialog.GetUiX() - edge->GetNode()->GetX()) < 2.0);
+  }
+  if (verbose) { TRACE("SetX and GetX must be symmetric"); }
+  {
+    const double new_x{dialog.GetUiX() + 10.0};
+    dialog.SetUiX(new_x);
+    assert(std::abs(dialog.GetUiX() - new_x) < 1.0);
+  }
+  if (verbose) { TRACE("SetY and GetY must be symmetric"); }
+  {
+    const double new_y{dialog.GetUiY() + 10.0};
+    dialog.SetUiY(new_y);
+    assert(std::abs(dialog.GetUiY() - new_y) < 1.0);
+  }
+  if (verbose) { TRACE("If X is set via Edge, QtNodeDialog must sync"); }
+  {
+    const double old_x{edge->GetNode()->GetX()};
+    const double new_x{old_x + 10.0};
+    edge->GetNode()->SetX(new_x);
+    assert(std::abs(new_x - dialog.GetUiX()) < 2.0);
+  }
+  if (verbose) { TRACE("If X is set via QtNodeDialog, Edge must sync"); }
+  {
+    const double old_x{dialog.GetUiX()};
+    const double new_x{old_x + 10.0};
+    dialog.SetUiX(new_x);
+    assert(std::abs(new_x - edge->GetNode()->GetX()) < 2.0);
+  }
+
+
 }
 #endif
 

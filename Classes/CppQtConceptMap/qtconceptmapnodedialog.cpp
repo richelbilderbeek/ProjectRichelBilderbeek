@@ -269,26 +269,38 @@ void ribi::cmap::QtNodeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  NodeFactory().GetTest(1);
   QtConceptDialog();
 
   const TestTimer test_timer(__func__,__FILE__,1.0);
-
+  const bool verbose{false};
   QtNodeDialog dialog;
-  const auto node = NodeFactory().GetTest(1);
+  const boost::shared_ptr<Node> node{NodeFactory().GetTest(1)};
   dialog.SetNode(node);
+  if (verbose) { TRACE("X of QtNode and QtNodeDialog must match at start"); }
   {
-    dialog.ui->box_x->setValue(node->GetX() + 1.0);
-    node->SetX(dialog.ui->box_x->value() + 1.0);
+    assert(std::abs(dialog.GetUiX() - node->GetX()) < 2.0);
   }
+  if (verbose) { TRACE("If X is set via QtNode, QtNodeDialog must sync"); }
   {
-    dialog.ui->box_y->setValue(node->GetY() + 1.0);
-    node->SetY(dialog.ui->box_y->value() + 1.0);
+    const double old_x{node->GetX()};
+    const double new_x{old_x + 10.0};
+    node->SetX(new_x);
+    assert(std::abs(new_x - dialog.GetUiX()) < 2.0);
+  }
+  if (verbose) { TRACE("If X is set via QtNodeDialog, QtNode must sync"); }
+  {
+    const double old_x{dialog.GetUiX()};
+    const double new_x{old_x + 10.0};
+    dialog.SetUiX(new_x);
+    assert(std::abs(new_x - node->GetX()) < 2.0);
   }
 }
 #endif
 
 void ribi::cmap::QtNodeDialog::on_box_x_valueChanged(double arg1)
 {
+  assert(m_node);
   m_node->SetX(arg1);
 }
 

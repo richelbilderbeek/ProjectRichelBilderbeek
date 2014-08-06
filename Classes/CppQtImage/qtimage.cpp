@@ -19,6 +19,17 @@ ribi::QtImage::QtImage() noexcept
   #endif // NDEBUG
 }
 
+QImage ribi::QtImage::Difference(const QImage& base, const QImage& to_xor) noexcept
+{
+  QImage result{base};
+  {
+    QPainter painter(&result);
+    painter.setCompositionMode(QPainter::CompositionMode_Difference);
+    painter.drawImage(0,0,to_xor);
+  }
+  return result;
+}
+
 std::string ribi::QtImage::GetVersion() noexcept
 {
   return "1.0";
@@ -59,8 +70,10 @@ QImage ribi::QtImage::Xor(const QImage& base, const QImage& to_xor) noexcept
   QImage result{base};
   {
     QPainter painter(&result);
-    painter.setCompositionMode(QPainter::CompositionMode_Xor);
+    //painter.setCompositionMode(QPainter::CompositionMode_Xor);
+    painter.setCompositionMode(QPainter::CompositionMode_Multiply);
     painter.drawImage(0,0,to_xor);
   }
   return result;
 }
+

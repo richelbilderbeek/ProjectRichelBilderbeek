@@ -31,9 +31,17 @@ public:
 
 
   static int GetMinimumHeight(const QtEdge& qtedge) noexcept;
+  boost::shared_ptr<QtEdge> GetQtEdge() const noexcept { return m_qtedge; }
+  //Obtain the X coordinat of the Node on the Edge from the GUI
+  double GetUiX() const noexcept;
+  //Obtain the Y coordinat of the Node on the Edge from the GUI
+  double GetUiY() const noexcept;
 
   void SetQtEdge(const boost::shared_ptr<QtEdge>& qtedge) noexcept;
-  boost::shared_ptr<QtEdge> GetQtEdge() const noexcept { return m_qtedge; }
+  //Set the X coordinat of the Node on the Edge via the GUI
+  void SetUiX(const double x) const noexcept;
+  //Set the Y coordinat of the Node on the Edge via the GUI
+  void SetUiY(const double y) const noexcept;
 
 private:
   Ui::QtQtEdgeDialog *ui;

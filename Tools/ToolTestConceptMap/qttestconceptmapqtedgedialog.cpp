@@ -111,6 +111,29 @@ int ribi::cmap::QtTestQtEdgeDialog::GetUiTestIndex() const noexcept
   return ui->box_test_index->value();
 }
 
+QImage ribi::cmap::QtTestQtEdgeDialog::GetUiView() const noexcept
+{
+  const auto scene = this->m_view_left->scene();
+  // Create the image with the exact size of the shrunk scene
+  QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);
+  // Start all pixels transparent
+  image.fill(Qt::transparent);
+  QPainter painter(&image);
+  scene->render(&painter);
+  return image;
+}
+
+
+double ribi::cmap::QtTestQtEdgeDialog::GetUiX() const noexcept
+{
+  return m_dialog_left->GetUiX();
+}
+
+double ribi::cmap::QtTestQtEdgeDialog::GetUiY() const noexcept
+{
+  return m_dialog_left->GetUiX();
+}
+
 void ribi::cmap::QtTestQtEdgeDialog::SetQtEdge(const boost::shared_ptr<QtEdge>& qtedge) noexcept
 {
   assert(qtedge);
@@ -151,8 +174,9 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   QtImage();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
-  QtTestQtEdgeDialog d;
-  const int n = d.ui->box_test_index->maximum();
+  QtTestQtEdgeDialog dialog;
+  const boost::shared_ptr<QtEdge> qtedge{dialog.GetQtEdge()};
+  const int n = dialog.ui->box_test_index->maximum();
   if (verbose) { TRACE("Number of tests in GUI must be equal to the number of actual tests"); }
   {
     assert(n == QtEdgeFactory().GetNumberOfTests() - 1
@@ -162,76 +186,159 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   {    
     for (int i=0; i!=10; ++i)
     {
-      d.ui->box_test_index->setValue(i);
-      assert(d.GetUiTestIndex() < QtEdgeFactory().GetNumberOfTests());
+      dialog.ui->box_test_index->setValue(i);
+      assert(dialog.GetUiTestIndex() < QtEdgeFactory().GetNumberOfTests());
     }
   }
-  if (verbose) { TRACE("Setting all test edges, multiple times"); }
+  if (verbose) { TRACE("Setting all test edges"); }
   {
-    for (int i=0; i!=10; ++i)
+    QtTestQtEdgeDialog dialog;
+    const int n{QtEdgeFactory().GetNumberOfTests()};
+    for (int i=0; i!=n; ++i)
     {
-      d.ui->box_test_index->setValue(i);
-      d.on_button_load_clicked();
-      d.ui->box_test_index->setValue(i);
-      d.on_button_load_clicked();
-      d.ui->box_test_index->setValue(i);
-      d.on_button_load_clicked();
+      dialog.ui->box_test_index->setValue(i);
+      dialog.on_button_load_clicked();
     }
   }
+  dialog.SetQtEdge(qtedge); //Put QtEdge in back again
   if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
   {
-    d.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
-    assert( d.GetQtEdge()->GetQtNode()->GetText()[0] == "A");
-    d.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
-    assert( d.GetQtEdge()->GetQtNode()->GetText()[0] == "B");
+    dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
+    assert( dialog.GetQtEdge()->GetQtNode()->GetText()[0] == "A");
+    dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
+    assert( dialog.GetQtEdge()->GetQtNode()->GetText()[0] == "B");
+  }
+  if (verbose) { TRACE("There is one item in the QGraphicsView"); }
+  {
+    assert(dialog.m_view_left->items().size() == 3);
+  }
+
+  //X
+  if (verbose) { TRACE("X of QtTestQtEdgeDialog and QtEdge must match at creation"); }
+  {
+    const double ui_x{dialog.m_dialog_left->GetUiX()};
+    const double qtedge_x{qtedge->GetQtNode()->GetX()};
+    assert(std::abs(ui_x - qtedge_x) < 2.0);
+  }
+  if (verbose) { TRACE("If X is set via QtTestQtEdgeDialog, QtEdge must sync"); }
+  {
+    const double old_x{dialog.m_dialog_left->GetUiX()};
+    const double new_x{old_x + 10.0};
+    dialog.m_dialog_left->SetUiX(new_x);
+    assert(std::abs(new_x - qtedge->GetQtNode()->GetX()) < 2.0);
+  }
+  if (verbose) { TRACE("If X is set via QtEdge, QtTestQtEdgeDialog must sync"); }
+  {
+    const double old_x{dialog.m_dialog_left->GetUiX()};
+    const double new_x{old_x + 10.0};
+    qtedge->GetQtNode()->SetX(new_x);
+    assert(std::abs(new_x - dialog.m_dialog_left->GetUiX()) < 2.0);
+  }
+  #ifdef OLD_SKOOL
+  if (verbose) { TRACE("Grabbing QtEdge twice, results in an identical picture"); }
+  {
+    dialog.setEnabled(false);
+    const std::string a{"QtTestQtEdgeDialogTest1_before.png"};
+    const std::string b{"QtTestQtEdgeDialogTest1_after.png"};
+    //Draw first time
+    {
+      QTimer::singleShot(200,&dialog,SLOT(close()));
+      dialog.exec();
+    }
+    //Draw second time, might be different than the first time
+    {
+      Grabber grabber(dialog.winId(),a);
+      QTimer::singleShot(200,&dialog,SLOT(close()));
+      QTimer::singleShot(100,&grabber,SLOT(Grab()));
+      dialog.exec();
+    }
+    //Draw third time, hopefully identical to the first time
+    {
+      Grabber grabber(dialog.winId(),b);
+      QTimer::singleShot(200,&dialog,SLOT(close()));
+      QTimer::singleShot(100,&grabber,SLOT(Grab()));
+      dialog.exec();
+    }
+    const QImage image_before{QPixmap(a.c_str()).toImage()};
+    const QImage image_after{QPixmap(b.c_str()).toImage()};
+    if (image_before != image_after)
+    {
+      const QImage result{QtImage().Difference(image_before,image_after)};
+      result.save("QtTestQtEdgeDialogTest1_difference.png");
+    }
+    assert(image_before == image_after);
   }
   if (verbose) { TRACE("Grabbing QtEdge twice, results in an identical picture"); }
   {
-    d.setEnabled(false);
     const std::string a{"QtTestQtEdgeDialogTest1_before.png"};
     const std::string b{"QtTestQtEdgeDialogTest1_after.png"};
+    const QImage image_tmp{dialog.grab().toImage()}; //Needed to force something more thorough than update and repaint
+    const QImage image_before{dialog.grab().toImage()};
+    image_before.save(a.c_str());
+    const QImage image_after{dialog.grab().toImage()};
+    image_after.save(b.c_str());
+    if (image_before != image_after)
     {
-      Grabber grabber(d.winId(),a);
-      QTimer::singleShot(200,&d,SLOT(close()));
-      QTimer::singleShot(100,&grabber,SLOT(Grab()));
-      d.exec();
+      const QImage result{QtImage().Difference(image_before,image_after)};
+      result.save("QtTestQtEdgeDialogTest1_difference.png");
     }
-    {
-      Grabber grabber(d.winId(),b);
-      QTimer::singleShot(200,&d,SLOT(close()));
-      QTimer::singleShot(100,&grabber,SLOT(Grab()));
-      d.exec();
-    }
-    QPixmap c(a.c_str());
-    QPixmap d(b.c_str());
-    assert(c.toImage() == c.toImage());
-    assert(d.toImage() == d.toImage());
-    if (c.toImage() != d.toImage())
-    {
-      QImage result{QtImage().Xor(c.toImage(),d.toImage())};
-      /*
-      QImage result{c.toImage()};
-      {
-        QPainter painter(&result);
-        painter.setCompositionMode(QPainter::CompositionMode_Xor);
-        painter.drawImage(0,0,d.toImage());
-      }
-      */
-      result.save("QtTestQtEdgeDialogTest1_xor.png");
-
-    }
-    assert(c.toImage() == d.toImage());
+    assert(image_before == image_after);
   }
-  assert(!"Refactor");
+  if (verbose) { TRACE("Grabbing QtEdge twice, results in an identical picture"); }
+  {
+    const std::string a{"QtTestQtEdgeDialogTest2_before.png"};
+    const std::string b{"QtTestQtEdgeDialogTest2_after.png"};
+    const auto scene = dialog.m_view_left->scene();
+    QImage image_before(scene->sceneRect().size().toSize(), QImage::Format_ARGB32); // Create the image with the exact size of the shrunk scene
+    {
+      image_before.fill(Qt::transparent);                                               // Start all pixels transparent
+      QPainter painter(&image_before);
+      scene->render(&painter);
+      image_before.save(a.c_str());
+    }
+    QImage image_after(scene->sceneRect().size().toSize(), QImage::Format_ARGB32); // Create the image with the exact size of the shrunk scene
+    {
+      image_after.fill(Qt::transparent);                                               // Start all pixels transparent
+      QPainter painter(&image_after);
+      scene->render(&painter);
+      image_after.save(b.c_str());
+    }
+    if (image_before != image_after)
+    {
+      const QImage result{QtImage().Difference(image_before,image_after)};
+      result.save("QtTestQtEdgeDialogTest2_difference.png");
+    }
+    assert(image_before == image_after);
+  }
+  #endif
+  if (verbose) { TRACE("Grabbing QtEdge of QGraphicsView twice, results in an identical picture"); }
+  {
+    const std::string a{"QtTestQtEdgeDialogTest3_before.png"};
+    const std::string b{"QtTestQtEdgeDialogTest3_after.png"};
+    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_before{dialog.GetUiView()};
+    image_before.save(a.c_str());
+    const QImage image_after{dialog.GetUiView()};
+    image_after.save(b.c_str());
+    if (image_before != image_after)
+    {
+      const QImage result{QtImage().Difference(image_before,image_after)};
+      result.save("QtTestQtEdgeDialogTest3_difference.png");
+    }
+    assert(image_before == image_after);
+  }
+
+  /*
   if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
   {
-    d.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
-    d.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
-    Grabber grabber(d.winId(),"QtTestQtEdgeDialogTest1_before.png");
-    QTimer::singleShot(200,&d,SLOT(close()));
+    dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
+    dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
+    Grabber grabber(dialog.winId(),"QtTestQtEdgeDialogTest1_before.png");
+    QTimer::singleShot(200,&dialog,SLOT(close()));
     QTimer::singleShot(100,&grabber,SLOT(Grab()));
-    d.exec();
+    dialog.exec();
   }
+  */
   assert(!"Refactor");
 
   /*

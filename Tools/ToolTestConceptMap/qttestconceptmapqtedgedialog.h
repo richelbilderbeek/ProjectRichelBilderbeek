@@ -38,6 +38,13 @@ public:
   ///to make it active
   int GetUiTestIndex() const noexcept;
 
+  QImage GetUiView() const noexcept;
+
+  //Obtain the X coordinat of the Node on the Edge from the GUI
+  double GetUiX() const noexcept;
+  //Obtain the Y coordinat of the Node on the Edge from the GUI
+  double GetUiY() const noexcept;
+
   void SetQtEdge(const boost::shared_ptr<QtEdge>& qtnode) noexcept;
 
 

@@ -43,7 +43,8 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qtconceptmapedge.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtedgedialog.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapqtnodefactory.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapqtedgefactory.cpp
+    ../../Classes/CppQtConceptMap/qtconceptmapqtedgefactory.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapedge_test.cpp
 
 HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapexamplesitem.h \

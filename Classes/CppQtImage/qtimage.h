@@ -17,6 +17,7 @@ namespace ribi {
 struct QtImage
 {
   QtImage() noexcept;
+  QImage Difference(const QImage& base, const QImage& to_xor) noexcept;
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
