@@ -71,12 +71,21 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
 
   const int argc = static_cast<int>(args.size());
 
+  bool silent{false};
+  if (std::count(args.begin(),args.end(),"-s") || std::count(args.begin(),args.end(),"--silent"))
+  {
+    silent = true;
+  }
   //Verbosity
   bool verbose = false;
+
   if (std::count(args.begin(),args.end(),"-b") || std::count(args.begin(),args.end(),"--verbose"))
   {
-    verbose = true;
-    std::cout << "Verbose mode" << std::endl;
+    if (!silent)
+    {
+      verbose = true;
+      std::cout << "Verbose mode" << std::endl;
+    }
   }
 
   //Do profile
@@ -96,7 +105,7 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
     && !std::count(args.begin(),args.end(),"--triangle_max_area")
   )
   {
-    std::cerr << "Parameter for Triangle area missing" << '\n';
+    if (!silent) { std::cerr << "Parameter for Triangle area missing" << '\n'; }
     return 1;
   }
   Area triangle_max_area = 0.0 * square_meter;
@@ -110,14 +119,14 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cerr << "Please supply a value for Triangle max area" << std::endl;
+        if (!silent) { std::cerr << "Please supply a value for Triangle max area" << std::endl; }
         return 1;
       }
     }
   }
   if (triangle_max_area <= 0.0 * square_meter)
   {
-    std::cerr << "Please supply a positive non-zero value for the Triangle max area" << std::endl;
+    if (!silent) { std::cerr << "Please supply a positive non-zero value for the Triangle max area" << std::endl; }
     return 1;
   }
   if (verbose)
@@ -131,7 +140,7 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
     && !std::count(args.begin(),args.end(),"--triangle_min_angle")
   )
   {
-    std::cerr << "Parameter for Triangle quality (a minimum angle) missing" << '\n';
+    if (!silent) { std::cerr << "Parameter for Triangle quality (a minimum angle) missing" << '\n'; }
     return 1;
   }
   Angle triangle_min_angle = 0.0 * radian;
@@ -149,22 +158,25 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
       }
       catch (boost::bad_lexical_cast&)
       {
-        std::cerr << "Please supply a value for Triangle quality (a minimum angle)" << std::endl;
+        if (!silent) { std::cerr << "Please supply a value for Triangle quality (a minimum angle)" << std::endl; }
         return 1;
       }
     }
   }
   if (triangle_min_angle <= 0.0 * radian )
   {
-    std::cerr << "Please supply a positive non-zero value for the Triangle quality (a minimum angle)" << std::endl;
+    if (!silent) { std::cerr << "Please supply a positive non-zero value for the Triangle quality (a minimum angle)" << std::endl; }
     return 1;
   }
   if (triangle_min_angle >= (boost::math::constants::two_pi<double>() / 3.0) * radian )
   {
-    std::cerr
-      << "Please supply a value less than 60 degrees for the Triangle quality (a minimum angle):"
-      << "A triangle cannot have three corners each of at least 60 degrees"
-      << std::endl;
+    if (!silent)
+    {
+      std::cerr
+        << "Please supply a value less than 60 degrees for the Triangle quality (a minimum angle):"
+        << "A triangle cannot have three corners each of at least 60 degrees"
+        << std::endl;
+    }
     return 1;
   }
   if (verbose)
@@ -179,7 +191,7 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
     && !std::count(args.begin(),args.end(),"--WKT")
   )
   {
-    std::cerr << "Parameter for WKT missing" << '\n';
+    if (!silent) { std::cerr << "Parameter for WKT missing" << '\n'; }
     return 1;
   }
 
@@ -194,7 +206,10 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
   }
   if (shapes.first.empty() && shapes.second.empty())
   {
-    std::cerr << "No shapes found, please suppy a WKT with at least one shape, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl;
+    if (!silent)
+    {
+      std::cerr << "No shapes found, please suppy a WKT with at least one shape, e.g. 'POLYGON((1 1,1 -1,1 -1))" << std::endl;
+    }
     return 1;
 
   }
@@ -223,30 +238,33 @@ int ribi::TestTriangleMenuDialog::ExecuteSpecific(const std::vector<std::string>
       const int n_triangle_output_eles = Container().Count(d.GetTriangleOutputEle(),'\n');
       const int n_triangle_output_nodes = Container().Count(d.GetTriangleOutputNode(),'\n');
       const int n_triangle_output_polys = Container().Count(d.GetTriangleOutputPoly(),'\n');
-      std::cout
-        << t_secs << " "
-        << n_triangle_output_eles << " "
-        << n_triangle_output_nodes << " "
-        << n_triangle_output_polys << " "
-        #ifndef NDEBUG
-        << "Debug"
-        #else
-        << "Release"
-        #endif
-        << std::endl
-      ;
+      if (!silent)
+      {
+        std::cout
+          << t_secs << " "
+          << n_triangle_output_eles << " "
+          << n_triangle_output_nodes << " "
+          << n_triangle_output_polys << " "
+          #ifndef NDEBUG
+          << "Debug"
+          #else
+          << "Release"
+          #endif
+          << std::endl
+        ;
+      }
     }
 
     return 0;
   }
   catch (std::exception& e)
   {
-    std::cerr << "ERROR: Exception caught: " << e.what() << std::endl;
+    if (!silent) { std::cerr << "ERROR: Exception caught: " << e.what() << std::endl; }
     return 1;
   }
   catch (...)
   {
-    std::cerr << "ERROR: Unknown exception caught!" << std::endl;
+    if (!silent) { std::cerr << "ERROR: Unknown exception caught!" << std::endl; }
     return 1;
   }
 }
@@ -287,6 +305,7 @@ ribi::Help ribi::TestTriangleMenuDialog::GetHelp() const noexcept
       Help::Option('p',"profile","add profiling information"),
       Help::Option('q',"triangle_min_angle","Triangle minimum angle"),
       Help::Option('r',"triangle_area","Triangle maximum area"),
+      Help::Option('s',"silent","no output"),
       Help::Option('w',"wkt","WKT of the shapes used as a base")
     },
     {
@@ -338,6 +357,8 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
     Geometry();
     PolyFile( Vertices() );
     PolyFileFromPolygons( Geometry().WktToShapes("POLYGON((1 1,-1 1,-1 -1,1 -1))") );
+    TriangleFile( Geometry().WktToShapes("POLYGON((1 1,-1 1,-1 -1,1 -1))") );
+    trim::Dialog();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{true};
@@ -351,7 +372,8 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
       {
         "TestTriangleMenuDialog",
         "--wkt", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
-        "--verbose",
+        "--silent",
+        //"--verbose",
         "--triangle_area", "1.0",
         "--triangle_quality", "1.0"
       }
@@ -363,7 +385,8 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
       {
         "TestTriangleMenuDialog",
         "-w", "POLYGON((1 1,1 -1,-1 -1,-1 1)),LINESTRING(0 0,0 2,2 2,0 0)",
-        //"-b",
+        "--silent",
+        //"--verbose",
         "-r", "1.0",
         "-q", "1.0"
       }

@@ -21,8 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCONCEPTMAPCONCEPTMAP_H
 #define QTCONCEPTMAPCONCEPTMAP_H
 
-#ifdef NOT_NOW_20140805_1204
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -204,7 +202,5 @@ public slots:
 
 } //~namespace cmap
 } //~namespace ribi
-
-#endif // NOT_NOW_20140805_1204
 
 #endif // QTCONCEPTMAPCONCEPTMAP_H

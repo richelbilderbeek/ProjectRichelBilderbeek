@@ -24,6 +24,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtconceptmapexamplesitem.h"
 
+#include <boost/lambda/lambda.hpp>
+
 #include <QFont>
 #include <QPainter>
 
@@ -34,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "conceptmapnode.h"
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapedge.h"
+#include "qtconceptmapnode.h"
 #include "qtconceptmapelement.h"
 #include "qtconceptmapelement.h"
 #include "qtitemdisplaystrategy.h"
@@ -50,7 +53,9 @@ ribi::cmap::QtExamplesItem::QtExamplesItem(
       parent
     ),
     m_signal_request_scene_update{},
-    m_item{}
+    m_item{nullptr},
+    m_qtedge{nullptr},
+    m_qtnode{nullptr}
 {
   #ifndef NDEBUG
   Test();
@@ -63,7 +68,9 @@ ribi::cmap::QtExamplesItem::QtExamplesItem(
   //this->SetBuddyItem(concept);
 }
 
-void ribi::cmap::QtExamplesItem::OnItemUpdated()
+void ribi::cmap::QtExamplesItem::OnItemUpdated(
+  // const QGraphicsItem * const item
+)
 {
   this->update();
   this->m_signal_request_scene_update();
@@ -71,12 +78,11 @@ void ribi::cmap::QtExamplesItem::OnItemUpdated()
 
 void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) noexcept
 {
-  #ifdef NOT_NOW_20140801
-  this->SetExamples(this->m_item->GetNode()->GetConcept()->GetExamples());
-  #endif // NOT_NOW_20140801
+  //this->SetExamples(this->m_item->GetNode()->GetConcept()->GetExamples());
+  const auto qtnode = m_qtedge ? m_qtedge->GetQtNode().get() : m_qtnode;
 
-  const QPointF p = m_item->GetOuterPos();
-  const QRectF r = m_item->GetInnerRect();
+  const QPointF p = qtnode->GetOuterPos();
+  const QRectF r = qtnode->GetOuterRect();
   this->SetOuterPos(
     p.x() + (0.5 * r.width() ) + 4.0 + (0.5 * this->GetInnerRect().width() ),
     p.y() + (0.5 * r.height()) + 4.0 + (0.5 * GetInnerRect().height())
@@ -85,23 +91,33 @@ void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGrap
   QtRoundedEditRectItem::paint(painter,option,widget);
 }
 
-void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapElement* const item)
+void ribi::cmap::QtExamplesItem::SetBuddyItem(const QGraphicsItem * const item)
 {
   if (m_item != item)
   {
     m_item = item;
-    #ifdef NOT_NOW_20140801
-    if (m_item && !m_item->GetNode()->GetConcept()->GetExamples()->Get().empty())
+    m_qtedge = dynamic_cast<const QtEdge*>(item);
+    m_qtnode = dynamic_cast<const QtNode*>(item);
+    if (m_qtedge && !m_qtedge->GetQtNode()->GetNode()->GetConcept()->GetExamples()->Get().empty())
     {
-      m_item->m_signal_pos_changed.connect(
+      m_qtedge->m_signal_edge_changed.connect(
         boost::bind(
-          &ribi::cmap::QtExamplesItem::OnItemUpdated,this
+          &ribi::cmap::QtExamplesItem::OnItemUpdated,this // ,boost::lambda::_1
         )
       );
-      this->SetExamples(item->GetNode()->GetConcept()->GetExamples());
+      this->SetExamples(m_qtedge->GetQtNode()->GetNode()->GetConcept()->GetExamples());
       this->setVisible(true);
     }
-    #endif // NOT_NOW_20140801
+    if (m_qtnode && !m_qtnode->GetNode()->GetConcept()->GetExamples()->Get().empty())
+    {
+      m_qtnode->m_signal_node_changed.connect(
+        boost::bind(
+          &ribi::cmap::QtExamplesItem::OnItemUpdated,this //,boost::lambda::_1
+        )
+      );
+      this->SetExamples(m_qtnode->GetNode()->GetConcept()->GetExamples());
+      this->setVisible(true);
+    }
     m_signal_request_scene_update();
   }
   else

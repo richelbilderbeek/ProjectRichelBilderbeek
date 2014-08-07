@@ -104,8 +104,8 @@ struct QtEdge : public QGraphicsItem
 
   std::string ToStr() const noexcept;
 
-  boost::signals2::signal<void (QtEdge *)> m_signal_base_changed;
-  boost::signals2::signal<void (QtEdge *)> m_signal_edge_changed;
+  mutable boost::signals2::signal<void (QtEdge *)> m_signal_base_changed;
+  mutable boost::signals2::signal<void (QtEdge *)> m_signal_edge_changed;
 
 protected:
   void focusInEvent(QFocusEvent *event) noexcept override final;

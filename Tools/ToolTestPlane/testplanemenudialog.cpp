@@ -47,64 +47,49 @@ ribi::TestPlaneMenuDialog::TestPlaneMenuDialog()
   #endif
 }
 
-int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
 {
   typedef apfloat Apfloat;
   typedef boost::geometry::model::point<Apfloat,3,boost::geometry::cs::cartesian> Point3D;
 
-  const int argc = static_cast<int>(argv.size());
+  const int argc = static_cast<int>(args.size());
   if (argc == 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  /*
-  if (argc == 5)
+
+  bool silent{false};
+  if (std::count(args.begin(),args.end(),"-s") || std::count(args.begin(),args.end(),"--silent"))
   {
-    std::stringstream s;
-    s << "Construct plane from coefficients" << '\n';
-    try
-    {
-      const Plane p(
-        boost::lexical_cast<double>(argv[1]),
-        boost::lexical_cast<double>(argv[2]),
-        boost::lexical_cast<double>(argv[3]),
-        boost::lexical_cast<double>(argv[4])
-      );
-    }
-    catch (std::logic_error& e)
-    {
-      s << "Exception: " << e.what() << '\n';
-    }
-    std::cout << s.str() << '\n';
+    silent = true;
   }
-  else
-  */
-  if (argc == 10)
+
+  if (argc == 10 || argc == 11)
   {
     std::stringstream s;
     s << "Construct plane from three points" << '\n';
 
     const Point3D p1(
-      boost::lexical_cast<double>(argv[1]),
-      boost::lexical_cast<double>(argv[2]),
-      boost::lexical_cast<double>(argv[3])
+      boost::lexical_cast<double>(args[1]),
+      boost::lexical_cast<double>(args[2]),
+      boost::lexical_cast<double>(args[3])
     );
 
     s << "Point 1: " << Geometry().ToStr(p1) << '\n';
 
     const Point3D p2(
-      boost::lexical_cast<double>(argv[4]),
-      boost::lexical_cast<double>(argv[5]),
-      boost::lexical_cast<double>(argv[6])
+      boost::lexical_cast<double>(args[4]),
+      boost::lexical_cast<double>(args[5]),
+      boost::lexical_cast<double>(args[6])
     );
 
     s << "Point 2: " << Geometry().ToStr(p2) << '\n';
 
     const Point3D p3(
-      boost::lexical_cast<double>(argv[7]),
-      boost::lexical_cast<double>(argv[8]),
-      boost::lexical_cast<double>(argv[9])
+      boost::lexical_cast<double>(args[7]),
+      boost::lexical_cast<double>(args[8]),
+      boost::lexical_cast<double>(args[9])
     );
 
     s << "Point 3: " << Geometry().ToStr(p3) << '\n';
@@ -154,7 +139,7 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
     {
       s << "Exception: " << e.what() << '\n';
     }
-    std::cout << s.str() << '\n';
+    if (!silent) { std::cout << s.str() << '\n'; }
   }
 
 
@@ -167,7 +152,7 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestPlane",
     "tests the Plane class",
-    "the 15th of July 2014",
+    "the 7th of August 2014",
     "2014",
     "http://www.richelbilderbeek.nl/ToolTestPlane.htm",
     GetVersion(),
@@ -206,7 +191,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestPlaneMenuDialog::GetProgram() c
 
 std::string ribi::TestPlaneMenuDialog::GetVersion() const noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
 std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const noexcept
@@ -218,7 +203,8 @@ std::vector<std::string> ribi::TestPlaneMenuDialog::GetVersionHistory() const no
     "2014-06-16: version 1.3: use of QDoubleSpinBox instead of QSlider in desktop version",
     "2014-07-07: version 1.4: investigate Plane::IsInPlane in desktop version",
     "2014-07-10: version 1.5: use of apfloat in Plane",
-    "2014-07-15: version 1.6: multiple bugfixes"
+    "2014-07-15: version 1.6: multiple bugfixes",
+    "2014-08-07: version 1.7: added silent flag to console version"
   };
 }
 
@@ -243,7 +229,8 @@ void ribi::TestPlaneMenuDialog::Test() noexcept
         "TestPlane",
         "1.0","1.0","10.0",
         "1.0","2.0","13.0",
-        "2.0","1.0","12.0"
+        "2.0","1.0","12.0",
+        "--silent"
       }
     );
   }

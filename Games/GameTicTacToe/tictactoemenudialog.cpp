@@ -44,11 +44,17 @@ ribi::tictactoe::TicTacToeMenuDialog::TicTacToeMenuDialog()
   #endif
 }
 
-int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& args) noexcept
 {
+  bool silent{false};
+  if (std::count(args.begin(),args.end(),"-s") || std::count(args.begin(),args.end(),"--silent"))
+  {
+    silent = true;
+  }
+
   boost::shared_ptr<Ai> p1;
   boost::shared_ptr<Ai> p2;
-  for (const auto& arg: argv)
+  for (const auto& arg: args)
   {
     if (arg == "-e" || arg == "--1e") p1.reset(new AiEnforceDraw);
     if (arg == "-m" || arg == "--1m") p1.reset(new AiPlayRandom);
@@ -58,11 +64,15 @@ int ribi::tictactoe::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std:
     if (arg == "-H" || arg == "--2h") p2.reset(new AiEnforceWin);
   }
 
+  if (silent)
+  {
+    if (!p1 || !p2) { return 0; } //Cannot test a live game in silent mode
+  }
   tictactoe::Game t;
 
   while (1)
   {
-    std::cout << (*t.ToTextCanvas()) << std::endl;
+    if (!silent) { std::cout << (*t.ToTextCanvas()) << std::endl; }
 
     if (t.GetWinner() != tictactoe::Winner::no_winner) break;
 
@@ -115,6 +125,7 @@ ribi::Help ribi::tictactoe::TicTacToeMenuDialog::GetHelp() const noexcept
       Help::Option('e',"1e","Player 1: easy"),
       Help::Option('m',"1m","Player 1: medium"),
       Help::Option('h',"1h","Player 1: hard"),
+      Help::Option('s',"silent","no output"),
       Help::Option('E',"2e","Player 2: easy"),
       Help::Option('M',"2m","Player 2: medium"),
       Help::Option('H',"2h","Player 2: hard")
@@ -139,7 +150,7 @@ boost::shared_ptr<const ribi::Program> ribi::tictactoe::TicTacToeMenuDialog::Get
 
 std::string ribi::tictactoe::TicTacToeMenuDialog::GetVersion() const noexcept
 {
-  return "1.7";
+  return "1.8";
 }
 
 std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory() const noexcept
@@ -152,7 +163,8 @@ std::vector<std::string> ribi::tictactoe::TicTacToeMenuDialog::GetVersionHistory
     "2011-04-15: version 1.4: major architectural changes",
     "2011-04-16: version 1.5: added use of WtAutoConfig (for web application)"
     "2014-02-10: version 1.6: added retro version",
-    "2014-06-05: version 1.7: first step in adding AI"
+    "2014-06-05: version 1.7: first step in adding AI",
+    "2014-08-07: version 1.8: added silent flag in console version"
   };
 }
 
@@ -171,7 +183,7 @@ void ribi::tictactoe::TicTacToeMenuDialog::Test() noexcept
   TextCanvas();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   {
-    TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog","--1h","--2h" } );
+    TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog","--1h","--2h", "--silent" } );
   }
 }
 #endif

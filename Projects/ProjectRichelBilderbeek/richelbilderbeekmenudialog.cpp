@@ -3405,9 +3405,9 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   ProjectRichelBilderbeekMenuDialog d;
-  d.Execute( { "ProjectRichelBilderbeek" } );
-  d.Execute( { "ProjectRichelBilderbeek", "--program" } );
-  d.Execute( { "ProjectRichelBilderbeek", "--status"  } );
+  //d.Execute( { "ProjectRichelBilderbeek" } );
+  //d.Execute( { "ProjectRichelBilderbeek", "--program" } );
+  //d.Execute( { "ProjectRichelBilderbeek", "--status"  } );
   //Create all menus
   for (const auto& m: CreateMenus())
   {

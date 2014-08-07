@@ -117,8 +117,11 @@ void ribi::tictactoe::Game::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  Board();
+  {
+    Board();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   {
     //Check draw detection
     {
@@ -255,7 +258,7 @@ void ribi::tictactoe::Game::Test() noexcept
             assert(g.CanDoMove(move_2.first,move_2.second));
             g.DoMove(move_2.first,move_2.second);
           }
-          TRACE(WinnerToName(g.GetWinner()));
+          if (verbose) { TRACE(WinnerToName(g.GetWinner())); }
         }
       }
     }

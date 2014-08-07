@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
 //---------------------------------------------------------------------------
-#ifdef NOT_NOW_20140805_1204
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -644,10 +642,10 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     const QtNode * const qtcenter_node
       = dynamic_cast<const QtNode *>(qtnode_concepts[0]);
     assert(qtcenter_node);
-    assert(qtcenter_node->GetX() > -0.5);
-    assert(qtcenter_node->GetX() <  0.5);
-    assert(qtcenter_node->GetY() > -0.5);
-    assert(qtcenter_node->GetY() <  0.5);
+    assert(qtcenter_node->GetOuterX() > -0.5);
+    assert(qtcenter_node->GetOuterX() <  0.5);
+    assert(qtcenter_node->GetOuterY() > -0.5);
+    assert(qtcenter_node->GetOuterY() <  0.5);
 
     const double r1
       = 0.5 * ribi::cmap::GetDistance(
@@ -673,10 +671,10 @@ void ribi::cmap::QtConceptMap::RepositionItems()
       #ifndef NDEBUG
       const double epsilon = 0.000001;
       #endif
-      assert(std::abs(x - qtnode->GetX()) < epsilon);
+      assert(std::abs(x - qtnode->GetOuterX()) < epsilon);
       assert(std::abs(x - qtnode->GetNode()->GetX()) < epsilon);
       //assert(std::abs(x - qtnode->GetDisplayStrategy()->pos().x()) < epsilon);
-      assert(std::abs(y - qtnode->GetY()) < epsilon);
+      assert(std::abs(y - qtnode->GetOuterY()) < epsilon);
       assert(std::abs(y - qtnode->GetNode()->GetY()) < epsilon);
       //assert(std::abs(y - qtnode->GetDisplayStrategy()->pos().y()) < epsilon);
 
@@ -689,7 +687,7 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     std::for_each(qtedge_concepts.begin(), qtedge_concepts.end(),
       [](QtEdge * const qtedge)
       {
-        const QPointF p((qtedge->GetFrom()->GetPos() + qtedge->GetTo()->GetPos()) / 2.0);
+        const QPointF p((qtedge->GetFrom()->GetOuterPos() + qtedge->GetTo()->GetOuterPos()) / 2.0);
         const double new_x = p.x();
         const double new_y = p.y();
         //qtedge->GetEdge()->SetX(new_x);
@@ -718,7 +716,7 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     const QtNode * const first_node { qtnodes[0] };
     assert(first_node);
 
-    std::vector<QtRoundedEditRectItem*> nodes_and_edges;
+    std::vector<QGraphicsItem*> nodes_and_edges;
     std::copy(qtnodes.begin(),qtnodes.end(),std::back_inserter(nodes_and_edges));
     std::copy(qtedges.begin(),qtedges.end(),std::back_inserter(nodes_and_edges));
 
@@ -726,15 +724,15 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     std::for_each(
       nodes_and_edges.begin() + 1, //+1 to skip the center node at [0]
       nodes_and_edges.end(),
-      [first_node,&done](QtRoundedEditRectItem* const node_or_edge)
+      [first_node,&done](QGraphicsItem* const node_or_edge)
       {
         if (first_node->boundingRect().intersects(
-          node_or_edge->boundingRect().translated(-node_or_edge->GetPos())))
+          node_or_edge->boundingRect().translated(-node_or_edge->pos())))
         {
-          const double cur_x = node_or_edge->GetX();
-          const double cur_y = node_or_edge->GetY();
-          const double new_x = cur_x + (node_or_edge->GetPos().x() < first_node->GetX() ? -1.0 : 1.0);
-          const double new_y = cur_y + (node_or_edge->GetPos().y() < first_node->GetY() ? -1.0 : 1.0);
+          const double cur_x = node_or_edge->x();
+          const double cur_y = node_or_edge->y();
+          const double new_x = cur_x + (node_or_edge->x() < first_node->x() ? -1.0 : 1.0);
+          const double new_y = cur_y + (node_or_edge->y() < first_node->y() ? -1.0 : 1.0);
           if (QtNode * const qtnode = dynamic_cast<QtNode *>(node_or_edge))
           {
             qtnode->GetNode()->SetX(new_x);
@@ -772,8 +770,8 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
     {
       if (!IsQtCenterNode(qtnode))
       {
-        double x = qtnode->GetX();
-        double y = qtnode->GetY();
+        double x = qtnode->GetOuterX();
+        double y = qtnode->GetOuterY();
         const int i = (std::rand() >> 4) % 4;
         switch(i)
         {
@@ -783,7 +781,7 @@ void ribi::cmap::QtConceptMap::Shuffle() noexcept
           case 3: y+=-1.0; break;
           default: assert(!"Should not get here");
         }
-        assert(QPointF(x,y) != qtnode->GetPos());
+        assert(QPointF(x,y) != qtnode->GetOuterPos());
         qtnode->GetNode()->SetPos(x,y);
       }
     }
@@ -818,7 +816,7 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr<const ribi::cmap::
     assert(v.size() == w.size() && "All edges must be unique");
   }
   {
-    std::set<QtConceptMapElement*> v;
+    std::set<QGraphicsItem*> v;
     const std::vector<QtNode*> node_concepts = Collect<QtNode>(scene());
     std::copy(node_concepts.begin(),node_concepts.end(),std::inserter(v,v.begin()));
     const std::vector<QtEdge*> edge_concepts = Collect<QtEdge>(scene());
@@ -857,5 +855,3 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr<const ribi::cmap::
 
 }
 #endif
-
-#endif // NOT_NOW_20140805_1204

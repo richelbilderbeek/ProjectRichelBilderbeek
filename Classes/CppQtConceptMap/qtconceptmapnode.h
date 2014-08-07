@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "qtroundededitrectitem.h"
-#include "qtconceptmapelement.h"
+//#include "qtconceptmapelement.h"
 
 #include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
@@ -36,9 +36,9 @@ namespace ribi {
 namespace cmap {
 
 ///QtNode displays a Node as a QtConceptMapElement
-struct QtNode : public QtConceptMapElement
+struct QtNode : public QtRoundedEditRectItem
 {
-  typedef QtConceptMapElement Base;
+  typedef QtRoundedEditRectItem Base;
   virtual ~QtNode() noexcept;
 
   ///Node cannot be const as it contains a Concept that the user might want to edit
@@ -80,8 +80,8 @@ struct QtNode : public QtConceptMapElement
   ///m_signal_request_rate_node is emitted due to a m_signal_request_rate_node
   ///of the Node its QtRateConceptItem
   //boost::signals2::signal<void (QtNode *)> m_signal_display_changed;
-  boost::signals2::signal<void (QtNode *)> m_signal_base_changed;
-  boost::signals2::signal<void (QtNode *)> m_signal_node_changed;
+  mutable boost::signals2::signal<void (QtNode *)> m_signal_base_changed;
+  mutable boost::signals2::signal<void (QtNode *)> m_signal_node_changed;
   //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
   //boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_examples;
   /*
