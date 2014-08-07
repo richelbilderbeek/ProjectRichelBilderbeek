@@ -35,11 +35,19 @@ public:
 
   ///Read the name from the GUI
   std::string GetUiName() const noexcept;
+  ///Read the X from the GUI
+  double GetUiX() const noexcept;
+  ///Read the Y from the GUI
+  double GetUiY() const noexcept;
 
   void SetQtNode(const boost::shared_ptr<QtNode>& qtnode) noexcept;
 
   ///Set the name via the GUI
-  void SetUiName(const std::string& name) const noexcept;
+  void SetUiName(const std::string& name) noexcept;
+  ///Set the X via the GUI
+  void SetUiX(const double x) noexcept;
+  ///Set the Y via the GUI
+  void SetUiY(const double y) noexcept;
 
 private:
   Ui::QtQtNodeDialog *ui;

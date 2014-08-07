@@ -396,7 +396,7 @@ void ribi::QtRoundedRectItem::Test() noexcept
     is_tested = true;
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
-  const bool verbose{true};
+  const bool verbose{false};
   if (verbose) { TRACE("Construction"); }
   {
     QtRoundedRectItem();

@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtroundededitrectitemcomparedialog.h"
 #include "qttestqtroundededitrectitemmodifydialog.h"
 #include "trace.h"
+#include "testtimer.h"
 #include "ui_qttestqtroundededitrectitemmenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -100,11 +101,10 @@ void ribi::QtTestQtRoundedEditRectItemMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtRoundedEditRectItemMenuDialog::Test");
   QtRoundedRectItem();
   QtRoundedEditRectItem();
   QtTestQtRoundedEditRectItemCompareDialog();
   QtTestQtRoundedEditRectItemModifyDialog();
-  TRACE("Finished ribi::QtTestQtRoundedEditRectItemMenuDialog::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

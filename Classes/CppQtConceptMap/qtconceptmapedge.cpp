@@ -374,7 +374,6 @@ void ribi::cmap::QtEdge::OnHeadArrowChanged(Edge * const edge) noexcept
 
 void ribi::cmap::QtEdge::OnNodeChanged(Edge * const edge) noexcept
 {
-  //TRACE_FUNC();
   m_qtnode->SetOuterX(edge->GetNode()->GetX());
   m_qtnode->SetOuterY(edge->GetNode()->GetY());
   m_qtnode->SetText( { edge->GetNode()->GetConcept()->GetName() } );

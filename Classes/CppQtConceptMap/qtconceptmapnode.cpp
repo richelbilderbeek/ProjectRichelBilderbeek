@@ -315,7 +315,11 @@ void ribi::cmap::QtNode::OnPosChanged(const QtRoundedRectItem * const item) noex
   m_node->SetPos(new_pos.x(),new_pos.y());
 }
 
-void ribi::cmap::QtNode::OnTextChanged(const QtRoundedRectItem * const item) noexcept
+void ribi::cmap::QtNode::OnTextChanged(const QtRoundedRectItem * const
+#ifndef NDEBUG
+  item
+#endif
+) noexcept
 {
   //QtRoundedRectItem changed, sync Node
   assert(item);

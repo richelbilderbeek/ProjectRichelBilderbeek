@@ -115,6 +115,9 @@ void ribi::OpenQuestionDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  {
+    OpenQuestionDialogFactory();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   //Test setting the open questions
   for(const auto dialog: OpenQuestionDialogFactory().GetTestOpenQuestionDialogs())

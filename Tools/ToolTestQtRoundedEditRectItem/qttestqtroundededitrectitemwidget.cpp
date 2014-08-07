@@ -21,10 +21,7 @@
 #include "qtroundededitrectitem.h"
 #include "testqtroundededitrectitemmenudialog.h"
 #include "trace.h"
-#ifndef NDEBUG
-//#include "qtroundedtextrectitem.h"
-#endif
-
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::QtTestQtRoundedEditRectItemWidget::QtTestQtRoundedEditRectItemWidget(QWidget *parent)
@@ -82,7 +79,7 @@ void ribi::QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
         + boost::lexical_cast<std::string>(c);
 
       item->SetText( std::vector<std::string>(1 + col,s) );
-      item->SetPos(x,y);
+      item->SetOuterPos(x,y);
       item->SetFocusPen(QPen(QColor(255,0,0),3.0));
       assert(!item->scene());
       scene()->addItem(item);
@@ -120,7 +117,6 @@ void ribi::QtTestQtRoundedEditRectItemWidget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestQtRoundedEditRectItemWidget::Test");
-  TRACE("Finished ribi::QtTestQtRoundedEditRectItemWidget::Test successfully");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

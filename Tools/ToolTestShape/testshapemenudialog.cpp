@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shape.h"
 #include "shapewidget.h"
 #include "trace.h"
+#include "testtimer.h"
 
 #include <QFile>
 
@@ -131,6 +132,6 @@ void ribi::TestShapeMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestShapeMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

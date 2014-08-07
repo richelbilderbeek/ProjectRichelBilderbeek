@@ -98,7 +98,21 @@ std::string ribi::cmap::QtQtNodeDialog::GetUiName() const noexcept
   return m_qtnodedialog->GetUiName();
 }
 
-void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const qtnode) noexcept
+double ribi::cmap::QtQtNodeDialog::GetUiX() const noexcept
+{
+  return m_qtnodedialog->GetUiX();
+}
+
+double ribi::cmap::QtQtNodeDialog::GetUiY() const noexcept
+{
+  return m_qtnodedialog->GetUiY();
+}
+
+void ribi::cmap::QtQtNodeDialog::OnNodeChanged(QtNode * const
+#ifndef NDEBUG
+  qtnode
+#endif // NDEBUG
+) noexcept
 {
   assert( qtnode ==  m_qtnode.get());
   assert(*qtnode == *m_qtnode);
@@ -221,8 +235,6 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
     m_qtnode->m_signal_node_changed(m_qtnode.get());
   }
 
-
-
   this->setMinimumHeight(
     this->GetMinimumHeight(
       *m_qtnode
@@ -233,9 +245,19 @@ void ribi::cmap::QtQtNodeDialog::SetQtNode(const boost::shared_ptr<QtNode>& qtno
   assert(*qtnode == *m_qtnode);
 }
 
-void ribi::cmap::QtQtNodeDialog::SetUiName(const std::string& name) const noexcept
+void ribi::cmap::QtQtNodeDialog::SetUiName(const std::string& name) noexcept
 {
   m_qtnodedialog->SetUiName(name);
+}
+
+void ribi::cmap::QtQtNodeDialog::SetUiX(const double x) noexcept
+{
+  m_qtnodedialog->SetUiX(x);
+}
+
+void ribi::cmap::QtQtNodeDialog::SetUiY(const double y) noexcept
+{
+  m_qtnodedialog->SetUiY(y);
 }
 
 #ifndef NDEBUG
@@ -246,32 +268,31 @@ void ribi::cmap::QtQtNodeDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  QtNodeFactory();
-  QtNodeFactory().GetTest(1);
-  QtNodeDialog();
-  QtRoundedEditRectItemDialog();
+  {
+    QtNodeFactory();
+    QtNodeFactory().GetTest(1);
+    QtNodeDialog();
+    QtRoundedEditRectItemDialog();
+  }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   QtQtNodeDialog dialog;
   const auto node = NodeFactory().GetTest(1);
   const boost::shared_ptr<QtNode> qtnode{new QtNode(node)};
   dialog.SetQtNode(qtnode);
-  const boost::shared_ptr<QtNodeDialog> lhs = dialog.m_qtnodedialog;
-  const boost::shared_ptr<QtRoundedEditRectItemDialog> rhs = dialog.m_qtroundededitrectitem_dialog;
-  assert(std::abs(lhs->GetUiX() - rhs->GetUiX()) < 1.0);
-  assert(std::abs(lhs->GetUiY() - rhs->GetUiY()) < 1.0);
-  ///LHS, setX
+  if (verbose) { TRACE("SetUiX and GetUiX must be symmetric"); }
   {
-    const double new_x{lhs->GetUiX() + 5.0};
-    lhs->SetUiX(new_x);
-    assert(std::abs(lhs->GetUiX() - new_x) < 1.0);
+    const double old_x{dialog.GetUiX()};
+    const double new_x{old_x + 10.0};
+    dialog.SetUiX(new_x);
+    assert(std::abs(dialog.GetUiX() - new_x) < 2.0);
   }
-  //RHS, setX
+  if (verbose) { TRACE("SetUiY and GetUiY must be symmetric"); }
   {
-    const double new_x{rhs->GetUiX() + 5.0};
-    rhs->SetUiX(new_x);
-    assert(std::abs(rhs->GetUiX() - new_x) < 1.0);
+    const double old_y{dialog.GetUiY()};
+    const double new_y{old_y + 10.0};
+    dialog.SetUiY(new_y);
+    assert(std::abs(dialog.GetUiY() - new_y) < 2.0);
   }
-  lhs->SetUiY(lhs->GetUiX() + 5.0);
-  rhs->SetUiY(rhs->GetUiX() + 5.0);
 }
 #endif

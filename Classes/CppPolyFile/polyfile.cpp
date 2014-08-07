@@ -177,7 +177,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      TRACE(s.str());
+      if (verbose) { TRACE(s.str()); }
       throw std::runtime_error(s.str());
     }
     assert(w.size() == 4);
@@ -199,7 +199,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      TRACE(s.str());
+      if (verbose) { TRACE(s.str()); }
       throw std::runtime_error(s.str());
     }
     assert(w.size() == 3);
@@ -213,7 +213,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      TRACE(s.str());
+      if (verbose) { TRACE(s.str()); }
       throw std::runtime_error(s.str());
     }
     if (from_index < 0)
@@ -225,7 +225,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      TRACE(s.str());
+      if (verbose) { TRACE(s.str()); }
       throw std::runtime_error(s.str());
     }
     if (from_index >= static_cast<int>(vertices.size()))
@@ -238,7 +238,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      TRACE(s.str());
+      if (verbose) { TRACE(s.str()); }
       throw std::runtime_error(s.str());
     }
     if (to_index < 0)
@@ -250,7 +250,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      TRACE(s.str());
+      if (verbose) { TRACE(s.str()) };
       throw std::runtime_error(s.str());
     }
     if (to_index >= static_cast<int>(vertices.size()))
@@ -263,7 +263,7 @@ std::pair<ribi::PolyFile::Vertices,ribi::PolyFile::Edges> ribi::PolyFile::Parse(
         << "line #" << i << ": '"
         << line << "'"
       ;
-      TRACE(s.str());
+      if (verbose) { TRACE(s.str()); }
       throw std::runtime_error(s.str());
     }
     assert(from_index != to_index);

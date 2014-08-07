@@ -131,6 +131,7 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     is_tested = true;
   }
   QtRoundedEditRectItem();
+  QtImage();
   const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
   QtTestQtNodeDialog dialog;
@@ -209,24 +210,25 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
     const std::string new_name_again = qtrectitem->GetText()[0];
     assert(new_name_again == new_name);
   }
-  if (verbose) { TRACE("Grabbing QtEdge of QGraphicsView twice, results in an identical picture"); }
+  if (verbose) { TRACE("Grabbing QtNodeof QGraphicsView twice, results in an identical picture"); }
   {
-    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_tmp2{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
     const QImage image_after{dialog.GetUiView()};
     assert(image_before == image_after);
   }
-  if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
+  if (verbose) { TRACE("If the text of an QtNode its center QtNode is changed, the Item must be updated"); }
   {
-    TRACE_FUNC();
-    const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_tmp1{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
+    const QImage image_tmp2{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
     const QImage image_before{dialog.GetUiView()};
 
     dialog.GetQtNode()->GetNode()->GetConcept()->SetName("A");
     dialog.GetQtNode()->GetNode()->GetConcept()->SetName("B");
 
     const QImage image_after{dialog.GetUiView()};
-
+    /*
     if (image_before == image_after)
     {
       const std::string a{"QtTestQtNodeDialogTest1_before.png"};
@@ -236,13 +238,40 @@ void ribi::cmap::QtTestQtNodeDialog::Test() noexcept
       const QImage result{QtImage().Difference(image_before,image_after)};
       result.save("QtTestQtNodeDialogTest1_difference.png");
     }
+    */
     assert(image_before != image_after);
   }
-  assert(!"Refactor");
-  /*
-  assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtNode()->GetX()) < 1.0);
-  assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtNode()->GetY()) < 1.0);
-  */
+  if (verbose) { TRACE("QGraphicsScene must have one item"); }
+  {
+    assert(dialog.m_view_left->scene()->items().size() == 1);
+  }
+  if (verbose) { TRACE("Setting X via UI should result in an update of the QtRoundedEditRectItem in the QGraphicsScene"); }
+  {
+    const double old_x{dialog.m_dialog_left->GetUiX()};
+    const double new_x{old_x + 10.0};
+    dialog.m_dialog_left->SetUiX(new_x);
+    const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
+    const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
+    assert(std::abs(qtrectitem->GetOuterX() - new_x) < 2.0);
+  }
+  if (verbose) { TRACE("Setting Y via UI should result in an update of the QtRoundedEditRectItem in the QGraphicsScene"); }
+  {
+    const double old_y{dialog.m_dialog_left->GetUiY()};
+    const double new_y{old_y + 10.0};
+    dialog.m_dialog_left->SetUiY(new_y);
+    const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
+    const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
+    assert(std::abs(qtrectitem->GetOuterY() - new_y) < 2.0);
+  }
+  if (verbose) { TRACE("Setting Name via UI should result in an update of the QtRoundedEditRectItem in the QGraphicsScene"); }
+  {
+    const std::string old_name{dialog.m_dialog_left->GetUiName()};
+    const std::string new_name{old_name + " (modified)"};
+    dialog.m_dialog_left->SetUiName(new_name);
+    const QGraphicsItem * const item = dialog.m_view_left->scene()->items()[0];
+    const QtRoundedEditRectItem * qtrectitem = dynamic_cast<const QtRoundedEditRectItem*>(item);
+    assert(qtrectitem->GetText()[0] == new_name);
+  }
 }
 #endif
 

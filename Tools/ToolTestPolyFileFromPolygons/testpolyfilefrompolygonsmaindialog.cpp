@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "geometry.h"
 #include "polyfilefrompolygons.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::TestPolyFileFromPolygonsMainDialog::TestPolyFileFromPolygonsMainDialog(
@@ -54,7 +55,7 @@ void ribi::TestPolyFileFromPolygonsMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestPolyFileFromPolygonsMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   const auto polygon = Geometry().CreateShapeTriangle();
   const Polygons polygons = { polygon };
   TestPolyFileFromPolygonsMainDialog d(polygons);

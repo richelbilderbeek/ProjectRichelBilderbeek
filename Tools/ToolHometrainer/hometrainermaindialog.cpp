@@ -250,7 +250,12 @@ void ribi::HometrainerMainDialog::Test() noexcept
   }
   {
     OpenQuestionFactory();
-    MultipleChoiceQuestion::GetValidMultipleChoiceQuestions();
+    {
+      const std::string q{MultipleChoiceQuestion::GetValidMultipleChoiceQuestions()[0]};
+      boost::shared_ptr<MultipleChoiceQuestion> m{new MultipleChoiceQuestion(q)};
+      boost::shared_ptr<MultipleChoiceQuestionDialog> d{new MultipleChoiceQuestionDialog(m)};
+    }
+    { boost::shared_ptr<OpenQuestionDialog> d{new OpenQuestionDialog};}
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   for(const std::string& s: OpenQuestionFactory().GetValidOpenQuestionStrings())

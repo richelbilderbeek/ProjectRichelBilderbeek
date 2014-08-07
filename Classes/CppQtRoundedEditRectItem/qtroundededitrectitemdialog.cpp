@@ -119,7 +119,11 @@ void ribi::QtRoundedEditRectItemDialog::on_button_text_pen_clicked()
   m_item->SetTextPen(pen);
 }
 
-void ribi::QtRoundedEditRectItemDialog::OnBaseChanged(QtRoundedEditRectItem * const qtitem) noexcept
+void ribi::QtRoundedEditRectItemDialog::OnBaseChanged(QtRoundedEditRectItem * const
+#ifndef NDEBUG
+qtitem
+#endif // NDEBUG
+) noexcept
 {
   assert(m_item.get() == qtitem);
   //boost::shared_ptr<QtRoundedRectItem> base(m_item);

@@ -242,13 +242,14 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
   }
   if (verbose) { TRACE("If the text of an QtEdge its center QtNode is changed, the Item must be updated"); }
   {
-    TRACE_FUNC();
     const std::string a{"QtTestQtEdgeDialogTest1_before.png"};
     const std::string b{"QtTestQtEdgeDialogTest1_after.png"};
     const QImage image_tmp{dialog.GetUiView()}; //Needed to force something more thorough than update and repaint
-    const QImage image_before{dialog.GetUiView()};
 
     dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("A");
+
+    const QImage image_before{dialog.GetUiView()};
+
     dialog.GetQtEdge()->GetEdge()->GetNode()->GetConcept()->SetName("B");
 
     const QImage image_after{dialog.GetUiView()};
@@ -261,12 +262,6 @@ void ribi::cmap::QtTestQtEdgeDialog::Test() noexcept
     }
     assert(image_before != image_after);
   }
-  assert(!"Refactor");
-
-  /*
-  assert(std::abs(m_view_left->scene()->items()[0]->x() - m_dialog_left->GetQtEdge()->GetX()) < 1.0);
-  assert(std::abs(m_view_left->scene()->items()[0]->y() - m_dialog_left->GetQtEdge()->GetY()) < 1.0);
-  */
 }
 #endif
 

@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "geometry.h"
 #include "trace.h"
+#include "testtimer.h"
+
 #pragma GCC diagnostic pop
 
 ribi::WktToSvgMainDialog::WktToSvgMainDialog(
@@ -53,7 +55,7 @@ void ribi::WktToSvgMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::WktToSvgMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif
 

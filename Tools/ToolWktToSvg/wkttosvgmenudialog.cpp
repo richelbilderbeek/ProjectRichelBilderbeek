@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "trace.h"
 #include "wkttosvgmaindialog.h"
 #pragma GCC diagnostic pop
@@ -208,11 +209,18 @@ void ribi::WktToSvgMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::WktToSvgMenuDialog::Test");
+  WktToSvgMenuDialog().GetAbout();
+  WktToSvgMenuDialog().GetHelp();
+  WktToSvgMainDialog("",1.0);
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+  if (verbose) { TRACE("Construction"); }
   {
     WktToSvgMenuDialog d;
-    d.Execute( {"WktToSvgMenuDialog", "--help" } );
-    d.Execute(
+  }
+  if (verbose) { TRACE("Run with simple polygon"); }
+  {
+    WktToSvgMenuDialog().Execute(
       {
         "WktToSvgMenuDialog",
         "--wkt", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
@@ -220,7 +228,10 @@ void ribi::WktToSvgMenuDialog::Test() noexcept
         //"--verbose"
       }
     );
-    d.Execute(
+  }
+  if (verbose) { TRACE("Run with simple linestring"); }
+  {
+    WktToSvgMenuDialog().Execute(
       {
         "WktToSvgMenuDialog",
         "--wkt", "LINESTRING(1 1,-1 1,-1 -1,1 -1)",
@@ -228,7 +239,10 @@ void ribi::WktToSvgMenuDialog::Test() noexcept
         //"--verbose"
       }
     );
-    d.Execute(
+  }
+  if (verbose) { TRACE("Run with simple polygons"); }
+  {
+    WktToSvgMenuDialog().Execute(
       {
         "WktToSvgMenuDialog",
         "-w", "POLYGON((0 1,-1 -1,1 -1)),POLYGON((0 -1,-1 1,1 1))",
@@ -236,7 +250,10 @@ void ribi::WktToSvgMenuDialog::Test() noexcept
         //"-b"
       }
     );
-    d.Execute(
+  }
+  if (verbose) { TRACE("Run with simple polygon and linestring"); }
+  {
+    WktToSvgMenuDialog().Execute(
       {
         "WktToSvgMenuDialog",
         "-w", "POLYGON((0 1,-1 -1,1 -1)),LINESTRING(0 -1,-1 1,1 1,0 -1)",

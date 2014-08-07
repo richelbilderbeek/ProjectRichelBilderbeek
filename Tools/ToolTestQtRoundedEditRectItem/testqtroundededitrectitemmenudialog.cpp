@@ -6,6 +6,7 @@
 #include "container.h"
 #include "fileio.h"
 #include "plane.h"
+#include "testtimer.h"
 #include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
@@ -31,7 +32,7 @@ ribi::About ribi::TestQtRoundedEditRectItemMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestQtRoundedEditRectItemWidget",
     "tests QtRoundedEditRectItemWidget",
-    "the 23rd of June 2014",
+    "the 7th of August 2014",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolTestQtRoundedEditRectItemWidget.htm",
     GetVersion(),
@@ -69,7 +70,7 @@ boost::shared_ptr<const ribi::Program> ribi::TestQtRoundedEditRectItemMenuDialog
 
 std::string ribi::TestQtRoundedEditRectItemMenuDialog::GetVersion() const noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::TestQtRoundedEditRectItemMenuDialog::GetVersionHistory() const noexcept
@@ -77,9 +78,10 @@ std::vector<std::string> ribi::TestQtRoundedEditRectItemMenuDialog::GetVersionHi
   return {
     "2012-12-21: version 1.0: initial version",
     "2012-12-31: version 1.1: added menu",
-    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole"
-    "2014-06-15: version 1.3: added Modify dialog in desktop version"
-    "2014-06-23: version 1.4: use of QtRoundedEditRectItemDialog"
+    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole",
+    "2014-06-15: version 1.3: added Modify dialog in desktop version",
+    "2014-06-23: version 1.4: use of QtRoundedEditRectItemDialog",
+    "2014-08-07: version 1.5: increased use of TDD"
 
   };
 }
@@ -92,6 +94,19 @@ void ribi::TestQtRoundedEditRectItemMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestQtRoundedEditRectItemMenuDialog::Test");
+  {
+    Container();
+    fileio::FileIo();
+    const boost::shared_ptr<Plane> p{
+      new Plane(
+        Plane::Coordinat3D(1.0,0.0,0.0),
+        Plane::Coordinat3D(0.0,1.0,0.0),
+        Plane::Coordinat3D(0.0,0.0,1.0)
+      )
+    };
+    ::ribi::Regex();
+  }
+
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

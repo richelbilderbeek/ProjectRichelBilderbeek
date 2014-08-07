@@ -15,6 +15,7 @@
 #include "valentinecarddecryptermaindialog.h"
 #include "valentinecardsymbols.h"
 #include "valentinecardsymbol.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 
 #include "trace.h"
@@ -137,7 +138,7 @@ void ribi::ValentineCardDecrypterMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ValentineCardDecrypterMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   ValentineCardDecrypterMenuDialog d;
   d.Execute( {"ValentineCardDecrypter"} );
   d.Execute( {"ValentineCardDecrypter", "--text", "Hello world"} );

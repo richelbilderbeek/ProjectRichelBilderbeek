@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "openquestion.h"
 #include "openquestiondialog.h"
 #include "openquestiondialogfactory.h"
+#include "testtimer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -114,6 +115,6 @@ void ribi::TestQuestionMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestQuestionMainDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 
@@ -130,6 +131,6 @@ void ribi::TestOpenQuestionMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestOpenQuestionMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

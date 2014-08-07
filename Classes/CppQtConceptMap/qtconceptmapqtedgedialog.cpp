@@ -102,7 +102,11 @@ double ribi::cmap::QtQtEdgeDialog::GetUiY() const noexcept
   return this->m_qtedgedialog->GetUiY();
 }
 
-void ribi::cmap::QtQtEdgeDialog::OnEdgeChanged(QtEdge * const qtedge) noexcept
+void ribi::cmap::QtQtEdgeDialog::OnEdgeChanged(QtEdge * const
+#ifndef NDEBUG
+  qtedge
+#endif // NDEBUG
+) noexcept
 {
   assert( qtedge ==  m_qtedge.get());
   assert(*qtedge == *m_qtedge);

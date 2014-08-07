@@ -12,6 +12,7 @@
 #include "fileio.h"
 #include "textcanvas.h"
 #include "trace.h"
+#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::ValentineCardSymbol::ValentineCardSymbol(
@@ -92,7 +93,7 @@ void ribi::ValentineCardSymbol::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ValentineCardSymbol::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   {
     assert(ValentineCardSymbol( { false, true, true,false }, CenterSymbol::none ).CalcValue() == 0);
     assert(ValentineCardSymbol( { false, true, true, true }, CenterSymbol::none ).CalcValue() == 1);

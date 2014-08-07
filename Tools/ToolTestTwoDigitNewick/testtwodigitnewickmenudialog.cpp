@@ -10,6 +10,7 @@
 
 #include "richelbilderbeekprogram.h"
 #include "twodigitnewick.h"
+#include "testtimer.h"
 #include "newick.h"
 #pragma GCC diagnostic pop
 
@@ -136,6 +137,6 @@ void ribi::TestTwoDigitNewickMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestTwoDigitNewickMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

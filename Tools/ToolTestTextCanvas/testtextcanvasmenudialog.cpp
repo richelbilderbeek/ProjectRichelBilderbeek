@@ -5,6 +5,7 @@
 
 #include "fileio.h"
 #include "richelbilderbeekprogram.h"
+#include "testtimer.h"
 #include "textcanvas.h"
 #include "trace.h"
 
@@ -107,7 +108,7 @@ void ribi::TestTextCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestTextCanvasMenuDialog::Test");
   ribi::TextCanvas();
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

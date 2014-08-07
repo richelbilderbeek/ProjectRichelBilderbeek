@@ -12,6 +12,7 @@
 #include "fileio.h"
 #include "imagecanvas.h"
 #include "multicanvas.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "trace.h"
@@ -139,7 +140,7 @@ void ribi::TestMultiCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestMultiCanvasMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
   boost::shared_ptr<Canvas> draw_canvas;
   const int n_cols = 78;
   {

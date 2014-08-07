@@ -20,10 +20,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "hometrainermenudialog.h"
 
 #include <iostream>
 
+#include "container.h"
 #include "exercise.h"
 #include "fileio.h"
 #include "hometrainermaindialog.h"
@@ -165,8 +168,9 @@ void ribi::HometrainerMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  Container();
   HometrainerResources();
-
+  HometrainerMainDialog(HometrainerResources().GetExerciseClouds());
   const TestTimer test_timer(__func__,__FILE__,1.0);
 
   HometrainerMenuDialog().Execute( { "Hometrainer", "-e" } );

@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "geometry.h"
 #include "plane.h"
+#include "testtimer.h"
 #include "ribi_regex.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
@@ -229,18 +230,23 @@ void ribi::TestPlaneMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestPlaneMenuDialog::Test");
-  TestPlaneMenuDialog d;
-  d.Execute( {"TestPlane" } );
-  d.Execute( {"TestPlane","30.0","-48.0","17.0","15.0"} );
-  d.Execute(
-    {
-      "TestPlane",
-      "1.0","1.0","10.0",
-      "1.0","2.0","13.0",
-      "2.0","1.0","12.0"
-    }
-  );
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
+  if (verbose) { TRACE("Construction"); }
+  {
+    TestPlaneMenuDialog();
+  }
+  if (verbose) { TRACE("Simple plane"); }
+  {
+    TestPlaneMenuDialog().Execute(
+      {
+        "TestPlane",
+        "1.0","1.0","10.0",
+        "1.0","2.0","13.0",
+        "2.0","1.0","12.0"
+      }
+    );
+  }
 }
 
 

@@ -5,6 +5,7 @@
 
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::VisualAbcMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -81,6 +82,6 @@ void ribi::VisualAbcMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::VisualAbcMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

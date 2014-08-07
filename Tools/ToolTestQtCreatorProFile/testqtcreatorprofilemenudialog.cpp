@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "fileio.h"
 #include "qtcreatorprofile.h"
+#include "testtimer.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -137,7 +138,8 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestQtCreatorProFileMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{false};
   {
     std::stringstream s;
     s
@@ -153,7 +155,7 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
       new QtCreatorProFile(filename)
     );
     assert(p->GetSources().size() == 1);
-    TRACE(*p);
+    if (verbose) { TRACE(*p); }
 
     fileio::FileIo().DeleteFile(filename);
   }
@@ -194,7 +196,7 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
       new QtCreatorProFile(filename)
     );
     assert(p->GetSources().size() == 1);
-    TRACE(*p);
+    if (verbose) { TRACE(*p); }
 
     fileio::FileIo().DeleteFile(filename);
   }

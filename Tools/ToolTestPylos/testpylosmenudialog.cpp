@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
+#include "testtimer.h"
 
 int ribi::TestPylosMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -106,6 +107,6 @@ void ribi::TestPylosMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestPylosMenuDialog::Test");
+  const TestTimer test_timer(__func__,__FILE__,1.0);
 }
 #endif

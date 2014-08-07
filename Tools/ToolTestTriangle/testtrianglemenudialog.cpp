@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "container.h"
 #include "fileio.h"
+#include "testtimer.h"
 #include "geometry.h"
 #include "plane.h"
 #include "polyfile.h"
@@ -332,20 +333,33 @@ void ribi::TestTriangleMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestTriangleMenuDialog::Test");
+  {
+    fileio::FileIo();
+    Geometry();
+    PolyFile( Vertices() );
+    PolyFileFromPolygons( Geometry().WktToShapes("POLYGON((1 1,-1 1,-1 -1,1 -1))") );
+  }
+  const TestTimer test_timer(__func__,__FILE__,1.0);
+  const bool verbose{true};
+  if (verbose) { TRACE("Construction"); }
   {
     TestTriangleMenuDialog d;
-    d.Execute( {"TestTriangleMenuDialog", "--help" } );
-    d.Execute(
+  }
+  if (verbose) { TRACE("Simple run with polygon only"); }
+  {
+    TestTriangleMenuDialog().Execute(
       {
         "TestTriangleMenuDialog",
         "--wkt", "POLYGON((1 1,-1 1,-1 -1,1 -1))",
-        //"--verbose",
+        "--verbose",
         "--triangle_area", "1.0",
         "--triangle_quality", "1.0"
       }
     );
-    d.Execute(
+  }
+  if (verbose) { TRACE("Simple run with polygon and linestring"); }
+  {
+    TestTriangleMenuDialog().Execute(
       {
         "TestTriangleMenuDialog",
         "-w", "POLYGON((1 1,1 -1,-1 -1,-1 1)),LINESTRING(0 0,0 2,2 2,0 0)",

@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "conceptmapedge.h"
 
+#include <sstream>
+
 #include "counter.h"
 #include "conceptmapconcept.h"
 #include "conceptmapedgefactory.h"
@@ -87,7 +89,11 @@ std::vector<std::string> ribi::cmap::Edge::GetVersionHistory() noexcept
 }
 
 
-void ribi::cmap::Edge::OnConceptChanged(Node * const node) noexcept
+void ribi::cmap::Edge::OnConceptChanged(Node * const
+#ifndef NDEBUG
+  node
+#endif
+) noexcept
 {
   assert(node == this->GetNode().get());
   this->m_signal_node_changed(this);

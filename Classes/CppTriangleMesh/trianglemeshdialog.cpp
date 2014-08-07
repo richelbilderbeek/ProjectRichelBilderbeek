@@ -829,6 +829,8 @@ void ribi::trim::Dialog::Test() noexcept
     is_tested = true;
   }
   {
+    PolyFile( Vertices() );
+    PolyFileFromPolygons( Shapes() );
     TriangleFile( {} );
     CellsCreatorFactory();
     Template::CreateTest(0);
